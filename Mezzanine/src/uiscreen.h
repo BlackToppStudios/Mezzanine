@@ -40,26 +40,51 @@
 #ifndef _uiscreen_h
 #define _uiscreen_h
 
-#include "datatypes.h"
-#include "crossplatformexport.h"
-#include "vector2.h"
-
-namespace Gorilla
-{
-    class Screen;
-    class Layer;
-}
+#include "matrix4x4.h"
+#include "uivertex.h"
 
 namespace Mezzanine
 {
     class Viewport;
     class UIManager;
+    class SceneManager;
     namespace UI
     {
         class Button;
         class Widget;
         class Layer;
+        struct ScreenInternalData;
         ///////////////////////////////////////////////////////////////////////////////
+        /// @class AtlasAndPosition
+        /// @headerfile uiscreen.h
+        /// @brief This class stores how the calls to Render are to be done.
+        /// @details
+        ///////////////////////////////////////
+        struct AtlasAndPosition
+        {
+            String Atlas;
+            Whole RenderCount;
+            Whole RenderStart;
+            Whole RenderEnd;
+
+            AtlasAndPosition() : RenderCount(0), RenderStart(0), RenderEnd(0) {};
+        };
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class IndexData
+        /// @headerfile uiscreen.h
+        /// @brief This is a basic class for storing data relating to a specific zorder in the UI.
+        /// @details This class caches the Layer, it's verticies, and whether it needs to be redrawn.
+        ///////////////////////////////////////
+        struct IndexData
+        {
+            Layer* IndexLayer;
+            bool RedrawNeeded;
+            std::vector<VertexData> Vertices;
+
+            IndexData() : IndexLayer(NULL), RedrawNeeded(true) {};
+        };
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Screen
         /// @headerfile uiscreen.h
         /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
         /// track of all the elements of a single UI screen.
@@ -69,13 +94,32 @@ namespace Mezzanine
         class MEZZ_LIB Screen
         {
             protected:
-                Gorilla::Screen* GorillaScreen;
                 UIManager* Manager;
+                SceneManager* SceneMan;
                 Viewport* GameViewport;
+                ScreenInternalData* SID;
+                bool OrientationChanged;
+                bool Visible;
+                bool CanRender;
+                bool IndexRedrawNeeded;
+                bool IndexRedrawAll;
+                bool ViewportSizeChanged;
+                Whole VertexBufferSize;
+                Mezzanine::OrientationMode Orientation;
+                Vector2 KnownViewportSize;
+                Vector2 InverseViewportSize;
+                Vector3 Scale;
+                Matrix4x4 VertexTransform;
                 String Name;
                 String PrimaryAtlas;
-                Vector2 KnownViewportSize;
-                std::map<Whole,Layer*> Layers;
+                std::vector<AtlasAndPosition> TextureByVertex;
+                std::vector<Layer*> Layers;
+                std::map<Whole,IndexData*> Indexes;
+
+                virtual void PrepareRenderSystem();
+                virtual void CreateVertexBuffer(const Whole& InitialSize = 32);
+                virtual void DestroyVertexBuffer();
+                virtual void ResizeVertexBuffer(const Whole& RequestedSize);
             public:
                 /// @brief Internal constructor.
                 /// @param name The name of this screen.
@@ -106,16 +150,16 @@ namespace Mezzanine
                 /// GUI object or objects.
                 /// @param Name The name to be given to the layer.
                 /// @param Zorder The layers Zorder, as explained above.
-                virtual Layer* CreateLayer(const String& Name, Whole Zorder);
+                virtual Layer* CreateLayer(const String& Name, const Whole& Zorder);
                 /// @brief Gets an already created layer by name.
                 /// @return Returns a pointer to the layer of the specified name.
                 virtual Layer* GetLayer(const String& Name);
                 /// @brief Gets an already created layer by it's index.
                 /// @return Returns a pointer to the layer at the specified index.
-                virtual Layer* GetLayer(Whole Index);
+                virtual Layer* GetLayer(const Whole& Index);
                 /// @brief Gets an already created layer by it's Zorder.
                 /// @return Returns a pointer to the layer with the specified Zorder.
-                virtual Layer* GetLayerbyZorder(Whole Zorder);
+                virtual Layer* GetLayerbyZorder(const Whole& Zorder);
                 /// @brief Gets the number of layers created and stored in this class.
                 /// @return Returns the number of layers this class is storing.
                 virtual Whole GetNumLayers();
@@ -125,6 +169,12 @@ namespace Mezzanine
                 /// @brief Gets the current viewport dimensions.
                 /// @return Returns a Vector2 representing the current viewport dimensions.
                 virtual const Vector2& GetViewportDimensions();
+                /// @brief Gets the X axis Texel Offset for the current rendersystem.
+                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.
+                virtual Real GetTexelOffsetX() const;
+                /// @brief Gets the Y axis Texel Offset for the current rendersystem.
+                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.
+                virtual Real GetTexelOffsetY() const;
                 /// @brief Gets the button the mouse is over if any.
                 /// @details This function searches only the visable layers contained in this screen.
                 /// @return Returns the button the mouse is over, or NULL if there are none.
@@ -141,13 +191,43 @@ namespace Mezzanine
                 virtual String GetPrimaryAtlas();
                 /// @brief Checks to see if the viewport has changed in size.  If so it updates all the UI elements on the screen.
                 virtual void CheckViewportSize();
+                /// @brief Gets the Viewport this screen is currently rendering to.
+                /// @return Returns a pointer to the Viewport this screen is applied to.
+                virtual Viewport* GetViewport();
+
                 /// @internal
                 /// @brief Manually calls the UI system to render this screen.
-                //virtual void RenderOnce();
+                virtual void _RenderScreen();
                 /// @internal
-                /// @brief Gets the internal screen this screen is based on.
-                /// @return Returns a pointer to the Gorilla screen this screen is based on.
-                virtual Gorilla::Screen* GetGorillaScreen();
+                /// @brief Forces an orientation mode change for this screen.
+                /// @param Mode The orientation mode to be applied to the UI on this screen.
+                virtual void _SetOrientation(const Mezzanine::OrientationMode& Mode);
+                /// @internal
+                /// @brief Updates the vertex positions so they are in front of the camera in world space.
+                /// @param Vertices Vector of the vertices to be transformed.
+                /// @param Begin The first Vertex to transform in the range.
+                /// @param End The last Vertex to transform in the range.
+                virtual void _Transform(std::vector<VertexData>& Vertices, const Whole& Begin, const Whole& End);
+                /// @internal
+                /// @brief Clears the layer and index data and rebuilds in from the existing layers.
+                virtual void _RecalculateIndexes();
+                /// @internal
+                /// @brief Clears the existing verticies and regenerates them for a specific index(layer).
+                /// @param Index The Index corresponding to the layer you want regenerated.
+                /// @param Force Whether or not to force a redraw even if the layer doesn't need it.
+                virtual void _RedrawIndex(const UInt32& Index, bool Force);
+                /// @internal
+                /// @brief Clears all verticies for every layer and regenerates them for rendering.
+                /// @param Force Whether or not to force a redraw on all layers regardless of if they need it.
+                virtual void _RedrawAllIndexes(bool Force = false);
+                /// @internal
+                /// @brief Flags a layer for redraw before the next render.
+                /// @param Index The ID or Index of the layer to be flagged for redraw.
+                virtual void _RequestIndexRedraw(const UInt32& Index);
+                /// @internal
+                /// @brief Prepares all vertices for rendering to the screen.
+                /// @param Force Whether or not to force preparation regardless of if they need it.
+                virtual void _RenderVertices(bool Force = false);
         };//uiscreen
     }//ui
 }//Mezzanine

@@ -43,6 +43,9 @@ LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& R
 
     Description->SetBackgroundColour(ColourValue::Transparent());
     Score->SetBackgroundColour(ColourValue::Transparent());
+
+    SubRenderables[0] = RenderablePair(Description,NULL);
+    SubRenderables[1] = RenderablePair(Score,NULL);
 }
 
 LevelReportCell::~LevelReportCell()

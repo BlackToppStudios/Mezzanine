@@ -60,8 +60,27 @@ namespace Mezzanine
             ColourValue Colour;
             /// @brief The UV position (or texture coordinates) of this vertex if a texture is being applied to it.
             Vector2 UV;
+        };//Vertex
+
+        /// @struct VertexData
+        /// @headerfile uivertex.h
+        /// @brief Basic class describing a vertex in the UI to be rendered.
+        /// @details This class is necessary to exist since vertex declarations can't contain Atlas names.
+        struct MEZZ_LIB VertexData
+        {
+            /// @brief The actual vertex data relevant to rendering.
+            Vertex Vert;
             /// @brief Name of the Atlas the texture belongs to if a texture is being applied to it.
             String Atlas;
+
+            /// @brief Assignment operator.
+            void operator=(const VertexData& Other)
+            {
+                this->Vert.Position = Other.Vert.Position;
+                this->Vert.Colour = Other.Vert.Colour;
+                this->Vert.UV = Other.Vert.UV;
+                this->Atlas = Other.Atlas;
+            }
         };//Vertex
     }//UI
 }//Mezzanine

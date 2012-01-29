@@ -40,8 +40,9 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
-#include "datatypes.h"
+#include "uienumerations.h"
 #include "uirenderablerect.h"
+#include "uivertex.h"
 #include "metacode.h"
 
 namespace Mezzanine
@@ -52,6 +53,7 @@ namespace Mezzanine
         class Button;
         class Layer;
         class WidgetCallback;
+        class BasicRenderable;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputCaptureData
         /// @headerfile uiwidget.h
@@ -97,6 +99,8 @@ namespace Mezzanine
         class MEZZ_LIB Widget
         {
             public:
+                typedef std::pair<BasicRenderable*,Widget*> RenderablePair;
+                typedef std::map<Whole,RenderablePair> RenderableMap;
                 enum WidgetType
                 {
                     W_ButtonListBox,
@@ -118,6 +122,7 @@ namespace Mezzanine
                 };
             protected:
                 friend class Mezzanine::UIManager;
+                friend class Layer;
                 UIManager* Manager;
                 Layer* Parent;
                 InputCaptureData* CaptureData;
@@ -127,10 +132,14 @@ namespace Mezzanine
                 UI::WidgetCallback* Callback;
                 bool Visible;
                 bool Hovered;
+                bool Dirty;
+                UI::RenderPriority Priority;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 WidgetType Type;
                 String Name;
+                std::vector<VertexData> Vertices;
+                RenderableMap SubRenderables;
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false);
                 /// @brief Child specific update method.
@@ -222,6 +231,13 @@ namespace Mezzanine
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize() const;
+                /// @brief Sets the priority this widget should be rendered with.
+                /// @details The default value for this is Medium.
+                /// @param Priority The priority level to be used when rendering this widget.
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
+                /// @brief Gets the priority this widget should be rendered with.
+                /// @return Returns an enum value representing this widget's priority level.
+                virtual UI::RenderPriority GetRenderPriority() const;
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions() = 0;
@@ -237,6 +253,16 @@ namespace Mezzanine
                 /// @brief Gets the data determining what input should be captured.
                 /// @return Returns a pointer to the InputCaptureData, or NULL if this widget doesn't capture data.
                 virtual InputCaptureData* GetInputCaptureData() const;
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @internal
+                /// @brief Regenerates the verticies in this renderable.
+                virtual void _Redraw();
+                /// @internal
+                /// @brief Appends the vertices of this renderable to another vector.
+                /// @param Vertices The vector of vertex's to append to.
+                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
         };//widget
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WidgetCallback

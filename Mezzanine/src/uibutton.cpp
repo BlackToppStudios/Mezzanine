@@ -48,42 +48,26 @@
 #include "eventmanager.h"
 #include "inputquerytool.h"
 #include "world.h"
-#include "internalGorilla.h.cpp"
 
 namespace Mezzanine
 {
     namespace UI
     {
         Button::Button(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
-            : BasicRenderable(name,PLayer),
+            : Rectangle(name,Rect,PLayer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
               UserSprite(NULL),
               Callback(NULL),
-              MouseHover(false),
               Activated(false),
+              UserSpriteEnabled(false),
               MultipleActivations(false),
               ActCond(UI::AC_OnLift)
         {
-            if(Rect.Relative)
-            {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
-
-                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-                GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
-            }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
-
-                GorillaRectangle = Parent->GetGorillaLayer()->createRectangle(Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2());
-            }
-            GorillaRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 
         Button::~Button()
         {
-            Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
             if(Callback)
                 delete Callback;
         }
@@ -95,31 +79,23 @@ namespace Mezzanine
             if(HoveredSprite)
             {
                 if(Hovered && !MouseHover)
-                    GorillaRectangle->background_image(HoveredSprite);
+                    SetSprite(HoveredSprite);
                 else if(!Hovered && MouseHover)
-                    GorillaRectangle->background_image(NormalSprite);
+                {
+                    if(UserSpriteEnabled) SetSprite(UserSprite);
+                    else SetSprite(NormalSprite);
+                }
             }
             MouseHover = Hovered;
         }
 
-        void Button::SetVisible(bool Visible)
+        bool Button::CheckMouseHover()
         {
-            GorillaRectangle->SetVisible(Visible);
-        }
-
-        bool Button::IsVisible() const
-        {
-            return GorillaRectangle->IsVisible() && Parent->IsVisible() && Parent->GetParent()->IsVisible();
-        }
-
-        void Button::Show()
-        {
-            GorillaRectangle->Show();
-        }
-
-        void Button::Hide()
-        {
-            GorillaRectangle->Hide();
+            if(!Visible)
+                return false;
+            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
+            SetHovered((MouseLoc.X >= ActPosition.X && MouseLoc.X <= ActPosition.X + ActSize.X) && (MouseLoc.Y >= ActPosition.Y && MouseLoc.Y <= ActPosition.Y + ActSize.Y));
+            return MouseHover;
         }
 
         bool Button::IsTextButton()
@@ -235,187 +211,80 @@ namespace Mezzanine
             return MultipleActivations;
         }
 
-        bool Button::CheckMouseHover()
+        void Button::SetBackgroundSprite(Sprite* PSprite)
         {
-            if(!IsVisible())
-                return false;
-            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
-            bool Hovered = GorillaRectangle->intersects(MouseLoc.GetOgreVector2());
-            if(Hovered != MouseHover)
-                SetHovered(Hovered);
-            return MouseHover;
+            NormalSprite = PSprite;
+            if(!MouseHover && !UserSpriteEnabled)
+            {
+                SetSprite(PSprite);
+            }
         }
 
-        bool Button::GetMouseHover()
+        void Button::SetBackgroundSprite(const String& SpriteName)
         {
-            return MouseHover;
+            Rectangle::SetBackgroundSprite(SpriteName);
         }
 
-        void Button::SetBackgroundColour(const ColourValue& Colour)
+        void Button::SetBackgroundSprite(const String& SpriteName, const String& Atlas)
         {
-            GorillaRectangle->background_colour(Colour.GetOgreColourValue());
+            Rectangle::SetBackgroundSprite(SpriteName,Atlas);
         }
 
-        void Button::SetBackgroundSprite(const String& Name)
+        void Button::SetHoveredSprite(Sprite* PSprite)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
-            NormalSprite = GSprite;
-            GorillaRectangle->background_image(GSprite);
-        }
-
-        void Button::SetBackgroundSprite(const String& Name, const String& Atlas)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
-            NormalSprite = GSprite;
-            GorillaRectangle->background_image(GSprite);
-        }
-
-        void Button::SetHoveredSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
-            HoveredSprite = GSprite;
+            HoveredSprite = PSprite;
             if(MouseHover)
-                GorillaRectangle->background_image(HoveredSprite);
+            {
+                SetSprite(PSprite);
+            }
         }
 
-        void Button::SetHoveredSprite(const String& Name, const String& Atlas)
+        void Button::SetHoveredSprite(const String& SpriteName)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
-            HoveredSprite = GSprite;
+            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            SetHoveredSprite(PSprite);
         }
 
-        void Button::SetUserSprite(const String& Name)
+        void Button::SetHoveredSprite(const String& SpriteName, const String& Atlas)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
-            UserSprite = GSprite;
+            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            SetHoveredSprite(PSprite);
         }
 
-        void Button::SetUserSprite(const String& Name, const String& Atlas)
+        void Button::SetUserSprite(Sprite* PSprite)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
-            UserSprite = GSprite;
+            UserSprite = PSprite;
+            if(!MouseHover && UserSpriteEnabled)
+            {
+                SetSprite(PSprite);
+            }
+        }
+
+        void Button::SetUserSprite(const String& SpriteName)
+        {
+            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            SetUserSprite(PSprite);
+        }
+
+        void Button::SetUserSprite(const String& SpriteName, const String& Atlas)
+        {
+            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            SetUserSprite(PSprite);
         }
 
         void Button::EnableUserSprite(bool Enable)
         {
-            if(Enable)
+            if(UserSpriteEnabled == Enable)
+                return;
+            if(Enable && !MouseHover)
             {
-                GorillaRectangle->background_image(UserSprite);
-            }else{
-                GorillaRectangle->background_image(NormalSprite);
+                SetSprite(UserSprite);
             }
-        }
-
-        void Button::SetBorder(const Real& Width, const ColourValue& Colour)
-        {
-            GorillaRectangle->border(Width, Colour.GetOgreColourValue());
-        }
-
-        void Button::NoBorder()
-        {
-            GorillaRectangle->no_border();
-        }
-
-        void Button::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle->left(WinDim.X * RelPosition.X);
-            GorillaRectangle->top(WinDim.Y * RelPosition.Y);
-        }
-
-        Vector2 Button::GetPosition() const
-        {
-            return RelPosition;
-        }
-
-        void Button::SetActualPosition(const Vector2& Position)
-        {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle->left(Position.X);
-            GorillaRectangle->top(Position.Y);
-        }
-
-        Vector2 Button::GetActualPosition() const
-        {
-            Vector2 Pos(GorillaRectangle->left(), GorillaRectangle->top());
-            return Pos;
-        }
-
-        void Button::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle->width(WinDim.X * RelSize.X);
-            GorillaRectangle->height(WinDim.Y * RelSize.Y);
-        }
-
-        Vector2 Button::GetSize() const
-        {
-            return RelSize;
-        }
-
-        void Button::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle->width(Size.X);
-            GorillaRectangle->height(Size.Y);
-        }
-
-        Vector2 Button::GetActualSize() const
-        {
-            Vector2 Pos(GorillaRectangle->width(), GorillaRectangle->height());
-            return Pos;
-        }
-
-        void Button::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            Gorilla::RenderPriority RP;
-            switch(Priority)
+            else if(!Enable && !MouseHover)
             {
-                case UI::RP_Low:
-                    RP = Gorilla::RP_Low;
-                    break;
-                case UI::RP_Medium:
-                    RP = Gorilla::RP_Medium;
-                    break;
-                case UI::RP_High:
-                    RP = Gorilla::RP_High;
-                    break;
-                default:
-                    break;
+                SetSprite(NormalSprite);
             }
-            GorillaRectangle->RenderPriority(RP);
-        }
-
-        UI::RenderPriority Button::GetRenderPriority() const
-        {
-            Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
-            switch(RP)
-            {
-                case Gorilla::RP_Low:
-                    return UI::RP_Low;
-                    break;
-                case Gorilla::RP_Medium:
-                    return UI::RP_Medium;
-                    break;
-                case Gorilla::RP_High:
-                    return UI::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            return UI::RP_Medium;
-        }
-
-        void Button::SetPrimaryAtlas(const String& Atlas)
-        {
-            GorillaRectangle->SetNameFile(Atlas);
-        }
-
-        String Button::GetPrimaryAtlas() const
-        {
-            return *GorillaRectangle->GetNameFile();
+            UserSpriteEnabled = Enable;
         }
 
         std::vector<MetaCode::InputCode>* Button::GetKeyboardActivationKeys()
@@ -426,13 +295,6 @@ namespace Mezzanine
         std::vector<MetaCode::InputCode>* Button::GetMouseActivationButtons()
         {
             return &MouseActivationButtons;
-        }
-
-        void Button::UpdateDimensions()
-        {
-            ViewportUpdateTool::UpdateRenderable(this);
-            //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
-            //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
         }
 
         ButtonCallback::ButtonCallback()

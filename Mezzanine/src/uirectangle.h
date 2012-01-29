@@ -41,16 +41,9 @@
 #define _uirectangle_h
 
 #include "colourvalue.h"
-#include "crossplatformexport.h"
 #include "uienumerations.h"
 #include "uirenderablerect.h"
 #include "uibasicrenderable.h"
-
-namespace Gorilla
-{
-    class Rectangle;
-    class Layer;
-}
 
 namespace Mezzanine
 {
@@ -68,8 +61,37 @@ namespace Mezzanine
         class MEZZ_LIB Rectangle : public BasicRenderable
         {
             protected:
-                Gorilla::Rectangle* GRectangle;
                 bool MouseHover;
+                bool CustomCenter;
+                Real BorderWidth;
+                Real RotAngle;
+                Vector2 ActPosition;
+                Vector2 ActSize;
+                Vector2 RelPosition;
+                Vector2 RelSize;
+                Vector2	RotCenter;
+                Vector2 UVs[4];
+                ColourValue BackgroundColours[4];
+                ColourValue BorderColours[4];
+
+                /// @brief Builds the rectangle.
+                void ConstructRectangle(const UI::RenderableRect& Rect);
+                /// @brief Draws the border, if any is set.
+                void DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
+                                const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight);
+                /// @brief Draws the main rectangle.
+                void DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight);
+                /// @brief Transforms coordinates to be used in rendering.
+                void RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight);
+                /// @brief Sets the hovered state of this renderable.
+                void SetHovered(bool Hovered);
+                /// @brief Sets all the sprite meta-data of this class to render a specific sprite.
+                void SetSprite(Sprite* PSprite);
+                /// @brief Inheritance constructor.
+                /// @param name The name to be given to this renderable.
+                /// @param Rect The Rect representing the position and size of the rectangle.
+                /// @param Layer Pointer to the parent Layer that created this rectangle.
+                Rectangle(const String& name, const RenderableRect& Rect, Layer* PLayer);
             public:
                 /// @brief Class constructor.
                 /// @param Rect The Rect representing the position and size of the rectangle.
@@ -77,78 +99,131 @@ namespace Mezzanine
                 Rectangle(const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Rectangle();
-                /// @brief Sets the visibility of this rectangle.
-                /// @param Visible Bool determining whether or not this rectangle should be visible.
-                virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this rectangle.
-                /// @return Returns a bool representing the visibility of this rectangle.
-                virtual bool IsVisible() const;
-                /// @brief Forces this rectangle to be shown.
-                virtual void Show();
-                /// @brief Forces this rectangle to hide.
-                virtual void Hide();
-                /// @brief Determines whether the mouse is over this rectangle.
-                /// @return Returns a bool indicating whether the mouse is over this rectangle.
+
+                /// @brief Determines whether the mouse is over this renderable.
+                /// @return Returns a bool indicating whether the mouse is over this renderable.
                 virtual bool CheckMouseHover();
-                /// @brief Gets the stored value of whether or not the mouse is over the rectangle.
+                /// @brief Gets the stored value of whether or not the mouse is over the renderable.
                 /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
-                /// @return Returns the stored value of whether or not the mouse is over the rectangle.
+                /// @return Returns the stored value of whether or not the mouse is over the renderable.
                 virtual bool GetMouseHover();
-                /// @brief Sets the background colour of the rectangle.
+
+                /// @brief Sets the background colour of the renderable.
                 /// @param Colour A colour value representing the colour to be set.
                 virtual void SetBackgroundColour(const ColourValue& Colour);
-                /// @brief Sets the background image(if provided in the atlas) of the rectangle.
-                /// @param Name The name of the sprite to set as the background.
-                virtual void SetBackgroundSprite(const String& Name);
-                /// @brief Sets the background image(if provided in the atlas) of the rectangle.
-                /// @param Name The name of the sprite to set as the background.
-                /// @param Atlas The Atlas to load the sprite from.
-                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
-                /// @brief Enables a border and sets it's colour.
+                /// @brief Sets the background colour for one corner the renderable.
+                /// @param Corner Which corner the colour should be applied to.
                 /// @param Colour A colour value representing the colour to be set.
+                virtual void SetBackgroundColour(const UI::QuadCorner& Corner, const ColourValue& Colour);
+                /// @brief Sets the background image(if provided in the atlas) of the renderable.
+                /// @param PSprite A pointer to the sprite to set as the background.
+                virtual void SetBackgroundSprite(Sprite* PSprite);
+                /// @brief Sets the background image(if provided in the atlas) of the renderable.
+                /// @param SpriteName The name of the sprite to set as the background.
+                virtual void SetBackgroundSprite(const String& SpriteName);
+                /// @brief Sets the background image(if provided in the atlas) of the renderable.
+                /// @param SpriteName The name of the sprite to set as the background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetBackgroundSprite(const String& SpriteName, const String& Atlas);
+                /// @brief Sets a colour gradient to be applied to this renderable.
+                /// @param Grad The direction/style of gradient to enable.
+                /// @param ColourA The colour to apply to the first side of the gradient.
+                /// @param ColourB The colour to apply to the second side of the gradient.
+                virtual void SetBackgroundGradient(const UI::Gradient& Grad, const ColourValue& ColourA, const ColourValue& ColourB);
+                /// @brief Gets the colour of a corner of this renderable.
+                /// @param Corner The corner to get the colour for.
+                /// @return Returns the colour of the specified corner.
+                virtual ColourValue GetBackgroundColour(const UI::QuadCorner& Corner) const;
+
+                /// @brief Sets the width of the border for this renderable.
+                /// @param Width The width to set for the border.
+                virtual void SetBorderWidth(const Real& Width);
+                /// @brief Sets the colour of the border for this renderable.
+                /// @param Colour The colour to set for the border.
+                virtual void SetBorderColour(const ColourValue& Colour);
+                /// @brief Sets the colour of one side of the border for this renderable.
+                /// @param Side The side to have the colour applied to.
+                /// @param Colour The colour to be applied.
+                virtual void SetBorderColour(const UI::Border& Side, const ColourValue& Colour);
+                /// @brief Sets all parameters for enabling a border.
+                /// @param Width The width to set for the border.
+                /// @param Colour The colour to be applied to all sides of the border.
                 virtual void SetBorder(const Real& Width, const ColourValue& Colour);
-                /// @brief Disables any border set on this rectangle if one is currently set.
+                /// @brief Sets all parameters for enabling a border.
+                /// @param Width The width to set for the border.
+                /// @param North The colour to apply to the north side of the border.
+                /// @param South The colour to apply to the south side of the border.
+                /// @param East The colour to apply to the east side of the border.
+                /// @param West The colour to apply to the west side of the border.
+                virtual void SetBorder(const Real& Width, const ColourValue& North, const ColourValue& South, const ColourValue& East, const ColourValue& West);
+                /// @brief Disables any border set on this renderable if one is currently set.
                 virtual void NoBorder();
-                /// @brief Sets the relative top left position of this rectangle.
-                /// @param Position A Vector2 representing the location of this rectangle.
+                /// @brief Gets the border width of this renderable.
+                /// @return Returns a Real with the currently set width of the border.
+                virtual Real GetBorderWidth() const;
+                /// @brief Gets the colour of a border on this renderable.
+                /// @param Side The side to retrieve the colour for.
+                /// @return Returns the colour of the border on the specified side.
+                virtual ColourValue GetBorderColour(const UI::Border& Side) const;
+
+                /// @brief Sets the rotation to be applied to this renderable.
+                /// @param Degrees The angle of rotation in degrees.
+                virtual void SetRotationDegrees(const Real& Degrees);
+                /// @brief Sets the rotation to be applied to this renderable.
+                /// @param Radians The angle of rotation in radians.
+                virtual void SetRotationRadians(const Real& Radians);
+                /// @brief Gets the current rotation applied to this renderable in degrees.
+                /// @return Returns a Real with the current rotation.
+                virtual Real GetRotationDegrees() const;
+                /// @brief Gets the current rotation applied to this renderable in radians.
+                /// @return Returns a Real with the current rotation.
+                virtual Real GetRotationRadians() const;
+                /// @brief Sets the point around which this renderable should rotate.
+                /// @remarks By default, when rotating a renderable it will rotate around the center of it's quad.
+                /// Using this however you can rotate it around any point in screen space.  When disabling this feature,
+                /// you can simple pass in "false" as the only arguement.
+                /// @param Custom Whether to enable or disable a custom rotation point.
+                /// @param Center The point in screen space where this renderable should rotate around.
+                virtual void SetRotationCenter(bool Custom, const Vector2& Center = Vector2());
+                /// @brief Gets the current set rotation point.
+                /// @return Returns a vector 2 with the point around which this renderable rotates in screen space.
+                virtual Vector2 GetRotationCenter() const;
+
+                /// @brief Sets the relative top left position of this renderable.
+                /// @param Position A Vector2 representing the location of this renderable.
                 virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative top left position of this rectangle.
-                /// @return Returns a Vector2 representing the location of this rectangle.
+                /// @brief Gets the relative top left position of this renderable.
+                /// @return Returns a Vector2 representing the location of this renderable.
                 virtual Vector2 GetPosition() const;
-                /// @brief Sets the top left position of this rectangle in pixels.
-                /// @param Position A Vector2 representing the location of this rectangle.
+                /// @brief Sets the top left position of this renderable in pixels.
+                /// @param Position A Vector2 representing the location of this renderable.
                 virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Gets the top left position of this rectangle in pixels.
-                /// @return Returns a Vector2 representing the location of this rectangle.
+                /// @brief Gets the top left position of this renderable in pixels.
+                /// @return Returns a Vector2 representing the location of this renderable.
                 virtual Vector2 GetActualPosition() const;
-                /// @brief Sets the relative size of this rectangle.
-                /// @param Size A vector2 representing the size of this rectangle.
+                /// @brief Sets the relative size of this renderable.
+                /// @param Size A vector2 representing the size of this renderable.
                 virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this rectangle.
-                /// @return Returns a vector2 representing the size of this rectangle.
+                /// @brief Gets the relative size of this renderable.
+                /// @return Returns a vector2 representing the size of this renderable.
                 virtual Vector2 GetSize() const;
-                /// @brief Sets the size of this rectangle in pixels.
-                /// @param Size A vector2 representing the size of this rectangle.
+                /// @brief Sets the size of this renderable in pixels.
+                /// @param Size A vector2 representing the size of this renderable.
                 virtual void SetActualSize(const Vector2& Size);
-                /// @brief Gets the size of this rectangle in pixels.
-                /// @return Returns a vector2 representing the size of this rectangle.
+                /// @brief Gets the size of this renderable in pixels.
+                /// @return Returns a vector2 representing the size of this renderable.
                 virtual Vector2 GetActualSize() const;
-                /// @brief Sets the priority this button should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this button should be rendered with.
-                /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority() const;
-                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
-                /// @param Atlas The name of the atlas to be used.
-                virtual void SetPrimaryAtlas(const String& Atlas);
-                /// @brief Gets the currently set primary atlas.
-                /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
-                virtual String GetPrimaryAtlas() const;
-                /// @brief Updates the dimensions of this rectangle to match those of the new screen size.
+
+                /// @brief Updates the dimensions of this renderable to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions();
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @copydoc UI::BasicRenderable::_Redraw()
+                virtual void _Redraw();
+                /// @copydoc UI::BasicRenderable::_AppendVertices()
+                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
         };//rectangle
     }//UI
 }//Mezzanine

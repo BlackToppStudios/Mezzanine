@@ -41,7 +41,7 @@
 #define _uiviewportupdatetool_cpp
 
 #include "uiviewportupdatetool.h"
-#include "uibasicrenderable.h"
+#include "uirectangle.h"
 #include "uiwidget.h"
 
 namespace Mezzanine
@@ -304,7 +304,7 @@ namespace Mezzanine
         }
 
 
-        void ViewportUpdateTool::UpdateRenderable(BasicRenderable* ToBeUpdated)
+        void ViewportUpdateTool::UpdateRectangleRenderable(Rectangle* ToBeUpdated)
         {
             // Setup the data to be used
             Vector2 RendActSize = ToBeUpdated->GetActualSize();

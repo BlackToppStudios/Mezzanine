@@ -45,7 +45,7 @@ namespace Mezzanine
     /// @namespace Mezzanine::UI
     /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
     /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and even it's config files(e.g. .gorilla files).
+    /// a similiar structure of classes and layout for it's config files(e.g. .mta files).
     namespace UI
     {
 

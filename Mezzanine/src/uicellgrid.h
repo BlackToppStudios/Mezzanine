@@ -84,6 +84,7 @@ namespace Mezzanine
                 Vector2 EdgeSpacing;
                 Vector2 CellSpacing;
                 Vector2 WorkAreaLimits;
+                Whole CellsAdded;
                 CellGrid::PageStyle Paging;
                 CellGrid::OrderingStyle Ordering;
                 UI::Cell* Selected;

@@ -40,8 +40,8 @@
 #ifndef _uitextbutton_h
 #define _uitextbutton_h
 
-#include "crossplatformexport.h"
 #include "uibutton.h"
+#include "uiglyph.h"
 
 namespace Mezzanine
 {
@@ -57,15 +57,24 @@ namespace Mezzanine
         class MEZZ_LIB TextButton : public Button
         {
             protected:
-                Gorilla::Caption* GorillaButton;
+                GlyphData* GlyphSet;
                 bool AutoScaleText;
+                UI::TextHorizontalAlign HoriAlign;
+                UI::TextVerticalAlign VertAlign;
+                Real CursorOffset;
+                Real CharScaling;
                 Real RelLineHeight;
-                Whole Glyphs;
+                Real ClippedLeftIndex;
+                Real ClippedRightIndex;
+                ColourValue TextColour;
+                String Text;
+                String GlyphAtlas;
+                void CalculateDrawSize(Vector2& Size);
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
                 /// @param Rect The Rect representing the position and size of the button.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
                 TextButton(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
@@ -78,16 +87,7 @@ namespace Mezzanine
                 TextButton(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~TextButton();
-                /// @brief Sets the visibility of this button.
-                /// @param Visible Bool determining whether or not this button should be visible.
-                virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this button.
-                /// @return Returns a bool representing the visibility of this button.
-                virtual bool IsVisible();
-                /// @brief Forces this button to be shown.
-                virtual void Show();
-                /// @brief Forces this button to hide.
-                virtual void Hide();
+
                 /// @brief Gets whether this is a text button.
                 /// @return Returns a bool representing whether or not this is a text button.
                 virtual bool IsTextButton();
@@ -103,19 +103,35 @@ namespace Mezzanine
                 /// @brief Gets the scaling currently being applied to the rendered text.
                 /// @return Returns a Real value representing the scale applied to the text in this button.  <1.0 means smaller, >1.0 means larger.
                 virtual Real GetTextScale();
+                /// @brief Sets the colour for the text in this button.
+                /// @param Colour A colourvalue representing the desired colour.
+                virtual void SetTextColour(const ColourValue& Colour);
+                /// @brief Gets the colour for the text in this button.
+                /// @return Returns a colourvalue representing the currently set colour of the text in this button.
+                virtual ColourValue GetTextColour();
+
                 /// @brief Sets the glyph index to be used with this button.
-                /// @details The glyph index is defined in your gorilla file.
+                /// @details The glyph index is defined in your MTA file.
                 /// @param GlyphIndex The index of the glyph to use with this button.
                 virtual void SetGlyphIndex(const Whole& GlyphIndex);
                 /// @brief Sets the glyph index to be used with this button from another atlas then the one currently set.
-                /// @details The glyph index is defined in your gorilla file.
+                /// @details The glyph index is defined in your MTA file.
                 /// @param GlyphIndex The index of the glyph to use with this button.
                 /// @param Atlas The Atlas to load the glyphs from
                 virtual void SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas);
-                /// @brief Gets the glyph index in use by this button.
-                /// @details The glyph index is defined in your gorilla file.
-                /// @param Returns a Whole representing the index of the glyph in use by this button..
-                virtual Whole GetGlyphIndex();
+                /// @brief Gets the glyphdata in use by this button.
+                /// @details The glyphdata is defined in your MTA file.
+                /// @param Returns a pointer to the glyphdata in use by this button.
+                virtual GlyphData* GetGlyphData();
+
+                /// @brief Sets the number of pixels text should be offset from the side when rendering.
+                /// @details This doesn't apply when text is being rendered with a Middle alignment.
+                /// @param Offset The number of pixels from the side text should be offset.
+                virtual void SetCursorOffset(const Whole& Offset);
+                /// @brief Gets the number of pixels text should be offset from the side when rendering.
+                /// @return Returns a Whole representing the number of pixels text is currently being offset from the side.
+                virtual Whole GetCursorOffset();
+
                 /// @brief Aligns the text of the button.
                 /// @details Default value for this is UI::Txt_Middle.
                 /// @param Align The enum value representing the horizontal alignment to be set.
@@ -124,46 +140,21 @@ namespace Mezzanine
                 /// @details Default value for this is UI::Txt_Center.
                 /// @param Align The enum value representing the vertical alignment to be set.
                 virtual void VerticallyAlign(const UI::TextVerticalAlign& Align);
-                /// @brief Sets the relative top left position of this button.
-                /// @param Position A Vector2 representing the location of this button.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative top left position of this button.
-                /// @return Returns a Vector2 representing the location of this button.
-                virtual Vector2 GetPosition();
-                /// @brief Sets the top left position of this button in pixels.
-                /// @param Position A Vector2 representing the location of this button.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Gets the top left position of this button in pixels.
-                /// @return Returns a Vector2 representing the location of this button.
-                virtual Vector2 GetActualPosition();
-                /// @brief Sets the relative size of this button.
-                /// @param Size A vector2 representing the size of this button.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this button.
-                /// @return Returns a vector2 representing the size of this button.
-                virtual Vector2 GetSize();
-                /// @brief Sets the size of this button in pixels.
-                /// @param Size A vector2 representing the size of this button.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Gets the size of this button in pixels.
-                /// @return Returns a vector2 representing the size of this button.
-                virtual Vector2 GetActualSize();
-                /// @brief Sets the priority this button should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this button should be rendered with.
-                /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority();
+
                 /// @brief Enables or disables scaling the text automatically on a screen size change.
                 /// @param Enable Enables or disables automatic text scaling.
                 virtual void SetAutoScaleText(bool Enable);
-                /// @brief Gets whether or not text from this caption will automatically scale on a screen size change.
-                /// @return Returns a bool indicating whether or not this caption will automatically scale it's text.
+                /// @brief Gets whether or not text from this button will automatically scale on a screen size change.
+                /// @return Returns a bool indicating whether or not this button will automatically scale it's text.
                 virtual bool GetAutoScaleText();
-                /// @brief Updates the dimensions of this caption to match those of the new screen size.
+                /// @brief Updates the dimensions of this button to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions();
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @copydoc UI::BasicRenderable::_Redraw()
+                virtual void _Redraw();
         };
     }//UI
 }//Mezzanine

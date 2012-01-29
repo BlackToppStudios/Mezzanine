@@ -77,6 +77,7 @@ namespace Mezzanine
         class MEZZ_LIB TabSet : public Widget
         {
             protected:
+                Whole SetsAdded;
                 std::vector<RenderableSetData*> Sets;
                 RenderableRect TemplateSetRect;
                 RenderableSetData* VisibleSet;

@@ -56,6 +56,11 @@ LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& R
     PreviewBorder = new UI::Rectangle(PBRect,Parent);
     LevelTitle = new UI::Caption(Name+"LT",LTRect,Real(Rect.Size.Y * 0.36),Name,Parent);
     EarnedMaxScore = new UI::Caption(Name+"EMS",EMSRect,Real(Rect.Size.Y * 0.36),"0/0",Parent);
+    SubRenderables[0] = RenderablePair(CellBack,NULL);
+    SubRenderables[1] = RenderablePair(PreviewImage,NULL);
+    SubRenderables[2] = RenderablePair(PreviewBorder,NULL);
+    SubRenderables[3] = RenderablePair(LevelTitle,NULL);
+    SubRenderables[4] = RenderablePair(EarnedMaxScore,NULL);
 }
 
 LevelSelectCell::~LevelSelectCell()

@@ -66,8 +66,6 @@ namespace Mezzanine
                 Whole GlyphIndex;
                 bool Checked;
                 bool CheckLock;
-                /// @brief Constructs a checkbox.
-                void ConstructCheckBox(const RenderableRect& Rect, ConstString& LabelText);
                 /// @brief Sets both the background and hovered sprites of a set.
                 void SetSpriteSet(std::pair<std::string,std::string>& SpriteSet);
                 //void SetUncheckedSprites();

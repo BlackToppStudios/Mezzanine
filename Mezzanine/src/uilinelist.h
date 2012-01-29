@@ -40,14 +40,9 @@
 #ifndef _uilinelist_h
 #define _uilinelist_h
 
-#include "vector2.h"
 #include "colourvalue.h"
 #include "uienumerations.h"
-
-namespace Gorilla
-{
-    class LineList;
-}
+#include "uibasicrenderable.h"
 
 namespace Mezzanine
 {
@@ -55,6 +50,7 @@ namespace Mezzanine
     namespace UI
     {
         class Layer;
+        class VertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class LineList
         /// @headerfile uilinelist.h
@@ -63,34 +59,30 @@ namespace Mezzanine
         /// doesn't have a position or size.  The position functions exist only to create additional
         /// points for the lines to connect.
         ///////////////////////////////////////
-        class MEZZ_LIB LineList
+        class MEZZ_LIB LineList : public BasicRenderable
         {
             protected:
-                Gorilla::LineList* GLineList;
+                friend class Layer;
                 Layer* Parent;
                 UIManager* Manager;
+                bool IsClosed;
+                Real Thickness;
+                ColourValue Colour;
+                std::vector<Vector2> Positions;
             public:
                 /// @brief Class constructor.
+                /// @param name The name to give to this Linelist.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                LineList(Layer* PLayer);
+                LineList(const String& name, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~LineList();
-                /// @brief Sets the visibility of this rectangle.
-                /// @param Visible Bool determining whether or not this rectangle should be visible.
-                virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this rectangle.
-                /// @return Returns a bool representing the visibility of this rectangle.
-                virtual bool IsVisible();
-                /// @brief Forces this rectangle to be shown.
-                virtual void Show();
-                /// @brief Forces this rectangle to hide.
-                virtual void Hide();
+
                 /// @brief Starts a new line list.
                 /// @details If this function is called while lines have already been defined, it will
                 /// clear the current list of lines and start a new list.
-                /// @param Thickness The thickness of the line to draw in pixels.
-                /// @param Colour The colour of the line.
-                void Begin(const Whole& Thickness, const ColourValue& Colour);
+                /// @param LineThickness The thickness of the line to draw in pixels.
+                /// @param LineColour The colour of the line.
+                void Begin(const Whole& LineThickness, const ColourValue& LineColour);
                 /// @brief Adds a new point/line to the list via 2 reals.
                 /// @param X Relative coordinate on the X vector.
                 /// @param Y Relative coordinate on the Y vector.
@@ -109,13 +101,17 @@ namespace Mezzanine
                 /// @param Closed Whether or not the line list connects back to it's starting position.  If
                 /// true this will create one last line connecting the last provided position with the first.
                 void End(bool Closed = false);
-                /// @brief Sets the priority this button should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this button should be rendered with.
-                /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority();
+
+                /// @brief Updates the dimensions of this renderable to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @copydoc UI::BasicRenderable::_Redraw()
+                virtual void _Redraw();
+                /// @copydoc UI::BasicRenderable::_AppendVertices()
+                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
         };//listlist
     }//UI
 }//Mezzanine

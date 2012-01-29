@@ -49,6 +49,7 @@ namespace Ogre
 {
     class Pass;
     class MaterialPtr;
+    class TexturePtr;
 }
 
 namespace Mezzanine
@@ -156,11 +157,15 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Gets the 2D Material for this TextureAtlas, creating it also if neccessary.
                 /// @return Returns a shared pointer to the internal material for this Atlas.
-                Ogre::MaterialPtr _GetOrCreate2DMasterMaterial();
+                Ogre::MaterialPtr _GetOrCreate2DMaterial();
                 /// @internal
                 /// @brief Gets the 3D Material for this TextureAtlas, creating it also if neccessary.
                 /// @return Returns a shared pointer to the internal material for this Atlas.
-                Ogre::MaterialPtr _GetOrCreate3DMasterMaterial();
+                Ogre::MaterialPtr _GetOrCreate3DMaterial();
+                /// @internal
+                /// @brief Gets the texture being used by this Atlas.
+                /// @return Returns a shared pointer to the internal texture for this Atlas.
+                Ogre::TexturePtr _GetTexture();
                 /// @internal
                 /// @brief Gets the 2D Material Pass for this TextureAtlas.
                 /// @return Returns a pointer to the 2D Pass used for this TextureAtlas.

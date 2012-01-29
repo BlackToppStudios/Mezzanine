@@ -128,6 +128,8 @@ namespace Mezzanine
                 Real LetterSpacing;
                 /// @brief Width in pixels to use when MonoWidth is enabled for Markup Texts.
                 Real MonoWidth;
+                /// @brief Name of the Atlas that this GlyphData belongs.
+                String Atlas;
                 /// @brief Vector Storing all the Glyphs contained in this set.
                 std::vector<Glyph*> Glyphs;
 

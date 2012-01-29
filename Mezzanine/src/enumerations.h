@@ -96,19 +96,35 @@ namespace Mezzanine
         CF_UserFilter2 = 128
     };
 
+    /// @enum OrientationMode
+    /// @brief Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.
+    /// @details This enum is used by the UI and graphics sub-systems for when a change in orientation is detected.  Under normal circumstances
+    /// this kind of thing should only occur in mobile devices such as SmartPhones and Tablets.  However this can be forced on other devices/platforms.
+    enum OrientationMode
+    {
+        OM_Degree_0 = 0,
+        OM_Degree_90 = 1,
+        OM_Degree_180 = 2,
+        OM_Degree_270 = 3,
+
+        OM_Portrait = OM_Degree_0,
+        OM_LandscapeRight = OM_Degree_90,
+        OM_LandscapeLeft = OM_Degree_270
+    };
+
     /// @enum RenderSystem
     /// @brief Used primarily by the graphics manager class during initialization.
     /// @details This enum specifies which Rendersystem is to be used for rendering.
     enum RenderSystem
     {
-        RS_DirectX9,
-        RS_DirectX10,
-        RS_DirectX11,
-        RS_OpenGL2,
-        RS_OpenGL3,
-        RS_OpenGL4,
-        RS_OpenGLES1,
-        RS_OpenGLES2
+        RS_DirectX9  = 0,
+        RS_DirectX10 = 1,
+        RS_DirectX11 = 2,
+        RS_OpenGL2   = 3,
+        RS_OpenGL3   = 4,
+        RS_OpenGL4   = 5,
+        RS_OpenGLES1 = 6,
+        RS_OpenGLES2 = 7
     };
 
     /// @brief Used to identify different Axis in a 3d coordinate system.

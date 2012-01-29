@@ -63,7 +63,8 @@ namespace Mezzanine
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
-              MaxDisplay(3)
+              MaxDisplay(3),
+              SelectionsAdded(1)
         {
             /// @todo Currently this class has little support for a border around the selections.
             /// Ideally when the UI system is more complete we'll be able to seemlessly move
@@ -111,6 +112,9 @@ namespace Mezzanine
             BoxBack = new Rectangle(BoxRect,Parent);
             VertScroll = new Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
             VertScroll->Hide();
+
+            SubRenderables[0] = RenderablePair(BoxBack,NULL);
+            SubRenderables[1] = RenderablePair(NULL,VertScroll);
         }
 
         ListBox::~ListBox()
@@ -341,6 +345,7 @@ namespace Mezzanine
 
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
+            SelectionsAdded++;
             RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / Parent->GetParent()->GetViewportDimensions(),true);
             Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,Parent);
             if(!BackgroundSprite.empty())
@@ -357,6 +362,7 @@ namespace Mezzanine
             Select->SetRenderPriority(SelectionTemplate.Priority);
             Select->Hide();
             Selections.push_back(Select);
+            SubRenderables[SelectionsAdded] = RenderablePair(Select,NULL);
             ScrollerSizeCheck();
             DrawList();
             return Select;
@@ -381,11 +387,19 @@ namespace Mezzanine
             {
                 if ( ToBeDestroyed == (*it) )
                 {
-                    delete (*it);
                     Selections.erase(it);
-                    return;
+                    break;
                 }
             }
+            for ( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if( (*it).second.first == ToBeDestroyed )
+                {
+                    SubRenderables.erase(it);
+                    break;
+                }
+            }
+            delete ToBeDestroyed;
         }
 
         void ListBox::DestroySelection(String& ToBeDestroyed)

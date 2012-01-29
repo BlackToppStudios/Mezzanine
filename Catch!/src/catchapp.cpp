@@ -59,7 +59,7 @@ void CatchApp::MakeGUI()
     ColourValue Gray(0.2,0.2,0.2,1.0);
 
     //Make the Main Menu screen and associated layers.
-    GUI->LoadGorilla("Catch_Menu");
+    GUI->LoadMTA("Catch_Menu");
     UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen", "Catch_Menu", UIViewport);
     UI::Layer* MainMenuLayer = MainMenuScreen->CreateLayer("MainMenuLayer",0);
 
@@ -229,7 +229,7 @@ void CatchApp::MakeGUI()
     //End of Main Menu Screen
 
     //Make the Game screen and associated layers.
-    GUI->LoadGorilla("Catch_Game");
+    GUI->LoadMTA("Catch_Game");
     UI::Screen* GameScreen = GUI->CreateScreen("GameScreen", "Catch_Game", UIViewport);
     UI::Layer* Menu = GameScreen->CreateLayer("MenuLayer", 10);
     UI::Layer* Report = GameScreen->CreateLayer("ReportLayer", 8);
@@ -471,14 +471,15 @@ void CatchApp::MakeGUI()
 void CatchApp::CreateLoadingScreen()
 {
     UIManager* GUI = UIManager::GetSingletonPtr();
-    GUI->LoadGorilla("Catch_Loading");
-    Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0);
+    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
+    GUI->LoadMTA("Catch_Loading");
+    Viewport* UIViewport = GraphicsMan->GetPrimaryGameWindow()->GetViewport(0);
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     Load->SetBackgroundSprite("BTSBanner");
-    //LoadScreen->RenderOnce();
-    crossplatform::RenderMezzWorld();
+    //crossplatform::RenderMezzWorld();
+    GraphicsMan->RenderOneFrame();
     Load->SetBackgroundSprite("LoadingBackground");
 }
 
@@ -562,9 +563,9 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
         Score+=(EarnedScore+"/"+MaxScore);
         CurrCell->GetEarnedMaxScore()->SetText(Score);// */
         CurrCell->GetEarnedMaxScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-        if(Previews->count(LevelName+".gorilla"))
+        if(Previews->count(LevelName+".mta"))
         {
-            UIMan->LoadGorilla(LevelName);
+            UIMan->LoadMTA(LevelName);
             CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
         }
         CurrCell->SetCellCallback(new LevelSelectCB());
@@ -715,6 +716,7 @@ void CatchApp::UnloadLevel()
     EndTimer = NULL;
     UIMan->GetLayer("ReportLayer")->Hide();
     UIMan->GetLayer("MenuLayer")->Hide();
+    LevelEnded = false;
     World::GetWorldPointer()->PauseWorld(false);
     //PhysMan->PauseSimulation(false);
 }
@@ -778,7 +780,7 @@ int CatchApp::GetCatchin()
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
-        crossplatform::RenderMezzWorld();
+        GraphicsMan->RenderOneFrame();
         //Actually Load the game stuff
         Loader->LoadLevel();
 

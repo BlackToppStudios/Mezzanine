@@ -103,11 +103,12 @@ namespace Mezzanine
             MTA.Load(MTAFile,Group);
             Mezzanine::Resource::TextSettingsFile::SectionIterator SecIt = MTA.GetSectionBegin();
             Mezzanine::Resource::TextSettingsFile::SectionIterator SecEnd = MTA.GetSectionEnd();
+            String AtlasName = MTAFile.substr(0,MTAFile.find_first_of("."));
             String SectionName;
 
+            SecIt++;
             while(SecIt != SecEnd)
             {
-                SecIt++;
                 SectionName = (*SecIt).first;
                 StringTool::ToLowerCase(SectionName);
                 Mezzanine::Resource::TextSettingsFile::SettingsMap* CurrSection = (*SecIt).second;
@@ -123,9 +124,11 @@ namespace Mezzanine
                     LoadGlyphs(CurrSection, GlyphSet);
                     LoadKerning(CurrSection, GlyphSet);
                     LoadVerticalOffsets(CurrSection, GlyphSet);
+                    GlyphSet->Atlas = AtlasName;
                 }
                 else if(SectionName == "sprites")
-                    LoadSprites(CurrSection,MTAFile);
+                    LoadSprites(CurrSection,AtlasName);
+                SecIt++;
             }
         }
 
@@ -152,7 +155,7 @@ namespace Mezzanine
                     String TextureName = Data;
                     String GroupName = "UI";
                     size_t GroupSplit = Data.find_first_of('~');
-                    if (GroupSplit != String::npos)
+                    if(GroupSplit != String::npos)
                     {
                         TextureName = Data.substr(0,GroupSplit);
                         GroupName = Data.substr(GroupSplit+1);
@@ -160,7 +163,7 @@ namespace Mezzanine
                         StringTool::Trim(GroupName);
                     }
                     this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->getByName(Data,GroupName);
-                    if (this->TAID->TATexture.isNull())
+                    if(this->TAID->TATexture.isNull())
                     {
                         this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->load(TextureName,GroupName,Ogre::TEX_TYPE_2D,0);
                     }
@@ -330,11 +333,11 @@ namespace Mezzanine
                 Data = It->second;
                 StringTool::ToLowerCase(LeftName);
 
-                if (LeftName.substr(0,15) != "verticaloffset_")
+                if(LeftName.substr(0,15) != "verticaloffset_")
                     continue;
 
                 size_t Comment = Data.find_first_of('#');
-                if (Comment != String::npos)
+                if(Comment != String::npos)
                     Data = Data.substr(0, Comment);
 
                 LeftName = LeftName.substr(15); // chop of VerticalOffset_
@@ -350,18 +353,18 @@ namespace Mezzanine
             Resource::TextSettingsFile::SettingsIterator It;
 
             std::vector<String> StrValues;
-            for (It = Config->begin() ; It != Config->end() ; ++It)
+            for(It = Config->begin() ; It != Config->end() ; ++It)
             {
                 SpriteName = It->first;
                 Data = It->second;
 
                 size_t Comment = Data.find_first_of('#');
-                if (Comment != String::npos)
+                if(Comment != String::npos)
                     Data = Data.substr(0, Comment);
 
                 StrValues = StringTool::Split(Data," ",4);
 
-                if (StrValues.size() != 4)
+                if(StrValues.size() != 4)
                     continue;
 
                 Sprite* NewSprite = new Sprite();
@@ -370,7 +373,7 @@ namespace Mezzanine
                 NewSprite->UVTop = StringTool::ConvertToUInt32(StrValues[1]);
                 NewSprite->SpriteSize.X = StringTool::ConvertToUInt32(StrValues[2]);
                 NewSprite->SpriteSize.Y = StringTool::ConvertToUInt32(StrValues[3]);
-                NewSprite->Atlas = Atlas.substr(0,Atlas.find_first_of("."));
+                NewSprite->Atlas = Atlas;
                 Sprites[SpriteName] = NewSprite;
             }
         }
@@ -614,7 +617,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Internal Functions
 
-        Ogre::MaterialPtr TextureAtlas::_GetOrCreate2DMasterMaterial()
+        Ogre::MaterialPtr TextureAtlas::_GetOrCreate2DMaterial()
         {
             if(this->TAID->Mat2D.isNull())
             {
@@ -623,13 +626,18 @@ namespace Mezzanine
             return this->TAID->Mat2D;
         }
 
-        Ogre::MaterialPtr TextureAtlas::_GetOrCreate3DMasterMaterial()
+        Ogre::MaterialPtr TextureAtlas::_GetOrCreate3DMaterial()
         {
             if(this->TAID->Mat3D.isNull())
             {
                 Create3DMaterial();
             }
             return this->TAID->Mat3D;
+        }
+
+        Ogre::TexturePtr TextureAtlas::_GetTexture()
+        {
+            return this->TAID->TATexture;
         }
 
         Ogre::Pass* TextureAtlas::_Get2DPass() const

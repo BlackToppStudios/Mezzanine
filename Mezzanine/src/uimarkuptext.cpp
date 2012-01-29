@@ -46,258 +46,98 @@
 #include "uimanager.h"
 #include "uiviewportupdatetool.h"
 #include "world.h"
-
-#include "internalGorilla.h.cpp"
+#include "stringtool.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
         MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
-            : BasicRenderable(name,PLayer)
+            : Rectangle(name,Rect,PLayer),
+              CharScaling(0.0)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            ConstructMarkupText(Rect,Glyph,Text);
+            DefaultGlyphSet = Parent->GetGlyphData(Glyph,PriAtlas);
+            this->Text = Text;
+            GlyphAtlas = PriAtlas;
         }
 
         MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
-            : BasicRenderable(name,PLayer)
+            : Rectangle(name,Rect,PLayer),
+              CharScaling(0.0)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
             std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * Parent->GetParent()->GetViewportDimensions().Y,Parent->GetParent()->GetPrimaryAtlas());
-            ConstructMarkupText(Rect,Result.first,Text);
+            DefaultGlyphSet = Parent->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
+            this->Text = Text;
+            GlyphAtlas = PriAtlas;
         }
 
         MarkupText::~MarkupText()
         {
-            Parent->GetGorillaLayer()->destroyMarkupText(GMarkup);
-        }
-
-        void MarkupText::ConstructMarkupText(const RenderableRect& Rect, const Whole& Glyph, const String& Text)
-        {
-            if(Rect.Relative)
-            {
-                RelPosition = Rect.Position;
-
-                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-                GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,(Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2(),Text,Parent->GetParent()->GetPrimaryAtlas());
-            }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-
-                GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2(),Text,Parent->GetParent()->GetPrimaryAtlas());
-            }
-        }
-
-        void MarkupText::SetVisible(bool Visible)
-        {
-            GMarkup->SetVisible(Visible);
-        }
-
-        bool MarkupText::IsVisible() const
-        {
-            return GMarkup->IsVisible();
-        }
-
-        void MarkupText::Show()
-        {
-            GMarkup->Show();
-        }
-
-        void MarkupText::Hide()
-        {
-            GMarkup->Hide();
         }
 
         void MarkupText::SetText(const String& Text)
         {
-            GMarkup->text(Text);
+            this->Text = Text;
+            Dirty = true;
+            TextDirty = true;
+            Parent->_MarkDirty();
         }
 
         String MarkupText::GetText()
         {
-            return GMarkup->text();
+            return Text;
         }
 
         void MarkupText::SetTextScale(const Real& Scale)
         {
-            GMarkup->SetCharScaling(Scale);
+            CharScaling = Scale;
+            Dirty = true;
+            TextDirty = true;
+            Parent->_MarkDirty();
         }
 
         Real MarkupText::GetTextScale()
         {
-            return GMarkup->GetCharScaling();
+            return CharScaling;
         }
 
         void MarkupText::SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex)
         {
-            Glyphs = DefaultGlyphIndex;
-            GMarkup->SetDefaultGlyphIndex(DefaultGlyphIndex);
-        }
-
-        Whole MarkupText::GetDefaultGlyphIndex()
-        {
-            return Glyphs;
-        }
-
-        /*void MarkupText::HorizontallyAlign(UI::TextHorizontalAlign Align)
-        {
-            Gorilla::TextAlignment HA;
-            switch (Align)
+            GlyphData* NewData = Parent->GetGlyphData(DefaultGlyphIndex,PriAtlas);
+            if(NewData)
             {
-                case UI::Left:
-                    HA = Gorilla::TextAlign_Left;
-                    break;
-                case UI::Right:
-                    HA = Gorilla::TextAlign_Right;
-                    break;
-                case UI::Middle:
-                    HA = Gorilla::TextAlign_Centre;
-                    break;
-                default:
-                    return;
+                DefaultGlyphSet = NewData;
+                Dirty = true;
+                TextDirty = true;
+                Parent->_MarkDirty();
+            }else{
+                /// @todo Throw an error?
             }
-            GMarkup->align(HA);
         }
 
-        void MarkupText::VerticallyAlign(UI::TextVerticalAlign Align)
+        void MarkupText::SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex, const String& Atlas)
         {
-            Gorilla::VerticalAlignment VA;
-            switch (Align)
+            GlyphData* NewData = Parent->GetGlyphData(DefaultGlyphIndex,Atlas);
+            if(NewData)
             {
-                case UI::Top:
-                    VA = Gorilla::VerticalAlign_Top;
-                    break;
-                case UI::Bottom:
-                    VA = Gorilla::VerticalAlign_Bottom;
-                    break;
-                case UI::Center:
-                    VA = Gorilla::VerticalAlign_Middle;
-                    break;
-                default:
-                    return;
+                DefaultGlyphSet = NewData;
+                GlyphAtlas = Atlas;
+                Dirty = true;
+                TextDirty = true;
+                Parent->_MarkDirty();
+            }else{
+                /// @todo Throw an error?
             }
-            GMarkup->vertical_align(VA);
-        }*/
-
-        void MarkupText::SetBackgroundColour(const ColourValue& Colour)
-        {
-            GMarkup->background_colour(Colour.GetOgreColourValue());
         }
 
-        void MarkupText::SetBackgroundSprite(const String& Name)
+        GlyphData* MarkupText::GetDefaultGlyphData()
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GMarkup->GetNameFile());
-            GMarkup->background_image(GSprite);
-        }
-
-        void MarkupText::SetBackgroundSprite(const String& Name, const String& Atlas)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
-            GMarkup->background_image(GSprite);
-        }
-
-        void MarkupText::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GMarkup->left(WinDim.X * RelPosition.X);
-            GMarkup->top(WinDim.Y * RelPosition.Y);
-        }
-
-        Vector2 MarkupText::GetPosition() const
-        {
-            return RelPosition;
-        }
-
-        void MarkupText::SetActualPosition(const Vector2& Position)
-        {
-            GMarkup->left(Position.X);
-            GMarkup->top(Position.Y);
-        }
-
-        Vector2 MarkupText::GetActualPosition() const
-        {
-            Vector2 Pos(GMarkup->left(), GMarkup->top());
-            return Pos;
-        }
-
-        void MarkupText::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GMarkup->width(WinDim.X * RelSize.X);
-            GMarkup->height(WinDim.Y * RelSize.Y);
-        }
-
-        Vector2 MarkupText::GetSize() const
-        {
-            return RelSize;
-        }
-
-        void MarkupText::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            GMarkup->width(Size.X);
-            GMarkup->height(Size.Y);
-        }
-
-        Vector2 MarkupText::GetActualSize() const
-        {
-            Vector2 Pos(GMarkup->width(), GMarkup->height());
-            return Pos;
-        }
-
-        void MarkupText::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            Gorilla::RenderPriority RP;
-            switch(Priority)
-            {
-                case UI::RP_Low:
-                    RP = Gorilla::RP_Low;
-                    break;
-                case UI::RP_Medium:
-                    RP = Gorilla::RP_Medium;
-                    break;
-                case UI::RP_High:
-                    RP = Gorilla::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            GMarkup->RenderPriority(RP);
-        }
-
-        UI::RenderPriority MarkupText::GetRenderPriority() const
-        {
-            Gorilla::RenderPriority RP = this->GMarkup->RenderPriority();
-            switch(RP)
-            {
-                case Gorilla::RP_Low:
-                    return UI::RP_Low;
-                    break;
-                case Gorilla::RP_Medium:
-                    return UI::RP_Medium;
-                    break;
-                case Gorilla::RP_High:
-                    return UI::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            return UI::RP_Medium;
-        }
-
-        void MarkupText::SetPrimaryAtlas(const String& Atlas)
-        {
-            GMarkup->SetNameFile(Atlas);
-        }
-
-        String MarkupText::GetPrimaryAtlas() const
-        {
-            return *GMarkup->GetNameFile();
+            return DefaultGlyphSet;
         }
 
         void MarkupText::SetAutoScaleText(bool Enable)
@@ -312,7 +152,8 @@ namespace Mezzanine
 
         void MarkupText::UpdateDimensions()
         {
-            ViewportUpdateTool::UpdateRenderable(this);
+            ViewportUpdateTool::UpdateRectangleRenderable(this);
+            TextDirty = true;
             //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
             //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
             if(AutoScaleText)
@@ -321,6 +162,325 @@ namespace Mezzanine
                 SetDefaultGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
+        }
+
+        void MarkupText::_Redraw()
+        {
+            if(Dirty == false)
+                return;
+            RenderVertices.clear();
+            if(!Visible)
+            {
+                Dirty = false;
+                return;
+            }
+
+            VertexData Temp;
+            for ( Whole Index = 0 ; Index < Characters.size() ; Index++ )
+            {
+                PushQuad2(RenderVertices, Temp, Characters[Index]->Positions, Characters[Index]->UVs, Characters[Index]->Colour, Characters[Index]->Atlas);
+            }
+            Dirty = false;
+        }
+
+        void MarkupText::_CalculateCharacters()
+        {
+            if(TextDirty == false)
+                return;
+            Characters.clear();
+
+            _GenerateWords();
+            _PlaceWords();
+
+            TextDirty = false;
+        }
+
+        void MarkupText::_GenerateWords()
+        {
+            _ClearWords();
+            Word* CurrWord = NULL;
+            bool MarkupMode = false;
+            bool FixedWidth = false;
+            Glyph* CurrGlyph = NULL;
+            GlyphData* CurrGlyphData = DefaultGlyphSet;
+            ColourValue Colour = Parent->GetMarkupColour(0,PriAtlas);
+            Real LineHeight = CurrGlyphData->LineHeight;
+            Real Kerning = 0;
+            unsigned int ThisChar = 0, LastChar = 0;
+
+            for( Whole Index = 0 ; Index < Text.length() ; Index++ )
+            {
+                ThisChar = Text[Index];
+
+                if( ThisChar == ' ' )
+                {
+                    LastChar = ThisChar;
+                    if(CurrWord)
+                    {
+                        CurrWord->GlyphDataSpacing = CurrGlyphData->SpaceLength;
+                        Words.push_back(CurrWord);
+                        CurrWord = NULL;
+                    }
+                    continue;
+                }
+
+                if( ThisChar == '\n' )
+                {
+                    LastChar = ThisChar;
+                    if(CurrWord)
+                    {
+                        //CurrWord->NewlineAfter = true;
+                        Words.push_back(CurrWord);
+                        CurrWord = NULL;
+                    }
+                    CurrWord = new Word();
+                    CurrWord->NewlineBefore = true;
+                    continue;
+                }
+
+                if( ThisChar < CurrGlyphData->RangeBegin || ThisChar > CurrGlyphData->RangeEnd )
+                {
+                    LastChar = 0;
+                    continue;
+                }
+
+                if( ThisChar == '%' && !MarkupMode )
+                {
+                    MarkupMode = true;
+                    continue;
+                }
+
+                if( MarkupMode == true )
+                {
+                    if (ThisChar == '%')
+                    {
+                        // Escape Character.
+                    }else{
+                        MarkupMode = false;
+
+                        // Check if the user wants a different colour to use for all further glyphs.
+                        if(ThisChar >= '0' && ThisChar <= '9')
+                        {
+                            Colour = Parent->GetMarkupColour(ThisChar - 48,PriAtlas);
+                        }
+                        // Check if the user wants to revert the current selected colour back to default.
+                        else if(ThisChar == 'R' || ThisChar == 'r')
+                        {
+                            Colour = Parent->GetMarkupColour(0,PriAtlas);
+                        }
+                        // Fixed Width?  Like Notepad?
+                        else if(ThisChar == 'M' || ThisChar == 'm')
+                        {
+                            FixedWidth = !FixedWidth;
+                        }
+                        // Check if the user wants to change the glyph set being rendered.
+                        else if( ThisChar == '@' )
+                        {
+                            MarkupMode = false;
+                            bool FoundIt = false;
+                            Whole Begin = Index;
+                            while( Index < Text.size() )
+                            {
+                                if( Text[Index] == '%' )
+                                {
+                                    FoundIt = true;
+                                    break;
+                                }
+                                Index++;
+                            }
+
+                            if( FoundIt == false )
+                                return;
+
+                            UInt32 ID = StringTool::ConvertToUInt32(Text.substr(Begin+1, Index - Begin - 1));
+                            CurrGlyphData = Parent->GetGlyphData(ID,PriAtlas);
+                            if( CurrGlyphData == 0 )
+                                return;
+                            continue;
+                        }
+                        // Check to see if the user wants to change the glyph with a sprite.
+                        else if( ThisChar == ':' )
+                        {
+                            MarkupMode = false;
+                            bool FoundIt = false;
+                            size_t Begin = Index;
+                            size_t Middle = 0;
+                            while( Index < Text.size() )
+                            {
+                                if( Text[Index] == ',' )
+                                {
+                                    Middle = Index;
+                                }
+                                if( Text[Index] == '%' )
+                                {
+                                    FoundIt = true;
+                                    break;
+                                }
+                                Index++;
+                            }
+
+                            if( FoundIt == false )
+                                return;
+
+                            String SpriteName = Text.substr(Begin+1, Middle - Begin - 1);
+                            String SpriteAtlas = Text.substr(Middle+1, Index - Middle - 1);
+                            Sprite* NewSprite = Parent->GetSprite(SpriteName,SpriteAtlas);
+                            if( NewSprite == 0 )
+                                continue;
+
+                            if( !CurrWord )
+                                CurrWord = new Word();
+
+                            Character* c = new Character();
+                            c->Index = Index;
+                            c->Colour = Colour;
+                            c->CharSprite = NewSprite;
+                            c->Atlas = NewSprite->Atlas;
+
+                            CurrWord->AddCharacter(c,CharScaling);
+
+                            continue;
+                        }
+                        continue;
+                    }
+                    MarkupMode = false;
+                }
+
+                CurrGlyph = CurrGlyphData->GetGlyph(ThisChar);
+
+                if( !CurrWord )
+                    CurrWord = new Word();
+
+                if( !FixedWidth )
+                {
+                    Kerning = CurrGlyph->GetKerning(LastChar);
+                    if (Kerning == 0)
+                        Kerning = CurrGlyphData->LetterSpacing;
+                }
+
+                Character* c = new Character();
+                c->Index = Index;
+                c->Colour = Colour;
+                c->CharGlyph = CurrGlyph;
+                c->Kerning = Kerning;
+                c->Atlas = CurrGlyphData->Atlas;
+
+                CurrWord->AddCharacter(c,CharScaling);
+
+                LastChar = ThisChar;
+            }
+
+            if( CurrWord )
+            {
+                if(CurrWord->Characters.size()) Words.push_back(CurrWord);
+                else delete CurrWord;
+            }
+        }
+
+        void MarkupText::_PlaceWords()
+        {
+            if(Words.empty())
+                return;
+
+            Real CursorX = ActPosition.X, CursorY = 0;
+            Real TexelX = Parent->GetTexelX(), TexelY = Parent->GetTexelY();
+            Real Kerning = 0, Top = 0, Left = 0, Bottom = 0, Right = 0;
+
+            std::vector<Real> Lineheights;
+            Real CurrLineHeight = 0;
+            for( UInt32 words = 0 ; words < Words.size() ; ++words )
+            {
+                Word* CurrWord = Words.at(words);
+                if(CursorX+CurrWord->Pxlength > ActPosition.X+ActSize.X)
+                {
+                    CurrWord->NewlineBefore = true;
+                }
+                if(CurrWord->NewlineBefore)
+                {
+                    Lineheights.push_back(CurrLineHeight);
+                    CurrLineHeight = 0;
+                    CursorX = ActPosition.X;
+                }else{
+                    CursorX += (CurrWord->Pxlength + CurrWord->GlyphDataSpacing);
+                }
+                if(CurrWord->Pxheight > CurrLineHeight)
+                    CurrLineHeight = CurrWord->Pxheight;
+            }
+            Lineheights.push_back(CurrLineHeight);
+
+            CursorX = ActPosition.X;
+            CursorY = ActPosition.Y + Lineheights[0];
+            for( UInt32 words = 0, lineindex = 0 ; words < Words.size() ; ++words )
+            {
+                Word* CurrWord = Words[words];
+                UInt32 NumChars = CurrWord->Characters.size();
+
+                if(CurrWord->NewlineBefore)
+                {
+                    lineindex++;
+                    CursorX = ActPosition.X;
+                    CursorY += Lineheights[lineindex];
+                }// */
+
+                for( UInt32 chars = 0 ; chars < NumChars ; ++chars )
+                {
+                    Character* CurrChar = CurrWord->Characters[chars];
+
+                    if(CurrChar->CharGlyph)
+                    {
+                        Left = CursorX;
+                        Top = CursorY - (CurrChar->CharGlyph->GlyphSize.Y * CharScaling) - TexelY;
+                        Right = CursorX + (CurrChar->CharGlyph->GlyphSize.X * CharScaling) + TexelX;
+                        Bottom = CursorY - (CurrChar->CharGlyph->VerticalOffset * CharScaling);
+                    }
+                    else if(CurrChar->CharSprite)
+                    {
+                        Left = CursorX - TexelX;
+                        Top = CursorY - (CurrChar->CharSprite->SpriteSize.Y * CharScaling) - TexelY;
+                        Right = CursorX + (CurrChar->CharSprite->SpriteSize.X * CharScaling) + TexelX;
+                        Bottom = CursorY + TexelY;
+                    }
+                    else
+                    {
+                        // If this happens, just skip, cause I don't know wtf is going on.
+                        continue;
+                    }
+
+                    CurrChar->Positions[UI::QC_TopLeft].X = Left;
+                    CurrChar->Positions[UI::QC_TopLeft].Y = Top;
+                    CurrChar->Positions[UI::QC_TopRight].X = Right;
+                    CurrChar->Positions[UI::QC_TopRight].Y = Top;
+                    CurrChar->Positions[UI::QC_BottomLeft].X = Left;
+                    CurrChar->Positions[UI::QC_BottomLeft].Y = Bottom;
+                    CurrChar->Positions[UI::QC_BottomRight].X = Right;
+                    CurrChar->Positions[UI::QC_BottomRight].Y = Bottom;
+                    CurrChar->UVs[0] = (CurrChar->CharGlyph ? CurrChar->CharGlyph->AtlasCoords[0] : CurrChar->CharSprite->AtlasCoords[0]);
+                    CurrChar->UVs[1] = (CurrChar->CharGlyph ? CurrChar->CharGlyph->AtlasCoords[1] : CurrChar->CharSprite->AtlasCoords[1]);
+                    CurrChar->UVs[2] = (CurrChar->CharGlyph ? CurrChar->CharGlyph->AtlasCoords[2] : CurrChar->CharSprite->AtlasCoords[2]);
+                    CurrChar->UVs[3] = (CurrChar->CharGlyph ? CurrChar->CharGlyph->AtlasCoords[3] : CurrChar->CharSprite->AtlasCoords[3]);
+
+                    if(CurrChar->CharGlyph) CursorX += ((CurrChar->CharGlyph->GlyphAdvance + CurrChar->Kerning) * CharScaling);
+                    else if(CurrChar->CharSprite) CursorX += (CurrChar->CharSprite->SpriteSize.X * CharScaling);
+
+                    Characters.push_back(CurrChar);
+                }
+
+                CursorX += (CurrWord->GlyphDataSpacing * CharScaling);
+
+                /*if(CurrWord->mNewlineAfter)
+                {
+                    lineindex++;
+                    CursorX = ActPosition.X;
+                    CursorY += Lineheights[lineindex];
+                }// */
+            }
+        }
+
+        void MarkupText::_ClearWords()
+        {
+            for( Whole X = 0 ; X < Words.size() ; ++X )
+                delete Words[X];
+            Words.clear();
         }
     }//UI
 }//Mezzanine

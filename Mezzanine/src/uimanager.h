@@ -40,18 +40,10 @@
 #ifndef _uimanager_h
 #define _uimanager_h
 
-#include "datatypes.h"
 #include "managerbase.h"
 #include "singleton.h"
 #include "uirenderablerect.h"
 #include "metacode.h"
-
-namespace Gorilla
-{
-    class Silverback;
-    class Layer;
-    class Screen;
-}
 
 namespace Mezzanine
 {
@@ -64,6 +56,7 @@ namespace Mezzanine
         class Button;
         class Widget;
         class Scrollbar;
+        class TextureAtlas;
     }
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
@@ -75,16 +68,15 @@ namespace Mezzanine
     /// @class UIManager
     /// @headerfile uimanager.h
     /// @brief This class is responsible for any and all user interactions with the User interface/HUD.
-    /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade Gorilla file(*.gorilla).
+    /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade mta file(*.mta).
     ///////////////////////////////////////
     class MEZZ_LIB UIManager : public ManagerBase, public Singleton<UIManager>
     {
         protected:
-            /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
-            Gorilla::Silverback* Silver;
             std::vector< UI::Screen* > Screens;
             std::vector< UI::Button* > ActivatedButtons;
             std::vector< MetaCode::InputCode > AutoRegisterCodes;
+            std::map< String, UI::TextureAtlas* > Atlases;
             std::multimap< MetaCode::InputCode, UI::Button* > HotKeys;
             UI::Button* HoveredButton;
             UI::Button* HoveredWidgetButton;
@@ -111,9 +103,14 @@ namespace Mezzanine
             void Initialize();
             /// @brief Inherited from ManagerBase.
             void DoMainLoopItems();
-            /// @brief Loads a Gorilla file for use with this manager.
+            /// @brief Loads a Mezzanine Texture Atlas file for use with UI::Screen's.
             /// @param Name The name of the file to be loaded, not including the extension.
-            void LoadGorilla(const String& Name);
+            /// @param Group The resource group where the MTA file can be found.
+            void LoadMTA(const String& Name, const String& Group = "UI");
+            /// @brief Gets a loaded Atlas being stored in this manager.
+            /// @param AtlasName The name of the Atlas, which is usually the name of the file without the extension.
+            /// @return Returns a pointer to the requested Atlas, or NULL if it doesn't exist.
+            UI::TextureAtlas* GetAtlas(const String& AtlasName);
             /// @brief Forces everything loaded into the UI system to be redrawn.
             /// @param Force If Force is set to true, it will redraw everything regardless of if it has changed.
             void RedrawAll(bool Force = false);
@@ -173,7 +170,7 @@ namespace Mezzanine
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
             /// @param ScreenName The name to be given to the screen.
-            /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
+            /// @param Atlas The name of a previously loaded mta file to be used with this screen.
             /// @param WindowViewport The viewport to create this screen in.
             UI::Screen* CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport);
             /// @brief Gets an already created screen by name.
@@ -216,10 +213,6 @@ namespace Mezzanine
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
-            /// @internal
-            /// @brief Gets the internal silverback pointer.
-            /// @return Returns a pointer to the internal silverback class.
-            Gorilla::Silverback* GetSilverbackPointer();
     };//uimanager
 }//Mezzanine
 

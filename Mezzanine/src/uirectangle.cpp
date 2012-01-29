@@ -48,8 +48,7 @@
 #include "uiviewportupdatetool.h"
 #include "world.h"
 #include "eventmanager.h"
-
-#include "internalGorilla.h.cpp"
+#include "mathtool.h"
 
 namespace Mezzanine
 {
@@ -57,60 +56,184 @@ namespace Mezzanine
     {
         Rectangle::Rectangle(const RenderableRect& Rect, Layer* PLayer)
             : BasicRenderable("Rectangle",PLayer),
-              MouseHover(false)
+              MouseHover(false),
+              CustomCenter(false),
+              BorderWidth(0.0),
+              RotAngle(0.0)
         {
+            ConstructRectangle(Rect);
+        }
+
+        Rectangle::Rectangle(const String& name, const RenderableRect& Rect, Layer* PLayer)
+            : BasicRenderable(name,PLayer),
+              MouseHover(false),
+              CustomCenter(false),
+              BorderWidth(0.0),
+              RotAngle(0.0)
+        {
+            ConstructRectangle(Rect);
+        }
+
+        Rectangle::~Rectangle()
+        {
+        }
+
+        void Rectangle::ConstructRectangle(const UI::RenderableRect& Rect)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
                 RelSize = Rect.Size;
 
-                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-                GRectangle = Parent->GetGorillaLayer()->createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
+                ActPosition = Rect.Position * WinDim;
+                ActSize = Rect.Size * WinDim;
             }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+                RelPosition = Rect.Position / WinDim;
+                RelSize = Rect.Size / WinDim;
 
-                GRectangle = Parent->GetGorillaLayer()->createRectangle(Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2());
+                ActPosition = Rect.Position;
+                ActSize = Rect.Size;
             }
-            GRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
+            BackgroundColours[0] = ColourValue::White();
+            BackgroundColours[1] = ColourValue::White();
+            BackgroundColours[2] = ColourValue::White();
+            BackgroundColours[3] = ColourValue::White();
+            BorderColours[0] = ColourValue::Black();
+            BorderColours[1] = ColourValue::Black();
+            BorderColours[2] = ColourValue::Black();
+            BorderColours[3] = ColourValue::Black();
+            UVs[0] = UVs[1] = UVs[2] = UVs[3] = Parent->GetSolidUV(PriAtlas);
+            RotCenter.X = 0.0;
+            RotCenter.Y = 0.0;
         }
 
-        Rectangle::~Rectangle()
+        void Rectangle::DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
+                                   const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight)
         {
-            Parent->GetGorillaLayer()->destroyRectangle(GRectangle);
+            VertexData Temp;
+            Vector2 UV = Parent->GetSolidUV(PriAtlas);
+
+            // North
+            PushTriangle(RenderVertices, Temp, TopLeft, OuterTopRight, OuterTopLeft, UV, BorderColours[UI::Border_North],PriAtlas);
+            PushTriangle(RenderVertices, Temp, TopLeft, TopRight, OuterTopRight, UV, BorderColours[UI::Border_North],PriAtlas);
+
+            // East
+            PushTriangle(RenderVertices, Temp, BottomRight, OuterTopRight, TopRight, UV, BorderColours[UI::Border_East],PriAtlas);
+            PushTriangle(RenderVertices, Temp, BottomRight, OuterBottomRight, OuterTopRight, UV, BorderColours[UI::Border_East],PriAtlas);
+
+            // South
+            PushTriangle(RenderVertices, Temp, OuterBottomLeft, BottomRight, BottomLeft, UV, BorderColours[UI::Border_South],PriAtlas);
+            PushTriangle(RenderVertices, Temp, OuterBottomLeft, OuterBottomRight, BottomRight, UV, BorderColours[UI::Border_South],PriAtlas);
+
+            // West
+            PushTriangle(RenderVertices, Temp, OuterBottomLeft, TopLeft, OuterTopLeft, UV, BorderColours[UI::Border_West],PriAtlas);
+            PushTriangle(RenderVertices, Temp, OuterBottomLeft, BottomLeft, TopLeft, UV, BorderColours[UI::Border_West],PriAtlas);
         }
 
-        void Rectangle::SetVisible(bool Visible)
+        void Rectangle::DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight)
         {
-            GRectangle->SetVisible(Visible);
+            if(BackgroundColours[0].A != 0.0)
+            {
+                VertexData Temp;
+                // Triangle A
+                PushVertex(RenderVertices, Temp, BottomLeft.X, BottomLeft.Y, UVs[3], BackgroundColours[3],PriAtlas);    // Left/Bottom  3
+                PushVertex(RenderVertices, Temp, TopRight.X, TopRight.Y, UVs[1], BackgroundColours[1],PriAtlas);    // Right/Top    1
+                PushVertex(RenderVertices, Temp, TopLeft.X, TopLeft.Y, UVs[0], BackgroundColours[0],PriAtlas);    // Left/Top     0
+
+                // Triangle B
+                PushVertex(RenderVertices, Temp, BottomLeft.X, BottomLeft.Y, UVs[3], BackgroundColours[3],PriAtlas);    // Left/Bottom   3
+                PushVertex(RenderVertices, Temp, BottomRight.X, BottomRight.Y, UVs[2], BackgroundColours[2],PriAtlas);    // Right/Bottom  2
+                PushVertex(RenderVertices, Temp, TopRight.X, TopRight.Y, UVs[1], BackgroundColours[1],PriAtlas);    // Right/Top     1
+            }
         }
 
-        bool Rectangle::IsVisible() const
+        void Rectangle::RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight)
         {
-            return GRectangle->IsVisible();
+            if(0 != RotAngle)
+            {
+                Real RotCos = MathTool::Cos(RotAngle);
+                Real RotSin = MathTool::Sin(RotAngle);
+
+                if (!CustomCenter)
+                {
+                    RotCenter.X = TopLeft.X + (BottomRight.X - TopLeft.X) / 2;
+                    RotCenter.Y = TopLeft.Y + (BottomRight.Y - TopLeft.Y) / 2;
+                }
+
+                TopLeft.X -= RotCenter.X;
+                TopLeft.Y -= RotCenter.Y;
+
+                TopRight.X -= RotCenter.X;
+                TopRight.Y -= RotCenter.Y;
+
+                BottomLeft.X -= RotCenter.X;
+                BottomLeft.Y -= RotCenter.Y;
+
+                BottomRight.X -= RotCenter.X;
+                BottomRight.Y -= RotCenter.Y;
+
+                Vector2 A2 = TopLeft, B2 = TopRight, C2 = BottomLeft, D2 = BottomRight;
+                TopLeft.X = A2.X * RotCos - A2.Y * RotSin;
+                TopLeft.Y = A2.X * RotSin + A2.Y * RotCos;
+
+                TopRight.X = B2.X * RotCos - B2.Y * RotSin;
+                TopRight.Y = B2.X * RotSin + B2.Y * RotCos;
+
+                BottomLeft.X = C2.X * RotCos - C2.Y * RotSin;
+                BottomLeft.Y = C2.X * RotSin + C2.Y * RotCos;
+
+                BottomRight.X = D2.X * RotCos - D2.Y * RotSin;
+                BottomRight.Y = D2.X * RotSin + D2.Y * RotCos;
+
+                TopLeft.X += RotCenter.X;
+                TopLeft.Y += RotCenter.Y;
+
+                TopRight.X += RotCenter.X;
+                TopRight.Y += RotCenter.Y;
+
+                BottomLeft.X += RotCenter.X;
+                BottomLeft.Y += RotCenter.Y;
+
+                BottomRight.X += RotCenter.X;
+                BottomRight.Y += RotCenter.Y;
+            }
         }
 
-        void Rectangle::Show()
+        void Rectangle::SetHovered(bool Hovered)
         {
-            GRectangle->Show();
+            MouseHover = Hovered;
         }
 
-        void Rectangle::Hide()
+        void Rectangle::SetSprite(Sprite* PSprite)
         {
-            GRectangle->Hide();
+            if(PSprite == NULL)
+            {
+                PriAtlas = Parent->GetParent()->GetPrimaryAtlas();
+                UVs[0] = UVs[1] = UVs[2] = UVs[3] = Parent->GetSolidUV(PriAtlas);
+                Dirty = true;
+                Parent->_MarkDirty();
+            }else{
+                PriAtlas = PSprite->Atlas;
+                Real TexelOffsetX = Parent->GetTexelX();
+                Real TexelOffsetY = Parent->GetTexelY();
+                TexelOffsetX /= Parent->GetTextureSize(PSprite->Atlas).X;
+                TexelOffsetY /= Parent->GetTextureSize(PSprite->Atlas).Y;
+                UVs[0].X = UVs[3].X = PSprite->UVLeft - TexelOffsetX;
+                UVs[0].Y = UVs[1].Y = PSprite->UVTop - TexelOffsetY;
+                UVs[1].X = UVs[2].X = PSprite->UVRight + TexelOffsetX;
+                UVs[2].Y = UVs[3].Y = PSprite->UVBottom + TexelOffsetY;
+                Dirty = true;
+                Parent->_MarkDirty();
+            }
         }
 
         bool Rectangle::CheckMouseHover()
         {
-            if(!GRectangle->IsVisible())
+            if(!Visible)
                 return false;
             Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
-            if(GRectangle->intersects(MouseLoc.GetOgreVector2()))
-            {
-                MouseHover = true;
-            }else{
-                MouseHover = false;
-            }
+            SetHovered((MouseLoc.X >= ActPosition.X && MouseLoc.X <= ActPosition.X + ActSize.X) && (MouseLoc.Y >= ActPosition.Y && MouseLoc.Y <= ActPosition.Y + ActSize.Y));
             return MouseHover;
         }
 
@@ -121,36 +244,180 @@ namespace Mezzanine
 
         void Rectangle::SetBackgroundColour(const ColourValue& Colour)
         {
-            GRectangle->background_colour(Colour.GetOgreColourValue());
+            BackgroundColours[0] = Colour;
+            BackgroundColours[1] = Colour;
+            BackgroundColours[2] = Colour;
+            BackgroundColours[3] = Colour;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
-        void Rectangle::SetBackgroundSprite(const String& Name)
+        void Rectangle::SetBackgroundColour(const UI::QuadCorner& Corner, const ColourValue& Colour)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GRectangle->GetNameFile());
-            GRectangle->background_image(GSprite);
+            BackgroundColours[Corner] = Colour;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
-        void Rectangle::SetBackgroundSprite(const String& Name, const String& Atlas)
+        void Rectangle::SetBackgroundSprite(Sprite* PSprite)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
-            GRectangle->background_image(GSprite);
+            SetSprite(PSprite);
+        }
+
+        void Rectangle::SetBackgroundSprite(const String& SpriteName)
+        {
+            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            SetBackgroundSprite(PSprite);
+        }
+
+        void Rectangle::SetBackgroundSprite(const String& SpriteName, const String& Atlas)
+        {
+            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            SetBackgroundSprite(PSprite);
+        }
+
+        void Rectangle::SetBackgroundGradient(const UI::Gradient& Grad, const ColourValue& ColourA, const ColourValue& ColourB)
+        {
+            if (UI::Gradient_NorthSouth == Grad)
+            {
+                BackgroundColours[0] = ColourA;
+                BackgroundColours[1] = ColourA;
+                BackgroundColours[2] = ColourB;
+                BackgroundColours[3] = ColourB;
+            }
+            else if (UI::Gradient_WestEast == Grad)
+            {
+                BackgroundColours[0] = ColourA;
+                BackgroundColours[3] = ColourA;
+                BackgroundColours[1] = ColourB;
+                BackgroundColours[2] = ColourB;
+            }
+            else if (UI::Gradient_Diagonal_1 == Grad)
+            {
+                ColourValue Average;
+                Average.R = (ColourA.R + ColourB.R) * 0.5f;
+                Average.G = (ColourA.G + ColourB.G) * 0.5f;
+                Average.B = (ColourA.B + ColourB.B) * 0.5f;
+                Average.A = (ColourA.A + ColourB.A) * 0.5f;
+                BackgroundColours[0] = ColourA;
+                BackgroundColours[1] = Average;
+                BackgroundColours[2] = ColourB;
+                BackgroundColours[3] = Average;
+            }
+            else if (UI::Gradient_Diagonal_2 == Grad)
+            {
+                ColourValue Average;
+                Average.R = (ColourA.R + ColourB.R) * 0.5f;
+                Average.G = (ColourA.G + ColourB.G) * 0.5f;
+                Average.B = (ColourA.B + ColourB.B) * 0.5f;
+                Average.A = (ColourA.A + ColourB.A) * 0.5f;
+                BackgroundColours[0] = Average;
+                BackgroundColours[1] = ColourA;
+                BackgroundColours[2] = Average;
+                BackgroundColours[3] = ColourB;
+            }
+            Dirty = true;
+            Parent->_MarkDirty();
+        }
+
+        ColourValue Rectangle::GetBackgroundColour(const UI::QuadCorner& Corner) const
+        {
+            return BackgroundColours[Corner];
+        }
+
+        void Rectangle::SetBorderWidth(const Real& Width)
+        {
+            BorderWidth = Width;
+            Dirty = true;
+            Parent->_MarkDirty();
+        }
+
+        void Rectangle::SetBorderColour(const ColourValue& Colour)
+        {
+            BorderColours[0] = Colour;
+            BorderColours[1] = Colour;
+            BorderColours[2] = Colour;
+            BorderColours[3] = Colour;
+            Dirty = true;
+            Parent->_MarkDirty();
+        }
+
+        void Rectangle::SetBorderColour(const UI::Border& Side, const ColourValue& Colour)
+        {
+            BorderColours[Side] = Colour;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         void Rectangle::SetBorder(const Real& Width, const ColourValue& Colour)
         {
-            GRectangle->border(Width, Colour.GetOgreColourValue());
+            SetBorderWidth(Width);
+            SetBorderColour(Colour);
+        }
+
+        void Rectangle::SetBorder(const Real& Width, const ColourValue& North, const ColourValue& South, const ColourValue& East, const ColourValue& West)
+        {
+            SetBorderWidth(Width);
+            BorderColours[UI::Border_North] = North;
+            BorderColours[UI::Border_South] = South;
+            BorderColours[UI::Border_East] = East;
+            BorderColours[UI::Border_West] = West;
         }
 
         void Rectangle::NoBorder()
         {
-            GRectangle->no_border();
+            SetBorderWidth(0.0);
+            SetBorderColour(ColourValue::Black());
+        }
+
+        Real Rectangle::GetBorderWidth() const
+        {
+            return BorderWidth;
+        }
+
+        ColourValue Rectangle::GetBorderColour(const UI::Border& Side) const
+        {
+            return BorderColours[Side];
+        }
+
+        void Rectangle::SetRotationDegrees(const Real& Degrees)
+        {
+            RotAngle = MathTool::DegreesToRadians(Degrees);
+        }
+
+        void Rectangle::SetRotationRadians(const Real& Radians)
+        {
+            RotAngle = Radians;
+        }
+
+        Real Rectangle::GetRotationDegrees() const
+        {
+            return MathTool::RadiansToDegrees(RotAngle);
+        }
+
+        Real Rectangle::GetRotationRadians() const
+        {
+            return RotAngle;
+        }
+
+        void Rectangle::SetRotationCenter(bool Custom, const Vector2& Center)
+        {
+            CustomCenter = Custom;
+            RotCenter = Center;
+        }
+
+        Vector2 Rectangle::GetRotationCenter() const
+        {
+            return RotCenter;
         }
 
         void Rectangle::SetPosition(const Vector2& Position)
         {
-            RelPosition = Position;
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GRectangle->position((WinDim * RelPosition).GetOgreVector2());
+            RelPosition = Position;
+            ActPosition = Position * WinDim;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Vector2 Rectangle::GetPosition() const
@@ -160,22 +427,25 @@ namespace Mezzanine
 
         void Rectangle::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
-            GRectangle->position(Position.GetOgreVector2());
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            RelPosition = Position / WinDim;
+            ActPosition = Position;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Vector2 Rectangle::GetActualPosition() const
         {
-            Vector2 Pos(GRectangle->left(), GRectangle->top());
-            return Pos;
+            return ActPosition;
         }
 
         void Rectangle::SetSize(const Vector2& Size)
         {
-            RelSize = Size;
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GRectangle->width(WinDim.X * RelSize.X);
-            GRectangle->height(WinDim.Y * RelSize.Y);
+            RelSize = Size;
+            ActSize = Size * WinDim;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Vector2 Rectangle::GetSize() const
@@ -185,72 +455,130 @@ namespace Mezzanine
 
         void Rectangle::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            GRectangle->width(Size.X);
-            GRectangle->height(Size.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            RelSize = Size / WinDim;
+            ActSize = Size;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Vector2 Rectangle::GetActualSize() const
         {
-            Vector2 Pos(GRectangle->width(), GRectangle->height());
-            return Pos;
-        }
-
-        void Rectangle::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            Gorilla::RenderPriority RP;
-            switch(Priority)
-            {
-                case UI::RP_Low:
-                    RP = Gorilla::RP_Low;
-                    break;
-                case UI::RP_Medium:
-                    RP = Gorilla::RP_Medium;
-                    break;
-                case UI::RP_High:
-                    RP = Gorilla::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            GRectangle->RenderPriority(RP);
-        }
-
-        UI::RenderPriority Rectangle::GetRenderPriority() const
-        {
-            Gorilla::RenderPriority RP = this->GRectangle->RenderPriority();
-            switch(RP)
-            {
-                case Gorilla::RP_Low:
-                    return UI::RP_Low;
-                    break;
-                case Gorilla::RP_Medium:
-                    return UI::RP_Medium;
-                    break;
-                case Gorilla::RP_High:
-                    return UI::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            return UI::RP_Medium;
-        }
-
-        void Rectangle::SetPrimaryAtlas(const String& Atlas)
-        {
-            GRectangle->SetNameFile(Atlas);
-        }
-
-        String Rectangle::GetPrimaryAtlas() const
-        {
-            return *GRectangle->GetNameFile();
+            return ActSize;
         }
 
         void Rectangle::UpdateDimensions()
         {
             //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
             //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
-            ViewportUpdateTool::UpdateRenderable(this);
+            ViewportUpdateTool::UpdateRectangleRenderable(this);
+        }
+
+        void Rectangle::_Redraw()
+        {
+            if(Dirty == false)
+                return;
+            RenderVertices.clear();
+            if(!Visible)
+            {
+                Dirty = false;
+                return;
+            }
+
+            Real TexelOffsetX = Parent->GetTexelX();
+            Real TexelOffsetY = Parent->GetTexelY();
+            Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
+            TopLeft.X = ActPosition.X + TexelOffsetX;                   TopLeft.Y = ActPosition.Y + TexelOffsetY;
+            TopRight.X = (ActPosition.X + ActSize.X) + TexelOffsetX;    TopRight.Y = ActPosition.Y + TexelOffsetY;
+            BottomLeft.X = ActPosition.X + TexelOffsetX;                BottomLeft.Y = (ActPosition.Y + ActSize.Y) + TexelOffsetY;
+            BottomRight.X = (ActPosition.X + ActSize.X) + TexelOffsetX; BottomRight.Y = (ActPosition.Y + ActSize.Y) + TexelOffsetY;
+            Vector2 OuterTopLeft = TopLeft, OuterTopRight = TopRight, OuterBottomLeft = BottomLeft, OuterBottomRight = BottomRight;
+
+            // Rotation
+            RotationTransform(TopLeft,TopRight,BottomLeft,BottomRight);
+
+            // Border
+            if(0.0 != BorderWidth)
+            {
+                OuterTopLeft.X -= BorderWidth;     OuterTopLeft.Y -= BorderWidth;
+                OuterTopRight.X += BorderWidth;    OuterTopRight.Y -= BorderWidth;
+                OuterBottomLeft.X -= BorderWidth;  OuterBottomLeft.Y += BorderWidth;
+                OuterBottomRight.X += BorderWidth; OuterBottomRight.Y += BorderWidth;
+
+                RotationTransform(OuterTopLeft,OuterTopRight,OuterBottomLeft,OuterBottomRight);
+                DrawBorder(TopLeft,TopRight,BottomLeft,BottomRight,
+                           OuterTopLeft,OuterTopRight,OuterBottomLeft,OuterBottomRight);
+            }
+            /*if(BorderWidth != 0.0)
+            {
+                OuterTopLeft.X -= BorderWidth;     OuterTopLeft.Y -= BorderWidth;
+                OuterTopRight.X += BorderWidth;    OuterTopRight.Y -= BorderWidth;
+                OuterBottomLeft.X -= BorderWidth;  OuterBottomLeft.Y += BorderWidth;
+                OuterBottomRight.X += BorderWidth; OuterBottomRight.Y += BorderWidth;
+
+                if(!CustomCenter)
+                {
+                    RotCenter.X = 1 / ( TopLeft.X + (TopRight.X - TopLeft.X) / 2);
+                    RotCenter.Y = 1 / ( TopLeft.Y + (TopRight.Y - TopLeft.Y) / 2);
+                }
+
+                OuterTopLeft.X -= RotCenter.X;
+                OuterTopLeft.Y -= RotCenter.Y;
+
+                OuterTopRight.X -= RotCenter.X;
+                OuterTopRight.Y -= RotCenter.Y;
+
+                OuterBottomLeft.X -= RotCenter.X;
+                OuterBottomLeft.Y -= RotCenter.Y;
+
+                OuterBottomRight.X -= RotCenter.X;
+                OuterBottomRight.Y -= RotCenter.Y;
+
+                Vector2 I2 = OuterTopLeft, J2 = OuterTopRight, K2 = OuterBottomLeft, L2 = OuterBottomRight;
+                OuterTopLeft.X = I2.X * RotCos - I2.Y * RotSin;
+                OuterTopLeft.Y = I2.X * RotSin + I2.Y * RotCos;
+
+                OuterTopRight.X = J2.X * RotCos - J2.Y * RotSin;
+                OuterTopRight.Y = J2.X * RotSin + J2.Y * RotCos;
+
+                OuterBottomLeft.X = K2.X * RotCos - K2.Y * RotSin;
+                OuterBottomLeft.Y = K2.X * RotSin + K2.Y * RotCos;
+
+                OuterBottomRight.X = L2.X * RotCos - L2.Y * RotSin;
+                OuterBottomRight.Y = L2.X * RotSin + L2.Y * RotCos;
+
+                Vertex Temp;
+                Vector2 UV = Parent->GetSolidUV(PriAtlas);
+
+                // North
+                PushTriangle(RenderVertices, Temp, TopLeft, OuterTopRight, OuterTopLeft, UV, BorderColours[UI::Border_North],PriAtlas);
+                PushTriangle(RenderVertices, Temp, TopLeft, TopRight, OuterTopRight, UV, BorderColours[UI::Border_North],PriAtlas);
+
+                // East
+                PushTriangle(RenderVertices, Temp, BottomRight, OuterTopRight, TopRight, UV, BorderColours[UI::Border_East],PriAtlas);
+                PushTriangle(RenderVertices, Temp, BottomRight, OuterBottomRight, OuterTopRight, UV, BorderColours[UI::Border_East],PriAtlas);
+
+                // South
+                PushTriangle(RenderVertices, Temp, OuterBottomLeft, BottomRight, BottomLeft, UV, BorderColours[UI::Border_South],PriAtlas);
+                PushTriangle(RenderVertices, Temp, OuterBottomLeft, OuterBottomRight, BottomRight, UV, BorderColours[UI::Border_South],PriAtlas);
+
+                // West
+                PushTriangle(RenderVertices, Temp, OuterBottomLeft, TopLeft, OuterTopLeft, UV, BorderColours[UI::Border_West],PriAtlas);
+                PushTriangle(RenderVertices, Temp, OuterBottomLeft, BottomLeft, TopLeft, UV, BorderColours[UI::Border_West],PriAtlas);
+            }//*/
+
+            // Fill
+            DrawFill(TopLeft,TopRight,BottomLeft,BottomRight);
+
+            Dirty = false;
+        }
+
+        void Rectangle::_AppendVertices(std::vector<VertexData>& Vertices)
+        {
+            for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+            {
+                Vertices.push_back(RenderVertices[X]);
+            }
         }
     }//UI
 }//Mezzanine

@@ -68,7 +68,8 @@ namespace Mezzanine
     namespace UI
     {
         RenderableContainerWidget::RenderableContainerWidget(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
-            : Widget(name,PLayer)
+            : Widget(name,PLayer),
+              RenderablesAdded(0)
         {
             Type = Widget::W_GenericWidgetContainer;
             if(Rect.Relative)
@@ -81,6 +82,7 @@ namespace Mezzanine
             }
 
             WidgetBack = new Rectangle(Rect,Parent);
+            SubRenderables[0] = RenderablePair(WidgetBack,NULL);
         }
 
         RenderableContainerWidget::~RenderableContainerWidget()
@@ -426,11 +428,13 @@ namespace Mezzanine
 
         Button* RenderableContainerWidget::CreateButton(ConstString& Name, const RenderableRect& Rect)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             OffsetButtonInfo buttoninfo(new Button(Name,Rect,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(buttoninfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(buttoninfo.Object,NULL);
             if(Manager->ButtonAutoRegisterEnabled())
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
@@ -443,12 +447,14 @@ namespace Mezzanine
 
         TextButton* RenderableContainerWidget::CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             TextButton* tbutton = new TextButton(Name,Rect,Glyph,Text,Parent);
             OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(tbuttoninfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(tbutton,NULL);
             if(Manager->ButtonAutoRegisterEnabled())
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
@@ -461,12 +467,14 @@ namespace Mezzanine
 
         TextButton* RenderableContainerWidget::CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             TextButton* tbutton = new TextButton(Name,Rect,LineHeight,Text,Parent);
             OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(tbuttoninfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(tbutton,NULL);
             if(Manager->ButtonAutoRegisterEnabled())
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
@@ -534,11 +542,13 @@ namespace Mezzanine
 
         Rectangle* RenderableContainerWidget::CreateRectangle(const RenderableRect& Rect)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             OffsetRectangleInfo rectangle(new Rectangle(Rect,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Rectangles.push_back(rectangle);
+            SubRenderables[RenderablesAdded] = RenderablePair(rectangle.Object,NULL);
             rectangle.Object->SetVisible(Visible);
             return rectangle.Object;
         }
@@ -574,22 +584,26 @@ namespace Mezzanine
 
         Caption* RenderableContainerWidget::CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             OffsetCaptionInfo caption(new Caption(Name,Rect,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Captions.push_back(caption);
+            SubRenderables[RenderablesAdded] = RenderablePair(caption.Object,NULL);
             caption.Object->SetVisible(Visible);
             return caption.Object;
         }
 
         Caption* RenderableContainerWidget::CreateCaption(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             OffsetCaptionInfo caption(new Caption(Name,Rect,LineHeight,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Captions.push_back(caption);
+            SubRenderables[RenderablesAdded] = RenderablePair(caption.Object,NULL);
             caption.Object->SetVisible(Visible);
             return caption.Object;
         }
@@ -651,24 +665,28 @@ namespace Mezzanine
 
         MarkupText* RenderableContainerWidget::CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             MarkupText* markup = new MarkupText(Name,Rect,Glyph,Text,Parent);
             OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             MarkupTexts.push_back(markupinfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(markupinfo.Object,NULL);
             markupinfo.Object->SetVisible(Visible);
             return markupinfo.Object;
         }
 
         MarkupText* RenderableContainerWidget::CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             MarkupText* markup = new MarkupText(Name,Rect,LineHeight,Text,Parent);
             OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             MarkupTexts.push_back(markupinfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(markupinfo.Object,NULL);
             markupinfo.Object->SetVisible(Visible);
             return markupinfo.Object;
         }
@@ -785,96 +803,112 @@ namespace Mezzanine
 
         Scrollbar* RenderableContainerWidget::CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             Scrollbar* Scroll = new Scrollbar(Name,Rect,Style,Parent);
             OffsetWidgetInfo ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(ScrollInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,Scroll);
             Scroll->SetVisible(Visible);
             return Scroll;
         }
 
         CheckBox* RenderableContainerWidget::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String &LabelText)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             CheckBox* Check = new CheckBox(Name,Rect,LineHeight,LabelText,Parent);
             OffsetWidgetInfo CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(CheckInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,Check);
             Check->SetVisible(Visible);
             return Check;
         }
 
         ListBox* RenderableContainerWidget::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollbarStyle)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             ListBox* LB = new ListBox(Name,Rect,ScrollbarStyle,Parent);
             OffsetWidgetInfo LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(LBInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,LB);
             LB->SetVisible(Visible);
             return LB;
         }
 
         Spinner* RenderableContainerWidget::CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             Spinner* Spn = new Spinner(Name,Rect,SStyle,GlyphHeight,Parent);
             OffsetWidgetInfo SpnInfo(Spn,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(SpnInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,Spn);
             Spn->SetVisible(Visible);
             return Spn;
         }
 
         ScrolledCellGrid* RenderableContainerWidget::CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             ScrolledCellGrid* SCG = new ScrolledCellGrid(Name,Rect,Thickness,Style,Parent);
             OffsetWidgetInfo SCGInfo(SCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(SCGInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,SCG);
             SCG->SetVisible(Visible);
             return SCG;
         }
 
         PagedCellGrid* RenderableContainerWidget::CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             PagedCellGrid* PCG = new PagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight,Parent);
             OffsetWidgetInfo PCGInfo(PCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(PCGInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,PCG);
             PCG->SetVisible(Visible);
             return PCG;
         }
 
         DropDownList* RenderableContainerWidget::CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = Rect.Position - GetActualPosition();
             DropDownList* DDL = new DropDownList(Name,Rect,LineHeight,ScrollStyle,Parent);
             OffsetWidgetInfo DDLInfo(DDL,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(DDLInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,DDL);
             DDL->SetVisible(Visible);
             return DDL;
         }
 
         TabSet* RenderableContainerWidget::CreateTabSet(ConstString& Name, const RenderableRect& SetRect)
         {
+            RenderablesAdded++;
             Vector2 Offset;
             if(SetRect.Relative) Offset = (SetRect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             else Offset = SetRect.Position - GetActualPosition();
             TabSet* TS = new TabSet(Name,SetRect,Parent);
             OffsetWidgetInfo TSInfo(TS,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(TSInfo);
+            SubRenderables[RenderablesAdded] = RenderablePair(NULL,TS);
             TS->SetVisible(Visible);
             return TS;
         }

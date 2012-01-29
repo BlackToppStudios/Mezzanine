@@ -349,7 +349,7 @@ void StartEngine()
     TheWorld->GameInit(false);
     ResourceManager::GetSingletonPtr()->AddResourceLocation("data/common", "FileSystem", "files", false);
     GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
-    UIManager::GetSingletonPtr()->LoadGorilla("dejavu");
+    UIManager::GetSingletonPtr()->LoadMTA("dejavu");
     ResourceManager::GetSingletonPtr()->InitResourceGroup("files");
     Mezzanine::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
     Mezzanine::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);

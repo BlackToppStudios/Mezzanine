@@ -59,19 +59,22 @@
 #include "uipagedcellgrid.h"
 #include "uidropdownlist.h"
 #include "uitabset.h"
+#include "uitextureatlas.h"
+#include "uivertex.h"
+#include "uisprite.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
-
-#include "internalGorilla.h.cpp"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        Layer::Layer(const String& name, Gorilla::Layer* GLayer, Screen* PScreen)
+        Layer::Layer(const String& name, const Whole& Index, Screen* PScreen)
             : Name(name),
-              GorillaLayer(GLayer),
+              Index(Index),
+              AlphaModifier(1.0),
+              Visible(true),
               Parent(PScreen)
         {
             Manager = UIManager::GetSingletonPtr();
@@ -79,79 +82,132 @@ namespace Mezzanine
 
         Layer::~Layer()
         {
-            while(!Buttons.empty())
-            {
-                Button* button = Buttons.back();
-                delete button;
-                Buttons.pop_back();
-            }
-            while(!Rectangles.empty())
-            {
-                Rectangle* rectangle = Rectangles.back();
-                delete rectangle;
-                Rectangles.pop_back();
-            }
-            while(!Captions.empty())
-            {
-                Caption* caption = Captions.back();
-                delete caption;
-                Captions.pop_back();
-            }
-            while(!MarkupTexts.empty())
-            {
-                MarkupText* markup = MarkupTexts.back();
-                delete markup;
-                MarkupTexts.pop_back();
-            }
-            while(!LineLists.empty())
-            {
-                LineList* linelist = LineLists.back();
-                delete linelist;
-                LineLists.pop_back();
-            }
-            while(!Widgets.empty())
-            {
-                Widget* widget = Widgets.back();
-                delete widget;
-                Widgets.pop_back();
-            }
-            Parent->GetGorillaScreen()->destroy(GorillaLayer);
+            for( Whole X = 0 ; X < Buttons.size() ; ++X )
+                delete Buttons[X];
+            Buttons.clear();
+            for( Whole X = 0 ; X < Rectangles.size() ; ++X )
+                delete Rectangles[X];
+            Rectangles.clear();
+            for( Whole X = 0 ; X < Captions.size() ; ++X )
+                delete Captions[X];
+            Captions.clear();
+            for( Whole X = 0 ; X < MarkupTexts.size() ; ++X )
+                delete MarkupTexts[X];
+            MarkupTexts.clear();
+            for( Whole X = 0 ; X < LineLists.size() ; ++X )
+                delete LineLists[X];
+            LineLists.clear();
+            for( Whole X = 0 ; X < Widgets.size() ; ++X )
+                delete Widgets[X];
+            Widgets.clear();
         }
 
-        String& Layer::GetName()
+        const String& Layer::GetName() const
         {
             return Name;
         }
 
-        Screen* Layer::GetParent()
+        Screen* Layer::GetParent() const
         {
             return Parent;
         }
 
-        void Layer::SetVisible(bool Visable)
+        const Whole& Layer::GetIndex() const
         {
-            GorillaLayer->setVisible(Visable);
+            return Index;
+        }
+
+        void Layer::SetAlphaModifier(const Real& Modifier)
+        {
+            AlphaModifier = Modifier;
+        }
+
+        Real Layer::GetAlphaModifier() const
+        {
+            return AlphaModifier;
+        }
+
+        void Layer::SetVisible(bool Visible)
+        {
+            if(this->Visible == Visible)
+                return;
+            this->Visible = Visible;
+            _MarkDirty();
         }
 
         bool Layer::GetVisible() const
         {
-            return GorillaLayer->isVisible();
+            return Visible;
         }
 
         bool Layer::IsVisible() const
         {
-            return GorillaLayer->isVisible() && Parent->IsVisible();
+            return Visible && Parent->IsVisible();
         }
 
         void Layer::Show()
         {
-            GorillaLayer->show();
+            if(this->Visible)
+                return;
+            this->Visible = true;
+            _MarkDirty();
         }
 
         void Layer::Hide()
         {
-            GorillaLayer->hide();
+            if(!this->Visible)
+                return;
+            this->Visible = false;
+            _MarkDirty();
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Atlas Info Functions
+        ///////////////////////////////////////
+
+        Vector2 Layer::GetSolidUV(const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetWhitePixel();
+        }
+
+        Sprite* Layer::GetSprite(const String& SpriteName,const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetSprite(SpriteName);
+        }
+
+        GlyphData* Layer::GetGlyphData(const Whole& ID,const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetGlyphData(ID);
+        }
+
+        Vector2 Layer::GetTextureSize(const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetTextureSize();
+        }
+
+        TextureAtlas* Layer::GetAtlas(const String& Atlas) const
+        {
+            return Manager->GetAtlas(Atlas);
+        }
+
+        Real Layer::GetTexelX() const
+        {
+            return Parent->GetTexelOffsetX();
+        }
+
+        Real Layer::GetTexelY() const
+        {
+            return Parent->GetTexelOffsetY();
+        }
+
+        ColourValue Layer::GetMarkupColour(const Whole& Index,const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetMarkupColour(Index);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Creating and working with All Basic UI Elements
+        ///////////////////////////////////////
 
         Button* Layer::CreateButton(ConstString& Name, const RenderableRect& Rect)
         {
@@ -163,6 +219,7 @@ namespace Mezzanine
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
                     button->BindActivationKeyOrButton(Codes->at(X));
             }
+            _MarkDirty();
             return button;
         }
 
@@ -176,6 +233,7 @@ namespace Mezzanine
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
                     tbutton->BindActivationKeyOrButton(Codes->at(X));
             }
+            _MarkDirty();
             return tbutton;
         }
 
@@ -189,6 +247,7 @@ namespace Mezzanine
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
                     tbutton->BindActivationKeyOrButton(Codes->at(X));
             }
+            _MarkDirty();
             return tbutton;
         }
 
@@ -232,6 +291,7 @@ namespace Mezzanine
         {
             Rectangle* rectangle = new Rectangle(Rect, this);
             Rectangles.push_back(rectangle);
+            _MarkDirty();
             return rectangle;
         }
 
@@ -262,6 +322,7 @@ namespace Mezzanine
         {
             Caption* caption = new Caption(Name,Rect,Glyph,Text,this);
             Captions.push_back(caption);
+            _MarkDirty();
             return caption;
         }
 
@@ -269,6 +330,7 @@ namespace Mezzanine
         {
             Caption* caption = new Caption(Name,Rect,LineHeight,Text,this);
             Captions.push_back(caption);
+            _MarkDirty();
             return caption;
         }
 
@@ -312,6 +374,7 @@ namespace Mezzanine
         {
             MarkupText* markup = new MarkupText(Name,Rect,Glyph,Text,this);
             MarkupTexts.push_back(markup);
+            _MarkDirty();
             return markup;
         }
 
@@ -319,6 +382,7 @@ namespace Mezzanine
         {
             MarkupText* markup = new MarkupText(Name,Rect,LineHeight,Text,this);
             MarkupTexts.push_back(markup);
+            _MarkDirty();
             return markup;
         }
 
@@ -358,10 +422,11 @@ namespace Mezzanine
             }
         }
 
-        LineList* Layer::CreateLineList()
+        LineList* Layer::CreateLineList(const String& Name)
         {
-            LineList* linelist = new LineList(this);
+            LineList* linelist = new LineList(Name,this);
             LineLists.push_back(linelist);
+            _MarkDirty();
             return linelist;
         }
 
@@ -391,6 +456,7 @@ namespace Mezzanine
         void Layer::AddWidget(Widget* ToAdd)
         {
             Widgets.push_back(ToAdd);
+            _MarkDirty();
         }
 
         Widget* Layer::GetWidget(ConstString& Name)
@@ -433,6 +499,7 @@ namespace Mezzanine
         {
             Scrollbar* Scroll = new Scrollbar(Name,Rect,Style,this);
             Widgets.push_back(Scroll);
+            _MarkDirty();
             return Scroll;
         }
 
@@ -440,6 +507,7 @@ namespace Mezzanine
         {
             CheckBox* Check = new CheckBox(Name,Rect,LineHeight,LabelText,this);
             Widgets.push_back(Check);
+            _MarkDirty();
             return Check;
         }
 
@@ -447,6 +515,7 @@ namespace Mezzanine
         {
             ListBox* LB = new ListBox(Name,Rect,ScrollStyle,this);
             Widgets.push_back(LB);
+            _MarkDirty();
             return LB;
         }
 
@@ -454,6 +523,7 @@ namespace Mezzanine
         {
             Window* Win = new Window(Name,Rect,this);
             Widgets.push_back(Win);
+            _MarkDirty();
             return Win;
         }
 
@@ -461,6 +531,7 @@ namespace Mezzanine
         {
             Menu* Men = new Menu(Name,Rect,this);
             Widgets.push_back(Men);
+            _MarkDirty();
             return Men;
         }
 
@@ -468,6 +539,7 @@ namespace Mezzanine
         {
             Spinner* Spn = new Spinner(Name,Rect,SStyle,GlyphHeight,this);
             Widgets.push_back(Spn);
+            _MarkDirty();
             return Spn;
         }
 
@@ -475,6 +547,7 @@ namespace Mezzanine
         {
             ScrolledCellGrid* SCG = new ScrolledCellGrid(Name,Rect,Thickness,Style,this);
             Widgets.push_back(SCG);
+            _MarkDirty();
             return SCG;
         }
 
@@ -482,6 +555,7 @@ namespace Mezzanine
         {
             PagedCellGrid* PCG = new PagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight,this);
             Widgets.push_back(PCG);
+            _MarkDirty();
             return PCG;
         }
 
@@ -489,6 +563,7 @@ namespace Mezzanine
         {
             DropDownList* DDL = new DropDownList(Name,Rect,LineHeight,ScrollStyle,this);
             Widgets.push_back(DDL);
+            _MarkDirty();
             return DDL;
         }
 
@@ -496,6 +571,7 @@ namespace Mezzanine
         {
             TabSet* TS = new TabSet(Name,SetRect,this);
             Widgets.push_back(TS);
+            _MarkDirty();
             return TS;
         }
 
@@ -569,9 +645,121 @@ namespace Mezzanine
             }
         }
 
-        Gorilla::Layer* Layer::GetGorillaLayer()
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Functions
+        ///////////////////////////////////////
+
+        void Layer::_MarkDirty()
         {
-            return GorillaLayer;
+            Parent->_RequestIndexRedraw(Index);
+        }
+
+        void Layer::_Render(std::vector<VertexData>& Vertices, bool Force)
+        {
+            if( AlphaModifier == 0.0 )
+                return;
+
+            Whole Begin = Vertices.size();
+            Whole I = 0;
+
+            for( int RP = 0 ; RP < 3 ; RP++ )
+            {
+                // Render/redraw rectangles
+                for( RectangleIterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }
+
+                // Render/redraw buttons
+                for( ButtonIterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }
+
+                // Render/redraw polygons
+                /*for( PolygonIterator it = Polygons.begin() ; it != Polygons.end() ; it++ )
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }// */
+
+                // Render/redraw quad lists
+                /*for( QuadListIterator it = QuadLists.begin() ; it != QuadLists.end() ; it++ )
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }// */
+
+                // Render/redraw caption
+                for(CaptionIterator it = Captions.begin(); it != Captions.end(); it++)
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }
+
+                // Render/redraw markuptext
+                for(MarkupTextIterator it = MarkupTexts.begin(); it != MarkupTexts.end(); it++)
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->TextDirty || Force )
+                            (*it)->_CalculateCharacters();
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }
+
+                // Render/redraw Widgets
+                for( WidgetIterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }
+
+                // Render/redraw line lists
+                for( LineListIterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
+                {
+                    if( RP == (*it)->GetRenderPriority() )
+                    {
+                        if( (*it)->Dirty || Force )
+                            (*it)->_Redraw();
+                        (*it)->_AppendVertices(Vertices);
+                    }
+                }
+            }
+            if(AlphaModifier != 1.0)
+            {
+                for( I = Begin ; I < Vertices.size() ; I++ )
+                    Vertices[I].Vert.Colour.A *= AlphaModifier;
+            }
+            Parent->_Transform(Vertices,Begin,Vertices.size());
         }
     }//ui
 }//Mezzanine

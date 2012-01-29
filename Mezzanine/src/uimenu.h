@@ -117,6 +117,11 @@ namespace Mezzanine
                 /// @brief Gets the current window at the top of the stack.
                 /// @return Returns a pointer to the window currently at the top of the stack.
                 virtual UI::MenuWindow* GetTopWindow();
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @copydoc Widget::_AppendVertices
+                virtual void _AppendVertices(std::vector<VertexData>& Vertices);
         };//Menu
     }//UI
 }//Mezzanine

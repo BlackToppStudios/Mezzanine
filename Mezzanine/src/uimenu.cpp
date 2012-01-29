@@ -58,12 +58,15 @@ namespace Mezzanine
             : Widget(name,PLayer)
         {
             Type = Widget::W_Menu;
-            RelPosition = Vector2(0,0);
-            RelSize = Vector2(0,0);
+            RelPosition.X = -1;
+            RelPosition.Y = -1;
+            RelSize.X = -1;
+            RelSize.Y = -1;
 
             ConstString NewName = name+"root";
             RootWindow = new UI::MenuWindow(NewName,Rect,this,Parent);
             MenuStack.push_back(RootWindow);
+            SubRenderables[0] = RenderablePair(NULL,RootWindow);
         }
 
         Menu::~Menu()
@@ -89,6 +92,7 @@ namespace Mezzanine
                             if(MenuStack.back()->GetAutoHide())
                                 MenuStack.back()->Hide();
                             MenuStack.push_back(ChildMenWin);
+                            SubRenderables[SubRenderables.size()] = RenderablePair(NULL,ChildMenWin);
                             ChildMenWin->Show();
                             return;
                         }else{
@@ -99,6 +103,7 @@ namespace Mezzanine
                     {
                         MenWin->Hide();
                         MenuStack.pop_back();
+                        SubRenderables.erase(SubRenderables.size() - 1);
                         if(!MenuStack.back()->IsVisible())
                             MenuStack.back()->Show();
                         return;
@@ -123,6 +128,7 @@ namespace Mezzanine
 
         bool Menu::CheckMouseHoverImpl()
         {
+            bool HoverRet = false;
             for( std::vector<UI::MenuWindow*>::reverse_iterator it = MenuStack.rbegin() ; it != MenuStack.rend() ; it++ )
             {
                 if((*it)->IsVisible())
@@ -131,11 +137,11 @@ namespace Mezzanine
                     {
                         HoveredSubWidget = (*it);
                         HoveredButton = HoveredSubWidget->GetHoveredButton();
-                        return true;
+                        HoverRet = true;
                     }
                 }
             }
-            return false;
+            return HoverRet;
         }
 
         void Menu::RollMenuBackToWindow(UI::MenuWindow* Win)
@@ -150,6 +156,7 @@ namespace Mezzanine
                 {
                     (*rit)->Hide();
                     MenuStack.pop_back();
+                    SubRenderables.erase(SubRenderables.size() - 1);
                 }else{
                     break;
                 }
@@ -209,6 +216,15 @@ namespace Mezzanine
         MenuWindow* Menu::GetTopWindow()
         {
             return MenuStack.back();
+        }
+
+        void Menu::_AppendVertices(std::vector<VertexData>& Vertices)
+        {
+            for( Whole X = 0 ; X < MenuStack.size() ; ++X )
+            {
+                if( MenuStack[X]->IsVisible() )
+                    MenuStack[X]->_AppendVertices(Vertices);
+            }
         }
     }//UI
 }//Mezzanine

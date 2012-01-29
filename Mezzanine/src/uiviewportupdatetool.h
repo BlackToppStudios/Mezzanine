@@ -47,6 +47,7 @@ namespace Mezzanine
     namespace UI
     {
         class BasicRenderable;
+        class Rectangle;
         class Widget;
         typedef std::pair<Vector2,Vector2> WidgetResult;
         ///////////////////////////////////////////////////////////////////////////////
@@ -158,7 +159,7 @@ namespace Mezzanine
 
                 /// @brief Updates a renderables size and position as needed.
                 /// @param ToBeUpdated The Renderable to be updated.
-                static void UpdateRenderable(BasicRenderable* ToBeUpdated);
+                static void UpdateRectangleRenderable(Rectangle* ToBeUpdated);
                 /// @brief Updates a widgets position as needed.
                 /// @param ToBeUpdated The Widget to be updated.
                 static WidgetResult UpdateWidget(Widget* ToBeUpdated);
