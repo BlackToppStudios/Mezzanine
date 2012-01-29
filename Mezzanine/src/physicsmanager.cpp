@@ -40,6 +40,8 @@
 #ifndef _physicsmanager_cpp
 #define _physicsmanager_cpp
 
+using namespace std;
+
 #include "linegroup.h"
 #include "physicsmanager.h"
 #include "world.h"

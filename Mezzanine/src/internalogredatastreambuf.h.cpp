@@ -69,7 +69,7 @@ namespace Mezzanine
                 Ogre::DataStreamPtr OgreStream;
 
                 /// @brief The size of chunks to grab from files at once defaults to 4Kb
-                streampos LoadAtOnce;
+                std::streampos LoadAtOnce;
 
                 /// @brief The ammount of bytes that should be load before a given start point when loading.
                 /// @details When read from a data source, the amount of bytes set in LoadAtOnce will be loaded.
@@ -78,7 +78,7 @@ namespace Mezzanine
                 /// point. If all streams are simply read, then this should be 0, if there are plans to manuever around
                 /// the stream, then this should be higher, based on how far back you plan on reading. By default
                 /// this assumes a low value of 128 bytes.
-                streampos SeekBackOnload;
+                std::streampos SeekBackOnload;
 
                 /// @brief The Maximum percentage of the buffer to be filled with seekback contents
                 /// @details Whenever SeekBackOnload is use this value will be used to determine if too much of the buffer is being used.
@@ -98,7 +98,7 @@ namespace Mezzanine
                 // Locales
                 /// @brief Does nothing, implemented for ease of future coding
                 /// @param loc A completely ignored value.
-                void imbue ( const locale & loc )
+                void imbue ( const std::locale & loc )
                     {}
 
                 //Buffer mgmt and position
@@ -107,18 +107,18 @@ namespace Mezzanine
                 /// @param n The size of the new buffer
                 /// @return Returns this on success, of 0/NULL on failure
                 /// @exception This can throw out of memory exceptions
-                virtual streambuf* setbuf (char* s, streamsize n);
+                virtual std::streambuf* setbuf (char* s, std::streamsize n);
 
                 /// @brief Moves the internal pointer around
                 /// @param off the ammount to move the pointer.
                 /// @param way from the begining, from the end, or from the current point
                 /// @param which this only supports ios_base::in, and will not work with ios_base::out
-                virtual streampos seekoff ( streamoff off, ios_base::seekdir way, ios_base::openmode which = ios_base::in );
+                virtual std::streampos seekoff ( std::streamoff off, std::ios_base::seekdir way, std::ios_base::openmode which = std::ios_base::in );
 
                 /// @brief Moves internal pointer to specificied.
                 /// @param sp The place to move the pointer too.
                 /// @param which this only supports ios_base::in, and will not work with ios_base::out.
-                virtual streampos seekpos ( streampos sp, ios_base::openmode which = ios_base::in );
+                virtual std::streampos seekpos ( std::streampos sp, std::ios_base::openmode which = std::ios_base::in );
 
                 /// @brief Does nothing, but is required and returns success
                 /// @details due to the nature of the ogre data streams this does not need to and syncing on the fly is extremely easy.
@@ -171,7 +171,7 @@ namespace Mezzanine
                 /// @details This uses LoadAtOnce to determine the size of the buffer, and SeekBackOnload to determine
                 /// how far into the internal buffer should be placed. This does every kind of error checking that can be
                 /// for this stage of stream management/creation.
-                void SetInternalBuffer(const streampos& Destination);
+                void SetInternalBuffer(const std::streampos& Destination);
 
                 /// @internal
                 /// @brief Used to set the internal buffer with fewer assumptions.
@@ -181,7 +181,7 @@ namespace Mezzanine
                 /// @details This does some error checking to attempt to determine if the default amount of backfill
                 /// is appropriate. Then this calles the very detailed SetInternalBuffer to do the Dirty work.This is
                 /// intended to only be called from OgreDataStreamBuf::SetInternalBuffer(streampos)
-                void SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const streampos& Destination);
+                void SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const std::streampos& Destination);
 
                 /// @internal
                 /// @brief Used to set the internal buffer without all the error checking, and in a very precise fashion.
@@ -192,13 +192,13 @@ namespace Mezzanine
                 /// @details This is the ideal set of information for filling our mostly sized base variable size buffer. This performs almost
                 /// no error checking. After being run this leaves the ogre pointer at the end of the read input. This is intended to only be
                 /// called from OgreDataStreamBuf::SetInternalBuffer()
-                void SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const streampos& Destination, const streampos& BackFill);
+                void SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const std::streampos& Destination, const std::streampos& BackFill);
 
                 /// @brief This checks if a given point is in the internal buffer or not
                 /// @param BeginPoint This is checked to see if this is inside the buffer
                 /// @param EndPoint If 0, this is ignored, otherwise this is checked if it is inside the buffer
                 /// @return This returns True if BeginPoint is inside the internal buffer, and EndPoint is 0 is EndPoint is inside the buffer. Other wise this returns false
-                bool CheckInternalBuffer(const streampos& BeginPoint, const streampos& EndPoint=0);
+                bool CheckInternalBuffer(const std::streampos& BeginPoint, const std::streampos& EndPoint=0);
 
                 /// @brief Check if the given points are in the stream
                 /// @param BeginPoint This is checked to see if this is inside the stream

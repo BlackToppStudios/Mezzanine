@@ -107,7 +107,7 @@ set(${PROJECT_NAME}_sources
 )
 
 include_directories(
-	"${${PROJECT_NAME}_SOURCE_DIR}/lua5.1/include/"
+	"${${PROJECT_NAME}_SOURCE_DIR}/lua-5.2.0/src/"
 )
 
 add_definitions( ${CommonBuildFlags} )

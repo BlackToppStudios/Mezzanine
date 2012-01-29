@@ -45,7 +45,7 @@
 class SceneManagerTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             SceneManager* SM = 0;
 
@@ -66,7 +66,7 @@ class SceneManagerTests : public UnitTestGroup
                     StopEngine();
                     AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTestGroup::OverWrite);
                 } catch (std::exception e) {
-                    cout << e.what();
+                    std::cerr << e.what();
                     AddTestResult("SceneManager::DisplaySkyPlane", Failed, UnitTestGroup::OverWrite);
                 }
 
@@ -83,7 +83,7 @@ class SceneManagerTests : public UnitTestGroup
                     StopEngine();
                     AddTestResult("SceneManager::DisplaySkyBox", AnswerToQuestion, UnitTestGroup::OverWrite);
                 } catch (std::exception e) {
-                    cout << e.what();
+                    std::cerr << e.what();
                     AddTestResult("SceneManager::DisplaySkyBox", Failed, UnitTestGroup::OverWrite);
                 }
 
@@ -100,7 +100,7 @@ class SceneManagerTests : public UnitTestGroup
                     StopEngine();
                     AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTestGroup::OverWrite);
                 } catch (std::exception e) {
-                    cout << e.what();
+                    std::cerr << e.what();
                     AddTestResult("SceneManager::DisplaySkyDome", Failed, UnitTestGroup::OverWrite);
                 }
 
@@ -116,7 +116,7 @@ class SceneManagerTests : public UnitTestGroup
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (No Sky)", Unknown);
                 SceneManager* SM = SceneManager::GetSingletonPtr();
-                stringstream SerializeTest1("");
+                std::stringstream SerializeTest1("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateLight("ADefaultLightWithNoChangesAtAll");
                 SM->CreateParticleEffect("SomeGreenParticles", "Examples/GreenyNimbus");
@@ -136,7 +136,7 @@ class SceneManagerTests : public UnitTestGroup
                 try
                 {
                     SerializeTest1 >> *SM;
-                    stringstream SerializeTest1a("");
+                    std::stringstream SerializeTest1a("");
                     SerializeTest1a << *SM;
                     //TheWorld->LogStream << std::endl << SerializeTest1a.str() << "==" << SerializeTest1.str() << std::endl;
                     if ( SerializeTest1a.str() == SerializeTest1.str())
@@ -147,7 +147,7 @@ class SceneManagerTests : public UnitTestGroup
                     }
                 }catch(Exception E){
                     AddTestResult("SceneManager::operator>> (No Sky)", Failed, UnitTestGroup::OverWrite);
-                    TheWorld->LogStream << endl << "SceneManager::operator>> (No Sky) - Failed With: " << E.what();
+                    TheWorld->LogStream << std::endl << "SceneManager::operator>> (No Sky) - Failed With: " << E.what();
                 }
                 StopEngine();
 
@@ -155,7 +155,7 @@ class SceneManagerTests : public UnitTestGroup
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyDome)", Unknown);
                 SM = SceneManager::GetSingletonPtr();
-                stringstream SerializeTest2("");
+                std::stringstream SerializeTest2("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyDome("Examples/CloudPlane","files",50);
                 SM->CreateLight("ADefaultLightWithNoChangesAtAll");
@@ -176,7 +176,7 @@ class SceneManagerTests : public UnitTestGroup
                 try
                 {
                     SerializeTest2 >> *SM;
-                    stringstream SerializeTest2a("");
+                    std::stringstream SerializeTest2a("");
                     SerializeTest2a << *SM;
                     //TheWorld->LogStream << std::endl << SerializeTest2a.str() << "==" << SerializeTest2.str() << std::endl;
                     if ( SerializeTest2a.str() == SerializeTest2.str())
@@ -187,7 +187,7 @@ class SceneManagerTests : public UnitTestGroup
                     }
                 }catch(Exception E){
                     AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTestGroup::OverWrite);
-                    TheWorld->LogStream << endl << "SceneManager::operator>> (SkyDome) - Failed With: " << E.what();
+                    TheWorld->LogStream << std::endl << "SceneManager::operator>> (SkyDome) - Failed With: " << E.what();
                 }
                 StopEngine();
 
@@ -196,7 +196,7 @@ class SceneManagerTests : public UnitTestGroup
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyPlane)", Unknown);
                 SM = SceneManager::GetSingletonPtr();
-                stringstream SerializeTest3("");
+                std::stringstream SerializeTest3("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
                 SM->CreateLight("ADefaultLightWithNoChangesAtAll");
@@ -217,7 +217,7 @@ class SceneManagerTests : public UnitTestGroup
                 try
                 {
                     SerializeTest3 >> *SM;
-                    stringstream SerializeTest3a("");
+                    std::stringstream SerializeTest3a("");
                     SerializeTest3a << *SM;
                     //TheWorld->LogStream << std::endl << SerializeTest3a.str() << "==" << SerializeTest3.str() << std::endl;
                     if ( SerializeTest3a.str() == SerializeTest3.str())
@@ -228,7 +228,7 @@ class SceneManagerTests : public UnitTestGroup
                     }
                 }catch(Exception E){
                     AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTestGroup::OverWrite);
-                    TheWorld->LogStream << endl << "SceneManager::operator>> (SkyPlane) - Failed With: " << E.what();
+                    TheWorld->LogStream << std::endl << "SceneManager::operator>> (SkyPlane) - Failed With: " << E.what();
                 }
                 StopEngine();
 
@@ -236,7 +236,7 @@ class SceneManagerTests : public UnitTestGroup
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyBox)", Unknown);
                 SM = SceneManager::GetSingletonPtr();
-                stringstream SerializeTest4("");
+                std::stringstream SerializeTest4("");
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyBox("Examples/CloudBox","files",50);
                 SM->CreateLight("ADefaultLightWithNoChangesAtAll");
@@ -258,7 +258,7 @@ class SceneManagerTests : public UnitTestGroup
                 try
                 {
                     SerializeTest4 >> *SM;
-                    stringstream SerializeTest4a("");
+                    std::stringstream SerializeTest4a("");
                     SerializeTest4a << *SM;
                     //TheWorld->LogStream << std::endl << SerializeTest4a.str() << "==" << SerializeTest4.str() << std::endl;
                     if ( SerializeTest4a.str() == SerializeTest4.str())
@@ -269,7 +269,7 @@ class SceneManagerTests : public UnitTestGroup
                     }
                 }catch(Exception E){
                     AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTestGroup::OverWrite);
-                    TheWorld->LogStream << endl << "SceneManager::operator>> (SkyBox) - Failed With: " << E.what();
+                    TheWorld->LogStream << std::endl << "SceneManager::operator>> (SkyBox) - Failed With: " << E.what();
                 }
                 StopEngine();
 

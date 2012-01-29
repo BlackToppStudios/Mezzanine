@@ -63,8 +63,6 @@ message ( STATUS "Base Directory for Library binaries and data: ${${PROJECT_NAME
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")
-
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
 set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")

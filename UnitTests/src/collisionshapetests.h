@@ -46,7 +46,7 @@
 class CollisionShapeTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
@@ -110,7 +110,7 @@ class CollisionShapeTests : public UnitTestGroup
 
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     BoxCollisionShape TestObject1("ABox",Vector3(1,2,3));                                                   //create two objects one initial and functionally empty data and one with many(every) change
                     BoxCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6));
@@ -118,7 +118,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<BoxCollisionShape Version=\"1\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0.96\" Y=\"1.96\" Z=\"2.96\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"ABox\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></BoxCollisionShape>");
@@ -149,17 +149,17 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("BoxCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("BoxCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 }
 
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     CapsuleCollisionShape TestObject1("ABox",1,2,Vector3(0,1,0));                                           //create two objects one initial and functionally empty data and one with many(every) change
                     CapsuleCollisionShape TestObject2("GeorgeWashington",3,4,Axis_Z);
@@ -167,7 +167,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<CapsuleCollisionShape Version=\"1\" Axis=\"1\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"ABox\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></CapsuleCollisionShape>");
@@ -198,17 +198,17 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("CapsuleCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("CapsuleCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 }
 
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     ConeCollisionShape TestObject1("ABox",1,2,Vector3(0,1,0));                                              //create two objects one initial and functionally empty data and one with many(every) change
                     ConeCollisionShape TestObject2("GeorgeWashington",3,4,Axis_Z);
@@ -216,7 +216,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<ConeCollisionShape Version=\"1\" Radius=\"1\" Height=\"2\" Axis=\"1\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"ABox\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></ConeCollisionShape>");
@@ -247,17 +247,17 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("ConeCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("ConeCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 }
 
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     std::vector<Vector3> SimplePoints;
                     SimplePoints.push_back(Vector3(0,0,0));
@@ -281,7 +281,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<ConvexHullCollisionShape Version=\"1\"><UnscaledPoints><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\" /><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\" /></UnscaledPoints><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"d4\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></ConvexHullCollisionShape>");
@@ -312,17 +312,17 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("ConvexHullCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("ConvexHullCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
 
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     CylinderCollisionShape TestObject1("ATube",Vector3(1,2,3), Axis_Y);                                     //create two objects one initial and functionally empty data and one with many(every) change
                     CylinderCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6), Axis_X);
@@ -330,7 +330,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<CylinderCollisionShape Version=\"1\" Axis=\"1\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0.96\" Y=\"1.96\" Z=\"2.96\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"ATube\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></CylinderCollisionShape>");
@@ -361,17 +361,17 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("CylinderCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("CylinderCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
 
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     std::vector<Vector3> SimplePoints;
                     SimplePoints.push_back(Vector3(0,0,0));
@@ -409,7 +409,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    //cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<MultiSphereCollisionShape Version=\"1\"><Spheres><Sphere Radius=\"1\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"1.1\"><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\" /></Sphere><Sphere Radius=\"1.2\"><Vector3 Version=\"1\" X=\"0\" Y=\"1\" Z=\"0\" /></Sphere><Sphere Radius=\"1.3\"><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\" /></Sphere></Spheres><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"Jake\" Margin=\"0.04\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></MultiSphereCollisionShape>");
@@ -440,18 +440,18 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("MultiSphereCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("MultiSphereCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
 
                 ///The test in progress \/
                 try
                 {
-                    stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
+                    std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
                     SphereCollisionShape TestObject1("Round", 1.0);                                                         //create two objects one initial and functionally empty data and one with many(every) change
                     SphereCollisionShape TestObject2("ThomasJefferson",10.5);
@@ -459,7 +459,7 @@ class CollisionShapeTests : public UnitTestGroup
                         TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
                     CollisionShape* TestObject1RS = 0;
                     CollisionShape* TestObject2RS = 0;
-                    cout << endl << endl << TestObject1 << endl << endl << TestObject2 << endl << endl;
+                    std::cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
                     String TestCase1Target("<SphereCollisionShape Version=\"1\"><PrimitiveCollisionShape Version=\"1\"><ImplicitShape><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\" /></ImplicitShape><CollisionShape Version=\"1\" Name=\"Round\" Margin=\"1\"><Scaling><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></Scaling></CollisionShape></PrimitiveCollisionShape></SphereCollisionShape>");
@@ -490,12 +490,12 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("SphereCollisionShape::operator>> (Case2)", Success, UnitTestGroup::OverWrite); }
                     else
                         { AddTestResult("SphereCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
-                    //cout << endl << endl << *TestObject1RS << endl << endl << *TestObject2RS << endl << endl;
+                    //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
                 }catch (Mezzanine::Exception e){
-                    cout << endl << endl << "Mezzanine Exception: " << e.what() << endl << endl;
-                }catch (exception e){
-                    cout << endl << endl << "Non-Mezzanine Exception: " << e.what() << endl << endl;
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (std::exception e){
+                    std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
                 ///The test in progress /\
 

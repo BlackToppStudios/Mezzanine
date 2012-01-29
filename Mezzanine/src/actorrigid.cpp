@@ -227,6 +227,7 @@ namespace Mezzanine
 
             /*ObjectPair CollisionPair(ActorA,this);
             PhysicsManager::GetSingletonPtr()->RemoveCollision(PhysicsManager::GetSingletonPtr()->GetCollision(&CollisionPair));
+
             // Create and configure the constraint.
             StickyConstraint* NewSticky = new StickyConstraint(ActorA,this,TransA,TransB);
             NewSticky->SetUpperLinLimit(0.0);

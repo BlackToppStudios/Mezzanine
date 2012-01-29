@@ -52,16 +52,16 @@
             if (temp1.at(Counter)==temp2.at(Counter))
                 cout << temp1.at(Counter);
             else{
-                cout << endl << "Mismatch - 1:" << temp1.at(Counter) << " 2:" << temp2.at(Counter) << endl << endl;
+                cout << std::endl << "Mismatch - 1:" << temp1.at(Counter) << " 2:" << temp2.at(Counter) << std::endl << std::endl;
             }
         }else{
-            cout << endl << "Length Mismatch - ";
+            cout << std::endl << "Length Mismatch - ";
             if (temp1.length() < temp2.length())
             {
-                cout << "2:\"" << temp2.at(Counter) << "\" - " << (int)temp2.at(Counter) << endl;
+                cout << "2:\"" << temp2.at(Counter) << "\" - " << (int)temp2.at(Counter) << std::endl;
             }else{
 
-                cout << "1:\"" << temp1.at(Counter) << "\" - " << (int)temp1.at(Counter) << endl;
+                cout << "1:\"" << temp1.at(Counter) << "\" - " << (int)temp1.at(Counter) << std::endl;
             }
         }
     }
@@ -72,7 +72,7 @@
 class ConstraintTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
@@ -145,7 +145,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestP2PEmpty >> TesteeRS;
                     SerializeTestP2PEmptyRS <<TesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 UnsetCFM = Testee.HasParamBeenSet(Con_CFM,-1);          // P2P All of the Unset test
                 UnsetStopCFM = Testee.HasParamBeenSet(Con_Stop_CFM,-1);
@@ -158,14 +158,14 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestP2PWithOneParam >> TesteeRS;
                     SerializeTestP2PWithOneParamRS << TesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 Testee.SetParam(Con_ERP,0.2,-1);                        // P2P Serialize Test3
                 SerializeTestP2PWithAllParams << Testee;
                 try{
                     SerializeTestP2PWithAllParams >> TesteeRS;
                     SerializeTestP2PWithAllParamsRS << TesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 SetCFM = Testee.HasParamBeenSet(Con_CFM,-1);            // All of the Set tests for P2P
                 SetStopCFM = Testee.HasParamBeenSet(Con_Stop_CFM,-1);
@@ -211,7 +211,7 @@ class ConstraintTests : public UnitTestGroup
                 }else{
                     AddTestResult("Point2PointConstraint::operator>> (Params-1Param)", Failed, UnitTestGroup::OverWrite);
                 }
-                //cout <<endl <<endl << "Expected: \t"<< Test3 <<endl << endl << "Recieved: \t"<< SerializeTestP2PWithAllParamsRS.str() <<endl <<endl;
+                //cout <<endl <<endl << "Expected: \t"<< Test3 <<endl << std::endl << "Recieved: \t"<< SerializeTestP2PWithAllParamsRS.str() <<endl <<endl;
                 if (Test3 == SerializeTestP2PWithAllParamsRS.str())
                 {
                     AddTestResult("Point2PointConstraint::operator>> (Params-WithParams)", Success, UnitTestGroup::OverWrite);
@@ -296,7 +296,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge1 >> HingeTesteeRS;
                     SerializeTestHinge1RS << HingeTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
                 //cout <<endl <<endl << HingeTestee <<endl <<endl;
 
                 HingeTestee.SetParam(Con_CFM,0.1,-1);
@@ -304,7 +304,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge2 >> HingeTesteeRS;
                     SerializeTestHinge2RS << HingeTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 HingeTestee.SetParam(Con_CFM,0.2,5);
                 HingeTestee.SetParam(Con_Stop_ERP,0.3,-1);
@@ -315,7 +315,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge3 >> HingeTesteeRS;
                     SerializeTestHinge3RS << HingeTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
 
                 String HingeTest1("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></HingeConstraint>");
@@ -342,7 +342,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("HingeConstraint::operator<< (Params-WithParams)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                //cout <<endl <<endl << "Expected: \t"<< HingeTest1 <<endl << endl << "Recieved: \t"<< SerializeTestHinge1RS.str() <<endl <<endl;
+                //cout <<endl <<endl << "Expected: \t"<< HingeTest1 <<endl << std::endl << "Recieved: \t"<< SerializeTestHinge1RS.str() <<endl <<endl;
                 if ( HingeTest1 == SerializeTestHinge1RS.str())
                 {
                     AddTestResult("HingeConstraint::operator>> (Params-Empty)", Success, UnitTestGroup::OverWrite);
@@ -366,8 +366,8 @@ class ConstraintTests : public UnitTestGroup
 
 
 
-                stringstream SerializeTestG6dof1, SerializeTestG6dof2, SerializeTestG6dof3; // Prepare for the G6dof test.
-                stringstream SerializeTestG6dof1RS, SerializeTestG6dof2RS, SerializeTestG6dof3RS;
+                std::stringstream SerializeTestG6dof1, SerializeTestG6dof2, SerializeTestG6dof3; // Prepare for the G6dof test.
+                std::stringstream SerializeTestG6dof1RS, SerializeTestG6dof2RS, SerializeTestG6dof3RS;
 
                 Generic6DofConstraint G6dofTestee( ActorA, ActorB,
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
@@ -381,7 +381,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof1 >> G6dofTesteeRS;
                     SerializeTestG6dof1RS << G6dofTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 G6dofTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                 // 6dof test2
                 G6dofTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
@@ -406,7 +406,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof2 >> G6dofTesteeRS;
                     SerializeTestG6dof2RS << G6dofTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 G6dofTestee.SetParam(Con_Stop_ERP,0.01,0);                                        // 6dof Test3
                 G6dofTestee.SetParam(Con_CFM,0.02,0);
@@ -430,9 +430,9 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof3 >> G6dofTesteeRS;
                     SerializeTestG6dof3RS << G6dofTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
-                //cout << endl << endl << G6dofTestee << endl << endl;
+                //cout << std::endl << std::endl << G6dofTestee << std::endl << std::endl;
 
                 String G6dofTest1("<Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint>");
                 if ( G6dofTest1 == SerializeTestG6dof1.str())
@@ -458,7 +458,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofConstraint::operator<< (ParamsAndValues)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                //cout <<endl <<endl << "Expected: \t"<< G6dofTest2 <<endl << endl << "Recieved: \t"<< SerializeTestG6dof2RS.str() <<endl <<endl;
+                //cout <<endl <<endl << "Expected: \t"<< G6dofTest2 <<endl << std::endl << "Recieved: \t"<< SerializeTestG6dof2RS.str() <<endl <<endl;
                 if ( G6dofTest1 == SerializeTestG6dof1RS.str())
                 {
                     AddTestResult("Generic6DofConstraint::operator>> (Empty)", Success, UnitTestGroup::OverWrite);
@@ -480,8 +480,8 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofConstraint::operator>> (ParamsAndValues)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                stringstream SerializeTestG6dofSpring1, SerializeTestG6dofSpring2;                                      // Begin 6dof Spring tests
-                stringstream SerializeTestG6dofSpring1RS, SerializeTestG6dofSpring2RS;
+                std::stringstream SerializeTestG6dofSpring1, SerializeTestG6dofSpring2;                                      // Begin 6dof Spring tests
+                std::stringstream SerializeTestG6dofSpring1RS, SerializeTestG6dofSpring2RS;
 
                 Generic6DofSpringConstraint G6dofSpringTestee( ActorA, ActorB,
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
@@ -495,7 +495,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dofSpring1 >> G6dofSpringTesteeRS;
                     SerializeTestG6dofSpring1RS << G6dofSpringTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
 
                 G6dofSpringTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                                       // 6dof spring test2
                 G6dofSpringTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
@@ -554,8 +554,8 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dofSpring2 >> G6dofSpringTesteeRS;
                     SerializeTestG6dofSpring2RS << G6dofSpringTesteeRS;
-                }catch (Exception e){ cerr << endl << endl << e.what() << endl << endl; }
-                //cout << endl << endl << G6dofSpringTestee << endl << endl;
+                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                //cout << std::endl << std::endl << G6dofSpringTestee << std::endl << std::endl;
 
                 String G6dofSpringTest1("<Generic6DofSpringConstraint Version=\"1\"><Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint><SpringStiffness Axis0=\"0\" Axis1=\"0\" Axis2=\"0\" Axis3=\"0\" Axis4=\"0\" Axis5=\"0\" /><SpringDamping Axis0=\"1\" Axis1=\"1\" Axis2=\"1\" Axis3=\"1\" Axis4=\"1\" Axis5=\"1\" /><SpringEnabled Axis0=\"false\" Axis1=\"false\" Axis2=\"false\" Axis3=\"false\" Axis4=\"false\" Axis5=\"false\" /></Generic6DofSpringConstraint>");
                 if ( G6dofSpringTest1 == SerializeTestG6dofSpring1.str())
@@ -573,7 +573,7 @@ class ConstraintTests : public UnitTestGroup
                     AddTestResult("Generic6DofSpringConstraint::operator<< (Values)", Failed, UnitTestGroup::OverWrite);
                 }
 
-                //cout <<endl <<endl << "Expected: \t"<< G6dofSpringTest2 << endl << endl << "Recieved: \t"<< SerializeTestG6dofSpring2RS.str() <<endl <<endl;
+                //cout <<endl <<endl << "Expected: \t"<< G6dofSpringTest2 << std::endl << std::endl << "Recieved: \t"<< SerializeTestG6dofSpring2RS.str() <<endl <<endl;
                 if ( G6dofSpringTest1 == SerializeTestG6dofSpring1RS.str())
                 {
                     AddTestResult("Generic6DofSpringConstraint::operator>> (Empty)", Success, UnitTestGroup::OverWrite);

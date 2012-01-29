@@ -65,7 +65,8 @@
                 virtual const char *what(void);
         };
 
-        template < class T, class Allocator = allocator<T> > class vector
+        //template < class T, class Allocator = allocator<T> > class vector
+        template < class T > class vector
         {
             public:
                 explicit vector ( const Allocator& = Allocator() );

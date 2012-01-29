@@ -45,7 +45,7 @@
 class WorldNodeTests : public UnitTestGroup
 {
     public:
-        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             TestResult temp=Failed;
 
@@ -73,12 +73,12 @@ class WorldNodeTests : public UnitTestGroup
                     AddTestResult("WorldNode::AttachObject", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
                     AddTestResult("WorldNode::AttachTo", Success, UnitTestGroup::OverWriteIfMoreSuccessful);
 
-                    stringstream XMLstream;
+                    std::stringstream XMLstream;
                     AddTestResult("WorldNode::operator<<", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream << *Test1;
                     if (XMLstream.str() == String("<WorldNode Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\"><Attached Name=\"Gamma\"/><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0.707107\" Z=\"0\" W=\"0.707107\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\"/></Location></WorldNode>"))
                         { AddTestResult("WorldNode::operator<<", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
-                    cout << *Test1 << endl;
+                    std::cout << *Test1 << std::endl;
                     AddTestResult("WorldNode::DetachFrom", Failed);
                     Test2->DetachFrom();
                     Test1->DetachFrom();
@@ -88,19 +88,19 @@ class WorldNodeTests : public UnitTestGroup
                     WorldNode* Test3 = SceneManager::GetSingletonPtr()->CreateFreeNode("Omega", Vector3(0,0,0),Vector3(0,0,0));
                     AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Failed, UnitTestGroup::OverWriteIfMoreSuccessful);
                     XMLstream >> *Test3;
-                    cout << *Test1 << endl;
-                    cout << *Test3 << endl;
+                    std::cout << *Test1 << std::endl;
+                    std::cout << *Test3 << std::endl;
                     if (ToString(*Test3) == String("<WorldNode Version=\"1\" Name=\"Omega\" AttachedTo=\"Alpha\"><Attached Name=\"Gamma\"/><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0.707107\" Z=\"0\" W=\"0.707107\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"0\" Z=\"0\"/></Location></WorldNode>"))
                         { AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     StartCountdown(2);
                     TheWorld->MainLoop();
                 }catch(Ogre::Exception e){
-                    cerr << "Ogre::Exception" << e.what() << endl;
+                    std::cerr << "Ogre::Exception" << e.what() << std::endl;
                 }catch(Exception e){
-                    cerr << "Mezzanine::Exception" << e.what() << endl;
-                }catch(exception e){
-                    cerr << "std::exception" << e.what() << endl;
+                    std::cerr << "Mezzanine::Exception" << e.what() << std::endl;
+                }catch(std::exception e){
+                    std::cerr << "std::exception" << e.what() << std::endl;
                 }
 
                 StopEngine();

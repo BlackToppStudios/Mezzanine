@@ -94,7 +94,7 @@ namespace Mezzanine
     /// any extra functions on this are for seamless interaction with the EventManager,
     /// or to convert incoming data into a more usable form.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB EventUserInput : public EventBase, public vector<MetaCode>
+    class MEZZ_LIB EventUserInput : public EventBase, public std::vector<MetaCode>
     {
         private:
             //These private methods all accept a specific kind of RawEvent from SDL and will behave non-deterministically if

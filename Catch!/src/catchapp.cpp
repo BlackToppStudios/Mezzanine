@@ -10,6 +10,7 @@
 #include <cassert>
 #include <set>
 
+using namespace std;
 using namespace Mezzanine;
 
 CatchApp* CatchApp::TheRealCatchApp = 0;

@@ -53,6 +53,11 @@
 namespace Mezzanine
 {
 
+    // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
+    #ifdef SWIG
+    %template(DeSerializerActorRigid) DeSerializer< ActorRigid >;
+    #endif
+
     /// @brief This creates Rigid body actors and inserts them into a given ActorManager.
     class MEZZ_LIB ActorRigidDeSerializer : public DeSerializer <ActorRigid>
     {

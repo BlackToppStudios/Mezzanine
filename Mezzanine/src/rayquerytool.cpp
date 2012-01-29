@@ -40,6 +40,8 @@
 #ifndef _rayquerytool_cpp
 #define _rayquerytool_cpp
 
+using namespace std;
+
 #include "rayquerytool.h"
 #include "actorbase.h"
 #include "actorcontainerbase.h"
