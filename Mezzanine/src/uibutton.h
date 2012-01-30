@@ -63,6 +63,7 @@ namespace Mezzanine
         class MEZZ_LIB Button : public Rectangle
         {
             protected:
+                friend class UIManager;
                 Sprite* NormalSprite;
                 Sprite* HoveredSprite;
                 Sprite* UserSprite;
@@ -73,7 +74,7 @@ namespace Mezzanine
                 UI::ActivationCondition ActCond;
                 std::vector<MetaCode::InputCode> KeyboardActivationKeys;
                 std::vector<MetaCode::InputCode> MouseActivationButtons;
-                void SetHovered(bool Hovered);
+                virtual void SetHovered(bool Hovered);
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
@@ -83,12 +84,10 @@ namespace Mezzanine
                 /// @brief Class destructor.
                 virtual ~Button();
 
-                /// @brief Determines whether the mouse is over this renderable.
-                /// @return Returns a bool indicating whether the mouse is over this renderable.
-                bool CheckMouseHover();
                 /// @brief Gets whether this is a text button.
                 /// @return Returns a bool representing whether or not this is a text button.
                 virtual bool IsTextButton();
+
                 /// @brief Sets the callback for this button.  See the ButtonCallback class for more info.
                 /// @details You can pass in a null pointer to disable a callback.
                 /// @param Call A pointer to the callback you wish to have set for this button.

@@ -94,7 +94,16 @@ namespace Mezzanine
         }
         if(HoveredWidget)
         {
-            if(HoveredWidget->CheckMouseHover())
+            if(HoveredWidgetButton)
+            {
+                if(HoveredWidgetButton->CheckMouseHover())
+                {
+                    HoveredButton = NULL;
+                    MouseActivationCheck(HoveredWidgetButton);
+                    return;
+                }
+            }
+            else if(HoveredWidget->CheckMouseHover())
             {
                 HoveredButton = NULL;
                 HoveredWidgetButton = HoveredWidget->GetHoveredButton();

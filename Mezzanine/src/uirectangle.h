@@ -76,18 +76,18 @@ namespace Mezzanine
                 ColourValue BorderColours[4];
 
                 /// @brief Builds the rectangle.
-                void ConstructRectangle(const UI::RenderableRect& Rect);
+                virtual void ConstructRectangle(const UI::RenderableRect& Rect);
                 /// @brief Draws the border, if any is set.
-                void DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
-                                const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight);
+                virtual void DrawBorder(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight,
+                                        const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight);
                 /// @brief Draws the main rectangle.
-                void DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight);
+                virtual void DrawFill(const Vector2& TopLeft, const Vector2& TopRight, const Vector2& BottomLeft, const Vector2& BottomRight);
                 /// @brief Transforms coordinates to be used in rendering.
-                void RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight);
+                virtual void RotationTransform(Vector2& TopLeft, Vector2& TopRight, Vector2& BottomLeft, Vector2& BottomRight);
                 /// @brief Sets the hovered state of this renderable.
-                void SetHovered(bool Hovered);
+                virtual void SetHovered(bool Hovered);
                 /// @brief Sets all the sprite meta-data of this class to render a specific sprite.
-                void SetSprite(Sprite* PSprite);
+                virtual void SetSprite(Sprite* PSprite);
                 /// @brief Inheritance constructor.
                 /// @param name The name to be given to this renderable.
                 /// @param Rect The Rect representing the position and size of the rectangle.

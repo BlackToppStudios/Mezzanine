@@ -116,25 +116,22 @@ namespace Mezzanine
 
         bool BasicRenderable::IsVisible() const
         {
+            return Visible && Parent->IsVisible();
+        }
+
+        bool BasicRenderable::GetVisible() const
+        {
             return Visible;
         }
 
         void BasicRenderable::Show()
         {
-            if(this->Visible == true)
-                return;
-            this->Visible = true;
-            Dirty = true;
-            Parent->_MarkDirty();
+            SetVisible(true);
         }
 
         void BasicRenderable::Hide()
         {
-            if(this->Visible == false)
-                return;
-            this->Visible = false;
-            Dirty = true;
-            Parent->_MarkDirty();
+            SetVisible(false);
         }
 
         ConstString& BasicRenderable::GetName() const

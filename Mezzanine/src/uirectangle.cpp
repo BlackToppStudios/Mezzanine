@@ -230,8 +230,11 @@ namespace Mezzanine
 
         bool Rectangle::CheckMouseHover()
         {
-            if(!Visible)
-                return false;
+            if(!IsVisible())
+            {
+                SetHovered(false);
+                return MouseHover;
+            }
             Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
             SetHovered((MouseLoc.X >= ActPosition.X && MouseLoc.X <= ActPosition.X + ActSize.X) && (MouseLoc.Y >= ActPosition.Y && MouseLoc.Y <= ActPosition.Y + ActSize.Y));
             return MouseHover;

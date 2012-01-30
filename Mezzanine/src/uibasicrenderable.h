@@ -92,9 +92,12 @@ namespace Mezzanine
                 /// @brief Sets the visibility of this renderable.
                 /// @param Visible Bool determining whether or not this renderable should be visible.
                 virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this renderable.
-                /// @return Returns a bool representing the visibility of this renderable.
+                /// @brief Gets whether or not this renderable is getting rendered.
+                /// @return Returns a bool representing whether this renderable is being rendered.
                 virtual bool IsVisible() const;
+                /// @brief Gets the visible setting for this renderable.
+                /// @return Returns a bool representing the visibility of this renderable.
+                virtual bool GetVisible() const;
                 /// @brief Forces this renderable to be shown.
                 virtual void Show();
                 /// @brief Forces this renderable to hide.
