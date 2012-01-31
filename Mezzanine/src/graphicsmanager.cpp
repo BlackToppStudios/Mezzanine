@@ -91,6 +91,7 @@ namespace Mezzanine
         DefaultSettings.RenderHeight = Height;
         DefaultSettings.RenderWidth = Width;
 
+        InitSDL();
         SDL_DisplayMode DeskMode;
         SDL_GetDesktopDisplayMode(0,&DeskMode);
         DesktopSettings.RenderWidth = DeskMode.w;
@@ -188,7 +189,6 @@ namespace Mezzanine
 
     GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
-        InitSDL();
         if(!OgreBeenInitialized) InitOgre();
 
         GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);

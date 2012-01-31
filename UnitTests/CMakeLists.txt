@@ -105,7 +105,7 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
 	)
 endfunction(CopyFilesDuringBuild)
 
-#Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
+#Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory for Unittests during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromMezzanineDuringBuild FileName)
 	add_custom_command(
@@ -116,6 +116,19 @@ function(CopyFilesFromMezzanineDuringBuild FileName)
 		VERBATIM
 	)
 endfunction(CopyFilesFromMezzanineDuringBuild)
+
+#Description: This function copies items from the Data/lib directory in Mezzanine into it's renamed location in the output directory for Unittests during build time. It does not need leading slashes
+#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
+function(CopyFilesFromMezzanineDuringBuildAndRename FileName NewFileName)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
+		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${NewFileName}"
+		VERBATIM
+	)
+endfunction(CopyFilesFromMezzanineDuringBuildAndRename)
+
 
 #Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
@@ -143,20 +156,13 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 
 if(${WIN32})
 	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
-	set(BuildPlatform windows)
-
 	include_directories(
-
 	)
-
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
-	set(BuildPlatform linux)
-
-	#message( STATUS "${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
 	include_directories(
 		${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
 		${Mezzanine_OgreBuildDir}/ogre/include/
@@ -194,24 +200,24 @@ target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
 # File copies during all builds
 message ( STATUS "${PROJECT_NAME} - Begin File Copy Process")
 
-CopyFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
-CopyFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
-CopyFilesDuringBuild( common/robot.skeleton data/common/robot.skeleton )
-CopyFilesDuringBuild( common/dejavu.png data/common/dejavu.png )
-CopyFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
+CopyFilesDuringBuild( common/r2skin.jpg data/r2skin.jpg )
+CopyFilesDuringBuild( common/robot.mesh data/robot.mesh )
+CopyFilesDuringBuild( common/robot.skeleton data/robot.skeleton )
+CopyFilesDuringBuild( common/dejavu.png data/dejavu.png )
+CopyFilesDuringBuild( common/dejavu.gorilla data/dejavu.gorilla )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
 
 CopyFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
-CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/common/ubuntu-font-family/Ubuntu-B.ttf )
-CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/common/ubuntu-font-family/Ubuntu-BI.ttf )
-CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf data/common/ubuntu-font-family/Ubuntu-I.ttf )
-CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf data/common/ubuntu-font-family/Ubuntu-R.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/ubuntu-font-family/Ubuntu-B.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/ubuntu-font-family/Ubuntu-BI.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf data/ubuntu-font-family/Ubuntu-I.ttf )
+CopyFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf data/ubuntu-font-family/Ubuntu-R.ttf )
 
-CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
-CopyFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
-CopyFilesDuringBuild( common/flare.png data/common/flare.png )
-CopyFilesDuringBuild( common/Examples.material data/common/Examples.material )
-CopyFilesDuringBuild( common/clouds.jpg data/common/clouds.jpg )
+CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/music/cAudioTheme1.ogg )
+CopyFilesDuringBuild( common/Examples.particle data/Examples.particle )
+CopyFilesDuringBuild( common/flare.png data/flare.png )
+CopyFilesDuringBuild( common/Examples.material data/Examples.material )
+CopyFilesDuringBuild( common/clouds.jpg data/clouds.jpg )
 
 CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt )
@@ -223,12 +229,11 @@ CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt )
 
-
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/plugins.cfg )
-CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName} )
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginParticle} )
+CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/plugins.cfg )
+CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName})
+CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginCGPM} data/ogre/${OgrePluginCGPM} )
+CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} data/ogre/${OgrePluginRenderGL} )
+CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginParticle} data/ogre/${OgrePluginParticle} )
 
 #The Engine itself
 CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
