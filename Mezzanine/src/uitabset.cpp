@@ -53,6 +53,7 @@ namespace Mezzanine
     {
         TabSet::TabSet(const String& name, const RenderableRect& SetRect, Layer* parent)
             : Widget(name,parent),
+              SetsAdded(0),
               VisibleSet(NULL)
         {
             Type = Widget::W_TabSet;
@@ -195,6 +196,9 @@ namespace Mezzanine
             if(0 == Sets.size()) VisibleSet = NewSetData;
             else NewSetData->Collection->Hide();
             Sets.push_back(NewSetData);
+            SubRenderables[SetsAdded] = RenderablePair(NULL,NewSetData->Collection);
+            SubRenderables[SetsAdded+1] = RenderablePair(NewSetData->Accessor,NULL);
+            SetsAdded+=2;
             return NewSetData;
         }
 
@@ -270,11 +274,19 @@ namespace Mezzanine
                 {
                     if(ToBeDestroyed == VisibleSet)
                         VisibleSet = NULL;
-                    delete ToBeDestroyed;
                     Sets.erase(it);
-                    return;
+                    break;
                 }
             }
+            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if(ToBeDestroyed->Collection == (*it).second.second)
+                {
+                    SubRenderables.erase(it);
+                    break;
+                }
+            }
+            delete ToBeDestroyed;
         }
 
         void TabSet::DestroyAllRenderableSets()
@@ -290,6 +302,7 @@ namespace Mezzanine
             HoveredButton = NULL;
             HoveredSubWidget = NULL;
             VisibleSet = NULL;
+            SubRenderables.clear();
         }
     }//ui
 }//Mezzanine

@@ -48,329 +48,189 @@
 #include "uiviewportupdatetool.h"
 #include "eventmanager.h"
 #include "world.h"
-
-#include "internalGorilla.h.cpp"
+#include "mathtool.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
         Caption::Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
-            : BasicRenderable(name,PLayer),
-              MouseHover(false)
+            : Rectangle(name,Rect,PLayer),
+              HoriAlign(UI::Txt_Middle),
+              VertAlign(UI::Txt_Center),
+              CharScaling(0.0),
+              ClippedLeftIndex(0.0),
+              ClippedRightIndex(0.0)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            ConstructCaption(Rect,Glyph,Text);
+            GlyphSet = Parent->GetGlyphData(Glyph,PriAtlas);
+            this->Text = Text;
+            TextColour = ColourValue::White();
+            GlyphAtlas = PriAtlas;
         }
 
         Caption::Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
-            : BasicRenderable(name,PLayer),
-              MouseHover(false)
+            : Rectangle(name,Rect,PLayer),
+              HoriAlign(UI::Txt_Middle),
+              VertAlign(UI::Txt_Center),
+              CharScaling(0.0),
+              ClippedLeftIndex(0.0),
+              ClippedRightIndex(0.0)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
-            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * Parent->GetParent()->GetViewportDimensions().Y),Parent->GetParent()->GetPrimaryAtlas());
-            ConstructCaption(Rect,Result.first,Text);
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * Parent->GetParent()->GetViewportDimensions().Y),PriAtlas);
+            GlyphSet = Parent->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
+            this->Text = Text;
+            TextColour = ColourValue::White();
+            GlyphAtlas = PriAtlas;
         }
 
         Caption::~Caption()
         {
-            Parent->GetGorillaLayer()->destroyCaption(GorillaCaption);
-            //Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
         }
 
-        void Caption::ConstructCaption(const RenderableRect& Rect, const Whole& Glyph, const String& Text)
+        void Caption::CalculateDrawSize(Vector2& Size)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            if(Rect.Relative)
+            Real Cursor = 0;
+            Real Kerning = 0;
+
+            unsigned char CurrChar = 0, LastChar = 0;
+            Glyph* CurrGlyph = 0;
+            Size.X = 0;
+            Size.Y = GlyphSet->LineHeight;
+
+            for( Whole Index = 0 ; Index < Text.length() ; Index++ )
             {
-                RelPosition = Rect.Position;
-                RelSize = Rect.Size;
+                CurrChar = Text[Index];
 
-                GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, (Rect.Position * WinDim).GetOgreVector2(), (Rect.Size * WinDim).GetOgreVector2(), Text, Parent->GetParent()->GetPrimaryAtlas());
-                //GorillaCaption->size(Rect.Size.X * WinDim.X, Rect.Size.Y * WinDim.Y);
-                //GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
-            }else{
-                RelPosition = Rect.Position / WinDim;
-                RelSize = Rect.Size / WinDim;
+                if(CurrChar == ' ')
+                {
+                    LastChar = CurrChar;
+                    Cursor += GlyphSet->SpaceLength;
+                    continue;
+                }
 
-                GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Rect.Position.GetOgreVector2(), Rect.Size.GetOgreVector2(), Text, Parent->GetParent()->GetPrimaryAtlas());
-                //GorillaCaption->size(Rect.Size.X, Rect.Size.Y);
-                //GorillaRectangle = Parent->GetGorillaLayer()->createRectangle(Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2());
+                if( CurrChar < GlyphSet->RangeBegin || CurrChar > GlyphSet->RangeEnd )
+                {
+                    LastChar = 0;
+                    continue;
+                }
+
+                CurrGlyph = GlyphSet->GetGlyph(CurrChar);
+                if(CurrGlyph == 0)
+                    continue;
+                Kerning = CurrGlyph->GetKerning(LastChar);
+                if(Kerning == 0)
+                    Kerning = GlyphSet->LetterSpacing;
+
+                if(CharScaling == 1.0f)
+                    Cursor += CurrGlyph->GlyphAdvance + Kerning;
+                else
+                    Cursor += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                LastChar = CurrChar;
             }
-            //GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
-            GorillaCaption->align(Gorilla::TextAlign_Centre);
-            GorillaCaption->vertical_align(Gorilla::VerticalAlign_Middle);
-        }
-
-        void Caption::SetVisible(bool Visible)
-        {
-            //GorillaRectangle->SetVisible(Visible);
-            GorillaCaption->SetVisible(Visible);
-        }
-
-        bool Caption::IsVisible() const
-        {
-            return GorillaCaption->IsVisible();
-        }
-
-        void Caption::Show()
-        {
-            //GorillaRectangle->Show();
-            GorillaCaption->Show();
-        }
-
-        void Caption::Hide()
-        {
-            //GorillaRectangle->Hide();
-            GorillaCaption->Hide();
-        }
-
-        bool Caption::CheckMouseHover()
-        {
-            if(!GorillaCaption->IsVisible())
-                return false;
-            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
-            if(GorillaCaption->intersects(MouseLoc.GetOgreVector2()))
-            {
-                MouseHover = true;
-            }else{
-                MouseHover = false;
-            }
-            return MouseHover;
-        }
-
-        bool Caption::GetMouseHover()
-        {
-            return MouseHover;
+            Size.X = Cursor - Kerning;
         }
 
         void Caption::SetText(ConstString& Text)
         {
-            GorillaCaption->text(Text);
+            this->Text = Text;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         String Caption::GetText()
         {
-            return GorillaCaption->text();
+            return Text;
         }
 
         void Caption::SetTextScale(const Real& Scale)
         {
-            GorillaCaption->SetCharScaling(Scale);
+            CharScaling = Scale;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Real Caption::GetTextScale()
         {
-            return GorillaCaption->GetCharScaling();
+            return CharScaling;
         }
 
-        void Caption::SetTextColour(const ColourValue& TextColour)
+        void Caption::SetTextColour(const ColourValue& Colour)
         {
-            GorillaCaption->colour(TextColour.GetOgreColourValue());
+            this->TextColour = Colour;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         ColourValue Caption::GetTextColour()
         {
-            ColourValue Col(GorillaCaption->colour());
-            return Col;
+            return TextColour;
         }
 
         void Caption::SetGlyphIndex(const Whole& GlyphIndex)
         {
-            Glyphs = GlyphIndex;
-            GorillaCaption->font(GlyphIndex,*GorillaCaption->GetNameFile());
+            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,PriAtlas);
+            if(NewData)
+            {
+                GlyphSet = NewData;
+                Dirty = true;
+                Parent->_MarkDirty();
+            }else{
+                /// @todo Throw an error?
+            }
         }
 
         void Caption::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
         {
-            Glyphs = GlyphIndex;
-            GorillaCaption->font(GlyphIndex,Atlas);
+            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,PriAtlas);
+            if(NewData)
+            {
+                GlyphSet = NewData;
+                GlyphAtlas = Atlas;
+                Dirty = true;
+                Parent->_MarkDirty();
+            }else{
+                /// @todo Throw an error?
+            }
         }
 
-        Whole Caption::GetGlyphIndex()
+        GlyphData* Caption::GetGlyphData()
         {
-            return Glyphs;
+            return GlyphSet;
         }
 
         void Caption::SetCursorOffset(const Whole& Offset)
         {
-            GorillaCaption->SetCursorOffset((Real)Offset);
+            CursorOffset = (Real)Offset;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Whole Caption::GetCursorOffset()
         {
-            return (Whole)GorillaCaption->GetCursorOffset();
-        }
-
-        void Caption::SetBackgroundColour(const ColourValue& Colour)
-        {
-            GorillaCaption->background_colour(Colour.GetOgreColourValue());
-        }
-
-        void Caption::SetBackgroundSprite(const String& Name)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaCaption->GetNameFile());
-            GorillaCaption->background_image(GSprite);
-        }
-
-        void Caption::SetBackgroundSprite(const String& Name, const String& Atlas)
-        {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
-            GorillaCaption->background_image(GSprite);
+            return (Whole)CursorOffset;
         }
 
         void Caption::HorizontallyAlign(const UI::TextHorizontalAlign& Align)
         {
-            Gorilla::TextAlignment HA;
-            switch (Align)
-            {
-                case UI::Txt_Left:
-                    HA = Gorilla::TextAlign_Left;
-                    break;
-                case UI::Txt_Right:
-                    HA = Gorilla::TextAlign_Right;
-                    break;
-                case UI::Txt_Middle:
-                    HA = Gorilla::TextAlign_Centre;
-                    break;
-                default:
-                    return;
-            }
-            GorillaCaption->align(HA);
+            if(HoriAlign == Align)
+                return;
+            HoriAlign = Align;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         void Caption::VerticallyAlign(const UI::TextVerticalAlign& Align)
         {
-            Gorilla::VerticalAlignment VA;
-            switch (Align)
-            {
-                case UI::Txt_Top:
-                    VA = Gorilla::VerticalAlign_Top;
-                    break;
-                case UI::Txt_Bottom:
-                    VA = Gorilla::VerticalAlign_Bottom;
-                    break;
-                case UI::Txt_Center:
-                    VA = Gorilla::VerticalAlign_Middle;
-                    break;
-                default:
-                    return;
-            }
-            GorillaCaption->vertical_align(VA);
-        }
-
-        void Caption::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption->left(WinDim.X * RelPosition.X);
-            GorillaCaption->top(WinDim.Y * RelPosition.Y);
-            //GorillaRectangle->left(WinDim.X * RelPosition.X);
-            //GorillaRectangle->top(WinDim.Y * RelPosition.Y);
-        }
-
-        Vector2 Caption::GetPosition() const
-        {
-            return RelPosition;
-        }
-
-        void Caption::SetActualPosition(const Vector2& Position)
-        {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption->left(Position.X);
-            GorillaCaption->top(Position.Y);
-            //GorillaRectangle->left(Position.X);
-            //GorillaRectangle->top(Position.Y);
-        }
-
-        Vector2 Caption::GetActualPosition() const
-        {
-            Vector2 Pos(GorillaCaption->left(), GorillaCaption->top());
-            return Pos;
-        }
-
-        void Caption::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption->width(WinDim.X * RelSize.X);
-            GorillaCaption->height(WinDim.Y * RelSize.Y);
-            //GorillaRectangle->width(WinDim.X * RelSize.X);
-            //GorillaRectangle->height(WinDim.Y * RelSize.Y);
-        }
-
-        Vector2 Caption::GetSize() const
-        {
-            return RelSize;
-        }
-
-        void Caption::SetActualSize(const Vector2& Size)
-        {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption->width(Size.X);
-            GorillaCaption->height(Size.Y);
-            //GorillaRectangle->width(Size.X);
-            //GorillaRectangle->height(Size.Y);
-        }
-
-        Vector2 Caption::GetActualSize() const
-        {
-            Vector2 Size(GorillaCaption->width(), GorillaCaption->height());
-            return Size;
-        }
-
-        void Caption::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            Gorilla::RenderPriority RP;
-            switch(Priority)
-            {
-                case UI::RP_Low:
-                    RP = Gorilla::RP_Low;
-                    break;
-                case UI::RP_Medium:
-                    RP = Gorilla::RP_Medium;
-                    break;
-                case UI::RP_High:
-                    RP = Gorilla::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            GorillaCaption->RenderPriority(RP);
-            //GorillaRectangle->RenderPriority(RP);
-        }
-
-        UI::RenderPriority Caption::GetRenderPriority() const
-        {
-            Gorilla::RenderPriority RP = this->GorillaCaption->RenderPriority();
-            switch(RP)
-            {
-                case Gorilla::RP_Low:
-                    return UI::RP_Low;
-                    break;
-                case Gorilla::RP_Medium:
-                    return UI::RP_Medium;
-                    break;
-                case Gorilla::RP_High:
-                    return UI::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            return UI::RP_Medium;
-        }
-
-        void Caption::SetPrimaryAtlas(const String& Atlas)
-        {
-            GorillaCaption->SetNameFile(Atlas);
-        }
-
-        String Caption::GetPrimaryAtlas() const
-        {
-            return *GorillaCaption->GetNameFile();
+            if(VertAlign == Align)
+                return;
+            VertAlign = Align;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         void Caption::SetAutoScaleText(bool Enable)
@@ -385,7 +245,7 @@ namespace Mezzanine
 
         void Caption::UpdateDimensions()
         {
-            ViewportUpdateTool::UpdateRenderable(this);
+            ViewportUpdateTool::UpdateRectangleRenderable(this);
             //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
             //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
             if(AutoScaleText)
@@ -394,6 +254,137 @@ namespace Mezzanine
                 SetGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
+        }
+
+        void Caption::_Redraw()
+        {
+            if(Dirty == false)
+                return;
+            Rectangle::_Redraw();
+            if(!Visible)
+            {
+                Dirty = false;
+                return;
+            }
+
+            Real Left = 0, Top = 0, Right = 0, Bottom = 0, CursorX = 0, CursorY = 0, Kerning = 0;
+            Real TexelOffsetX = Parent->GetTexelX();
+            Real TexelOffsetY = Parent->GetTexelY();
+            Vector2 KnownSize;
+            Glyph* CurrGlyph = 0;
+
+            bool ClipLeft = false, ClipRight = false;
+            Real ClipLeftPos = 0, ClipRightPos = 0;
+
+            if(HoriAlign == UI::Txt_Left)
+            {
+                CursorX = ActPosition.X + CursorOffset;
+
+                ClipRight = true;
+                ClipRightPos = ActPosition.X + ActSize.X;
+            }
+            else if(HoriAlign == UI::Txt_Middle)
+            {
+                CalculateDrawSize(KnownSize);
+                CursorX = ActPosition.X + (ActSize.X * 0.5f) - (KnownSize.X * 0.5f);
+
+                ClipLeft = true;
+                ClipLeftPos = ActPosition.X;
+                ClipRight = true;
+                ClipRightPos = ActPosition.X + ActSize.X;
+            }
+            else if(HoriAlign == UI::Txt_Right)
+            {
+                CalculateDrawSize(KnownSize);
+                CursorX = (ActPosition.X + ActSize.X) - (KnownSize.X + CursorOffset);
+
+                ClipLeft = true;
+                ClipLeftPos = ActPosition.X;
+            }
+
+            if(VertAlign == UI::Txt_Top)
+                CursorY = ActPosition.Y;
+            else if(VertAlign == UI::Txt_Center)
+                CursorY = ActPosition.Y + (ActSize.Y * 0.5) - ((GlyphSet->LineHeight * CharScaling) * 0.5);
+            else if(VertAlign == UI::Txt_Bottom)
+                CursorY = ActPosition.Y + ActSize.Y - (GlyphSet->LineHeight * CharScaling);
+
+            unsigned char ThisChar = 0, LastChar = 0;
+            ClippedLeftIndex = String::npos;
+            ClippedRightIndex = String::npos;
+
+            CursorX = MathTool::Floor( CursorX );
+            CursorY = MathTool::Floor( CursorY );
+
+            for( Whole Index = 0 ; Index < Text.size() ; Index++ )
+            {
+                ThisChar = Text[Index];
+
+                if( ThisChar == ' ' )
+                {
+                    LastChar = ThisChar;
+                    CursorX += GlyphSet->SpaceLength * CharScaling;
+                    continue;
+                }
+
+                if( ThisChar < GlyphSet->RangeBegin || ThisChar > GlyphSet->RangeEnd )
+                {
+                    LastChar = 0;
+                    continue;
+                }
+
+                CurrGlyph = GlyphSet->GetGlyph(ThisChar);
+                if(CurrGlyph == 0)
+                    continue;
+                Kerning = CurrGlyph->GetKerning(LastChar);
+                if(Kerning == 0)
+                    Kerning = GlyphSet->LetterSpacing;
+
+                Left = CursorX - TexelOffsetX;
+                Top = CursorY - TexelOffsetY + CurrGlyph->VerticalOffset;
+                Right = Left + (CurrGlyph->UVWidth * CharScaling) + TexelOffsetX;
+                Bottom = Top + (CurrGlyph->UVHeight * CharScaling) + TexelOffsetY;
+
+                if(ClipLeft)
+                {
+                    if (Left < ClipLeftPos)
+                    {
+                        if(ClippedLeftIndex == String::npos)
+                            ClippedLeftIndex = Index;
+                        CursorX += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                        LastChar = ThisChar;
+                        continue;
+                    }
+                }
+
+                if(ClipRight)
+                {
+                    if(Right > ClipRightPos)
+                    {
+                        if(ClippedRightIndex == String::npos)
+                            ClippedRightIndex = Index;
+                        CursorX += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                        LastChar = ThisChar;
+                        continue;
+                    }
+                }
+
+                VertexData Temp;
+
+                // Triangle A
+                PushVertex(RenderVertices, Temp, Left, Bottom, CurrGlyph->AtlasCoords[UI::QC_BottomLeft], TextColour,GlyphAtlas);  // Left/Bottom  3
+                PushVertex(RenderVertices, Temp, Right, Top, CurrGlyph->AtlasCoords[UI::QC_TopRight], TextColour,GlyphAtlas);    // Right/Top    1
+                PushVertex(RenderVertices, Temp, Left, Top, CurrGlyph->AtlasCoords[UI::QC_TopLeft], TextColour,GlyphAtlas);     // Left/Top     0
+
+                // Triangle B
+                PushVertex(RenderVertices, Temp, Left, Bottom, CurrGlyph->AtlasCoords[UI::QC_BottomLeft], TextColour,GlyphAtlas);  // Left/Bottom  3
+                PushVertex(RenderVertices, Temp, Right, Bottom, CurrGlyph->AtlasCoords[UI::QC_BottomRight], TextColour,GlyphAtlas); // Right/Bottom 2
+                PushVertex(RenderVertices, Temp, Right, Top, CurrGlyph->AtlasCoords[UI::QC_TopRight], TextColour,GlyphAtlas);    // Right/Top    1
+
+                CursorX += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                LastChar = ThisChar;
+            }
+            Dirty = false;
         }
     }//UI
 }//Mezzanine

@@ -43,12 +43,8 @@
 #include "uienumerations.h"
 #include "colourvalue.h"
 #include "uirenderablerect.h"
-#include "uibasicrenderable.h"
-
-namespace Gorilla
-{
-    class MarkupText;
-}
+#include "uirectangle.h"
+#include "uiglyph.h"
 
 namespace Mezzanine
 {
@@ -56,6 +52,54 @@ namespace Mezzanine
     namespace UI
     {
         class Layer;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Character
+        /// @headerfile uimarkuptext.h
+        /// @brief This class creates and encapsultes a character that can be used in a Word.
+        /// @details
+        ///////////////////////////////////////
+        struct Character
+        {
+            Character() : Kerning(0), CharGlyph(NULL), CharSprite(NULL) {};
+
+            Vector2        Positions[4];
+            Vector2        UVs[4];
+            ColourValue    Colour;
+            Whole          Index;
+            Real           Kerning;
+            String         Atlas;
+            Glyph*         CharGlyph;
+            Sprite*        CharSprite;
+        };//Character
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Word
+        /// @headerfile uimarkuptext.h
+        /// @brief This class creates and encapsultes the concept of a word in a MarkupText.
+        /// @details
+        ///////////////////////////////////////
+        class Word
+        {
+            public:
+            Word() : NewlineBefore(false), Pxlength(0), Pxheight(0), GlyphDataSpacing(0) {};
+            ~Word() { Characters.clear(); };
+
+            bool NewlineBefore;
+            Real Pxlength;
+            Real Pxheight;
+            Real GlyphDataSpacing;
+            std::vector<Character*> Characters;
+            void AddCharacter(Character* ToAdd, const Real& Scaling)
+            {
+                Real CharWidth = ToAdd->CharGlyph ? ToAdd->CharGlyph->GlyphAdvance + ToAdd->Kerning : ToAdd->CharSprite->SpriteSize.X;
+                CharWidth*=Scaling;
+                Pxlength += CharWidth;
+                Real CharHeight = ToAdd->CharGlyph ? ToAdd->CharGlyph->GlyphSize.Y : ToAdd->CharSprite->SpriteSize.Y;
+                CharHeight*=Scaling;
+                if(Pxheight < CharHeight)
+                    Pxheight = CharHeight;
+                Characters.push_back(ToAdd);
+            }
+        };//Word
         ///////////////////////////////////////////////////////////////////////////////
         /// @class MarkupText
         /// @headerfile uimarkuptext.h
@@ -66,20 +110,26 @@ namespace Mezzanine
         /// Texts have no background functionality, but they use a light markup language to accomplish
         /// special effects with the text.
         ///////////////////////////////////////
-        class MEZZ_LIB MarkupText : public BasicRenderable
+        class MEZZ_LIB MarkupText : public Rectangle
         {
             protected:
-                Gorilla::MarkupText* GMarkup;
-                Whole Glyphs;
+                friend class Layer;
+                GlyphData* DefaultGlyphSet;
                 bool AutoScaleText;
+                bool TextDirty;
                 Real RelLineHeight;
-                void ConstructMarkupText(const RenderableRect& Rect, const Whole& Glyph, const String& Text);
+                Real CharScaling;
+                Whole ClippedIndex;
+                String Text;
+                String GlyphAtlas;
+                std::vector<Character*> Characters;
+                std::vector<Word*> Words;
             public:
                 /// @brief Internal constructor.
                 /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
                 /// @param name The name of this markup text.
                 /// @param Rect The Rect representing the position and size of the markup text.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
                 MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
@@ -93,16 +143,7 @@ namespace Mezzanine
                 MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
-                /// @brief Sets the visibility of this markup text.
-                /// @param Visible Bool determining whether or not this markup text should be visible.
-                virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this markup text.
-                /// @return Returns a bool representing the visibility of this markup text.
-                virtual bool IsVisible() const;
-                /// @brief Forces this markup text to be shown.
-                virtual void Show();
-                /// @brief Forces this markup text to hide.
-                virtual void Hide();
+
                 /// @brief Sets the text displayed within the markup text.
                 /// @param Text The text to be displayed.
                 virtual void SetText(const String& Text);
@@ -115,69 +156,25 @@ namespace Mezzanine
                 /// @brief Gets the scaling currently being applied to the rendered text.
                 /// @return Returns a Real value representing the scale applied to the text in this caption.  <1.0 means smaller, >1.0 means larger.
                 virtual Real GetTextScale();
+
                 /// @brief Sets the Default glyph index to be used with this markup text.
-                /// @details The glyph index is defined in your gorilla file.  This class can change which
+                /// @details The glyph index is defined in your mta file.  This class can change which
                 /// glyph is uses with it's markup language.  This simply defines which to use when one isn't
                 /// specified.
                 /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.
                 virtual void SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex);
-                /// @brief Gets the Default glyph index in use by this markup text.
-                /// @details The glyph index is defined in your gorilla file.
-                /// @return Returns a Whole representing the index of the glyph in use by this markup text.
-                virtual Whole GetDefaultGlyphIndex();
-                /*/// @brief Aligns the text of the markup text.
-                /// @param Align The enum value representing the horizontal alignment to be set.
-                void HorizontallyAlign(UI::TextHorizontalAlign Align);
-                /// @brief Aligns the text of the markup text.
-                /// @param Align The enum value representing the vertical alignment to be set.
-                void VerticallyAlign(UI::TextVerticalAlign Align);*/
-                /// @brief Sets the background colour of the caption.
-                /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(const ColourValue& Colour);
-                /// @brief Sets the background image(if provided in the atlas) of the caption.
-                /// @param Name The name of the sprite to set as the background.
-                virtual void SetBackgroundSprite(const String& Name);
-                /// @brief Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set.
-                /// @param Name The name of the sprite to set as the background.
-                /// @param Atlas The Atlas to load the sprite from.
-                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
-                /// @brief Sets the relative top left position of this markup text.
-                /// @param Position A Vector2 representing the location of this markup text.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative top left position of this markup text.
-                /// @return Returns a Vector2 representing the location of this markup text.
-                virtual Vector2 GetPosition() const;
-                /// @brief Sets the top left position of this markup text in pixels.
-                /// @param Position A Vector2 representing the location of this markup text.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Gets the top left position of this markup text in pixels.
-                /// @return Returns a Vector2 representing the location of this markup text.
-                virtual Vector2 GetActualPosition() const;
-                /// @brief Sets the relative size of this markup text.
-                /// @param Size A vector2 representing the size of this markup text.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this markup text.
-                /// @return Returns a vector2 representing the size of this markup text.
-                virtual Vector2 GetSize() const;
-                /// @brief Sets the size of this markup text in pixels.
-                /// @param Size A vector2 representing the size of this markup text.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Gets the size of this markup text in pixels.
-                /// @return Returns a vector2 representing the size of this markup text.
-                virtual Vector2 GetActualSize() const;
-                /// @brief Sets the priority this markup text should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this markup text.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this markup text should be rendered with.
-                /// @return Returns an enum value representing this markup text's priority level.
-                virtual UI::RenderPriority GetRenderPriority() const;
-                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
-                /// @param Atlas The name of the atlas to be used.
-                virtual void SetPrimaryAtlas(const String& Atlas);
-                /// @brief Gets the currently set primary atlas.
-                /// @return Returns a string containing the name of the primary atlas that is set.
-                virtual String GetPrimaryAtlas() const;
+                /// @brief Sets the Default glyph index to be used with this markup text.
+                /// @details The glyph index is defined in your mta file.  This class can change which
+                /// glyph is uses with it's markup language.  This simply defines which to use when one isn't
+                /// specified.
+                /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.
+                /// @param Atlas The different atlas to get the glyphdata from.
+                virtual void SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex, const String& Atlas);
+                /// @brief Gets the Default glyphdata in use by this markup text.
+                /// @details The glyphdata is defined in your mta file.
+                /// @return Returns a pointer to the glyphdata in use by this markup text.
+                virtual GlyphData* GetDefaultGlyphData();
+
                 /// @brief Enables or disables scaling the text automatically on a screen size change.
                 /// @param Enable Enables or disables automatic text scaling.
                 virtual void SetAutoScaleText(bool Enable);
@@ -187,6 +184,19 @@ namespace Mezzanine
                 /// @brief Updates the dimensions of this markup text to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions();
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @copydoc UI::BasicRenderable::_Redraw()
+                virtual void _Redraw();
+                /// @brief Calculates the placement of glyphs for this renderable.
+                virtual void _CalculateCharacters();
+                /// @brief Generates the words for placement in this renderable.
+                virtual void _GenerateWords();
+                /// @brief Places the generated words in this renderable.
+                virtual void _PlaceWords();
+                /// @brief Removes all generated words to be regenerated.
+                virtual void _ClearWords();
         };
     }//UI
 }//Mezzanine

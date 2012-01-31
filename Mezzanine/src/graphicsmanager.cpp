@@ -298,6 +298,26 @@ namespace Mezzanine
         this->RenderTimer->reset();
     }
 
+    void GraphicsManager::RenderOneFrame()
+    {
+        World* TheWorld = World::GetWorldPointer();
+        #ifdef MEZZDEBUG
+        TheWorld->Log("Rendering the World.");
+        #endif
+        Ogre::Root::getSingleton().renderOneFrame();
+        if( !GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
+            Ogre::Root::getSingleton().clearEventTimes();
+        #ifdef MEZZDEBUG
+        TheWorld->Log("Finished Rendering");
+        #endif
+    }
+
+    void GraphicsManager::SwapAllBuffers(bool WaitForVsync)
+    {
+        for( Whole X = 0 ; X < GetNumGameWindows() ; X++ )
+            GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
+    }
+
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
     {
@@ -329,7 +349,8 @@ namespace Mezzanine
     void GraphicsManager::DoMainLoopItems()
     {
         Ogre::WindowEventUtilities::messagePump();
-        crossplatform::RenderMezzWorld();
+        //crossplatform::RenderMezzWorld();
+        RenderOneFrame();
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );

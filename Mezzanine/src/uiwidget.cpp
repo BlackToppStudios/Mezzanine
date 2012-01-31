@@ -104,6 +104,8 @@ namespace Mezzanine
               Callback(NULL),
               Visible(true),
               Hovered(false),
+              Dirty(true),
+              Priority(UI::RP_Medium),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
               Name(name)
@@ -113,6 +115,7 @@ namespace Mezzanine
 
         Widget::~Widget()
         {
+            SubRenderables.clear();
         }
 
         void Widget::Update(bool Force)
@@ -279,6 +282,21 @@ namespace Mezzanine
             return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
+        void Widget::SetRenderPriority(const UI::RenderPriority& Priority)
+        {
+            this->Priority = Priority;
+            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if( (*it).second.first ) (*it).second.first->SetRenderPriority(this->Priority);
+                else (*it).second.second->SetRenderPriority(this->Priority);
+            }
+        }
+
+        UI::RenderPriority Widget::GetRenderPriority() const
+        {
+            return Priority;
+        }
+
         Button* Widget::GetHoveredButton() const
         {
             return HoveredButton;
@@ -297,6 +315,34 @@ namespace Mezzanine
         InputCaptureData* Widget::GetInputCaptureData() const
         {
             return CaptureData;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Functions
+        ///////////////////////////////////////
+
+        void Widget::_Redraw()
+        {
+            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if( (*it).second.first ) (*it).second.first->_Redraw();
+                else (*it).second.second->_Redraw();
+            }
+        }
+
+        void Widget::_AppendVertices(ScreenVertexData& Vertices)
+        {
+            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if( (*it).second.first )
+                {
+                    if( (*it).second.first->IsVisible() )
+                        (*it).second.first->_AppendVertices(Vertices);
+                }else{
+                    if( (*it).second.second->IsVisible() )
+                        (*it).second.second->_AppendVertices(Vertices);
+                }
+            }
         }
 
         //-----------------------------------------------------

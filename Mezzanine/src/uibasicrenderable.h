@@ -41,7 +41,8 @@
 #define _uibasicrenderable_h
 
 #include "uienumerations.h"
-#include "vector2.h"
+#include "uivertex.h"
+#include "uisprite.h"
 
 namespace Mezzanine
 {
@@ -49,6 +50,7 @@ namespace Mezzanine
     namespace UI
     {
         class Layer;
+        struct ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class BasicRenderable
         /// @headerfile uibasicrenderable.h
@@ -58,11 +60,27 @@ namespace Mezzanine
         class MEZZ_LIB BasicRenderable
         {
             protected:
+                friend class Layer;
                 Layer* Parent;
                 UIManager* Manager;
+                bool Dirty;
+                bool Visible;
+                UI::RenderPriority Priority;
+                Vector2 ActPosition;
+                Vector2 ActSize;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
+                String PriAtlas;
+                std::vector<VertexData> RenderVertices;
+                /// @brief Collects all the relevant information for a single vertex and pushes it to a vector.
+                void PushVertex(std::vector<VertexData>& VertVec, VertexData& Vert, const Real& X, const Real& Y, const Vector2& UV, const ColourValue& Colour, const String& Atlas);
+                /// @brief Pushes vertex information for a triangle to a vector.  Equivalent to calling "PushVertex" three times.
+                void PushTriangle(std::vector<VertexData>& VertVec, VertexData& Vert, const Vector2& A, const Vector2& B, const Vector2& C, const Vector2& UV, const ColourValue& Colour, const String& Atlas);
+                /// @brief Pushes vertex information for a quad to a vector.  Equivalent to calling "PushTriangle" twice.
+                void PushQuad(std::vector<VertexData>& VertVec, VertexData& Vert, Vector2* Positions, Vector2* UVs, ColourValue* Colours, const String& Atlas);
+                /// @brief Pushes vertex information for a quad to a vector.  Equivalent to calling "PushTriangle" twice.
+                void PushQuad2(std::vector<VertexData>& VertVec, VertexData& Vert, Vector2* Positions, Vector2* UVs, const ColourValue& Colour, const String& Atlas);
             public:
                 /// @brief Class constructor.
                 /// @param name The name to be given to this widget.
@@ -70,59 +88,47 @@ namespace Mezzanine
                 BasicRenderable(const String& name, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~BasicRenderable();
+
                 /// @brief Sets the visibility of this renderable.
                 /// @param Visible Bool determining whether or not this renderable should be visible.
-                virtual void SetVisible(bool Visible) = 0;
+                virtual void SetVisible(bool Visible);
                 /// @brief Gets the visibility of this renderable.
                 /// @return Returns a bool representing the visibility of this renderable.
-                virtual bool IsVisible() const = 0;
+                virtual bool IsVisible() const;
                 /// @brief Forces this renderable to be shown.
-                virtual void Show() = 0;
+                virtual void Show();
                 /// @brief Forces this renderable to hide.
-                virtual void Hide() = 0;
+                virtual void Hide();
                 /// @brief Gets the name of this renderable.
                 /// @return Returns a string containing the name of this renderable.
                 virtual ConstString& GetName() const;
-                /// @brief Sets the relative top left position of this renderable.
-                /// @param Position A Vector2 representing the location of this renderable.
-                virtual void SetPosition(const Vector2& Position) = 0;
-                /// @brief Gets the relative top left position of this renderable.
-                /// @return Returns a Vector2 representing the location of this renderable.
-                virtual Vector2 GetPosition() const = 0;
-                /// @brief Sets the top left position of this renderable in pixels.
-                /// @param Position A Vector2 representing the location of this renderable.
-                virtual void SetActualPosition(const Vector2& Position) = 0;
-                /// @brief Gets the top left position of this renderable in pixels.
-                /// @return Returns a Vector2 representing the location of this renderable.
-                virtual Vector2 GetActualPosition() const = 0;
-                /// @brief Sets the relative size of this renderable.
-                /// @param Size A vector2 representing the size of this renderable.
-                virtual void SetSize(const Vector2& Size) = 0;
-                /// @brief Gets the relative size of this renderable.
-                /// @return Returns a vector2 representing the size of this renderable.
-                virtual Vector2 GetSize() const = 0;
-                /// @brief Sets the size of this renderable in pixels.
-                /// @param Size A vector2 representing the size of this renderable.
-                virtual void SetActualSize(const Vector2& Size) = 0;
-                /// @brief Gets the size of this renderable in pixels.
-                /// @return Returns a vector2 representing the size of this renderable.
-                virtual Vector2 GetActualSize() const = 0;
+
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority) = 0;
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority() const = 0;
+                virtual UI::RenderPriority GetRenderPriority() const;
                 /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
                 /// @param Atlas The name of the atlas to be used.
-                virtual void SetPrimaryAtlas(const String& Atlas) = 0;
+                virtual void SetPrimaryAtlas(const String& Atlas);
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
-                virtual String GetPrimaryAtlas() const = 0;
+                virtual String GetPrimaryAtlas() const;
                 /// @brief Updates the dimensions of this renderable to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions() = 0;
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @internal
+                /// @brief Regenerates the verticies in this renderable.
+                virtual void _Redraw() = 0;
+                /// @internal
+                /// @brief Appends the vertices of this renderable to another vector.
+                /// @param Vertices The vector of vertex's to append to.
+                virtual void _AppendVertices(ScreenVertexData& Vertices) = 0;
         };//BasicRenderable
     }//UI
 }//Mezzanine

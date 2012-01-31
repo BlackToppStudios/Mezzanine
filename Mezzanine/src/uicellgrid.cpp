@@ -76,6 +76,7 @@ namespace Mezzanine
               CellSpacing(Vector2(10.0,10.0)),
               FixedCellSize(Vector2(100.0,100.0)),
               Ordering(CellGrid::CG_Horizontal_Vertical_Ascending),
+              CellsAdded(0),
               GridDirty(false),
               Selected(NULL)
         {
@@ -94,6 +95,7 @@ namespace Mezzanine
             }
 
             GridBack = new Rectangle(Rect,Parent);
+            SubRenderables[0] = RenderablePair(GridBack,NULL);
             CreateOrDestroyRow(0);
         }
 
@@ -350,9 +352,11 @@ namespace Mezzanine
 
         void CellGrid::AddCell(UI::Cell* ToBeAdded)
         {
+            CellsAdded++;
             ToBeAdded->SetActualSize(FixedCellSize);
             ToBeAdded->Hide();
             Cells.push_back(ToBeAdded);
+            SubRenderables[CellsAdded] = RenderablePair(NULL,ToBeAdded);
             GridDirty = true;
         }
 
@@ -385,6 +389,33 @@ namespace Mezzanine
 
         void CellGrid::RemoveCell(UI::Cell* ToBeRemoved)
         {
+            // Check Visible Cells
+            for( std::vector<UI::Cell*>::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; ++it )
+            {
+                if( (*it) == ToBeRemoved )
+                {
+                    VisibleCells.erase(it);
+                    break;
+                }
+            }
+            // Check All Cells
+            for( std::list<UI::Cell*>::iterator it = Cells.begin() ; it != Cells.end() ; ++it )
+            {
+                if( (*it) == ToBeRemoved )
+                {
+                    Cells.erase(it);
+                    break;
+                }
+            }
+            // Check Z-Order listing
+            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                if( (*it).second.second == ToBeRemoved )
+                {
+                    SubRenderables.erase(it);
+                    break;
+                }
+            }
             GridDirty = true;
         }
 
@@ -398,6 +429,8 @@ namespace Mezzanine
             }
             Cells.clear();
             VisibleCells.clear();
+            SubRenderables.clear();
+            SubRenderables[0] = RenderablePair(GridBack,NULL);
             GridDirty = true;
         }
 

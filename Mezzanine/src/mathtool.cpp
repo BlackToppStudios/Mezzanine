@@ -49,6 +49,8 @@ namespace Mezzanine
     const Real MathTool::Pi = Real(4.0 * atan(1.0));
     const Real MathTool::TwoPi = Real(2.0 * Pi);
     const Real MathTool::HalfPi = Real(0.5 * Pi);
+    const Real MathTool::RadToDegMult = Real(Real(180.0) / Pi);
+    const Real MathTool::DegToRadMult = Real(Pi / Real(180.0));
 
     MathTool::MathTool()
     {
@@ -103,6 +105,12 @@ namespace Mezzanine
         return fmod(Numerator,Denominator);
     }
 
+    bool MathTool::WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance)
+    {
+        if( Fabs(Second - First) <= Tolerance ) return true;
+        else return false;
+    }
+
     Real MathTool::Cos(const Real& Radians)
     {
         return cos(Radians);
@@ -131,6 +139,16 @@ namespace Mezzanine
     Real MathTool::ATan(const Real& Interval)
     {
         return atan(Interval);
+    }
+
+    Real MathTool::DegreesToRadians(const Real& Degrees)
+    {
+        return Degrees * DegToRadMult;
+    }
+
+    Real MathTool::RadiansToDegrees(const Real& Radians)
+    {
+        return Radians * RadToDegMult;
     }
 }//Mezzanine
 

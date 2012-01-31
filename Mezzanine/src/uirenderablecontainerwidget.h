@@ -78,6 +78,7 @@ namespace Mezzanine
         {
             protected:
                 Rectangle* WidgetBack;
+                Whole RenderablesAdded;
                 std::vector<OffsetButtonInfo> Buttons;
                 std::vector<OffsetRectangleInfo> Rectangles;
                 std::vector<OffsetCaptionInfo> Captions;
@@ -137,7 +138,7 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created button.
                 /// @param Name The name of the button.
                 /// @param Rect The Rect representing the position and size of the button.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 virtual TextButton* CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text);
                 /// @brief Creates a text button within this widget.
@@ -185,7 +186,7 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created caption.
                 /// @param Name The name of this caption.
                 /// @param Rect The Rect representing the position and size of the caption.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 virtual Caption* CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
                 /// @brief Creates a caption within this widget.
@@ -218,7 +219,7 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created markup text.
                 /// @param Name The name of this markup text.
                 /// @param Rect The Rect representing the position and size of the markup text.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 virtual MarkupText* CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
                 /// @brief Creates a markup text within this widget.

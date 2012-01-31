@@ -40,17 +40,10 @@
 #ifndef _uicaption_h
 #define _uicaption_h
 
-#include "crossplatformexport.h"
 #include "colourvalue.h"
 #include "uienumerations.h"
-#include "uirenderablerect.h"
-#include "uibasicrenderable.h"
-
-namespace Gorilla
-{
-    class Caption;
-    class Rectangle;
-}
+#include "uirectangle.h"
+#include "uiglyph.h"
 
 namespace Mezzanine
 {
@@ -70,21 +63,27 @@ namespace Mezzanine
         /// Texts have no background functionality, but they use a light markup language to accomplish
         /// special effects with the text.
         ///////////////////////////////////////
-        class MEZZ_LIB Caption : public BasicRenderable
+        class MEZZ_LIB Caption : public Rectangle
         {
             protected:
-                Gorilla::Caption* GorillaCaption;
-                Gorilla::Rectangle* GorillaRectangle;
-                Whole Glyphs;
-                bool MouseHover;
+                GlyphData* GlyphSet;
                 bool AutoScaleText;
+                UI::TextHorizontalAlign HoriAlign;
+                UI::TextVerticalAlign VertAlign;
+                Real CursorOffset;
+                Real CharScaling;
                 Real RelLineHeight;
-                void ConstructCaption(const RenderableRect& Rect, const Whole& Glyph, const String& Text);
+                Real ClippedLeftIndex;
+                Real ClippedRightIndex;
+                ColourValue TextColour;
+                String Text;
+                String GlyphAtlas;
+                void CalculateDrawSize(Vector2& Size);
             public:
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
                 /// @param Rect The Rect representing the position and size of the caption.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
                 Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
@@ -97,23 +96,7 @@ namespace Mezzanine
                 Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Caption();
-                /// @brief Sets the visibility of this caption.
-                /// @param Visible Bool determining whether or not this caption should be visible.
-                virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this caption.
-                /// @return Returns a bool representing the visibility of this caption.
-                virtual bool IsVisible() const;
-                /// @brief Forces this caption to be shown.
-                virtual void Show();
-                /// @brief Forces this caption to hide.
-                virtual void Hide();
-                /// @brief Determines whether the mouse is over this caption.
-                /// @return Returns a bool indicating whether the mouse is over this caption.
-                virtual bool CheckMouseHover();
-                /// @brief Gets the stored value of whether or not the mouse is over the caption.
-                /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
-                /// @return Returns the stored value of whether or not the mouse is over the caption.
-                virtual bool GetMouseHover();
+
                 /// @brief Sets the text displayed within the caption.
                 /// @param Text The text to be displayed.
                 virtual void SetText(ConstString& Text);
@@ -127,24 +110,26 @@ namespace Mezzanine
                 /// @return Returns a Real value representing the scale applied to the text in this caption.  <1.0 means smaller, >1.0 means larger.
                 virtual Real GetTextScale();
                 /// @brief Sets the colour for the text in this caption.
-                /// @param TextColour A colourvalue representing the desired colour.
-                virtual void SetTextColour(const ColourValue& TextColour);
+                /// @param Colour A colourvalue representing the desired colour.
+                virtual void SetTextColour(const ColourValue& Colour);
                 /// @brief Gets the colour for the text in this caption.
                 /// @return Returns a colourvalue representing the currently set colour of the text in this caption.
                 virtual ColourValue GetTextColour();
+
                 /// @brief Sets the glyph index to be used with this caption.
-                /// @details The glyph index is defined in your gorilla file.
+                /// @details The glyph index is defined in your MTA file.
                 /// @param GlyphIndex The index of the glyph to use with this caption.
                 virtual void SetGlyphIndex(const Whole& GlyphIndex);
                 /// @brief Sets the glyph index to be used with this caption from another atlas then the one currently set.
-                /// @details The glyph index is defined in your gorilla file.
+                /// @details The glyph index is defined in your MTA file.
                 /// @param GlyphIndex The index of the glyph to use with this caption.
                 /// @param Atlas The Atlas to load the glyphs from
                 virtual void SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas);
-                /// @brief Gets the glyph index in use by this caption.
-                /// @details The glyph index is defined in your gorilla file.
-                /// @param Returns a Whole representing the index of the glyph in use by this caption..
-                virtual Whole GetGlyphIndex();
+                /// @brief Gets the glyphdata in use by this caption.
+                /// @details The glyphdata is defined in your MTA file.
+                /// @param Returns a pointer to the glyphdata in use by this caption.
+                virtual GlyphData* GetGlyphData();
+
                 /// @brief Sets the number of pixels text should be offset from the side when rendering.
                 /// @details This doesn't apply when text is being rendered with a Middle alignment.
                 /// @param Offset The number of pixels from the side text should be offset.
@@ -152,16 +137,7 @@ namespace Mezzanine
                 /// @brief Gets the number of pixels text should be offset from the side when rendering.
                 /// @return Returns a Whole representing the number of pixels text is currently being offset from the side.
                 virtual Whole GetCursorOffset();
-                /// @brief Sets the background colour of the caption.
-                /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(const ColourValue& Colour);
-                /// @brief Sets the background image(if provided in the atlas) of the caption.
-                /// @param Name The name of the sprite to set as the background.
-                virtual void SetBackgroundSprite(const String& Name);
-                /// @brief Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set.
-                /// @param Name The name of the sprite to set as the background.
-                /// @param Atlas The Atlas to load the sprite from.
-                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
+
                 /// @brief Aligns the text of the caption.
                 /// @details Default value for this is UI::Txt_Middle.
                 /// @param Align The enum value representing the horizontal alignment to be set.
@@ -170,43 +146,7 @@ namespace Mezzanine
                 /// @details Default value for this is UI::Txt_Center.
                 /// @param Align The enum value representing the vertical alignment to be set.
                 virtual void VerticallyAlign(const UI::TextVerticalAlign& Align);
-                /// @brief Sets the relative top left position of this caption.
-                /// @param Position A Vector2 representing the location of this caption.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative top left position of this caption.
-                /// @return Returns a Vector2 representing the location of this caption.
-                virtual Vector2 GetPosition() const;
-                /// @brief Sets the top left position of this caption in pixels.
-                /// @param Position A Vector2 representing the location of this caption.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Gets the top left position of this caption in pixels.
-                /// @return Returns a Vector2 representing the location of this caption.
-                virtual Vector2 GetActualPosition() const;
-                /// @brief Sets the relative size of this caption.
-                /// @param Size A vector2 representing the size of this caption.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this caption.
-                /// @return Returns a vector2 representing the size of this caption.
-                virtual Vector2 GetSize() const;
-                /// @brief Sets the size of this caption in pixels.
-                /// @param Size A vector2 representing the size of this caption.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Gets the size of this caption in pixels.
-                /// @return Returns a vector2 representing the size of this caption.
-                virtual Vector2 GetActualSize() const;
-                /// @brief Sets the priority this caption should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this caption.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this caption should be rendered with.
-                /// @return Returns an enum value representing this caption's priority level.
-                virtual UI::RenderPriority GetRenderPriority() const;
-                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
-                /// @param Atlas The name of the atlas to be used.
-                virtual void SetPrimaryAtlas(const String& Atlas);
-                /// @brief Gets the currently set primary atlas.
-                /// @return Returns a string containing the name of the primary atlas that is set.
-                virtual String GetPrimaryAtlas() const;
+
                 /// @brief Enables or disables scaling the text automatically on a screen size change.
                 /// @param Enable Enables or disables automatic text scaling.
                 virtual void SetAutoScaleText(bool Enable);
@@ -216,6 +156,11 @@ namespace Mezzanine
                 /// @brief Updates the dimensions of this caption to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions();
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
+                ///////////////////////////////////////
+                /// @copydoc UI::BasicRenderable::_Redraw()
+                virtual void _Redraw();
         };//caption
     }//UI
 }//Mezzanine

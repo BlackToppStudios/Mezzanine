@@ -56,12 +56,18 @@ namespace Mezzanine
             static const Real Pi;
             static const Real TwoPi;
             static const Real HalfPi;
+            static const Real RadToDegMult;
+            static const Real DegToRadMult;
         public:
             /// @brief Class constructor.
             MathTool();
 
             /// @brief Class destructor.
             ~MathTool();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Pi Functions
+            ///////////////////////////////////////
 
             /// @brief Gets Pi.
             /// @return Returns a real representing Pi.
@@ -74,6 +80,10 @@ namespace Mezzanine
             /// @brief Gets Pi * 0.5.
             /// @return Returns a real representing Pi * 0.5.
             static Real GetHalfPi();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Real Math & Check Functions
+            ///////////////////////////////////////
 
             /// @brief Rounds a Real up.
             /// @param Val The value to be rounded.
@@ -107,6 +117,17 @@ namespace Mezzanine
             /// @return Returns the remainder of division between the two Reals passed in.
             static Real Fmod(const Real& Numerator, const Real& Denominator);
 
+            /// @brief Checks to see if two Reals are within a certain range of each other.
+            /// @param First The first of two Reals to compare.
+            /// @param Second The second of two Reals to compare.
+            /// @param Tolerance The leeway allowed in how far the two can be apart.
+            /// @return Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise.
+            static bool WithinTolerance(const Real& First, const Real& Second, const Real& Tolerance);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Angle Calculation Functions
+            ///////////////////////////////////////
+
             /// @brief Calculates the Cosine of an angle.
             /// @param Radians The angle to be computed in Radians.
             /// @return Returns a Real representing the Cosine of the angle provided.
@@ -136,6 +157,20 @@ namespace Mezzanine
             /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
             /// @return Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians.
             static Real ATan(const Real& Interval);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Angle Conversion Functions
+            ///////////////////////////////////////
+
+            /// @brief Converts an angle in Degree's to the same angle Radians.
+            /// @param Degrees The number of Degree's to convert.
+            /// @return Returns the converted number in Radians.
+            static Real DegreesToRadians(const Real& Degrees);
+
+            /// @brief Converts an angle in Radians's to the same angle Degrees.
+            /// @param Radians The number of Radians's to convert.
+            /// @return Returns the converted number in Degrees.
+            static Real RadiansToDegrees(const Real& Radians);
     };//mathtool
 }//Mezzanine
 

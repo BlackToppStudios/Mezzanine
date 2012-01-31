@@ -41,19 +41,10 @@
 #define _uibutton_h
 
 #include "colourvalue.h"
-#include "crossplatformexport.h"
 #include "uienumerations.h"
 #include "metacode.h"
 #include "uirenderablerect.h"
-#include "uibasicrenderable.h"
-
-namespace Gorilla
-{
-    class Caption;
-    class Layer;
-    class Rectangle;
-    class Sprite;
-}
+#include "uirectangle.h"
 
 namespace Mezzanine
 {
@@ -69,20 +60,19 @@ namespace Mezzanine
         /// @details Unlike rectangles and captions, this class can be interacted with by clicking.
         /// It is important to understand what you want your space to do when selecting the class to use.
         ///////////////////////////////////////
-        class MEZZ_LIB Button : public BasicRenderable
+        class MEZZ_LIB Button : public Rectangle
         {
             protected:
-                Gorilla::Rectangle* GorillaRectangle;
-                Gorilla::Sprite* NormalSprite;
-                Gorilla::Sprite* HoveredSprite;
-                Gorilla::Sprite* UserSprite;
+                Sprite* NormalSprite;
+                Sprite* HoveredSprite;
+                Sprite* UserSprite;
                 ButtonCallback* Callback;
-                bool MouseHover;
+                bool UserSpriteEnabled;
                 bool Activated;
                 bool MultipleActivations;
+                UI::ActivationCondition ActCond;
                 std::vector<MetaCode::InputCode> KeyboardActivationKeys;
                 std::vector<MetaCode::InputCode> MouseActivationButtons;
-                UI::ActivationCondition ActCond;
                 void SetHovered(bool Hovered);
             public:
                 /// @brief Internal constructor
@@ -92,16 +82,10 @@ namespace Mezzanine
                 Button(ConstString& name, const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Button();
-                /// @brief Sets the visibility of this button.
-                /// @param Visible Bool determining whether or not this button should be visible.
-                virtual void SetVisible(bool Visible);
-                /// @brief Gets the visibility of this button.
-                /// @return Returns a bool representing the visibility of this button.
-                virtual bool IsVisible() const;
-                /// @brief Forces this button to be shown.
-                virtual void Show();
-                /// @brief Forces this button to hide.
-                virtual void Hide();
+
+                /// @brief Determines whether the mouse is over this renderable.
+                /// @return Returns a bool indicating whether the mouse is over this renderable.
+                bool CheckMouseHover();
                 /// @brief Gets whether this is a text button.
                 /// @return Returns a bool representing whether or not this is a text button.
                 virtual bool IsTextButton();
@@ -148,94 +132,48 @@ namespace Mezzanine
                 /// @brief Gets whether or not multiple activations per frame are enabled for this button.
                 /// @return Returns a bool indicating whether or not multiple activations are allowed for this button.
                 virtual bool IsMultipleActivationsEnabled();
-                /// @brief Determines whether the mouse is over this button.
-                /// @details While this can be called manually, it'll provide the same result if called more the once per frame.
-                /// Currently the UIManager calls this on it's own once per frame, so there isn't much point in calling this manually.
-                /// @return Returns a bool indicating whether the mouse is over this button.
-                virtual bool CheckMouseHover();
-                /// @brief Gets the stored value of whether or not the mouse is over the button.
-                /// @details This function does not perform any checks.  If you want to do a manual check, call CheckMouseHover().
-                /// @return Returns the stored value of whether or not the mouse is over the button.
-                virtual bool GetMouseHover();
-                /// @brief Sets the background colour of the button.
-                /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(const ColourValue& Colour);
-                /// @brief Sets the background image(if provided in the atlas) of the button.
-                /// @param Name The name of the sprite to set as the background.
-                virtual void SetBackgroundSprite(const String& Name);
-                /// @brief Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set.
-                /// @param Name The name of the sprite to set as the background.
+
+                /// @brief Sets the background image(if provided in the atlas) of the renderable.
+                /// @param PSprite A pointer to the sprite to set as the background.
+                virtual void SetBackgroundSprite(Sprite* PSprite);
+                /// @brief Sets the background image(if provided in the atlas) of the renderable.
+                /// @param SpriteName The name of the sprite to set as the background.
+                virtual void SetBackgroundSprite(const String& SpriteName);
+                /// @brief Sets the background image(if provided in the atlas) of the renderable.
+                /// @param SpriteName The name of the sprite to set as the background.
                 /// @param Atlas The Atlas to load the sprite from.
-                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
+                virtual void SetBackgroundSprite(const String& SpriteName, const String& Atlas);
                 /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
-                /// @param Name The name of the sprite to set as the alternate background.
-                virtual void SetHoveredSprite(const String& Name);
-                /// @brief Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set.
-                /// @param Name The name of the sprite to set as the alternate background.
+                /// @param PSprite A pointer to the sprite to set as the alternate background.
+                virtual void SetHoveredSprite(Sprite* PSprite);
+                /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
+                /// @param SpriteName The name of the sprite to set as the alternate background.
+                virtual void SetHoveredSprite(const String& SpriteName);
+                /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
+                /// @param SpriteName The name of the sprite to set as the alternate background.
                 /// @param Atlas The Atlas to load the sprite from.
-                virtual void SetHoveredSprite(const String& Name, const String& Atlas);
-                /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite.
-                /// @param Name The name of the sprite to set as the alternate background.
-                virtual void SetUserSprite(const String& Name);
+                virtual void SetHoveredSprite(const String& SpriteName, const String& Atlas);
                 /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.
-                /// @param Name The name of the sprite to set as the alternate background.
+                /// @param PSprite A pointer to the sprite to set as the alternate background.
+                virtual void SetUserSprite(Sprite* PSprite);
+                /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.
+                /// @param SpriteName The name of the sprite to set as the alternate background.
+                virtual void SetUserSprite(const String& SpriteName);
+                /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.
+                /// @param SpriteName The name of the sprite to set as the alternate background.
                 /// @param Atlas The Atlas to load the sprite from.
-                virtual void SetUserSprite(const String& Name, const String& Atlas);
+                virtual void SetUserSprite(const String& SpriteName, const String& Atlas);
                 /// @brief Enables(or disables) the currently set User sprite.
                 /// @param Enable If true, this will swap the current sprite with the user sprite, if false
                 /// it will swap the User sprite for the normal sprite.
                 virtual void EnableUserSprite(bool Enable);
-                /// @brief Enables a border and sets it's colour.
-                /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBorder(const Real& Width, const ColourValue& Colour);
-                /// @brief Disables any border set on this rectangle if one is currently set.
-                virtual void NoBorder();
-                /// @brief Sets the relative top left position of this button.
-                /// @param Position A Vector2 representing the location of this button.
-                virtual void SetPosition(const Vector2& Position);
-                /// @brief Gets the relative top left position of this button.
-                /// @return Returns a Vector2 representing the location of this button.
-                virtual Vector2 GetPosition() const;
-                /// @brief Sets the top left position of this button in pixels.
-                /// @param Position A Vector2 representing the location of this button.
-                virtual void SetActualPosition(const Vector2& Position);
-                /// @brief Gets the top left position of this button in pixels.
-                /// @return Returns a Vector2 representing the location of this button.
-                virtual Vector2 GetActualPosition() const;
-                /// @brief Sets the relative size of this button.
-                /// @param Size A vector2 representing the size of this button.
-                virtual void SetSize(const Vector2& Size);
-                /// @brief Gets the relative size of this button.
-                /// @return Returns a vector2 representing the size of this button.
-                virtual Vector2 GetSize() const;
-                /// @brief Sets the size of this button in pixels.
-                /// @param Size A vector2 representing the size of this button.
-                virtual void SetActualSize(const Vector2& Size);
-                /// @brief Gets the size of this button in pixels.
-                /// @return Returns a vector2 representing the size of this button.
-                virtual Vector2 GetActualSize() const;
-                /// @brief Sets the priority this button should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this button should be rendered with.
-                /// @return Returns an enum value representing this button's priority level.
-                virtual UI::RenderPriority GetRenderPriority() const;
-                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
-                /// @param Atlas The name of the atlas to be used.
-                virtual void SetPrimaryAtlas(const String& Atlas);
-                /// @brief Gets the currently set primary atlas.
-                /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
-                virtual String GetPrimaryAtlas() const;
+
                 /// @brief Gets a vector with all the keyboard input codes used to activate this button.
                 /// @return Returns a pointer to an std::vector containing all the keyboard keys that will activate this button.
                 virtual std::vector<MetaCode::InputCode>* GetKeyboardActivationKeys();
                 /// @brief Gets a vector with all the mouse input codes used to activate this button.
                 /// @return Returns a pointer to an std::vector containing all the mouse buttons that will activate this button.
                 virtual std::vector<MetaCode::InputCode>* GetMouseActivationButtons();
-                /// @brief Updates the dimensions of this button to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions();
         };//button
 
         ///////////////////////////////////////////////////////////////////////////////

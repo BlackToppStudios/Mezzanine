@@ -46,6 +46,7 @@
 #include "crossplatform.h"
 #include "world.h"
 #include "graphicsmanager.h"
+#include "uimanager.h"
 #include "gamewindow.h"
 
 
@@ -112,41 +113,6 @@ namespace Mezzanine
                 Sleep(WaitTime);
             #else
                 usleep(1000*WaitTime);
-            #endif
-        }
-
-        void RenderMezzWorld()
-        {
-            World* TheWorld = World::GetWorldPointer();
-            GraphicsManager* Graphics = GraphicsManager::GetSingletonPtr();
-            #ifdef MEZZDEBUG
-            TheWorld->Log("Rendering the World.");
-            #endif
-            //#ifdef WINDOWS
-                Ogre::Root::getSingleton().renderOneFrame();
-                //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                //    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
-                //    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
-                //}
-            /*#else
-                Ogre::Root::getSingleton()._fireFrameStarted();
-                Ogre::Root::getSingleton()._fireFrameRenderingQueued();
-                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                {
-                    SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),Graphics->GetGameWindow(X)->GetRenderContext()); /// @todo TODO: RenderMezzWorld needs the context on non-windows builds
-                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(false);
-                    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
-                }
-                //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                //   Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
-                Ogre::Root::getSingleton()._fireFrameEnded();
-            #endif*/
-
-            if( !Graphics->GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
-                    Ogre::Root::getSingleton().clearEventTimes();
-
-            #ifdef MEZZDEBUG
-            TheWorld->Log("Finished Rendering");
             #endif
         }
 

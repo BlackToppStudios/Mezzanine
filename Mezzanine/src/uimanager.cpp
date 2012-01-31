@@ -42,24 +42,21 @@
 
 #include "uimanager.h"
 #include "inputquerytool.h"
-#include "internalGorilla.h.cpp"
+#include "uitextureatlas.h"
 #include "world.h"
 #include "cameramanager.h"
 #include "graphicsmanager.h"
 #include "eventmanager.h"
 #include "eventuserinput.h"
+#include "resourcemanager.h"
 #include "viewport.h"
 #include "uiscreen.h"
 #include "uibutton.h"
 #include "uilayer.h"
 #include "uiwidget.h"
+#include "uiglyph.h"
 
 #include <Ogre.h>
-
-namespace
-{
-    bool HasSilverAlreadyBeenCreated = false;
-}
 
 namespace Mezzanine
 {
@@ -74,19 +71,13 @@ namespace Mezzanine
           LastWidgetSelected(NULL),
           ButtonAutoRegister(false)
     {
-        if (HasSilverAlreadyBeenCreated)
-        {
-            Silver = Gorilla::Silverback::getSingletonPtr();
-        }else{
-            Silver = new Gorilla::Silverback();
-        }
+        ResourceManager::GetSingletonPtr()->CreateResourceGroup("UI");
         Priority = -35;
     }
 
     UIManager::~UIManager()
     {
         DestroyAllScreens();
-        delete Silver;
     }
 
     void UIManager::HoverChecks()
@@ -249,16 +240,31 @@ namespace Mezzanine
         WidgetUpdates();
     }
 
-    void UIManager::LoadGorilla(const String& Name)
+    void UIManager::LoadMTA(const String& Name, const String& Group)
     {
-        Silver->loadAtlas(Name);
+        UI::TextureAtlas* NewAtlas = new UI::TextureAtlas(Name + ".mta",Group);
+        Atlases[Name] = NewAtlas;
+    }
+
+    UI::TextureAtlas* UIManager::GetAtlas(const String& AtlasName)
+    {
+        /// @todo These NULL returns should probably be exceptions.
+        if("" == AtlasName)
+        {
+            std::map<String,UI::TextureAtlas*>::iterator It = Atlases.begin();
+            if(It != Atlases.end()) return (*It).second;
+            else return NULL;
+        }
+        std::map<String,UI::TextureAtlas*>::iterator It = Atlases.find(AtlasName);
+        if(It != Atlases.end()) return (*It).second;
+        else return NULL;
     }
 
     void UIManager::RedrawAll(bool Force)
     {
         for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
-            (*it)->GetGorillaScreen()->_redrawAllIndexes(Force);
+            (*it)->_RedrawAllIndexes(Force);
         }
     }
 
@@ -355,9 +361,9 @@ namespace Mezzanine
 
     UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
     {
-        UI::Screen* Mezzscreen = new UI::Screen(ScreenName, Atlas, WindowViewport);
-        Screens.push_back(Mezzscreen);
-        return Mezzscreen;
+        UI::Screen* MezzScreen = new UI::Screen(ScreenName, Atlas, WindowViewport);
+        Screens.push_back(MezzScreen);
+        return MezzScreen;
     }
 
     UI::Screen* UIManager::GetScreen(const String& Name)
@@ -466,20 +472,28 @@ namespace Mezzanine
 
     std::pair<Whole,Real> UIManager::SuggestGlyphIndex(const Whole& Height, const String& Atlas)
     {
-        Gorilla::TextureAtlas* TheAtlas = Silver->getatlas(Atlas);
-        std::map<Ogre::uint,Gorilla::GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
+        UI::TextureAtlas* TheAtlas = NULL;
+        std::map<String,UI::TextureAtlas*>::iterator It = Atlases.find(Atlas);
+        if(It != Atlases.end()) TheAtlas = (*It).second;
+        else
+        {
+            std::stringstream logstream;
+            logstream << "Attempting to access TextureAtlas \"" << Atlas << "\", which does not exist or is not loaded, in UIManager::SuggestGlyphIndex.";
+            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+        }
+        std::map<UInt32,UI::GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
         Whole BestMatch = 0;
         Real BestHeight = 0;
         Real BestMatchDiff = 1000000.f;
         Real RequestedHeight = (Real)Height;
 
-        for( std::map<Ogre::uint,Gorilla::GlyphData*>::iterator it = Glyphs.begin() ; it != Glyphs.end() ; it++ )
+        for( std::map<UInt32,UI::GlyphData*>::iterator it = Glyphs.begin() ; it != Glyphs.end() ; it++ )
         {
-            Real Diff = (Real)Height > (*it).second->mLineHeight ? (Real)Height - (*it).second->mLineHeight : (*it).second->mLineHeight - (Real)Height;
+            Real Diff = (Real)Height > (*it).second->LineHeight ? (Real)Height - (*it).second->LineHeight : (*it).second->LineHeight - (Real)Height;
             if(Diff < BestMatchDiff)
             {
                 BestMatch = (*it).first;
-                BestHeight = (*it).second->mLineHeight;
+                BestHeight = (*it).second->LineHeight;
                 BestMatchDiff = Diff;
             }
         }
@@ -490,11 +504,6 @@ namespace Mezzanine
 
     ManagerBase::ManagerTypeName UIManager::GetType() const
         { return ManagerBase::UIManager; }
-
-    Gorilla::Silverback* UIManager::GetSilverbackPointer()
-    {
-        return Silver;
-    }
 }//Mezzanine
 
 #endif

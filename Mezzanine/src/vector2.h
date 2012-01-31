@@ -112,6 +112,7 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Vector2 Arithmetic with Real
+
             /// @brief Scaling by multiplication
             /// @details This Multiplies X and Y by scalar
             /// @return This returns a Vector2 that has been scaled
@@ -126,6 +127,7 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Vector2 Arithmetic and assignment with Real
+
             /// @brief Scaling by multiplication.
             /// @details This Multiplies X and Y by scalar and stores the changes in this Vector2.
             /// @param scalar This is the amount to scale the Vector2 by.
@@ -138,6 +140,7 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Arithmetic Operators
+
             /// @brief Addition Operator
             /// @details Allows for addition from a Mezzanine::Vector2
             /// @param Vec2 This is the other Mezzanine::Vector2
@@ -158,24 +161,34 @@ namespace Mezzanine
             /// @param Vec2 This is the other Mezzanine::Vector2
             Vector2 operator/ (const Vector2 &Vec2) const;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Serialization
+            ///////////////////////////////////////////////////////////////////////////////
+            // Fancy Math
+
+            /// @brief Generates a Vector2 that is perpendicular to this vector.
+            /// @return Returns a new Vector2 that is perpendicular to this.
+            Vector2 Perpendicular() const;
+
+            /// @brief Normalizes this Vector2.
+            /// @return Returns a reference to this.
+            Vector2& Normalize();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Serialization
 #ifdef MEZZXML
-        // Serializable
-        /// @brief Convert this class to an xml::Node ready for serialization
-        /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            // Serializable
+            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
 
-        // DeSerializable
-        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-        /// @param OneNode and xml::Node containing the data.
-        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            // DeSerializable
+            /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+            /// @param OneNode and xml::Node containing the data.
+            virtual void ProtoDeSerialize(const xml::Node& OneNode);
 
-        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
-        /// @return A string containing "Vector2"
-        static String SerializableName();
+            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+            /// @return A string containing "Vector2"
+            static String SerializableName();
 #endif
-
     };
 }
 

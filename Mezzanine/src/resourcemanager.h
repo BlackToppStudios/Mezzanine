@@ -103,9 +103,12 @@ namespace Mezzanine
             /// @param Location The location on the file system the resource can be found.
             /// @param Type The kind of file system the location can be found in. @n
             /// Options are: filesystem, zip.
-            /// @param Group The name of the group the resources at this location belong to.
+            /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
             /// @param recursive Whether or not to search sub-directories.
-            void AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive=false);
+            void AddResourceLocation(const String& Location, const String& Type, const String& Group, const bool recursive=false);
+            /// @brief Creates a resource group.
+            /// @param GroupName The name to be given to the created resource group.
+            void CreateResourceGroup(const String& GroupName);
             /// @brief Destroys a resource group, unloading all of it's resources.
             /// @param GroupName The name of the resource group to destroy.
             void DestroyResourceGroup(const String& GroupName);
@@ -124,9 +127,6 @@ namespace Mezzanine
             /// take up memory and drop performance.
             /// @param Name Name of the resource group.
             void InitResourceGroup(const String& Name);
-
-            /// @brief Parses all Ogre Material scripts.
-            void ParseMaterialScripts();
 
             /// @brief Get a stream to read from the specified file
             /// @param FileName The name of the File you want to stream data from

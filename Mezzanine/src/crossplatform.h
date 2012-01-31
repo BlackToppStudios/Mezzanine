@@ -100,13 +100,6 @@ namespace Mezzanine
         /// @param WaitTime The amount of time in milliseconds to wait
         void MEZZ_LIB WaitMilliseconds(const Whole &WaitTime);
 
-        /// @brief Renders the current world contents to the screen.
-        /// @details This makes use of World internals to Render to the screen, So it is advised against calling this directly.
-        /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop
-        /// at the aproppriate times. Currently this references Ogre systems, that makes this internal
-        /// Handles the actual cross platform swapping of graphics buffers.
-        void MEZZ_LIB RenderMezzWorld();
-
         /// @brief Gets the platform currently being run on.
         /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".
         String MEZZ_LIB GetPlatform();

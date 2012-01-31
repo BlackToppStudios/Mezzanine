@@ -83,6 +83,10 @@ namespace Mezzanine
             VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertRect,Style,Parent);
             HorizontalScroll->Hide();
             VerticalScroll->Hide();
+
+            CellsAdded = 2;
+            SubRenderables[1] = RenderablePair(NULL,HorizontalScroll);
+            SubRenderables[2] = RenderablePair(NULL,VerticalScroll);
         }
 
         ScrolledCellGrid::~ScrolledCellGrid()

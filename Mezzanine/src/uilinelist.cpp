@@ -44,50 +44,31 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uiscreen.h"
+#include "uivertex.h"
+#include "uienumerations.h"
+#include "uiviewportupdatetool.h"
 #include "world.h"
-
-#include "internalGorilla.h.cpp"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        LineList::LineList(Layer* PLayer)
-            : Parent(PLayer)
+        LineList::LineList(const String& name, Layer* PLayer)
+            : BasicRenderable(name,PLayer)
         {
-            Manager = UIManager::GetSingletonPtr();
-
-            GLineList = Parent->GetGorillaLayer()->createLineList();
         }
 
         LineList::~LineList()
         {
-            Parent->GetGorillaLayer()->destroyLineList(GLineList);
         }
 
-        void LineList::SetVisible(bool Visible)
+        void LineList::Begin(const Whole& LineThickness, const ColourValue& LineColour)
         {
-            GLineList->SetVisible(Visible);
-        }
-
-        bool LineList::IsVisible()
-        {
-            return GLineList->IsVisible();
-        }
-
-        void LineList::Show()
-        {
-            GLineList->Show();
-        }
-
-        void LineList::Hide()
-        {
-            GLineList->Hide();
-        }
-
-        void LineList::Begin(const Whole& Thickness, const ColourValue& Colour)
-        {
-            GLineList->begin((Real)Thickness, Colour.GetOgreColourValue());
+            Positions.clear();
+            Thickness = LineThickness;
+            Colour = LineColour;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         void LineList::AddPoint(const Real& X, const Real& Y)
@@ -97,62 +78,121 @@ namespace Mezzanine
 
         void LineList::AddPoint(const Vector2& Position)
         {
-            GLineList->position((Position * Parent->GetParent()->GetViewportDimensions()).GetOgreVector2());
+            Positions.push_back(Position * Parent->GetParent()->GetViewportDimensions());
         }
 
         void LineList::AddActualPoint(const Real& X, const Real& Y)
         {
-            AddActualPoint(Vector2(X,Y));
+            AddPoint(Vector2(X,Y));
         }
 
         void LineList::AddActualPoint(const Vector2& Position)
         {
-            GLineList->position(Position.GetOgreVector2());
+            Positions.push_back(Position);
         }
 
         void LineList::End(bool Closed)
         {
-            GLineList->end(Closed);
+            IsClosed = Closed;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
-        void LineList::SetRenderPriority(const UI::RenderPriority& Priority)
+        void LineList::UpdateDimensions()
         {
-            Gorilla::RenderPriority RP;
+            Vector2 OldMid = ViewportUpdateTool::GetOldSize() * 0.5;
+            Vector2 NewMid = ViewportUpdateTool::GetNewSize() * 0.5;
+
+            for( Whole Index = 0 ; Index < Positions.size() ; Index++ )
+            {
+                Positions[Index] = (Positions[Index] - OldMid) + NewMid;
+            }
+        }
+
+        void LineList::_Redraw()
+        {
+            if(Dirty == false)
+                return;
+            RenderVertices.clear();
+            if(!Visible)
+            {
+                Dirty = false;
+                return;
+            }
+            if(Positions.size() < 2)
+                return;
+
+            VertexData Temp;
+            Real HalfThickness = Thickness * 0.5;
+            Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = Parent->GetSolidUV(PriAtlas);
+            size_t Index = 1;
+            for(  ; Index < Positions.size() ; Index++ )
+            {
+                PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().Normalize();
+                LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
+                LastRight = Positions[Index -1 ] + PerpNorm * HalfThickness;
+                ThisLeft  = Positions[Index] - PerpNorm * HalfThickness;
+                ThisRight = Positions[Index] + PerpNorm * HalfThickness;
+
+                // Triangle A
+                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
+                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
+                PushVertex(RenderVertices,Temp,LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);        // Left/Top
+                // Triangle B
+                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);      // Left/Bottom
+                PushVertex(RenderVertices,Temp,ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);      // Right/Bottom
+                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);        // Right/Top
+            }
+
+            if(IsClosed)
+            {
+                Index = Positions.size() - 1;
+                PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().Normalize();
+                LastLeft  = Positions[Index] - PerpNorm * HalfThickness;
+                LastRight = Positions[Index] + PerpNorm * HalfThickness;
+                ThisLeft  = Positions[0] - PerpNorm * HalfThickness;
+                ThisRight = Positions[0] + PerpNorm * HalfThickness;
+
+                // Triangle A
+                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
+                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
+                PushVertex(RenderVertices,Temp,LastLeft.X,LastLeft.Y,UV,Colour,PriAtlas);         // Left/Top
+                // Triangle B
+                PushVertex(RenderVertices,Temp,LastRight.X,LastRight.Y,UV,Colour,PriAtlas);       // Left/Bottom
+                PushVertex(RenderVertices,Temp,ThisRight.X,ThisRight.Y,UV,Colour,PriAtlas);       // Right/Bottom
+                PushVertex(RenderVertices,Temp,ThisLeft.X,ThisLeft.Y,UV,Colour,PriAtlas);         // Right/Top
+            }
+        }
+
+        void LineList::_AppendVertices(ScreenVertexData& Vertices)
+        {
             switch(Priority)
             {
                 case UI::RP_Low:
-                    RP = Gorilla::RP_Low;
+                {
+                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+                    {
+                        Vertices.LowVertices.push_back(RenderVertices[X]);
+                    }
                     break;
+                }
                 case UI::RP_Medium:
-                    RP = Gorilla::RP_Medium;
+                {
+                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+                    {
+                        Vertices.MediumVertices.push_back(RenderVertices[X]);
+                    }
                     break;
+                }
                 case UI::RP_High:
-                    RP = Gorilla::RP_High;
+                {
+                    for( Whole X = 0 ; X < RenderVertices.size() ; ++X )
+                    {
+                        Vertices.HighVertices.push_back(RenderVertices[X]);
+                    }
                     break;
-                default:
-                    break;
+                }
             }
-            GLineList->RenderPriority(RP);
-        }
-
-        UI::RenderPriority LineList::GetRenderPriority()
-        {
-            Gorilla::RenderPriority RP = this->GLineList->RenderPriority();
-            switch(RP)
-            {
-                case Gorilla::RP_Low:
-                    return UI::RP_Low;
-                    break;
-                case Gorilla::RP_Medium:
-                    return UI::RP_Medium;
-                    break;
-                case Gorilla::RP_High:
-                    return UI::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            return UI::RP_Medium;
         }
     }//UI
 }//Mezzanine

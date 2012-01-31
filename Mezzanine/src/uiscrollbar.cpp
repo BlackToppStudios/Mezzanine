@@ -190,6 +190,10 @@ namespace Mezzanine
             {
                 DownRightButton = new Button(Name+"RB",RightButtonRect,Parent);
             }
+            SubRenderables[0] = RenderablePair(ScrollBack,NULL);
+            SubRenderables[1] = RenderablePair(Scroller,NULL);
+            SubRenderables[2] = RenderablePair(UpLeftButton,NULL);
+            SubRenderables[3] = RenderablePair(DownRightButton,NULL);
             CalculateScrollLimits();
         }
 
@@ -265,6 +269,10 @@ namespace Mezzanine
             {
                 DownRightButton = new Button(Name+"DB",DownButtonRect,Parent);
             }
+            SubRenderables[0] = RenderablePair(ScrollBack,NULL);
+            SubRenderables[1] = RenderablePair(Scroller,NULL);
+            SubRenderables[2] = RenderablePair(UpLeftButton,NULL);
+            SubRenderables[3] = RenderablePair(DownRightButton,NULL);
             CalculateScrollLimits();
         }
 

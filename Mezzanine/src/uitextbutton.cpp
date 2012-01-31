@@ -44,64 +44,91 @@
 #include "uilayer.h"
 #include "uiscreen.h"
 #include "uimanager.h"
-#include "internalGorilla.h.cpp"
+#include "mathtool.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
         TextButton::TextButton(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
-            : Button(name,Rect,PLayer)
+            : Button(name,Rect,PLayer),
+              HoriAlign(UI::Txt_Middle),
+              VertAlign(UI::Txt_Center),
+              CharScaling(0.0),
+              ClippedLeftIndex(0.0),
+              ClippedRightIndex(0.0)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,Ogre::Vector2(GorillaRectangle->left(),GorillaRectangle->top()),Ogre::Vector2(GorillaRectangle->width(),GorillaRectangle->height()),Text,*GorillaRectangle->GetNameFile());
-            //GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
-            GorillaButton->background_colour(Ogre::ColourValue(0,0,0,0));
-            GorillaButton->align(Gorilla::TextAlign_Centre);
-            GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
+            GlyphSet = Parent->GetGlyphData(Glyph,PriAtlas);
+            this->Text = Text;
+            TextColour = ColourValue::White();
+            GlyphAtlas = PriAtlas;
         }
 
         TextButton::TextButton(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
-            : Button(name,Rect,PLayer)
+            : Button(name,Rect,PLayer),
+              HoriAlign(UI::Txt_Middle),
+              VertAlign(UI::Txt_Center),
+              CharScaling(0.0),
+              ClippedLeftIndex(0.0),
+              ClippedRightIndex(0.0)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
-            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * Parent->GetParent()->GetViewportDimensions().Y,*GorillaRectangle->GetNameFile());
-            GorillaButton = Parent->GetGorillaLayer()->createCaption(Result.first,Ogre::Vector2(GorillaRectangle->left(),GorillaRectangle->top()),Ogre::Vector2(GorillaRectangle->width(),GorillaRectangle->height()),Text,*GorillaRectangle->GetNameFile());
-            //GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
-            GorillaButton->background_colour(Ogre::ColourValue(0,0,0,0));
-            GorillaButton->align(Gorilla::TextAlign_Centre);
-            GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * Parent->GetParent()->GetViewportDimensions().Y),PriAtlas);
+            GlyphSet = Parent->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
+            this->Text = Text;
+            TextColour = ColourValue::White();
+            GlyphAtlas = PriAtlas;
         }
 
         TextButton::~TextButton()
         {
-            Parent->GetGorillaLayer()->destroyCaption(GorillaButton);
         }
 
-        void TextButton::SetVisible(bool Visible)
+        void TextButton::CalculateDrawSize(Vector2& Size)
         {
-            GorillaRectangle->SetVisible(Visible);
-            GorillaButton->SetVisible(Visible);
-        }
+            Real Cursor = 0;
+            Real Kerning = 0;
 
-        bool TextButton::IsVisible()
-        {
-            return GorillaRectangle->IsVisible();
-        }
+            unsigned char CurrChar = 0, LastChar = 0;
+            Glyph* CurrGlyph = 0;
+            Size.X = 0;
+            Size.Y = GlyphSet->LineHeight;
 
-        void TextButton::Show()
-        {
-            GorillaRectangle->Show();
-            GorillaButton->Show();
-        }
+            for( Whole Index = 0 ; Index < Text.length() ; Index++ )
+            {
+                CurrChar = Text[Index];
 
-        void TextButton::Hide()
-        {
-            GorillaRectangle->Hide();
-            GorillaButton->Hide();
+                if(CurrChar == ' ')
+                {
+                    LastChar = CurrChar;
+                    Cursor += GlyphSet->SpaceLength;
+                    continue;
+                }
+
+                if( CurrChar < GlyphSet->RangeBegin || CurrChar > GlyphSet->RangeEnd )
+                {
+                    LastChar = 0;
+                    continue;
+                }
+
+                CurrGlyph = GlyphSet->GetGlyph(CurrChar);
+                if(CurrGlyph == 0)
+                    continue;
+                Kerning = CurrGlyph->GetKerning(LastChar);
+                if(Kerning == 0)
+                    Kerning = GlyphSet->LetterSpacing;
+
+                if(CharScaling == 1.0f)
+                    Cursor += CurrGlyph->GlyphAdvance + Kerning;
+                else
+                    Cursor += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                LastChar = CurrChar;
+            }
+            Size.X = Cursor - Kerning;
         }
 
         bool TextButton::IsTextButton()
@@ -111,178 +138,96 @@ namespace Mezzanine
 
         void TextButton::SetText(ConstString& Text)
         {
-            GorillaButton->text(Text);
+            this->Text = Text;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         String TextButton::GetText()
         {
-            return GorillaButton->text();
+            return Text;
         }
 
         void TextButton::SetTextScale(const Real& Scale)
         {
-            GorillaButton->SetCharScaling(Scale);
+            CharScaling = Scale;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         Real TextButton::GetTextScale()
         {
-            return GorillaButton->GetCharScaling();
+            return CharScaling;
+        }
+
+        void TextButton::SetTextColour(const ColourValue& Colour)
+        {
+            TextColour = Colour;
+            Dirty = true;
+            Parent->_MarkDirty();
+        }
+
+        ColourValue TextButton::GetTextColour()
+        {
+            return TextColour;
         }
 
         void TextButton::SetGlyphIndex(const Whole& GlyphIndex)
         {
-            Glyphs = GlyphIndex;
-            GorillaButton->font(GlyphIndex,*GorillaButton->GetNameFile());
+            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,PriAtlas);
+            if(NewData)
+            {
+                GlyphSet = NewData;
+                Dirty = true;
+                Parent->_MarkDirty();
+            }else{
+                /// @todo Throw an error?
+            }
         }
 
         void TextButton::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
         {
-            Glyphs = GlyphIndex;
-            GorillaButton->font(GlyphIndex,Atlas);
+            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,Atlas);
+            if(NewData)
+            {
+                GlyphSet = NewData;
+                GlyphAtlas = Atlas;
+                Dirty = true;
+                Parent->_MarkDirty();
+            }else{
+                /// @todo Throw an error?
+            }
         }
 
-        Whole TextButton::GetGlyphIndex()
+        GlyphData* TextButton::GetGlyphData()
         {
-            return Glyphs;
+            return GlyphSet;
+        }
+
+        void TextButton::SetCursorOffset(const Whole& Offset)
+        {
+            CursorOffset = Offset;
+            Dirty = true;
+            Parent->_MarkDirty();
+        }
+
+        Whole TextButton::GetCursorOffset()
+        {
+            return CursorOffset;
         }
 
         void TextButton::HorizontallyAlign(const UI::TextHorizontalAlign& Align)
         {
-            Gorilla::TextAlignment HA;
-            switch (Align)
-            {
-                case UI::Txt_Left:
-                    HA = Gorilla::TextAlign_Left;
-                    break;
-                case UI::Txt_Right:
-                    HA = Gorilla::TextAlign_Right;
-                    break;
-                case UI::Txt_Middle:
-                    HA = Gorilla::TextAlign_Centre;
-                    break;
-                default:
-                    return;
-            }
-            GorillaButton->align(HA);
+            HoriAlign = Align;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         void TextButton::VerticallyAlign(const UI::TextVerticalAlign& Align)
         {
-            Gorilla::VerticalAlignment VA;
-            switch (Align)
-            {
-                case UI::Txt_Top:
-                    VA = Gorilla::VerticalAlign_Top;
-                    break;
-                case UI::Txt_Bottom:
-                    VA = Gorilla::VerticalAlign_Bottom;
-                    break;
-                case UI::Txt_Center:
-                    VA = Gorilla::VerticalAlign_Middle;
-                    break;
-                default:
-                    return;
-            }
-            GorillaButton->vertical_align(VA);
-        }
-
-        void TextButton::SetPosition(const Vector2& Position)
-        {
-            RelPosition = Position;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaButton->left(WinDim.X * RelPosition.X);
-            GorillaButton->top(WinDim.Y * RelPosition.Y);
-            GorillaRectangle->left(WinDim.X * RelPosition.X);
-            GorillaRectangle->top(WinDim.Y * RelPosition.Y);
-        }
-
-        Vector2 TextButton::GetPosition()
-        {
-            return RelPosition;
-        }
-
-        void TextButton::SetActualPosition(const Vector2& Position)
-        {
-            GorillaButton->left(Position.X);
-            GorillaButton->top(Position.Y);
-            GorillaRectangle->left(Position.X);
-            GorillaRectangle->top(Position.Y);
-        }
-
-        Vector2 TextButton::GetActualPosition()
-        {
-            Vector2 Pos(GorillaButton->left(), GorillaButton->top());
-            return Pos;
-        }
-
-        void TextButton::SetSize(const Vector2& Size)
-        {
-            RelSize = Size;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaButton->left(WinDim.X * RelSize.X);
-            GorillaButton->top(WinDim.Y * RelSize.Y);
-            GorillaRectangle->left(WinDim.X * RelSize.X);
-            GorillaRectangle->top(WinDim.Y * RelSize.Y);
-        }
-
-        Vector2 TextButton::GetSize()
-        {
-            return RelSize;
-        }
-
-        void TextButton::SetActualSize(const Vector2& Size)
-        {
-            GorillaButton->width(Size.X);
-            GorillaButton->height(Size.Y);
-            GorillaRectangle->width(Size.X);
-            GorillaRectangle->height(Size.Y);
-        }
-
-        Vector2 TextButton::GetActualSize()
-        {
-            Vector2 Pos(GorillaButton->width(), GorillaButton->height());
-            return Pos;
-        }
-
-        void TextButton::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            Gorilla::RenderPriority RP;
-            switch(Priority)
-            {
-                case UI::RP_Low:
-                    RP = Gorilla::RP_Low;
-                    break;
-                case UI::RP_Medium:
-                    RP = Gorilla::RP_Medium;
-                    break;
-                case UI::RP_High:
-                    RP = Gorilla::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            GorillaButton->RenderPriority(RP);
-            GorillaRectangle->RenderPriority(RP);
-        }
-
-        UI::RenderPriority TextButton::GetRenderPriority()
-        {
-            Gorilla::RenderPriority RP = this->GorillaRectangle->RenderPriority();
-            switch(RP)
-            {
-                case Gorilla::RP_Low:
-                    return UI::RP_Low;
-                    break;
-                case Gorilla::RP_Medium:
-                    return UI::RP_Medium;
-                    break;
-                case Gorilla::RP_High:
-                    return UI::RP_High;
-                    break;
-                default:
-                    break;
-            }
-            return UI::RP_Medium;
+            VertAlign = Align;
+            Dirty = true;
+            Parent->_MarkDirty();
         }
 
         void TextButton::SetAutoScaleText(bool Enable)
@@ -304,6 +249,137 @@ namespace Mezzanine
                 SetGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
+        }
+
+        void TextButton::_Redraw()
+        {
+            if(Dirty == false)
+                return;
+            Rectangle::_Redraw();
+            if(!Visible)
+            {
+                Dirty = false;
+                return;
+            }
+
+            Real Left = 0, Top = 0, Right = 0, Bottom = 0, CursorX = 0, CursorY = 0, Kerning = 0;
+            Real TexelOffsetX = Parent->GetTexelX();
+            Real TexelOffsetY = Parent->GetTexelY();
+            Vector2 KnownSize;
+            Glyph* CurrGlyph = 0;
+
+            bool ClipLeft = false, ClipRight = false;
+            Real ClipLeftPos = 0, ClipRightPos = 0;
+
+            if(HoriAlign == UI::Txt_Left)
+            {
+                CursorX = ActPosition.X + CursorOffset;
+
+                ClipRight = true;
+                ClipRightPos = ActPosition.X + ActSize.X;
+            }
+            else if(HoriAlign == UI::Txt_Middle)
+            {
+                CalculateDrawSize(KnownSize);
+                CursorX = ActPosition.X + (ActSize.X * 0.5f) - (KnownSize.X * 0.5f);
+
+                ClipLeft = true;
+                ClipLeftPos = ActPosition.X;
+                ClipRight = true;
+                ClipRightPos = ActPosition.X + ActSize.X;
+            }
+            else if(HoriAlign == UI::Txt_Right)
+            {
+                CalculateDrawSize(KnownSize);
+                CursorX = (ActPosition.X + ActSize.X) - (KnownSize.X + CursorOffset);
+
+                ClipLeft = true;
+                ClipLeftPos = ActPosition.X;
+            }
+
+            if(VertAlign == UI::Txt_Top)
+                CursorY = ActPosition.Y;
+            else if(VertAlign == UI::Txt_Center)
+                CursorY = ActPosition.Y + (ActSize.Y * 0.5) - ((GlyphSet->LineHeight * CharScaling) * 0.5);
+            else if(VertAlign == UI::Txt_Bottom)
+                CursorY = ActPosition.Y + ActSize.Y - (GlyphSet->LineHeight * CharScaling);
+
+            unsigned char ThisChar = 0, LastChar = 0;
+            ClippedLeftIndex = String::npos;
+            ClippedRightIndex = String::npos;
+
+            CursorX = MathTool::Floor( CursorX );
+            CursorY = MathTool::Floor( CursorY );
+
+            for( Whole Index = 0 ; Index < Text.size() ; Index++ )
+            {
+                ThisChar = Text[Index];
+
+                if( ThisChar == ' ' )
+                {
+                    LastChar = ThisChar;
+                    CursorX += GlyphSet->SpaceLength * CharScaling;
+                    continue;
+                }
+
+                if( ThisChar < GlyphSet->RangeBegin || ThisChar > GlyphSet->RangeEnd )
+                {
+                    LastChar = 0;
+                    continue;
+                }
+
+                CurrGlyph = GlyphSet->GetGlyph(ThisChar);
+                if(CurrGlyph == 0)
+                    continue;
+                Kerning = CurrGlyph->GetKerning(LastChar);
+                if(Kerning == 0)
+                    Kerning = GlyphSet->LetterSpacing;
+
+                Left = CursorX - TexelOffsetX;
+                Top = CursorY - TexelOffsetY + CurrGlyph->VerticalOffset;
+                Right = Left + (CurrGlyph->UVWidth * CharScaling) + TexelOffsetX;
+                Bottom = Top + (CurrGlyph->UVHeight * CharScaling) + TexelOffsetY;
+
+                if(ClipLeft)
+                {
+                    if (Left < ClipLeftPos)
+                    {
+                        if(ClippedLeftIndex == String::npos)
+                            ClippedLeftIndex = Index;
+                        CursorX += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                        LastChar = ThisChar;
+                        continue;
+                    }
+                }
+
+                if(ClipRight)
+                {
+                    if(Right > ClipRightPos)
+                    {
+                        if(ClippedRightIndex == String::npos)
+                            ClippedRightIndex = Index;
+                        CursorX += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                        LastChar = ThisChar;
+                        continue;
+                    }
+                }
+
+                VertexData Temp;
+
+                // Triangle A
+                PushVertex(RenderVertices, Temp, Left, Bottom, CurrGlyph->AtlasCoords[UI::QC_BottomLeft], TextColour,GlyphAtlas);  // Left/Bottom  3
+                PushVertex(RenderVertices, Temp, Right, Top, CurrGlyph->AtlasCoords[UI::QC_TopRight], TextColour,GlyphAtlas);    // Right/Top    1
+                PushVertex(RenderVertices, Temp, Left, Top, CurrGlyph->AtlasCoords[UI::QC_TopLeft], TextColour,GlyphAtlas);     // Left/Top     0
+
+                // Triangle B
+                PushVertex(RenderVertices, Temp, Left, Bottom, CurrGlyph->AtlasCoords[UI::QC_BottomLeft], TextColour,GlyphAtlas);  // Left/Bottom  3
+                PushVertex(RenderVertices, Temp, Right, Bottom, CurrGlyph->AtlasCoords[UI::QC_BottomRight], TextColour,GlyphAtlas); // Right/Bottom 2
+                PushVertex(RenderVertices, Temp, Right, Top, CurrGlyph->AtlasCoords[UI::QC_TopRight], TextColour,GlyphAtlas);    // Right/Top    1
+
+                CursorX += (CurrGlyph->GlyphAdvance + Kerning) * CharScaling;
+                LastChar = ThisChar;
+            }
+            Dirty = false;
         }
     }
 }

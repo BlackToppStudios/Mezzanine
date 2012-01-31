@@ -8,6 +8,7 @@ ItemShopCell::ItemShopCell(const String& name, const UI::RenderableRect& Rect, c
 {
     Real LineHeight = Rect.Relative ? Rect.Size.Y * 0.25 : (Rect.Size.Y / Parent->GetParent()->GetViewportDimensions().Y) * 0.25;
     ItemCaption = new UI::Caption(name,Rect,LineHeight,ItemName,parent);
+    SubRenderables[0] = RenderablePair(ItemCaption,NULL);
 }
 
 ItemShopCell::~ItemShopCell()

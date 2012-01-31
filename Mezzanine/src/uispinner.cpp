@@ -160,6 +160,9 @@ namespace Mezzanine
             Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y,Size.Y),false),Parent);
             Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y,Size.Y),false),Parent);
             ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText(),Parent);
+            SubRenderables[0] = RenderablePair(Increment,NULL);
+            SubRenderables[1] = RenderablePair(Decrement,NULL);
+            SubRenderables[2] = RenderablePair(ValueDisplay,NULL);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -175,6 +178,9 @@ namespace Mezzanine
             Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.X,Size.X),false),Parent);
             Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.X,Size.X),false),Parent);
             ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText(),Parent);
+            SubRenderables[0] = RenderablePair(Increment,NULL);
+            SubRenderables[1] = RenderablePair(Decrement,NULL);
+            SubRenderables[2] = RenderablePair(ValueDisplay,NULL);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -190,6 +196,9 @@ namespace Mezzanine
             Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false),Parent);
             Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false),Parent);
             ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText(),Parent);
+            SubRenderables[0] = RenderablePair(Increment,NULL);
+            SubRenderables[1] = RenderablePair(Decrement,NULL);
+            SubRenderables[2] = RenderablePair(ValueDisplay,NULL);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }

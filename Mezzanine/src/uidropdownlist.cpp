@@ -137,6 +137,10 @@ namespace Mezzanine
             ListToggle = new Button(Name+"Toggle",ListToggleRect,Parent);
             SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollStyle,Parent);
 
+            SubRenderables[0] = RenderablePair(Selection,NULL);
+            SubRenderables[1] = RenderablePair(ListToggle,NULL);
+            SubRenderables[2] = RenderablePair(NULL,SelectionList);
+
             SelectionList->SetTemplateGlyphIndex(Glyph);
             SelectionList->SetTemplateRenderPriority(UI::RP_High);
             SelectionList->Hide();

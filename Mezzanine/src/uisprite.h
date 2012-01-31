@@ -37,55 +37,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ui_h
-#define _ui_h
+#ifndef _uisprite_h
+#define _uisprite_h
+
+#include "vector2.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::UI
-    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
-    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and layout for it's config files(e.g. .mta files).
     namespace UI
     {
-
-    }
-}
-
-#include "uienumerations.h"
-
-#include "uibasicrenderable.h"
-#include "uibutton.h"
-#include "uicaption.h"
-#include "uicell.h"
-#include "uicellgrid.h"
-#include "uicheckbox.h"
-#include "uidropdownlist.h"
-#include "uiglyph.h"
-#include "uikerning.h"
-#include "uilayer.h"
-#include "uilinelist.h"
-#include "uilistbox.h"
-#include "uimarkuptext.h"
-#include "uimenu.h"
-#include "uimenuwindow.h"
-#include "uipagedcellgrid.h"
-#include "uiradiobutton.h"
-#include "uirectangle.h"
-#include "uirenderablecontainerwidget.h"
-#include "uirenderablerect.h"
-#include "uiresizinginfo.h"
-#include "uiscreen.h"
-#include "uiscrollbar.h"
-#include "uiscrolledcellgrid.h"
-#include "uispinner.h"
-#include "uisprite.h"
-#include "uitabset.h"
-#include "uitextbutton.h"
-#include "uitextureatlas.h"
-#include "uivertex.h"
-#include "uiviewportupdatetool.h"
-#include "uiwidget.h"
-#include "uiwindow.h"
+        /// @struct Sprite
+        /// @headerfile uisprite.h
+        /// @brief Basic class used to describe a portion of a texture to be applied to a Quad.
+        /// @details
+        struct MEZZ_LIB Sprite
+        {
+            /// @brief Top Coordinate on the Texture.
+            Real UVTop;
+            /// @brief Left Coordinate on the Texture.
+            Real UVLeft;
+            /// @brief Right Coordinate on the Texture.
+            Real UVRight;
+            /// @brief Bottom Coordinate on the Texture.
+            Real UVBottom;
+            /// @brief Overall size of the Quad to be drawn.
+            Vector2 SpriteSize;
+            /// @brief The 4 corner coordinates on the Texture.
+            Vector2 AtlasCoords[4];
+            /// @brief The Atlas the Texture belongs to.
+            String Atlas;
+        };//Sprite
+    }//UI
+}//Mezzanine
 
 #endif

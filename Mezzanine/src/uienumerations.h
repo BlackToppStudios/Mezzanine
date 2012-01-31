@@ -53,8 +53,39 @@ namespace Mezzanine
         /// is pressed or lifted.
         enum ActivationCondition
         {
-            AC_OnPress,
-            AC_OnLift
+            AC_OnPress = 0,
+            AC_OnLift  = 1
+        };
+        /// @enum Border
+        /// @brief Used by various basic renderables for border effects.
+        /// @details Internally border information is stored in small arrays, and this facilitates the proper index being called every time.
+        enum Border
+        {
+            Border_North = 0,
+            Border_South = 1,
+            Border_East  = 2,
+            Border_West  = 3
+        };
+        /// @enum Gradient
+        /// @brief Used by various basic renderables for applying a gradient effect to a colour or texture on a quad.
+        /// @details Details regarding the colour or texture depends on the individual settings of the renderable the gradient is being applied to.
+        /// Gradients simply allow one colour on one portion of a quad to fade into another.
+        enum Gradient
+        {
+            Gradient_NorthSouth = 0,
+            Gradient_WestEast   = 1,
+            Gradient_Diagonal_1 = 2,
+            Gradient_Diagonal_2 = 3
+        };
+        /// @enum QuadCorner
+        /// @brief Used by Sprites and Glyphs for tracking their placement on a TextureAtlas.
+        /// @details This helps to ensure the proper indexs are accessed at all times when getting UV information.
+        enum QuadCorner
+        {
+            QC_TopLeft     = 0,
+            QC_TopRight    = 1,
+            QC_BottomRight = 2,
+            QC_BottomLeft  = 3
         };
         /// @enum RenderPriority
         /// @brief Used by UI elements created by layers to determine z-ordering within a layer.

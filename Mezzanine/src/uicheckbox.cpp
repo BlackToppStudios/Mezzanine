@@ -60,13 +60,37 @@ namespace Mezzanine
               Checked(false),
               CheckLock(true)
         {
+            Type = Widget::W_CheckBox;
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            std::pair<Whole,Real> Result;
-            if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),Parent->GetParent()->GetPrimaryAtlas());
-            else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,Parent->GetParent()->GetPrimaryAtlas());
-            GlyphIndex = Result.first;
+            RenderableRect BoxRect, LabelRect;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
 
-            ConstructCheckBox(Rect,LabelText);
+                BoxRect.Position = Rect.Position;
+                BoxRect.Size.X = (Rect.Size.Y * WinDim.Y) / WinDim.X;
+                BoxRect.Size.Y = Rect.Size.Y;
+                BoxRect.Relative = Rect.Relative;
+            }else{
+                RelPosition = Rect.Position / WinDim;
+                RelSize = Rect.Size / WinDim;
+
+                BoxRect.Position = Rect.Position;
+                BoxRect.Size.X = Rect.Size.Y;
+                BoxRect.Size.Y = Rect.Size.Y;
+                BoxRect.Relative = Rect.Relative;
+            }
+            LabelRect.Position.X = Rect.Position.X + BoxRect.Size.X;
+            LabelRect.Position.Y = Rect.Position.Y;
+            LabelRect.Size.X = Rect.Size.X - BoxRect.Size.X;
+            LabelRect.Size.Y = Rect.Size.Y;
+            LabelRect.Relative = Rect.Relative;
+
+            Box = new Button(Name+"CB",BoxRect,Parent);
+            Label = new Caption(Name+"CM",LabelRect,LineHeight,LabelText,Parent);
+            SubRenderables[0] = RenderablePair(Box,NULL);
+            SubRenderables[1] = RenderablePair(Label,NULL);
         }
 
         CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Layer* PLayer)
@@ -74,18 +98,6 @@ namespace Mezzanine
               GlyphIndex(Glyph),
               Checked(false),
               CheckLock(true)
-        {
-            ConstructCheckBox(Rect,LabelText);
-        }
-
-        CheckBox::~CheckBox()
-        {
-            delete Box;
-            if(Label)
-                delete Label;
-        }
-
-        void CheckBox::ConstructCheckBox(const RenderableRect& Rect, ConstString& LabelText)
         {
             Type = Widget::W_CheckBox;
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
@@ -115,7 +127,15 @@ namespace Mezzanine
             LabelRect.Relative = Rect.Relative;
 
             Box = new Button(Name+"CB",BoxRect,Parent);
-            Label = new Caption(Name+"CM",LabelRect,GlyphIndex,LabelText,Parent);
+            Label = new Caption(Name+"CM",LabelRect,Glyph,LabelText,Parent);
+            SubRenderables[0] = RenderablePair(Box,NULL);
+            SubRenderables[1] = RenderablePair(Label,NULL);
+        }
+
+        CheckBox::~CheckBox()
+        {
+            delete Box;
+            delete Label;
         }
 
         void CheckBox::SetSpriteSet(std::pair<std::string,std::string>& SpriteSet)

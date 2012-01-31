@@ -43,6 +43,7 @@
 #include "serialization.h"
 #include "stringtool.h"
 #include "vector2.h"
+#include "mathtool.h"
 
 //#include <memory>
 
@@ -177,6 +178,28 @@ namespace Mezzanine
         Temp.X/=Vec2.X;
         Temp.Y/=Vec2.Y;
         return Temp;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Fancy Math
+
+    Vector2 Vector2::Perpendicular() const
+    {
+        return Vector2(-Y,X);
+    }
+
+    Vector2& Vector2::Normalize()
+    {
+        Real Length = MathTool::Sqrt( X * X + Y * Y);
+
+        if ( Length > 1e-08 )
+        {
+            Real InvLength = 1.0 / Length;
+            X *= InvLength;
+            Y *= InvLength;
+        }
+
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

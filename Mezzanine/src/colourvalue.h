@@ -119,32 +119,430 @@ namespace Mezzanine
             /// @brief Creates a ColourValue representing no colour.
             /// @return Returns the created ColourValue.
             static ColourValue Transparent();
-            /// @brief Creates a ColourValue representing the colour White.
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // X11 Colour Prefabs
+
+            /// @brief Creates a ColourValue representing the colour AliceBlue.
             /// @return Returns the created ColourValue.
-            static ColourValue White();
+            static ColourValue AliceBlue();
+            /// @brief Creates a ColourValue representing the colour AntiqueWhite.
+            /// @return Returns the created ColourValue.
+            static ColourValue AntiqueWhite();
+            /// @brief Creates a ColourValue representing the colour Aqua.
+            /// @return Returns the created ColourValue.
+            static ColourValue Aqua();
+            /// @brief Creates a ColourValue representing the colour Aquamarine.
+            /// @return Returns the created ColourValue.
+            static ColourValue Aquamarine();
+            /// @brief Creates a ColourValue representing the colour Azure.
+            /// @return Returns the created ColourValue.
+            static ColourValue Azure();
+            /// @brief Creates a ColourValue representing the colour Beige.
+            /// @return Returns the created ColourValue.
+            static ColourValue Beige();
+            /// @brief Creates a ColourValue representing the colour Bisque.
+            /// @return Returns the created ColourValue.
+            static ColourValue Bisque();
             /// @brief Creates a ColourValue representing the colour Black.
             /// @return Returns the created ColourValue.
             static ColourValue Black();
-
-            /// @brief Creates a ColourValue representing the colour Red.
+            /// @brief Creates a ColourValue representing the colour Blanchedalmond.
             /// @return Returns the created ColourValue.
-            static ColourValue Red();
-            /// @brief Creates a ColourValue representing the colour Green.
-            /// @return Returns the created ColourValue.
-            static ColourValue Green();
+            static ColourValue Blanchedalmond();
             /// @brief Creates a ColourValue representing the colour Blue.
             /// @return Returns the created ColourValue.
             static ColourValue Blue();
-
-            /// @brief Creates a ColourValue representing the colour Yellow.
+            /// @brief Creates a ColourValue representing the colour BlueViolet.
             /// @return Returns the created ColourValue.
-            static ColourValue Yellow();
+            static ColourValue BlueViolet();
+            /// @brief Creates a ColourValue representing the colour Brown.
+            /// @return Returns the created ColourValue.
+            static ColourValue Brown();
+            /// @brief Creates a ColourValue representing the colour BurlyWood.
+            /// @return Returns the created ColourValue.
+            static ColourValue BurlyWood();
+            /// @brief Creates a ColourValue representing the colour CadetBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue CadetBlue();
+            /// @brief Creates a ColourValue representing the colour Chartreuse.
+            /// @return Returns the created ColourValue.
+            static ColourValue Chartreuse();
+            /// @brief Creates a ColourValue representing the colour Chocolate.
+            /// @return Returns the created ColourValue.
+            static ColourValue Chocolate();
+            /// @brief Creates a ColourValue representing the colour Coral.
+            /// @return Returns the created ColourValue.
+            static ColourValue Coral();
+            /// @brief Creates a ColourValue representing the colour CornFlowerBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue CornFlowerBlue();
+            /// @brief Creates a ColourValue representing the colour CornSilk.
+            /// @return Returns the created ColourValue.
+            static ColourValue CornSilk();
+            /// @brief Creates a ColourValue representing the colour Crimson.
+            /// @return Returns the created ColourValue.
+            static ColourValue Crimson();
             /// @brief Creates a ColourValue representing the colour Cyan.
             /// @return Returns the created ColourValue.
             static ColourValue Cyan();
+            /// @brief Creates a ColourValue representing the colour DarkBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkBlue();
+            /// @brief Creates a ColourValue representing the colour DarkCyan.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkCyan();
+            /// @brief Creates a ColourValue representing the colour DarkGoldenRod.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkGoldenRod();
+            /// @brief Creates a ColourValue representing the colour DarkGray.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkGray();
+            /// @brief Creates a ColourValue representing the colour DarkGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkGreen();
+            /// @brief Creates a ColourValue representing the colour DarkKhaki.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkKhaki();
+            /// @brief Creates a ColourValue representing the colour DarkMagenta.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkMagenta();
+            /// @brief Creates a ColourValue representing the colour DarkOliveGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkOliveGreen();
+            /// @brief Creates a ColourValue representing the colour DarkOrange.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkOrange();
+            /// @brief Creates a ColourValue representing the colour DarkOrchid.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkOrchid();
+            /// @brief Creates a ColourValue representing the colour DarkRed.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkRed();
+            /// @brief Creates a ColourValue representing the colour DarkSalmon.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkSalmon();
+            /// @brief Creates a ColourValue representing the colour DarkSeaGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkSeaGreen();
+            /// @brief Creates a ColourValue representing the colour DarkSlateBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkSlateBlue();
+            /// @brief Creates a ColourValue representing the colour DarkSlateGray.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkSlateGray();
+            /// @brief Creates a ColourValue representing the colour DarkTurquoise.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkTurquoise();
+            /// @brief Creates a ColourValue representing the colour DarkViolet.
+            /// @return Returns the created ColourValue.
+            static ColourValue DarkViolet();
+            /// @brief Creates a ColourValue representing the colour DeepPink.
+            /// @return Returns the created ColourValue.
+            static ColourValue DeepPink();
+            /// @brief Creates a ColourValue representing the colour DeepSkyBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue DeepSkyBlue();
+            /// @brief Creates a ColourValue representing the colour DimGray.
+            /// @return Returns the created ColourValue.
+            static ColourValue DimGray();
+            /// @brief Creates a ColourValue representing the colour DodgerBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue DodgerBlue();
+            /// @brief Creates a ColourValue representing the colour FireBrick.
+            /// @return Returns the created ColourValue.
+            static ColourValue FireBrick();
+            /// @brief Creates a ColourValue representing the colour FloralWhite.
+            /// @return Returns the created ColourValue.
+            static ColourValue FloralWhite();
+            /// @brief Creates a ColourValue representing the colour ForestGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue ForestGreen();
+            /// @brief Creates a ColourValue representing the colour Fuchsia.
+            /// @return Returns the created ColourValue.
+            static ColourValue Fuchsia();
+            /// @brief Creates a ColourValue representing the colour Gainsboro.
+            /// @return Returns the created ColourValue.
+            static ColourValue Gainsboro();
+            /// @brief Creates a ColourValue representing the colour GhostWhite.
+            /// @return Returns the created ColourValue.
+            static ColourValue GhostWhite();
+            /// @brief Creates a ColourValue representing the colour Gold.
+            /// @return Returns the created ColourValue.
+            static ColourValue Gold();
+            /// @brief Creates a ColourValue representing the colour GoldenRod.
+            /// @return Returns the created ColourValue.
+            static ColourValue GoldenRod();
+            /// @brief Creates a ColourValue representing the colour Gray.
+            /// @return Returns the created ColourValue.
+            static ColourValue Gray();
+            /// @brief Creates a ColourValue representing the colour Green.
+            /// @return Returns the created ColourValue.
+            static ColourValue Green();
+            /// @brief Creates a ColourValue representing the colour GreenYellow.
+            /// @return Returns the created ColourValue.
+            static ColourValue GreenYellow();
+            /// @brief Creates a ColourValue representing the colour HoneyDew.
+            /// @return Returns the created ColourValue.
+            static ColourValue HoneyDew();
+            /// @brief Creates a ColourValue representing the colour HotPink.
+            /// @return Returns the created ColourValue.
+            static ColourValue HotPink();
+            /// @brief Creates a ColourValue representing the colour IndianRed.
+            /// @return Returns the created ColourValue.
+            static ColourValue IndianRed();
+            /// @brief Creates a ColourValue representing the colour Indigo.
+            /// @return Returns the created ColourValue.
+            static ColourValue Indigo();
+            /// @brief Creates a ColourValue representing the colour Ivory.
+            /// @return Returns the created ColourValue.
+            static ColourValue Ivory();
+            /// @brief Creates a ColourValue representing the colour Khaki.
+            /// @return Returns the created ColourValue.
+            static ColourValue Khaki();
+            /// @brief Creates a ColourValue representing the colour Lavender.
+            /// @return Returns the created ColourValue.
+            static ColourValue Lavender();
+            /// @brief Creates a ColourValue representing the colour LavenderBlush.
+            /// @return Returns the created ColourValue.
+            static ColourValue LavenderBlush();
+            /// @brief Creates a ColourValue representing the colour LawnGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue LawnGreen();
+            /// @brief Creates a ColourValue representing the colour LemonChiffon.
+            /// @return Returns the created ColourValue.
+            static ColourValue LemonChiffon();
+            /// @brief Creates a ColourValue representing the colour LightBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightBlue();
+            /// @brief Creates a ColourValue representing the colour LightCoral.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightCoral();
+            /// @brief Creates a ColourValue representing the colour LightCyan.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightCyan();
+            /// @brief Creates a ColourValue representing the colour LightGoldenRodYellow.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightGoldenRodYellow();
+            /// @brief Creates a ColourValue representing the colour LightGray.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightGray();
+            /// @brief Creates a ColourValue representing the colour LightGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightGreen();
+            /// @brief Creates a ColourValue representing the colour LightPink.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightPink();
+            /// @brief Creates a ColourValue representing the colour LightSalmon.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightSalmon();
+            /// @brief Creates a ColourValue representing the colour LightSeaGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightSeaGreen();
+            /// @brief Creates a ColourValue representing the colour LightSkyBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightSkyBlue();
+            /// @brief Creates a ColourValue representing the colour LightSlateGray.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightSlateGray();
+            /// @brief Creates a ColourValue representing the colour LightSteelBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightSteelBlue();
+            /// @brief Creates a ColourValue representing the colour LightYellow.
+            /// @return Returns the created ColourValue.
+            static ColourValue LightYellow();
+            /// @brief Creates a ColourValue representing the colour Lime.
+            /// @return Returns the created ColourValue.
+            static ColourValue Lime();
+            /// @brief Creates a ColourValue representing the colour LimeGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue LimeGreen();
+            /// @brief Creates a ColourValue representing the colour Linen.
+            /// @return Returns the created ColourValue.
+            static ColourValue Linen();
             /// @brief Creates a ColourValue representing the colour Magenta.
             /// @return Returns the created ColourValue.
             static ColourValue Magenta();
+            /// @brief Creates a ColourValue representing the colour Maroon.
+            /// @return Returns the created ColourValue.
+            static ColourValue Maroon();
+            /// @brief Creates a ColourValue representing the colour MediumAquamarine.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumAquamarine();
+            /// @brief Creates a ColourValue representing the colour MediumBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumBlue();
+            /// @brief Creates a ColourValue representing the colour MediumOrchid.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumOrchid();
+            /// @brief Creates a ColourValue representing the colour MediumPurple.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumPurple();
+            /// @brief Creates a ColourValue representing the colour MediumSeaGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumSeaGreen();
+            /// @brief Creates a ColourValue representing the colour MediumSlateBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumSlateBlue();
+            /// @brief Creates a ColourValue representing the colour MediumSpringGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumSpringGreen();
+            /// @brief Creates a ColourValue representing the colour MediumTurquoise.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumTurquoise();
+            /// @brief Creates a ColourValue representing the colour MediumVioletRed.
+            /// @return Returns the created ColourValue.
+            static ColourValue MediumVioletRed();
+            /// @brief Creates a ColourValue representing the colour MidnightBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue MidnightBlue();
+            /// @brief Creates a ColourValue representing the colour MintCream.
+            /// @return Returns the created ColourValue.
+            static ColourValue MintCream();
+            /// @brief Creates a ColourValue representing the colour MistyRose.
+            /// @return Returns the created ColourValue.
+            static ColourValue MistyRose();
+            /// @brief Creates a ColourValue representing the colour Moccasin.
+            /// @return Returns the created ColourValue.
+            static ColourValue Moccasin();
+            /// @brief Creates a ColourValue representing the colour NavajoWhite.
+            /// @return Returns the created ColourValue.
+            static ColourValue NavajoWhite();
+            /// @brief Creates a ColourValue representing the colour Navy.
+            /// @return Returns the created ColourValue.
+            static ColourValue Navy();
+            /// @brief Creates a ColourValue representing the colour OldLace.
+            /// @return Returns the created ColourValue.
+            static ColourValue OldLace();
+            /// @brief Creates a ColourValue representing the colour Olive.
+            /// @return Returns the created ColourValue.
+            static ColourValue Olive();
+            /// @brief Creates a ColourValue representing the colour OliveDrab.
+            /// @return Returns the created ColourValue.
+            static ColourValue OliveDrab();
+            /// @brief Creates a ColourValue representing the colour Orange.
+            /// @return Returns the created ColourValue.
+            static ColourValue Orange();
+            /// @brief Creates a ColourValue representing the colour OrangeRed.
+            /// @return Returns the created ColourValue.
+            static ColourValue OrangeRed();
+            /// @brief Creates a ColourValue representing the colour Orchid.
+            /// @return Returns the created ColourValue.
+            static ColourValue Orchid();
+            /// @brief Creates a ColourValue representing the colour PaleGoldenRod.
+            /// @return Returns the created ColourValue.
+            static ColourValue PaleGoldenRod();
+            /// @brief Creates a ColourValue representing the colour PaleGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue PaleGreen();
+            /// @brief Creates a ColourValue representing the colour PaleTurquoise.
+            /// @return Returns the created ColourValue.
+            static ColourValue PaleTurquoise();
+            /// @brief Creates a ColourValue representing the colour PaleVioletRed.
+            /// @return Returns the created ColourValue.
+            static ColourValue PaleVioletRed();
+            /// @brief Creates a ColourValue representing the colour PapayaWhip.
+            /// @return Returns the created ColourValue.
+            static ColourValue PapayaWhip();
+            /// @brief Creates a ColourValue representing the colour PeachPuff.
+            /// @return Returns the created ColourValue.
+            static ColourValue PeachPuff();
+            /// @brief Creates a ColourValue representing the colour Peru.
+            /// @return Returns the created ColourValue.
+            static ColourValue Peru();
+            /// @brief Creates a ColourValue representing the colour Pink.
+            /// @return Returns the created ColourValue.
+            static ColourValue Pink();
+            /// @brief Creates a ColourValue representing the colour Plum.
+            /// @return Returns the created ColourValue.
+            static ColourValue Plum();
+            /// @brief Creates a ColourValue representing the colour PowderBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue PowderBlue();
+            /// @brief Creates a ColourValue representing the colour Purple.
+            /// @return Returns the created ColourValue.
+            static ColourValue Purple();
+            /// @brief Creates a ColourValue representing the colour Red.
+            /// @return Returns the created ColourValue.
+            static ColourValue Red();
+            /// @brief Creates a ColourValue representing the colour RosyBrown.
+            /// @return Returns the created ColourValue.
+            static ColourValue RosyBrown();
+            /// @brief Creates a ColourValue representing the colour RoyalBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue RoyalBlue();
+            /// @brief Creates a ColourValue representing the colour SaddleBrown.
+            /// @return Returns the created ColourValue.
+            static ColourValue SaddleBrown();
+            /// @brief Creates a ColourValue representing the colour Salmon.
+            /// @return Returns the created ColourValue.
+            static ColourValue Salmon();
+            /// @brief Creates a ColourValue representing the colour SandyBrown.
+            /// @return Returns the created ColourValue.
+            static ColourValue SandyBrown();
+            /// @brief Creates a ColourValue representing the colour SeaGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue SeaGreen();
+            /// @brief Creates a ColourValue representing the colour SeaShell.
+            /// @return Returns the created ColourValue.
+            static ColourValue SeaShell();
+            /// @brief Creates a ColourValue representing the colour Sienna.
+            /// @return Returns the created ColourValue.
+            static ColourValue Sienna();
+            /// @brief Creates a ColourValue representing the colour Silver.
+            /// @return Returns the created ColourValue.
+            static ColourValue Silver();
+            /// @brief Creates a ColourValue representing the colour SkyBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue SkyBlue();
+            /// @brief Creates a ColourValue representing the colour SlateBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue SlateBlue();
+            /// @brief Creates a ColourValue representing the colour SlateGray.
+            /// @return Returns the created ColourValue.
+            static ColourValue SlateGray();
+            /// @brief Creates a ColourValue representing the colour Snow.
+            /// @return Returns the created ColourValue.
+            static ColourValue Snow();
+            /// @brief Creates a ColourValue representing the colour SpringGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue SpringGreen();
+            /// @brief Creates a ColourValue representing the colour SteelBlue.
+            /// @return Returns the created ColourValue.
+            static ColourValue SteelBlue();
+            /// @brief Creates a ColourValue representing the colour Tan.
+            /// @return Returns the created ColourValue.
+            static ColourValue Tan();
+            /// @brief Creates a ColourValue representing the colour Teal.
+            /// @return Returns the created ColourValue.
+            static ColourValue Teal();
+            /// @brief Creates a ColourValue representing the colour Thistle.
+            /// @return Returns the created ColourValue.
+            static ColourValue Thistle();
+            /// @brief Creates a ColourValue representing the colour Tomato.
+            /// @return Returns the created ColourValue.
+            static ColourValue Tomato();
+            /// @brief Creates a ColourValue representing the colour Turquoise.
+            /// @return Returns the created ColourValue.
+            static ColourValue Turquoise();
+            /// @brief Creates a ColourValue representing the colour Violet.
+            /// @return Returns the created ColourValue.
+            static ColourValue Violet();
+            /// @brief Creates a ColourValue representing the colour Wheat.
+            /// @return Returns the created ColourValue.
+            static ColourValue Wheat();
+            /// @brief Creates a ColourValue representing the colour White.
+            /// @return Returns the created ColourValue.
+            static ColourValue White();
+            /// @brief Creates a ColourValue representing the colour WhiteSmoke.
+            /// @return Returns the created ColourValue.
+            static ColourValue WhiteSmoke();
+            /// @brief Creates a ColourValue representing the colour Yellow.
+            /// @return Returns the created ColourValue.
+            static ColourValue Yellow();
+            /// @brief Creates a ColourValue representing the colour YellowGreen.
+            /// @return Returns the created ColourValue.
+            static ColourValue YellowGreen();
 
 #ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////

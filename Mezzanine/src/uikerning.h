@@ -37,55 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ui_h
-#define _ui_h
+#ifndef _uikerning_h
+#define _uikerning_h
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::UI
-    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
-    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and layout for it's config files(e.g. .mta files).
     namespace UI
     {
-
-    }
-}
-
-#include "uienumerations.h"
-
-#include "uibasicrenderable.h"
-#include "uibutton.h"
-#include "uicaption.h"
-#include "uicell.h"
-#include "uicellgrid.h"
-#include "uicheckbox.h"
-#include "uidropdownlist.h"
-#include "uiglyph.h"
-#include "uikerning.h"
-#include "uilayer.h"
-#include "uilinelist.h"
-#include "uilistbox.h"
-#include "uimarkuptext.h"
-#include "uimenu.h"
-#include "uimenuwindow.h"
-#include "uipagedcellgrid.h"
-#include "uiradiobutton.h"
-#include "uirectangle.h"
-#include "uirenderablecontainerwidget.h"
-#include "uirenderablerect.h"
-#include "uiresizinginfo.h"
-#include "uiscreen.h"
-#include "uiscrollbar.h"
-#include "uiscrolledcellgrid.h"
-#include "uispinner.h"
-#include "uisprite.h"
-#include "uitabset.h"
-#include "uitextbutton.h"
-#include "uitextureatlas.h"
-#include "uivertex.h"
-#include "uiviewportupdatetool.h"
-#include "uiwidget.h"
-#include "uiwindow.h"
+        /// @struct KerningInfo
+        /// @headerfile uikerning.h
+        /// @brief Basic class used to describe Kerning for a given Glyph.
+        /// @details Kerning is a special spacing amount for abnormally large or small glyphs.  For example, you wouldn't increment
+        /// the spacing for the glyph "W" the same amount as you would for "I" in most cases.
+        struct MEZZ_LIB KerningInfo
+        {
+            /// @brief Class Constructor.
+            /// @param C The Character this Kerning applies to.
+            /// @param K The amount of Kerning to apply to the Glyph.
+            KerningInfo(const UInt32& C, const Real& K) : Character(C), Kerning(K) {};
+            /// @brief The Character this Kerning applies to.
+            UInt32 Character;
+            /// @brief The amount of Kerning to apply to the Glyph.
+            Real Kerning;
+        };//Kerning
+    }//UI
+}//Mezzanine
 
 #endif

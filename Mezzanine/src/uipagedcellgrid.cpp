@@ -63,6 +63,8 @@ namespace Mezzanine
             PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,Parent);
             PageSpinner->SetSpinnerValue((int)CurrentPage);
             PageSpinner->SetValueLimits(1,1);
+            CellsAdded = 1;
+            SubRenderables[1] = RenderablePair(NULL,PageSpinner);
         }
 
         PagedCellGrid::~PagedCellGrid()

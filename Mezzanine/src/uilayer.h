@@ -40,17 +40,9 @@
 #ifndef _uilayer_h
 #define _uilayer_h
 
-#include "crossplatformexport.h"
-#include "datatypes.h"
+#include "colourvalue.h"
 #include "uirenderablerect.h"
 #include "uienumerations.h"
-
-namespace Gorilla
-{
-    class Screen;
-    class Layer;
-    class Rectangle;
-}
 
 namespace Mezzanine
 {
@@ -75,18 +67,39 @@ namespace Mezzanine
         class DropDownList;
         class TabSet;
         class Screen;
+        class Sprite;
+        class GlyphData;
+        class TextureAtlas;
+        class VertexData;
+        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
+        /// @class Layer
         /// @headerfile uilayer.h
         /// @brief This class is the basic container class for UI elements.
         /// @details A layer is a container for widgets and other UI elements that are visable.
         ///////////////////////////////////////
         class MEZZ_LIB Layer
         {
+            public:
+                typedef std::vector<Button*>::iterator           ButtonIterator;
+                typedef std::vector<Button*>::const_iterator     ConstButtonIterator;
+                typedef std::vector<Rectangle*>::iterator        RectangleIterator;
+                typedef std::vector<Rectangle*>::const_iterator  ConstRectangleIterator;
+                typedef std::vector<Caption*>::iterator          CaptionIterator;
+                typedef std::vector<Caption*>::const_iterator    ConstCaptionIterator;
+                typedef std::vector<MarkupText*>::iterator       MarkupTextIterator;
+                typedef std::vector<MarkupText*>::const_iterator ConstMarkupTextIterator;
+                typedef std::vector<LineList*>::iterator         LineListIterator;
+                typedef std::vector<LineList*>::const_iterator   ConstLineListIterator;
+                typedef std::vector<Widget*>::iterator           WidgetIterator;
+                typedef std::vector<Widget*>::const_iterator     ConstWidgetIterator;
             protected:
-                Gorilla::Layer* GorillaLayer;
                 Screen* Parent;
                 UIManager* Manager;
                 String Name;
+                Whole Index;
+                Real AlphaModifier;
+                bool Visible;
                 std::vector<Button*> Buttons;
                 std::vector<Rectangle*> Rectangles;
                 std::vector<Caption*> Captions;
@@ -96,9 +109,9 @@ namespace Mezzanine
             public:
                 /// @brief Internal constructor.
                 /// @param name The name of this layer.
-                /// @param GLayer The Gorilla Layer this Layer is based on.
+                /// @param Index The Zorder this layer is to be placed on.
                 /// @param PScreen The screen that created this layer.
-                Layer(const String& name, Gorilla::Layer* GLayer, Screen* PScreen);
+                Layer(const String& name, const Whole& Index, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~Layer();
                 ///////////////////////////////////////////////////////////////////////////////
@@ -106,12 +119,21 @@ namespace Mezzanine
                 ///////////////////////////////////////
                 /// @brief Gets the name of this layer.
                 /// @return Returns a string containing the name of this layer.
-                virtual String& GetName();
+                virtual const String& GetName() const;
                 /// @brief Gets the parent screen of this layer.
                 /// @return Returns a pointer to the screen that created this layer.
-                virtual Screen* GetParent();
+                virtual Screen* GetParent() const;
+                /// @brief Gets the index this layer belongs to.
+                /// @return Returns a Whole representing the ZOrder this layer is on.
+                virtual const Whole& GetIndex() const;
+                /// @brief Sets the alpha value to be applied to all renderables in this layer.
+                /// @param Modifier The modifier to be applied to the Alpha channel.
+                virtual void SetAlphaModifier(const Real& Modifier);
+                /// @brief Gets the currently set Alpha Modifier for this layer.
+                /// @return Returns the set modifier for the Alpha channel.
+                virtual Real GetAlphaModifier() const;
                 /// @brief Sets the layers' visability.
-                /// @param Visable A bool representing the visability of the layer.
+                /// @param Visible A bool representing the visability of the layer.
                 virtual void SetVisible(bool Visible);
                 /// @brief Gets the visibility setting of this layer.
                 /// @return Returns a bool that is the current visibility setting of this layer.
@@ -127,6 +149,42 @@ namespace Mezzanine
                 /// @brief Forces the layer to hide.
                 virtual void Hide();
                 ///////////////////////////////////////////////////////////////////////////////
+                // Atlas Info Functions
+                ///////////////////////////////////////
+                /// @brief Gets the solid UV position from an Atlas.
+                /// @param Atlas The name of the Atlas to get the Solid UV from.
+                /// @return Returns a Vector2 with the location of Solid UV on the Atlas.
+                Vector2 GetSolidUV(const String& Atlas) const;
+                /// @brief Gets a sprite from an Atlas.
+                /// @param SpriteName The name of the sprite to retrieve.
+                /// @param Atlas The name of the Atlas to get the sprite from.
+                /// @return Returns a pointer to the requested Sprite.
+                Sprite* GetSprite(const String& SpriteName,const String& Atlas) const;
+                /// @brief Gets the specified GlyphData from an Atlas.
+                /// @param ID The identification number associated with the loaded GlyphData.
+                /// @param Atlas The name of the atlas to check the specified GlyphData ID for.
+                /// @return Returns a pointer to the requested GlyphData.
+                GlyphData* GetGlyphData(const Whole& ID,const String& Atlas) const;
+                /// @brief Gets the texture size of the specified Atlas.
+                /// @param Atlas The name of the atlas to get the texture size of.
+                /// @return Returns a Vector2 containing the size of the requested Atlas.
+                Vector2 GetTextureSize(const String& Atlas) const;
+                /// @brief Gets an atlas that has been loaded.
+                /// @param Atlas The name of the Atlas to retrieve, usually stored as a filename.
+                /// @return Returns a pointer to the requested Texture Atlas.
+                TextureAtlas* GetAtlas(const String& Atlas) const;
+                /// @brief Gets the texel offset on the X axis.
+                /// @return Returns the number of pixels to offset coordinates on the X axis.
+                Real GetTexelX() const;
+                /// @brief Gets the texel offset on the Y axis.
+                /// @return Returns the number of pixels to offset coordinates on the Y axis.
+                Real GetTexelY() const;
+                /// @brief Gets the ColourValue set at the specified index.
+                /// @param Index The index of the Markup colour to get.
+                /// @param Atlas The Atlas to check the markup colours of.
+                /// @return Returns a ColourValue with the colour at the provided index, or White if the Index is invalid(or if that is the colour set, which would be silly).
+                ColourValue GetMarkupColour(const Whole& Index,const String& Atlas) const;
+                ///////////////////////////////////////////////////////////////////////////////
                 // Creating and working with All Basic UI Elements
                 ///////////////////////////////////////
                 /// @brief Creates a button within this layer.
@@ -138,7 +196,7 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created button.
                 /// @param Name The name of the button.
                 /// @param Rect The Rect representing the position and size of the button.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 virtual TextButton* CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text);
                 /// @brief Creates a text button within this layer.
@@ -177,7 +235,7 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created caption.
                 /// @param Name The name of this caption.
                 /// @param Rect The Rect representing the position and size of the caption.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 virtual Caption* CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
                 /// @brief Creates a caption within this layer.
@@ -204,7 +262,7 @@ namespace Mezzanine
                 /// @return Returns a pointer to the created markup text.
                 /// @param Name The name of this markup text.
                 /// @param Rect The Rect representing the position and size of the markup text.
-                /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
+                /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 virtual MarkupText* CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
                 /// @brief Creates a markup text within this layer.
@@ -228,7 +286,9 @@ namespace Mezzanine
                 /// @param ToBeDestroyed Pointer to the markup text you want destroyed.
                 virtual void DestroyMarkupText(MarkupText* ToBeDestroyed);
                 /// @brief Creates a line list within this layer.
-                virtual LineList* CreateLineList();
+                /// @param Name The name to be given to the created LineList.
+                /// @return Returns a pointer to the created LineList.
+                virtual LineList* CreateLineList(const String& Name);
                 /// @brief Gets an already created line list by index.
                 /// @return Returns a pointer to the line list at the specified index.
                 virtual LineList* GetLineList(const Whole& Index);
@@ -344,8 +404,13 @@ namespace Mezzanine
                 // Internal Functions
                 ///////////////////////////////////////
                 /// @internal
-                /// @brief Gets the internal gorilla layer pointer.
-                virtual Gorilla::Layer* GetGorillaLayer();
+                /// @brief Marks this Layer as dirty, making it redraw at the next frame update.
+                void _MarkDirty();
+                /// @internal
+                /// @brief Retrieves the list of verticies for all objects in this layer.
+                /// @param Verticies The vector of Vertex's to update.
+                /// @param Force Whether or not to force this object to update regardless of if it needs it.
+                void _Render(ScreenVertexData& Vertices, bool Force = false);
         };//layer
     }//ui
 }//Mezzanine
