@@ -18,14 +18,13 @@ class CatchApp
             Catch_Loading,
             Catch_MenuScreen,
             Catch_GameScreen,
-            Catch_Paused
+            Catch_ScoreScreen
         };
     protected:
         static CatchApp* TheRealCatchApp;
         const Plane PlaneOfPlay;
 
         bool Paused;
-        bool LevelEnded;
 
         World* TheWorld;
         LevelLoader* Loader;

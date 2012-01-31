@@ -619,6 +619,12 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
             }
             break;
         }
+        case CatchApp::Catch_ScoreScreen:
+        {
+            PauseGame(true);
+            Scorer->CalculateFinalScore();
+            break;
+        }
     }
     CurrentState = StateToSet;
 }
@@ -627,7 +633,7 @@ bool CatchApp::CheckEndOfLevel()
 {
     if(ScoreAreas.empty())
         return false;
-    if(LevelEnded)
+    if(CurrentState == CatchApp::Catch_ScoreScreen)
         return true;
     if(!EndTimer)
     {
@@ -646,9 +652,7 @@ bool CatchApp::CheckEndOfLevel()
                 EndTimer->Reset();
         }
     }
-    if(EndTimer->IsStopped()) LevelEnded = true;
-    else LevelEnded = false;
-    return LevelEnded;
+    return 0 == EndTimer->GetCurrentTime();
 }
 
 bool CatchApp::AllStartZonesEmpty()
@@ -717,9 +721,8 @@ void CatchApp::UnloadLevel()
     EndTimer = NULL;
     UIMan->GetLayer("ReportLayer")->Hide();
     UIMan->GetLayer("MenuLayer")->Hide();
-    LevelEnded = false;
+    UIMan->GetLayer("ItemShopLayer")->Hide();
     World::GetWorldPointer()->PauseWorld(false);
-    //PhysMan->PauseSimulation(false);
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -808,10 +811,9 @@ void CatchApp::PauseGame(bool Pause)
 {
     if(Paused == Pause)
         return;
-    if(LevelEnded && !Pause)
+    if(CurrentState == CatchApp::Catch_ScoreScreen && !Pause)
         return;
     World::GetWorldPointer()->PauseWorld(Pause);
-    //PhysMan->PauseSimulation(Pause);
     if(Pause) LevelTimer->Stop();
     else LevelTimer->Start();
     if(EndTimer)
@@ -1043,50 +1045,31 @@ bool CatchApp::PostRender()
     Whole TotalSeconds = LevelTimer->GetCurrentTimeInMilli() / 1000;
     Whole Minutes = TotalSeconds / 60;
     Whole Seconds;
-    if(60 > TotalSeconds)
-    {
-        Seconds = TotalSeconds;
-    }else{
-        Seconds = TotalSeconds % 60;
-    }
-    if(10 > Seconds)
-    {
-        time << Minutes << ":" << 0 << Seconds;
-    }else{
-        time << Minutes << ":" << Seconds;
-    }
+
+    if(60 > TotalSeconds) Seconds = TotalSeconds;
+    else Seconds = TotalSeconds % 60;
+
+    if(10 > Seconds) time << Minutes << ":" << 0 << Seconds;
+    else time << Minutes << ":" << Seconds;
+
     Timer->SetText(time.str());
 
     // Update the score
     UI::Caption* ScoreAmount = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_ScoreArea");
-    std::stringstream Score;
-    Score << CurrScore;
-    String ScoreOut = Score.str();
-    ScoreAmount->SetText(ScoreOut);
+    ScoreAmount->SetText(StringTool::ConvertToString(CurrScore));
 
     // Update Stat information
     UI::Caption* CurFPS = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
     UI::Caption* AvFPS = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
-    std::stringstream CFPSstream;
-    std::stringstream AFPSstream;
-    CFPSstream << GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetLastFPS();
-    AFPSstream << GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetAverageFPS();
-    String CFPS = CFPSstream.str();
-    String AFPS = AFPSstream.str();
-    CurFPS->SetText(CFPS);
-    AvFPS->SetText(AFPS);
+    CurFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetLastFPS()));
+    AvFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetAverageFPS()));
 
     //See if the level is over
-    if(AllStartZonesEmpty())
+    if(CurrentState != CatchApp::Catch_ScoreScreen)
     {
-        if(CheckEndOfLevel())
+        if(AllStartZonesEmpty() && CheckEndOfLevel())
         {
-            if(!PhysicsManager::GetSingletonPtr()->SimulationIsPaused())
-            {
-                //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
-                PauseGame(true);
-                Scorer->CalculateFinalScore();
-            }
+            ChangeState(CatchApp::Catch_ScoreScreen);
         }
     }
 

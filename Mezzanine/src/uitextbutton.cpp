@@ -54,7 +54,7 @@ namespace Mezzanine
             : Button(name,Rect,PLayer),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
-              CharScaling(0.0),
+              CharScaling(1.0),
               ClippedLeftIndex(0.0),
               ClippedRightIndex(0.0)
         {
@@ -70,7 +70,7 @@ namespace Mezzanine
             : Button(name,Rect,PLayer),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
-              CharScaling(0.0),
+              CharScaling(1.0),
               ClippedLeftIndex(0.0),
               ClippedRightIndex(0.0)
         {

@@ -72,7 +72,7 @@ void GSReturn::DoActivateItems()
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
     layer->Hide();
-    if(App->GameIsPaused()) App->PauseGame(false);
+    App->PauseGame(false);
 }
 
 //--------------------------------------------------------------
@@ -95,7 +95,7 @@ void GSISReturn::DoActivateItems()
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
     layer->Hide();
-    if(App->GameIsPaused()) App->PauseGame(false);
+    App->PauseGame(false);
 }
 
 //--------------------------------------------------------------
