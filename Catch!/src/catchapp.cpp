@@ -722,7 +722,7 @@ void CatchApp::UnloadLevel()
     UIMan->GetLayer("ReportLayer")->Hide();
     UIMan->GetLayer("MenuLayer")->Hide();
     UIMan->GetLayer("ItemShopLayer")->Hide();
-    World::GetWorldPointer()->PauseWorld(false);
+    PauseGame(false);
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -813,7 +813,7 @@ void CatchApp::PauseGame(bool Pause)
         return;
     if(CurrentState == CatchApp::Catch_ScoreScreen && !Pause)
         return;
-    World::GetWorldPointer()->PauseWorld(Pause);
+    TheWorld->PauseWorld(Pause);
     if(Pause) LevelTimer->Stop();
     else LevelTimer->Start();
     if(EndTimer)

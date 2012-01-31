@@ -22,9 +22,9 @@ void GSStore::DoActivateItems()
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
 
-    bool LayerVisible = layer->IsVisible();
-    layer->SetVisible(!LayerVisible);
-    App->PauseGame(!LayerVisible);
+    bool ToSet = !layer->IsVisible();
+    layer->SetVisible(ToSet);
+    App->PauseGame(ToSet);
 }
 
 //--------------------------------------------------------------
@@ -47,9 +47,9 @@ void GSMenu::DoActivateItems()
     UIManager* UIMan = UIManager::GetSingletonPtr();
     UI::Layer* layer = UIMan->GetLayer("MenuLayer");
 
-    bool LayerVisible = layer->IsVisible();
-    layer->SetVisible(!LayerVisible);
-    App->PauseGame(!LayerVisible);
+    bool ToSet = !layer->IsVisible();
+    layer->SetVisible(ToSet);
+    App->PauseGame(ToSet);
 }
 
 //--------------------------------------------------------------
