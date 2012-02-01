@@ -722,7 +722,6 @@ void CatchApp::UnloadLevel()
     UIMan->GetLayer("ReportLayer")->Hide();
     UIMan->GetLayer("MenuLayer")->Hide();
     UIMan->GetLayer("ItemShopLayer")->Hide();
-    PauseGame(false);
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -784,6 +783,7 @@ int CatchApp::GetCatchin()
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
+        PauseGame(false);
         GraphicsMan->RenderOneFrame();
         //Actually Load the game stuff
         Loader->LoadLevel();
@@ -1161,6 +1161,16 @@ void CatchApp::RegisterStartArea(StartArea* Start)
 void CatchApp::AddThrowable(ActorBase* Throwable)
 {
     ThrownItems.push_back(Throwable);
+}
+
+std::vector<ActorBase*>& CatchApp::GetThrowables()
+{
+    return ThrownItems;
+}
+
+std::vector<ScoreArea*>& CatchApp::GetScoreAreas()
+{
+    return ScoreAreas;
 }
 
 LevelLoader* CatchApp::GetLevelLoader()

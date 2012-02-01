@@ -75,6 +75,8 @@ class CatchApp
         void RegisterScoreArea(ScoreArea* Score);
         void RegisterStartArea(StartArea* Start);
         void AddThrowable(ActorBase* Throwable);
+        std::vector<ActorBase*>& GetThrowables();
+        std::vector<ScoreArea*>& GetScoreAreas();
         LevelLoader* GetLevelLoader();
         LevelScorer* GetLevelScorer();
         ItemShop* GetItemShop();
