@@ -80,7 +80,7 @@ namespace Mezzanine
 
         void Rectangle::ConstructRectangle(const UI::RenderableRect& Rect)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -103,7 +103,7 @@ namespace Mezzanine
             BorderColours[1] = ColourValue::Black();
             BorderColours[2] = ColourValue::Black();
             BorderColours[3] = ColourValue::Black();
-            UVs[0] = UVs[1] = UVs[2] = UVs[3] = Parent->GetSolidUV(PriAtlas);
+            UVs[0] = UVs[1] = UVs[2] = UVs[3] = ParentLayer->GetSolidUV(PriAtlas);
             RotCenter.X = 0.0;
             RotCenter.Y = 0.0;
         }
@@ -112,7 +112,7 @@ namespace Mezzanine
                                    const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight)
         {
             VertexData Temp;
-            Vector2 UV = Parent->GetSolidUV(PriAtlas);
+            Vector2 UV = ParentLayer->GetSolidUV(PriAtlas);
 
             // North
             PushTriangle(RenderVertices, Temp, TopLeft, OuterTopRight, OuterTopLeft, UV, BorderColours[UI::Border_North],PriAtlas);
@@ -209,22 +209,20 @@ namespace Mezzanine
         {
             if(PSprite == NULL)
             {
-                PriAtlas = Parent->GetParent()->GetPrimaryAtlas();
-                UVs[0] = UVs[1] = UVs[2] = UVs[3] = Parent->GetSolidUV(PriAtlas);
-                Dirty = true;
-                Parent->_MarkDirty();
+                PriAtlas = ParentLayer->GetParent()->GetPrimaryAtlas();
+                UVs[0] = UVs[1] = UVs[2] = UVs[3] = ParentLayer->GetSolidUV(PriAtlas);
+                _MarkDirty();
             }else{
                 PriAtlas = PSprite->Atlas;
-                Real TexelOffsetX = Parent->GetTexelX();
-                Real TexelOffsetY = Parent->GetTexelY();
-                TexelOffsetX /= Parent->GetTextureSize(PSprite->Atlas).X;
-                TexelOffsetY /= Parent->GetTextureSize(PSprite->Atlas).Y;
+                Real TexelOffsetX = ParentLayer->GetTexelX();
+                Real TexelOffsetY = ParentLayer->GetTexelY();
+                TexelOffsetX /= ParentLayer->GetTextureSize(PSprite->Atlas).X;
+                TexelOffsetY /= ParentLayer->GetTextureSize(PSprite->Atlas).Y;
                 UVs[0].X = UVs[3].X = PSprite->UVLeft - TexelOffsetX;
                 UVs[0].Y = UVs[1].Y = PSprite->UVTop - TexelOffsetY;
                 UVs[1].X = UVs[2].X = PSprite->UVRight + TexelOffsetX;
                 UVs[2].Y = UVs[3].Y = PSprite->UVBottom + TexelOffsetY;
-                Dirty = true;
-                Parent->_MarkDirty();
+                _MarkDirty();
             }
         }
 
@@ -251,15 +249,13 @@ namespace Mezzanine
             BackgroundColours[1] = Colour;
             BackgroundColours[2] = Colour;
             BackgroundColours[3] = Colour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Rectangle::SetBackgroundColour(const UI::QuadCorner& Corner, const ColourValue& Colour)
         {
             BackgroundColours[Corner] = Colour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Rectangle::SetBackgroundSprite(Sprite* PSprite)
@@ -269,13 +265,13 @@ namespace Mezzanine
 
         void Rectangle::SetBackgroundSprite(const String& SpriteName)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
             SetBackgroundSprite(PSprite);
         }
 
         void Rectangle::SetBackgroundSprite(const String& SpriteName, const String& Atlas)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
             SetBackgroundSprite(PSprite);
         }
 
@@ -319,8 +315,7 @@ namespace Mezzanine
                 BackgroundColours[2] = Average;
                 BackgroundColours[3] = ColourB;
             }
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         ColourValue Rectangle::GetBackgroundColour(const UI::QuadCorner& Corner) const
@@ -331,8 +326,7 @@ namespace Mezzanine
         void Rectangle::SetBorderWidth(const Real& Width)
         {
             BorderWidth = Width;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Rectangle::SetBorderColour(const ColourValue& Colour)
@@ -341,15 +335,13 @@ namespace Mezzanine
             BorderColours[1] = Colour;
             BorderColours[2] = Colour;
             BorderColours[3] = Colour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Rectangle::SetBorderColour(const UI::Border& Side, const ColourValue& Colour)
         {
             BorderColours[Side] = Colour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Rectangle::SetBorder(const Real& Width, const ColourValue& Colour)
@@ -386,11 +378,13 @@ namespace Mezzanine
         void Rectangle::SetRotationDegrees(const Real& Degrees)
         {
             RotAngle = MathTool::DegreesToRadians(Degrees);
+            _MarkDirty();
         }
 
         void Rectangle::SetRotationRadians(const Real& Radians)
         {
             RotAngle = Radians;
+            _MarkDirty();
         }
 
         Real Rectangle::GetRotationDegrees() const
@@ -407,6 +401,7 @@ namespace Mezzanine
         {
             CustomCenter = Custom;
             RotCenter = Center;
+            _MarkDirty();
         }
 
         Vector2 Rectangle::GetRotationCenter() const
@@ -416,11 +411,10 @@ namespace Mezzanine
 
         void Rectangle::SetPosition(const Vector2& Position)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RelPosition = Position;
             ActPosition = Position * WinDim;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Vector2 Rectangle::GetPosition() const
@@ -430,11 +424,10 @@ namespace Mezzanine
 
         void Rectangle::SetActualPosition(const Vector2& Position)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RelPosition = Position / WinDim;
             ActPosition = Position;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Vector2 Rectangle::GetActualPosition() const
@@ -444,11 +437,10 @@ namespace Mezzanine
 
         void Rectangle::SetSize(const Vector2& Size)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RelSize = Size;
             ActSize = Size * WinDim;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Vector2 Rectangle::GetSize() const
@@ -458,11 +450,10 @@ namespace Mezzanine
 
         void Rectangle::SetActualSize(const Vector2& Size)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RelSize = Size / WinDim;
             ActSize = Size;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Vector2 Rectangle::GetActualSize() const
@@ -472,8 +463,8 @@ namespace Mezzanine
 
         void Rectangle::UpdateDimensions()
         {
-            //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
-            //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
+            //this->SetActualPosition(RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
+            //this->SetActualSize(RelSize * ParentLayer->GetParent()->GetViewportDimensions());
             ViewportUpdateTool::UpdateRectangleRenderable(this);
         }
 
@@ -488,8 +479,8 @@ namespace Mezzanine
                 return;
             }
 
-            Real TexelOffsetX = Parent->GetTexelX();
-            Real TexelOffsetY = Parent->GetTexelY();
+            Real TexelOffsetX = ParentLayer->GetTexelX();
+            Real TexelOffsetY = ParentLayer->GetTexelY();
             Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
             TopLeft.X = ActPosition.X + TexelOffsetX;                   TopLeft.Y = ActPosition.Y + TexelOffsetY;
             TopRight.X = (ActPosition.X + ActSize.X) + TexelOffsetX;    TopRight.Y = ActPosition.Y + TexelOffsetY;

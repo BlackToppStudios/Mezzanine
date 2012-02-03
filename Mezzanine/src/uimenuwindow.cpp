@@ -90,7 +90,7 @@ namespace Mezzanine
             if(!BackButton && ParentWindow)
             {
                 //Vector2 Offset;
-                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * ParentLayer->GetParent()->GetViewportDimensions();
                 //else Offset = Rect.Position - GetActualPosition();
                 BackButton = this->CreateButton(Name+"back",Rect);
                 //OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -106,7 +106,7 @@ namespace Mezzanine
             if(!BackButton && ParentWindow)
             {
                 //Vector2 Offset;
-                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * ParentLayer->GetParent()->GetViewportDimensions();
                 //else Offset = Rect.Position - GetActualPosition();
                 BackButton = this->CreateTextButton(Name+"back",Rect,Glyph,Text);
                 //OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -122,7 +122,7 @@ namespace Mezzanine
             if(!BackButton && ParentWindow)
             {
                 //Vector2 Offset;
-                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * ParentLayer->GetParent()->GetViewportDimensions();
                 //else Offset = Rect.Position - GetActualPosition();
                 BackButton = this->CreateTextButton(Name+"back",Rect,LineHeight,Text);
                 //OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -141,7 +141,7 @@ namespace Mezzanine
         Button* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect)
         {
             //Vector2 Offset;
-            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * ParentLayer->GetParent()->GetViewportDimensions();
             //else Offset = Rect.Position - GetActualPosition();
             Button* AccBut = this->CreateButton(Name,Rect);
             //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -154,7 +154,7 @@ namespace Mezzanine
         TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
             //Vector2 Offset;
-            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * ParentLayer->GetParent()->GetViewportDimensions();
             //else Offset = Rect.Position - GetActualPosition();
             TextButton* AccBut = this->CreateTextButton(Name,Rect,Glyph,Text);
             //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -167,7 +167,7 @@ namespace Mezzanine
         TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
             //Vector2 Offset;
-            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * ParentLayer->GetParent()->GetViewportDimensions();
             //else Offset = Rect.Position - GetActualPosition();
             TextButton* AccBut = this->CreateTextButton(Name,Rect,LineHeight,Text);
             //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -213,7 +213,7 @@ namespace Mezzanine
             }
             if(NULL==AccessorPair)
                 return 0;
-            MenuWindow* MenWin = new MenuWindow(Name,Rect,MasterMenu,Parent);
+            MenuWindow* MenWin = new MenuWindow(Name,Rect,MasterMenu,ParentLayer);
             MenWin->ParentWindow = this;
             AccessorPair->second = MenWin;
             MenWin->Hide();

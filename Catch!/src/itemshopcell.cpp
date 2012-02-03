@@ -6,7 +6,7 @@
 ItemShopCell::ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Layer* parent)
     : UI::Cell(name,parent)
 {
-    Real LineHeight = Rect.Relative ? Rect.Size.Y * 0.25 : (Rect.Size.Y / Parent->GetParent()->GetViewportDimensions().Y) * 0.25;
+    Real LineHeight = Rect.Relative ? Rect.Size.Y * 0.25 : (Rect.Size.Y / ParentLayer->GetParent()->GetViewportDimensions().Y) * 0.25;
     ItemCaption = new UI::Caption(name,Rect,LineHeight,ItemName,parent);
     SubRenderables[0] = RenderablePair(ItemCaption,NULL);
 }
@@ -40,7 +40,7 @@ void ItemShopCell::SetPosition(const Vector2& Position)
 
 void ItemShopCell::SetActualPosition(const Vector2& Position)
 {
-    RelSize = Position / Parent->GetParent()->GetViewportDimensions();
+    RelSize = Position / ParentLayer->GetParent()->GetViewportDimensions();
     ItemCaption->SetActualPosition(Position);
 }
 
@@ -52,7 +52,7 @@ void ItemShopCell::SetSize(const Vector2& Size)
 
 void ItemShopCell::SetActualSize(const Vector2& Size)
 {
-    RelSize = Size / Parent->GetParent()->GetViewportDimensions();
+    RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
     ItemCaption->SetActualSize(Size);
 }
 

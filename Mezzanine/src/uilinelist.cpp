@@ -67,8 +67,7 @@ namespace Mezzanine
             Positions.clear();
             Thickness = LineThickness;
             Colour = LineColour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void LineList::AddPoint(const Real& X, const Real& Y)
@@ -78,7 +77,7 @@ namespace Mezzanine
 
         void LineList::AddPoint(const Vector2& Position)
         {
-            Positions.push_back(Position * Parent->GetParent()->GetViewportDimensions());
+            Positions.push_back(Position * ParentLayer->GetParent()->GetViewportDimensions());
         }
 
         void LineList::AddActualPoint(const Real& X, const Real& Y)
@@ -94,8 +93,7 @@ namespace Mezzanine
         void LineList::End(bool Closed)
         {
             IsClosed = Closed;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void LineList::UpdateDimensions()

@@ -60,11 +60,11 @@ namespace Mezzanine
               YCellsPerPage(1),
               MaxPages(1)
         {
-            PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,Parent);
+            PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,ParentLayer);
             PageSpinner->SetSpinnerValue((int)CurrentPage);
             PageSpinner->SetValueLimits(1,1);
             CellsAdded = 1;
-            SubRenderables[1] = RenderablePair(NULL,PageSpinner);
+            AddSubRenderable(1,RenderablePair(NULL,PageSpinner));
         }
 
         PagedCellGrid::~PagedCellGrid()
@@ -156,7 +156,7 @@ namespace Mezzanine
 
         void PagedCellGrid::DrawGrid()
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             DrawGrid(WinDim);
         }
 
@@ -319,7 +319,7 @@ namespace Mezzanine
 
         void PagedCellGrid::UpdateDimensions()
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             CellGrid::UpdateDimensions();
             PageSpinner->UpdateDimensions();
             GridDirty = true;

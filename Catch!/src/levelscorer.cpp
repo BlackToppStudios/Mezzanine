@@ -109,7 +109,21 @@ void LevelScorer::CalculateFinalScore()
     Whole Time = LevelTimer->GetCurrentTimeInMilli() * 0.001;
     if(Time < LevelTargetTime)
     {
-        TimeScore = (LevelTargetTime - Time) * 10;
+        std::vector<ActorBase*>& Throwables = App->GetThrowables();
+        Whole ActorsInScoreZones = 0;
+
+        for( Whole Areas = 0 ; Areas < ScoreAreas.size() ; ++Areas )
+        {
+            std::list<ActorBase*>& Overlapping = ScoreAreas[Areas]->GetOverlappingActors();
+            for( std::list<ActorBase*>::iterator It = Overlapping.begin() ; It != Overlapping.end() ; ++It )
+            {
+                if( App->IsAThrowable( *It ) )
+                    ActorsInScoreZones++;
+            }
+        }
+
+        Real ThrowableRatio = ((Real)ActorsInScoreZones / (Real)Throwables.size());
+        TimeScore = (LevelTargetTime - Time) * (Whole)(ThrowableRatio * 10);
     }
 
     // Update the UI to reflect the calculated scores
@@ -145,9 +159,7 @@ void LevelScorer::CalculateFinalScore()
         std::stringstream namestream;
         namestream << "Condition" << ;
         LevelReportCell* SpecialConditionCell = new LevelReportCell(namestream.str(),,ReportLayer);
-        SpecialConditionCell->GetDescription()->SetBackgroundColour(ColourValue::Transparent());
         SpecialConditionCell->GetDescription()->SetText("");
-        SpecialConditionCell->GetScore()->SetBackgroundColour(ColourValue::Transparent());
         SpecialConditionCell->GetScore()->SetText("");
         BreakdownList->AddCell(SpecialConditionCell);
         // For-Loop for special conditions from LUA.

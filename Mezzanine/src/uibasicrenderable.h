@@ -50,7 +50,8 @@ namespace Mezzanine
     namespace UI
     {
         class Layer;
-        struct ScreenVertexData;
+        class Widget;
+        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class BasicRenderable
         /// @headerfile uibasicrenderable.h
@@ -61,8 +62,10 @@ namespace Mezzanine
         {
             protected:
                 friend class Layer;
-                Layer* Parent;
+                friend class Widget;
                 UIManager* Manager;
+                Layer* ParentLayer;
+                Widget* ParentWidget;
                 bool Dirty;
                 bool Visible;
                 UI::RenderPriority Priority;
@@ -84,8 +87,8 @@ namespace Mezzanine
             public:
                 /// @brief Class constructor.
                 /// @param name The name to be given to this widget.
-                /// @param parent The parent layer that created this widget.
-                BasicRenderable(const String& name, Layer* parent);
+                /// @param Parent The parent layer that created this widget.
+                BasicRenderable(const String& name, Layer* Parent);
                 /// @brief Class destructor.
                 virtual ~BasicRenderable();
 
@@ -125,6 +128,9 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Functions
                 ///////////////////////////////////////
+                /// @internal
+                /// @brief Marks this renderable as well as all parent objects as dirty.
+                virtual void _MarkDirty();
                 /// @internal
                 /// @brief Regenerates the verticies in this renderable.
                 virtual void _Redraw() = 0;

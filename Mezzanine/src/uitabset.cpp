@@ -58,7 +58,7 @@ namespace Mezzanine
         {
             Type = Widget::W_TabSet;
             TemplateSetRect.Relative = false;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             if(SetRect.Relative)
             {
                 RelPosition = SetRect.Position;
@@ -149,24 +149,24 @@ namespace Mezzanine
         void TabSet::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            SetLocation(Position * Parent->GetParent()->GetViewportDimensions());
+            SetLocation(Position * ParentLayer->GetParent()->GetViewportDimensions());
         }
 
         void TabSet::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
             SetLocation(Position);
         }
 
         void TabSet::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            SetArea(Size * Parent->GetParent()->GetViewportDimensions());
+            SetArea(Size * ParentLayer->GetParent()->GetViewportDimensions());
         }
 
         void TabSet::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
             SetArea(Size);
         }
 
@@ -181,23 +181,23 @@ namespace Mezzanine
 
         RenderableSetData* TabSet::CreateRenderableSet(const String& Name, const RenderableRect& AccessorRect, const Real& GlyphHeight, const String& Text)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
 
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
-            TextButton* NewAccessor = new TextButton(Name+"Access",AccessorRect,GlyphInfo.first,Text,Parent);
+            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentLayer->GetParent()->GetPrimaryAtlas());
+            TextButton* NewAccessor = new TextButton(Name+"Access",AccessorRect,GlyphInfo.first,Text,ParentLayer);
             if(1 != GlyphInfo.second)
                 NewAccessor->SetTextScale(GlyphInfo.second);
             NewAccessor->SetVisible(Visible);
-            RenderableCollection* NewCollection = new RenderableCollection(Name+"Set",TemplateSetRect,Parent);
+            RenderableCollection* NewCollection = new RenderableCollection(Name+"Set",TemplateSetRect,ParentLayer);
             NewCollection->SetVisible(Visible);
 
             RenderableSetData* NewSetData = new RenderableSetData(Name,NewAccessor,NewCollection);
             if(0 == Sets.size()) VisibleSet = NewSetData;
             else NewSetData->Collection->Hide();
             Sets.push_back(NewSetData);
-            SubRenderables[SetsAdded] = RenderablePair(NULL,NewSetData->Collection);
-            SubRenderables[SetsAdded+1] = RenderablePair(NewSetData->Accessor,NULL);
+            AddSubRenderable(SetsAdded,RenderablePair(NULL,NewSetData->Collection));
+            AddSubRenderable(SetsAdded+1,RenderablePair(NewSetData->Accessor,NULL));
             SetsAdded+=2;
             return NewSetData;
         }

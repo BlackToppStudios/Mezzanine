@@ -125,8 +125,9 @@ namespace Mezzanine
                 friend class Mezzanine::UIManager;
                 friend class Layer;
                 UIManager* Manager;
-                Layer* Parent;
                 InputCaptureData* CaptureData;
+                Layer* ParentLayer;
+                UI::Widget* ParentWidget;
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
                 UI::Widget* SubWidgetFocus;
@@ -153,13 +154,15 @@ namespace Mezzanine
                 virtual void SubWidgetUpdate(bool Force = false);
                 /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
                 virtual void SubWidgetFocusUpdate(bool Force = false);
+                /// @brief Adds a renderable as a subrenderable to this widget.
+                virtual void AddSubRenderable(const Whole& Zorder, const RenderablePair& ToAdd);
                 /// @brief Processes the captured inputs.  This is an empty function and should be overridden if making an input capturing widget.
                 virtual void ProcessCapturedInputs();
             public:
                 /// @brief Standard initialization constructor.
-                /// @param parent The parent layer that created this widget.
+                /// @param Parent The parent layer that created this widget.
                 /// @param name The Name for the Widget.
-                Widget(const String& name, Layer* parent);
+                Widget(const String& name, Layer* Parent);
                 /// @brief Standard destructor.
                 virtual ~Widget();
                 /// @brief Sets the visibility of this widget.
@@ -257,6 +260,9 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Functions
                 ///////////////////////////////////////
+                /// @internal
+                /// @brief Marks this renderable as well as all parent objects as dirty.
+                virtual void _MarkDirty();
                 /// @internal
                 /// @brief Regenerates the verticies in this renderable.
                 virtual void _Redraw();

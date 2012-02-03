@@ -61,7 +61,7 @@ namespace Mezzanine
               CheckLock(true)
         {
             Type = Widget::W_CheckBox;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RenderableRect BoxRect, LabelRect;
             if(Rect.Relative)
             {
@@ -87,8 +87,8 @@ namespace Mezzanine
             LabelRect.Size.Y = Rect.Size.Y;
             LabelRect.Relative = Rect.Relative;
 
-            Box = new Button(Name+"CB",BoxRect,Parent);
-            Label = new Caption(Name+"CM",LabelRect,LineHeight,LabelText,Parent);
+            Box = new Button(Name+"CB",BoxRect,ParentLayer);
+            Label = new Caption(Name+"CM",LabelRect,LineHeight,LabelText,ParentLayer);
             SubRenderables[0] = RenderablePair(Box,NULL);
             SubRenderables[1] = RenderablePair(Label,NULL);
         }
@@ -100,7 +100,7 @@ namespace Mezzanine
               CheckLock(true)
         {
             Type = Widget::W_CheckBox;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RenderableRect BoxRect, LabelRect;
             if(Rect.Relative)
             {
@@ -126,10 +126,10 @@ namespace Mezzanine
             LabelRect.Size.Y = Rect.Size.Y;
             LabelRect.Relative = Rect.Relative;
 
-            Box = new Button(Name+"CB",BoxRect,Parent);
-            Label = new Caption(Name+"CM",LabelRect,Glyph,LabelText,Parent);
-            SubRenderables[0] = RenderablePair(Box,NULL);
-            SubRenderables[1] = RenderablePair(Label,NULL);
+            Box = new Button(Name+"CB",BoxRect,ParentLayer);
+            Label = new Caption(Name+"CM",LabelRect,Glyph,LabelText,ParentLayer);
+            AddSubRenderable(0,RenderablePair(Box,NULL));
+            AddSubRenderable(1,RenderablePair(Label,NULL));
         }
 
         CheckBox::~CheckBox()
@@ -255,7 +255,7 @@ namespace Mezzanine
 
         void CheckBox::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
             Box->SetActualPosition(Position);
 
             Vector2 Adjusted = Position;
@@ -266,7 +266,7 @@ namespace Mezzanine
         void CheckBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             Box->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
             Label->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
             this->SetPosition(GetPosition());
@@ -274,7 +274,7 @@ namespace Mezzanine
 
         void CheckBox::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
             Box->SetActualSize(Vector2(Size.Y,Size.Y));
             Label->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
             this->SetActualPosition(GetActualPosition());

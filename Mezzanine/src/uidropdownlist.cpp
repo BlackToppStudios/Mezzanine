@@ -60,10 +60,10 @@ namespace Mezzanine
             : Widget(name,parent),
               ToggleActivated(false)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             std::pair<Whole,Real> Result;
-            if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),Parent->GetParent()->GetPrimaryAtlas());
-            else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,Parent->GetParent()->GetPrimaryAtlas());
+            if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),ParentLayer->GetParent()->GetPrimaryAtlas());
+            else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,ParentLayer->GetParent()->GetPrimaryAtlas());
 
             ConstructDropDownList(Rect,Result.first,ScrollStyle);
 
@@ -93,7 +93,7 @@ namespace Mezzanine
             Type = Widget::W_DropDownList;
             RenderableRect SelectionRect, ListToggleRect, SelectionListRect;
             Real ScrollbarWidth;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -133,13 +133,13 @@ namespace Mezzanine
             SelectionListRect.Size = Rect.Size;
             SelectionListRect.Relative = Rect.Relative;
 
-            Selection = new Caption(Name+"Select",SelectionRect,Glyph,"",Parent);
-            ListToggle = new Button(Name+"Toggle",ListToggleRect,Parent);
-            SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollStyle,Parent);
+            Selection = new Caption(Name+"Select",SelectionRect,Glyph,"",ParentLayer);
+            ListToggle = new Button(Name+"Toggle",ListToggleRect,ParentLayer);
+            SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollStyle,ParentLayer);
 
-            SubRenderables[0] = RenderablePair(Selection,NULL);
-            SubRenderables[1] = RenderablePair(ListToggle,NULL);
-            SubRenderables[2] = RenderablePair(NULL,SelectionList);
+            AddSubRenderable(0,RenderablePair(Selection,NULL));
+            AddSubRenderable(1,RenderablePair(ListToggle,NULL));
+            AddSubRenderable(2,RenderablePair(NULL,SelectionList));
 
             SelectionList->SetTemplateGlyphIndex(Glyph);
             SelectionList->SetTemplateRenderPriority(UI::RP_High);
@@ -224,7 +224,7 @@ namespace Mezzanine
         void DropDownList::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             Selection->SetPosition(Position);
             ListToggle->SetPosition(Position + Vector2(RelSize.X - ((RelSize.Y * WinDim.Y) / WinDim.X),0));
             SelectionList->SetPosition(Position + Vector2(0,RelSize.Y));
@@ -232,7 +232,7 @@ namespace Mezzanine
 
         void DropDownList::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
             Vector2 CurrSize = GetActualSize();
             Selection->SetActualPosition(Position);
             ListToggle->SetActualPosition(Position + Vector2(CurrSize.X - CurrSize.Y,0));
@@ -242,7 +242,7 @@ namespace Mezzanine
         void DropDownList::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             Selection->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
             ListToggle->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
             SelectionList->SetTemplateSize(Size);
@@ -251,7 +251,7 @@ namespace Mezzanine
 
         void DropDownList::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
             Selection->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
             ListToggle->SetActualSize(Vector2(Size.Y,Size.Y));
             SelectionList->SetTemplateSize(Size,false);

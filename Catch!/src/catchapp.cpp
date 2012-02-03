@@ -705,6 +705,7 @@ void CatchApp::UnloadLevel()
     SceneMan->DisableSky();
     StartAreas.clear();
     ScoreAreas.clear();
+    ThrownItems.clear();
 
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();

@@ -10,7 +10,7 @@ LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& R
       //LevelTitleOffset(Vector2(0.115,0.01)),
       //EarnedMaxScoreOffset(Vector2(0.18,0.05))
 {
-    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
     UI::RenderableRect PIRect, PBRect, LTRect, EMSRect;
     if(Rect.Relative)
     {
@@ -51,16 +51,16 @@ LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& R
         EMSRect.Relative = Rect.Relative;
     }
 
-    CellBack = new UI::Rectangle(Rect,Parent);
-    PreviewImage = new UI::Rectangle(PIRect,Parent);
-    PreviewBorder = new UI::Rectangle(PBRect,Parent);
-    LevelTitle = new UI::Caption(Name+"LT",LTRect,Real(Rect.Size.Y * 0.36),Name,Parent);
-    EarnedMaxScore = new UI::Caption(Name+"EMS",EMSRect,Real(Rect.Size.Y * 0.36),"0/0",Parent);
-    SubRenderables[0] = RenderablePair(CellBack,NULL);
-    SubRenderables[1] = RenderablePair(PreviewImage,NULL);
-    SubRenderables[2] = RenderablePair(PreviewBorder,NULL);
-    SubRenderables[3] = RenderablePair(LevelTitle,NULL);
-    SubRenderables[4] = RenderablePair(EarnedMaxScore,NULL);
+    CellBack = new UI::Rectangle(Rect,ParentLayer);
+    PreviewImage = new UI::Rectangle(PIRect,ParentLayer);
+    PreviewBorder = new UI::Rectangle(PBRect,ParentLayer);
+    LevelTitle = new UI::Caption(Name+"LT",LTRect,Real(Rect.Size.Y * 0.36),Name,ParentLayer);
+    EarnedMaxScore = new UI::Caption(Name+"EMS",EMSRect,Real(Rect.Size.Y * 0.36),"0/0",ParentLayer);
+    AddSubRenderable(0,RenderablePair(CellBack,NULL));
+    AddSubRenderable(1,RenderablePair(PreviewImage,NULL));
+    AddSubRenderable(2,RenderablePair(PreviewBorder,NULL));
+    AddSubRenderable(3,RenderablePair(LevelTitle,NULL));
+    AddSubRenderable(4,RenderablePair(EarnedMaxScore,NULL));
 }
 
 LevelSelectCell::~LevelSelectCell()
@@ -104,12 +104,12 @@ void LevelSelectCell::CalculateOffsets(const Vector2& Size)
 
 void LevelSelectCell::SetPosition(const Vector2& Position)
 {
-    SetActualPosition(Position * Parent->GetParent()->GetViewportDimensions());
+    SetActualPosition(Position * ParentLayer->GetParent()->GetViewportDimensions());
 }
 
 void LevelSelectCell::SetActualPosition(const Vector2& Position)
 {
-    RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+    RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
     CellBack->SetActualPosition(Position);
     PreviewImage->SetActualPosition(Position + PreviewImageOffset);
     PreviewBorder->SetActualPosition(Position + PreviewBorderOffset);
@@ -125,13 +125,13 @@ void LevelSelectCell::SetSize(const Vector2& Size)
     PreviewBorder->SetSize(Vector2(Size.Y * 1.40,Size.Y * 1.15));
     LevelTitle->SetSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
     EarnedMaxScore->SetSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
-    //CalculateOffsets(Size * Parent->GetParent()->GetViewportDimensions());
+    //CalculateOffsets(Size * ParentLayer->GetParent()->GetViewportDimensions());
     SetPosition(RelPosition);
 }
 
 void LevelSelectCell::SetActualSize(const Vector2& Size)
 {
-    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
     RelSize = Size / WinDim;
     CellBack->SetActualSize(Size);
     PreviewImage->SetActualSize(Vector2(Size.Y * 1.30,Size.Y * 1.05));

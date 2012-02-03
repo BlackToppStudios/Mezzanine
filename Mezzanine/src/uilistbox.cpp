@@ -83,7 +83,7 @@ namespace Mezzanine
             SelectionTemplate.Priority = UI::RP_Medium;
 
             RenderableRect ScrollRect, BoxRect;
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -109,12 +109,12 @@ namespace Mezzanine
             BoxRect.Size.Y = Rect.Size.Y * MaxDisplay;
             BoxRect.Relative = Rect.Relative;
 
-            BoxBack = new Rectangle(BoxRect,Parent);
-            VertScroll = new Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
+            BoxBack = new Rectangle(BoxRect,ParentLayer);
+            VertScroll = new Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,ParentLayer);
             VertScroll->Hide();
 
-            SubRenderables[0] = RenderablePair(BoxBack,NULL);
-            SubRenderables[1] = RenderablePair(NULL,VertScroll);
+            AddSubRenderable(0,RenderablePair(BoxBack,NULL));
+            AddSubRenderable(1,RenderablePair(NULL,VertScroll));
         }
 
         ListBox::~ListBox()
@@ -157,7 +157,7 @@ namespace Mezzanine
 
         void ListBox::SelectionSizeCheck(UI::Caption* Selection)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             Vector2 CurrSize = Selection->GetActualSize();
             Vector2 TargetSize;
             if(VertScroll->IsVisible())
@@ -172,7 +172,7 @@ namespace Mezzanine
 
         void ListBox::SetArea(const Vector2& Area)
         {
-            RelSize = Area / Parent->GetParent()->GetViewportDimensions();
+            RelSize = Area / ParentLayer->GetParent()->GetViewportDimensions();
             BoxBack->SetActualSize(Area);
             Vector2 ScrollP((GetActualPosition().X + Area.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
             Vector2 ScrollS(VertScroll->GetActualSize().X,Area.Y);
@@ -276,7 +276,7 @@ namespace Mezzanine
 
         ListBox& ListBox::SetTemplateSize(const Vector2& Size, bool Relative)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             if(Relative)
             {
                 this->SelectionTemplate.Size = Size * WinDim;
@@ -346,8 +346,8 @@ namespace Mezzanine
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
             SelectionsAdded++;
-            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / Parent->GetParent()->GetViewportDimensions(),true);
-            Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,Parent);
+            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / ParentLayer->GetParent()->GetViewportDimensions(),true);
+            Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,ParentLayer);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
             if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))
@@ -362,7 +362,7 @@ namespace Mezzanine
             Select->SetRenderPriority(SelectionTemplate.Priority);
             Select->Hide();
             Selections.push_back(Select);
-            SubRenderables[SelectionsAdded] = RenderablePair(Select,NULL);
+            AddSubRenderable(SelectionsAdded,RenderablePair(Select,NULL));
             ScrollerSizeCheck();
             DrawList();
             return Select;
@@ -447,8 +447,8 @@ namespace Mezzanine
 
         void ListBox::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
-            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * Parent->GetParent()->GetViewportDimensions());
+            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
+            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
             BoxBack->SetActualPosition(Position);
             VertScroll->SetActualPosition(Position + ScrollOffset);
             DrawList();
@@ -466,7 +466,7 @@ namespace Mezzanine
 
         void ListBox::UpdateDimensions()
         {
-            /*const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            /*const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             SetArea(RelSize * WinDim);
             SetActualPosition(RelPosition * WinDim);*/
 

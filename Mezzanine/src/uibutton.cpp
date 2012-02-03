@@ -234,13 +234,13 @@ namespace Mezzanine
 
         void Button::SetHoveredSprite(const String& SpriteName)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
             SetHoveredSprite(PSprite);
         }
 
         void Button::SetHoveredSprite(const String& SpriteName, const String& Atlas)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
             SetHoveredSprite(PSprite);
         }
 
@@ -255,13 +255,13 @@ namespace Mezzanine
 
         void Button::SetUserSprite(const String& SpriteName)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
             SetUserSprite(PSprite);
         }
 
         void Button::SetUserSprite(const String& SpriteName, const String& Atlas)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
             SetUserSprite(PSprite);
         }
 
