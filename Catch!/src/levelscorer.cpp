@@ -123,7 +123,18 @@ void LevelScorer::CalculateFinalScore()
         }
 
         Real ThrowableRatio = ((Real)ActorsInScoreZones / (Real)Throwables.size());
-        TimeScore = (LevelTargetTime - Time) * (Whole)(ThrowableRatio * 10);
+        Real SubTotal = (((Real)LevelTargetTime - (Real)Time) * 10) * ThrowableRatio;
+        Real Margin = MathTool::Fmod(SubTotal,5.0);
+        if( Margin >= 2.5 )
+        {
+            SubTotal += (5.0 - Margin);
+            TimeScore = (Whole)(SubTotal + 0.5);
+        }
+        else if( Margin < 2.5 )
+        {
+            SubTotal -= Margin;
+            TimeScore = (Whole)(SubTotal + 0.5);
+        }
     }
 
     // Update the UI to reflect the calculated scores
