@@ -387,9 +387,9 @@ void StartEngine()
 {
     PhysicsConstructionInfo Info;
     Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-    TheWorld = new World(Info,SceneManager::Generic,"plugins.cfg","data/common/");
+    TheWorld = new World(Info,SceneManager::Generic,"plugins.cfg","data/");
     TheWorld->GameInit(false);
-    ResourceManager::GetSingletonPtr()->AddResourceLocation("data/common", "FileSystem", "files", false);
+    ResourceManager::GetSingletonPtr()->AddResourceLocation("data", "FileSystem", "files", false);
     GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
     UIManager::GetSingletonPtr()->LoadMTA("dejavu");
     ResourceManager::GetSingletonPtr()->InitResourceGroup("files");
