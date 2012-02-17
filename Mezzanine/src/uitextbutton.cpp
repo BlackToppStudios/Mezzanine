@@ -54,13 +54,13 @@ namespace Mezzanine
             : Button(name,Rect,PLayer),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
-              CharScaling(0.0),
+              CharScaling(1.0),
               ClippedLeftIndex(0.0),
               ClippedRightIndex(0.0)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            GlyphSet = Parent->GetGlyphData(Glyph,PriAtlas);
+            GlyphSet = ParentLayer->GetGlyphData(Glyph,PriAtlas);
             this->Text = Text;
             TextColour = ColourValue::White();
             GlyphAtlas = PriAtlas;
@@ -70,14 +70,14 @@ namespace Mezzanine
             : Button(name,Rect,PLayer),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
-              CharScaling(0.0),
+              CharScaling(1.0),
               ClippedLeftIndex(0.0),
               ClippedRightIndex(0.0)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
-            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * Parent->GetParent()->GetViewportDimensions().Y),PriAtlas);
-            GlyphSet = Parent->GetGlyphData(Result.first,PriAtlas);
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y),PriAtlas);
+            GlyphSet = ParentLayer->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
             this->Text = Text;
             TextColour = ColourValue::White();
@@ -139,8 +139,7 @@ namespace Mezzanine
         void TextButton::SetText(ConstString& Text)
         {
             this->Text = Text;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         String TextButton::GetText()
@@ -151,8 +150,7 @@ namespace Mezzanine
         void TextButton::SetTextScale(const Real& Scale)
         {
             CharScaling = Scale;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Real TextButton::GetTextScale()
@@ -163,8 +161,7 @@ namespace Mezzanine
         void TextButton::SetTextColour(const ColourValue& Colour)
         {
             TextColour = Colour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         ColourValue TextButton::GetTextColour()
@@ -174,12 +171,11 @@ namespace Mezzanine
 
         void TextButton::SetGlyphIndex(const Whole& GlyphIndex)
         {
-            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,PriAtlas);
+            GlyphData* NewData = ParentLayer->GetGlyphData(GlyphIndex,PriAtlas);
             if(NewData)
             {
                 GlyphSet = NewData;
-                Dirty = true;
-                Parent->_MarkDirty();
+                _MarkDirty();
             }else{
                 /// @todo Throw an error?
             }
@@ -187,13 +183,12 @@ namespace Mezzanine
 
         void TextButton::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
         {
-            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,Atlas);
+            GlyphData* NewData = ParentLayer->GetGlyphData(GlyphIndex,Atlas);
             if(NewData)
             {
                 GlyphSet = NewData;
                 GlyphAtlas = Atlas;
-                Dirty = true;
-                Parent->_MarkDirty();
+                _MarkDirty();
             }else{
                 /// @todo Throw an error?
             }
@@ -207,8 +202,7 @@ namespace Mezzanine
         void TextButton::SetCursorOffset(const Whole& Offset)
         {
             CursorOffset = Offset;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Whole TextButton::GetCursorOffset()
@@ -219,15 +213,13 @@ namespace Mezzanine
         void TextButton::HorizontallyAlign(const UI::TextHorizontalAlign& Align)
         {
             HoriAlign = Align;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void TextButton::VerticallyAlign(const UI::TextVerticalAlign& Align)
         {
             VertAlign = Align;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void TextButton::SetAutoScaleText(bool Enable)
@@ -245,7 +237,7 @@ namespace Mezzanine
             Button::UpdateDimensions();
             if(AutoScaleText)
             {
-                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * Parent->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
+                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
                 SetGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
@@ -263,8 +255,8 @@ namespace Mezzanine
             }
 
             Real Left = 0, Top = 0, Right = 0, Bottom = 0, CursorX = 0, CursorY = 0, Kerning = 0;
-            Real TexelOffsetX = Parent->GetTexelX();
-            Real TexelOffsetY = Parent->GetTexelY();
+            Real TexelOffsetX = ParentLayer->GetTexelX();
+            Real TexelOffsetY = ParentLayer->GetTexelY();
             Vector2 KnownSize;
             Glyph* CurrGlyph = 0;
 

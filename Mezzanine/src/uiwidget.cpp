@@ -95,8 +95,9 @@ namespace Mezzanine
 
         //-----------------------------------------------------
 
-        Widget::Widget(const String& name, Layer* parent)
-            : Parent(parent),
+        Widget::Widget(const String& name, Layer* Parent)
+            : ParentLayer(Parent),
+              ParentWidget(NULL),
               HoveredButton(NULL),
               HoveredSubWidget(NULL),
               SubWidgetFocus(NULL),
@@ -159,6 +160,13 @@ namespace Mezzanine
                 SubWidgetFocus->Update(Force);
         }
 
+        void Widget::AddSubRenderable(const Whole& Zorder, const RenderablePair& ToAdd)
+        {
+            if( ToAdd.first ) ToAdd.first->ParentWidget = this;
+            else ToAdd.second->ParentWidget = this;
+            SubRenderables[Zorder] = ToAdd;
+        }
+
         void Widget::ProcessCapturedInputs()
         {
         }
@@ -180,7 +188,7 @@ namespace Mezzanine
 
         bool Widget::IsVisible() const
         {
-            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
+            return Visible && ParentLayer->IsVisible() && ParentLayer->GetParent()->IsVisible();
         }
 
         void Widget::Show()
@@ -269,7 +277,7 @@ namespace Mezzanine
 
         Vector2 Widget::GetActualPosition() const
         {
-            return RelPosition * Parent->GetParent()->GetViewportDimensions();
+            return RelPosition * ParentLayer->GetParent()->GetViewportDimensions();
         }
 
         Vector2 Widget::GetSize() const
@@ -279,7 +287,7 @@ namespace Mezzanine
 
         Vector2 Widget::GetActualSize() const
         {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();
+            return RelSize * ParentLayer->GetParent()->GetViewportDimensions();
         }
 
         void Widget::SetRenderPriority(const UI::RenderPriority& Priority)
@@ -309,7 +317,7 @@ namespace Mezzanine
 
         Layer* Widget::GetLayer() const
         {
-            return Parent;
+            return ParentLayer;
         }
 
         InputCaptureData* Widget::GetInputCaptureData() const
@@ -321,12 +329,26 @@ namespace Mezzanine
         // Internal Functions
         ///////////////////////////////////////
 
+        void Widget::_MarkDirty()
+        {
+            Dirty = true;
+            ParentLayer->_MarkDirty();
+            if(ParentWidget)
+                ParentWidget->_MarkDirty();
+        }
+
         void Widget::_Redraw()
         {
             for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
             {
-                if( (*it).second.first ) (*it).second.first->_Redraw();
-                else (*it).second.second->_Redraw();
+                if( (*it).second.first )
+                {
+                    if( (*it).second.first->Dirty )
+                        (*it).second.first->_Redraw();
+                }else{
+                    if( (*it).second.second->Dirty )
+                        (*it).second.second->_Redraw();
+                }
             }
         }
 

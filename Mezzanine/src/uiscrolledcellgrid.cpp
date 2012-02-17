@@ -61,7 +61,7 @@ namespace Mezzanine
             RenderableRect VertRect;
             if(Rect.Relative)
             {
-                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
                 Real ActThick = Thickness * WinDim.X;
 
                 HoriRect.Position = Vector2(RelPosition.X,(RelPosition.Y + RelSize.Y) - ActThick / WinDim.Y);
@@ -79,14 +79,14 @@ namespace Mezzanine
                 VertRect.Relative = Rect.Relative;
             }
 
-            HorizontalScroll = new UI::Scrollbar(Name+"HoriScr",HoriRect,Style,Parent);
-            VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertRect,Style,Parent);
+            HorizontalScroll = new UI::Scrollbar(Name+"HoriScr",HoriRect,Style,ParentLayer);
+            VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertRect,Style,ParentLayer);
             HorizontalScroll->Hide();
             VerticalScroll->Hide();
 
             CellsAdded = 2;
-            SubRenderables[1] = RenderablePair(NULL,HorizontalScroll);
-            SubRenderables[2] = RenderablePair(NULL,VerticalScroll);
+            AddSubRenderable(1,RenderablePair(NULL,HorizontalScroll));
+            AddSubRenderable(2,RenderablePair(NULL,VerticalScroll));
         }
 
         ScrolledCellGrid::~ScrolledCellGrid()
@@ -127,7 +127,7 @@ namespace Mezzanine
 
         void ScrolledCellGrid::DrawGrid()
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             DrawGrid(WinDim);
         }
 
@@ -337,7 +337,7 @@ namespace Mezzanine
 
         void ScrolledCellGrid::UpdateDimensions()
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             CellGrid::UpdateDimensions();
             HorizontalScroll->UpdateDimensions();
             VerticalScroll->UpdateDimensions();

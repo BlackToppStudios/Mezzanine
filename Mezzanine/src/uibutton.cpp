@@ -74,6 +74,8 @@ namespace Mezzanine
 
         void Button::SetHovered(bool Hovered)
         {
+            if(Hovered == MouseHover)
+                return;
             if(Hovered && Callback)
                 Callback->DoHoverItems();
             if(HoveredSprite)
@@ -87,15 +89,6 @@ namespace Mezzanine
                 }
             }
             MouseHover = Hovered;
-        }
-
-        bool Button::CheckMouseHover()
-        {
-            if(!Visible)
-                return false;
-            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
-            SetHovered((MouseLoc.X >= ActPosition.X && MouseLoc.X <= ActPosition.X + ActSize.X) && (MouseLoc.Y >= ActPosition.Y && MouseLoc.Y <= ActPosition.Y + ActSize.Y));
-            return MouseHover;
         }
 
         bool Button::IsTextButton()
@@ -241,13 +234,13 @@ namespace Mezzanine
 
         void Button::SetHoveredSprite(const String& SpriteName)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
             SetHoveredSprite(PSprite);
         }
 
         void Button::SetHoveredSprite(const String& SpriteName, const String& Atlas)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
             SetHoveredSprite(PSprite);
         }
 
@@ -262,13 +255,13 @@ namespace Mezzanine
 
         void Button::SetUserSprite(const String& SpriteName)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,PriAtlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
             SetUserSprite(PSprite);
         }
 
         void Button::SetUserSprite(const String& SpriteName, const String& Atlas)
         {
-            Sprite* PSprite = Parent->GetSprite(SpriteName,Atlas);
+            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
             SetUserSprite(PSprite);
         }
 

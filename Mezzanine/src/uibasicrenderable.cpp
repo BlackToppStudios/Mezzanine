@@ -44,21 +44,23 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uiscreen.h"
+#include "uiwidget.h"
 #include "world.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        BasicRenderable::BasicRenderable(const String& name, Layer* parent)
+        BasicRenderable::BasicRenderable(const String& name, Layer* Parent)
             : Name(name),
-              Parent(parent),
+              ParentLayer(Parent),
+              ParentWidget(NULL),
               Visible(true),
               Dirty(true),
               Priority(UI::RP_Medium)
         {
             Manager = UIManager::GetSingletonPtr();
-            PriAtlas = Parent->GetParent()->GetPrimaryAtlas();
+            PriAtlas = ParentLayer->GetParent()->GetPrimaryAtlas();
         }
 
         BasicRenderable::~BasicRenderable()
@@ -110,31 +112,27 @@ namespace Mezzanine
             if(this->Visible == Visible)
                 return;
             this->Visible = Visible;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         bool BasicRenderable::IsVisible() const
+        {
+            return Visible && ParentLayer->IsVisible();
+        }
+
+        bool BasicRenderable::GetVisible() const
         {
             return Visible;
         }
 
         void BasicRenderable::Show()
         {
-            if(this->Visible == true)
-                return;
-            this->Visible = true;
-            Dirty = true;
-            Parent->_MarkDirty();
+            SetVisible(true);
         }
 
         void BasicRenderable::Hide()
         {
-            if(this->Visible == false)
-                return;
-            this->Visible = false;
-            Dirty = true;
-            Parent->_MarkDirty();
+            SetVisible(false);
         }
 
         ConstString& BasicRenderable::GetName() const
@@ -145,8 +143,7 @@ namespace Mezzanine
         void BasicRenderable::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             this->Priority = Priority;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         UI::RenderPriority BasicRenderable::GetRenderPriority() const
@@ -157,13 +154,20 @@ namespace Mezzanine
         void BasicRenderable::SetPrimaryAtlas(const String& Atlas)
         {
             this->PriAtlas = Atlas;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         String BasicRenderable::GetPrimaryAtlas() const
         {
             return PriAtlas;
+        }
+
+        void BasicRenderable::_MarkDirty()
+        {
+            Dirty = true;
+            ParentLayer->_MarkDirty();
+            if(ParentWidget)
+                ParentWidget->_MarkDirty();
         }
     }//UI
 }//Mezzanine

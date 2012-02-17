@@ -116,6 +116,21 @@ namespace Mezzanine
         }
     }
 
+    Whole AreaEffect::GetNumOverlappingActors()
+    {
+        return OverlappingActors.size();
+    }
+
+    Whole AreaEffect::GetNumAddedActors()
+    {
+        return AddedActors.size();
+    }
+
+    Whole AreaEffect::GetNumRemovedActors()
+    {
+        return RemovedActors.size();
+    }
+
     std::list<ActorBase*>& AreaEffect::GetOverlappingActors()
     {
         return OverlappingActors;

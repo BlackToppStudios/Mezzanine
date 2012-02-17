@@ -86,16 +86,16 @@ namespace Mezzanine
                 RelPosition = Rect.Position;
                 RelSize = Rect.Size;
 
-                WorkAreaLimits = Rect.Size * Parent->GetParent()->GetViewportDimensions();
+                WorkAreaLimits = Rect.Size * ParentLayer->GetParent()->GetViewportDimensions();
             }else{
-                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+                RelPosition = Rect.Position / ParentLayer->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / ParentLayer->GetParent()->GetViewportDimensions();
 
                 WorkAreaLimits = Rect.Size;
             }
 
-            GridBack = new Rectangle(Rect,Parent);
-            SubRenderables[0] = RenderablePair(GridBack,NULL);
+            GridBack = new Rectangle(Rect,ParentLayer);
+            AddSubRenderable(0,RenderablePair(GridBack,NULL));
             CreateOrDestroyRow(0);
         }
 
@@ -185,7 +185,7 @@ namespace Mezzanine
 
         void CellGrid::RegenerateGrid()
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
             RegenerateGrid(WinDim);
         }
 
@@ -340,13 +340,13 @@ namespace Mezzanine
 
         void CellGrid::SetFixedCellSize(const Vector2& FixedSize, bool Relative)
         {
-            if(Relative) FixedCellSize = FixedSize * Parent->GetParent()->GetViewportDimensions();
+            if(Relative) FixedCellSize = FixedSize * ParentLayer->GetParent()->GetViewportDimensions();
             else FixedCellSize = FixedSize;
         }
 
         Vector2 CellGrid::GetFixedCellSize(bool Relative)
         {
-            if(Relative) return FixedCellSize / Parent->GetParent()->GetViewportDimensions();
+            if(Relative) return FixedCellSize / ParentLayer->GetParent()->GetViewportDimensions();
             else return FixedCellSize;
         }
 
@@ -356,7 +356,7 @@ namespace Mezzanine
             ToBeAdded->SetActualSize(FixedCellSize);
             ToBeAdded->Hide();
             Cells.push_back(ToBeAdded);
-            SubRenderables[CellsAdded] = RenderablePair(NULL,ToBeAdded);
+            AddSubRenderable(CellsAdded,RenderablePair(NULL,ToBeAdded));
             GridDirty = true;
         }
 
@@ -444,37 +444,37 @@ namespace Mezzanine
 
         void CellGrid::SetWorkAreaLimits(const Vector2& AreaLimit, bool Relative)
         {
-            if(Relative) WorkAreaLimits = AreaLimit * Parent->GetParent()->GetViewportDimensions();
+            if(Relative) WorkAreaLimits = AreaLimit * ParentLayer->GetParent()->GetViewportDimensions();
             else WorkAreaLimits = AreaLimit;
         }
 
         Vector2 CellGrid::GetWorkAreaLimits(bool Relative)
         {
-            if(Relative) return WorkAreaLimits / Parent->GetParent()->GetViewportDimensions();
+            if(Relative) return WorkAreaLimits / ParentLayer->GetParent()->GetViewportDimensions();
             else return WorkAreaLimits;
         }
 
         void CellGrid::SetEdgeSpacing(const Vector2& Spacing, bool Relative)
         {
-            if(Relative) EdgeSpacing = Spacing * Parent->GetParent()->GetViewportDimensions();
+            if(Relative) EdgeSpacing = Spacing * ParentLayer->GetParent()->GetViewportDimensions();
             else EdgeSpacing = Spacing;
         }
 
         Vector2 CellGrid::GetEdgeSpacing(bool Relative)
         {
-            if(Relative) return EdgeSpacing / Parent->GetParent()->GetViewportDimensions();
+            if(Relative) return EdgeSpacing / ParentLayer->GetParent()->GetViewportDimensions();
             else return EdgeSpacing;
         }
 
         void CellGrid::SetCellSpacing(const Vector2& Spacing, bool Relative)
         {
-            if(Relative) CellSpacing = Spacing * Parent->GetParent()->GetViewportDimensions();
+            if(Relative) CellSpacing = Spacing * ParentLayer->GetParent()->GetViewportDimensions();
             else CellSpacing = Spacing;
         }
 
         Vector2 CellGrid::GetCellSpacing(bool Relative)
         {
-            if(Relative) return CellSpacing / Parent->GetParent()->GetViewportDimensions();
+            if(Relative) return CellSpacing / ParentLayer->GetParent()->GetViewportDimensions();
             else return CellSpacing;
         }
 
@@ -518,7 +518,7 @@ namespace Mezzanine
 
         void CellGrid::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
             GridBack->SetActualPosition(Position);
             DrawGrid();
         }
@@ -532,7 +532,7 @@ namespace Mezzanine
 
         void CellGrid::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
             GridBack->SetActualSize(Size);
             DrawGrid();
         }

@@ -64,9 +64,9 @@ namespace Mezzanine
             RelSize.Y = -1;
 
             ConstString NewName = name+"root";
-            RootWindow = new UI::MenuWindow(NewName,Rect,this,Parent);
+            RootWindow = new UI::MenuWindow(NewName,Rect,this,ParentLayer);
             MenuStack.push_back(RootWindow);
-            SubRenderables[0] = RenderablePair(NULL,RootWindow);
+            AddSubRenderable(0,RenderablePair(NULL,RootWindow));
         }
 
         Menu::~Menu()
@@ -92,7 +92,7 @@ namespace Mezzanine
                             if(MenuStack.back()->GetAutoHide())
                                 MenuStack.back()->Hide();
                             MenuStack.push_back(ChildMenWin);
-                            SubRenderables[SubRenderables.size()] = RenderablePair(NULL,ChildMenWin);
+                            AddSubRenderable(SubRenderables.size(),RenderablePair(NULL,ChildMenWin));
                             ChildMenWin->Show();
                             return;
                         }else{

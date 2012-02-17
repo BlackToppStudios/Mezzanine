@@ -58,13 +58,14 @@ namespace Mezzanine
             : Rectangle(name,Rect,PLayer),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
-              CharScaling(0.0),
+              CharScaling(1.0),
               ClippedLeftIndex(0.0),
-              ClippedRightIndex(0.0)
+              ClippedRightIndex(0.0),
+              CursorOffset(0.0)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            GlyphSet = Parent->GetGlyphData(Glyph,PriAtlas);
+            GlyphSet = ParentLayer->GetGlyphData(Glyph,PriAtlas);
             this->Text = Text;
             TextColour = ColourValue::White();
             GlyphAtlas = PriAtlas;
@@ -74,14 +75,15 @@ namespace Mezzanine
             : Rectangle(name,Rect,PLayer),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
-              CharScaling(0.0),
+              CharScaling(1.0),
               ClippedLeftIndex(0.0),
-              ClippedRightIndex(0.0)
+              ClippedRightIndex(0.0),
+              CursorOffset(0.0)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
-            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * Parent->GetParent()->GetViewportDimensions().Y),PriAtlas);
-            GlyphSet = Parent->GetGlyphData(Result.first,PriAtlas);
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y),PriAtlas);
+            GlyphSet = ParentLayer->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
             this->Text = Text;
             TextColour = ColourValue::White();
@@ -138,8 +140,7 @@ namespace Mezzanine
         void Caption::SetText(ConstString& Text)
         {
             this->Text = Text;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         String Caption::GetText()
@@ -150,8 +151,7 @@ namespace Mezzanine
         void Caption::SetTextScale(const Real& Scale)
         {
             CharScaling = Scale;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Real Caption::GetTextScale()
@@ -162,8 +162,7 @@ namespace Mezzanine
         void Caption::SetTextColour(const ColourValue& Colour)
         {
             this->TextColour = Colour;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         ColourValue Caption::GetTextColour()
@@ -173,12 +172,11 @@ namespace Mezzanine
 
         void Caption::SetGlyphIndex(const Whole& GlyphIndex)
         {
-            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,PriAtlas);
+            GlyphData* NewData = ParentLayer->GetGlyphData(GlyphIndex,PriAtlas);
             if(NewData)
             {
                 GlyphSet = NewData;
-                Dirty = true;
-                Parent->_MarkDirty();
+                _MarkDirty();
             }else{
                 /// @todo Throw an error?
             }
@@ -186,13 +184,12 @@ namespace Mezzanine
 
         void Caption::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
         {
-            GlyphData* NewData = Parent->GetGlyphData(GlyphIndex,PriAtlas);
+            GlyphData* NewData = ParentLayer->GetGlyphData(GlyphIndex,PriAtlas);
             if(NewData)
             {
                 GlyphSet = NewData;
                 GlyphAtlas = Atlas;
-                Dirty = true;
-                Parent->_MarkDirty();
+                _MarkDirty();
             }else{
                 /// @todo Throw an error?
             }
@@ -206,8 +203,7 @@ namespace Mezzanine
         void Caption::SetCursorOffset(const Whole& Offset)
         {
             CursorOffset = (Real)Offset;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         Whole Caption::GetCursorOffset()
@@ -220,8 +216,7 @@ namespace Mezzanine
             if(HoriAlign == Align)
                 return;
             HoriAlign = Align;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Caption::VerticallyAlign(const UI::TextVerticalAlign& Align)
@@ -229,8 +224,7 @@ namespace Mezzanine
             if(VertAlign == Align)
                 return;
             VertAlign = Align;
-            Dirty = true;
-            Parent->_MarkDirty();
+            _MarkDirty();
         }
 
         void Caption::SetAutoScaleText(bool Enable)
@@ -246,11 +240,11 @@ namespace Mezzanine
         void Caption::UpdateDimensions()
         {
             ViewportUpdateTool::UpdateRectangleRenderable(this);
-            //this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
-            //this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
+            //this->SetActualPosition(RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
+            //this->SetActualSize(RelSize * ParentLayer->GetParent()->GetViewportDimensions());
             if(AutoScaleText)
             {
-                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * Parent->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
+                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
                 SetGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
@@ -268,8 +262,8 @@ namespace Mezzanine
             }
 
             Real Left = 0, Top = 0, Right = 0, Bottom = 0, CursorX = 0, CursorY = 0, Kerning = 0;
-            Real TexelOffsetX = Parent->GetTexelX();
-            Real TexelOffsetY = Parent->GetTexelY();
+            Real TexelOffsetX = ParentLayer->GetTexelX();
+            Real TexelOffsetY = ParentLayer->GetTexelY();
             Vector2 KnownSize;
             Glyph* CurrGlyph = 0;
 

@@ -101,6 +101,17 @@ namespace Mezzanine
             /// @details When inheriting this class, this function is what defines the effect the field has. @n
             /// This function will be called on by the physics manager and shouldn't be called manually.
             virtual void ApplyEffect() = 0;
+            /// @brief Gets the number of actors currently overlapping with this AE.
+            /// @return Returns the number of actors inside this AE.
+            virtual Whole GetNumOverlappingActors();
+            /// @brief Gets the number of actors added to this AE since the last update.
+            /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
+            /// @return Returns the number of new actors overlapping with this AE.
+            virtual Whole GetNumAddedActors();
+            /// @brief Gets the number of actors removed from this AE since the last update.
+            /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
+            /// @return Returns the number of actors that were found to no longer be overlapping during the last update.
+            virtual Whole GetNumRemovedActors();
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
             virtual std::list<ActorBase*>& GetOverlappingActors();
