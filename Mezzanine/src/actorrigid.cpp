@@ -125,14 +125,20 @@ namespace Mezzanine
 
     void ActorRigid::RemoveFromWorld()
     {
-        PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
-        btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
+        try{
+            PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
+            btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
+            BWorld->removeRigidBody(this->PhysicsRigidBody);
+        }catch (Ogre::Exception e) {
+            World::GetWorldPointer()->Log("Failed to locate PhysicsManager While Destructing ActorRigid. This is not a problem if already shutting down.");
+        }
+
         //first remove any collision metadata
         /*if( !CurrentCollisions.empty() )
         {
             PhysMan->RemoveCollisionsContainingActor(this);
         }// */
-        BWorld->removeRigidBody(this->PhysicsRigidBody);
+
         this->DetachFromGraphics();
     }
 
@@ -252,7 +258,7 @@ namespace Mezzanine
         { SerializeError(Fail, SerializableName()); }
 
     String ActorRigid::GraphicsSettingsSerializableName() const
-        { return "ActorGraphicsSettings"; }
+        { return WorldObjectGraphicsSettings::SerializableName(); }
 
     String ActorRigid::PhysicsSettingsSerializableName() const
         { return "ActorRigidPhysicsSettings"; }

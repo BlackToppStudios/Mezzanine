@@ -76,8 +76,12 @@ namespace Mezzanine
                         { Results->AddToWorld(); }
                 }
 
+                /// @todo TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default
+
                 Vector3 tempvec;
-                xml::Node GravityNode = OneNode.GetChild(ActorBase::SerializableName()).GetChild("ActorRigidPhysicsSettings").GetChild("IndividualGravity").GetFirstChild();
+                //[rename, /RigidActors[1]/ActorRigid[1]/ActorBase[1]/NonStaticWorldObject[1]/WorldObject[1]/ActorRigidPhysicsSettings[1]/IndividualGravity[1]/Vector3[1]/@X, LogilabXmldiffTmpAttrZ]
+
+                xml::Node GravityNode = OneNode.GetChild(ActorBase::SerializableName()).GetChild("NonStaticWorldObject").GetChild("WorldObject").GetChild("ActorRigidPhysicsSettings").GetChild("IndividualGravity").GetFirstChild();
                 if(!GravityNode)
                     { DeSerializeError("find gravity node", "ActorRigidDeSerializer"); }
                 tempvec.ProtoDeSerialize(GravityNode);
