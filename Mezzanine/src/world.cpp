@@ -205,12 +205,15 @@ namespace Mezzanine
     World::~World()
     {
         ManagerBase* Current;
+        #ifdef MEZZDEBUG
+        String TypeName;
+        #endif
         //for( std::list<ManagerBase*>::iterator iter = --this->ManagerList.end(); !ManagerList.empty(); iter = --this->ManagerList.end() ) //Backward
         for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
         {
             #ifdef MEZZDEBUG
             //Be careful using this. Because the UImanager is deleted during scenemanager deconstruction, it may not be obvious when that memory is freed.
-            String TypeName = (*iter)->GetTypeName();
+            TypeName = (*iter)->GetTypeName();
             std::cout << "Deleting " << TypeName << std::endl;
             #endif
             Current = (*iter);
