@@ -1,0 +1,36 @@
+For each class we are support in swig/lua
+
+
+document execeptions from norms
+document calling/using class in Lua
+test calling soem features with simple unit test
+
+
+document which operators work in Lua
+	cannot be overloaded
+		++ and --
+		+=,-=,*= etc
+		% operator (you have to use math.mod)
+		assignment operator
+		all bitwise/logical operations
+	class external functions will not work
+
+Potentially add functions for the the following operators
+	__add__ operator+
+	__sub__ operator-
+	__mul__ operator *
+	__div__ operator/
+	__neg__ unary minus
+	__call__ operator() (often used in functor classes)
+	__pow__ the exponential fn (no C++ equivalent, Lua uses ^)
+	__concat__ the concatenation operator (SWIG maps C++'s ~ to Lua's ..)
+	__eq__ operator==
+	__lt__ operator<
+	__le__ operator<=
+
+Heeavily consider adding the following functions which enable better support for Lua features 
+	http://www.swig.org/Doc2.0/SWIGDocumentation.html#Lua_nn6
+	c++ member	->	Lua
+	__str__() 	->	tostring(obj)
+	__getitem__()
+	__setitem__()	->	[] accessor in Lua
