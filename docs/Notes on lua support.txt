@@ -3,8 +3,7 @@ For each class we are support in swig/lua
 
 document execeptions from norms
 document calling/using class in Lua
-test calling soem features with simple unit test
-
+test calling some features with simple unit test
 
 document which operators work in Lua
 	cannot be overloaded
@@ -13,6 +12,7 @@ document which operators work in Lua
 		% operator (you have to use math.mod)
 		assignment operator
 		all bitwise/logical operations
+	!=,>,>= are implemented in terms of <, <=, ==
 	class external functions will not work
 
 Potentially add functions for the the following operators

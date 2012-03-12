@@ -37,68 +37,27 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internalmotionstate_cpp
-#define _internalmotionstate_cpp
+#ifndef _luatests_h
+#define _luatests_h
 
-#include "internalmotionstate.h.cpp"
+#include "main.h"
 
-#include "physicsmanager.h"
-#include "areaeffect.h"
-
-// Keeps this file form being documented by doxygen
-/// @cond 0
-
-namespace Mezzanine
+class Lua51Tests : public UnitTestGroup
 {
-    namespace internal
-    {
-        ///////////////////////////////////
-        // PhysMotionState
-        PhysMotionState::PhysMotionState()
+    public:
+        virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
-            this->worldtrans.setIdentity();
+            if (RunAutomaticTests)
+            {
+                TestResult temp = Success;
+                AddTestResult("Lua5.1::GotThisFar", temp);
+
+
+            }else{
+                AddTestResult("Lua5.1::GotThisFar", Skipped);
+
+            }
+
         }
-
-        PhysMotionState::PhysMotionState(Ogre::SceneNode* scenenode)
-        {
-            this->snode = scenenode;
-            this->worldtrans.setIdentity();
-        }
-
-        PhysMotionState::~PhysMotionState()
-        {
-        }
-
-        void PhysMotionState::SetNode(Ogre::SceneNode* scenenode)
-        {
-            this->snode = scenenode;
-        }
-
-        void PhysMotionState::SetPosition(Vector3 position)
-        {
-            this->worldtrans.setOrigin(position.GetBulletVector3());
-        }
-
-        void PhysMotionState::SetOrientation(Quaternion orientation)
-        {
-            this->worldtrans.setRotation(orientation.GetBulletQuaternion());
-        }
-
-        void PhysMotionState::getWorldTransform(btTransform &worldTrans) const
-        {
-            worldTrans = this->worldtrans;
-        }
-
-        void PhysMotionState::setWorldTransform(const btTransform &worldTrans)
-        {
-            btQuaternion rotation = worldTrans.getRotation();
-            this->snode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-            btVector3 position = worldTrans.getOrigin();
-            this->snode->setPosition(position.x(), position.y(), position.z());
-        }
-    }// /internal
-}// /Mezz
-
-/// @endcond
-
+};
 #endif

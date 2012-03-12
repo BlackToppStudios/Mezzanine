@@ -202,23 +202,26 @@ namespace Mezzanine
 
         void MusicPlayer::Update()
         {
-            std::list<Audio::Sound*>::iterator SongIt = GetIteratorToSong(CurrSong);
-            std::list<Audio::Sound*>::iterator NextSong = SongIt;
-            NextSong++;
-            if(CurrSong->IsStopped() && Playing)
+            if(0!=CurrSong)
             {
-                if(NextSong == MusicPlaylist->end())
+                std::list<Audio::Sound*>::iterator SongIt = GetIteratorToSong(CurrSong);
+                std::list<Audio::Sound*>::iterator NextSong = SongIt;
+                NextSong++;
+                if(CurrSong->IsStopped() && Playing)
                 {
-                    if(EOPRepeat)
+                    if(NextSong == MusicPlaylist->end())
                     {
-                        if(EOPShuffle) MusicPlaylist->ShuffleList();
-                        CurrSong = *(MusicPlaylist->begin());
-                        Play();
+                        if(EOPRepeat)
+                        {
+                            if(EOPShuffle) MusicPlaylist->ShuffleList();
+                            CurrSong = *(MusicPlaylist->begin());
+                            Play();
+                        }else{
+                            Stop();
+                        }
                     }else{
-                        Stop();
+                        Next();
                     }
-                }else{
-                    Next();
                 }
             }
         }
