@@ -153,8 +153,9 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}resourcemanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}resourcetextsettingsfile.h"
 	"${${PROJECT_NAME}_SRC_DIR}scenemanager.h"
+	#"${${PROJECT_NAME}_SRC_DIR}scriptbindinglua51.h"
 	"${${PROJECT_NAME}_SRC_DIR}scriptingmanager.h"
-	"${${PROJECT_NAME}_SRC_DIR}scriptinglua.h"
+	"${${PROJECT_NAME}_SRC_DIR}scriptinglua51.h"
 	"${${PROJECT_NAME}_SRC_DIR}scripting.h"
 	"${${PROJECT_NAME}_SRC_DIR}scriptargument.h"
 	"${${PROJECT_NAME}_SRC_DIR}script.h"
@@ -293,6 +294,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}resourcemanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}resourcetextsettingsfile.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}scenemanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}scriptbindinglua51.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}scriptinglua51.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}scriptingmanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}serialization.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}simpletimer.cpp"
@@ -460,6 +463,10 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"			#only on windows, which doesn't build ogre
 	"${Mezz_SDLBuildDir}/SDL/include/"
 )
+if(${Mezz_Lua51})
+	include_directories( libincludes/common/lua51/lua5.1/src )
+endif(${Mezz_Lua51})
+
 
 link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
@@ -468,8 +475,11 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/lua"
 )
+if(${Mezz_Lua51})
+	link_directories( ${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl )
+endif(${Mezz_Lua51})
+
 
 ###############################################################################
 # Prepare the actual Build
@@ -479,9 +489,9 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
-if(${Mezz_Lua})
-	add_subdirectory (libincludes/common/luasrc)
-endif(${Mezz_Lua})
+if(${Mezz_Lua51})
+	add_subdirectory (libincludes/common/lua51)
+endif(${Mezz_Lua51})
 #add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
 add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio Bullet Ogre ${LuaProject})

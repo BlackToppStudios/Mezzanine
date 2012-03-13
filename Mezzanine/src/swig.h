@@ -42,47 +42,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @file
-/// @brief Used to give commands specifically to the swig preprocessor
-/// @details This file exists primarily to make it easier for engine users to include
-/// parts of the Mezzanine engine in their project with out needing to know or
-/// care about the internals of our project.
+/// @brief Used to give commands specifically to the SWIG preprocessor
+/// @details SWIG is a C/C++ source code preprocessor that reads source files
+/// and produces an implemtation of bindings for that language. Currently it
+/// is only used for Lua. It can be used for other items in the future.
 ///////////////////////////////////////////////////////////////////////////////
 
 // Tell SWIG to create a module that scripting languages can use called "mezzanine"
 #ifdef SWIG
+    %include stl.i
     %module mezzanine
-
-
-    // duplicate the std classes, because the std headers can be very difficult to parse.
-    namespace std
-    {
-        class exception
-        {
-            public:
-                exception();
-                exception(const exception& rhs);
-                virtual ~exception();
-                virtual const char *what(void);
-        };
-
-        //template < class T, class Allocator = allocator<T> > class vector
-        template < class T > class vector
-        {
-            public:
-                explicit vector ( const Allocator& = Allocator() );
-                explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
-                template <class InputIterator> vector ( InputIterator first, InputIterator last, const Allocator& = Allocator() );
-                vector ( const vector<T,Allocator>& x );
-
-                ~vector ( );
-
-                vector<T,Allocator>& operator= (const vector<T,Allocator>& x);
-
-        };
-
-    }
-
-
 
 #endif
 

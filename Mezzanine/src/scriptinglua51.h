@@ -37,33 +37,21 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _scriptargument_h
-#define _scriptargument_h
+#ifndef _scriptinglua51_h
+#define _scriptinglua51_h
 
-#include "scriptargument.h"
+#include "lua.h"
 
 namespace Mezzanine
 {
-    namespace Scripting
-    {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief The interface for a script argument
-        /// @details All the members that all script for all languages must implement.
-        /// @n @n
-        /// These are created to provide data to scripts.
-        ///////////////////////////////////////
-        class ScriptArgument
-        {
-            public:
-
-            virtual ~ScriptArgument();
-        };
-
-    }
-
+    // must implement
+        // ScriptingManagerLua
+        // ScriptLua
+        // ScriptArgLua
+        asdfasdfasdf <- needs to have a compilation error here
 
 }//Mezzanine
 
 
 
-#endif // \_scriptargument_h
+#endif // \_scriptinglua_h

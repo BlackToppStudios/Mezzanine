@@ -53,6 +53,7 @@
 // Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first
 #include "swig.h"
 
+#ifndef SWIG
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 
 // We put headers in our headers so we can include while we include
@@ -132,7 +133,11 @@
 #include "ui.h"
 #include "uimanager.h"
 #include "vector2.h"                    // done
+#endif
+
 #include "vector3.h"                    // done
+
+#ifndef SWIG
 #include "vector3wactor.h"
 #include "viewport.h"
 #include "worldgetset.h"
@@ -144,6 +149,6 @@
 #include "worldtrigger.h"
 #include "xmldoc.h"
 #include "xml.h"                        // nothing to do
-
+#endif
 
 #endif // \ _mezzanine_h

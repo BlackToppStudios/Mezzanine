@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,33 +37,24 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _scriptargument_h
-#define _scriptargument_h
+#ifndef _scriptinglua51_cpp
+#define _scriptinglua51_cpp
 
-#include "scriptargument.h"
+// The file that SWIG generated was made with the following command.
+// echo "#ifndef _scriptingbinglua51_h_cpp" > scriptbindinglua51.h.cpp && echo "#define _scriptingbinglua51_h_cpp" >> scriptbindinglua51.h.cpp && swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.h.cpp mezzanine.h && echo "#endif" >> scriptbindinglua51.h.cpp
+//#include "scriptbindinglua51.h"
+
+
 
 namespace Mezzanine
 {
     namespace Scripting
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @brief The interface for a script argument
-        /// @details All the members that all script for all languages must implement.
-        /// @n @n
-        /// These are created to provide data to scripts.
-        ///////////////////////////////////////
-        class ScriptArgument
-        {
-            public:
-
-            virtual ~ScriptArgument();
-        };
 
     }
+}
 
 
-}//Mezzanine
 
 
-
-#endif // \_scriptargument_h
+#endif
