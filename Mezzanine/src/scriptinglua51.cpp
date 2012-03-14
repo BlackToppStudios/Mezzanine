@@ -41,15 +41,67 @@
 #define _scriptinglua51_cpp
 
 // The file that SWIG generated was made with the following command.
-// echo "#ifndef _scriptingbinglua51_h_cpp" > scriptbindinglua51.h.cpp && echo "#define _scriptingbinglua51_h_cpp" >> scriptbindinglua51.h.cpp && swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.h.cpp mezzanine.h && echo "#endif" >> scriptbindinglua51.h.cpp
-//#include "scriptbindinglua51.h"
+// echo "#ifndef _scriptbindinglua51_cpp" > scriptbindinglua51.cpp && echo "#define _scripbindinglua51_cpp" >> scriptbindinglua51.cpp && swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.cpp.tmp mezzanine.h && cat scriptbindinglua51.cpp.tmp >> scriptbindinglua51.cpp && echo "#endif" >> scriptbindinglua51.cpp
+// swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.cpp mezzanine.h
+// #include "scriptbindinglua51.cpp"
+extern "C"
+{
+    #include "lua.h"            // Lua Core
+    #include "lualib.h"         // for opening the base state
+    #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 
+    int luaopen_mezzanine(lua_State* L);
+}
 
+#include <iostream>
 
 namespace Mezzanine
 {
     namespace Scripting
     {
+        //simplistic error checking function, to be replace with proper exception driven code later.
+        int PrintErrorMessageOrNothing(int ErrorCode)
+        {
+            switch(ErrorCode)
+            {
+                case 0:             // Fine
+                    break;
+                case LUA_YIELD:     // most errors seem to be this.
+                    std::cout << std::endl << "Lua Error Code(LUA_YIELD): " << ErrorCode << std::endl;
+                    break;
+                case LUA_ERRRUN:
+                    std::cout << std::endl << "Lua Error Code(LUA_ERRRUN): " << ErrorCode << std::endl;
+                    break;
+                case LUA_ERRSYNTAX:
+                    std::cout << std::endl << "Lua Error Code(LUA_ERRSYNTAX): " << ErrorCode << std::endl;
+                    break;
+                case LUA_ERRERR:
+                    std::cout << std::endl << "Lua Error Code(LUA_ERRERR): " << ErrorCode << std::endl;
+                    break;
+                default:
+                    std::cout << std::endl << "Lua Error Code(Unknown Error): " << ErrorCode << std::endl;
+            }
+            return ErrorCode;
+        }
+
+        //
+        int test()
+        {
+            lua_State *State;           // create a pointer to Track the Lua State
+            State = luaL_newstate();    // Create a Lua State
+            luaL_openlibs(State);
+            luaopen_mezzanine(State);
+
+            std::cout << std::endl << "Let's try running a Lua command." << std::endl;
+            int Error = luaL_dostring(State,"print \"Hello from Lua\"");    // run a very simple Lua script.
+            PrintErrorMessageOrNothing(Error);
+
+            std::cout << std::endl << "Now for some Lua class creation." << std::endl;
+            Error = luaL_dostring(State,"   APoint = Mezzanine.Vector3(1,2,3)");
+            PrintErrorMessageOrNothing(Error);
+
+            lua_close(State);           // Close the Lua state
+        }
 
     }
 }

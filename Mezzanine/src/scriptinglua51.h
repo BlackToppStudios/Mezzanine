@@ -40,7 +40,7 @@
 #ifndef _scriptinglua51_h
 #define _scriptinglua51_h
 
-#include "lua.h"
+#include "scripting.h"
 
 namespace Mezzanine
 {
@@ -48,7 +48,16 @@ namespace Mezzanine
         // ScriptingManagerLua
         // ScriptLua
         // ScriptArgLua
-        asdfasdfasdf <- needs to have a compilation error here
+
+    namespace Scripting
+    {
+        //simplistic error checking function, to be replace with proper exception driven code later.
+        int PrintErrorMessageOrNothing(int ErrorCode);
+
+        // super simple lua test
+        int test();
+    }
+
 
 }//Mezzanine
 

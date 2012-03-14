@@ -53,6 +53,8 @@
 // Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first
 #include "swig.h"
 
+
+// This is required for the swig parser to skip the items that don't support scripting yet.
 #ifndef SWIG
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing
 
@@ -133,10 +135,11 @@
 #include "ui.h"
 #include "uimanager.h"
 #include "vector2.h"                    // done
-#endif
+#endif // \no SWIG
 
 #include "vector3.h"                    // done
 
+// more stuff swi shouldn't read yer
 #ifndef SWIG
 #include "vector3wactor.h"
 #include "viewport.h"
@@ -149,6 +152,12 @@
 #include "worldtrigger.h"
 #include "xmldoc.h"
 #include "xml.h"                        // nothing to do
+
+// Individual scripting implementations
+#ifdef MEZZLUA
+    #include "scriptinglua51.h"
 #endif
+
+#endif // \no SWIG
 
 #endif // \ _mezzanine_h

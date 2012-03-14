@@ -153,7 +153,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}resourcemanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}resourcetextsettingsfile.h"
 	"${${PROJECT_NAME}_SRC_DIR}scenemanager.h"
-	#"${${PROJECT_NAME}_SRC_DIR}scriptbindinglua51.h"
 	"${${PROJECT_NAME}_SRC_DIR}scriptingmanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}scriptinglua51.h"
 	"${${PROJECT_NAME}_SRC_DIR}scripting.h"
