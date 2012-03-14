@@ -280,6 +280,8 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB NonStaticWorldObject : public WorldObject, public AttachableParent
     {
+        public:
+            using WorldObject::SetLocation;
         protected:
             /// @brief Sets the orientation of the World Object.
             void InternalSetOrientation(const Quaternion& Rotation);

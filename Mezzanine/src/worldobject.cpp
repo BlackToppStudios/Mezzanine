@@ -64,6 +64,7 @@ namespace Mezzanine
           PhysicsSettings(NULL),
           ObjectSounds(NULL)
     {
+        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
     }
 
     WorldObject::~WorldObject()
@@ -289,7 +290,6 @@ namespace Mezzanine
 
     NonStaticWorldObject::NonStaticWorldObject()
     {
-        this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
     }
 
     NonStaticWorldObject::~NonStaticWorldObject()
