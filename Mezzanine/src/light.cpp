@@ -79,7 +79,7 @@ namespace Mezzanine
     ConstString& Light::GetName() const
         { return OgreLight->getName(); }
 
-    void Light::SetType(Light::LightType Type)
+    void Light::SetLightType(Light::LightType Type)
     {
         Ogre::Light::LightTypes OgreType;
         switch (Type)
@@ -100,7 +100,7 @@ namespace Mezzanine
     }
 
 
-    Light::LightType Light::GetType() const
+    Light::LightType Light::GetLightType() const
     {
         Ogre::Light::LightTypes OgreType = OgreLight->getType();
         Light::LightType MezzType;
@@ -125,19 +125,24 @@ namespace Mezzanine
     // 3d navigation
 
     void Light::SetLocation(const Vector3 &Location)
-        { OgreLight->setPosition(Location.GetOgreVector3()); }
+    {
+        OgreLight->setPosition(Location.GetOgreVector3());
+        LocalTransformDirty = true;
 
-    void Light::SetOrientation(const Quaternion& Orientation)
-        {}
-
-    void Light::SetDirection(const Vector3& Direction)
-        { OgreLight->setDirection(Direction.GetOgreVector3()); }
+        _RecalculateLocalTransform();
+    }
 
     Vector3 Light::GetLocation() const
         { return Vector3(OgreLight->getPosition()); }
 
+    void Light::SetOrientation(const Quaternion& Orientation)
+        { /*Nothing to do*/ }
+
     Quaternion Light::GetOrientation() const
         { return Quaternion(); }
+
+    void Light::SetDirection(const Vector3& Direction)
+        { OgreLight->setDirection(Direction.GetOgreVector3()); }
 
     Vector3 Light::GetDirection() const
         { return Vector3(OgreLight->getDirection()); }
@@ -145,20 +150,20 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Colour
 
-    void Light::SetDiffuseColour(Real Red, Real Green, Real Blue)
+    void Light::SetDiffuseColour(const Real& Red, const Real& Green, const Real& Blue)
         { OgreLight->setDiffuseColour(Red, Green, Blue); }
 
     void Light::SetDiffuseColour(const ColourValue &Colour)
         { OgreLight->setDiffuseColour(Colour.GetOgreColourValue()); }
 
-    void Light::SetSpecularColour(Real Red, Real Green, Real Blue)
+    ColourValue Light::GetDiffuseColour() const
+        { return ColourValue(OgreLight->getDiffuseColour()); }
+
+    void Light::SetSpecularColour(const Real& Red, const Real& Green, const Real& Blue)
         { OgreLight->setSpecularColour(Red, Green, Blue); }
 
     void Light::SetSpecularColour(const ColourValue &Colour)
         { OgreLight->setSpecularColour(Colour.GetOgreColourValue()); }
-
-    ColourValue Light::GetDiffuseColour() const
-        { return ColourValue(OgreLight->getDiffuseColour()); }
 
     ColourValue Light::GetSpecularColour() const
         { return ColourValue(OgreLight->getSpecularColour()); }
@@ -166,7 +171,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Attenuation
 
-    void Light::SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic)
+    void Light::SetAttenuation(const Real& Range, const Real& Constant, const Real& Linear, const Real& Quadratic)
         { OgreLight->setAttenuation(Range, Constant, Linear, Quadratic); }
 
     Real Light::GetAttenuationRange() const
@@ -184,33 +189,33 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Spotlight specific methods
 
-    void Light::SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff)
+    void Light::SetSpotlightRange(const Real& InnerAngle, const Real& OuterAngle, const Real& Falloff)
     {
         Ogre::Radian IAngle(InnerAngle);
         Ogre::Radian OAngle(OuterAngle);
         OgreLight->setSpotlightRange(IAngle, OAngle, Falloff);
     }
 
-    void Light::SetSpotlightInnerAngle(Real InnerAngle)
+    void Light::SetSpotlightInnerAngle(const Real& InnerAngle)
     {
         Ogre::Radian IAngle(InnerAngle);
         OgreLight->setSpotlightInnerAngle(IAngle);
     }
 
-    void Light::SetSpotlightOuterAngle(Real OuterAngle)
+    Real Light::GetSpotlightInnerAngle() const
+        { return OgreLight->getSpotlightInnerAngle().valueRadians(); }
+
+    void Light::SetSpotlightOuterAngle(const Real& OuterAngle)
     {
         Ogre::Radian OAngle(OuterAngle);
         OgreLight->setSpotlightOuterAngle(OAngle);
     }
 
-    void Light::SetSpotlightFalloff(Real Falloff)
-        { OgreLight->setSpotlightFalloff(Falloff); }
-
-    Real Light::GetSpotlightInnerAngle() const
-        { return OgreLight->getSpotlightInnerAngle().valueRadians(); }
-
     Real Light::GetSpotlightOuterAngle() const
         { return OgreLight->getSpotlightOuterAngle().valueRadians(); }
+
+    void Light::SetSpotlightFalloff(const Real& Falloff)
+        { OgreLight->setSpotlightFalloff(Falloff); }
 
     Real Light::GetSpotlightFalloff() const
         { return OgreLight->getSpotlightFalloff(); }
@@ -218,27 +223,38 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Effects
 
+    void Light::SetPowerScale(const Real& Power)
+        { OgreLight->setPowerScale(Power); }
+
     Real Light::GetPowerScale() const
         { return OgreLight->getPowerScale(); }
 
-    void Light::SetPowerScale(Real Power)
-        { OgreLight->setPowerScale(Power); }
-
     ///////////////////////////////////////////////////////////////////////////////
-    // Inherited From Attachable
+    // Inherited From AttachableChild
 
-    Attachable::AttachableElement Light::GetAttachableType() const
-        { return Attachable::Light; }
+    WorldAndSceneObjectType Light::GetType() const
+        { return Mezzanine::WSO_Light; }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Functions
+    void Light::SetScaling(const Vector3& Scale)
+        { /* Can't scale a light */ }
 
-    AttachableData Light::GetAttachableData() const
+    Vector3 Light::GetScaling() const
+        { return Vector3(1,1,1); }
+
+    void Light::SetLocalLocation(const Vector3& Location)
     {
-        AttachableData Data;
-        Data.OgreMovable = OgreLight;
-        Data.Type = Attachable::Light;
-        return Data;
+        LocalXform.Location = Location;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+    }
+
+    void Light::SetLocalOrientation(const Quaternion& Orientation)
+    {
+        LocalXform.Rotation = Orientation;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
     }
 }//Mezzanine
 
@@ -248,7 +264,7 @@ namespace Mezzanine
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Light& Ev)
 {
     stream      << "<Light Version=\"1\" Name=\"" << Ev.GetName()
-                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                    << "\" AttachedTo=\"" << ( Ev.GetParent() ? Ev.GetParent()->GetName() : "" )
                     << "\" Type=\"" << Ev.GetType()
                     << "\" PowerScale=\"" << Ev.GetPowerScale()
                     << "\" AttenuationRange=\"" << Ev.GetAttenuationRange()
@@ -283,7 +299,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            Ev.SetType(static_cast<Mezzanine::Light::LightType>(OneNode.GetAttribute("Type").AsInt()));
+            Ev.SetLightType(static_cast<Mezzanine::Light::LightType>(OneNode.GetAttribute("Type").AsInt()));
             Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
             Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
             Ev.SetSpotlightInnerAngle(OneNode.GetAttribute("SpotlightInnerAngle").AsReal());

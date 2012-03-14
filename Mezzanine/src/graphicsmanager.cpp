@@ -53,6 +53,7 @@
 #include "crossplatform.h"
 #include "gamewindow.h"
 #include "viewport.h"
+#include "stringtool.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -98,7 +99,7 @@ namespace Mezzanine
         DesktopSettings.RenderHeight = DeskMode.h;
         DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
-        this->Priority = 0;
+        this->Priority = 65;
         this->FrameDelay = 0;
     }
 
@@ -332,7 +333,12 @@ namespace Mezzanine
             if( (configItr)->first == "Video Mode" )
             {
                 for( Whole X = 0 ; X < (configItr)->second.possibleValues.size() ; X++ )
-                    SupportedResolutions.push_back((configItr)->second.possibleValues[X]);
+                {
+                    String NewRes = (configItr)->second.possibleValues[X];
+                    StringTool::RemoveDuplicateWhitespaces(NewRes);
+                    StringTool::Trim(NewRes);
+                    SupportedResolutions.push_back(NewRes);
+                }
                 continue;
             }
             if( (configItr)->first == "Rendering Device" )

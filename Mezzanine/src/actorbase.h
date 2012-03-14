@@ -112,7 +112,7 @@ namespace Mezzanine
             // Utility and Configuration
             ///////////////////////////////////////
             /// @copydoc WorldObject::GetType()
-            virtual WorldObjectType GetType() const = 0;
+            virtual WorldAndSceneObjectType GetType() const = 0;
 
             /// @brief Sets the animation for this object.
             /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the

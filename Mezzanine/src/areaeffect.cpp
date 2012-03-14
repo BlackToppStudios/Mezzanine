@@ -146,9 +146,74 @@ namespace Mezzanine
         return RemovedActors;
     }
 
-    WorldObjectType AreaEffect::GetType() const
+    ConstString& AreaEffect::GetName() const
     {
-        return Mezzanine::WOT_AEUnknown;
+        return WorldObject::GetName();
+    }
+
+    void AreaEffect::SetLocation(const Vector3& Location)
+    {
+        WorldObject::SetLocation(Location);
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    Vector3 AreaEffect::GetLocation() const
+    {
+        return WorldObject::GetLocation();
+    }
+
+    void AreaEffect::SetOrientation(const Quaternion& Rotation)
+    {
+        NonStaticWorldObject::InternalSetOrientation(Rotation);
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    Quaternion AreaEffect::GetOrientation() const
+    {
+        return NonStaticWorldObject::GetOrientation();
+    }
+
+    void AreaEffect::SetScaling(const Vector3& Scale)
+    {
+        WorldObject::SetScaling(Scale);
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    Vector3 AreaEffect::GetScaling() const
+    {
+        return WorldObject::GetScaling();
+    }
+
+    void AreaEffect::SetLocalLocation(const Vector3& Location)
+    {
+        LocalXform.Location = Location;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    void AreaEffect::SetLocalOrientation(const Quaternion& Orientation)
+    {
+        LocalXform.Rotation = Orientation;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    WorldAndSceneObjectType AreaEffect::GetType() const
+    {
+        return Mezzanine::WSO_AEUnknown;
     }
 
     void AreaEffect::AddToWorld()
@@ -213,7 +278,7 @@ namespace Mezzanine
 
                     ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
                     ActorBase* Actor = NULL;
-                    if(Mezzanine::WOT_TerrainFirst > ActorRef->GetType())
+                    if(Mezzanine::WSO_TerrainFirst > ActorRef->GetType())
                         Actor = (ActorBase*)ActorRef->GetObject();
                     else
                         continue;
@@ -383,9 +448,9 @@ namespace Mezzanine
         return Grav;
     }
 
-    WorldObjectType GravityField::GetType() const
+    WorldAndSceneObjectType GravityField::GetType() const
     {
-        return Mezzanine::WOT_AEGravityField;
+        return Mezzanine::WSO_AEGravityField;
     }
 
     ///////////////////////////////////
@@ -414,7 +479,7 @@ namespace Mezzanine
         {
             for ( std::vector<ActorBase*>::iterator AA = AddedActors.begin() ; AA != AddedActors.end() ; AA++ )
             {
-                if(Mezzanine::WOT_ActorRigid != (*AA)->GetType())
+                if(Mezzanine::WSO_ActorRigid != (*AA)->GetType())
                     continue;
                 ActRig = dynamic_cast<ActorRigid*>(*AA);
                 ActRig->GetPhysicsSettings()->SetIndividualGravity(Vector3());
@@ -427,7 +492,7 @@ namespace Mezzanine
             Vector3 GhostLoc = this->GetLocation();
             for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
             {
-                if(Mezzanine::WOT_ActorRigid != (*OA)->GetType())
+                if(Mezzanine::WSO_ActorRigid != (*OA)->GetType())
                     continue;
                 //Collect necessary data
                 ActorLoc = (*OA)->GetLocation();
@@ -462,7 +527,7 @@ namespace Mezzanine
             Vector3 WorldGrav = PhysicsManager::GetSingletonPtr()->GetGravity();
             for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
             {
-                if(Mezzanine::WOT_ActorRigid != (*RA)->GetType())
+                if(Mezzanine::WSO_ActorRigid != (*RA)->GetType())
                     continue;
                 ActRig = dynamic_cast<ActorRigid*>(*RA);
                 ActRig->GetPhysicsSettings()->SetIndividualGravity(WorldGrav);
@@ -506,9 +571,9 @@ namespace Mezzanine
         return AttenAmount;
     }
 
-    WorldObjectType GravityWell::GetType() const
+    WorldAndSceneObjectType GravityWell::GetType() const
     {
-        return Mezzanine::WOT_AEGravityWell;
+        return Mezzanine::WSO_AEGravityWell;
     }
 
     ///////////////////////////////////
@@ -540,7 +605,7 @@ namespace Mezzanine
             Real Distance, AppliedStrength, InvMass;
             for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
             {
-                if(Mezzanine::WOT_ActorRigid != (*OA)->GetType())
+                if(Mezzanine::WSO_ActorRigid != (*OA)->GetType())
                     continue;
                 ActorLoc = (*OA)->GetLocation();
                 switch(AttenStyle)
@@ -621,9 +686,9 @@ namespace Mezzanine
         return AttenSource;
     }
 
-    WorldObjectType FieldOfForce::GetType() const
+    WorldAndSceneObjectType FieldOfForce::GetType() const
     {
-        return Mezzanine::WOT_AEFieldOfForce;
+        return Mezzanine::WSO_AEFieldOfForce;
     }
 }
 

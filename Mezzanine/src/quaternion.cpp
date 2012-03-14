@@ -42,8 +42,10 @@
 
 #include "stringtool.h"
 #include "quaternion.h"
+#include "mathtool.h"
 #include "serialization.h"
 #include "vector3.h"
+#include "matrix3x3.h"
 #include "world.h"
 
 #include <Ogre.h>
@@ -57,31 +59,19 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Constructors
     Quaternion::Quaternion()
-    {
-        this->X=0;
-        this->Y=0;
-        this->Z=0;
-        this->W=1;
-    }
+        { SetIdentity(); }
 
-    Quaternion::Quaternion(const Real &x, const Real &y, const Real &z, const Real &w)
-    {
-        this->X=x;
-        this->Y=y;
-        this->Z=z;
-        this->W=w;
-    }
+    Quaternion::Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W)
+        { SetValues(X,Y,Z,W); }
 
     Quaternion::Quaternion(const Real& Angle, const Vector3& Axis)
-    {
-        /// @todo Need to find a clean way to wrap sin and cos functions.  Also may want to make a radian class/datatype.
-        Ogre::Radian fHalfAngle ( 0.5*Angle );
-        Real fSin = Ogre::Math::Sin(fHalfAngle);
-        this->W = Ogre::Math::Cos(fHalfAngle);
-        this->X = fSin*Axis.X;
-        this->Y = fSin*Axis.Y;
-        this->Z = fSin*Axis.Z;
-    }
+        { SetFromAxisAngle(Angle,Axis); }
+
+    Quaternion::Quaternion(const Matrix3x3& Mat)
+        { SetFromMatrix3x3(Mat); }
+
+    Quaternion::Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ)
+        { SetFromAxes(AxisX,AxisY,AxisZ); }
 
     Quaternion::Quaternion(const btQuaternion& Other)
         { ExtractBulletQuaternion(Other); }
@@ -95,6 +85,85 @@ namespace Mezzanine
         this->Y=Other.Y;
         this->Z=Other.Z;
         this->W=Other.W;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Fancy Math and Utilities
+
+    void Quaternion::SetIdentity()
+    {
+        this->X = 0;
+        this->Y = 0;
+        this->Z = 0;
+        this->W = 1;
+    }
+
+    void Quaternion::SetValues(const Real& X, const Real& Y, const Real& Z, const Real& W)
+    {
+        this->X = X;
+        this->Y = Y;
+        this->Z = Z;
+        this->W = W;
+    }
+
+    void Quaternion::SetFromAxisAngle(const Real& Angle, const Vector3& Axis)
+    {
+        Real HalfAngle ( 0.5*Angle );
+        Real AngleSin = MathTool::Sin(HalfAngle);
+        this->W = MathTool::Cos(HalfAngle);
+        this->X = AngleSin * Axis.X;
+        this->Y = AngleSin * Axis.Y;
+        this->Z = AngleSin * Axis.Z;
+    }
+
+    void Quaternion::SetFromMatrix3x3(const Matrix3x3& Mat)
+    {
+        Real Trace = Mat.Matrix[0][0]+Mat.Matrix[1][1]+Mat.Matrix[2][2];
+        Real Root;
+
+        if(Trace > 0.0)
+        {
+            Root = MathTool::Sqrt(Trace + 1.0);
+            this->W = Root * 0.5;
+            Root = 0.5/Root;
+            this->X = (Mat.Matrix[2][1] - Mat.Matrix[1][2]) * Root;
+            this->Y = (Mat.Matrix[0][2] - Mat.Matrix[2][0]) * Root;
+            this->Z = (Mat.Matrix[1][0] - Mat.Matrix[0][1]) * Root;
+        }else{
+            static size_t s_iNext[3] = { 1, 2, 0 };
+            size_t I = 0;
+            if ( Mat.Matrix[1][1] > Mat.Matrix[0][0] )
+                I = 1;
+            if ( Mat.Matrix[2][2] > Mat.Matrix[I][I] )
+                I = 2;
+            size_t J = s_iNext[I];
+            size_t K = s_iNext[J];
+
+            Root = MathTool::Sqrt(Mat.Matrix[I][I] - Mat.Matrix[J][J] - Mat.Matrix[K][K] + 1.0);
+            Real* QuatMem[3] = { &X, &Y, &Z };
+            *QuatMem[I] = 0.5 * Root;
+            Root = 0.5 / Root;
+            this->W = (Mat.Matrix[K][J] - Mat.Matrix[J][K]) * Root;
+            *QuatMem[J] = (Mat.Matrix[J][I] + Mat.Matrix[I][J]) * Root;
+            *QuatMem[K] = (Mat.Matrix[K][I] + Mat.Matrix[I][K]) * Root;
+        }
+    }
+
+    void Quaternion::SetFromAxes(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ)
+    {
+        Matrix3x3 Mat3;
+
+        Mat3.Matrix[0][0] = AxisX.X;
+        Mat3.Matrix[1][0] = AxisX.Y;
+        Mat3.Matrix[2][0] = AxisX.Z;
+        Mat3.Matrix[0][1] = AxisY.X;
+        Mat3.Matrix[1][1] = AxisY.Y;
+        Mat3.Matrix[2][1] = AxisY.Z;
+        Mat3.Matrix[0][2] = AxisZ.X;
+        Mat3.Matrix[1][2] = AxisZ.Y;
+        Mat3.Matrix[2][2] = AxisZ.Z;
+
+        SetFromMatrix3x3(Mat3);
     }
 
     Real Quaternion::DotProduct(const Quaternion& Other) const
@@ -118,7 +187,7 @@ namespace Mezzanine
         return *this;
     }
 
-    Quaternion Quaternion::GetNormalizedCopy()
+    Quaternion Quaternion::GetNormalizedCopy() const
         { return *this / Length(); }
 
 

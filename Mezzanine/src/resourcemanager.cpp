@@ -63,7 +63,7 @@ namespace Mezzanine
 
     ResourceManager::ResourceManager(String _EngineDataPath)
     {
-        this->Priority = 20;
+        this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
         EngineDataPath = _EngineDataPath;

@@ -128,7 +128,7 @@ namespace Mezzanine
 
             /// @brief Retrieves the name of the object.
             /// @return A String with the name of this Actor
-            String GetName() const;
+            ConstString& GetName() const;
 
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
@@ -184,13 +184,15 @@ namespace Mezzanine
             virtual void SetOrientation(Quaternion Rotation);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from ActorBase
+            // Inherited from WorldObject
             ///////////////////////////////////////
-            /// @copydoc ActorBase::AddObjectToWorld()
-            virtual void AddObjectToWorld();
-            /// @copydoc ActorBase::RemoveObjectFromWorld()
-            virtual void RemoveObjectFromWorld();
-            /// @copydoc ActorBase::_Update()
+            /// @copydoc WorldObject::GetType()
+            virtual WorldAndSceneObjectType GetType() const;
+            /// @copydoc WorldObject::AddToWorld()
+            virtual void AddToWorld();
+            /// @copydoc WorldObject::RemoveFromWorld()
+            virtual void RemoveFromWorld();
+            /// @copydoc WorldObject::_Update()
             virtual void _Update();
 
             /// @internal

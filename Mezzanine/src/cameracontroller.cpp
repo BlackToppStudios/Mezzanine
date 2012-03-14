@@ -126,7 +126,7 @@ namespace Mezzanine
         Vector3 Loc(Controlled->GetLocation());
         Vector3 Dest(Loc + Vector3(0,-2000,0));
         Ray* GroundRay = new Ray(Loc,Dest);
-        int flags = Mezzanine::WOT_MeshTerrain | Mezzanine::WOT_UnimplementedTerrain1 | Mezzanine::WOT_UnimplementedTerrain2 | Mezzanine::WOT_UnimplementedTerrain3;
+        int flags = Mezzanine::WSO_MeshTerrain | Mezzanine::WSO_UnimplementedTerrain1 | Mezzanine::WSO_UnimplementedTerrain2 | Mezzanine::WSO_UnimplementedTerrain3;
         Vector3WActor* Result = RayQueryTool::GetFirstActorOnRayByPolygon(*GroundRay,flags);
         if(NULL == Result)
         {

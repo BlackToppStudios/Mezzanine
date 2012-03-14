@@ -54,19 +54,19 @@ namespace Mezzanine
     class ObjectReference
     {
         protected:
-            WorldObjectType Type;
+            WorldAndSceneObjectType Type;
             WorldObject* Object;
         public:
             /// @brief Class constructor.
             /// @param TheType The type of object this class is storing.
             /// @param TheObject The object to be stored.
-            ObjectReference(const WorldObjectType& TheType, WorldObject* TheObject)
+            ObjectReference(const WorldAndSceneObjectType& TheType, WorldObject* TheObject)
                 : Type(TheType), Object(TheObject) {};
             /// @brief Class destructor.
             ~ObjectReference() {};
             /// @brief Gets the type of object this class references.
             /// @return Returns an enum value indicating what type of object this class references.
-            WorldObjectType GetType() { return Type; };
+            WorldAndSceneObjectType GetType() { return Type; };
             /// @brief Gets the object this class references.
             /// @return Returns a WorldObject pointer pointing to the object this class references.
             WorldObject* GetObject() { return Object; };

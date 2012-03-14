@@ -55,7 +55,7 @@ namespace Mezzanine
     /// @brief This class is useful for representing graphical bodies without a physics representation.
     /// @details An entity is essentially just a graphical mesh floating in 3D space.
     ///////////////////////////////////////
-    class MEZZ_LIB Entity : public Attachable
+    class MEZZ_LIB Entity : public AttachableChild
     {
         protected:
             internal::EntityInternalData* EID;
@@ -66,7 +66,6 @@ namespace Mezzanine
             /// @param Group The resource group where the mesh can be found.
             /// @param manager The scenemanager to which this entity belongs.
             Entity(const String& Name, const String& MeshName, const String& Group, SceneManager* manager);
-
             /// @brief Class Destructor.
             virtual ~Entity();
 
@@ -75,37 +74,39 @@ namespace Mezzanine
 
             /// @copydoc Mezzanine::Attachable::GetName()
             ConstString& GetName() const;
+            /// @copydoc AttachableBase::GetType()
+            WorldAndSceneObjectType GetType() const;
 
-            /// @copydoc Mezzanine::Attachable::GetAttachableType()
-            virtual Attachable::AttachableElement GetAttachableType() const;
-
-            /// @copydoc Mezzanine::Attachable::SetLocation(const Vector3& Vec)
-            virtual void SetLocation(const Vector3& Vec);
-
-            /// @copydoc Mezzanine::Attachable::GetLocation()
-            virtual Vector3 GetLocation() const;
-
-            /// @copydoc Mezzanine::Attachable::SetOrientation(const Quaternion& Orientation)
+            /// @brief Sets the location for this entity.
+            /// @param Location The global location to be applied to this entity.
+            void SetLocation(const Vector3& Location);
+            /// @brief Gets the location of this entity.
+            /// @return Returns a vector3 reprensenting the current location of this entity in the world.
+            Vector3 GetLocation() const;
+            /// @brief Sets the Orientation of this entity.
+            /// @param Orientation The global orientation to be applied to this entity.
             void SetOrientation(const Quaternion& Orientation);
-
-            /// @copydoc Mezzanine::Attachable::GetOrientation()
+            /// @brief Gets the current orientation of this entity.
+            /// @return Returns a quaternion representing the current rotation of this enttiy.
             Quaternion GetOrientation() const;
+            /// @brief Sets the scale to be applied to this entity.
+            /// @param Scale A vector3 with the scales that will be applied to each axis.
+            void SetScaling(const Vector3& Scale);
+            /// @brief Gets the scale currently be applied to this entity.
+            /// @return Returns a vector3 with the scale being applied to each axis.
+            Vector3 GetScaling() const;
+
+            /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
+            void SetLocalLocation(const Vector3& Location);
+            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)
+            void SetLocalOrientation(const Quaternion& Orientation);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Entity Functionality
 
-            /// @brief Sets the scale to be applied to this entity.
-            /// @param Scale A vector3 with the scales that will be applied to each axis.
-            void SetScale(const Vector3& Scale);
-
-            /// @brief Gets the scale currently be applied to this entity.
-            /// @return Returns a vector3 with the scale being applied to each axis.
-            Vector3 GetScale() const;
-
             /// @brief Adds this entity to the world, allowing it to render.
             /// @details If the entity is already in the world, this does nothing.
             void AddToWorld();
-
             /// @brief Removes this entity from the world, preventing it from rendering.
             /// @details If the entity is not in the world, this does nothing.
             void RemoveFromWorld();
@@ -113,14 +114,6 @@ namespace Mezzanine
             /// @brief Gets whether or not this entity is in the world.
             /// @return True if in the world, false otherwise.
             bool IsInWorld() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Functions
-
-            /// @internal
-            /// @brief Gets pointers to the internal ogre structures for this attachable.
-            /// @return Returns an AttachableData struct with the internal data.
-            virtual AttachableData GetAttachableData() const;
     };//Entity
 }//Mezzanine
 

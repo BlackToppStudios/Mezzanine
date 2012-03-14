@@ -56,6 +56,7 @@ using namespace std;
 #include "worldtrigger.h"
 #include "objectreference.h"
 #include "collision.h"
+#include "scenemanager.h"
 
 #include <queue>
 
@@ -456,7 +457,7 @@ namespace Mezzanine
 
     void PhysicsManager::Construct(const PhysicsConstructionInfo& Info)
     {
-        this->Priority = -30;
+        this->Priority = 15;
         this->CollisionAge = Info.EventFilterAge;
         this->Impulse = Info.EventFilterImpulse;
 
@@ -650,7 +651,7 @@ namespace Mezzanine
 
     void PhysicsManager::SetIndividualGravity(ActorBase* Actor, const Vector3& igrav)
     {
-        if (Mezzanine::WOT_ActorRigid==Actor->GetType())
+        if (Mezzanine::WSO_ActorRigid==Actor->GetType())
         {
             btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->_GetBasePhysicsObject());
             Rigid->setGravity(igrav.GetBulletVector3());

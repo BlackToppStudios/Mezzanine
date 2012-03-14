@@ -251,14 +251,14 @@ namespace Mezzanine
             return;
         switch (Parent->GetType())
         {
-            case Mezzanine::WOT_ActorRigid:
-            case Mezzanine::WOT_ActorSoft:
+            case Mezzanine::WSO_ActorRigid:
+            case Mezzanine::WSO_ActorSoft:
             {
                 if(Enable) WorldObjectCO->setCollisionFlags(WorldObjectCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
                 else WorldObjectCO->setCollisionFlags(WorldObjectCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
                 break;
             }
-            case Mezzanine::WOT_ActorCharacter:
+            case Mezzanine::WSO_ActorCharacter:
             {
                 return;
                 break;

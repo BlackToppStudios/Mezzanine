@@ -199,6 +199,7 @@ namespace Mezzanine
                 Type = Ogre::ST_GENERIC;
         }
         this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
+        this->Priority = 25;
         //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
         //OgreManager->setShadowCameraSetup(ShadowCam);
@@ -210,6 +211,14 @@ namespace Mezzanine
         DestroyAllParticleEffects();
         DestroyAllWorldNodes();
         delete SMD;
+    }
+
+    void SceneManager::UpdateTrackingNodes()
+    {
+        for( std::set<WorldNode*>::iterator it = TrackingNodes.begin() ; it != TrackingNodes.end() ; ++it )
+        {
+            (*it)->_UpdateTracking();
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -580,44 +589,9 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // WorldNode Management
 
-    WorldNode* SceneManager::CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack)
+    WorldNode* SceneManager::CreateWorldNode(const String& Name)
     {
-        Ogre::SceneNode* OgreCNode = this->SMD->OgreManager->createSceneNode(Name + "C");
-        this->SMD->OgreManager->getRootSceneNode()->addChild(OgreCNode);
-        OgreCNode->setPosition(Target.GetOgreVector3());
-        Ogre::SceneNode* OgreONode = this->SMD->OgreManager->createSceneNode(Name);
-        OgreCNode->addChild(OgreONode);
-        OgreONode->setPosition(RelativeLoc.GetOgreVector3());
-        if(AutoTrack)
-        {
-            OgreONode->setAutoTracking(true, OgreCNode);
-        }
-        WorldNode* MezzONode = new WorldNode(OgreONode, this);
-        MezzONode->SetType(WorldNode::Orbit);
-        WorldNodes.push_back(MezzONode);
-        return MezzONode;
-    }
-
-    WorldNode* SceneManager::CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
-    {
-        Ogre::SceneNode* OgreNode = this->SMD->OgreManager->createSceneNode(Name);
-        this->SMD->OgreManager->getRootSceneNode()->addChild(OgreNode);
-        OgreNode->setPosition(Location.GetOgreVector3());
-        OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
-        WorldNode* MezzNode = new WorldNode(OgreNode, this);
-        MezzNode->SetType(WorldNode::Stand);
-        WorldNodes.push_back(MezzNode);
-        return MezzNode;
-    }
-
-    WorldNode* SceneManager::CreateFreeNode(const String& Name, Vector3 LookAt, Vector3 Location)
-    {
-        Ogre::SceneNode* OgreNode = this->SMD->OgreManager->createSceneNode(Name);
-        this->SMD->OgreManager->getRootSceneNode()->addChild(OgreNode);
-        OgreNode->setPosition(Location.GetOgreVector3());
-        OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
-        WorldNode* MezzNode = new WorldNode(OgreNode, this);
-        MezzNode->SetType(WorldNode::Free);
+        WorldNode* MezzNode = new WorldNode(Name,this);
         WorldNodes.push_back(MezzNode);
         return MezzNode;
     }
@@ -626,7 +600,7 @@ namespace Mezzanine
     {
         if(WorldNodes.empty())
             return 0;
-        for( std::vector<WorldNode*>::const_iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+        for( ConstWorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
@@ -647,41 +621,11 @@ namespace Mezzanine
         return WorldNodes.size();
     }
 
-    Whole SceneManager::GetNumStandNodes() const
-    {
-        if(WorldNodes.empty())
-            return 0;
-        Whole Num = 0;
-        for( std::vector<WorldNode*>::const_iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
-        {
-            if( WorldNode::Stand == (*it)->GetType() )
-            {
-                Num++;
-            }
-        }
-        return Num;
-    }
-
-    Whole SceneManager::GetNumOrbitNodes() const
-    {
-        if(WorldNodes.empty())
-            return 0;
-        Whole Num = 0;
-        for( std::vector<WorldNode*>::const_iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
-        {
-            if( WorldNode::Orbit == (*it)->GetType() )
-            {
-                Num++;
-            }
-        }
-        return Num;
-    }
-
     void SceneManager::DestroyNode(WorldNode* ToBeDestroyed)
     {
         if(WorldNodes.empty())
             return;
-        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+        for( WorldNodeIterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( ToBeDestroyed == (*it) )
             {
@@ -711,6 +655,11 @@ namespace Mezzanine
     SceneManager::ConstWorldNodeIterator SceneManager::EndWorldNode() const
         { return this->WorldNodes.end(); }
 
+    void SceneManager::_RegisterTrackingNode(WorldNode* Tracker)
+        { TrackingNodes.insert(Tracker); }
+
+    void SceneManager::_UnRegisterTrackingNode(WorldNode* Tracker)
+        { TrackingNodes.erase(TrackingNodes.find(Tracker)); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Basic Functionality
@@ -722,7 +671,7 @@ namespace Mezzanine
         { }
 
     void SceneManager::DoMainLoopItems()
-        { }
+        { UpdateTrackingNodes(); }
 
     ManagerBase::ManagerTypeName SceneManager::GetType() const
         { return ManagerBase::SceneManager; }
@@ -929,27 +878,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                             Mezzanine::String ChildName(Child.GetAttribute("Name").AsString());
                             if(0!=ChildName.length())
                             {
-                                Mezzanine::WorldNode* ChildNode = 0;
-                                switch(Mezzanine::WorldNode::NodeType(Child.GetAttribute("Template").AsWhole()))
-                                {
-                                    case Mezzanine::WorldNode::Free :
-                                        ChildNode = Ev.CreateFreeNode(ChildName,Mezzanine::Vector3(),Mezzanine::Vector3());
-                                        Child >> *ChildNode;
-                                        break;
-                                    case Mezzanine::WorldNode::Center :   //The orbitting node will handle this
-                                        break;
-                                    case Mezzanine::WorldNode::Orbit :
-                                        ChildNode = Ev.CreateOrbitingNode(ChildName,Mezzanine::Vector3(),Mezzanine::Vector3(),true);
-                                        Child >> *ChildNode;
-                                        break;
-                                    case Mezzanine::WorldNode::Stand :
-                                        ChildNode = Ev.CreateStandNode(ChildName,Mezzanine::Vector3(),Mezzanine::Vector3());
-                                        Child >> *ChildNode;
-                                        break;
-                                    default:
-                                        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
-                                        break;
-                                }
+                                Mezzanine::WorldNode* ChildNode = Ev.CreateWorldNode(ChildName);
                             }else{
                                 throw( Mezzanine::Exception("Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.") );
                             }

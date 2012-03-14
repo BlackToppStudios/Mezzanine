@@ -82,6 +82,10 @@ namespace Mezzanine
     class MEZZ_LIB SceneManager : public ManagerBase, public Singleton<SceneManager>
     {
         public:
+            typedef std::vector< WorldNode* > WorldNodeContainer;
+            typedef std::vector< Light* > LightContainer;
+            typedef std::vector< ParticleEffect* > ParticleContainer;
+            typedef std::vector< Entity* > EntityContainer;
             /// @brief Needs to be documented.
             enum SceneManagerType
             {
@@ -116,14 +120,18 @@ namespace Mezzanine
 
         protected:
             /// @brief Vector storing all the nodes in use by this class.
-            std::vector< WorldNode* > WorldNodes;
+            WorldNodeContainer WorldNodes;
             /// @brief Vector storing all the lights in use by this class.
-            std::vector< Light* > Lights;
+            LightContainer Lights;
             /// @brief Vector storing all the particle effects in use by this class.
-            std::vector< ParticleEffect* > Particles;
+            ParticleContainer Particles;
             /// @brief Vector storing all the entities in use by this class.
-            std::vector< Entity* > Entities;
+            EntityContainer Entities;
 
+            /// @brief Container of nodes currently tracking other objects.
+            std::set< WorldNode* > TrackingNodes;
+            /// @brief Updates all nodes tracking other objects.
+            void UpdateTrackingNodes();
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Construction
@@ -286,9 +294,9 @@ namespace Mezzanine
             void DestroyAllLights();
 
             /// @brief Used to make working with the Lights easier.
-            typedef std::vector< Light* >::iterator LightIterator;
+            typedef LightContainer::iterator LightIterator;
             /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
-            typedef std::vector< Light* >::const_iterator ConstLightIterator;
+            typedef LightContainer::const_iterator ConstLightIterator;
             /// @brief Get a LightIterator to the first Light*
             /// @return A LightIterator to the first Light*
             LightIterator BeginLight();
@@ -331,9 +339,9 @@ namespace Mezzanine
             void PauseAllParticles(bool Pause);
 
             /// @brief Used to make working with the Particle Effects easier.
-            typedef std::vector< ParticleEffect* >::iterator ParticleEffectIterator;
+            typedef ParticleContainer::iterator ParticleEffectIterator;
             /// @brief Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them.
-            typedef std::vector< ParticleEffect* >::const_iterator ConstParticleEffectIterator;
+            typedef ParticleContainer::const_iterator ConstParticleEffectIterator;
             /// @brief Get a ParticleEffectIterator to the first ParticleEffect*
             /// @return A ParticleEffectIterator to the first ParticleEffect*
             ParticleEffectIterator BeginParticleEffect();
@@ -373,9 +381,9 @@ namespace Mezzanine
             void DestroyAllEntities();
 
             /// @brief Used to make working with the Entities easier.
-            typedef std::vector< Entity* >::iterator EntityIterator;
+            typedef EntityContainer::iterator EntityIterator;
             /// @brief Used to make working with the Entities easier, and avoid the risk of accidentally changing them.
-            typedef std::vector< Entity* >::const_iterator ConstEntityIterator;
+            typedef EntityContainer::const_iterator ConstEntityIterator;
             /// @brief Get an EntityIterator to the first Entity*
             /// @return An EntityIterator to the first Entity*
             EntityIterator BeginEntity();
@@ -392,27 +400,9 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // WorldNode Management
 
-            /// @brief Creates a node that will orbit around a point.
-            /// @details This will create 2 nodes in the scene, the first being the point in the world you want to orbit
-            /// the second node around.  The second being the node that does the orbiting.  You can then attach a light,
-            /// particle effect, or ribbon trail to the orbiting node .
-            /// @param Target The location of the first node which you will be orbiting around.
-            /// @param RelativeLoc The location of the node that will be in orbit relative to the first node.  Assume the
-            /// first node is at Origin (0,0,0).
-            WorldNode* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack);
-            /// @brief Creates a stationary node that will look at a location.
-            /// @details This will create a node that doesn't move, and will look at one location that you specify.  This
-            /// node can then have lights, particle effects, or ribbon trails attached to it.
-            /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
-            /// @param Location The location of the node itself.
-            WorldNode* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
-            /// @brief Creates a freely moveable node that will look at a location.
-            /// @details This will create a node that can be freely moved. When created it will look at one location that you specify.  This
-            /// node can then have lights, particle effects or other attachables attached to it.
-            /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
-            /// @param Location The location of the node itself.
-            WorldNode* CreateFreeNode(const String& Name, Vector3 LookAt, Vector3 Location);
-
+            /// @brief Creates a world node that can be manipulated.
+            /// @param Name The name to be given to the node.
+            WorldNode* CreateWorldNode(const String& Name);
             /// @brief Gets an already created node by name.
             /// @return Returns a pointer to the node of the specified name, or 0 if no matching WorldNode could be Found.
             /// @details This runs in Linear time
@@ -421,22 +411,10 @@ namespace Mezzanine
             /// @return Returns a pointer to the node at the specified index.
             /// @details This runs in constant time.
             WorldNode* GetNode(const Whole& Index) const;
-
             /// @brief Gets the number of nodes created and stored in this manager.
             /// @return Returns the number of nodes this manager is storing.
             /// @details This runs in constant time, this data is cached constantly.
             Whole GetNumNodes() const;
-            /// @brief Gets the number of stand type nodes created and stored in this manager.
-            /// @return Returns the number of stand type nodes this manager is storing.
-            /// @details This runs in linear time, Nodes are counter every time this is called.
-            Whole GetNumStandNodes() const;
-            /// @brief Gets the number of orbit type nodes created and stored in this manager.
-            /// @return Returns the number of orbit type nodes this manager is storing.
-            /// @details This runs in linear time, Nodes are counter every time this is called.
-            Whole GetNumOrbitNodes() const;
-
-            /// @todo TODO: create SceneManager::GetNumFreeNodes
-
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param ToBeDestroyed The node to be destroyed.
             void DestroyNode(WorldNode* ToBeDestroyed);
@@ -444,9 +422,9 @@ namespace Mezzanine
             void DestroyAllWorldNodes();
 
             /// @brief Used to make working with the WorldNodes easier.
-            typedef std::vector< WorldNode* >::iterator WorldNodeIterator;
+            typedef WorldNodeContainer::iterator WorldNodeIterator;
             /// @brief Used to make working with the WorldNodes easier, and avoid the risk of accidentally changing them.
-            typedef std::vector< WorldNode* >::const_iterator ConstWorldNodeIterator;
+            typedef WorldNodeContainer::const_iterator ConstWorldNodeIterator;
             /// @brief Get a WorldNodeIterator to the first WorldNode*
             /// @return A WorldNodeIterator to the first WorldNode*
             WorldNodeIterator BeginWorldNode();
@@ -459,6 +437,13 @@ namespace Mezzanine
             /// @brief Get a ConstWorldNodeIterator to one past the last WorldNode*
             /// @return A ConstWorldNodeIterator to one past the last WorldNode*
             ConstWorldNodeIterator EndWorldNode() const;
+
+            /// @brief Informs this manager that a node needs periodic updates for tracking.
+            /// @param Tracker The node that is getting tracking enabled.
+            void _RegisterTrackingNode(WorldNode* Tracker);
+            /// @brief Informs this manager a node is no longer tracking another object.
+            /// @param Tracker The node that is getting tracking disabled.
+            void _UnRegisterTrackingNode(WorldNode* Tracker);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Functionality

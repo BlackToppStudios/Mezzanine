@@ -32,9 +32,9 @@ bool LevelZone::IsEmpty()
     return OverlappingActors.empty();
 }
 
-Mezzanine::WorldObjectType LevelZone::GetType() const
+Mezzanine::WorldAndSceneObjectType LevelZone::GetType() const
 {
-    return Mezzanine::WOT_AEUnknown;
+    return Mezzanine::WSO_AEUnknown;
 }
 
 StartArea::StartArea(const String& name, const Vector3& Location)
@@ -59,7 +59,7 @@ void StartArea::ApplyEffect()
             Act = (*it);
             ((ActorBasePhysicsSettings*)Act->GetPhysicsSettings())->SetCollisionResponse(false);
             PhysMan->SetIndividualGravity(Act, Grav);
-            if(Init && Act->GetType() == Mezzanine::WOT_ActorRigid)
+            if(Init && Act->GetType() == Mezzanine::WSO_ActorRigid)
             {
                 ((ActorRigid*)Act)->GetPhysicsSettings()->SetLinearVelocity(Vector3());
             }

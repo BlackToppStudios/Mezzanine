@@ -104,33 +104,60 @@ namespace Mezzanine
     ConstString& Entity::GetName() const
         { return this->EID->OgreEntity->getName(); }
 
-    Attachable::AttachableElement Entity::GetAttachableType() const
-        { return Attachable::Entity; }
+    WorldAndSceneObjectType Entity::GetType() const
+        { return Mezzanine::WSO_Entity; }
 
-    void Entity::SetLocation(const Vector3& Vec)
-        { this->EID->OgreNode->setPosition(Vec.GetOgreVector3()); }
+    void Entity::SetLocation(const Vector3& Location)
+    {
+        this->EID->OgreNode->setPosition(Location.GetOgreVector3());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+    }
 
     Vector3 Entity::GetLocation() const
         { return Vector3(this->EID->OgreNode->getPosition()); }
 
     void Entity::SetOrientation(const Quaternion& Orientation)
-        { this->EID->OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
+    {
+        this->EID->OgreNode->setOrientation(Orientation.GetOgreQuaternion());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+    }
 
     Quaternion Entity::GetOrientation() const
         { return Quaternion(this->EID->OgreNode->getOrientation()); }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Entity Functionality
-
-    void Entity::SetScale(const Vector3& Scale)
+    void Entity::SetScaling(const Vector3& Scale)
     {
         this->EID->OgreNode->setScale(Scale.GetOgreVector3());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
     }
 
-    Vector3 Entity::GetScale() const
+    Vector3 Entity::GetScaling() const
+        { return Vector3(this->EID->OgreNode->getScale()); }
+
+    void Entity::SetLocalLocation(const Vector3& Location)
     {
-        return Vector3(this->EID->OgreNode->getScale());
+        LocalXform.Location = Location;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
     }
+
+    void Entity::SetLocalOrientation(const Quaternion& Orientation)
+    {
+        LocalXform.Rotation = Orientation;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Entity Functionality
 
     void Entity::AddToWorld()
     {
@@ -146,18 +173,6 @@ namespace Mezzanine
 
     bool Entity::IsInWorld() const
         { return this->EID->OgreEntity->getParentSceneNode() == this->EID->OgreNode; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Functions
-
-    AttachableData Entity::GetAttachableData() const
-    {
-        AttachableData Data;
-        Data.OgreMovable = EID->OgreEntity;
-        Data.OgreNode = EID->OgreNode;
-        Data.Type = Attachable::Entity;
-        return Data;
-    }
 }//Mezzanine
 
 #endif

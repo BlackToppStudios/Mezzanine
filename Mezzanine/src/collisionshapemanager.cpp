@@ -63,7 +63,7 @@ namespace Mezzanine
 
     CollisionShapeManager::CollisionShapeManager()
     {
-        this->Priority = 36;
+        this->Priority = 40;
     }
 
     CollisionShapeManager::~CollisionShapeManager()

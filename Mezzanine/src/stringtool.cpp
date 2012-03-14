@@ -154,6 +154,17 @@ namespace Mezzanine
         return (End == Pattern);
     }
 
+    void StringTool::RemoveDuplicateWhitespaces(String& Source)
+    {
+        for( size_t CurrIndex = Source.find_first_of("  ") ; CurrIndex != String::npos ; CurrIndex = Source.find_first_of("  ",CurrIndex) )
+        {
+            size_t EndIndex = CurrIndex;
+            while( Source[EndIndex] == ' ' ) EndIndex++;
+            Source.replace(CurrIndex,EndIndex-CurrIndex," ");
+            CurrIndex++;
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Data Class Utilities
 

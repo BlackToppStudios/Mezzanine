@@ -95,6 +95,9 @@ namespace Mezzanine
             /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
             /// @return Returns true if the string ends with the provided pattern, false otherwise.
             static bool EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
+            /// @brief Replaces all instances of multiple consecutive whitespaces with only a single whitespace.
+            /// @param Source The string to be altered.
+            static void RemoveDuplicateWhitespaces(String& Source);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Data Class Utilities

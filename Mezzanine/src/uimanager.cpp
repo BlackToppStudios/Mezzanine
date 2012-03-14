@@ -72,7 +72,7 @@ namespace Mezzanine
           ButtonAutoRegister(false)
     {
         ResourceManager::GetSingletonPtr()->CreateResourceGroup("UI");
-        Priority = -35;
+        Priority = 10;
     }
 
     UIManager::~UIManager()

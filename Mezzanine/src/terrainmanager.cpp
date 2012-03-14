@@ -52,7 +52,7 @@ namespace Mezzanine
 
     TerrainManager::TerrainManager()
     {
-        Priority = -32;
+        Priority = 30;
     }
 
     TerrainManager::~TerrainManager()

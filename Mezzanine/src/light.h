@@ -69,7 +69,7 @@ namespace Mezzanine
     /// Note: If attaching a light to a node, all transform information(Location and orientation) becomes relative
     /// to the nodes transform.
     ///////////////////////////////////////
-    class MEZZ_LIB Light : public Attachable
+    class MEZZ_LIB Light : public AttachableChild
     {
         public:
             /// @brief What kind of light Source.
@@ -85,7 +85,6 @@ namespace Mezzanine
             /// @brief Pointer to the manager that created this class.
             SceneManager* Manager;
         public:
-
             ///////////////////////////////////////////////////////////////////////////////
             // Construction
 
@@ -93,14 +92,12 @@ namespace Mezzanine
             /// @param Name The name of this light.
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(const String& Name, SceneManager* manager);
-
             /// @internal
             /// @brief Internal Constructor
             /// @details This constructor should not be called on manually.
             /// @param light The Ogre light this class is based on.
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(Ogre::Light* light, SceneManager* manager);
-
             /// @brief Class destructor.
             virtual ~Light();
 
@@ -110,14 +107,13 @@ namespace Mezzanine
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.
             ConstString& GetName() const;
-
             /// @brief Sets the type of light this light is.
             /// @details The light types are listed with the class info.  Types are Directional, Point, and Spotlight.
             /// @param Type The enum value representing the type of light this is.
-            void SetType(Light::LightType Type);
+            void SetLightType(Light::LightType Type);
             /// @brief Gets the type of light that this light is.
             /// @return Returns an enum value for this lights type.
-            Light::LightType GetType() const;
+            Light::LightType GetLightType() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // 3d navigation
@@ -126,21 +122,20 @@ namespace Mezzanine
             /// @param Location A vector3 representing the location to set the light.
             /// @details Not used in Directional Lights.
             void SetLocation(const Vector3& Location);
-            /// @brief Inherited from Attachable, does nothing on Light class.
-            /// @param Orientation The orientation.
-            void SetOrientation(const Quaternion& Orientation);
-            /// @brief Sets the direction the light will originate from.
-            /// @param Direction A vector3 representing the direction the light will come from.
-            /// @details Not used in point lights.
-            void SetDirection(const Vector3& Direction);
-
             /// @brief Gets the current location of the light.
             /// @return Returns a vector3 representing the location of the light.
             /// @details Not used in Directional Lights.
             Vector3 GetLocation() const;
+            /// @brief Inherited from Attachable, does nothing on Light class.
+            /// @param Orientation The orientation.
+            void SetOrientation(const Quaternion& Orientation);
             /// @brief Inherited from Attachable, returns a default Quaternion.
             /// @return Returns a quaternion with the orientation.
             Quaternion GetOrientation() const;
+            /// @brief Sets the direction the light will originate from.
+            /// @param Direction A vector3 representing the direction the light will come from.
+            /// @details Not used in point lights.
+            void SetDirection(const Vector3& Direction);
             /// @brief Gets the currently set direction of the light.
             /// @return Returns a vector3 representing the set direction of the light.
             /// @details Not used in point lights.
@@ -155,26 +150,25 @@ namespace Mezzanine
             /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.
             /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.
             /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.
-            void SetDiffuseColour(Real Red, Real Green, Real Blue);
+            void SetDiffuseColour(const Real& Red, const Real& Green, const Real& Blue);
             /// @brief Sets the colour for the Diffuse light from this source.
             /// @details This allows the setting of Diffuse color by a premade ColourValue.
             /// @param Colour ColourValue representing the color of the light to be set.
             void SetDiffuseColour(const ColourValue &Colour);
+            /// @brief Gets the current colour of the diffuse light.
+            /// @return Returns a colourvalue representing the currently set Diffuse light.
+            ColourValue GetDiffuseColour() const;
             /// @brief Sets the colour for the Specular light from this source.
             /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.
             /// The 3 types are: Diffuse, Specular, and Ambient.
             /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.
             /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.
             /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.
-            void SetSpecularColour(Real Red, Real Green, Real Blue);
+            void SetSpecularColour(const Real& Red, const Real& Green, const Real& Blue);
             /// @brief Sets the colour for the Specular light from this source.
             /// @details This allows the setting of Specular color by a premade ColourValue.
             /// @param Colour ColourValue representing the color of the light to be set.
             void SetSpecularColour(const ColourValue &Colour);
-
-            /// @brief Gets the current colour of the diffuse light.
-            /// @return Returns a colourvalue representing the currently set Diffuse light.
-            ColourValue GetDiffuseColour() const;
             /// @brief Gets the current colour of the specular light.
             /// @return Returns a colourvalue representing the currently set Specular light.
             ColourValue GetSpecularColour() const;
@@ -188,7 +182,7 @@ namespace Mezzanine
             /// @param Constant The constant of the attenuation, ranging from 0.0 to 1.0.  1.0 means never attenuate, 0.0 is complete attenuation.
             /// @param Linear The linear factor of the attentuation, ranging from 0.0 to 1.0.  1.0 means attenuate evenly over the distance.
             /// @param Quadratic The Quadratic factor of the attenuation.  This value adds curvature to the attenuation.
-            void SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic);
+            void SetAttenuation(const Real& Range, const Real& Constant, const Real& Linear, const Real& Quadratic);
             /// @brief Gets the absolute range of attenuation in world units.
             /// @return Returns a real representing the absolute range of attenuation.
             Real GetAttenuationRange() const;
@@ -211,24 +205,23 @@ namespace Mezzanine
             /// @param OuterAngle Angle of the outer cone in radions.
             /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
             /// Less means slower falloff and higher means faster falloff.
-            void SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff=1.0);
+            void SetSpotlightRange(const Real& InnerAngle, const Real& OuterAngle, const Real& Falloff = 1.0);
             /// @brief Sets the Inner angle of the cone of light emitted by a spotlight.
             /// @param InnerAngle Angle of the inner cone in radians.
-            void SetSpotlightInnerAngle(Real InnerAngle);
-            /// @brief Sets the Outer angle of the cone of light emitted by a spotlight.
-            /// @param OuterAngle Angle of the outer cone in radians.
-            void SetSpotlightOuterAngle(Real OuterAngle);
-            /// @brief Sets the rate of falloff of the cone of light emitted by a spotlight.
-            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
-            /// Less means slower falloff and higher means faster falloff.
-            void SetSpotlightFalloff(Real Falloff);
-
+            void SetSpotlightInnerAngle(const Real& InnerAngle);
             /// @brief Gets the Inner angle of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the inner angle of this spotlight, in radians.
             Real GetSpotlightInnerAngle() const;
+            /// @brief Sets the Outer angle of the cone of light emitted by a spotlight.
+            /// @param OuterAngle Angle of the outer cone in radians.
+            void SetSpotlightOuterAngle(const Real& OuterAngle);
             /// @brief Gets the Outer angle of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the outer angle of this spotlight, in radians.
             Real GetSpotlightOuterAngle() const;
+            /// @brief Sets the rate of falloff of the cone of light emitted by a spotlight.
+            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
+            /// Less means slower falloff and higher means faster falloff.
+            void SetSpotlightFalloff(const Real& Falloff);
             /// @brief Gets the rate of falloff of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the falloff of the cone of light.
             Real GetSpotlightFalloff() const;
@@ -236,30 +229,28 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Effects
 
+            /// @brief Sets the lights power scale.
+            /// @details The power scale of the light is a scaling factor indicating the relative power of the light.
+            /// @param Power Real representing the factor by which to scale the power of the light.
+            void SetPowerScale(const Real& Power);
             /// @brief Gets the lights power scale.
             /// @return Returns a real representing the power scale of the light.
             /// @details Only used with HDR ( High Dynamic Range ) rendering
             Real GetPowerScale() const;
 
-            /// @brief Sets the lights power scale.
-            /// @details The power scale of the light is a scaling factor indicating the relative power of the light.
-            /// @param Power Real representing the factor by which to scale the power of the light.
-            void SetPowerScale(Real Power);
-
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited From Attachable
+            // Inherited From AttachableChild
 
-            /// @brief What kind of Attachable is this.
-            /// @return An Attachable::GetAttachableType containing Attachable::Light.
-            virtual Attachable::AttachableElement GetAttachableType() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Functions
-
-            /// @internal
-            /// @brief Gets pointers to the internal ogre structures for this attachable.
-            /// @return Returns an AttachableData struct with the internal data.
-            virtual AttachableData GetAttachableData() const;
+            /// @copydoc AttachableBase::GetType()
+            WorldAndSceneObjectType GetType() const;
+            /// @copydoc WorldObject::SetScaling(Vector3&)
+            void SetScaling(const Vector3& Scale);
+            /// @copydoc WorldObject::GetScaling()
+            Vector3 GetScaling() const;
+            /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
+            void SetLocalLocation(const Vector3& Location);
+            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)
+            void SetLocalOrientation(const Quaternion& Orientation);
     };//Light
 }//Mezzanine
 

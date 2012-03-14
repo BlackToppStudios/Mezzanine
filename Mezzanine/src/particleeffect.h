@@ -71,12 +71,12 @@ namespace Mezzanine
     /// @details Particle effects are loaded from particle scripts which are contained in particle files(*.particle). @n
     /// All particle effects are created attached to a world node. The world Node provides the Nagivation functionality of for this
     ///////////////////////////////////////
-    class MEZZ_LIB ParticleEffect : public Attachable
+    class MEZZ_LIB ParticleEffect : public AttachableChild
     {
         private:
             /// @internal
             /// @brief The internal data for the particle effect
-            internal::ParticleEffectInternalData *Pie;
+            internal::ParticleEffectInternalData* Pie;
             /// @internal
             /// @brief Vector of emitters in use by this particle effect.
             std::vector<ParticleEmitter*> Emitters;
@@ -92,7 +92,6 @@ namespace Mezzanine
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
             ParticleEffect(const String& Name, const String& Template, SceneManager* manager);
-
             /// @internal
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.
@@ -100,30 +99,32 @@ namespace Mezzanine
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
             ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager);
-
             /// @brief Class destructor.
             virtual ~ParticleEffect();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited From Attachable
+            // Inherited From AttachableChild
 
-            /// @copydoc Mezzanine::Attachable::GetName()
+            /// @copydoc Mezzanine::AttachableBase::GetName()
             ConstString& GetName() const;
-
-            /// @copydoc Mezzanine::Attachable::GetAttachableType()
-            virtual Attachable::AttachableElement GetAttachableType() const;
-
-            /// @copydoc Mezzanine::Attachable::SetLocation(const Vector3& Vec)
-            virtual void SetLocation(const Vector3& Vec);
-
-            /// @copydoc Mezzanine::Attachable::GetLocation()
-            virtual Vector3 GetLocation() const;
-
-            /// @copydoc Mezzanine::Attachable::SetOrientation(const Quaternion& Orientation)
-            virtual void SetOrientation(const Quaternion& Orientation);
-
-            /// @copydoc Mezzanine::Attachable::GetOrientation()
-            virtual Quaternion GetOrientation() const;
+            /// @copydoc Mezzanine::AttachableBase::GetType()
+            WorldAndSceneObjectType GetType() const;
+            /// @copydoc Mezzanine::AttachableBase::SetLocation(const Vector3& Location)
+            void SetLocation(const Vector3& Location);
+            /// @copydoc Mezzanine::AttachableBase::GetLocation()
+            Vector3 GetLocation() const;
+            /// @copydoc Mezzanine::AttachableBase::SetOrientation(const Quaternion& Orientation)
+            void SetOrientation(const Quaternion& Orientation);
+            /// @copydoc Mezzanine::AttachableBase::GetOrientation()
+            Quaternion GetOrientation() const;
+            /// @copydoc Mezzanine::AttachableBase::SetScaling(Vector3&)
+            void SetScaling(const Vector3& Scale);
+            /// @copydoc Mezzanine::AttachableBase::GetScaling()
+            Vector3 GetScaling() const;
+            /// @copydoc Mezzanine::AttachableChild::SetLocalLocation(Vector3&)
+            void SetLocalLocation(const Vector3& Location);
+            /// @copydoc Mezzanine::AttachableChild::SetLocalOrientation(Quaternion&)
+            void SetLocalOrientation(const Quaternion& Orientation);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Emitters
@@ -204,14 +205,6 @@ namespace Mezzanine
             /// param you are looking for.
             /// @param Name The name of the parameter to fetch.
             String GetCustomParam(const String& Name) const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Functions
-
-            /// @internal
-            /// @brief Gets pointers to the internal ogre structures for this attachable.
-            /// @return Returns an AttachableData struct with the internal data.
-            virtual AttachableData GetAttachableData() const;
     };//ParticleEffect
 }//Mezzanine
 

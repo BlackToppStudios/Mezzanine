@@ -108,7 +108,7 @@ namespace Mezzanine
             // Inherited from WorldObject
             ///////////////////////////////////////
             /// @copydoc WorldObject::GetType()
-            virtual WorldObjectType GetType() const;
+            virtual WorldAndSceneObjectType GetType() const;
             /// @copydoc WorldObject::AddObjectToWorld()
             virtual void AddToWorld();
             /// @copydoc WorldObject::RemoveObjectFromWorld()

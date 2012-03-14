@@ -86,6 +86,11 @@ namespace Mezzanine
             Transform(const Transform& TheOther);
 
             ///////////////////////////////////////////////////////////////////////////////
+            // Utilities
+            /// @brief Sets default construction values for all members.
+            void SetIdentity();
+
+            ///////////////////////////////////////////////////////////////////////////////
             // Conversion
             /// @brief Gets a Bullet Transform
             /// @details Creates a Bullet Transform with values equal to this class instance and returns it.

@@ -113,7 +113,7 @@ namespace Mezzanine
     // Utility and Configuration
     ///////////////////////////////////////
 
-    String WorldObject::GetName() const
+    ConstString& WorldObject::GetName() const
     {
         return Name;
     }
@@ -288,21 +288,33 @@ namespace Mezzanine
     ///////////////////////////////////////
 
     NonStaticWorldObject::NonStaticWorldObject()
-        : ObjectWorldNode(NULL)
     {
         this->GraphicsNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-        this->ObjectWorldNode = new WorldNode(GraphicsNode,SceneManager::GetSingletonPtr());
     }
 
     NonStaticWorldObject::~NonStaticWorldObject()
     {
-        SceneManager* SceneMan = SceneManager::GetSingletonPtr();
-        if (SceneMan)
-        {
-            if (0!=this->ObjectWorldNode && !SceneMan->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it
-            { delete this->ObjectWorldNode; }
-        } else
-            { delete this->ObjectWorldNode; }
+    }
+
+    void NonStaticWorldObject::InternalSetOrientation(const Quaternion& Rotation)
+    {
+        //Bullet
+        this->PhysicsObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
+        this->PhysicsObject->getInterpolationWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
+        //Ogre
+        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
+    }
+
+    void NonStaticWorldObject::SetLocation(const Vector3& Location)
+    {
+        WorldObject::SetLocation(Location);
+
+        _RecalculateAllChildTransforms();
+    }
+
+    Vector3 NonStaticWorldObject::GetLocation() const
+    {
+        return WorldObject::GetLocation();
     }
 
     void NonStaticWorldObject::SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w)
@@ -313,11 +325,9 @@ namespace Mezzanine
 
     void NonStaticWorldObject::SetOrientation(const Quaternion& Rotation)
     {
-        //Bullet
-        this->PhysicsObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-        this->PhysicsObject->getInterpolationWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
-        //Ogre
-        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
+        InternalSetOrientation(Rotation);
+
+        _RecalculateAllChildTransforms();
     }
 
     Quaternion NonStaticWorldObject::GetOrientation() const
@@ -326,9 +336,21 @@ namespace Mezzanine
         return temp;
     }
 
-    WorldNode* NonStaticWorldObject::GetObjectNode() const
+    ConstString& NonStaticWorldObject::GetName() const
     {
-        return ObjectWorldNode;
+        return WorldObject::GetName();
+    }
+
+    void NonStaticWorldObject::SetScaling(const Vector3& Scale)
+    {
+        WorldObject::SetScaling(Scale);
+
+        _RecalculateAllChildTransforms();
+    }
+
+    Vector3 NonStaticWorldObject::GetScaling() const
+    {
+        return WorldObject::GetScaling();
     }
 
     void NonStaticWorldObject::ThrowSerialError(const String& Fail) const
@@ -345,14 +367,14 @@ namespace Mezzanine
         this->GetOrientation().ProtoSerialize(OrientationNode);
 
         // if actor node is in scenemanager just save a name
-        if( SceneManager::GetSingletonPtr()->GetNode( this->ObjectWorldNode->GetName() ) )
+        /*if( SceneManager::GetSingletonPtr()->GetNode( this->ObjectWorldNode->GetName() ) )
         {
             xml::Attribute NonStaticWorldObjectNodeAttrib = NonStaticWorldObjectNode.AppendAttribute("WorldNode");
             if(!NonStaticWorldObjectNodeAttrib.SetValue(this->ObjectWorldNode->GetName()))
                 {ThrowSerialError("store WorldNode Name");}
         }else{
             SloppyProtoSerialize( *(this->ObjectWorldNode),NonStaticWorldObjectNode);                                   //Serialization performed in older style
-        }
+        }// */
 
         WorldObject::ProtoSerialize(NonStaticWorldObjectNode);
     }
@@ -372,7 +394,7 @@ namespace Mezzanine
                 TempQuat.ProtoDeSerialize(OrientationNode);
                 this->SetOrientation(TempQuat);
 
-                if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
+                /*if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
                 {
                     //Since the Attribute didn't exist we must have a node
                     xml::Node ObjectWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
@@ -391,7 +413,7 @@ namespace Mezzanine
                     this->ObjectWorldNode = TempWorldNode;                                                   // The old node has bee cleaned up and the new node is in place
                     if (0==this->ObjectWorldNode)
                         { DeSerializeError("locate ObjectWorldNode attribute",SerializableName()); }
-                }
+                }//*/
             }else{
                 DeSerializeError("find usable serialization version",SerializableName());
             }
