@@ -361,6 +361,9 @@ namespace Mezzanine
         xml::Node NonStaticWorldObjectNode = CurrentRoot.AppendChild("NonStaticWorldObject");
         if (!NonStaticWorldObjectNode) { ThrowSerialError("create NonStaticWorldObjectNode");}
 
+        xml::Attribute Version = NonStaticWorldObjectNode.AppendAttribute("Version");
+        Version.SetValue(1);
+
         xml::Node OrientationNode = NonStaticWorldObjectNode.AppendChild("Orientation");
         if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
 

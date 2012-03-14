@@ -204,7 +204,7 @@ CopyFilesDuringBuild( common/r2skin.jpg data/r2skin.jpg )
 CopyFilesDuringBuild( common/robot.mesh data/robot.mesh )
 CopyFilesDuringBuild( common/robot.skeleton data/robot.skeleton )
 CopyFilesDuringBuild( common/dejavu.png data/dejavu.png )
-CopyFilesDuringBuild( common/dejavu.gorilla data/dejavu.gorilla )
+CopyFilesDuringBuild( common/dejavu.mta data/dejavu.mta )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
 
 CopyFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
@@ -260,7 +260,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		${Mezz_OgreBuildDir}/ogre/include/
 	)
 	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
-	CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
+	CopyFilesFromMezzanineDuringBuildAndRename( data/linux/GLX_icon.png data/GLX_icon.png )
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 

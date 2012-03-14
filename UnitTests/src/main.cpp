@@ -87,7 +87,12 @@ class AllUnitTestGroups : public UnitTestGroup
             {
                 for(std::vector<Mezzanine::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName ) // Actually run the tests
                 {
-                    TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    try{
+                        TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    }catch (std::exception e){
+                        // maybe we should log or somehting.
+                    }
+
                     (*this) += *(TestGroups[*CurrentTestName]);
                 }
             }else{ // No, We should be executing the test in a place that cannot possibly crash this program

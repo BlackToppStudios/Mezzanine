@@ -174,58 +174,63 @@ then
 		exit
 
 	fi
+	echo "All Output will be in \"$OutputDir\"."
+
+	#########################################################
+	# Prepare other command line arguments
+	CompileOgre=1
+	CompileSDL=1
+	DecompressSDL=1
+	DecompressOgre=1
+
+	shift 3
+	while (( $# ));
+	do
+		case "$1" in
+		"SkipOgre" )
+			CompileOgre=0
+			echo "Skipping Ogre Compilation"
+			;;
+		"SkipSDL" )
+			CompileSDL=0
+			echo "Skipping SDL Compilation"
+			;;
+		"SDLNoArchive" )
+			DecompressSDL=0
+			echo "Skipping SDL Decompression"
+			;;
+		"OgreNoArchive" )
+			DecompressOgre=0
+			echo "Skipping Ogre Decompression"
+			;;
+		"NoCompile" )
+			CompileOgre=0
+			CompileSDL=0
+			echo "Skipping Complation"
+			;;
+		"NoArchive" )
+			DecompressSDL=0
+			DecompressOgre=0
+			echo "Skipping Decompression"
+			;;
+		"NoChanges" )
+			CompileOgre=0
+		        CompileSDL=0
+			DecompressSDL=0
+		        DecompressOgre=0
+			echo "Skipping All Compilations and Decompression"
+			;;
+		*)
+			echo "Unknown Option $1"
+			exit
+		esac
+		shift
+	done
+
+
 fi
-echo "All Output will be in \"$OutputDir\"."
 
-#########################################################
-# Prepare other command line arguments
-CompileOgre=1
-CompileSDL=1
-DecompressSDL=1
-DecompressOgre=1
 
-shift 3
-for arg in "$@"
-do
-	case "$arg" in
-	"SkipOgre" )
-		CompileOgre=0
-		echo "Skipping Ogre Compilation"
-		;;
-	"SkipSDL" )
-		CompileSDL=0
-		echo "Skipping SDL Compilation"
-	        ;;
-	"SDLNoArchive" )
-		DecompressSDL=0
-		echo "Skipping SDL Decompression"
-        	;;
-	"OgreNoArchive" )
-		DecompressOgre=0
-		echo "Skipping Ogre Decompression"
-        	;;
-	"NoCompile" )
-		CompileOgre=0
-		CompileSDL=0
-		echo "Skipping Complation"
-	        ;;
-	"NoArchive" )
-		DecompressSDL=0
-		DecompressOgre=0
-		echo "Skipping Decompression"
-        	;;
-	"NoChanges" )
-		CompileOgre=0
-                CompileSDL=0
-		DecompressSDL=0
-                DecompressOgre=0
-		echo "Skipping All Compilations and Decompression"
-		;;
-	*)
-		echo "Unknown Option $arg"
-		exit
-	esac
-done
 
 ########################################################
 # Compilation variables

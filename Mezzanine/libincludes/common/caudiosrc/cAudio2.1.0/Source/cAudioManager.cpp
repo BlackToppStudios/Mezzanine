@@ -628,7 +628,8 @@ namespace cAudio
 			alcDestroyContext(Context);
 			Context = NULL;
 			//Close the device
-			alcCloseDevice(Device);
+			alcCloseDevice(Device);     // If you are getting Segfaults here, then linking is most likely broken between openAL and you Operating Systems
+                                        // Default sound API, for example, removing pulseaudio will cause Ubuntu 11.04 to Segfault with a SIGSEGV.
 			Device = NULL;
 			Initialized = false;
 			//getLogger()->logInfo("AudioManager", "Manager successfully shutdown.");

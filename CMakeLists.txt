@@ -49,17 +49,20 @@
 #
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
+#
+# That affect/add/remove behavior of the engine
 #	Mezz_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
 #	Mezz_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #	Mezz_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
 #	Mezz_Network			- Enable or disable networking support
 #	Mezz_XML			- True if the engine will be compiled with XML support. This includes support for serialization
+#	Mezz_ThrowOnSingletonFetch	- When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
+# That affect only build time values:
 #	Mezz_OgreBuildDir		- The location of the Ogre source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
 #	Mezz_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
 #	Mezz_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
 #	Mezz_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
-#	Mezz_ThrowOnSingletonFetch	- When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values

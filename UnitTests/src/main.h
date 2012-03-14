@@ -396,6 +396,14 @@ void StartEngine()
     Mezzanine::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
     Mezzanine::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
 
+    Mezzanine::World::GetWorldPointer()->Log("Found Resolutions:");
+    const std::vector<String>* Resolutions = Mezzanine::World::GetWorldPointer()->GetGraphicsManager()->GetSupportedResolutions();
+    for (Whole Count=0; Count<Resolutions->size(); ++Count)
+    {
+        Mezzanine::World::GetWorldPointer()->Log(Resolutions->at(Count));
+    }
+    Mezzanine::World::GetWorldPointer()->CommitLog();
+
     TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),UI::RenderableRect(Vector2(0.0016,0.603),Vector2(1,0.25),true), (Whole)24, TheMessage);
     TheTextB1->SetTextColour(ColourValue::Black());
     TheTextB1->SetBackgroundColour(ColourValue::Transparent());
