@@ -46,8 +46,10 @@
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
+#include "worldobject.h"
 #include "vector3.h"
 #include "quaternion.h"
+
 
 namespace Mezzanine
 {
@@ -63,22 +65,19 @@ namespace Mezzanine
         /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a
         /// source file and should not shipped with the DLL when the SDK is released. This is used for engine internals that need to be used by multiple classes.
         ///////////////////////////////////////
-        class PhysMotionState : public btMotionState {
-            private:
+        class PhysMotionState : public btMotionState
+        {
+            protected:
                 Ogre::SceneNode* snode;
                 btTransform worldtrans;
-
             public:
-                /// @internal
                 /// @brief Default Constructor.
                 /// @details Basic no-initialization constructor.
                 PhysMotionState();
-
                 /// @brief Constructor.
                 /// @details The class constructor.
                 /// @param scenenode The scenenode belonging to the actor.
                 PhysMotionState(Ogre::SceneNode* scenenode);
-
                 /// @brief Destructor.
                 /// @details The class destructor.
                 virtual ~PhysMotionState();
@@ -90,28 +89,74 @@ namespace Mezzanine
 
                 /// @brief Sets the initial position.
                 /// @details Sets the position the actor will be placed in when it is added to the world.
-                /// This function is called on by the ActorBase function SetInitPosition().
-                /// @param position The vector3 representing the location to be used.
-                void SetPosition(Vector3 position);
-
+                /// @param Position The vector3 representing the location to be used.
+                void SetPosition(const Vector3& Position);
                 /// @brief Sets the initial orientation.
                 /// @details Sets the orientation the actor will have when it is added to the world.
-                /// This function is called on by the ActorBase function SetInitOrientation().
-                /// @param orientation The vector3 representing the orientation to be used.
-                void SetOrientation(Quaternion orientation);
+                /// @param Orientation The vector3 representing the orientation to be used.
+                void SetOrientation(const Quaternion& Orientation);
 
                 /// @brief Sets the initial position.
                 /// @details This function is called on by the physics world upon adding the actor to the world.
-                /// This function uses the previous set vector3 that was set with SetInitPosition(). @n
-                /// Default position is (0,0,0).
                 /// @param worldTrans The location and orientation data.
                 virtual void getWorldTransform(btTransform &worldTrans) const;
-
                 /// @brief Updates the position and orientation.
                 /// @details This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
                 /// @param worldTrans The location and orientation data.
                 virtual void setWorldTransform(const btTransform &worldTrans);
-        };
+        };//physmotionstate
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @internal
+        /// @class AttachableMotionState
+        /// @headerfile internalmotionstate.h.cpp
+        /// @brief This class is used by the actor class to sync between the physics world and the graphical world.
+        /// @details This class provides the link for position and orientation between the two worlds in the engine.
+        /// This is called on every step(frame) of the world to sync the actor if it has moved.  This motionstate
+        /// differs from the regular motion state in that it invokes the API on the AttachableParent class, ensuring children classes get updated as well.
+        /// @attention This filename ends in .h.cpp which means it is a header and should not be compiled with the regular cpp files, just included by them, but it is also a
+        /// source file and should not shipped with the DLL when the SDK is released. This is used for engine internals that need to be used by multiple classes.
+        ///////////////////////////////////////
+        class AttachableMotionState : public btMotionState
+        {
+            protected:
+                NonStaticWorldObject* ParentObject;
+                btTransform WorldTrans;
+            public:
+                /// @brief Default Constructor.
+                /// @details Basic no-initialization constructor.
+                AttachableMotionState();
+                /// @brief Constructor.
+                /// @details The class constructor.
+                /// @param PO Pointer to the parent object.
+                AttachableMotionState(NonStaticWorldObject* PO);
+                /// @brief Destructor.
+                /// @details The class destructor.
+                virtual ~AttachableMotionState();
+
+                /// @brief Sets the parent object to be updated.
+                /// @details Sets the parent object to be sync'd every step.
+                /// @param PO Pointer to the parent object.
+                void SetParentObject(NonStaticWorldObject* PO);
+
+                /// @brief Sets the initial position.
+                /// @details Sets the position the actor will be placed in when it is added to the world.
+                /// @param Position The vector3 representing the location to be used.
+                void SetPosition(const Vector3& Position);
+                /// @brief Sets the initial orientation.
+                /// @details Sets the orientation the actor will have when it is added to the world.
+                /// @param Orientation The vector3 representing the orientation to be used.
+                void SetOrientation(const Quaternion& Orientation);
+
+                /// @brief Sets the initial position.
+                /// @details This function is called on by the physics world upon adding the actor to the world.
+                /// @param worldTrans The location and orientation data.
+                virtual void getWorldTransform(btTransform &worldTrans) const;
+                /// @brief Updates the position and orientation.
+                /// @details This function is called each step(frame) by the physics world to sync the physics and graphical worlds.
+                /// @param worldTrans The location and orientation data.
+                virtual void setWorldTransform(const btTransform &worldTrans);
+        };//attachablemotionstate
     }// /internal
 }// /Mezz
 

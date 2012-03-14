@@ -68,7 +68,7 @@ namespace Mezzanine
         MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
         this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(name, file, group);
-        this->MotionState = new internal::PhysMotionState(GraphicsNode);
+        this->MotionState = new internal::AttachableMotionState(this);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
         this->PhysicsSettings = new ActorRigidPhysicsSettings(this,PhysicsRigidBody);

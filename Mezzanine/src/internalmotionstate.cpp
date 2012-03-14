@@ -49,8 +49,9 @@ namespace Mezzanine
 {
     namespace internal
     {
-        ///////////////////////////////////
-        // PhysMotionState
+        ///////////////////////////////////////////////////////////////////////////////
+        // PhysMotionState methods
+
         PhysMotionState::PhysMotionState()
         {
             this->worldtrans.setIdentity();
@@ -71,12 +72,12 @@ namespace Mezzanine
             this->snode = scenenode;
         }
 
-        void PhysMotionState::SetPosition(Vector3 position)
+        void PhysMotionState::SetPosition(const Vector3& position)
         {
             this->worldtrans.setOrigin(position.GetBulletVector3());
         }
 
-        void PhysMotionState::SetOrientation(Quaternion orientation)
+        void PhysMotionState::SetOrientation(const Quaternion& orientation)
         {
             this->worldtrans.setRotation(orientation.GetBulletQuaternion());
         }
@@ -92,6 +93,54 @@ namespace Mezzanine
             this->snode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
             btVector3 position = worldTrans.getOrigin();
             this->snode->setPosition(position.x(), position.y(), position.z());
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // AttachableMotionState methods
+
+        AttachableMotionState::AttachableMotionState()
+        {
+            WorldTrans.setIdentity();
+        }
+
+        AttachableMotionState::AttachableMotionState(NonStaticWorldObject* PO)
+        {
+            ParentObject = PO;
+            WorldTrans.setIdentity();
+        }
+
+        AttachableMotionState::~AttachableMotionState()
+        {
+        }
+
+        void AttachableMotionState::SetParentObject(NonStaticWorldObject* PO)
+        {
+            ParentObject = PO;
+        }
+
+        void AttachableMotionState::SetPosition(const Vector3& Position)
+        {
+            this->WorldTrans.setOrigin(Position.GetBulletVector3());
+        }
+
+        void AttachableMotionState::SetOrientation(const Quaternion& Orientation)
+        {
+            this->WorldTrans.setRotation(Orientation.GetBulletQuaternion());
+        }
+
+        void AttachableMotionState::getWorldTransform(btTransform &worldTrans) const
+        {
+            worldTrans = this->WorldTrans;
+        }
+
+        void AttachableMotionState::setWorldTransform(const btTransform &worldTrans)
+        {
+            btQuaternion rotation = worldTrans.getRotation();
+            this->ParentObject->_GetGraphicsNode()->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+            btVector3 position = worldTrans.getOrigin();
+            this->ParentObject->_GetGraphicsNode()->setPosition(position.x(), position.y(), position.z());
+
+            this->ParentObject->_RecalculateAllChildTransforms();
         }
     }// /internal
 }// /Mezz
