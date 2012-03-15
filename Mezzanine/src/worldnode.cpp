@@ -256,7 +256,7 @@ namespace Mezzanine
     void WorldNode::SetLocation(const Vector3& Location)
     {
         NodeLoc = Location;
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
         _RecalculateAllChildTransforms();
@@ -270,7 +270,7 @@ namespace Mezzanine
     void WorldNode::SetOrientation(const Quaternion& Orientation)
     {
         NodeOri = Orientation;
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
         _RecalculateAllChildTransforms();

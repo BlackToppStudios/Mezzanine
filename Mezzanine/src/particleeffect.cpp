@@ -165,7 +165,7 @@ namespace Mezzanine
     void ParticleEffect::SetLocation(const Vector3& Location)
     {
         this->Pie->OgreNode->setPosition(Location.GetOgreVector3());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }
@@ -176,7 +176,7 @@ namespace Mezzanine
     void ParticleEffect::SetOrientation(const Quaternion& Orientation)
     {
         this->Pie->OgreNode->setOrientation(Orientation.GetOgreQuaternion());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }

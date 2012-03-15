@@ -110,7 +110,7 @@ namespace Mezzanine
     void Entity::SetLocation(const Vector3& Location)
     {
         this->EID->OgreNode->setPosition(Location.GetOgreVector3());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }
@@ -121,7 +121,7 @@ namespace Mezzanine
     void Entity::SetOrientation(const Quaternion& Orientation)
     {
         this->EID->OgreNode->setOrientation(Orientation.GetOgreQuaternion());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }

@@ -240,6 +240,38 @@ void LevelLoader::LoadFerris()
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
+
+    Vector3 BonusScoreSize(18,18,30);
+    CollisionShape* BonusScoreShape = new BoxCollisionShape("BonusAreaShape",BonusScoreSize);
+    Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
+    ScoreArea* BonusZone1 = new ScoreArea("BonusArea1",Vector3(169.6,14.3,0));
+    BonusZone1->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
+    BonusZone1->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone1->SetScoreMultiplier(2.0);
+    PhysMan->AddAreaEffect(BonusZone1);
+    GameApp->RegisterScoreArea(BonusZone1);
+    Tray2->AttachObject(BonusZone1);// */
+    ScoreArea* BonusZone2 = new ScoreArea("BonusArea2",Vector3(30.4,-42.7,0));
+    BonusZone2->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
+    BonusZone2->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone2->SetScoreMultiplier(2.0);
+    PhysMan->AddAreaEffect(BonusZone2);
+    GameApp->RegisterScoreArea(BonusZone2);
+    Tray3->AttachObject(BonusZone2);// */
+    ScoreArea* BonusZone3 = new ScoreArea("BonusArea3",Vector3(71.5,55.4,0));
+    BonusZone3->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
+    BonusZone3->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone3->SetScoreMultiplier(2.0);
+    PhysMan->AddAreaEffect(BonusZone3);
+    GameApp->RegisterScoreArea(BonusZone3);
+    Tray5->AttachObject(BonusZone3);// */
+    ScoreArea* BonusZone4 = new ScoreArea("BonusArea4",Vector3(128.5,-83.8,0));
+    BonusZone4->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
+    BonusZone4->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
+    BonusZone4->SetScoreMultiplier(2.0);
+    PhysMan->AddAreaEffect(BonusZone4);
+    GameApp->RegisterScoreArea(BonusZone4);
+    Tray8->AttachObject(BonusZone4);// */
 }
 
 void LevelLoader::LoadBigCurve()

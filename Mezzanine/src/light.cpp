@@ -127,7 +127,7 @@ namespace Mezzanine
     void Light::SetLocation(const Vector3 &Location)
     {
         OgreLight->setPosition(Location.GetOgreVector3());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }
