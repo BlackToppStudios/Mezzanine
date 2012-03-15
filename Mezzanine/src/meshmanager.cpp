@@ -52,7 +52,7 @@ namespace Mezzanine
 
     MeshManager::MeshManager()
     {
-        this->Priority = 35;
+        this->Priority = 45;
     }
 
     MeshManager::~MeshManager()

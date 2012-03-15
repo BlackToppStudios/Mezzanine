@@ -53,7 +53,7 @@ namespace Ogre
 namespace Mezzanine
 {
     class Vector3;
-
+    class Matrix3x3;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Quaternion
     /// @headerfile quaternion.h
@@ -85,17 +85,27 @@ namespace Mezzanine
 
             /// @brief Constructor.
             /// @details Constructor that sets all four axis' of rotation.
-            /// @param x The X component of the Axis.
-            /// @param y The Y component of the Axis.
-            /// @param z The Z component of the Axis.
-            /// @param w Rotation on the Axis X, Y and Z defined.
-            Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
+            /// @param X The X component of the Axis.
+            /// @param Y The Y component of the Axis.
+            /// @param Z The Z component of the Axis.
+            /// @param W Rotation on the Axis X, Y and Z defined.
+            Quaternion(const Real& X, const Real& Y, const Real& Z, const Real& W);
 
             /// @brief Axis and Rotation Constructor.
             /// @details This assembles a quaternion based on an axis and a rotation in radians.
             /// @param Angle Real representing the angle to be applied along the axis in radians.
             /// @param Axis Vector3 representing the axis to apply the rotation.
             Quaternion(const Real& Angle, const Vector3& Axis);
+
+            /// @brief Rotation Matrix Constructor.
+            /// @param Mat The matrix to set this quaternion from.
+            Quaternion(const Matrix3x3& Mat);
+
+            /// @brief Axes Constructor.
+            /// @param AxisX The vector expressing the X axis.
+            /// @param AxisY The vector expressing the Y axis.
+            /// @param AxisZ The vector expressing the Z axis.
+            Quaternion(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
 
             /// @brief Bullet Quaternion constructor.
             /// @details Constructor that sets all values to match the Bullet quaternion.
@@ -107,9 +117,33 @@ namespace Mezzanine
             /// @param Theirs The quaternion to be copied to make this quaternion.
             explicit Quaternion(const Ogre::Quaternion& Theirs);
 
-            /// @brief Copy Constructor
-            /// @param Other The Quaternion to copy
+            /// @brief Copy Constructor.
+            /// @param Other The Quaternion to copy.
             Quaternion(const Mezzanine::Quaternion& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Fancy Math and Utilities
+
+            /// @brief Sets default/identity values to the members of this quaternion.
+            void SetIdentity();
+
+            /// @brief Sets the individual values of this quaterion directly.
+            void SetValues(const Real& X, const Real& Y, const Real& Z, const Real& W);
+
+            /// @brief Generates and sets the values of this quaternion to a rotation from an axis and angle on that axis.
+            /// @param Angle Real representing the angle to be applied along the axis in radians.
+            /// @param Axis Vector3 representing the axis to apply the rotation.
+            void SetFromAxisAngle(const Real& Angle, const Vector3& Axis);
+
+            /// @brief Sets this quaternions values to express the same rotation as a Matrix3x3.
+            /// @param Mat The matrix to set this quaternion from.
+            void SetFromMatrix3x3(const Matrix3x3& Mat);
+
+            /// @brief Generates and sets the values of this quaternion from 3 Axis vectors.
+            /// @param AxisX The vector expressing the X axis.
+            /// @param AxisY The vector expressing the Y axis.
+            /// @param AxisZ The vector expressing the Z axis.
+            void SetFromAxes(const Vector3& AxisX, const Vector3& AxisY, const Vector3& AxisZ);
 
             /// @brief Gets the Dot Product of this quaternion and another quaternion.
             /// @param Other The other quaternion to calculate the dot product from.
@@ -130,7 +164,7 @@ namespace Mezzanine
 
             /// @brief Get a normalized copy of this Quaternion without changing this one.
             /// @return A Copy of this Quaternion after the copy has been normalized.
-            Quaternion GetNormalizedCopy();
+            Quaternion GetNormalizedCopy() const;
 
             /// @brief Inverses this Quaternion.
             /// @return Returns a quaternion that is a copy of this one after it has been inversed.

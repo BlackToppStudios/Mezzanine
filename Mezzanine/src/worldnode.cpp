@@ -61,165 +61,272 @@
 
 namespace Mezzanine
 {
-    WorldNode::WorldNode(const String& Name, SceneManager* manager)
+    WorldNode::WorldNode(const String& Name, SceneManager* SManager)
+        : AutoTrackTarget(NULL),
+          Manager(SManager),
+          FixedYaw(false),
+          NodeName(Name)
     {
-        Manager = manager;
-        if (Manager)
-            { OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name); }
-        else
-            { OgreNode = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createSceneNode(Name); }
-
-        Type = WorldNode::Free;
-    }
-
-    WorldNode::WorldNode(Ogre::SceneNode* snode, SceneManager* manager)
-    {
-        OgreNode = snode;
-        Manager = manager;
-        Type = WorldNode::Free;
     }
 
     WorldNode::~WorldNode()
     {
-        if (Manager)
-            { Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
-        else
-            { SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Navigation
-    void WorldNode::SetLocation(const Vector3& Location)
-        { OgreNode->setPosition(Location.GetOgreVector3()); }
-
-    Vector3 WorldNode::GetLocation() const
-        { return Vector3(OgreNode->getPosition()); }
-
-    void WorldNode::SetOrientation(const Quaternion& Orientation)
-        { OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
-
-    Quaternion WorldNode::GetOrientation() const
-        { return Quaternion(OgreNode->getOrientation()); }
-
-    void WorldNode::LookAt(Vector3 LookAt)
-        { OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD); }
-
-    void WorldNode::IncrementOrbit(Real Radians)
-    {
-        if( WorldNode::Orbit == this->Type )
+        if(AutoTrackTarget)
         {
-            Ogre::Radian Rad(Radians);
-            OgreNode->getParentSceneNode()->yaw(Rad);
+            Manager->_UnRegisterTrackingNode(this);
         }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Auto tracking
-    void WorldNode::SetAutoTracking(WorldNode* node, Vector3 Offset)
-    {
-        OgreNode->setAutoTracking(true, node->OgreNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
-    }
-
-    void WorldNode::SetAutoTracking(ActorBase* Actor, Vector3 Offset)
-    {
-        OgreNode->setAutoTracking(true, Actor->GraphicsNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
-    }
-
-    void WorldNode::DisableAutoTracking()
-    {
-        OgreNode->setAutoTracking(false);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Basic Data
 
-    void WorldNode::SetType(WorldNode::NodeType type)
-    {
-        Type = type;
-    }
-
-    WorldNode::NodeType WorldNode::GetType() const
-    {
-        return Type;
-    }
-
-    Attachable::AttachableElement WorldNode::GetAttachableType() const
-        { return Attachable::WorldNode; }
-
     ConstString& WorldNode::GetName() const
-        { return OgreNode->getName(); }
+        { return NodeName; }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Attachment child management
+    // Navigation
 
-    void WorldNode::AttachObject(Attachable* Target)
+    void WorldNode::LookAt(const Vector3& LookAt, const Mezzanine::TransformSpace& TS, const Vector3& LocalDirection)
     {
-        if(Target == this) //don't be stoopid, can't attach to yourself
-            return;
-        SetAttachedTo(Target,this);
-        if(this->OgreNode)
+        Vector3 Origin;
+        switch(TS)
         {
-            AttachableData AData = Target->GetAttachableData();
-            if(AData.OgreNode) this->OgreNode->addChild(AData.OgreNode);
-            else this->OgreNode->attachObject(AData.OgreMovable);
+        default:
+        case Mezzanine::TS_World:
+            Origin = GetLocation();
+            break;
+        case Mezzanine::TS_Parent:
+            Origin = GetLocalLocation();
+            break;
+        case Mezzanine::TS_Local:
+            Origin.Zero();
+            break;
         }
-        Elements.push_back(Target);
+
+        SetDirection(LookAt - Origin,TS,LocalDirection);
     }
 
-    void WorldNode::DetachObject(Attachable* Target)
+    void WorldNode::SetDirection(const Vector3& Direction, const Mezzanine::TransformSpace& TS, const Vector3& LocalAxis)
     {
-        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; ++it )
+        static const Vector3 Zero(0,0,0);
+        if(Direction == Zero)
+            return;
+
+        Vector3 NormalizedDir = Direction.GetNormal();
+        switch(TS)
         {
-            if(Target == (*it))
+            default:
+            case Mezzanine::TS_World:
             {
-                SetAttachedTo(Target,NULL);
-                if(this->OgreNode)
-                {
-                    AttachableData AData = Target->GetAttachableData();
-                    if(AData.OgreNode) this->OgreNode->removeChild(AData.OgreNode);
-                    else this->OgreNode->detachObject(AData.OgreMovable);
-                }
-                Elements.erase(it);
-                return;
+                // Do nothing
+                break;
+            }
+            case Mezzanine::TS_Local:
+            {
+                NormalizedDir = GetOrientation() * NormalizedDir;
+                break;
+            }
+            case Mezzanine::TS_Parent:
+            {
+                if(Parent) NormalizedDir = Parent->GetOrientation() * NormalizedDir;
+                else return;  /// @todo May want to change this to an exception, maybe.
+                break;
             }
         }
+
+        Quaternion FinalOrientation;
+        if(FixedYaw)
+        {
+            Vector3 XVec = FixedYawAxis.CrossProduct(NormalizedDir);
+            XVec.Normalize();
+            Vector3 YVec = NormalizedDir.CrossProduct(XVec);
+            YVec.Normalize();
+            Quaternion ZToTarget(XVec,YVec,NormalizedDir);
+
+            if(LocalAxis == Vector3::Neg_Unit_Z())
+            {
+                FinalOrientation.SetValues(-ZToTarget.Y,-ZToTarget.Z,ZToTarget.W,ZToTarget.X);
+            }else{
+                FinalOrientation = ZToTarget * (LocalAxis.GetRotationToAxis(Vector3::Unit_Z()));
+            }
+        }else{
+            Quaternion CurrOri = GetOrientation();
+            Vector3 CurrDir = CurrOri * LocalAxis;
+            if( (CurrDir+NormalizedDir).SquaredLength() < 0.00005 )
+            {
+                FinalOrientation.SetValues(-CurrOri.Y,-CurrOri.Z,CurrOri.W,CurrOri.X);
+            }else{
+                FinalOrientation = (CurrDir.GetRotationToAxis(NormalizedDir)) * CurrOri;
+            }
+        }
+
+        SetOrientation(FinalOrientation);
     }
 
-    Attachable* WorldNode::GetAttached(const Whole& Index) const
-        { return Elements.at(Index); }
-
-    WorldNode::iterator WorldNode::begin()
-        { return Elements.begin(); }
-
-    WorldNode::iterator WorldNode::end()
-        { return Elements.end(); }
-
-    WorldNode::const_iterator WorldNode::begin() const
-        { return Elements.begin(); }
-
-    WorldNode::const_iterator WorldNode::end() const
-        { return Elements.end(); }
-
-    void WorldNode::DetachAll()
+    void WorldNode::SetAutoTracking(AttachableBase* Target, const Vector3& LocalDirection, const Vector3& Offset)
     {
-        //OgreNode->detachAllObjects();
-        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
-            { this->DetachObject(*it); }
-        Elements.clear();
+        bool Toggle = (!AutoTrackTarget && Target) || (AutoTrackTarget && !Target);
+        AutoTrackTarget = Target;
+        if(AutoTrackTarget)
+        {
+            AutoTrackDirection = LocalDirection;
+            AutoTrackOffset = Offset;
+        }
+        if(Toggle)
+        {
+            if(AutoTrackTarget) Manager->_RegisterTrackingNode(this);
+            else Manager->_UnRegisterTrackingNode(this);
+        }
     }
 
-    Whole WorldNode::GetNumAttached() const
-        { return Elements.size(); }
+    AttachableBase* WorldNode::GetAutoTrackingTarget() const
+    {
+        return AutoTrackTarget;
+    }
+
+    const Vector3& WorldNode::GetAutoTrackingDirection() const
+    {
+        return AutoTrackDirection;
+    }
+
+    const Vector3& WorldNode::GetAutoTrackingOffset() const
+    {
+        return AutoTrackOffset;
+    }
+
+    void WorldNode::Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace& TS)
+    {
+        Quaternion NormRot = Rotation.GetNormalizedCopy();
+        switch(TS)
+        {
+            case Mezzanine::TS_World:
+                SetLocalOrientation(NormRot * GetLocalOrientation());
+                break;
+            case Mezzanine::TS_Parent:// This...I don't even...
+                SetLocalOrientation(GetLocalOrientation() * GetOrientation().GetInverse() * NormRot * GetOrientation());
+                break;
+            default:
+            case Mezzanine::TS_Local:
+                SetLocalOrientation(GetLocalOrientation() * NormRot);
+                break;
+        }
+    }
+
+    void WorldNode::Rotate(const Real& Angle, const Vector3& Axis, const Mezzanine::TransformSpace& TS)
+    {
+        Quaternion Rot(Angle,Axis);
+        Rotate(Rot,TS);
+    }
+
+    void WorldNode::Yaw(const Real& Angle, const Mezzanine::TransformSpace& TS)
+    {
+        if(FixedYaw) Rotate(Angle,FixedYawAxis,TS);
+        else Rotate(Angle,Vector3::Unit_Y(),TS);
+    }
+
+    void WorldNode::Pitch(const Real& Angle, const Mezzanine::TransformSpace& TS)
+    {
+        Rotate(Angle,Vector3::Unit_X(),TS);
+    }
+
+    void WorldNode::Roll(const Real& Angle, const Mezzanine::TransformSpace& TS)
+    {
+        Rotate(Angle,Vector3::Unit_Z(),TS);
+    }
+
+    void WorldNode::SetFixedYawAxis(bool Enable, const Vector3& FixedAxis)
+    {
+        FixedYaw = Enable;
+        FixedYawAxis = FixedAxis;
+    }
+
+    bool WorldNode::GetFixedYawAxisEnabled() const
+    {
+        return FixedYaw;
+    }
+
+    const Vector3& WorldNode::GetFixedYawAxis() const
+    {
+        return FixedYawAxis;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Internal Functions
+    // Inherited from Attachable classes
 
-    AttachableData WorldNode::GetAttachableData() const
+    void WorldNode::SetLocation(const Vector3& Location)
     {
-        AttachableData Data;
-        Data.OgreNode = OgreNode;
-        Data.Type = Attachable::WorldNode;
-        return Data;
+        NodeLoc = Location;
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    Vector3 WorldNode::GetLocation() const
+    {
+        return NodeLoc;
+    }
+
+    void WorldNode::SetOrientation(const Quaternion& Orientation)
+    {
+        NodeOri = Orientation;
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    Quaternion WorldNode::GetOrientation() const
+    {
+        return NodeOri;
+    }
+
+    void WorldNode::SetScaling(const Vector3& Scale)
+    {
+        NodeScale = Scale;
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    Vector3 WorldNode::GetScaling() const
+    {
+        return NodeScale;
+    }
+
+    WorldAndSceneObjectType WorldNode::GetType() const
+    {
+        return Mezzanine::WSO_WorldNode;
+    }
+
+    void WorldNode::SetLocalLocation(const Vector3& Location)
+    {
+        LocalXform.Location = Location;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    void WorldNode::SetLocalOrientation(const Quaternion& Orientation)
+    {
+        LocalXform.Rotation = Orientation;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+        _RecalculateAllChildTransforms();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void WorldNode::_UpdateTracking()
+    {
+        if(AutoTrackTarget)
+        {
+            LookAt(AutoTrackTarget->GetLocation()+AutoTrackOffset,Mezzanine::TS_World,AutoTrackDirection);
+        }
     }
 }
 
@@ -229,11 +336,10 @@ namespace Mezzanine
 std::ostream& operator << (std::ostream& stream, const Mezzanine::WorldNode& Ev)
 {
     stream      << "<WorldNode Version=\"1\" Name=\"" << Ev.GetName()
-                << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
-                << "\" StandingType=\"" << Ev.GetType()
+                << "\" AttachedTo=\"" << ( Ev.GetParent() ? Ev.GetParent()->GetName() : "" )
                 << "\">";
 
-                for(Mezzanine::WorldNode::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
+                for(Mezzanine::AttachableParent::ConstAttachableIterator Iter = Ev.BeginChild(); Iter!=Ev.EndChild(); ++Iter)
                 {
                     stream << "<Attached Name=\"" << (*Iter)->GetName() << "\"/>";
                 }
@@ -280,11 +386,11 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
 
                             if (AttachPtr)  // fail silently, because if we don't find it then that means it just hasn't been deserialized yeat
                             {
-                                if (0==AttachPtr->GetAttachedTo())// unless it is attached to something else
+                                if (0==AttachPtr->GetParent())// unless it is attached to something else
                                 {
                                     Ev.AttachObject(AttachPtr);
                                 }else{
-                                    throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName(),"\" needs to be attached, but is already attached to ",AttachPtr->GetAttachedTo()->GetName() )) );
+                                    throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName(),"\" needs to be attached, but is already attached to ",AttachPtr->GetParent()->GetName() )) );
                                 }
                             }
 

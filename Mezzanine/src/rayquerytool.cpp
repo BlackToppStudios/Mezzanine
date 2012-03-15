@@ -162,7 +162,7 @@ namespace Mezzanine
                             ClosestActor->Actor = (ActorBase*)ActorRef->GetObject();
                         }
 
-                    } // \if WOT_ActorRigid
+                    } // \if WSO_ActorRigid
                 }catch(std::exception e){
                     World::GetWorldPointer()->Log("Failed during cast in actor raycast.");
                     World::GetWorldPointer()->LogAndThrow(e.what());

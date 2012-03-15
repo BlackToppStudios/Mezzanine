@@ -250,7 +250,7 @@ namespace Mezzanine
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
     EventManager::EventManager()
     {
-        this->Priority=-40;
+        this->Priority = 0;
         this->_Data = new internal::EventManagerInternalData;
 
         this->DetectJoysticks();

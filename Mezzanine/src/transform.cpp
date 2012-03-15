@@ -61,6 +61,12 @@ namespace Mezzanine
     Transform::Transform(const Transform& TheOther)
         { this->operator=(TheOther); }
 
+    void Transform::SetIdentity()
+    {
+        this->Location.Zero();
+        this->Rotation.SetIdentity();
+    }
+
     btTransform Transform::GetBulletTransform() const
     {
         return btTransform( this->Rotation.GetBulletQuaternion(),

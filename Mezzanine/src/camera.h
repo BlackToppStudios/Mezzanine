@@ -99,7 +99,7 @@ namespace Mezzanine
     /// individual camera that has been created.
     /// @todo Fix all the extra occurences of the word Camera in Function names on the camera.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB Camera : public Attachable
+    class MEZZ_LIB Camera : public AttachableChild
     {
         public:
             /// @brief Values for storing how perspective should be interpretted
@@ -112,7 +112,6 @@ namespace Mezzanine
         private:
             /// @internal
             friend xml::Node& MEZZ_LIB operator >> (xml::Node& OneNode, Camera& Ev);
-
 
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
@@ -161,8 +160,7 @@ namespace Mezzanine
             /// Perspective can be thought of as a pyramid, with the camera at the top of the cone.  Orthographic would instead be a
             /// cube.
             /// @param Type The type of projection to be used.
-            void SetCameraType(const ProjectionType Type);
-
+            void SetCameraType(const ProjectionType& Type);
             /// @brief Get the type of projection used by the camera
             /// @return A ProjectionType that will identify the kind of projection this camera uses.
             Camera::ProjectionType GetCameraType() const;
@@ -187,26 +185,11 @@ namespace Mezzanine
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
-            virtual void SetLocation(const Vector3& Location);
+            void SetLocation(const Vector3& Location);
             /// @brief Gets the relative location of the camera.
             /// @details Gets the location of the camera, relative to any parent WorldNode.
             /// @return A Mezzanine::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
-            virtual Vector3 GetLocation() const;
-            /// @brief Gets the relative location of the camera.
-            /// @details Gets the location of the camera, relative to any parent WorldNode.
-            /// @return A Mezzanine::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
-            Vector3 GetRelativeLocation() const;
-            /// @brief Gets the global/absolute location of the camera.
-            /// @return A Mezzanine::Vector3 containing the location of this object as an offset from the global origin.
-            Vector3 GetGlobalLocation() const;
-
-            /// @brief Sets the Direction for the camera.
-            /// @details Sets which axis the camera will look down for rendering.
-            /// @param Direction The vector3 representing the axis to be used.
-            void SetDirection(const Vector3& Direction);
-            /// @brief Gets the direction the camera is currently facing.
-            /// @return Returns a Vector3 representing the current direction the camera is facing.
-            Vector3 GetDirection() const;
+            Vector3 GetLocation() const;
 
             /// @brief Sets the orientation of the camera.
             /// @details This function will set the orientation of the specified camera via a quaternion.
@@ -215,6 +198,14 @@ namespace Mezzanine
             /// @brief Gets the direction the camera is facing.
             /// @return A Mezzanine::Quaternion representing how the camera is rotated.
             Quaternion GetOrientation() const;
+
+            /// @brief Sets the Direction for the camera.
+            /// @details Sets which axis the camera will look down for rendering.
+            /// @param Direction The vector3 representing the axis to be used.
+            void SetDirection(const Vector3& Direction);
+            /// @brief Gets the direction the camera is currently facing.
+            /// @return Returns a Vector3 representing the current direction the camera is facing.
+            Vector3 GetDirection() const;
 
             /// @brief Sets the short range clip distance.
             /// @details Sets the distance at which objects are considered too close to render.
@@ -278,45 +269,31 @@ namespace Mezzanine
 
             /// @brief Gets a Ray from the camera to the viewport.
             /// @details This will cast a ray from the camera to the viewport and return it.
-            /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).
-            /// @param Screeny A Real representing the relative location on screen, on the y axis(0.0-1.0).
-            Ray GetCameraToViewportRay(Real Screenx, Real Screeny) const;
+            /// @param ScreenX A Real representing the relative location on screen, on the x axis(0.0-1.0).
+            /// @param ScreenY A Real representing the relative location on screen, on the y axis(0.0-1.0).
+            Ray GetCameraToViewportRay(const Real& ScreenX, const Real& ScreenY) const;
 
-            /*/// @brief Gets the WorldNode the camera is attached to if any.
-            /// @details This will return a pointer to the Mezzanine::WorldNode that this camera is attached to if any. If none, then 0 is returned.
-            WorldNode* GetWorldNode() const;*/
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited From AttachableChild
 
-            /// @brief Will zoom in or out the camera.
-            /// @details This function will zoom in the camera by the amount specified.
-            /// @param Zoom A Real of how much to zoom in by.  Note:  This number directly corolates to the dimentions
-            /// you provide in the constructor for the World.  You should understand your games scale before setting
-            /// this number.
-            void ZoomCamera(const Real& Zoom);
+            /// @copydoc AttachableBase::GetType()
+            WorldAndSceneObjectType GetType() const;
+            /// @copydoc WorldObject::SetScaling(Vector3&)
+            void SetScaling(const Vector3& Scale);
+            /// @copydoc WorldObject::GetScaling()
+            Vector3 GetScaling() const;
+            /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
+            void SetLocalLocation(const Vector3& Location);
+            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)
+            void SetLocalOrientation(const Quaternion& Orientation);
 
-            /// @brief Resets the zoom level back to the default.
-            /// @details This function will return the zoom level back to normal.  Note this function will only work if
-            /// the camera is attached to a node.
-            void ResetZoom();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
 
             /// @internal
             /// @brief Gets the internal camera this camera is based on.
             /// @return Returns a pointer to the Ogre Camera this camera is based on.
             Ogre::Camera* GetOgreCamera() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited From Attachable
-
-            /// @brief What kind of Attachable is this.
-            /// @return An Attachable::GetAttachableType containing Attachable::Camera.
-            virtual Attachable::AttachableElement GetAttachableType() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Internal Functions
-
-            /// @internal
-            /// @brief Gets pointers to the internal ogre structures for this attachable.
-            /// @return Returns an AttachableData struct with the internal data.
-            virtual AttachableData GetAttachableData() const;
     };//Camera
 }//Mezzanine
 

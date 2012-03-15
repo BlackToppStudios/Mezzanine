@@ -154,25 +154,57 @@ namespace Mezzanine
         { delete this->Pie; }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Inherited From Attachable
+    // Inherited From AttachableChild
 
     ConstString& ParticleEffect::GetName() const
         { return this->Pie->OgreParticle->getName(); }
 
-    Attachable::AttachableElement ParticleEffect::GetAttachableType() const
-        { return Attachable::ParticleEffect; }
+    WorldAndSceneObjectType ParticleEffect::GetType() const
+        { return Mezzanine::WSO_ParticleEffect; }
 
-    void ParticleEffect::SetLocation(const Vector3& Vec)
-        { this->Pie->OgreNode->setPosition(Vec.GetOgreVector3()); }
+    void ParticleEffect::SetLocation(const Vector3& Location)
+    {
+        this->Pie->OgreNode->setPosition(Location.GetOgreVector3());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+    }
 
     Vector3 ParticleEffect::GetLocation() const
         { return Vector3(this->Pie->OgreNode->getPosition()); }
 
     void ParticleEffect::SetOrientation(const Quaternion& Orientation)
-        { this->Pie->OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
+    {
+        this->Pie->OgreNode->setOrientation(Orientation.GetOgreQuaternion());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+    }
 
     Quaternion ParticleEffect::GetOrientation() const
         { return Quaternion(this->Pie->OgreNode->getOrientation()); }
+
+    void ParticleEffect::SetScaling(const Vector3& Scale)
+        { this->Pie->OgreNode->setScale(Scale.GetOgreVector3()); }
+
+    Vector3 ParticleEffect::GetScaling() const
+        { return Vector3(this->Pie->OgreNode->getScale()); }
+
+    void ParticleEffect::SetLocalLocation(const Vector3& Location)
+    {
+        LocalXform.Location = Location;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+    }
+
+    void ParticleEffect::SetLocalOrientation(const Quaternion& Orientation)
+    {
+        LocalXform.Rotation = Orientation;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Emitters
@@ -284,18 +316,6 @@ namespace Mezzanine
 
     String ParticleEffect::GetCustomParam(const String& Name) const
         { return this->Pie->OgreParticle->getParameter(Name); }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Functions
-
-    AttachableData ParticleEffect::GetAttachableData() const
-    {
-        AttachableData Data;
-        Data.OgreMovable = Pie->OgreParticle;
-        Data.OgreNode = Pie->OgreNode;
-        Data.Type = Attachable::ParticleEffect;
-        return Data;
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -304,7 +324,7 @@ namespace Mezzanine
 std::ostream& operator << (std::ostream& stream, const Mezzanine::ParticleEffect& Ev)
 {
     stream      << "<ParticleEffect Version=\"1\" Name=\"" << Ev.GetName()
-                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                    << "\" AttachedTo=\"" << ( Ev.GetParent() ? Ev.GetParent()->GetName() : "" )
                     << "\" InWorld=\"" << Ev.IsInWorld()
                     << "\" Template=\"" << Ev.GetTemplate()
                 << "\">"

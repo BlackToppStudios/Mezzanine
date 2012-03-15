@@ -51,7 +51,7 @@ namespace Mezzanine
 
     ActorManager::ActorManager()
     {
-        Priority = -25;
+        Priority = 20;
     }
 
     ActorManager::~ActorManager()

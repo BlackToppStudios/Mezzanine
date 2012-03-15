@@ -903,7 +903,7 @@ bool CatchApp::PostUI()
             //*MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WOT_ActorRigid);
+            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
             #ifdef MEZZDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
             TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
@@ -930,7 +930,7 @@ bool CatchApp::PostUI()
                 {
                     if(!Dragger) //If we have a dragger, then this is dragging, not clicking
                     {
-                        if(ClickOnActor->Actor->GetType()==Mezzanine::WOT_ActorRigid) //This is Dragging let's do some checks for sanity
+                        if(ClickOnActor->Actor->GetType()==Mezzanine::WSO_ActorRigid) //This is Dragging let's do some checks for sanity
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);

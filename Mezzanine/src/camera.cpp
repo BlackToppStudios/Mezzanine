@@ -80,7 +80,7 @@ namespace Mezzanine
 
     Camera::~Camera()
     {
-        if (CamManager->SManager && CamManager->SManager->GetGraphicsWorldPointer())
+        if(CamManager->SManager && CamManager->SManager->GetGraphicsWorldPointer())
             { CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam); }
     }
 
@@ -89,7 +89,7 @@ namespace Mezzanine
         return this->Cam->getName();
     }
 
-    void Camera::SetCameraType(const ProjectionType Type)
+    void Camera::SetCameraType(const ProjectionType& Type)
     {
         if( Camera::Orthographic == Type )
         {
@@ -136,15 +136,37 @@ namespace Mezzanine
     void Camera::SetLocation(const Vector3& Location)
     {
         this->Cam->setPosition(Location.GetOgreVector3());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
     }
-    void Camera::SetDirection(const Vector3& Direction)
+
+    Vector3 Camera::GetLocation() const
     {
-        this->Cam->setDirection(Direction.GetOgreVector3());
+        return Vector3(this->Cam->getPosition());
     }
 
     void Camera::SetOrientation(const Quaternion& Orientation)
     {
         this->Cam->setOrientation(Orientation.GetOgreQuaternion());
+        LocalTransformDirty = true;
+
+        _RecalculateLocalTransform();
+    }
+
+    Quaternion Camera::GetOrientation() const
+    {
+        return Quaternion(this->Cam->getOrientation());
+    }
+
+    void Camera::SetDirection(const Vector3& Direction)
+    {
+        this->Cam->setDirection(Direction.GetOgreVector3());
+    }
+
+    Vector3 Camera::GetDirection() const
+    {
+        return Vector3(this->Cam->getDirection());
     }
 
     void Camera::SetNearClipDistance(const Real& NearDist)
@@ -213,45 +235,41 @@ namespace Mezzanine
         this->Cam->setAutoTracking(Enabled, Trgt);
     }*/
 
-    Ray Camera::GetCameraToViewportRay(Real Screenx, Real Screeny) const
+    Ray Camera::GetCameraToViewportRay(const Real& ScreenX, const Real& ScreenY) const
     {
-        Ray R(this->Cam->getCameraToViewportRay(Screenx, Screeny));
+        Ray R(this->Cam->getCameraToViewportRay(ScreenX, ScreenY));
         return R;
     }
 
-    /*WorldNode* Camera::GetWorldNode() const
+    WorldAndSceneObjectType Camera::GetType() const
     {
-        //Ogre::SceneNode* tempnode = this->Cam->getParentSceneNode();
-        //return tempnode->getName();
-    }*/
-
-    Vector3 Camera::GetLocation() const
-        { return  Vector3(this->Cam->getPosition()); }
-
-    Vector3 Camera::GetRelativeLocation() const
-        { return  Vector3(this->Cam->getPosition()); }
-
-    Vector3 Camera::GetGlobalLocation() const
-        { return  Vector3(this->Cam->getRealPosition()); }
-
-    Quaternion Camera::GetOrientation() const
-    {
-        return Quaternion(this->Cam->getOrientation());
+        return Mezzanine::WSO_Camera;
     }
 
-    void Camera::ZoomCamera(const Real& Zoom)
+    void Camera::SetScaling(const Vector3& Scale)
     {
-        Ogre::Vector3 zoomlevel(0,0,Zoom);
-        this->Cam->moveRelative(zoomlevel);
+        // Do nothing, can't scale a camera.
     }
 
-    void Camera::ResetZoom()
+    Vector3 Camera::GetScaling() const
     {
-        Ogre::Vector3 loc;
-        loc = this->Cam->getPosition();
-        Real zoom=loc.z;
-        zoom=0-zoom;
-        this->Cam->moveRelative(Ogre::Vector3(0,0,zoom));
+        return Vector3(1,1,1);
+    }
+
+    void Camera::SetLocalLocation(const Vector3& Location)
+    {
+        LocalXform.Location = Location;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
+    }
+
+    void Camera::SetLocalOrientation(const Quaternion& Orientation)
+    {
+        LocalXform.Rotation = Orientation;
+        GlobalTransformDirty = true;
+
+        _RecalculateGlobalTransform();
     }
 
     Ogre::Camera* Camera::GetOgreCamera() const
@@ -260,20 +278,8 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Inherited From Attachable
+    // Inherited From AttachableChild
 
-    Attachable::AttachableElement Camera::GetAttachableType() const
-        { return Attachable::Camera; }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Internal Functions
-    AttachableData Camera::GetAttachableData() const
-    {
-        AttachableData Data;
-        Data.OgreMovable = Cam;
-        Data.Type = Attachable::Camera;
-        return Data;
-    }
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -283,9 +289,9 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Camera& Ev)
 {
 
     //stream << "<Camera Version=\"1\" attachedto=\"1\" location=\"1\" orientation=\"1\" name=\"1\" />" << *(Ev.Cam) << "</Camera>";
-    stream      << "<Camera Version=\"1\" Name=\"" << Ev.GetName() << "\" AttachedTo=\"" << (Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "") << "\" CameraPerspective=\"" << Ev.GetCameraType() << "\">"
+    stream      << "<Camera Version=\"1\" Name=\"" << Ev.GetName() << "\" AttachedTo=\"" << (Ev.GetParent() ? Ev.GetParent()->GetName() : "") << "\" CameraPerspective=\"" << Ev.GetCameraType() << "\">"
                 << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
-                << "<Location>" << Ev.GetRelativeLocation() << "</Location>";
+                << "<Location>" << Ev.GetLocalLocation() << "</Location>";
 
     if ( Ev.IsFixedYawEnabled() )
         {stream << "<FixedYawAxis Enabled=\"1\">" << Ev.GetFixedYawAxis() << "</FixedYawAxis>"; }

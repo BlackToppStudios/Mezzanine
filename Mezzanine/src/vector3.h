@@ -61,10 +61,11 @@ SWIG_INFO_BEGINCLASS
 
 namespace Mezzanine
 {
-    //remove this too
+
+    //remove this after testing
     void PrintHello(); // Function to call from Lua
 
-
+    class Quaternion;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Vector3
     /// @headerfile vector3.h
@@ -410,15 +411,48 @@ namespace Mezzanine
 
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
-        /// @returns A copy of of the current Vector3
+        /// @return A copy of of the current Vector3
         Vector3 Inverse();
 
-        /// @brief This return the distance between this point and another
+        /// @brief Gets the distance between this and another vector.
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
-        /// This Vector3 and another.
-        /// @param OtherVec this is the other point to measure against
-        /// @return This returns a Real number which is the distance.
-        Real Distance(const Vector3 &OtherVec) const;
+        /// this Vector3 and another.
+        /// @param OtherVec This is the other point to measure the distance to.
+        /// @return Returns a Real representing the distance.
+        Real Distance(const Vector3& OtherVec) const;
+
+        /// @brief Gets the squared distance between this and another vector.
+        /// @param OtherVec This is the other point to measure the distance to.
+        /// @return Returns a Real representing the distance squared.
+        Real SquaredDistance(const Vector3& OtherVec) const;
+
+        /// @brief Gets the length of this vector.
+        /// @return Returns a real representing the length of this vector.
+        Real Length() const;
+
+        /// @brief Gets the length of this vector squared.
+        /// @return Returns a real representing the squared length of this vector.
+        Real SquaredLength() const;
+
+        /// @brief Checks to see if the length of this vector is zero.
+        /// @return Returns true if this vector has zero length, false otherwise.
+        bool IsZeroLength() const;
+
+        /// @brief Gets the rotation needed to rotate this vector as an axis to another axis.
+        /// @param Axis The target axis to rotate to.
+        /// @return Returns a Quaternion representing the needed rotation to the specified axis.
+        Quaternion GetRotationToAxis(const Vector3& Axis, const Vector3& FallBackAxis = Vector3()) const;
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Functions
+        /// @brief Sets all the members of this vector3 to zero.
+        void Zero();
+
+        /// @brief Manually sets all the members of this vector3.
+        /// @param X Value to set for X.
+        /// @param Y Value to set for Y.
+        /// @param Z Value to set for Z.
+        void SetValues(const Real& X, const Real& Y, const Real& Z);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Manual Conversions

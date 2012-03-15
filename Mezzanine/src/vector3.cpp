@@ -41,9 +41,11 @@
 #define _vector3_cpp
 
 #include "vector3.h"
+#include "quaternion.h"
 #include "exception.h"
 #include "serialization.h"
 #include "stringtool.h"
+#include "mathtool.h"
 #include "world.h"          // Needed for Error logging in streaming
 #include "xml.h"            // Needed for streaming to xml
 
@@ -111,16 +113,12 @@ namespace Mezzanine
     // Constructors
     Vector3::Vector3()
     {
-        X=0;
-        Y=0;
-        Z=0;
+        Zero();
     }
 
     Vector3::Vector3(const Real& x, const Real& y, const Real& z)
     {
-        X=x;
-        Y=y;
-        Z=z;
+        SetValues(x,y,z);
     }
 
     Vector3::Vector3(const Ogre::Vector3& Vec)
@@ -388,6 +386,87 @@ namespace Mezzanine
         return *this;
     }
 
+    Real Vector3::Distance(const Vector3& OtherVec) const
+    {
+        return (*this - OtherVec).Length();
+    }
+
+    Real Vector3::SquaredDistance(const Vector3& OtherVec) const
+    {
+        return (*this - OtherVec).SquaredLength();
+    }
+
+    Real Vector3::Length() const
+    {
+        return MathTool::Sqrt(X * X + Y * Y + Z * Z);
+    }
+
+    Real Vector3::SquaredLength() const
+    {
+        return X * X + Y * Y + Z * Z;
+    }
+
+    bool Vector3::IsZeroLength() const
+    {
+        return SquaredLength() < (1e-06 * 1e-06);
+    }
+
+    Quaternion Vector3::GetRotationToAxis(const Vector3& Axis, const Vector3& FallBackAxis) const
+    {
+        Quaternion Ret;
+        Vector3 Vec1 = *this;
+        Vector3 Vec2 = Axis;
+        Vec1.Normalize();
+        Vec2.Normalize();
+
+        Real Dot = Vec1.DotProduct(Vec2);
+        if( Dot >= 1.0 )
+        {
+            return Ret;
+        }
+        if( Dot < (1e-6 - 1.0) )
+        {
+            if( FallBackAxis != Vector3() )
+            {
+                Ret.SetFromAxisAngle(MathTool::GetPi(),FallBackAxis);
+            }else{
+                Vector3 CrossAxis = Vector3::Unit_X().CrossProduct(*this);
+                if(CrossAxis.IsZeroLength())
+                    CrossAxis = Vector3::Unit_Y().CrossProduct(*this);
+                CrossAxis.Normalize();
+                Ret.SetFromAxisAngle(MathTool::GetPi(),CrossAxis);
+            }
+        }else{
+            Real Sqr = MathTool::Sqrt( (1+Dot)*2 );
+            Real InvSqr = 1 / Sqr;
+
+            Vector3 Cross = Vec1.CrossProduct(Vec2);
+
+            Ret.X = Cross.X * InvSqr;
+            Ret.Y = Cross.Y * InvSqr;
+            Ret.Z = Cross.Z * InvSqr;
+            Ret.W = Sqr * 0.5f;
+            Ret.Normalize();
+        }
+        return Ret;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility Functions
+    void Vector3::Zero()
+    {
+        this->X = 0;
+        this->Y = 0;
+        this->Z = 0;
+    }
+
+    void Vector3::SetValues(const Real& X, const Real& Y, const Real& Z)
+    {
+        this->X = X;
+        this->Y = Y;
+        this->Z = Z;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Manual Conversions
     btVector3 Vector3::GetBulletVector3() const
@@ -437,14 +516,6 @@ namespace Mezzanine
         this->X=Ours.x;
         this->Y=Ours.y;
         this->Z=Ours.z;
-    }
-
-    Real Vector3::Distance(const Vector3 &OtherVec) const
-    {
-        float Xdelta = Ogre::Math::Abs(this->X - OtherVec.X);
-        float Ydelta = Ogre::Math::Abs(this->Y - OtherVec.Y);
-        float Zdelta = Ogre::Math::Abs(this->Z - OtherVec.Z);
-        return Ogre::Math::Sqrt( Xdelta*Xdelta + Ydelta*Ydelta + Zdelta*Zdelta );
     }
 
 #ifdef MEZZXML

@@ -63,7 +63,7 @@ namespace Mezzanine
         cAudioManager = cAudio::createAudioManager(DefaultSettings);
         Listener = new Audio::Listener(cAudioManager->getListener());
         MusicPlayer = new Audio::MusicPlayer();
-        this->Priority = 10;
+        this->Priority = 50;
     }
 
     AudioManager::~AudioManager()

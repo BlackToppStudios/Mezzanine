@@ -60,7 +60,7 @@ namespace Mezzanine
     {
         this->SManager = SceneManager::GetSingletonPtr();
         this->DefaultCamera = NULL;
-        this->Priority = -20;
+        this->Priority = 35;
         this->CreateDefaultCamera();
     }
 

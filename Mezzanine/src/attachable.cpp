@@ -41,9 +41,10 @@
 #define _attachable_cpp
 
 #include "attachable.h"
-#include "transform.h"
 #include "worldnode.h"
 #include "world.h"
+
+#include <Ogre.h>
 
 /// @file attachable.cpp
 /// @brief Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration implementations
@@ -51,64 +52,198 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    // Set data
+    // AttachableBase Methods
 
-    void Attachable::SetAttachedTo(Attachable* Targeter, Mezzanine::WorldNode* Target)
-        { Targeter->AttachedTo = Target; }
+    AttachableBase::AttachableBase()
+        : Updating(false)
+    {
+    }
 
+    AttachableBase::~AttachableBase()
+    {
+    }
+
+    bool AttachableBase::GetUpdating(AttachableBase* AB) const
+    {
+        return AB ? AB->Updating : false;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Construction
+    // Conversion Functions
 
-    Attachable::Attachable()
-        { AttachedTo = 0; }
+    Vector3 AttachableBase::ConvertLocalToGlobal(const Vector3& Location) const
+    {
+        return (this->GetOrientation() * Location * this->GetScaling()) + this->GetLocation();
+    }
 
-    Attachable::Attachable(Mezzanine::WorldNode* AttachedToWorldNode)
-        { this->SetAttachedTo(this,AttachedToWorldNode); }
+    Vector3 AttachableBase::ConvertGlobalToLocal(const Vector3& Location) const
+    {
+        return this->GetOrientation().GetInverse() * (Location - this->GetLocation()) / this->GetScaling();
+    }
 
-    Attachable::~Attachable()
-        { }
+    Quaternion AttachableBase::ConvertLocalToGlobal(const Quaternion& Orientation) const
+    {
+        return this->GetOrientation() * Orientation;
+    }
+
+    Quaternion AttachableBase::ConvertGlobalToLocal(const Quaternion& Orientation) const
+    {
+        return this->GetOrientation().GetInverse() * Orientation;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Attachment management
+    // Internal Methods
 
-    WorldNode* Attachable::GetAttachedTo() const
-        { return this->AttachedTo; }
+    ///////////////////////////////////////////////////////////////////////////////
+    // AttachableParent Methods
 
-    void Attachable::AttachTo(Mezzanine::WorldNode* Target)
+    AttachableParent::AttachableParent()
     {
-        if (AttachedTo)
-            { World::GetWorldPointer()->LogAndThrow(Exception("Already Attached to another WorldNode.")); }
-        Target->AttachObject(this);
-        SetAttachedTo(this,Target);
     }
 
-    void Attachable::DetachFrom()
+    AttachableParent::~AttachableParent()
     {
-        AttachedTo->DetachObject(this);
-        SetAttachedTo(this,0);
     }
 
-    void Attachable::SetTransform(const Transform& Trans)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Attachment child management
+
+    void AttachableParent::AttachObject(AttachableChild* Target)
     {
-        this->SetLocation(Trans.Location);
-        this->SetOrientation(Trans.Rotation);
+        if((AttachableBase*)Target == (AttachableBase*)this) //don't be stoopid, can't attach to yourself
+            return;
+        if(Target->Parent)
+        {
+            if(Target->Parent == this) return;
+            else World::GetWorldPointer()->LogAndThrow(Exception("Cannot attach object to multiple AttachableParent instances."));
+        }
+
+        Attached.push_back(Target);
+        Target->Parent = this;
+
+        Target->SetLocation( this->ConvertLocalToGlobal( Target->GetLocalLocation() ) );
+        Target->SetOrientation( this->ConvertLocalToGlobal( Target->GetLocalOrientation() ) );
     }
 
-    Transform Attachable::GetTransform() const
+    void AttachableParent::DetachObject(AttachableChild* Target)
     {
-        return Transform(this->GetLocation(),this->GetOrientation());
+        for( AttachableIterator it = Attached.begin() ; it != Attached.end() ; ++it )
+        {
+            if(Target == (*it))
+            {
+                Attached.erase(it);
+                return;
+            }
+        }
+        Target->Parent = NULL;
     }
 
-    /// @todo consider adding rotate to Attachable
-    /// @todo consider adding LookAt to Attachable
+    void AttachableParent::DetachAll()
+        { Attached.clear(); }
+
+    Whole AttachableParent::GetNumAttached() const
+        { return Attached.size(); }
+
+    AttachableChild* AttachableParent::GetAttached(const Whole& Index) const
+        { return Attached.at(Index); }
+
+    AttachableParent::AttachableIterator AttachableParent::BeginChild()
+        { return Attached.begin(); }
+
+    AttachableParent::AttachableIterator AttachableParent::EndChild()
+        { return Attached.end(); }
+
+    AttachableParent::ConstAttachableIterator AttachableParent::BeginChild() const
+        { return Attached.begin(); }
+
+    AttachableParent::ConstAttachableIterator AttachableParent::EndChild() const
+        { return Attached.end(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void AttachableParent::_RecalculateAllChildTransforms()
+    {
+        if( Attached.empty() )
+            return;
+        Updating = true;
+        for( AttachableIterator it = Attached.begin() ; it != Attached.end() ; ++it )
+        {
+            (*it)->_RecalculateGlobalTransform(true);
+        }
+        Updating = false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // AttachableChild Methods
+
+    AttachableChild::AttachableChild()
+        : Parent(NULL),
+          LocalTransformDirty(false),
+          GlobalTransformDirty(false)
+    {
+        LocalXform.SetIdentity();
+    }
+
+    AttachableChild::~AttachableChild()
+    {
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility Functions
+
+    AttachableParent* AttachableChild::GetParent() const
+    {
+        return Parent;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Transform Functions
+
+    Vector3 AttachableChild::GetLocalLocation() const
+    {
+        return LocalXform.Location;
+    }
+
+    Quaternion AttachableChild::GetLocalOrientation() const
+    {
+        return LocalXform.Rotation;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void AttachableChild::_RecalculateGlobalTransform(bool FromParent)
+    {
+        // Set data for parent updates appropriately.
+        // Can't assign directly in case "FromParent" is false and we need an update, such as when SetLocation() is invoked directly.
+        if(FromParent)
+            GlobalTransformDirty = true;
+
+        if(Parent && GlobalTransformDirty)
+        {
+            this->SetOrientation( Parent->ConvertLocalToGlobal(LocalXform.Rotation) );
+            this->SetLocation( Parent->ConvertLocalToGlobal(LocalXform.Location) );
+        }
+        GlobalTransformDirty = false;
+    }
+
+    void AttachableChild::_RecalculateLocalTransform()
+    {
+        if(Parent && LocalTransformDirty)
+        {
+            this->LocalXform.Location = Parent->ConvertGlobalToLocal( this->GetLocation() );
+            this->LocalXform.Rotation = Parent->ConvertGlobalToLocal( this->GetOrientation() );
+        }
+        LocalTransformDirty = false;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Pure Virtual Functions
 
     // The coding that goes into pure virtual functions is not for inexperienced eyes such
     // as yours. Take your training to the Mountaintop monanstary and learn the ancient ways of
-    // c++ from the Tibetan monks you find there.  Godspeed.
+    // c++ from the Tibetan monks you find there.  Godspeed. //*/
 }//Mezzanine
 
 #endif

@@ -108,6 +108,7 @@
     - @ref Mezzanine::EventManager - Get messages and events from the operating system (and user, but that will change)
     - @ref Mezzanine::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.
     - @ref Mezzanine::MeshManager - Manage Meshes that can be rendered to the the screen.
+    - @ref Mezzanine::NetworkManager - Manages the transmission and retreival of network traffic.
     - @ref Mezzanine::PhysicsManager - Control settings that have to do with the physics simulation.
     - @ref Mezzanine::ResourceManager - Loads Files and locate them in an efficient way.
     - @ref Mezzanine::SceneManager - Control Lighting, skyboxes, particle effects etc...

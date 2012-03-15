@@ -49,7 +49,7 @@ namespace Mezzanine
 
     NetworkManager::NetworkManager()
     {
-
+        this->Priority = 60;
     }
 
     NetworkManager::~NetworkManager()

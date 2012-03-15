@@ -87,7 +87,7 @@ namespace Mezzanine
         btScalar bmass=pmass;
         this->PhysicsRigidBody = new btRigidBody(bmass, this->MotionState, this->PhysicsShape);
         PhysicsObject=PhysicsRigidBody;
-        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_ActorRigid,this);
+        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WSO_ActorRigid,this);
         Ogre::Any OgreRef(ActorRef);
         GraphicsObject->setUserAny(OgreRef);
         PhysicsObject->setUserPointer(ActorRef);
@@ -114,8 +114,8 @@ namespace Mezzanine
     Vector3 ActorRigid::GetAngularMovementFactor() const
         { return Vector3(this->PhysicsRigidBody->getAngularFactor()); }
 
-    WorldObjectType ActorRigid::GetType() const
-        { return Mezzanine::WOT_ActorRigid; }
+    WorldAndSceneObjectType ActorRigid::GetType() const
+        { return Mezzanine::WSO_ActorRigid; }
 
     void ActorRigid::AddToWorld()
     {
@@ -176,7 +176,7 @@ namespace Mezzanine
             return;
         // Constraints only work well with other rigid bodies, so for now just other actorrigids.
         /// @todo Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies.
-        if( (UseA ? (Col->GetObjectA()->GetType() != Mezzanine::WOT_ActorRigid) : (Col->GetObjectB()->GetType() != Mezzanine::WOT_ActorRigid)) )
+        if( (UseA ? (Col->GetObjectA()->GetType() != Mezzanine::WSO_ActorRigid) : (Col->GetObjectB()->GetType() != Mezzanine::WSO_ActorRigid)) )
             return;
         // We need a contact point to be present for this to work, since a collision without contact points is an AABB overlap.
         // So confirm there are contact points.

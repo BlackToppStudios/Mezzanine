@@ -84,7 +84,7 @@ namespace Mezzanine
 
         this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         PhysicsObject=PhysicsSoftBody;
-        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WOT_ActorSoft,this);
+        ObjectReference* ActorRef = new ObjectReference(Mezzanine::WSO_ActorSoft,this);
         PhysicsObject->setUserPointer(ActorRef);
         PhysicsShape = PhysicsSoftBody->getCollisionShape();
         PhysicsSoftBody->setTotalMass(mass, true);
@@ -166,7 +166,7 @@ namespace Mezzanine
     ///////////////////////////////////////
     // Public Functions
 
-    std::string ActorSoft::GetName () const
+    ConstString& ActorSoft::GetName () const
     {
         return this->GraphicsObject->getName();
     }
@@ -214,25 +214,30 @@ namespace Mezzanine
         return this->GetBulletLocation();
     }
 
-    void ActorSoft::SetOrientation (Real x, Real y, Real z, Real w)
+    void ActorSoft::SetOrientation(Real x, Real y, Real z, Real w)
     {
         Quaternion temp(x,y,z,w);
         this->SetOrientation(temp);
     }
 
-    void ActorSoft::SetOrientation (Quaternion Rotation)
+    void ActorSoft::SetOrientation(Quaternion Rotation)
     {
         this->SetBulletOrientation(Rotation);
         //this->SetOgreOrientation(Rotation);
     }
 
-    void ActorSoft::AddObjectToWorld()
+    WorldAndSceneObjectType ActorSoft::GetType() const
+    {
+        return Mezzanine::WSO_ActorSoft;
+    }
+
+    void ActorSoft::AddToWorld()
     {
         PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addSoftBody(this->PhysicsSoftBody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
         this->AttachToGraphics();
     }
 
-    void ActorSoft::RemoveObjectFromWorld()
+    void ActorSoft::RemoveFromWorld()
     {
         PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->removeSoftBody(this->PhysicsSoftBody);
         this->DetachFromGraphics();

@@ -69,9 +69,12 @@ namespace Mezzanine
     /// AreaEffect class that does what you want it to, simple inherit from this class with an AE class of your own,
     /// and define the ApplyEffect() function to do what you want your effect to do.
     ///////////////////////////////////////
-    class MEZZ_LIB AreaEffect : public NonStaticWorldObject
+    class MEZZ_LIB AreaEffect : public NonStaticWorldObject, public AttachableChild
     {
         friend class PhysicsManager;
+        public:
+            using WorldObject::SetLocation;
+            using NonStaticWorldObject::SetOrientation;
         protected:
             /// @brief The object representing the AE field itself.
             btPairCachingGhostObject* Ghost;
@@ -103,29 +106,50 @@ namespace Mezzanine
             virtual void ApplyEffect() = 0;
             /// @brief Gets the number of actors currently overlapping with this AE.
             /// @return Returns the number of actors inside this AE.
-            virtual Whole GetNumOverlappingActors();
+            Whole GetNumOverlappingActors();
             /// @brief Gets the number of actors added to this AE since the last update.
             /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
             /// @return Returns the number of new actors overlapping with this AE.
-            virtual Whole GetNumAddedActors();
+            Whole GetNumAddedActors();
             /// @brief Gets the number of actors removed from this AE since the last update.
             /// @note Updates are usually once per frame, but can be manipulated to be more or less frequent.
             /// @return Returns the number of actors that were found to no longer be overlapping during the last update.
-            virtual Whole GetNumRemovedActors();
+            Whole GetNumRemovedActors();
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
-            virtual std::list<ActorBase*>& GetOverlappingActors();
+            std::list<ActorBase*>& GetOverlappingActors();
             /// @brief Gets the list of actors that have been added to the list since the last simulation step.
             /// @return Returns the vector storing all the actors that have been added to the list since the last simulation step.
-            virtual std::vector<ActorBase*>& GetAddedActors();
+            std::vector<ActorBase*>& GetAddedActors();
             /// @brief Gets the list of actors that have been removed from the list since the last simulation step.
             /// @return Returns the vector storing all the actors that have been removed from the list since the last simulation step.
-            virtual std::vector<ActorBase*>& GetRemovedActors();
+            std::vector<ActorBase*>& GetRemovedActors();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from Attachable classes
+            /// @copydoc WorldObject::GetName()
+            ConstString& GetName() const;
+            /// @copydoc WorldObject::SetLocation(Vector3&)
+            void SetLocation(const Vector3& Location);
+            /// @copydoc WorldObject::GetLocation()
+            Vector3 GetLocation() const;
+            /// @copydoc NonStaticWorldObject::SetOrientation(Quaternion&)
+            void SetOrientation(const Quaternion& Rotation);
+            /// @copydoc NonStaticWorldObject::GetOrientation()
+            Quaternion GetOrientation() const;
+            /// @copydoc WorldObject::SetScaling(Vector3&)
+            void SetScaling(const Vector3& Scale);
+            /// @copydoc WorldObject::GetScaling()
+            Vector3 GetScaling() const;
+            /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
+            void SetLocalLocation(const Vector3& Location);
+            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)
+            void SetLocalOrientation(const Quaternion& Orientation);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from WorldObject
             /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldObjectType GetType() const;
+            virtual WorldAndSceneObjectType GetType() const;
             /// @copydoc Mezzanine::WorldObject::AddToWorld()
             virtual void AddToWorld();
             /// @copydoc Mezzanine::WorldObject::RemoveFromWorld()
@@ -220,7 +244,7 @@ namespace Mezzanine
             /// @return Returns a vector3 representing the force and direction of gravity this field has.
             virtual Vector3 GetFieldGravity() const;
             /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldObjectType GetType() const;
+            virtual WorldAndSceneObjectType GetType() const;
     };//GravityField
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -283,7 +307,7 @@ namespace Mezzanine
             /// @return Returns a Real value
             virtual Real GetAttenuationAmount() const;
             /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldObjectType GetType() const;
+            virtual WorldAndSceneObjectType GetType() const;
     };//GravityWell
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -349,7 +373,7 @@ namespace Mezzanine
             /// @return Returns a Vector3 representing the source of the attenuating force.
             virtual Vector3 GetAttenuationSource() const;
             /// @copydoc Mezzanine::WorldObject::GetType()
-            virtual WorldObjectType GetType() const;
+            virtual WorldAndSceneObjectType GetType() const;
     };//feildofforce
 }//Mezzanine
 

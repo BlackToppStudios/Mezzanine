@@ -43,6 +43,7 @@
 #include "enumerations.h"
 #include "vector3.h"
 #include "quaternion.h"
+#include "attachable.h"
 #include "collision.h"
 #include "worldobjectgraphicssettings.h"
 #include "worldobjectphysicssettings.h"
@@ -152,11 +153,11 @@ namespace Mezzanine
 
             /// @brief Gets the name of this World Object.
             /// @return Returns a string containing the name of this World Object.
-            virtual String GetName() const;
+            virtual ConstString& GetName() const;
 
             /// @brief Gets the type of the World Object instance
             /// @return Returns the type of the World Object instance
-            virtual WorldObjectType GetType() const = 0;
+            virtual WorldAndSceneObjectType GetType() const = 0;
 
             /// @brief Checks of the World Object is static or kinematic.
             /// @details Checks of the World Object is static or kinematic, returns true if it is either.
@@ -169,8 +170,8 @@ namespace Mezzanine
 
             /// @brief Sets the scale of the World Object.
             /// @details This function will alter the scaling/size of the World Object with the given vector3.
-            /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
-            virtual void SetScaling(const Vector3& scale);
+            /// @param Scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
+            virtual void SetScaling(const Vector3& Scale);
 
             /// @brief Gets the current scaling being applied to the World Object.
             /// @return Returns a vector3 representing the scaling being applied on all axes of this World Object.
@@ -277,11 +278,13 @@ namespace Mezzanine
     /// forbid static objects as the name may suggest, but rather it makes static status optional instead of forcing
     /// them to be static.
     ///////////////////////////////////////
-    class MEZZ_LIB NonStaticWorldObject : public WorldObject
+    class MEZZ_LIB NonStaticWorldObject : public WorldObject, public AttachableParent
     {
+        public:
+            using WorldObject::SetLocation;
         protected:
-            /// @brief This class excapsulates the functionality of the Ogre::SceneNode.
-            WorldNode* ObjectWorldNode;
+            /// @brief Sets the orientation of the World Object.
+            void InternalSetOrientation(const Quaternion& Rotation);
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Creation, Destruction and Initialization
@@ -290,6 +293,12 @@ namespace Mezzanine
             NonStaticWorldObject();
             /// @brief Class destructor.
             virtual ~NonStaticWorldObject();
+
+            /// @copydoc WorldObject::SetLocation(Vector3&)
+            virtual void SetLocation(const Vector3& Location);
+
+            /// @copydoc WorldObject::GetLocation()
+            virtual Vector3 GetLocation() const;
 
             /// @brief Sets the orientation of the World Object.
             /// @details Sets the orientation of the World Object via Quaternion parameters.
@@ -308,10 +317,18 @@ namespace Mezzanine
             /// @return Returns a quaternion representing the rotation of the World Object.
             virtual Quaternion GetOrientation() const;
 
-            /// @brief Gets a WorldNode representing the position and orientation of this World Object.
-            /// @details The WorldNode returned by this function is not stored in the scene manasger.
-            /// @return Returns a WorldNode pointer pointing to this World Object's world node.
-            virtual WorldNode* GetObjectNode() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility and Configuration
+            ///////////////////////////////////////
+
+            /// @copydoc WorldObject::GetName()
+            virtual ConstString& GetName() const;
+
+            /// @copydoc WorldObject::SetScaling(Vector3&)
+            virtual void SetScaling(const Vector3& Scale);
+
+            /// @copydoc WorldObject::GetScaling()
+            virtual Vector3 GetScaling() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization

@@ -41,10 +41,7 @@
 #define _worldnode_h
 
 #include "attachable.h"
-#include "crossplatformexport.h"
-#include "datatypes.h"
-#include "vector3.h"
-#include "quaternion.h"
+#include "enumerations.h"
 #include "xml.h"
 
 /// @file worldnode.h
@@ -78,161 +75,129 @@ namespace Mezzanine
     /// Note:  There are no rules restricting the use of nodes anyway, this enum is here simply to help
     /// indicate the intended use upon creation.
     ///////////////////////////////////////
-    class MEZZ_LIB WorldNode : public Attachable
+    class MEZZ_LIB WorldNode : public AttachableParent, public AttachableChild
     {
-        public:
-            /// @brief Kinds of movement (or non-movement modes) a world node could have
-            enum NodeType
-            {
-                Free    = 0,     ///< Not bound by a any kind of movement
-                Center  = 1,     ///< Designed to be be rotate to simulate orbits in a simple way
-                Orbit   = 2,     ///< A node that orbits aroud a center
-                Stand   = 3      ///< Stationary/Standing
-            };
         protected:
-            /// @brief Pointer to the ogre scenenode from which this class gets it's functionality.
-            Ogre::SceneNode* OgreNode;
-            /// @brief Pointer to the manager that created this class.
+            AttachableBase* AutoTrackTarget;
             SceneManager* Manager;
-            /// @brief Enum value storing the type of node this class is.
-            WorldNode::NodeType Type;
-            /// @brief Vector storing all attached cameras, lights, etc... .
-            std::vector< Attachable* > Elements;
-
+            bool FixedYaw;
+            Vector3 FixedYawAxis;
+            Vector3 AutoTrackOffset;
+            Vector3 AutoTrackDirection;
+            Vector3 NodeLoc;
+            Vector3 NodeScale;
+            Quaternion NodeOri;
+            String NodeName;
         public:
             /// @brief Standard initialization constructor.
             /// @param Name The name of this node.
-            /// @param manager Pointer to the manager that this node is to be used in.
-            WorldNode(const String& Name, SceneManager* manager);
-            /// @internal
-            /// @brief Internal constructor.
-            /// @details This constructor should not be called on manually.
-            /// @param snode Pointer to the Ogre SceneNode this class is based on.
-            /// @param manager Pointer to the manager that this node is to be used in.
-            WorldNode(Ogre::SceneNode* snode, SceneManager* manager);
+            /// @param SManager Pointer to the manager that this node is to be used in.
+            WorldNode(const String& Name, SceneManager* SManager);
             /// @brief Class destructor.
-            ~WorldNode();
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Navigation
-
-            /// @brief Sets the Location of this node.
-            /// @param Location A vector3 representing the location of this node.
-            virtual void SetLocation(const Vector3& Location);
-            /// @brief Gets the Location of this node.
-            /// @return Returns a vector3 representing the location of this node.
-            virtual Vector3 GetLocation() const;
-
-            /// @brief Sets the orientation of this node.
-            /// @param Orientation A Quaternion representing the orientation of this node.
-            void SetOrientation(const Quaternion& Orientation);
-            /// @brief Gets the orientation of this node.
-            /// @return Returns a quaternion representing the orientation of this node.
-            Quaternion GetOrientation() const;
-
-            /// @brief Automatically sets the orientation needed to point this node at a location in the world.
-            /// @param LookAt The location in world space to point at.
-            void LookAt(Vector3 LookAt);
-
-            /// @brief Increments the orbit of this node if this is an orbiting node.
-            /// @details This function has no effect if this isn't an orbiting node.
-            /// @param Radians A real reprsenting the amount of orbit to increment in radians.
-            void IncrementOrbit(Real Radians);
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Auto tracking
-
-            /// @brief Makes this node autotrack another node.
-            /// @details This function will make this node update it's orientation every frame automatically so
-            /// that it's always facing the target node.
-            /// @param node The node to be tracked.
-            /// @param Offset A vector3 representing the offset from the nodes location to be tracked.
-            /// @todo TODO: The WorldNode Does not Correctly Serialize AutoTracking.
-            void SetAutoTracking(WorldNode* node, Vector3 Offset=Vector3());
-            /// @brief Makes this node autotrack an actor.
-            /// @details This function will make this node update it's orientation every frame automatically so
-            /// that it's always facing the target actor.
-            /// @param Actor The actor to be tracked.
-            /// @param Offset A vector3 representing the offset from the actor's location to be tracked.
-            void SetAutoTracking(ActorBase* Actor, Vector3 Offset=Vector3());
-            /// @brief Disables any active autotracking for this node.
-            void DisableAutoTracking();
+            virtual ~WorldNode();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Data
-
-            /// @internal
-            /// @brief Sets the type of node that this is.
-            /// @details This is intended for internal/expert use only.  Manually calling this could disrupt normal function.
-            /// @param type The type of node this is to be set as.
-            void SetType(WorldNode::NodeType type);
-
-            /// @brief Gets the type of node that this is.
-            /// @return Returns the type of node this is set as.
-            WorldNode::NodeType GetType() const;
-
-            /// @brief What kind of Attachable is this.
-            /// @return An Attachable::GetAttachableType containing Attachable::WorldNode.
-            virtual Attachable::AttachableElement GetAttachableType() const;
 
             /// @brief Gets the name of this node.
             /// @return Returns a string containing the name given to this node.
             ConstString& GetName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Attachment child management
+            // Navigation
 
-            /// @brief Attaches an attachable element to this Node.
-            /// @param Target The Attachable to be attached.
-            void AttachObject(Attachable* Target);
-
-            /// @brief Detaches an attachable element from this Node.
-            /// @param Target The Attachable to be detached.
-            /// @details Detach an item is done in linear time relative to the amount of attached items
-            void DetachObject(Attachable* Target);
-
-            /// @brief Detaches all attached cameras, lights, particle effects and anything else attached.
-            void DetachAll();
-
-            /// @brief Gets the number of elements attached to this node.
-            /// @return Returns the number of elements attached to this node.
-            Whole GetNumAttached() const;
-
-            /// @brief Get a specific attached Item
-            /// @param Index A number indicating which Attachable you want a pointer to. The WorldNode is like an Array starts at 0 and goes to WorldNode::GetNumAttached() - 1.
-            /// @return A pointer to an Attachable Item attached to this.
-            /// @throw This can throw an out of bounds std::exception if used incorrectly
-            Attachable* GetAttached(const Whole& Index) const;
-
-            /// @brief Used to make working with the attached items easier
-            typedef std::vector< Attachable* >::iterator iterator;
-
-            /// @brief Used to make working with the attached items easier, and avoid the risk of accidentally changing them
-            typedef std::vector< Attachable* >::const_iterator const_iterator;
-
-            /// @brief Get an iterator to the first item
-            /// @return An Iterator to the first
-            iterator begin();
-
-            /// @brief Get an iterator to one past the last item
-            /// @return An Iterator to one past the last item
-            iterator end();
-
-            /// @brief Get an const_iterator to the first item
-            /// @return An Iterator to the first
-            const_iterator begin() const;
-
-            /// @brief Get an const_iterator to one past the last item
-            /// @return An Iterator to one past the last item
-            const_iterator end() const;
+            /// @brief Automatically sets the orientation needed to point this node at a location in the world.
+            /// @param LookAt The location in the specified transform space to point at.
+            /// @param TS The transform space to use for the position to look at.
+            /// @param LocalDirection The local direction that will be aligned with the position being looked at.
+            void LookAt(const Vector3& LookAt, const Mezzanine::TransformSpace& TS = Mezzanine::TS_World, const Vector3& LocalDirection = Vector3::Neg_Unit_Z());
+            /// @brief Sets the direction this node is facing.
+            /// @remarks At first glace it may seem odd why this function accepts two different direction vectors as arguements.  This function
+            /// really just generates a rotation and applies it.  The Direction vector is where you want the LocalAxis(which can be any local axis)
+            /// to be when computing the rotation.  So LocalAxis is the base, and Direction is the target.
+            /// @param Direction The desired end direction in the specified transform space.
+            /// @param TS The transform space to use for the direction specified.
+            /// @param LocalAxis The axis in local space to use for lining up with the direction specified.
+            void SetDirection(const Vector3& Direction, const Mezzanine::TransformSpace& TS = Mezzanine::TS_World, const Vector3& LocalAxis = Vector3::Neg_Unit_Z());
+            /// @brief Makes this node constantly face another object.
+            /// @details This function will make this node update it's orientation every frame automatically so
+            /// that it's always facing the target object.
+            /// @param Target The object to be tracked or NULL if you want to disable autotracking.
+            /// @param LocalDirection The local axis that is to be facing the other object.
+            /// @param Offset A vector3 representing the offset from the objects location to be tracked.
+            /// @todo TODO: The WorldNode Does not Correctly Serialize AutoTracking.
+            void SetAutoTracking(AttachableBase* Target, const Vector3& LocalDirection = Vector3::Neg_Unit_Z(), const Vector3& Offset = Vector3());
+            /// @brief Gets the target currently being tracked.
+            /// @return Returns a pointer to the target being currently tracked or NULL if none are being tracked.
+            AttachableBase* GetAutoTrackingTarget() const;
+            /// @brief Gets the local direction used to face at the autotracked target.
+            /// @return Returns a const reference to a vector3 representing the facing direction of the autotracked target.
+            const Vector3& GetAutoTrackingDirection() const;
+            /// @brief Gets the offset from the target applied to the autotracked target.
+            /// @return Returns a const reference to a vector3 representing the offset from the autotracked target being used.
+            const Vector3& GetAutoTrackingOffset() const;
+            /// @brief Applies a rotation from a quaternion.
+            /// @remarks This function differs from SetOrientation() in that it won't override the previous rotation, but instead will merge this rotation with the existing rotation.
+            /// @param Rotation The rotation to be applied.
+            /// @param TS The transform space the rotation is to be applied in.
+            void Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace& TS = Mezzanine::TS_Local);
+            /// @brief Applies a rotation from an angle and an axis.
+            /// @param Angle The angle to be applied in radians.
+            /// @param Axis The axis on which the angle is to be applied.
+            /// @param TS The transform space the rotation is to be applied in.
+            void Rotate(const Real& Angle, const Vector3& Axis, const Mezzanine::TransformSpace& TS = Mezzanine::TS_Local);
+            /// @brief Applies a rotation around the Y axis.
+            /// @param Angle The angle in radians to rotate.
+            /// @param TS The transform space the rotation is to be applied in.
+            void Yaw(const Real& Angle, const Mezzanine::TransformSpace& TS = Mezzanine::TS_Local);
+            /// @brief Applies a rotation around the X axis.
+            /// @param Angle The angle in radians to rotate.
+            /// @param TS The transform space the rotation is to be applied in.
+            void Pitch(const Real& Angle, const Mezzanine::TransformSpace& TS = Mezzanine::TS_Local);
+            /// @brief Applies a rotation around the Z axis.
+            /// @param Angle The angle in radians to rotate.
+            /// @param TS The transform space the rotation is to be applied in.
+            void Roll(const Real& Angle, const Mezzanine::TransformSpace& TS = Mezzanine::TS_Local);
+            /// @brief Tells this node to always yaw around a specific axis.  Useful for AutoTracking.
+            /// @remarks It's important to note that this will only be corrected in methods that do not explictly set the orientation, such as with autotracking or use
+            /// of the LookAt() function, or the Rotate() function.  Explicitly setting the orientation with SetOrientation() or SetLocalOrientation() will not be corrected.
+            /// @param Enable Whether to enable to disable the use of a fixed yaw axis.
+            /// @param FixedAxis The axis on which yawing will be fixed for any rotations applied.
+            void SetFixedYawAxis(bool Enable, const Vector3& FixedAxis = Vector3::Unit_Y());
+            /// @brief Gets whether or not Fixed Yaw is enabled.
+            /// @return Returns true if Fixed Yaw is enabled, false otherwise.
+            bool GetFixedYawAxisEnabled() const;
+            /// @brief Gets the Axis used to yaw.
+            /// @return Returns a const reference to a vector3 representing the Fixed Axis used.
+            const Vector3& GetFixedYawAxis() const;
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Internal Functions
+            // Inherited from Attachable classes
 
-            /// @internal
-            /// @brief Gets pointers to the internal ogre structures for this attachable.
-            /// @return Returns an AttachableData struct with the internal data.
-            virtual AttachableData GetAttachableData() const;
+            /// @copydoc AttachableBase::SetLocation(Vector3&)
+            void SetLocation(const Vector3& Location);
+            /// @copydoc AttachableBase::GetLocation()
+            Vector3 GetLocation() const;
+            /// @copydoc AttachableBase::SetOrientation(Quaternion&)
+            void SetOrientation(const Quaternion& Orientation);
+            /// @copydoc AttachableBase::GetOrientation()
+            Quaternion GetOrientation() const;
+            /// @copydoc AttachableBase::SetScaling(Vector3&)
+            void SetScaling(const Vector3& Scale);
+            /// @copydoc AttachableBase::GetScaling()
+            Vector3 GetScaling() const;
+            /// @copydoc AttachableBase::GetType()
+            WorldAndSceneObjectType GetType() const;
+            /// @copydoc AttachableChild::SetLocalLocation(Vector3&)
+            void SetLocalLocation(const Vector3& Location);
+            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&)
+            void SetLocalOrientation(const Quaternion& Orientation);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
+            /// @brief Updates this object to continue tracking another object.
+            void _UpdateTracking();
     };//node
 }//Mezzanine
 
