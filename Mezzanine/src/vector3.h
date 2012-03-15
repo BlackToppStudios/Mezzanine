@@ -43,6 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
+#include "swig.h"
 #include "xml.h"
 
 //Forward Declarations for wierd compatibility functions
@@ -56,8 +57,14 @@ namespace Ogre
     class Vector3;
 }
 
+SWIG_INFO_BEGINCLASS
+
 namespace Mezzanine
 {
+    //remove this too
+    void PrintHello(); // Function to call from Lua
+
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Vector3
     /// @headerfile vector3.h
@@ -65,6 +72,7 @@ namespace Mezzanine
     /// @details This contains an X, Y and a Z value used to represent coordinates.
     /// This also has a number of facilities to make converting from Physics subsystem
     /// vectors or graphics subsystems as easy as possible
+    /// @note No operator<< existing in any scripting interface for this class
     class MEZZ_LIB Vector3
     {
     public:
@@ -79,14 +87,18 @@ namespace Mezzanine
         /// @brief Coordinate on the Z vector.
         Real Z;
 
+        #ifndef SWIG
         /// @brief Get The value associate with a certain Axis.
         /// @param Axis Which axis to retrieve.
+        /// @note Despite the multiple scripting overloads of this Method, only Real GetAxisValue(const Whole& Axis) const; exists in the scripting interface
         /// @return Either X, Y or Z as indicated by the value passed in.
         Real GetAxisValue(const StandardAxis& Axis) const;
+        #endif // \SWIG
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real GetAxisValue(const Whole& Axis) const;
 
+        #ifndef SWIG
         /// @brief Get The value associate with a certain Axis in such a way that it can readily be assigned in this Vector3.
         /// @param Axis Which axis to retrieve.
         /// @return Either X, Y or Z as indicated by the value passed in.
@@ -94,6 +106,7 @@ namespace Mezzanine
 
         /// @copydoc GetAxisValue(StandardAxis Axis)
         Real& GetAxisValue(const Whole& Axis);
+        #endif // \SWIG
 
         /// @copydoc GetAxisValue(StandardAxis Axis) const
         Real operator[] (const StandardAxis& Axis) const;
@@ -460,10 +473,6 @@ namespace Mezzanine
     };
 }// /Mezz
 
-
-// We can skip these operators when creating bindings with swig
-#ifndef SWIG
-
 ///////////////////////////////////////////////////////////////////////////////
 // Right Hand Arithmetic Operators
 /// @brief Right Hand Addition Operator for Bullet Vectors with a Mezzanine::Vector3.
@@ -543,6 +552,9 @@ Mezzanine::Vector3 MEZZ_LIB operator/ (const cAudio::cVector3 &Vec, const Mezzan
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
+
+// We can skip these operators when creating bindings with swig
+#ifndef SWIG
 
 /// @brief Used to Serialize an Mezzanine::Vector3 to a human readable stream
 /// @details If MEZZXML is disabled, this outputs to the format of [x,y,z], where x is replaced with the X value,
@@ -650,7 +662,10 @@ cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const btVector3
 /// @param VecFrom The right hand side, is a Mezzanine::Vector3, this vector will be copied and unchanged.
 /// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
 cAudio::cVector3& MEZZ_LIB operator << (cAudio::cVector3& VecTo, const Mezzanine::Vector3& VecFrom);
-
 #endif // \SWIG
+
+SWIG_INFO_ENDCLASS
+
+
 
 #endif // \include gaurd

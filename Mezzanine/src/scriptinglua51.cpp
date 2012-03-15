@@ -42,7 +42,7 @@
 
 // The file that SWIG generated was made with the following command.
 // echo "#ifndef _scriptbindinglua51_cpp" > scriptbindinglua51.cpp && echo "#define _scripbindinglua51_cpp" >> scriptbindinglua51.cpp && swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.cpp.tmp mezzanine.h && cat scriptbindinglua51.cpp.tmp >> scriptbindinglua51.cpp && echo "#endif" >> scriptbindinglua51.cpp
-// swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.cpp mezzanine.h
+// swig2.0 -c++ -v -Wall -lua -importall -o scriptbindinglua51.cpp mezzanine.h
 // #include "scriptbindinglua51.cpp"
 extern "C"
 {
@@ -50,7 +50,7 @@ extern "C"
     #include "lualib.h"         // for opening the base state
     #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 
-    int luaopen_mezzanine(lua_State* L);
+    int luaopen_Mezzanine(lua_State* L);
 }
 
 #include <iostream>
@@ -90,14 +90,25 @@ namespace Mezzanine
             lua_State *State;           // create a pointer to Track the Lua State
             State = luaL_newstate();    // Create a Lua State
             luaL_openlibs(State);
-            luaopen_mezzanine(State);
+            luaopen_Mezzanine(State);
 
             std::cout << std::endl << "Let's try running a Lua command." << std::endl;
             int Error = luaL_dostring(State,"print \"Hello from Lua\"");    // run a very simple Lua script.
             PrintErrorMessageOrNothing(Error);
 
+            std::cout << std::endl << "Now for Lua to call a function in the Mezzanine." << std::endl;
+            Error = luaL_dostring(State,"Mezzanine.PrintHello()");
+            PrintErrorMessageOrNothing(Error);
+
             std::cout << std::endl << "Now for some Lua class creation." << std::endl;
-            Error = luaL_dostring(State,"   APoint = Mezzanine.Vector3(1,2,3)");
+            Error = luaL_dostring(State,"                                                                   \
+                                  print \"First We need some vectors, lets make A(1,2,3) a and b(4,5,6)\"   \
+                                  A = Mezzanine.Vector3(1,2,3)                                              \
+                                  B = Mezzanine.Vector3(4,5,6)                                              \
+                                  print \"Now lets add them and see what happens\"                          \
+                                  C = A+B                                                                   \
+                                  print(C.X, C.Y, C.Z)                                                    \
+                                  ");
             PrintErrorMessageOrNothing(Error);
 
             lua_close(State);           // Close the Lua state

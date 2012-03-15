@@ -53,8 +53,18 @@
 
 #include <memory>
 
+//remove this
+#include <iostream>
+
 namespace Mezzanine
 {
+
+    //remove this too
+    void PrintHello() // Function to call from Lua
+    {
+        std::cout << "Hello world! From PrintHello()" << std::endl;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // The Essentials
 

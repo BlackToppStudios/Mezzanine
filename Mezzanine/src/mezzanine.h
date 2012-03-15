@@ -53,7 +53,6 @@
 // Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first
 #include "swig.h"
 
-
 // This is required for the swig parser to skip the items that don't support scripting yet.
 #ifndef SWIG
                                         // The remarks in Column 41 are use to help with tracking progress on serializing and deserializing

@@ -63,15 +63,38 @@ namespace Mezzanine
         class Script
         {
             public:
-                virtual void AddArgument(ScriptArgument* Arg) = 0;
-
+                virtual void AddArgument(ScriptArgument Arg) = 0;
+                virtual void RemoveArgument(ScriptArgument Arg) = 0;
                 virtual void ClearArguments() = 0;
+                virtual Whole GetArgumentCount() = 0;
+                virtual ScriptArgument GetArgument(Whole ArgNumber) = 0;
 
                 virtual void SetCode(String Code) = 0;
-
                 virtual String GetCode() = 0;
 
+                virtual bool IsCompiled() = 0;
+                virtual bool IsCompilable()
+                    { return false; }
+                virtual bool IsAvailableAsString() = 0;
+                virtual bool IsAbleToReturnMultiple() = 0;
 
+                virtual ScriptArgument Execute() = 0;
+        };
+
+        class ScriptCompilable : public Script
+        {
+            public:
+                virtual void SetByteCode(String Code) = 0;
+                virtual String GetByteCode() = 0;
+
+                virtual bool IsCompiled() = 0;
+                virtual bool IsCompilable()
+                    { return true; }
+                virtual bool IsAvailableAsString() = 0;
+
+
+                virtual void Compile() = 0;
+                virtual ScriptArgument Execute() = 0;
         };
 
     }

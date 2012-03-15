@@ -46,14 +46,42 @@
 /// @details SWIG is a C/C++ source code preprocessor that reads source files
 /// and produces an implemtation of bindings for that language. Currently it
 /// is only used for Lua. It can be used for other items in the future.
+/// \n This file defines a number of messages to make troubleshooting SWIG
+/// and the script bindings a little easier.
+///     - SWIG_INFO_WARN - 999: Warning 990 to 999 are informational messages.
+///     - SWIG_INFO_BEGINCLASS - 990: Begining parsing of class.
+///     - SWIG_INFO_ENDCLASS - 991: Completing parsing of class.
 ///////////////////////////////////////////////////////////////////////////////
 
-// Tell SWIG to create a module that scripting languages can use called "mezzanine"
-#ifdef SWIG
-    %include stl.i
-    %module mezzanine
 
+
+#ifdef SWIG
+
+    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+    %{
+    // These headers are copied verbatim into the swig bindings file
+    #include <Ogre.h>
+    #include "btBulletDynamicsCommon.h"
+    #include <cAudio.h>
+    #include "mezzanine.h"
+    %}
+
+    %include stl.i
+    %module Mezzanine
+
+    #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
+    #define SWIG_INFO_ENDCLASS          %warn "991: Completing parsing of class."
+
+    #define SWIG_INFO_WARN              %warn "999: Warning 990 to 999 are informational messages."
+#else
+    // Define warnings as nothing as to not fuck with other classes
+    #define SWIG_INFO_BEGINCLASS
+    #define SWIG_INFO_ENDCLASS
+    #define SWIG_INFO_WARN
 #endif
+
+SWIG_INFO_WARN
+
 
 // #define DISABLESWIG
 
