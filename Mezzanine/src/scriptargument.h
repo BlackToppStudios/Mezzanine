@@ -46,8 +46,6 @@ namespace Mezzanine
 {
     namespace Scripting
     {
-
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script argument
         /// @details All the members that all script for all languages must implement.

@@ -42,6 +42,9 @@
 
 #include "internalmotionstate.h.cpp"
 
+#include "physicsmanager.h"
+#include "areaeffect.h"
+
 // Keeps this file form being documented by doxygen
 /// @cond 0
 

@@ -42,49 +42,46 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 /// @file
-/// @brief Used to give commands specifically to the swig preprocessor
-/// @details This file exists primarily to make it easier for engine users to include
-/// parts of the Mezzanine engine in their project with out needing to know or
-/// care about the internals of our project.
+/// @brief Used to give commands specifically to the SWIG preprocessor
+/// @details SWIG is a C/C++ source code preprocessor that reads source files
+/// and produces an implemtation of bindings for that language. Currently it
+/// is only used for Lua. It can be used for other items in the future.
+/// \n This file defines a number of messages to make troubleshooting SWIG
+/// and the script bindings a little easier.
+///     - SWIG_INFO_WARN - 999: Warning 990 to 999 are informational messages.
+///     - SWIG_INFO_BEGINCLASS - 990: Begining parsing of class.
+///     - SWIG_INFO_ENDCLASS - 991: Completing parsing of class.
 ///////////////////////////////////////////////////////////////////////////////
 
-// Tell SWIG to create a module that scripting languages can use called "mezzanine"
+
+
 #ifdef SWIG
-    %module mezzanine
 
+    // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+    %{
+    // These headers are copied verbatim into the swig bindings file
+    #include <Ogre.h>
+    #include "btBulletDynamicsCommon.h"
+    #include <cAudio.h>
+    #include "mezzanine.h"
+    %}
 
-    // duplicate the std classes, because the std headers can be very difficult to parse.
-    namespace std
-    {
-        class exception
-        {
-            public:
-                exception();
-                exception(const exception& rhs);
-                virtual ~exception();
-                virtual const char *what(void);
-        };
+    %include stl.i
+    %module Mezzanine
 
-        //template < class T, class Allocator = allocator<T> > class vector
-        template < class T > class vector
-        {
-            public:
-                explicit vector ( const Allocator& = Allocator() );
-                explicit vector ( size_type n, const T& value= T(), const Allocator& = Allocator() );
-                template <class InputIterator> vector ( InputIterator first, InputIterator last, const Allocator& = Allocator() );
-                vector ( const vector<T,Allocator>& x );
+    #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
+    #define SWIG_INFO_ENDCLASS          %warn "991: Completing parsing of class."
 
-                ~vector ( );
-
-                vector<T,Allocator>& operator= (const vector<T,Allocator>& x);
-
-        };
-
-    }
-
-
-
+    #define SWIG_INFO_WARN              %warn "999: Warning 990 to 999 are informational messages."
+#else
+    // Define warnings as nothing as to not fuck with other classes
+    #define SWIG_INFO_BEGINCLASS
+    #define SWIG_INFO_ENDCLASS
+    #define SWIG_INFO_WARN
 #endif
+
+SWIG_INFO_WARN
+
 
 // #define DISABLESWIG
 

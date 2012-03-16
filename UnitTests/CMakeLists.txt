@@ -81,6 +81,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}/compilerflagtests.h"
 	"${${PROJECT_NAME}_SRC_DIR}/constrainttests.h"
 	"${${PROJECT_NAME}_SRC_DIR}/eventmanagertests.h"
+	"${${PROJECT_NAME}_SRC_DIR}/lua51tests.h"
 	"${${PROJECT_NAME}_SRC_DIR}/metacodetests.h"
 	"${${PROJECT_NAME}_SRC_DIR}/particleeffecttests.h"
 	"${${PROJECT_NAME}_SRC_DIR}/scenemanagertests.h"

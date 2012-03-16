@@ -45,6 +45,7 @@
 #include "compilerflagtests.h"
 #include "constrainttests.h"
 #include "eventmanagertests.h"
+#include "lua51tests.h"
 #include "metacodetests.h"
 #include "particleeffecttests.h"
 #include "scenemanagertests.h"
@@ -152,6 +153,7 @@ int main (int argc, char** argv)
     TestGroups["compilerflag"] = new CompilerFlagTests;
     TestGroups["constraint"] = new ConstraintTests;
     TestGroups["eventmanager"] = new EventManagerTests;
+    TestGroups["lua5.1"] = new Lua51Tests;
     TestGroups["metacode"] = new MetaCodeTests;
     TestGroups["particleeffect"] = new ParticleEffectTests;
     TestGroups["scenemanager"] = new SceneManagerTests;

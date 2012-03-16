@@ -52,7 +52,7 @@
 #
 # That affect/add/remove behavior of the engine
 #	Mezz_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
-#	Mezz_Lua			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
+#	Mezz_Lua51			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #	Mezz_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
 #	Mezz_Network			- Enable or disable networking support
 #	Mezz_XML			- True if the engine will be compiled with XML support. This includes support for serialization
@@ -153,16 +153,16 @@ endif(${Mezz_Network})
 
 ###############################################################################
 # Lua Library
-option(Mezz_Lua "Include Support for Lua Scripting Language" ON)
-if(${Mezz_Lua})
+option(Mezz_Lua51 "Include Support for Lua 5.1 Scripting Language" ON)
+if(${Mezz_Lua51})
 	set(LuaProject "Lua")
 	set(LuaLinkName "lua")
 	message ("${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting MEZZLUA")
 	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZLUA=1")
-else(${Mezz_Lua})
+else(${Mezz_Lua51})
 	message ("${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA")
 	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZLUA=0")
-endif(${Mezz_Lua})
+endif(${Mezz_Lua51})
 
 ###############################################################################
 # Set Platform Specific Variables
