@@ -74,7 +74,8 @@ m_modifierKeys(0),
 m_scaleBottom(0.5f),
 m_scaleFactor(2.f),
 m_cameraUp(0,1,0),
-m_forwardAxis(2),	
+m_forwardAxis(2),
+m_zoomStepSize(0.4),	
 m_glutScreenWidth(0),
 m_glutScreenHeight(0),
 m_frustumZNear(1.f),
@@ -217,16 +218,9 @@ void DemoApplication::updateCamera() {
 	btScalar aspect;
 	btVector3 extents;
 
-	if (m_glutScreenWidth > m_glutScreenHeight) 
-	{
-		aspect = m_glutScreenWidth / (btScalar)m_glutScreenHeight;
-		extents.setValue(aspect * 1.0f, 1.0f,0);
-	} else 
-	{
-		aspect = m_glutScreenHeight / (btScalar)m_glutScreenWidth;
-		extents.setValue(1.0f, aspect*1.f,0);
-	}
-
+	aspect = m_glutScreenWidth / (btScalar)m_glutScreenHeight;
+	extents.setValue(aspect * 1.0f, 1.0f,0);
+	
 	
 	if (m_ortho)
 	{
@@ -245,15 +239,8 @@ void DemoApplication::updateCamera() {
 		//glTranslatef(100,210,0);
 	} else
 	{
-		if (m_glutScreenWidth > m_glutScreenHeight) 
-		{
-//			glFrustum (-aspect, aspect, -1.0, 1.0, 1.0, 10000.0);
-			glFrustum (-aspect * m_frustumZNear, aspect * m_frustumZNear, -m_frustumZNear, m_frustumZNear, m_frustumZNear, m_frustumZFar);
-		} else 
-		{
-//			glFrustum (-1.0, 1.0, -aspect, aspect, 1.0, 10000.0);
-			glFrustum (-aspect * m_frustumZNear, aspect * m_frustumZNear, -m_frustumZNear, m_frustumZNear, m_frustumZNear, m_frustumZFar);
-		}
+//		glFrustum (-aspect, aspect, -1.0, 1.0, 1.0, 10000.0);
+		glFrustum (-aspect * m_frustumZNear, aspect * m_frustumZNear, -m_frustumZNear, m_frustumZNear, m_frustumZNear, m_frustumZFar);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		gluLookAt(m_cameraPosition[0], m_cameraPosition[1], m_cameraPosition[2], 
@@ -285,14 +272,14 @@ void DemoApplication::stepBack()
 }
 void DemoApplication::zoomIn() 
 { 
-	m_cameraDistance -= btScalar(0.4); updateCamera(); 
+	m_cameraDistance -= btScalar(m_zoomStepSize); updateCamera(); 
 	if (m_cameraDistance < btScalar(0.1))
 		m_cameraDistance = btScalar(0.1);
 
 }
 void DemoApplication::zoomOut() 
 { 
-	m_cameraDistance += btScalar(0.4); updateCamera(); 
+	m_cameraDistance += btScalar(m_zoomStepSize); updateCamera(); 
 
 }
 
@@ -315,6 +302,7 @@ void DemoApplication::reshape(int w, int h)
 	glViewport(0, 0, w, h);
 	updateCamera();
 }
+
 
 
 void DemoApplication::keyboardCallback(unsigned char key, int x, int y)
@@ -403,6 +391,12 @@ void DemoApplication::keyboardCallback(unsigned char key, int x, int y)
 			m_debugMode = m_debugMode & (~btIDebugDraw::DBG_DisableBulletLCP);
 		else
 			m_debugMode |= btIDebugDraw::DBG_DisableBulletLCP;
+		break;
+    case 'N':
+		if (m_debugMode & btIDebugDraw::DBG_DrawNormals)
+			m_debugMode = m_debugMode & (~btIDebugDraw::DBG_DrawNormals);
+		else
+			m_debugMode |= btIDebugDraw::DBG_DrawNormals;
 		break;
 
 	case 't' : 
@@ -598,15 +592,8 @@ btVector3	DemoApplication::getRayTo(int x,int y)
 
 		btScalar aspect;
 		btVector3 extents;
-		if (m_glutScreenWidth > m_glutScreenHeight) 
-		{
-			aspect = m_glutScreenWidth / (btScalar)m_glutScreenHeight;
-			extents.setValue(aspect * 1.0f, 1.0f,0);
-		} else 
-		{
-			aspect = m_glutScreenHeight / (btScalar)m_glutScreenWidth;
-			extents.setValue(1.0f, aspect*1.f,0);
-		}
+		aspect = m_glutScreenWidth / (btScalar)m_glutScreenHeight;
+		extents.setValue(aspect * 1.0f, 1.0f,0);
 		
 		extents *= m_cameraDistance;
 		btVector3 lower = m_cameraTargetPosition - extents;
@@ -649,16 +636,9 @@ btVector3	DemoApplication::getRayTo(int x,int y)
 
 	btScalar aspect;
 	
-	if (m_glutScreenWidth > m_glutScreenHeight) 
-	{
-		aspect = m_glutScreenWidth / (btScalar)m_glutScreenHeight;
-		
-		hor*=aspect;
-	} else 
-	{
-		aspect = m_glutScreenHeight / (btScalar)m_glutScreenWidth;
-		vertical*=aspect;
-	}
+	aspect = m_glutScreenWidth / (btScalar)m_glutScreenHeight;
+	
+	hor*=aspect;
 
 
 	btVector3 rayToCenter = rayFrom + rayForward;
@@ -786,7 +766,7 @@ void DemoApplication::mouseFunc(int button, int state, int x, int y)
 
 
 								btVector3 pickPos = rayCallback.m_hitPointWorld;
-								printf("pickPos=%f,%f,%f\n",pickPos.getX(),pickPos.getY(),pickPos.getZ());
+								//printf("pickPos=%f,%f,%f\n",pickPos.getX(),pickPos.getY(),pickPos.getZ());
 
 
 								btVector3 localPivot = body->getCenterOfMassTransform().inverse() * pickPos;

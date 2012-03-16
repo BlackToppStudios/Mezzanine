@@ -21,6 +21,12 @@ subject to the following restrictions:
 #include "BulletMultiThreaded/Win32ThreadSupport.h"
 #endif
 
+#include "BulletMultiThreaded/PlatformDefinitions.h"
+#ifdef USE_PTHREADS
+#include "BulletMultiThreaded/PosixThreadSupport.h"
+#endif
+
+
 #include "BulletMultiThreaded/SequentialThreadSupport.h"
 #include "MiniCLTaskScheduler.h"
 #include "MiniCLTask/MiniCLTask.h"
@@ -29,8 +35,8 @@ subject to the following restrictions:
 
 //#define DEBUG_MINICL_KERNELS 1
 
-static char* spPlatformID = "MiniCL, SCEA";
-static char* spDriverVersion= "1.0";
+static const char* spPlatformID = "MiniCL, SCEA";
+static const char* spDriverVersion= "1.0";
 
 CL_API_ENTRY cl_int CL_API_CALL clGetPlatformIDs(
 	cl_uint           num_entries,
@@ -43,7 +49,7 @@ CL_API_ENTRY cl_int CL_API_CALL clGetPlatformIDs(
 		{
 			return CL_INVALID_VALUE; 
 		}
-		*((char**)platforms) = spPlatformID;
+		*((const char**)platforms) = spPlatformID;
 	}
 	if(num_platforms != NULL)
 	{
@@ -67,6 +73,20 @@ CL_API_ENTRY cl_int CL_API_CALL clGetPlatformInfo(
 	}
 	switch(param_name)
 	{
+	case CL_PLATFORM_VERSION:
+		{
+			if(param_value_size < (strlen(spDriverVersion) + 1))
+			{
+				return CL_INVALID_VALUE; 
+			}
+			strcpy((char*)param_value, spDriverVersion);
+			if(param_value_size_ret != NULL)
+			{
+				*param_value_size_ret = strlen(spDriverVersion) + 1;
+			}
+			break;
+		}
+		case CL_PLATFORM_NAME:
 		case CL_PLATFORM_VENDOR	:
 			if(param_value_size < (strlen(spPlatformID) + 1))
 			{
@@ -100,7 +120,7 @@ CL_API_ENTRY cl_int CL_API_CALL clGetDeviceInfo(
 	case CL_DEVICE_NAME:
 		{
 			char deviceName[] = "MiniCL CPU";
-			unsigned int nameLen = strlen(deviceName)+1;
+			unsigned int nameLen = (unsigned int)strlen(deviceName)+1;
 			btAssert(param_value_size>strlen(deviceName));
 			if (nameLen < param_value_size)
 			{
@@ -478,13 +498,13 @@ CL_API_ENTRY cl_int CL_API_CALL clSetKernelArg(cl_kernel    clKernel ,
 	btAssert(arg_size <= MINICL_MAX_ARGLENGTH);
 	if (arg_index>MINI_CL_MAX_ARG)
 	{
-		printf("error: clSetKernelArg arg_index (%d) exceeds %d\n",arg_index,MINI_CL_MAX_ARG);
+		printf("error: clSetKernelArg arg_index (%u) exceeds %u\n",arg_index,MINI_CL_MAX_ARG);
 	} else
 	{
 		if (arg_size>MINICL_MAX_ARGLENGTH)
 		//if (arg_size != MINICL_MAX_ARGLENGTH)
 		{
-			printf("error: clSetKernelArg argdata too large: %d (maximum is %d)\n",arg_size,MINICL_MAX_ARGLENGTH);
+			printf("error: clSetKernelArg argdata too large: %zu (maximum is %zu)\n",arg_size,MINICL_MAX_ARGLENGTH);
 		} 
 		else
 		{
@@ -626,7 +646,9 @@ extern CL_API_ENTRY cl_int CL_API_CALL clGetContextInfo(cl_context         /* co
 	return 0;
 }
 
-CL_API_ENTRY cl_context CL_API_CALL clCreateContextFromType(cl_context_properties * /* properties */,
+
+
+CL_API_ENTRY cl_context CL_API_CALL clCreateContextFromType(const cl_context_properties * /* properties */,
                         cl_device_type           device_type ,
                         void (*pfn_notify)(const char *, const void *, size_t, void *) /* pfn_notify */,
                         void *                  /* user_data */,
@@ -638,7 +660,7 @@ CL_API_ENTRY cl_context CL_API_CALL clCreateContextFromType(cl_context_propertie
 	gMiniCLNumOutstandingTasks = maxNumOutstandingTasks;
 	const int maxNumOfThreadSupports = 8;
 	static int sUniqueThreadSupportIndex = 0;
-	static char* sUniqueThreadSupportName[maxNumOfThreadSupports] = 
+	static const char* sUniqueThreadSupportName[maxNumOfThreadSupports] = 
 	{
 		"MiniCL_0", "MiniCL_1", "MiniCL_2", "MiniCL_3", "MiniCL_4", "MiniCL_5", "MiniCL_6", "MiniCL_7" 
 	};
@@ -654,16 +676,27 @@ CL_API_ENTRY cl_context CL_API_CALL clCreateContextFromType(cl_context_propertie
 
 #if _WIN32
 	btAssert(sUniqueThreadSupportIndex < maxNumOfThreadSupports);
+	const char* bla = "MiniCL";
 	threadSupport = new Win32ThreadSupport(Win32ThreadSupport::Win32ThreadConstructionInfo(
-//								"MiniCL",
+//								bla,
 								sUniqueThreadSupportName[sUniqueThreadSupportIndex++],
 								processMiniCLTask, //processCollisionTask,
 								createMiniCLLocalStoreMemory,//createCollisionLocalStoreMemory,
 								maxNumOutstandingTasks));
 #else
+
+#ifdef USE_PTHREADS
+		PosixThreadSupport::ThreadConstructionInfo constructionInfo("PosixThreads",
+																	processMiniCLTask,
+																	createMiniCLLocalStoreMemory,
+																	maxNumOutstandingTasks);
+		threadSupport = new PosixThreadSupport(constructionInfo);
+
+#else
 	///todo: add posix thread support for other platforms
 	SequentialThreadSupport::SequentialThreadConstructionInfo stc("MiniCL",processMiniCLTask,createMiniCLLocalStoreMemory);
 	threadSupport = new SequentialThreadSupport(stc);
+#endif //USE_PTHREADS
 #endif
 
 	}
@@ -673,6 +706,28 @@ CL_API_ENTRY cl_context CL_API_CALL clCreateContextFromType(cl_context_propertie
 
 	*errcode_ret = 0;
 	return (cl_context)scheduler;
+}
+
+CL_API_ENTRY cl_int CL_API_CALL
+clGetDeviceIDs(cl_platform_id   /* platform */,
+               cl_device_type   /* device_type */, 
+               cl_uint          /* num_entries */, 
+               cl_device_id *   /* devices */, 
+               cl_uint *        /* num_devices */) CL_API_SUFFIX__VERSION_1_0
+{
+	return 0;
+}
+
+CL_API_ENTRY cl_context CL_API_CALL
+clCreateContext(const cl_context_properties *  properties ,
+                cl_uint                        num_devices ,
+                const cl_device_id *           devices ,
+                 void (*pfn_notify)(const char *, const void *, size_t, void *),
+                void *                         user_data ,
+                cl_int *                       errcode_ret ) CL_API_SUFFIX__VERSION_1_0
+{
+	
+	return	clCreateContextFromType(properties,CL_DEVICE_TYPE_ALL,pfn_notify,user_data,errcode_ret);
 }
 
 CL_API_ENTRY cl_int CL_API_CALL clReleaseContext(cl_context  context ) CL_API_SUFFIX__VERSION_1_0
@@ -695,6 +750,15 @@ clFinish(cl_command_queue command_queue ) CL_API_SUFFIX__VERSION_1_0
 	return CL_SUCCESS;
 }
 
+extern CL_API_ENTRY cl_int CL_API_CALL 
+clGetProgramInfo(cl_program         /* program */,
+                 cl_program_info    /* param_name */,
+                 size_t             /* param_value_size */,
+                 void *             /* param_value */,
+                 size_t *           /* param_value_size_ret */) CL_API_SUFFIX__VERSION_1_0
+{
+   return 0;
+}
 
 extern CL_API_ENTRY cl_int CL_API_CALL
 clGetKernelWorkGroupInfo(cl_kernel                   kernel ,

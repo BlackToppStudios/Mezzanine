@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Demos">
+      <UniqueIdentifier>{BC8AA069-1E44-DF4A-8A81-5D3DE06A4654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\OpenCLClothDemo">
+      <UniqueIdentifier>{8DA23DF7-9A0E-D643-BF30-8F9240A68032}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\SharedOpenCL">
+      <UniqueIdentifier>{2A67AF6C-957A-C943-8259-4B8E83368757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\OpenGL">
+      <UniqueIdentifier>{A83430A3-A1C4-2E45-8773-9269F1C4E128}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Demos\SharedOpenCL\btOpenCLUtils.h">
+      <Filter>Demos\SharedOpenCL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\SharedOpenCL\btOpenCLInclude.h">
+      <Filter>Demos\SharedOpenCL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\OpenGL\stb_image.h">
+      <Filter>Demos\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\OpenCLClothDemo\clstuff.h">
+      <Filter>Demos\OpenCLClothDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\OpenCLClothDemo\gl_win.h">
+      <Filter>Demos\OpenCLClothDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\OpenCLClothDemo\cloth.h">
+      <Filter>Demos\OpenCLClothDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demos\OpenCLClothDemo\cl_cloth_demo.cpp">
+      <Filter>Demos\OpenCLClothDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\SharedOpenCL\btOpenCLUtils.cpp">
+      <Filter>Demos\SharedOpenCL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\OpenGL\GLDebugDrawer.cpp">
+      <Filter>Demos\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\OpenGL\stb_image.cpp">
+      <Filter>Demos\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\OpenCLClothDemo\gl_win.cpp">
+      <Filter>Demos\OpenCLClothDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\OpenCLClothDemo\clstuff.cpp">
+      <Filter>Demos\OpenCLClothDemo</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

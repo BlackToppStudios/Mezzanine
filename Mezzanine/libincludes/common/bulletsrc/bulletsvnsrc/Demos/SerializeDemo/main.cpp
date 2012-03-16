@@ -19,69 +19,88 @@ subject to the following restrictions:
 #include "btBulletDynamicsCommon.h"
 #include "LinearMath/btHashMap.h"
 
-class OurValue
-	{
-		int m_uid;
 
-	public:
-		OurValue(const btVector3& initialPos)
-			:m_position(initialPos)
-		{
-			static int gUid=0;
-			m_uid=gUid;
-			gUid++;
-		}
 
-		btVector3	m_position;
-		int	getUid() const
-		{
-			return m_uid;
-		}
-	};
+#ifdef USE_AMD_OPENCL
+
+
+
+#include "btOpenCLUtils.h"
+
+#include <LinearMath/btScalar.h>
+
+cl_context        g_cxMainContext;
+cl_device_id      g_cdDevice;
+cl_command_queue  g_cqCommandQue;
+
+
+// Returns true if OpenCL is initialized properly, false otherwise.
+bool initCL( void* glCtx, void* glDC )
+{
+	const char* vendorSDK = btOpenCLUtils::getSdkVendorName();
+	printf("This program was compiled using the %s OpenCL SDK\n",vendorSDK);
+
+    int ciErrNum = 0;
+
+#ifdef BT_USE_CLEW
+    ciErrNum = clewInit( "OpenCL.dll" );
+    if ( ciErrNum != CLEW_SUCCESS ) {
+        return false;
+    }
+#endif
+
+#if defined(CL_PLATFORM_MINI_CL)
+    cl_device_type deviceType = CL_DEVICE_TYPE_CPU;
+#elif defined(CL_PLATFORM_AMD)
+    cl_device_type deviceType = CL_DEVICE_TYPE_GPU;
+#elif defined(CL_PLATFORM_NVIDIA)
+    cl_device_type deviceType = CL_DEVICE_TYPE_GPU;
+#else
+    cl_device_type deviceType = CL_DEVICE_TYPE_CPU;
+#endif
+
+	g_cxMainContext = btOpenCLUtils::createContextFromType(deviceType, &ciErrNum, glCtx, glDC);
+    oclCHECKERROR(ciErrNum, CL_SUCCESS);
+
+	int numDev = btOpenCLUtils::getNumDevices(g_cxMainContext);
+	if (!numDev)
+		return false;
+
+    g_cdDevice =  btOpenCLUtils::getDevice(g_cxMainContext,0);
+    
+    btOpenCLDeviceInfo clInfo;
+	btOpenCLUtils::getDeviceInfo(g_cdDevice,clInfo);
+	btOpenCLUtils::printDeviceInfo(g_cdDevice);
+
+    // create a command-queue
+    g_cqCommandQue = clCreateCommandQueue(g_cxMainContext, g_cdDevice, 0, &ciErrNum);
+    oclCHECKERROR(ciErrNum, CL_SUCCESS);
+
+    return true;
+}
+
+#endif //#ifdef USE_AMD_OPENCL
 
 	
 int main(int argc,char** argv)
 {
 	GLDebugDrawer	gDebugDrawer;
-
-	///testing the btHashMap	
-	btHashMap<btHashKey<OurValue>,OurValue> map;
+#ifdef USE_AMD_OPENCL
 	
-	OurValue value1(btVector3(2,3,4));
-	btHashKey<OurValue> key1(value1.getUid());
-	map.insert(key1,value1);
+	bool initialized = initCL(0,0);
+	btAssert(initialized);
+#endif //USE_AMD_OPENCL
 
-
-	OurValue value2(btVector3(5,6,7));
-	btHashKey<OurValue> key2(value2.getUid());
-	map.insert(key2,value2);
 	
-
-	{
-		OurValue value3(btVector3(7,8,9));
-		btHashKey<OurValue> key3(value3.getUid());
-		map.insert(key3,value3);
-	}
-
-
-	map.remove(key2);
-
-//	const OurValue* ourPtr = map.find(key1);
-//	for (int i=0;i<map.size();i++)
-//	{
-//		OurValue* tmp = map.getAtIndex(i);
-//		//printf("tmp value=%f,%f,%f\n",tmp->m_position.getX(),tmp->m_position.getY(),tmp->m_position.getZ());
-//	}
-	
-	SerializeDemo ccdDemo;
-	ccdDemo.initPhysics();
-	ccdDemo.getDynamicsWorld()->setDebugDrawer(&gDebugDrawer);
+	SerializeDemo serializeDemo;
+	serializeDemo.initPhysics();
+	serializeDemo.getDynamicsWorld()->setDebugDrawer(&gDebugDrawer);
 
 
 #ifdef CHECK_MEMORY_LEAKS
-	ccdDemo.exitPhysics();
+	serializeDemo.exitPhysics();
 #else
-	return glutmain(argc, argv,640,480,"Bullet Physics Demo. http://bulletphysics.org",&ccdDemo);
+	return glutmain(argc, argv,640,480,"Bullet Physics Demo. http://bulletphysics.org",&serializeDemo);
 #endif
 	
 	//default glut doesn't return from mainloop

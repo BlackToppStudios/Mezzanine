@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Demos">
+      <UniqueIdentifier>{92019BBF-6323-0940-B1F8-2510645452CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\HelloWorld">
+      <UniqueIdentifier>{2A849C82-E6EF-6340-A906-8040B31459FE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demos\HelloWorld\HelloWorld.cpp">
+      <Filter>Demos\HelloWorld</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\bullet.rc" />
+  </ItemGroup>
+</Project>

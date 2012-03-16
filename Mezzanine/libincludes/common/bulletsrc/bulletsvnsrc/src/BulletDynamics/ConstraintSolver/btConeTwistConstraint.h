@@ -106,9 +106,7 @@ public:
 	btVector3	 m_accMotorImpulse;
 	
 	// parameters
-	public: //Made public by BTS with PublicizeBullet.sh
 	int			m_flags;
-	private:
 	btScalar	m_linCFM;
 	btScalar	m_linERP;
 	btScalar	m_angCFM;

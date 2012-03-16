@@ -61,9 +61,13 @@ public:
 	btVector3	m_pivotInA;
 	btVector3	m_pivotInB;
 
-	public: //Made public by BTS with PublicizeBullet.sh
+#ifndef IN_PARALLELL_SOLVER
+public:
+#endif
 	int			m_flags;
-	private:
+#ifndef IN_PARALLELL_SOLVER
+private:
+#endif
 	btScalar	m_erp;
 	btScalar	m_cfm;
 

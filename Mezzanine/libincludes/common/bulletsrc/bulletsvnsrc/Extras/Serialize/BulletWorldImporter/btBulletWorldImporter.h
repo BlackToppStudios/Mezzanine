@@ -55,6 +55,10 @@ namespace bParse
 };
 
 
+
+///The btBulletWorldImporter is a starting point to import .bullet files.
+///note that not all data is converted yet. You are expected to override or modify this class.
+///See Bullet/Demos/SerializeDemo for a derived class that extract btSoftBody objects too.
 class btBulletWorldImporter
 {
 protected:
@@ -77,6 +81,8 @@ protected:
 
 	btAlignedObjectArray<int*>				m_indexArrays;
 	btAlignedObjectArray<short int*>		m_shortIndexArrays;
+	btAlignedObjectArray<unsigned char*>	m_charIndexArrays;
+
 	btAlignedObjectArray<btVector3FloatData*>	m_floatVertexArrays;
 	btAlignedObjectArray<btVector3DoubleData*>	m_doubleVertexArrays;
 

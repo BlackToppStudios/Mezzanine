@@ -68,10 +68,8 @@
     slouken@libsdl.org
 */
 
-#include "crossplatformexport.h"
-#include "eventbase.h"
-#include "datatypes.h"
 #include "metacode.h"
+#include "eventbase.h"
 #include "xml.h"
 
 namespace Mezzanine

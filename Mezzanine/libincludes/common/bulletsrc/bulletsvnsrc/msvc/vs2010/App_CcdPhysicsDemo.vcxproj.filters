@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Demos">
+      <UniqueIdentifier>{91C73E29-1715-3E45-8ABF-D1FB26EC2248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\CcdPhysicsDemo">
+      <UniqueIdentifier>{03F39AC8-272C-1F43-A631-C28E5B0BA9DD}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Demos\CcdPhysicsDemo\CcdPhysicsDemo.h">
+      <Filter>Demos\CcdPhysicsDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demos\CcdPhysicsDemo\CcdPhysicsDemo.cpp">
+      <Filter>Demos\CcdPhysicsDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\CcdPhysicsDemo\main.cpp">
+      <Filter>Demos\CcdPhysicsDemo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\bullet.rc" />
+  </ItemGroup>
+</Project>

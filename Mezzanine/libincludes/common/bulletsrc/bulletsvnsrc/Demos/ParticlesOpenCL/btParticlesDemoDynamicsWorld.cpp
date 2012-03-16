@@ -27,8 +27,7 @@ subject to the following restrictions:
 #endif //__APPLE__
 
 
-#include "btOclCommon.h"
-#include "btOclUtils.h"
+#include "btOpenCLUtils.h"
 
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
@@ -50,7 +49,7 @@ subject to the following restrictions:
 #define LOAD_FROM_MEMORY
 #ifdef LOAD_FROM_MEMORY
 #define MSTRINGIFY(A) #A
-static char* source= 
+static const char* source= 
 #include "ParticlesOCL.cl"
 #endif //LOAD_FROM_MEMORY
 
@@ -337,14 +336,23 @@ void btParticlesDynamicsWorld::initCLKernels(int argc, char** argv)
 
 	if (!m_cxMainContext)
 	{
-//		m_cxMainContext = clCreateContextFromType(0, CL_DEVICE_TYPE_ALL, NULL, NULL, &ciErrNum);
-
-		m_cxMainContext = btOclCommon::createContextFromType(CL_DEVICE_TYPE_GPU, &ciErrNum);
-		//m_cxMainContext = btOclCommon::createContextFromType(CL_DEVICE_TYPE_ALL, &ciErrNum);
-		oclCHECKERROR(ciErrNum, CL_SUCCESS);
-		m_cdDevice = btOclGetMaxFlopsDev(m_cxMainContext);
 		
-		btOclPrintDevInfo(m_cdDevice);
+		cl_device_type deviceType = CL_DEVICE_TYPE_ALL;
+		m_cxMainContext = btOpenCLUtils::createContextFromType(deviceType, &ciErrNum, 0, 0);
+	
+		int numDev = btOpenCLUtils::getNumDevices(m_cxMainContext);
+		if (!numDev)
+		{
+			btAssert(0);
+			exit(0);//this is just a demo, exit now
+		}
+
+		m_cdDevice =  btOpenCLUtils::getDevice(m_cxMainContext,0);
+    	oclCHECKERROR(ciErrNum, CL_SUCCESS);
+
+		btOpenCLDeviceInfo clInfo;
+		btOpenCLUtils::getDeviceInfo(m_cdDevice,clInfo);
+		btOpenCLUtils::printDeviceInfo(m_cdDevice);
 
 		// create a command-queue
 		m_cqCommandQue = clCreateCommandQueue(m_cxMainContext, m_cdDevice, 0, &ciErrNum);
@@ -359,7 +367,7 @@ void btParticlesDynamicsWorld::initCLKernels(int argc, char** argv)
 	printf("OpenCL compiles ParticlesOCL.cl ... ");
 #else
 
-	char* fileName = "ParticlesOCL.cl";
+	const char* fileName = "ParticlesOCL.cl";
 	FILE * fp = fopen(fileName, "rb");
 	char newFileName[512];
 	
@@ -422,7 +430,7 @@ void btParticlesDynamicsWorld::initCLKernels(int argc, char** argv)
 
 		    // Build the program with 'mad' Optimization option
 #ifdef MAC
-	char* flags = "-I. -DLOCAL_SIZE_MAX=1024U -cl-mad-enable -DMAC -DGUID_ARG";
+	const char* flags = "-I. -DLOCAL_SIZE_MAX=1024U -cl-mad-enable -DMAC -DGUID_ARG";
 #else
 	const char* flags = "-I. -DLOCAL_SIZE_MAX=1024U -DGUID_ARG= ";
 #endif
@@ -436,7 +444,7 @@ void btParticlesDynamicsWorld::initCLKernels(int argc, char** argv)
 		char cBuildLog[10240];
 //		char* cPtx;
 //		size_t szPtxLength;
-		clGetProgramBuildInfo(m_cpProgram, btOclGetFirstDev(m_cxMainContext), CL_PROGRAM_BUILD_LOG, 
+		clGetProgramBuildInfo(m_cpProgram, m_cdDevice, CL_PROGRAM_BUILD_LOG, 
 							  sizeof(cBuildLog), cBuildLog, NULL );
 //		oclGetProgBinary(m_cpProgram, oclGetFirstDev(m_cxMainContext), &cPtx, &szPtxLength);
 //		oclLog(LOGBOTH | CLOSELOG, 0.0, "\n\nLog:\n%s\n\n\n\n\nPtx:\n%s\n\n\n", cBuildLog, cPtx);
@@ -930,7 +938,7 @@ void btParticlesDynamicsWorld::runSortHashKernel()
 			}
 		};
 		btHashPosKey* pHash = (btHashPosKey*)(&m_hPosHash[0]);
-		pHash->quickSort(pHash, 0, m_numParticles );
+		pHash->quickSort(pHash, 0, m_numParticles-1 );
 	//	pHash->bitonicSort(pHash, 0, m_hashSize, true);
 		// write back to GPU
 		ciErrNum = clEnqueueWriteBuffer(m_cqCommandQue, m_dPosHash, CL_TRUE, 0, memSize, &(m_hPosHash[0]), 0, NULL, NULL);
@@ -1020,7 +1028,7 @@ void btParticlesDynamicsWorld::runFindCellStartKernel()
 }
 
 
-void btParticlesDynamicsWorld::initKernel(int kernelId, char* pName)
+void btParticlesDynamicsWorld::initKernel(int kernelId, const char* pName)
 {
 	
 	cl_int ciErrNum;

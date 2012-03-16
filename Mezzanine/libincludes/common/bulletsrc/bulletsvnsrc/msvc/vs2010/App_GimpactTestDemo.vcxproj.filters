@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Demos">
+      <UniqueIdentifier>{B119CA68-E4BE-4342-9E97-EE4866BE2558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Demos\GimpactTestDemo">
+      <UniqueIdentifier>{19B34AAF-F1FA-F14F-B704-34CC2CF2EA93}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Demos\GimpactTestDemo\BunnyMesh.h">
+      <Filter>Demos\GimpactTestDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\GimpactTestDemo\GimpactTestDemo.h">
+      <Filter>Demos\GimpactTestDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Demos\GimpactTestDemo\TorusMesh.h">
+      <Filter>Demos\GimpactTestDemo</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Demos\GimpactTestDemo\GimpactTestDemo.cpp">
+      <Filter>Demos\GimpactTestDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\GimpactTestDemo\main.cpp">
+      <Filter>Demos\GimpactTestDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Demos\GimpactTestDemo\Win32GimpactDemo.cpp">
+      <Filter>Demos\GimpactTestDemo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\bullet.rc" />
+  </ItemGroup>
+</Project>

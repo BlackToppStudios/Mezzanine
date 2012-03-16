@@ -24,6 +24,9 @@ subject to the following restrictions:
 
 #include <float.h> //for FLT_MAX
 
+int gExpectedNbTests=0;
+int gActualNbTests = 0;
+bool gUseInternalObject = true;
 
 // Clips a face to the back of a plane
 void btPolyhedralContactClipping::clipFace(const btVertexArray& pVtxIn, btVertexArray& ppVtxOut, const btVector3& planeNormalWS,btScalar planeEqWS)
@@ -72,22 +75,21 @@ void btPolyhedralContactClipping::clipFace(const btVertexArray& pVtxIn, btVertex
 		ds = de;
 	}
 }
-#include <stdio.h>
 
 
-static bool TestSepAxis(const btConvexPolyhedron& hullA, const btConvexPolyhedron& hullB, const btTransform& transA,const btTransform& transB, const btVector3& sep_axis, float& depth)
+static bool TestSepAxis(const btConvexPolyhedron& hullA, const btConvexPolyhedron& hullB, const btTransform& transA,const btTransform& transB, const btVector3& sep_axis, btScalar& depth)
 {
-	float Min0,Max0;
-	float Min1,Max1;
+	btScalar Min0,Max0;
+	btScalar Min1,Max1;
 	hullA.project(transA,sep_axis, Min0, Max0);
 	hullB.project(transB, sep_axis, Min1, Max1);
 
 	if(Max0<Min1 || Max1<Min0)
 		return false;
 
-	float d0 = Max0 - Min1;
+	btScalar d0 = Max0 - Min1;
 	assert(d0>=0.0f);
-	float d1 = Max1 - Min0;
+	btScalar d1 = Max1 - Min0;
 	assert(d1>=0.0f);
 	depth = d0<d1 ? d0:d1;
 	return true;
@@ -103,18 +105,76 @@ inline bool IsAlmostZero(const btVector3& v)
 	return true;
 }
 
+#ifdef TEST_INTERNAL_OBJECTS
+
+inline void BoxSupport(const btScalar extents[3], const btScalar sv[3], btScalar p[3])
+{
+	// This version is ~11.000 cycles (4%) faster overall in one of the tests.
+//	IR(p[0]) = IR(extents[0])|(IR(sv[0])&SIGN_BITMASK);
+//	IR(p[1]) = IR(extents[1])|(IR(sv[1])&SIGN_BITMASK);
+//	IR(p[2]) = IR(extents[2])|(IR(sv[2])&SIGN_BITMASK);
+	p[0] = sv[0] < 0.0f ? -extents[0] : extents[0];
+	p[1] = sv[1] < 0.0f ? -extents[1] : extents[1];
+	p[2] = sv[2] < 0.0f ? -extents[2] : extents[2];
+}
+
+void InverseTransformPoint3x3(btVector3& out, const btVector3& in, const btTransform& tr)
+{
+	const btMatrix3x3& rot = tr.getBasis();
+	const btVector3& r0 = rot[0];
+	const btVector3& r1 = rot[1];
+	const btVector3& r2 = rot[2];
+
+	const btScalar x = r0.x()*in.x() + r1.x()*in.y() + r2.x()*in.z();
+	const btScalar y = r0.y()*in.x() + r1.y()*in.y() + r2.y()*in.z();
+	const btScalar z = r0.z()*in.x() + r1.z()*in.y() + r2.z()*in.z();
+
+	out.setValue(x, y, z);
+}
+
+ bool TestInternalObjects( const btTransform& trans0, const btTransform& trans1, const btVector3& delta_c, const btVector3& axis, const btConvexPolyhedron& convex0, const btConvexPolyhedron& convex1, btScalar dmin)
+{
+	const btScalar dp = delta_c.dot(axis);
+
+	btVector3 localAxis0;
+	InverseTransformPoint3x3(localAxis0, axis,trans0);
+	btVector3 localAxis1;
+	InverseTransformPoint3x3(localAxis1, axis,trans1);
+
+	btScalar p0[3];
+	BoxSupport(convex0.m_extents, localAxis0, p0);
+	btScalar p1[3];
+	BoxSupport(convex1.m_extents, localAxis1, p1);
+
+	const btScalar Radius0 = p0[0]*localAxis0.x() + p0[1]*localAxis0.y() + p0[2]*localAxis0.z();
+	const btScalar Radius1 = p1[0]*localAxis1.x() + p1[1]*localAxis1.y() + p1[2]*localAxis1.z();
+
+	const btScalar MinRadius = Radius0>convex0.m_radius ? Radius0 : convex0.m_radius;
+	const btScalar MaxRadius = Radius1>convex1.m_radius ? Radius1 : convex1.m_radius;
+
+	const btScalar MinMaxRadius = MaxRadius + MinRadius;
+	const btScalar d0 = MinMaxRadius + dp;
+	const btScalar d1 = MinMaxRadius - dp;
+
+	const btScalar depth = d0<d1 ? d0:d1;
+	if(depth>dmin)
+		return false;
+	return true;
+}
+#endif //TEST_INTERNAL_OBJECTS
+
 
 bool btPolyhedralContactClipping::findSeparatingAxis(	const btConvexPolyhedron& hullA, const btConvexPolyhedron& hullB, const btTransform& transA,const btTransform& transB, btVector3& sep)
 {
 	gActualSATPairTests++;
 
-#ifdef TEST_INTERNAL_OBJECTS
-	const btVector3 c0 = transA * hullA.mLocalCenter;
-	const btVector3 c1 = transB * hullB.mLocalCenter;
+//#ifdef TEST_INTERNAL_OBJECTS
+	const btVector3 c0 = transA * hullA.m_localCenter;
+	const btVector3 c1 = transB * hullB.m_localCenter;
 	const btVector3 DeltaC2 = c0 - c1;
-#endif
+//#endif
 
-	float dmin = FLT_MAX;
+	btScalar dmin = FLT_MAX;
 	int curPlaneTests=0;
 
 	int numFacesA = hullA.m_faces.size();
@@ -123,16 +183,18 @@ bool btPolyhedralContactClipping::findSeparatingAxis(	const btConvexPolyhedron& 
 	{
 		const btVector3 Normal(hullA.m_faces[i].m_plane[0], hullA.m_faces[i].m_plane[1], hullA.m_faces[i].m_plane[2]);
 		const btVector3 faceANormalWS = transA.getBasis() * Normal;
+		if (DeltaC2.dot(faceANormalWS)<0)
+			continue;
 
 		curPlaneTests++;
 #ifdef TEST_INTERNAL_OBJECTS
 		gExpectedNbTests++;
-		if(gUseInternalObject && !TestInternalObjects(transA,transB,DeltaC2, faceANormalWS, hullA, hullB, dmin))
+		if(gUseInternalObject && !TestInternalObjects(transA,transB, DeltaC2, faceANormalWS, hullA, hullB, dmin))
 			continue;
 		gActualNbTests++;
 #endif
 
-		float d;
+		btScalar d;
 		if(!TestSepAxis( hullA, hullB, transA,transB, faceANormalWS, d))
 			return false;
 
@@ -149,6 +211,8 @@ bool btPolyhedralContactClipping::findSeparatingAxis(	const btConvexPolyhedron& 
 	{
 		const btVector3 Normal(hullB.m_faces[i].m_plane[0], hullB.m_faces[i].m_plane[1], hullB.m_faces[i].m_plane[2]);
 		const btVector3 WorldNormal = transB.getBasis() * Normal;
+		if (DeltaC2.dot(WorldNormal)<0)
+			continue;
 
 		curPlaneTests++;
 #ifdef TEST_INTERNAL_OBJECTS
@@ -158,7 +222,7 @@ bool btPolyhedralContactClipping::findSeparatingAxis(	const btConvexPolyhedron& 
 		gActualNbTests++;
 #endif
 
-		float d;
+		btScalar d;
 		if(!TestSepAxis(hullA, hullB,transA,transB, WorldNormal,d))
 			return false;
 
@@ -187,6 +251,9 @@ bool btPolyhedralContactClipping::findSeparatingAxis(	const btConvexPolyhedron& 
 			if(!IsAlmostZero(Cross))
 			{
 				Cross = Cross.normalize();
+				if (DeltaC2.dot(Cross)<0)
+					continue;
+
 
 #ifdef TEST_INTERNAL_OBJECTS
 				gExpectedNbTests++;
@@ -195,7 +262,7 @@ bool btPolyhedralContactClipping::findSeparatingAxis(	const btConvexPolyhedron& 
 				gActualNbTests++;
 #endif
 
-				float dist;
+				btScalar dist;
 				if(!TestSepAxis( hullA, hullB, transA,transB, Cross, dist))
 					return false;
 
@@ -249,18 +316,29 @@ void	btPolyhedralContactClipping::clipFaceAgainstHull(const btVector3& separatin
 	int numVerticesA = polyA.m_indices.size();
 	for(int e0=0;e0<numVerticesA;e0++)
 	{
-		/*const btVector3& a = hullA.m_vertices[polyA.m_indices[e0]];
+		const btVector3& a = hullA.m_vertices[polyA.m_indices[e0]];
 		const btVector3& b = hullA.m_vertices[polyA.m_indices[(e0+1)%numVerticesA]];
 		const btVector3 edge0 = a - b;
 		const btVector3 WorldEdge0 = transA.getBasis() * edge0;
-		*/
+		btVector3 worldPlaneAnormal1 = transA.getBasis()* btVector3(polyA.m_plane[0],polyA.m_plane[1],polyA.m_plane[2]);
 
+		btVector3 planeNormalWS1 = -WorldEdge0.cross(worldPlaneAnormal1);//.cross(WorldEdge0);
+		btVector3 worldA1 = transA*a;
+		btScalar planeEqWS1 = -worldA1.dot(planeNormalWS1);
+		
+//int otherFace=0;
+#ifdef BLA1
 		int otherFace = polyA.m_connectedFaces[e0];
 		btVector3 localPlaneNormal (hullA.m_faces[otherFace].m_plane[0],hullA.m_faces[otherFace].m_plane[1],hullA.m_faces[otherFace].m_plane[2]);
 		btScalar localPlaneEq = hullA.m_faces[otherFace].m_plane[3];
 
 		btVector3 planeNormalWS = transA.getBasis()*localPlaneNormal;
 		btScalar planeEqWS=localPlaneEq-planeNormalWS.dot(transA.getOrigin());
+#else 
+		btVector3 planeNormalWS = planeNormalWS1;
+		btScalar planeEqWS=planeEqWS1;
+		
+#endif
 		//clip face
 
 		clipFace(*pVtxIn, *pVtxOut,planeNormalWS,planeEqWS);
@@ -285,7 +363,13 @@ void	btPolyhedralContactClipping::clipFaceAgainstHull(const btVector3& separatin
 		{
 			
 			btScalar depth = planeNormalWS.dot(pVtxIn->at(i))+planeEqWS;
-			if (depth <=maxDist && depth >=minDist)
+			if (depth <=minDist)
+			{
+//				printf("clamped: depth=%f to minDist=%f\n",depth,minDist);
+				depth = minDist;
+			}
+
+			if (depth <=maxDist)
 			{
 				btVector3 point = pVtxIn->at(i);
 #ifdef ONLY_REPORT_DEEPEST_POINT
@@ -312,19 +396,24 @@ void	btPolyhedralContactClipping::clipFaceAgainstHull(const btVector3& separatin
 
 }
 
-void	btPolyhedralContactClipping::clipHullAgainstHull(const btVector3& separatingNormal, const btConvexPolyhedron& hullA, const btConvexPolyhedron& hullB, const btTransform& transA,const btTransform& transB, const btScalar minDist, btScalar maxDist,btDiscreteCollisionDetectorInterface::Result& resultOut)
+
+void	btPolyhedralContactClipping::clipHullAgainstHull(const btVector3& separatingNormal1, const btConvexPolyhedron& hullA, const btConvexPolyhedron& hullB, const btTransform& transA,const btTransform& transB, const btScalar minDist, btScalar maxDist,btDiscreteCollisionDetectorInterface::Result& resultOut)
 {
+
+	btVector3 separatingNormal = separatingNormal1.normalized();
+	const btVector3 c0 = transA * hullA.m_localCenter;
+	const btVector3 c1 = transB * hullB.m_localCenter;
+	const btVector3 DeltaC2 = c0 - c1;
+
 
 	btScalar curMaxDist=maxDist;
 	int closestFaceB=-1;
-
+	btScalar dmax = -FLT_MAX;
 	{
-		btScalar dmax = -FLT_MAX;
 		for(int face=0;face<hullB.m_faces.size();face++)
 		{
 			const btVector3 Normal(hullB.m_faces[face].m_plane[0], hullB.m_faces[face].m_plane[1], hullB.m_faces[face].m_plane[2]);
 			const btVector3 WorldNormal = transB.getBasis() * Normal;
-
 			btScalar d = WorldNormal.dot(separatingNormal);
 			if (d > dmax)
 			{
@@ -333,28 +422,19 @@ void	btPolyhedralContactClipping::clipHullAgainstHull(const btVector3& separatin
 			}
 		}
 	}
+				btVertexArray worldVertsB1;
+				{
+					const btFace& polyB = hullB.m_faces[closestFaceB];
+					const int numVertices = polyB.m_indices.size();
+					for(int e0=0;e0<numVertices;e0++)
+					{
+						const btVector3& b = hullB.m_vertices[polyB.m_indices[e0]];
+						worldVertsB1.push_back(transB*b);
+					}
+				}
 
-
-
-	if (closestFaceB<0)
-	{
-		return;
-	}
-
-
-
-	// setup initial clip face (minimizing face from hull B)
-	btVertexArray worldVertsB1;
-	{
-		const btFace& polyB = hullB.m_faces[closestFaceB];
-		const int numVertices = polyB.m_indices.size();
-		for(int e0=0;e0<numVertices;e0++)
-		{
-			const btVector3& b = hullB.m_vertices[polyB.m_indices[e0]];
-			worldVertsB1.push_back(transB*b);
-		}
-	}
-
-	clipFaceAgainstHull(separatingNormal, hullA, transA,worldVertsB1, minDist, maxDist,resultOut);
+	
+	if (closestFaceB>=0)
+		clipFaceAgainstHull(separatingNormal, hullA, transA,worldVertsB1, minDist, maxDist,resultOut);
 
 }

@@ -31,7 +31,7 @@ class btDX11SIMDAwareSoftBodySolver;
 
 #include "BulletSoftBody/btSoftBodySolvers.h"
 #include "BulletSoftBody/btDefaultSoftBodySolver.h"
-#include "BulletMultiThreaded/GpuSoftBodySolvers/CPU/btSoftBodySolver_CPU.h"
+
 #include "BulletMultiThreaded/GpuSoftBodySolvers/DX11/btSoftBodySolver_DX11.h"
 #include "BulletMultiThreaded/GpuSoftBodySolvers/DX11/btSoftBodySolver_DX11SIMDAware.h"
 
@@ -496,7 +496,11 @@ void initBullet(void)
 #endif
 #endif
 
+	if (g_dx11SIMDSolver)
+		g_dx11SIMDSolver->setEnableUpdateBounds(true);
 
+	if (g_dx11Solver)
+		g_dx11Solver->setEnableUpdateBounds(true);
 
 	// Initialise CPU physics device
 	//m_collisionConfiguration = new btDefaultCollisionConfiguration();

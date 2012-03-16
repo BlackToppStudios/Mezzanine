@@ -1,3 +1,18 @@
+/*
+Bullet Continuous Collision Detection and Physics Library
+Copyright (c) 2003-2010 Erwin Coumans  http://continuousphysics.com/Bullet/
+
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from the use of this software.
+Permission is granted to anyone to use this software for any purpose, 
+including commercial applications, and to alter it and redistribute it freely, 
+subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+*/
+
 
 #include "btBulletWorldImporter.h"
 #include "../BulletFileLoader/btBulletFile.h"
@@ -69,7 +84,7 @@ void btBulletWorldImporter::deleteAllData()
 	m_allocatedTriangleIndexArrays.clear();
 	for (i=0;i<m_allocatedNames.size();i++)
 	{
-		delete m_allocatedNames[i];
+		delete[] m_allocatedNames[i];
 	}
 	m_allocatedNames.clear();
 
@@ -94,6 +109,10 @@ void btBulletWorldImporter::deleteAllData()
 
 			if(curPart->m_indices16)
 				delete [] curPart->m_indices16;
+			
+			if (curPart->m_3indices8)
+				delete [] curPart->m_3indices8;
+
 		}
 		delete [] curData->m_meshPartsPtr;
 		delete curData;
@@ -108,8 +127,13 @@ void btBulletWorldImporter::deleteAllData()
 	for (i=0;i<m_shortIndexArrays.size();i++)
 	{
 		btAlignedFree(m_shortIndexArrays[i]);
-
 	}
+
+	for (i=0;i<m_charIndexArrays.size();i++)
+	{
+		btAlignedFree(m_charIndexArrays[i]);
+	}
+
 	for (i=0;i<m_floatVertexArrays.size();i++)
 	{
 		btAlignedFree(m_floatVertexArrays[i]);
@@ -173,9 +197,9 @@ btTriangleIndexVertexArray* btBulletWorldImporter::createMeshInterface(btStridin
 			meshPart.m_triangleIndexBase = (const unsigned char*)indexArray;
 		} else
 		{
-			meshPart.m_indexType = PHY_SHORT;
 			if (meshData.m_meshPartsPtr[i].m_3indices16)
 			{
+				meshPart.m_indexType = PHY_SHORT;
 				meshPart.m_triangleIndexStride = sizeof(short int)*3;//sizeof(btShortIntIndexTripletData);
 
 				short int* indexArray = (short int*)btAlignedAlloc(sizeof(short int)*3*meshPart.m_numTriangles,16);
@@ -192,6 +216,7 @@ btTriangleIndexVertexArray* btBulletWorldImporter::createMeshInterface(btStridin
 			}
 			if (meshData.m_meshPartsPtr[i].m_indices16)
 			{
+				meshPart.m_indexType = PHY_SHORT;
 				meshPart.m_triangleIndexStride = 3*sizeof(short int);
 				short int* indexArray = (short int*)btAlignedAlloc(sizeof(short int)*3*meshPart.m_numTriangles,16);
 				m_shortIndexArrays.push_back(indexArray);
@@ -203,6 +228,23 @@ btTriangleIndexVertexArray* btBulletWorldImporter::createMeshInterface(btStridin
 				meshPart.m_triangleIndexBase = (const unsigned char*)indexArray;
 			}
 
+			if (meshData.m_meshPartsPtr[i].m_3indices8)
+			{
+				meshPart.m_indexType = PHY_UCHAR;
+				meshPart.m_triangleIndexStride = sizeof(unsigned char)*3;
+
+				unsigned char* indexArray = (unsigned char*)btAlignedAlloc(sizeof(unsigned char)*3*meshPart.m_numTriangles,16);
+				m_charIndexArrays.push_back(indexArray);
+
+				for (int j=0;j<meshPart.m_numTriangles;j++)
+				{
+					indexArray[3*j] = meshData.m_meshPartsPtr[i].m_3indices8[j].m_values[0];
+					indexArray[3*j+1] = meshData.m_meshPartsPtr[i].m_3indices8[j].m_values[1];
+					indexArray[3*j+2] = meshData.m_meshPartsPtr[i].m_3indices8[j].m_values[2];
+				}
+
+				meshPart.m_triangleIndexBase = (const unsigned char*)indexArray;
+			}
 		}
 
 		if (meshData.m_meshPartsPtr[i].m_vertices3f)
@@ -265,7 +307,7 @@ btStridingMeshInterfaceData* btBulletWorldImporter::createStridingMeshInterfaceD
 
 		curNewPart->m_numTriangles = curPart->m_numTriangles;
 		curNewPart->m_numVertices = curPart->m_numVertices;
-
+		
 		if(curPart->m_vertices3f)
 		{
 			curNewPart->m_vertices3f = new btVector3FloatData[curNewPart->m_numVertices];
@@ -283,9 +325,13 @@ btStridingMeshInterfaceData* btBulletWorldImporter::createStridingMeshInterfaceD
 			curNewPart->m_vertices3d = NULL;
 
 		int numIndices = curNewPart->m_numTriangles * 3;
+		///the m_3indices8 was not initialized in some Bullet versions, this can cause crashes at loading time
+		///we catch it by only dealing with m_3indices8 if none of the other indices are initialized
+		bool uninitialized3indices8Workaround =false;
 
 		if(curPart->m_indices32)
 		{
+			uninitialized3indices8Workaround=true;
 			curNewPart->m_indices32 = new btIntIndexData[numIndices];
 			memcpy(curNewPart->m_indices32,curPart->m_indices32,sizeof(btIntIndexData) * numIndices);
 		}
@@ -294,19 +340,30 @@ btStridingMeshInterfaceData* btBulletWorldImporter::createStridingMeshInterfaceD
 
 		if(curPart->m_3indices16)
 		{
-			curNewPart->m_3indices16 = new btShortIntIndexTripletData[numIndices];
-			memcpy(curNewPart->m_3indices16,curPart->m_3indices16,sizeof(btShortIntIndexTripletData) * numIndices);
+			uninitialized3indices8Workaround=true;
+			curNewPart->m_3indices16 = new btShortIntIndexTripletData[curNewPart->m_numTriangles];
+			memcpy(curNewPart->m_3indices16,curPart->m_3indices16,sizeof(btShortIntIndexTripletData) * curNewPart->m_numTriangles);
 		}
 		else
 			curNewPart->m_3indices16 = NULL;
 
 		if(curPart->m_indices16)
 		{
+			uninitialized3indices8Workaround=true;
 			curNewPart->m_indices16 = new btShortIntIndexData[numIndices];
 			memcpy(curNewPart->m_indices16,curPart->m_indices16,sizeof(btShortIntIndexData) * numIndices);
 		}
 		else
 			curNewPart->m_indices16 = NULL;
+
+		if(!uninitialized3indices8Workaround && curPart->m_3indices8)
+		{
+			curNewPart->m_3indices8 = new btCharIndexTripletData[curNewPart->m_numTriangles];
+			memcpy(curNewPart->m_3indices8,curPart->m_3indices8,sizeof(btCharIndexTripletData) * curNewPart->m_numTriangles);
+		}
+		else
+			curNewPart->m_3indices8 = NULL;
+
 	}
 
 	m_allocatedbtStridingMeshInterfaceDatas.push_back(newData);
@@ -412,23 +469,24 @@ btCollisionShape* btBulletWorldImporter::convertCollisionShape(  btCollisionShap
 							{
 							case 0:
 								{
-									shape = createCapsuleShapeX(implicitShapeDimensions.getY(),2*implicitShapeDimensions.getX());
+									shape = createCapsuleShapeX(implicitShapeDimensions.getY()+bsd->m_collisionMargin*2,2*implicitShapeDimensions.getX());
 									break;
 								}
 							case 1:
 								{
-									shape = createCapsuleShapeY(implicitShapeDimensions.getX(),2*implicitShapeDimensions.getY());
+									shape = createCapsuleShapeY(implicitShapeDimensions.getX()+bsd->m_collisionMargin*2,2*implicitShapeDimensions.getY());
 									break;
 								}
 							case 2:
 								{
-									shape = createCapsuleShapeZ(implicitShapeDimensions.getX(),2*implicitShapeDimensions.getZ());
+									shape = createCapsuleShapeZ(implicitShapeDimensions.getX()+bsd->m_collisionMargin*2,2*implicitShapeDimensions.getZ());
 									break;
 								}
 							default:
 								{
 									printf("error: wrong up axis for btCapsuleShape\n");
 								}
+								bsd->m_collisionMargin = 0.f;
 
 							};
 							
@@ -525,7 +583,7 @@ btCollisionShape* btBulletWorldImporter::convertCollisionShape(  btCollisionShap
 
 				if (shape)
 				{
-					shape->setMargin(bsd->m_collisionMargin);
+					//shape->setMargin(bsd->m_collisionMargin);
 					btVector3 localScaling;
 					localScaling.deSerializeFloat(bsd->m_localScaling);
 					shape->setLocalScaling(localScaling);
@@ -612,7 +670,9 @@ btCollisionShape* btBulletWorldImporter::convertCollisionShape(  btCollisionShap
 						compoundShape->addChildShape(localTransform,childShape);
 					} else
 					{
+#ifdef _DEBUG
 						printf("error: couldn't create childShape for compoundShape\n");
+#endif
 					}
 					
 				}
@@ -626,7 +686,9 @@ btCollisionShape* btBulletWorldImporter::convertCollisionShape(  btCollisionShap
 			}
 		default:
 			{
+#ifdef _DEBUG
 				printf("unsupported shape type (%d)\n",shapeData->m_shapeType);
+#endif
 			}
 		}
 
@@ -785,6 +847,10 @@ bool	btBulletWorldImporter::convertAllObjects(  bParse::btBulletFile* bulletFile
 				}
 				bool isDynamic = mass!=0.f;
 				btRigidBody* body = createRigidBody(isDynamic,mass,startTransform,shape,colObjData->m_collisionObjectData.m_name);
+				body->setFriction(colObjData->m_collisionObjectData.m_friction);
+				body->setRestitution(colObjData->m_collisionObjectData.m_restitution);
+				
+
 #ifdef USE_INTERNAL_EDGE_UTILITY
 				if (shape->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE)
 				{
@@ -815,7 +881,9 @@ bool	btBulletWorldImporter::convertAllObjects(  bParse::btBulletFile* bulletFile
 				startTransform.deSerializeDouble(colObjData->m_worldTransform);
 				btCollisionShape* shape = (btCollisionShape*)*shapePtr;
 				btCollisionObject* body = createCollisionObject(startTransform,shape,colObjData->m_name);
-
+				body->setFriction(colObjData->m_friction);
+				body->setRestitution(colObjData->m_restitution);
+				
 #ifdef USE_INTERNAL_EDGE_UTILITY
 				if (shape->getShapeType() == TRIANGLE_MESH_SHAPE_PROXYTYPE)
 				{
@@ -1122,6 +1190,14 @@ bool	btBulletWorldImporter::convertAllObjects(  bParse::btBulletFile* bulletFile
 		if (constraint)
 		{
 			constraint->setDbgDrawSize(constraintData->m_dbgDrawSize);
+			///those fields didn't exist and set to zero for pre-280 versions, so do a check here
+			if (bulletFile2->getVersion()>=280)
+			{
+				constraint->setBreakingImpulseThreshold(constraintData->m_breakingImpulseThreshold);
+				constraint->setEnabled(constraintData->m_isEnabled!=0);
+				constraint->setOverrideNumSolverIterations(constraintData->m_overrideNumSolverIterations);
+			}
+
 			if (constraintData->m_name)
 			{
 				char* newname = duplicateName(constraintData->m_name);
