@@ -66,7 +66,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::ActorBasePhysicsSettings Class Reference</h1>  </div>
 </div>
@@ -95,27 +96,35 @@ Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3f8d93a77d1d9a61314ef350a1c3394a">ActorBasePhysicsSettings</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionObject *PhysicsObject)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a3f8d93a77d1d9a61314ef350a1c3394a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6273131ed9e51182abde28d5af4ded83"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::~ActorBasePhysicsSettings" ref="a6273131ed9e51182abde28d5af4ded83" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a6273131ed9e51182abde28d5af4ded83">~ActorBasePhysicsSettings</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html">ActorBasePhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ae43e2938e30b69ac11627b9648c43415">GetBasePointer</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to this class of type <a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html" title="This is a base helper class for configuring physics settings of an actor.">ActorBasePhysicsSettings</a>.  <a href="#ae43e2938e30b69ac11627b9648c43415"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a804941eb77d960dd3c73d331c47c891c">GetCCDMotionThreshold</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the amount of motion needed to enable CCD for this object.  <a href="#a804941eb77d960dd3c73d331c47c891c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3729e8ee88bc2d8892d921016aa4a4c0">GetCCDSphereRadius</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the radius of the embedded sphere used for CCD.  <a href="#a3729e8ee88bc2d8892d921016aa4a4c0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a8acd986f63a0c58ad6df9e4d3e291067">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a8acd986f63a0c58ad6df9e4d3e291067"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ad3c4f8ac2df1c14f9cd498e1a60a34b2">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#ad3c4f8ac2df1c14f9cd498e1a60a34b2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a702a20cfb7d87dbc2a7d44ba9260ead2">SetCCDParams</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;MotionThreshold, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;SweptSphereRadius=0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the parameters used for Continuous <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Detection.  <a href="#a702a20cfb7d87dbc2a7d44ba9260ead2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a3b01243f038e30eb39b04f8e38fb8a14">SetKinematic</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the state of the object to Kinematic.  <a href="#a3b01243f038e30eb39b04f8e38fb8a14"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#ac72f39fa6bc9e2f050fdf90e42dd0deb">SetStatic</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the state of the object to Static.  <a href="#ac72f39fa6bc9e2f050fdf90e42dd0deb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6273131ed9e51182abde28d5af4ded83"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::~ActorBasePhysicsSettings" ref="a6273131ed9e51182abde28d5af4ded83" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#a6273131ed9e51182abde28d5af4ded83">~ActorBasePhysicsSettings</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorBasePhysicsSettings.html#aa386f1bf24f1cc09fceba5d337c3ab29">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#aa386f1bf24f1cc09fceba5d337c3ab29"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a base helper class for configuring physics settings of an actor. </p>
 <p>This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see ActorGraphicsSettings. </p>
 
-<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00086">86</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
+<p>Definition at line <a class="el" href="actorphysicssettings_8h_source.html#l00109">109</a> of file <a class="el" href="actorphysicssettings_8h_source.html">actorphysicssettings.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a3f8d93a77d1d9a61314ef350a1c3394a"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings" ref="a3f8d93a77d1d9a61314ef350a1c3394a" args="(ActorBase *Actor, btCollisionObject *PhysicsObject)" -->
 <div class="memitem">
@@ -219,6 +228,93 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a class="anchor" id="a8acd986f63a0c58ad6df9e4d3e291067"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ProtoDeSerialize" ref="a8acd986f63a0c58ad6df9e4d3e291067" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonTriggerPhysicsSettings.html#aef475cdfe28b1f2ee121b64d32d6f0a6">Mezzanine::NonTriggerPhysicsSettings</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#a3858fe916114998aee33005fd2a968e7">Mezzanine::ActorRigidPhysicsSettings</a>.</p>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00153">153</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad3c4f8ac2df1c14f9cd498e1a60a34b2"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::ProtoSerialize" ref="ad3c4f8ac2df1c14f9cd498e1a60a34b2" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorBasePhysicsSettings::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this quaternion should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonTriggerPhysicsSettings.html#a7a09c93f7d14a7aeec7ae261bd4d4ea5">Mezzanine::NonTriggerPhysicsSettings</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#ab3977a3b5939b9e68657b84b5a80a24d">Mezzanine::ActorRigidPhysicsSettings</a>.</p>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00128">128</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa386f1bf24f1cc09fceba5d337c3ab29"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SerializableName" ref="aa386f1bf24f1cc09fceba5d337c3ab29" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::ActorBasePhysicsSettings::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "ActorBasePhysicsSettings" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonTriggerPhysicsSettings.html#aaa6448dd1e05f3ca9ac673e924ef26af">Mezzanine::NonTriggerPhysicsSettings</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#a8dab39e71eb26175a3cb4bbb3966c9b1">Mezzanine::ActorRigidPhysicsSettings</a>.</p>
+
+<p>Definition at line <a class="el" href="actorphysicssettings_8cpp_source.html#l00170">170</a> of file <a class="el" href="actorphysicssettings_8cpp_source.html">actorphysicssettings.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a702a20cfb7d87dbc2a7d44ba9260ead2"></a><!-- doxytag: member="Mezzanine::ActorBasePhysicsSettings::SetCCDParams" ref="a702a20cfb7d87dbc2a7d44ba9260ead2" args="(const Real &amp;MotionThreshold, const Real &amp;SweptSphereRadius=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -312,7 +408,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -322,6 +418,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

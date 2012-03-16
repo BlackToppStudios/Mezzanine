@@ -124,229 +124,249 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00060"></a>00060               Checked(false),
 <a name="l00061"></a>00061               CheckLock(true)
 <a name="l00062"></a>00062         {
-<a name="l00063"></a>00063             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00064"></a>00064             std::pair&lt;Whole,Real&gt; Result;
-<a name="l00065"></a>00065             <span class="keywordflow">if</span>(Rect.Relative) Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(LineHeight * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>),Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00066"></a>00066             <span class="keywordflow">else</span> Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)LineHeight,Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00067"></a>00067             GlyphIndex = Result.first;
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069             <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a841ed282181848150b56aec13319d9a9" title="Constructs a checkbox.">ConstructCheckBox</a>(Rect,LabelText);
-<a name="l00070"></a>00070         }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#aedc495e50db3adf0ed51b3c28107af3f">00072</a>         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a818afe38244e1cd196c65bf36bf1719a" title="Class constructor.">CheckBox::CheckBox</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; LabelText, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00073"></a>00073             : <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,PLayer),
-<a name="l00074"></a>00074               GlyphIndex(Glyph),
-<a name="l00075"></a>00075               Checked(false),
-<a name="l00076"></a>00076               CheckLock(true)
-<a name="l00077"></a>00077         {
-<a name="l00078"></a>00078             <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a841ed282181848150b56aec13319d9a9" title="Constructs a checkbox.">ConstructCheckBox</a>(Rect,LabelText);
-<a name="l00079"></a>00079         }
-<a name="l00080"></a>00080 
-<a name="l00081"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a3881a44a1149755ea60e6329ad852b3b">00081</a>         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a3881a44a1149755ea60e6329ad852b3b" title="Class destructor.">CheckBox::~CheckBox</a>()
-<a name="l00082"></a>00082         {
-<a name="l00083"></a>00083             <span class="keyword">delete</span> Box;
-<a name="l00084"></a>00084             <span class="keywordflow">if</span>(Label)
-<a name="l00085"></a>00085                 <span class="keyword">delete</span> Label;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087 
-<a name="l00088"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a841ed282181848150b56aec13319d9a9">00088</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a841ed282181848150b56aec13319d9a9" title="Constructs a checkbox.">CheckBox::ConstructCheckBox</a>(<span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; LabelText)
-<a name="l00089"></a>00089         {
-<a name="l00090"></a>00090             Type = Widget::W_CheckBox;
-<a name="l00091"></a>00091             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00092"></a>00092             <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> BoxRect, LabelRect;
-<a name="l00093"></a>00093             <span class="keywordflow">if</span>(Rect.Relative)
-<a name="l00094"></a>00094             {
-<a name="l00095"></a>00095                 RelPosition = Rect.Position;
-<a name="l00096"></a>00096                 RelSize = Rect.Size;
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098                 BoxRect.Position = Rect.Position;
-<a name="l00099"></a>00099                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = (Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
-<a name="l00100"></a>00100                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00101"></a>00101                 BoxRect.Relative = Rect.Relative;
-<a name="l00102"></a>00102             }<span class="keywordflow">else</span>{
-<a name="l00103"></a>00103                 RelPosition = Rect.Position / WinDim;
-<a name="l00104"></a>00104                 RelSize = Rect.Size / WinDim;
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106                 BoxRect.Position = Rect.Position;
-<a name="l00107"></a>00107                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00108"></a>00108                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00109"></a>00109                 BoxRect.Relative = Rect.Relative;
-<a name="l00110"></a>00110             }
-<a name="l00111"></a>00111             LabelRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
-<a name="l00112"></a>00112             LabelRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00113"></a>00113             LabelRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
-<a name="l00114"></a>00114             LabelRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00115"></a>00115             LabelRect.Relative = Rect.Relative;
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117             Box = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name+<span class="stringliteral">&quot;CB&quot;</span>,BoxRect,Parent);
-<a name="l00118"></a>00118             Label = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>(Name+<span class="stringliteral">&quot;CM&quot;</span>,LabelRect,GlyphIndex,LabelText,Parent);
-<a name="l00119"></a>00119         }
-<a name="l00120"></a>00120 
-<a name="l00121"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a">00121</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">CheckBox::SetSpriteSet</a>(std::pair&lt;std::string,std::string&gt;&amp; SpriteSet)
-<a name="l00122"></a>00122         {
-<a name="l00123"></a>00123             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#af34e8bd2454368345da7b23dc17f077c" title="Sets the background image(if provided in the atlas) of the button.">SetBackgroundSprite</a>(SpriteSet.first);
-<a name="l00124"></a>00124             <span class="keywordflow">if</span>(!SpriteSet.second.empty())
-<a name="l00125"></a>00125                 Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad23caa85fbf5ae1c3fc9b5d0873d455b" title="Sets an alternate background image that will be applied when the mouse is over this button...">SetHoveredSprite</a>(SpriteSet.second);
-<a name="l00126"></a>00126         }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128         <span class="comment">/*void CheckBox::SetUncheckedSprites()</span>
-<a name="l00129"></a>00129 <span class="comment">        {</span>
-<a name="l00130"></a>00130 <span class="comment">            Box-&gt;SetBackgroundSprite(UncheckedNorm);</span>
-<a name="l00131"></a>00131 <span class="comment">            if(!UncheckedHovered.empty())</span>
-<a name="l00132"></a>00132 <span class="comment">                Box-&gt;SetHoveredSprite(UncheckedHovered);</span>
-<a name="l00133"></a>00133 <span class="comment">        }</span>
-<a name="l00134"></a>00134 <span class="comment"></span>
-<a name="l00135"></a>00135 <span class="comment">        void CheckBox::SetCheckedSprites()</span>
-<a name="l00136"></a>00136 <span class="comment">        {</span>
-<a name="l00137"></a>00137 <span class="comment">            Box-&gt;SetBackgroundSprite(CheckedNorm);</span>
-<a name="l00138"></a>00138 <span class="comment">            if(!CheckedHovered.empty())</span>
-<a name="l00139"></a>00139 <span class="comment">                Box-&gt;SetHoveredSprite(CheckedHovered);</span>
-<a name="l00140"></a>00140 <span class="comment">        }*/</span>
-<a name="l00141"></a>00141 
-<a name="l00142"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a1dcc1684b11c57f2c47153836ffe7c0a">00142</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a1dcc1684b11c57f2c47153836ffe7c0a" title="Child specific update method.">CheckBox::UpdateImpl</a>(<span class="keywordtype">bool</span> Force)
-<a name="l00143"></a>00143         {
-<a name="l00144"></a>00144             <span class="keywordflow">if</span>(HoveredButton)
-<a name="l00145"></a>00145             {
-<a name="l00146"></a>00146                 <a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a7a97f853156573de3648f3315e2283bb" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
-<a name="l00147"></a>00147                 <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749">MetaCode::BUTTON_PRESSING</a> == State)
-<a name="l00148"></a>00148                 {
-<a name="l00149"></a>00149                     CheckLock = <span class="keyword">false</span>;
-<a name="l00150"></a>00150                 }
-<a name="l00151"></a>00151                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080">MetaCode::BUTTON_LIFTING</a> &amp;&amp; !CheckLock)
-<a name="l00152"></a>00152                 {
-<a name="l00153"></a>00153                     Checked = !Checked;
-<a name="l00154"></a>00154                     <span class="keywordflow">if</span>(Checked)
-<a name="l00155"></a>00155                     {
-<a name="l00156"></a>00156                         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(CheckedSet);
-<a name="l00157"></a>00157                     }<span class="keywordflow">else</span>{
-<a name="l00158"></a>00158                         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(UncheckedSet);
-<a name="l00159"></a>00159                     }
-<a name="l00160"></a>00160                     CheckLock = <span class="keyword">true</span>;
-<a name="l00161"></a>00161                 }
-<a name="l00162"></a>00162             }
-<a name="l00163"></a>00163         }
-<a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a60b8cce148408b94f7ec3942b2ddcedd">00165</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a60b8cce148408b94f7ec3942b2ddcedd" title="Child specific visibility method.">CheckBox::SetVisibleImpl</a>(<span class="keywordtype">bool</span> visible)
-<a name="l00166"></a>00166         {
-<a name="l00167"></a>00167             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a12840e06233a6feb88f61d88a0ce7e60" title="Sets the visibility of this button.">SetVisible</a>(visible);
-<a name="l00168"></a>00168             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a77ba9fb0b2b8298c19f856b4fb7c8d3d" title="Sets the visibility of this caption.">SetVisible</a>(visible);
-<a name="l00169"></a>00169         }
-<a name="l00170"></a>00170 
-<a name="l00171"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a6a9f31c4bd0915b7405c10b8bfe6710a">00171</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a6a9f31c4bd0915b7405c10b8bfe6710a" title="Child specific mouse hover method.">CheckBox::CheckMouseHoverImpl</a>()
-<a name="l00172"></a>00172         {
-<a name="l00173"></a>00173             <span class="keywordflow">if</span>(Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae35f5b685df6bb09626f3f53b41416bd" title="Determines whether the mouse is over this button.">CheckMouseHover</a>())
-<a name="l00174"></a>00174             {
-<a name="l00175"></a>00175                 HoveredButton = Box;
-<a name="l00176"></a>00176                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00177"></a>00177             }
-<a name="l00178"></a>00178             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00179"></a>00179         }
-<a name="l00180"></a>00180 
-<a name="l00181"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#aafe54951cd6a51b6ad43abb5fd29696d">00181</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#aafe54951cd6a51b6ad43abb5fd29696d" title="Gets whether this checkbox is checked or not.">CheckBox::IsChecked</a>()
-<a name="l00182"></a>00182         {
-<a name="l00183"></a>00183             <span class="keywordflow">return</span> Checked;
-<a name="l00184"></a>00184         }
-<a name="l00185"></a>00185 
-<a name="l00186"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a83801877bb5b9de0f61895dabe4d0c62">00186</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a83801877bb5b9de0f61895dabe4d0c62" title="Manually check or uncheck this checkbox.">CheckBox::ManualCheck</a>(<span class="keywordtype">bool</span> Check)
-<a name="l00187"></a>00187         {
-<a name="l00188"></a>00188             <span class="keywordflow">if</span>(Checked==Check)
-<a name="l00189"></a>00189                 <span class="keywordflow">return</span>;
-<a name="l00190"></a>00190             Checked = Check;
-<a name="l00191"></a>00191             <span class="keywordflow">if</span>(Checked)
-<a name="l00192"></a>00192             {
-<a name="l00193"></a>00193                 <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(CheckedSet);
-<a name="l00194"></a>00194             }<span class="keywordflow">else</span>{
-<a name="l00195"></a>00195                 <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(UncheckedSet);
-<a name="l00196"></a>00196             }
-<a name="l00197"></a>00197         }
-<a name="l00198"></a>00198 
-<a name="l00199"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a720b1c4a1f4289b81204ed48016caf9e">00199</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a720b1c4a1f4289b81204ed48016caf9e" title="Sets the text label to be displayed with this checkbox.">CheckBox::SetLabelText</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; LabelText)
-<a name="l00200"></a>00200         {
-<a name="l00201"></a>00201             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43" title="Sets the text displayed within the caption.">SetText</a>(LabelText);
-<a name="l00202"></a>00202         }
-<a name="l00203"></a>00203 
-<a name="l00204"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a842ef69f568681a4e3b50d1b411467f6">00204</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a842ef69f568681a4e3b50d1b411467f6" title="Gets the currently set label being displayed with this checkbox.">CheckBox::GetLabelText</a>()
-<a name="l00205"></a>00205         {
-<a name="l00206"></a>00206             <span class="keywordflow">return</span> Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79" title="Gets the text displayed within the caption.">GetText</a>();
-<a name="l00207"></a>00207         }
-<a name="l00208"></a>00208 
-<a name="l00209"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a48a0deb7a6bbb25185396fe63c864ac5">00209</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a48a0deb7a6bbb25185396fe63c864ac5" title="Sets the unchecked status sprite and an optional unchecked hovered sprite.">CheckBox::SetUncheckedSprite</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Unchecked, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Hovered)
-<a name="l00210"></a>00210         {
-<a name="l00211"></a>00211             UncheckedSet.first = Unchecked;
-<a name="l00212"></a>00212             UncheckedSet.second = Hovered;
-<a name="l00213"></a>00213             <span class="comment">//UncheckedNorm = Unchecked;</span>
-<a name="l00214"></a>00214             <span class="comment">//UncheckedHovered = Hovered;</span>
-<a name="l00215"></a>00215             <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(UncheckedSet);
-<a name="l00216"></a>00216         }
-<a name="l00217"></a>00217 
-<a name="l00218"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8f53b9129268f6d75d3f6539b11222df">00218</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8f53b9129268f6d75d3f6539b11222df" title="Sets the checked status sprite and an optional checked hovered sprite.">CheckBox::SetCheckedSprite</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Checked, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Hovered)
-<a name="l00219"></a>00219         {
-<a name="l00220"></a>00220             CheckedSet.first = Checked;
-<a name="l00221"></a>00221             CheckedSet.second = Hovered;
-<a name="l00222"></a>00222             <span class="comment">//CheckedNorm = Checked;</span>
-<a name="l00223"></a>00223             <span class="comment">//CheckedHovered = Hovered;</span>
-<a name="l00224"></a>00224         }
-<a name="l00225"></a>00225 
-<a name="l00226"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65">00226</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65" title="Sets the relative position of this checkbox.">CheckBox::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00227"></a>00227         {
-<a name="l00228"></a>00228             RelPosition = Position;
-<a name="l00229"></a>00229             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#aff2d96a45c88627098ac0b902059bfc3" title="Sets the relative top left position of this button.">SetPosition</a>(Position);
-<a name="l00230"></a>00230 
-<a name="l00231"></a>00231             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Adjusted = Position;
-<a name="l00232"></a>00232             Adjusted.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>+=Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6836b68da28da089584dd02547674286" title="Gets the relative size of this button.">GetSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
-<a name="l00233"></a>00233             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1db8c2388e76c0cf2d4c017ec44ce6b1" title="Sets the relative top left position of this caption.">SetPosition</a>(Adjusted);
-<a name="l00234"></a>00234         }
-<a name="l00235"></a>00235 
-<a name="l00236"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#afa566e7ad9bd33354a76e4ea964e85bf">00236</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#afa566e7ad9bd33354a76e4ea964e85bf" title="Sets the pixel position of this checkbox.">CheckBox::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00237"></a>00237         {
-<a name="l00238"></a>00238             RelPosition = Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00239"></a>00239             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad7218bce5dda1c0e0bf91a83feaae47e" title="Sets the top left position of this button in pixels.">SetActualPosition</a>(Position);
-<a name="l00240"></a>00240 
-<a name="l00241"></a>00241             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Adjusted = Position;
-<a name="l00242"></a>00242             Adjusted.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>+=Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a19adecf3f260923b07016347623dc33e" title="Gets the size of this button in pixels.">GetActualSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
-<a name="l00243"></a>00243             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7360c698bc7a0aaa365739ccb0100d8d" title="Sets the top left position of this caption in pixels.">SetActualPosition</a>(Adjusted);
+<a name="l00063"></a>00063             Type = Widget::W_CheckBox;
+<a name="l00064"></a>00064             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00065"></a>00065             <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> BoxRect, LabelRect;
+<a name="l00066"></a>00066             <span class="keywordflow">if</span>(Rect.Relative)
+<a name="l00067"></a>00067             {
+<a name="l00068"></a>00068                 RelPosition = Rect.Position;
+<a name="l00069"></a>00069                 RelSize = Rect.Size;
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071                 BoxRect.Position = Rect.Position;
+<a name="l00072"></a>00072                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = (Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00073"></a>00073                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00074"></a>00074                 BoxRect.Relative = Rect.Relative;
+<a name="l00075"></a>00075             }<span class="keywordflow">else</span>{
+<a name="l00076"></a>00076                 RelPosition = Rect.Position / WinDim;
+<a name="l00077"></a>00077                 RelSize = Rect.Size / WinDim;
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079                 BoxRect.Position = Rect.Position;
+<a name="l00080"></a>00080                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00081"></a>00081                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00082"></a>00082                 BoxRect.Relative = Rect.Relative;
+<a name="l00083"></a>00083             }
+<a name="l00084"></a>00084             LabelRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00085"></a>00085             LabelRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00086"></a>00086             LabelRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00087"></a>00087             LabelRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00088"></a>00088             LabelRect.Relative = Rect.Relative;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090             Box = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name+<span class="stringliteral">&quot;CB&quot;</span>,BoxRect,ParentLayer);
+<a name="l00091"></a>00091             Label = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>(Name+<span class="stringliteral">&quot;CM&quot;</span>,LabelRect,LineHeight,LabelText,ParentLayer);
+<a name="l00092"></a>00092             SubRenderables[0] = RenderablePair(Box,NULL);
+<a name="l00093"></a>00093             SubRenderables[1] = RenderablePair(Label,NULL);
+<a name="l00094"></a>00094         }
+<a name="l00095"></a>00095 
+<a name="l00096"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#aedc495e50db3adf0ed51b3c28107af3f">00096</a>         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a818afe38244e1cd196c65bf36bf1719a" title="Class constructor.">CheckBox::CheckBox</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a>, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; LabelText, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00097"></a>00097             : <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,PLayer),
+<a name="l00098"></a>00098               GlyphIndex(Glyph),
+<a name="l00099"></a>00099               Checked(false),
+<a name="l00100"></a>00100               CheckLock(true)
+<a name="l00101"></a>00101         {
+<a name="l00102"></a>00102             Type = Widget::W_CheckBox;
+<a name="l00103"></a>00103             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00104"></a>00104             <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a> BoxRect, LabelRect;
+<a name="l00105"></a>00105             <span class="keywordflow">if</span>(Rect.Relative)
+<a name="l00106"></a>00106             {
+<a name="l00107"></a>00107                 RelPosition = Rect.Position;
+<a name="l00108"></a>00108                 RelSize = Rect.Size;
+<a name="l00109"></a>00109 
+<a name="l00110"></a>00110                 BoxRect.Position = Rect.Position;
+<a name="l00111"></a>00111                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = (Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00112"></a>00112                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00113"></a>00113                 BoxRect.Relative = Rect.Relative;
+<a name="l00114"></a>00114             }<span class="keywordflow">else</span>{
+<a name="l00115"></a>00115                 RelPosition = Rect.Position / WinDim;
+<a name="l00116"></a>00116                 RelSize = Rect.Size / WinDim;
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118                 BoxRect.Position = Rect.Position;
+<a name="l00119"></a>00119                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00120"></a>00120                 BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00121"></a>00121                 BoxRect.Relative = Rect.Relative;
+<a name="l00122"></a>00122             }
+<a name="l00123"></a>00123             LabelRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00124"></a>00124             LabelRect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00125"></a>00125             LabelRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - BoxRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00126"></a>00126             LabelRect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00127"></a>00127             LabelRect.Relative = Rect.Relative;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129             Box = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name+<span class="stringliteral">&quot;CB&quot;</span>,BoxRect,ParentLayer);
+<a name="l00130"></a>00130             Label = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>(Name+<span class="stringliteral">&quot;CM&quot;</span>,LabelRect,Glyph,LabelText,ParentLayer);
+<a name="l00131"></a>00131             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a32580e1c8fee300be0f2d72e2b863fb0" title="Adds a renderable as a subrenderable to this widget.">AddSubRenderable</a>(0,RenderablePair(Box,NULL));
+<a name="l00132"></a>00132             <a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a32580e1c8fee300be0f2d72e2b863fb0" title="Adds a renderable as a subrenderable to this widget.">AddSubRenderable</a>(1,RenderablePair(Label,NULL));
+<a name="l00133"></a>00133         }
+<a name="l00134"></a>00134 
+<a name="l00135"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a3881a44a1149755ea60e6329ad852b3b">00135</a>         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a3881a44a1149755ea60e6329ad852b3b" title="Class destructor.">CheckBox::~CheckBox</a>()
+<a name="l00136"></a>00136         {
+<a name="l00137"></a>00137             <span class="keyword">delete</span> Box;
+<a name="l00138"></a>00138             <span class="keyword">delete</span> Label;
+<a name="l00139"></a>00139         }
+<a name="l00140"></a>00140 
+<a name="l00141"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a">00141</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">CheckBox::SetSpriteSet</a>(std::pair&lt;std::string,std::string&gt;&amp; SpriteSet)
+<a name="l00142"></a>00142         {
+<a name="l00143"></a>00143             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728" title="Sets the background image(if provided in the atlas) of the renderable.">SetBackgroundSprite</a>(SpriteSet.first);
+<a name="l00144"></a>00144             <span class="keywordflow">if</span>(!SpriteSet.second.empty())
+<a name="l00145"></a>00145                 Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10" title="Sets an alternate background image that will be applied when the mouse is over this button...">SetHoveredSprite</a>(SpriteSet.second);
+<a name="l00146"></a>00146         }
+<a name="l00147"></a>00147 
+<a name="l00148"></a>00148         <span class="comment">/*void CheckBox::SetUncheckedSprites()</span>
+<a name="l00149"></a>00149 <span class="comment">        {</span>
+<a name="l00150"></a>00150 <span class="comment">            Box-&gt;SetBackgroundSprite(UncheckedNorm);</span>
+<a name="l00151"></a>00151 <span class="comment">            if(!UncheckedHovered.empty())</span>
+<a name="l00152"></a>00152 <span class="comment">                Box-&gt;SetHoveredSprite(UncheckedHovered);</span>
+<a name="l00153"></a>00153 <span class="comment">        }</span>
+<a name="l00154"></a>00154 <span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">        void CheckBox::SetCheckedSprites()</span>
+<a name="l00156"></a>00156 <span class="comment">        {</span>
+<a name="l00157"></a>00157 <span class="comment">            Box-&gt;SetBackgroundSprite(CheckedNorm);</span>
+<a name="l00158"></a>00158 <span class="comment">            if(!CheckedHovered.empty())</span>
+<a name="l00159"></a>00159 <span class="comment">                Box-&gt;SetHoveredSprite(CheckedHovered);</span>
+<a name="l00160"></a>00160 <span class="comment">        }*/</span>
+<a name="l00161"></a>00161 
+<a name="l00162"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a1dcc1684b11c57f2c47153836ffe7c0a">00162</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a1dcc1684b11c57f2c47153836ffe7c0a" title="Child specific update method.">CheckBox::UpdateImpl</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00163"></a>00163         {
+<a name="l00164"></a>00164             <span class="keywordflow">if</span>(HoveredButton)
+<a name="l00165"></a>00165             {
+<a name="l00166"></a>00166                 <a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> State = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a7a97f853156573de3648f3315e2283bb" title="Gets the button state of the provided mouse button ID.">InputQueryTool::GetMouseButtonState</a>(1);
+<a name="l00167"></a>00167                 <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a9150dbdf88f3013383a72366904cb749">MetaCode::BUTTON_PRESSING</a> == State)
+<a name="l00168"></a>00168                 {
+<a name="l00169"></a>00169                     CheckLock = <span class="keyword">false</span>;
+<a name="l00170"></a>00170                 }
+<a name="l00171"></a>00171                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="classMezzanine_1_1MetaCode.html#a65b6d86ef846369bd8f3fd944a455fd0a07ca860b5b6b505052022d842f155080">MetaCode::BUTTON_LIFTING</a> &amp;&amp; !CheckLock)
+<a name="l00172"></a>00172                 {
+<a name="l00173"></a>00173                     Checked = !Checked;
+<a name="l00174"></a>00174                     <span class="keywordflow">if</span>(Checked)
+<a name="l00175"></a>00175                     {
+<a name="l00176"></a>00176                         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(CheckedSet);
+<a name="l00177"></a>00177                     }<span class="keywordflow">else</span>{
+<a name="l00178"></a>00178                         <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(UncheckedSet);
+<a name="l00179"></a>00179                     }
+<a name="l00180"></a>00180                     CheckLock = <span class="keyword">true</span>;
+<a name="l00181"></a>00181                 }
+<a name="l00182"></a>00182             }
+<a name="l00183"></a>00183         }
+<a name="l00184"></a>00184 
+<a name="l00185"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a60b8cce148408b94f7ec3942b2ddcedd">00185</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a60b8cce148408b94f7ec3942b2ddcedd" title="Child specific visibility method.">CheckBox::SetVisibleImpl</a>(<span class="keywordtype">bool</span> visible)
+<a name="l00186"></a>00186         {
+<a name="l00187"></a>00187             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca" title="Sets the visibility of this renderable.">SetVisible</a>(visible);
+<a name="l00188"></a>00188             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca" title="Sets the visibility of this renderable.">SetVisible</a>(visible);
+<a name="l00189"></a>00189         }
+<a name="l00190"></a>00190 
+<a name="l00191"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a6a9f31c4bd0915b7405c10b8bfe6710a">00191</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a6a9f31c4bd0915b7405c10b8bfe6710a" title="Child specific mouse hover method.">CheckBox::CheckMouseHoverImpl</a>()
+<a name="l00192"></a>00192         {
+<a name="l00193"></a>00193             <span class="keywordflow">if</span>(Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09" title="Determines whether the mouse is over this renderable.">CheckMouseHover</a>())
+<a name="l00194"></a>00194             {
+<a name="l00195"></a>00195                 HoveredButton = Box;
+<a name="l00196"></a>00196                 <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00197"></a>00197             }
+<a name="l00198"></a>00198             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00199"></a>00199         }
+<a name="l00200"></a>00200 
+<a name="l00201"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#aafe54951cd6a51b6ad43abb5fd29696d">00201</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#aafe54951cd6a51b6ad43abb5fd29696d" title="Gets whether this checkbox is checked or not.">CheckBox::IsChecked</a>()
+<a name="l00202"></a>00202         {
+<a name="l00203"></a>00203             <span class="keywordflow">return</span> Checked;
+<a name="l00204"></a>00204         }
+<a name="l00205"></a>00205 
+<a name="l00206"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a83801877bb5b9de0f61895dabe4d0c62">00206</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a83801877bb5b9de0f61895dabe4d0c62" title="Manually check or uncheck this checkbox.">CheckBox::ManualCheck</a>(<span class="keywordtype">bool</span> Check)
+<a name="l00207"></a>00207         {
+<a name="l00208"></a>00208             <span class="keywordflow">if</span>(Checked==Check)
+<a name="l00209"></a>00209                 <span class="keywordflow">return</span>;
+<a name="l00210"></a>00210             Checked = Check;
+<a name="l00211"></a>00211             <span class="keywordflow">if</span>(Checked)
+<a name="l00212"></a>00212             {
+<a name="l00213"></a>00213                 <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(CheckedSet);
+<a name="l00214"></a>00214             }<span class="keywordflow">else</span>{
+<a name="l00215"></a>00215                 <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(UncheckedSet);
+<a name="l00216"></a>00216             }
+<a name="l00217"></a>00217         }
+<a name="l00218"></a>00218 
+<a name="l00219"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a720b1c4a1f4289b81204ed48016caf9e">00219</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a720b1c4a1f4289b81204ed48016caf9e" title="Sets the text label to be displayed with this checkbox.">CheckBox::SetLabelText</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; LabelText)
+<a name="l00220"></a>00220         {
+<a name="l00221"></a>00221             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43" title="Sets the text displayed within the caption.">SetText</a>(LabelText);
+<a name="l00222"></a>00222         }
+<a name="l00223"></a>00223 
+<a name="l00224"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a842ef69f568681a4e3b50d1b411467f6">00224</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a842ef69f568681a4e3b50d1b411467f6" title="Gets the currently set label being displayed with this checkbox.">CheckBox::GetLabelText</a>()
+<a name="l00225"></a>00225         {
+<a name="l00226"></a>00226             <span class="keywordflow">return</span> Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79" title="Gets the text displayed within the caption.">GetText</a>();
+<a name="l00227"></a>00227         }
+<a name="l00228"></a>00228 
+<a name="l00229"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a48a0deb7a6bbb25185396fe63c864ac5">00229</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a48a0deb7a6bbb25185396fe63c864ac5" title="Sets the unchecked status sprite and an optional unchecked hovered sprite.">CheckBox::SetUncheckedSprite</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Unchecked, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Hovered)
+<a name="l00230"></a>00230         {
+<a name="l00231"></a>00231             UncheckedSet.first = Unchecked;
+<a name="l00232"></a>00232             UncheckedSet.second = Hovered;
+<a name="l00233"></a>00233             <span class="comment">//UncheckedNorm = Unchecked;</span>
+<a name="l00234"></a>00234             <span class="comment">//UncheckedHovered = Hovered;</span>
+<a name="l00235"></a>00235             <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8a32068338e6fedcf5d53d3eae5d909a" title="Sets both the background and hovered sprites of a set.">SetSpriteSet</a>(UncheckedSet);
+<a name="l00236"></a>00236         }
+<a name="l00237"></a>00237 
+<a name="l00238"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8f53b9129268f6d75d3f6539b11222df">00238</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a8f53b9129268f6d75d3f6539b11222df" title="Sets the checked status sprite and an optional checked hovered sprite.">CheckBox::SetCheckedSprite</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Checked, <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Hovered)
+<a name="l00239"></a>00239         {
+<a name="l00240"></a>00240             CheckedSet.first = Checked;
+<a name="l00241"></a>00241             CheckedSet.second = Hovered;
+<a name="l00242"></a>00242             <span class="comment">//CheckedNorm = Checked;</span>
+<a name="l00243"></a>00243             <span class="comment">//CheckedHovered = Hovered;</span>
 <a name="l00244"></a>00244         }
 <a name="l00245"></a>00245 
-<a name="l00246"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a4fb7dc586245da0cdcfc789f8a1c83a3">00246</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a4fb7dc586245da0cdcfc789f8a1c83a3" title="Sets the relative size of this checkbox.">CheckBox::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00246"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65">00246</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65" title="Sets the relative position of this checkbox.">CheckBox::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00247"></a>00247         {
-<a name="l00248"></a>00248             RelSize = Size;
-<a name="l00249"></a>00249             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00250"></a>00250             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a2a654b05e925924d5842f36b2a486af5" title="Sets the relative size of this button.">SetSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00251"></a>00251             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ab0e51b3dba56d6a9612ff41a1df9e1" title="Sets the relative size of this caption.">SetSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - ((Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>),Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00252"></a>00252             this-&gt;<a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65" title="Sets the relative position of this checkbox.">SetPosition</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">GetPosition</a>());
-<a name="l00253"></a>00253         }
-<a name="l00254"></a>00254 
-<a name="l00255"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a063a9c0ab24ddc4332711a7045e2786d">00255</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a063a9c0ab24ddc4332711a7045e2786d" title="Sets the pixel size of this checkbox.">CheckBox::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00256"></a>00256         {
-<a name="l00257"></a>00257             RelSize = Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00258"></a>00258             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6a19f0e460a63e13f8c9bda3e18fcc96" title="Sets the size of this button in pixels.">SetActualSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00259"></a>00259             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#afef14a7641a40656b1bb6d3ae1c820ca" title="Sets the size of this caption in pixels.">SetActualSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
-<a name="l00260"></a>00260             this-&gt;<a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#afa566e7ad9bd33354a76e4ea964e85bf" title="Sets the pixel position of this checkbox.">SetActualPosition</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>());
-<a name="l00261"></a>00261         }
-<a name="l00262"></a>00262 
-<a name="l00263"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ac7754437c455f40aaf6d4bca4cb0c7a9">00263</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ac7754437c455f40aaf6d4bca4cb0c7a9" title="Updates the dimensions of this widget to match those of the new screen size.">CheckBox::UpdateDimensions</a>()
-<a name="l00264"></a>00264         {
-<a name="l00265"></a>00265             WidgetResult Result = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d" title="Updates a widgets position as needed.">ViewportUpdateTool::UpdateWidget</a>(<span class="keyword">this</span>);
-<a name="l00266"></a>00266             RelPosition = Result.first / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
-<a name="l00267"></a>00267             RelSize = Result.second / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
-<a name="l00268"></a>00268             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a65764b075c03b2a6eb17039a73a260ce" title="Updates the dimensions of this button to match those of the new screen size.">UpdateDimensions</a>();
-<a name="l00269"></a>00269             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7" title="Updates the dimensions of this caption to match those of the new screen size.">UpdateDimensions</a>();
-<a name="l00270"></a>00270             <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65" title="Sets the relative position of this checkbox.">SetPosition</a>(RelPosition);
-<a name="l00271"></a>00271         }
-<a name="l00272"></a>00272 
-<a name="l00273"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a08fcd8aa8c6a521f4f08dc3ae6984936">00273</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a08fcd8aa8c6a521f4f08dc3ae6984936" title="Gets the Button this checkbox is based on.">CheckBox::GetCheckBoxButton</a>()
-<a name="l00274"></a>00274         {
-<a name="l00275"></a>00275             <span class="keywordflow">return</span> Box;
-<a name="l00276"></a>00276         }
-<a name="l00277"></a>00277 
-<a name="l00278"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#adde59a08d00bad4085aad204d29d48d1">00278</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#adde59a08d00bad4085aad204d29d48d1" title="Gets the label for this checkbox.">CheckBox::GetLabel</a>()
-<a name="l00279"></a>00279         {
-<a name="l00280"></a>00280             <span class="keywordflow">return</span> Label;
+<a name="l00248"></a>00248             RelPosition = Position;
+<a name="l00249"></a>00249             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674" title="Sets the relative top left position of this renderable.">SetPosition</a>(Position);
+<a name="l00250"></a>00250 
+<a name="l00251"></a>00251             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Adjusted = Position;
+<a name="l00252"></a>00252             Adjusted.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>+=Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a2deccb0b2e08116b01941afdd4eb7475" title="Gets the relative size of this renderable.">GetSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00253"></a>00253             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674" title="Sets the relative top left position of this renderable.">SetPosition</a>(Adjusted);
+<a name="l00254"></a>00254         }
+<a name="l00255"></a>00255 
+<a name="l00256"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#afa566e7ad9bd33354a76e4ea964e85bf">00256</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#afa566e7ad9bd33354a76e4ea964e85bf" title="Sets the pixel position of this checkbox.">CheckBox::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
+<a name="l00257"></a>00257         {
+<a name="l00258"></a>00258             RelPosition = Position / ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00259"></a>00259             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb" title="Sets the top left position of this renderable in pixels.">SetActualPosition</a>(Position);
+<a name="l00260"></a>00260 
+<a name="l00261"></a>00261             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Adjusted = Position;
+<a name="l00262"></a>00262             Adjusted.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>+=Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b" title="Gets the size of this renderable in pixels.">GetActualSize</a>().<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00263"></a>00263             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb" title="Sets the top left position of this renderable in pixels.">SetActualPosition</a>(Adjusted);
+<a name="l00264"></a>00264         }
+<a name="l00265"></a>00265 
+<a name="l00266"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a4fb7dc586245da0cdcfc789f8a1c83a3">00266</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a4fb7dc586245da0cdcfc789f8a1c83a3" title="Sets the relative size of this checkbox.">CheckBox::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00267"></a>00267         {
+<a name="l00268"></a>00268             RelSize = Size;
+<a name="l00269"></a>00269             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00270"></a>00270             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c" title="Sets the relative size of this renderable.">SetSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00271"></a>00271             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c" title="Sets the relative size of this renderable.">SetSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - ((Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) / WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>),Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00272"></a>00272             this-&gt;<a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65" title="Sets the relative position of this checkbox.">SetPosition</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#ab498fab9f2b18236a301faa0aed9cb0d" title="Gets the relative position of this widget.">GetPosition</a>());
+<a name="l00273"></a>00273         }
+<a name="l00274"></a>00274 
+<a name="l00275"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a063a9c0ab24ddc4332711a7045e2786d">00275</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a063a9c0ab24ddc4332711a7045e2786d" title="Sets the pixel size of this checkbox.">CheckBox::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00276"></a>00276         {
+<a name="l00277"></a>00277             RelSize = Size / ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
+<a name="l00278"></a>00278             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this renderable in pixels.">SetActualSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00279"></a>00279             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this renderable in pixels.">SetActualSize</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> - Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>));
+<a name="l00280"></a>00280             this-&gt;<a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#afa566e7ad9bd33354a76e4ea964e85bf" title="Sets the pixel position of this checkbox.">SetActualPosition</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#afa615f27b3b95d4f847f5d779371209a" title="Sets the pixel position of this widget.">GetActualPosition</a>());
 <a name="l00281"></a>00281         }
-<a name="l00282"></a>00282     }<span class="comment">//UT</span>
-<a name="l00283"></a>00283 }<span class="comment">//Mezzanine</span>
-<a name="l00284"></a>00284 
-<a name="l00285"></a>00285 <span class="preprocessor">#endif</span>
+<a name="l00282"></a>00282 
+<a name="l00283"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ac7754437c455f40aaf6d4bca4cb0c7a9">00283</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ac7754437c455f40aaf6d4bca4cb0c7a9" title="Updates the dimensions of this widget to match those of the new screen size.">CheckBox::UpdateDimensions</a>()
+<a name="l00284"></a>00284         {
+<a name="l00285"></a>00285             WidgetResult Result = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d" title="Updates a widgets position as needed.">ViewportUpdateTool::UpdateWidget</a>(<span class="keyword">this</span>);
+<a name="l00286"></a>00286             RelPosition = Result.first / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
+<a name="l00287"></a>00287             RelSize = Result.second / <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>();
+<a name="l00288"></a>00288             Box-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c" title="Updates the dimensions of this renderable to match those of the new screen size.">UpdateDimensions</a>();
+<a name="l00289"></a>00289             Label-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7" title="Updates the dimensions of this caption to match those of the new screen size.">UpdateDimensions</a>();
+<a name="l00290"></a>00290             <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#ab12deffc753623b224191ee294626a65" title="Sets the relative position of this checkbox.">SetPosition</a>(RelPosition);
+<a name="l00291"></a>00291         }
+<a name="l00292"></a>00292 
+<a name="l00293"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a08fcd8aa8c6a521f4f08dc3ae6984936">00293</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#a08fcd8aa8c6a521f4f08dc3ae6984936" title="Gets the Button this checkbox is based on.">CheckBox::GetCheckBoxButton</a>()
+<a name="l00294"></a>00294         {
+<a name="l00295"></a>00295             <span class="keywordflow">return</span> Box;
+<a name="l00296"></a>00296         }
+<a name="l00297"></a>00297 
+<a name="l00298"></a><a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#adde59a08d00bad4085aad204d29d48d1">00298</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="classMezzanine_1_1UI_1_1CheckBox.html#adde59a08d00bad4085aad204d29d48d1" title="Gets the label for this checkbox.">CheckBox::GetLabel</a>()
+<a name="l00299"></a>00299         {
+<a name="l00300"></a>00300             <span class="keywordflow">return</span> Label;
+<a name="l00301"></a>00301         }
+<a name="l00302"></a>00302     }<span class="comment">//UT</span>
+<a name="l00303"></a>00303 }<span class="comment">//Mezzanine</span>
+<a name="l00304"></a>00304 
+<a name="l00305"></a>00305 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -354,7 +374,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -364,6 +384,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

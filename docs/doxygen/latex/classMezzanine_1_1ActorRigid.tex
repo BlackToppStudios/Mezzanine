@@ -14,18 +14,20 @@ This is the actor class for Rigid Objects.
 Inheritance diagram for Mezzanine::ActorRigid:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.000000cm]{classMezzanine_1_1ActorRigid}
+\includegraphics[height=5.000000cm]{classMezzanine_1_1ActorRigid}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1ActorRigid_a6ac6b311067103713cf6cb41fe4810c7}{ActorRigid} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&mass, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&file, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&group)
+\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorRigid_a8898e2d624ca89e3bc27dadfbc78560b}{$\sim$ActorRigid} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_a68827280395bc3b9e0266710ec44247d}{\_\-NotifyCollisionState} (\hyperlink{classMezzanine_1_1Collision}{Collision} $\ast$Col, const \hyperlink{classMezzanine_1_1Collision_a24094c597061743dcd571f36077f4d19}{Collision::CollisionState} \&State)
 \item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_a714d836a18ddb4de65bec5afdfdbb81c}{\_\-Update} ()
 \item 
-\hyperlink{classMezzanine_1_1ActorRigid_ad528a1f2c563dc121e38524f5412e182}{ActorRigid} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&mass, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&file, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&group)
-\begin{DoxyCompactList}\small\item\em Descriptive constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_a5934a8751b9ec19dd2cd9327ce651d59}{AddToWorld} ()
 \item 
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1ActorRigid_ac2b338b867bfd7d2e322a834e308a957}{GetAngularMovementFactor} () const 
@@ -36,21 +38,40 @@ virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Gets the current linear factors being applied to this actor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings}{ActorRigidPhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorRigid_a6ed901638c88e4b9e09605152e11d56e}{GetPhysicsSettings} () const 
 \begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this actor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}{GetType} () const 
+virtual \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1ActorRigid_afc18444d5f13990a3458455c217f58cd}{GetType} () const 
 \item 
+\hypertarget{classMezzanine_1_1ActorRigid_a935069f346c516e07f3aa7a89388dea0}{
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorRigid_a935069f346c516e07f3aa7a89388dea0}{GraphicsSettingsSerializableName} () const }
+\label{classMezzanine_1_1ActorRigid_a935069f346c516e07f3aa7a89388dea0}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMezzanine_1_1ActorBase_a636a0dbf78907d565d4cabd994442637}{ActorBase::GraphicsSettingsSerializableName() const}; \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorRigid_ac91177e6d50052f97997a4dfef975a59}{
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorRigid_ac91177e6d50052f97997a4dfef975a59}{PhysicsSettingsSerializableName} () const }
+\label{classMezzanine_1_1ActorRigid_ac91177e6d50052f97997a4dfef975a59}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMezzanine_1_1ActorBase_a7a18ac81a996e2d68057223ebbc7959c}{ActorBase::PhysicsSettingsSerializableName() const}; \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigid_a1b73b6506648f874e7962148d21feecb}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigid_ac64f6a903b0741043d2a5995b8ade39f}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_a5017e2809d6dc2516b3675748ce80b2e}{RemoveFromWorld} ()
 \item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_ab68facc031fc3212f4169d2b93a72378}{SetAngularMovementFactor} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Factor)
 \begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_a0dc1820d0fa2d1128b03149da025f40f}{SetLinearMovementFactor} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Factor)
-\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1ActorRigid_a8898e2d624ca89e3bc27dadfbc78560b}{$\sim$ActorRigid} ()
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Restricts movement on the axis or axies of your choice. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorRigid_a9f4272bae46df5bd1dfed8753cd19dc6}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 virtual void \hyperlink{classMezzanine_1_1ActorRigid_a44a1c393e69456fb7fa79affe1684153}{CreateRigidObject} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&pmass)
-\begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a rigid object for the actor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorRigid_ad640944179df98fbaf5ecf5e2ed5ba2c}{ThrowSerialError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Fail) const 
+\begin{DoxyCompactList}\small\item\em a Helper function that assembles strings and throws an exception \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -77,10 +98,10 @@ Definition at line 59 of file actorrigid.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1ActorRigid_ad528a1f2c563dc121e38524f5412e182}{
+\hypertarget{classMezzanine_1_1ActorRigid_a6ac6b311067103713cf6cb41fe4810c7}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!ActorRigid@{ActorRigid}}
 \index{ActorRigid@{ActorRigid}!Mezzanine::ActorRigid@{Mezzanine::ActorRigid}}
-\paragraph[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky Mezzanine Mezzanine src actorrigid cpp home sqeaky Mezzanine Mezzanine src actorrigid cpp Mezzanine::ActorRigid::ActorRigid (
+\paragraph[{ActorRigid}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky Mezzanine Mezzanine src actorrigid cpp home sqeaky Mezzanine Mezzanine src actorrigid cpp home sqeaky Mezzanine Mezzanine src actorrigid cpp Mezzanine::ActorRigid::ActorRigid (
 \begin{DoxyParamCaption}
 \item[{const {\bf Real} \&}]{mass, }
 \item[{const {\bf String} \&}]{name, }
@@ -88,7 +109,7 @@ Definition at line 59 of file actorrigid.h.
 \item[{const {\bf String} \&}]{group}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1ActorRigid_ad528a1f2c563dc121e38524f5412e182}
+\label{classMezzanine_1_1ActorRigid_a6ac6b311067103713cf6cb41fe4810c7}
 
 
 Descriptive constructor. 
@@ -107,7 +128,7 @@ This constructor contains the basic information needed to make a Rigid Object. \
 \end{DoxyParams}
 
 
-Definition at line 64 of file actorrigid.cpp.
+Definition at line 66 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a8898e2d624ca89e3bc27dadfbc78560b}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!$\sim$ActorRigid@{$\sim$ActorRigid}}
@@ -124,7 +145,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 78 of file actorrigid.cpp.
+Definition at line 80 of file actorrigid.cpp.
 
 
 
@@ -142,7 +163,7 @@ Definition at line 78 of file actorrigid.cpp.
  
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000001}{Todo}]Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies. \end{Desc}
+\item[\hyperlink{todo__todo000002}{Todo}]Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies. \end{Desc}
 
 
 
@@ -151,7 +172,7 @@ Reimplemented from \hyperlink{classMezzanine_1_1WorldObject_aacf9e82bfb2f25ee309
 
 
 
-Definition at line 143 of file actorrigid.cpp.
+Definition at line 171 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a714d836a18ddb4de65bec5afdfdbb81c}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!\_\-Update@{\_\-Update}}
@@ -168,7 +189,7 @@ Implements \hyperlink{classMezzanine_1_1ActorBase_a8f5a36a6981f1249dbabab318531a
 
 
 
-Definition at line 140 of file actorrigid.cpp.
+Definition at line 148 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a5934a8751b9ec19dd2cd9327ce651d59}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!AddToWorld@{AddToWorld}}
@@ -185,7 +206,7 @@ Implements \hyperlink{classMezzanine_1_1ActorBase_abe739a46f248a7ba257becfb560d9
 
 
 
-Definition at line 121 of file actorrigid.cpp.
+Definition at line 123 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a44a1c393e69456fb7fa79affe1684153}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!CreateRigidObject@{CreateRigidObject}}
@@ -208,7 +229,7 @@ Creates a rigid object to be placed in the physics world later. \par
 \end{DoxyParams}
 
 
-Definition at line 86 of file actorrigid.cpp.
+Definition at line 88 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_ac2b338b867bfd7d2e322a834e308a957}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetAngularMovementFactor@{GetAngularMovementFactor}}
@@ -228,7 +249,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the factor
 \end{DoxyReturn}
 
 
-Definition at line 115 of file actorrigid.cpp.
+Definition at line 117 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_aec84029880e2cebf3cc154ada813a372}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetBulletObject@{GetBulletObject}}
@@ -248,7 +269,7 @@ Currently this returns a pointer to a btRigidBody.
 \end{DoxyReturn}
 
 
-Definition at line 215 of file actorrigid.cpp.
+Definition at line 253 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_ac2577cc9bff31ad343d5e179acc95257}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetLinearMovementFactor@{GetLinearMovementFactor}}
@@ -268,7 +289,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the factor
 \end{DoxyReturn}
 
 
-Definition at line 109 of file actorrigid.cpp.
+Definition at line 111 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a6ed901638c88e4b9e09605152e11d56e}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetPhysicsSettings@{GetPhysicsSettings}}
@@ -292,17 +313,17 @@ Reimplemented from \hyperlink{classMezzanine_1_1WorldObject_ad845988a6ff31d0e7ce
 
 
 
-Definition at line 103 of file actorrigid.cpp.
+Definition at line 105 of file actorrigid.cpp.
 
-\hypertarget{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}{
+\hypertarget{classMezzanine_1_1ActorRigid_afc18444d5f13990a3458455c217f58cd}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!GetType@{GetType}}
 \index{GetType@{GetType}!Mezzanine::ActorRigid@{Mezzanine::ActorRigid}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldObjectType} Mezzanine::ActorRigid::GetType (
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::ActorRigid::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}
+\label{classMezzanine_1_1ActorRigid_afc18444d5f13990a3458455c217f58cd}
 Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
 
 \begin{DoxyReturn}{Returns}
@@ -310,11 +331,66 @@ Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instan
 \end{DoxyReturn}
  
 
-Implements \hyperlink{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}{Mezzanine::ActorBase}.
+Implements \hyperlink{classMezzanine_1_1ActorBase_a83f7356d743f1b59ea58aac6d7570901}{Mezzanine::ActorBase}.
 
 
 
-Definition at line 118 of file actorrigid.cpp.
+Definition at line 120 of file actorrigid.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigid_a1b73b6506648f874e7962148d21feecb}{
+\index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::ActorRigid@{Mezzanine::ActorRigid}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigid::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigid_a1b73b6506648f874e7962148d21feecb}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_a32c1aee35ce5b3ad6c64d3cfa34c4a2d}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 300 of file actorrigid.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigid_ac64f6a903b0741043d2a5995b8ade39f}{
+\index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::ActorRigid@{Mezzanine::ActorRigid}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigid::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigid_ac64f6a903b0741043d2a5995b8ade39f}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_ad3cb5ddfcd7abe2b39e690a8b6a79d47}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 269 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a5017e2809d6dc2516b3675748ce80b2e}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!RemoveFromWorld@{RemoveFromWorld}}
@@ -331,7 +407,31 @@ Implements \hyperlink{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d8
 
 
 
-Definition at line 127 of file actorrigid.cpp.
+Definition at line 129 of file actorrigid.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigid_a9f4272bae46df5bd1dfed8753cd19dc6}{
+\index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::ActorRigid@{Mezzanine::ActorRigid}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ActorRigid::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigid_a9f4272bae46df5bd1dfed8753cd19dc6}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}ActorRigid\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_af6f41bdc0932b99f82f317d27d8dc906}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 329 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_ab68facc031fc3212f4169d2b93a72378}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!SetAngularMovementFactor@{SetAngularMovementFactor}}
@@ -353,7 +453,7 @@ This function can lock or limit any and all axes you define. 0.0 means no angula
 \end{DoxyParams}
 
 
-Definition at line 112 of file actorrigid.cpp.
+Definition at line 114 of file actorrigid.cpp.
 
 \hypertarget{classMezzanine_1_1ActorRigid_a0dc1820d0fa2d1128b03149da025f40f}{
 \index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!SetLinearMovementFactor@{SetLinearMovementFactor}}
@@ -375,7 +475,33 @@ This function can lock or limit any and all axes you define. 0.0 means no linear
 \end{DoxyParams}
 
 
-Definition at line 106 of file actorrigid.cpp.
+Definition at line 108 of file actorrigid.cpp.
+
+\hypertarget{classMezzanine_1_1ActorRigid_ad640944179df98fbaf5ecf5e2ed5ba2c}{
+\index{Mezzanine::ActorRigid@{Mezzanine::ActorRigid}!ThrowSerialError@{ThrowSerialError}}
+\index{ThrowSerialError@{ThrowSerialError}!Mezzanine::ActorRigid@{Mezzanine::ActorRigid}}
+\paragraph[{ThrowSerialError}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorRigid::ThrowSerialError (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Fail}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorRigid_ad640944179df98fbaf5ecf5e2ed5ba2c}
+
+
+a Helper function that assembles strings and throws an exception 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Fail} & The item that failed. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1ActorBase_a24d196b9fc55048fb183a7920b5bbd3e}{Mezzanine::ActorBase}.
+
+
+
+Definition at line 260 of file actorrigid.cpp.
 
 
 

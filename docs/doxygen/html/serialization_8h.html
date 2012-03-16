@@ -61,7 +61,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>serialization.h File Reference</h1>  </div>
 </div>
@@ -69,7 +70,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>The interface for serialization.  
 <a href="#_details">More...</a></p>
-
+<div class="textblock"><code>#include &quot;datatypes.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="xml_8h_source.html">xml.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="xmldoc_8h_source.html">xmldoc.h</a>&quot;</code><br/>
+<code>#include &lt;ostream&gt;</code><br/>
+<code>#include &lt;memory&gt;</code><br/>
+</div>
 <p><a href="serialization_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
@@ -85,6 +91,21 @@ Namespaces</h2></td></tr>
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>The bulk of the engine components go in this namspace. </p>
 <br/></td></tr>
 </p>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#af7841a01c9f5e835029a9c70c0de0de5">Mezzanine::DeSerialize</a> (std::istream &amp;Stream, T &amp;Converted)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize the next xml tag in the stream into a specific in memory class instance.  <a href="#af7841a01c9f5e835029a9c70c0de0de5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73">Mezzanine::DeSerializeError</a> (const String &amp;FailedTo, const String &amp;ClassName, bool SOrD=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simply does some string concatenation, then throws an <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>.  <a href="#aec75a8a3369287cb02f331c62b32df73"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a21d2dc7a6ca76ae9b193118a215ba523">Mezzanine::Serialize</a> (std::ostream &amp;Stream, const T &amp;Converted, const String &amp;Indent=String(&quot;&quot;))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert any class that supports serialization or has a serializer to a string of chars in a stream.  <a href="#a21d2dc7a6ca76ae9b193118a215ba523"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ab061665515c8e8a8b09ee54d93612da1">Mezzanine::SerializeError</a> (const String &amp;FailedTo, const String &amp;ClassName, bool SOrD=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simply does some string concatenation, then throws an <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>.  <a href="#ab061665515c8e8a8b09ee54d93612da1"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ab855b02f8aecd53b0f876e20d6f04f05">Mezzanine::SloppyProtoSerialize</a> (const T &amp;Converted, xml::Node &amp;CurrentRoot)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to interface with a previous version of the serialization code.  <a href="#ab855b02f8aecd53b0f876e20d6f04f05"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The interface for serialization. </p>
@@ -97,7 +118,7 @@ Namespaces</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,6 +128,6 @@ Namespaces</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

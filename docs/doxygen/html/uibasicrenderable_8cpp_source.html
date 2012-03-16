@@ -107,31 +107,136 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;uibasicrenderable.h&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="keyword">namespace </span>Mezzanine
-<a name="l00049"></a>00049 {
-<a name="l00050"></a>00050     <span class="keyword">namespace </span>UI
-<a name="l00051"></a>00051     {
-<a name="l00052"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aace539a4a4bd0795543f152fd0f3d86c">00052</a>         <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aace539a4a4bd0795543f152fd0f3d86c" title="Class constructor.">BasicRenderable::BasicRenderable</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* parent)
-<a name="l00053"></a>00053             : Name(name),
-<a name="l00054"></a>00054               Parent(parent)
-<a name="l00055"></a>00055         {
-<a name="l00056"></a>00056             Manager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>();
-<a name="l00057"></a>00057         }
-<a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#af7b5ef0dc231b3e233ad892ce4c89320">00059</a>         <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#af7b5ef0dc231b3e233ad892ce4c89320" title="Class destructor.">BasicRenderable::~BasicRenderable</a>()
-<a name="l00060"></a>00060         {
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a1d3be8e827a562ade939383b4633ddb3">00063</a>         <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a1d3be8e827a562ade939383b4633ddb3" title="Gets the name of this renderable.">BasicRenderable::GetName</a>()<span class="keyword"> const</span>
-<a name="l00064"></a>00064 <span class="keyword">        </span>{
-<a name="l00065"></a>00065             <span class="keywordflow">return</span> Name;
-<a name="l00066"></a>00066         }
-<a name="l00067"></a>00067     }<span class="comment">//UI</span>
-<a name="l00068"></a>00068 }<span class="comment">//Mezzanine</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="keyword">namespace </span>Mezzanine
+<a name="l00051"></a>00051 {
+<a name="l00052"></a>00052     <span class="keyword">namespace </span>UI
+<a name="l00053"></a>00053     {
+<a name="l00054"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a31cabdbf187a8e038079aa88af536c6f">00054</a>         <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a31cabdbf187a8e038079aa88af536c6f" title="Class constructor.">BasicRenderable::BasicRenderable</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* Parent)
+<a name="l00055"></a>00055             : Name(name),
+<a name="l00056"></a>00056               ParentLayer(Parent),
+<a name="l00057"></a>00057               ParentWidget(NULL),
+<a name="l00058"></a>00058               Visible(true),
+<a name="l00059"></a>00059               Dirty(true),
+<a name="l00060"></a>00060               Priority(UI::RP_Medium)
+<a name="l00061"></a>00061         {
+<a name="l00062"></a>00062             Manager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>();
+<a name="l00063"></a>00063             PriAtlas = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>();
+<a name="l00064"></a>00064         }
+<a name="l00065"></a>00065 
+<a name="l00066"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#af7b5ef0dc231b3e233ad892ce4c89320">00066</a>         <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#af7b5ef0dc231b3e233ad892ce4c89320" title="Class destructor.">BasicRenderable::~BasicRenderable</a>()
+<a name="l00067"></a>00067         {
+<a name="l00068"></a>00068         }
 <a name="l00069"></a>00069 
-<a name="l00070"></a>00070 <span class="preprocessor">#endif</span>
+<a name="l00070"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58">00070</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">BasicRenderable::PushVertex</a>(std::vector&lt;VertexData&gt;&amp; VertVec, <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a>&amp; Vert, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; X, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Y, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; UV, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00071"></a>00071         {
+<a name="l00072"></a>00072             Vert.<a class="code" href="structMezzanine_1_1UI_1_1VertexData.html#aba0c89686da51f19dbcd963fd165240b" title="The actual vertex data relevant to rendering.">Vert</a>.<a class="code" href="structMezzanine_1_1UI_1_1Vertex.html#a9f9ab1c9be1171e2b5ad6cff63f7e194" title="The 3D position of this vertex for placement in front of the frustrum.">Position</a>.<a class="code" href="classMezzanine_1_1Vector3.html#aa858d9bc5ac5ad1b685b7088c94c05f6" title="Coordinate on the X vector.">X</a> = X;
+<a name="l00073"></a>00073             Vert.<a class="code" href="structMezzanine_1_1UI_1_1VertexData.html#aba0c89686da51f19dbcd963fd165240b" title="The actual vertex data relevant to rendering.">Vert</a>.<a class="code" href="structMezzanine_1_1UI_1_1Vertex.html#a9f9ab1c9be1171e2b5ad6cff63f7e194" title="The 3D position of this vertex for placement in front of the frustrum.">Position</a>.<a class="code" href="classMezzanine_1_1Vector3.html#a2303527e4ea4cd1659a23320627cd62c" title="Coordinate on the Y vector.">Y</a> = Y;
+<a name="l00074"></a>00074             Vert.<a class="code" href="structMezzanine_1_1UI_1_1VertexData.html#aba0c89686da51f19dbcd963fd165240b" title="The actual vertex data relevant to rendering.">Vert</a>.<a class="code" href="structMezzanine_1_1UI_1_1Vertex.html#a9f9ab1c9be1171e2b5ad6cff63f7e194" title="The 3D position of this vertex for placement in front of the frustrum.">Position</a>.<a class="code" href="classMezzanine_1_1Vector3.html#a9b887faced986921956f20f3e4cb8ddc" title="Coordinate on the Z vector.">Z</a> = 0;
+<a name="l00075"></a>00075             Vert.<a class="code" href="structMezzanine_1_1UI_1_1VertexData.html#aba0c89686da51f19dbcd963fd165240b" title="The actual vertex data relevant to rendering.">Vert</a>.<a class="code" href="structMezzanine_1_1UI_1_1Vertex.html#a455d8bcb1bf8ada3df6f1602745c7619" title="The UV position (or texture coordinates) of this vertex if a texture is being applied to it...">UV</a> = UV;
+<a name="l00076"></a>00076             Vert.<a class="code" href="structMezzanine_1_1UI_1_1VertexData.html#aba0c89686da51f19dbcd963fd165240b" title="The actual vertex data relevant to rendering.">Vert</a>.<a class="code" href="structMezzanine_1_1UI_1_1Vertex.html#aab6b45269e3e78d1cc7053c2f976fc3c" title="The colour of the vertex.">Colour</a> = Colour;
+<a name="l00077"></a>00077             Vert.<a class="code" href="structMezzanine_1_1UI_1_1VertexData.html#abd0db8958c43a0df6987fef44b6f99b0" title="Name of the Atlas the texture belongs to if a texture is being applied to it.">Atlas</a> = Atlas;
+<a name="l00078"></a>00078             VertVec.push_back(Vert);
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080 
+<a name="l00081"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7accb5b7dfea6d6c5cff88fd7f2e3a75">00081</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7accb5b7dfea6d6c5cff88fd7f2e3a75" title="Pushes vertex information for a triangle to a vector. Equivalent to calling &amp;quot;PushVertex&amp;quot; th...">BasicRenderable::PushTriangle</a>(std::vector&lt;VertexData&gt;&amp; VertVec, <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a>&amp; Vert, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; A, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; B, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; C, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; UV, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,A.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,A.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,Atlas);
+<a name="l00084"></a>00084             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,B.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,B.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,Atlas);
+<a name="l00085"></a>00085             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,C.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,C.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,Atlas);
+<a name="l00086"></a>00086         }
+<a name="l00087"></a>00087 
+<a name="l00088"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a9d082dd8ef8e96a44cf25cb96134b00d">00088</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a9d082dd8ef8e96a44cf25cb96134b00d" title="Pushes vertex information for a quad to a vector. Equivalent to calling &amp;quot;PushTriangle&amp;quot; twic...">BasicRenderable::PushQuad</a>(std::vector&lt;VertexData&gt;&amp; VertVec, <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a>&amp; Vert, <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>* Positions, <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>* UVs, <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>* Colours, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00089"></a>00089         {
+<a name="l00090"></a>00090             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[3].X,Positions[3].Y,UVs[3],Colours[3],Atlas);
+<a name="l00091"></a>00091             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[1].X,Positions[1].Y,UVs[1],Colours[1],Atlas);
+<a name="l00092"></a>00092             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[0].X,Positions[0].Y,UVs[0],Colours[0],Atlas);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[3].X,Positions[3].Y,UVs[3],Colours[3],Atlas);
+<a name="l00095"></a>00095             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[2].X,Positions[2].Y,UVs[2],Colours[2],Atlas);
+<a name="l00096"></a>00096             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[1].X,Positions[1].Y,UVs[1],Colours[1],Atlas);
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ad1ffc15904a58792b13d0c3115272f81">00099</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ad1ffc15904a58792b13d0c3115272f81" title="Pushes vertex information for a quad to a vector. Equivalent to calling &amp;quot;PushTriangle&amp;quot; twic...">BasicRenderable::PushQuad2</a>(std::vector&lt;VertexData&gt;&amp; VertVec, <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a>&amp; Vert, <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>* Positions, <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>* UVs, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00100"></a>00100         {
+<a name="l00101"></a>00101             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[3].X,Positions[3].Y,UVs[3],Colour,Atlas);
+<a name="l00102"></a>00102             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[1].X,Positions[1].Y,UVs[1],Colour,Atlas);
+<a name="l00103"></a>00103             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[0].X,Positions[0].Y,UVs[0],Colour,Atlas);
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[3].X,Positions[3].Y,UVs[3],Colour,Atlas);
+<a name="l00106"></a>00106             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[2].X,Positions[2].Y,UVs[2],Colour,Atlas);
+<a name="l00107"></a>00107             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(VertVec,Vert,Positions[1].X,Positions[1].Y,UVs[1],Colour,Atlas);
+<a name="l00108"></a>00108         }
+<a name="l00109"></a>00109 
+<a name="l00110"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca">00110</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca" title="Sets the visibility of this renderable.">BasicRenderable::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
+<a name="l00111"></a>00111         {
+<a name="l00112"></a>00112             <span class="keywordflow">if</span>(this-&gt;Visible == Visible)
+<a name="l00113"></a>00113                 <span class="keywordflow">return</span>;
+<a name="l00114"></a>00114             this-&gt;Visible = Visible;
+<a name="l00115"></a>00115             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00116"></a>00116         }
+<a name="l00117"></a>00117 
+<a name="l00118"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ad83653b90d57caf95b7de93b9ee31afd">00118</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ad83653b90d57caf95b7de93b9ee31afd" title="Gets whether or not this renderable is getting rendered.">BasicRenderable::IsVisible</a>()<span class="keyword"> const</span>
+<a name="l00119"></a>00119 <span class="keyword">        </span>{
+<a name="l00120"></a>00120             <span class="keywordflow">return</span> Visible &amp;&amp; ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8a9222e729f47a4cfec32325a03cf7f3" title="Gets the layers&amp;#39; visability.">IsVisible</a>();
+<a name="l00121"></a>00121         }
+<a name="l00122"></a>00122 
+<a name="l00123"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#afee6e10e2fa607b309505d16ab7260d1">00123</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#afee6e10e2fa607b309505d16ab7260d1" title="Gets the visible setting for this renderable.">BasicRenderable::GetVisible</a>()<span class="keyword"> const</span>
+<a name="l00124"></a>00124 <span class="keyword">        </span>{
+<a name="l00125"></a>00125             <span class="keywordflow">return</span> Visible;
+<a name="l00126"></a>00126         }
+<a name="l00127"></a>00127 
+<a name="l00128"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ac746146ea693afa9b6345640b5cfd9ef">00128</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ac746146ea693afa9b6345640b5cfd9ef" title="Forces this renderable to be shown.">BasicRenderable::Show</a>()
+<a name="l00129"></a>00129         {
+<a name="l00130"></a>00130             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca" title="Sets the visibility of this renderable.">SetVisible</a>(<span class="keyword">true</span>);
+<a name="l00131"></a>00131         }
+<a name="l00132"></a>00132 
+<a name="l00133"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#acd8d40bacbb23eebacfdfcb42b33327d">00133</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#acd8d40bacbb23eebacfdfcb42b33327d" title="Forces this renderable to hide.">BasicRenderable::Hide</a>()
+<a name="l00134"></a>00134         {
+<a name="l00135"></a>00135             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca" title="Sets the visibility of this renderable.">SetVisible</a>(<span class="keyword">false</span>);
+<a name="l00136"></a>00136         }
+<a name="l00137"></a>00137 
+<a name="l00138"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a1d3be8e827a562ade939383b4633ddb3">00138</a>         <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a1d3be8e827a562ade939383b4633ddb3" title="Gets the name of this renderable.">BasicRenderable::GetName</a>()<span class="keyword"> const</span>
+<a name="l00139"></a>00139 <span class="keyword">        </span>{
+<a name="l00140"></a>00140             <span class="keywordflow">return</span> Name;
+<a name="l00141"></a>00141         }
+<a name="l00142"></a>00142 
+<a name="l00143"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4391ab57978d558638feb0f7fabefd95">00143</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4391ab57978d558638feb0f7fabefd95" title="Sets the priority this button should be rendered with.">BasicRenderable::SetRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)
+<a name="l00144"></a>00144         {
+<a name="l00145"></a>00145             this-&gt;Priority = Priority;
+<a name="l00146"></a>00146             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00147"></a>00147         }
+<a name="l00148"></a>00148 
+<a name="l00149"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a229905f629c59290e321014209d9457e">00149</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a229905f629c59290e321014209d9457e" title="Gets the priority this button should be rendered with.">BasicRenderable::GetRenderPriority</a>()<span class="keyword"> const</span>
+<a name="l00150"></a>00150 <span class="keyword">        </span>{
+<a name="l00151"></a>00151             <span class="keywordflow">return</span> Priority;
+<a name="l00152"></a>00152         }
+<a name="l00153"></a>00153 
+<a name="l00154"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aca42d7a5fa95c3190a2204743bd2f659">00154</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aca42d7a5fa95c3190a2204743bd2f659" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">BasicRenderable::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00155"></a>00155         {
+<a name="l00156"></a>00156             this-&gt;PriAtlas = Atlas;
+<a name="l00157"></a>00157             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00158"></a>00158         }
+<a name="l00159"></a>00159 
+<a name="l00160"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a333701c21e49351bf905a27b96bac94d">00160</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a333701c21e49351bf905a27b96bac94d" title="Gets the currently set primary atlas.">BasicRenderable::GetPrimaryAtlas</a>()<span class="keyword"> const</span>
+<a name="l00161"></a>00161 <span class="keyword">        </span>{
+<a name="l00162"></a>00162             <span class="keywordflow">return</span> PriAtlas;
+<a name="l00163"></a>00163         }
+<a name="l00164"></a>00164 
+<a name="l00165"></a><a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d">00165</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">BasicRenderable::_MarkDirty</a>()
+<a name="l00166"></a>00166         {
+<a name="l00167"></a>00167             Dirty = <span class="keyword">true</span>;
+<a name="l00168"></a>00168             ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#ad618bda408662cf17efa96cdbc5debd5" title="Marks this Layer as dirty, making it redraw at the next frame update.">_MarkDirty</a>();
+<a name="l00169"></a>00169             <span class="keywordflow">if</span>(ParentWidget)
+<a name="l00170"></a>00170                 ParentWidget-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Widget.html#a9c35d7c9e817484cf5daa6442948fd79" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00171"></a>00171         }
+<a name="l00172"></a>00172     }<span class="comment">//UI</span>
+<a name="l00173"></a>00173 }<span class="comment">//Mezzanine</span>
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -139,7 +244,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -149,6 +254,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

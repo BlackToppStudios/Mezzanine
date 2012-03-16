@@ -14,12 +14,16 @@ This is a gravity well implementation of the \hyperlink{classMezzanine_1_1AreaEf
 Inheritance diagram for Mezzanine::GravityWell:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.000000cm]{classMezzanine_1_1GravityWell}
+\includegraphics[height=4.423381cm]{classMezzanine_1_1GravityWell}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1GravityWell_a4f89751efb62bd71164a2864923dc149}{GravityWell} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1GravityWell_affc992ad5e1edafd654d16d6a13840d0}{$\sim$GravityWell} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1GravityWell_a193e1683edaf80bb1a37979f196abf6e}{ApplyEffect} ()
 \begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1GravityWell_afa34a6efc22c6d8875be96cfce90c013}{GetAllowWorldGravity} () const 
@@ -30,18 +34,14 @@ virtual \hyperlink{namespaceMezzanine_a2d10a79e11a2031df10af540eede12fa}{Mezzani
 \begin{DoxyCompactList}\small\item\em Gets the Style of attenuation applied. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GravityWell_a8fe42eeeb7483c35f1dfae170c2b2ec9}{GetFieldStrength} () const 
 \begin{DoxyCompactList}\small\item\em Gets the strength of the field. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1GravityWell_aa7c7683357d133831b362c7c923c5271}{GetType} () const 
+virtual \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1GravityWell_a7890d007afb7021a811d711e3b2ed950}{GetType} () const 
 \item 
-\hyperlink{classMezzanine_1_1GravityWell_a4f89751efb62bd71164a2864923dc149}{GravityWell} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1GravityWell_a80837168a132c3bffcefb839e1669a63}{SetAllowWorldGravity} (bool WorldGravity)
 \begin{DoxyCompactList}\small\item\em Sets whether or not world gravity should be removed for objects in this field. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1GravityWell_ab7668c7c5c1c7c25a40315803efb0790}{SetAttenuation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Amount, const \hyperlink{namespaceMezzanine_a2d10a79e11a2031df10af540eede12fa}{Mezzanine::AttenuationStyle} \&Style)
 \begin{DoxyCompactList}\small\item\em Sets the attenuation for this field. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1GravityWell_a596a662feae83e04e4c299a8aaf8b862}{SetFieldStrength} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&FieldStrength)
-\begin{DoxyCompactList}\small\item\em Sets the strenth of the field. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1GravityWell_affc992ad5e1edafd654d16d6a13840d0}{$\sim$GravityWell} ()
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the strenth of the field. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -71,7 +71,7 @@ bool \hyperlink{classMezzanine_1_1GravityWell_a869ff5ef7c317e642e2b366e18d4f818}
 This is a gravity well implementation of the \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} class. This class is not a gravity field, where gravity only pulls in one direction. Instead this class will always pull objects inside it towards the field center. \par
  This class works best with sphere's, but can be made to work with any shape. 
 
-Definition at line 223 of file areaeffect.h.
+Definition at line 258 of file areaeffect.h.
 
 
 
@@ -99,7 +99,7 @@ Basic initialization constructor.
 \end{DoxyParams}
 
 
-Definition at line 381 of file areaeffect.cpp.
+Definition at line 461 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_affc992ad5e1edafd654d16d6a13840d0}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!$\sim$GravityWell@{$\sim$GravityWell}}
@@ -116,7 +116,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 390 of file areaeffect.cpp.
+Definition at line 470 of file areaeffect.cpp.
 
 
 
@@ -140,7 +140,7 @@ Implements \hyperlink{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c
 
 
 
-Definition at line 394 of file areaeffect.cpp.
+Definition at line 474 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_afa34a6efc22c6d8875be96cfce90c013}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!GetAllowWorldGravity@{GetAllowWorldGravity}}
@@ -160,7 +160,7 @@ Returns a bool indicating whether objects inside are affected by world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 475 of file areaeffect.cpp.
+Definition at line 555 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_aa077b3ef75a442b97f34bb578a7354eb}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!GetAttenuationAmount@{GetAttenuationAmount}}
@@ -180,7 +180,7 @@ Returns a Real value
 \end{DoxyReturn}
 
 
-Definition at line 491 of file areaeffect.cpp.
+Definition at line 571 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_ad26c5b44056826e55dac112d0e0600a7}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!GetAttenuationStyle@{GetAttenuationStyle}}
@@ -200,7 +200,7 @@ Returns the style of attenuation currently being used by this field.
 \end{DoxyReturn}
 
 
-Definition at line 486 of file areaeffect.cpp.
+Definition at line 566 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_a8fe42eeeb7483c35f1dfae170c2b2ec9}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!GetFieldStrength@{GetFieldStrength}}
@@ -220,17 +220,17 @@ Returns a Real representing the value that is being multiplied by the direction 
 \end{DoxyReturn}
 
 
-Definition at line 465 of file areaeffect.cpp.
+Definition at line 545 of file areaeffect.cpp.
 
-\hypertarget{classMezzanine_1_1GravityWell_aa7c7683357d133831b362c7c923c5271}{
+\hypertarget{classMezzanine_1_1GravityWell_a7890d007afb7021a811d711e3b2ed950}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!GetType@{GetType}}
 \index{GetType@{GetType}!Mezzanine::GravityWell@{Mezzanine::GravityWell}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldObjectType} Mezzanine::GravityWell::GetType (
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::GravityWell::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1GravityWell_aa7c7683357d133831b362c7c923c5271}
+\label{classMezzanine_1_1GravityWell_a7890d007afb7021a811d711e3b2ed950}
 Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
 
 \begin{DoxyReturn}{Returns}
@@ -238,11 +238,11 @@ Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instan
 \end{DoxyReturn}
  
 
-Reimplemented from \hyperlink{classMezzanine_1_1AreaEffect_a3eab7461632e01984cfb07f8c8fb5954}{Mezzanine::AreaEffect}.
+Reimplemented from \hyperlink{classMezzanine_1_1AreaEffect_a2f3df5433f02057d7a9deeb5e6666287}{Mezzanine::AreaEffect}.
 
 
 
-Definition at line 496 of file areaeffect.cpp.
+Definition at line 576 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_a80837168a132c3bffcefb839e1669a63}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!SetAllowWorldGravity@{SetAllowWorldGravity}}
@@ -267,7 +267,7 @@ Changing this value while the field is in the world and active is not recommende
 \end{DoxyParams}
 
 
-Definition at line 470 of file areaeffect.cpp.
+Definition at line 550 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_ab7668c7c5c1c7c25a40315803efb0790}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!SetAttenuation@{SetAttenuation}}
@@ -292,7 +292,7 @@ Sets the attenuation for this field.
 \end{DoxyParams}
 
 
-Definition at line 480 of file areaeffect.cpp.
+Definition at line 560 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1GravityWell_a596a662feae83e04e4c299a8aaf8b862}{
 \index{Mezzanine::GravityWell@{Mezzanine::GravityWell}!SetFieldStrength@{SetFieldStrength}}
@@ -314,7 +314,7 @@ The direction of the field is based on the current position of the object in the
 \end{DoxyParams}
 
 
-Definition at line 460 of file areaeffect.cpp.
+Definition at line 540 of file areaeffect.cpp.
 
 
 

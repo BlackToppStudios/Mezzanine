@@ -14,17 +14,17 @@ This is a small class used to store a reference to a world object.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$ \hyperlink{classMezzanine_1_1ObjectReference_ad0be2b6ed910bbf8d68f2de89af64973}{GetObject} ()
-\begin{DoxyCompactList}\small\item\em Gets the object this class references. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1ObjectReference_af7bca8f5979bf073eb96aa80508973e4}{GetType} ()
-\begin{DoxyCompactList}\small\item\em Gets the type of object this class references. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1ObjectReference_a3889c2c90442c60ba5107efaa7c926b7}{ObjectReference} (const \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \&TheType, \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$TheObject)
+\hyperlink{classMezzanine_1_1ObjectReference_a44a5d89e7f53c786c50d543996844cd7}{ObjectReference} (const \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \&TheType, \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$TheObject)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ObjectReference_aabb1fbfa7abe2d333c7946941368d2e3}{
 \hyperlink{classMezzanine_1_1ObjectReference_aabb1fbfa7abe2d333c7946941368d2e3}{$\sim$ObjectReference} ()}
 \label{classMezzanine_1_1ObjectReference_aabb1fbfa7abe2d333c7946941368d2e3}
 
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$ \hyperlink{classMezzanine_1_1ObjectReference_ad0be2b6ed910bbf8d68f2de89af64973}{GetObject} ()
+\begin{DoxyCompactList}\small\item\em Gets the object this class references. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1ObjectReference_adb9563aefcef481a236e50155c155735}{GetType} ()
+\begin{DoxyCompactList}\small\item\em Gets the type of object this class references. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,9 +33,9 @@ This is a small class used to store a reference to a world object.
 \label{classMezzanine_1_1ObjectReference_acd4f6f2766b99c87d2e0d572dafe3167}
 
 \item 
-\hypertarget{classMezzanine_1_1ObjectReference_adddd3adb76293a2de8de9de7e1a7f092}{
-\hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} {\bfseries Type}}
-\label{classMezzanine_1_1ObjectReference_adddd3adb76293a2de8de9de7e1a7f092}
+\hypertarget{classMezzanine_1_1ObjectReference_a651a9e37d1c4bb02980bb2bbc3d52c5c}{
+\hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} {\bfseries Type}}
+\label{classMezzanine_1_1ObjectReference_a651a9e37d1c4bb02980bb2bbc3d52c5c}
 
 \end{DoxyCompactItemize}
 
@@ -48,16 +48,16 @@ Definition at line 54 of file objectreference.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1ObjectReference_a3889c2c90442c60ba5107efaa7c926b7}{
+\hypertarget{classMezzanine_1_1ObjectReference_a44a5d89e7f53c786c50d543996844cd7}{
 \index{Mezzanine::ObjectReference@{Mezzanine::ObjectReference}!ObjectReference@{ObjectReference}}
 \index{ObjectReference@{ObjectReference}!Mezzanine::ObjectReference@{Mezzanine::ObjectReference}}
 \paragraph[{ObjectReference}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ObjectReference::ObjectReference (
 \begin{DoxyParamCaption}
-\item[{const {\bf WorldObjectType} \&}]{TheType, }
+\item[{const {\bf WorldAndSceneObjectType} \&}]{TheType, }
 \item[{{\bf WorldObject} $\ast$}]{TheObject}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ObjectReference_a3889c2c90442c60ba5107efaa7c926b7}
+\label{classMezzanine_1_1ObjectReference_a44a5d89e7f53c786c50d543996844cd7}
 
 
 Class constructor. 
@@ -96,15 +96,15 @@ Returns a \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} pointer pointin
 
 Definition at line 72 of file objectreference.h.
 
-\hypertarget{classMezzanine_1_1ObjectReference_af7bca8f5979bf073eb96aa80508973e4}{
+\hypertarget{classMezzanine_1_1ObjectReference_adb9563aefcef481a236e50155c155735}{
 \index{Mezzanine::ObjectReference@{Mezzanine::ObjectReference}!GetType@{GetType}}
 \index{GetType@{GetType}!Mezzanine::ObjectReference@{Mezzanine::ObjectReference}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldObjectType} Mezzanine::ObjectReference::GetType (
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::ObjectReference::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ObjectReference_af7bca8f5979bf073eb96aa80508973e4}
+\label{classMezzanine_1_1ObjectReference_adb9563aefcef481a236e50155c155735}
 
 
 Gets the type of object this class references. 

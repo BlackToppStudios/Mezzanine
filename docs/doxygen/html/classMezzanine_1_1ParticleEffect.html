@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::ParticleEffect Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::ParticleEffect" --><!-- doxytag: inherits="Mezzanine::Attachable" -->
+<!-- doxytag: class="Mezzanine::ParticleEffect" --><!-- doxytag: inherits="Mezzanine::AttachableChild" -->
 <p>This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.  
 <a href="#_details">More...</a></p>
 
@@ -82,7 +82,8 @@ Inheritance diagram for Mezzanine::ParticleEffect:</div>
  <div class="center">
   <img src="classMezzanine_1_1ParticleEffect.png" usemap="#Mezzanine::ParticleEffect_map" alt=""/>
   <map id="Mezzanine::ParticleEffect_map" name="Mezzanine::ParticleEffect_map">
-<area href="classMezzanine_1_1Attachable.html" alt="Mezzanine::Attachable" shape="rect" coords="0,0,155,24"/>
+<area href="classMezzanine_1_1AttachableChild.html" alt="Mezzanine::AttachableChild" shape="rect" coords="0,56,168,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="0,0,168,24"/>
 </map>
  </div></div>
 
@@ -90,6 +91,13 @@ Inheritance diagram for Mezzanine::ParticleEffect:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#abbc04839c173b33d1851b8061bd2b0f9">ParticleEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Template, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#abbc04839c173b33d1851b8061bd2b0f9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a6ce060bf2f66ed82fb828ef01dcf2416">ParticleEffect</a> (Ogre::ParticleSystem *System, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Template, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal constructor.  <a href="#a6ce060bf2f66ed82fb828ef01dcf2416"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add57951cee55189c780c4b5bb7cc752a"></a><!-- doxytag: member="Mezzanine::ParticleEffect::~ParticleEffect" ref="add57951cee55189c780c4b5bb7cc752a" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#add57951cee55189c780c4b5bb7cc752a">~ParticleEffect</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a404d1a6fa07ea2fc5937854ea05702f0">AddToWorld</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds this particle effect to the world, allowing it to render.  <a href="#a404d1a6fa07ea2fc5937854ea05702f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a17d3cf19370d74b724fcbb737c8ff30e">DestroyAffector</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;Index)</td></tr>
@@ -104,38 +112,38 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroy's an Emitter in use by this particle effect.  <a href="#a00195054c7c949038a083be943876e28"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ParticleAffector.html">ParticleAffector</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a401836904a0426be484bcecb33447b6c">GetAffector</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;Index) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Affector at the specified index.  <a href="#a401836904a0426be484bcecb33447b6c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structMezzanine_1_1AttachableData.html">AttachableData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#afd4e4d0917450000348abe394c07e985">GetAttachableData</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets pointers to the internal ogre structures for this attachable.  <a href="#afd4e4d0917450000348abe394c07e985"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9e">Attachable::AttachableElement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#aa9beb1bdcebf98dd3ddced6a7310ed7b">GetAttachableType</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#adce2efc1c8e866459db8438454483dc4">GetCustomParam</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a custom parameter of a particle effect.  <a href="#adce2efc1c8e866459db8438454483dc4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ParticleEmitter.html">ParticleEmitter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ada183314f9c8ed055fee5901b1d30739">GetEmitter</a> (const <a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a> &amp;Index) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Emitter at the specified index.  <a href="#ada183314f9c8ed055fee5901b1d30739"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a45174a2138b031322ddc57fe1be006de">GetLocation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a45174a2138b031322ddc57fe1be006de">GetLocation</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a43176eb1ad80019bc2a839e597141dd7">GetName</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#aac2469d149a5509d0f9f1486b4ca036f">GetNumAffectors</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of Affectors in use by this particle effect.  <a href="#aac2469d149a5509d0f9f1486b4ca036f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a1b6c09063432c7ddd87011c88306c767">UInt16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a7c3d466cfef8a41a63b03d3935e64f1b">GetNumEmitters</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of Emitters in use by this particle effect.  <a href="#a7c3d466cfef8a41a63b03d3935e64f1b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ac47f0c537dd4b789c502bb2a3af61a56">GetOrientation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ac47f0c537dd4b789c502bb2a3af61a56">GetOrientation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ad593e62458141a8e5a684fad55342caf">GetScaling</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a39aa306cd45a3bff0e4ee1442fbe19d9">GetSpeedFactor</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Factor at which this <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> is currently progressing.  <a href="#a39aa306cd45a3bff0e4ee1442fbe19d9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ad39ed422ad277f93a6040ad27b8b4951">GetTemplate</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the template used to create this.  <a href="#ad39ed422ad277f93a6040ad27b8b4951"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#af0004d25fea2ac8a3ace7226193e9aaf">GetType</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a6ad8b80cbe06d818a78dcff6e1069183">IsInWorld</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this effect is in the world.  <a href="#a6ad8b80cbe06d818a78dcff6e1069183"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a6ce060bf2f66ed82fb828ef01dcf2416">ParticleEffect</a> (Ogre::ParticleSystem *System, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Template, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal constructor.  <a href="#a6ce060bf2f66ed82fb828ef01dcf2416"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#abbc04839c173b33d1851b8061bd2b0f9">ParticleEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Template, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#abbc04839c173b33d1851b8061bd2b0f9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#abafad46a7dc161b0974adaf0dc2e6433">PauseParticleEffect</a> (bool Pause)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses this <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>, preventing it from emitting, moving, or removing any particles.  <a href="#abafad46a7dc161b0974adaf0dc2e6433"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ac7786808910f8adcf08f2363a12ee6bd">RemoveFromWorld</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes this particle effect from the world, preventing it from rendering.  <a href="#ac7786808910f8adcf08f2363a12ee6bd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a8e320ef29d8eafd48e818326b4bc43b9">SetCustomParam</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Value)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a custom parameter of a particle effect.  <a href="#a8e320ef29d8eafd48e818326b4bc43b9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a1209e018087451e02eec73b52db31d2b">SetLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Vec)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a8e16be90e8c9d59b7c48b11a38179f76">SetOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Orientation)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add57951cee55189c780c4b5bb7cc752a"></a><!-- doxytag: member="Mezzanine::ParticleEffect::~ParticleEffect" ref="add57951cee55189c780c4b5bb7cc752a" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#add57951cee55189c780c4b5bb7cc752a">~ParticleEffect</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a6840690a153731dd2a3699187b5af1a9">SetLocalLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a2ab1695b2261bb058f64ed246a3bfc35">SetLocalOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Orientation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a36457d7e42405ac69a30114f21bd3f3f">SetLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a8e16be90e8c9d59b7c48b11a38179f76">SetOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Orientation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#a4d8ab250edb3e6f8ba8c60710ccd6c0a">SetScaling</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Scale)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ParticleEffect.html#ae2c01888e67ca0e47c463d92a4e19ed7">SetSpeedFactor</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Factor)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the factor at which time progresses for this <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>.  <a href="#ae2c01888e67ca0e47c463d92a4e19ed7"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. </p>
@@ -185,7 +193,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00108">108</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00113">113</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -224,14 +232,14 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>This constructor should not be called on manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">System</td><td>Pointer to the Ogre ParticleSystem this class is based on. </td></tr>
+    <tr><td class="paramname">System</td><td>Pointer to the <a class="el" href="namespaceOgre.html">Ogre</a> ParticleSystem this class is based on. </td></tr>
     <tr><td class="paramname">Template</td><td>Name of the particle script to be used in creating this particle effect. </td></tr>
     <tr><td class="paramname">manager</td><td>Pointer to the manager that this particle effect is to be used in. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00128">128</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00133">133</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -253,7 +261,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Adds this particle effect to the world, allowing it to render. </p>
 <p>If the Effect is already in the world, this does nothing. </p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00233">233</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00270">270</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -280,7 +288,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00214">214</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00251">251</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -307,7 +315,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00185">185</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00222">222</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -335,52 +343,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Affector at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00204">204</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afd4e4d0917450000348abe394c07e985"></a><!-- doxytag: member="Mezzanine::ParticleEffect::GetAttachableData" ref="afd4e4d0917450000348abe394c07e985" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structMezzanine_1_1AttachableData.html">AttachableData</a> Mezzanine::ParticleEffect::GetAttachableData </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets pointers to the internal ogre structures for this attachable. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an <a class="el" href="structMezzanine_1_1AttachableData.html" title="Helper class for the presentation of internal data of an attachable.">AttachableData</a> struct with the internal data. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#aeed457c614552bd753e7669cb7624b19">Mezzanine::Attachable</a>.</p>
-
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00260">260</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aa9beb1bdcebf98dd3ddced6a7310ed7b"></a><!-- doxytag: member="Mezzanine::ParticleEffect::GetAttachableType" ref="aa9beb1bdcebf98dd3ddced6a7310ed7b" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9e">Attachable::AttachableElement</a> Mezzanine::ParticleEffect::GetAttachableType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>Gets the type of element this is. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value indicating what type of element this is. </dd></dl>
- 
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#aacb1a1958cca1f005c1313f14e3d098d">Mezzanine::Attachable</a>.</p>
-
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00157">157</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00241">241</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -408,7 +371,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00254">254</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00317">317</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -436,7 +399,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Emitter at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00175">175</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00212">212</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -453,12 +416,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
       </table>
 </div>
 <div class="memdoc">
-<p>Get the location of the attachable object, relative to the Object is is attached to. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the location. </dd></dl>
+<p>Gets the Location of this object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the location of this object. </dd></dl>
  
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#a1a8e18e5654c50f24bc049c228603d71">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a927f25cb0f2ba3afd289586e7ab0f4e8">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00163">163</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00173">173</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,11 +438,12 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
       </table>
 </div>
 <div class="memdoc">
-<p>Gets the name of the attachable element. </p>
+<p>Gets the name of this attachable. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a const reference to a string containing the name of this attachable. </dd></dl>
  
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#a6a49ac8c2ddb2dd8ed7dd17f96ecafe5">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a04b114eccfbf9092b84dfe24e81548b6">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00154">154</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00159">159</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +464,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the number of Affectors in use by this particle effect. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a UInt16 representing the number of Affectors in this particle effect. </dd></dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00209">209</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00246">246</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -521,7 +485,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets the number of Emitters in use by this particle effect. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a UInt16 representing the number of Emitters in this particle effect. </dd></dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00180">180</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00217">217</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -538,12 +502,56 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
       </table>
 </div>
 <div class="memdoc">
-<p>Get the orientation of the attachable object relative to the object it is attached to. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion with the orientation. </dd></dl>
+<p>Gets the orientation of this object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the orientation of this object. </dd></dl>
  
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#ab3e094cbc373edb05866783290991e7d">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#af18f7d1f20ee332facb314291673a313">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00169">169</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00184">184</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad593e62458141a8e5a684fad55342caf"></a><!-- doxytag: member="Mezzanine::ParticleEffect::GetScaling" ref="ad593e62458141a8e5a684fad55342caf" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::ParticleEffect::GetScaling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the scale of this object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the scale being applied to this object. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a8e01242f06e5aabc3d53004325f1eeee">Mezzanine::AttachableBase</a>.</p>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00190">190</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a39aa306cd45a3bff0e4ee1442fbe19d9"></a><!-- doxytag: member="Mezzanine::ParticleEffect::GetSpeedFactor" ref="a39aa306cd45a3bff0e4ee1442fbe19d9" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::ParticleEffect::GetSpeedFactor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the Factor at which this <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> is currently progressing. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the factor at which the <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> is currently progressing. </dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd>If the <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> is paused, this will return what the speed would be if it were unpaused. </dd></dl>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00291">291</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,7 +572,29 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>The name of the template used to create this. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A reaference to a ConstString that has the name. </dd></dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00248">248</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00311">311</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af0004d25fea2ac8a3ace7226193e9aaf"></a><!-- doxytag: member="Mezzanine::ParticleEffect::GetType" ref="af0004d25fea2ac8a3ace7226193e9aaf" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> Mezzanine::ParticleEffect::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the type of <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> or Scene object this attachable is. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> or Scene object this attachable is. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a42bb7c2cab933d28dea86d2ec2934c6a">Mezzanine::AttachableBase</a>.</p>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00162">162</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -585,7 +615,34 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Gets whether or not this effect is in the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if in the world, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00245">245</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00282">282</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abafad46a7dc161b0974adaf0dc2e6433"></a><!-- doxytag: member="Mezzanine::ParticleEffect::PauseParticleEffect" ref="abafad46a7dc161b0974adaf0dc2e6433" args="(bool Pause)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ParticleEffect::PauseParticleEffect </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Pause</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Pauses this <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>, preventing it from emitting, moving, or removing any particles. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Pause</td><td>Will pauae the <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> if running and Pause is true, otherwise will resume particle effect if paused and Pause is false. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00297">297</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,7 +663,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Removes this particle effect from the world, preventing it from rendering. </p>
 <p>If the Effect is not in the world, this does nothing </p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00239">239</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00276">276</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -645,11 +702,53 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00251">251</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00314">314</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1209e018087451e02eec73b52db31d2b"></a><!-- doxytag: member="Mezzanine::ParticleEffect::SetLocation" ref="a1209e018087451e02eec73b52db31d2b" args="(const Vector3 &amp;Vec)" -->
+<a class="anchor" id="a6840690a153731dd2a3699187b5af1a9"></a><!-- doxytag: member="Mezzanine::ParticleEffect::SetLocalLocation" ref="a6840690a153731dd2a3699187b5af1a9" args="(const Vector3 &amp;Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ParticleEffect::SetLocalLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableChild.html#a527ef7ddbf4c3936214eff5af821ae63">Mezzanine::AttachableChild</a>.</p>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00193">193</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ab1695b2261bb058f64ed246a3bfc35"></a><!-- doxytag: member="Mezzanine::ParticleEffect::SetLocalOrientation" ref="a2ab1695b2261bb058f64ed246a3bfc35" args="(const Quaternion &amp;Orientation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ParticleEffect::SetLocalOrientation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Orientation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableChild.html#a3604a2450a1647ae882ef1d9dab1ec5d">Mezzanine::AttachableChild</a>.</p>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00201">201</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a36457d7e42405ac69a30114f21bd3f3f"></a><!-- doxytag: member="Mezzanine::ParticleEffect::SetLocation" ref="a36457d7e42405ac69a30114f21bd3f3f" args="(const Vector3 &amp;Location)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -657,23 +756,23 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
           <td class="memname">void Mezzanine::ParticleEffect::SetLocation </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
-          <td class="paramname"><em>Vec</em></td><td>)</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>Set the location of this attachable object relative to the object it is attached to. </p>
+<p>Sets the Location of this object. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Vec</td><td>The location. </td></tr>
+    <tr><td class="paramname">Location</td><td>A vector3 representing the location of this object. </td></tr>
   </table>
   </dd>
 </dl>
  
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#ae326a2b74e7187504de91106be64b956">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#ab4f0d73a5c313874766bd038a32f1ae2">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00160">160</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00165">165</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -691,17 +790,66 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
       </table>
 </div>
 <div class="memdoc">
-<p>Set the orientation of this attachable object relative to the object it is attached to. </p>
+<p>Sets the orientation of this object. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Ori</td><td>The Orientation. </td></tr>
+    <tr><td class="paramname">Orientation</td><td>A <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the orientation of this object. </td></tr>
   </table>
   </dd>
 </dl>
  
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#a4e987cfdaf8d261764504dbf2f009c74">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a8c459c324efb01dc56cead8e7650f22e">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00166">166</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00176">176</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4d8ab250edb3e6f8ba8c60710ccd6c0a"></a><!-- doxytag: member="Mezzanine::ParticleEffect::SetScaling" ref="a4d8ab250edb3e6f8ba8c60710ccd6c0a" args="(const Vector3 &amp;Scale)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ParticleEffect::SetScaling </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Scale</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a5201923c0685e592dee8cecabc72b508">Mezzanine::AttachableBase</a>.</p>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00187">187</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2c01888e67ca0e47c463d92a4e19ed7"></a><!-- doxytag: member="Mezzanine::ParticleEffect::SetSpeedFactor" ref="ae2c01888e67ca0e47c463d92a4e19ed7" args="(const Real &amp;Factor)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ParticleEffect::SetSpeedFactor </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Factor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the factor at which time progresses for this <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Factor</td><td>The factor at which time progresses. Valid values range from 0.0 to 1.0. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="note"><dt><b>Note:</b></dt><dd>If the <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> is paused, this will set the value to resume with when the <a class="el" href="classMezzanine_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> is unpaused. </dd></dl>
+
+<p>Definition at line <a class="el" href="particleeffect_8cpp_source.html#l00285">285</a> of file <a class="el" href="particleeffect_8cpp_source.html">particleeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -715,7 +863,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -725,6 +873,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:45 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -33,6 +33,12 @@ enum \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_acdffbc070d80b5480
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a5f6ae308296bba7226957301117dbe7a}{Generic6DofSpringConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA=false)
+\begin{DoxyCompactList}\small\item\em Two body Verbose constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a5fa0596a4bc966d286bf9b21982717d1}{Generic6DofSpringConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseLinearReferenceA=false)
+\begin{DoxyCompactList}\small\item\em Two body Terse constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_ab64568bca388b19c4b81ff6bd8c6dc38}{$\sim$Generic6DofSpringConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1Generic6DofSpringConstraint_a6f26a054060b9ab582b0f0d4e4e70701}{
 virtual void {\bfseries CalculateSpringEquilibriumPoint} ()}
 \label{classMezzanine_1_1Generic6DofSpringConstraint_a6f26a054060b9ab582b0f0d4e4e70701}
@@ -43,10 +49,6 @@ virtual void {\bfseries CalculateSpringEquilibriumPoint} (int Index)}
 \label{classMezzanine_1_1Generic6DofSpringConstraint_a903fe80ef99b612749b62f713d122b47}
 
 \item 
-\hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a5f6ae308296bba7226957301117dbe7a}{Generic6DofSpringConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA=false)
-\begin{DoxyCompactList}\small\item\em Two body Verbose constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a5fa0596a4bc966d286bf9b21982717d1}{Generic6DofSpringConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseLinearReferenceA=false)
-\begin{DoxyCompactList}\small\item\em Two body Terse constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1Generic6DofSpringConstraint_acc847f95c75ee39241d1e67800c5a6f4}{
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries GetCurrentSpringAngularEquilibriumPoints} () const }
 \label{classMezzanine_1_1Generic6DofSpringConstraint_acc847f95c75ee39241d1e67800c5a6f4}
@@ -80,6 +82,10 @@ virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Get the Stiffness for all Linear Axis. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_adf49b712b19dfa18bfccc643871db30e}{GetSpringStiffness} (int Index) const 
 \begin{DoxyCompactList}\small\item\em Retrieve the Stiffness of the spring on the given axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a30cd26edd9d57aa68cf7f55f31fb99b0}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a02841289ca30d307e1e39b47d610ff18}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a7a0c52e6bbed9f58e4385ce2e1edff4c}{SetSpringAngularDamping} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Damps)
 \begin{DoxyCompactList}\small\item\em Set the Damping of the springs on each Angular Axis. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a49a615cb3033d6d29e4c1bd528fe2e5d}{SetSpringAngularEnabled} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Enableness)
@@ -97,16 +103,19 @@ virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_aa166925f1
 virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a1ad3bbe259be7d902b299568bd583cbd}{SetSpringLinearStiffness} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Stiffies)
 \begin{DoxyCompactList}\small\item\em Set the Stiffness of the springs on each Linear Axis. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_ac3399694dcabcf63a4e475b4d3537e2b}{SetSpringStiffness} (int Index, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Stiffness)
-\begin{DoxyCompactList}\small\item\em Set the spring stiffness on a given axis. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_ab64568bca388b19c4b81ff6bd8c6dc38}{$\sim$Generic6DofSpringConstraint} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set the spring stiffness on a given axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_aa020b0ef38e950475dc8a36f06139933}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual btGeneric6DofSpringConstraint $\ast$ \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_ac57671613502a67f7b5135ba947f7e9d}{Generic6dofSpring} () const 
-\item 
 \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_acd643a162aba9452cd10660a89d7acf7}{Generic6DofSpringConstraint} ()
-\begin{DoxyCompactList}\small\item\em Inheritance Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inheritance Constructor. \item\end{DoxyCompactList}\item 
+virtual btGeneric6DofSpringConstraint $\ast$ \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_ac57671613502a67f7b5135ba947f7e9d}{Generic6dofSpring} () const 
+\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -444,6 +453,73 @@ Retrieve the Stiffness of the spring on the given axis.
 \begin{DoxyReturn}{Returns}
 A real with the requested value; 
 \end{DoxyReturn}
+\hypertarget{classMezzanine_1_1Generic6DofSpringConstraint_a30cd26edd9d57aa68cf7f55f31fb99b0}{
+\index{Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Generic6DofSpringConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Generic6DofSpringConstraint_a30cd26edd9d57aa68cf7f55f31fb99b0}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1Generic6DofConstraint_ae165de381e73cc5119d07e3fc563aa99}{Mezzanine::Generic6DofConstraint}.
+
+\hypertarget{classMezzanine_1_1Generic6DofSpringConstraint_a02841289ca30d307e1e39b47d610ff18}{
+\index{Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Generic6DofSpringConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Generic6DofSpringConstraint_a02841289ca30d307e1e39b47d610ff18}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1Generic6DofConstraint_a6595599905cd8b51440bf868d4a9806a}{Mezzanine::Generic6DofConstraint}.
+
+\hypertarget{classMezzanine_1_1Generic6DofSpringConstraint_aa020b0ef38e950475dc8a36f06139933}{
+\index{Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} Mezzanine::Generic6DofSpringConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Generic6DofSpringConstraint_aa020b0ef38e950475dc8a36f06139933}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Generic6DofConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1Generic6DofConstraint_acac3b309c947c1cd60635df1c7b46867}{Mezzanine::Generic6DofConstraint}.
+
 \hypertarget{classMezzanine_1_1Generic6DofSpringConstraint_a7a0c52e6bbed9f58e4385ce2e1edff4c}{
 \index{Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}!SetSpringAngularDamping@{SetSpringAngularDamping}}
 \index{SetSpringAngularDamping@{SetSpringAngularDamping}!Mezzanine::Generic6DofSpringConstraint@{Mezzanine::Generic6DofSpringConstraint}}

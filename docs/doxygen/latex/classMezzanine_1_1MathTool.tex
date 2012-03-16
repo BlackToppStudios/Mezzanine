@@ -37,6 +37,8 @@ static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \h
 \begin{DoxyCompactList}\small\item\em Rounds a Real up. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a7848194232dda5086ba2c4d4888d0ffc}{Cos} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radians)
 \begin{DoxyCompactList}\small\item\em Calculates the Cosine of an angle. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a211eb278e9b51404cc10e7b12dfe5209}{DegreesToRadians} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Degrees)
+\begin{DoxyCompactList}\small\item\em Converts an angle in Degree's to the same angle Radians. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a96b1935e6ed6d9d2ffa03fd2e7698c3e}{Fabs} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Val)
 \begin{DoxyCompactList}\small\item\em Gets the absolute value of a Real. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a51eae53cadb52839ae6edb279627fabd}{Floor} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Val)
@@ -51,14 +53,23 @@ static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \h
 \begin{DoxyCompactList}\small\item\em Gets Pi $\ast$ 2. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_ad38737da349c0aea453d42f79e5c61d1}{Pow} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Val, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Power)
 \begin{DoxyCompactList}\small\item\em Raises a Real to a power. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a743191c57f5b98ce558a7197492c2f4b}{RadiansToDegrees} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radians)
+\begin{DoxyCompactList}\small\item\em Converts an angle in Radians's to the same angle Degrees. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a58b35317198c5d4cdf1680e5516747c3}{Sin} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radians)
 \begin{DoxyCompactList}\small\item\em Calculates the Sine of an angle. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_af230371a8d6f59b4ee78670afd3928fa}{Sqrt} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Val)
 \begin{DoxyCompactList}\small\item\em Gets the square root of a Real. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1MathTool_a4fd17164ea990aff0203c63946bb1d48}{Tan} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Radians)
-\begin{DoxyCompactList}\small\item\em Calculates the Tangent of an angle. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculates the Tangent of an angle. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1MathTool_a6b7462a4da72393082a222c1e69adc8b}{WithinTolerance} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&First, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Second, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Tolerance)
+\begin{DoxyCompactList}\small\item\em Checks to see if two Reals are within a certain range of each other. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1MathTool_a5e933e324ac2e7aa575576a1ee44f6ef}{
+static const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries DegToRadMult} = \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real}(Pi / \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real}(180.0))}
+\label{classMezzanine_1_1MathTool_a5e933e324ac2e7aa575576a1ee44f6ef}
+
 \item 
 \hypertarget{classMezzanine_1_1MathTool_a5efc0e09658210d3d61adf6717a6f3a6}{
 static const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries HalfPi} = \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real}(0.5 $\ast$ Pi)}
@@ -68,6 +79,11 @@ static const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Re
 \hypertarget{classMezzanine_1_1MathTool_a700f64d8c4e1c77406fcaa8cddadbf4a}{
 static const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries Pi} = \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real}(4.0 $\ast$ atan(1.0))}
 \label{classMezzanine_1_1MathTool_a700f64d8c4e1c77406fcaa8cddadbf4a}
+
+\item 
+\hypertarget{classMezzanine_1_1MathTool_a2a879cce821ff1aec95c9b43d54380ab}{
+static const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries RadToDegMult} = \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real}(\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real}(180.0) / Pi)}
+\label{classMezzanine_1_1MathTool_a2a879cce821ff1aec95c9b43d54380ab}
 
 \item 
 \hypertarget{classMezzanine_1_1MathTool_aae0fc583d27f4ac796d009f579f3c406}{
@@ -108,7 +124,7 @@ Returns a Real representing the principal value of the arc Cosine of the angle p
 \end{DoxyReturn}
 
 
-Definition at line 121 of file mathtool.cpp.
+Definition at line 129 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_ab2397336a5d7ffc9510a92313f6ef214}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!ASin@{ASin}}
@@ -133,7 +149,7 @@ Returns a Real representing the principal value of the arc Sine of the angle pro
 \end{DoxyReturn}
 
 
-Definition at line 126 of file mathtool.cpp.
+Definition at line 134 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a89b1afe525d990b2136aae8b516b0980}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!ATan@{ATan}}
@@ -158,7 +174,7 @@ Returns a Real representing the principal value of the arc Tangent of the angle 
 \end{DoxyReturn}
 
 
-Definition at line 131 of file mathtool.cpp.
+Definition at line 139 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a3201e1e4dc3f7383c983861513cd0379}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Ceil@{Ceil}}
@@ -183,7 +199,7 @@ Returns the result of the rounding.
 \end{DoxyReturn}
 
 
-Definition at line 76 of file mathtool.cpp.
+Definition at line 78 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a7848194232dda5086ba2c4d4888d0ffc}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Cos@{Cos}}
@@ -208,7 +224,32 @@ Returns a Real representing the Cosine of the angle provided.
 \end{DoxyReturn}
 
 
-Definition at line 106 of file mathtool.cpp.
+Definition at line 114 of file mathtool.cpp.
+
+\hypertarget{classMezzanine_1_1MathTool_a211eb278e9b51404cc10e7b12dfe5209}{
+\index{Mezzanine::MathTool@{Mezzanine::MathTool}!DegreesToRadians@{DegreesToRadians}}
+\index{DegreesToRadians@{DegreesToRadians}!Mezzanine::MathTool@{Mezzanine::MathTool}}
+\paragraph[{DegreesToRadians}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::MathTool::DegreesToRadians (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Degrees}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MathTool_a211eb278e9b51404cc10e7b12dfe5209}
+
+
+Converts an angle in Degree's to the same angle Radians. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Degrees} & The number of Degree's to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the converted number in Radians. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a96b1935e6ed6d9d2ffa03fd2e7698c3e}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Fabs@{Fabs}}
@@ -233,7 +274,7 @@ Returns the absolute value of the Real.
 \end{DoxyReturn}
 
 
-Definition at line 96 of file mathtool.cpp.
+Definition at line 98 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a51eae53cadb52839ae6edb279627fabd}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Floor@{Floor}}
@@ -258,7 +299,7 @@ Returns the result of the rounding.
 \end{DoxyReturn}
 
 
-Definition at line 81 of file mathtool.cpp.
+Definition at line 83 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a4e4171768a241441a1ed0b33c68bdc9c}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Fmod@{Fmod}}
@@ -286,7 +327,7 @@ Returns the remainder of division between the two Reals passed in.
 \end{DoxyReturn}
 
 
-Definition at line 101 of file mathtool.cpp.
+Definition at line 103 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_afeaaaf9f445283c16310b4f15c44d03e}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!GetHalfPi@{GetHalfPi}}
@@ -306,7 +347,7 @@ Returns a real representing Pi $\ast$ 0.5.
 \end{DoxyReturn}
 
 
-Definition at line 71 of file mathtool.cpp.
+Definition at line 73 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a041b328e51d402deda1660b6d30508f5}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!GetPi@{GetPi}}
@@ -326,7 +367,7 @@ Returns a real representing Pi.
 \end{DoxyReturn}
 
 
-Definition at line 61 of file mathtool.cpp.
+Definition at line 63 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_afd4da5be9f2f1f89dfa92235a5b02307}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!GetTwoPi@{GetTwoPi}}
@@ -346,7 +387,7 @@ Returns a real representing Pi $\ast$ 2.
 \end{DoxyReturn}
 
 
-Definition at line 66 of file mathtool.cpp.
+Definition at line 68 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_ad38737da349c0aea453d42f79e5c61d1}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Pow@{Pow}}
@@ -374,7 +415,32 @@ Returns the Raised Eeal.
 \end{DoxyReturn}
 
 
-Definition at line 86 of file mathtool.cpp.
+Definition at line 88 of file mathtool.cpp.
+
+\hypertarget{classMezzanine_1_1MathTool_a743191c57f5b98ce558a7197492c2f4b}{
+\index{Mezzanine::MathTool@{Mezzanine::MathTool}!RadiansToDegrees@{RadiansToDegrees}}
+\index{RadiansToDegrees@{RadiansToDegrees}!Mezzanine::MathTool@{Mezzanine::MathTool}}
+\paragraph[{RadiansToDegrees}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::MathTool::RadiansToDegrees (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Radians}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MathTool_a743191c57f5b98ce558a7197492c2f4b}
+
+
+Converts an angle in Radians's to the same angle Degrees. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Radians} & The number of Radians's to convert. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the converted number in Degrees. 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a58b35317198c5d4cdf1680e5516747c3}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Sin@{Sin}}
@@ -399,7 +465,7 @@ Returns a Real representing the Sine of the angle provided.
 \end{DoxyReturn}
 
 
-Definition at line 111 of file mathtool.cpp.
+Definition at line 119 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_af230371a8d6f59b4ee78670afd3928fa}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Sqrt@{Sqrt}}
@@ -424,7 +490,7 @@ Returns the calculated square root.
 \end{DoxyReturn}
 
 
-Definition at line 91 of file mathtool.cpp.
+Definition at line 93 of file mathtool.cpp.
 
 \hypertarget{classMezzanine_1_1MathTool_a4fd17164ea990aff0203c63946bb1d48}{
 \index{Mezzanine::MathTool@{Mezzanine::MathTool}!Tan@{Tan}}
@@ -449,7 +515,38 @@ Returns a Real representing the Tangent of the angle provided.
 \end{DoxyReturn}
 
 
-Definition at line 116 of file mathtool.cpp.
+Definition at line 124 of file mathtool.cpp.
+
+\hypertarget{classMezzanine_1_1MathTool_a6b7462a4da72393082a222c1e69adc8b}{
+\index{Mezzanine::MathTool@{Mezzanine::MathTool}!WithinTolerance@{WithinTolerance}}
+\index{WithinTolerance@{WithinTolerance}!Mezzanine::MathTool@{Mezzanine::MathTool}}
+\paragraph[{WithinTolerance}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::MathTool::WithinTolerance (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{First, }
+\item[{const {\bf Real} \&}]{Second, }
+\item[{const {\bf Real} \&}]{Tolerance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MathTool_a6b7462a4da72393082a222c1e69adc8b}
+
+
+Checks to see if two Reals are within a certain range of each other. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em First} & The first of two Reals to compare. \\
+\hline
+{\em Second} & The second of two Reals to compare. \\
+\hline
+{\em Tolerance} & The leeway allowed in how far the two can be apart. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the two numbers are within the amount specified by Tolerance of each other, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file mathtool.cpp.
 
 
 

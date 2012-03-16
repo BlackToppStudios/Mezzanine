@@ -1,0 +1,88 @@
+\hypertarget{classMezzanine_1_1xml_1_1WriterFile}{
+\subsection{Mezzanine::xml::WriterFile Class Reference}
+\label{classMezzanine_1_1xml_1_1WriterFile}\index{Mezzanine::xml::WriterFile@{Mezzanine::xml::WriterFile}}
+}
+
+
+An implementation of \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+Inheritance diagram for Mezzanine::xml::WriterFile:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1xml_1_1WriterFile}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1xml_1_1WriterFile_ad4a253faa011360158f1cb0ae4068b9b}{WriterFile} (void $\ast$file)
+\begin{DoxyCompactList}\small\item\em Construct a \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} from a FILE$\ast$ object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1xml_1_1WriterFile_a3f591f3c56973db7dce2d934313c54c7}{Write} (const void $\ast$data, size\_\-t size)
+\begin{DoxyCompactList}\small\item\em This will be used to output xml to an external source such as a file or stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+An implementation of \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio. 
+
+Definition at line 309 of file xml.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1WriterFile_ad4a253faa011360158f1cb0ae4068b9b}{
+\index{Mezzanine::xml::WriterFile@{Mezzanine::xml::WriterFile}!WriterFile@{WriterFile}}
+\index{WriterFile@{WriterFile}!Mezzanine::xml::WriterFile@{Mezzanine::xml::WriterFile}}
+\paragraph[{WriterFile}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::WriterFile::WriterFile (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{file}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1WriterFile_ad4a253faa011360158f1cb0ae4068b9b}
+
+
+Construct a \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} from a FILE$\ast$ object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void$\ast$ was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety. \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1WriterFile_a3f591f3c56973db7dce2d934313c54c7}{
+\index{Mezzanine::xml::WriterFile@{Mezzanine::xml::WriterFile}!Write@{Write}}
+\index{Write@{Write}!Mezzanine::xml::WriterFile@{Mezzanine::xml::WriterFile}}
+\paragraph[{Write}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::xml::WriterFile::Write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{data, }
+\item[{size\_\-t}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1WriterFile_a3f591f3c56973db7dce2d934313c54c7}
+
+
+This will be used to output xml to an external source such as a file or stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & This is a pointer to something that will get written to the output \\
+\hline
+{\em size} & The size in bytes of whatever was passed in. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classMezzanine_1_1xml_1_1Writer_abdb52bc1b26e6bb39682e0d29ceeab64}{Mezzanine::xml::Writer}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

@@ -20,6 +20,15 @@ Inheritance diagram for Mezzanine::UI::Menu:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1UI_1_1Menu_a8f3d2f15d3b620eba00e2c5c713881f5}{Menu} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Menu_aeb847e055541acb9d531391ba66b8681}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1Menu_aeb847e055541acb9d531391ba66b8681}{$\sim$Menu} ()}
+\label{classMezzanine_1_1UI_1_1Menu_aeb847e055541acb9d531391ba66b8681}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Menu_a2ca593a768f250398f92a7f8bfc5394c}{\_\-AppendVertices} (\hyperlink{classMezzanine_1_1UI_1_1ScreenVertexData}{ScreenVertexData} \&Vertices)
+\item 
 virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Menu_a514ab3a4afb50cd799fe7fde9f877c3d}{GetActualPosition} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Menu_a301e1b2290e4bc170f527c5dd0179884}{GetActualSize} ()
@@ -32,8 +41,6 @@ virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Menu_a370c1411203c58698104a92d2b508b99}{GetTopWindow} ()
 \begin{DoxyCompactList}\small\item\em Gets the current window at the top of the stack. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1Menu_a8f3d2f15d3b620eba00e2c5c713881f5}{Menu} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Menu_a671031f5e8ae5890d952e5f6646cdb66}{RollMenuBackToWindow} (\hyperlink{classMezzanine_1_1UI_1_1MenuWindow}{UI::MenuWindow} $\ast$Win)
 \begin{DoxyCompactList}\small\item\em Hides and removes from the stack all windows from the top until it reaches the specified window, or root window. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Menu_a0638a7f234bc62e4c7b7dc0253a5d68e}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
@@ -45,12 +52,7 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1Menu_ab15befd0341286dd2bcfc35e20
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Menu_ab3e0d3ea65a0bb5e19639bdd283796d0}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this menu. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Menu_a8d0e0169fb5e1c0f864670ad6d34e521}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1Menu_aeb847e055541acb9d531391ba66b8681}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1Menu_aeb847e055541acb9d531391ba66b8681}{$\sim$Menu} ()}
-\label{classMezzanine_1_1UI_1_1Menu_aeb847e055541acb9d531391ba66b8681}
-
-\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -89,7 +91,7 @@ This class is a control mechanism for multiple windows in a heirarchy. This clas
  \par
  Also it should be noted that since this is just a control system for other classes, it doesn't have a position or size like other classes. Instead when you call those functions to set or get the position or size, you'll be working with the current top level window. 
 
-Definition at line 61 of file uimenu.h.
+Definition at line 60 of file uimenu.h.
 
 
 
@@ -125,6 +127,30 @@ Definition at line 57 of file uimenu.cpp.
 
 
 \subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Menu_a2ca593a768f250398f92a7f8bfc5394c}{
+\index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!\_\-AppendVertices@{\_\-AppendVertices}}
+\index{\_\-AppendVertices@{\_\-AppendVertices}!Mezzanine::UI::Menu@{Mezzanine::UI::Menu}}
+\paragraph[{\_\-AppendVertices}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Menu::\_\-AppendVertices (
+\begin{DoxyParamCaption}
+\item[{{\bf ScreenVertexData} \&}]{Vertices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Menu_a2ca593a768f250398f92a7f8bfc5394c}
+Appends the vertices of this renderable to another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vertices} & The vector of vertex's to append to. \\
+\hline
+\end{DoxyParams}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1UI_1_1Widget_a756bf060fd25e54a00cfa1f13d78df2e}{Mezzanine::UI::Widget}.
+
+
+
+Definition at line 221 of file uimenu.cpp.
+
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a514ab3a4afb50cd799fe7fde9f877c3d}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!GetActualPosition@{GetActualPosition}}
 \index{GetActualPosition@{GetActualPosition}!Mezzanine::UI::Menu@{Mezzanine::UI::Menu}}
@@ -143,7 +169,7 @@ Returns a vector2 representing the pixel position of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 174 of file uimenu.cpp.
+Definition at line 181 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a301e1b2290e4bc170f527c5dd0179884}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!GetActualSize@{GetActualSize}}
@@ -163,7 +189,7 @@ Returns a vector2 representing the pixel size of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 194 of file uimenu.cpp.
+Definition at line 201 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_ac039c785132b468e3aeb5327e656306b}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!GetPosition@{GetPosition}}
@@ -183,7 +209,7 @@ Returns a vector2 representing the relative position of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 164 of file uimenu.cpp.
+Definition at line 171 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_acab8021587a7af5911b3ed9b44189341}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!GetRootWindow@{GetRootWindow}}
@@ -203,7 +229,7 @@ Returns a pointer to the Root window of this menu.
 \end{DoxyReturn}
 
 
-Definition at line 204 of file uimenu.cpp.
+Definition at line 211 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a50298380a41d2e8801dffdb9750cb212}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!GetSize@{GetSize}}
@@ -223,7 +249,7 @@ Returns a vector2 representing the relative size of this widget.
 \end{DoxyReturn}
 
 
-Definition at line 184 of file uimenu.cpp.
+Definition at line 191 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a370c1411203c58698104a92d2b508b99}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!GetTopWindow@{GetTopWindow}}
@@ -243,7 +269,7 @@ Returns a pointer to the window currently at the top of the stack.
 \end{DoxyReturn}
 
 
-Definition at line 209 of file uimenu.cpp.
+Definition at line 216 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a671031f5e8ae5890d952e5f6646cdb66}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!RollMenuBackToWindow@{RollMenuBackToWindow}}
@@ -265,7 +291,7 @@ Hides and removes from the stack all windows from the top until it reaches the s
 \end{DoxyParams}
 
 
-Definition at line 141 of file uimenu.cpp.
+Definition at line 147 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a0638a7f234bc62e4c7b7dc0253a5d68e}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!SetActualPosition@{SetActualPosition}}
@@ -291,7 +317,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e858
 
 
 
-Definition at line 169 of file uimenu.cpp.
+Definition at line 176 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a639a1362c09b87855a8c574995c4af87}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!SetActualSize@{SetActualSize}}
@@ -317,7 +343,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753
 
 
 
-Definition at line 189 of file uimenu.cpp.
+Definition at line 196 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_ab15befd0341286dd2bcfc35e2046316a}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!SetPosition@{SetPosition}}
@@ -343,7 +369,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007d
 
 
 
-Definition at line 159 of file uimenu.cpp.
+Definition at line 166 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_ab3e0d3ea65a0bb5e19639bdd283796d0}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!SetSize@{SetSize}}
@@ -369,7 +395,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff0981
 
 
 
-Definition at line 179 of file uimenu.cpp.
+Definition at line 186 of file uimenu.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Menu_a8d0e0169fb5e1c0f864670ad6d34e521}{
 \index{Mezzanine::UI::Menu@{Mezzanine::UI::Menu}!UpdateDimensions@{UpdateDimensions}}
@@ -390,7 +416,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848
 
 
 
-Definition at line 199 of file uimenu.cpp.
+Definition at line 206 of file uimenu.cpp.
 
 
 

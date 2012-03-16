@@ -10,6 +10,10 @@ Does the bulk of the work that that the \hyperlink{classMezzanine_1_1LineGroup}{
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1internal_1_1Line3D_a9b5b0aa76e55b8aa3030fe9833b81cc0}{Line3D} (void)
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1internal_1_1Line3D_a3a0edfa3660255f7d00762e704f73ea7}{$\sim$Line3D} (void)
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1internal_1_1Line3D_a6424bf33cfa273625e1c150905fb1afd}{addPoint} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&p)
 \begin{DoxyCompactList}\small\item\em This adds a point to the list of what should be rendered. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1internal_1_1Line3D_a17264ad5672bef8807ce6b4a8366e573}{drawLine} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&start, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&end)
@@ -24,12 +28,8 @@ const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanin
 \begin{DoxyCompactList}\small\item\em Access a specific point by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1internal_1_1Line3D_a1ead55e5f68b2bb2421af64b1ce2a83e}{getSquaredViewDepth} (const Ogre::Camera $\ast$cam) const 
 \begin{DoxyCompactList}\small\item\em Not Used. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1internal_1_1Line3D_a9b5b0aa76e55b8aa3030fe9833b81cc0}{Line3D} (void)
-\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1internal_1_1Line3D_ad2abff4e6297613e3a116c8f3f931442}{updatePoint} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} index, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&value)
-\begin{DoxyCompactList}\small\item\em Change an existing point. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1internal_1_1Line3D_a3a0edfa3660255f7d00762e704f73ea7}{$\sim$Line3D} (void)
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Change an existing point. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -53,7 +53,7 @@ std::vector$<$ \hyperlink{classMezzanine_1_1Vector3}{Vector3} $>$ \hyperlink{cla
 
 
 \subsubsection{Detailed Description}
-Does the bulk of the work that that the \hyperlink{classMezzanine_1_1LineGroup}{Mezzanine::LineGroup} performs. \hyperlink{classMezzanine_1_1LineGroup}{Mezzanine::LineGroup} is a simple wrapper around this to perform precise low level interactions with Ogre, the rendering subsystem. This uses too much stuff from ogre to use publicly. so we need to hide it here in the \hyperlink{namespaceMezzanine_1_1internal}{Mezzanine::internal} namespace. 
+Does the bulk of the work that that the \hyperlink{classMezzanine_1_1LineGroup}{Mezzanine::LineGroup} performs. \hyperlink{classMezzanine_1_1LineGroup}{Mezzanine::LineGroup} is a simple wrapper around this to perform precise low level interactions with \hyperlink{namespaceOgre}{Ogre}, the rendering subsystem. This uses too much stuff from ogre to use publicly. so we need to hide it here in the \hyperlink{namespaceMezzanine_1_1internal}{Mezzanine::internal} namespace. 
 
 Definition at line 69 of file linegroup.cpp.
 
@@ -143,7 +143,7 @@ This adds to points, to guarantee that a specific line segment is drawn.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000013}{Todo}]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen \end{Desc}
+\item[\hyperlink{todo__todo000016}{Todo}]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen \end{Desc}
 
 
 

@@ -113,92 +113,110 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00049"></a>00049     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MathTool::Pi = <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(4.0 * atan(1.0));
 <a name="l00050"></a>00050     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MathTool::TwoPi = <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(2.0 * Pi);
 <a name="l00051"></a>00051     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MathTool::HalfPi = <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(0.5 * Pi);
-<a name="l00052"></a>00052 
-<a name="l00053"></a><a class="code" href="classMezzanine_1_1MathTool.html#a0e5200de6dc0b3a3b6def86e9981d97a">00053</a>     <a class="code" href="classMezzanine_1_1MathTool.html#a0e5200de6dc0b3a3b6def86e9981d97a" title="Class constructor.">MathTool::MathTool</a>()
-<a name="l00054"></a>00054     {
-<a name="l00055"></a>00055     }
-<a name="l00056"></a>00056 
-<a name="l00057"></a><a class="code" href="classMezzanine_1_1MathTool.html#aca1449215b524b2c832e78a4356ebdb4">00057</a>     <a class="code" href="classMezzanine_1_1MathTool.html#aca1449215b524b2c832e78a4356ebdb4" title="Class destructor.">MathTool::~MathTool</a>()
-<a name="l00058"></a>00058     {
-<a name="l00059"></a>00059     }
-<a name="l00060"></a>00060 
-<a name="l00061"></a><a class="code" href="classMezzanine_1_1MathTool.html#a041b328e51d402deda1660b6d30508f5">00061</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a041b328e51d402deda1660b6d30508f5" title="Gets Pi.">MathTool::GetPi</a>()
-<a name="l00062"></a>00062     {
-<a name="l00063"></a>00063         <span class="keywordflow">return</span> Pi;
-<a name="l00064"></a>00064     }
-<a name="l00065"></a>00065 
-<a name="l00066"></a><a class="code" href="classMezzanine_1_1MathTool.html#afd4da5be9f2f1f89dfa92235a5b02307">00066</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#afd4da5be9f2f1f89dfa92235a5b02307" title="Gets Pi * 2.">MathTool::GetTwoPi</a>()
-<a name="l00067"></a>00067     {
-<a name="l00068"></a>00068         <span class="keywordflow">return</span> TwoPi;
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 
-<a name="l00071"></a><a class="code" href="classMezzanine_1_1MathTool.html#afeaaaf9f445283c16310b4f15c44d03e">00071</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#afeaaaf9f445283c16310b4f15c44d03e" title="Gets Pi * 0.5.">MathTool::GetHalfPi</a>()
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073         <span class="keywordflow">return</span> HalfPi;
-<a name="l00074"></a>00074     }
-<a name="l00075"></a>00075 
-<a name="l00076"></a><a class="code" href="classMezzanine_1_1MathTool.html#a3201e1e4dc3f7383c983861513cd0379">00076</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a3201e1e4dc3f7383c983861513cd0379" title="Rounds a Real up.">MathTool::Ceil</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
-<a name="l00077"></a>00077     {
-<a name="l00078"></a>00078         <span class="keywordflow">return</span> ceil(Val);
-<a name="l00079"></a>00079     }
-<a name="l00080"></a>00080 
-<a name="l00081"></a><a class="code" href="classMezzanine_1_1MathTool.html#a51eae53cadb52839ae6edb279627fabd">00081</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a51eae53cadb52839ae6edb279627fabd" title="Rounds a Real down.">MathTool::Floor</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
-<a name="l00082"></a>00082     {
-<a name="l00083"></a>00083         <span class="keywordflow">return</span> floor(Val);
-<a name="l00084"></a>00084     }
-<a name="l00085"></a>00085 
-<a name="l00086"></a><a class="code" href="classMezzanine_1_1MathTool.html#ad38737da349c0aea453d42f79e5c61d1">00086</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#ad38737da349c0aea453d42f79e5c61d1" title="Raises a Real to a power.">MathTool::Pow</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Power)
-<a name="l00087"></a>00087     {
-<a name="l00088"></a>00088         <span class="keywordflow">return</span> pow(Val,Power);
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090 
-<a name="l00091"></a><a class="code" href="classMezzanine_1_1MathTool.html#af230371a8d6f59b4ee78670afd3928fa">00091</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#af230371a8d6f59b4ee78670afd3928fa" title="Gets the square root of a Real.">MathTool::Sqrt</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
-<a name="l00092"></a>00092     {
-<a name="l00093"></a>00093         <span class="keywordflow">return</span> sqrt(Val);
-<a name="l00094"></a>00094     }
-<a name="l00095"></a>00095 
-<a name="l00096"></a><a class="code" href="classMezzanine_1_1MathTool.html#a96b1935e6ed6d9d2ffa03fd2e7698c3e">00096</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a96b1935e6ed6d9d2ffa03fd2e7698c3e" title="Gets the absolute value of a Real.">MathTool::Fabs</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
-<a name="l00097"></a>00097     {
-<a name="l00098"></a>00098         <span class="keywordflow">return</span> fabs(Val);
-<a name="l00099"></a>00099     }
-<a name="l00100"></a>00100 
-<a name="l00101"></a><a class="code" href="classMezzanine_1_1MathTool.html#a4e4171768a241441a1ed0b33c68bdc9c">00101</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a4e4171768a241441a1ed0b33c68bdc9c" title="Modulo, for Reals. Returns the remainder of the division between two Reals.">MathTool::Fmod</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Numerator, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Denominator)
-<a name="l00102"></a>00102     {
-<a name="l00103"></a>00103         <span class="keywordflow">return</span> fmod(Numerator,Denominator);
-<a name="l00104"></a>00104     }
-<a name="l00105"></a>00105 
-<a name="l00106"></a><a class="code" href="classMezzanine_1_1MathTool.html#a7848194232dda5086ba2c4d4888d0ffc">00106</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a7848194232dda5086ba2c4d4888d0ffc" title="Calculates the Cosine of an angle.">MathTool::Cos</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
-<a name="l00107"></a>00107     {
-<a name="l00108"></a>00108         <span class="keywordflow">return</span> cos(Radians);
-<a name="l00109"></a>00109     }
-<a name="l00110"></a>00110 
-<a name="l00111"></a><a class="code" href="classMezzanine_1_1MathTool.html#a58b35317198c5d4cdf1680e5516747c3">00111</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a58b35317198c5d4cdf1680e5516747c3" title="Calculates the Sine of an angle.">MathTool::Sin</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
-<a name="l00112"></a>00112     {
-<a name="l00113"></a>00113         <span class="keywordflow">return</span> sin(Radians);
-<a name="l00114"></a>00114     }
-<a name="l00115"></a>00115 
-<a name="l00116"></a><a class="code" href="classMezzanine_1_1MathTool.html#a4fd17164ea990aff0203c63946bb1d48">00116</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a4fd17164ea990aff0203c63946bb1d48" title="Calculates the Tangent of an angle.">MathTool::Tan</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
-<a name="l00117"></a>00117     {
-<a name="l00118"></a>00118         <span class="keywordflow">return</span> tan(Radians);
-<a name="l00119"></a>00119     }
-<a name="l00120"></a>00120 
-<a name="l00121"></a><a class="code" href="classMezzanine_1_1MathTool.html#a036cff4360b503b4bee33dc74f5324c4">00121</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a036cff4360b503b4bee33dc74f5324c4" title="Calculates the principal value of the arc Cosine of an angle.">MathTool::ACos</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
-<a name="l00122"></a>00122     {
-<a name="l00123"></a>00123         <span class="keywordflow">return</span> acos(Interval);
-<a name="l00124"></a>00124     }
-<a name="l00125"></a>00125 
-<a name="l00126"></a><a class="code" href="classMezzanine_1_1MathTool.html#ab2397336a5d7ffc9510a92313f6ef214">00126</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#ab2397336a5d7ffc9510a92313f6ef214" title="Calculates the principal value of the arc Sine of an angle.">MathTool::ASin</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
-<a name="l00127"></a>00127     {
-<a name="l00128"></a>00128         <span class="keywordflow">return</span> asin(Interval);
-<a name="l00129"></a>00129     }
-<a name="l00130"></a>00130 
-<a name="l00131"></a><a class="code" href="classMezzanine_1_1MathTool.html#a89b1afe525d990b2136aae8b516b0980">00131</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a89b1afe525d990b2136aae8b516b0980" title="Calculates the principal value of the arc Tangent of an angle.">MathTool::ATan</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
-<a name="l00132"></a>00132     {
-<a name="l00133"></a>00133         <span class="keywordflow">return</span> atan(Interval);
-<a name="l00134"></a>00134     }
-<a name="l00135"></a>00135 }<span class="comment">//Mezzanine</span>
-<a name="l00136"></a>00136 
-<a name="l00137"></a>00137 <span class="preprocessor">#endif</span>
+<a name="l00052"></a>00052     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MathTool::RadToDegMult = <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(180.0) / Pi);
+<a name="l00053"></a>00053     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> MathTool::DegToRadMult = <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(Pi / <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>(180.0));
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="classMezzanine_1_1MathTool.html#a0e5200de6dc0b3a3b6def86e9981d97a">00055</a>     <a class="code" href="classMezzanine_1_1MathTool.html#a0e5200de6dc0b3a3b6def86e9981d97a" title="Class constructor.">MathTool::MathTool</a>()
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057     }
+<a name="l00058"></a>00058 
+<a name="l00059"></a><a class="code" href="classMezzanine_1_1MathTool.html#aca1449215b524b2c832e78a4356ebdb4">00059</a>     <a class="code" href="classMezzanine_1_1MathTool.html#aca1449215b524b2c832e78a4356ebdb4" title="Class destructor.">MathTool::~MathTool</a>()
+<a name="l00060"></a>00060     {
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062 
+<a name="l00063"></a><a class="code" href="classMezzanine_1_1MathTool.html#a041b328e51d402deda1660b6d30508f5">00063</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a041b328e51d402deda1660b6d30508f5" title="Gets Pi.">MathTool::GetPi</a>()
+<a name="l00064"></a>00064     {
+<a name="l00065"></a>00065         <span class="keywordflow">return</span> Pi;
+<a name="l00066"></a>00066     }
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="classMezzanine_1_1MathTool.html#afd4da5be9f2f1f89dfa92235a5b02307">00068</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#afd4da5be9f2f1f89dfa92235a5b02307" title="Gets Pi * 2.">MathTool::GetTwoPi</a>()
+<a name="l00069"></a>00069     {
+<a name="l00070"></a>00070         <span class="keywordflow">return</span> TwoPi;
+<a name="l00071"></a>00071     }
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="classMezzanine_1_1MathTool.html#afeaaaf9f445283c16310b4f15c44d03e">00073</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#afeaaaf9f445283c16310b4f15c44d03e" title="Gets Pi * 0.5.">MathTool::GetHalfPi</a>()
+<a name="l00074"></a>00074     {
+<a name="l00075"></a>00075         <span class="keywordflow">return</span> HalfPi;
+<a name="l00076"></a>00076     }
+<a name="l00077"></a>00077 
+<a name="l00078"></a><a class="code" href="classMezzanine_1_1MathTool.html#a3201e1e4dc3f7383c983861513cd0379">00078</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a3201e1e4dc3f7383c983861513cd0379" title="Rounds a Real up.">MathTool::Ceil</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
+<a name="l00079"></a>00079     {
+<a name="l00080"></a>00080         <span class="keywordflow">return</span> ceil(Val);
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="classMezzanine_1_1MathTool.html#a51eae53cadb52839ae6edb279627fabd">00083</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a51eae53cadb52839ae6edb279627fabd" title="Rounds a Real down.">MathTool::Floor</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
+<a name="l00084"></a>00084     {
+<a name="l00085"></a>00085         <span class="keywordflow">return</span> floor(Val);
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087 
+<a name="l00088"></a><a class="code" href="classMezzanine_1_1MathTool.html#ad38737da349c0aea453d42f79e5c61d1">00088</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#ad38737da349c0aea453d42f79e5c61d1" title="Raises a Real to a power.">MathTool::Pow</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Power)
+<a name="l00089"></a>00089     {
+<a name="l00090"></a>00090         <span class="keywordflow">return</span> pow(Val,Power);
+<a name="l00091"></a>00091     }
+<a name="l00092"></a>00092 
+<a name="l00093"></a><a class="code" href="classMezzanine_1_1MathTool.html#af230371a8d6f59b4ee78670afd3928fa">00093</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#af230371a8d6f59b4ee78670afd3928fa" title="Gets the square root of a Real.">MathTool::Sqrt</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
+<a name="l00094"></a>00094     {
+<a name="l00095"></a>00095         <span class="keywordflow">return</span> sqrt(Val);
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097 
+<a name="l00098"></a><a class="code" href="classMezzanine_1_1MathTool.html#a96b1935e6ed6d9d2ffa03fd2e7698c3e">00098</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a96b1935e6ed6d9d2ffa03fd2e7698c3e" title="Gets the absolute value of a Real.">MathTool::Fabs</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Val)
+<a name="l00099"></a>00099     {
+<a name="l00100"></a>00100         <span class="keywordflow">return</span> fabs(Val);
+<a name="l00101"></a>00101     }
+<a name="l00102"></a>00102 
+<a name="l00103"></a><a class="code" href="classMezzanine_1_1MathTool.html#a4e4171768a241441a1ed0b33c68bdc9c">00103</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a4e4171768a241441a1ed0b33c68bdc9c" title="Modulo, for Reals. Returns the remainder of the division between two Reals.">MathTool::Fmod</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Numerator, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Denominator)
+<a name="l00104"></a>00104     {
+<a name="l00105"></a>00105         <span class="keywordflow">return</span> fmod(Numerator,Denominator);
+<a name="l00106"></a>00106     }
+<a name="l00107"></a>00107 
+<a name="l00108"></a><a class="code" href="classMezzanine_1_1MathTool.html#a6b7462a4da72393082a222c1e69adc8b">00108</a>     <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1MathTool.html#a6b7462a4da72393082a222c1e69adc8b" title="Checks to see if two Reals are within a certain range of each other.">MathTool::WithinTolerance</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; First, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Second, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Tolerance)
+<a name="l00109"></a>00109     {
+<a name="l00110"></a>00110         <span class="keywordflow">if</span>( <a class="code" href="classMezzanine_1_1MathTool.html#a96b1935e6ed6d9d2ffa03fd2e7698c3e" title="Gets the absolute value of a Real.">Fabs</a>(Second - First) &lt;= Tolerance ) <span class="keywordflow">return</span> <span class="keyword">true</span>;
+<a name="l00111"></a>00111         <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00112"></a>00112     }
+<a name="l00113"></a>00113 
+<a name="l00114"></a><a class="code" href="classMezzanine_1_1MathTool.html#a7848194232dda5086ba2c4d4888d0ffc">00114</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a7848194232dda5086ba2c4d4888d0ffc" title="Calculates the Cosine of an angle.">MathTool::Cos</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00115"></a>00115     {
+<a name="l00116"></a>00116         <span class="keywordflow">return</span> cos(Radians);
+<a name="l00117"></a>00117     }
+<a name="l00118"></a>00118 
+<a name="l00119"></a><a class="code" href="classMezzanine_1_1MathTool.html#a58b35317198c5d4cdf1680e5516747c3">00119</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a58b35317198c5d4cdf1680e5516747c3" title="Calculates the Sine of an angle.">MathTool::Sin</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00120"></a>00120     {
+<a name="l00121"></a>00121         <span class="keywordflow">return</span> sin(Radians);
+<a name="l00122"></a>00122     }
+<a name="l00123"></a>00123 
+<a name="l00124"></a><a class="code" href="classMezzanine_1_1MathTool.html#a4fd17164ea990aff0203c63946bb1d48">00124</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a4fd17164ea990aff0203c63946bb1d48" title="Calculates the Tangent of an angle.">MathTool::Tan</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00125"></a>00125     {
+<a name="l00126"></a>00126         <span class="keywordflow">return</span> tan(Radians);
+<a name="l00127"></a>00127     }
+<a name="l00128"></a>00128 
+<a name="l00129"></a><a class="code" href="classMezzanine_1_1MathTool.html#a036cff4360b503b4bee33dc74f5324c4">00129</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a036cff4360b503b4bee33dc74f5324c4" title="Calculates the principal value of the arc Cosine of an angle.">MathTool::ACos</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00130"></a>00130     {
+<a name="l00131"></a>00131         <span class="keywordflow">return</span> acos(Interval);
+<a name="l00132"></a>00132     }
+<a name="l00133"></a>00133 
+<a name="l00134"></a><a class="code" href="classMezzanine_1_1MathTool.html#ab2397336a5d7ffc9510a92313f6ef214">00134</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#ab2397336a5d7ffc9510a92313f6ef214" title="Calculates the principal value of the arc Sine of an angle.">MathTool::ASin</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00135"></a>00135     {
+<a name="l00136"></a>00136         <span class="keywordflow">return</span> asin(Interval);
+<a name="l00137"></a>00137     }
+<a name="l00138"></a>00138 
+<a name="l00139"></a><a class="code" href="classMezzanine_1_1MathTool.html#a89b1afe525d990b2136aae8b516b0980">00139</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a89b1afe525d990b2136aae8b516b0980" title="Calculates the principal value of the arc Tangent of an angle.">MathTool::ATan</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Interval)
+<a name="l00140"></a>00140     {
+<a name="l00141"></a>00141         <span class="keywordflow">return</span> atan(Interval);
+<a name="l00142"></a>00142     }
+<a name="l00143"></a>00143 
+<a name="l00144"></a><a class="code" href="classMezzanine_1_1MathTool.html#a211eb278e9b51404cc10e7b12dfe5209">00144</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a211eb278e9b51404cc10e7b12dfe5209" title="Converts an angle in Degree&amp;#39;s to the same angle Radians.">MathTool::DegreesToRadians</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Degrees)
+<a name="l00145"></a>00145     {
+<a name="l00146"></a>00146         <span class="keywordflow">return</span> Degrees * DegToRadMult;
+<a name="l00147"></a>00147     }
+<a name="l00148"></a>00148 
+<a name="l00149"></a><a class="code" href="classMezzanine_1_1MathTool.html#a743191c57f5b98ce558a7197492c2f4b">00149</a>     <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1MathTool.html#a743191c57f5b98ce558a7197492c2f4b" title="Converts an angle in Radians&amp;#39;s to the same angle Degrees.">MathTool::RadiansToDegrees</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Radians)
+<a name="l00150"></a>00150     {
+<a name="l00151"></a>00151         <span class="keywordflow">return</span> Radians * RadToDegMult;
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153 }<span class="comment">//Mezzanine</span>
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -206,7 +224,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -216,6 +234,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

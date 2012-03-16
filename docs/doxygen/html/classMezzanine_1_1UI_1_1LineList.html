@@ -68,21 +68,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::UI::LineList Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::UI::LineList" -->
+<!-- doxytag: class="Mezzanine::UI::LineList" --><!-- doxytag: inherits="Mezzanine::UI::BasicRenderable" -->
 <p>This is an object comprised of a series of lines.  
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="uilinelist_8h_source.html">uilinelist.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Mezzanine::UI::LineList:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classMezzanine_1_1UI_1_1LineList.png" usemap="#Mezzanine::UI::LineList_map" alt=""/>
+  <map id="Mezzanine::UI::LineList_map" name="Mezzanine::UI::LineList_map">
+<area href="classMezzanine_1_1UI_1_1BasicRenderable.html" alt="Mezzanine::UI::BasicRenderable" shape="rect" coords="0,0,192,24"/>
+</map>
+ </div></div>
 
 <p><a href="classMezzanine_1_1UI_1_1LineList-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#ad2401759d54e6cce32160e31a272e463">LineList</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#ad2401759d54e6cce32160e31a272e463"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b87085b800ead91bc1bfec4d133039b"></a><!-- doxytag: member="Mezzanine::UI::LineList::~LineList" ref="a1b87085b800ead91bc1bfec4d133039b" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a1b87085b800ead91bc1bfec4d133039b">~LineList</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a847863aa5b36f1bf34181ff7b48de81d">_AppendVertices</a> (<a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;Vertices)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a5801106416279f51baa81934fa8d4083">_Redraw</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027">AddActualPoint</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;X, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Y)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new point/line to the list via 2 reals.  <a href="#a78c3f9e972886851cbe877c8cde4e027"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a9f457889822f8c236d2e0cf7fccd8aeb">AddActualPoint</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
@@ -91,54 +108,57 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new point/line to the list via 2 reals.  <a href="#a6f689d10188e5973033fe7448ac7c68d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a40a814e86853fed53fc1bf4a7bde5e69">AddPoint</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new point/line to the list via a vector2.  <a href="#a40a814e86853fed53fc1bf4a7bde5e69"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a0903825b873157e6733c20ad8da3e563">Begin</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Thickness, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a new line list.  <a href="#a0903825b873157e6733c20ad8da3e563"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#ae5a45cc87def03c379665c6c5ec06f83">Begin</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;LineThickness, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;LineColour)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts a new line list.  <a href="#ae5a45cc87def03c379665c6c5ec06f83"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#aa216a1f529f4e8664ec2d6877f4c9cf5">End</a> (bool Closed=false)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finalizes the list and prepares it for rendering.  <a href="#aa216a1f529f4e8664ec2d6877f4c9cf5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#aae3d6b141f56eb21a22a4c80dd60d419">GetRenderPriority</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#aae3d6b141f56eb21a22a4c80dd60d419"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa48e17f637d9237ea9aa25294de87fe5"></a><!-- doxytag: member="Mezzanine::UI::LineList::Hide" ref="aa48e17f637d9237ea9aa25294de87fe5" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#aa48e17f637d9237ea9aa25294de87fe5">Hide</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to hide. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a887ee9e85f989a907b1d74ba95ed6a41">IsVisible</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this rectangle.  <a href="#a887ee9e85f989a907b1d74ba95ed6a41"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a250e9a87fbe68f2251510dbad2f15b08">LineList</a> (<a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a250e9a87fbe68f2251510dbad2f15b08"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a42955b53aa178e4e1a40fd4b8c260bbe">SetRenderPriority</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;Priority)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#a42955b53aa178e4e1a40fd4b8c260bbe"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#ace36d0bc1c9c465737b65c8f2bcc2d23">SetVisible</a> (bool Visible)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this rectangle.  <a href="#ace36d0bc1c9c465737b65c8f2bcc2d23"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1832190fc3111d58b8e086f2cc358fdc"></a><!-- doxytag: member="Mezzanine::UI::LineList::Show" ref="a1832190fc3111d58b8e086f2cc358fdc" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a1832190fc3111d58b8e086f2cc358fdc">Show</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to be shown. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b87085b800ead91bc1bfec4d133039b"></a><!-- doxytag: member="Mezzanine::UI::LineList::~LineList" ref="a1b87085b800ead91bc1bfec4d133039b" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a1b87085b800ead91bc1bfec4d133039b">~LineList</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a25e792075ec0c5165d5870d8e0710b7f">UpdateDimensions</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this renderable to match those of the new screen size.  <a href="#a25e792075ec0c5165d5870d8e0710b7f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acde2dc6afe2d8c16b27b50fbdea30f19"></a><!-- doxytag: member="Mezzanine::UI::LineList::GLineList" ref="acde2dc6afe2d8c16b27b50fbdea30f19" args="" -->
-Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineList</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9455e44973d03f369d606b2378e08230"></a><!-- doxytag: member="Mezzanine::UI::LineList::Colour" ref="a9455e44973d03f369d606b2378e08230" args="" -->
+<a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Colour</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a638a168ebabaab5d719d500c5dc67816"></a><!-- doxytag: member="Mezzanine::UI::LineList::IsClosed" ref="a638a168ebabaab5d719d500c5dc67816" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsClosed</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf1394d7d9e4a3d86817d72d54dee6a9"></a><!-- doxytag: member="Mezzanine::UI::LineList::Manager" ref="aaf1394d7d9e4a3d86817d72d54dee6a9" args="" -->
 <a class="el" href="classMezzanine_1_1UIManager.html">UIManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33aba7c9e6d8043858e71c19554facf4"></a><!-- doxytag: member="Mezzanine::UI::LineList::Parent" ref="a33aba7c9e6d8043858e71c19554facf4" args="" -->
 <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afde40ad4fddbddcc400e929c14115271"></a><!-- doxytag: member="Mezzanine::UI::LineList::Positions" ref="afde40ad4fddbddcc400e929c14115271" args="" -->
+std::vector&lt; <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Positions</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3765285c824d442d64cc8d629102bc7b"></a><!-- doxytag: member="Mezzanine::UI::LineList::Thickness" ref="a3765285c824d442d64cc8d629102bc7b" args="" -->
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Thickness</b></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a834e4e869446be644f61b4b456604f31"></a><!-- doxytag: member="Mezzanine::UI::LineList::Layer" ref="a834e4e869446be644f61b4b456604f31" args="" -->
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Layer</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is an object comprised of a series of lines. </p>
 <p>This class isn't an object, but rather just a series of lines. As such it doesn't have a position or size. The position functions exist only to create additional points for the lines to connect. </p>
 
-<p>Definition at line <a class="el" href="uilinelist_8h_source.html#l00066">66</a> of file <a class="el" href="uilinelist_8h_source.html">uilinelist.h</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8h_source.html#l00063">63</a> of file <a class="el" href="uilinelist_8h_source.html">uilinelist.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a250e9a87fbe68f2251510dbad2f15b08"></a><!-- doxytag: member="Mezzanine::UI::LineList::LineList" ref="a250e9a87fbe68f2251510dbad2f15b08" args="(Layer *PLayer)" -->
+<a class="anchor" id="ad2401759d54e6cce32160e31a272e463"></a><!-- doxytag: member="Mezzanine::UI::LineList::LineList" ref="ad2401759d54e6cce32160e31a272e463" args="(const String &amp;name, Layer *PLayer)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Mezzanine::UI::LineList::LineList </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td>
-          <td class="paramname"><em>PLayer</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td>
+          <td class="paramname"><em>PLayer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -147,16 +167,93 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
 <p>Class constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramname">name</td><td>The name to give to this Linelist. </td></tr>
     <tr><td class="paramname"><a class="el" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a></td><td>Pointer to the parent <a class="el" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a> that created this rectangle. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00055">55</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00056">56</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a847863aa5b36f1bf34181ff7b48de81d"></a><!-- doxytag: member="Mezzanine::UI::LineList::_AppendVertices" ref="a847863aa5b36f1bf34181ff7b48de81d" args="(ScreenVertexData &amp;Vertices)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::LineList::_AppendVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;&#160;</td>
+          <td class="paramname"><em>Vertices</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Appends the vertices of this renderable to another vector. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Vertices</td><td>The vector of vertex's to append to. </td></tr>
+  </table>
+  </dd>
+</dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aafd3dd1e288791b1071cb8c043866504">Mezzanine::UI::BasicRenderable</a>.</p>
+
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00165">165</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5801106416279f51baa81934fa8d4083"></a><!-- doxytag: member="Mezzanine::UI::LineList::_Redraw" ref="a5801106416279f51baa81934fa8d4083" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::LineList::_Redraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Regenerates the verticies in this renderable. </p>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a2fc7dda5e44e8a8aca838864d67fde9b">Mezzanine::UI::BasicRenderable</a>.</p>
+
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00110">110</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f457889822f8c236d2e0cf7fccd8aeb"></a><!-- doxytag: member="Mezzanine::UI::LineList::AddActualPoint" ref="a9f457889822f8c236d2e0cf7fccd8aeb" args="(const Vector2 &amp;Position)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::LineList::AddActualPoint </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
+          <td class="paramname"><em>Position</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds a new point/line to the list via a vector2. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Position</td><td>A vector2 representing the position on screen. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00088">88</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a78c3f9e972886851cbe877c8cde4e027"></a><!-- doxytag: member="Mezzanine::UI::LineList::AddActualPoint" ref="a78c3f9e972886851cbe877c8cde4e027" args="(const Real &amp;X, const Real &amp;Y)" -->
 <div class="memitem">
 <div class="memproto">
@@ -191,34 +288,7 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00103">103</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a9f457889822f8c236d2e0cf7fccd8aeb"></a><!-- doxytag: member="Mezzanine::UI::LineList::AddActualPoint" ref="a9f457889822f8c236d2e0cf7fccd8aeb" args="(const Vector2 &amp;Position)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::LineList::AddActualPoint </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Adds a new point/line to the list via a vector2. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Position</td><td>A vector2 representing the position on screen. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00108">108</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00083">83</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
@@ -256,7 +326,7 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00093">93</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00073">73</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
@@ -283,11 +353,11 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00098">98</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00078">78</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0903825b873157e6733c20ad8da3e563"></a><!-- doxytag: member="Mezzanine::UI::LineList::Begin" ref="a0903825b873157e6733c20ad8da3e563" args="(const Whole &amp;Thickness, const ColourValue &amp;Colour)" -->
+<a class="anchor" id="ae5a45cc87def03c379665c6c5ec06f83"></a><!-- doxytag: member="Mezzanine::UI::LineList::Begin" ref="ae5a45cc87def03c379665c6c5ec06f83" args="(const Whole &amp;LineThickness, const ColourValue &amp;LineColour)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -295,13 +365,13 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
           <td class="memname">void Mezzanine::UI::LineList::Begin </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;&#160;</td>
-          <td class="paramname"><em>Thickness</em>, </td>
+          <td class="paramname"><em>LineThickness</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
-          <td class="paramname"><em>Colour</em>&#160;</td>
+          <td class="paramname"><em>LineColour</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -316,13 +386,13 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
 <p>If this function is called while lines have already been defined, it will clear the current list of lines and start a new list. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Thickness</td><td>The thickness of the line to draw in pixels. </td></tr>
-    <tr><td class="paramname">Colour</td><td>The colour of the line. </td></tr>
+    <tr><td class="paramname">LineThickness</td><td>The thickness of the line to draw in pixels. </td></tr>
+    <tr><td class="paramname">LineColour</td><td>The colour of the line. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00088">88</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00065">65</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
@@ -349,16 +419,16 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00113">113</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00093">93</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aae3d6b141f56eb21a22a4c80dd60d419"></a><!-- doxytag: member="Mezzanine::UI::LineList::GetRenderPriority" ref="aae3d6b141f56eb21a22a4c80dd60d419" args="()" -->
+<a class="anchor" id="a25e792075ec0c5165d5870d8e0710b7f"></a><!-- doxytag: member="Mezzanine::UI::LineList::UpdateDimensions" ref="a25e792075ec0c5165d5870d8e0710b7f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> Mezzanine::UI::LineList::GetRenderPriority </td>
+          <td class="memname">void Mezzanine::UI::LineList::UpdateDimensions </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -367,86 +437,12 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
 </div>
 <div class="memdoc">
 
-<p>Gets the priority this button should be rendered with. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing this button's priority level. </dd></dl>
+<p>Updates the dimensions of this renderable to match those of the new screen size. </p>
+<p>This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. </p>
 
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00138">138</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a446b43c6dde21c7f0c021ca6833f841d">Mezzanine::UI::BasicRenderable</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="a887ee9e85f989a907b1d74ba95ed6a41"></a><!-- doxytag: member="Mezzanine::UI::LineList::IsVisible" ref="a887ee9e85f989a907b1d74ba95ed6a41" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::UI::LineList::IsVisible </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the visibility of this rectangle. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visibility of this rectangle. </dd></dl>
-
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00073">73</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a42955b53aa178e4e1a40fd4b8c260bbe"></a><!-- doxytag: member="Mezzanine::UI::LineList::SetRenderPriority" ref="a42955b53aa178e4e1a40fd4b8c260bbe" args="(const UI::RenderPriority &amp;Priority)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::LineList::SetRenderPriority </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;&#160;</td>
-          <td class="paramname"><em>Priority</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the priority this button should be rendered with. </p>
-<p>The default value for this is Medium. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Priority</td><td>The priority level to be used when rendering this button. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00118">118</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ace36d0bc1c9c465737b65c8f2bcc2d23"></a><!-- doxytag: member="Mezzanine::UI::LineList::SetVisible" ref="ace36d0bc1c9c465737b65c8f2bcc2d23" args="(bool Visible)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::LineList::SetVisible </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>Visible</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the visibility of this rectangle. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Visible</td><td>Bool determining whether or not this rectangle should be visible. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00068">68</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilinelist_8cpp_source.html#l00099">99</a> of file <a class="el" href="uilinelist_8cpp_source.html">uilinelist.cpp</a>.</p>
 
 </div>
 </div>
@@ -460,7 +456,7 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -470,6 +466,6 @@ Gorilla::LineList *&#160;</td><td class="memItemRight" valign="bottom"><b>GLineL
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

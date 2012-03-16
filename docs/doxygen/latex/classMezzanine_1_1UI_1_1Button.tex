@@ -14,101 +14,61 @@ This class is a helper class, specifically for use as a button.
 Inheritance diagram for Mezzanine::UI::Button:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{classMezzanine_1_1UI_1_1Button}
+\includegraphics[height=4.000000cm]{classMezzanine_1_1UI_1_1Button}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_aae0a7f6a07f79856ed6da8b8b3bc5ecd}{BindActivationKeyOrButton} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code)
-\begin{DoxyCompactList}\small\item\em Registers a keyboard key or mouse button that can activate this button. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1Button_a910cce5a558e9f41ede146e9675b757f}{Button} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classMezzanine_1_1UI_1_1Button_ae35f5b685df6bb09626f3f53b41416bd}{CheckMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this button. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Button_a8c84044c337735482919fcc82085cf46}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1Button_a8c84044c337735482919fcc82085cf46}{$\sim$Button} ()}
+\label{classMezzanine_1_1UI_1_1Button_a8c84044c337735482919fcc82085cf46}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_aae0a7f6a07f79856ed6da8b8b3bc5ecd}{BindActivationKeyOrButton} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code)
+\begin{DoxyCompactList}\small\item\em Registers a keyboard key or mouse button that can activate this button. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ab68c4ae03c41abb6d25179962f4e4f60}{EnableMultipleActivations} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables or disables whether or not the button should be allowed to activate multiple times per frame. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_af01bb0b214995c3cb6af06fcaa84975d}{EnableUserSprite} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables(or disables) the currently set User sprite. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_1_1UI_aca58497951b1b9c7da10f214da3392f0}{UI::ActivationCondition} \hyperlink{classMezzanine_1_1UI_1_1Button_a09b751800679937e1b1e79b33c164397}{GetActivationCondition} ()
 \begin{DoxyCompactList}\small\item\em Gets the condition for activation for this button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Button_a5c1e8f0a8efe73d6d556f876a4c709f8}{GetActualPosition} () const 
-\begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Button_a19adecf3f260923b07016347623dc33e}{GetActualSize} () const 
-\begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
 virtual std::vector$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Button_ab0a32f06b46ae49813c9ad86e8346274}{GetKeyboardActivationKeys} ()
 \begin{DoxyCompactList}\small\item\em Gets a vector with all the keyboard input codes used to activate this button. \item\end{DoxyCompactList}\item 
 virtual std::vector$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Button_a41d41a678b9164806fff2a17acabf1ae}{GetMouseActivationButtons} ()
 \begin{DoxyCompactList}\small\item\em Gets a vector with all the mouse input codes used to activate this button. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classMezzanine_1_1UI_1_1Button_a18e33bd98a247c8fce95a504bd52e767}{GetMouseHover} ()
-\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Button_ab49077b4d05873f0a6d397720790ae49}{GetPosition} () const 
-\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1Button_ab4dabfe9ce18dd255d2b8724f610058d}{GetPrimaryAtlas} () const 
-\begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \hyperlink{classMezzanine_1_1UI_1_1Button_ad2e567a12e059c612e474e96fd9cd5da}{GetRenderPriority} () const 
-\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1Button_a6836b68da28da089584dd02547674286}{GetSize} () const 
-\begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_ae4d892127653d709b6cff9207f473c9e}{
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ae4d892127653d709b6cff9207f473c9e}{Hide} ()}
-\label{classMezzanine_1_1UI_1_1Button_ae4d892127653d709b6cff9207f473c9e}
-
-\begin{DoxyCompactList}\small\item\em Forces this button to hide. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1UI_1_1Button_a1b64587eec4d23911c488edf40c7a0c7}{IsActivated} ()
 \begin{DoxyCompactList}\small\item\em Gets whether or not this button is currently activated. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1UI_1_1Button_a4aff4ca86ab252ef8796a9cba203041e}{IsMultipleActivationsEnabled} ()
 \begin{DoxyCompactList}\small\item\em Gets whether or not multiple activations per frame are enabled for this button. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1UI_1_1Button_a37a43c703a3f7bc8a59c8940ba53afe1}{IsTextButton} ()
 \begin{DoxyCompactList}\small\item\em Gets whether this is a text button. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classMezzanine_1_1UI_1_1Button_a8d8afe5870bcf5bf1de02ece187ab238}{IsVisible} () const 
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this button. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_ab72a24b501975cd5a60f671593158362}{
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ab72a24b501975cd5a60f671593158362}{NoBorder} ()}
-\label{classMezzanine_1_1UI_1_1Button_ab72a24b501975cd5a60f671593158362}
-
-\begin{DoxyCompactList}\small\item\em Disables any border set on this rectangle if one is currently set. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a89d0a1d2b0023be59e864b3c125f0dea}{SetActivation} (bool Activate)
 \begin{DoxyCompactList}\small\item\em Sets the button as activated, also calling any set callbacks. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a6c99108a01d71c521318640f52d2ee11}{SetActivationCondition} (const \hyperlink{namespaceMezzanine_1_1UI_aca58497951b1b9c7da10f214da3392f0}{UI::ActivationCondition} \&Condition)
 \begin{DoxyCompactList}\small\item\em Sets the condition for activation for this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ad7218bce5dda1c0e0bf91a83feaae47e}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a6a19f0e460a63e13f8c9bda3e18fcc96}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a4cd47608dc2074f400d04812bf439f6f}{SetBackgroundColour} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Sets the background colour of the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_af34e8bd2454368345da7b23dc17f077c}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a27dcfac26f2ace96dcb0e43ce13ed68c}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a75bad31e5f93373fe1e16761689b354b}{SetBorder} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Width, const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Enables a border and sets it's colour. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_af16ce9c5182ca4a4e52649b517499728}{SetBackgroundSprite} (\hyperlink{structMezzanine_1_1UI_1_1Sprite}{Sprite} $\ast$PSprite)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the renderable. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a92731109f8888d1e82e27185d4c9d559}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SpriteName)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the renderable. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_acd2b68924ad5f790afde9a32f83ca206}{SetBackgroundSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SpriteName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the renderable. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a0eda9fd6641f9ca52fd5e8e1c3767970}{SetButtonCallback} (\hyperlink{classMezzanine_1_1UI_1_1ButtonCallback}{ButtonCallback} $\ast$Call)
 \begin{DoxyCompactList}\small\item\em Sets the callback for this button. See the \hyperlink{classMezzanine_1_1UI_1_1ButtonCallback}{ButtonCallback} class for more info. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ad23caa85fbf5ae1c3fc9b5d0873d455b}{SetHoveredSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a1465419bd4ff0a60c740d02dd61d0e3f}{SetHoveredSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SpriteName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ae47110a04c883f83a30e7bc060a35692}{SetHoveredSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_aff2d96a45c88627098ac0b902059bfc3}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
-\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_af1248af0bf094b29f65547b1697c3c23}{SetPrimaryAtlas} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
-\begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_aebb9eb3fc42b2f6e77fe0a213c297450}{SetRenderPriority} (const \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a2a654b05e925924d5842f36b2a486af5}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
-\begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ab4335cbb2c9da9b5b61d9ba53793efb6}{SetUserSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a93f0554750c433dc9c14f0611fc00a10}{SetHoveredSprite} (\hyperlink{structMezzanine_1_1UI_1_1Sprite}{Sprite} $\ast$PSprite)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a6fa21a055fb5d806248240bbae5f5ad6}{SetHoveredSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SpriteName)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that will be applied when the mouse is over this button. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a94b9ce563b2aacbd71e559c660026cc8}{SetUserSprite} (\hyperlink{structMezzanine_1_1UI_1_1Sprite}{Sprite} $\ast$PSprite)
 \begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a7e6246ca07c0c659a3aec7babd49219f}{SetUserSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a12840e06233a6feb88f61d88a0ce7e60}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this button. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_a88d9f87d335041d612f6c35ff5ba2f65}{
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a88d9f87d335041d612f6c35ff5ba2f65}{Show} ()}
-\label{classMezzanine_1_1UI_1_1Button_a88d9f87d335041d612f6c35ff5ba2f65}
-
-\begin{DoxyCompactList}\small\item\em Forces this button to be shown. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_aecb07e754310f1c53af92b323c385e92}{SetUserSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SpriteName)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a7ea91306176ad94d136ca8de7321a5ae}{SetUserSprite} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SpriteName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
+\begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_ac4253cbf25d298280579fd2fe122b3e2}{UnbindActivationKeyOrButton} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code)
 \begin{DoxyCompactList}\small\item\em Removes a previously registered activation key or button. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1Button_ae36443efdf271672157ae25a824d5cc5}{
@@ -125,22 +85,15 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a30c1a1380667e42677b799cf
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a759f6fd2a76b68ef3aae1bb8c2677cf7}{UnbindAllMouseActivationButtons} ()}
 \label{classMezzanine_1_1UI_1_1Button_a759f6fd2a76b68ef3aae1bb8c2677cf7}
 
-\begin{DoxyCompactList}\small\item\em Clears all mouse input codes from the list of activation buttons. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_a65764b075c03b2a6eb17039a73a260ce}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this button to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_a8c84044c337735482919fcc82085cf46}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1Button_a8c84044c337735482919fcc82085cf46}{$\sim$Button} ()}
-\label{classMezzanine_1_1UI_1_1Button_a8c84044c337735482919fcc82085cf46}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clears all mouse input codes from the list of activation buttons. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1Button_acd58ff783face0390389e840879fb8fb}{
-void {\bfseries SetHovered} (bool Hovered)}
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Button_acd58ff783face0390389e840879fb8fb}{SetHovered} (bool Hovered)}
 \label{classMezzanine_1_1UI_1_1Button_acd58ff783face0390389e840879fb8fb}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the hovered state of this renderable. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -159,14 +112,9 @@ bool {\bfseries Activated}}
 \label{classMezzanine_1_1UI_1_1Button_a2aafa20c1e6ff918cbe6374b773f5320}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_ae0c01f2585a9bfd95466c81caab6cda1}{
-Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
-\label{classMezzanine_1_1UI_1_1Button_ae0c01f2585a9bfd95466c81caab6cda1}
-
-\item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_a7725a08b53f43045a38b61ce57945db1}{
-Gorilla::Sprite $\ast$ {\bfseries HoveredSprite}}
-\label{classMezzanine_1_1UI_1_1Button_a7725a08b53f43045a38b61ce57945db1}
+\hypertarget{classMezzanine_1_1UI_1_1Button_ab22a57c3999b872f7167e64c2c1aac9b}{
+\hyperlink{structMezzanine_1_1UI_1_1Sprite}{Sprite} $\ast$ {\bfseries HoveredSprite}}
+\label{classMezzanine_1_1UI_1_1Button_ab22a57c3999b872f7167e64c2c1aac9b}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a3fc77631f527f820b3ee2f00a5be50f1}{
@@ -179,24 +127,32 @@ std::vector$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05
 \label{classMezzanine_1_1UI_1_1Button_aab112d6485c6ddd70dd638f3e8454d5d}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_afbc7a35d1922c62517e968ac4ac38316}{
-bool {\bfseries MouseHover}}
-\label{classMezzanine_1_1UI_1_1Button_afbc7a35d1922c62517e968ac4ac38316}
-
-\item 
 \hypertarget{classMezzanine_1_1UI_1_1Button_ae3eabadf14193c4e125e64daa419527f}{
 bool {\bfseries MultipleActivations}}
 \label{classMezzanine_1_1UI_1_1Button_ae3eabadf14193c4e125e64daa419527f}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_a8fc26232d2b237d97d954aaa1116fcc3}{
-Gorilla::Sprite $\ast$ {\bfseries NormalSprite}}
-\label{classMezzanine_1_1UI_1_1Button_a8fc26232d2b237d97d954aaa1116fcc3}
+\hypertarget{classMezzanine_1_1UI_1_1Button_a36975b437489593e609ef69c52e6e7cf}{
+\hyperlink{structMezzanine_1_1UI_1_1Sprite}{Sprite} $\ast$ {\bfseries NormalSprite}}
+\label{classMezzanine_1_1UI_1_1Button_a36975b437489593e609ef69c52e6e7cf}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1Button_a1bfdbf734d45501a4fb0073654161bc4}{
-Gorilla::Sprite $\ast$ {\bfseries UserSprite}}
-\label{classMezzanine_1_1UI_1_1Button_a1bfdbf734d45501a4fb0073654161bc4}
+\hypertarget{classMezzanine_1_1UI_1_1Button_a359fcd7bfe07e68eeaeae2eb089ccac4}{
+\hyperlink{structMezzanine_1_1UI_1_1Sprite}{Sprite} $\ast$ {\bfseries UserSprite}}
+\label{classMezzanine_1_1UI_1_1Button_a359fcd7bfe07e68eeaeae2eb089ccac4}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Button_a91fc20d4e07c9f2204ea65db980df4ad}{
+bool {\bfseries UserSpriteEnabled}}
+\label{classMezzanine_1_1UI_1_1Button_a91fc20d4e07c9f2204ea65db980df4ad}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Button_ab811b36cd63b54fe42b6acb231ea21bc}{
+class {\bfseries UIManager}}
+\label{classMezzanine_1_1UI_1_1Button_ab811b36cd63b54fe42b6acb231ea21bc}
 
 \end{DoxyCompactItemize}
 
@@ -204,7 +160,7 @@ Gorilla::Sprite $\ast$ {\bfseries UserSprite}}
 \subsubsection{Detailed Description}
 This class is a helper class, specifically for use as a button. Unlike rectangles and captions, this class can be interacted with by clicking. It is important to understand what you want your space to do when selecting the class to use. 
 
-Definition at line 72 of file uibutton.h.
+Definition at line 63 of file uibutton.h.
 
 
 
@@ -235,7 +191,7 @@ Internal constructor.
 \end{DoxyParams}
 
 
-Definition at line 57 of file uibutton.cpp.
+Definition at line 56 of file uibutton.cpp.
 
 
 
@@ -261,32 +217,12 @@ In the case of a mouse button, the hover check has to return true to activate th
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000027}{Todo}]Throw an error? \end{Desc}
+\item[\hyperlink{todo__todo000031}{Todo}]Throw an error? \end{Desc}
 
 
 
 
-Definition at line 138 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_ae35f5b685df6bb09626f3f53b41416bd}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!CheckMouseHover@{CheckMouseHover}}
-\index{CheckMouseHover@{CheckMouseHover}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Button::CheckMouseHover (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ae35f5b685df6bb09626f3f53b41416bd}
-
-
-Determines whether the mouse is over this button. 
-
-While this can be called manually, it'll provide the same result if called more the once per frame. Currently the \hyperlink{classMezzanine_1_1UIManager}{UIManager} calls this on it's own once per frame, so there isn't much point in calling this manually. \begin{DoxyReturn}{Returns}
-Returns a bool indicating whether the mouse is over this button. 
-\end{DoxyReturn}
-
-
-Definition at line 238 of file uibutton.cpp.
+Definition at line 107 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_ab68c4ae03c41abb6d25179962f4e4f60}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!EnableMultipleActivations@{EnableMultipleActivations}}
@@ -309,7 +245,7 @@ In most cases a button will only activate multiple times when using hotkeys, eit
 \end{DoxyParams}
 
 
-Definition at line 228 of file uibutton.cpp.
+Definition at line 197 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_af01bb0b214995c3cb6af06fcaa84975d}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!EnableUserSprite@{EnableUserSprite}}
@@ -331,7 +267,7 @@ Enables(or disables) the currently set User sprite.
 \end{DoxyParams}
 
 
-Definition at line 299 of file uibutton.cpp.
+Definition at line 268 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a09b751800679937e1b1e79b33c164397}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetActivationCondition@{GetActivationCondition}}
@@ -351,55 +287,7 @@ Returns an enum value indicating the condition for activation for this button.
 \end{DoxyReturn}
 
 
-Definition at line 209 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a5c1e8f0a8efe73d6d556f876a4c709f8}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetActualPosition@{GetActualPosition}}
-\index{GetActualPosition@{GetActualPosition}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Button::GetActualPosition (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a5c1e8f0a8efe73d6d556f876a4c709f8}
-
-
-Gets the top left position of this button in pixels. 
-
-\begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this button. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a7469e579a834b00bd90a87fd754d14af}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 339 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a19adecf3f260923b07016347623dc33e}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetActualSize@{GetActualSize}}
-\index{GetActualSize@{GetActualSize}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Button::GetActualSize (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a19adecf3f260923b07016347623dc33e}
-
-
-Gets the size of this button in pixels. 
-
-\begin{DoxyReturn}{Returns}
-Returns a vector2 representing the size of this button. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a14b2ff20cdf114c34cc23074d0b7fb5c}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 365 of file uibutton.cpp.
+Definition at line 178 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_ab0a32f06b46ae49813c9ad86e8346274}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetKeyboardActivationKeys@{GetKeyboardActivationKeys}}
@@ -419,7 +307,7 @@ Returns a pointer to an std::vector containing all the keyboard keys that will a
 \end{DoxyReturn}
 
 
-Definition at line 421 of file uibutton.cpp.
+Definition at line 283 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a41d41a678b9164806fff2a17acabf1ae}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetMouseActivationButtons@{GetMouseActivationButtons}}
@@ -439,123 +327,7 @@ Returns a pointer to an std::vector containing all the mouse buttons that will a
 \end{DoxyReturn}
 
 
-Definition at line 426 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a18e33bd98a247c8fce95a504bd52e767}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetMouseHover@{GetMouseHover}}
-\index{GetMouseHover@{GetMouseHover}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Button::GetMouseHover (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a18e33bd98a247c8fce95a504bd52e767}
-
-
-Gets the stored value of whether or not the mouse is over the button. 
-
-This function does not perform any checks. If you want to do a manual check, call \hyperlink{classMezzanine_1_1UI_1_1Button_ae35f5b685df6bb09626f3f53b41416bd}{CheckMouseHover()}. \begin{DoxyReturn}{Returns}
-Returns the stored value of whether or not the mouse is over the button. 
-\end{DoxyReturn}
-
-
-Definition at line 249 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_ab49077b4d05873f0a6d397720790ae49}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetPosition@{GetPosition}}
-\index{GetPosition@{GetPosition}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Button::GetPosition (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ab49077b4d05873f0a6d397720790ae49}
-
-
-Gets the relative top left position of this button. 
-
-\begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this button. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab6aa1fb10dc7e9e412e7caac9133c9a6}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 327 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_ab4dabfe9ce18dd255d2b8724f610058d}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetPrimaryAtlas@{GetPrimaryAtlas}}
-\index{GetPrimaryAtlas@{GetPrimaryAtlas}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::UI::Button::GetPrimaryAtlas (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ab4dabfe9ce18dd255d2b8724f610058d}
-
-
-Gets the currently set primary atlas. 
-
-\begin{DoxyReturn}{Returns}
-Returns a string containing the name of the primary atlas that is set, or an empty string if none. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_abdb08ae3577da75762209b8cee486b24}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 416 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_ad2e567a12e059c612e474e96fd9cd5da}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetRenderPriority@{GetRenderPriority}}
-\index{GetRenderPriority@{GetRenderPriority}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::RenderPriority} Mezzanine::UI::Button::GetRenderPriority (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ad2e567a12e059c612e474e96fd9cd5da}
-
-
-Gets the priority this button should be rendered with. 
-
-\begin{DoxyReturn}{Returns}
-Returns an enum value representing this button's priority level. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3279ed466dfc69203467b2bb32cf89be}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 391 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a6836b68da28da089584dd02547674286}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!GetSize@{GetSize}}
-\index{GetSize@{GetSize}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::Button::GetSize (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a6836b68da28da089584dd02547674286}
-
-
-Gets the relative size of this button. 
-
-\begin{DoxyReturn}{Returns}
-Returns a vector2 representing the size of this button. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a6486ceae69273b990bfe19b88c29d328}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 353 of file uibutton.cpp.
+Definition at line 288 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a1b64587eec4d23911c488edf40c7a0c7}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!IsActivated@{IsActivated}}
@@ -575,7 +347,7 @@ Returns whether or not this button has been activated.
 \end{DoxyReturn}
 
 
-Definition at line 223 of file uibutton.cpp.
+Definition at line 192 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a4aff4ca86ab252ef8796a9cba203041e}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!IsMultipleActivationsEnabled@{IsMultipleActivationsEnabled}}
@@ -595,7 +367,7 @@ Returns a bool indicating whether or not multiple activations are allowed for th
 \end{DoxyReturn}
 
 
-Definition at line 233 of file uibutton.cpp.
+Definition at line 202 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a37a43c703a3f7bc8a59c8940ba53afe1}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!IsTextButton@{IsTextButton}}
@@ -619,31 +391,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_ad4cab393b8c00c43
 
 
 
-Definition at line 125 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a8d8afe5870bcf5bf1de02ece187ab238}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!IsVisible@{IsVisible}}
-\index{IsVisible@{IsVisible}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::Button::IsVisible (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a8d8afe5870bcf5bf1de02ece187ab238}
-
-
-Gets the visibility of this button. 
-
-\begin{DoxyReturn}{Returns}
-Returns a bool representing the visibility of this button. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a443bdeb7d95e6b765a5548966d380ecf}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 110 of file uibutton.cpp.
+Definition at line 94 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a89d0a1d2b0023be59e864b3c125f0dea}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetActivation@{SetActivation}}
@@ -665,7 +413,7 @@ This shouldn't be called on manually unless you know exactly what you are doing.
 \end{DoxyParams}
 
 
-Definition at line 214 of file uibutton.cpp.
+Definition at line 183 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a6c99108a01d71c521318640f52d2ee11}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetActivationCondition@{SetActivationCondition}}
@@ -687,159 +435,88 @@ See the ActivationCondition enum for more details.
 \end{DoxyParams}
 
 
-Definition at line 204 of file uibutton.cpp.
+Definition at line 173 of file uibutton.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1Button_ad7218bce5dda1c0e0bf91a83feaae47e}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetActualPosition@{SetActualPosition}}
-\index{SetActualPosition@{SetActualPosition}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetActualPosition (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Position}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ad7218bce5dda1c0e0bf91a83feaae47e}
-
-
-Sets the top left position of this button in pixels. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this button. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a4741dde07f7eddddcc3d611d6c803fad}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_adc3f524897031fffc7c25c4adc460d15}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 332 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a6a19f0e460a63e13f8c9bda3e18fcc96}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetActualSize@{SetActualSize}}
-\index{SetActualSize@{SetActualSize}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetActualSize (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a6a19f0e460a63e13f8c9bda3e18fcc96}
-
-
-Sets the size of this button in pixels. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Size} & A vector2 representing the size of this button. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a69c87db17cacc2980f68777258329531}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_a81171ff142c9e991daeec099bebfdc82}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 358 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a4cd47608dc2074f400d04812bf439f6f}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetBackgroundColour@{SetBackgroundColour}}
-\index{SetBackgroundColour@{SetBackgroundColour}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetBackgroundColour (
-\begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{Colour}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a4cd47608dc2074f400d04812bf439f6f}
-
-
-Sets the background colour of the button. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Colour} & A colour value representing the colour to be set. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 254 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a27dcfac26f2ace96dcb0e43ce13ed68c}{
+\hypertarget{classMezzanine_1_1UI_1_1Button_a92731109f8888d1e82e27185d4c9d559}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetBackgroundSprite@{SetBackgroundSprite}}
 \index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
 \paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetBackgroundSprite (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name, }
-\item[{const {\bf String} \&}]{Atlas}
+\item[{const {\bf String} \&}]{SpriteName}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a27dcfac26f2ace96dcb0e43ce13ed68c}
+\label{classMezzanine_1_1UI_1_1Button_a92731109f8888d1e82e27185d4c9d559}
 
 
-Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set. 
+Sets the background image(if provided in the atlas) of the renderable. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Name} & The name of the sprite to set as the background. \\
+{\em SpriteName} & The name of the sprite to set as the background. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a7022346cea3766eba2338f9304c20218}{Mezzanine::UI::Rectangle}.
+
+
+
+Definition at line 216 of file uibutton.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Button_acd2b68924ad5f790afde9a32f83ca206}{
+\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
+\paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{SpriteName, }
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Button_acd2b68924ad5f790afde9a32f83ca206}
+
+
+Sets the background image(if provided in the atlas) of the renderable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SpriteName} & The name of the sprite to set as the background. \\
 \hline
 {\em Atlas} & The Atlas to load the sprite from. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 266 of file uibutton.cpp.
+Reimplemented from \hyperlink{classMezzanine_1_1UI_1_1Rectangle_ad0814b6b4b13a4857b3bcaa163fd3210}{Mezzanine::UI::Rectangle}.
 
-\hypertarget{classMezzanine_1_1UI_1_1Button_af34e8bd2454368345da7b23dc17f077c}{
+
+
+Definition at line 221 of file uibutton.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Button_af16ce9c5182ca4a4e52649b517499728}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetBackgroundSprite@{SetBackgroundSprite}}
 \index{SetBackgroundSprite@{SetBackgroundSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
 \paragraph[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetBackgroundSprite (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name}
+\item[{{\bf Sprite} $\ast$}]{PSprite}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_af34e8bd2454368345da7b23dc17f077c}
+\label{classMezzanine_1_1UI_1_1Button_af16ce9c5182ca4a4e52649b517499728}
 
 
-Sets the background image(if provided in the atlas) of the button. 
+Sets the background image(if provided in the atlas) of the renderable. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Name} & The name of the sprite to set as the background. \\
+{\em PSprite} & A pointer to the sprite to set as the background. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 259 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a75bad31e5f93373fe1e16761689b354b}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetBorder@{SetBorder}}
-\index{SetBorder@{SetBorder}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetBorder}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetBorder (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{Width, }
-\item[{const {\bf ColourValue} \&}]{Colour}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a75bad31e5f93373fe1e16761689b354b}
+Reimplemented from \hyperlink{classMezzanine_1_1UI_1_1Rectangle_a0e9e0664fd82258df48145cfe9d6000d}{Mezzanine::UI::Rectangle}.
 
 
-Enables a border and sets it's colour. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em Colour} & A colour value representing the colour to be set. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 309 of file uibutton.cpp.
+Definition at line 207 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_a0eda9fd6641f9ca52fd5e8e1c3767970}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetButtonCallback@{SetButtonCallback}}
@@ -861,247 +538,145 @@ You can pass in a null pointer to disable a callback.
 \end{DoxyParams}
 
 
-Definition at line 130 of file uibutton.cpp.
+Definition at line 99 of file uibutton.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1Button_ad23caa85fbf5ae1c3fc9b5d0873d455b}{
+\hypertarget{classMezzanine_1_1UI_1_1Button_a93f0554750c433dc9c14f0611fc00a10}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetHoveredSprite@{SetHoveredSprite}}
 \index{SetHoveredSprite@{SetHoveredSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
 \paragraph[{SetHoveredSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetHoveredSprite (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name}
+\item[{{\bf Sprite} $\ast$}]{PSprite}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ad23caa85fbf5ae1c3fc9b5d0873d455b}
+\label{classMezzanine_1_1UI_1_1Button_a93f0554750c433dc9c14f0611fc00a10}
 
 
 Sets an alternate background image that will be applied when the mouse is over this button. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Name} & The name of the sprite to set as the alternate background. \\
+{\em PSprite} & A pointer to the sprite to set as the alternate background. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 273 of file uibutton.cpp.
+Definition at line 226 of file uibutton.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1Button_ae47110a04c883f83a30e7bc060a35692}{
+\hypertarget{classMezzanine_1_1UI_1_1Button_a6fa21a055fb5d806248240bbae5f5ad6}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetHoveredSprite@{SetHoveredSprite}}
 \index{SetHoveredSprite@{SetHoveredSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
 \paragraph[{SetHoveredSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetHoveredSprite (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name, }
-\item[{const {\bf String} \&}]{Atlas}
+\item[{const {\bf String} \&}]{SpriteName}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ae47110a04c883f83a30e7bc060a35692}
+\label{classMezzanine_1_1UI_1_1Button_a6fa21a055fb5d806248240bbae5f5ad6}
 
 
-Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set. 
+Sets an alternate background image that will be applied when the mouse is over this button. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Name} & The name of the sprite to set as the alternate background. \\
+{\em SpriteName} & The name of the sprite to set as the alternate background. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 235 of file uibutton.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Button_a1465419bd4ff0a60c740d02dd61d0e3f}{
+\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetHoveredSprite@{SetHoveredSprite}}
+\index{SetHoveredSprite@{SetHoveredSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
+\paragraph[{SetHoveredSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetHoveredSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{SpriteName, }
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Button_a1465419bd4ff0a60c740d02dd61d0e3f}
+
+
+Sets an alternate background image that will be applied when the mouse is over this button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SpriteName} & The name of the sprite to set as the alternate background. \\
 \hline
 {\em Atlas} & The Atlas to load the sprite from. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 281 of file uibutton.cpp.
+Definition at line 241 of file uibutton.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1Button_aff2d96a45c88627098ac0b902059bfc3}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetPosition@{SetPosition}}
-\index{SetPosition@{SetPosition}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetPosition (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Position}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_aff2d96a45c88627098ac0b902059bfc3}
-
-
-Sets the relative top left position of this button. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Position} & A \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the location of this button. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_aab42dabeaeb7a56fb4b98ae8f7ab6afb}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_af91cf1040a11180eba704e054def6a7a}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 319 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_af1248af0bf094b29f65547b1697c3c23}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetPrimaryAtlas@{SetPrimaryAtlas}}
-\index{SetPrimaryAtlas@{SetPrimaryAtlas}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetPrimaryAtlas}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetPrimaryAtlas (
-\begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Atlas}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_af1248af0bf094b29f65547b1697c3c23}
-
-
-Sets the Atlas to be assumed when one isn't provided for atlas related tasks. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Atlas} & The name of the atlas to be used. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ab1195ccf1e8acf126aee6d06c1d9e93b}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Definition at line 411 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_aebb9eb3fc42b2f6e77fe0a213c297450}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetRenderPriority@{SetRenderPriority}}
-\index{SetRenderPriority@{SetRenderPriority}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetRenderPriority (
-\begin{DoxyParamCaption}
-\item[{const {\bf UI::RenderPriority} \&}]{Priority}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_aebb9eb3fc42b2f6e77fe0a213c297450}
-
-
-Sets the priority this button should be rendered with. 
-
-The default value for this is Medium. 
-\begin{DoxyParams}{Parameters}
-{\em Priority} & The priority level to be used when rendering this button. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a05be25ff56fbd498841c33da0cfe5410}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_a546446b4b6394fb7e58bfa64d554ada3}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 371 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a2a654b05e925924d5842f36b2a486af5}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetSize@{SetSize}}
-\index{SetSize@{SetSize}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetSize (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a2a654b05e925924d5842f36b2a486af5}
-
-
-Sets the relative size of this button. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Size} & A vector2 representing the size of this button. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_ace14123b4a7bdb83e4e86275823f7b6e}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_a066e09081624a520a5e86f7cfd81ee5d}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 345 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a7e6246ca07c0c659a3aec7babd49219f}{
+\hypertarget{classMezzanine_1_1UI_1_1Button_aecb07e754310f1c53af92b323c385e92}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetUserSprite@{SetUserSprite}}
 \index{SetUserSprite@{SetUserSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
 \paragraph[{SetUserSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetUserSprite (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name}
+\item[{const {\bf String} \&}]{SpriteName}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a7e6246ca07c0c659a3aec7babd49219f}
-
-
-Sets an alternate background image that is stored and can be quickly swapped with the active sprite. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Name} & The name of the sprite to set as the alternate background. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 287 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_ab4335cbb2c9da9b5b61d9ba53793efb6}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetUserSprite@{SetUserSprite}}
-\index{SetUserSprite@{SetUserSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetUserSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetUserSprite (
-\begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name, }
-\item[{const {\bf String} \&}]{Atlas}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_ab4335cbb2c9da9b5b61d9ba53793efb6}
+\label{classMezzanine_1_1UI_1_1Button_aecb07e754310f1c53af92b323c385e92}
 
 
 Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Name} & The name of the sprite to set as the alternate background. \\
+{\em SpriteName} & The name of the sprite to set as the alternate background. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 256 of file uibutton.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Button_a94b9ce563b2aacbd71e559c660026cc8}{
+\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetUserSprite@{SetUserSprite}}
+\index{SetUserSprite@{SetUserSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
+\paragraph[{SetUserSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetUserSprite (
+\begin{DoxyParamCaption}
+\item[{{\bf Sprite} $\ast$}]{PSprite}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Button_a94b9ce563b2aacbd71e559c660026cc8}
+
+
+Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em PSprite} & A pointer to the sprite to set as the alternate background. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 247 of file uibutton.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Button_a7ea91306176ad94d136ca8de7321a5ae}{
+\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetUserSprite@{SetUserSprite}}
+\index{SetUserSprite@{SetUserSprite}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
+\paragraph[{SetUserSprite}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetUserSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{SpriteName, }
+\item[{const {\bf String} \&}]{Atlas}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Button_a7ea91306176ad94d136ca8de7321a5ae}
+
+
+Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em SpriteName} & The name of the sprite to set as the alternate background. \\
 \hline
 {\em Atlas} & The Atlas to load the sprite from. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 293 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a12840e06233a6feb88f61d88a0ce7e60}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!SetVisible@{SetVisible}}
-\index{SetVisible@{SetVisible}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::SetVisible (
-\begin{DoxyParamCaption}
-\item[{bool}]{Visible}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a12840e06233a6feb88f61d88a0ce7e60}
-
-
-Sets the visibility of this button. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Visible} & Bool determining whether or not this button should be visible. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a3dd62b1390d4f3931cfc8d0188cdcc7c}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_a0e7af5bb48039675e31ddcd1f72f5752}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 105 of file uibutton.cpp.
+Definition at line 262 of file uibutton.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Button_ac4253cbf25d298280579fd2fe122b3e2}{
 \index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!UnbindActivationKeyOrButton@{UnbindActivationKeyOrButton}}
@@ -1123,32 +698,7 @@ Removes a previously registered activation key or button.
 \end{DoxyParams}
 
 
-Definition at line 162 of file uibutton.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Button_a65764b075c03b2a6eb17039a73a260ce}{
-\index{Mezzanine::UI::Button@{Mezzanine::UI::Button}!UpdateDimensions@{UpdateDimensions}}
-\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::Button@{Mezzanine::UI::Button}}
-\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Button::UpdateDimensions (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Button_a65764b075c03b2a6eb17039a73a260ce}
-
-
-Updates the dimensions of this button to match those of the new screen size. 
-
-This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
-
-Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}{Mezzanine::UI::BasicRenderable}.
-
-
-
-Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1TextButton_a06a5a6400dff268de5c91737de09fda9}{Mezzanine::UI::TextButton}.
-
-
-
-Definition at line 431 of file uibutton.cpp.
+Definition at line 131 of file uibutton.cpp.
 
 
 

@@ -112,357 +112,342 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
 <a name="l00049"></a>00049 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
 <a name="l00050"></a>00050 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">namespace </span>Mezzanine
-<a name="l00055"></a>00055 {
-<a name="l00056"></a>00056     <span class="keyword">namespace </span>UI
-<a name="l00057"></a>00057     {
-<a name="l00058"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0dc49d641507e277174b4f2a3562a89">00058</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0dc49d641507e277174b4f2a3562a89" title="Internal constructor.">Caption::Caption</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00059"></a>00059             : <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a>(name,PLayer),
-<a name="l00060"></a>00060               MouseHover(false)
-<a name="l00061"></a>00061         {
-<a name="l00062"></a>00062             AutoScaleText = <span class="keyword">false</span>;
-<a name="l00063"></a>00063             RelLineHeight = 0.0;
-<a name="l00064"></a>00064             ConstructCaption(Rect,Glyph,Text);
-<a name="l00065"></a>00065         }
-<a name="l00066"></a>00066 
-<a name="l00067"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1604f65f43a488ef3f24f59ce300aa9a">00067</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0dc49d641507e277174b4f2a3562a89" title="Internal constructor.">Caption::Caption</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LineHeight, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00068"></a>00068             : <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a>(name,PLayer),
-<a name="l00069"></a>00069               MouseHover(false)
-<a name="l00070"></a>00070         {
-<a name="l00071"></a>00071             AutoScaleText = <span class="keyword">true</span>;
-<a name="l00072"></a>00072             RelLineHeight = LineHeight;
-<a name="l00073"></a>00073             std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(LineHeight * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>),Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00074"></a>00074             ConstructCaption(Rect,Result.first,Text);
-<a name="l00075"></a>00075             <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
-<a name="l00076"></a>00076         }
-<a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a3b6b1682c67c591ee4e19ed9e9dded74">00078</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a3b6b1682c67c591ee4e19ed9e9dded74" title="Class destructor.">Caption::~Caption</a>()
-<a name="l00079"></a>00079         {
-<a name="l00080"></a>00080             Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyCaption(GorillaCaption);
-<a name="l00081"></a>00081             <span class="comment">//Parent-&gt;GetGorillaLayer()-&gt;destroyRectangle(GorillaRectangle);</span>
-<a name="l00082"></a>00082         }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084         <span class="keywordtype">void</span> Caption::ConstructCaption(<span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Glyph, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text)
-<a name="l00085"></a>00085         {
-<a name="l00086"></a>00086             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00087"></a>00087             <span class="keywordflow">if</span>(Rect.Relative)
-<a name="l00088"></a>00088             {
-<a name="l00089"></a>00089                 RelPosition = Rect.Position;
-<a name="l00090"></a>00090                 RelSize = Rect.Size;
-<a name="l00091"></a>00091 
-<a name="l00092"></a>00092                 GorillaCaption = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createCaption(Glyph, (Rect.Position * WinDim).GetOgreVector2(), (Rect.Size * WinDim).GetOgreVector2(), Text, Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00093"></a>00093                 <span class="comment">//GorillaCaption-&gt;size(Rect.Size.X * WinDim.X, Rect.Size.Y * WinDim.Y);</span>
-<a name="l00094"></a>00094                 <span class="comment">//GorillaRectangle = Parent-&gt;GetGorillaLayer()-&gt;createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());</span>
-<a name="l00095"></a>00095             }<span class="keywordflow">else</span>{
-<a name="l00096"></a>00096                 RelPosition = Rect.Position / WinDim;
-<a name="l00097"></a>00097                 RelSize = Rect.Size / WinDim;
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099                 GorillaCaption = Parent-&gt;GetGorillaLayer()-&gt;createCaption(Glyph, Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>(), Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>(), Text, Parent-&gt;GetParent()-&gt;GetPrimaryAtlas());
-<a name="l00100"></a>00100                 <span class="comment">//GorillaCaption-&gt;size(Rect.Size.X, Rect.Size.Y);</span>
-<a name="l00101"></a>00101                 <span class="comment">//GorillaRectangle = Parent-&gt;GetGorillaLayer()-&gt;createRectangle(Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2());</span>
-<a name="l00102"></a>00102             }
-<a name="l00103"></a>00103             <span class="comment">//GorillaCaption-&gt;background(Ogre::ColourValue(0,0,0,0));</span>
-<a name="l00104"></a>00104             GorillaCaption-&gt;align(Gorilla::TextAlign_Centre);
-<a name="l00105"></a>00105             GorillaCaption-&gt;vertical_align(Gorilla::VerticalAlign_Middle);
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a77ba9fb0b2b8298c19f856b4fb7c8d3d">00108</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a77ba9fb0b2b8298c19f856b4fb7c8d3d" title="Sets the visibility of this caption.">Caption::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
-<a name="l00109"></a>00109         {
-<a name="l00110"></a>00110             <span class="comment">//GorillaRectangle-&gt;SetVisible(Visible);</span>
-<a name="l00111"></a>00111             GorillaCaption-&gt;SetVisible(Visible);
-<a name="l00112"></a>00112         }
-<a name="l00113"></a>00113 
-<a name="l00114"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5d6ed066e714024ce9b12b13a926e6c6">00114</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5d6ed066e714024ce9b12b13a926e6c6" title="Gets the visibility of this caption.">Caption::IsVisible</a>()<span class="keyword"> const</span>
-<a name="l00115"></a>00115 <span class="keyword">        </span>{
-<a name="l00116"></a>00116             <span class="keywordflow">return</span> GorillaCaption-&gt;IsVisible();
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118 
-<a name="l00119"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a11703635ef146c294c7e04b73f38ea1f">00119</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a11703635ef146c294c7e04b73f38ea1f" title="Forces this caption to be shown.">Caption::Show</a>()
-<a name="l00120"></a>00120         {
-<a name="l00121"></a>00121             <span class="comment">//GorillaRectangle-&gt;Show();</span>
-<a name="l00122"></a>00122             GorillaCaption-&gt;Show();
-<a name="l00123"></a>00123         }
-<a name="l00124"></a>00124 
-<a name="l00125"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a765e0cb49905613c9971cae8369cdc4f">00125</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a765e0cb49905613c9971cae8369cdc4f" title="Forces this caption to hide.">Caption::Hide</a>()
-<a name="l00126"></a>00126         {
-<a name="l00127"></a>00127             <span class="comment">//GorillaRectangle-&gt;Hide();</span>
-<a name="l00128"></a>00128             GorillaCaption-&gt;Hide();
-<a name="l00129"></a>00129         }
+<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;mathtool.h&quot;</span>
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="keyword">namespace </span>Mezzanine
+<a name="l00054"></a>00054 {
+<a name="l00055"></a>00055     <span class="keyword">namespace </span>UI
+<a name="l00056"></a>00056     {
+<a name="l00057"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0dc49d641507e277174b4f2a3562a89">00057</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0dc49d641507e277174b4f2a3562a89" title="Internal constructor.">Caption::Caption</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a>, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00058"></a>00058             : <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>(name,Rect,PLayer),
+<a name="l00059"></a>00059               HoriAlign(UI::Txt_Middle),
+<a name="l00060"></a>00060               VertAlign(UI::Txt_Center),
+<a name="l00061"></a>00061               CharScaling(1.0),
+<a name="l00062"></a>00062               ClippedLeftIndex(0.0),
+<a name="l00063"></a>00063               ClippedRightIndex(0.0),
+<a name="l00064"></a>00064               CursorOffset(0.0)
+<a name="l00065"></a>00065         {
+<a name="l00066"></a>00066             AutoScaleText = <span class="keyword">false</span>;
+<a name="l00067"></a>00067             RelLineHeight = 0.0;
+<a name="l00068"></a>00068             GlyphSet = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a5e4723a72e15610caae3f5b130241e19" title="Gets the specified GlyphData from an Atlas.">GetGlyphData</a>(Glyph,PriAtlas);
+<a name="l00069"></a>00069             this-&gt;Text = Text;
+<a name="l00070"></a>00070             TextColour = <a class="code" href="classMezzanine_1_1ColourValue.html#a68cd34992e473676b9cf40a5f7ef75c3" title="Creates a ColourValue representing the colour White.">ColourValue::White</a>();
+<a name="l00071"></a>00071             GlyphAtlas = PriAtlas;
+<a name="l00072"></a>00072         }
+<a name="l00073"></a>00073 
+<a name="l00074"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1604f65f43a488ef3f24f59ce300aa9a">00074</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0dc49d641507e277174b4f2a3562a89" title="Internal constructor.">Caption::Caption</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; LineHeight, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Text, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00075"></a>00075             : <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>(name,Rect,PLayer),
+<a name="l00076"></a>00076               HoriAlign(UI::Txt_Middle),
+<a name="l00077"></a>00077               VertAlign(UI::Txt_Center),
+<a name="l00078"></a>00078               CharScaling(1.0),
+<a name="l00079"></a>00079               ClippedLeftIndex(0.0),
+<a name="l00080"></a>00080               ClippedRightIndex(0.0),
+<a name="l00081"></a>00081               CursorOffset(0.0)
+<a name="l00082"></a>00082         {
+<a name="l00083"></a>00083             AutoScaleText = <span class="keyword">true</span>;
+<a name="l00084"></a>00084             RelLineHeight = LineHeight;
+<a name="l00085"></a>00085             std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>((<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)(LineHeight * ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>),PriAtlas);
+<a name="l00086"></a>00086             GlyphSet = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a5e4723a72e15610caae3f5b130241e19" title="Gets the specified GlyphData from an Atlas.">GetGlyphData</a>(Result.first,PriAtlas);
+<a name="l00087"></a>00087             <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
+<a name="l00088"></a>00088             this-&gt;Text = Text;
+<a name="l00089"></a>00089             TextColour = <a class="code" href="classMezzanine_1_1ColourValue.html#a68cd34992e473676b9cf40a5f7ef75c3" title="Creates a ColourValue representing the colour White.">ColourValue::White</a>();
+<a name="l00090"></a>00090             GlyphAtlas = PriAtlas;
+<a name="l00091"></a>00091         }
+<a name="l00092"></a>00092 
+<a name="l00093"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a3b6b1682c67c591ee4e19ed9e9dded74">00093</a>         <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a3b6b1682c67c591ee4e19ed9e9dded74" title="Class destructor.">Caption::~Caption</a>()
+<a name="l00094"></a>00094         {
+<a name="l00095"></a>00095         }
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097         <span class="keywordtype">void</span> Caption::CalculateDrawSize(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
+<a name="l00098"></a>00098         {
+<a name="l00099"></a>00099             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Cursor = 0;
+<a name="l00100"></a>00100             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Kerning = 0;
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102             <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> CurrChar = 0, LastChar = 0;
+<a name="l00103"></a>00103             <a class="code" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a>* CurrGlyph = 0;
+<a name="l00104"></a>00104             Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = 0;
+<a name="l00105"></a>00105             Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#a11ea4040f0a854226a39f7f3a5dacf58" title="The height in pixels of glyphs in this set.">LineHeight</a>;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107             <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index = 0 ; Index &lt; Text.length() ; Index++ )
+<a name="l00108"></a>00108             {
+<a name="l00109"></a>00109                 CurrChar = Text[Index];
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111                 <span class="keywordflow">if</span>(CurrChar == <span class="charliteral">&#39; &#39;</span>)
+<a name="l00112"></a>00112                 {
+<a name="l00113"></a>00113                     LastChar = CurrChar;
+<a name="l00114"></a>00114                     Cursor += GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#a479f1a29207c35a80455814aa9ec1592" title="The width in pixels of a space in this set.">SpaceLength</a>;
+<a name="l00115"></a>00115                     <span class="keywordflow">continue</span>;
+<a name="l00116"></a>00116                 }
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118                 <span class="keywordflow">if</span>( CurrChar &lt; GlyphSet-&gt;RangeBegin || CurrChar &gt; GlyphSet-&gt;RangeEnd )
+<a name="l00119"></a>00119                 {
+<a name="l00120"></a>00120                     LastChar = 0;
+<a name="l00121"></a>00121                     <span class="keywordflow">continue</span>;
+<a name="l00122"></a>00122                 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124                 CurrGlyph = GlyphSet-&gt;GetGlyph(CurrChar);
+<a name="l00125"></a>00125                 <span class="keywordflow">if</span>(CurrGlyph == 0)
+<a name="l00126"></a>00126                     <span class="keywordflow">continue</span>;
+<a name="l00127"></a>00127                 Kerning = CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#aaff687e74932eaea602316a72596c82f" title="Convenience function for getting the Kerning information for a given Glyph.">GetKerning</a>(LastChar);
+<a name="l00128"></a>00128                 <span class="keywordflow">if</span>(Kerning == 0)
+<a name="l00129"></a>00129                     Kerning = GlyphSet-&gt;LetterSpacing;
 <a name="l00130"></a>00130 
-<a name="l00131"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a57ece85ea6c97b542d62de245ddb82f1">00131</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a57ece85ea6c97b542d62de245ddb82f1" title="Determines whether the mouse is over this caption.">Caption::CheckMouseHover</a>()
-<a name="l00132"></a>00132         {
-<a name="l00133"></a>00133             <span class="keywordflow">if</span>(!GorillaCaption-&gt;IsVisible())
-<a name="l00134"></a>00134                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00135"></a>00135             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MouseLoc = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a89407a5b1e3c727809581d367a25cdaf" title="This gets a vector2 containing both X and Y coordinates of the mouse.">InputQueryTool::GetMouseCoordinates</a>();
-<a name="l00136"></a>00136             <span class="keywordflow">if</span>(GorillaCaption-&gt;intersects(MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>()))
-<a name="l00137"></a>00137             {
-<a name="l00138"></a>00138                 MouseHover = <span class="keyword">true</span>;
-<a name="l00139"></a>00139             }<span class="keywordflow">else</span>{
-<a name="l00140"></a>00140                 MouseHover = <span class="keyword">false</span>;
-<a name="l00141"></a>00141             }
-<a name="l00142"></a>00142             <span class="keywordflow">return</span> MouseHover;
-<a name="l00143"></a>00143         }
-<a name="l00144"></a>00144 
-<a name="l00145"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ac4dface89d5105741e38facd6efe7aed">00145</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ac4dface89d5105741e38facd6efe7aed" title="Gets the stored value of whether or not the mouse is over the caption.">Caption::GetMouseHover</a>()
-<a name="l00146"></a>00146         {
-<a name="l00147"></a>00147             <span class="keywordflow">return</span> MouseHover;
-<a name="l00148"></a>00148         }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43">00150</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43" title="Sets the text displayed within the caption.">Caption::SetText</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Text)
-<a name="l00151"></a>00151         {
-<a name="l00152"></a>00152             GorillaCaption-&gt;text(Text);
-<a name="l00153"></a>00153         }
-<a name="l00154"></a>00154 
-<a name="l00155"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79">00155</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79" title="Gets the text displayed within the caption.">Caption::GetText</a>()
-<a name="l00156"></a>00156         {
-<a name="l00157"></a>00157             <span class="keywordflow">return</span> GorillaCaption-&gt;text();
-<a name="l00158"></a>00158         }
-<a name="l00159"></a>00159 
-<a name="l00160"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7">00160</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">Caption::SetTextScale</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Scale)
-<a name="l00161"></a>00161         {
-<a name="l00162"></a>00162             GorillaCaption-&gt;SetCharScaling(Scale);
-<a name="l00163"></a>00163         }
-<a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0bb9026c09e4b808c1a12f2546a76c5">00165</a>         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0bb9026c09e4b808c1a12f2546a76c5" title="Gets the scaling currently being applied to the rendered text.">Caption::GetTextScale</a>()
-<a name="l00166"></a>00166         {
-<a name="l00167"></a>00167             <span class="keywordflow">return</span> GorillaCaption-&gt;GetCharScaling();
-<a name="l00168"></a>00168         }
-<a name="l00169"></a>00169 
-<a name="l00170"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad7a376cc999615e1a0b2b47bcf2b95de">00170</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad7a376cc999615e1a0b2b47bcf2b95de" title="Sets the colour for the text in this caption.">Caption::SetTextColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; TextColour)
-<a name="l00171"></a>00171         {
-<a name="l00172"></a>00172             GorillaCaption-&gt;colour(TextColour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
-<a name="l00173"></a>00173         }
-<a name="l00174"></a>00174 
-<a name="l00175"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ef9a623d363094bafe9162d89cbcb2c">00175</a>         <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ef9a623d363094bafe9162d89cbcb2c" title="Gets the colour for the text in this caption.">Caption::GetTextColour</a>()
-<a name="l00176"></a>00176         {
-<a name="l00177"></a>00177             <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> Col(GorillaCaption-&gt;colour());
-<a name="l00178"></a>00178             <span class="keywordflow">return</span> Col;
-<a name="l00179"></a>00179         }
-<a name="l00180"></a>00180 
-<a name="l00181"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a">00181</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a" title="Sets the glyph index to be used with this caption.">Caption::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex)
-<a name="l00182"></a>00182         {
-<a name="l00183"></a>00183             Glyphs = GlyphIndex;
-<a name="l00184"></a>00184             GorillaCaption-&gt;font(GlyphIndex,*GorillaCaption-&gt;GetNameFile());
-<a name="l00185"></a>00185         }
-<a name="l00186"></a>00186 
-<a name="l00187"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#abe41befd65e977a1bb300427d0dd5936">00187</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a" title="Sets the glyph index to be used with this caption.">Caption::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00188"></a>00188         {
-<a name="l00189"></a>00189             Glyphs = GlyphIndex;
-<a name="l00190"></a>00190             GorillaCaption-&gt;font(GlyphIndex,Atlas);
-<a name="l00191"></a>00191         }
-<a name="l00192"></a>00192 
-<a name="l00193"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a70275e20608116cce923106d3924781a">00193</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a70275e20608116cce923106d3924781a" title="Gets the glyph index in use by this caption.">Caption::GetGlyphIndex</a>()
-<a name="l00194"></a>00194         {
-<a name="l00195"></a>00195             <span class="keywordflow">return</span> Glyphs;
+<a name="l00131"></a>00131                 <span class="keywordflow">if</span>(CharScaling == 1.0f)
+<a name="l00132"></a>00132                     Cursor += CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a5bca9d6333cf67a842546475f350a4ec" title="The amount of pixels to set the start of the next glyph.">GlyphAdvance</a> + Kerning;
+<a name="l00133"></a>00133                 <span class="keywordflow">else</span>
+<a name="l00134"></a>00134                     Cursor += (CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a5bca9d6333cf67a842546475f350a4ec" title="The amount of pixels to set the start of the next glyph.">GlyphAdvance</a> + Kerning) * CharScaling;
+<a name="l00135"></a>00135                 LastChar = CurrChar;
+<a name="l00136"></a>00136             }
+<a name="l00137"></a>00137             Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = Cursor - Kerning;
+<a name="l00138"></a>00138         }
+<a name="l00139"></a>00139 
+<a name="l00140"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43">00140</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa47e6ddbe4b6181d4d2e963360866a43" title="Sets the text displayed within the caption.">Caption::SetText</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Text)
+<a name="l00141"></a>00141         {
+<a name="l00142"></a>00142             this-&gt;Text = Text;
+<a name="l00143"></a>00143             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00144"></a>00144         }
+<a name="l00145"></a>00145 
+<a name="l00146"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79">00146</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a84706720c8bf07eede9bbeecbf235a79" title="Gets the text displayed within the caption.">Caption::GetText</a>()
+<a name="l00147"></a>00147         {
+<a name="l00148"></a>00148             <span class="keywordflow">return</span> Text;
+<a name="l00149"></a>00149         }
+<a name="l00150"></a>00150 
+<a name="l00151"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7">00151</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">Caption::SetTextScale</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Scale)
+<a name="l00152"></a>00152         {
+<a name="l00153"></a>00153             CharScaling = Scale;
+<a name="l00154"></a>00154             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00155"></a>00155         }
+<a name="l00156"></a>00156 
+<a name="l00157"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0bb9026c09e4b808c1a12f2546a76c5">00157</a>         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad0bb9026c09e4b808c1a12f2546a76c5" title="Gets the scaling currently being applied to the rendered text.">Caption::GetTextScale</a>()
+<a name="l00158"></a>00158         {
+<a name="l00159"></a>00159             <span class="keywordflow">return</span> CharScaling;
+<a name="l00160"></a>00160         }
+<a name="l00161"></a>00161 
+<a name="l00162"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a9c25c8813d05c59d09d7c62599dce50a">00162</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a9c25c8813d05c59d09d7c62599dce50a" title="Sets the colour for the text in this caption.">Caption::SetTextColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00163"></a>00163         {
+<a name="l00164"></a>00164             this-&gt;TextColour = Colour;
+<a name="l00165"></a>00165             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00166"></a>00166         }
+<a name="l00167"></a>00167 
+<a name="l00168"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ef9a623d363094bafe9162d89cbcb2c">00168</a>         <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ef9a623d363094bafe9162d89cbcb2c" title="Gets the colour for the text in this caption.">Caption::GetTextColour</a>()
+<a name="l00169"></a>00169         {
+<a name="l00170"></a>00170             <span class="keywordflow">return</span> TextColour;
+<a name="l00171"></a>00171         }
+<a name="l00172"></a>00172 
+<a name="l00173"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a">00173</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a" title="Sets the glyph index to be used with this caption.">Caption::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex)
+<a name="l00174"></a>00174         {
+<a name="l00175"></a>00175             <a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html" title="Class used to describe a single glyph or character available for text operations.">GlyphData</a>* NewData = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a5e4723a72e15610caae3f5b130241e19" title="Gets the specified GlyphData from an Atlas.">GetGlyphData</a>(GlyphIndex,PriAtlas);
+<a name="l00176"></a>00176             <span class="keywordflow">if</span>(NewData)
+<a name="l00177"></a>00177             {
+<a name="l00178"></a>00178                 GlyphSet = NewData;
+<a name="l00179"></a>00179                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00180"></a>00180             }<span class="keywordflow">else</span>{<span class="comment"></span>
+<a name="l00181"></a>00181 <span class="comment">                /// @todo Throw an error?</span>
+<a name="l00182"></a>00182 <span class="comment"></span>            }
+<a name="l00183"></a>00183         }
+<a name="l00184"></a>00184 
+<a name="l00185"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#abe41befd65e977a1bb300427d0dd5936">00185</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a" title="Sets the glyph index to be used with this caption.">Caption::SetGlyphIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; GlyphIndex, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00186"></a>00186         {
+<a name="l00187"></a>00187             <a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html" title="Class used to describe a single glyph or character available for text operations.">GlyphData</a>* NewData = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a5e4723a72e15610caae3f5b130241e19" title="Gets the specified GlyphData from an Atlas.">GetGlyphData</a>(GlyphIndex,PriAtlas);
+<a name="l00188"></a>00188             <span class="keywordflow">if</span>(NewData)
+<a name="l00189"></a>00189             {
+<a name="l00190"></a>00190                 GlyphSet = NewData;
+<a name="l00191"></a>00191                 GlyphAtlas = Atlas;
+<a name="l00192"></a>00192                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00193"></a>00193             }<span class="keywordflow">else</span>{<span class="comment"></span>
+<a name="l00194"></a>00194 <span class="comment">                /// @todo Throw an error?</span>
+<a name="l00195"></a>00195 <span class="comment"></span>            }
 <a name="l00196"></a>00196         }
 <a name="l00197"></a>00197 
-<a name="l00198"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93607a41a5d18e2a529c5893b6aae921">00198</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93607a41a5d18e2a529c5893b6aae921" title="Sets the number of pixels text should be offset from the side when rendering.">Caption::SetCursorOffset</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Offset)
+<a name="l00198"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#adee750f4077781c09a17ea7f614d0256">00198</a>         <a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html" title="Class used to describe a single glyph or character available for text operations.">GlyphData</a>* <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#adee750f4077781c09a17ea7f614d0256" title="Gets the glyphdata in use by this caption.">Caption::GetGlyphData</a>()
 <a name="l00199"></a>00199         {
-<a name="l00200"></a>00200             GorillaCaption-&gt;SetCursorOffset((<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)Offset);
+<a name="l00200"></a>00200             <span class="keywordflow">return</span> GlyphSet;
 <a name="l00201"></a>00201         }
 <a name="l00202"></a>00202 
-<a name="l00203"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93da9adffc448e61d7fea14ab84c5421">00203</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93da9adffc448e61d7fea14ab84c5421" title="Gets the number of pixels text should be offset from the side when rendering.">Caption::GetCursorOffset</a>()
+<a name="l00203"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93607a41a5d18e2a529c5893b6aae921">00203</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93607a41a5d18e2a529c5893b6aae921" title="Sets the number of pixels text should be offset from the side when rendering.">Caption::SetCursorOffset</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Offset)
 <a name="l00204"></a>00204         {
-<a name="l00205"></a>00205             <span class="keywordflow">return</span> (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)GorillaCaption-&gt;GetCursorOffset();
-<a name="l00206"></a>00206         }
-<a name="l00207"></a>00207 
-<a name="l00208"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a31f8a3357f03f34bdd48bfcc51f705f5">00208</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a31f8a3357f03f34bdd48bfcc51f705f5" title="Sets the background colour of the caption.">Caption::SetBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
-<a name="l00209"></a>00209         {
-<a name="l00210"></a>00210             GorillaCaption-&gt;background_colour(Colour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
-<a name="l00211"></a>00211         }
-<a name="l00212"></a>00212 
-<a name="l00213"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a202400000fdf731d0b10712dfd814ee0">00213</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a202400000fdf731d0b10712dfd814ee0" title="Sets the background image(if provided in the atlas) of the caption.">Caption::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00214"></a>00214         {
-<a name="l00215"></a>00215             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,*GorillaCaption-&gt;GetNameFile());
-<a name="l00216"></a>00216             GorillaCaption-&gt;background_image(GSprite);
-<a name="l00217"></a>00217         }
-<a name="l00218"></a>00218 
-<a name="l00219"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a53cc8bf9234184c8f8b99b6640813b59">00219</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a202400000fdf731d0b10712dfd814ee0" title="Sets the background image(if provided in the atlas) of the caption.">Caption::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00220"></a>00220         {
-<a name="l00221"></a>00221             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,Atlas);
-<a name="l00222"></a>00222             GorillaCaption-&gt;background_image(GSprite);
-<a name="l00223"></a>00223         }
-<a name="l00224"></a>00224 
-<a name="l00225"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5d2537a5d2e7b327a3ea36fdb75fd77c">00225</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5d2537a5d2e7b327a3ea36fdb75fd77c" title="Aligns the text of the caption.">Caption::HorizontallyAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549" title="Used by UI classes to determine the placement of text within a given area.">UI::TextHorizontalAlign</a>&amp; Align)
-<a name="l00226"></a>00226         {
-<a name="l00227"></a>00227             Gorilla::TextAlignment HA;
-<a name="l00228"></a>00228             <span class="keywordflow">switch</span> (Align)
-<a name="l00229"></a>00229             {
-<a name="l00230"></a>00230                 <span class="keywordflow">case</span> UI::Txt_Left:
-<a name="l00231"></a>00231                     HA = Gorilla::TextAlign_Left;
-<a name="l00232"></a>00232                     <span class="keywordflow">break</span>;
-<a name="l00233"></a>00233                 <span class="keywordflow">case</span> UI::Txt_Right:
-<a name="l00234"></a>00234                     HA = Gorilla::TextAlign_Right;
-<a name="l00235"></a>00235                     <span class="keywordflow">break</span>;
-<a name="l00236"></a>00236                 <span class="keywordflow">case</span> UI::Txt_Middle:
-<a name="l00237"></a>00237                     HA = Gorilla::TextAlign_Centre;
-<a name="l00238"></a>00238                     <span class="keywordflow">break</span>;
-<a name="l00239"></a>00239                 <span class="keywordflow">default</span>:
-<a name="l00240"></a>00240                     <span class="keywordflow">return</span>;
-<a name="l00241"></a>00241             }
-<a name="l00242"></a>00242             GorillaCaption-&gt;align(HA);
-<a name="l00243"></a>00243         }
-<a name="l00244"></a>00244 
-<a name="l00245"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa6b18dfcd49114eee5e785971c1c9440">00245</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa6b18dfcd49114eee5e785971c1c9440" title="Aligns the text of the caption.">Caption::VerticallyAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9" title="Used by UI classes to determine the placement of text within a given area.">UI::TextVerticalAlign</a>&amp; Align)
-<a name="l00246"></a>00246         {
-<a name="l00247"></a>00247             Gorilla::VerticalAlignment VA;
-<a name="l00248"></a>00248             <span class="keywordflow">switch</span> (Align)
-<a name="l00249"></a>00249             {
-<a name="l00250"></a>00250                 <span class="keywordflow">case</span> UI::Txt_Top:
-<a name="l00251"></a>00251                     VA = Gorilla::VerticalAlign_Top;
-<a name="l00252"></a>00252                     <span class="keywordflow">break</span>;
-<a name="l00253"></a>00253                 <span class="keywordflow">case</span> UI::Txt_Bottom:
-<a name="l00254"></a>00254                     VA = Gorilla::VerticalAlign_Bottom;
-<a name="l00255"></a>00255                     <span class="keywordflow">break</span>;
-<a name="l00256"></a>00256                 <span class="keywordflow">case</span> UI::Txt_Center:
-<a name="l00257"></a>00257                     VA = Gorilla::VerticalAlign_Middle;
-<a name="l00258"></a>00258                     <span class="keywordflow">break</span>;
-<a name="l00259"></a>00259                 <span class="keywordflow">default</span>:
-<a name="l00260"></a>00260                     <span class="keywordflow">return</span>;
-<a name="l00261"></a>00261             }
-<a name="l00262"></a>00262             GorillaCaption-&gt;vertical_align(VA);
-<a name="l00263"></a>00263         }
-<a name="l00264"></a>00264 
-<a name="l00265"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1db8c2388e76c0cf2d4c017ec44ce6b1">00265</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1db8c2388e76c0cf2d4c017ec44ce6b1" title="Sets the relative top left position of this caption.">Caption::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00266"></a>00266         {
-<a name="l00267"></a>00267             RelPosition = Position;
-<a name="l00268"></a>00268             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00269"></a>00269             GorillaCaption-&gt;left(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00270"></a>00270             GorillaCaption-&gt;top(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00271"></a>00271             <span class="comment">//GorillaRectangle-&gt;left(WinDim.X * RelPosition.X);</span>
-<a name="l00272"></a>00272             <span class="comment">//GorillaRectangle-&gt;top(WinDim.Y * RelPosition.Y);</span>
-<a name="l00273"></a>00273         }
-<a name="l00274"></a>00274 
-<a name="l00275"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a232f175144378d1d8c0e2966dbcc4371">00275</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a232f175144378d1d8c0e2966dbcc4371" title="Gets the relative top left position of this caption.">Caption::GetPosition</a>()<span class="keyword"> const</span>
-<a name="l00276"></a>00276 <span class="keyword">        </span>{
-<a name="l00277"></a>00277             <span class="keywordflow">return</span> RelPosition;
-<a name="l00278"></a>00278         }
-<a name="l00279"></a>00279 
-<a name="l00280"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7360c698bc7a0aaa365739ccb0100d8d">00280</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7360c698bc7a0aaa365739ccb0100d8d" title="Sets the top left position of this caption in pixels.">Caption::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00281"></a>00281         {
-<a name="l00282"></a>00282             RelPosition = Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00283"></a>00283             GorillaCaption-&gt;left(Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00284"></a>00284             GorillaCaption-&gt;top(Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00285"></a>00285             <span class="comment">//GorillaRectangle-&gt;left(Position.X);</span>
-<a name="l00286"></a>00286             <span class="comment">//GorillaRectangle-&gt;top(Position.Y);</span>
-<a name="l00287"></a>00287         }
-<a name="l00288"></a>00288 
-<a name="l00289"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1936b1cc9ac22eddc81d92f10fef314d">00289</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a1936b1cc9ac22eddc81d92f10fef314d" title="Gets the top left position of this caption in pixels.">Caption::GetActualPosition</a>()<span class="keyword"> const</span>
-<a name="l00290"></a>00290 <span class="keyword">        </span>{
-<a name="l00291"></a>00291             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaCaption-&gt;left(), GorillaCaption-&gt;top());
-<a name="l00292"></a>00292             <span class="keywordflow">return</span> Pos;
-<a name="l00293"></a>00293         }
+<a name="l00205"></a>00205             CursorOffset = (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)Offset;
+<a name="l00206"></a>00206             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00207"></a>00207         }
+<a name="l00208"></a>00208 
+<a name="l00209"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93da9adffc448e61d7fea14ab84c5421">00209</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a93da9adffc448e61d7fea14ab84c5421" title="Gets the number of pixels text should be offset from the side when rendering.">Caption::GetCursorOffset</a>()
+<a name="l00210"></a>00210         {
+<a name="l00211"></a>00211             <span class="keywordflow">return</span> (<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>)CursorOffset;
+<a name="l00212"></a>00212         }
+<a name="l00213"></a>00213 
+<a name="l00214"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5d2537a5d2e7b327a3ea36fdb75fd77c">00214</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5d2537a5d2e7b327a3ea36fdb75fd77c" title="Aligns the text of the caption.">Caption::HorizontallyAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549" title="Used by UI classes to determine the placement of text within a given area.">UI::TextHorizontalAlign</a>&amp; Align)
+<a name="l00215"></a>00215         {
+<a name="l00216"></a>00216             <span class="keywordflow">if</span>(HoriAlign == Align)
+<a name="l00217"></a>00217                 <span class="keywordflow">return</span>;
+<a name="l00218"></a>00218             HoriAlign = Align;
+<a name="l00219"></a>00219             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00220"></a>00220         }
+<a name="l00221"></a>00221 
+<a name="l00222"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa6b18dfcd49114eee5e785971c1c9440">00222</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aa6b18dfcd49114eee5e785971c1c9440" title="Aligns the text of the caption.">Caption::VerticallyAlign</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9" title="Used by UI classes to determine the placement of text within a given area.">UI::TextVerticalAlign</a>&amp; Align)
+<a name="l00223"></a>00223         {
+<a name="l00224"></a>00224             <span class="keywordflow">if</span>(VertAlign == Align)
+<a name="l00225"></a>00225                 <span class="keywordflow">return</span>;
+<a name="l00226"></a>00226             VertAlign = Align;
+<a name="l00227"></a>00227             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00228"></a>00228         }
+<a name="l00229"></a>00229 
+<a name="l00230"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a9f8c1df0391939b5a4b740515ebe0df8">00230</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a9f8c1df0391939b5a4b740515ebe0df8" title="Enables or disables scaling the text automatically on a screen size change.">Caption::SetAutoScaleText</a>(<span class="keywordtype">bool</span> Enable)
+<a name="l00231"></a>00231         {
+<a name="l00232"></a>00232             AutoScaleText = Enable;
+<a name="l00233"></a>00233         }
+<a name="l00234"></a>00234 
+<a name="l00235"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2b83af8d15b35ba37661157cc376910d">00235</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2b83af8d15b35ba37661157cc376910d" title="Gets whether or not text from this caption will automatically scale on a screen size change...">Caption::GetAutoScaleText</a>()
+<a name="l00236"></a>00236         {
+<a name="l00237"></a>00237             <span class="keywordflow">return</span> AutoScaleText;
+<a name="l00238"></a>00238         }
+<a name="l00239"></a>00239 
+<a name="l00240"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7">00240</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7" title="Updates the dimensions of this caption to match those of the new screen size.">Caption::UpdateDimensions</a>()
+<a name="l00241"></a>00241         {
+<a name="l00242"></a>00242             <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#ad8659876641f9deea2488dcd9baa02c9" title="Updates a renderables size and position as needed.">ViewportUpdateTool::UpdateRectangleRenderable</a>(<span class="keyword">this</span>);
+<a name="l00243"></a>00243             <span class="comment">//this-&gt;SetActualPosition(RelPosition * ParentLayer-&gt;GetParent()-&gt;GetViewportDimensions());</span>
+<a name="l00244"></a>00244             <span class="comment">//this-&gt;SetActualSize(RelSize * ParentLayer-&gt;GetParent()-&gt;GetViewportDimensions());</span>
+<a name="l00245"></a>00245             <span class="keywordflow">if</span>(AutoScaleText)
+<a name="l00246"></a>00246             {
+<a name="l00247"></a>00247                 std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>(RelLineHeight * ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a333701c21e49351bf905a27b96bac94d" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
+<a name="l00248"></a>00248                 <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a" title="Sets the glyph index to be used with this caption.">SetGlyphIndex</a>(Result.first);
+<a name="l00249"></a>00249                 <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
+<a name="l00250"></a>00250             }
+<a name="l00251"></a>00251         }
+<a name="l00252"></a>00252 
+<a name="l00253"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aba11ec4c0ed480eb4210031c0a370f7e">00253</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aba11ec4c0ed480eb4210031c0a370f7e">Caption::_Redraw</a>()
+<a name="l00254"></a>00254         {
+<a name="l00255"></a>00255             <span class="keywordflow">if</span>(Dirty == <span class="keyword">false</span>)
+<a name="l00256"></a>00256                 <span class="keywordflow">return</span>;
+<a name="l00257"></a>00257             <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aba11ec4c0ed480eb4210031c0a370f7e">Rectangle::_Redraw</a>();
+<a name="l00258"></a>00258             <span class="keywordflow">if</span>(!Visible)
+<a name="l00259"></a>00259             {
+<a name="l00260"></a>00260                 Dirty = <span class="keyword">false</span>;
+<a name="l00261"></a>00261                 <span class="keywordflow">return</span>;
+<a name="l00262"></a>00262             }
+<a name="l00263"></a>00263 
+<a name="l00264"></a>00264             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Left = 0, Top = 0, Right = 0, Bottom = 0, CursorX = 0, CursorY = 0, Kerning = 0;
+<a name="l00265"></a>00265             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> TexelOffsetX = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aa881a701c19e9828e76ef943d504bd83" title="Gets the texel offset on the X axis.">GetTexelX</a>();
+<a name="l00266"></a>00266             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> TexelOffsetY = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a7931c62c5a8ace67f81e8203a42419a7" title="Gets the texel offset on the Y axis.">GetTexelY</a>();
+<a name="l00267"></a>00267             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> KnownSize;
+<a name="l00268"></a>00268             <a class="code" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a>* CurrGlyph = 0;
+<a name="l00269"></a>00269 
+<a name="l00270"></a>00270             <span class="keywordtype">bool</span> ClipLeft = <span class="keyword">false</span>, ClipRight = <span class="keyword">false</span>;
+<a name="l00271"></a>00271             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> ClipLeftPos = 0, ClipRightPos = 0;
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273             <span class="keywordflow">if</span>(HoriAlign == UI::Txt_Left)
+<a name="l00274"></a>00274             {
+<a name="l00275"></a>00275                 CursorX = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CursorOffset;
+<a name="l00276"></a>00276 
+<a name="l00277"></a>00277                 ClipRight = <span class="keyword">true</span>;
+<a name="l00278"></a>00278                 ClipRightPos = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + ActSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00279"></a>00279             }
+<a name="l00280"></a>00280             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(HoriAlign == UI::Txt_Middle)
+<a name="l00281"></a>00281             {
+<a name="l00282"></a>00282                 CalculateDrawSize(KnownSize);
+<a name="l00283"></a>00283                 CursorX = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + (ActSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * 0.5f) - (KnownSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * 0.5f);
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285                 ClipLeft = <span class="keyword">true</span>;
+<a name="l00286"></a>00286                 ClipLeftPos = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00287"></a>00287                 ClipRight = <span class="keyword">true</span>;
+<a name="l00288"></a>00288                 ClipRightPos = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + ActSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00289"></a>00289             }
+<a name="l00290"></a>00290             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(HoriAlign == UI::Txt_Right)
+<a name="l00291"></a>00291             {
+<a name="l00292"></a>00292                 CalculateDrawSize(KnownSize);
+<a name="l00293"></a>00293                 CursorX = (ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + ActSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) - (KnownSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> + CursorOffset);
 <a name="l00294"></a>00294 
-<a name="l00295"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ab0e51b3dba56d6a9612ff41a1df9e1">00295</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a7ab0e51b3dba56d6a9612ff41a1df9e1" title="Sets the relative size of this caption.">Caption::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00296"></a>00296         {
-<a name="l00297"></a>00297             RelSize = Size;
-<a name="l00298"></a>00298             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00299"></a>00299             GorillaCaption-&gt;width(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00300"></a>00300             GorillaCaption-&gt;height(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00301"></a>00301             <span class="comment">//GorillaRectangle-&gt;width(WinDim.X * RelSize.X);</span>
-<a name="l00302"></a>00302             <span class="comment">//GorillaRectangle-&gt;height(WinDim.Y * RelSize.Y);</span>
-<a name="l00303"></a>00303         }
-<a name="l00304"></a>00304 
-<a name="l00305"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad1b3bf8c12122089af1b5896a8da8253">00305</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad1b3bf8c12122089af1b5896a8da8253" title="Gets the relative size of this caption.">Caption::GetSize</a>()<span class="keyword"> const</span>
-<a name="l00306"></a>00306 <span class="keyword">        </span>{
-<a name="l00307"></a>00307             <span class="keywordflow">return</span> RelSize;
-<a name="l00308"></a>00308         }
+<a name="l00295"></a>00295                 ClipLeft = <span class="keyword">true</span>;
+<a name="l00296"></a>00296                 ClipLeftPos = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00297"></a>00297             }
+<a name="l00298"></a>00298 
+<a name="l00299"></a>00299             <span class="keywordflow">if</span>(VertAlign == UI::Txt_Top)
+<a name="l00300"></a>00300                 CursorY = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00301"></a>00301             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(VertAlign == UI::Txt_Center)
+<a name="l00302"></a>00302                 CursorY = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + (ActSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * 0.5) - ((GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#a11ea4040f0a854226a39f7f3a5dacf58" title="The height in pixels of glyphs in this set.">LineHeight</a> * CharScaling) * 0.5);
+<a name="l00303"></a>00303             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(VertAlign == UI::Txt_Bottom)
+<a name="l00304"></a>00304                 CursorY = ActPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> + ActSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> - (GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#a11ea4040f0a854226a39f7f3a5dacf58" title="The height in pixels of glyphs in this set.">LineHeight</a> * CharScaling);
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306             <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> ThisChar = 0, LastChar = 0;
+<a name="l00307"></a>00307             ClippedLeftIndex = String::npos;
+<a name="l00308"></a>00308             ClippedRightIndex = String::npos;
 <a name="l00309"></a>00309 
-<a name="l00310"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#afef14a7641a40656b1bb6d3ae1c820ca">00310</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#afef14a7641a40656b1bb6d3ae1c820ca" title="Sets the size of this caption in pixels.">Caption::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00311"></a>00311         {
-<a name="l00312"></a>00312             RelSize = Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00313"></a>00313             GorillaCaption-&gt;width(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00314"></a>00314             GorillaCaption-&gt;height(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00315"></a>00315             <span class="comment">//GorillaRectangle-&gt;width(Size.X);</span>
-<a name="l00316"></a>00316             <span class="comment">//GorillaRectangle-&gt;height(Size.Y);</span>
-<a name="l00317"></a>00317         }
-<a name="l00318"></a>00318 
-<a name="l00319"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a4b64d9dea1b059fd136ea234b8044a9b">00319</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a4b64d9dea1b059fd136ea234b8044a9b" title="Gets the size of this caption in pixels.">Caption::GetActualSize</a>()<span class="keyword"> const</span>
-<a name="l00320"></a>00320 <span class="keyword">        </span>{
-<a name="l00321"></a>00321             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size(GorillaCaption-&gt;width(), GorillaCaption-&gt;height());
-<a name="l00322"></a>00322             <span class="keywordflow">return</span> Size;
-<a name="l00323"></a>00323         }
-<a name="l00324"></a>00324 
-<a name="l00325"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad3e5d066b19d56616369632276d8fd38">00325</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ad3e5d066b19d56616369632276d8fd38" title="Sets the priority this caption should be rendered with.">Caption::SetRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)
-<a name="l00326"></a>00326         {
-<a name="l00327"></a>00327             Gorilla::RenderPriority RP;
-<a name="l00328"></a>00328             <span class="keywordflow">switch</span>(Priority)
-<a name="l00329"></a>00329             {
-<a name="l00330"></a>00330                 <span class="keywordflow">case</span> UI::RP_Low:
-<a name="l00331"></a>00331                     RP = Gorilla::RP_Low;
-<a name="l00332"></a>00332                     <span class="keywordflow">break</span>;
-<a name="l00333"></a>00333                 <span class="keywordflow">case</span> UI::RP_Medium:
-<a name="l00334"></a>00334                     RP = Gorilla::RP_Medium;
-<a name="l00335"></a>00335                     <span class="keywordflow">break</span>;
-<a name="l00336"></a>00336                 <span class="keywordflow">case</span> UI::RP_High:
-<a name="l00337"></a>00337                     RP = Gorilla::RP_High;
-<a name="l00338"></a>00338                     <span class="keywordflow">break</span>;
-<a name="l00339"></a>00339                 <span class="keywordflow">default</span>:
-<a name="l00340"></a>00340                     <span class="keywordflow">break</span>;
-<a name="l00341"></a>00341             }
-<a name="l00342"></a>00342             GorillaCaption-&gt;RenderPriority(RP);
-<a name="l00343"></a>00343             <span class="comment">//GorillaRectangle-&gt;RenderPriority(RP);</span>
-<a name="l00344"></a>00344         }
-<a name="l00345"></a>00345 
-<a name="l00346"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aadae4d2bb1e8db600864e0121a02e213">00346</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#aadae4d2bb1e8db600864e0121a02e213" title="Gets the priority this caption should be rendered with.">Caption::GetRenderPriority</a>()<span class="keyword"> const</span>
-<a name="l00347"></a>00347 <span class="keyword">        </span>{
-<a name="l00348"></a>00348             Gorilla::RenderPriority RP = this-&gt;GorillaCaption-&gt;RenderPriority();
-<a name="l00349"></a>00349             <span class="keywordflow">switch</span>(RP)
-<a name="l00350"></a>00350             {
-<a name="l00351"></a>00351                 <span class="keywordflow">case</span> Gorilla::RP_Low:
-<a name="l00352"></a>00352                     <span class="keywordflow">return</span> UI::RP_Low;
-<a name="l00353"></a>00353                     <span class="keywordflow">break</span>;
-<a name="l00354"></a>00354                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
-<a name="l00355"></a>00355                     <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00356"></a>00356                     <span class="keywordflow">break</span>;
-<a name="l00357"></a>00357                 <span class="keywordflow">case</span> Gorilla::RP_High:
-<a name="l00358"></a>00358                     <span class="keywordflow">return</span> UI::RP_High;
-<a name="l00359"></a>00359                     <span class="keywordflow">break</span>;
-<a name="l00360"></a>00360                 <span class="keywordflow">default</span>:
-<a name="l00361"></a>00361                     <span class="keywordflow">break</span>;
-<a name="l00362"></a>00362             }
-<a name="l00363"></a>00363             <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00364"></a>00364         }
+<a name="l00310"></a>00310             CursorX = <a class="code" href="classMezzanine_1_1MathTool.html#a51eae53cadb52839ae6edb279627fabd" title="Rounds a Real down.">MathTool::Floor</a>( CursorX );
+<a name="l00311"></a>00311             CursorY = <a class="code" href="classMezzanine_1_1MathTool.html#a51eae53cadb52839ae6edb279627fabd" title="Rounds a Real down.">MathTool::Floor</a>( CursorY );
+<a name="l00312"></a>00312 
+<a name="l00313"></a>00313             <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index = 0 ; Index &lt; Text.size() ; Index++ )
+<a name="l00314"></a>00314             {
+<a name="l00315"></a>00315                 ThisChar = Text[Index];
+<a name="l00316"></a>00316 
+<a name="l00317"></a>00317                 <span class="keywordflow">if</span>( ThisChar == <span class="charliteral">&#39; &#39;</span> )
+<a name="l00318"></a>00318                 {
+<a name="l00319"></a>00319                     LastChar = ThisChar;
+<a name="l00320"></a>00320                     CursorX += GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#a479f1a29207c35a80455814aa9ec1592" title="The width in pixels of a space in this set.">SpaceLength</a> * CharScaling;
+<a name="l00321"></a>00321                     <span class="keywordflow">continue</span>;
+<a name="l00322"></a>00322                 }
+<a name="l00323"></a>00323 
+<a name="l00324"></a>00324                 <span class="keywordflow">if</span>( ThisChar &lt; GlyphSet-&gt;RangeBegin || ThisChar &gt; GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#ac3a9d7ff6c23a2613e3c422e61da317d" title="The ASCII code for the last character in this set.">RangeEnd</a> )
+<a name="l00325"></a>00325                 {
+<a name="l00326"></a>00326                     LastChar = 0;
+<a name="l00327"></a>00327                     <span class="keywordflow">continue</span>;
+<a name="l00328"></a>00328                 }
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330                 CurrGlyph = GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#a1fff126b65029b2610eae9e2a160a77f" title="Gets the glyph corresponding to the provided characters ASCII code.">GetGlyph</a>(ThisChar);
+<a name="l00331"></a>00331                 <span class="keywordflow">if</span>(CurrGlyph == 0)
+<a name="l00332"></a>00332                     <span class="keywordflow">continue</span>;
+<a name="l00333"></a>00333                 Kerning = CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#aaff687e74932eaea602316a72596c82f" title="Convenience function for getting the Kerning information for a given Glyph.">GetKerning</a>(LastChar);
+<a name="l00334"></a>00334                 <span class="keywordflow">if</span>(Kerning == 0)
+<a name="l00335"></a>00335                     Kerning = GlyphSet-&gt;<a class="code" href="classMezzanine_1_1UI_1_1GlyphData.html#ab9ed9b13fcf9b406bd06f63f08bd8e0e" title="Default width in pixels letters have without Kerning or special glyph spacing.">LetterSpacing</a>;
+<a name="l00336"></a>00336 
+<a name="l00337"></a>00337                 Left = CursorX - TexelOffsetX;
+<a name="l00338"></a>00338                 Top = CursorY - TexelOffsetY + CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a86253fccb2e04a6096aaff81c6657409" title="The amount of pixels the glyph is to be adjusted on the Y axis.">VerticalOffset</a>;
+<a name="l00339"></a>00339                 Right = Left + (CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#abe914a999722ba3d3c46e63bc4af0627" title="Width of the character on the Texture.">UVWidth</a> * CharScaling) + TexelOffsetX;
+<a name="l00340"></a>00340                 Bottom = Top + (CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a55333520ab9f97b45f2bc2e58e7b4bd5" title="Height of the character on the Texture.">UVHeight</a> * CharScaling) + TexelOffsetY;
+<a name="l00341"></a>00341 
+<a name="l00342"></a>00342                 <span class="keywordflow">if</span>(ClipLeft)
+<a name="l00343"></a>00343                 {
+<a name="l00344"></a>00344                     <span class="keywordflow">if</span> (Left &lt; ClipLeftPos)
+<a name="l00345"></a>00345                     {
+<a name="l00346"></a>00346                         <span class="keywordflow">if</span>(ClippedLeftIndex == String::npos)
+<a name="l00347"></a>00347                             ClippedLeftIndex = Index;
+<a name="l00348"></a>00348                         CursorX += (CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a5bca9d6333cf67a842546475f350a4ec" title="The amount of pixels to set the start of the next glyph.">GlyphAdvance</a> + Kerning) * CharScaling;
+<a name="l00349"></a>00349                         LastChar = ThisChar;
+<a name="l00350"></a>00350                         <span class="keywordflow">continue</span>;
+<a name="l00351"></a>00351                     }
+<a name="l00352"></a>00352                 }
+<a name="l00353"></a>00353 
+<a name="l00354"></a>00354                 <span class="keywordflow">if</span>(ClipRight)
+<a name="l00355"></a>00355                 {
+<a name="l00356"></a>00356                     <span class="keywordflow">if</span>(Right &gt; ClipRightPos)
+<a name="l00357"></a>00357                     {
+<a name="l00358"></a>00358                         <span class="keywordflow">if</span>(ClippedRightIndex == String::npos)
+<a name="l00359"></a>00359                             ClippedRightIndex = Index;
+<a name="l00360"></a>00360                         CursorX += (CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a5bca9d6333cf67a842546475f350a4ec" title="The amount of pixels to set the start of the next glyph.">GlyphAdvance</a> + Kerning) * CharScaling;
+<a name="l00361"></a>00361                         LastChar = ThisChar;
+<a name="l00362"></a>00362                         <span class="keywordflow">continue</span>;
+<a name="l00363"></a>00363                     }
+<a name="l00364"></a>00364                 }
 <a name="l00365"></a>00365 
-<a name="l00366"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a4794ffff86824830fc54fc0aa6feb710">00366</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a4794ffff86824830fc54fc0aa6feb710" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">Caption::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00367"></a>00367         {
-<a name="l00368"></a>00368             GorillaCaption-&gt;SetNameFile(Atlas);
-<a name="l00369"></a>00369         }
-<a name="l00370"></a>00370 
-<a name="l00371"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5c401e39f028e14426714197210e186a">00371</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5c401e39f028e14426714197210e186a" title="Gets the currently set primary atlas.">Caption::GetPrimaryAtlas</a>()<span class="keyword"> const</span>
-<a name="l00372"></a>00372 <span class="keyword">        </span>{
-<a name="l00373"></a>00373             <span class="keywordflow">return</span> *GorillaCaption-&gt;GetNameFile();
-<a name="l00374"></a>00374         }
-<a name="l00375"></a>00375 
-<a name="l00376"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a9f8c1df0391939b5a4b740515ebe0df8">00376</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a9f8c1df0391939b5a4b740515ebe0df8" title="Enables or disables scaling the text automatically on a screen size change.">Caption::SetAutoScaleText</a>(<span class="keywordtype">bool</span> Enable)
-<a name="l00377"></a>00377         {
-<a name="l00378"></a>00378             AutoScaleText = Enable;
-<a name="l00379"></a>00379         }
-<a name="l00380"></a>00380 
-<a name="l00381"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2b83af8d15b35ba37661157cc376910d">00381</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2b83af8d15b35ba37661157cc376910d" title="Gets whether or not text from this caption will automatically scale on a screen size change...">Caption::GetAutoScaleText</a>()
-<a name="l00382"></a>00382         {
-<a name="l00383"></a>00383             <span class="keywordflow">return</span> AutoScaleText;
-<a name="l00384"></a>00384         }
+<a name="l00366"></a>00366                 <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a> Temp;
+<a name="l00367"></a>00367 
+<a name="l00368"></a>00368                 <span class="comment">// Triangle A</span>
+<a name="l00369"></a>00369                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices, Temp, Left, Bottom, CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#ad4c8240173295f6ebb23dcab2c04ea94" title="The 4 corner coordinates on the Texture.">AtlasCoords</a>[UI::QC_BottomLeft], TextColour,GlyphAtlas);  <span class="comment">// Left/Bottom  3</span>
+<a name="l00370"></a>00370                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices, Temp, Right, Top, CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#ad4c8240173295f6ebb23dcab2c04ea94" title="The 4 corner coordinates on the Texture.">AtlasCoords</a>[UI::QC_TopRight], TextColour,GlyphAtlas);    <span class="comment">// Right/Top    1</span>
+<a name="l00371"></a>00371                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices, Temp, Left, Top, CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#ad4c8240173295f6ebb23dcab2c04ea94" title="The 4 corner coordinates on the Texture.">AtlasCoords</a>[UI::QC_TopLeft], TextColour,GlyphAtlas);     <span class="comment">// Left/Top     0</span>
+<a name="l00372"></a>00372 
+<a name="l00373"></a>00373                 <span class="comment">// Triangle B</span>
+<a name="l00374"></a>00374                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices, Temp, Left, Bottom, CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#ad4c8240173295f6ebb23dcab2c04ea94" title="The 4 corner coordinates on the Texture.">AtlasCoords</a>[UI::QC_BottomLeft], TextColour,GlyphAtlas);  <span class="comment">// Left/Bottom  3</span>
+<a name="l00375"></a>00375                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices, Temp, Right, Bottom, CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#ad4c8240173295f6ebb23dcab2c04ea94" title="The 4 corner coordinates on the Texture.">AtlasCoords</a>[UI::QC_BottomRight], TextColour,GlyphAtlas); <span class="comment">// Right/Bottom 2</span>
+<a name="l00376"></a>00376                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices, Temp, Right, Top, CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#ad4c8240173295f6ebb23dcab2c04ea94" title="The 4 corner coordinates on the Texture.">AtlasCoords</a>[UI::QC_TopRight], TextColour,GlyphAtlas);    <span class="comment">// Right/Top    1</span>
+<a name="l00377"></a>00377 
+<a name="l00378"></a>00378                 CursorX += (CurrGlyph-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Glyph.html#a5bca9d6333cf67a842546475f350a4ec" title="The amount of pixels to set the start of the next glyph.">GlyphAdvance</a> + Kerning) * CharScaling;
+<a name="l00379"></a>00379                 LastChar = ThisChar;
+<a name="l00380"></a>00380             }
+<a name="l00381"></a>00381             Dirty = <span class="keyword">false</span>;
+<a name="l00382"></a>00382         }
+<a name="l00383"></a>00383     }<span class="comment">//UI</span>
+<a name="l00384"></a>00384 }<span class="comment">//Mezzanine</span>
 <a name="l00385"></a>00385 
-<a name="l00386"></a><a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7">00386</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7" title="Updates the dimensions of this caption to match those of the new screen size.">Caption::UpdateDimensions</a>()
-<a name="l00387"></a>00387         {
-<a name="l00388"></a>00388             <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a6b070131c2a4174788246b95517a6528" title="Updates a renderables size and position as needed.">ViewportUpdateTool::UpdateRenderable</a>(<span class="keyword">this</span>);
-<a name="l00389"></a>00389             <span class="comment">//this-&gt;SetActualPosition(RelPosition * Parent-&gt;GetParent()-&gt;GetViewportDimensions());</span>
-<a name="l00390"></a>00390             <span class="comment">//this-&gt;SetActualSize(RelSize * Parent-&gt;GetParent()-&gt;GetViewportDimensions());</span>
-<a name="l00391"></a>00391             <span class="keywordflow">if</span>(AutoScaleText)
-<a name="l00392"></a>00392             {
-<a name="l00393"></a>00393                 std::pair&lt;Whole,Real&gt; Result = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#aaf4698cd4bac16736c81134aa977a0f9" title="Suggests a glyph index based on the desired actual height.">SuggestGlyphIndex</a>(RelLineHeight * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>().<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,<a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a5c401e39f028e14426714197210e186a" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00394"></a>00394                 <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a2cc9da9ae1e10cd5829117f0d473186a" title="Sets the glyph index to be used with this caption.">SetGlyphIndex</a>(Result.first);
-<a name="l00395"></a>00395                 <a class="code" href="classMezzanine_1_1UI_1_1Caption.html#a26b5af3af19440f274a7938806043ca7" title="Sets the scaling to be applied to the text being rendered.">SetTextScale</a>(Result.second);
-<a name="l00396"></a>00396             }
-<a name="l00397"></a>00397         }
-<a name="l00398"></a>00398     }<span class="comment">//UI</span>
-<a name="l00399"></a>00399 }<span class="comment">//Mezzanine</span>
-<a name="l00400"></a>00400 
-<a name="l00401"></a>00401 <span class="preprocessor">#endif</span>
+<a name="l00386"></a>00386 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -470,7 +455,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -480,6 +465,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

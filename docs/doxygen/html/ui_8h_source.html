@@ -109,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00045"></a>00045 <span class="comment">    /// @namespace Mezzanine::UI</span>
 <a name="l00046"></a>00046 <span class="comment">    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.</span>
 <a name="l00047"></a>00047 <span class="comment">    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses</span>
-<a name="l00048"></a>00048 <span class="comment">    /// a similiar structure of classes and even it&#39;s config files(e.g. .gorilla files).</span>
+<a name="l00048"></a>00048 <span class="comment">    /// a similiar structure of classes and layout for it&#39;s config files(e.g. .mta files).</span>
 <a name="l00049"></a>00049 <span class="comment"></span>    <span class="keyword">namespace </span>UI
 <a name="l00050"></a>00050     {
 <a name="l00051"></a>00051 
@@ -125,29 +125,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00061"></a>00061 <span class="preprocessor">#include &quot;uicellgrid.h&quot;</span>
 <a name="l00062"></a>00062 <span class="preprocessor">#include &quot;uicheckbox.h&quot;</span>
 <a name="l00063"></a>00063 <span class="preprocessor">#include &quot;uidropdownlist.h&quot;</span>
-<a name="l00064"></a>00064 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
-<a name="l00065"></a>00065 <span class="preprocessor">#include &quot;uilinelist.h&quot;</span>
-<a name="l00066"></a>00066 <span class="preprocessor">#include &quot;uilistbox.h&quot;</span>
-<a name="l00067"></a>00067 <span class="preprocessor">#include &quot;uimarkuptext.h&quot;</span>
-<a name="l00068"></a>00068 <span class="preprocessor">#include &quot;uimenu.h&quot;</span>
-<a name="l00069"></a>00069 <span class="preprocessor">#include &quot;uimenuwindow.h&quot;</span>
-<a name="l00070"></a>00070 <span class="preprocessor">#include &quot;uipagedcellgrid.h&quot;</span>
-<a name="l00071"></a>00071 <span class="preprocessor">#include &quot;uiradiobutton.h&quot;</span>
-<a name="l00072"></a>00072 <span class="preprocessor">#include &quot;uirectangle.h&quot;</span>
-<a name="l00073"></a>00073 <span class="preprocessor">#include &quot;uirenderablecontainerwidget.h&quot;</span>
-<a name="l00074"></a>00074 <span class="preprocessor">#include &quot;uirenderablerect.h&quot;</span>
-<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;uiresizinginfo.h&quot;</span>
-<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
-<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;uiscrollbar.h&quot;</span>
-<a name="l00078"></a>00078 <span class="preprocessor">#include &quot;uiscrolledcellgrid.h&quot;</span>
-<a name="l00079"></a>00079 <span class="preprocessor">#include &quot;uispinner.h&quot;</span>
-<a name="l00080"></a>00080 <span class="preprocessor">#include &quot;uitabset.h&quot;</span>
-<a name="l00081"></a>00081 <span class="preprocessor">#include &quot;uitextbutton.h&quot;</span>
-<a name="l00082"></a>00082 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
-<a name="l00083"></a>00083 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
-<a name="l00084"></a>00084 <span class="preprocessor">#include &quot;uiwindow.h&quot;</span>
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086 <span class="preprocessor">#endif</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#include &quot;uiglyph.h&quot;</span>
+<a name="l00065"></a>00065 <span class="preprocessor">#include &quot;uikerning.h&quot;</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
+<a name="l00067"></a>00067 <span class="preprocessor">#include &quot;uilinelist.h&quot;</span>
+<a name="l00068"></a>00068 <span class="preprocessor">#include &quot;uilistbox.h&quot;</span>
+<a name="l00069"></a>00069 <span class="preprocessor">#include &quot;uimarkuptext.h&quot;</span>
+<a name="l00070"></a>00070 <span class="preprocessor">#include &quot;uimenu.h&quot;</span>
+<a name="l00071"></a>00071 <span class="preprocessor">#include &quot;uimenuwindow.h&quot;</span>
+<a name="l00072"></a>00072 <span class="preprocessor">#include &quot;uipagedcellgrid.h&quot;</span>
+<a name="l00073"></a>00073 <span class="preprocessor">#include &quot;uiradiobutton.h&quot;</span>
+<a name="l00074"></a>00074 <span class="preprocessor">#include &quot;uirectangle.h&quot;</span>
+<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;uirenderablecontainerwidget.h&quot;</span>
+<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;uirenderablerect.h&quot;</span>
+<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;uiresizinginfo.h&quot;</span>
+<a name="l00078"></a>00078 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
+<a name="l00079"></a>00079 <span class="preprocessor">#include &quot;uiscrollbar.h&quot;</span>
+<a name="l00080"></a>00080 <span class="preprocessor">#include &quot;uiscrolledcellgrid.h&quot;</span>
+<a name="l00081"></a>00081 <span class="preprocessor">#include &quot;uispinner.h&quot;</span>
+<a name="l00082"></a>00082 <span class="preprocessor">#include &quot;uisprite.h&quot;</span>
+<a name="l00083"></a>00083 <span class="preprocessor">#include &quot;uitabset.h&quot;</span>
+<a name="l00084"></a>00084 <span class="preprocessor">#include &quot;uitextbutton.h&quot;</span>
+<a name="l00085"></a>00085 <span class="preprocessor">#include &quot;uitextureatlas.h&quot;</span>
+<a name="l00086"></a>00086 <span class="preprocessor">#include &quot;uivertex.h&quot;</span>
+<a name="l00087"></a>00087 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
+<a name="l00088"></a>00088 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
+<a name="l00089"></a>00089 <span class="preprocessor">#include &quot;uiwindow.h&quot;</span>
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -155,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -165,6 +170,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

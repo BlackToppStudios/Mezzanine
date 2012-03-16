@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::Transform Class Reference</h1>  </div>
@@ -82,6 +83,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a0949c0923e41e00af6c9537d5f9094b7">Transform</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Vec=<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>(), const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Quat=<a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>())</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The multipurpose constructor.  <a href="#a0949c0923e41e00af6c9537d5f9094b7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#ad4974a80bdb1625119e98b059e4e91e0">Transform</a> (const btTransform &amp;Btt)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Conversion Constructor.  <a href="#ad4974a80bdb1625119e98b059e4e91e0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#ad719d3280b8b94f27b5ba1ce3e8a9a59">Transform</a> (const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TheOther)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The copy constructor.  <a href="#ad719d3280b8b94f27b5ba1ce3e8a9a59"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#ade790a95db2817427aea8b7a90f95925">ExtractBulletTransform</a> (const btTransform &amp;temp)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies an existing Bullet transform.  <a href="#ade790a95db2817427aea8b7a90f95925"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">btTransform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#ae1745852b61f7388a5374eeebdc893cd">GetBulletTransform</a> () const </td></tr>
@@ -90,12 +97,17 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the values of this <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> to match an existing btTransform.  <a href="#a4ea68563eacb2f69a4e83a0c28392b74"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067">operator=</a> (const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;rhs)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the values of this <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> to match an existing <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>.  <a href="#aa21521163611bf58988caf99c085d067"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#ad4974a80bdb1625119e98b059e4e91e0">Transform</a> (const btTransform &amp;Btt)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The Conversion Constructor.  <a href="#ad4974a80bdb1625119e98b059e4e91e0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a0949c0923e41e00af6c9537d5f9094b7">Transform</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Vec=<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>(), const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Quat=<a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>())</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The multipurpose constructor.  <a href="#a0949c0923e41e00af6c9537d5f9094b7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#ad719d3280b8b94f27b5ba1ce3e8a9a59">Transform</a> (const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TheOther)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The copy constructor.  <a href="#ad719d3280b8b94f27b5ba1ce3e8a9a59"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#aa58fe89c84a189cfb2c6a0594c37e071">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#aa58fe89c84a189cfb2c6a0594c37e071"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a7bc390c5875493870d8eff4a36685457">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a7bc390c5875493870d8eff4a36685457"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d9f45cf621609dc884712c3beb3a501"></a><!-- doxytag: member="Mezzanine::Transform::SetIdentity" ref="a8d9f45cf621609dc884712c3beb3a501" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#a8d9f45cf621609dc884712c3beb3a501">SetIdentity</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets default construction values for all members. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#aa654b59db0a5ae99778cfb89ad8f7045"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93498c9bcba2298f199f9ab04671a944"></a><!-- doxytag: member="Mezzanine::Transform::Location" ref="a93498c9bcba2298f199f9ab04671a944" args="" -->
@@ -228,7 +240,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00071">71</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00077">77</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
@@ -249,7 +261,7 @@ Public Attributes</h2></td></tr>
 <p>Gets a Bullet <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>. </p>
 <p>Creates a Bullet <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> with values equal to this class instance and returns it. </p>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00064">64</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00070">70</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
@@ -277,7 +289,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A reference to the freshly overwritten <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00078">78</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00084">84</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +317,83 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A reference to the freshly overwritten <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00089">89</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00095">95</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa58fe89c84a189cfb2c6a0594c37e071"></a><!-- doxytag: member="Mezzanine::Transform::ProtoDeSerialize" ref="aa58fe89c84a189cfb2c6a0594c37e071" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Transform::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>A precondition of using this is that all of the actors intended for use must already be Deserialized. </dd></dl>
+
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00118">118</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7bc390c5875493870d8eff4a36685457"></a><!-- doxytag: member="Mezzanine::Transform::ProtoSerialize" ref="a7bc390c5875493870d8eff4a36685457" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Transform::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00103">103</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa654b59db0a5ae99778cfb89ad8f7045"></a><!-- doxytag: member="Mezzanine::Transform::SerializableName" ref="aa654b59db0a5ae99778cfb89ad8f7045" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Transform::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "Transform" </dd></dl>
+
+<p>Definition at line <a class="el" href="transform_8cpp_source.html#l00134">134</a> of file <a class="el" href="transform_8cpp_source.html">transform.cpp</a>.</p>
 
 </div>
 </div>
@@ -319,7 +407,7 @@ Public Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -329,6 +417,6 @@ Public Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:48 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

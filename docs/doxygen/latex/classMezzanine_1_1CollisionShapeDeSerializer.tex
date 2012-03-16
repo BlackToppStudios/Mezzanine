@@ -17,6 +17,22 @@ Inheritance diagram for Mezzanine::CollisionShapeDeSerializer:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classMezzanine_1_1CollisionShapeDeSerializer}
 \end{center}
 \end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1CollisionShapeDeSerializer_a84083c617b9c74f3e2110467ade361c3}{ContainerName} () const 
+\begin{DoxyCompactList}\small\item\em This will return the Name of the element that Contains multiple of the items to be DeSerialized. \item\end{DoxyCompactList}\item 
+virtual std::istream \& \hyperlink{classMezzanine_1_1CollisionShapeDeSerializer_a9b5cc500f61b5df6423102b398267743}{DeSerialize} (std::istream \&Stream)
+\begin{DoxyCompactList}\small\item\em Create a collision shape from the serialized version in a stream. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1CollisionShapeDeSerializer_a7acb9f3a9c80bf22bb0f84707ba16be8}{DeSerializeAndRetrieve} (std::istream \&Stream)
+\begin{DoxyCompactList}\small\item\em Create a collision shape from the serialized version in a stream. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1CollisionShapeDeSerializer_af8882919e03c91cd2a65d1a12ddbb85a}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Convert An XML Node containing and one collision shape into a \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} of the corresponding type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{classMezzanine_1_1CollisionShapeDeSerializer_adc76f2a2afbfb23483fa6f85d0ff5f83}{PerformDeSerialization} (std::istream \&Stream)
+\begin{DoxyCompactList}\small\item\em This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -26,6 +42,142 @@ Definition at line 1002 of file collisionshape.h.
 
 
 
-The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1CollisionShapeDeSerializer_a84083c617b9c74f3e2110467ade361c3}{
+\index{Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}!ContainerName@{ContainerName}}
+\index{ContainerName@{ContainerName}!Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}}
+\paragraph[{ContainerName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::CollisionShapeDeSerializer::ContainerName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShapeDeSerializer_a84083c617b9c74f3e2110467ade361c3}
+
+
+This will return the Name of the element that Contains multiple of the items to be DeSerialized. 
+
+\begin{DoxyReturn}{Returns}
+A String containing \char`\"{}Shapes\char`\"{} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1DeSerializer_a99e25b2dab4cde22af1c77fa31665bae}{Mezzanine::DeSerializer$<$ CollisionShape $>$}.
+
+
+
+Definition at line 1825 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShapeDeSerializer_a9b5cc500f61b5df6423102b398267743}{
+\index{Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}!DeSerialize@{DeSerialize}}
+\index{DeSerialize@{DeSerialize}!Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}}
+\paragraph[{DeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}std::istream \& Mezzanine::CollisionShapeDeSerializer::DeSerialize (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{Stream}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShapeDeSerializer_a9b5cc500f61b5df6423102b398267743}
+
+
+Create a collision shape from the serialized version in a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & The std::istream to get the data from.\\
+\hline
+\end{DoxyParams}
+This performs less checking than the original to allow for DeSerialization of multiple kinds of xml elements. Rather all the specific checking is done closer to the actual instantion of classes. This add the DeSerialized shape to the collsion shape manager. \begin{DoxyReturn}{Returns}
+This returns the input stream after the xml document has been extracted from it. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1DeSerializer_aaf31c38d936ec89323c3cb9196a5a97f}{Mezzanine::DeSerializer$<$ CollisionShape $>$}.
+
+
+
+Definition at line 1816 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShapeDeSerializer_a7acb9f3a9c80bf22bb0f84707ba16be8}{
+\index{Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}!DeSerializeAndRetrieve@{DeSerializeAndRetrieve}}
+\index{DeSerializeAndRetrieve@{DeSerializeAndRetrieve}!Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}}
+\paragraph[{DeSerializeAndRetrieve}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ Mezzanine::CollisionShapeDeSerializer::DeSerializeAndRetrieve (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{Stream}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShapeDeSerializer_a7acb9f3a9c80bf22bb0f84707ba16be8}
+
+
+Create a collision shape from the serialized version in a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & The std::istream to get the data from.\\
+\hline
+\end{DoxyParams}
+This adds the DeSerialized shape to the collsion shape manager. \begin{DoxyReturn}{Returns}
+This returns a pointer to the freshly created collsion shape 
+\end{DoxyReturn}
+
+
+Definition at line 1822 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShapeDeSerializer_adc76f2a2afbfb23483fa6f85d0ff5f83}{
+\index{Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}!PerformDeSerialization@{PerformDeSerialization}}
+\index{PerformDeSerialization@{PerformDeSerialization}!Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}}
+\paragraph[{PerformDeSerialization}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ Mezzanine::CollisionShapeDeSerializer::PerformDeSerialization (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{Stream}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShapeDeSerializer_adc76f2a2afbfb23483fa6f85d0ff5f83}
+
+
+This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & the stream to deserialize from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details 
+\end{DoxyReturn}
+
+
+Definition at line 1798 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShapeDeSerializer_af8882919e03c91cd2a65d1a12ddbb85a}{
+\index{Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::CollisionShapeDeSerializer@{Mezzanine::CollisionShapeDeSerializer}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$ Mezzanine::CollisionShapeDeSerializer::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShapeDeSerializer_af8882919e03c91cd2a65d1a12ddbb85a}
+
+
+Convert An XML Node containing and one collision shape into a \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} of the corresponding type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & A reference to the XML node to reconstitute into a live class instance.\\
+\hline
+\end{DoxyParams}
+All items deserialized here will be added to the collision shape manager. \begin{DoxyReturn}{Returns}
+A pointer to the freshly deserialized and created class instance. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1DeSerializer_a646390cf8138c622c64aa83a93b10cce}{Mezzanine::DeSerializer$<$ CollisionShape $>$}.
+
+
+
+Definition at line 1813 of file collisionshape.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
-collisionshape.h\end{DoxyCompactItemize}
+collisionshape.h\item 
+collisionshape.cpp\end{DoxyCompactItemize}

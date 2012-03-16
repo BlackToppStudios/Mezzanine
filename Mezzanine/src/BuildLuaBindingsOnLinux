@@ -1,0 +1,2 @@
+#!/bin/bash
+swig2.0 -c++ -v -Wall -lua -importall -includeall -o scriptbindinglua51.cpp mezzanine.h

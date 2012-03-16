@@ -108,61 +108,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="keyword">namespace </span>Mezzanine
 <a name="l00046"></a>00046 {
-<a name="l00047"></a>00047     ActorRigid* ActorRigidDeSerializer::ProtoDeSerialize(<span class="keyword">const</span> xml::Node&amp; OneNode)
-<a name="l00048"></a>00048     {
-<a name="l00049"></a>00049         <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.Name())==ActorRigid::SerializableName() )
+<a name="l00047"></a>00047     ActorRigid* <a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.html#aff6fdcd7d7fdbc52e493ba2c8229b2e1" title="Accepts one xml::Node with an actor in it and create a new ActorRigid.">ActorRigidDeSerializer::ProtoDeSerialize</a>(<span class="keyword">const</span> xml::Node&amp; OneNode)
+<a name="l00048"></a><a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.html#aff6fdcd7d7fdbc52e493ba2c8229b2e1">00048</a>     {
+<a name="l00049"></a>00049         <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.Name())==<a class="code" href="classMezzanine_1_1ActorRigid.html#a9f4272bae46df5bd1dfed8753cd19dc6" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">ActorRigid::SerializableName</a>() )
 <a name="l00050"></a>00050         {
 <a name="l00051"></a>00051             <span class="keywordflow">if</span>(OneNode.GetAttribute(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
 <a name="l00052"></a>00052             {
 <a name="l00053"></a>00053                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name(OneNode.GetAttribute(<span class="stringliteral">&quot;Name&quot;</span>).AsString());
 <a name="l00054"></a>00054                 <span class="keywordflow">if</span> (Name.empty())
-<a name="l00055"></a>00055                     { DeSerializeError(<span class="stringliteral">&quot;find a Name Attribute&quot;</span>,ActorRigid::SerializableName()); }
+<a name="l00055"></a>00055                     { <a class="code" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<span class="stringliteral">&quot;find a Name Attribute&quot;</span>,<a class="code" href="classMezzanine_1_1ActorRigid.html#a9f4272bae46df5bd1dfed8753cd19dc6" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">ActorRigid::SerializableName</a>()); }
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> File(OneNode.GetAttribute(<span class="stringliteral">&quot;File&quot;</span>).AsString());
 <a name="l00058"></a>00058                 <span class="keywordflow">if</span> (File.empty())
-<a name="l00059"></a>00059                     { DeSerializeError(<span class="stringliteral">&quot;find a File Attribute&quot;</span>,ActorRigid::SerializableName()); }
+<a name="l00059"></a>00059                     { <a class="code" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<span class="stringliteral">&quot;find a File Attribute&quot;</span>,<a class="code" href="classMezzanine_1_1ActorRigid.html#a9f4272bae46df5bd1dfed8753cd19dc6" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">ActorRigid::SerializableName</a>()); }
 <a name="l00060"></a>00060 
 <a name="l00061"></a>00061                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Group(OneNode.GetAttribute(<span class="stringliteral">&quot;Group&quot;</span>).AsString());
 <a name="l00062"></a>00062                 <span class="keywordflow">if</span> (Group.empty())
-<a name="l00063"></a>00063                     { DeSerializeError(<span class="stringliteral">&quot;find a Group Attribute&quot;</span>,ActorRigid::SerializableName()); }
+<a name="l00063"></a>00063                     { <a class="code" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<span class="stringliteral">&quot;find a Group Attribute&quot;</span>,<a class="code" href="classMezzanine_1_1ActorRigid.html#a9f4272bae46df5bd1dfed8753cd19dc6" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">ActorRigid::SerializableName</a>()); }
 <a name="l00064"></a>00064 
-<a name="l00065"></a>00065                 ActorRigid *Results = <span class="keyword">new</span> ActorRigid(10,Name,File,Group);
-<a name="l00066"></a>00066                 Results-&gt;ProtoDeSerialize(OneNode);
+<a name="l00065"></a>00065                 <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a> *Results = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a>(10,Name,File,Group);
+<a name="l00066"></a>00066                 Results-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#a1b73b6506648f874e7962148d21feecb" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode);
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068                 <span class="keywordflow">if</span> (0 != Target)
-<a name="l00069"></a>00069                     { Target-&gt;AddActor(Results); }
+<a name="l00068"></a>00068                 <span class="keywordflow">if</span> (0 != <a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.html#a2721883c45e41b5a1b7992feb57750bc" title="This should point to a specific Actor Manager.">Target</a>)
+<a name="l00069"></a>00069                     { <a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.html#a2721883c45e41b5a1b7992feb57750bc" title="This should point to a specific Actor Manager.">Target</a>-&gt;<a class="code" href="classMezzanine_1_1ActorManager.html#af801d07590853b3ae0c52574a340ea44" title="Adds a pre-created actor to the manager.">AddActor</a>(Results); }
 <a name="l00070"></a>00070 
-<a name="l00071"></a>00071                 <span class="keywordflow">if</span>( Results-&gt;IsInWorld() != OneNode.GetChild(ActorBase::SerializableName()).GetAttribute(<span class="stringliteral">&quot;IsInWorld&quot;</span>).AsBool() )
+<a name="l00071"></a>00071                 <span class="keywordflow">if</span>( Results-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#a2e773e73a7a190ad56d2afedeeeb8e87" title="Gets whether or not this object is currently in the world.">IsInWorld</a>() != OneNode.GetChild(<a class="code" href="classMezzanine_1_1ActorBase.html#af6f41bdc0932b99f82f317d27d8dc906" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">ActorBase::SerializableName</a>()).GetAttribute(<span class="stringliteral">&quot;IsInWorld&quot;</span>).AsBool() )
 <a name="l00072"></a>00072                 {
-<a name="l00073"></a>00073                     <span class="keywordflow">if</span>(Results-&gt;IsInWorld())
-<a name="l00074"></a>00074                         { Results-&gt;RemoveFromWorld(); }
+<a name="l00073"></a>00073                     <span class="keywordflow">if</span>(Results-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#a2e773e73a7a190ad56d2afedeeeb8e87" title="Gets whether or not this object is currently in the world.">IsInWorld</a>())
+<a name="l00074"></a>00074                         { Results-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#a5017e2809d6dc2516b3675748ce80b2e">RemoveFromWorld</a>(); }
 <a name="l00075"></a>00075                     <span class="keywordflow">else</span>
-<a name="l00076"></a>00076                         { Results-&gt;AddToWorld(); }
+<a name="l00076"></a>00076                         { Results-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#a5934a8751b9ec19dd2cd9327ce651d59">AddToWorld</a>(); }
 <a name="l00077"></a>00077                 }
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079                 Vector3 tempvec;
-<a name="l00080"></a>00080                 xml::Node GravityNode = OneNode.GetChild(ActorBase::SerializableName()).GetChild(<span class="stringliteral">&quot;ActorRigidPhysicsSettings&quot;</span>).GetChild(<span class="stringliteral">&quot;IndividualGravity&quot;</span>).GetFirstChild();
-<a name="l00081"></a>00081                 <span class="keywordflow">if</span>(!GravityNode)
-<a name="l00082"></a>00082                     { DeSerializeError(<span class="stringliteral">&quot;find gravity node&quot;</span>, <span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>); }
-<a name="l00083"></a>00083                 tempvec.ProtoDeSerialize(GravityNode);
-<a name="l00084"></a>00084                 Results-&gt;GetPhysicsSettings()-&gt;SetIndividualGravity(tempvec);
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086                 <span class="keywordflow">return</span> Results;
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088             }<span class="keywordflow">else</span>{
-<a name="l00089"></a>00089                 DeSerializeError(<span class="stringliteral">&quot;find usable serialization version&quot;</span>,<span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>);
-<a name="l00090"></a>00090             }
-<a name="l00091"></a>00091         }<span class="keywordflow">else</span>{
-<a name="l00092"></a>00092             DeSerializeError(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;find correct class to deserialize, found a &quot;</span>)+OneNode.Name(),<span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>);
-<a name="l00093"></a>00093         }
-<a name="l00094"></a>00094     }
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ActorRigidDeSerializer::ContainerName()<span class="keyword"> const</span>
-<a name="l00097"></a>00097 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;RigidActors&quot;</span>); }
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099 }
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101 <span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078 <span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">                /// @todo TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default</span>
+<a name="l00080"></a>00080 <span class="comment"></span>
+<a name="l00081"></a>00081                 <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> tempvec;
+<a name="l00082"></a>00082                 <span class="comment">//[rename, /RigidActors[1]/ActorRigid[1]/ActorBase[1]/NonStaticWorldObject[1]/WorldObject[1]/ActorRigidPhysicsSettings[1]/IndividualGravity[1]/Vector3[1]/@X, LogilabXmldiffTmpAttrZ]</span>
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084                 <a class="code" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> GravityNode = OneNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#abb2e51765b16a3373ee81b288fd74b22" title="Attempt to get a child Node with a given name.">GetChild</a>(<a class="code" href="classMezzanine_1_1ActorBase.html#af6f41bdc0932b99f82f317d27d8dc906" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">ActorBase::SerializableName</a>()).GetChild(<span class="stringliteral">&quot;NonStaticWorldObject&quot;</span>).GetChild(<span class="stringliteral">&quot;WorldObject&quot;</span>).GetChild(<span class="stringliteral">&quot;ActorRigidPhysicsSettings&quot;</span>).GetChild(<span class="stringliteral">&quot;IndividualGravity&quot;</span>).GetFirstChild();
+<a name="l00085"></a>00085                 <span class="keywordflow">if</span>(!GravityNode)
+<a name="l00086"></a>00086                     { <a class="code" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<span class="stringliteral">&quot;find gravity node&quot;</span>, <span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>); }
+<a name="l00087"></a>00087                 tempvec.<a class="code" href="classMezzanine_1_1Vector3.html#a75ed62196ecc449c6a4e6ea8242c4b14" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(GravityNode);
+<a name="l00088"></a>00088                 Results-&gt;<a class="code" href="classMezzanine_1_1ActorRigid.html#a6ed901638c88e4b9e09605152e11d56e" title="Gets the physics settings class associated with this actor.">GetPhysicsSettings</a>()-&gt;<a class="code" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#ad1280574ff86c008c46c10a7133ca274" title="Sets the gravity for only this object.">SetIndividualGravity</a>(tempvec);
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090                 <span class="keywordflow">return</span> Results;
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092             }<span class="keywordflow">else</span>{
+<a name="l00093"></a>00093                 <a class="code" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<span class="stringliteral">&quot;find usable serialization version&quot;</span>,<span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>);
+<a name="l00094"></a>00094             }
+<a name="l00095"></a>00095         }<span class="keywordflow">else</span>{
+<a name="l00096"></a>00096             <a class="code" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73" title="Simply does some string concatenation, then throws an Exception.">DeSerializeError</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;find correct class to deserialize, found a &quot;</span>)+OneNode.Name(),<span class="stringliteral">&quot;ActorRigidDeSerializer&quot;</span>);
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098     }
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.html#a4f28a9c4679891e249f9f5e4381a3f93" title="Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml...">ActorRigidDeSerializer::ContainerName</a>()<span class="keyword"> const</span>
+<a name="l00101"></a><a class="code" href="classMezzanine_1_1ActorRigidDeSerializer.html#a4f28a9c4679891e249f9f5e4381a3f93">00101</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;RigidActors&quot;</span>); }
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -170,7 +174,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -180,6 +184,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

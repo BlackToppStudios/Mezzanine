@@ -115,7 +115,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052     <a class="code" href="classMezzanine_1_1ActorManager.html#aa9074e3c8dd87865e957c4d76fbc5e25" title="Class constructor.">ActorManager::ActorManager</a>()
 <a name="l00053"></a><a class="code" href="classMezzanine_1_1ActorManager.html#aa9074e3c8dd87865e957c4d76fbc5e25">00053</a>     {
-<a name="l00054"></a>00054         <a class="code" href="classMezzanine_1_1ManagerBase.html#a96fb02bf2f4e8b4afe70dedd0d8c6ac9" title="This is a weighting used by the main loop to decide what order the managers should be called in...">Priority</a> = -25;
+<a name="l00054"></a>00054         <a class="code" href="classMezzanine_1_1ManagerBase.html#a96fb02bf2f4e8b4afe70dedd0d8c6ac9" title="This is a weighting used by the main loop to decide what order the managers should be called in...">Priority</a> = 20;
 <a name="l00055"></a>00055     }
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057     <a class="code" href="classMezzanine_1_1ActorManager.html#acb09f9f1b4766dd2ca9e645bb505ac2f" title="Class destructor.">ActorManager::~ActorManager</a>()
@@ -218,20 +218,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00154"></a>00154         <a class="code" href="classMezzanine_1_1ActorManager.html#a07fba4f64f1a9162d3a12916d6ef29bd" title="A Second listing of All the Character actors.">CharacterActors</a>.clear();
 <a name="l00155"></a>00155     }
 <a name="l00156"></a>00156 
-<a name="l00157"></a>00157     <span class="comment">//Inherited From ManagerBase</span>
-<a name="l00158"></a>00158     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868" title="Empty initializer that has been implemented from ManagerBase.">ActorManager::Initialize</a>()
-<a name="l00159"></a><a class="code" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">00159</a>     {
-<a name="l00160"></a>00160     }
-<a name="l00161"></a>00161 
-<a name="l00162"></a>00162     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorManager.html#a8b1907afd4804047c03ff4bb51c89caa" title="Physics stepping during the main loop.">ActorManager::DoMainLoopItems</a>()
-<a name="l00163"></a><a class="code" href="classMezzanine_1_1ActorManager.html#a8b1907afd4804047c03ff4bb51c89caa">00163</a>     {
-<a name="l00164"></a>00164     }
-<a name="l00165"></a>00165 
-<a name="l00166"></a>00166     <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70" title="This returns the type of this manager.">ActorManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00167"></a><a class="code" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70">00167</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorManager.html#aa9074e3c8dd87865e957c4d76fbc5e25" title="Class constructor.">ManagerBase::ActorManager</a>; }
-<a name="l00168"></a>00168 }
+<a name="l00157"></a>00157     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorManager.html#a09ae1e126a501cd932dbbc9290120b7d" title="Calls to update every actor currently stored in the manager.">ActorManager::UpdateAllActors</a>()
+<a name="l00158"></a><a class="code" href="classMezzanine_1_1ActorManager.html#a09ae1e126a501cd932dbbc9290120b7d">00158</a>     {
+<a name="l00159"></a>00159         <span class="keywordflow">for</span>( ActorManager::ActorIterator ActIt = <a class="code" href="classMezzanine_1_1ActorManager.html#a12a65a58aab87b083e6718cb8fa3aa2c" title="The actual actor container.">Actors</a>.begin() ; ActIt != <a class="code" href="classMezzanine_1_1ActorManager.html#a12a65a58aab87b083e6718cb8fa3aa2c" title="The actual actor container.">Actors</a>.end() ; ++ActIt )
+<a name="l00160"></a>00160         {
+<a name="l00161"></a>00161             (*ActIt)-&gt;_Update();
+<a name="l00162"></a>00162         }
+<a name="l00163"></a>00163     }
+<a name="l00164"></a>00164 
+<a name="l00165"></a>00165     <span class="comment">//Inherited From ManagerBase</span>
+<a name="l00166"></a>00166     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868" title="Empty initializer that has been implemented from ManagerBase.">ActorManager::Initialize</a>()
+<a name="l00167"></a><a class="code" href="classMezzanine_1_1ActorManager.html#a3b5b383066473d09243d13ad702c4868">00167</a>     {
+<a name="l00168"></a>00168     }
 <a name="l00169"></a>00169 
-<a name="l00170"></a>00170 <span class="preprocessor">#endif</span>
+<a name="l00170"></a>00170     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorManager.html#a8b1907afd4804047c03ff4bb51c89caa" title="Physics stepping during the main loop.">ActorManager::DoMainLoopItems</a>()
+<a name="l00171"></a><a class="code" href="classMezzanine_1_1ActorManager.html#a8b1907afd4804047c03ff4bb51c89caa">00171</a>     {
+<a name="l00172"></a>00172         <a class="code" href="classMezzanine_1_1ActorManager.html#a09ae1e126a501cd932dbbc9290120b7d" title="Calls to update every actor currently stored in the manager.">UpdateAllActors</a>();
+<a name="l00173"></a>00173     }
+<a name="l00174"></a>00174 
+<a name="l00175"></a>00175     <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70" title="This returns the type of this manager.">ActorManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00176"></a><a class="code" href="classMezzanine_1_1ActorManager.html#abfd167e1e15f32dffed05a2bd1b4ac70">00176</a> <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorManager.html#aa9074e3c8dd87865e957c4d76fbc5e25" title="Class constructor.">ManagerBase::ActorManager</a>; }
+<a name="l00177"></a>00177 }
+<a name="l00178"></a>00178 
+<a name="l00179"></a>00179 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -239,7 +248,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -249,6 +258,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

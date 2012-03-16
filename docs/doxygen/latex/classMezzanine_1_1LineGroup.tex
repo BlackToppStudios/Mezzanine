@@ -14,6 +14,10 @@ This is a group of consectutive line segments to be rendered together.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1LineGroup_a8789254da1d3e930681b793165fedeca}{LineGroup} (\hyperlink{classMezzanine_1_1World}{World} $\ast$Parent\_\-)
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1LineGroup_afd14821b5b54fff9d670458748125f3f}{$\sim$LineGroup} (void)
+\begin{DoxyCompactList}\small\item\em Default Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1LineGroup_a3326fcfa0207505082af2610d73c2e46}{addPoint} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&p)
 \begin{DoxyCompactList}\small\item\em This add Either a start pointing, or a line segment to the next point. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1LineGroup_acadb6f8ccbe70828b094f07a11f276ac}{drawLine} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&start, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&end)
@@ -26,14 +30,10 @@ void \hyperlink{classMezzanine_1_1LineGroup_a85da1685525915f1e07d685b98f79f23}{d
 \begin{DoxyCompactList}\small\item\em Get the amount of points used to define Line Segments. \item\end{DoxyCompactList}\item 
 const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1LineGroup_a5a6aca5f86fa5751b335ee4a3d498cbf}{getPoint} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} index) const 
 \begin{DoxyCompactList}\small\item\em Access points by order they were added. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1LineGroup_a8789254da1d3e930681b793165fedeca}{LineGroup} (\hyperlink{classMezzanine_1_1World}{World} $\ast$Parent\_\-)
-\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1LineGroup_ab94688dd800d390aefce0e6b9742b296}{PrepareForRendering} ()
 \begin{DoxyCompactList}\small\item\em This assists in the rendering process. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1LineGroup_adfb54ecbd62dc13d42b4e05c1b30a155}{updatePoint} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} index, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&value)
-\begin{DoxyCompactList}\small\item\em This changes a specific point. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1LineGroup_afd14821b5b54fff9d670458748125f3f}{$\sim$LineGroup} (void)
-\begin{DoxyCompactList}\small\item\em Default Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This changes a specific point. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -58,7 +58,7 @@ Definition at line 62 of file linegroup.h.
 Basic Constructor. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000014}{Todo}]TODO: This class really should support rotation, the underlying implementation does. \end{Desc}
+\item[\hyperlink{todo__todo000017}{Todo}]TODO: This class really should support rotation, the underlying implementation does. \end{Desc}
 
 
 This creates a basic, empty, \hyperlink{classMezzanine_1_1LineGroup}{LineGroup}. 
@@ -127,7 +127,7 @@ Definition at line 314 of file linegroup.cpp.
 This adds Two points to the list. 
 
 This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. \begin{Desc}
-\item[\hyperlink{todo__todo000015}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
+\item[\hyperlink{todo__todo000018}{Todo}]TODO: In the future we will add a break in the line segment chain when this is called. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 {\em start} & The first point to be added \\
@@ -153,7 +153,7 @@ Definition at line 335 of file linegroup.cpp.
 Renders the line segment chain. 
 
 This send the Line segment information to the rending subsystem. \hyperlink{classMezzanine_1_1LineGroup_ab94688dd800d390aefce0e6b9742b296}{PrepareForRendering()} should be called first \begin{Desc}
-\item[\hyperlink{todo__todo000016}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
+\item[\hyperlink{todo__todo000019}{Todo}]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. \end{Desc}
 
 
 Definition at line 342 of file linegroup.cpp.

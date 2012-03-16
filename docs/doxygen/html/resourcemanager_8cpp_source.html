@@ -127,11 +127,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00063"></a>00063 
 <a name="l00064"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a39de49ab83e338cb14057e599c4db499">00064</a>     <a class="code" href="classMezzanine_1_1ResourceManager.html#a39de49ab83e338cb14057e599c4db499" title="Class constructor.">ResourceManager::ResourceManager</a>(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> _EngineDataPath)
 <a name="l00065"></a>00065     {
-<a name="l00066"></a>00066         this-&gt;<a class="code" href="classMezzanine_1_1ManagerBase.html#a96fb02bf2f4e8b4afe70dedd0d8c6ac9" title="This is a weighting used by the main loop to decide what order the managers should be called in...">Priority</a> = 20;
+<a name="l00066"></a>00066         this-&gt;<a class="code" href="classMezzanine_1_1ManagerBase.html#a96fb02bf2f4e8b4afe70dedd0d8c6ac9" title="This is a weighting used by the main loop to decide what order the managers should be called in...">Priority</a> = 55;
 <a name="l00067"></a>00067         <a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a> = Ogre::ResourceGroupManager::getSingletonPtr();
 <a name="l00068"></a>00068         <a class="code" href="classMezzanine_1_1internal_1_1BulletFileManager.html" title="This is an internal resource manager class that allows the integration of the .bullet file format int...">internal::BulletFileManager</a>* BulletFileMan = <a class="code" href="classMezzanine_1_1internal_1_1BulletFileManager.html#a2309b1a7ddd1459f66411483db78b06d" title="Gets this manager by pointer.">internal::BulletFileManager::getSingletonPtr</a>();
 <a name="l00069"></a>00069         <a class="code" href="classMezzanine_1_1ResourceManager.html#ab65d04f5df723eabb968365eb0a3b659" title="The location of engine data.">EngineDataPath</a> = _EngineDataPath;
-<a name="l00070"></a>00070         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a0c94a75cc5136f857447500aa4d6265b" title="Adds a location for graphical resources.">AddResourceLocation</a>(_EngineDataPath, <span class="stringliteral">&quot;FileSystem&quot;</span>, <span class="stringliteral">&quot;EngineData&quot;</span>, <span class="keyword">false</span>);
+<a name="l00070"></a>00070         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#ae3304024ab5ef4c0e4a2763f8a253f1c" title="Adds a location for graphical resources.">AddResourceLocation</a>(_EngineDataPath, <span class="stringliteral">&quot;FileSystem&quot;</span>, <span class="stringliteral">&quot;EngineData&quot;</span>, <span class="keyword">false</span>);
 <a name="l00071"></a>00071         <span class="comment">//internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();</span>
 <a name="l00072"></a>00072     }
 <a name="l00073"></a>00073 
@@ -155,85 +155,77 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00091"></a>00091         ResourceGroups.push_back(Name);
 <a name="l00092"></a>00092     }
 <a name="l00093"></a>00093 
-<a name="l00094"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a0c94a75cc5136f857447500aa4d6265b">00094</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a0c94a75cc5136f857447500aa4d6265b" title="Adds a location for graphical resources.">ResourceManager::AddResourceLocation</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;Location, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;Type, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;Group, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;recursive)
+<a name="l00094"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#ae3304024ab5ef4c0e4a2763f8a253f1c">00094</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#ae3304024ab5ef4c0e4a2763f8a253f1c" title="Adds a location for graphical resources.">ResourceManager::AddResourceLocation</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Location, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Type, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Group, <span class="keywordtype">bool</span> recursive)
 <a name="l00095"></a>00095     {
 <a name="l00096"></a>00096         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;addResourceLocation(Location, Type, Group, recursive);
 <a name="l00097"></a>00097         AddResourceGroupName(Group);
 <a name="l00098"></a>00098     }
 <a name="l00099"></a>00099 
-<a name="l00100"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe">00100</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe" title="Destroys a resource group, unloading all of it&amp;#39;s resources.">ResourceManager::DestroyResourceGroup</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; GroupName)
+<a name="l00100"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a9f734f58e7e00d635876fef6a74554c4">00100</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a9f734f58e7e00d635876fef6a74554c4" title="Creates a resource group.">ResourceManager::CreateResourceGroup</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; GroupName)
 <a name="l00101"></a>00101     {
-<a name="l00102"></a>00102         <span class="keywordflow">for</span>( std::vector&lt;String&gt;::iterator it = ResourceGroups.begin() ; it != ResourceGroups.end() ; it++ )
-<a name="l00103"></a>00103         {
-<a name="l00104"></a>00104             <span class="keywordflow">if</span>(GroupName == (*it))
-<a name="l00105"></a>00105             {
-<a name="l00106"></a>00106                 ResourceGroups.erase(it);
-<a name="l00107"></a>00107                 <span class="keywordflow">break</span>;
-<a name="l00108"></a>00108             }
-<a name="l00109"></a>00109         }<span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">        /// @todo This is a bit of a hack, but needs to be here until we can upgrade our resource system.</span>
-<a name="l00111"></a>00111 <span class="comment"></span>        Ogre::StringVectorPtr ResourceNames = this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;listResourceNames(GroupName,<span class="keyword">false</span>);
-<a name="l00112"></a>00112         <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; ResourceNames-&gt;size() ; ++X )
-<a name="l00113"></a>00113         {
-<a name="l00114"></a>00114             <span class="keywordflow">if</span>(ResourceNames-&gt;at(X).find(<span class="stringliteral">&quot;.mesh&quot;</span>))
-<a name="l00115"></a>00115             {
-<a name="l00116"></a>00116                 <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;UnloadMesh(ResourceNames-&gt;at(X));
-<a name="l00117"></a>00117             }
-<a name="l00118"></a>00118         }<span class="comment"></span>
-<a name="l00119"></a>00119 <span class="comment">        ///</span>
-<a name="l00120"></a>00120 <span class="comment"></span>        this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;destroyResourceGroup(GroupName);
-<a name="l00121"></a>00121     }
-<a name="l00122"></a>00122 
-<a name="l00123"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#ab9e13ac880017cac65c57d1ccae008c4">00123</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#ab9e13ac880017cac65c57d1ccae008c4" title="Prepares the resource for use.">ResourceManager::DeclareResource</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Type, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Group)
-<a name="l00124"></a>00124     {
-<a name="l00125"></a>00125         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;declareResource(Name, Type, Group);
+<a name="l00102"></a>00102         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;createResourceGroup(GroupName);
+<a name="l00103"></a>00103         AddResourceGroupName(GroupName);
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 
+<a name="l00106"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe">00106</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe" title="Destroys a resource group, unloading all of it&amp;#39;s resources.">ResourceManager::DestroyResourceGroup</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; GroupName)
+<a name="l00107"></a>00107     {
+<a name="l00108"></a>00108         <span class="keywordflow">for</span>( std::vector&lt;String&gt;::iterator it = ResourceGroups.begin() ; it != ResourceGroups.end() ; it++ )
+<a name="l00109"></a>00109         {
+<a name="l00110"></a>00110             <span class="keywordflow">if</span>(GroupName == (*it))
+<a name="l00111"></a>00111             {
+<a name="l00112"></a>00112                 ResourceGroups.erase(it);
+<a name="l00113"></a>00113                 <span class="keywordflow">break</span>;
+<a name="l00114"></a>00114             }
+<a name="l00115"></a>00115         }<span class="comment"></span>
+<a name="l00116"></a>00116 <span class="comment">        /// @todo This is a bit of a hack, but needs to be here until we can upgrade our resource system.</span>
+<a name="l00117"></a>00117 <span class="comment"></span>        Ogre::StringVectorPtr ResourceNames = this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;listResourceNames(GroupName,<span class="keyword">false</span>);
+<a name="l00118"></a>00118         <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; ResourceNames-&gt;size() ; ++X )
+<a name="l00119"></a>00119         {
+<a name="l00120"></a>00120             <span class="keywordflow">if</span>(ResourceNames-&gt;at(X).find(<span class="stringliteral">&quot;.mesh&quot;</span>))
+<a name="l00121"></a>00121             {
+<a name="l00122"></a>00122                 <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">MeshManager::GetSingletonPtr</a>()-&gt;UnloadMesh(ResourceNames-&gt;at(X));
+<a name="l00123"></a>00123             }
+<a name="l00124"></a>00124         }
+<a name="l00125"></a>00125         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;destroyResourceGroup(GroupName);
 <a name="l00126"></a>00126     }
 <a name="l00127"></a>00127 
-<a name="l00128"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a836ed2ec024abe10433d8e4b18378c2c">00128</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a836ed2ec024abe10433d8e4b18378c2c" title="Makes a resource group ready to use.">ResourceManager::InitResourceGroup</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Group)
+<a name="l00128"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#ab9e13ac880017cac65c57d1ccae008c4">00128</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#ab9e13ac880017cac65c57d1ccae008c4" title="Prepares the resource for use.">ResourceManager::DeclareResource</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Type, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Group)
 <a name="l00129"></a>00129     {
-<a name="l00130"></a>00130         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;initialiseResourceGroup(Group);
+<a name="l00130"></a>00130         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;declareResource(Name, Type, Group);
 <a name="l00131"></a>00131     }
 <a name="l00132"></a>00132 
-<a name="l00133"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a78fc768b8bd9ec38ebebb06feb133fef">00133</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a78fc768b8bd9ec38ebebb06feb133fef" title="Parses all Ogre Material scripts.">ResourceManager::ParseMaterialScripts</a>()
+<a name="l00133"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a836ed2ec024abe10433d8e4b18378c2c">00133</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a836ed2ec024abe10433d8e4b18378c2c" title="Makes a resource group ready to use.">ResourceManager::InitResourceGroup</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Group)
 <a name="l00134"></a>00134     {
-<a name="l00135"></a>00135         Ogre::MaterialManager* OgreMatMan = Ogre::MaterialManager::getSingletonPtr();
-<a name="l00136"></a>00136         <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; ResourceGroups.size() ; X++ )
-<a name="l00137"></a>00137         {
-<a name="l00138"></a>00138             Ogre::DataStreamListPtr MatFiles = <a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;openResources(<span class="stringliteral">&quot;*.material&quot;</span>,ResourceGroups[X]);
-<a name="l00139"></a>00139             <span class="keywordflow">for</span>( std::list&lt;Ogre::DataStreamPtr&gt;::iterator it = MatFiles-&gt;begin() ; it != MatFiles-&gt;end() ; it++ )
-<a name="l00140"></a>00140             {
-<a name="l00141"></a>00141                 OgreMatMan-&gt;parseScript((*it),ResourceGroups[X]);
-<a name="l00142"></a>00142             }
-<a name="l00143"></a>00143         }
-<a name="l00144"></a>00144     }
-<a name="l00145"></a>00145 
-<a name="l00146"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a5d6f86f351c9ea275436f31cc792b02b">00146</a>     <a class="code" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a>* <a class="code" href="classMezzanine_1_1ResourceManager.html#a5d6f86f351c9ea275436f31cc792b02b" title="Get a stream to read from the specified file.">ResourceManager::GetResourceStream</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; FileName)
-<a name="l00147"></a>00147     {
-<a name="l00148"></a>00148 <span class="preprocessor">        #ifdef MEZZDEBUG</span>
-<a name="l00149"></a>00149 <span class="preprocessor"></span>        <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Entering ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
-<a name="l00150"></a>00150 <span class="preprocessor">        #endif</span>
-<a name="l00151"></a>00151 <span class="preprocessor"></span>        internal::OgreDataStreamBuf *TempBuffer = <span class="keyword">new</span> internal::OgreDataStreamBuf(<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;openResource(FileName));
-<a name="l00152"></a>00152         <a class="code" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> *Results =  <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a>(TempBuffer, <span class="keyword">this</span>);
-<a name="l00153"></a>00153         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#ab0aedd87abe53f208c21628fbc624bb0" title="A list of Pointers to streams created to delete periodically.">DeleteList</a>.push_back(Results);
-<a name="l00154"></a>00154 <span class="preprocessor">        #ifdef MEZZDEBUG</span>
-<a name="l00155"></a>00155 <span class="preprocessor"></span>        <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Exiting ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
-<a name="l00156"></a>00156 <span class="preprocessor">        #endif</span>
-<a name="l00157"></a>00157 <span class="preprocessor"></span>        <span class="keywordflow">return</span> Results;
+<a name="l00135"></a>00135         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;initialiseResourceGroup(Group);
+<a name="l00136"></a>00136     }
+<a name="l00137"></a>00137 
+<a name="l00138"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a5d6f86f351c9ea275436f31cc792b02b">00138</a>     <a class="code" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a>* <a class="code" href="classMezzanine_1_1ResourceManager.html#a5d6f86f351c9ea275436f31cc792b02b" title="Get a stream to read from the specified file.">ResourceManager::GetResourceStream</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; FileName)
+<a name="l00139"></a>00139     {
+<a name="l00140"></a>00140 <span class="preprocessor">        #ifdef MEZZDEBUG</span>
+<a name="l00141"></a>00141 <span class="preprocessor"></span>        <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Entering ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
+<a name="l00142"></a>00142 <span class="preprocessor">        #endif</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span>        internal::OgreDataStreamBuf *TempBuffer = <span class="keyword">new</span> internal::OgreDataStreamBuf(<a class="code" href="classMezzanine_1_1ResourceManager.html#a3c1b8d26ef1e623a8f96ff5e0559a829" title="Encapsulates the functionality of the ogre resource group manager.">OgreResource</a>-&gt;openResource(FileName));
+<a name="l00144"></a>00144         <a class="code" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> *Results =  <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a>(TempBuffer, <span class="keyword">this</span>);
+<a name="l00145"></a>00145         this-&gt;<a class="code" href="classMezzanine_1_1ResourceManager.html#ab0aedd87abe53f208c21628fbc624bb0" title="A list of Pointers to streams created to delete periodically.">DeleteList</a>.push_back(Results);
+<a name="l00146"></a>00146 <span class="preprocessor">        #ifdef MEZZDEBUG</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span>        <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Exiting ResourceManager::GetResourceStream(const String&amp; FileName)&quot;</span>);
+<a name="l00148"></a>00148 <span class="preprocessor">        #endif</span>
+<a name="l00149"></a>00149 <span class="preprocessor"></span>        <span class="keywordflow">return</span> Results;
+<a name="l00150"></a>00150     }
+<a name="l00151"></a>00151 
+<a name="l00152"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a4b4e77984e21e3eaa1c47772d2e9c6f4">00152</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a4b4e77984e21e3eaa1c47772d2e9c6f4" title="Empty Initializor.">ResourceManager::Initialize</a>()
+<a name="l00153"></a>00153     {
+<a name="l00154"></a>00154     }
+<a name="l00155"></a>00155 
+<a name="l00156"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a57b72306ed2bfaa198ff47d43c4013fa">00156</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a57b72306ed2bfaa198ff47d43c4013fa" title="Empty MainLoopItems.">ResourceManager::DoMainLoopItems</a>()
+<a name="l00157"></a>00157     {
 <a name="l00158"></a>00158     }
 <a name="l00159"></a>00159 
-<a name="l00160"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a4b4e77984e21e3eaa1c47772d2e9c6f4">00160</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a4b4e77984e21e3eaa1c47772d2e9c6f4" title="Empty Initializor.">ResourceManager::Initialize</a>()
-<a name="l00161"></a>00161     {
-<a name="l00162"></a>00162     }
+<a name="l00160"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#aafe55f1095a67f30e97bff25200685d7">00160</a>     <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="classMezzanine_1_1ResourceManager.html#aafe55f1095a67f30e97bff25200685d7" title="This returns the type of this manager.">ResourceManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00161"></a>00161 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a39de49ab83e338cb14057e599c4db499" title="Class constructor.">ManagerBase::ResourceManager</a>; }
+<a name="l00162"></a>00162 }
 <a name="l00163"></a>00163 
-<a name="l00164"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#a57b72306ed2bfaa198ff47d43c4013fa">00164</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a57b72306ed2bfaa198ff47d43c4013fa" title="Empty MainLoopItems.">ResourceManager::DoMainLoopItems</a>()
-<a name="l00165"></a>00165     {
-<a name="l00166"></a>00166     }
-<a name="l00167"></a>00167 
-<a name="l00168"></a><a class="code" href="classMezzanine_1_1ResourceManager.html#aafe55f1095a67f30e97bff25200685d7">00168</a>     <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="classMezzanine_1_1ResourceManager.html#aafe55f1095a67f30e97bff25200685d7" title="This returns the type of this manager.">ResourceManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00169"></a>00169 <span class="keyword">        </span>{ <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ResourceManager.html#a39de49ab83e338cb14057e599c4db499" title="Class constructor.">ManagerBase::ResourceManager</a>; }
-<a name="l00170"></a>00170 }
-<a name="l00171"></a>00171 
-<a name="l00172"></a>00172 <span class="preprocessor">#endif</span>
+<a name="l00164"></a>00164 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -241,7 +233,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -251,6 +243,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

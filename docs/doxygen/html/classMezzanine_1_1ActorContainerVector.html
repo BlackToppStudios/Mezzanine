@@ -93,6 +93,9 @@ Inheritance diagram for Mezzanine::ActorContainerVector:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#a20cb603431e4499c1c6d3c901493f224">ActorContainerVector</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple Constructor.  <a href="#a20cb603431e4499c1c6d3c901493f224"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84a9f721addd5bdfbc611393913e68fd"></a><!-- doxytag: member="Mezzanine::ActorContainerVector::~ActorContainerVector" ref="a84a9f721addd5bdfbc611393913e68fd" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#a84a9f721addd5bdfbc611393913e68fd">~ActorContainerVector</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#a1341d51fa9ed279301eed579a2de79b2">AddActor</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *ActorToAdd)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This will add an Actor to this container and the world.  <a href="#a1341d51fa9ed279301eed579a2de79b2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#a2b09e4eac9bc6392f47dd81fb7592ce3">CursorToFirst</a> ()</td></tr>
@@ -134,9 +137,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This safely move all the Actors out of or into a <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">Mezzanine::World</a>.  <a href="#ab974d2704bfc3d74e3f008250ed893d8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#a7011795fcc3c3eb51b981aaebff23fac">SetGameWorld</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *GameWorld_, bool AddToWorld, bool RemoveFromWorld)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Optionally move actors into or out of a world.  <a href="#a7011795fcc3c3eb51b981aaebff23fac"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84a9f721addd5bdfbc611393913e68fd"></a><!-- doxytag: member="Mezzanine::ActorContainerVector::~ActorContainerVector" ref="a84a9f721addd5bdfbc611393913e68fd" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#a84a9f721addd5bdfbc611393913e68fd">~ActorContainerVector</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorContainerVector.html#ac359dee117cfe4829c656f7599ea9092">cursor</a></td></tr>
@@ -146,7 +146,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>A simple Actor Container using a vector. </p>
 <p>This inherits from std::vector and our <a class="el" href="classMezzanine_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding actors...">Mezzanine::ActorContainerBase</a> to allow us to have access to a container through a standardized structure this way the Mezzanine::world doesn't need to worry about the details when accessing and storing actors </p>
 
-<p>Definition at line <a class="el" href="actorcontainervector_8h_source.html#l00063">63</a> of file <a class="el" href="actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
+<p>Definition at line <a class="el" href="actorcontainervector_8h_source.html#l00068">68</a> of file <a class="el" href="actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a20cb603431e4499c1c6d3c901493f224"></a><!-- doxytag: member="Mezzanine::ActorContainerVector::ActorContainerVector" ref="a20cb603431e4499c1c6d3c901493f224" args="()" -->
 <div class="memitem">
@@ -627,7 +627,7 @@ Public Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>This safely move all the Actors out of or into a <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">Mezzanine::World</a>. </p>
-<p>This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system if a <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">Mezzanine::World</a> is present. Then this sets up all actors with the new <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> unless it is NULL </p>
+<p>This Removes all scene nodes from the <a class="el" href="namespaceOgre.html">Ogre</a> the graphics subsystem, and removes all bodies from the physics system if a <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">Mezzanine::World</a> is present. Then this sets up all actors with the new <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> unless it is NULL </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">GameWorld_</td><td>This is a pointer to the new <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">Mezzanine::World</a> to work with. </td></tr>
@@ -703,7 +703,7 @@ Public Attributes</h2></td></tr>
 <p>This is used to store information about the cursor. </p>
 <p>This implementation of <a class="el" href="classMezzanine_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding actors...">ActorContainerBase</a> will use this, and only this to access the cursor so feel free to use this instead. </p>
 
-<p>Definition at line <a class="el" href="actorcontainervector_8h_source.html#l00124">124</a> of file <a class="el" href="actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
+<p>Definition at line <a class="el" href="actorcontainervector_8h_source.html#l00129">129</a> of file <a class="el" href="actorcontainervector_8h_source.html">actorcontainervector.h</a>.</p>
 
 </div>
 </div>
@@ -717,7 +717,7 @@ Public Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -727,6 +727,6 @@ Public Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

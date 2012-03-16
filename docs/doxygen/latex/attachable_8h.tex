@@ -4,17 +4,19 @@
 }
 
 
-Contains the \hyperlink{classMezzanine_1_1Attachable}{Mezzanine::Attachable} Class and \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Mezzanine::Attachable::AttachableElement} enumeration declarations.  
+Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration declarations.  
 
 
 {\ttfamily \#include \char`\"{}transform.h\char`\"{}}\par
 \subsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classMezzanine_1_1Attachable}{Mezzanine::Attachable}
-\begin{DoxyCompactList}\small\item\em This is just a base class to be used by elements that are attachable to worldnodes. \item\end{DoxyCompactList}\item 
-class \hyperlink{structMezzanine_1_1AttachableData}{Mezzanine::AttachableData}
-\begin{DoxyCompactList}\small\item\em Helper class for the presentation of internal data of an attachable. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{classMezzanine_1_1AttachableBase}{Mezzanine::AttachableBase}
+\begin{DoxyCompactList}\small\item\em This class is the base class for other attachable classes and is responsible for transform updates to attachables. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1AttachableChild}{Mezzanine::AttachableChild}
+\begin{DoxyCompactList}\small\item\em This class is the base class for objects that can be attached to \hyperlink{classMezzanine_1_1AttachableParent}{AttachableParent}. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1AttachableParent}{Mezzanine::AttachableParent}
+\begin{DoxyCompactList}\small\item\em Base class for objects that can have attachables attached to them. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -23,11 +25,13 @@ namespace \hyperlink{namespaceMezzanine}{Mezzanine}
 
 \begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
 
+\item 
+namespace \hyperlink{namespaceOgre}{Ogre}
 \end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-Contains the \hyperlink{classMezzanine_1_1Attachable}{Mezzanine::Attachable} Class and \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Mezzanine::Attachable::AttachableElement} enumeration declarations. 
+Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration declarations. 
 
 Definition in file \hyperlink{attachable_8h_source}{attachable.h}.
 

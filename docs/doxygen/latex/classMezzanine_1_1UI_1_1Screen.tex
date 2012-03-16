@@ -14,6 +14,35 @@ This class is a helper class for creating UI's. It is responsible for storing an
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1UI_1_1Screen_aa39b4b7b96af6251c7304c266ecd85c9}{Screen} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas, \hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$WindowViewport)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a99bd65284d2402f653d121b3412f4aca}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1Screen_a99bd65284d2402f653d121b3412f4aca}{$\sim$Screen} ()}
+\label{classMezzanine_1_1UI_1_1Screen_a99bd65284d2402f653d121b3412f4aca}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_acce659197f0ac025974f88f294d793d4}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_acce659197f0ac025974f88f294d793d4}{\_\-RecalculateIndexes} ()}
+\label{classMezzanine_1_1UI_1_1Screen_acce659197f0ac025974f88f294d793d4}
+
+\begin{DoxyCompactList}\small\item\em Clears the layer and index data and rebuilds in from the existing layers. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a5b14cece4f37e9eee8e0ac20dd0fdcfd}{\_\-RedrawAllIndexes} (bool Force=false)
+\begin{DoxyCompactList}\small\item\em Clears all verticies for every layer and regenerates them for rendering. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_ad3077ec20a6aeb42b8b77b58a619b08c}{\_\-RedrawIndex} (const \hyperlink{namespaceMezzanine_abea3b8e8e9b03d2547b2800284ba682d}{UInt32} \&Index, bool Force)
+\begin{DoxyCompactList}\small\item\em Clears the existing verticies and regenerates them for a specific index(layer). \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_af76f7b0640ad5f7f37cdc5eaf8d5f0cd}{
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_af76f7b0640ad5f7f37cdc5eaf8d5f0cd}{\_\-RenderScreen} ()}
+\label{classMezzanine_1_1UI_1_1Screen_af76f7b0640ad5f7f37cdc5eaf8d5f0cd}
+
+\begin{DoxyCompactList}\small\item\em Manually calls the \hyperlink{namespaceMezzanine_1_1UI}{UI} system to render this screen. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a80ed9d29431e152d7d1ab6d7568d2033}{\_\-RenderVertices} (bool Force=false)
+\begin{DoxyCompactList}\small\item\em Prepares all vertices for rendering to the screen. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_ac33d1f47594d63413a41f254756e961c}{\_\-RequestIndexRedraw} (const \hyperlink{namespaceMezzanine_abea3b8e8e9b03d2547b2800284ba682d}{UInt32} \&Index)
+\begin{DoxyCompactList}\small\item\em Flags a layer for redraw before the next render. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a48a51680bf92223a2820215bc408012d}{\_\-SetOrientation} (const \hyperlink{namespaceMezzanine_a8892173bd6aaf7d0e34a07b2b30aad33}{Mezzanine::OrientationMode} \&Mode)
+\begin{DoxyCompactList}\small\item\em Forces an orientation mode change for this screen. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a3087b47a2098d51ebff5498616a3b8cf}{\_\-Transform} (std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1VertexData}{VertexData} $>$ \&Vertices, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Begin, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&End)
+\begin{DoxyCompactList}\small\item\em Updates the vertex positions so they are in front of the camera in world space. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_a55bf51bc4923effdd180ee945a4a0aa7}{CheckButtonMouseIsOver} ()
 \begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a7ccbb6d2424f8d7bf437ebd717af84c1}{
@@ -23,17 +52,15 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a7ccbb6d2424f8d7bf437ebd7
 \begin{DoxyCompactList}\small\item\em Checks to see if the viewport has changed in size. If so it updates all the \hyperlink{namespaceMezzanine_1_1UI}{UI} elements on the screen. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_aba94ad01214919f9a7506bdef39aee64}{CheckWidgetMouseIsOver} ()
 \begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_a4c7471ee8b43649a5eab8c43e28f31b7}{CreateLayer} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Zorder)
+virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_a47c85a1fad08b96b3b24b2c1402a4fcd}{CreateLayer} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Zorder)
 \begin{DoxyCompactList}\small\item\em Creates a layer in the GUI screen to place GUI objects in. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a7f81a6d97593c7c152d543e499f3b2a1}{DestroyLayer} (\hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroy's a previously created layer. \item\end{DoxyCompactList}\item 
-virtual Gorilla::Screen $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_abd6f36565db2aaf29a46180fcfe0bef2}{GetGorillaScreen} ()
-\begin{DoxyCompactList}\small\item\em Manually calls the \hyperlink{namespaceMezzanine_1_1UI}{UI} system to render this screen. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_ac61f47f88af6f4ee6a4f0b705c37647b}{GetLayer} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created layer by name. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_af37dcc72cefce4dc605a918ce9e23d5e}{GetLayer} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
+virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_abdfa0751c3738ef9545cb36096dcf7a6}{GetLayer} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created layer by it's index. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_afb19dd4e688a1ccc89f606306895015b}{GetLayerbyZorder} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Zorder)
+virtual \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_a6c9bc9b6161920d4f8c6b7bda7931af1}{GetLayerbyZorder} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Zorder)
 \begin{DoxyCompactList}\small\item\em Gets an already created layer by it's Zorder. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \& \hyperlink{classMezzanine_1_1UI_1_1Screen_a5f1f23c666513a658e7297a0bea49629}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of this screen. \item\end{DoxyCompactList}\item 
@@ -41,6 +68,12 @@ virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} 
 \begin{DoxyCompactList}\small\item\em Gets the number of layers created and stored in this class. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1UI_1_1Screen_adafbc28919ebb4d2d65e54daa0676177}{GetPrimaryAtlas} ()
 \begin{DoxyCompactList}\small\item\em Gets the currently set primary atlas. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1UI_1_1Screen_af713ab0b229c33e0878e1f0d681e731f}{GetTexelOffsetX} () const 
+\begin{DoxyCompactList}\small\item\em Gets the X axis Texel Offset for the current rendersystem. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1UI_1_1Screen_a1b8584eaecf431a164a8d31c55bf38b5}{GetTexelOffsetY} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Y axis Texel Offset for the current rendersystem. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1Screen_afda0f83107b413f14fb56e6cd007b243}{GetViewport} ()
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1Viewport}{Viewport} this screen is currently rendering to. \item\end{DoxyCompactList}\item 
 virtual const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \& \hyperlink{classMezzanine_1_1UI_1_1Screen_a12199967ad8a0e91cf816083aaa2a5d0}{GetViewportDimensions} ()
 \begin{DoxyCompactList}\small\item\em Gets the current viewport dimensions. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_aad220f00a62a75ab73e4620e853acdca}{
@@ -50,8 +83,6 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_aad220f00a62a75ab73e4620e
 \begin{DoxyCompactList}\small\item\em Forces the screen to hide. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1UI_1_1Screen_abe4941cec0c43850bafa4b76397944ae}{IsVisible} ()
 \begin{DoxyCompactList}\small\item\em Gets the screens visability. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1Screen_aa39b4b7b96af6251c7304c266ecd85c9}{Screen} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas, \hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$WindowViewport)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_ae19e1d289996d93af69ff1ee500be2ad}{SetPrimaryAtlas} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Sets the Atlas to be assumed when one isn't provided for atlas related tasks. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a32ac3cc1bdfd2799b5bfef7f904b322d}{SetVisible} (bool Visible)
@@ -60,23 +91,61 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a32ac3cc1bdfd2799b5bfef7f
 virtual void \hyperlink{classMezzanine_1_1UI_1_1Screen_a6d77c9fd4e2da65ed85f13b0bb7eebe4}{Show} ()}
 \label{classMezzanine_1_1UI_1_1Screen_a6d77c9fd4e2da65ed85f13b0bb7eebe4}
 
-\begin{DoxyCompactList}\small\item\em Forces the screen to be shown. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1Screen_a99bd65284d2402f653d121b3412f4aca}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1Screen_a99bd65284d2402f653d121b3412f4aca}{$\sim$Screen} ()}
-\label{classMezzanine_1_1UI_1_1Screen_a99bd65284d2402f653d121b3412f4aca}
+\begin{DoxyCompactList}\small\item\em Forces the screen to be shown. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_aebf418ad2af79578d85d8d1518a5ed5b}{
+virtual void {\bfseries CreateVertexBuffer} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&InitialSize=32)}
+\label{classMezzanine_1_1UI_1_1Screen_aebf418ad2af79578d85d8d1518a5ed5b}
 
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_ac0d9c1fef73d633da2b39bf7e377138b}{
+virtual void {\bfseries DestroyVertexBuffer} ()}
+\label{classMezzanine_1_1UI_1_1Screen_ac0d9c1fef73d633da2b39bf7e377138b}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a2db3c8fb07a8a6c58c42cd03b3352bab}{
+virtual void {\bfseries PrepareRenderSystem} ()}
+\label{classMezzanine_1_1UI_1_1Screen_a2db3c8fb07a8a6c58c42cd03b3352bab}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_af42ac72231ad9c67238d578302503261}{
+virtual void {\bfseries ResizeVertexBuffer} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&RequestedSize)}
+\label{classMezzanine_1_1UI_1_1Screen_af42ac72231ad9c67238d578302503261}
+
+\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a65fac13d9fb6a592fc1afb130afb5d72}{
+bool {\bfseries CanRender}}
+\label{classMezzanine_1_1UI_1_1Screen_a65fac13d9fb6a592fc1afb130afb5d72}
+
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_ad7f4451b4f1dbc7d1c2050efeb97f193}{
 \hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ {\bfseries GameViewport}}
 \label{classMezzanine_1_1UI_1_1Screen_ad7f4451b4f1dbc7d1c2050efeb97f193}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1Screen_a7d07557519d34d23cd36e1e5a420203a}{
-Gorilla::Screen $\ast$ {\bfseries GorillaScreen}}
-\label{classMezzanine_1_1UI_1_1Screen_a7d07557519d34d23cd36e1e5a420203a}
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a727eed8b069c053971def1201a264e58}{
+std::map$<$ \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole}, \hyperlink{structMezzanine_1_1UI_1_1IndexData}{IndexData} $\ast$ $>$ {\bfseries Indexes}}
+\label{classMezzanine_1_1UI_1_1Screen_a727eed8b069c053971def1201a264e58}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a7acd5ff773e2b14fe552b483c9ed9d8b}{
+bool {\bfseries IndexRedrawAll}}
+\label{classMezzanine_1_1UI_1_1Screen_a7acd5ff773e2b14fe552b483c9ed9d8b}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a605f2bfeaa58b8f5911c26a4fb010c8a}{
+bool {\bfseries IndexRedrawNeeded}}
+\label{classMezzanine_1_1UI_1_1Screen_a605f2bfeaa58b8f5911c26a4fb010c8a}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a53e3fb9d5ec3d8e0d92df05b63c64d4d}{
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} {\bfseries InverseViewportSize}}
+\label{classMezzanine_1_1UI_1_1Screen_a53e3fb9d5ec3d8e0d92df05b63c64d4d}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_ad0c7e1535305409eebe9e8bc7f8e03f5}{
@@ -84,9 +153,9 @@ Gorilla::Screen $\ast$ {\bfseries GorillaScreen}}
 \label{classMezzanine_1_1UI_1_1Screen_ad0c7e1535305409eebe9e8bc7f8e03f5}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1Screen_afebc88f3758ab06d855a3f8ff6e04a5c}{
-std::map$<$ \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole}, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ $>$ {\bfseries Layers}}
-\label{classMezzanine_1_1UI_1_1Screen_afebc88f3758ab06d855a3f8ff6e04a5c}
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a04cbf849f242252305402e46be871f93}{
+std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ $>$ {\bfseries Layers}}
+\label{classMezzanine_1_1UI_1_1Screen_a04cbf849f242252305402e46be871f93}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a379c34cde6e5864327d993c5ac0983e2}{
@@ -99,9 +168,59 @@ std::map$<$ \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Who
 \label{classMezzanine_1_1UI_1_1Screen_ab6067b22466a6acc8aa39eca9328d1a4}
 
 \item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a7a77f0c30cfc0a643b56ce110b10f655}{
+\hyperlink{namespaceMezzanine_a8892173bd6aaf7d0e34a07b2b30aad33}{Mezzanine::OrientationMode} {\bfseries Orientation}}
+\label{classMezzanine_1_1UI_1_1Screen_a7a77f0c30cfc0a643b56ce110b10f655}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_ab6473e780df45fd5b1f75fdbd41c5a1f}{
+bool {\bfseries OrientationChanged}}
+\label{classMezzanine_1_1UI_1_1Screen_ab6473e780df45fd5b1f75fdbd41c5a1f}
+
+\item 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a5f6e19e43ee739cb4d7476392ef23cc2}{
 \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries PrimaryAtlas}}
 \label{classMezzanine_1_1UI_1_1Screen_a5f6e19e43ee739cb4d7476392ef23cc2}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a4834701c0d901766bea1d98059a0a40a}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries Scale}}
+\label{classMezzanine_1_1UI_1_1Screen_a4834701c0d901766bea1d98059a0a40a}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_ab36bd0f0409aa218cb791b3e24f7e2ba}{
+\hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$ {\bfseries SceneMan}}
+\label{classMezzanine_1_1UI_1_1Screen_ab36bd0f0409aa218cb791b3e24f7e2ba}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_aff75a117955ffdad76b0ba17971d9ac1}{
+\hyperlink{structMezzanine_1_1UI_1_1ScreenInternalData}{ScreenInternalData} $\ast$ {\bfseries SID}}
+\label{classMezzanine_1_1UI_1_1Screen_aff75a117955ffdad76b0ba17971d9ac1}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_aa7706e94290bcc28054f97e0e33fbdad}{
+std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1AtlasAndPosition}{AtlasAndPosition} $>$ {\bfseries TextureByVertex}}
+\label{classMezzanine_1_1UI_1_1Screen_aa7706e94290bcc28054f97e0e33fbdad}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a3659b98054a12d545caedf52c52b1e12}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries VertexBufferSize}}
+\label{classMezzanine_1_1UI_1_1Screen_a3659b98054a12d545caedf52c52b1e12}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a68e6e88fb6d759b0c74d2c3ce27a4b29}{
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} {\bfseries VertexTransform}}
+\label{classMezzanine_1_1UI_1_1Screen_a68e6e88fb6d759b0c74d2c3ce27a4b29}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a02412ab0548da0b6a7c46acd0624a253}{
+bool {\bfseries ViewportSizeChanged}}
+\label{classMezzanine_1_1UI_1_1Screen_a02412ab0548da0b6a7c46acd0624a253}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1Screen_afaad9357e5fa77fa43db4acaad23d29e}{
+bool {\bfseries Visible}}
+\label{classMezzanine_1_1UI_1_1Screen_afaad9357e5fa77fa43db4acaad23d29e}
 
 \end{DoxyCompactItemize}
 
@@ -109,7 +228,7 @@ std::map$<$ \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Who
 \subsubsection{Detailed Description}
 This class is a helper class for creating UI's. It is responsible for storing and keeping track of all the elements of a single \hyperlink{namespaceMezzanine_1_1UI}{UI} screen. UI's can optionally be divided up into Screens, or \char`\"{}pages\char`\"{}. Each screen is batched together for rendering, so keeping the amount of screens to a minimum will improve performance. 
 
-Definition at line 69 of file uiscreen.h.
+Definition at line 111 of file uiscreen.h.
 
 
 
@@ -140,11 +259,152 @@ Internal constructor.
 \end{DoxyParams}
 
 
-Definition at line 56 of file uiscreen.cpp.
+Definition at line 116 of file uiscreen.cpp.
 
 
 
 \subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a5b14cece4f37e9eee8e0ac20dd0fdcfd}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!\_\-RedrawAllIndexes@{\_\-RedrawAllIndexes}}
+\index{\_\-RedrawAllIndexes@{\_\-RedrawAllIndexes}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{\_\-RedrawAllIndexes}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Screen::\_\-RedrawAllIndexes (
+\begin{DoxyParamCaption}
+\item[{bool}]{Force = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_a5b14cece4f37e9eee8e0ac20dd0fdcfd}
+
+
+Clears all verticies for every layer and regenerates them for rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Force} & Whether or not to force a redraw on all layers regardless of if they need it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 569 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_ad3077ec20a6aeb42b8b77b58a619b08c}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!\_\-RedrawIndex@{\_\-RedrawIndex}}
+\index{\_\-RedrawIndex@{\_\-RedrawIndex}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{\_\-RedrawIndex}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Screen::\_\-RedrawIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt32} \&}]{Index, }
+\item[{bool}]{Force}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_ad3077ec20a6aeb42b8b77b58a619b08c}
+
+
+Clears the existing verticies and regenerates them for a specific index(layer). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The Index corresponding to the layer you want regenerated. \\
+\hline
+{\em Force} & Whether or not to force a redraw even if the layer doesn't need it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 554 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a80ed9d29431e152d7d1ab6d7568d2033}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!\_\-RenderVertices@{\_\-RenderVertices}}
+\index{\_\-RenderVertices@{\_\-RenderVertices}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{\_\-RenderVertices}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Screen::\_\-RenderVertices (
+\begin{DoxyParamCaption}
+\item[{bool}]{Force = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_a80ed9d29431e152d7d1ab6d7568d2033}
+
+
+Prepares all vertices for rendering to the screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Force} & Whether or not to force preparation regardless of if they need it. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 597 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_ac33d1f47594d63413a41f254756e961c}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!\_\-RequestIndexRedraw@{\_\-RequestIndexRedraw}}
+\index{\_\-RequestIndexRedraw@{\_\-RequestIndexRedraw}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{\_\-RequestIndexRedraw}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Screen::\_\-RequestIndexRedraw (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt32} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_ac33d1f47594d63413a41f254756e961c}
+
+
+Flags a layer for redraw before the next render. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The ID or Index of the layer to be flagged for redraw. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 587 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a48a51680bf92223a2820215bc408012d}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!\_\-SetOrientation@{\_\-SetOrientation}}
+\index{\_\-SetOrientation@{\_\-SetOrientation}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{\_\-SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Screen::\_\-SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::OrientationMode} \&}]{Mode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_a48a51680bf92223a2820215bc408012d}
+
+
+Forces an orientation mode change for this screen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & The orientation mode to be applied to the \hyperlink{namespaceMezzanine_1_1UI}{UI} on this screen. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 478 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a3087b47a2098d51ebff5498616a3b8cf}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!\_\-Transform@{\_\-Transform}}
+\index{\_\-Transform@{\_\-Transform}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{\_\-Transform}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::Screen::\_\-Transform (
+\begin{DoxyParamCaption}
+\item[{std::vector$<$ {\bf VertexData} $>$ \&}]{Vertices, }
+\item[{const {\bf Whole} \&}]{Begin, }
+\item[{const {\bf Whole} \&}]{End}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_a3087b47a2098d51ebff5498616a3b8cf}
+
+
+Updates the vertex positions so they are in front of the camera in world space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vertices} & Vector of the vertices to be transformed. \\
+\hline
+{\em Begin} & The first \hyperlink{structMezzanine_1_1UI_1_1Vertex}{Vertex} to transform in the range. \\
+\hline
+{\em End} & The last \hyperlink{structMezzanine_1_1UI_1_1Vertex}{Vertex} to transform in the range. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 492 of file uiscreen.cpp.
+
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a55bf51bc4923effdd180ee945a4a0aa7}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!CheckButtonMouseIsOver@{CheckButtonMouseIsOver}}
 \index{CheckButtonMouseIsOver@{CheckButtonMouseIsOver}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
@@ -163,7 +423,7 @@ Returns the button the mouse is over, or NULL if there are none.
 \end{DoxyReturn}
 
 
-Definition at line 170 of file uiscreen.cpp.
+Definition at line 333 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_aba94ad01214919f9a7506bdef39aee64}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
@@ -183,18 +443,18 @@ Returns the widget the mouse is over, or NULL if there are none.
 \end{DoxyReturn}
 
 
-Definition at line 186 of file uiscreen.cpp.
+Definition at line 359 of file uiscreen.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1Screen_a4c7471ee8b43649a5eab8c43e28f31b7}{
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a47c85a1fad08b96b3b24b2c1402a4fcd}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!CreateLayer@{CreateLayer}}
 \index{CreateLayer@{CreateLayer}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
 \paragraph[{CreateLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Layer} $\ast$ Mezzanine::UI::Screen::CreateLayer (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{Name, }
-\item[{{\bf Whole}}]{Zorder}
+\item[{const {\bf Whole} \&}]{Zorder}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Screen_a4c7471ee8b43649a5eab8c43e28f31b7}
+\label{classMezzanine_1_1UI_1_1Screen_a47c85a1fad08b96b3b24b2c1402a4fcd}
 
 
 Creates a layer in the GUI screen to place GUI objects in. 
@@ -209,12 +469,12 @@ A GUI layer is exactly that, a layer of GUI objects. You can have multiple GUI l
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000030}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
+\item[\hyperlink{todo__todo000039}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
 
 
 
 
-Definition at line 97 of file uiscreen.cpp.
+Definition at line 247 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a7f81a6d97593c7c152d543e499f3b2a1}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!DestroyLayer@{DestroyLayer}}
@@ -236,47 +496,7 @@ Destroy's a previously created layer.
 \end{DoxyParams}
 
 
-Definition at line 150 of file uiscreen.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Screen_abd6f36565db2aaf29a46180fcfe0bef2}{
-\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetGorillaScreen@{GetGorillaScreen}}
-\index{GetGorillaScreen@{GetGorillaScreen}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
-\paragraph[{GetGorillaScreen}]{\setlength{\rightskip}{0pt plus 5cm}Gorilla::Screen $\ast$ Mezzanine::UI::Screen::GetGorillaScreen (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Screen_abd6f36565db2aaf29a46180fcfe0bef2}
-
-
-Manually calls the \hyperlink{namespaceMezzanine_1_1UI}{UI} system to render this screen. 
-
-Gets the internal screen this screen is based on. \begin{DoxyReturn}{Returns}
-Returns a pointer to the Gorilla screen this screen is based on. 
-\end{DoxyReturn}
-
-
-Definition at line 232 of file uiscreen.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1Screen_af37dcc72cefce4dc605a918ce9e23d5e}{
-\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetLayer@{GetLayer}}
-\index{GetLayer@{GetLayer}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
-\paragraph[{GetLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Layer} $\ast$ Mezzanine::UI::Screen::GetLayer (
-\begin{DoxyParamCaption}
-\item[{{\bf Whole}}]{Index}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Screen_af37dcc72cefce4dc605a918ce9e23d5e}
-
-
-Gets an already created layer by it's index. 
-
-\begin{DoxyReturn}{Returns}
-Returns a pointer to the layer at the specified index. 
-\end{DoxyReturn}
-
-
-Definition at line 124 of file uiscreen.cpp.
+Definition at line 305 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_ac61f47f88af6f4ee6a4f0b705c37647b}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetLayer@{GetLayer}}
@@ -296,17 +516,37 @@ Returns a pointer to the layer of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 111 of file uiscreen.cpp.
+Definition at line 265 of file uiscreen.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1Screen_afb19dd4e688a1ccc89f606306895015b}{
+\hypertarget{classMezzanine_1_1UI_1_1Screen_abdfa0751c3738ef9545cb36096dcf7a6}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetLayer@{GetLayer}}
+\index{GetLayer@{GetLayer}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{GetLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Layer} $\ast$ Mezzanine::UI::Screen::GetLayer (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_abdfa0751c3738ef9545cb36096dcf7a6}
+
+
+Gets an already created layer by it's index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the layer at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 278 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a6c9bc9b6161920d4f8c6b7bda7931af1}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetLayerbyZorder@{GetLayerbyZorder}}
 \index{GetLayerbyZorder@{GetLayerbyZorder}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
 \paragraph[{GetLayerbyZorder}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Layer} $\ast$ Mezzanine::UI::Screen::GetLayerbyZorder (
 \begin{DoxyParamCaption}
-\item[{{\bf Whole}}]{Zorder}
+\item[{const {\bf Whole} \&}]{Zorder}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1Screen_afb19dd4e688a1ccc89f606306895015b}
+\label{classMezzanine_1_1UI_1_1Screen_a6c9bc9b6161920d4f8c6b7bda7931af1}
 
 
 Gets an already created layer by it's Zorder. 
@@ -316,7 +556,7 @@ Returns a pointer to the layer with the specified Zorder.
 \end{DoxyReturn}
 
 
-Definition at line 137 of file uiscreen.cpp.
+Definition at line 292 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a5f1f23c666513a658e7297a0bea49629}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetName@{GetName}}
@@ -336,7 +576,7 @@ Returns a string containing the name of this screen.
 \end{DoxyReturn}
 
 
-Definition at line 72 of file uiscreen.cpp.
+Definition at line 222 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_aa76a0066086f4d4b1968cfb18ddcb96c}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetNumLayers@{GetNumLayers}}
@@ -356,7 +596,7 @@ Returns the number of layers this class is storing.
 \end{DoxyReturn}
 
 
-Definition at line 145 of file uiscreen.cpp.
+Definition at line 300 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_adafbc28919ebb4d2d65e54daa0676177}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetPrimaryAtlas@{GetPrimaryAtlas}}
@@ -376,7 +616,67 @@ Returns a string containing the name of the primary atlas that is set.
 \end{DoxyReturn}
 
 
-Definition at line 207 of file uiscreen.cpp.
+Definition at line 380 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_af713ab0b229c33e0878e1f0d681e731f}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetTexelOffsetX@{GetTexelOffsetX}}
+\index{GetTexelOffsetX@{GetTexelOffsetX}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{GetTexelOffsetX}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::UI::Screen::GetTexelOffsetX (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_af713ab0b229c33e0878e1f0d681e731f}
+
+
+Gets the X axis Texel Offset for the current rendersystem. 
+
+\begin{DoxyReturn}{Returns}
+Retruns a real containing the texel offset to be applied to renderables on this screen. 
+\end{DoxyReturn}
+
+
+Definition at line 349 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_a1b8584eaecf431a164a8d31c55bf38b5}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetTexelOffsetY@{GetTexelOffsetY}}
+\index{GetTexelOffsetY@{GetTexelOffsetY}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{GetTexelOffsetY}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::UI::Screen::GetTexelOffsetY (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_a1b8584eaecf431a164a8d31c55bf38b5}
+
+
+Gets the Y axis Texel Offset for the current rendersystem. 
+
+\begin{DoxyReturn}{Returns}
+Retruns a real containing the texel offset to be applied to renderables on this screen. 
+\end{DoxyReturn}
+
+
+Definition at line 354 of file uiscreen.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1Screen_afda0f83107b413f14fb56e6cd007b243}{
+\index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetViewport@{GetViewport}}
+\index{GetViewport@{GetViewport}!Mezzanine::UI::Screen@{Mezzanine::UI::Screen}}
+\paragraph[{GetViewport}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Viewport} $\ast$ Mezzanine::UI::Screen::GetViewport (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1Screen_afda0f83107b413f14fb56e6cd007b243}
+
+
+Gets the \hyperlink{classMezzanine_1_1Viewport}{Viewport} this screen is currently rendering to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classMezzanine_1_1Viewport}{Viewport} this screen is applied to. 
+\end{DoxyReturn}
+
+
+Definition at line 405 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a12199967ad8a0e91cf816083aaa2a5d0}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!GetViewportDimensions@{GetViewportDimensions}}
@@ -396,7 +696,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the curren
 \end{DoxyReturn}
 
 
-Definition at line 165 of file uiscreen.cpp.
+Definition at line 328 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_abe4941cec0c43850bafa4b76397944ae}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!IsVisible@{IsVisible}}
@@ -416,7 +716,7 @@ Returns a bool representing the visability of the screen.
 \end{DoxyReturn}
 
 
-Definition at line 82 of file uiscreen.cpp.
+Definition at line 232 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_ae19e1d289996d93af69ff1ee500be2ad}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!SetPrimaryAtlas@{SetPrimaryAtlas}}
@@ -438,7 +738,7 @@ Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
 \end{DoxyParams}
 
 
-Definition at line 202 of file uiscreen.cpp.
+Definition at line 375 of file uiscreen.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1Screen_a32ac3cc1bdfd2799b5bfef7f904b322d}{
 \index{Mezzanine::UI::Screen@{Mezzanine::UI::Screen}!SetVisible@{SetVisible}}
@@ -460,7 +760,7 @@ Sets the screens visability.
 \end{DoxyParams}
 
 
-Definition at line 77 of file uiscreen.cpp.
+Definition at line 227 of file uiscreen.cpp.
 
 
 

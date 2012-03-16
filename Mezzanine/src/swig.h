@@ -53,17 +53,23 @@
 ///     - SWIG_INFO_ENDCLASS - 991: Completing parsing of class.
 ///////////////////////////////////////////////////////////////////////////////
 
-
-
+// Prevent doxygen parsing of the items to insert in the bindings files
+/// @cond 0
 #ifdef SWIG
 
     // Tell SWIG to create a module that scripting languages can use called "mezzanine"
+    // and insert a minimum of documentation into the bindingfile
     %{
     // These headers are copied verbatim into the swig bindings file
     #include <Ogre.h>
     #include "btBulletDynamicsCommon.h"
     #include <cAudio.h>
     #include "mezzanine.h"
+
+    #ifdef MEZZLUA51
+    /// @file
+    /// @brief This file has the interface for the Lua based implementation of the Scripting system.
+    #endif
     %}
 
     %include stl.i
@@ -79,11 +85,11 @@
     #define SWIG_INFO_ENDCLASS
     #define SWIG_INFO_WARN
 #endif
+/// @endcond
 
+// Warn SWIG users of the messages that Swig will produce
 SWIG_INFO_WARN
 
-
-// #define DISABLESWIG
 
 
 #endif

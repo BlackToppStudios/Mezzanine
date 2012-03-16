@@ -94,6 +94,14 @@ Public Types</h2></td></tr>
  <a href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a7621d71f549867f04d582afdead60363">World</a> (const <a class="el" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> &amp;PhysicsInfo, <a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManager::SceneManagerType</a> SceneType, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;PluginsFileName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EngineDataPath, std::string LogFileName=&quot;Mezzanine.log&quot;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor With Manager Pointers.  <a href="#a7621d71f549867f04d582afdead60363"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#ade1cbb85b206dffa93b963850358d08c">World</a> (const <a class="el" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> &amp;PhysicsInfo, <a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManager::SceneManagerType</a> SceneType, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;PluginsFileName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EngineDataPath, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;LogFileName, const std::vector&lt; <a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> * &gt; &amp;ManagerToBeAdded)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor.  <a href="#ade1cbb85b206dffa93b963850358d08c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#aa6bf8150f82691b821ae43e9d2b0b4fd">World</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#aa6bf8150f82691b821ae43e9d2b0b4fd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#ab533dec5e04892f3db0dbe7c01732b0a">~World</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor.  <a href="#ab533dec5e04892f3db0dbe7c01732b0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a783c33688669c84f4c697465b75e10b6">AddManager</a> (<a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> *ManagerToAdd)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This adds a manager, in the correct order, to the list that the world calls on.  <a href="#a783c33688669c84f4c697465b75e10b6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a62999cde70050a850fd8191bde7440e3">BreakMainLoop</a> ()</td></tr>
@@ -151,10 +159,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Log String directly with no conversion.  <a href="#a326001a06856d359fa7164db25d7c68c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a7c19ed5889b3de00a6f475b5922f9545">MainLoop</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This Function house the main loop.  <a href="#a7c19ed5889b3de00a6f475b5922f9545"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a01fadbd8c39094bac02d855da8d4a30f">RemoveManager</a> (<a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> *ManagerToRemove)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This removes a manager by finding the matching pointer.  <a href="#a01fadbd8c39094bac02d855da8d4a30f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a4fa4ecf5f6dff624f0db8163d81affc6">PauseWorld</a> (bool Pause)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses all animations, particles, and object movement throughout the world.  <a href="#a4fa4ecf5f6dff624f0db8163d81affc6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a64ac8469729593975fc5551f75a60283">RemoveManager</a> (const <a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerBase::ManagerTypeName</a> &amp;ManagersToRemoveType, short unsigned int WhichOne)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This removes a manager of a specific type from the list.  <a href="#a64ac8469729593975fc5551f75a60283"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a01fadbd8c39094bac02d855da8d4a30f">RemoveManager</a> (<a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> *ManagerToRemove)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This removes a manager by finding the matching pointer.  <a href="#a01fadbd8c39094bac02d855da8d4a30f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a6c00a6eda421a1d6969621bf366524f3">SetFrameTime</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;FrameTime_)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the amount of time since the last time Rendering began.  <a href="#a6c00a6eda421a1d6969621bf366524f3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a6622e9bf41f2bf7fc046745018c05554">SetLoggingFrequency</a> (<a class="el" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25">LoggingFrequency</a> HowOften, <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> FrequencyCounter=5)</td></tr>
@@ -167,14 +177,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes a Manager's time of execution.  <a href="#a13b4ca08c4e7764232de0d1b3053a6a5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#ab134ca0bf6b75572409a3ebf20ac2e6b">UpdateManagerOrder</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This forces the list of managers to be resorted.  <a href="#ab134ca0bf6b75572409a3ebf20ac2e6b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#aa6bf8150f82691b821ae43e9d2b0b4fd">World</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#aa6bf8150f82691b821ae43e9d2b0b4fd"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#ade1cbb85b206dffa93b963850358d08c">World</a> (const <a class="el" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> &amp;PhysicsInfo, <a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManager::SceneManagerType</a> SceneType, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;PluginsFileName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EngineDataPath, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;LogFileName, const std::vector&lt; <a class="el" href="classMezzanine_1_1ManagerBase.html">ManagerBase</a> * &gt; &amp;ManagerToBeAdded)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor.  <a href="#ade1cbb85b206dffa93b963850358d08c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a7621d71f549867f04d582afdead60363">World</a> (const <a class="el" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> &amp;PhysicsInfo, <a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManager::SceneManagerType</a> SceneType, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;PluginsFileName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EngineDataPath, std::string LogFileName=&quot;Mezzanine.log&quot;)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive constructor With Manager Pointers.  <a href="#a7621d71f549867f04d582afdead60363"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#ab533dec5e04892f3db0dbe7c01732b0a">~World</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor.  <a href="#ab533dec5e04892f3db0dbe7c01732b0a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116">GetWorldPointer</a> ()</td></tr>
@@ -193,7 +195,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <div class="textblock"><p>This is the main entry point for the entire library. </p>
 <p>The world coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. </p>
 
-<p>Definition at line <a class="el" href="world_8h_source.html#l00303">303</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="world_8h_source.html#l00304">304</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a535c832832bbdebcdc623c3472a32e25"></a><!-- doxytag: member="Mezzanine::World::LoggingFrequency" ref="a535c832832bbdebcdc623c3472a32e25" args="" -->
 <div class="memitem">
@@ -224,7 +226,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8h_source.html#l00403">403</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="world_8h_source.html#l00412">412</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -426,7 +428,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00521">521</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00533">533</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -447,7 +449,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <p>This makes the main loop end after it's current iteration. </p>
 <p>If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit. </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00484">484</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00496">496</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -468,7 +470,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <p>Forces the log to commit to disk (or whereever) </p>
 <p>Any outstanding log messages or entries into the logstream will be written in chronological order to to the appropriate place. </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00351">351</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00363">363</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -489,7 +491,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <p>This commits the log stream to the log. </p>
 <p>This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop. </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00475">475</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00487">487</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -517,7 +519,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <p>Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed false. </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00371">371</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00383">383</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -545,7 +547,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1ActorManager.html" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00651">651</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00663">663</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -573,7 +575,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1AudioManager.html" title="This is simply a place for storing all the Sound utilities and functions.">AudioManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00656">656</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00668">668</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -601,7 +603,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00661">661</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00673">673</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -629,7 +631,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1CollisionShapeManager.html" title="This manager is for the storage of all shapes and creation of mesh shapes.">CollisionShapeManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00666">666</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00678">678</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -657,7 +659,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00671">671</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00683">683</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -679,7 +681,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <p>This returns, in milliseconds the amount of time since the frame started (since the last rendering began) </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a whole number which can be used to aid in the timimg of various algorithms. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00508">508</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00520">520</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -707,7 +709,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00676">676</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00688">688</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -728,7 +730,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <p>Returns the frequency of logging commits. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25" title="Used to indicate the frequency of logging.">World::LoggingFrequency</a> containing the requested information. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00336">336</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00348">348</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -768,7 +770,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>, or a NULL pointer if no matching manager exists </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00584">584</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00596">596</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -796,7 +798,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1MeshManager.html" title="This manager handles the storage, generation, and query of of Graphics Meshes.">MeshManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00681">681</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00693">693</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -824,7 +826,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00691">691</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00703">703</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -852,7 +854,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files.">ResourceManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00701">701</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00713">713</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -880,7 +882,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00696">696</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00708">708</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -902,7 +904,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 <p>In practice harI've done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn't mind that shouldn't be there. like there was a " Schedule : " right after a line where a pointer was initialized. I only found such occurrences in gamebase.cpp though, removed them and did two tests. First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over. Second time I ran the game trying to click stuff, I simply couldn't click anything. I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven't done yet, but there were no results with the Robots. The third time I was successfully able to stop two spheres and move them around the platform quite smoothly. These spheres were slightly further away from the camera compared to the first run. I stopped the wooden sphere and the second metal sphere. I included a screen shot and a copy of my log for the third run. The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a Whole with the current Value </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00493">493</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00505">505</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -930,7 +932,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00706">706</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00718">718</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -958,7 +960,7 @@ static <a class="el" href="classMezzanine_1_1World.html">World</a> *&#160;</td><
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="classMezzanine_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>, or a NULL pointer if no matching manager exists. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00711">711</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00723">723</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1009,7 +1011,7 @@ template&lt;class T &gt; </div>
 </dl>
 <p>This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the Only ones to produce meaningul log messages. </p>
 
-<p>Definition at line <a class="el" href="world_8h_source.html#l00435">435</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="world_8h_source.html#l00444">444</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1036,7 +1038,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8h_source.html#l00450">450</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="world_8h_source.html#l00459">459</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1066,7 +1068,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8h_source.html#l00462">462</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="world_8h_source.html#l00471">471</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1093,7 +1095,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00354">354</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00366">366</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1113,6 +1115,33 @@ template&lt;class T &gt; </div>
 
 <p>This Function house the main loop. </p>
 <p>By default this is called from the function <a class="el" href="classMezzanine_1_1World.html#a72d6d82926bfbfca96c246f109f0fc58" title="This creates the game window and starts the game.">World.GameInit()</a> this is were the bulk of the simulation is ran from, see <a class="el" href="mainloop1.html">Main Loop Structure and Flow</a> </p>
+
+</div>
+</div>
+<a class="anchor" id="a4fa4ecf5f6dff624f0db8163d81affc6"></a><!-- doxytag: member="Mezzanine::World::PauseWorld" ref="a4fa4ecf5f6dff624f0db8163d81affc6" args="(bool Pause)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::World::PauseWorld </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Pause</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Pauses all animations, particles, and object movement throughout the world. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Pause</td><td>Pauses the world if true, unpauses if false. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00235">235</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1151,7 +1180,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00563">563</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00575">575</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1179,7 +1208,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00546">546</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00558">558</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1207,7 +1236,7 @@ template&lt;class T &gt; </div>
 </dl>
 <p>This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of stuff, for the most part this should be by the rendering manager during the rendering process. </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00513">513</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00525">525</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1277,7 @@ template&lt;class T &gt; </div>
  <br/>
  There are a series of functions internally that represent each of the LoggingFrequency values. When You pass in one of these values you are setting which of these functions will be called. This way the only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time). Additionally the members of the enum are sorted by the amount of time they are expected to take to run, of course your performance will vary, the best way to know how it will perform is to test. </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00309">309</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00321">321</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1306,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00503">503</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00515">515</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1306,7 +1335,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix. </dd></dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00498">498</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00510">510</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1327,7 +1356,7 @@ template&lt;class T &gt; </div>
 <p>This forces the list of managers to be resorted. </p>
 <p>This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers </p>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00636">636</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00648">648</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1366,7 +1395,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="world_8cpp_source.html#l00616">616</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
+<p>Definition at line <a class="el" href="world_8cpp_source.html#l00628">628</a> of file <a class="el" href="world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1385,7 +1414,7 @@ template&lt;class T &gt; </div>
 <p>This is another way to put data in the log. </p>
 <p>The contents of this will be commited to the log as per the logging frequency. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. </p>
 
-<p>Definition at line <a class="el" href="world_8h_source.html#l00446">446</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="world_8h_source.html#l00455">455</a> of file <a class="el" href="world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1399,7 +1428,7 @@ template&lt;class T &gt; </div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1409,6 +1438,6 @@ template&lt;class T &gt; </div>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

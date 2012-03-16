@@ -15,6 +15,20 @@ Inheritance diagram for Mezzanine::SliderConstraint:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classMezzanine_1_1SliderConstraint_aaeb70964ae4b2568a1dd70595f0d8567}{
+{\bfseries SliderConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA)}
+\label{classMezzanine_1_1SliderConstraint_aaeb70964ae4b2568a1dd70595f0d8567}
+
+\item 
+\hyperlink{classMezzanine_1_1SliderConstraint_aa94ae163ab1a73a5a92f94172a8abdb3}{SliderConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseLinearReferenceA=false)
+\begin{DoxyCompactList}\small\item\em Two body Terse constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1SliderConstraint_a2f173d23f75cf90a91fbe2542d7ccd10}{
+{\bfseries SliderConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA)}
+\label{classMezzanine_1_1SliderConstraint_a2f173d23f75cf90a91fbe2542d7ccd10}
+
+\item 
+virtual \hyperlink{classMezzanine_1_1SliderConstraint_a61867229e5eb1192119b496b12beb825}{$\sim$SliderConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual btTypedConstraint $\ast$ \hyperlink{classMezzanine_1_1SliderConstraint_afb6bf65099b1d964975ee0853e81e38c}{GetConstraintBase} () const 
 \item 
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1SliderConstraint_aab32a4c00eda5369c8188cff854418bd}{GetPivotALocation} () const 
@@ -188,26 +202,12 @@ virtual void {\bfseries SetUseFrameOffset} (bool FrameOffset)}
 \label{classMezzanine_1_1SliderConstraint_a5402cffa565acf077aff46a1e2556bd9}
 
 \item 
-\hyperlink{classMezzanine_1_1SliderConstraint_aa94ae163ab1a73a5a92f94172a8abdb3}{SliderConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseLinearReferenceA=false)
-\begin{DoxyCompactList}\small\item\em Two body Terse constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1SliderConstraint_aaeb70964ae4b2568a1dd70595f0d8567}{
-{\bfseries SliderConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA)}
-\label{classMezzanine_1_1SliderConstraint_aaeb70964ae4b2568a1dd70595f0d8567}
-
-\item 
-\hypertarget{classMezzanine_1_1SliderConstraint_a2f173d23f75cf90a91fbe2542d7ccd10}{
-{\bfseries SliderConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseLinearReferenceA)}
-\label{classMezzanine_1_1SliderConstraint_a2f173d23f75cf90a91fbe2542d7ccd10}
-
-\item 
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5db47a4}{TypedConstraint::AxisList} \hyperlink{classMezzanine_1_1SliderConstraint_ac96a0956a0cb82b4b37d0da3a9d348fa}{ValidAngularAxis} () const 
 \item 
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5db47a4}{TypedConstraint::AxisList} \hyperlink{classMezzanine_1_1SliderConstraint_ac238c09e330b22833bd666a73b93f8d0}{ValidLinearAxis} () const 
 \item 
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_abd499db29c9e9755e9bb547d29eaa49a}{TypedConstraint::ParamList} \hyperlink{classMezzanine_1_1SliderConstraint_a6883d8b39517a5a96c099b1d1b441d95}{ValidParamOnAxis} (int Axis) const 
-\item 
-virtual \hyperlink{classMezzanine_1_1SliderConstraint_a61867229e5eb1192119b496b12beb825}{$\sim$SliderConstraint} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

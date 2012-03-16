@@ -47,6 +47,11 @@ enum \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd10
 \label{classMezzanine_1_1CollisionShape_a0af2c4dbb24ad4fda4698b81799b65e2}
 
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}{
+virtual \hyperlink{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}{$\sim$CollisionShape} ()}
+\label{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 virtual btCollisionShape $\ast$ \hyperlink{classMezzanine_1_1CollisionShape_a0a5d6eb69c26665051ebb2b9d8004802}{GetBulletShape} () const 
 \begin{DoxyCompactList}\small\item\em Gets the internal shape pointer this collision shape is based on. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1CollisionShape_a7f9d28c4c5ce7ab5a78af217d314fcaa}{GetMargin} () const 
@@ -57,15 +62,19 @@ virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Gets the current scaling being applied to the collision shape. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1CollisionShape_a27e5055f81cb8fb6d65a6c9f8dc73b69}{GetType} () const =0
 \begin{DoxyCompactList}\small\item\em Gets the type of \hyperlink{classMezzanine_1_1Collision}{Collision} shape this is. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1CollisionShape_aab25ef5e044b27e8e43b7e4c54ab777a}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1CollisionShape_ac0995091062903d9777d0fa9bef09b90}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1CollisionShape_a3884d005f857180185a44c99e55024e3}{SetMargin} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Margin)
 \begin{DoxyCompactList}\small\item\em Sets the padding that will be applied when checking for collisions. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1CollisionShape_a1017c09132113afe0f33fe9b2e7b9def}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scaling)
-\begin{DoxyCompactList}\small\item\em Scales the collision shape on each of it's axes. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}{
-virtual \hyperlink{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}{$\sim$CollisionShape} ()}
-\label{classMezzanine_1_1CollisionShape_a55253f27f2f64baf9a21fb440cfeaea6}
-
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Scales the collision shape on each of it's axes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1CollisionShape_ae5a97a76b687d450f17d0ac86b227f1d}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -250,7 +259,7 @@ Definition at line 68 of file collisionshape.cpp.
 Gets the current scaling being applied to the collision shape. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} representing the amount of scaling being applied to the shape. 
+Returns a vector3 representing the amount of scaling being applied to the shape. 
 \end{DoxyReturn}
 
 
@@ -275,6 +284,85 @@ Returns an enum value indicating the type of collision shape this is.
 
 
 Implemented in \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{Mezzanine::PrimitiveCollisionShape}, \hyperlink{classMezzanine_1_1FieldCollisionShape_a85a444fa9bcaca9fec08c3b5697677c9}{Mezzanine::FieldCollisionShape}, \hyperlink{classMezzanine_1_1MeshCollisionShape_a00dc444afac92030ea43815ec21dd8e8}{Mezzanine::MeshCollisionShape}, \hyperlink{classMezzanine_1_1CompoundCollisionShape_a8b701bbbc32b007f32884946d285fba1}{Mezzanine::CompoundCollisionShape}, \hyperlink{classMezzanine_1_1BoxCollisionShape_ae2b4af7afa6cc37c51b062589048e26d}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a2773853a924c2a97838546d96d851ba5}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a874892f3aaba7e79200633691037a410}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a73ccd6364f52a68a642a0fb55159f020}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a4feb07a9d71bda6ca4b6c82b745df8a0}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_ad4b8a2e2f71686e2495d414a13b0f95a}{Mezzanine::MultiSphereCollisionShape}, \hyperlink{classMezzanine_1_1SphereCollisionShape_ad2c8d33b21fe7215742db4551429c5a6}{Mezzanine::SphereCollisionShape}, \hyperlink{classMezzanine_1_1DynamicMeshCollisionShape_ae323a4ac9ae12890e1f8ce82b22f1ccc}{Mezzanine::DynamicMeshCollisionShape}, \hyperlink{classMezzanine_1_1HeightfieldCollisionShape_af27ffaf88fc12af6ddc89704e60ecd33}{Mezzanine::HeightfieldCollisionShape}, \hyperlink{classMezzanine_1_1PlaneCollisionShape_aeb4b5e1a235023d375b5514065a5e382}{Mezzanine::PlaneCollisionShape}, \hyperlink{classMezzanine_1_1ActorSoftCollisionShape_ae9ac8413434ff0de10376deb64ab49d0}{Mezzanine::ActorSoftCollisionShape}, and \hyperlink{classMezzanine_1_1StaticMeshCollisionShape_ae6cf497bf3a0c1db7b0f39a0513ebb79}{Mezzanine::StaticMeshCollisionShape}.
+
+\hypertarget{classMezzanine_1_1CollisionShape_aab25ef5e044b27e8e43b7e4c54ab777a}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CollisionShape::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_aab25ef5e044b27e8e43b7e4c54ab777a}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a2257312048ee9085fa5d14f6b34caae1}{Mezzanine::PrimitiveCollisionShape}, \hyperlink{classMezzanine_1_1FieldCollisionShape_aa7995de9b5b29693c0d2c57590727bb4}{Mezzanine::FieldCollisionShape}, \hyperlink{classMezzanine_1_1MeshCollisionShape_a7ca10a20691c768749668dfd28678d10}{Mezzanine::MeshCollisionShape}, \hyperlink{classMezzanine_1_1CompoundCollisionShape_ac5ab530b16297c765589505b5ad3cd0d}{Mezzanine::CompoundCollisionShape}, \hyperlink{classMezzanine_1_1BoxCollisionShape_aeff89859ae98a391bf1232e190c839b5}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a16ede5d5ed04ae7d146ff28a4484c41d}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a5a47688b99093433fd2e9cb11dff9535}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a3ad727374ebb82699f8dae7344139add}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a5587a08c2cea384bef3035a9eadc09f5}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_ac933bcaf3025f03b0f7193bf9f894220}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_a3504227628734579055f242b1ace4d74}{Mezzanine::SphereCollisionShape}.
+
+
+
+Definition at line 125 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_ac0995091062903d9777d0fa9bef09b90}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::CollisionShape::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_ac0995091062903d9777d0fa9bef09b90}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_acfaab953833e9be503fddb2ee0f56d4f}{Mezzanine::PrimitiveCollisionShape}, \hyperlink{classMezzanine_1_1FieldCollisionShape_a12c178d2b8ba1219c2be8b31bb59845e}{Mezzanine::FieldCollisionShape}, \hyperlink{classMezzanine_1_1MeshCollisionShape_a96106c73da1be822f0889365c1e62c40}{Mezzanine::MeshCollisionShape}, \hyperlink{classMezzanine_1_1CompoundCollisionShape_ad22a3b7f0b69d6cafdd00ccdedce9c56}{Mezzanine::CompoundCollisionShape}, \hyperlink{classMezzanine_1_1BoxCollisionShape_abdd854fc0f165b3b17baecb0bb3961b4}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a997e8ab5bc03e7858b51b449e12be26c}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a881cc9722b623c3c5e5a64bbc01a45c8}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a60a91d12cc13b8886e6feaddeb32e556}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_ae4cb206ad4761a817633af5f611e2c0b}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_a4ff1d5afc23bf6694b01cad56ef17b05}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_a5d960502c435c80d6ce45bc409e90d94}{Mezzanine::SphereCollisionShape}.
+
+
+
+Definition at line 99 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1CollisionShape_ae5a97a76b687d450f17d0ac86b227f1d}{
+\index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::CollisionShape@{Mezzanine::CollisionShape}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::CollisionShape::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CollisionShape_ae5a97a76b687d450f17d0ac86b227f1d}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}CollisionShape\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a19bb44a705ff86606834feb2783500e5}{Mezzanine::PrimitiveCollisionShape}, \hyperlink{classMezzanine_1_1FieldCollisionShape_a7ac709490aaa938311fd907e35b93bac}{Mezzanine::FieldCollisionShape}, \hyperlink{classMezzanine_1_1MeshCollisionShape_a1b42e3a627e0fee56dbbaca9659e2883}{Mezzanine::MeshCollisionShape}, \hyperlink{classMezzanine_1_1CompoundCollisionShape_ab9c063728260ffb425d13703d61df2e9}{Mezzanine::CompoundCollisionShape}, \hyperlink{classMezzanine_1_1BoxCollisionShape_aa96e3055ec21f18198bceccdeaafa538}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a6225978757c6b80f590336cb04f9ebf5}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a41c55ca94878cb62836540b871457d77}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a58cda94bb88fd44976747e0600b2356f}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a7fa7200a26ab2788416c729e28ed6688}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_a5b64cbb0b59708f6e3d21ab6b9894afa}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_a41c14d2a29a4ed2f0d5fe6fd386ab71e}{Mezzanine::SphereCollisionShape}.
+
+
+
+Definition at line 147 of file collisionshape.cpp.
 
 \hypertarget{classMezzanine_1_1CollisionShape_a3884d005f857180185a44c99e55024e3}{
 \index{Mezzanine::CollisionShape@{Mezzanine::CollisionShape}!SetMargin@{SetMargin}}
@@ -313,7 +401,7 @@ Scales the collision shape on each of it's axes.
 
 
 \begin{DoxyParams}{Parameters}
-{\em Scaling} & A \hyperlink{classvector3}{vector3} representing how much scaling should be applied on each of the shapes 3 axes. \\
+{\em Scaling} & A vector3 representing how much scaling should be applied on each of the shapes 3 axes. \\
 \hline
 \end{DoxyParams}
 

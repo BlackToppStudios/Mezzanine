@@ -35,6 +35,8 @@ enum \hyperlink{classMezzanine_1_1Collision_aacdbb06153734d3645f4c806dbf90153}{C
 \begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Collision_a1170d2c2e674ab3e9b1bf68c91171db4}{Collision} (const \hyperlink{classMezzanine_1_1Collision}{Collision} \&Other)
 \begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Collision_abeac6cfc637fe44493602a04f75c0232}{$\sim$Collision} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1Collision_ad9d72f1d883214242803b72d1b82c343}{GetAge} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
 \begin{DoxyCompactList}\small\item\em Gets the number of simulation steps the contact point has existed. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Collision_aa53aa5016ea75885b9be4f317968b407}{GetAppliedImpulse} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Point)
@@ -65,9 +67,7 @@ virtual void \hyperlink{classMezzanine_1_1Collision_a4254bbe27f1d7362d79cecd46d6
 virtual void \hyperlink{classMezzanine_1_1Collision_afee98e7728b4f2a4865a2ef38a051577}{Update} ()}
 \label{classMezzanine_1_1Collision_afee98e7728b4f2a4865a2ef38a051577}
 
-\begin{DoxyCompactList}\small\item\em Updates this collisions contact point data if it needs updating. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Collision_abeac6cfc637fe44493602a04f75c0232}{$\sim$Collision} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates this collisions contact point data if it needs updating. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -339,7 +339,7 @@ Gets the location in ObjectA's local space where the collision occured.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} with the point of the collision in ObjectA's local space. 
+Returns a vector3 with the point of the collision in ObjectA's local space. 
 \end{DoxyReturn}
 
 
@@ -364,7 +364,7 @@ Gets the location in ObjectB's local space where the collision occured.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} with the point of the collision in ObjectB's local space. 
+Returns a vector3 with the point of the collision in ObjectB's local space. 
 \end{DoxyReturn}
 
 
@@ -389,7 +389,7 @@ GEts the collision normal for a contact point.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} representing the collision normal for a contact point. 
+Returns a vector3 representing the collision normal for a contact point. 
 \end{DoxyReturn}
 
 
@@ -474,7 +474,7 @@ Gets the location in the world where the collision occured.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} containing the approximate world location of the collision. 
+Returns a vector3 containing the approximate world location of the collision. 
 \end{DoxyReturn}
 
 

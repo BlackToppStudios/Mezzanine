@@ -1,0 +1,96 @@
+\hypertarget{classMezzanine_1_1Scripting_1_1Script}{
+\subsection{Mezzanine::Scripting::Script Class Reference}
+\label{classMezzanine_1_1Scripting_1_1Script}\index{Mezzanine::Scripting::Script@{Mezzanine::Scripting::Script}}
+}
+
+
+The interface for a script.  
+
+
+
+
+{\ttfamily \#include $<$script.h$>$}
+
+Inheritance diagram for Mezzanine::Scripting::Script:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1Scripting_1_1Script}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_acd338ce067b4067e0b6ab25863c311c5}{
+virtual void {\bfseries AddArgument} (\hyperlink{classMezzanine_1_1Scripting_1_1ScriptArgument}{ScriptArgument} Arg)=0}
+\label{classMezzanine_1_1Scripting_1_1Script_acd338ce067b4067e0b6ab25863c311c5}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_a504d19bd50b8d9c5b23e85c5e3131a96}{
+virtual void {\bfseries ClearArguments} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_a504d19bd50b8d9c5b23e85c5e3131a96}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_a611bea1d248a05f53e7a8bb34d9b4605}{
+virtual \hyperlink{classMezzanine_1_1Scripting_1_1ScriptArgument}{ScriptArgument} {\bfseries Execute} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_a611bea1d248a05f53e7a8bb34d9b4605}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_a5430794985b89cd9e28fbbd538a97a33}{
+virtual \hyperlink{classMezzanine_1_1Scripting_1_1ScriptArgument}{ScriptArgument} {\bfseries GetArgument} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} ArgNumber)=0}
+\label{classMezzanine_1_1Scripting_1_1Script_a5430794985b89cd9e28fbbd538a97a33}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_a20f82daec225f6090ac118272a92c968}{
+virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries GetArgumentCount} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_a20f82daec225f6090ac118272a92c968}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_ae0f1bb7cd4f537b19fcd862c977ee8e3}{
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries GetCode} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_ae0f1bb7cd4f537b19fcd862c977ee8e3}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_af52caa05f853b4fe6daf4a8d49fc182a}{
+virtual bool {\bfseries IsAbleToReturnMultiple} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_af52caa05f853b4fe6daf4a8d49fc182a}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_af7351a14b9f1e56dde085f53723d3b5d}{
+virtual bool {\bfseries IsAvailableAsString} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_af7351a14b9f1e56dde085f53723d3b5d}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_a33426cd4b08b4078fda249a00c821005}{
+virtual bool {\bfseries IsCompilable} ()}
+\label{classMezzanine_1_1Scripting_1_1Script_a33426cd4b08b4078fda249a00c821005}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_ac920f191e8df2814427341e59c423aa6}{
+virtual bool {\bfseries IsCompiled} ()=0}
+\label{classMezzanine_1_1Scripting_1_1Script_ac920f191e8df2814427341e59c423aa6}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_ac230f00328239b54b9f62a3dfcea9a7f}{
+virtual void {\bfseries RemoveArgument} (\hyperlink{classMezzanine_1_1Scripting_1_1ScriptArgument}{ScriptArgument} Arg)=0}
+\label{classMezzanine_1_1Scripting_1_1Script_ac230f00328239b54b9f62a3dfcea9a7f}
+
+\item 
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_aae36c7fa4c78d5aac838bfca7c112ce2}{
+virtual void {\bfseries SetCode} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Code)=0}
+\label{classMezzanine_1_1Scripting_1_1Script_aae36c7fa4c78d5aac838bfca7c112ce2}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The interface for a script. All the members that all script for all languages must implement \par
+ \par
+ These are tiny pieces of data that can be run like miniature programs. They will be compiled to a bytecode that can swiftly be executed by the appropriate bytecode interpretter. This is faster than interpretting text, but slower than running native code. It is more flexible and safer than native code, because scripts may be provided by others than the original developers, and there are fewer security issues with a completely self contained language as opposed to actual native code. 
+
+Definition at line 64 of file script.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+script.h\end{DoxyCompactItemize}

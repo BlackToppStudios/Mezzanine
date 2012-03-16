@@ -36,10 +36,114 @@ namespace \hyperlink{namespaceMezzanine_1_1internal}{Mezzanine::internal}
 \begin{DoxyCompactList}\small\item\em This namespace is used for internal helper classes, and in general it should be ignored by game developers. \item\end{DoxyCompactList}
 
 \end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::ostream \& \hyperlink{particleeffect_8cpp_a35e52c824984bf6b51f6ba4e1bbf49b8}{operator$<$$<$} (std::ostream \&stream, const \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} \&Ev)
+\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} to XML. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \& \hyperlink{particleeffect_8cpp_a142746c4f4dc0527d5dc4fe62a338b1f}{operator$>$$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} \&Ev)
+\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} from parsed xml. \item\end{DoxyCompactList}\item 
+std::istream \&MEZZ\_\-LIB \hyperlink{particleeffect_8cpp_aaf4c83b92001a4f876621064f955000d}{operator$>$$>$} (std::istream \&stream, \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} \&Ev)
+\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 Contains the implemenation of the ParticleEffect class. Contains the declaration of the ParticleEffect class.
 
 Definition in file \hyperlink{particleeffect_8cpp_source}{particleeffect.cpp}.
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{particleeffect_8cpp_a35e52c824984bf6b51f6ba4e1bbf49b8}{
+\index{particleeffect.cpp@{particleeffect.cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!particleeffect.cpp@{particleeffect.cpp}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{stream, }
+\item[{const {\bf Mezzanine::ParticleEffect} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{particleeffect_8cpp_a35e52c824984bf6b51f6ba4e1bbf49b8}
+
+
+Serializes the passed \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} to XML. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The ostream to send the xml to. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this returns the ostream, now with the serialized data 
+\end{DoxyReturn}
+
+
+Definition at line 324 of file particleeffect.cpp.
+
+\hypertarget{particleeffect_8cpp_a142746c4f4dc0527d5dc4fe62a338b1f}{
+\index{particleeffect.cpp@{particleeffect.cpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!particleeffect.cpp@{particleeffect.cpp}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::xml::Node}\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::xml::Node} \&}]{OneNode, }
+\item[{{\bf Mezzanine::ParticleEffect} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{particleeffect_8cpp_a142746c4f4dc0527d5dc4fe62a338b1f}
+
+
+Set all values of a \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} from parsed xml. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} to be reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns thexml::Node that was passed in. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to de-\/serialize the name or template of the ParticleEffect. These is not currently changeable after the creation of a ParticleEffect. However, the ParticleEffectmanager will correctly create name ParticleEffect upon creation then deserialize the rest of the ParticleEffect. 
+
+This does not throw an exception if the ParticleEffect could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. 
+\end{DoxyWarning}
+
+
+Definition at line 347 of file particleeffect.cpp.
+
+\hypertarget{particleeffect_8cpp_aaf4c83b92001a4f876621064f955000d}{
+\index{particleeffect.cpp@{particleeffect.cpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!particleeffect.cpp@{particleeffect.cpp}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& MEZZ\_\-LIB operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{stream, }
+\item[{{\bf Mezzanine::ParticleEffect} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{particleeffect_8cpp_aaf4c83b92001a4f876621064f955000d}
+
+
+Deserialize a \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} to be deserialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1ParticleEffect}{Mezzanine::ParticleEffect} that was recreated onto Ev. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the ParticleEffects location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. 
+\end{DoxyWarning}
+
+
+Definition at line 337 of file particleeffect.cpp.
 

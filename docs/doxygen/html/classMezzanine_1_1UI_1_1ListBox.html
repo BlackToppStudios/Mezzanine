@@ -67,8 +67,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
@@ -92,11 +92,13 @@ Inheritance diagram for Mezzanine::UI::ListBox:</div>
 
 <p><a href="classMezzanine_1_1UI_1_1ListBox-members.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams.html">TemplateParams</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a60130f372bc78fbb20f28270bbed8cf2">ListBox</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const <a class="el" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763">UI::ScrollbarStyle</a> &amp;ScrollStyle, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a60130f372bc78fbb20f28270bbed8cf2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fa312d9bc349a7a3b254afde3de81bd"></a><!-- doxytag: member="Mezzanine::UI::ListBox::~ListBox" ref="a1fa312d9bc349a7a3b254afde3de81bd" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a1fa312d9bc349a7a3b254afde3de81bd">~ListBox</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Caption</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#aa2133933ef147bb658ddb9e7102cbddd">AddSelection</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;name, <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;Text, <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;BackgroundSprite=&quot;&quot;)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a selectable caption to the list to be displayed.  <a href="#aa2133933ef147bb658ddb9e7102cbddd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a943079b1c090b216fbd29817af42efcf">DestroySelection</a> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ToBeDestroyed)</td></tr>
@@ -109,13 +111,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently selected caption.  <a href="#ae2b97c85a09fd6d74f659c1dc9cd125c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Caption</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a793bd0f547a9f87ea74eb4204d591506">GetSelection</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a caption by name.  <a href="#a793bd0f547a9f87ea74eb4204d591506"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual const <br class="typebreak"/>
-<a class="el" href="structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams.html">ListBox::TemplateParams</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a9f03e4ca7e393839bc004337bf39db50">GetTemplateInfo</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the struct containing all the current template parameters used when creating a new selections.  <a href="#a9f03e4ca7e393839bc004337bf39db50"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="structMezzanine_1_1UI_1_1TemplateParams.html">UI::TemplateParams</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a65730a3d35fdddea0499d90991a31bcc">GetTemplateInfo</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the struct containing all the current template parameters used when creating a new selections.  <a href="#a65730a3d35fdddea0499d90991a31bcc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html">UI::Scrollbar</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a68873b3f128512572564ef11e9b48309">GetVertScroll</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the scrollbar used within this List Box.  <a href="#a68873b3f128512572564ef11e9b48309"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a60130f372bc78fbb20f28270bbed8cf2">ListBox</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, const <a class="el" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763">UI::ScrollbarStyle</a> &amp;ScrollStyle, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a60130f372bc78fbb20f28270bbed8cf2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a0bf39153416d2010e5bf36601873c73e">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel position of this List Box.  <a href="#a0bf39153416d2010e5bf36601873c73e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#ad277b2268dd5439c05ce300addf31815">SetActualSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
@@ -134,7 +133,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background colour to be applied to all created Selections.  <a href="#a1a2f8bd297f505c405ae80cff0d0ce22"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html">ListBox</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a2ce73aa7cca0365ef052de34b387fb8f">SetTemplateCursorOffset</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Offset)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the cursor offset to be applied to all created Selections.  <a href="#a2ce73aa7cca0365ef052de34b387fb8f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html">ListBox</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a7aaf12f4ac3d15f059761646fc111b48">SetTemplateGlyphIndex</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Glyph)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html">ListBox</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a7aaf12f4ac3d15f059761646fc111b48">SetTemplateGlyphIndex</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;<a class="el" href="classMezzanine_1_1UI_1_1Glyph.html">Glyph</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the glyph index to be applied to all created Selections.  <a href="#a7aaf12f4ac3d15f059761646fc111b48"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1ListBox.html">ListBox</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#afcbed87ee667512e55b6bb4249582189">SetTemplateHorizontalAlign</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549">UI::TextHorizontalAlign</a> &amp;HorAlign)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the horizontal alignment to be applied to all created Selections.  <a href="#afcbed87ee667512e55b6bb4249582189"></a><br/></td></tr>
@@ -150,9 +149,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the vertical alignment to be applied to all created Selections.  <a href="#a985a72063a7aa760c2aebd562b7adfa9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a7bad6cce9fa22e882cc74f62a51fabdb">UpdateDimensions</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this widget to match those of the new screen size.  <a href="#a7bad6cce9fa22e882cc74f62a51fabdb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1fa312d9bc349a7a3b254afde3de81bd"></a><!-- doxytag: member="Mezzanine::UI::ListBox::~ListBox" ref="a1fa312d9bc349a7a3b254afde3de81bd" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ListBox.html#a1fa312d9bc349a7a3b254afde3de81bd">~ListBox</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destructor. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a910fdad48b474cf8d8d5b46832f412d1"></a><!-- doxytag: member="Mezzanine::UI::ListBox::Params" ref="a910fdad48b474cf8d8d5b46832f412d1" args="" -->
+<a class="el" href="structMezzanine_1_1UI_1_1TemplateParams.html">TemplateParams</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Params</b></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc5d9bc871a42788cd2c64f91663513e"></a><!-- doxytag: member="Mezzanine::UI::ListBox::CheckMouseHoverImpl" ref="abc5d9bc871a42788cd2c64f91663513e" args="()" -->
@@ -195,8 +195,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>AutoHideScroll</b></t
 <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Caption</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Selected</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa80063e6f8282ca40aa760fc94d41fca"></a><!-- doxytag: member="Mezzanine::UI::ListBox::Selections" ref="aa80063e6f8282ca40aa760fc94d41fca" args="" -->
 std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Caption</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Selections</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6491b3e714cfc1126a4255d40c31c364"></a><!-- doxytag: member="Mezzanine::UI::ListBox::SelectionTemplate" ref="a6491b3e714cfc1126a4255d40c31c364" args="" -->
-<a class="el" href="structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams.html">TemplateParams</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectionTemplate</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e322218b9ee2652e70613008bb65b2b"></a><!-- doxytag: member="Mezzanine::UI::ListBox::SelectionsAdded" ref="a7e322218b9ee2652e70613008bb65b2b" args="" -->
+<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectionsAdded</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae8f22a3cbb41e146451923dd0df7e1a5"></a><!-- doxytag: member="Mezzanine::UI::ListBox::SelectionTemplate" ref="ae8f22a3cbb41e146451923dd0df7e1a5" args="" -->
+<a class="el" href="structMezzanine_1_1UI_1_1TemplateParams.html">UI::TemplateParams</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectionTemplate</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1bbde08aee122fe00f08379a0599e96"></a><!-- doxytag: member="Mezzanine::UI::ListBox::VertScroll" ref="af1bbde08aee122fe00f08379a0599e96" args="" -->
 <a class="el" href="classMezzanine_1_1UI_1_1Scrollbar.html">Scrollbar</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>VertScroll</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0809725b70b740a31b2cf0640b1fe650"></a><!-- doxytag: member="Mezzanine::UI::ListBox::VisibleSelections" ref="a0809725b70b740a31b2cf0640b1fe650" args="" -->
@@ -205,7 +207,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a widget for displaying a list of captions in a box. </p>
 
-<p>Definition at line <a class="el" href="uilistbox_8h_source.html#l00061">61</a> of file <a class="el" href="uilistbox_8h_source.html">uilistbox.h</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8h_source.html#l00074">74</a> of file <a class="el" href="uilistbox_8h_source.html">uilistbox.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a60130f372bc78fbb20f28270bbed8cf2"></a><!-- doxytag: member="Mezzanine::UI::ListBox::ListBox" ref="a60130f372bc78fbb20f28270bbed8cf2" args="(ConstString &amp;name, const RenderableRect &amp;Rect, const UI::ScrollbarStyle &amp;ScrollStyle, Layer *PLayer)" -->
 <div class="memitem">
@@ -255,7 +257,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>Currently this class has little support for a border around the selections. Ideally when the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000034">Todo:</a></b></dt><dd>Currently this class has little support for a border around the selections. Ideally when the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00061">61</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
@@ -305,7 +307,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00342">342</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00346">346</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +334,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00378">378</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00384">384</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +361,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00391">391</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00405">405</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -380,7 +382,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 <p>Gets the background of this List Box. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the background of this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00475">475</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00489">489</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -401,7 +403,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 <p>Gets the currently selected caption. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the currently selected caption, or NULL if none are selected. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00470">470</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00484">484</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -429,16 +431,16 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the named caption. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00365">365</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00371">371</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9f03e4ca7e393839bc004337bf39db50"></a><!-- doxytag: member="Mezzanine::UI::ListBox::GetTemplateInfo" ref="a9f03e4ca7e393839bc004337bf39db50" args="()" -->
+<a class="anchor" id="a65730a3d35fdddea0499d90991a31bcc"></a><!-- doxytag: member="Mezzanine::UI::ListBox::GetTemplateInfo" ref="a65730a3d35fdddea0499d90991a31bcc" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams.html">ListBox::TemplateParams</a> &amp; Mezzanine::UI::ListBox::GetTemplateInfo </td>
+          <td class="memname">const <a class="el" href="structMezzanine_1_1UI_1_1TemplateParams.html">UI::TemplateParams</a> &amp; Mezzanine::UI::ListBox::GetTemplateInfo </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -450,7 +452,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 <p>Gets the struct containing all the current template parameters used when creating a new selections. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a const reference to the structure containing all the template parameters. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00337">337</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00341">341</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -471,7 +473,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 <p>Gets the scrollbar used within this List Box. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the scrollbar of this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00480">480</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00494">494</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +502,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a860bd8baea24d61a9cd661e85831f981">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00434">434</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00448">448</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -529,7 +531,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#acc8a472036872bbbfd0476f753c80ba4">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00448">448</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00462">462</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -556,7 +558,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00419">419</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00433">433</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -583,7 +585,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00410">410</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00424">424</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -613,7 +615,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ac83b59db51a6717ad7b822007dde3576">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00425">425</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00439">439</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -640,10 +642,10 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000029">Todo:</a></b></dt><dd>Maybe add a checker to verify the caption belongs to this widget? </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000035">Todo:</a></b></dt><dd>Maybe add a checker to verify the caption belongs to this widget? </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00404">404</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00418">418</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,7 +675,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adf8b14ce6641d4ec12f6ff09814fc9ab">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00443">443</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00457">457</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -702,7 +704,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00313">313</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00317">317</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +733,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00307">307</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00311">311</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -751,16 +753,16 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 <div class="memdoc">
 
 <p>Sets the glyph index to be applied to all created Selections. </p>
-<p>This needs to be called prior to the creation of any selections(captions). This defaults to 0, which may not be a valid font index in your gorilla file. In which case it will throw an exception. </p>
+<p>This needs to be called prior to the creation of any selections(captions). This defaults to 0, which may not be a valid font index in your mta file. In which case it will throw an exception. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Glyph</td><td>The Glyph index to use for the text generated by all captions in this widget. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a></td><td>The <a class="el" href="classMezzanine_1_1UI_1_1Glyph.html" title="Class used to describe a single glyph or character available for text operations.">Glyph</a> index to use for the text generated by all captions in this widget. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00289">289</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00293">293</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -789,7 +791,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00319">319</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00323">323</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -818,7 +820,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00331">331</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00335">335</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -857,7 +859,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00273">273</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00277">277</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -886,7 +888,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00295">295</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00299">299</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -915,7 +917,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00301">301</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00305">305</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -944,7 +946,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a reference to this List Box. </dd></dl>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00325">325</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00329">329</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -967,7 +969,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#af23f919f2912ac10230953a848c9889c">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00453">453</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uilistbox_8cpp_source.html#l00467">467</a> of file <a class="el" href="uilistbox_8cpp_source.html">uilistbox.cpp</a>.</p>
 
 </div>
 </div>
@@ -981,7 +983,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -991,6 +993,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1Caption.html">Captio
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -14,7 +14,7 @@ This is the camera class.
 Inheritance diagram for Mezzanine::Camera:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classMezzanine_1_1Camera}
+\includegraphics[height=3.000000cm]{classMezzanine_1_1Camera}
 \end{center}
 \end{figure}
 \subsubsection*{Public Types}
@@ -30,12 +30,10 @@ enum \hyperlink{classMezzanine_1_1Camera_a643bf90630796bca5353967664d5f6e3}{Proj
 \hyperlink{classMezzanine_1_1Camera_a172e91734ebe0cb5d8332ef00606526e}{Camera} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1CameraManager}{CameraManager} $\ast$Manager)
 \begin{DoxyCompactList}\small\item\em Basic \hyperlink{classMezzanine_1_1Camera}{Camera} Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Camera_aa20f07494ece246945eb3cb05f549f82}{Camera} (Ogre::Camera $\ast$\hyperlink{classMezzanine_1_1Camera}{Camera}, \hyperlink{classMezzanine_1_1CameraManager}{CameraManager} $\ast$Manager)
-\begin{DoxyCompactList}\small\item\em Ogre Cam Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} \hyperlink{classMezzanine_1_1Camera_a9bbd0126f025996457c87fb8564cc38d}{GetAttachableData} () const 
-\begin{DoxyCompactList}\small\item\em Gets pointers to the internal ogre structures for this attachable. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Attachable::AttachableElement} \hyperlink{classMezzanine_1_1Camera_a4a8523981c43ba8f4c5358b9ce7aef37}{GetAttachableType} () const 
-\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classMezzanine_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Ray}{Ray} \hyperlink{classMezzanine_1_1Camera_a7dc2eeda0370fd1d942dc4467795d87b}{GetCameraToViewportRay} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Screenx, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Screeny) const 
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespaceOgre}{Ogre} Cam Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Camera_ab25144933c625492a059e57401387c40}{$\sim$Camera} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Ray}{Ray} \hyperlink{classMezzanine_1_1Camera_a4fce77c8b2a0901dc1d22541b98b9437}{GetCameraToViewportRay} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ScreenX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ScreenY) const 
 \begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classMezzanine_1_1Ray}{Ray} from the camera to the viewport. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Camera_a643bf90630796bca5353967664d5f6e3}{Camera::ProjectionType} \hyperlink{classMezzanine_1_1Camera_aef2f7b71aedee46bacc1341c02a813a2}{GetCameraType} () const 
 \begin{DoxyCompactList}\small\item\em Get the type of projection used by the camera. \item\end{DoxyCompactList}\item 
@@ -43,9 +41,7 @@ virtual \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9
 \begin{DoxyCompactList}\small\item\em Gets the direction the camera is currently facing. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Camera_af7a94974ef5ff6caff66da3a9f71b579}{GetFixedYawAxis} () const 
 \begin{DoxyCompactList}\small\item\em If fixed yaw is enabled, on which axis is yawing disabled. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Camera_a94b66663d7c52ec642347d5d939cf67b}{GetGlobalLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the global/absolute location of the camera. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Camera_afb87a19855c4cd5361861e1e400d5481}{GetLocation} () const 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Camera_afb87a19855c4cd5361861e1e400d5481}{GetLocation} () const 
 \begin{DoxyCompactList}\small\item\em Gets the relative location of the camera. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Camera_abf6e3c2e642753023acd91f6d1413455}{GetName} () const 
 \begin{DoxyCompactList}\small\item\em Gets the camera's set name. \item\end{DoxyCompactList}\item 
@@ -53,8 +49,10 @@ Ogre::Camera $\ast$ \hyperlink{classMezzanine_1_1Camera_ac7985618c8f908a6cc93069
 \begin{DoxyCompactList}\small\item\em Gets the internal camera this camera is based on. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1Camera_af693fe97c4f281940a33dc8087a80fcb}{GetOrientation} () const 
 \begin{DoxyCompactList}\small\item\em Gets the direction the camera is facing. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Camera_a3262342c754eb31b4caa0693c5b60842}{GetRelativeLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the relative location of the camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Camera_a026f364d2eb9a13d216cd9d6c600db17}{GetScaling} () const 
+\item 
+\hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1Camera_a1c00772101a06add4b3dde9e3bc9f8aa}{GetType} () const 
+\item 
 bool \hyperlink{classMezzanine_1_1Camera_adfe5be54632aeedb9656c850f3f03ae5}{IsFixedYawEnabled} () const 
 \begin{DoxyCompactList}\small\item\em Is fixed yaw enabled. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_a8343f2d2fb174937aef2894ebf8a5e29}{LookAt} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&TargetLoc)
@@ -63,21 +61,23 @@ void \hyperlink{classMezzanine_1_1Camera_afdc17999a097218df445370123d41239}{Move
 \begin{DoxyCompactList}\small\item\em Moves the camera without factoring orientation. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_ac8f450698006baf6e8fca2a864d59533}{MoveRelative} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&ToMove)
 \begin{DoxyCompactList}\small\item\em Moves the camera while factoring orientation. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1Camera_ad63ed9c54ecf0940f20c5e4fbc9a1590}{ResetZoom} ()
-\begin{DoxyCompactList}\small\item\em Resets the zoom level back to the default. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_ab619a29b83487e8f86c8adb443689078}{SetAspectRatio} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Ratio)
 \begin{DoxyCompactList}\small\item\em Sets the aspect ratio of the cameras veiw. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1Camera_a1bc33506c8df0607777b0b122fd9c9cb}{SetCameraType} (const \hyperlink{classMezzanine_1_1Camera_a643bf90630796bca5353967664d5f6e3}{ProjectionType} Type)
+void \hyperlink{classMezzanine_1_1Camera_a860c5efaa583795ff2f31e3670739e58}{SetCameraType} (const \hyperlink{classMezzanine_1_1Camera_a643bf90630796bca5353967664d5f6e3}{ProjectionType} \&Type)
 \begin{DoxyCompactList}\small\item\em Sets the type of projection to be used with this camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_a3adfffaec91715cbf120bbbbc50f82db}{SetDirection} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Direction)
 \begin{DoxyCompactList}\small\item\em Sets the Direction for the camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_af24424a1670ae6b10e9a61fbaf9fd23a}{SetFarClipDistance} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&FarDist)
 \begin{DoxyCompactList}\small\item\em Sets the long range clip distance. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1Camera_abd19c7667593b8ea0bff576ae3a451ba}{SetFixedYawAxis} (bool UseFixed)
-\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_a2ffb9eca37630a8d26669aab8668bce3}{SetFixedYawAxis} (bool UseFixed, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Axis)
 \begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1Camera_afdc236c2c875035c8a11473350d0d17a}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+void \hyperlink{classMezzanine_1_1Camera_abd19c7667593b8ea0bff576ae3a451ba}{SetFixedYawAxis} (bool UseFixed)
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Camera_ae62b56649606677f9922eeea658bdd2f}{SetLocalLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\item 
+void \hyperlink{classMezzanine_1_1Camera_a8857075c6bc9e4d40075652778aa14c2}{SetLocalOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
+\item 
+void \hyperlink{classMezzanine_1_1Camera_afdc236c2c875035c8a11473350d0d17a}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Sets the location of a camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_a638201c94b28ca0acc406b11f166e751}{SetNearClipDistance} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&NearDist)
 \begin{DoxyCompactList}\small\item\em Sets the short range clip distance. \item\end{DoxyCompactList}\item 
@@ -89,10 +89,8 @@ void \hyperlink{classMezzanine_1_1Camera_a7e99427ba89306e3c7e6a0d5ccb23482}{SetO
 \begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Camera_a58279b526f2a386bfa0327a9084d24e4}{SetOrthoWindowWidth} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Width)
 \begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1Camera_a10042b496caf5783657e138c62849b2f}{ZoomCamera} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Zoom)
-\begin{DoxyCompactList}\small\item\em Will zoom in or out the camera. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Camera_ab25144933c625492a059e57401387c40}{$\sim$Camera} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classMezzanine_1_1Camera_ad49a68805d03d18d7ca42c9fbc54db2b}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)
+\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -115,7 +113,7 @@ class {\bfseries CameraManager}}
 
 \item 
 \hypertarget{classMezzanine_1_1Camera_a4ff0401fc20f1017ee96470c629dd242}{
-xml::Node \&MEZZ\_\-LIB {\bfseries operator$>$$>$} (xml::Node \&OneNode, \hyperlink{classMezzanine_1_1Camera}{Camera} \&Ev)}
+\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&MEZZ\_\-LIB {\bfseries operator$>$$>$} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1Camera}{Camera} \&Ev)}
 \label{classMezzanine_1_1Camera_a4ff0401fc20f1017ee96470c629dd242}
 
 \end{DoxyCompactItemize}
@@ -123,7 +121,7 @@ xml::Node \&MEZZ\_\-LIB {\bfseries operator$>$$>$} (xml::Node \&OneNode, \hyperl
 
 \subsubsection{Detailed Description}
 This is the camera class. This class contains all the functionality needed to manipulate an individual camera that has been created. \begin{Desc}
-\item[\hyperlink{todo__todo000003}{Todo}]Fix all the extra occurences of the word \hyperlink{classMezzanine_1_1Camera}{Camera} in Function names on the camera. \end{Desc}
+\item[\hyperlink{todo__todo000004}{Todo}]Fix all the extra occurences of the word \hyperlink{classMezzanine_1_1Camera}{Camera} in Function names on the camera. \end{Desc}
 
 
 Definition at line 102 of file camera.h.
@@ -191,7 +189,7 @@ Definition at line 61 of file camera.cpp.
 \label{classMezzanine_1_1Camera_aa20f07494ece246945eb3cb05f549f82}
 
 
-Ogre Cam Constructor. 
+\hyperlink{namespaceOgre}{Ogre} Cam Constructor. 
 
 This is for internal use only and shouldn't be called manually. 
 
@@ -217,78 +215,30 @@ Definition at line 81 of file camera.cpp.
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classMezzanine_1_1Camera_a9bbd0126f025996457c87fb8564cc38d}{
-\index{Mezzanine::Camera@{Mezzanine::Camera}!GetAttachableData@{GetAttachableData}}
-\index{GetAttachableData@{GetAttachableData}!Mezzanine::Camera@{Mezzanine::Camera}}
-\paragraph[{GetAttachableData}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AttachableData} Mezzanine::Camera::GetAttachableData (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1Camera_a9bbd0126f025996457c87fb8564cc38d}
-
-
-Gets pointers to the internal ogre structures for this attachable. 
-
-\begin{DoxyReturn}{Returns}
-Returns an \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} struct with the internal data. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}{Mezzanine::Attachable}.
-
-
-
-Definition at line 270 of file camera.cpp.
-
-\hypertarget{classMezzanine_1_1Camera_a4a8523981c43ba8f4c5358b9ce7aef37}{
-\index{Mezzanine::Camera@{Mezzanine::Camera}!GetAttachableType@{GetAttachableType}}
-\index{GetAttachableType@{GetAttachableType}!Mezzanine::Camera@{Mezzanine::Camera}}
-\paragraph[{GetAttachableType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attachable::AttachableElement} Mezzanine::Camera::GetAttachableType (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1Camera_a4a8523981c43ba8f4c5358b9ce7aef37}
-
-
-What kind of \hyperlink{classMezzanine_1_1Attachable}{Attachable} is this. 
-
-\begin{DoxyReturn}{Returns}
-An \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{Attachable::GetAttachableType} containing \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9ea6f00000af91736e964c4e9c5ef4089b0}{Attachable::Camera}. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{Mezzanine::Attachable}.
-
-
-
-Definition at line 265 of file camera.cpp.
-
-\hypertarget{classMezzanine_1_1Camera_a7dc2eeda0370fd1d942dc4467795d87b}{
+\hypertarget{classMezzanine_1_1Camera_a4fce77c8b2a0901dc1d22541b98b9437}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!GetCameraToViewportRay@{GetCameraToViewportRay}}
 \index{GetCameraToViewportRay@{GetCameraToViewportRay}!Mezzanine::Camera@{Mezzanine::Camera}}
 \paragraph[{GetCameraToViewportRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} Mezzanine::Camera::GetCameraToViewportRay (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{Screenx, }
-\item[{{\bf Real}}]{Screeny}
+\item[{const {\bf Real} \&}]{ScreenX, }
+\item[{const {\bf Real} \&}]{ScreenY}
 \end{DoxyParamCaption}
 ) const}\hfill}
-\label{classMezzanine_1_1Camera_a7dc2eeda0370fd1d942dc4467795d87b}
+\label{classMezzanine_1_1Camera_a4fce77c8b2a0901dc1d22541b98b9437}
 
 
 Gets a \hyperlink{classMezzanine_1_1Ray}{Ray} from the camera to the viewport. 
 
 This will cast a ray from the camera to the viewport and return it. 
 \begin{DoxyParams}{Parameters}
-{\em Screenx} & A Real representing the relative location on screen, on the x axis(0.0-\/1.0). \\
+{\em ScreenX} & A Real representing the relative location on screen, on the x axis(0.0-\/1.0). \\
 \hline
-{\em Screeny} & A Real representing the relative location on screen, on the y axis(0.0-\/1.0). \\
+{\em ScreenY} & A Real representing the relative location on screen, on the y axis(0.0-\/1.0). \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 216 of file camera.cpp.
+Definition at line 238 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_aef2f7b71aedee46bacc1341c02a813a2}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!GetCameraType@{GetCameraType}}
@@ -326,6 +276,10 @@ Gets the direction the camera is currently facing.
 \begin{DoxyReturn}{Returns}
 Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the current direction the camera is facing. 
 \end{DoxyReturn}
+
+
+Definition at line 167 of file camera.cpp.
+
 \hypertarget{classMezzanine_1_1Camera_af7a94974ef5ff6caff66da3a9f71b579}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!GetFixedYawAxis@{GetFixedYawAxis}}
 \index{GetFixedYawAxis@{GetFixedYawAxis}!Mezzanine::Camera@{Mezzanine::Camera}}
@@ -344,27 +298,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} of 0s if disable, other
 \end{DoxyReturn}
 
 
-Definition at line 196 of file camera.cpp.
-
-\hypertarget{classMezzanine_1_1Camera_a94b66663d7c52ec642347d5d939cf67b}{
-\index{Mezzanine::Camera@{Mezzanine::Camera}!GetGlobalLocation@{GetGlobalLocation}}
-\index{GetGlobalLocation@{GetGlobalLocation}!Mezzanine::Camera@{Mezzanine::Camera}}
-\paragraph[{GetGlobalLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Camera::GetGlobalLocation (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hfill}
-\label{classMezzanine_1_1Camera_a94b66663d7c52ec642347d5d939cf67b}
-
-
-Gets the global/absolute location of the camera. 
-
-\begin{DoxyReturn}{Returns}
-A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} containing the location of this object as an offset from the global origin. 
-\end{DoxyReturn}
-
-
-Definition at line 234 of file camera.cpp.
+Definition at line 218 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_afb87a19855c4cd5361861e1e400d5481}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!GetLocation@{GetLocation}}
@@ -384,11 +318,11 @@ A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} with the location of
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a927f25cb0f2ba3afd289586e7ab0f4e8}{Mezzanine::AttachableBase}.
 
 
 
-Definition at line 228 of file camera.cpp.
+Definition at line 144 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_abf6e3c2e642753023acd91f6d1413455}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!GetName@{GetName}}
@@ -408,7 +342,7 @@ Returns a string containing the camera's name.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a04b114eccfbf9092b84dfe24e81548b6}{Mezzanine::AttachableBase}.
 
 
 
@@ -428,11 +362,11 @@ Definition at line 87 of file camera.cpp.
 Gets the internal camera this camera is based on. 
 
 \begin{DoxyReturn}{Returns}
-Returns a pointer to the Ogre \hyperlink{classMezzanine_1_1Camera}{Camera} this camera is based on. 
+Returns a pointer to the \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Camera}{Camera} this camera is based on. 
 \end{DoxyReturn}
 
 
-Definition at line 257 of file camera.cpp.
+Definition at line 275 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_af693fe97c4f281940a33dc8087a80fcb}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!GetOrientation@{GetOrientation}}
@@ -452,31 +386,55 @@ A \hyperlink{classMezzanine_1_1Quaternion}{Mezzanine::Quaternion} representing h
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_af18f7d1f20ee332facb314291673a313}{Mezzanine::AttachableBase}.
 
 
 
-Definition at line 237 of file camera.cpp.
+Definition at line 157 of file camera.cpp.
 
-\hypertarget{classMezzanine_1_1Camera_a3262342c754eb31b4caa0693c5b60842}{
-\index{Mezzanine::Camera@{Mezzanine::Camera}!GetRelativeLocation@{GetRelativeLocation}}
-\index{GetRelativeLocation@{GetRelativeLocation}!Mezzanine::Camera@{Mezzanine::Camera}}
-\paragraph[{GetRelativeLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Camera::GetRelativeLocation (
+\hypertarget{classMezzanine_1_1Camera_a026f364d2eb9a13d216cd9d6c600db17}{
+\index{Mezzanine::Camera@{Mezzanine::Camera}!GetScaling@{GetScaling}}
+\index{GetScaling@{GetScaling}!Mezzanine::Camera@{Mezzanine::Camera}}
+\paragraph[{GetScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Camera::GetScaling (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classMezzanine_1_1Camera_a3262342c754eb31b4caa0693c5b60842}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Camera_a026f364d2eb9a13d216cd9d6c600db17}
+Gets the current scaling being applied to the \hyperlink{classMezzanine_1_1World}{World} Object. 
 
-
-Gets the relative location of the camera. 
-
-Gets the location of the camera, relative to any parent \hyperlink{classMezzanine_1_1WorldNode}{WorldNode}. \begin{DoxyReturn}{Returns}
-A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} with the location of the camera as though the Parent \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} were the origin. 
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the scaling being applied on all axes of this \hyperlink{classMezzanine_1_1World}{World} Object. 
 \end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a8e01242f06e5aabc3d53004325f1eeee}{Mezzanine::AttachableBase}.
 
 
-Definition at line 231 of file camera.cpp.
+
+Definition at line 254 of file camera.cpp.
+
+\hypertarget{classMezzanine_1_1Camera_a1c00772101a06add4b3dde9e3bc9f8aa}{
+\index{Mezzanine::Camera@{Mezzanine::Camera}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::Camera@{Mezzanine::Camera}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::Camera::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Camera_a1c00772101a06add4b3dde9e3bc9f8aa}
+Gets the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+
+\begin{DoxyReturn}{Returns}
+Returns the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a42bb7c2cab933d28dea86d2ec2934c6a}{Mezzanine::AttachableBase}.
+
+
+
+Definition at line 244 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_adfe5be54632aeedb9656c850f3f03ae5}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!IsFixedYawEnabled@{IsFixedYawEnabled}}
@@ -496,7 +454,7 @@ True if it is enable, such as the default setting, or false if it is not enabled
 \end{DoxyReturn}
 
 
-Definition at line 193 of file camera.cpp.
+Definition at line 215 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_a8343f2d2fb174937aef2894ebf8a5e29}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!LookAt@{LookAt}}
@@ -518,7 +476,7 @@ Sets the direction the camera faces. Will also take orientation into account.
 \end{DoxyParams}
 
 
-Definition at line 165 of file camera.cpp.
+Definition at line 187 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_afdc17999a097218df445370123d41239}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!Move@{Move}}
@@ -540,7 +498,7 @@ This function will move the camera along the provided vector based on world axes
 \end{DoxyParams}
 
 
-Definition at line 170 of file camera.cpp.
+Definition at line 192 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_ac8f450698006baf6e8fca2a864d59533}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!MoveRelative@{MoveRelative}}
@@ -562,24 +520,7 @@ This function will move the camera along the provided vector based on local axes
 \end{DoxyParams}
 
 
-Definition at line 175 of file camera.cpp.
-
-\hypertarget{classMezzanine_1_1Camera_ad63ed9c54ecf0940f20c5e4fbc9a1590}{
-\index{Mezzanine::Camera@{Mezzanine::Camera}!ResetZoom@{ResetZoom}}
-\index{ResetZoom@{ResetZoom}!Mezzanine::Camera@{Mezzanine::Camera}}
-\paragraph[{ResetZoom}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Camera::ResetZoom (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1Camera_ad63ed9c54ecf0940f20c5e4fbc9a1590}
-
-
-Resets the zoom level back to the default. 
-
-This function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. 
-
-Definition at line 248 of file camera.cpp.
+Definition at line 197 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_ab619a29b83487e8f86c8adb443689078}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetAspectRatio@{SetAspectRatio}}
@@ -601,17 +542,17 @@ This function will set the aspect ratio between the width and height of the came
 \end{DoxyParams}
 
 
-Definition at line 160 of file camera.cpp.
+Definition at line 182 of file camera.cpp.
 
-\hypertarget{classMezzanine_1_1Camera_a1bc33506c8df0607777b0b122fd9c9cb}{
+\hypertarget{classMezzanine_1_1Camera_a860c5efaa583795ff2f31e3670739e58}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetCameraType@{SetCameraType}}
 \index{SetCameraType@{SetCameraType}!Mezzanine::Camera@{Mezzanine::Camera}}
 \paragraph[{SetCameraType}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Camera::SetCameraType (
 \begin{DoxyParamCaption}
-\item[{const {\bf ProjectionType}}]{Type}
+\item[{const {\bf ProjectionType} \&}]{Type}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1Camera_a1bc33506c8df0607777b0b122fd9c9cb}
+\label{classMezzanine_1_1Camera_a860c5efaa583795ff2f31e3670739e58}
 
 
 Sets the type of projection to be used with this camera. 
@@ -640,12 +581,12 @@ Sets the Direction for the camera.
 
 Sets which axis the camera will look down for rendering. 
 \begin{DoxyParams}{Parameters}
-{\em Direction} & The \hyperlink{classvector3}{vector3} representing the axis to be used. \\
+{\em Direction} & The vector3 representing the axis to be used. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 140 of file camera.cpp.
+Definition at line 162 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_af24424a1670ae6b10e9a61fbaf9fd23a}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetFarClipDistance@{SetFarClipDistance}}
@@ -667,7 +608,7 @@ Sets the distance at which objects are considered too far to render.
 \end{DoxyParams}
 
 
-Definition at line 155 of file camera.cpp.
+Definition at line 177 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_a2ffb9eca37630a8d26669aab8668bce3}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetFixedYawAxis@{SetFixedYawAxis}}
@@ -692,7 +633,7 @@ This function will lock rotations around the Y axis (or another axis if you spec
 \end{DoxyParams}
 
 
-Definition at line 180 of file camera.cpp.
+Definition at line 202 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_abd19c7667593b8ea0bff576ae3a451ba}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetFixedYawAxis@{SetFixedYawAxis}}
@@ -714,7 +655,41 @@ This function will lock rotations around the Y axis. This function is automatica
 \end{DoxyParams}
 
 
-Definition at line 187 of file camera.cpp.
+Definition at line 209 of file camera.cpp.
+
+\hypertarget{classMezzanine_1_1Camera_ae62b56649606677f9922eeea658bdd2f}{
+\index{Mezzanine::Camera@{Mezzanine::Camera}!SetLocalLocation@{SetLocalLocation}}
+\index{SetLocalLocation@{SetLocalLocation}!Mezzanine::Camera@{Mezzanine::Camera}}
+\paragraph[{SetLocalLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Camera::SetLocalLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Camera_ae62b56649606677f9922eeea658bdd2f}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableChild_a527ef7ddbf4c3936214eff5af821ae63}{Mezzanine::AttachableChild}.
+
+
+
+Definition at line 259 of file camera.cpp.
+
+\hypertarget{classMezzanine_1_1Camera_a8857075c6bc9e4d40075652778aa14c2}{
+\index{Mezzanine::Camera@{Mezzanine::Camera}!SetLocalOrientation@{SetLocalOrientation}}
+\index{SetLocalOrientation@{SetLocalOrientation}!Mezzanine::Camera@{Mezzanine::Camera}}
+\paragraph[{SetLocalOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Camera::SetLocalOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Camera_a8857075c6bc9e4d40075652778aa14c2}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableChild_a3604a2450a1647ae882ef1d9dab1ec5d}{Mezzanine::AttachableChild}.
+
+
+
+Definition at line 267 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_afdc236c2c875035c8a11473350d0d17a}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetLocation@{SetLocation}}
@@ -736,7 +711,7 @@ Sets the location of the specified camera.
 \end{DoxyParams}
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_ab4f0d73a5c313874766bd038a32f1ae2}{Mezzanine::AttachableBase}.
 
 
 
@@ -762,7 +737,7 @@ Sets the distance at which objects are considered too close to render.
 \end{DoxyParams}
 
 
-Definition at line 150 of file camera.cpp.
+Definition at line 172 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_af502b9c47b1acce46e1482ce049320eb}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetOrientation@{SetOrientation}}
@@ -784,11 +759,11 @@ This function will set the orientation of the specified camera via a quaternion.
 \end{DoxyParams}
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a8c459c324efb01dc56cead8e7650f22e}{Mezzanine::AttachableBase}.
 
 
 
-Definition at line 145 of file camera.cpp.
+Definition at line 149 of file camera.cpp.
 
 \hypertarget{classMezzanine_1_1Camera_a2beffe698c8952407f94683adea2fa24}{
 \index{Mezzanine::Camera@{Mezzanine::Camera}!SetOrthoWindow@{SetOrthoWindow}}
@@ -859,27 +834,22 @@ This function will not change the aspect ratio of the screen, unlike SetOrthoWin
 
 Definition at line 131 of file camera.cpp.
 
-\hypertarget{classMezzanine_1_1Camera_a10042b496caf5783657e138c62849b2f}{
-\index{Mezzanine::Camera@{Mezzanine::Camera}!ZoomCamera@{ZoomCamera}}
-\index{ZoomCamera@{ZoomCamera}!Mezzanine::Camera@{Mezzanine::Camera}}
-\paragraph[{ZoomCamera}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Camera::ZoomCamera (
+\hypertarget{classMezzanine_1_1Camera_ad49a68805d03d18d7ca42c9fbc54db2b}{
+\index{Mezzanine::Camera@{Mezzanine::Camera}!SetScaling@{SetScaling}}
+\index{SetScaling@{SetScaling}!Mezzanine::Camera@{Mezzanine::Camera}}
+\paragraph[{SetScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Camera::SetScaling (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{Zoom}
+\item[{const {\bf Vector3} \&}]{Scale}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1Camera_a10042b496caf5783657e138c62849b2f}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Camera_ad49a68805d03d18d7ca42c9fbc54db2b}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a5201923c0685e592dee8cecabc72b508}{Mezzanine::AttachableBase}.
 
 
-Will zoom in or out the camera. 
 
-This function will zoom in the camera by the amount specified. 
-\begin{DoxyParams}{Parameters}
-{\em Zoom} & A Real of how much to zoom in by. Note: This number directly corolates to the dimentions you provide in the constructor for the \hyperlink{classMezzanine_1_1World}{World}. You should understand your games scale before setting this number. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 242 of file camera.cpp.
+Definition at line 249 of file camera.cpp.
 
 
 

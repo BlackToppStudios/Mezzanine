@@ -42,6 +42,18 @@
 
 #include "scripting.h"
 
+/// @file
+/// @brief This file has the interface for the Lua based implementation of the Scripting system.
+
+/// @page LuaManual Mezzanine::Scripting Lua Manual
+/// The file that SWIG generated was made with the following command run on an ubuntu machine from the Mezzananine/src directory:
+/// swig2.0 -c++ -v -Wall -lua -importall -includeall -o scriptbindinglua51.cpp mezzanine.h
+///
+/// Need to document "Mezzanine.", nspaces, calling conventions
+///
+/// script class compilation
+
+
 namespace Mezzanine
 {
     // must implement

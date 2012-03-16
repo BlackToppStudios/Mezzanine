@@ -14,10 +14,18 @@ This is used to represent a point on a 2 dimentional area, such as a screen.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1Vector2_a28774bd4b7bcbb09bfd20cf7c30213a2}{Vector2} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector2_a3abcc1fd9f74456cd8f8441d790d03ce}{Vector2} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} x, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} y)
+\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector2_afef55035d60801454d4b207cf3c2aeaf}{Vector2} (Ogre::Vector2 Vec)
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespaceOgre}{Ogre} Value Constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Vector2_a122b3ce34c1afea300ddcae158fca294}{ExtractOgreVector2} (Ogre::Vector2 Ours)
-\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector2. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Copies an existing \hyperlink{namespaceOgre}{Ogre} vector2. \item\end{DoxyCompactList}\item 
 Ogre::Vector2 \hyperlink{classMezzanine_1_1Vector2_a7d98428699beefd90861cd44ab125083}{GetOgreVector2} () const 
-\begin{DoxyCompactList}\small\item\em Gets a Ogre vector2. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{namespaceOgre}{Ogre} vector2. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} \& \hyperlink{classMezzanine_1_1Vector2_a145a69136ee65d32512dbb47faa3b0df}{Normalize} ()
+\begin{DoxyCompactList}\small\item\em Normalizes this \hyperlink{classMezzanine_1_1Vector2}{Vector2}. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1Vector2_a0f8d828c2bcce1bd568fe11b44d83901}{operator!=} (const Ogre::Vector2 \&Vec2)
 \begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1Vector2_ae777558f9f198bf3523e6fabb22e7b3f}{operator!=} (const \hyperlink{classMezzanine_1_1Vector2}{Mezzanine::Vector2} \&Vec2)
@@ -42,12 +50,17 @@ bool \hyperlink{classMezzanine_1_1Vector2_a790134b37da0df462c66c0013f25c681}{ope
 \begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1Vector2_a62ea76da87eee960f8bd373a6243e9a2}{operator==} (const \hyperlink{classMezzanine_1_1Vector2}{Mezzanine::Vector2} \&Vec2)
 \begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Vector2_a3abcc1fd9f74456cd8f8441d790d03ce}{Vector2} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} x, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} y)
-\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Vector2_afef55035d60801454d4b207cf3c2aeaf}{Vector2} (Ogre::Vector2 Vec)
-\begin{DoxyCompactList}\small\item\em Ogre Value Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Vector2_a28774bd4b7bcbb09bfd20cf7c30213a2}{Vector2} ()
-\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1Vector2_a89fc738d8ff02d46ca9580e9a1db33fe}{Perpendicular} () const 
+\begin{DoxyCompactList}\small\item\em Generates a \hyperlink{classMezzanine_1_1Vector2}{Vector2} that is perpendicular to this vector. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Vector2_a59e88e00f590a4cf5c59b5175aff974d}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Vector2_aa33e0db70e7a5f60077ca4b7af158545}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Vector2_aae9e37b9741b05e27752f9ca44bdf382}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -86,7 +99,7 @@ Default Constructor.
 
 Basic all zero initialization constructor. 
 
-Definition at line 53 of file vector2.cpp.
+Definition at line 54 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a3abcc1fd9f74456cd8f8441d790d03ce}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!Vector2@{Vector2}}
@@ -111,7 +124,7 @@ Constructor that sets both vectors.
 \end{DoxyParams}
 
 
-Definition at line 59 of file vector2.cpp.
+Definition at line 60 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_afef55035d60801454d4b207cf3c2aeaf}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!Vector2@{Vector2}}
@@ -124,16 +137,16 @@ Definition at line 59 of file vector2.cpp.
 \label{classMezzanine_1_1Vector2_afef55035d60801454d4b207cf3c2aeaf}
 
 
-Ogre Value Constructor. 
+\hyperlink{namespaceOgre}{Ogre} Value Constructor. 
 
-Constructor that sets all values to match the Ogre vector. 
+Constructor that sets all values to match the \hyperlink{namespaceOgre}{Ogre} vector. 
 \begin{DoxyParams}{Parameters}
 {\em Vec} & The vector to be copied to make this vector. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 65 of file vector2.cpp.
+Definition at line 66 of file vector2.cpp.
 
 
 
@@ -149,16 +162,16 @@ Definition at line 65 of file vector2.cpp.
 \label{classMezzanine_1_1Vector2_a122b3ce34c1afea300ddcae158fca294}
 
 
-Copies an existing Ogre vector2. 
+Copies an existing \hyperlink{namespaceOgre}{Ogre} vector2. 
 
-This function will copy the values stored in an existing Ogre vector2 and set the values of this class to be the same. 
+This function will copy the values stored in an existing \hyperlink{namespaceOgre}{Ogre} vector2 and set the values of this class to be the same. 
 \begin{DoxyParams}{Parameters}
 {\em Ours} & The vector2 to be extracted. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 78 of file vector2.cpp.
+Definition at line 79 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a7d98428699beefd90861cd44ab125083}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!GetOgreVector2@{GetOgreVector2}}
@@ -171,11 +184,31 @@ Definition at line 78 of file vector2.cpp.
 \label{classMezzanine_1_1Vector2_a7d98428699beefd90861cd44ab125083}
 
 
-Gets a Ogre vector2. 
+Gets a \hyperlink{namespaceOgre}{Ogre} vector2. 
 
-Creates a Ogre vector2 with values equal to this class and returns it. 
+Creates a \hyperlink{namespaceOgre}{Ogre} vector2 with values equal to this class and returns it. 
 
-Definition at line 70 of file vector2.cpp.
+Definition at line 71 of file vector2.cpp.
+
+\hypertarget{classMezzanine_1_1Vector2_a145a69136ee65d32512dbb47faa3b0df}{
+\index{Mezzanine::Vector2@{Mezzanine::Vector2}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!Mezzanine::Vector2@{Mezzanine::Vector2}}
+\paragraph[{Normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} \& Mezzanine::Vector2::Normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Vector2_a145a69136ee65d32512dbb47faa3b0df}
+
+
+Normalizes this \hyperlink{classMezzanine_1_1Vector2}{Vector2}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to this. 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_ae777558f9f198bf3523e6fabb22e7b3f}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator!=@{operator!=}}
@@ -197,7 +230,7 @@ Returns true if X!=X or Y!=Y. If any of those do not match this returns false.
 \end{DoxyParams}
 
 
-Definition at line 94 of file vector2.cpp.
+Definition at line 95 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a0f8d828c2bcce1bd568fe11b44d83901}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator!=@{operator!=}}
@@ -219,7 +252,7 @@ Returns true if X!=X or Y!=Y. If any of those do not match this returns false.
 \end{DoxyParams}
 
 
-Definition at line 108 of file vector2.cpp.
+Definition at line 109 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_aee38ccddf8fac68406b2b5ea479a8332}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator$\ast$@{operator$\ast$}}
@@ -241,7 +274,7 @@ Allows for multiplaction from a \hyperlink{classMezzanine_1_1Vector2}{Mezzanine:
 \end{DoxyParams}
 
 
-Definition at line 166 of file vector2.cpp.
+Definition at line 167 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a310d2690ca671c81dc58c571479ee004}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator$\ast$@{operator$\ast$}}
@@ -266,7 +299,7 @@ This returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} that has been scal
 \end{DoxyParams}
 
 
-Definition at line 117 of file vector2.cpp.
+Definition at line 118 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a47d00c3847a59f726ffa6a0a99a372c8}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator$\ast$=@{operator$\ast$=}}
@@ -288,7 +321,7 @@ This Multiplies X and Y by scalar and stores the changes in this \hyperlink{clas
 \end{DoxyParams}
 
 
-Definition at line 135 of file vector2.cpp.
+Definition at line 136 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a232c79761cfd97aef96999732cda0acc}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator+@{operator+}}
@@ -310,7 +343,7 @@ Allows for addition from a \hyperlink{classMezzanine_1_1Vector2}{Mezzanine::Vect
 \end{DoxyParams}
 
 
-Definition at line 150 of file vector2.cpp.
+Definition at line 151 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a8311974bf9b4f65e2a43f3cb6d2b32b0}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator-\/@{operator-\/}}
@@ -332,7 +365,7 @@ Allows for subtraction from a \hyperlink{classMezzanine_1_1Vector2}{Mezzanine::V
 \end{DoxyParams}
 
 
-Definition at line 158 of file vector2.cpp.
+Definition at line 159 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a76d2db9e91db1662612ccf122a4b55bd}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator/@{operator/}}
@@ -357,7 +390,7 @@ This returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} that has been scal
 \end{DoxyParams}
 
 
-Definition at line 125 of file vector2.cpp.
+Definition at line 126 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a2c956fc7eafffba4c0f707b240e113a8}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator/@{operator/}}
@@ -379,7 +412,7 @@ Allows for division from a \hyperlink{classMezzanine_1_1Vector2}{Mezzanine::Vect
 \end{DoxyParams}
 
 
-Definition at line 174 of file vector2.cpp.
+Definition at line 175 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_ad42b7cd3efd647cdbf4b299ab2dc39f2}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator/=@{operator/=}}
@@ -401,7 +434,7 @@ This Division X and Y by scalar and and stores the changes in this \hyperlink{cl
 \end{DoxyParams}
 
 
-Definition at line 141 of file vector2.cpp.
+Definition at line 142 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a790134b37da0df462c66c0013f25c681}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator==@{operator==}}
@@ -423,7 +456,7 @@ Returns true if X==X and Y==Y. If any of those do not match this returns false.
 \end{DoxyParams}
 
 
-Definition at line 101 of file vector2.cpp.
+Definition at line 102 of file vector2.cpp.
 
 \hypertarget{classMezzanine_1_1Vector2_a62ea76da87eee960f8bd373a6243e9a2}{
 \index{Mezzanine::Vector2@{Mezzanine::Vector2}!operator==@{operator==}}
@@ -445,7 +478,91 @@ Returns true if X==X and Y==Y. If any of those do not match this returns false.
 \end{DoxyParams}
 
 
-Definition at line 87 of file vector2.cpp.
+Definition at line 88 of file vector2.cpp.
+
+\hypertarget{classMezzanine_1_1Vector2_a89fc738d8ff02d46ca9580e9a1db33fe}{
+\index{Mezzanine::Vector2@{Mezzanine::Vector2}!Perpendicular@{Perpendicular}}
+\index{Perpendicular@{Perpendicular}!Mezzanine::Vector2@{Mezzanine::Vector2}}
+\paragraph[{Perpendicular}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::Vector2::Perpendicular (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Vector2_a89fc738d8ff02d46ca9580e9a1db33fe}
+
+
+Generates a \hyperlink{classMezzanine_1_1Vector2}{Vector2} that is perpendicular to this vector. 
+
+\begin{DoxyReturn}{Returns}
+Returns a new \hyperlink{classMezzanine_1_1Vector2}{Vector2} that is perpendicular to this. 
+\end{DoxyReturn}
+
+
+Definition at line 186 of file vector2.cpp.
+
+\hypertarget{classMezzanine_1_1Vector2_a59e88e00f590a4cf5c59b5175aff974d}{
+\index{Mezzanine::Vector2@{Mezzanine::Vector2}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::Vector2@{Mezzanine::Vector2}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Vector2::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector2_a59e88e00f590a4cf5c59b5175aff974d}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 231 of file vector2.cpp.
+
+\hypertarget{classMezzanine_1_1Vector2_aa33e0db70e7a5f60077ca4b7af158545}{
+\index{Mezzanine::Vector2@{Mezzanine::Vector2}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::Vector2@{Mezzanine::Vector2}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Vector2::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector2_aa33e0db70e7a5f60077ca4b7af158545}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 209 of file vector2.cpp.
+
+\hypertarget{classMezzanine_1_1Vector2_aae9e37b9741b05e27752f9ca44bdf382}{
+\index{Mezzanine::Vector2@{Mezzanine::Vector2}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::Vector2@{Mezzanine::Vector2}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::Vector2::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Vector2_aae9e37b9741b05e27752f9ca44bdf382}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Vector2\char`\"{} 
+\end{DoxyReturn}
+
+
+Definition at line 247 of file vector2.cpp.
 
 
 

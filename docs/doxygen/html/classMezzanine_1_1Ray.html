@@ -82,6 +82,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#ad189f8e1e9a28bb50c1da50d24e988b4">Ray</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ad189f8e1e9a28bb50c1da50d24e988b4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a9b7c14d23e934927b6c35b81c65b9916">Ray</a> (<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> From_, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> To_)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Thorough constructor.  <a href="#a9b7c14d23e934927b6c35b81c65b9916"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a60cc4b4fd34049f7cb36d8aa402f9005">Ray</a> (Ogre::Ray Ray2)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatibily constructor.  <a href="#a60cc4b4fd34049f7cb36d8aa402f9005"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a25326a57c34b359064c9161ed2eeb004">GetDirection</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the direction of this ray.  <a href="#a25326a57c34b359064c9161ed2eeb004"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Ray.html">Ray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a7164d929caf75bcebceed9149e9a3540">GetNormal</a> () const </td></tr>
@@ -100,12 +106,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns a ray scaled by the given divisor.  <a href="#a6ebf84f9c9e6d77a3155ed04be4ac71e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a4b66bd341d7f5e2bfc86cca7f2d665b9">operator/=</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;scalar)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This scales the <a class="el" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> by the given divisor.  <a href="#a4b66bd341d7f5e2bfc86cca7f2d665b9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#ad189f8e1e9a28bb50c1da50d24e988b4">Ray</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#ad189f8e1e9a28bb50c1da50d24e988b4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a9b7c14d23e934927b6c35b81c65b9916">Ray</a> (<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> From_, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> To_)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Thorough constructor.  <a href="#a9b7c14d23e934927b6c35b81c65b9916"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Ray.html#a60cc4b4fd34049f7cb36d8aa402f9005">Ray</a> (Ogre::Ray Ray2)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Compatibily constructor.  <a href="#a60cc4b4fd34049f7cb36d8aa402f9005"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4bd29b181c9a2b405ca320ccf9b5b37"></a><!-- doxytag: member="Mezzanine::Ray::From" ref="ab4bd29b181c9a2b405ca320ccf9b5b37" args="" -->
@@ -197,7 +197,7 @@ Public Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Compatibily constructor. </p>
-<p>This accepts an Ogre <a class="el" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>, (graphics subsystem) to make ray. </p>
+<p>This accepts an <a class="el" href="namespaceOgre.html">Ogre</a> <a class="el" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>, (graphics subsystem) to make ray. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">Ray2</td><td>This is the Ogre::Ray. </td></tr>
@@ -225,7 +225,7 @@ Public Attributes</h2></td></tr>
 <div class="memdoc">
 
 <p>Gets the direction of this ray. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> that is the direction from it's origin to it's destination. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 that is the direction from it's origin to it's destination. </dd></dl>
 
 <p>Definition at line <a class="el" href="ray_8cpp_source.html#l00097">97</a> of file <a class="el" href="ray_8cpp_source.html">ray.cpp</a>.</p>
 
@@ -249,7 +249,7 @@ Public Attributes</h2></td></tr>
 <p>This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a ray that is a normalized copy of this array. </dd></dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="ray_8cpp_source.html#l00104">104</a> of file <a class="el" href="ray_8cpp_source.html">ray.cpp</a>.</p>
@@ -445,7 +445,7 @@ Public Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -455,6 +455,6 @@ Public Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

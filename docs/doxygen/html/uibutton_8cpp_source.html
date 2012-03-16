@@ -112,410 +112,265 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00048"></a>00048 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
 <a name="l00049"></a>00049 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
 <a name="l00050"></a>00050 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="keyword">namespace </span>Mezzanine
-<a name="l00054"></a>00054 {
-<a name="l00055"></a>00055     <span class="keyword">namespace </span>UI
-<a name="l00056"></a>00056     {
-<a name="l00057"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a910cce5a558e9f41ede146e9675b757f">00057</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a910cce5a558e9f41ede146e9675b757f" title="Internal constructor.">Button::Button</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00058"></a>00058             : <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a>(name,PLayer),
-<a name="l00059"></a>00059               NormalSprite(NULL),
-<a name="l00060"></a>00060               HoveredSprite(NULL),
-<a name="l00061"></a>00061               UserSprite(NULL),
-<a name="l00062"></a>00062               Callback(NULL),
-<a name="l00063"></a>00063               MouseHover(false),
-<a name="l00064"></a>00064               Activated(false),
-<a name="l00065"></a>00065               MultipleActivations(false),
-<a name="l00066"></a>00066               ActCond(UI::AC_OnLift)
-<a name="l00067"></a>00067         {
-<a name="l00068"></a>00068             <span class="keywordflow">if</span>(Rect.Relative)
-<a name="l00069"></a>00069             {
-<a name="l00070"></a>00070                 RelPosition = Rect.Position;
-<a name="l00071"></a>00071                 RelSize = Rect.Size;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073                 <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00074"></a>00074                 GorillaRectangle = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
-<a name="l00075"></a>00075             }<span class="keywordflow">else</span>{
-<a name="l00076"></a>00076                 RelPosition = Rect.Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00077"></a>00077                 RelSize = Rect.Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079                 GorillaRectangle = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createRectangle(Rect.Position.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>(),Rect.Size.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>());
-<a name="l00080"></a>00080             }
-<a name="l00081"></a>00081             GorillaRectangle-&gt;SetNameFile(Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">GetPrimaryAtlas</a>());
-<a name="l00082"></a>00082         }
-<a name="l00083"></a>00083 
-<a name="l00084"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8c84044c337735482919fcc82085cf46">00084</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8c84044c337735482919fcc82085cf46" title="Class destructor.">Button::~Button</a>()
-<a name="l00085"></a>00085         {
-<a name="l00086"></a>00086             Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyRectangle(GorillaRectangle);
-<a name="l00087"></a>00087             <span class="keywordflow">if</span>(Callback)
-<a name="l00088"></a>00088                 <span class="keyword">delete</span> Callback;
-<a name="l00089"></a>00089         }
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091         <span class="keywordtype">void</span> Button::SetHovered(<span class="keywordtype">bool</span> Hovered)
-<a name="l00092"></a>00092         {
-<a name="l00093"></a>00093             <span class="keywordflow">if</span>(Hovered &amp;&amp; Callback)
-<a name="l00094"></a>00094                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a03454a17a979a86a72a0c3afae69737f" title="The hover function for this callback. This will be called every time the button is hovered over by th...">DoHoverItems</a>();
-<a name="l00095"></a>00095             <span class="keywordflow">if</span>(HoveredSprite)
-<a name="l00096"></a>00096             {
-<a name="l00097"></a>00097                 <span class="keywordflow">if</span>(Hovered &amp;&amp; !MouseHover)
-<a name="l00098"></a>00098                     GorillaRectangle-&gt;background_image(HoveredSprite);
-<a name="l00099"></a>00099                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!Hovered &amp;&amp; MouseHover)
-<a name="l00100"></a>00100                     GorillaRectangle-&gt;background_image(NormalSprite);
-<a name="l00101"></a>00101             }
-<a name="l00102"></a>00102             MouseHover = Hovered;
-<a name="l00103"></a>00103         }
-<a name="l00104"></a>00104 
-<a name="l00105"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a12840e06233a6feb88f61d88a0ce7e60">00105</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a12840e06233a6feb88f61d88a0ce7e60" title="Sets the visibility of this button.">Button::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
-<a name="l00106"></a>00106         {
-<a name="l00107"></a>00107             GorillaRectangle-&gt;SetVisible(Visible);
-<a name="l00108"></a>00108         }
-<a name="l00109"></a>00109 
-<a name="l00110"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8d8afe5870bcf5bf1de02ece187ab238">00110</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8d8afe5870bcf5bf1de02ece187ab238" title="Gets the visibility of this button.">Button::IsVisible</a>()<span class="keyword"> const</span>
-<a name="l00111"></a>00111 <span class="keyword">        </span>{
-<a name="l00112"></a>00112             <span class="keywordflow">return</span> GorillaRectangle-&gt;IsVisible() &amp;&amp; Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8a9222e729f47a4cfec32325a03cf7f3" title="Gets the layers&amp;#39; visability.">IsVisible</a>() &amp;&amp; Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae" title="Gets the screens visability.">IsVisible</a>();
-<a name="l00113"></a>00113         }
-<a name="l00114"></a>00114 
-<a name="l00115"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a88d9f87d335041d612f6c35ff5ba2f65">00115</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a88d9f87d335041d612f6c35ff5ba2f65" title="Forces this button to be shown.">Button::Show</a>()
-<a name="l00116"></a>00116         {
-<a name="l00117"></a>00117             GorillaRectangle-&gt;Show();
-<a name="l00118"></a>00118         }
-<a name="l00119"></a>00119 
-<a name="l00120"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae4d892127653d709b6cff9207f473c9e">00120</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae4d892127653d709b6cff9207f473c9e" title="Forces this button to hide.">Button::Hide</a>()
-<a name="l00121"></a>00121         {
-<a name="l00122"></a>00122             GorillaRectangle-&gt;Hide();
-<a name="l00123"></a>00123         }
-<a name="l00124"></a>00124 
-<a name="l00125"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a37a43c703a3f7bc8a59c8940ba53afe1">00125</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a37a43c703a3f7bc8a59c8940ba53afe1" title="Gets whether this is a text button.">Button::IsTextButton</a>()
-<a name="l00126"></a>00126         {
-<a name="l00127"></a>00127             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00128"></a>00128         }
-<a name="l00129"></a>00129 
-<a name="l00130"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a0eda9fd6641f9ca52fd5e8e1c3767970">00130</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a0eda9fd6641f9ca52fd5e8e1c3767970" title="Sets the callback for this button. See the ButtonCallback class for more info.">Button::SetButtonCallback</a>(<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html" title="This class provides customizable functionality to the button class.">ButtonCallback</a>* CB)
-<a name="l00131"></a>00131         {
-<a name="l00132"></a>00132             <span class="keywordflow">if</span>(Callback != CB &amp;&amp; Callback)
-<a name="l00133"></a>00133                 <span class="keyword">delete</span> Callback;
-<a name="l00134"></a>00134             CB-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349" title="Sets the button this callback belongs to.">SetCaller</a>(<span class="keyword">this</span>);
-<a name="l00135"></a>00135             Callback = CB;
-<a name="l00136"></a>00136         }
-<a name="l00137"></a>00137 
-<a name="l00138"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd">00138</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd" title="Registers a keyboard key or mouse button that can activate this button.">Button::BindActivationKeyOrButton</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
-<a name="l00139"></a>00139         {
-<a name="l00140"></a>00140             <span class="keywordflow">if</span>(MetaCode::KEY_FIRST &lt; Code &amp;&amp; MetaCode::KEY_LAST &gt; Code)
-<a name="l00141"></a>00141             {
-<a name="l00142"></a>00142                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
-<a name="l00143"></a>00143                 {
-<a name="l00144"></a>00144                     <span class="keywordflow">if</span>((*It)==Code)
-<a name="l00145"></a>00145                         <span class="keywordflow">return</span>;
-<a name="l00146"></a>00146                 }
-<a name="l00147"></a>00147                 KeyboardActivationKeys.push_back(Code);
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149             }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(MetaCode::MOUSE_FIRST &lt; Code &amp;&amp; MetaCode::MOUSE_LAST &gt; Code)
-<a name="l00150"></a>00150             {
-<a name="l00151"></a>00151                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
-<a name="l00152"></a>00152                 {
-<a name="l00153"></a>00153                     <span class="keywordflow">if</span>((*It)==Code)
-<a name="l00154"></a>00154                         <span class="keywordflow">return</span>;
-<a name="l00155"></a>00155                 }
-<a name="l00156"></a>00156                 MouseActivationButtons.push_back(Code);
-<a name="l00157"></a>00157             }<span class="keywordflow">else</span>{<span class="comment"></span>
-<a name="l00158"></a>00158 <span class="comment">                /// @todo Throw an error?</span>
-<a name="l00159"></a>00159 <span class="comment"></span>            }
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="keyword">namespace </span>Mezzanine
+<a name="l00053"></a>00053 {
+<a name="l00054"></a>00054     <span class="keyword">namespace </span>UI
+<a name="l00055"></a>00055     {
+<a name="l00056"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a910cce5a558e9f41ede146e9675b757f">00056</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a910cce5a558e9f41ede146e9675b757f" title="Internal constructor.">Button::Button</a>(<a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="structMezzanine_1_1UI_1_1RenderableRect.html" title="This class contains all the utilities necessary for capturing input.">RenderableRect</a>&amp; Rect, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00057"></a>00057             : <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>(name,Rect,PLayer),
+<a name="l00058"></a>00058               NormalSprite(NULL),
+<a name="l00059"></a>00059               HoveredSprite(NULL),
+<a name="l00060"></a>00060               UserSprite(NULL),
+<a name="l00061"></a>00061               Callback(NULL),
+<a name="l00062"></a>00062               Activated(false),
+<a name="l00063"></a>00063               UserSpriteEnabled(false),
+<a name="l00064"></a>00064               MultipleActivations(false),
+<a name="l00065"></a>00065               ActCond(UI::AC_OnLift)
+<a name="l00066"></a>00066         {
+<a name="l00067"></a>00067         }
+<a name="l00068"></a>00068 
+<a name="l00069"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8c84044c337735482919fcc82085cf46">00069</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8c84044c337735482919fcc82085cf46" title="Class destructor.">Button::~Button</a>()
+<a name="l00070"></a>00070         {
+<a name="l00071"></a>00071             <span class="keywordflow">if</span>(Callback)
+<a name="l00072"></a>00072                 <span class="keyword">delete</span> Callback;
+<a name="l00073"></a>00073         }
+<a name="l00074"></a>00074 
+<a name="l00075"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#acd58ff783face0390389e840879fb8fb">00075</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#acd58ff783face0390389e840879fb8fb" title="Sets the hovered state of this renderable.">Button::SetHovered</a>(<span class="keywordtype">bool</span> Hovered)
+<a name="l00076"></a>00076         {
+<a name="l00077"></a>00077             <span class="keywordflow">if</span>(Hovered == MouseHover)
+<a name="l00078"></a>00078                 <span class="keywordflow">return</span>;
+<a name="l00079"></a>00079             <span class="keywordflow">if</span>(Hovered &amp;&amp; Callback)
+<a name="l00080"></a>00080                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a03454a17a979a86a72a0c3afae69737f" title="The hover function for this callback. This will be called every time the button is hovered over by th...">DoHoverItems</a>();
+<a name="l00081"></a>00081             <span class="keywordflow">if</span>(HoveredSprite)
+<a name="l00082"></a>00082             {
+<a name="l00083"></a>00083                 <span class="keywordflow">if</span>(Hovered &amp;&amp; !MouseHover)
+<a name="l00084"></a>00084                     <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(HoveredSprite);
+<a name="l00085"></a>00085                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!Hovered &amp;&amp; MouseHover)
+<a name="l00086"></a>00086                 {
+<a name="l00087"></a>00087                     <span class="keywordflow">if</span>(UserSpriteEnabled) <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(UserSprite);
+<a name="l00088"></a>00088                     <span class="keywordflow">else</span> <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(NormalSprite);
+<a name="l00089"></a>00089                 }
+<a name="l00090"></a>00090             }
+<a name="l00091"></a>00091             MouseHover = Hovered;
+<a name="l00092"></a>00092         }
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a37a43c703a3f7bc8a59c8940ba53afe1">00094</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a37a43c703a3f7bc8a59c8940ba53afe1" title="Gets whether this is a text button.">Button::IsTextButton</a>()
+<a name="l00095"></a>00095         {
+<a name="l00096"></a>00096             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a0eda9fd6641f9ca52fd5e8e1c3767970">00099</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a0eda9fd6641f9ca52fd5e8e1c3767970" title="Sets the callback for this button. See the ButtonCallback class for more info.">Button::SetButtonCallback</a>(<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html" title="This class provides customizable functionality to the button class.">ButtonCallback</a>* CB)
+<a name="l00100"></a>00100         {
+<a name="l00101"></a>00101             <span class="keywordflow">if</span>(Callback != CB &amp;&amp; Callback)
+<a name="l00102"></a>00102                 <span class="keyword">delete</span> Callback;
+<a name="l00103"></a>00103             CB-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349" title="Sets the button this callback belongs to.">SetCaller</a>(<span class="keyword">this</span>);
+<a name="l00104"></a>00104             Callback = CB;
+<a name="l00105"></a>00105         }
+<a name="l00106"></a>00106 
+<a name="l00107"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd">00107</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd" title="Registers a keyboard key or mouse button that can activate this button.">Button::BindActivationKeyOrButton</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
+<a name="l00108"></a>00108         {
+<a name="l00109"></a>00109             <span class="keywordflow">if</span>(MetaCode::KEY_FIRST &lt; Code &amp;&amp; MetaCode::KEY_LAST &gt; Code)
+<a name="l00110"></a>00110             {
+<a name="l00111"></a>00111                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
+<a name="l00112"></a>00112                 {
+<a name="l00113"></a>00113                     <span class="keywordflow">if</span>((*It)==Code)
+<a name="l00114"></a>00114                         <span class="keywordflow">return</span>;
+<a name="l00115"></a>00115                 }
+<a name="l00116"></a>00116                 KeyboardActivationKeys.push_back(Code);
+<a name="l00117"></a>00117 
+<a name="l00118"></a>00118             }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(MetaCode::MOUSE_FIRST &lt; Code &amp;&amp; MetaCode::MOUSE_LAST &gt; Code)
+<a name="l00119"></a>00119             {
+<a name="l00120"></a>00120                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
+<a name="l00121"></a>00121                 {
+<a name="l00122"></a>00122                     <span class="keywordflow">if</span>((*It)==Code)
+<a name="l00123"></a>00123                         <span class="keywordflow">return</span>;
+<a name="l00124"></a>00124                 }
+<a name="l00125"></a>00125                 MouseActivationButtons.push_back(Code);
+<a name="l00126"></a>00126             }<span class="keywordflow">else</span>{<span class="comment"></span>
+<a name="l00127"></a>00127 <span class="comment">                /// @todo Throw an error?</span>
+<a name="l00128"></a>00128 <span class="comment"></span>            }
+<a name="l00129"></a>00129         }
+<a name="l00130"></a>00130 
+<a name="l00131"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ac4253cbf25d298280579fd2fe122b3e2">00131</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ac4253cbf25d298280579fd2fe122b3e2" title="Removes a previously registered activation key or button.">Button::UnbindActivationKeyOrButton</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
+<a name="l00132"></a>00132         {
+<a name="l00133"></a>00133             <span class="keywordflow">if</span>(MetaCode::KEY_FIRST &lt; Code &amp;&amp; MetaCode::KEY_LAST &gt; Code)
+<a name="l00134"></a>00134             {
+<a name="l00135"></a>00135                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
+<a name="l00136"></a>00136                 {
+<a name="l00137"></a>00137                     <span class="keywordflow">if</span>((*It)==Code)
+<a name="l00138"></a>00138                     {
+<a name="l00139"></a>00139                         KeyboardActivationKeys.erase(It);
+<a name="l00140"></a>00140                         <span class="keywordflow">return</span>;
+<a name="l00141"></a>00141                     }
+<a name="l00142"></a>00142                 }
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144             }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(MetaCode::MOUSE_FIRST &lt; Code &amp;&amp; MetaCode::MOUSE_LAST &gt; Code)
+<a name="l00145"></a>00145             {
+<a name="l00146"></a>00146                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
+<a name="l00147"></a>00147                 {
+<a name="l00148"></a>00148                     <span class="keywordflow">if</span>((*It)==Code)
+<a name="l00149"></a>00149                     {
+<a name="l00150"></a>00150                         MouseActivationButtons.erase(It);
+<a name="l00151"></a>00151                         <span class="keywordflow">return</span>;
+<a name="l00152"></a>00152                     }
+<a name="l00153"></a>00153                 }
+<a name="l00154"></a>00154             }
+<a name="l00155"></a>00155         }
+<a name="l00156"></a>00156 
+<a name="l00157"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a30c1a1380667e42677b799cfa58c96ee">00157</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a30c1a1380667e42677b799cfa58c96ee" title="Clears all keyboard input codes from the list of activation keys.">Button::UnbindAllKeyboardActivationKeys</a>()
+<a name="l00158"></a>00158         {
+<a name="l00159"></a>00159             KeyboardActivationKeys.clear();
 <a name="l00160"></a>00160         }
 <a name="l00161"></a>00161 
-<a name="l00162"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ac4253cbf25d298280579fd2fe122b3e2">00162</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ac4253cbf25d298280579fd2fe122b3e2" title="Removes a previously registered activation key or button.">Button::UnbindActivationKeyOrButton</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>&amp; Code)
+<a name="l00162"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7">00162</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7" title="Clears all mouse input codes from the list of activation buttons.">Button::UnbindAllMouseActivationButtons</a>()
 <a name="l00163"></a>00163         {
-<a name="l00164"></a>00164             <span class="keywordflow">if</span>(MetaCode::KEY_FIRST &lt; Code &amp;&amp; MetaCode::KEY_LAST &gt; Code)
-<a name="l00165"></a>00165             {
-<a name="l00166"></a>00166                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
-<a name="l00167"></a>00167                 {
-<a name="l00168"></a>00168                     <span class="keywordflow">if</span>((*It)==Code)
-<a name="l00169"></a>00169                     {
-<a name="l00170"></a>00170                         KeyboardActivationKeys.erase(It);
-<a name="l00171"></a>00171                         <span class="keywordflow">return</span>;
-<a name="l00172"></a>00172                     }
-<a name="l00173"></a>00173                 }
-<a name="l00174"></a>00174 
-<a name="l00175"></a>00175             }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(MetaCode::MOUSE_FIRST &lt; Code &amp;&amp; MetaCode::MOUSE_LAST &gt; Code)
-<a name="l00176"></a>00176             {
-<a name="l00177"></a>00177                 <span class="keywordflow">for</span>( std::vector&lt;MetaCode::InputCode&gt;::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
-<a name="l00178"></a>00178                 {
-<a name="l00179"></a>00179                     <span class="keywordflow">if</span>((*It)==Code)
-<a name="l00180"></a>00180                     {
-<a name="l00181"></a>00181                         MouseActivationButtons.erase(It);
-<a name="l00182"></a>00182                         <span class="keywordflow">return</span>;
-<a name="l00183"></a>00183                     }
-<a name="l00184"></a>00184                 }
-<a name="l00185"></a>00185             }
-<a name="l00186"></a>00186         }
-<a name="l00187"></a>00187 
-<a name="l00188"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a30c1a1380667e42677b799cfa58c96ee">00188</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a30c1a1380667e42677b799cfa58c96ee" title="Clears all keyboard input codes from the list of activation keys.">Button::UnbindAllKeyboardActivationKeys</a>()
-<a name="l00189"></a>00189         {
-<a name="l00190"></a>00190             KeyboardActivationKeys.clear();
-<a name="l00191"></a>00191         }
-<a name="l00192"></a>00192 
-<a name="l00193"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7">00193</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7" title="Clears all mouse input codes from the list of activation buttons.">Button::UnbindAllMouseActivationButtons</a>()
-<a name="l00194"></a>00194         {
-<a name="l00195"></a>00195             MouseActivationButtons.clear();
-<a name="l00196"></a>00196         }
-<a name="l00197"></a>00197 
-<a name="l00198"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae36443efdf271672157ae25a824d5cc5">00198</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae36443efdf271672157ae25a824d5cc5" title="Clears all keyboard and mouse input codes from the list of activators.">Button::UnbindAllActivationKeysAndButtons</a>()
-<a name="l00199"></a>00199         {
-<a name="l00200"></a>00200             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a30c1a1380667e42677b799cfa58c96ee" title="Clears all keyboard input codes from the list of activation keys.">UnbindAllKeyboardActivationKeys</a>();
-<a name="l00201"></a>00201             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7" title="Clears all mouse input codes from the list of activation buttons.">UnbindAllMouseActivationButtons</a>();
-<a name="l00202"></a>00202         }
-<a name="l00203"></a>00203 
-<a name="l00204"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6c99108a01d71c521318640f52d2ee11">00204</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6c99108a01d71c521318640f52d2ee11" title="Sets the condition for activation for this button.">Button::SetActivationCondition</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0" title="Used primarily by UI buttons to decide how/when a button is activated.">UI::ActivationCondition</a>&amp; Condition)
-<a name="l00205"></a>00205         {
-<a name="l00206"></a>00206             ActCond = Condition;
-<a name="l00207"></a>00207         }
-<a name="l00208"></a>00208 
-<a name="l00209"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a09b751800679937e1b1e79b33c164397">00209</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0" title="Used primarily by UI buttons to decide how/when a button is activated.">UI::ActivationCondition</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a09b751800679937e1b1e79b33c164397" title="Gets the condition for activation for this button.">Button::GetActivationCondition</a>()
-<a name="l00210"></a>00210         {
-<a name="l00211"></a>00211             <span class="keywordflow">return</span> ActCond;
-<a name="l00212"></a>00212         }
-<a name="l00213"></a>00213 
-<a name="l00214"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a89d0a1d2b0023be59e864b3c125f0dea">00214</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a89d0a1d2b0023be59e864b3c125f0dea" title="Sets the button as activated, also calling any set callbacks.">Button::SetActivation</a>(<span class="keywordtype">bool</span> Activate)
-<a name="l00215"></a>00215         {
-<a name="l00216"></a>00216             <span class="keywordflow">if</span>(Activate &amp;&amp; Activated &amp;&amp; !MultipleActivations)
-<a name="l00217"></a>00217                 <span class="keywordflow">return</span>;
-<a name="l00218"></a>00218             <span class="keywordflow">if</span>(Activate &amp;&amp; Callback)
-<a name="l00219"></a>00219                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a4e5b608adea7aa2b8589f2b1644ef698" title="The activation function for this callback. This will be called every time the button is activated by ...">DoActivateItems</a>();
-<a name="l00220"></a>00220             Activated = Activate;
-<a name="l00221"></a>00221         }
-<a name="l00222"></a>00222 
-<a name="l00223"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a1b64587eec4d23911c488edf40c7a0c7">00223</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a1b64587eec4d23911c488edf40c7a0c7" title="Gets whether or not this button is currently activated.">Button::IsActivated</a>()
-<a name="l00224"></a>00224         {
-<a name="l00225"></a>00225             <span class="keywordflow">return</span> Activated;
-<a name="l00226"></a>00226         }
-<a name="l00227"></a>00227 
-<a name="l00228"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab68c4ae03c41abb6d25179962f4e4f60">00228</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab68c4ae03c41abb6d25179962f4e4f60" title="Enables or disables whether or not the button should be allowed to activate multiple times per frame...">Button::EnableMultipleActivations</a>(<span class="keywordtype">bool</span> Enable)
-<a name="l00229"></a>00229         {
-<a name="l00230"></a>00230             MultipleActivations = Enable;
-<a name="l00231"></a>00231         }
-<a name="l00232"></a>00232 
-<a name="l00233"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a4aff4ca86ab252ef8796a9cba203041e">00233</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a4aff4ca86ab252ef8796a9cba203041e" title="Gets whether or not multiple activations per frame are enabled for this button.">Button::IsMultipleActivationsEnabled</a>()
-<a name="l00234"></a>00234         {
-<a name="l00235"></a>00235             <span class="keywordflow">return</span> MultipleActivations;
-<a name="l00236"></a>00236         }
-<a name="l00237"></a>00237 
-<a name="l00238"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae35f5b685df6bb09626f3f53b41416bd">00238</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae35f5b685df6bb09626f3f53b41416bd" title="Determines whether the mouse is over this button.">Button::CheckMouseHover</a>()
-<a name="l00239"></a>00239         {
-<a name="l00240"></a>00240             <span class="keywordflow">if</span>(!<a class="code" href="classMezzanine_1_1UI_1_1Button.html#a8d8afe5870bcf5bf1de02ece187ab238" title="Gets the visibility of this button.">IsVisible</a>())
-<a name="l00241"></a>00241                 <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00242"></a>00242             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> MouseLoc = <a class="code" href="classMezzanine_1_1InputQueryTool.html#a89407a5b1e3c727809581d367a25cdaf" title="This gets a vector2 containing both X and Y coordinates of the mouse.">InputQueryTool::GetMouseCoordinates</a>();
-<a name="l00243"></a>00243             <span class="keywordtype">bool</span> Hovered = GorillaRectangle-&gt;intersects(MouseLoc.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>());
-<a name="l00244"></a>00244             <span class="keywordflow">if</span>(Hovered != MouseHover)
-<a name="l00245"></a>00245                 SetHovered(Hovered);
-<a name="l00246"></a>00246             <span class="keywordflow">return</span> MouseHover;
-<a name="l00247"></a>00247         }
-<a name="l00248"></a>00248 
-<a name="l00249"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a18e33bd98a247c8fce95a504bd52e767">00249</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a18e33bd98a247c8fce95a504bd52e767" title="Gets the stored value of whether or not the mouse is over the button.">Button::GetMouseHover</a>()
-<a name="l00250"></a>00250         {
-<a name="l00251"></a>00251             <span class="keywordflow">return</span> MouseHover;
-<a name="l00252"></a>00252         }
-<a name="l00253"></a>00253 
-<a name="l00254"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a4cd47608dc2074f400d04812bf439f6f">00254</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a4cd47608dc2074f400d04812bf439f6f" title="Sets the background colour of the button.">Button::SetBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
-<a name="l00255"></a>00255         {
-<a name="l00256"></a>00256             GorillaRectangle-&gt;background_colour(Colour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
-<a name="l00257"></a>00257         }
-<a name="l00258"></a>00258 
-<a name="l00259"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#af34e8bd2454368345da7b23dc17f077c">00259</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af34e8bd2454368345da7b23dc17f077c" title="Sets the background image(if provided in the atlas) of the button.">Button::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00260"></a>00260         {
-<a name="l00261"></a>00261             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,*GorillaRectangle-&gt;GetNameFile());
-<a name="l00262"></a>00262             NormalSprite = GSprite;
-<a name="l00263"></a>00263             GorillaRectangle-&gt;background_image(GSprite);
-<a name="l00264"></a>00264         }
-<a name="l00265"></a>00265 
-<a name="l00266"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a27dcfac26f2ace96dcb0e43ce13ed68c">00266</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af34e8bd2454368345da7b23dc17f077c" title="Sets the background image(if provided in the atlas) of the button.">Button::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00267"></a>00267         {
-<a name="l00268"></a>00268             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,Atlas);
-<a name="l00269"></a>00269             NormalSprite = GSprite;
-<a name="l00270"></a>00270             GorillaRectangle-&gt;background_image(GSprite);
-<a name="l00271"></a>00271         }
-<a name="l00272"></a>00272 
-<a name="l00273"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad23caa85fbf5ae1c3fc9b5d0873d455b">00273</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad23caa85fbf5ae1c3fc9b5d0873d455b" title="Sets an alternate background image that will be applied when the mouse is over this button...">Button::SetHoveredSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00274"></a>00274         {
-<a name="l00275"></a>00275             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,*GorillaRectangle-&gt;GetNameFile());
-<a name="l00276"></a>00276             HoveredSprite = GSprite;
-<a name="l00277"></a>00277             <span class="keywordflow">if</span>(MouseHover)
-<a name="l00278"></a>00278                 GorillaRectangle-&gt;background_image(HoveredSprite);
-<a name="l00279"></a>00279         }
-<a name="l00280"></a>00280 
-<a name="l00281"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae47110a04c883f83a30e7bc060a35692">00281</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad23caa85fbf5ae1c3fc9b5d0873d455b" title="Sets an alternate background image that will be applied when the mouse is over this button...">Button::SetHoveredSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00282"></a>00282         {
-<a name="l00283"></a>00283             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,Atlas);
-<a name="l00284"></a>00284             HoveredSprite = GSprite;
-<a name="l00285"></a>00285         }
-<a name="l00286"></a>00286 
-<a name="l00287"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a7e6246ca07c0c659a3aec7babd49219f">00287</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a7e6246ca07c0c659a3aec7babd49219f" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite...">Button::SetUserSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00288"></a>00288         {
-<a name="l00289"></a>00289             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,*GorillaRectangle-&gt;GetNameFile());
-<a name="l00290"></a>00290             UserSprite = GSprite;
+<a name="l00164"></a>00164             MouseActivationButtons.clear();
+<a name="l00165"></a>00165         }
+<a name="l00166"></a>00166 
+<a name="l00167"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae36443efdf271672157ae25a824d5cc5">00167</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ae36443efdf271672157ae25a824d5cc5" title="Clears all keyboard and mouse input codes from the list of activators.">Button::UnbindAllActivationKeysAndButtons</a>()
+<a name="l00168"></a>00168         {
+<a name="l00169"></a>00169             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a30c1a1380667e42677b799cfa58c96ee" title="Clears all keyboard input codes from the list of activation keys.">UnbindAllKeyboardActivationKeys</a>();
+<a name="l00170"></a>00170             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7" title="Clears all mouse input codes from the list of activation buttons.">UnbindAllMouseActivationButtons</a>();
+<a name="l00171"></a>00171         }
+<a name="l00172"></a>00172 
+<a name="l00173"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6c99108a01d71c521318640f52d2ee11">00173</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6c99108a01d71c521318640f52d2ee11" title="Sets the condition for activation for this button.">Button::SetActivationCondition</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0" title="Used primarily by UI buttons to decide how/when a button is activated.">UI::ActivationCondition</a>&amp; Condition)
+<a name="l00174"></a>00174         {
+<a name="l00175"></a>00175             ActCond = Condition;
+<a name="l00176"></a>00176         }
+<a name="l00177"></a>00177 
+<a name="l00178"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a09b751800679937e1b1e79b33c164397">00178</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0" title="Used primarily by UI buttons to decide how/when a button is activated.">UI::ActivationCondition</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a09b751800679937e1b1e79b33c164397" title="Gets the condition for activation for this button.">Button::GetActivationCondition</a>()
+<a name="l00179"></a>00179         {
+<a name="l00180"></a>00180             <span class="keywordflow">return</span> ActCond;
+<a name="l00181"></a>00181         }
+<a name="l00182"></a>00182 
+<a name="l00183"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a89d0a1d2b0023be59e864b3c125f0dea">00183</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a89d0a1d2b0023be59e864b3c125f0dea" title="Sets the button as activated, also calling any set callbacks.">Button::SetActivation</a>(<span class="keywordtype">bool</span> Activate)
+<a name="l00184"></a>00184         {
+<a name="l00185"></a>00185             <span class="keywordflow">if</span>(Activate &amp;&amp; Activated &amp;&amp; !MultipleActivations)
+<a name="l00186"></a>00186                 <span class="keywordflow">return</span>;
+<a name="l00187"></a>00187             <span class="keywordflow">if</span>(Activate &amp;&amp; Callback)
+<a name="l00188"></a>00188                 Callback-&gt;<a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a4e5b608adea7aa2b8589f2b1644ef698" title="The activation function for this callback. This will be called every time the button is activated by ...">DoActivateItems</a>();
+<a name="l00189"></a>00189             Activated = Activate;
+<a name="l00190"></a>00190         }
+<a name="l00191"></a>00191 
+<a name="l00192"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a1b64587eec4d23911c488edf40c7a0c7">00192</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a1b64587eec4d23911c488edf40c7a0c7" title="Gets whether or not this button is currently activated.">Button::IsActivated</a>()
+<a name="l00193"></a>00193         {
+<a name="l00194"></a>00194             <span class="keywordflow">return</span> Activated;
+<a name="l00195"></a>00195         }
+<a name="l00196"></a>00196 
+<a name="l00197"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab68c4ae03c41abb6d25179962f4e4f60">00197</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab68c4ae03c41abb6d25179962f4e4f60" title="Enables or disables whether or not the button should be allowed to activate multiple times per frame...">Button::EnableMultipleActivations</a>(<span class="keywordtype">bool</span> Enable)
+<a name="l00198"></a>00198         {
+<a name="l00199"></a>00199             MultipleActivations = Enable;
+<a name="l00200"></a>00200         }
+<a name="l00201"></a>00201 
+<a name="l00202"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a4aff4ca86ab252ef8796a9cba203041e">00202</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a4aff4ca86ab252ef8796a9cba203041e" title="Gets whether or not multiple activations per frame are enabled for this button.">Button::IsMultipleActivationsEnabled</a>()
+<a name="l00203"></a>00203         {
+<a name="l00204"></a>00204             <span class="keywordflow">return</span> MultipleActivations;
+<a name="l00205"></a>00205         }
+<a name="l00206"></a>00206 
+<a name="l00207"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728">00207</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728" title="Sets the background image(if provided in the atlas) of the renderable.">Button::SetBackgroundSprite</a>(<a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite)
+<a name="l00208"></a>00208         {
+<a name="l00209"></a>00209             NormalSprite = PSprite;
+<a name="l00210"></a>00210             <span class="keywordflow">if</span>(!MouseHover &amp;&amp; !UserSpriteEnabled)
+<a name="l00211"></a>00211             {
+<a name="l00212"></a>00212                 <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(PSprite);
+<a name="l00213"></a>00213             }
+<a name="l00214"></a>00214         }
+<a name="l00215"></a>00215 
+<a name="l00216"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a92731109f8888d1e82e27185d4c9d559">00216</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728" title="Sets the background image(if provided in the atlas) of the renderable.">Button::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SpriteName)
+<a name="l00217"></a>00217         {
+<a name="l00218"></a>00218             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728" title="Sets the background image(if provided in the atlas) of the renderable.">Rectangle::SetBackgroundSprite</a>(SpriteName);
+<a name="l00219"></a>00219         }
+<a name="l00220"></a>00220 
+<a name="l00221"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#acd2b68924ad5f790afde9a32f83ca206">00221</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728" title="Sets the background image(if provided in the atlas) of the renderable.">Button::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SpriteName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00222"></a>00222         {
+<a name="l00223"></a>00223             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728" title="Sets the background image(if provided in the atlas) of the renderable.">Rectangle::SetBackgroundSprite</a>(SpriteName,Atlas);
+<a name="l00224"></a>00224         }
+<a name="l00225"></a>00225 
+<a name="l00226"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10">00226</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10" title="Sets an alternate background image that will be applied when the mouse is over this button...">Button::SetHoveredSprite</a>(<a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite)
+<a name="l00227"></a>00227         {
+<a name="l00228"></a>00228             HoveredSprite = PSprite;
+<a name="l00229"></a>00229             <span class="keywordflow">if</span>(MouseHover)
+<a name="l00230"></a>00230             {
+<a name="l00231"></a>00231                 <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(PSprite);
+<a name="l00232"></a>00232             }
+<a name="l00233"></a>00233         }
+<a name="l00234"></a>00234 
+<a name="l00235"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6fa21a055fb5d806248240bbae5f5ad6">00235</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10" title="Sets an alternate background image that will be applied when the mouse is over this button...">Button::SetHoveredSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SpriteName)
+<a name="l00236"></a>00236         {
+<a name="l00237"></a>00237             <a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#ab585d069f110f339143c909453f66b30" title="Gets a sprite from an Atlas.">GetSprite</a>(SpriteName,PriAtlas);
+<a name="l00238"></a>00238             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10" title="Sets an alternate background image that will be applied when the mouse is over this button...">SetHoveredSprite</a>(PSprite);
+<a name="l00239"></a>00239         }
+<a name="l00240"></a>00240 
+<a name="l00241"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a1465419bd4ff0a60c740d02dd61d0e3f">00241</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10" title="Sets an alternate background image that will be applied when the mouse is over this button...">Button::SetHoveredSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SpriteName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00242"></a>00242         {
+<a name="l00243"></a>00243             <a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#ab585d069f110f339143c909453f66b30" title="Gets a sprite from an Atlas.">GetSprite</a>(SpriteName,Atlas);
+<a name="l00244"></a>00244             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10" title="Sets an alternate background image that will be applied when the mouse is over this button...">SetHoveredSprite</a>(PSprite);
+<a name="l00245"></a>00245         }
+<a name="l00246"></a>00246 
+<a name="l00247"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8">00247</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite f...">Button::SetUserSprite</a>(<a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite)
+<a name="l00248"></a>00248         {
+<a name="l00249"></a>00249             UserSprite = PSprite;
+<a name="l00250"></a>00250             <span class="keywordflow">if</span>(!MouseHover &amp;&amp; UserSpriteEnabled)
+<a name="l00251"></a>00251             {
+<a name="l00252"></a>00252                 <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(PSprite);
+<a name="l00253"></a>00253             }
+<a name="l00254"></a>00254         }
+<a name="l00255"></a>00255 
+<a name="l00256"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#aecb07e754310f1c53af92b323c385e92">00256</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite f...">Button::SetUserSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SpriteName)
+<a name="l00257"></a>00257         {
+<a name="l00258"></a>00258             <a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#ab585d069f110f339143c909453f66b30" title="Gets a sprite from an Atlas.">GetSprite</a>(SpriteName,PriAtlas);
+<a name="l00259"></a>00259             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite f...">SetUserSprite</a>(PSprite);
+<a name="l00260"></a>00260         }
+<a name="l00261"></a>00261 
+<a name="l00262"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a7ea91306176ad94d136ca8de7321a5ae">00262</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite f...">Button::SetUserSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; SpriteName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00263"></a>00263         {
+<a name="l00264"></a>00264             <a class="code" href="structMezzanine_1_1UI_1_1Sprite.html" title="Basic class used to describe a portion of a texture to be applied to a Quad.">Sprite</a>* PSprite = ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#ab585d069f110f339143c909453f66b30" title="Gets a sprite from an Atlas.">GetSprite</a>(SpriteName,Atlas);
+<a name="l00265"></a>00265             <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite f...">SetUserSprite</a>(PSprite);
+<a name="l00266"></a>00266         }
+<a name="l00267"></a>00267 
+<a name="l00268"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#af01bb0b214995c3cb6af06fcaa84975d">00268</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af01bb0b214995c3cb6af06fcaa84975d" title="Enables(or disables) the currently set User sprite.">Button::EnableUserSprite</a>(<span class="keywordtype">bool</span> Enable)
+<a name="l00269"></a>00269         {
+<a name="l00270"></a>00270             <span class="keywordflow">if</span>(UserSpriteEnabled == Enable)
+<a name="l00271"></a>00271                 <span class="keywordflow">return</span>;
+<a name="l00272"></a>00272             <span class="keywordflow">if</span>(Enable &amp;&amp; !MouseHover)
+<a name="l00273"></a>00273             {
+<a name="l00274"></a>00274                 <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(UserSprite);
+<a name="l00275"></a>00275             }
+<a name="l00276"></a>00276             <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!Enable &amp;&amp; !MouseHover)
+<a name="l00277"></a>00277             {
+<a name="l00278"></a>00278                 <a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25" title="Sets all the sprite meta-data of this class to render a specific sprite.">SetSprite</a>(NormalSprite);
+<a name="l00279"></a>00279             }
+<a name="l00280"></a>00280             UserSpriteEnabled = Enable;
+<a name="l00281"></a>00281         }
+<a name="l00282"></a>00282 
+<a name="l00283"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab0a32f06b46ae49813c9ad86e8346274">00283</a>         std::vector&lt;MetaCode::InputCode&gt;* <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab0a32f06b46ae49813c9ad86e8346274" title="Gets a vector with all the keyboard input codes used to activate this button.">Button::GetKeyboardActivationKeys</a>()
+<a name="l00284"></a>00284         {
+<a name="l00285"></a>00285             <span class="keywordflow">return</span> &amp;KeyboardActivationKeys;
+<a name="l00286"></a>00286         }
+<a name="l00287"></a>00287 
+<a name="l00288"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a41d41a678b9164806fff2a17acabf1ae">00288</a>         std::vector&lt;MetaCode::InputCode&gt;* <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a41d41a678b9164806fff2a17acabf1ae" title="Gets a vector with all the mouse input codes used to activate this button.">Button::GetMouseActivationButtons</a>()
+<a name="l00289"></a>00289         {
+<a name="l00290"></a>00290             <span class="keywordflow">return</span> &amp;MouseActivationButtons;
 <a name="l00291"></a>00291         }
 <a name="l00292"></a>00292 
-<a name="l00293"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab4335cbb2c9da9b5b61d9ba53793efb6">00293</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a7e6246ca07c0c659a3aec7babd49219f" title="Sets an alternate background image that is stored and can be quickly swapped with the active sprite...">Button::SetUserSprite</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00294"></a>00294         {
-<a name="l00295"></a>00295             Gorilla::Sprite* GSprite = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;_getSprite(Name,Atlas);
-<a name="l00296"></a>00296             UserSprite = GSprite;
-<a name="l00297"></a>00297         }
-<a name="l00298"></a>00298 
-<a name="l00299"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#af01bb0b214995c3cb6af06fcaa84975d">00299</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af01bb0b214995c3cb6af06fcaa84975d" title="Enables(or disables) the currently set User sprite.">Button::EnableUserSprite</a>(<span class="keywordtype">bool</span> Enable)
-<a name="l00300"></a>00300         {
-<a name="l00301"></a>00301             <span class="keywordflow">if</span>(Enable)
-<a name="l00302"></a>00302             {
-<a name="l00303"></a>00303                 GorillaRectangle-&gt;background_image(UserSprite);
-<a name="l00304"></a>00304             }<span class="keywordflow">else</span>{
-<a name="l00305"></a>00305                 GorillaRectangle-&gt;background_image(NormalSprite);
-<a name="l00306"></a>00306             }
-<a name="l00307"></a>00307         }
+<a name="l00293"></a><a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#af7cd7252696a7c4a47e0753eeef41d72">00293</a>         <a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#af7cd7252696a7c4a47e0753eeef41d72" title="Class constructor.">ButtonCallback::ButtonCallback</a>()
+<a name="l00294"></a>00294             : Caller(NULL)
+<a name="l00295"></a>00295         {
+<a name="l00296"></a>00296         }
+<a name="l00297"></a>00297 
+<a name="l00298"></a><a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a2db8a95ef38e7036d3e31cbf01e8f126">00298</a>         <a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a2db8a95ef38e7036d3e31cbf01e8f126" title="Class Destructor.">ButtonCallback::~ButtonCallback</a>()
+<a name="l00299"></a>00299         {
+<a name="l00300"></a>00300         }
+<a name="l00301"></a>00301 
+<a name="l00302"></a><a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349">00302</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349" title="Sets the button this callback belongs to.">ButtonCallback::SetCaller</a>(<a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* Caller)
+<a name="l00303"></a>00303         {
+<a name="l00304"></a>00304             this-&gt;Caller = Caller;
+<a name="l00305"></a>00305         }
+<a name="l00306"></a>00306     }<span class="comment">//UI</span>
+<a name="l00307"></a>00307 }<span class="comment">//Mezzanine</span>
 <a name="l00308"></a>00308 
-<a name="l00309"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a75bad31e5f93373fe1e16761689b354b">00309</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a75bad31e5f93373fe1e16761689b354b" title="Enables a border and sets it&amp;#39;s colour.">Button::SetBorder</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
-<a name="l00310"></a>00310         {
-<a name="l00311"></a>00311             GorillaRectangle-&gt;border(Width, Colour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
-<a name="l00312"></a>00312         }
-<a name="l00313"></a>00313 
-<a name="l00314"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab72a24b501975cd5a60f671593158362">00314</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab72a24b501975cd5a60f671593158362" title="Disables any border set on this rectangle if one is currently set.">Button::NoBorder</a>()
-<a name="l00315"></a>00315         {
-<a name="l00316"></a>00316             GorillaRectangle-&gt;no_border();
-<a name="l00317"></a>00317         }
-<a name="l00318"></a>00318 
-<a name="l00319"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#aff2d96a45c88627098ac0b902059bfc3">00319</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#aff2d96a45c88627098ac0b902059bfc3" title="Sets the relative top left position of this button.">Button::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00320"></a>00320         {
-<a name="l00321"></a>00321             RelPosition = Position;
-<a name="l00322"></a>00322             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00323"></a>00323             GorillaRectangle-&gt;left(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00324"></a>00324             GorillaRectangle-&gt;top(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelPosition.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00325"></a>00325         }
-<a name="l00326"></a>00326 
-<a name="l00327"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab49077b4d05873f0a6d397720790ae49">00327</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab49077b4d05873f0a6d397720790ae49" title="Gets the relative top left position of this button.">Button::GetPosition</a>()<span class="keyword"> const</span>
-<a name="l00328"></a>00328 <span class="keyword">        </span>{
-<a name="l00329"></a>00329             <span class="keywordflow">return</span> RelPosition;
-<a name="l00330"></a>00330         }
-<a name="l00331"></a>00331 
-<a name="l00332"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad7218bce5dda1c0e0bf91a83feaae47e">00332</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad7218bce5dda1c0e0bf91a83feaae47e" title="Sets the top left position of this button in pixels.">Button::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00333"></a>00333         {
-<a name="l00334"></a>00334             RelPosition = Position / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00335"></a>00335             GorillaRectangle-&gt;left(Position.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00336"></a>00336             GorillaRectangle-&gt;top(Position.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00337"></a>00337         }
-<a name="l00338"></a>00338 
-<a name="l00339"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a5c1e8f0a8efe73d6d556f876a4c709f8">00339</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a5c1e8f0a8efe73d6d556f876a4c709f8" title="Gets the top left position of this button in pixels.">Button::GetActualPosition</a>()<span class="keyword"> const</span>
-<a name="l00340"></a>00340 <span class="keyword">        </span>{
-<a name="l00341"></a>00341             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaRectangle-&gt;left(), GorillaRectangle-&gt;top());
-<a name="l00342"></a>00342             <span class="keywordflow">return</span> Pos;
-<a name="l00343"></a>00343         }
-<a name="l00344"></a>00344 
-<a name="l00345"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a2a654b05e925924d5842f36b2a486af5">00345</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a2a654b05e925924d5842f36b2a486af5" title="Sets the relative size of this button.">Button::SetSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00346"></a>00346         {
-<a name="l00347"></a>00347             RelSize = Size;
-<a name="l00348"></a>00348             <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; WinDim = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00349"></a>00349             GorillaRectangle-&gt;width(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00350"></a>00350             GorillaRectangle-&gt;height(WinDim.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> * RelSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00351"></a>00351         }
-<a name="l00352"></a>00352 
-<a name="l00353"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6836b68da28da089584dd02547674286">00353</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6836b68da28da089584dd02547674286" title="Gets the relative size of this button.">Button::GetSize</a>()<span class="keyword"> const</span>
-<a name="l00354"></a>00354 <span class="keyword">        </span>{
-<a name="l00355"></a>00355             <span class="keywordflow">return</span> RelSize;
-<a name="l00356"></a>00356         }
-<a name="l00357"></a>00357 
-<a name="l00358"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6a19f0e460a63e13f8c9bda3e18fcc96">00358</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a6a19f0e460a63e13f8c9bda3e18fcc96" title="Sets the size of this button in pixels.">Button::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Size)
-<a name="l00359"></a>00359         {
-<a name="l00360"></a>00360             RelSize = Size / Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>();
-<a name="l00361"></a>00361             GorillaRectangle-&gt;width(Size.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>);
-<a name="l00362"></a>00362             GorillaRectangle-&gt;height(Size.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00363"></a>00363         }
-<a name="l00364"></a>00364 
-<a name="l00365"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a19adecf3f260923b07016347623dc33e">00365</a>         <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a19adecf3f260923b07016347623dc33e" title="Gets the size of this button in pixels.">Button::GetActualSize</a>()<span class="keyword"> const</span>
-<a name="l00366"></a>00366 <span class="keyword">        </span>{
-<a name="l00367"></a>00367             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Pos(GorillaRectangle-&gt;width(), GorillaRectangle-&gt;height());
-<a name="l00368"></a>00368             <span class="keywordflow">return</span> Pos;
-<a name="l00369"></a>00369         }
-<a name="l00370"></a>00370 
-<a name="l00371"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450">00371</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450" title="Sets the priority this button should be rendered with.">Button::SetRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)
-<a name="l00372"></a>00372         {
-<a name="l00373"></a>00373             Gorilla::RenderPriority RP;
-<a name="l00374"></a>00374             <span class="keywordflow">switch</span>(Priority)
-<a name="l00375"></a>00375             {
-<a name="l00376"></a>00376                 <span class="keywordflow">case</span> UI::RP_Low:
-<a name="l00377"></a>00377                     RP = Gorilla::RP_Low;
-<a name="l00378"></a>00378                     <span class="keywordflow">break</span>;
-<a name="l00379"></a>00379                 <span class="keywordflow">case</span> UI::RP_Medium:
-<a name="l00380"></a>00380                     RP = Gorilla::RP_Medium;
-<a name="l00381"></a>00381                     <span class="keywordflow">break</span>;
-<a name="l00382"></a>00382                 <span class="keywordflow">case</span> UI::RP_High:
-<a name="l00383"></a>00383                     RP = Gorilla::RP_High;
-<a name="l00384"></a>00384                     <span class="keywordflow">break</span>;
-<a name="l00385"></a>00385                 <span class="keywordflow">default</span>:
-<a name="l00386"></a>00386                     <span class="keywordflow">break</span>;
-<a name="l00387"></a>00387             }
-<a name="l00388"></a>00388             GorillaRectangle-&gt;RenderPriority(RP);
-<a name="l00389"></a>00389         }
-<a name="l00390"></a>00390 
-<a name="l00391"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad2e567a12e059c612e474e96fd9cd5da">00391</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ad2e567a12e059c612e474e96fd9cd5da" title="Gets the priority this button should be rendered with.">Button::GetRenderPriority</a>()<span class="keyword"> const</span>
-<a name="l00392"></a>00392 <span class="keyword">        </span>{
-<a name="l00393"></a>00393             Gorilla::RenderPriority RP = this-&gt;GorillaRectangle-&gt;RenderPriority();
-<a name="l00394"></a>00394             <span class="keywordflow">switch</span>(RP)
-<a name="l00395"></a>00395             {
-<a name="l00396"></a>00396                 <span class="keywordflow">case</span> Gorilla::RP_Low:
-<a name="l00397"></a>00397                     <span class="keywordflow">return</span> UI::RP_Low;
-<a name="l00398"></a>00398                     <span class="keywordflow">break</span>;
-<a name="l00399"></a>00399                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
-<a name="l00400"></a>00400                     <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00401"></a>00401                     <span class="keywordflow">break</span>;
-<a name="l00402"></a>00402                 <span class="keywordflow">case</span> Gorilla::RP_High:
-<a name="l00403"></a>00403                     <span class="keywordflow">return</span> UI::RP_High;
-<a name="l00404"></a>00404                     <span class="keywordflow">break</span>;
-<a name="l00405"></a>00405                 <span class="keywordflow">default</span>:
-<a name="l00406"></a>00406                     <span class="keywordflow">break</span>;
-<a name="l00407"></a>00407             }
-<a name="l00408"></a>00408             <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00409"></a>00409         }
-<a name="l00410"></a>00410 
-<a name="l00411"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#af1248af0bf094b29f65547b1697c3c23">00411</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#af1248af0bf094b29f65547b1697c3c23" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">Button::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00412"></a>00412         {
-<a name="l00413"></a>00413             GorillaRectangle-&gt;SetNameFile(Atlas);
-<a name="l00414"></a>00414         }
-<a name="l00415"></a>00415 
-<a name="l00416"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab4dabfe9ce18dd255d2b8724f610058d">00416</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab4dabfe9ce18dd255d2b8724f610058d" title="Gets the currently set primary atlas.">Button::GetPrimaryAtlas</a>()<span class="keyword"> const</span>
-<a name="l00417"></a>00417 <span class="keyword">        </span>{
-<a name="l00418"></a>00418             <span class="keywordflow">return</span> *GorillaRectangle-&gt;GetNameFile();
-<a name="l00419"></a>00419         }
-<a name="l00420"></a>00420 
-<a name="l00421"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab0a32f06b46ae49813c9ad86e8346274">00421</a>         std::vector&lt;MetaCode::InputCode&gt;* <a class="code" href="classMezzanine_1_1UI_1_1Button.html#ab0a32f06b46ae49813c9ad86e8346274" title="Gets a vector with all the keyboard input codes used to activate this button.">Button::GetKeyboardActivationKeys</a>()
-<a name="l00422"></a>00422         {
-<a name="l00423"></a>00423             <span class="keywordflow">return</span> &amp;KeyboardActivationKeys;
-<a name="l00424"></a>00424         }
-<a name="l00425"></a>00425 
-<a name="l00426"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a41d41a678b9164806fff2a17acabf1ae">00426</a>         std::vector&lt;MetaCode::InputCode&gt;* <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a41d41a678b9164806fff2a17acabf1ae" title="Gets a vector with all the mouse input codes used to activate this button.">Button::GetMouseActivationButtons</a>()
-<a name="l00427"></a>00427         {
-<a name="l00428"></a>00428             <span class="keywordflow">return</span> &amp;MouseActivationButtons;
-<a name="l00429"></a>00429         }
-<a name="l00430"></a>00430 
-<a name="l00431"></a><a class="code" href="classMezzanine_1_1UI_1_1Button.html#a65764b075c03b2a6eb17039a73a260ce">00431</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html#a65764b075c03b2a6eb17039a73a260ce" title="Updates the dimensions of this button to match those of the new screen size.">Button::UpdateDimensions</a>()
-<a name="l00432"></a>00432         {
-<a name="l00433"></a>00433             <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a6b070131c2a4174788246b95517a6528" title="Updates a renderables size and position as needed.">ViewportUpdateTool::UpdateRenderable</a>(<span class="keyword">this</span>);
-<a name="l00434"></a>00434             <span class="comment">//this-&gt;SetActualPosition(RelPosition * Parent-&gt;GetParent()-&gt;GetViewportDimensions());</span>
-<a name="l00435"></a>00435             <span class="comment">//this-&gt;SetActualSize(RelSize * Parent-&gt;GetParent()-&gt;GetViewportDimensions());</span>
-<a name="l00436"></a>00436         }
-<a name="l00437"></a>00437 
-<a name="l00438"></a><a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#af7cd7252696a7c4a47e0753eeef41d72">00438</a>         <a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#af7cd7252696a7c4a47e0753eeef41d72" title="Class constructor.">ButtonCallback::ButtonCallback</a>()
-<a name="l00439"></a>00439             : Caller(NULL)
-<a name="l00440"></a>00440         {
-<a name="l00441"></a>00441         }
-<a name="l00442"></a>00442 
-<a name="l00443"></a><a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a2db8a95ef38e7036d3e31cbf01e8f126">00443</a>         <a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a2db8a95ef38e7036d3e31cbf01e8f126" title="Class Destructor.">ButtonCallback::~ButtonCallback</a>()
-<a name="l00444"></a>00444         {
-<a name="l00445"></a>00445         }
-<a name="l00446"></a>00446 
-<a name="l00447"></a><a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349">00447</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349" title="Sets the button this callback belongs to.">ButtonCallback::SetCaller</a>(<a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* Caller)
-<a name="l00448"></a>00448         {
-<a name="l00449"></a>00449             this-&gt;Caller = Caller;
-<a name="l00450"></a>00450         }
-<a name="l00451"></a>00451     }<span class="comment">//UI</span>
-<a name="l00452"></a>00452 }<span class="comment">//Mezzanine</span>
-<a name="l00453"></a>00453 
-<a name="l00454"></a>00454 <span class="preprocessor">#endif</span>
+<a name="l00309"></a>00309 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -523,7 +378,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -533,6 +388,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -61,41 +61,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many linux distributions try to keep the most up to date shared libraries around, but what about when they don't ship what you need, ship something broken or an older library. What about Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> Engine project depends on a dozen or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated with the graphics and 3d positional audio ready to run on Windows, Linux and Mac OS X. We are figuring it out once, getting it right ( if we aren't, tell us and we will fix it ), so it doesn't need to be done again and again, for each game made.</p>
 <p>This is still in heavy development and is not in usable condition for all systems. Currently the synchronization of 3d graphics and physics works great. But, some of the more advanced features of both physics and graphics to do not yet work. There are a number of other features that are in varied states of development.</p>
 <p>If we do our jobs right this will save time and effort making, updating and porting games between a variety of platforms. If you link only against this library, not a single line of your standard compliant C++ code should need to change between platforms. At this early stage we are proving the concept with "Catch!" our first sample game. It Currently runs on Linux, Windows and Mac OS X with an Identical codebase. When we are done with "Catch!" We want it to have one codebase (with no messy #IFDEFs in game code for compatibility), and downloadable in the Iphone app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.</p>
-<h2><a class="anchor" id="What"></a>
-can I expect here</h2>
+<h2><a class="anchor" id="expectations"></a>
+What can I expect here</h2>
 <p>This is the Doxygen API documentation for the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> Engine. This is a document for programmers to use as reference. With just a few clicks this should allow a technically oriented person find</p>
 <p>If you want to know more about doxygen please see: <a href="http://www.stack.nl/~dimitri/doxygen/">http://www.stack.nl/~dimitri/doxygen/</a> To get the latest news on development or more information that isn't technical checkout: <a href="http://www.blacktoppstudios.com">http://www.blacktoppstudios.com</a></p>
 <p>Here we will detail the engine structure and different classes and datatypes, but some of these need an update.</p>
-<h2><a class="anchor" id="Engine"></a>
-Structure</h2>
-<p>The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the Singleton class.</p>
-<p>Other classes are more similar to data, things like the Vector3 and the Quaternion. You can create these things whenever you like and generally have good support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons.</p>
-<p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the Light or ActorRigid are present inside the game simulation as well as having a presence as</p>
-<p>some utility classes Other class that really are just convient places to put functions, things like the ActorRigidDeSerializer and the StringTool are good examples of these logical grouping of functions. Finally, there are few</p>
-<h3><a class="anchor" id="Managers"></a>
+<h2><a class="anchor" id="enginestructure"></a>
+Engine Structure</h2>
+<p>The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?" or "how do you detect if to objects are colliding?". In general there is only one of each manager and it inherits from the <a class="el" href="classMezzanine_1_1Singleton.html">Mezzanine::Singleton</a> class.</p>
+<p>Other classes are more similar to data, things like the <a class="el" href="classMezzanine_1_1Vector3.html">Mezzanine::Vector3</a> and the <a class="el" href="classMezzanine_1_1Quaternion.html">Mezzanine::Quaternion</a>. You can create these things whenever you like and generally have good support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more sophisticated classes for a variety of reasons.</p>
+<p>There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled and most commonly created, deleted and otherwised managed through managers. Many of these classes like the <a class="el" href="classMezzanine_1_1Light.html">Mezzanine::Light</a> or <a class="el" href="classMezzanine_1_1ActorRigid.html">Mezzanine::ActorRigid</a> are present inside the game simulation as well as having a presence as</p>
+<p>some utility classes Other class that really are just convient places to put functions, things like the <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html">Mezzanine::ActorRigidDeSerializer</a> and the <a class="el" href="classMezzanine_1_1StringTool.html">Mezzanine::StringTool</a> are good examples of these logical grouping of functions. Finally, there are few</p>
+<h3><a class="anchor" id="managers"></a>
 Managers</h3>
 <p>A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the <a class="el" href="namespaceMezzanine.html" title="The bulk of the engine components go in this namspace.">Mezzanine</a> engine would need in most situations.</p>
 <p>All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.</p>
-<h4><a class="anchor" id="A"></a>
-list of managers</h4>
-<p>Here is a list of managers in the engine:</p>
+<h4><a class="anchor" id="managerlist"></a>
+A list of Managers in the Mezzanine</h4>
 <ul>
-<li>ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton</li>
-<li>AudioManager - Play, stop and otherwise work with sound and music.</li>
-<li>CameraManager - Add/remove Multiple camera's from the world</li>
-<li>CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection</li>
-<li>EventManager - Get messages and events from the operating system (and user, but that will change)</li>
-<li>GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.</li>
-<li>MeshManager - Manage Meshes that can be rendered to the the screen.</li>
-<li>PhysicsManager - Control settings that have to do with the physics simulation.</li>
-<li>ResourceManager - Loads Files and locate them in an efficient way.</li>
-<li>SceneManager - Control Lighting, skyboxes, particle effects etc...</li>
-<li>TimerManager - Create and delete a variety of timers.</li>
-<li>TerrainManager - Work with terrain components like height maps.</li>
-<li>UIManager - Create and manage buttons, scrollbars and other widgets.</li>
+<li><a class="el" href="classMezzanine_1_1ActorManager.html">Mezzanine::ActorManager</a> - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton</li>
+<li><a class="el" href="classMezzanine_1_1AudioManager.html">Mezzanine::AudioManager</a> - Play, stop and otherwise work with sound and music.</li>
+<li><a class="el" href="classMezzanine_1_1CameraManager.html">Mezzanine::CameraManager</a> - Add/remove Multiple camera's from the world</li>
+<li><a class="el" href="classMezzanine_1_1CollisionShapeManager.html">Mezzanine::CollisionShapeManager</a> - Store/create/delete shapes that can be used for physics and collision detection</li>
+<li><a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> - Get messages and events from the operating system (and user, but that will change)</li>
+<li><a class="el" href="classMezzanine_1_1GraphicsManager.html">Mezzanine::GraphicsManager</a> - Adjust Resolution, refresh rate, color depth and thing like that.</li>
+<li><a class="el" href="classMezzanine_1_1MeshManager.html">Mezzanine::MeshManager</a> - Manage Meshes that can be rendered to the the screen.</li>
+<li>Mezzanine::NetworkManager - Manages the transmission and retreival of network traffic.</li>
+<li><a class="el" href="classMezzanine_1_1PhysicsManager.html">Mezzanine::PhysicsManager</a> - Control settings that have to do with the physics simulation.</li>
+<li><a class="el" href="classMezzanine_1_1ResourceManager.html">Mezzanine::ResourceManager</a> - Loads Files and locate them in an efficient way.</li>
+<li><a class="el" href="classMezzanine_1_1SceneManager.html">Mezzanine::SceneManager</a> - Control Lighting, skyboxes, particle effects etc...</li>
+<li><a class="el" href="classMezzanine_1_1TimerManager.html">Mezzanine::TimerManager</a> - Create and delete a variety of timers.</li>
+<li><a class="el" href="classMezzanine_1_1TerrainManager.html">Mezzanine::TerrainManager</a> - Work with terrain components like height maps.</li>
+<li><a class="el" href="classMezzanine_1_1UIManager.html">Mezzanine::UIManager</a> - Create and manage buttons, scrollbars and other widgets.</li>
 </ul>
 <h4><a class="anchor" id="The"></a>
 World, A manager of managers</h4>
+<p>A thorough description needs to go here</p>
 <p><a class="el" href="mainloop1.html">Main Loop Flow</a></p>
 <p><a class="el" href="classMezzanine_1_1World.html">World - It integrates everything</a></p>
 <p><a class="el" href="classMezzanine_1_1EventManager.html">Events - Handling messages, event and interupts from the outisde</a></p>
@@ -105,7 +106,7 @@ Data Types</h2>
 <h3><a class="anchor" id="CompoundTypes"></a>
 Compound Data Type</h3>
 <p><a class="el" href="classMezzanine_1_1ColourValue.html">Mezzanine::ColourValue</a></p>
-<p><a class="el" href="classMezzanine_1_1MetaCode.html">MetaCode - A unit of user input</a></p>
+<p><a class="el" href="classMezzanine_1_1MetaCode.html">Mezzanine::MetaCode - A unit of user input</a></p>
 <p><a class="el" href="classMezzanine_1_1Plane.html">Mezzanine::Plane</a></p>
 <p><a class="el" href="classMezzanine_1_1Quaternion.html">Mezzanine::Quaternion</a></p>
 <p><a class="el" href="classMezzanine_1_1Ray.html">Mezzanine::Ray</a></p>
@@ -121,25 +122,26 @@ Simple Data Types</h3>
 <p><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">Mezzanine::String</a></p>
 <p><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Mezzanine::Whole</a></p>
 <dl class="user"><dt><b>There are also a variety of enumerations. Aspect Ratio...</b></dt><dd></dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000033">Todo:</a></b></dt><dd>Fill out the Simple Data Types with all the enumerations.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>Fill out the Simple Data Types with all the enumerations.</dd></dl>
 <h2><a class="anchor" id="Sophisticated"></a>
 Sophisticated Systems</h2>
 <p><a class="el" href="classMezzanine_1_1ActorBase.html">Actors - Items in the world</a></p>
 <p><a class="el" href="classMezzanine_1_1EventBase.html">Mezzanine::EventBase</a></p>
 <p><a class="el" href="classMezzanine_1_1GraphicsManager.html">Mezzanine::GraphicsManager</a></p>
-<p>Mezzanine::XML Manual</p>
+<p><a class="el" href="XMLManual.html">Mezzanine::xml Manual</a></p>
+<p><a class="el" href="LuaManual.html">Mezzanine::Scripting Lua Manual</a></p>
 <p><a class="el" href="Serialization.html">Serialization</a></p>
 <h2><a class="anchor" id="Licensing"></a>
 Licensing Information</h2>
 <p><a class="el" href="GPLLicense.html">Mezzanine GNU Public License 3</a></p>
-<p>XML MIT License </p>
+<p><a class="el" href="OriginalpugixmlLicense.html">XML MIT License</a> </p>
 </div></div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -149,6 +151,6 @@ Licensing Information</h2>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

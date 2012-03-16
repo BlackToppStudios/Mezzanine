@@ -20,6 +20,10 @@ Inheritance diagram for Mezzanine::EventManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1EventManager_a95ce9d2d865b0d8d9468448969b0ade2}{EventManager} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1EventManager_a39b9e0f783c2ab0d39f5574a7a106141}{$\sim$EventManager} ()
+\begin{DoxyCompactList}\small\item\em Default Deconstructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1EventManager_aa791c61d2665422614d54c7653e87e88}{AddEvent} (\hyperlink{classMezzanine_1_1EventBase}{EventBase} $\ast$EventToAdd)
 \begin{DoxyCompactList}\small\item\em Adds an event of any kind to the end of the Event Queue. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1EventManager_a2da4ef46b2ce56206412782eec43d93e}{AddPollingCheck} (const \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} \&InputToTryPolling)
@@ -28,8 +32,6 @@ void \hyperlink{classMezzanine_1_1EventManager_a3cf0fd9e33392aa24e9a735363212185
 \begin{DoxyCompactList}\small\item\em Look for Joysticks that are hooked up to the system. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1EventManager_a69d44403974ed8d974846e929eb8adda}{DoMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1EventManager_a95ce9d2d865b0d8d9468448969b0ade2}{EventManager} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classMezzanine_1_1EventCollision}{EventCollision} $\ast$ $>$ $\ast$ \hyperlink{classMezzanine_1_1EventManager_ab630dfe228b7a4246680953cdfbbfc0a}{GetAllCollisionEvents} ()
 \begin{DoxyCompactList}\small\item\em This returns a complete list of all the \hyperlink{classMezzanine_1_1Collision}{Collision} Events. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow} $\ast$ $>$ $\ast$ \hyperlink{classMezzanine_1_1EventManager_abd6f4de517d07ab7a1a0c330c4e29032}{GetAllGameWindowEvents} ()
@@ -97,9 +99,25 @@ void \hyperlink{classMezzanine_1_1EventManager_a1d2681b16ec802f8271f2651ff40c083
 void \hyperlink{classMezzanine_1_1EventManager_a446cab99c7c67b42e28753cda14d79a4}{RemovePollingCheck} (const \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} \&InputToStopPolling)
 \begin{DoxyCompactList}\small\item\em Removes Events from the list(s) of what needs to be polled. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1EventManager_a07119a541a60a515e2108c79cf6e3aac}{UpdateEvents} ()
-\begin{DoxyCompactList}\small\item\em Pulls Events from the all the subsystems for use in the \hyperlink{classMezzanine_1_1EventManager}{EventManager}. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1EventManager_a39b9e0f783c2ab0d39f5574a7a106141}{$\sim$EventManager} ()
-\begin{DoxyCompactList}\small\item\em Default Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pulls Events from the all the subsystems for use in the \hyperlink{classMezzanine_1_1EventManager}{EventManager}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1EventManager_a3e84a2260b3cad6e78c2e569c3617835}{
+std::ostream \& {\bfseries MEZZ\_\-LIB::operator$<$$<$} (std::ostream \&stream, const \hyperlink{classMezzanine_1_1EventManager}{Mezzanine::EventManager} \&Mgr)}
+\label{classMezzanine_1_1EventManager_a3e84a2260b3cad6e78c2e569c3617835}
+
+\item 
+\hypertarget{classMezzanine_1_1EventManager_ad8909ab0c0d6f45635eb3c8e156ac469}{
+void {\bfseries MEZZ\_\-LIB::operator$>$$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1EventManager}{Mezzanine::EventManager} \&Mgr)}
+\label{classMezzanine_1_1EventManager_ad8909ab0c0d6f45635eb3c8e156ac469}
+
+\item 
+\hypertarget{classMezzanine_1_1EventManager_a63dad9f5ed1ea4002e82d523b009894d}{
+std::istream \& {\bfseries MEZZ\_\-LIB::operator$>$$>$} (std::istream \&stream, \hyperlink{classMezzanine_1_1EventManager}{Mezzanine::EventManager} \&Mgr)}
+\label{classMezzanine_1_1EventManager_a63dad9f5ed1ea4002e82d523b009894d}
+
+\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -112,7 +130,7 @@ Currently this is not thread safe, even though it should be.
 \end{DoxyWarning}
 
 
-Definition at line 123 of file eventmanager.h.
+Definition at line 126 of file eventmanager.h.
 
 
 
@@ -133,7 +151,7 @@ Default constructor.
 This creates an empty EventManger
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]TODO: Make the \hyperlink{classMezzanine_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
+\item[\hyperlink{todo__todo000014}{Todo}]TODO: Make the \hyperlink{classMezzanine_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
 
 
 Definition at line 253 of file eventmanager.cpp.

@@ -81,18 +81,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html#a03a7bc47014d7d27cf0db3c0fff68715">ResourceInputStream</a> (std::streambuf *InputBuffer, <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManager</a> *ResourceManager_)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive Constructor.  <a href="#a03a7bc47014d7d27cf0db3c0fff68715"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac99716411e0277ffd97b2db98003fc54"></a><!-- doxytag: member="Mezzanine::ResourceInputStream::~ResourceInputStream" ref="ac99716411e0277ffd97b2db98003fc54" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html#ac99716411e0277ffd97b2db98003fc54">~ResourceInputStream</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Tears down the Stream, and Delete the Buffer Passed in. <br/></td></tr>
 <tr><td class="memTemplParams" colspan="2"><a class="anchor" id="a241faad0fdcadeca6288a3f49797c05d"></a><!-- doxytag: member="Mezzanine::ResourceInputStream::operator&gt;&gt;" ref="a241faad0fdcadeca6288a3f49797c05d" args="(T &amp;Data)" -->
 template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ResourceInputStream.html">ResourceInputStream</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>operator&gt;&gt;</b> (T &amp;Data)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html#a1a09cf1e237b4344df907b799af52e96">Readable</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can this be read from.  <a href="#a1a09cf1e237b4344df907b799af52e96"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html#a03a7bc47014d7d27cf0db3c0fff68715">ResourceInputStream</a> (std::streambuf *InputBuffer, <a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManager</a> *ResourceManager_)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Descriptive Constructor.  <a href="#a03a7bc47014d7d27cf0db3c0fff68715"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html#ae2fa58b048fedc97126184a72ccb7689">Writeable</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Can this be written to.  <a href="#ae2fa58b048fedc97126184a72ccb7689"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac99716411e0277ffd97b2db98003fc54"></a><!-- doxytag: member="Mezzanine::ResourceInputStream::~ResourceInputStream" ref="ac99716411e0277ffd97b2db98003fc54" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html#ac99716411e0277ffd97b2db98003fc54">~ResourceInputStream</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Tears down the Stream, and Delete the Buffer Passed in. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A stream from a file, can read from zip files as well. </p>
@@ -128,7 +128,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Descriptive Constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">InputBuffer</td><td>A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. </td></tr>
+    <tr><td class="paramname">InputBuffer</td><td>A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of <a class="el" href="namespaceOgre.html">Ogre</a>). This Stream will assume ownership of this buffer and will handle deleting it. </td></tr>
     <tr><td class="paramname">ResourceManager_</td><td>Currently unused, future functionality may tuse this. </td></tr>
   </table>
   </dd>
@@ -192,7 +192,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -202,6 +202,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

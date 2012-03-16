@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 94.786730
+%%BoundingBox: 0 0 500 118.483412
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,12 +19,12 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 5.275000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 4.220000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
-/rows 4 def
+/rows 5 def
 /cols 4 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
@@ -175,7 +175,11 @@ boxfont setfont
 1 boundaspect scale
 (Mezzanine::AreaEffect) cw
 (Mezzanine::NonStaticWorldObject) cw
+(Mezzanine::AttachableChild) cw
 (Mezzanine::WorldObject) cw
+(Mezzanine::AttachableParent) cw
+(Mezzanine::AttachableBase) cw
+(Mezzanine::AttachableBase) cw
 (Mezzanine::FieldOfForce) cw
 (Mezzanine::GravityField) cw
 (Mezzanine::GravityWell) cw
@@ -192,8 +196,16 @@ boundx scalefactor div boundy scalefactor div scale
 % ----- classes -----
 
  (Mezzanine::AreaEffect) 1.500000 1.000000 box
- (Mezzanine::NonStaticWorldObject) 1.500000 2.000000 box
- (Mezzanine::WorldObject) 1.500000 3.000000 box
+ (Mezzanine::NonStaticWorldObject) 0.750000 2.000000 box
+ (Mezzanine::AttachableChild) 2.250000 2.000000 box
+ (Mezzanine::WorldObject) 0.250000 3.000000 box
+ (Mezzanine::AttachableParent) 1.250000 3.000000 box
+dashed
+ (Mezzanine::AttachableBase) 2.250000 3.000000 box
+solid
+dashed
+ (Mezzanine::AttachableBase) 1.250000 4.000000 box
+solid
  (Mezzanine::FieldOfForce) 0.000000 0.000000 box
  (Mezzanine::GravityField) 1.000000 0.000000 box
  (Mezzanine::GravityWell) 2.000000 0.000000 box
@@ -204,11 +216,27 @@ boundx scalefactor div boundy scalefactor div scale
 solid
 0 1.500000 1.000000 out
 solid
-1 1.500000 2.000000 in
+0.750000 2.250000 2.000000 conn
 solid
-0 1.500000 2.000000 out
+1 0.750000 2.000000 in
 solid
-1 1.500000 3.000000 in
+0 0.750000 2.000000 out
+solid
+0.250000 1.250000 3.000000 conn
+solid
+1 2.250000 2.000000 in
+solid
+0 2.250000 2.000000 out
+solid
+1 0.250000 3.000000 in
+solid
+1 1.250000 3.000000 in
+solid
+0 1.250000 3.000000 out
+solid
+1 2.250000 3.000000 in
+solid
+1 1.250000 4.000000 in
 solid
 1 1.500000 0.250000 out
 solid

@@ -130,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00066"></a>00066 <span class="comment"> codebase. When we are done with &quot;Catch!&quot; We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone</span>
 <a name="l00067"></a>00067 <span class="comment"> app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.</span>
 <a name="l00068"></a>00068 <span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment"> @section What can I expect here</span>
+<a name="l00069"></a>00069 <span class="comment"> @section expectations What can I expect here</span>
 <a name="l00070"></a>00070 <span class="comment"> This is the Doxygen API documentation for the Mezzanine Engine. This is a document for programmers to use as reference. With just a few clicks this should allow</span>
 <a name="l00071"></a>00071 <span class="comment"> a technically oriented person find</span>
 <a name="l00072"></a>00072 <span class="comment"></span>
@@ -139,565 +139,574 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00075"></a>00075 <span class="comment"></span>
 <a name="l00076"></a>00076 <span class="comment"> Here we will detail the engine structure and different classes and datatypes, but some of these need an update.</span>
 <a name="l00077"></a>00077 <span class="comment"></span>
-<a name="l00078"></a>00078 <span class="comment"> @section Engine Structure</span>
+<a name="l00078"></a>00078 <span class="comment"> @section enginestructure Engine Structure</span>
 <a name="l00079"></a>00079 <span class="comment">  The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these</span>
 <a name="l00080"></a>00080 <span class="comment">  managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the</span>
 <a name="l00081"></a>00081 <span class="comment">  world and are rarely manaully created. This is where are the logic that says how something is done exists, for example &quot;how does something get drawn on the screen?&quot;</span>
-<a name="l00082"></a>00082 <span class="comment">  or &quot;how do you detect if to objects are colliding?&quot;. In general there is only one of each manager and it inherits from the @ref Singleton class.</span>
+<a name="l00082"></a>00082 <span class="comment">  or &quot;how do you detect if to objects are colliding?&quot;. In general there is only one of each manager and it inherits from the @ref Mezzanine::Singleton class.</span>
 <a name="l00083"></a>00083 <span class="comment"></span>
-<a name="l00084"></a>00084 <span class="comment">  Other classes are more similar to data, things like the @ref Vector3 and the @ref Quaternion. You can create these things whenever you like and generally have good</span>
+<a name="l00084"></a>00084 <span class="comment">  Other classes are more similar to data, things like the @ref Mezzanine::Vector3 and the @ref Mezzanine::Quaternion. You can create these things whenever you like and generally have good</span>
 <a name="l00085"></a>00085 <span class="comment">  support for integrating into a variety of system. In these classes there is a good deal of math and conversion routines. These are commonly passed around by more</span>
 <a name="l00086"></a>00086 <span class="comment">  sophisticated classes for a variety of reasons.</span>
 <a name="l00087"></a>00087 <span class="comment"></span>
 <a name="l00088"></a>00088 <span class="comment">  There are some classes that are somewhere between data and singular large-scale aggregration of functionality in managers. The functionality is carefully controlled</span>
-<a name="l00089"></a>00089 <span class="comment">  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Light or @ref ActorRigid are present inside the game</span>
+<a name="l00089"></a>00089 <span class="comment">  and most commonly created, deleted and otherwised managed through managers. Many of these classes like the @ref Mezzanine::Light or @ref Mezzanine::ActorRigid are present inside the game</span>
 <a name="l00090"></a>00090 <span class="comment">  simulation as well as having a presence as</span>
 <a name="l00091"></a>00091 <span class="comment"></span>
-<a name="l00092"></a>00092 <span class="comment">  some utility classes Other class that really are just convient places to put functions, things like the @ref ActorRigidDeSerializer and the @ref StringTool are good</span>
+<a name="l00092"></a>00092 <span class="comment">  some utility classes Other class that really are just convient places to put functions, things like the @ref Mezzanine::ActorRigidDeSerializer and the @ref Mezzanine::StringTool are good</span>
 <a name="l00093"></a>00093 <span class="comment">  examples of these logical grouping of functions. Finally, there are few</span>
 <a name="l00094"></a>00094 <span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">  @subsection Managers</span>
+<a name="l00095"></a>00095 <span class="comment">  @subsection managers Managers</span>
 <a name="l00096"></a>00096 <span class="comment"></span>
 <a name="l00097"></a>00097 <span class="comment">   A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the Mezzanine engine would</span>
 <a name="l00098"></a>00098 <span class="comment">   need in most situations.</span>
 <a name="l00099"></a>00099 <span class="comment"></span>
 <a name="l00100"></a>00100 <span class="comment">   All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.</span>
 <a name="l00101"></a>00101 <span class="comment"></span>
-<a name="l00102"></a>00102 <span class="comment">   @subsubsection A list of managers</span>
-<a name="l00103"></a>00103 <span class="comment">    Here is a list of managers in the engine:</span>
-<a name="l00104"></a>00104 <span class="comment">    - @ref ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton</span>
-<a name="l00105"></a>00105 <span class="comment">    - @ref AudioManager - Play, stop and otherwise work with sound and music.</span>
-<a name="l00106"></a>00106 <span class="comment">    - @ref CameraManager - Add/remove Multiple camera&#39;s from the world</span>
-<a name="l00107"></a>00107 <span class="comment">    - @ref CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection</span>
-<a name="l00108"></a>00108 <span class="comment">    - @ref EventManager - Get messages and events from the operating system (and user, but that will change)</span>
-<a name="l00109"></a>00109 <span class="comment">    - @ref GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.</span>
-<a name="l00110"></a>00110 <span class="comment">    - @ref MeshManager - Manage Meshes that can be rendered to the the screen.</span>
-<a name="l00111"></a>00111 <span class="comment">    - @ref PhysicsManager - Control settings that have to do with the physics simulation.</span>
-<a name="l00112"></a>00112 <span class="comment">    - @ref ResourceManager - Loads Files and locate them in an efficient way.</span>
-<a name="l00113"></a>00113 <span class="comment">    - @ref SceneManager - Control Lighting, skyboxes, particle effects etc...</span>
-<a name="l00114"></a>00114 <span class="comment">    - @ref TimerManager - Create and delete a variety of timers.</span>
-<a name="l00115"></a>00115 <span class="comment">    - @ref TerrainManager - Work with terrain components like height maps.</span>
-<a name="l00116"></a>00116 <span class="comment">    - @ref UIManager - Create and manage buttons, scrollbars and other widgets.</span>
+<a name="l00102"></a>00102 <span class="comment">   @subsubsection managerlist A list of Managers in the Mezzanine</span>
+<a name="l00103"></a>00103 <span class="comment">    - @ref Mezzanine::ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton</span>
+<a name="l00104"></a>00104 <span class="comment">    - @ref Mezzanine::AudioManager - Play, stop and otherwise work with sound and music.</span>
+<a name="l00105"></a>00105 <span class="comment">    - @ref Mezzanine::CameraManager - Add/remove Multiple camera&#39;s from the world</span>
+<a name="l00106"></a>00106 <span class="comment">    - @ref Mezzanine::CollisionShapeManager - Store/create/delete shapes that can be used for physics and collision detection</span>
+<a name="l00107"></a>00107 <span class="comment">    - @ref Mezzanine::EventManager - Get messages and events from the operating system (and user, but that will change)</span>
+<a name="l00108"></a>00108 <span class="comment">    - @ref Mezzanine::GraphicsManager - Adjust Resolution, refresh rate, color depth and thing like that.</span>
+<a name="l00109"></a>00109 <span class="comment">    - @ref Mezzanine::MeshManager - Manage Meshes that can be rendered to the the screen.</span>
+<a name="l00110"></a>00110 <span class="comment">    - @ref Mezzanine::NetworkManager - Manages the transmission and retreival of network traffic.</span>
+<a name="l00111"></a>00111 <span class="comment">    - @ref Mezzanine::PhysicsManager - Control settings that have to do with the physics simulation.</span>
+<a name="l00112"></a>00112 <span class="comment">    - @ref Mezzanine::ResourceManager - Loads Files and locate them in an efficient way.</span>
+<a name="l00113"></a>00113 <span class="comment">    - @ref Mezzanine::SceneManager - Control Lighting, skyboxes, particle effects etc...</span>
+<a name="l00114"></a>00114 <span class="comment">    - @ref Mezzanine::TimerManager - Create and delete a variety of timers.</span>
+<a name="l00115"></a>00115 <span class="comment">    - @ref Mezzanine::TerrainManager - Work with terrain components like height maps.</span>
+<a name="l00116"></a>00116 <span class="comment">    - @ref Mezzanine::UIManager - Create and manage buttons, scrollbars and other widgets.</span>
 <a name="l00117"></a>00117 <span class="comment"></span>
 <a name="l00118"></a>00118 <span class="comment">    @subsubsection The World, A manager of managers</span>
-<a name="l00119"></a>00119 <span class="comment"></span>
-<a name="l00120"></a>00120 <span class="comment">  @subpage mainloop1 &quot;Main Loop Flow&quot;</span>
-<a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">  @ref Mezzanine::World &quot;World - It integrates everything&quot;</span>
-<a name="l00123"></a>00123 <span class="comment"></span>
-<a name="l00124"></a>00124 <span class="comment">  @ref Mezzanine::EventManager &quot;Events - Handling messages, event and interupts from the outisde&quot;</span>
-<a name="l00125"></a>00125 <span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">  @subpage actorcontainer1 &quot;Actor Container - Keeping track of our in game objects&quot;</span>
-<a name="l00127"></a>00127 <span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment"> @section Types Data Types</span>
-<a name="l00129"></a>00129 <span class="comment"></span>
-<a name="l00130"></a>00130 <span class="comment">  @subsection CompoundTypes Compound Data Type</span>
-<a name="l00131"></a>00131 <span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">   @ref Mezzanine::ColourValue</span>
-<a name="l00133"></a>00133 <span class="comment"></span>
-<a name="l00134"></a>00134 <span class="comment">   @ref Mezzanine::MetaCode &quot;MetaCode - A unit of user input&quot;</span>
-<a name="l00135"></a>00135 <span class="comment"></span>
-<a name="l00136"></a>00136 <span class="comment">   @ref Mezzanine::Plane</span>
-<a name="l00137"></a>00137 <span class="comment"></span>
-<a name="l00138"></a>00138 <span class="comment">   @ref Mezzanine::Quaternion</span>
-<a name="l00139"></a>00139 <span class="comment"></span>
-<a name="l00140"></a>00140 <span class="comment">   @ref Mezzanine::Ray</span>
-<a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">   @ref Mezzanine::Transform</span>
-<a name="l00143"></a>00143 <span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">   @ref Mezzanine::Vector2</span>
-<a name="l00145"></a>00145 <span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">   @ref Mezzanine::Vector3</span>
-<a name="l00147"></a>00147 <span class="comment"></span>
-<a name="l00148"></a>00148 <span class="comment">   @ref Mezzanine::Vector3WActor</span>
-<a name="l00149"></a>00149 <span class="comment"></span>
-<a name="l00150"></a>00150 <span class="comment">  @subsection SimpleDataTypes Simple Data Types</span>
-<a name="l00151"></a>00151 <span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">   @ref Mezzanine::Character</span>
-<a name="l00153"></a>00153 <span class="comment"></span>
-<a name="l00154"></a>00154 <span class="comment">   @ref Mezzanine::Integer</span>
-<a name="l00155"></a>00155 <span class="comment"></span>
-<a name="l00156"></a>00156 <span class="comment">   @ref Mezzanine::Real</span>
-<a name="l00157"></a>00157 <span class="comment"></span>
-<a name="l00158"></a>00158 <span class="comment">   @ref Mezzanine::String</span>
-<a name="l00159"></a>00159 <span class="comment"></span>
-<a name="l00160"></a>00160 <span class="comment">   @ref Mezzanine::Whole</span>
-<a name="l00161"></a>00161 <span class="comment"></span>
-<a name="l00162"></a>00162 <span class="comment">   @par There are also a variety of enumerations. Aspect Ratio...</span>
-<a name="l00163"></a>00163 <span class="comment">   @todo Fill out the Simple Data Types with all the enumerations.</span>
-<a name="l00164"></a>00164 <span class="comment"></span>
-<a name="l00165"></a>00165 <span class="comment"> @section Sophisticated Sophisticated Systems</span>
-<a name="l00166"></a>00166 <span class="comment"></span>
-<a name="l00167"></a>00167 <span class="comment">  @ref Mezzanine::ActorBase &quot;Actors - Items in the world&quot;</span>
-<a name="l00168"></a>00168 <span class="comment"></span>
-<a name="l00169"></a>00169 <span class="comment">  @ref Mezzanine::EventBase</span>
-<a name="l00170"></a>00170 <span class="comment"></span>
-<a name="l00171"></a>00171 <span class="comment">  @ref Mezzanine::GraphicsManager</span>
-<a name="l00172"></a>00172 <span class="comment"></span>
-<a name="l00173"></a>00173 <span class="comment">  @ref XMLManual &quot;Mezzanine::XML Manual&quot;</span>
-<a name="l00174"></a>00174 <span class="comment"></span>
-<a name="l00175"></a>00175 <span class="comment">  @ref Serialization</span>
-<a name="l00176"></a>00176 <span class="comment"></span>
-<a name="l00177"></a>00177 <span class="comment"> @section Licensing Licensing Information</span>
-<a name="l00178"></a>00178 <span class="comment"></span>
-<a name="l00179"></a>00179 <span class="comment">  @ref GPLLicense &quot;Mezzanine GNU Public License 3&quot;</span>
-<a name="l00180"></a>00180 <span class="comment"></span>
-<a name="l00181"></a>00181 <span class="comment">  @ref OriginalpugixmlLicense &quot;XML MIT License&quot;</span>
-<a name="l00182"></a>00182 <span class="comment"></span>
+<a name="l00119"></a>00119 <span class="comment">        A thorough description needs to go here</span>
+<a name="l00120"></a>00120 <span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">  @subpage mainloop1 &quot;Main Loop Flow&quot;</span>
+<a name="l00122"></a>00122 <span class="comment"></span>
+<a name="l00123"></a>00123 <span class="comment">  @ref Mezzanine::World &quot;World - It integrates everything&quot;</span>
+<a name="l00124"></a>00124 <span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">  @ref Mezzanine::EventManager &quot;Events - Handling messages, event and interupts from the outisde&quot;</span>
+<a name="l00126"></a>00126 <span class="comment"></span>
+<a name="l00127"></a>00127 <span class="comment">  @subpage actorcontainer1 &quot;Actor Container - Keeping track of our in game objects&quot;</span>
+<a name="l00128"></a>00128 <span class="comment"></span>
+<a name="l00129"></a>00129 <span class="comment"> @section Types Data Types</span>
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">  @subsection CompoundTypes Compound Data Type</span>
+<a name="l00132"></a>00132 <span class="comment"></span>
+<a name="l00133"></a>00133 <span class="comment">   @ref Mezzanine::ColourValue</span>
+<a name="l00134"></a>00134 <span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">   @ref Mezzanine::MetaCode &quot;Mezzanine::MetaCode - A unit of user input&quot;</span>
+<a name="l00136"></a>00136 <span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">   @ref Mezzanine::Plane</span>
+<a name="l00138"></a>00138 <span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">   @ref Mezzanine::Quaternion</span>
+<a name="l00140"></a>00140 <span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">   @ref Mezzanine::Ray</span>
+<a name="l00142"></a>00142 <span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">   @ref Mezzanine::Transform</span>
+<a name="l00144"></a>00144 <span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">   @ref Mezzanine::Vector2</span>
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">   @ref Mezzanine::Vector3</span>
+<a name="l00148"></a>00148 <span class="comment"></span>
+<a name="l00149"></a>00149 <span class="comment">   @ref Mezzanine::Vector3WActor</span>
+<a name="l00150"></a>00150 <span class="comment"></span>
+<a name="l00151"></a>00151 <span class="comment">  @subsection SimpleDataTypes Simple Data Types</span>
+<a name="l00152"></a>00152 <span class="comment"></span>
+<a name="l00153"></a>00153 <span class="comment">   @ref Mezzanine::Character</span>
+<a name="l00154"></a>00154 <span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">   @ref Mezzanine::Integer</span>
+<a name="l00156"></a>00156 <span class="comment"></span>
+<a name="l00157"></a>00157 <span class="comment">   @ref Mezzanine::Real</span>
+<a name="l00158"></a>00158 <span class="comment"></span>
+<a name="l00159"></a>00159 <span class="comment">   @ref Mezzanine::String</span>
+<a name="l00160"></a>00160 <span class="comment"></span>
+<a name="l00161"></a>00161 <span class="comment">   @ref Mezzanine::Whole</span>
+<a name="l00162"></a>00162 <span class="comment"></span>
+<a name="l00163"></a>00163 <span class="comment">   @par There are also a variety of enumerations. Aspect Ratio...</span>
+<a name="l00164"></a>00164 <span class="comment">   @todo Fill out the Simple Data Types with all the enumerations.</span>
+<a name="l00165"></a>00165 <span class="comment"></span>
+<a name="l00166"></a>00166 <span class="comment"> @section Sophisticated Sophisticated Systems</span>
+<a name="l00167"></a>00167 <span class="comment"></span>
+<a name="l00168"></a>00168 <span class="comment">  @ref Mezzanine::ActorBase &quot;Actors - Items in the world&quot;</span>
+<a name="l00169"></a>00169 <span class="comment"></span>
+<a name="l00170"></a>00170 <span class="comment">  @ref Mezzanine::EventBase</span>
+<a name="l00171"></a>00171 <span class="comment"></span>
+<a name="l00172"></a>00172 <span class="comment">  @ref Mezzanine::GraphicsManager</span>
+<a name="l00173"></a>00173 <span class="comment"></span>
+<a name="l00174"></a>00174 <span class="comment">  @ref XMLManual</span>
+<a name="l00175"></a>00175 <span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">  @ref LuaManual</span>
+<a name="l00177"></a>00177 <span class="comment"></span>
+<a name="l00178"></a>00178 <span class="comment">  @ref Serialization</span>
+<a name="l00179"></a>00179 <span class="comment"></span>
+<a name="l00180"></a>00180 <span class="comment"> @section Licensing Licensing Information</span>
+<a name="l00181"></a>00181 <span class="comment"></span>
+<a name="l00182"></a>00182 <span class="comment">  @ref GPLLicense &quot;Mezzanine GNU Public License 3&quot;</span>
 <a name="l00183"></a>00183 <span class="comment"></span>
-<a name="l00184"></a>00184 <span class="comment"></span>
-<a name="l00185"></a>00185 <span class="comment"> @page GPLLicense Mezzanine GNU Public License 3</span>
-<a name="l00186"></a>00186 <span class="comment">  Here is a simple summary of the license terms. It is included at the top of every</span>
-<a name="l00187"></a>00187 <span class="comment">  source and header file in the engine:</span>
-<a name="l00188"></a>00188 <span class="comment">  \n \n</span>
-<a name="l00189"></a>00189 <span class="comment">  @verbatim</span>
-<a name="l00190"></a>00190 <span class="comment">  © Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
-<a name="l00191"></a>00191 <span class="comment">   This file is part of The Mezzanine Engine.</span>
-<a name="l00192"></a>00192 <span class="comment"></span>
-<a name="l00193"></a>00193 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
-<a name="l00194"></a>00194 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
-<a name="l00195"></a>00195 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
-<a name="l00196"></a>00196 <span class="comment">    (at your option) any later version.</span>
-<a name="l00197"></a>00197 <span class="comment"></span>
-<a name="l00198"></a>00198 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
-<a name="l00199"></a>00199 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<a name="l00200"></a>00200 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<a name="l00201"></a>00201 <span class="comment">    GNU General Public License for more details.</span>
-<a name="l00202"></a>00202 <span class="comment"></span>
-<a name="l00203"></a>00203 <span class="comment">    You should have received a copy of the GNU General Public License</span>
-<a name="l00204"></a>00204 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<a name="l00184"></a>00184 <span class="comment">  @ref OriginalpugixmlLicense &quot;XML MIT License&quot;</span>
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment"></span>
+<a name="l00187"></a>00187 <span class="comment"></span>
+<a name="l00188"></a>00188 <span class="comment"> @page GPLLicense Mezzanine GNU Public License 3</span>
+<a name="l00189"></a>00189 <span class="comment">  Here is a simple summary of the license terms. It is included at the top of every</span>
+<a name="l00190"></a>00190 <span class="comment">  source and header file in the engine:</span>
+<a name="l00191"></a>00191 <span class="comment">  \n \n</span>
+<a name="l00192"></a>00192 <span class="comment">  @verbatim</span>
+<a name="l00193"></a>00193 <span class="comment">  © Copyright 2010 - 2011 BlackTopp Studios Inc.</span>
+<a name="l00194"></a>00194 <span class="comment">   This file is part of The Mezzanine Engine.</span>
+<a name="l00195"></a>00195 <span class="comment"></span>
+<a name="l00196"></a>00196 <span class="comment">    The Mezzanine Engine is free software: you can redistribute it and/or modify</span>
+<a name="l00197"></a>00197 <span class="comment">    it under the terms of the GNU General Public License as published by</span>
+<a name="l00198"></a>00198 <span class="comment">    the Free Software Foundation, either version 3 of the License, or</span>
+<a name="l00199"></a>00199 <span class="comment">    (at your option) any later version.</span>
+<a name="l00200"></a>00200 <span class="comment"></span>
+<a name="l00201"></a>00201 <span class="comment">    The Mezzanine Engine is distributed in the hope that it will be useful,</span>
+<a name="l00202"></a>00202 <span class="comment">    but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<a name="l00203"></a>00203 <span class="comment">    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<a name="l00204"></a>00204 <span class="comment">    GNU General Public License for more details.</span>
 <a name="l00205"></a>00205 <span class="comment"></span>
-<a name="l00206"></a>00206 <span class="comment">   The original authors have included a copy of the license specified above in the</span>
-<a name="l00207"></a>00207 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
+<a name="l00206"></a>00206 <span class="comment">    You should have received a copy of the GNU General Public License</span>
+<a name="l00207"></a>00207 <span class="comment">    along with The Mezzanine Engine.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 <a name="l00208"></a>00208 <span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">   We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
-<a name="l00210"></a>00210 <span class="comment">   Build professional software and charge for their product.</span>
+<a name="l00209"></a>00209 <span class="comment">   The original authors have included a copy of the license specified above in the</span>
+<a name="l00210"></a>00210 <span class="comment">   &#39;Docs&#39; folder. See &#39;gpl.txt&#39;</span>
 <a name="l00211"></a>00211 <span class="comment"></span>
-<a name="l00212"></a>00212 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
-<a name="l00213"></a>00213 <span class="comment">   any of the following you should contact us and we will try to work something</span>
-<a name="l00214"></a>00214 <span class="comment">   out:</span>
-<a name="l00215"></a>00215 <span class="comment">    - DRM or Copy Protection of any kind(except Copyrights)</span>
-<a name="l00216"></a>00216 <span class="comment">    - Software Patents You Do Not Wish to Freely License</span>
-<a name="l00217"></a>00217 <span class="comment">    - Any Kind of Linking to Non-GPL licensed Works</span>
-<a name="l00218"></a>00218 <span class="comment">    - Are Currently In Violation of Another Copyright Holder&#39;s GPL License</span>
-<a name="l00219"></a>00219 <span class="comment">    - If You want to change our code and not add a few hundred MB of stuff to</span>
-<a name="l00220"></a>00220 <span class="comment">        your distribution</span>
-<a name="l00221"></a>00221 <span class="comment"></span>
-<a name="l00222"></a>00222 <span class="comment">   These and other limitations could cause serious legal problems if you ignore</span>
-<a name="l00223"></a>00223 <span class="comment">   them, so it is best to simply contact us or the Free Software Foundation, if</span>
-<a name="l00224"></a>00224 <span class="comment">   you have any questions.</span>
-<a name="l00225"></a>00225 <span class="comment"></span>
-<a name="l00226"></a>00226 <span class="comment">   Joseph Toppi - toppij@gmail.com</span>
-<a name="l00227"></a>00227 <span class="comment">   John Blackwood - makoenergy02@gmail.com</span>
-<a name="l00228"></a>00228 <span class="comment">  @endverbatim</span>
-<a name="l00229"></a>00229 <span class="comment">  \n \n</span>
-<a name="l00230"></a>00230 <span class="comment">  Here is the contents of gpl.txt that comes in the docs/ folder of with every</span>
-<a name="l00231"></a>00231 <span class="comment">  complete repository of the engine:</span>
+<a name="l00212"></a>00212 <span class="comment">   We welcome the use of the Mezzanine engine to anyone, including companies who wish to</span>
+<a name="l00213"></a>00213 <span class="comment">   Build professional software and charge for their product.</span>
+<a name="l00214"></a>00214 <span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">   However there are some practical restrictions, so if your project involves</span>
+<a name="l00216"></a>00216 <span class="comment">   any of the following you should contact us and we will try to work something</span>
+<a name="l00217"></a>00217 <span class="comment">   out:</span>
+<a name="l00218"></a>00218 <span class="comment">    - DRM or Copy Protection of any kind(except Copyrights)</span>
+<a name="l00219"></a>00219 <span class="comment">    - Software Patents You Do Not Wish to Freely License</span>
+<a name="l00220"></a>00220 <span class="comment">    - Any Kind of Linking to Non-GPL licensed Works</span>
+<a name="l00221"></a>00221 <span class="comment">    - Are Currently In Violation of Another Copyright Holder&#39;s GPL License</span>
+<a name="l00222"></a>00222 <span class="comment">    - If You want to change our code and not add a few hundred MB of stuff to</span>
+<a name="l00223"></a>00223 <span class="comment">        your distribution</span>
+<a name="l00224"></a>00224 <span class="comment"></span>
+<a name="l00225"></a>00225 <span class="comment">   These and other limitations could cause serious legal problems if you ignore</span>
+<a name="l00226"></a>00226 <span class="comment">   them, so it is best to simply contact us or the Free Software Foundation, if</span>
+<a name="l00227"></a>00227 <span class="comment">   you have any questions.</span>
+<a name="l00228"></a>00228 <span class="comment"></span>
+<a name="l00229"></a>00229 <span class="comment">   Joseph Toppi - toppij@gmail.com</span>
+<a name="l00230"></a>00230 <span class="comment">   John Blackwood - makoenergy02@gmail.com</span>
+<a name="l00231"></a>00231 <span class="comment">  @endverbatim</span>
 <a name="l00232"></a>00232 <span class="comment">  \n \n</span>
-<a name="l00233"></a>00233 <span class="comment">  @verbinclude gpl.txt</span>
-<a name="l00234"></a>00234 <span class="comment">*/</span>
-<a name="l00235"></a>00235 
-<a name="l00236"></a>00236 <span class="comment">//And now for actual source code!</span>
-<a name="l00237"></a>00237 
-<a name="l00238"></a>00238 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
-<a name="l00239"></a>00239 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
-<a name="l00240"></a>00240 <span class="preprocessor">#include &quot;exception.h&quot;</span>
-<a name="l00241"></a>00241 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00242"></a>00242 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
-<a name="l00243"></a>00243 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
-<a name="l00244"></a>00244 
-<a name="l00245"></a>00245 <span class="keyword">namespace </span>Mezzanine
-<a name="l00246"></a>00246 {
-<a name="l00247"></a>00247     <span class="keyword">class </span>ActorBase;
-<a name="l00248"></a>00248     <span class="keyword">class </span>ActorManager;
-<a name="l00249"></a>00249     <span class="keyword">class </span>ActorContainerBase;
-<a name="l00250"></a>00250     <span class="keyword">class </span>AudioManager;
-<a name="l00251"></a>00251     <span class="keyword">class </span>EventManager;
-<a name="l00252"></a>00252     <span class="keyword">class </span>CameraManager;
-<a name="l00253"></a>00253     <span class="keyword">class </span>PhysicsManager;
-<a name="l00254"></a>00254     <span class="keyword">class </span>GameWindow;
-<a name="l00255"></a>00255     <span class="keyword">class </span>GraphicsManager;
-<a name="l00256"></a>00256     <span class="keyword">class </span>ResourceManager;
-<a name="l00257"></a>00257     <span class="keyword">class </span>TimerManager;
-<a name="l00258"></a>00258     <span class="keyword">class </span>UIManager;
-<a name="l00259"></a>00259     <span class="keyword">class </span>MeshManager;
-<a name="l00260"></a>00260     <span class="keyword">class </span>CollisionShapeManager;
-<a name="l00261"></a>00261     <span class="keyword">class </span>PhysicsConstructionInfo;
-<a name="l00262"></a>00262     <span class="keyword">class </span>NetworkManager;
-<a name="l00263"></a>00263 }
-<a name="l00264"></a>00264 
-<a name="l00265"></a>00265 
-<a name="l00266"></a>00266 <span class="keyword">using namespace </span>std;
+<a name="l00233"></a>00233 <span class="comment">  Here is the contents of gpl.txt that comes in the docs/ folder of with every</span>
+<a name="l00234"></a>00234 <span class="comment">  complete repository of the engine:</span>
+<a name="l00235"></a>00235 <span class="comment">  \n \n</span>
+<a name="l00236"></a>00236 <span class="comment">  @verbinclude gpl.txt</span>
+<a name="l00237"></a>00237 <span class="comment">*/</span>
+<a name="l00238"></a>00238 
+<a name="l00239"></a>00239 <span class="comment">//And now for actual source code!</span>
+<a name="l00240"></a>00240 
+<a name="l00241"></a>00241 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
+<a name="l00242"></a>00242 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
+<a name="l00243"></a>00243 <span class="preprocessor">#include &quot;exception.h&quot;</span>
+<a name="l00244"></a>00244 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
+<a name="l00245"></a>00245 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
+<a name="l00246"></a>00246 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
+<a name="l00247"></a>00247 
+<a name="l00248"></a>00248 <span class="keyword">namespace </span>Mezzanine
+<a name="l00249"></a>00249 {
+<a name="l00250"></a>00250     <span class="keyword">class </span>ActorBase;
+<a name="l00251"></a>00251     <span class="keyword">class </span>ActorManager;
+<a name="l00252"></a>00252     <span class="keyword">class </span>ActorContainerBase;
+<a name="l00253"></a>00253     <span class="keyword">class </span>AudioManager;
+<a name="l00254"></a>00254     <span class="keyword">class </span>EventManager;
+<a name="l00255"></a>00255     <span class="keyword">class </span>CameraManager;
+<a name="l00256"></a>00256     <span class="keyword">class </span>PhysicsManager;
+<a name="l00257"></a>00257     <span class="keyword">class </span>GameWindow;
+<a name="l00258"></a>00258     <span class="keyword">class </span>GraphicsManager;
+<a name="l00259"></a>00259     <span class="keyword">class </span>ResourceManager;
+<a name="l00260"></a>00260     <span class="keyword">class </span>TimerManager;
+<a name="l00261"></a>00261     <span class="keyword">class </span>UIManager;
+<a name="l00262"></a>00262     <span class="keyword">class </span>MeshManager;
+<a name="l00263"></a>00263     <span class="keyword">class </span>CollisionShapeManager;
+<a name="l00264"></a>00264     <span class="keyword">class </span>PhysicsConstructionInfo;
+<a name="l00265"></a>00265     <span class="keyword">class </span>NetworkManager;
+<a name="l00266"></a>00266 }
 <a name="l00267"></a>00267 
-<a name="l00268"></a>00268 <span class="comment">//Other forward declarations</span>
-<a name="l00269"></a>00269 <span class="comment">//forward Declarations so that we do not need #include &quot;SDL.h&quot;</span>
-<a name="l00270"></a>00270 <span class="keyword">class </span>SDL_Surface;
-<a name="l00271"></a>00271 
-<a name="l00272"></a>00272 <span class="comment">//forward Declarations so that we do not need #include &lt;Ogre.h&gt;</span>
-<a name="l00273"></a>00273 <span class="keyword">namespace </span>Ogre
-<a name="l00274"></a>00274 {
-<a name="l00275"></a>00275         <span class="keyword">class </span>Root;
-<a name="l00276"></a>00276         <span class="keyword">class </span><a class="code" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a" title="Used primarily by the graphics manager class during initialization.">RenderSystem</a>;
-<a name="l00277"></a>00277         <span class="keyword">class </span>RenderWindow;
-<a name="l00278"></a>00278     <span class="keyword">class </span>ResourceGroupManager;
-<a name="l00279"></a>00279         <span class="keyword">class </span>SceneManager;
-<a name="l00280"></a>00280         <span class="keyword">class </span>Camera;
-<a name="l00281"></a>00281         <span class="keyword">class </span>Viewport;
-<a name="l00282"></a>00282 }
-<a name="l00283"></a>00283 <span class="comment"></span>
-<a name="l00284"></a>00284 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00285"></a>00285 <span class="comment">/// @namespace Mezzanine</span>
-<a name="l00286"></a>00286 <span class="comment">/// @brief The bulk of the engine components go in this namspace</span>
-<a name="l00287"></a>00287 <span class="comment">/// @details This is where imporant classes like World, GraphicsManager, and</span>
-<a name="l00288"></a>00288 <span class="comment">/// The eventmanager reside. For more detailed usage information please refer</span>
-<a name="l00289"></a>00289 <span class="comment">/// to individual class documentation or the @ref index main page.</span>
-<a name="l00290"></a>00290 <span class="comment">///////////////////////////////////////</span>
-<a name="l00291"></a>00291 <span class="comment"></span><span class="keyword">namespace </span>Mezzanine
-<a name="l00292"></a>00292 {<span class="comment"></span>
-<a name="l00293"></a>00293 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00294"></a>00294 <span class="comment">    /// @class World</span>
-<a name="l00295"></a>00295 <span class="comment">    /// @headerfile world.h</span>
-<a name="l00296"></a>00296 <span class="comment">    /// @brief This is the main entry point for the entire library.</span>
-<a name="l00297"></a>00297 <span class="comment">    /// @details The world coordinates and integrates all the underlying subsystems,</span>
-<a name="l00298"></a>00298 <span class="comment">    /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and</span>
-<a name="l00299"></a>00299 <span class="comment">    /// SDL is used for user input and window management. Games will need a</span>
-<a name="l00300"></a>00300 <span class="comment">    /// container for all the playing pieces. It makes sense to tie all of this</span>
-<a name="l00301"></a>00301 <span class="comment">    /// functionality into one world object.</span>
-<a name="l00302"></a>00302 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00303"></a><a class="code" href="classMezzanine_1_1World.html">00303</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>
-<a name="l00304"></a>00304     {
-<a name="l00305"></a>00305         <span class="keyword">private</span>:
-<a name="l00306"></a>00306             <span class="comment">//friend class PhysicsManager;</span>
-<a name="l00307"></a>00307 
-<a name="l00308"></a>00308             <span class="comment">//Used to break the mainloop</span>
-<a name="l00309"></a>00309             <span class="keywordtype">bool</span> ManualLoopBreak;
-<a name="l00310"></a>00310 
-<a name="l00311"></a>00311             <span class="comment">//Used by the constructors</span><span class="comment"></span>
-<a name="l00312"></a>00312 <span class="comment">            /// @internal</span>
-<a name="l00313"></a>00313 <span class="comment">            /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.</span>
-<a name="l00314"></a>00314 <span class="comment">            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.</span>
-<a name="l00315"></a>00315 <span class="comment">            /// @param SceneType This is the type of Scene Manager to be created.</span>
-<a name="l00316"></a>00316 <span class="comment">            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.</span>
-<a name="l00317"></a>00317 <span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span>
-<a name="l00318"></a>00318 <span class="comment">            /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.</span>
-<a name="l00319"></a>00319 <span class="comment">            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones</span>
-<a name="l00320"></a>00320 <span class="comment"></span>            <span class="keywordtype">void</span> Construct( <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a>&amp; PhysicsInfo,
-<a name="l00321"></a>00321                             <a class="code" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274" title="Needs to be documented.">SceneManager::SceneManagerType</a> SceneType,
-<a name="l00322"></a>00322                             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> PluginsFileName,
-<a name="l00323"></a>00323                             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> EngineDataPath,
-<a name="l00324"></a>00324                             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> LogFileName,
-<a name="l00325"></a>00325                             std::vector &lt; ManagerBase* &gt; ManagerToBeAdded);
-<a name="l00326"></a>00326 
-<a name="l00327"></a>00327             <span class="keywordtype">void</span> SanityChecks();
-<a name="l00328"></a>00328             <span class="keywordtype">void</span> OneTimeMainLoopInit();
-<a name="l00329"></a>00329 
-<a name="l00330"></a>00330             <span class="comment">//Settings for Engine Functionality</span>
-<a name="l00331"></a>00331             <span class="keywordtype">string</span> WindowName;
-<a name="l00332"></a>00332             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> TargetFrameLength;
-<a name="l00333"></a>00333             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> FrameTime;
-<a name="l00334"></a>00334 <span class="comment"></span>
-<a name="l00335"></a>00335 <span class="comment">            /// @internal</span>
-<a name="l00336"></a>00336 <span class="comment">            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.</span>
-<a name="l00337"></a>00337 <span class="comment"></span>            std::list&lt; ManagerBase* &gt; ManagerList;
-<a name="l00338"></a>00338 
-<a name="l00339"></a>00339             <span class="comment">// A pointer to the function that actually commits log messages.</span>
-<a name="l00340"></a>00340             void (*LogCommitFunc)();
-<a name="l00341"></a>00341 
-<a name="l00342"></a>00342         <span class="keyword">protected</span>:<span class="comment"></span>
-<a name="l00343"></a>00343 <span class="comment">            /// @internal</span>
-<a name="l00344"></a>00344 <span class="comment">            /// @brief A pointer to the one and only world</span>
-<a name="l00345"></a><a class="code" href="classMezzanine_1_1World.html#a86c5d362a144d6cad245fd022f512b21">00345</a> <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* <a class="code" href="classMezzanine_1_1World.html#a86c5d362a144d6cad245fd022f512b21" title="A pointer to the one and only world.">TheRealWorld</a>;
-<a name="l00346"></a>00346 
-<a name="l00347"></a>00347         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00348"></a>00348 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00349"></a>00349 <span class="comment"></span>        <span class="comment">// Creation and Deletion methods</span><span class="comment"></span>
-<a name="l00350"></a>00350 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00351"></a>00351 <span class="comment"></span><span class="comment"></span>
-<a name="l00352"></a>00352 <span class="comment">            /// @brief Return a pointer to the world</span>
-<a name="l00353"></a>00353 <span class="comment">            /// @return This returns a pointer the one and only Mezzanine::World</span>
-<a name="l00354"></a>00354 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GetWorldPointer();
-<a name="l00355"></a>00355 <span class="comment"></span>
-<a name="l00356"></a>00356 <span class="comment">            /// @brief Descriptive constructor With Manager Pointers</span>
-<a name="l00357"></a>00357 <span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.</span>
-<a name="l00358"></a>00358 <span class="comment">            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.</span>
-<a name="l00359"></a>00359 <span class="comment">            /// @param SceneType A cue to the scenemanager as to how rendering should occur.</span>
-<a name="l00360"></a>00360 <span class="comment">            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.</span>
-<a name="l00361"></a>00361 <span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span>
-<a name="l00362"></a>00362 <span class="comment">            /// @param LogFileName This is the place that log messages get sent to.</span>
-<a name="l00363"></a>00363 <span class="comment">            /// @warning Do not make a new world if one already exists. This can only cause problems</span>
-<a name="l00364"></a>00364 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>(  <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a>&amp; PhysicsInfo,
-<a name="l00365"></a>00365                     <a class="code" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274" title="Needs to be documented.">SceneManager::SceneManagerType</a> SceneType,
-<a name="l00366"></a>00366                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;PluginsFileName,
-<a name="l00367"></a>00367                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;EngineDataPath,
-<a name="l00368"></a>00368                     std::string LogFileName=<span class="stringliteral">&quot;Mezzanine.log&quot;</span> );
-<a name="l00369"></a>00369 <span class="comment"></span>
-<a name="l00370"></a>00370 <span class="comment">            /// @brief Descriptive constructor</span>
-<a name="l00371"></a>00371 <span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.</span>
-<a name="l00372"></a>00372 <span class="comment">            /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other</span>
-<a name="l00373"></a>00373 <span class="comment">            /// constructors this one can accept a vector of pointers to managers. They will be add</span>
-<a name="l00374"></a>00374 <span class="comment">            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.</span>
-<a name="l00375"></a>00375 <span class="comment">            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.</span>
-<a name="l00376"></a>00376 <span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span>
-<a name="l00377"></a>00377 <span class="comment">            /// @param LogFileName This is the place that log messages get sent to.</span>
-<a name="l00378"></a>00378 <span class="comment">            /// @param SceneType A cue to the scenemanager as to how rendering should occur.</span>
-<a name="l00379"></a>00379 <span class="comment">            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones</span>
-<a name="l00380"></a>00380 <span class="comment">            /// @warning Do not make a new world if one already exists. This can only cause problems.</span>
-<a name="l00381"></a>00381 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>(  <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a>&amp; PhysicsInfo,
-<a name="l00382"></a>00382                     <a class="code" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274" title="Needs to be documented.">SceneManager::SceneManagerType</a> SceneType,
-<a name="l00383"></a>00383                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;PluginsFileName,
-<a name="l00384"></a>00384                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;EngineDataPath,
-<a name="l00385"></a>00385                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;LogFileName,
-<a name="l00386"></a>00386                     <span class="keyword">const</span> std::vector &lt;ManagerBase*&gt; &amp;ManagerToBeAdded);
-<a name="l00387"></a>00387 <span class="comment"></span>
-<a name="l00388"></a>00388 <span class="comment">            /// @brief Default constructor</span>
-<a name="l00389"></a>00389 <span class="comment">            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors</span>
-<a name="l00390"></a>00390 <span class="comment">            /// @warning Do not make a new world if one already exists. This can only cause problems</span>
-<a name="l00391"></a>00391 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>();
-<a name="l00392"></a>00392 <span class="comment"></span>
-<a name="l00393"></a>00393 <span class="comment">            /// @brief Deconstructor</span>
-<a name="l00394"></a>00394 <span class="comment">            /// @details This Tears down all the items created by the world, and safely frees any graphical resources, we will also delete any Objects passed into the</span>
-<a name="l00395"></a>00395 <span class="comment">            /// world by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)</span>
-<a name="l00396"></a>00396 <span class="comment"></span>            ~<a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>();
-<a name="l00397"></a>00397 <span class="comment"></span>
-<a name="l00398"></a>00398 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00399"></a>00399 <span class="comment"></span>        <span class="comment">// Logging</span><span class="comment"></span>
-<a name="l00400"></a>00400 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00401"></a>00401 <span class="comment"></span><span class="comment"></span>
-<a name="l00402"></a>00402 <span class="comment">            /// @brief Used to indicate the frequency of logging.</span>
-<a name="l00403"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25">00403</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25" title="Used to indicate the frequency of logging.">LoggingFrequency</a>
-<a name="l00404"></a>00404             {
-<a name="l00405"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25abf336536d5cf6396466067a847f64e3d">00405</a>                 LogNever = 0,               <span class="comment">///&lt; Never log</span>
-<a name="l00406"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25ac1d6f9aa441fdc15961f28f18bbdbdb2">00406</a> <span class="comment"></span>                LogOncePerFrame = 1,        <span class="comment">///&lt; The Default, log each and every frame</span>
-<a name="l00407"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25a1d4113b21efd91ab73056970906fafe5">00407</a> <span class="comment"></span>                LogOncePerXFrames = 2,      <span class="comment">///&lt; Log once per every Xth frame, X is the FrequencyCounter Value passed in with this</span>
-<a name="l00408"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25adf1caf2c27e4c4e6178c13e8579ab872">00408</a> <span class="comment"></span>                LogOncePerXSeconds = 3      <span class="comment">///&lt; Log once per every Xth second, X is the FrequencyCounter Value passed in with this</span>
-<a name="l00409"></a>00409 <span class="comment"></span>            };
-<a name="l00410"></a>00410 <span class="comment"></span>
-<a name="l00411"></a>00411 <span class="comment">            /// @brief Set how often log message should be commited to disk (or network, or whatever).</span>
-<a name="l00412"></a>00412 <span class="comment">            /// @param HowOften The actual setting for how often.</span>
-<a name="l00413"></a>00413 <span class="comment">            /// @param FrequencyCounter For settings that use X this is X, this defaults to 5</span>
-<a name="l00414"></a>00414 <span class="comment">            /// @details By default this is set to LogOncePerFrame. \n \n</span>
-<a name="l00415"></a>00415 <span class="comment">            /// There are a series of functions internally that represent each of the LoggingFrequency values. When</span>
-<a name="l00416"></a>00416 <span class="comment">            /// You pass in one of these values you are setting which of these functions will be called. This way the</span>
-<a name="l00417"></a>00417 <span class="comment">            /// only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time).</span>
-<a name="l00418"></a>00418 <span class="comment">            /// Additionally the members of the enum are sorted by the amount of time they are expected to take to run,</span>
-<a name="l00419"></a>00419 <span class="comment">            /// of course your performance will vary, the best way to know how it will perform is to test.</span>
-<a name="l00420"></a>00420 <span class="comment"></span>            <span class="keywordtype">void</span> SetLoggingFrequency(LoggingFrequency HowOften, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> FrequencyCounter = 5);
-<a name="l00421"></a>00421 <span class="comment"></span>
-<a name="l00422"></a>00422 <span class="comment">            /// @brief Returns the frequency of logging commits</span>
-<a name="l00423"></a>00423 <span class="comment">            /// @return A World::LoggingFrequency containing the requested information.</span>
-<a name="l00424"></a>00424 <span class="comment"></span>            LoggingFrequency GetLoggingFrequency();
-<a name="l00425"></a>00425 <span class="comment"></span>
-<a name="l00426"></a>00426 <span class="comment">            /// @brief Forces the log to commit to disk (or whereever)</span>
-<a name="l00427"></a>00427 <span class="comment">            /// @details Any outstanding log messages or entries into the logstream will be written in chronological order to</span>
-<a name="l00428"></a>00428 <span class="comment">            /// to the appropriate place.</span>
-<a name="l00429"></a>00429 <span class="comment"></span>            <span class="keywordtype">void</span> CommitLog();
+<a name="l00268"></a>00268 
+<a name="l00269"></a>00269 <span class="comment">//Other forward declarations</span>
+<a name="l00270"></a>00270 <span class="comment">//forward Declarations so that we do not need #include &quot;SDL.h&quot;</span>
+<a name="l00271"></a>00271 <span class="keyword">class </span>SDL_Surface;
+<a name="l00272"></a>00272 
+<a name="l00273"></a>00273 <span class="comment">//forward Declarations so that we do not need #include &lt;Ogre.h&gt;</span>
+<a name="l00274"></a>00274 <span class="keyword">namespace </span>Ogre
+<a name="l00275"></a>00275 {
+<a name="l00276"></a>00276         <span class="keyword">class </span>Root;
+<a name="l00277"></a>00277         <span class="keyword">class </span><a class="code" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a" title="Used primarily by the graphics manager class during initialization.">RenderSystem</a>;
+<a name="l00278"></a>00278         <span class="keyword">class </span>RenderWindow;
+<a name="l00279"></a>00279     <span class="keyword">class </span>ResourceGroupManager;
+<a name="l00280"></a>00280         <span class="keyword">class </span>SceneManager;
+<a name="l00281"></a>00281         <span class="keyword">class </span>Camera;
+<a name="l00282"></a>00282         <span class="keyword">class </span>Viewport;
+<a name="l00283"></a>00283 }
+<a name="l00284"></a>00284 <span class="comment"></span>
+<a name="l00285"></a>00285 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00286"></a>00286 <span class="comment">/// @namespace Mezzanine</span>
+<a name="l00287"></a>00287 <span class="comment">/// @brief The bulk of the engine components go in this namspace</span>
+<a name="l00288"></a>00288 <span class="comment">/// @details This is where imporant classes like World, GraphicsManager, and</span>
+<a name="l00289"></a>00289 <span class="comment">/// The eventmanager reside. For more detailed usage information please refer</span>
+<a name="l00290"></a>00290 <span class="comment">/// to individual class documentation or the @ref index main page.</span>
+<a name="l00291"></a>00291 <span class="comment">///////////////////////////////////////</span>
+<a name="l00292"></a>00292 <span class="comment"></span><span class="keyword">namespace </span>Mezzanine
+<a name="l00293"></a>00293 {<span class="comment"></span>
+<a name="l00294"></a>00294 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00295"></a>00295 <span class="comment">    /// @class World</span>
+<a name="l00296"></a>00296 <span class="comment">    /// @headerfile world.h</span>
+<a name="l00297"></a>00297 <span class="comment">    /// @brief This is the main entry point for the entire library.</span>
+<a name="l00298"></a>00298 <span class="comment">    /// @details The world coordinates and integrates all the underlying subsystems,</span>
+<a name="l00299"></a>00299 <span class="comment">    /// Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and</span>
+<a name="l00300"></a>00300 <span class="comment">    /// SDL is used for user input and window management. Games will need a</span>
+<a name="l00301"></a>00301 <span class="comment">    /// container for all the playing pieces. It makes sense to tie all of this</span>
+<a name="l00302"></a>00302 <span class="comment">    /// functionality into one world object.</span>
+<a name="l00303"></a>00303 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00304"></a><a class="code" href="classMezzanine_1_1World.html">00304</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>
+<a name="l00305"></a>00305     {
+<a name="l00306"></a>00306         <span class="keyword">private</span>:
+<a name="l00307"></a>00307             <span class="comment">//friend class PhysicsManager;</span>
+<a name="l00308"></a>00308 
+<a name="l00309"></a>00309             <span class="comment">//Used to break the mainloop</span>
+<a name="l00310"></a>00310             <span class="keywordtype">bool</span> ManualLoopBreak;
+<a name="l00311"></a>00311 
+<a name="l00312"></a>00312             <span class="comment">//Used by the constructors</span><span class="comment"></span>
+<a name="l00313"></a>00313 <span class="comment">            /// @internal</span>
+<a name="l00314"></a>00314 <span class="comment">            /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.</span>
+<a name="l00315"></a>00315 <span class="comment">            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.</span>
+<a name="l00316"></a>00316 <span class="comment">            /// @param SceneType This is the type of Scene Manager to be created.</span>
+<a name="l00317"></a>00317 <span class="comment">            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.</span>
+<a name="l00318"></a>00318 <span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span>
+<a name="l00319"></a>00319 <span class="comment">            /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.</span>
+<a name="l00320"></a>00320 <span class="comment">            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones</span>
+<a name="l00321"></a>00321 <span class="comment"></span>            <span class="keywordtype">void</span> Construct( <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a>&amp; PhysicsInfo,
+<a name="l00322"></a>00322                             <a class="code" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274" title="Needs to be documented.">SceneManager::SceneManagerType</a> SceneType,
+<a name="l00323"></a>00323                             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> PluginsFileName,
+<a name="l00324"></a>00324                             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> EngineDataPath,
+<a name="l00325"></a>00325                             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> LogFileName,
+<a name="l00326"></a>00326                             std::vector &lt; ManagerBase* &gt; ManagerToBeAdded);
+<a name="l00327"></a>00327 
+<a name="l00328"></a>00328             <span class="keywordtype">void</span> SanityChecks();
+<a name="l00329"></a>00329             <span class="keywordtype">void</span> OneTimeMainLoopInit();
+<a name="l00330"></a>00330 
+<a name="l00331"></a>00331             <span class="comment">//Settings for Engine Functionality</span>
+<a name="l00332"></a>00332             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> WindowName;
+<a name="l00333"></a>00333             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> TargetFrameLength;
+<a name="l00334"></a>00334             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> FrameTime;
+<a name="l00335"></a>00335 <span class="comment"></span>
+<a name="l00336"></a>00336 <span class="comment">            /// @internal</span>
+<a name="l00337"></a>00337 <span class="comment">            /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.</span>
+<a name="l00338"></a>00338 <span class="comment"></span>            std::list&lt; ManagerBase* &gt; ManagerList;
+<a name="l00339"></a>00339 
+<a name="l00340"></a>00340             <span class="comment">// A pointer to the function that actually commits log messages.</span>
+<a name="l00341"></a>00341             void (*LogCommitFunc)();
+<a name="l00342"></a>00342 
+<a name="l00343"></a>00343         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00344"></a>00344 <span class="comment">            /// @internal</span>
+<a name="l00345"></a>00345 <span class="comment">            /// @brief A pointer to the one and only world</span>
+<a name="l00346"></a><a class="code" href="classMezzanine_1_1World.html#a86c5d362a144d6cad245fd022f512b21">00346</a> <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* <a class="code" href="classMezzanine_1_1World.html#a86c5d362a144d6cad245fd022f512b21" title="A pointer to the one and only world.">TheRealWorld</a>;
+<a name="l00347"></a>00347 
+<a name="l00348"></a>00348         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00349"></a>00349 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00350"></a>00350 <span class="comment"></span>        <span class="comment">// Creation and Deletion methods</span><span class="comment"></span>
+<a name="l00351"></a>00351 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00352"></a>00352 <span class="comment"></span><span class="comment"></span>
+<a name="l00353"></a>00353 <span class="comment">            /// @brief Return a pointer to the world</span>
+<a name="l00354"></a>00354 <span class="comment">            /// @return This returns a pointer the one and only Mezzanine::World</span>
+<a name="l00355"></a>00355 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GetWorldPointer();
+<a name="l00356"></a>00356 <span class="comment"></span>
+<a name="l00357"></a>00357 <span class="comment">            /// @brief Descriptive constructor With Manager Pointers</span>
+<a name="l00358"></a>00358 <span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.</span>
+<a name="l00359"></a>00359 <span class="comment">            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.</span>
+<a name="l00360"></a>00360 <span class="comment">            /// @param SceneType A cue to the scenemanager as to how rendering should occur.</span>
+<a name="l00361"></a>00361 <span class="comment">            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.</span>
+<a name="l00362"></a>00362 <span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span>
+<a name="l00363"></a>00363 <span class="comment">            /// @param LogFileName This is the place that log messages get sent to.</span>
+<a name="l00364"></a>00364 <span class="comment">            /// @warning Do not make a new world if one already exists. This can only cause problems</span>
+<a name="l00365"></a>00365 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>(  <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a>&amp; PhysicsInfo,
+<a name="l00366"></a>00366                     <a class="code" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274" title="Needs to be documented.">SceneManager::SceneManagerType</a> SceneType,
+<a name="l00367"></a>00367                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;PluginsFileName,
+<a name="l00368"></a>00368                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;EngineDataPath,
+<a name="l00369"></a>00369                     std::string LogFileName=<span class="stringliteral">&quot;Mezzanine.log&quot;</span> );
+<a name="l00370"></a>00370 <span class="comment"></span>
+<a name="l00371"></a>00371 <span class="comment">            /// @brief Descriptive constructor</span>
+<a name="l00372"></a>00372 <span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.</span>
+<a name="l00373"></a>00373 <span class="comment">            /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other</span>
+<a name="l00374"></a>00374 <span class="comment">            /// constructors this one can accept a vector of pointers to managers. They will be add</span>
+<a name="l00375"></a>00375 <span class="comment">            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.</span>
+<a name="l00376"></a>00376 <span class="comment">            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.</span>
+<a name="l00377"></a>00377 <span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span>
+<a name="l00378"></a>00378 <span class="comment">            /// @param LogFileName This is the place that log messages get sent to.</span>
+<a name="l00379"></a>00379 <span class="comment">            /// @param SceneType A cue to the scenemanager as to how rendering should occur.</span>
+<a name="l00380"></a>00380 <span class="comment">            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones</span>
+<a name="l00381"></a>00381 <span class="comment">            /// @warning Do not make a new world if one already exists. This can only cause problems.</span>
+<a name="l00382"></a>00382 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>(  <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a>&amp; PhysicsInfo,
+<a name="l00383"></a>00383                     <a class="code" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274" title="Needs to be documented.">SceneManager::SceneManagerType</a> SceneType,
+<a name="l00384"></a>00384                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;PluginsFileName,
+<a name="l00385"></a>00385                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;EngineDataPath,
+<a name="l00386"></a>00386                     <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> &amp;LogFileName,
+<a name="l00387"></a>00387                     <span class="keyword">const</span> std::vector &lt;ManagerBase*&gt; &amp;ManagerToBeAdded);
+<a name="l00388"></a>00388 <span class="comment"></span>
+<a name="l00389"></a>00389 <span class="comment">            /// @brief Default constructor</span>
+<a name="l00390"></a>00390 <span class="comment">            /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors</span>
+<a name="l00391"></a>00391 <span class="comment">            /// @warning Do not make a new world if one already exists. This can only cause problems</span>
+<a name="l00392"></a>00392 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>();
+<a name="l00393"></a>00393 <span class="comment"></span>
+<a name="l00394"></a>00394 <span class="comment">            /// @brief Deconstructor</span>
+<a name="l00395"></a>00395 <span class="comment">            /// @details This Tears down all the items created by the world, and safely frees any graphical resources, we will also delete any Objects passed into the</span>
+<a name="l00396"></a>00396 <span class="comment">            /// world by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager)</span>
+<a name="l00397"></a>00397 <span class="comment"></span>            ~<a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>();
+<a name="l00398"></a>00398 <span class="comment"></span>
+<a name="l00399"></a>00399 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00400"></a>00400 <span class="comment"></span>        <span class="comment">// Utility</span><span class="comment"></span>
+<a name="l00401"></a>00401 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00402"></a>00402 <span class="comment"></span><span class="comment"></span>
+<a name="l00403"></a>00403 <span class="comment">            /// @brief Pauses all animations, particles, and object movement throughout the world.</span>
+<a name="l00404"></a>00404 <span class="comment">            /// @param Pause Pauses the world if true, unpauses if false.</span>
+<a name="l00405"></a>00405 <span class="comment"></span>            <span class="keywordtype">void</span> PauseWorld(<span class="keywordtype">bool</span> Pause);
+<a name="l00406"></a>00406 <span class="comment"></span>
+<a name="l00407"></a>00407 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00408"></a>00408 <span class="comment"></span>        <span class="comment">// Logging</span><span class="comment"></span>
+<a name="l00409"></a>00409 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00410"></a>00410 <span class="comment"></span><span class="comment"></span>
+<a name="l00411"></a>00411 <span class="comment">            /// @brief Used to indicate the frequency of logging.</span>
+<a name="l00412"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25">00412</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25" title="Used to indicate the frequency of logging.">LoggingFrequency</a>
+<a name="l00413"></a>00413             {
+<a name="l00414"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25abf336536d5cf6396466067a847f64e3d">00414</a>                 LogNever = 0,               <span class="comment">///&lt; Never log</span>
+<a name="l00415"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25ac1d6f9aa441fdc15961f28f18bbdbdb2">00415</a> <span class="comment"></span>                LogOncePerFrame = 1,        <span class="comment">///&lt; The Default, log each and every frame</span>
+<a name="l00416"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25a1d4113b21efd91ab73056970906fafe5">00416</a> <span class="comment"></span>                LogOncePerXFrames = 2,      <span class="comment">///&lt; Log once per every Xth frame, X is the FrequencyCounter Value passed in with this</span>
+<a name="l00417"></a><a class="code" href="classMezzanine_1_1World.html#a535c832832bbdebcdc623c3472a32e25adf1caf2c27e4c4e6178c13e8579ab872">00417</a> <span class="comment"></span>                LogOncePerXSeconds = 3      <span class="comment">///&lt; Log once per every Xth second, X is the FrequencyCounter Value passed in with this</span>
+<a name="l00418"></a>00418 <span class="comment"></span>            };
+<a name="l00419"></a>00419 <span class="comment"></span>
+<a name="l00420"></a>00420 <span class="comment">            /// @brief Set how often log message should be commited to disk (or network, or whatever).</span>
+<a name="l00421"></a>00421 <span class="comment">            /// @param HowOften The actual setting for how often.</span>
+<a name="l00422"></a>00422 <span class="comment">            /// @param FrequencyCounter For settings that use X this is X, this defaults to 5</span>
+<a name="l00423"></a>00423 <span class="comment">            /// @details By default this is set to LogOncePerFrame. \n \n</span>
+<a name="l00424"></a>00424 <span class="comment">            /// There are a series of functions internally that represent each of the LoggingFrequency values. When</span>
+<a name="l00425"></a>00425 <span class="comment">            /// You pass in one of these values you are setting which of these functions will be called. This way the</span>
+<a name="l00426"></a>00426 <span class="comment">            /// only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time).</span>
+<a name="l00427"></a>00427 <span class="comment">            /// Additionally the members of the enum are sorted by the amount of time they are expected to take to run,</span>
+<a name="l00428"></a>00428 <span class="comment">            /// of course your performance will vary, the best way to know how it will perform is to test.</span>
+<a name="l00429"></a>00429 <span class="comment"></span>            <span class="keywordtype">void</span> SetLoggingFrequency(LoggingFrequency HowOften, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> FrequencyCounter = 5);
 <a name="l00430"></a>00430 <span class="comment"></span>
-<a name="l00431"></a>00431 <span class="comment">            /// @brief Runtime event and message logging.</span>
-<a name="l00432"></a>00432 <span class="comment">            /// @param Message This is what will be streamed to the log</span>
-<a name="l00433"></a>00433 <span class="comment">            /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the</span>
-<a name="l00434"></a>00434 <span class="comment">            /// Only ones to produce meaningul log messages.</span>
-<a name="l00435"></a><a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64">00435</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> Log(<span class="keyword">const</span> T&amp; Message)
-<a name="l00436"></a>00436                 { this-&gt;LogString(<a class="code" href="namespaceMezzanine.html#a206e6571c4a738a16f9d103205c235f8" title="Converts whatever to a String as long as a streaming operator is available for it.">ToString</a>(Message)); }
-<a name="l00437"></a>00437 <span class="comment"></span>
-<a name="l00438"></a>00438 <span class="comment">            /// @brief Force any outstanding logs to be commited to logs</span>
-<a name="l00439"></a>00439 <span class="comment"></span>            <span class="keywordtype">void</span> Log();
-<a name="l00440"></a>00440 <span class="comment"></span>
-<a name="l00441"></a>00441 <span class="comment">            /// @brief This is another way to put data in the log.</span>
-<a name="l00442"></a>00442 <span class="comment">            /// @details The contents of this will be commited to the log as per the logging frequency.</span>
-<a name="l00443"></a>00443 <span class="comment">            /// Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely</span>
-<a name="l00444"></a>00444 <span class="comment">            /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs</span>
-<a name="l00445"></a>00445 <span class="comment">            /// and gameworld recreations.</span>
-<a name="l00446"></a><a class="code" href="classMezzanine_1_1World.html#a32b1c4de1bbf5495452e463802ffa499">00446</a> <span class="comment"></span>            std::stringstream <a class="code" href="classMezzanine_1_1World.html#a32b1c4de1bbf5495452e463802ffa499" title="This is another way to put data in the log.">LogStream</a>;
-<a name="l00447"></a>00447 <span class="comment"></span>
-<a name="l00448"></a>00448 <span class="comment">            /// @brief This is the preferred way to throw an exception.</span>
-<a name="l00449"></a>00449 <span class="comment">            /// @param Err A Mezzanine::Exception to be logged and thrown</span>
-<a name="l00450"></a><a class="code" href="classMezzanine_1_1World.html#a93405caf197f9324f3620ecefa1efc77">00450</a> <span class="comment"></span>            <span class="keywordtype">void</span> LogAndThrow(<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a> Err)
-<a name="l00451"></a>00451             {
-<a name="l00452"></a>00452                 this-&gt;Log(Err.<a class="code" href="classMezzanine_1_1Exception.html#adfca1d69742135b428879136456e1126" title="Retrieves the error message.">what</a>());
-<a name="l00453"></a>00453                 CommitLog();
-<a name="l00454"></a>00454                 Err.<a class="code" href="classMezzanine_1_1Exception.html#a574150adbe4f949a5668640a7225ca8c" title="Set the logged bit.">SetLogged</a>();
-<a name="l00455"></a>00455                 <span class="keywordflow">throw</span>(Err);
-<a name="l00456"></a>00456             }
-<a name="l00457"></a>00457 <span class="comment"></span>
-<a name="l00458"></a>00458 <span class="comment">            /// @brief This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log.</span>
-<a name="l00459"></a>00459 <span class="comment">            /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data</span>
-<a name="l00460"></a>00460 <span class="comment">            /// types that overload the stream insertion operator ( &lt;&lt; )</span>
-<a name="l00461"></a>00461 <span class="comment">            /// @param Message This will be streamed to the log, then used in a thrown exception.</span>
-<a name="l00462"></a><a class="code" href="classMezzanine_1_1World.html#ab0ddaf91f518f7d3f6044b03936e9ea4">00462</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> LogAndThrow(<span class="keyword">const</span> T&amp; Message)
-<a name="l00463"></a>00463             {
-<a name="l00464"></a>00464                 this-&gt;Log(Message);
-<a name="l00465"></a>00465                 <span class="keywordflow">throw</span>(Message);
-<a name="l00466"></a>00466             }
-<a name="l00467"></a>00467 <span class="comment"></span>
-<a name="l00468"></a>00468 <span class="comment">            /// @brief Log String directly with no conversion</span>
-<a name="l00469"></a>00469 <span class="comment">            /// @param message The string to log</span>
-<a name="l00470"></a>00470 <span class="comment"></span>            <span class="keywordtype">void</span> LogString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; message);
-<a name="l00471"></a>00471 <span class="comment"></span>
-<a name="l00472"></a>00472 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00473"></a>00473 <span class="comment"></span>        <span class="comment">// Timing system methods</span><span class="comment"></span>
-<a name="l00474"></a>00474 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00475"></a>00475 <span class="comment">            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be</span>
-<a name="l00476"></a>00476 <span class="comment">            /// @details In practice harI&#39;ve done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn&#39;t mind that shouldn&#39;t be there.  like there was a &quot; Schedule : &quot; right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn&#39;t click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven&#39;t done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually</span>
-<a name="l00477"></a>00477 <span class="comment">            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.</span>
-<a name="l00478"></a>00478 <span class="comment">            /// @return This returns a Whole with the current Value</span>
-<a name="l00479"></a>00479 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetTargetFrameTime();
+<a name="l00431"></a>00431 <span class="comment">            /// @brief Returns the frequency of logging commits</span>
+<a name="l00432"></a>00432 <span class="comment">            /// @return A World::LoggingFrequency containing the requested information.</span>
+<a name="l00433"></a>00433 <span class="comment"></span>            LoggingFrequency GetLoggingFrequency();
+<a name="l00434"></a>00434 <span class="comment"></span>
+<a name="l00435"></a>00435 <span class="comment">            /// @brief Forces the log to commit to disk (or whereever)</span>
+<a name="l00436"></a>00436 <span class="comment">            /// @details Any outstanding log messages or entries into the logstream will be written in chronological order to</span>
+<a name="l00437"></a>00437 <span class="comment">            /// to the appropriate place.</span>
+<a name="l00438"></a>00438 <span class="comment"></span>            <span class="keywordtype">void</span> CommitLog();
+<a name="l00439"></a>00439 <span class="comment"></span>
+<a name="l00440"></a>00440 <span class="comment">            /// @brief Runtime event and message logging.</span>
+<a name="l00441"></a>00441 <span class="comment">            /// @param Message This is what will be streamed to the log</span>
+<a name="l00442"></a>00442 <span class="comment">            /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the</span>
+<a name="l00443"></a>00443 <span class="comment">            /// Only ones to produce meaningul log messages.</span>
+<a name="l00444"></a><a class="code" href="classMezzanine_1_1World.html#a693eea2a435e55618283e94f4cbaba64">00444</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> Log(<span class="keyword">const</span> T&amp; Message)
+<a name="l00445"></a>00445                 { this-&gt;LogString(<a class="code" href="namespaceMezzanine.html#a206e6571c4a738a16f9d103205c235f8" title="Converts whatever to a String as long as a streaming operator is available for it.">ToString</a>(Message)); }
+<a name="l00446"></a>00446 <span class="comment"></span>
+<a name="l00447"></a>00447 <span class="comment">            /// @brief Force any outstanding logs to be commited to logs</span>
+<a name="l00448"></a>00448 <span class="comment"></span>            <span class="keywordtype">void</span> Log();
+<a name="l00449"></a>00449 <span class="comment"></span>
+<a name="l00450"></a>00450 <span class="comment">            /// @brief This is another way to put data in the log.</span>
+<a name="l00451"></a>00451 <span class="comment">            /// @details The contents of this will be commited to the log as per the logging frequency.</span>
+<a name="l00452"></a>00452 <span class="comment">            /// Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely</span>
+<a name="l00453"></a>00453 <span class="comment">            /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs</span>
+<a name="l00454"></a>00454 <span class="comment">            /// and gameworld recreations.</span>
+<a name="l00455"></a><a class="code" href="classMezzanine_1_1World.html#a32b1c4de1bbf5495452e463802ffa499">00455</a> <span class="comment"></span>            std::stringstream <a class="code" href="classMezzanine_1_1World.html#a32b1c4de1bbf5495452e463802ffa499" title="This is another way to put data in the log.">LogStream</a>;
+<a name="l00456"></a>00456 <span class="comment"></span>
+<a name="l00457"></a>00457 <span class="comment">            /// @brief This is the preferred way to throw an exception.</span>
+<a name="l00458"></a>00458 <span class="comment">            /// @param Err A Mezzanine::Exception to be logged and thrown</span>
+<a name="l00459"></a><a class="code" href="classMezzanine_1_1World.html#a93405caf197f9324f3620ecefa1efc77">00459</a> <span class="comment"></span>            <span class="keywordtype">void</span> LogAndThrow(<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a> Err)
+<a name="l00460"></a>00460             {
+<a name="l00461"></a>00461                 this-&gt;Log(Err.<a class="code" href="classMezzanine_1_1Exception.html#adfca1d69742135b428879136456e1126" title="Retrieves the error message.">what</a>());
+<a name="l00462"></a>00462                 CommitLog();
+<a name="l00463"></a>00463                 Err.<a class="code" href="classMezzanine_1_1Exception.html#a574150adbe4f949a5668640a7225ca8c" title="Set the logged bit.">SetLogged</a>();
+<a name="l00464"></a>00464                 <span class="keywordflow">throw</span>(Err);
+<a name="l00465"></a>00465             }
+<a name="l00466"></a>00466 <span class="comment"></span>
+<a name="l00467"></a>00467 <span class="comment">            /// @brief This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log.</span>
+<a name="l00468"></a>00468 <span class="comment">            /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data</span>
+<a name="l00469"></a>00469 <span class="comment">            /// types that overload the stream insertion operator ( &lt;&lt; )</span>
+<a name="l00470"></a>00470 <span class="comment">            /// @param Message This will be streamed to the log, then used in a thrown exception.</span>
+<a name="l00471"></a><a class="code" href="classMezzanine_1_1World.html#ab0ddaf91f518f7d3f6044b03936e9ea4">00471</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> LogAndThrow(<span class="keyword">const</span> T&amp; Message)
+<a name="l00472"></a>00472             {
+<a name="l00473"></a>00473                 this-&gt;Log(Message);
+<a name="l00474"></a>00474                 <span class="keywordflow">throw</span>(Message);
+<a name="l00475"></a>00475             }
+<a name="l00476"></a>00476 <span class="comment"></span>
+<a name="l00477"></a>00477 <span class="comment">            /// @brief Log String directly with no conversion</span>
+<a name="l00478"></a>00478 <span class="comment">            /// @param message The string to log</span>
+<a name="l00479"></a>00479 <span class="comment"></span>            <span class="keywordtype">void</span> LogString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; message);
 <a name="l00480"></a>00480 <span class="comment"></span>
-<a name="l00481"></a>00481 <span class="comment">            /// @brief This sets a new Target Time</span>
-<a name="l00482"></a>00482 <span class="comment">            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value</span>
-<a name="l00483"></a>00483 <span class="comment">            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but</span>
-<a name="l00484"></a>00484 <span class="comment">            /// set it too high, and system resources could becom completely taxed and power will be wasted.</span>
-<a name="l00485"></a>00485 <span class="comment">            /// @param NewTargetTime The new length of time, in milliseconds.</span>
-<a name="l00486"></a>00486 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
-<a name="l00487"></a>00487 <span class="comment"></span>            <span class="keywordtype">void</span> SetTargetFrameTime(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewTargetTime);
-<a name="l00488"></a>00488 <span class="comment"></span>
-<a name="l00489"></a>00489 <span class="comment">            /// @brief This sets a new Target Frame Rate</span>
-<a name="l00490"></a>00490 <span class="comment">            /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to</span>
-<a name="l00491"></a>00491 <span class="comment">            /// World::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms</span>
-<a name="l00492"></a>00492 <span class="comment">            /// @param NewFrameRate The new desired frame rate.</span>
-<a name="l00493"></a>00493 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
-<a name="l00494"></a>00494 <span class="comment"></span>            <span class="keywordtype">void</span> SetTargetFrameRate(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewFrameRate);
-<a name="l00495"></a>00495 <span class="comment"></span>
-<a name="l00496"></a>00496 <span class="comment">            /// @brief Gets the amount of time since the last time Rendering began.</span>
-<a name="l00497"></a>00497 <span class="comment">            /// @details This returns, in milliseconds the amount of time since the frame started (since the last rendering began)</span>
-<a name="l00498"></a>00498 <span class="comment">            /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.</span>
-<a name="l00499"></a>00499 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetFrameTime();
-<a name="l00500"></a>00500 <span class="comment"></span>
-<a name="l00501"></a>00501 <span class="comment">            /// @internal</span>
-<a name="l00502"></a>00502 <span class="comment">            /// @brief Sets the amount of time since the last time Rendering began.</span>
-<a name="l00503"></a>00503 <span class="comment">            /// @param FrameTime_ This is the amount of time in  milliseconds.</span>
-<a name="l00504"></a>00504 <span class="comment">            /// @details This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don&#39;t set this carelessely can screw up a lot of</span>
-<a name="l00505"></a>00505 <span class="comment">            /// stuff, for the most part this should be by the rendering manager during the rendering process.</span>
-<a name="l00506"></a>00506 <span class="comment"></span>            <span class="keywordtype">void</span> SetFrameTime( <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;FrameTime_ );
-<a name="l00507"></a>00507 <span class="comment"></span>
-<a name="l00508"></a>00508 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00509"></a>00509 <span class="comment"></span>        <span class="comment">// Main Loop and Initialization</span><span class="comment"></span>
-<a name="l00510"></a>00510 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00511"></a>00511 <span class="comment">            /// @brief This creates the game window and starts the game.</span>
-<a name="l00512"></a>00512 <span class="comment">            /// @param CallMainLoop should the main loop be called</span>
-<a name="l00513"></a>00513 <span class="comment">            /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be</span>
-<a name="l00514"></a>00514 <span class="comment">            /// minimal delay from the time you call this and the game actually begins.</span>
-<a name="l00515"></a>00515 <span class="comment">            /// This will automatically call the Main Loop unless passed false.</span>
-<a name="l00516"></a>00516 <span class="comment"></span>            <span class="keywordtype">void</span> GameInit(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;CallMainLoop=<span class="keyword">true</span> );
-<a name="l00517"></a>00517 <span class="comment"></span>
-<a name="l00518"></a>00518 <span class="comment">            /// @brief This Function house the main loop</span>
-<a name="l00519"></a>00519 <span class="comment">            /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1</span>
-<a name="l00520"></a>00520 <span class="comment"></span>            <span class="keywordtype">void</span> MainLoop();
-<a name="l00521"></a>00521 <span class="comment"></span>
-<a name="l00522"></a>00522 <span class="comment">            /// @brief This commits the log stream to the log</span>
-<a name="l00523"></a>00523 <span class="comment">            /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.</span>
-<a name="l00524"></a>00524 <span class="comment"></span>            <span class="keywordtype">void</span> DoMainLoopLogging();
-<a name="l00525"></a>00525 <span class="comment"></span>
-<a name="l00526"></a>00526 <span class="comment">            /// @brief This makes the main loop end after it&#39;s current iteration.</span>
-<a name="l00527"></a>00527 <span class="comment">            /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.</span>
-<a name="l00528"></a>00528 <span class="comment"></span>            <span class="keywordtype">void</span> BreakMainLoop();
-<a name="l00529"></a>00529 <span class="comment"></span>
-<a name="l00530"></a>00530 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00531"></a>00531 <span class="comment"></span>        <span class="comment">// Upper Management</span><span class="comment"></span>
-<a name="l00532"></a>00532 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00533"></a>00533 <span class="comment">            /// @brief This adds a manager, in the correct order, to the list that the world calls on</span>
-<a name="l00534"></a>00534 <span class="comment">            /// @details Internally the world had a list of managers that is sorted by the ManagerBase::Priority. Everytime a manager is added,</span>
-<a name="l00535"></a>00535 <span class="comment">            /// the list is searched for the sorted point to insert the manager at.</span>
-<a name="l00536"></a>00536 <span class="comment">            /// @param ManagerToAdd The pointer to the manager to be added</span>
-<a name="l00537"></a>00537 <span class="comment"></span>            <span class="keywordtype">void</span> AddManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ManagerToAdd);
+<a name="l00481"></a>00481 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00482"></a>00482 <span class="comment"></span>        <span class="comment">// Timing system methods</span><span class="comment"></span>
+<a name="l00483"></a>00483 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00484"></a>00484 <span class="comment">            /// @brief Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be</span>
+<a name="l00485"></a>00485 <span class="comment">            /// @details In practice harI&#39;ve done some more testing, started out digging through the code to see if there was anything wrong, there seemed to be random extra words inside our code that the compiler didn&#39;t mind that shouldn&#39;t be there.  like there was a &quot; Schedule : &quot; right after a line where a pointer was initialized.  I only found such occurrences in gamebase.cpp though, removed them and did two tests.  First test I was just randomly clicking and then I inadvertently threw the metal sphere down into the abyss, the sphere was really close to the camera when this happened, about to go over.  Second time I ran the game trying to click stuff, I simply couldn&#39;t click anything.  I even tried zooming in on the robots, although I can only get so close to them before I have to tamper with the camera, which I haven&#39;t done yet, but there were no results with the Robots.  The third time I was successfully able to stop two spheres and move them around the platform quite smoothly.  These spheres were slightly further away from the camera compared to the first run.  I stopped the wooden sphere and the second metal sphere.  I included a screen shot and a copy of my log for the third run.  The spheres in the screenshot are both in a rest position.dware performance or timing concerns can cause this goal to be unnaitanable or trivially easy. The main loop with actually</span>
+<a name="l00486"></a>00486 <span class="comment">            /// pause execution until this amount of time is reach is main loop iteration, However, the mainloop will always skip waiting if hardware is overburdened.</span>
+<a name="l00487"></a>00487 <span class="comment">            /// @return This returns a Whole with the current Value</span>
+<a name="l00488"></a>00488 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetTargetFrameTime();
+<a name="l00489"></a>00489 <span class="comment"></span>
+<a name="l00490"></a>00490 <span class="comment">            /// @brief This sets a new Target Time</span>
+<a name="l00491"></a>00491 <span class="comment">            /// @details This sets a new time for each frame. Each iteration of the game loop will take around this long to run, but rarely exactly this long. Setting this value</span>
+<a name="l00492"></a>00492 <span class="comment">            /// Higher can results in power savings (battery life), but setting it too High can cause choppiness. Settings this value higher can result in smoother gameplay, but</span>
+<a name="l00493"></a>00493 <span class="comment">            /// set it too high, and system resources could becom completely taxed and power will be wasted.</span>
+<a name="l00494"></a>00494 <span class="comment">            /// @param NewTargetTime The new length of time, in milliseconds.</span>
+<a name="l00495"></a>00495 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
+<a name="l00496"></a>00496 <span class="comment"></span>            <span class="keywordtype">void</span> SetTargetFrameTime(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewTargetTime);
+<a name="l00497"></a>00497 <span class="comment"></span>
+<a name="l00498"></a>00498 <span class="comment">            /// @brief This sets a new Target Frame Rate</span>
+<a name="l00499"></a>00499 <span class="comment">            /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to</span>
+<a name="l00500"></a>00500 <span class="comment">            /// World::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms</span>
+<a name="l00501"></a>00501 <span class="comment">            /// @param NewFrameRate The new desired frame rate.</span>
+<a name="l00502"></a>00502 <span class="comment">            /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.</span>
+<a name="l00503"></a>00503 <span class="comment"></span>            <span class="keywordtype">void</span> SetTargetFrameRate(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;NewFrameRate);
+<a name="l00504"></a>00504 <span class="comment"></span>
+<a name="l00505"></a>00505 <span class="comment">            /// @brief Gets the amount of time since the last time Rendering began.</span>
+<a name="l00506"></a>00506 <span class="comment">            /// @details This returns, in milliseconds the amount of time since the frame started (since the last rendering began)</span>
+<a name="l00507"></a>00507 <span class="comment">            /// @return This returns a whole number which can be used to aid in the timimg of various algorithms.</span>
+<a name="l00508"></a>00508 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetFrameTime();
+<a name="l00509"></a>00509 <span class="comment"></span>
+<a name="l00510"></a>00510 <span class="comment">            /// @internal</span>
+<a name="l00511"></a>00511 <span class="comment">            /// @brief Sets the amount of time since the last time Rendering began.</span>
+<a name="l00512"></a>00512 <span class="comment">            /// @param FrameTime_ This is the amount of time in  milliseconds.</span>
+<a name="l00513"></a>00513 <span class="comment">            /// @details This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don&#39;t set this carelessely can screw up a lot of</span>
+<a name="l00514"></a>00514 <span class="comment">            /// stuff, for the most part this should be by the rendering manager during the rendering process.</span>
+<a name="l00515"></a>00515 <span class="comment"></span>            <span class="keywordtype">void</span> SetFrameTime( <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;FrameTime_ );
+<a name="l00516"></a>00516 <span class="comment"></span>
+<a name="l00517"></a>00517 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00518"></a>00518 <span class="comment"></span>        <span class="comment">// Main Loop and Initialization</span><span class="comment"></span>
+<a name="l00519"></a>00519 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00520"></a>00520 <span class="comment">            /// @brief This creates the game window and starts the game.</span>
+<a name="l00521"></a>00521 <span class="comment">            /// @param CallMainLoop should the main loop be called</span>
+<a name="l00522"></a>00522 <span class="comment">            /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be</span>
+<a name="l00523"></a>00523 <span class="comment">            /// minimal delay from the time you call this and the game actually begins.</span>
+<a name="l00524"></a>00524 <span class="comment">            /// This will automatically call the Main Loop unless passed false.</span>
+<a name="l00525"></a>00525 <span class="comment"></span>            <span class="keywordtype">void</span> GameInit(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;CallMainLoop=<span class="keyword">true</span> );
+<a name="l00526"></a>00526 <span class="comment"></span>
+<a name="l00527"></a>00527 <span class="comment">            /// @brief This Function house the main loop</span>
+<a name="l00528"></a>00528 <span class="comment">            /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1</span>
+<a name="l00529"></a>00529 <span class="comment"></span>            <span class="keywordtype">void</span> MainLoop();
+<a name="l00530"></a>00530 <span class="comment"></span>
+<a name="l00531"></a>00531 <span class="comment">            /// @brief This commits the log stream to the log</span>
+<a name="l00532"></a>00532 <span class="comment">            /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.</span>
+<a name="l00533"></a>00533 <span class="comment"></span>            <span class="keywordtype">void</span> DoMainLoopLogging();
+<a name="l00534"></a>00534 <span class="comment"></span>
+<a name="l00535"></a>00535 <span class="comment">            /// @brief This makes the main loop end after it&#39;s current iteration.</span>
+<a name="l00536"></a>00536 <span class="comment">            /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.</span>
+<a name="l00537"></a>00537 <span class="comment"></span>            <span class="keywordtype">void</span> BreakMainLoop();
 <a name="l00538"></a>00538 <span class="comment"></span>
-<a name="l00539"></a>00539 <span class="comment">            /// @brief This removes a manager by finding the matching pointer.</span>
-<a name="l00540"></a>00540 <span class="comment">            /// @details Currently this just iterates through the list looking for the matching pointer, at some future point</span>
-<a name="l00541"></a>00541 <span class="comment">            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.</span>
-<a name="l00542"></a>00542 <span class="comment">            /// @param ManagerToRemove A pointer to the manager to be removed</span>
-<a name="l00543"></a>00543 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ManagerToRemove);
-<a name="l00544"></a>00544 <span class="comment"></span>
-<a name="l00545"></a>00545 <span class="comment">            /// @brief This removes a manager of a specific type from the list</span>
-<a name="l00546"></a>00546 <span class="comment">            /// @details This starts at the beginning (should be the lowest priority)of the list and iterates through looking for a matching type, at some future point</span>
-<a name="l00547"></a>00547 <span class="comment">            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.</span>
-<a name="l00548"></a>00548 <span class="comment">            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.</span>
-<a name="l00549"></a>00549 <span class="comment">            /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.</span>
-<a name="l00550"></a>00550 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> &amp;ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne);
-<a name="l00551"></a>00551 <span class="comment"></span>
-<a name="l00552"></a>00552 <span class="comment">            /// @brief This is will find the manager of a given type</span>
-<a name="l00553"></a>00553 <span class="comment">            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager</span>
-<a name="l00554"></a>00554 <span class="comment">            /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).</span>
-<a name="l00555"></a>00555 <span class="comment">            /// @param ManagersToRemoveType</span>
-<a name="l00556"></a>00556 <span class="comment">            /// @param WhichOne If not getting the first/only manager of the given type, get one.</span>
-<a name="l00557"></a>00557 <span class="comment">            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists</span>
-<a name="l00558"></a>00558 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* GetManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> &amp;ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne=0);
-<a name="l00559"></a>00559 <span class="comment"></span>
-<a name="l00560"></a>00560 <span class="comment">            /// @brief Changes a Manager&#39;s time of execution.</span>
-<a name="l00561"></a>00561 <span class="comment">            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.</span>
-<a name="l00562"></a>00562 <span class="comment">            /// @param ManagerToChange A pointer to the manager that needs to be changed</span>
-<a name="l00563"></a>00563 <span class="comment">            /// @param Priority_ the new desire priority/execution order of the Manager</span>
-<a name="l00564"></a>00564 <span class="comment"></span>            <span class="keywordtype">void</span> UpdateManagerOrder(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ManagerToChange, <span class="keywordtype">short</span> <span class="keywordtype">int</span> Priority_);
-<a name="l00565"></a>00565 <span class="comment"></span>
-<a name="l00566"></a>00566 <span class="comment">            /// @brief This forces the list of managers to be resorted.</span>
-<a name="l00567"></a>00567 <span class="comment">            /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers</span>
-<a name="l00568"></a>00568 <span class="comment"></span>            <span class="keywordtype">void</span> UpdateManagerOrder();
-<a name="l00569"></a>00569 <span class="comment"></span>
-<a name="l00570"></a>00570 <span class="comment">            /// @brief This gets the ActorManager from the manager list.</span>
-<a name="l00571"></a>00571 <span class="comment">            /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.</span>
-<a name="l00572"></a>00572 <span class="comment">            /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00573"></a>00573 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorManager.html" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a>* GetActorManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00539"></a>00539 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00540"></a>00540 <span class="comment"></span>        <span class="comment">// Upper Management</span><span class="comment"></span>
+<a name="l00541"></a>00541 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00542"></a>00542 <span class="comment">            /// @brief This adds a manager, in the correct order, to the list that the world calls on</span>
+<a name="l00543"></a>00543 <span class="comment">            /// @details Internally the world had a list of managers that is sorted by the ManagerBase::Priority. Everytime a manager is added,</span>
+<a name="l00544"></a>00544 <span class="comment">            /// the list is searched for the sorted point to insert the manager at.</span>
+<a name="l00545"></a>00545 <span class="comment">            /// @param ManagerToAdd The pointer to the manager to be added</span>
+<a name="l00546"></a>00546 <span class="comment"></span>            <span class="keywordtype">void</span> AddManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ManagerToAdd);
+<a name="l00547"></a>00547 <span class="comment"></span>
+<a name="l00548"></a>00548 <span class="comment">            /// @brief This removes a manager by finding the matching pointer.</span>
+<a name="l00549"></a>00549 <span class="comment">            /// @details Currently this just iterates through the list looking for the matching pointer, at some future point</span>
+<a name="l00550"></a>00550 <span class="comment">            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.</span>
+<a name="l00551"></a>00551 <span class="comment">            /// @param ManagerToRemove A pointer to the manager to be removed</span>
+<a name="l00552"></a>00552 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ManagerToRemove);
+<a name="l00553"></a>00553 <span class="comment"></span>
+<a name="l00554"></a>00554 <span class="comment">            /// @brief This removes a manager of a specific type from the list</span>
+<a name="l00555"></a>00555 <span class="comment">            /// @details This starts at the beginning (should be the lowest priority)of the list and iterates through looking for a matching type, at some future point</span>
+<a name="l00556"></a>00556 <span class="comment">            /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.</span>
+<a name="l00557"></a>00557 <span class="comment">            /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.</span>
+<a name="l00558"></a>00558 <span class="comment">            /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.</span>
+<a name="l00559"></a>00559 <span class="comment"></span>            <span class="keywordtype">void</span> RemoveManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> &amp;ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne);
+<a name="l00560"></a>00560 <span class="comment"></span>
+<a name="l00561"></a>00561 <span class="comment">            /// @brief This is will find the manager of a given type</span>
+<a name="l00562"></a>00562 <span class="comment">            /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager</span>
+<a name="l00563"></a>00563 <span class="comment">            /// with a matching type found. If you specify WhichOne, it will the Nth+1 in the list matching the type (kind of like array subscript).</span>
+<a name="l00564"></a>00564 <span class="comment">            /// @param ManagersToRemoveType</span>
+<a name="l00565"></a>00565 <span class="comment">            /// @param WhichOne If not getting the first/only manager of the given type, get one.</span>
+<a name="l00566"></a>00566 <span class="comment">            /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists</span>
+<a name="l00567"></a>00567 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* GetManager(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> &amp;ManagersToRemoveType, <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> WhichOne=0);
+<a name="l00568"></a>00568 <span class="comment"></span>
+<a name="l00569"></a>00569 <span class="comment">            /// @brief Changes a Manager&#39;s time of execution.</span>
+<a name="l00570"></a>00570 <span class="comment">            /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.</span>
+<a name="l00571"></a>00571 <span class="comment">            /// @param ManagerToChange A pointer to the manager that needs to be changed</span>
+<a name="l00572"></a>00572 <span class="comment">            /// @param Priority_ the new desire priority/execution order of the Manager</span>
+<a name="l00573"></a>00573 <span class="comment"></span>            <span class="keywordtype">void</span> UpdateManagerOrder(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ManagerToChange, <span class="keywordtype">short</span> <span class="keywordtype">int</span> Priority_);
 <a name="l00574"></a>00574 <span class="comment"></span>
-<a name="l00575"></a>00575 <span class="comment">            /// @brief This gets the AudioManager from the manager list.</span>
-<a name="l00576"></a>00576 <span class="comment">            /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.</span>
-<a name="l00577"></a>00577 <span class="comment">            /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00578"></a>00578 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1AudioManager.html" title="This is simply a place for storing all the Sound utilities and functions.">AudioManager</a>* GetAudioManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00579"></a>00579 <span class="comment"></span>
-<a name="l00580"></a>00580 <span class="comment">            /// @brief This gets the CameraManager from the manager list.</span>
-<a name="l00581"></a>00581 <span class="comment">            /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.</span>
-<a name="l00582"></a>00582 <span class="comment">            /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00583"></a>00583 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* GetCameraManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00584"></a>00584 <span class="comment"></span>
-<a name="l00585"></a>00585 <span class="comment">            /// @brief This gets the CollisionShapeManager from the manager list.</span>
-<a name="l00586"></a>00586 <span class="comment">            /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.</span>
-<a name="l00587"></a>00587 <span class="comment">            /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00588"></a>00588 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1CollisionShapeManager.html" title="This manager is for the storage of all shapes and creation of mesh shapes.">CollisionShapeManager</a>* GetCollisionShapeManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00589"></a>00589 <span class="comment"></span>
-<a name="l00590"></a>00590 <span class="comment">            /// @brief This gets the EventManager from the manager list.</span>
-<a name="l00591"></a>00591 <span class="comment">            /// @param WhichOne If you have multiple EventManagers this will choose which one to return.</span>
-<a name="l00592"></a>00592 <span class="comment">            /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00593"></a>00593 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* GetEventManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00594"></a>00594 <span class="comment"></span>
-<a name="l00595"></a>00595 <span class="comment">            /// @brief This gets the GraphicsManager from the manager list.</span>
-<a name="l00596"></a>00596 <span class="comment">            /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.</span>
-<a name="l00597"></a>00597 <span class="comment">            /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00598"></a>00598 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>* GetGraphicsManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00599"></a>00599 <span class="comment"></span>
-<a name="l00600"></a>00600 <span class="comment">            /// @brief This gets the MeshManager from the manager list.</span>
-<a name="l00601"></a>00601 <span class="comment">            /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.</span>
-<a name="l00602"></a>00602 <span class="comment">            /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00603"></a>00603 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1MeshManager.html" title="This manager handles the storage, generation, and query of of Graphics Meshes.">MeshManager</a>* GetMeshManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00604"></a>00604 <span class="preprocessor">            #ifdef MEZZNETWORK</span>
-<a name="l00605"></a>00605 <span class="preprocessor"></span><span class="comment">            /// @brief This gets the NetworkManager from the manager list.</span>
-<a name="l00606"></a>00606 <span class="comment"></span><span class="comment">            /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.</span>
-<a name="l00607"></a>00607 <span class="comment"></span><span class="comment">            /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00608"></a>00608 <span class="comment"></span>            NetworkManager* GetNetworkManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00609"></a>00609 <span class="preprocessor">            #endif</span>
-<a name="l00610"></a>00610 <span class="preprocessor"></span><span class="comment">            /// @brief This gets the PhysicsManager from the manager list.</span>
-<a name="l00611"></a>00611 <span class="comment"></span><span class="comment">            /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.</span>
-<a name="l00612"></a>00612 <span class="comment"></span><span class="comment">            /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00613"></a>00613 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>* GetPhysicsManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00614"></a>00614 <span class="comment"></span>
-<a name="l00615"></a>00615 <span class="comment">            /// @brief This gets the SceneManager from the manager list.</span>
-<a name="l00616"></a>00616 <span class="comment">            /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.</span>
-<a name="l00617"></a>00617 <span class="comment">            /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00618"></a>00618 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* GetSceneManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00619"></a>00619 <span class="comment"></span>
-<a name="l00620"></a>00620 <span class="comment">            /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.</span>
-<a name="l00621"></a>00621 <span class="comment">            /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.</span>
-<a name="l00622"></a>00622 <span class="comment">            /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00623"></a>00623 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files.">ResourceManager</a>* GetResourceManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00624"></a>00624 <span class="comment"></span>
-<a name="l00625"></a>00625 <span class="comment">            /// @brief This gets the TimerManager from the manager list.</span>
-<a name="l00626"></a>00626 <span class="comment">            /// @param WhichOne If you have multiple TimerManagers this will choose which one to return.</span>
-<a name="l00627"></a>00627 <span class="comment">            /// @return This returns a pointer to a TimerManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00628"></a>00628 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a>* GetTimerManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00629"></a>00629 <span class="comment"></span>
-<a name="l00630"></a>00630 <span class="comment">            /// @brief This gets the UIManager from the manager list.</span>
-<a name="l00631"></a>00631 <span class="comment">            /// @param WhichOne If you have multiple UIManagers this will choose which one to return.</span>
-<a name="l00632"></a>00632 <span class="comment">            /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.</span>
-<a name="l00633"></a>00633 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>* GetUIManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
-<a name="l00634"></a>00634     };
-<a name="l00635"></a>00635 }
-<a name="l00636"></a>00636 <span class="preprocessor">#endif</span>
+<a name="l00575"></a>00575 <span class="comment">            /// @brief This forces the list of managers to be resorted.</span>
+<a name="l00576"></a>00576 <span class="comment">            /// @details This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers</span>
+<a name="l00577"></a>00577 <span class="comment"></span>            <span class="keywordtype">void</span> UpdateManagerOrder();
+<a name="l00578"></a>00578 <span class="comment"></span>
+<a name="l00579"></a>00579 <span class="comment">            /// @brief This gets the ActorManager from the manager list.</span>
+<a name="l00580"></a>00580 <span class="comment">            /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.</span>
+<a name="l00581"></a>00581 <span class="comment">            /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00582"></a>00582 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorManager.html" title="A manager responsible for the storage and management of all actors in use.">ActorManager</a>* GetActorManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00583"></a>00583 <span class="comment"></span>
+<a name="l00584"></a>00584 <span class="comment">            /// @brief This gets the AudioManager from the manager list.</span>
+<a name="l00585"></a>00585 <span class="comment">            /// @param WhichOne If you have multiple AudioManagers this will choose which one to return.</span>
+<a name="l00586"></a>00586 <span class="comment">            /// @return This returns a pointer to a AudioManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00587"></a>00587 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1AudioManager.html" title="This is simply a place for storing all the Sound utilities and functions.">AudioManager</a>* GetAudioManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00588"></a>00588 <span class="comment"></span>
+<a name="l00589"></a>00589 <span class="comment">            /// @brief This gets the CameraManager from the manager list.</span>
+<a name="l00590"></a>00590 <span class="comment">            /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.</span>
+<a name="l00591"></a>00591 <span class="comment">            /// @return This returns a pointer to a CameraManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00592"></a>00592 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1CameraManager.html" title="This is the manager class for all camera functions.">CameraManager</a>* GetCameraManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00593"></a>00593 <span class="comment"></span>
+<a name="l00594"></a>00594 <span class="comment">            /// @brief This gets the CollisionShapeManager from the manager list.</span>
+<a name="l00595"></a>00595 <span class="comment">            /// @param WhichOne If you have multiple CollisionShapeManagers this will choose which one to return.</span>
+<a name="l00596"></a>00596 <span class="comment">            /// @return This returns a pointer to a CollisionShapeManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00597"></a>00597 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1CollisionShapeManager.html" title="This manager is for the storage of all shapes and creation of mesh shapes.">CollisionShapeManager</a>* GetCollisionShapeManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00598"></a>00598 <span class="comment"></span>
+<a name="l00599"></a>00599 <span class="comment">            /// @brief This gets the EventManager from the manager list.</span>
+<a name="l00600"></a>00600 <span class="comment">            /// @param WhichOne If you have multiple EventManagers this will choose which one to return.</span>
+<a name="l00601"></a>00601 <span class="comment">            /// @return This returns a pointer to a EventManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00602"></a>00602 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>* GetEventManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00603"></a>00603 <span class="comment"></span>
+<a name="l00604"></a>00604 <span class="comment">            /// @brief This gets the GraphicsManager from the manager list.</span>
+<a name="l00605"></a>00605 <span class="comment">            /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.</span>
+<a name="l00606"></a>00606 <span class="comment">            /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00607"></a>00607 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>* GetGraphicsManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00608"></a>00608 <span class="comment"></span>
+<a name="l00609"></a>00609 <span class="comment">            /// @brief This gets the MeshManager from the manager list.</span>
+<a name="l00610"></a>00610 <span class="comment">            /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.</span>
+<a name="l00611"></a>00611 <span class="comment">            /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00612"></a>00612 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1MeshManager.html" title="This manager handles the storage, generation, and query of of Graphics Meshes.">MeshManager</a>* GetMeshManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00613"></a>00613 <span class="preprocessor">            #ifdef MEZZNETWORK</span>
+<a name="l00614"></a>00614 <span class="preprocessor"></span><span class="comment">            /// @brief This gets the NetworkManager from the manager list.</span>
+<a name="l00615"></a>00615 <span class="comment"></span><span class="comment">            /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.</span>
+<a name="l00616"></a>00616 <span class="comment"></span><span class="comment">            /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00617"></a>00617 <span class="comment"></span>            NetworkManager* GetNetworkManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00618"></a>00618 <span class="preprocessor">            #endif</span>
+<a name="l00619"></a>00619 <span class="preprocessor"></span><span class="comment">            /// @brief This gets the PhysicsManager from the manager list.</span>
+<a name="l00620"></a>00620 <span class="comment"></span><span class="comment">            /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.</span>
+<a name="l00621"></a>00621 <span class="comment"></span><span class="comment">            /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00622"></a>00622 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>* GetPhysicsManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00623"></a>00623 <span class="comment"></span>
+<a name="l00624"></a>00624 <span class="comment">            /// @brief This gets the SceneManager from the manager list.</span>
+<a name="l00625"></a>00625 <span class="comment">            /// @param WhichOne If you have multiple SceneManagers this will choose which one to return.</span>
+<a name="l00626"></a>00626 <span class="comment">            /// @return This returns a pointer to a SceneManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00627"></a>00627 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* GetSceneManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00628"></a>00628 <span class="comment"></span>
+<a name="l00629"></a>00629 <span class="comment">            /// @brief This gets the ResourceManager from the manager list. These are responsible for reading and writing files on the disk.</span>
+<a name="l00630"></a>00630 <span class="comment">            /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.</span>
+<a name="l00631"></a>00631 <span class="comment">            /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00632"></a>00632 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ResourceManager.html" title="This is the manager responsible for the loading and unloading of files.">ResourceManager</a>* GetResourceManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00633"></a>00633 <span class="comment"></span>
+<a name="l00634"></a>00634 <span class="comment">            /// @brief This gets the TimerManager from the manager list.</span>
+<a name="l00635"></a>00635 <span class="comment">            /// @param WhichOne If you have multiple TimerManagers this will choose which one to return.</span>
+<a name="l00636"></a>00636 <span class="comment">            /// @return This returns a pointer to a TimerManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00637"></a>00637 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a>* GetTimerManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00638"></a>00638 <span class="comment"></span>
+<a name="l00639"></a>00639 <span class="comment">            /// @brief This gets the UIManager from the manager list.</span>
+<a name="l00640"></a>00640 <span class="comment">            /// @param WhichOne If you have multiple UIManagers this will choose which one to return.</span>
+<a name="l00641"></a>00641 <span class="comment">            /// @return This returns a pointer to a UIManager, or a NULL pointer if no matching manager exists.</span>
+<a name="l00642"></a>00642 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>* GetUIManager(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;WhichOne=0);
+<a name="l00643"></a>00643     };
+<a name="l00644"></a>00644 }
+<a name="l00645"></a>00645 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -705,7 +714,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -715,6 +724,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

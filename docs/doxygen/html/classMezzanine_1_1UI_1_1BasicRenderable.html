@@ -68,7 +68,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::UI::BasicRenderable Class Reference</h1>  </div>
 </div>
@@ -79,11 +81,12 @@ Inheritance diagram for Mezzanine::UI::BasicRenderable:</div>
  <div class="center">
   <img src="classMezzanine_1_1UI_1_1BasicRenderable.png" usemap="#Mezzanine::UI::BasicRenderable_map" alt=""/>
   <map id="Mezzanine::UI::BasicRenderable_map" name="Mezzanine::UI::BasicRenderable_map">
-<area href="classMezzanine_1_1UI_1_1Button.html" alt="Mezzanine::UI::Button" shape="rect" coords="0,56,192,80"/>
-<area href="classMezzanine_1_1UI_1_1Caption.html" alt="Mezzanine::UI::Caption" shape="rect" coords="202,56,394,80"/>
-<area href="classMezzanine_1_1UI_1_1MarkupText.html" alt="Mezzanine::UI::MarkupText" shape="rect" coords="404,56,596,80"/>
-<area href="classMezzanine_1_1UI_1_1Rectangle.html" alt="Mezzanine::UI::Rectangle" shape="rect" coords="606,56,798,80"/>
-<area href="classMezzanine_1_1UI_1_1TextButton.html" alt="Mezzanine::UI::TextButton" shape="rect" coords="0,112,192,136"/>
+<area href="classMezzanine_1_1UI_1_1LineList.html" alt="Mezzanine::UI::LineList" shape="rect" coords="0,56,192,80"/>
+<area href="classMezzanine_1_1UI_1_1Rectangle.html" alt="Mezzanine::UI::Rectangle" shape="rect" coords="202,56,394,80"/>
+<area href="classMezzanine_1_1UI_1_1Button.html" alt="Mezzanine::UI::Button" shape="rect" coords="0,112,192,136"/>
+<area href="classMezzanine_1_1UI_1_1Caption.html" alt="Mezzanine::UI::Caption" shape="rect" coords="202,112,394,136"/>
+<area href="classMezzanine_1_1UI_1_1MarkupText.html" alt="Mezzanine::UI::MarkupText" shape="rect" coords="404,112,596,136"/>
+<area href="classMezzanine_1_1UI_1_1TextButton.html" alt="Mezzanine::UI::TextButton" shape="rect" coords="0,168,192,192"/>
 </map>
  </div></div>
 
@@ -91,67 +94,97 @@ Inheritance diagram for Mezzanine::UI::BasicRenderable:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aace539a4a4bd0795543f152fd0f3d86c">BasicRenderable</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *parent)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#aace539a4a4bd0795543f152fd0f3d86c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7469e579a834b00bd90a87fd754d14af">GetActualPosition</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top left position of this renderable in pixels.  <a href="#a7469e579a834b00bd90a87fd754d14af"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a14b2ff20cdf114c34cc23074d0b7fb5c">GetActualSize</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this renderable in pixels.  <a href="#a14b2ff20cdf114c34cc23074d0b7fb5c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a1d3be8e827a562ade939383b4633ddb3">GetName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this renderable.  <a href="#a1d3be8e827a562ade939383b4633ddb3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ab6aa1fb10dc7e9e412e7caac9133c9a6">GetPosition</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative top left position of this renderable.  <a href="#ab6aa1fb10dc7e9e412e7caac9133c9a6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#abdb08ae3577da75762209b8cee486b24">GetPrimaryAtlas</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set primary atlas.  <a href="#abdb08ae3577da75762209b8cee486b24"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a3279ed466dfc69203467b2bb32cf89be">GetRenderPriority</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#a3279ed466dfc69203467b2bb32cf89be"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a6486ceae69273b990bfe19b88c29d328">GetSize</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this renderable.  <a href="#a6486ceae69273b990bfe19b88c29d328"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2728dec624ab5e1b9ce738b180b56e87"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Hide" ref="a2728dec624ab5e1b9ce738b180b56e87" args="()=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a2728dec624ab5e1b9ce738b180b56e87">Hide</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to hide. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a443bdeb7d95e6b765a5548966d380ecf">IsVisible</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this renderable.  <a href="#a443bdeb7d95e6b765a5548966d380ecf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4741dde07f7eddddcc3d611d6c803fad">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the top left position of this renderable in pixels.  <a href="#a4741dde07f7eddddcc3d611d6c803fad"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a69c87db17cacc2980f68777258329531">SetActualSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of this renderable in pixels.  <a href="#a69c87db17cacc2980f68777258329531"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aab42dabeaeb7a56fb4b98ae8f7ab6afb">SetPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative top left position of this renderable.  <a href="#aab42dabeaeb7a56fb4b98ae8f7ab6afb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ab1195ccf1e8acf126aee6d06c1d9e93b">SetPrimaryAtlas</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Atlas to be assumed when one isn't provided for atlas related tasks.  <a href="#ab1195ccf1e8acf126aee6d06c1d9e93b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a05be25ff56fbd498841c33da0cfe5410">SetRenderPriority</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;Priority)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#a05be25ff56fbd498841c33da0cfe5410"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ace14123b4a7bdb83e4e86275823f7b6e">SetSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this renderable.  <a href="#ace14123b4a7bdb83e4e86275823f7b6e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a3dd62b1390d4f3931cfc8d0188cdcc7c">SetVisible</a> (bool Visible)=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this renderable.  <a href="#a3dd62b1390d4f3931cfc8d0188cdcc7c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a122a5fe65efe74da68fa5998f07b31ef"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Show" ref="a122a5fe65efe74da68fa5998f07b31ef" args="()=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a122a5fe65efe74da68fa5998f07b31ef">Show</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to be shown. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a446b43c6dde21c7f0c021ca6833f841d">UpdateDimensions</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this renderable to match those of the new screen size.  <a href="#a446b43c6dde21c7f0c021ca6833f841d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a31cabdbf187a8e038079aa88af536c6f">BasicRenderable</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *Parent)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a31cabdbf187a8e038079aa88af536c6f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af7b5ef0dc231b3e233ad892ce4c89320"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::~BasicRenderable" ref="af7b5ef0dc231b3e233ad892ce4c89320" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#af7b5ef0dc231b3e233ad892ce4c89320">~BasicRenderable</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aafd3dd1e288791b1071cb8c043866504">_AppendVertices</a> (<a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;Vertices)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends the vertices of this renderable to another vector.  <a href="#aafd3dd1e288791b1071cb8c043866504"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b67567f462914b4de1caa4f0818d61d"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::_MarkDirty" ref="a0b67567f462914b4de1caa4f0818d61d" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d">_MarkDirty</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks this renderable as well as all parent objects as dirty. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2fc7dda5e44e8a8aca838864d67fde9b"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::_Redraw" ref="a2fc7dda5e44e8a8aca838864d67fde9b" args="()=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a2fc7dda5e44e8a8aca838864d67fde9b">_Redraw</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Regenerates the verticies in this renderable. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a1d3be8e827a562ade939383b4633ddb3">GetName</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this renderable.  <a href="#a1d3be8e827a562ade939383b4633ddb3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a333701c21e49351bf905a27b96bac94d">GetPrimaryAtlas</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set primary atlas.  <a href="#a333701c21e49351bf905a27b96bac94d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a229905f629c59290e321014209d9457e">GetRenderPriority</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#a229905f629c59290e321014209d9457e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#afee6e10e2fa607b309505d16ab7260d1">GetVisible</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visible setting for this renderable.  <a href="#afee6e10e2fa607b309505d16ab7260d1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd8d40bacbb23eebacfdfcb42b33327d"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Hide" ref="acd8d40bacbb23eebacfdfcb42b33327d" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#acd8d40bacbb23eebacfdfcb42b33327d">Hide</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to hide. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ad83653b90d57caf95b7de93b9ee31afd">IsVisible</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this renderable is getting rendered.  <a href="#ad83653b90d57caf95b7de93b9ee31afd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aca42d7a5fa95c3190a2204743bd2f659">SetPrimaryAtlas</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Atlas to be assumed when one isn't provided for atlas related tasks.  <a href="#aca42d7a5fa95c3190a2204743bd2f659"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4391ab57978d558638feb0f7fabefd95">SetRenderPriority</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;Priority)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#a4391ab57978d558638feb0f7fabefd95"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a03c4b08dcd83ca3b5f3d38e0f43b82ca">SetVisible</a> (bool Visible)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this renderable.  <a href="#a03c4b08dcd83ca3b5f3d38e0f43b82ca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac746146ea693afa9b6345640b5cfd9ef"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Show" ref="ac746146ea693afa9b6345640b5cfd9ef" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ac746146ea693afa9b6345640b5cfd9ef">Show</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this renderable to be shown. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a446b43c6dde21c7f0c021ca6833f841d">UpdateDimensions</a> ()=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this renderable to match those of the new screen size.  <a href="#a446b43c6dde21c7f0c021ca6833f841d"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d082dd8ef8e96a44cf25cb96134b00d"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::PushQuad" ref="a9d082dd8ef8e96a44cf25cb96134b00d" args="(std::vector&lt; VertexData &gt; &amp;VertVec, VertexData &amp;Vert, Vector2 *Positions, Vector2 *UVs, ColourValue *Colours, const String &amp;Atlas)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a9d082dd8ef8e96a44cf25cb96134b00d">PushQuad</a> (std::vector&lt; <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &gt; &amp;VertVec, <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &amp;Vert, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> *Positions, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> *UVs, <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> *Colours, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes vertex information for a quad to a vector. Equivalent to calling "PushTriangle" twice. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1ffc15904a58792b13d0c3115272f81"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::PushQuad2" ref="ad1ffc15904a58792b13d0c3115272f81" args="(std::vector&lt; VertexData &gt; &amp;VertVec, VertexData &amp;Vert, Vector2 *Positions, Vector2 *UVs, const ColourValue &amp;Colour, const String &amp;Atlas)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ad1ffc15904a58792b13d0c3115272f81">PushQuad2</a> (std::vector&lt; <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &gt; &amp;VertVec, <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &amp;Vert, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> *Positions, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> *UVs, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes vertex information for a quad to a vector. Equivalent to calling "PushTriangle" twice. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7accb5b7dfea6d6c5cff88fd7f2e3a75"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::PushTriangle" ref="a7accb5b7dfea6d6c5cff88fd7f2e3a75" args="(std::vector&lt; VertexData &gt; &amp;VertVec, VertexData &amp;Vert, const Vector2 &amp;A, const Vector2 &amp;B, const Vector2 &amp;C, const Vector2 &amp;UV, const ColourValue &amp;Colour, const String &amp;Atlas)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7accb5b7dfea6d6c5cff88fd7f2e3a75">PushTriangle</a> (std::vector&lt; <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &gt; &amp;VertVec, <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &amp;Vert, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;A, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;B, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;C, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;UV, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pushes vertex information for a triangle to a vector. Equivalent to calling "PushVertex" three times. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affc9bcf443b69254a0a59858f316cc58"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::PushVertex" ref="affc9bcf443b69254a0a59858f316cc58" args="(std::vector&lt; VertexData &gt; &amp;VertVec, VertexData &amp;Vert, const Real &amp;X, const Real &amp;Y, const Vector2 &amp;UV, const ColourValue &amp;Colour, const String &amp;Atlas)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58">PushVertex</a> (std::vector&lt; <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &gt; &amp;VertVec, <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &amp;Vert, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;X, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Y, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;UV, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Collects all the relevant information for a single vertex and pushes it to a vector. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3136c551f3be4a9e9ccb72a58428d3f7"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::ActPosition" ref="a3136c551f3be4a9e9ccb72a58428d3f7" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ActPosition</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7df88e4cf9b12102d006576413ebc069"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::ActSize" ref="a7df88e4cf9b12102d006576413ebc069" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ActSize</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6546382d834a74b7aabf5061e4c93be"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Dirty" ref="ad6546382d834a74b7aabf5061e4c93be" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Dirty</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac5e51c5efe25911b3681deac71c970d0"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Manager" ref="ac5e51c5efe25911b3681deac71c970d0" args="" -->
 <a class="el" href="classMezzanine_1_1UIManager.html">UIManager</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae303a5be12bdaa01c8b27fb3993a17fa"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Name" ref="ae303a5be12bdaa01c8b27fb3993a17fa" args="" -->
 <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Name</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11733fbad1348e5a0dbcd70c5532106d"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Parent" ref="a11733fbad1348e5a0dbcd70c5532106d" args="" -->
-<a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7fb14ea46d77cea296d6f347a0a1ade"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::ParentLayer" ref="ac7fb14ea46d77cea296d6f347a0a1ade" args="" -->
+<a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ParentLayer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae12dd254c59c5289178d383636c20a01"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::ParentWidget" ref="ae12dd254c59c5289178d383636c20a01" args="" -->
+<a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ParentWidget</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14eae1d1f592ea2be4467893564fe8e8"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::PriAtlas" ref="a14eae1d1f592ea2be4467893564fe8e8" args="" -->
+<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>PriAtlas</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af1c928cf6ca5660c57a277ce0af7e335"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Priority" ref="af1c928cf6ca5660c57a277ce0af7e335" args="" -->
+<a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Priority</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affbc58e05c520c48a241083b2eb8dc24"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::RelPosition" ref="affbc58e05c520c48a241083b2eb8dc24" args="" -->
 <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RelPosition</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af901597b0e3e08a4b0280a212465efa2"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::RelSize" ref="af901597b0e3e08a4b0280a212465efa2" args="" -->
 <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RelSize</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86446265396f5f0f8d238047b10de9b4"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::RenderVertices" ref="a86446265396f5f0f8d238047b10de9b4" args="" -->
+std::vector&lt; <a class="el" href="structMezzanine_1_1UI_1_1VertexData.html">VertexData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>RenderVertices</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a6e45b67065274c10ce05595c21b461"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Visible" ref="a6a6e45b67065274c10ce05595c21b461" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>Visible</b></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a834e4e869446be644f61b4b456604f31"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Layer" ref="a834e4e869446be644f61b4b456604f31" args="" -->
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Layer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a29fa75ce3911bef8c5f4414f6f0242b8"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::Widget" ref="a29fa75ce3911bef8c5f4414f6f0242b8" args="" -->
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="uibasicrenderable_8h_source.html#l00058">58</a> of file <a class="el" href="uibasicrenderable_8h_source.html">uibasicrenderable.h</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8h_source.html#l00061">61</a> of file <a class="el" href="uibasicrenderable_8h_source.html">uibasicrenderable.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aace539a4a4bd0795543f152fd0f3d86c"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::BasicRenderable" ref="aace539a4a4bd0795543f152fd0f3d86c" args="(const String &amp;name, Layer *parent)" -->
+<a class="anchor" id="a31cabdbf187a8e038079aa88af536c6f"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::BasicRenderable" ref="a31cabdbf187a8e038079aa88af536c6f" args="(const String &amp;name, Layer *Parent)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -165,7 +198,7 @@ Protected Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td>
-          <td class="paramname"><em>parent</em>&#160;</td>
+          <td class="paramname"><em>Parent</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -180,55 +213,40 @@ Protected Attributes</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name to be given to this widget. </td></tr>
-    <tr><td class="paramname">parent</td><td>The parent layer that created this widget. </td></tr>
+    <tr><td class="paramname">Parent</td><td>The parent layer that created this widget. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00052">52</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00054">54</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a7469e579a834b00bd90a87fd754d14af"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetActualPosition" ref="a7469e579a834b00bd90a87fd754d14af" args="() const =0" -->
+<a class="anchor" id="aafd3dd1e288791b1071cb8c043866504"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::_AppendVertices" ref="aafd3dd1e288791b1071cb8c043866504" args="(ScreenVertexData &amp;Vertices)=0" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::BasicRenderable::GetActualPosition </td>
+          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::_AppendVertices </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;&#160;</td>
+          <td class="paramname"><em>Vertices</em></td><td>)</td>
+          <td><code> [pure virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Gets the top left position of this renderable in pixels. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </dd></dl>
+<p>Appends the vertices of this renderable to another vector. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Vertices</td><td>The vector of vertex's to append to. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a5c1e8f0a8efe73d6d556f876a4c709f8">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a1936b1cc9ac22eddc81d92f10fef314d">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a43d868461d8cc3a230e13e97cd38d91d">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31">Mezzanine::UI::Rectangle</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a14b2ff20cdf114c34cc23074d0b7fb5c"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetActualSize" ref="a14b2ff20cdf114c34cc23074d0b7fb5c" args="() const =0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::BasicRenderable::GetActualSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the size of this renderable in pixels. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this renderable. </dd></dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a19adecf3f260923b07016347623dc33e">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a4b64d9dea1b059fd136ea234b8044a9b">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a5e54183333fc3e120da6383e319c436e">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b">Mezzanine::UI::Rectangle</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a847863aa5b36f1bf34181ff7b48de81d">Mezzanine::UI::LineList</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a63c0d8868a46039cffc03151eb546604">Mezzanine::UI::Rectangle</a>.</p>
 
 </div>
 </div>
@@ -249,40 +267,19 @@ Protected Attributes</h2></td></tr>
 <p>Gets the name of this renderable. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of this renderable. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00063">63</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00138">138</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab6aa1fb10dc7e9e412e7caac9133c9a6"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetPosition" ref="ab6aa1fb10dc7e9e412e7caac9133c9a6" args="() const =0" -->
+<a class="anchor" id="a333701c21e49351bf905a27b96bac94d"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetPrimaryAtlas" ref="a333701c21e49351bf905a27b96bac94d" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::BasicRenderable::GetPosition </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::UI::BasicRenderable::GetPrimaryAtlas </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the relative top left position of this renderable. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </dd></dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab49077b4d05873f0a6d397720790ae49">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a232f175144378d1d8c0e2966dbcc4371">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a9fb5509afd9a1c1e3de3b470c8755bd0">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a8df1f5fbba85a0a6f252ae470ce93c07">Mezzanine::UI::Rectangle</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="abdb08ae3577da75762209b8cee486b24"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetPrimaryAtlas" ref="abdb08ae3577da75762209b8cee486b24" args="() const =0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::UI::BasicRenderable::GetPrimaryAtlas </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -291,19 +288,19 @@ Protected Attributes</h2></td></tr>
 <p>Gets the currently set primary atlas. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of the primary atlas that is set, or an empty string if none. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab4dabfe9ce18dd255d2b8724f610058d">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a5c401e39f028e14426714197210e186a">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#afdb2415e459de43341b7dad687d2ae31">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a1ac92749826bce7b8f9b3d3e9d27a12f">Mezzanine::UI::Rectangle</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00160">160</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3279ed466dfc69203467b2bb32cf89be"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetRenderPriority" ref="a3279ed466dfc69203467b2bb32cf89be" args="() const =0" -->
+<a class="anchor" id="a229905f629c59290e321014209d9457e"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetRenderPriority" ref="a229905f629c59290e321014209d9457e" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> Mezzanine::UI::BasicRenderable::GetRenderPriority </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> Mezzanine::UI::BasicRenderable::GetRenderPriority </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -312,143 +309,62 @@ Protected Attributes</h2></td></tr>
 <p>Gets the priority this button should be rendered with. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing this button's priority level. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ad2e567a12e059c612e474e96fd9cd5da">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#aadae4d2bb1e8db600864e0121a02e213">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#aaf0e1e55d5293f58b03c97d93ecffd9f">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a552cc0809a838c25f39248d16b591518">Mezzanine::UI::Rectangle</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00149">149</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6486ceae69273b990bfe19b88c29d328"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetSize" ref="a6486ceae69273b990bfe19b88c29d328" args="() const =0" -->
+<a class="anchor" id="afee6e10e2fa607b309505d16ab7260d1"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::GetVisible" ref="afee6e10e2fa607b309505d16ab7260d1" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::BasicRenderable::GetSize </td>
+          <td class="memname">bool Mezzanine::UI::BasicRenderable::GetVisible </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Gets the relative size of this renderable. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this renderable. </dd></dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a6836b68da28da089584dd02547674286">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#ad1b3bf8c12122089af1b5896a8da8253">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#aac482cb90a223c4346103a8012c892c4">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a2deccb0b2e08116b01941afdd4eb7475">Mezzanine::UI::Rectangle</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a443bdeb7d95e6b765a5548966d380ecf"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::IsVisible" ref="a443bdeb7d95e6b765a5548966d380ecf" args="() const =0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool Mezzanine::UI::BasicRenderable::IsVisible </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the visibility of this renderable. </p>
+<p>Gets the visible setting for this renderable. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visibility of this renderable. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a8d8afe5870bcf5bf1de02ece187ab238">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a5d6ed066e714024ce9b12b13a926e6c6">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a7cbd2c77fa2a1da3845d72b030c104ae">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a71056f4bec912c0b4c9b3cc48ed34ec5">Mezzanine::UI::Rectangle</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00123">123</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4741dde07f7eddddcc3d611d6c803fad"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetActualPosition" ref="a4741dde07f7eddddcc3d611d6c803fad" args="(const Vector2 &amp;Position)=0" -->
+<a class="anchor" id="ad83653b90d57caf95b7de93b9ee31afd"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::IsVisible" ref="ad83653b90d57caf95b7de93b9ee31afd" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetActualPosition </td>
+          <td class="memname">bool Mezzanine::UI::BasicRenderable::IsVisible </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets the top left position of this renderable in pixels. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Gets whether or not this renderable is getting rendered. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing whether this renderable is being rendered. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ad7218bce5dda1c0e0bf91a83feaae47e">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a7360c698bc7a0aaa365739ccb0100d8d">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a1050bf980ccf62f5688611cfb07d7155">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#adc3f524897031fffc7c25c4adc460d15">Mezzanine::UI::TextButton</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00118">118</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a69c87db17cacc2980f68777258329531"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetActualSize" ref="a69c87db17cacc2980f68777258329531" args="(const Vector2 &amp;Size)=0" -->
+<a class="anchor" id="aca42d7a5fa95c3190a2204743bd2f659"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetPrimaryAtlas" ref="aca42d7a5fa95c3190a2204743bd2f659" args="(const String &amp;Atlas)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetActualSize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the size of this renderable in pixels. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this renderable. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a6a19f0e460a63e13f8c9bda3e18fcc96">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#afef14a7641a40656b1bb6d3ae1c820ca">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#ab5e6b9c794dc7e98ba13c571287742da">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a81171ff142c9e991daeec099bebfdc82">Mezzanine::UI::TextButton</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aab42dabeaeb7a56fb4b98ae8f7ab6afb"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetPosition" ref="aab42dabeaeb7a56fb4b98ae8f7ab6afb" args="(const Vector2 &amp;Position)=0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetPosition </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the relative top left position of this renderable. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#aff2d96a45c88627098ac0b902059bfc3">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a1db8c2388e76c0cf2d4c017ec44ce6b1">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a6fddca4eef841a78dcafc742c425437f">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#af91cf1040a11180eba704e054def6a7a">Mezzanine::UI::TextButton</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab1195ccf1e8acf126aee6d06c1d9e93b"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetPrimaryAtlas" ref="ab1195ccf1e8acf126aee6d06c1d9e93b" args="(const String &amp;Atlas)=0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetPrimaryAtlas </td>
+          <td class="memname">void Mezzanine::UI::BasicRenderable::SetPrimaryAtlas </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
           <td class="paramname"><em>Atlas</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -462,20 +378,20 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#af1248af0bf094b29f65547b1697c3c23">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a4794ffff86824830fc54fc0aa6feb710">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#afff82489ff0edfafcaa5c4f3642c929e">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a7be99336eb1a608b1cf96d6f7e63477e">Mezzanine::UI::Rectangle</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00154">154</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a05be25ff56fbd498841c33da0cfe5410"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetRenderPriority" ref="a05be25ff56fbd498841c33da0cfe5410" args="(const UI::RenderPriority &amp;Priority)=0" -->
+<a class="anchor" id="a4391ab57978d558638feb0f7fabefd95"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetRenderPriority" ref="a4391ab57978d558638feb0f7fabefd95" args="(const UI::RenderPriority &amp;Priority)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetRenderPriority </td>
+          <td class="memname">void Mezzanine::UI::BasicRenderable::SetRenderPriority </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;&#160;</td>
           <td class="paramname"><em>Priority</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -490,47 +406,20 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#ad3e5d066b19d56616369632276d8fd38">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a2941663607cde5e9306673a321e8fed2">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a30985ea691f36eaafe5d6864eec8ae19">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a546446b4b6394fb7e58bfa64d554ada3">Mezzanine::UI::TextButton</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00143">143</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ace14123b4a7bdb83e4e86275823f7b6e"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetSize" ref="ace14123b4a7bdb83e4e86275823f7b6e" args="(const Vector2 &amp;Size)=0" -->
+<a class="anchor" id="a03c4b08dcd83ca3b5f3d38e0f43b82ca"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetVisible" ref="a03c4b08dcd83ca3b5f3d38e0f43b82ca" args="(bool Visible)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetSize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the relative size of this renderable. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this renderable. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a2a654b05e925924d5842f36b2a486af5">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a7ab0e51b3dba56d6a9612ff41a1df9e1">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#ab5ba11881937bea795c5431f0dfd7f4f">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a066e09081624a520a5e86f7cfd81ee5d">Mezzanine::UI::TextButton</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3dd62b1390d4f3931cfc8d0188cdcc7c"></a><!-- doxytag: member="Mezzanine::UI::BasicRenderable::SetVisible" ref="a3dd62b1390d4f3931cfc8d0188cdcc7c" args="(bool Visible)=0" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Mezzanine::UI::BasicRenderable::SetVisible </td>
+          <td class="memname">void Mezzanine::UI::BasicRenderable::SetVisible </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>Visible</em></td><td>)</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
@@ -544,7 +433,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a12840e06233a6feb88f61d88a0ce7e60">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#a77ba9fb0b2b8298c19f856b4fb7c8d3d">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#acce9a32cef8911ef63a449fe877a2a3b">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#adca7d64f834767ac6aa6440920920f36">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a0e7af5bb48039675e31ddcd1f72f5752">Mezzanine::UI::TextButton</a>.</p>
+<p>Definition at line <a class="el" href="uibasicrenderable_8cpp_source.html#l00110">110</a> of file <a class="el" href="uibasicrenderable_8cpp_source.html">uibasicrenderable.cpp</a>.</p>
 
 </div>
 </div>
@@ -565,7 +454,7 @@ Protected Attributes</h2></td></tr>
 <p>Updates the dimensions of this renderable to match those of the new screen size. </p>
 <p>This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. </p>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a65764b075c03b2a6eb17039a73a260ce">Mezzanine::UI::Button</a>, <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a3a7e102a8b5b3217526ce183465ed69e">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9">Mezzanine::UI::TextButton</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1LineList.html#a25e792075ec0c5165d5870d8e0710b7f">Mezzanine::UI::LineList</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a3a7e102a8b5b3217526ce183465ed69e">Mezzanine::UI::MarkupText</a>, <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c">Mezzanine::UI::Rectangle</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9">Mezzanine::UI::TextButton</a>.</p>
 
 </div>
 </div>
@@ -579,7 +468,7 @@ Protected Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -589,6 +478,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

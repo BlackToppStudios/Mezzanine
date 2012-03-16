@@ -20,10 +20,6 @@ Inheritance diagram for Mezzanine::PrimitiveCollisionShape:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual btConvexInternalShape $\ast$ \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ac7eecc4d144b72fdfbea8a013fca441c}{GetBulletConvexShape} () const 
-\item 
-virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{GetType} () const =0
-\item 
 \hypertarget{classMezzanine_1_1PrimitiveCollisionShape_a8b2158d50aa727df63b0855cc7b92506}{
 \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a8b2158d50aa727df63b0855cc7b92506}{PrimitiveCollisionShape} ()}
 \label{classMezzanine_1_1PrimitiveCollisionShape_a8b2158d50aa727df63b0855cc7b92506}
@@ -33,7 +29,20 @@ virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6d
 virtual \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_af2bbe57380bf282703f997286a5efde3}{$\sim$PrimitiveCollisionShape} ()}
 \label{classMezzanine_1_1PrimitiveCollisionShape_af2bbe57380bf282703f997286a5efde3}
 
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+virtual btConvexInternalShape $\ast$ \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ac7eecc4d144b72fdfbea8a013fca441c}{GetBulletConvexShape} () const 
+\item 
+virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_ad3d4143a5640204b987e0b57eb24af41}{GetType} () const =0
+\item 
+virtual void \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a2257312048ee9085fa5d14f6b34caae1}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\item 
+virtual void \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_acfaab953833e9be503fddb2ee0f56d4f}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a19bb44a705ff86606834feb2783500e5}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -91,6 +100,86 @@ Implements \hyperlink{classMezzanine_1_1CollisionShape_a27e5055f81cb8fb6d65a6c9f
 
 
 Implemented in \hyperlink{classMezzanine_1_1BoxCollisionShape_ae2b4af7afa6cc37c51b062589048e26d}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a2773853a924c2a97838546d96d851ba5}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a874892f3aaba7e79200633691037a410}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a73ccd6364f52a68a642a0fb55159f020}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a4feb07a9d71bda6ca4b6c82b745df8a0}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_ad4b8a2e2f71686e2495d414a13b0f95a}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_ad2c8d33b21fe7215742db4551429c5a6}{Mezzanine::SphereCollisionShape}.
+
+\hypertarget{classMezzanine_1_1PrimitiveCollisionShape_a2257312048ee9085fa5d14f6b34caae1}{
+\index{Mezzanine::PrimitiveCollisionShape@{Mezzanine::PrimitiveCollisionShape}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::PrimitiveCollisionShape@{Mezzanine::PrimitiveCollisionShape}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::PrimitiveCollisionShape::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1PrimitiveCollisionShape_a2257312048ee9085fa5d14f6b34caae1}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1CollisionShape_aab25ef5e044b27e8e43b7e4c54ab777a}{Mezzanine::CollisionShape}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1BoxCollisionShape_aeff89859ae98a391bf1232e190c839b5}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a16ede5d5ed04ae7d146ff28a4484c41d}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a5a47688b99093433fd2e9cb11dff9535}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a3ad727374ebb82699f8dae7344139add}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a5587a08c2cea384bef3035a9eadc09f5}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_ac933bcaf3025f03b0f7193bf9f894220}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_a3504227628734579055f242b1ace4d74}{Mezzanine::SphereCollisionShape}.
+
+
+
+Definition at line 188 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1PrimitiveCollisionShape_acfaab953833e9be503fddb2ee0f56d4f}{
+\index{Mezzanine::PrimitiveCollisionShape@{Mezzanine::PrimitiveCollisionShape}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::PrimitiveCollisionShape@{Mezzanine::PrimitiveCollisionShape}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::PrimitiveCollisionShape::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1PrimitiveCollisionShape_acfaab953833e9be503fddb2ee0f56d4f}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1CollisionShape_ac0995091062903d9777d0fa9bef09b90}{Mezzanine::CollisionShape}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1BoxCollisionShape_abdd854fc0f165b3b17baecb0bb3961b4}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a997e8ab5bc03e7858b51b449e12be26c}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a881cc9722b623c3c5e5a64bbc01a45c8}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a60a91d12cc13b8886e6feaddeb32e556}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_ae4cb206ad4761a817633af5f611e2c0b}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_a4ff1d5afc23bf6694b01cad56ef17b05}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_a5d960502c435c80d6ce45bc409e90d94}{Mezzanine::SphereCollisionShape}.
+
+
+
+Definition at line 169 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1PrimitiveCollisionShape_a19bb44a705ff86606834feb2783500e5}{
+\index{Mezzanine::PrimitiveCollisionShape@{Mezzanine::PrimitiveCollisionShape}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::PrimitiveCollisionShape@{Mezzanine::PrimitiveCollisionShape}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::PrimitiveCollisionShape::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1PrimitiveCollisionShape_a19bb44a705ff86606834feb2783500e5}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}PrimitiveCollisionShape\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1CollisionShape_ae5a97a76b687d450f17d0ac86b227f1d}{Mezzanine::CollisionShape}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1BoxCollisionShape_aa96e3055ec21f18198bceccdeaafa538}{Mezzanine::BoxCollisionShape}, \hyperlink{classMezzanine_1_1CapsuleCollisionShape_a6225978757c6b80f590336cb04f9ebf5}{Mezzanine::CapsuleCollisionShape}, \hyperlink{classMezzanine_1_1ConeCollisionShape_a41c55ca94878cb62836540b871457d77}{Mezzanine::ConeCollisionShape}, \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a58cda94bb88fd44976747e0600b2356f}{Mezzanine::ConvexHullCollisionShape}, \hyperlink{classMezzanine_1_1CylinderCollisionShape_a7fa7200a26ab2788416c729e28ed6688}{Mezzanine::CylinderCollisionShape}, \hyperlink{classMezzanine_1_1MultiSphereCollisionShape_a5b64cbb0b59708f6e3d21ab6b9894afa}{Mezzanine::MultiSphereCollisionShape}, and \hyperlink{classMezzanine_1_1SphereCollisionShape_a41c14d2a29a4ed2f0d5fe6fd386ab71e}{Mezzanine::SphereCollisionShape}.
+
+
+
+Definition at line 211 of file collisionshape.cpp.
 
 
 

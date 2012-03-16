@@ -33,10 +33,15 @@ enum \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a6e1e734ffd3425d16a1d86893e362f
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab162c701a9c24dde35709d71edf53972}{AddCell} (\hyperlink{classMezzanine_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeAdded)
-\begin{DoxyCompactList}\small\item\em Addes a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} to this widget that will be rendered. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a198dfab3b71fbd9f89b7aa76c43881bb}{CellGrid} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a4ffeba2ec2e555c80f7224efcf886e42}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a4ffeba2ec2e555c80f7224efcf886e42}{$\sim$CellGrid} ()}
+\label{classMezzanine_1_1UI_1_1CellGrid_a4ffeba2ec2e555c80f7224efcf886e42}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab162c701a9c24dde35709d71edf53972}{AddCell} (\hyperlink{classMezzanine_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeAdded)
+\begin{DoxyCompactList}\small\item\em Addes a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} to this widget that will be rendered. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a98a6713c4723fd6021a167380c92d716}{CellsOffGrid} ()
 \begin{DoxyCompactList}\small\item\em Checks to see if there are any remaining cells that aren't on the grid due to a lack of space. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a11e4c5d524ed68823a61011e75bbaddb}{
@@ -58,17 +63,19 @@ virtual \hyperlink{classMezzanine_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{cla
 \begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} on the grid by name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab53b9ca40c4c7a2133f9cc6511842caf}{GetCell} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Row, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Column)
 \begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} at the specified row/column. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a23d22d0dc36a1dc021a1a832e86d5337}{GetCellSpacing} ()
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_abe28918cfb8b1e3bbfbe9ac615b3b653}{GetCellSpacing} (bool Relative=true)
 \begin{DoxyCompactList}\small\item\em Gets the currently set cell spacing. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a400ab7ea328f722413bb276e5dead944}{GetEdgeSpacing} ()
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a8717b4d4b9f4fe8759ec6c10101f2248}{GetEdgeSpacing} (bool Relative=true)
 \begin{DoxyCompactList}\small\item\em Gets the currently set edge spacing. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a24a055d77eaf9a73a5d9b1b778847807}{GetFixedCellSize} ()
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a4f8fa97d440202c7216ae468b069afa0}{GetFixedCellSize} (bool Relative=true)
 \begin{DoxyCompactList}\small\item\em Gets the currently set fixed size applied to all cells in this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a56d852192197e405ccc4b12a4b7fe2ce}{GetGridBack} ()
 \begin{DoxyCompactList}\small\item\em Gets the background to this Grid. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab054f3bbb294e4a584b8ab63b4d3f237}{CellGrid::OrderingStyle} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a9bac2c8bbb242176b29d2102febe2d89}{GetGridOrdering} ()
+\begin{DoxyCompactList}\small\item\em Gets the current setting for how to sort the cells in the grid. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab2ba8fdab8c52b374291d0bb89bb9cc7}{GetSelected} ()
 \begin{DoxyCompactList}\small\item\em Gets the currently selected \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_acd18bf256b34033a7c53424d559b6dba}{GetWorkAreaLimits} ()
+virtual \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1UI_1_1CellGrid_aec6daabfb59ae56385fbe60fe067b6b1}{GetWorkAreaLimits} (bool Relative=true)
 \begin{DoxyCompactList}\small\item\em Gets the currently set logical limits for the grid. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab3b93eb4e588899e51e68fbd4bf6b84e}{RemoveCell} (\hyperlink{classMezzanine_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeRemoved)
 \begin{DoxyCompactList}\small\item\em Removes a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} from this widget. \item\end{DoxyCompactList}\item 
@@ -82,6 +89,8 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a9b086636cf3b6830db5948
 \begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_aae3aa4503b5673470a83dd9edd445e77}{SetFixedCellSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&FixedSize, bool Relative=true)
 \begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a6f5768054e49b85d47eba5df6e9b28a9}{SetGridOrdering} (const \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab054f3bbb294e4a584b8ab63b4d3f237}{CellGrid::OrderingStyle} \&GridOrdering)
+\begin{DoxyCompactList}\small\item\em Sets how cells in this grid should be ordered. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_ab6e210edb5ec0167f61c9dc2dafef108}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_afcff9353be7ea7408aa2ea621efdaf99}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
@@ -94,12 +103,7 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a276e97c0b2c8b8e1ed6a97
 
 \begin{DoxyCompactList}\small\item\em Sorts the grid based on the priority set in the cells. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a11cda11f70cd331c9bd39daf0b0f24aa}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a4ffeba2ec2e555c80f7224efcf886e42}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a4ffeba2ec2e555c80f7224efcf886e42}{$\sim$CellGrid} ()}
-\label{classMezzanine_1_1UI_1_1CellGrid_a4ffeba2ec2e555c80f7224efcf886e42}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -187,6 +191,11 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1CellGrid_a59d468d25f8de9de38b0a1
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a323e3922d9e6f7659e0de372b9eda76d}{
 CellList {\bfseries Cells}}
 \label{classMezzanine_1_1UI_1_1CellGrid_a323e3922d9e6f7659e0de372b9eda76d}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_acf40f46bfd499ed31c7a7e4e6e70353b}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries CellsAdded}}
+\label{classMezzanine_1_1UI_1_1CellGrid_acf40f46bfd499ed31c7a7e4e6e70353b}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a75d164866c3e1006e94b90236ed18e2b}{
@@ -362,7 +371,7 @@ Addes a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} to this widget that will 
 \end{DoxyParams}
 
 
-Definition at line 350 of file uicellgrid.cpp.
+Definition at line 353 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a98a6713c4723fd6021a167380c92d716}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!CellsOffGrid@{CellsOffGrid}}
@@ -382,7 +391,7 @@ Returns a bool indicating whether or not this widgets work area needs to be incr
 \end{DoxyReturn}
 
 
-Definition at line 442 of file uicellgrid.cpp.
+Definition at line 491 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a5d6f3a71557437f087b83698e4cdc69c}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetCell@{GetCell}}
@@ -407,7 +416,7 @@ Returns a pointer to the \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} requeste
 \end{DoxyReturn}
 
 
-Definition at line 358 of file uicellgrid.cpp.
+Definition at line 363 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_ab53b9ca40c4c7a2133f9cc6511842caf}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetCell@{GetCell}}
@@ -435,67 +444,82 @@ Returns a pointer to the cell requested, or NULL if nothing is at the requested 
 \end{DoxyReturn}
 
 
-Definition at line 372 of file uicellgrid.cpp.
+Definition at line 377 of file uicellgrid.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a23d22d0dc36a1dc021a1a832e86d5337}{
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_abe28918cfb8b1e3bbfbe9ac615b3b653}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetCellSpacing@{GetCellSpacing}}
 \index{GetCellSpacing@{GetCellSpacing}!Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}}
 \paragraph[{GetCellSpacing}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::CellGrid::GetCellSpacing (
 \begin{DoxyParamCaption}
-{}
+\item[{bool}]{Relative = {\ttfamily true}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1CellGrid_a23d22d0dc36a1dc021a1a832e86d5337}
+\label{classMezzanine_1_1UI_1_1CellGrid_abe28918cfb8b1e3bbfbe9ac615b3b653}
 
 
 Gets the currently set cell spacing. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em Relative} & Optional parameter for getting the spacing in relative units. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the spacing to be used between Cells of this widget. 
 \end{DoxyReturn}
 
 
-Definition at line 437 of file uicellgrid.cpp.
+Definition at line 475 of file uicellgrid.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a400ab7ea328f722413bb276e5dead944}{
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a8717b4d4b9f4fe8759ec6c10101f2248}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetEdgeSpacing@{GetEdgeSpacing}}
 \index{GetEdgeSpacing@{GetEdgeSpacing}!Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}}
 \paragraph[{GetEdgeSpacing}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::CellGrid::GetEdgeSpacing (
 \begin{DoxyParamCaption}
-{}
+\item[{bool}]{Relative = {\ttfamily true}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1CellGrid_a400ab7ea328f722413bb276e5dead944}
+\label{classMezzanine_1_1UI_1_1CellGrid_a8717b4d4b9f4fe8759ec6c10101f2248}
 
 
 Gets the currently set edge spacing. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em Relative} & Optional parameter for getting the spacing in relative units. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the spacing to be used on edges of this widget. 
 \end{DoxyReturn}
 
 
-Definition at line 426 of file uicellgrid.cpp.
+Definition at line 463 of file uicellgrid.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a24a055d77eaf9a73a5d9b1b778847807}{
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a4f8fa97d440202c7216ae468b069afa0}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetFixedCellSize@{GetFixedCellSize}}
 \index{GetFixedCellSize@{GetFixedCellSize}!Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}}
 \paragraph[{GetFixedCellSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::CellGrid::GetFixedCellSize (
 \begin{DoxyParamCaption}
-{}
+\item[{bool}]{Relative = {\ttfamily true}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1CellGrid_a24a055d77eaf9a73a5d9b1b778847807}
+\label{classMezzanine_1_1UI_1_1CellGrid_a4f8fa97d440202c7216ae468b069afa0}
 
 
 Gets the currently set fixed size applied to all cells in this widget. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em Relative} & Optional parameter for getting the size in relative units. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} containing the size applied to all cells in this widget. 
 \end{DoxyReturn}
 
 
-Definition at line 345 of file uicellgrid.cpp.
+Definition at line 347 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a56d852192197e405ccc4b12a4b7fe2ce}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetGridBack@{GetGridBack}}
@@ -515,7 +539,27 @@ Returns a pointer to the background of this grid.
 \end{DoxyReturn}
 
 
-Definition at line 508 of file uicellgrid.cpp.
+Definition at line 557 of file uicellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a9bac2c8bbb242176b29d2102febe2d89}{
+\index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetGridOrdering@{GetGridOrdering}}
+\index{GetGridOrdering@{GetGridOrdering}!Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}}
+\paragraph[{GetGridOrdering}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CellGrid::OrderingStyle} Mezzanine::UI::CellGrid::GetGridOrdering (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1CellGrid_a9bac2c8bbb242176b29d2102febe2d89}
+
+
+Gets the current setting for how to sort the cells in the grid. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the current order cells have in the grid. 
+\end{DoxyReturn}
+
+
+Definition at line 486 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_ab2ba8fdab8c52b374291d0bb89bb9cc7}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetSelected@{GetSelected}}
@@ -535,27 +579,32 @@ Returns a pointer to the selected \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell}
 \end{DoxyReturn}
 
 
-Definition at line 513 of file uicellgrid.cpp.
+Definition at line 562 of file uicellgrid.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1CellGrid_acd18bf256b34033a7c53424d559b6dba}{
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_aec6daabfb59ae56385fbe60fe067b6b1}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!GetWorkAreaLimits@{GetWorkAreaLimits}}
 \index{GetWorkAreaLimits@{GetWorkAreaLimits}!Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}}
 \paragraph[{GetWorkAreaLimits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::UI::CellGrid::GetWorkAreaLimits (
 \begin{DoxyParamCaption}
-{}
+\item[{bool}]{Relative = {\ttfamily true}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1CellGrid_acd18bf256b34033a7c53424d559b6dba}
+\label{classMezzanine_1_1UI_1_1CellGrid_aec6daabfb59ae56385fbe60fe067b6b1}
 
 
 Gets the currently set logical limits for the grid. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em Relative} & Optional parameter for getting the limits in relative units. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} representing the logical limits of the grid. 
 \end{DoxyReturn}
 
 
-Definition at line 415 of file uicellgrid.cpp.
+Definition at line 451 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_ab3b93eb4e588899e51e68fbd4bf6b84e}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!RemoveCell@{RemoveCell}}
@@ -577,7 +626,7 @@ Removes a \hyperlink{classMezzanine_1_1UI_1_1Cell}{Cell} from this widget.
 \end{DoxyParams}
 
 
-Definition at line 385 of file uicellgrid.cpp.
+Definition at line 390 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_aec72d4eae4497e7ffa62f7697d4dc468}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetActualPosition@{SetActualPosition}}
@@ -607,7 +656,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_a0daef581b0
 
 
 
-Definition at line 470 of file uicellgrid.cpp.
+Definition at line 519 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a2ab8b9b913aaac889ea76e565eccdbc6}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetActualSize@{SetActualSize}}
@@ -637,7 +686,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_ae55c3df53d
 
 
 
-Definition at line 484 of file uicellgrid.cpp.
+Definition at line 533 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a02fe0c290a43950565fc5b9dc4285212}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetCellSpacing@{SetCellSpacing}}
@@ -662,7 +711,7 @@ Default 10.0,10.0.
 \end{DoxyParams}
 
 
-Definition at line 431 of file uicellgrid.cpp.
+Definition at line 469 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a9b086636cf3b6830db5948a24380ee1a}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetEdgeSpacing@{SetEdgeSpacing}}
@@ -687,7 +736,7 @@ Default: 0,0.
 \end{DoxyParams}
 
 
-Definition at line 420 of file uicellgrid.cpp.
+Definition at line 457 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_aae3aa4503b5673470a83dd9edd445e77}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetFixedCellSize@{SetFixedCellSize}}
@@ -712,7 +761,29 @@ Sets the fixed size cells in this grid are to have.
 \end{DoxyParams}
 
 
-Definition at line 339 of file uicellgrid.cpp.
+Definition at line 341 of file uicellgrid.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1CellGrid_a6f5768054e49b85d47eba5df6e9b28a9}{
+\index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetGridOrdering@{SetGridOrdering}}
+\index{SetGridOrdering@{SetGridOrdering}!Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}}
+\paragraph[{SetGridOrdering}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::CellGrid::SetGridOrdering (
+\begin{DoxyParamCaption}
+\item[{const {\bf CellGrid::OrderingStyle} \&}]{GridOrdering}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1CellGrid_a6f5768054e49b85d47eba5df6e9b28a9}
+
+
+Sets how cells in this grid should be ordered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GridOrdering} & The manner in which the cells in this grid should be sorted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 481 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_ab6e210edb5ec0167f61c9dc2dafef108}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetPosition@{SetPosition}}
@@ -742,7 +813,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_ab4e8250c84
 
 
 
-Definition at line 463 of file uicellgrid.cpp.
+Definition at line 512 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_afcff9353be7ea7408aa2ea621efdaf99}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetSize@{SetSize}}
@@ -772,7 +843,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_ac924cf5c94
 
 
 
-Definition at line 477 of file uicellgrid.cpp.
+Definition at line 526 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_af3de91eb3de30b73cf2b8c6f0c7f266f}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!SetWorkAreaLimits@{SetWorkAreaLimits}}
@@ -797,7 +868,7 @@ This does not alter the actual size of the widget, just the logical area the wid
 \end{DoxyParams}
 
 
-Definition at line 409 of file uicellgrid.cpp.
+Definition at line 445 of file uicellgrid.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CellGrid_a11cda11f70cd331c9bd39daf0b0f24aa}{
 \index{Mezzanine::UI::CellGrid@{Mezzanine::UI::CellGrid}!UpdateDimensions@{UpdateDimensions}}
@@ -822,7 +893,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1UI_1_1PagedCellGrid_a1ff79a778710a
 
 
 
-Definition at line 491 of file uicellgrid.cpp.
+Definition at line 540 of file uicellgrid.cpp.
 
 
 

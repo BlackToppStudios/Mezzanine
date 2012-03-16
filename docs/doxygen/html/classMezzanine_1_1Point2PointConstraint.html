@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::Point2PointConstraint Class Reference</h1>  </div>
@@ -91,6 +92,12 @@ Inheritance diagram for Mezzanine::Point2PointConstraint:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a216daa575bd4dc2589875ca24a97faa8">Point2PointConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotB)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Double body constructor. Binds the two bodies.  <a href="#a216daa575bd4dc2589875ca24a97faa8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a62ddd5588e4b7c95892eca8486cea099">Point2PointConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotA)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Single body constructor. Binds the body to world space.  <a href="#a62ddd5588e4b7c95892eca8486cea099"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a9a928ba39d2b8f9887d981afd8f776aa">~Point2PointConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a9a928ba39d2b8f9887d981afd8f776aa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btTypedConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a99f25e594a55a5c84db10981c30ffd60">GetConstraintBase</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a5578b5727952e6c225a989d88380774e">GetDamping</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Damping.  <a href="#a5578b5727952e6c225a989d88380774e"></a><br/></td></tr>
@@ -103,10 +110,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a2cecb3691f656ca1a9c8d57987e6c926">GetTAU</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the Tau Setting.  <a href="#a2cecb3691f656ca1a9c8d57987e6c926"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a658027a5d0f5774a92a279485ccfe29d">HasParamBeenSet</a> (<a class="el" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">ConstraintParam</a> Param, int Axis) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a62ddd5588e4b7c95892eca8486cea099">Point2PointConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotA)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Single body constructor. Binds the body to world space.  <a href="#a62ddd5588e4b7c95892eca8486cea099"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a216daa575bd4dc2589875ca24a97faa8">Point2PointConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotB)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Double body constructor. Binds the two bodies.  <a href="#a216daa575bd4dc2589875ca24a97faa8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a1a5ae4370aa77dc4a07686a95e8c20bc">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a1a5ae4370aa77dc4a07686a95e8c20bc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a8da49ad2d84a9ecebe6be1f11bfdf2b8">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a8da49ad2d84a9ecebe6be1f11bfdf2b8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a85187ada76b4637851bd80cafcb3d704">SetDamping</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Damping)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance.  <a href="#a85187ada76b4637851bd80cafcb3d704"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a609bf21f94cd31189f222350d4b0049e">SetImpulseClamping</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Clamping)</td></tr>
@@ -120,8 +127,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3398535453abbf5e573aec88669a41a6">ValidAngularAxis</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3ee9d805802f459d6e418f4c0d9f83c1">ValidLinearAxis</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#abd499db29c9e9755e9bb547d29eaa49a">TypedConstraint::ParamList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a3170aad8175d6c6c064e6d4e8e30cfa6">ValidParamOnAxis</a> (int Axis) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a9a928ba39d2b8f9887d981afd8f776aa">~Point2PointConstraint</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a9a928ba39d2b8f9887d981afd8f776aa"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Point2PointConstraint.html#a181517fd02b075cf28c61f9101044b97">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a181517fd02b075cf28c61f9101044b97"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96352d861e0cfd658c92551d1e174fba"></a><!-- doxytag: member="Mezzanine::Point2PointConstraint::Point2Point" ref="a96352d861e0cfd658c92551d1e174fba" args="" -->
@@ -388,6 +397,82 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 
 </div>
 </div>
+<a class="anchor" id="a1a5ae4370aa77dc4a07686a95e8c20bc"></a><!-- doxytag: member="Mezzanine::Point2PointConstraint::ProtoDeSerialize" ref="a1a5ae4370aa77dc4a07686a95e8c20bc" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::Point2PointConstraint::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>A precondition of using this is that all of the actors intended for use must already be Deserialized. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1TypedConstraint.html#a18ea81954d7cc28dce3e5f4c03eac820">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8da49ad2d84a9ecebe6be1f11bfdf2b8"></a><!-- doxytag: member="Mezzanine::Point2PointConstraint::ProtoSerialize" ref="a8da49ad2d84a9ecebe6be1f11bfdf2b8" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::Point2PointConstraint::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1TypedConstraint.html#ae9d74e8e14d9e79bb4320603fbf824d6">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a181517fd02b075cf28c61f9101044b97"></a><!-- doxytag: member="Mezzanine::Point2PointConstraint::SerializableName" ref="a181517fd02b075cf28c61f9101044b97" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::Point2PointConstraint::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "Point2PointConstraint" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1TypedConstraint.html#accc0475bacd0b984dd30d74dbe2bc08e">Mezzanine::TypedConstraint</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a85187ada76b4637851bd80cafcb3d704"></a><!-- doxytag: member="Mezzanine::Point2PointConstraint::SetDamping" ref="a85187ada76b4637851bd80cafcb3d704" args="(Real Damping)" -->
 <div class="memitem">
 <div class="memproto">
@@ -508,7 +593,7 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 <div class="memdoc">
 
 <p>This may be a scalar for how strongly Angular momentum affects linear momemtum. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Research this more carefully </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Research this more carefully </dd></dl>
 <p>This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and a basic understanding of torque ( see <a href="http://en.wikipedia.org/wiki/Torque">http://en.wikipedia.org/wiki/Torque</a> ) It is highly likely that it is a value to adjust how torque affects momentum. </p>
 
 </div>
@@ -592,7 +677,7 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -602,6 +687,6 @@ btPoint2PointConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a 
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

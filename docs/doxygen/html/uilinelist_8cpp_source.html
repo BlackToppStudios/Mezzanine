@@ -108,120 +108,158 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="keyword">namespace </span>Mezzanine
-<a name="l00052"></a>00052 {
-<a name="l00053"></a>00053     <span class="keyword">namespace </span>UI
-<a name="l00054"></a>00054     {
-<a name="l00055"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a250e9a87fbe68f2251510dbad2f15b08">00055</a>         <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a250e9a87fbe68f2251510dbad2f15b08" title="Class constructor.">LineList::LineList</a>(<a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
-<a name="l00056"></a>00056             : Parent(PLayer)
-<a name="l00057"></a>00057         {
-<a name="l00058"></a>00058             Manager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>();
-<a name="l00059"></a>00059 
-<a name="l00060"></a>00060             GLineList = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createLineList();
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062 
-<a name="l00063"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a1b87085b800ead91bc1bfec4d133039b">00063</a>         <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a1b87085b800ead91bc1bfec4d133039b" title="Class destructor.">LineList::~LineList</a>()
-<a name="l00064"></a>00064         {
-<a name="l00065"></a>00065             Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8874a9808f01e5db6e323c3010a5a076" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyLineList(GLineList);
-<a name="l00066"></a>00066         }
-<a name="l00067"></a>00067 
-<a name="l00068"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#ace36d0bc1c9c465737b65c8f2bcc2d23">00068</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#ace36d0bc1c9c465737b65c8f2bcc2d23" title="Sets the visibility of this rectangle.">LineList::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
-<a name="l00069"></a>00069         {
-<a name="l00070"></a>00070             GLineList-&gt;SetVisible(Visible);
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uivertex.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uienumerations.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052 <span class="keyword">namespace </span>Mezzanine
+<a name="l00053"></a>00053 {
+<a name="l00054"></a>00054     <span class="keyword">namespace </span>UI
+<a name="l00055"></a>00055     {
+<a name="l00056"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#ad2401759d54e6cce32160e31a272e463">00056</a>         <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#ad2401759d54e6cce32160e31a272e463" title="Class constructor.">LineList::LineList</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* PLayer)
+<a name="l00057"></a>00057             : <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a>(name,PLayer)
+<a name="l00058"></a>00058         {
+<a name="l00059"></a>00059         }
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a1b87085b800ead91bc1bfec4d133039b">00061</a>         <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a1b87085b800ead91bc1bfec4d133039b" title="Class destructor.">LineList::~LineList</a>()
+<a name="l00062"></a>00062         {
+<a name="l00063"></a>00063         }
+<a name="l00064"></a>00064 
+<a name="l00065"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#ae5a45cc87def03c379665c6c5ec06f83">00065</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#ae5a45cc87def03c379665c6c5ec06f83" title="Starts a new line list.">LineList::Begin</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; LineThickness, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; LineColour)
+<a name="l00066"></a>00066         {
+<a name="l00067"></a>00067             Positions.clear();
+<a name="l00068"></a>00068             Thickness = LineThickness;
+<a name="l00069"></a>00069             Colour = LineColour;
+<a name="l00070"></a>00070             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
 <a name="l00071"></a>00071         }
 <a name="l00072"></a>00072 
-<a name="l00073"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a887ee9e85f989a907b1d74ba95ed6a41">00073</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a887ee9e85f989a907b1d74ba95ed6a41" title="Gets the visibility of this rectangle.">LineList::IsVisible</a>()
+<a name="l00073"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d">00073</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; X, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Y)
 <a name="l00074"></a>00074         {
-<a name="l00075"></a>00075             <span class="keywordflow">return</span> GLineList-&gt;IsVisible();
+<a name="l00075"></a>00075             <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">AddPoint</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
 <a name="l00076"></a>00076         }
 <a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a1832190fc3111d58b8e086f2cc358fdc">00078</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a1832190fc3111d58b8e086f2cc358fdc" title="Forces this rectangle to be shown.">LineList::Show</a>()
+<a name="l00078"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a40a814e86853fed53fc1bf4a7bde5e69">00078</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00079"></a>00079         {
-<a name="l00080"></a>00080             GLineList-&gt;Show();
+<a name="l00080"></a>00080             Positions.push_back(Position * ParentLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#aeaf2e6f3680d39098f475226da4938ae" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>());
 <a name="l00081"></a>00081         }
 <a name="l00082"></a>00082 
-<a name="l00083"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aa48e17f637d9237ea9aa25294de87fe5">00083</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aa48e17f637d9237ea9aa25294de87fe5" title="Forces this rectangle to hide.">LineList::Hide</a>()
+<a name="l00083"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027">00083</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; X, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Y)
 <a name="l00084"></a>00084         {
-<a name="l00085"></a>00085             GLineList-&gt;Hide();
+<a name="l00085"></a>00085             <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">AddPoint</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
 <a name="l00086"></a>00086         }
 <a name="l00087"></a>00087 
-<a name="l00088"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a0903825b873157e6733c20ad8da3e563">00088</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a0903825b873157e6733c20ad8da3e563" title="Starts a new line list.">LineList::Begin</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Thickness, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00088"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a9f457889822f8c236d2e0cf7fccd8aeb">00088</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
 <a name="l00089"></a>00089         {
-<a name="l00090"></a>00090             GLineList-&gt;begin((<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)Thickness, Colour.<a class="code" href="classMezzanine_1_1ColourValue.html#a7e0b3548fc11cdcbd89fab3ad53faaf1" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00090"></a>00090             Positions.push_back(Position);
 <a name="l00091"></a>00091         }
 <a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d">00093</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; X, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Y)
+<a name="l00093"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aa216a1f529f4e8664ec2d6877f4c9cf5">00093</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aa216a1f529f4e8664ec2d6877f4c9cf5" title="Finalizes the list and prepares it for rendering.">LineList::End</a>(<span class="keywordtype">bool</span> Closed)
 <a name="l00094"></a>00094         {
-<a name="l00095"></a>00095             <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">AddPoint</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
-<a name="l00096"></a>00096         }
-<a name="l00097"></a>00097 
-<a name="l00098"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a40a814e86853fed53fc1bf4a7bde5e69">00098</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a6f689d10188e5973033fe7448ac7c68d" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00099"></a>00099         {
-<a name="l00100"></a>00100             GLineList-&gt;position((Position * Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a73d54e2ed5c8c63ad8d7cac8d29007c9" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">GetViewportDimensions</a>()).GetOgreVector2());
-<a name="l00101"></a>00101         }
-<a name="l00102"></a>00102 
-<a name="l00103"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027">00103</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; X, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Y)
-<a name="l00104"></a>00104         {
-<a name="l00105"></a>00105             <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027" title="Adds a new point/line to the list via 2 reals.">AddActualPoint</a>(<a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
-<a name="l00106"></a>00106         }
-<a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a9f457889822f8c236d2e0cf7fccd8aeb">00108</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a78c3f9e972886851cbe877c8cde4e027" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; Position)
-<a name="l00109"></a>00109         {
-<a name="l00110"></a>00110             GLineList-&gt;position(Position.<a class="code" href="classMezzanine_1_1Vector2.html#a7d98428699beefd90861cd44ab125083" title="Gets a Ogre vector2.">GetOgreVector2</a>());
-<a name="l00111"></a>00111         }
-<a name="l00112"></a>00112 
-<a name="l00113"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aa216a1f529f4e8664ec2d6877f4c9cf5">00113</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aa216a1f529f4e8664ec2d6877f4c9cf5" title="Finalizes the list and prepares it for rendering.">LineList::End</a>(<span class="keywordtype">bool</span> Closed)
-<a name="l00114"></a>00114         {
-<a name="l00115"></a>00115             GLineList-&gt;end(Closed);
-<a name="l00116"></a>00116         }
-<a name="l00117"></a>00117 
-<a name="l00118"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a42955b53aa178e4e1a40fd4b8c260bbe">00118</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a42955b53aa178e4e1a40fd4b8c260bbe" title="Sets the priority this button should be rendered with.">LineList::SetRenderPriority</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a>&amp; Priority)
-<a name="l00119"></a>00119         {
-<a name="l00120"></a>00120             Gorilla::RenderPriority RP;
-<a name="l00121"></a>00121             <span class="keywordflow">switch</span>(Priority)
-<a name="l00122"></a>00122             {
-<a name="l00123"></a>00123                 <span class="keywordflow">case</span> UI::RP_Low:
-<a name="l00124"></a>00124                     RP = Gorilla::RP_Low;
-<a name="l00125"></a>00125                     <span class="keywordflow">break</span>;
-<a name="l00126"></a>00126                 <span class="keywordflow">case</span> UI::RP_Medium:
-<a name="l00127"></a>00127                     RP = Gorilla::RP_Medium;
-<a name="l00128"></a>00128                     <span class="keywordflow">break</span>;
-<a name="l00129"></a>00129                 <span class="keywordflow">case</span> UI::RP_High:
-<a name="l00130"></a>00130                     RP = Gorilla::RP_High;
-<a name="l00131"></a>00131                     <span class="keywordflow">break</span>;
-<a name="l00132"></a>00132                 <span class="keywordflow">default</span>:
-<a name="l00133"></a>00133                     <span class="keywordflow">break</span>;
-<a name="l00134"></a>00134             }
-<a name="l00135"></a>00135             GLineList-&gt;RenderPriority(RP);
-<a name="l00136"></a>00136         }
-<a name="l00137"></a>00137 
-<a name="l00138"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aae3d6b141f56eb21a22a4c80dd60d419">00138</a>         <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">UI::RenderPriority</a> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#aae3d6b141f56eb21a22a4c80dd60d419" title="Gets the priority this button should be rendered with.">LineList::GetRenderPriority</a>()
-<a name="l00139"></a>00139         {
-<a name="l00140"></a>00140             Gorilla::RenderPriority RP = this-&gt;GLineList-&gt;RenderPriority();
-<a name="l00141"></a>00141             <span class="keywordflow">switch</span>(RP)
-<a name="l00142"></a>00142             {
-<a name="l00143"></a>00143                 <span class="keywordflow">case</span> Gorilla::RP_Low:
-<a name="l00144"></a>00144                     <span class="keywordflow">return</span> UI::RP_Low;
-<a name="l00145"></a>00145                     <span class="keywordflow">break</span>;
-<a name="l00146"></a>00146                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
-<a name="l00147"></a>00147                     <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00148"></a>00148                     <span class="keywordflow">break</span>;
-<a name="l00149"></a>00149                 <span class="keywordflow">case</span> Gorilla::RP_High:
-<a name="l00150"></a>00150                     <span class="keywordflow">return</span> UI::RP_High;
-<a name="l00151"></a>00151                     <span class="keywordflow">break</span>;
-<a name="l00152"></a>00152                 <span class="keywordflow">default</span>:
-<a name="l00153"></a>00153                     <span class="keywordflow">break</span>;
-<a name="l00154"></a>00154             }
-<a name="l00155"></a>00155             <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00156"></a>00156         }
-<a name="l00157"></a>00157     }<span class="comment">//UI</span>
-<a name="l00158"></a>00158 }<span class="comment">//Mezzanine</span>
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160 <span class="preprocessor">#endif</span>
+<a name="l00095"></a>00095             IsClosed = Closed;
+<a name="l00096"></a>00096             <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a0b67567f462914b4de1caa4f0818d61d" title="Marks this renderable as well as all parent objects as dirty.">_MarkDirty</a>();
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a25e792075ec0c5165d5870d8e0710b7f">00099</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a25e792075ec0c5165d5870d8e0710b7f" title="Updates the dimensions of this renderable to match those of the new screen size.">LineList::UpdateDimensions</a>()
+<a name="l00100"></a>00100         {
+<a name="l00101"></a>00101             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> OldMid = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a52e8cfef8e1e4054a7b281c2b42df50e" title="Gets the previous size of the viewport prior to this update.">ViewportUpdateTool::GetOldSize</a>() * 0.5;
+<a name="l00102"></a>00102             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewMid = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a2f1524ae0e1a16d8e990be812aebfe3a" title="Gets the new size of the viewport being applied.">ViewportUpdateTool::GetNewSize</a>() * 0.5;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104             <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index = 0 ; Index &lt; Positions.size() ; Index++ )
+<a name="l00105"></a>00105             {
+<a name="l00106"></a>00106                 Positions[Index] = (Positions[Index] - OldMid) + NewMid;
+<a name="l00107"></a>00107             }
+<a name="l00108"></a>00108         }
+<a name="l00109"></a>00109 
+<a name="l00110"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a5801106416279f51baa81934fa8d4083">00110</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a5801106416279f51baa81934fa8d4083">LineList::_Redraw</a>()
+<a name="l00111"></a>00111         {
+<a name="l00112"></a>00112             <span class="keywordflow">if</span>(Dirty == <span class="keyword">false</span>)
+<a name="l00113"></a>00113                 <span class="keywordflow">return</span>;
+<a name="l00114"></a>00114             RenderVertices.clear();
+<a name="l00115"></a>00115             <span class="keywordflow">if</span>(!Visible)
+<a name="l00116"></a>00116             {
+<a name="l00117"></a>00117                 Dirty = <span class="keyword">false</span>;
+<a name="l00118"></a>00118                 <span class="keywordflow">return</span>;
+<a name="l00119"></a>00119             }
+<a name="l00120"></a>00120             <span class="keywordflow">if</span>(Positions.size() &lt; 2)
+<a name="l00121"></a>00121                 <span class="keywordflow">return</span>;
+<a name="l00122"></a>00122 
+<a name="l00123"></a>00123             <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a> Temp;
+<a name="l00124"></a>00124             <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> HalfThickness = Thickness * 0.5;
+<a name="l00125"></a>00125             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = Parent-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a71d7dec7c9713f2a5ad78afec20a327b" title="Gets the solid UV position from an Atlas.">GetSolidUV</a>(PriAtlas);
+<a name="l00126"></a>00126             <span class="keywordtype">size_t</span> Index = 1;
+<a name="l00127"></a>00127             <span class="keywordflow">for</span>(  ; Index &lt; Positions.size() ; Index++ )
+<a name="l00128"></a>00128             {
+<a name="l00129"></a>00129                 PerpNorm  = (Positions[Index] - Positions[Index - 1]).Perpendicular().<a class="code" href="classMezzanine_1_1Vector2.html#a145a69136ee65d32512dbb47faa3b0df" title="Normalizes this Vector2.">Normalize</a>();
+<a name="l00130"></a>00130                 LastLeft  = Positions[Index -1 ] - PerpNorm * HalfThickness;
+<a name="l00131"></a>00131                 LastRight = Positions[Index -1 ] + PerpNorm * HalfThickness;
+<a name="l00132"></a>00132                 ThisLeft  = Positions[Index] - PerpNorm * HalfThickness;
+<a name="l00133"></a>00133                 ThisRight = Positions[Index] + PerpNorm * HalfThickness;
+<a name="l00134"></a>00134 
+<a name="l00135"></a>00135                 <span class="comment">// Triangle A</span>
+<a name="l00136"></a>00136                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);      <span class="comment">// Left/Bottom</span>
+<a name="l00137"></a>00137                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);        <span class="comment">// Right/Top</span>
+<a name="l00138"></a>00138                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,LastLeft.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,LastLeft.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);        <span class="comment">// Left/Top</span>
+<a name="l00139"></a>00139                 <span class="comment">// Triangle B</span>
+<a name="l00140"></a>00140                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);      <span class="comment">// Left/Bottom</span>
+<a name="l00141"></a>00141                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,ThisRight.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,ThisRight.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);      <span class="comment">// Right/Bottom</span>
+<a name="l00142"></a>00142                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);        <span class="comment">// Right/Top</span>
+<a name="l00143"></a>00143             }
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145             <span class="keywordflow">if</span>(IsClosed)
+<a name="l00146"></a>00146             {
+<a name="l00147"></a>00147                 Index = Positions.size() - 1;
+<a name="l00148"></a>00148                 PerpNorm  = (Positions[0] - Positions[Index]).Perpendicular().<a class="code" href="classMezzanine_1_1Vector2.html#a145a69136ee65d32512dbb47faa3b0df" title="Normalizes this Vector2.">Normalize</a>();
+<a name="l00149"></a>00149                 LastLeft  = Positions[Index] - PerpNorm * HalfThickness;
+<a name="l00150"></a>00150                 LastRight = Positions[Index] + PerpNorm * HalfThickness;
+<a name="l00151"></a>00151                 ThisLeft  = Positions[0] - PerpNorm * HalfThickness;
+<a name="l00152"></a>00152                 ThisRight = Positions[0] + PerpNorm * HalfThickness;
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154                 <span class="comment">// Triangle A</span>
+<a name="l00155"></a>00155                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);       <span class="comment">// Left/Bottom</span>
+<a name="l00156"></a>00156                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);         <span class="comment">// Right/Top</span>
+<a name="l00157"></a>00157                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,LastLeft.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,LastLeft.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);         <span class="comment">// Left/Top</span>
+<a name="l00158"></a>00158                 <span class="comment">// Triangle B</span>
+<a name="l00159"></a>00159                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,LastRight.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);       <span class="comment">// Left/Bottom</span>
+<a name="l00160"></a>00160                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,ThisRight.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,ThisRight.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);       <span class="comment">// Right/Bottom</span>
+<a name="l00161"></a>00161                 <a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#affc9bcf443b69254a0a59858f316cc58" title="Collects all the relevant information for a single vertex and pushes it to a vector.">PushVertex</a>(RenderVertices,Temp,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,ThisLeft.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>,UV,Colour,PriAtlas);         <span class="comment">// Right/Top</span>
+<a name="l00162"></a>00162             }
+<a name="l00163"></a>00163         }
+<a name="l00164"></a>00164 
+<a name="l00165"></a><a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a847863aa5b36f1bf34181ff7b48de81d">00165</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1LineList.html#a847863aa5b36f1bf34181ff7b48de81d">LineList::_AppendVertices</a>(<a class="code" href="classMezzanine_1_1UI_1_1ScreenVertexData.html" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">ScreenVertexData</a>&amp; Vertices)
+<a name="l00166"></a>00166         {
+<a name="l00167"></a>00167             <span class="keywordflow">switch</span>(Priority)
+<a name="l00168"></a>00168             {
+<a name="l00169"></a>00169                 <span class="keywordflow">case</span> UI::RP_Low:
+<a name="l00170"></a>00170                 {
+<a name="l00171"></a>00171                     <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )
+<a name="l00172"></a>00172                     {
+<a name="l00173"></a>00173                         Vertices.LowVertices.push_back(RenderVertices[X]);
+<a name="l00174"></a>00174                     }
+<a name="l00175"></a>00175                     <span class="keywordflow">break</span>;
+<a name="l00176"></a>00176                 }
+<a name="l00177"></a>00177                 <span class="keywordflow">case</span> UI::RP_Medium:
+<a name="l00178"></a>00178                 {
+<a name="l00179"></a>00179                     <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )
+<a name="l00180"></a>00180                     {
+<a name="l00181"></a>00181                         Vertices.MediumVertices.push_back(RenderVertices[X]);
+<a name="l00182"></a>00182                     }
+<a name="l00183"></a>00183                     <span class="keywordflow">break</span>;
+<a name="l00184"></a>00184                 }
+<a name="l00185"></a>00185                 <span class="keywordflow">case</span> UI::RP_High:
+<a name="l00186"></a>00186                 {
+<a name="l00187"></a>00187                     <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; RenderVertices.size() ; ++X )
+<a name="l00188"></a>00188                     {
+<a name="l00189"></a>00189                         Vertices.HighVertices.push_back(RenderVertices[X]);
+<a name="l00190"></a>00190                     }
+<a name="l00191"></a>00191                     <span class="keywordflow">break</span>;
+<a name="l00192"></a>00192                 }
+<a name="l00193"></a>00193             }
+<a name="l00194"></a>00194         }
+<a name="l00195"></a>00195     }<span class="comment">//UI</span>
+<a name="l00196"></a>00196 }<span class="comment">//Mezzanine</span>
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -229,7 +267,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -239,6 +277,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

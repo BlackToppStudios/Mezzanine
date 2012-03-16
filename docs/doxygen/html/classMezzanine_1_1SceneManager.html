@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::SceneManager Class Reference</h1>  </div>
@@ -93,34 +94,37 @@ Inheritance diagram for Mezzanine::SceneManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4fb46d68331a77da9036a3f704f7ee40"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstEntityIterator" ref="a4fb46d68331a77da9036a3f704f7ee40" args="" -->
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Entity.html">Entity</a> * &gt;<br class="typebreak"/>
-::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a4fb46d68331a77da9036a3f704f7ee40">ConstEntityIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6837ab4cd75f30af8159f18db973e497"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstEntityIterator" ref="a6837ab4cd75f30af8159f18db973e497" args="" -->
+typedef <br class="typebreak"/>
+EntityContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a6837ab4cd75f30af8159f18db973e497">ConstEntityIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Entities easier, and avoid the risk of accidentally changing them. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4f4649f45b71ddc0d728e64facd03c3"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstLightIterator" ref="ad4f4649f45b71ddc0d728e64facd03c3" args="" -->
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Light.html">Light</a> * &gt;<br class="typebreak"/>
-::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad4f4649f45b71ddc0d728e64facd03c3">ConstLightIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04a257d3df126110aa545e856853a663"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstLightIterator" ref="a04a257d3df126110aa545e856853a663" args="" -->
+typedef <br class="typebreak"/>
+LightContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a04a257d3df126110aa545e856853a663">ConstLightIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Lights easier, and avoid the risk of accidentally changing them. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa99ab0f491a991bda63127519b40b04f"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstParticleEffectIterator" ref="aa99ab0f491a991bda63127519b40b04f" args="" -->
-typedef std::vector<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> * &gt;<br class="typebreak"/>
-::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#aa99ab0f491a991bda63127519b40b04f">ConstParticleEffectIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab1213cec08b0bc15ea58ed0d3617b887"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstParticleEffectIterator" ref="ab1213cec08b0bc15ea58ed0d3617b887" args="" -->
+typedef <br class="typebreak"/>
+ParticleContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ab1213cec08b0bc15ea58ed0d3617b887">ConstParticleEffectIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Particle Effects easier, and avoid the risk of accidentally changing them. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39bddd192e396e2e7cf92bca33b4d03c"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstWorldNodeIterator" ref="a39bddd192e396e2e7cf92bca33b4d03c" args="" -->
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * &gt;<br class="typebreak"/>
-::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a39bddd192e396e2e7cf92bca33b4d03c">ConstWorldNodeIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad60b6e15daa2395944d395b4e307b905"></a><!-- doxytag: member="Mezzanine::SceneManager::ConstWorldNodeIterator" ref="ad60b6e15daa2395944d395b4e307b905" args="" -->
+typedef <br class="typebreak"/>
+WorldNodeContainer::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad60b6e15daa2395944d395b4e307b905">ConstWorldNodeIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the WorldNodes easier, and avoid the risk of accidentally changing them. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a870dd323419dc7efe957cacc19a1391c"></a><!-- doxytag: member="Mezzanine::SceneManager::EntityIterator" ref="a870dd323419dc7efe957cacc19a1391c" args="" -->
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Entity.html">Entity</a> * &gt;<br class="typebreak"/>
-::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a870dd323419dc7efe957cacc19a1391c">EntityIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acaefae7eaf587b826c524f9aae4b35aa"></a><!-- doxytag: member="Mezzanine::SceneManager::EntityContainer" ref="acaefae7eaf587b826c524f9aae4b35aa" args="" -->
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Entity.html">Entity</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>EntityContainer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1e2d6cd6454bb900b31762eab8effc8b"></a><!-- doxytag: member="Mezzanine::SceneManager::EntityIterator" ref="a1e2d6cd6454bb900b31762eab8effc8b" args="" -->
+typedef EntityContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a1e2d6cd6454bb900b31762eab8effc8b">EntityIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Entities easier. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c5a83086e8b63d21bcfcf38b0888101"></a><!-- doxytag: member="Mezzanine::SceneManager::LightIterator" ref="a5c5a83086e8b63d21bcfcf38b0888101" args="" -->
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Light.html">Light</a> * &gt;<br class="typebreak"/>
-::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a5c5a83086e8b63d21bcfcf38b0888101">LightIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4daf4d485947df11f8d5e949ec17fa5c"></a><!-- doxytag: member="Mezzanine::SceneManager::LightContainer" ref="a4daf4d485947df11f8d5e949ec17fa5c" args="" -->
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1Light.html">Light</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>LightContainer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70382bc80d3905971a04a77d5c6bcb33"></a><!-- doxytag: member="Mezzanine::SceneManager::LightIterator" ref="a70382bc80d3905971a04a77d5c6bcb33" args="" -->
+typedef LightContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a70382bc80d3905971a04a77d5c6bcb33">LightIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Lights easier. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68a1a1ddc03cee28204759224405d40c"></a><!-- doxytag: member="Mezzanine::SceneManager::ParticleEffectIterator" ref="a68a1a1ddc03cee28204759224405d40c" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5903b96af0232de66608c9f84f8c6d0"></a><!-- doxytag: member="Mezzanine::SceneManager::ParticleContainer" ref="ad5903b96af0232de66608c9f84f8c6d0" args="" -->
 typedef std::vector<br class="typebreak"/>
-&lt; <a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> * &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a68a1a1ddc03cee28204759224405d40c">ParticleEffectIterator</a></td></tr>
+&lt; <a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ParticleContainer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f3bd65fb09c7a08202083cc48e46fe7"></a><!-- doxytag: member="Mezzanine::SceneManager::ParticleEffectIterator" ref="a5f3bd65fb09c7a08202083cc48e46fe7" args="" -->
+typedef ParticleContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f3bd65fb09c7a08202083cc48e46fe7">ParticleEffectIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the Particle Effects easier. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManagerType</a> { <a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274a6cd584c01715ad16c076728aea716607">Generic</a> =  0, 
 <a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274a3cc51919e031a43bf4588dac5b693d0e">Exterior</a> =  1, 
@@ -149,36 +153,42 @@ typedef std::vector<br class="typebreak"/>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used to help identify which method is used to draw the sky, if any. </p>
  <a href="classMezzanine_1_1SceneManager.html#a80fac0c0b67191cb5450bddde74b470e">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa58ecf1d7d283a576509b71133064a27"></a><!-- doxytag: member="Mezzanine::SceneManager::WorldNodeIterator" ref="aa58ecf1d7d283a576509b71133064a27" args="" -->
-typedef std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * &gt;<br class="typebreak"/>
-::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#aa58ecf1d7d283a576509b71133064a27">WorldNodeIterator</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a84880768c2dd0ad8a73ae32bf07a97"></a><!-- doxytag: member="Mezzanine::SceneManager::WorldNodeContainer" ref="a0a84880768c2dd0ad8a73ae32bf07a97" args="" -->
+typedef std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>WorldNodeContainer</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a498b2390acb176a185e1026d23b773f0"></a><!-- doxytag: member="Mezzanine::SceneManager::WorldNodeIterator" ref="a498b2390acb176a185e1026d23b773f0" args="" -->
+typedef <br class="typebreak"/>
+WorldNodeContainer::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a498b2390acb176a185e1026d23b773f0">WorldNodeIterator</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to make working with the WorldNodes easier. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a870dd323419dc7efe957cacc19a1391c">EntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#abc6dd9387dac2ae2aef9502d01d1ec35">BeginEntity</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f26c1c9b6714b48ad486e289eca16d0">SceneManager</a> (<a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManager::SceneManagerType</a> ManagerType)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a5f26c1c9b6714b48ad486e289eca16d0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a8becb78de62a9e5c66c213066e7a421b">~SceneManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#a8becb78de62a9e5c66c213066e7a421b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae5db6928dd653974b1d5b9076e9be2e2">_RegisterTrackingNode</a> (<a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *Tracker)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs this manager that a node needs periodic updates for tracking.  <a href="#ae5db6928dd653974b1d5b9076e9be2e2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a850cf7390472c3a80aa9b278a8c82268">_UnRegisterTrackingNode</a> (<a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *Tracker)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs this manager a node is no longer tracking another object.  <a href="#a850cf7390472c3a80aa9b278a8c82268"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a1e2d6cd6454bb900b31762eab8effc8b">EntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#abc6dd9387dac2ae2aef9502d01d1ec35">BeginEntity</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an EntityIterator to the first Entity*.  <a href="#abc6dd9387dac2ae2aef9502d01d1ec35"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a4fb46d68331a77da9036a3f704f7ee40">ConstEntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a016bbb0dfd8a03e838d13131f298499f">BeginEntity</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a6837ab4cd75f30af8159f18db973e497">ConstEntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a016bbb0dfd8a03e838d13131f298499f">BeginEntity</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstEntityIterator to the first Entity*.  <a href="#a016bbb0dfd8a03e838d13131f298499f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#ad4f4649f45b71ddc0d728e64facd03c3">ConstLightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a5a50580c0389d0881dc8c1fb787370b2">BeginLight</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a04a257d3df126110aa545e856853a663">ConstLightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a5a50580c0389d0881dc8c1fb787370b2">BeginLight</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstLightIterator to the first Light*.  <a href="#a5a50580c0389d0881dc8c1fb787370b2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a5c5a83086e8b63d21bcfcf38b0888101">LightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a1571d4ee6e74d8f1be76c99281740221">BeginLight</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a70382bc80d3905971a04a77d5c6bcb33">LightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a1571d4ee6e74d8f1be76c99281740221">BeginLight</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a LightIterator to the first Light*.  <a href="#a1571d4ee6e74d8f1be76c99281740221"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a68a1a1ddc03cee28204759224405d40c">ParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a97940bd86436528fdbdad5992bad4e0c">BeginParticleEffect</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f3bd65fb09c7a08202083cc48e46fe7">ParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a97940bd86436528fdbdad5992bad4e0c">BeginParticleEffect</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ParticleEffectIterator to the first ParticleEffect*.  <a href="#a97940bd86436528fdbdad5992bad4e0c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#aa99ab0f491a991bda63127519b40b04f">ConstParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ac9e454fc20bdb1e1f118754994ff39e0">BeginParticleEffect</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#ab1213cec08b0bc15ea58ed0d3617b887">ConstParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ac9e454fc20bdb1e1f118754994ff39e0">BeginParticleEffect</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstParticleEffectIterator to the first ParticleEffect*.  <a href="#ac9e454fc20bdb1e1f118754994ff39e0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#aa58ecf1d7d283a576509b71133064a27">WorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a6b3844dcb5e3e4df4e50b47fb6158960">BeginWorldNode</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a498b2390acb176a185e1026d23b773f0">WorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a6b3844dcb5e3e4df4e50b47fb6158960">BeginWorldNode</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a WorldNodeIterator to the first WorldNode*.  <a href="#a6b3844dcb5e3e4df4e50b47fb6158960"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a39bddd192e396e2e7cf92bca33b4d03c">ConstWorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a0d374c51309d155a1e49fd033e863111">BeginWorldNode</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#ad60b6e15daa2395944d395b4e307b905">ConstWorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a0d374c51309d155a1e49fd033e863111">BeginWorldNode</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstWorldNodeIterator to the first WorldNode*.  <a href="#a0d374c51309d155a1e49fd033e863111"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a3bb0d7b70e9a01090602c9caa005325a">CreateEntity</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;EntName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;MeshName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an entity.  <a href="#a3bb0d7b70e9a01090602c9caa005325a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7d200b747b15bba75833244a0bc8c25a">CreateFreeNode</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> LookAt, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Location)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a freely moveable node that will look at a location.  <a href="#a7d200b747b15bba75833244a0bc8c25a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Light.html">Light</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a33a91afe11a91a778d9b0139a06f3d0a">CreateLight</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a dynamic light.  <a href="#a33a91afe11a91a778d9b0139a06f3d0a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a227c6534ea2c4fb51a3174635e09eb58">CreateOrbitingNode</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Target, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> RelativeLoc, bool AutoTrack)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a node that will orbit around a point.  <a href="#a227c6534ea2c4fb51a3174635e09eb58"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7c7e0b3f993c531bcdd9a6dd9135178d">CreateParticleEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Template)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a particle effect.  <a href="#a7c7e0b3f993c531bcdd9a6dd9135178d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#aaa3c4b8d15aa74c767a21d725de25ec7">CreateSkyBox</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Material, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Distance, bool DrawFirst=true, <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Orientation=<a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>())</td></tr>
@@ -187,8 +197,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a skydome for use in making a sky.  <a href="#a5862eefa87c9fcda9fdba7fa69efd6cf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a6cea438ed9b13cf613b07e2dd6467c4e">CreateSkyPlane</a> (const <a class="el" href="classMezzanine_1_1Plane.html">Plane</a> &amp;SkyPlane_, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Material, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Scale=1000.0, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Tiling=10.0, bool DrawFirst=true, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Bow=0, int XSegments=1, int YSegments=1)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a skyplane for use in making a sky.  <a href="#a6cea438ed9b13cf613b07e2dd6467c4e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a9c2288d7b82f59fad7213f9b21c1b4b6">CreateStandNode</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> LookAt, <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Location)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a stationary node that will look at a location.  <a href="#a9c2288d7b82f59fad7213f9b21c1b4b6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a0b10c04c8d89926c8a7a0cf21da5a293">CreateWorldNode</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a world node that can be manipulated.  <a href="#a0b10c04c8d89926c8a7a0cf21da5a293"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c2637be3ad7af57f2cc194f305e87ff"></a><!-- doxytag: member="Mezzanine::SceneManager::DestroyAllEntities" ref="a7c2637be3ad7af57f2cc194f305e87ff" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7c2637be3ad7af57f2cc194f305e87ff">DestroyAllEntities</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all entities currently in the manager. <br/></td></tr>
@@ -221,30 +231,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae75aa9deb4bbc8ee1f979e240070309f"></a><!-- doxytag: member="Mezzanine::SceneManager::DoMainLoopItems" ref="ae75aa9deb4bbc8ee1f979e240070309f" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae75aa9deb4bbc8ee1f979e240070309f">DoMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a870dd323419dc7efe957cacc19a1391c">EntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a9e9325351566464d9009d1d6ce299f75">EndEntity</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a1e2d6cd6454bb900b31762eab8effc8b">EntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a9e9325351566464d9009d1d6ce299f75">EndEntity</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a EntityIterator to one past the last Entity*.  <a href="#a9e9325351566464d9009d1d6ce299f75"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a4fb46d68331a77da9036a3f704f7ee40">ConstEntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad7b6c9cc55e92941f51429ec3cb5f5c6">EndEntity</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a6837ab4cd75f30af8159f18db973e497">ConstEntityIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad7b6c9cc55e92941f51429ec3cb5f5c6">EndEntity</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstEntityIterator to one past the last Entity*.  <a href="#ad7b6c9cc55e92941f51429ec3cb5f5c6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#ad4f4649f45b71ddc0d728e64facd03c3">ConstLightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae51e93a3fdf6d996adc9806bb25d8ca6">EndLight</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a04a257d3df126110aa545e856853a663">ConstLightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae51e93a3fdf6d996adc9806bb25d8ca6">EndLight</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstLightIterator to one past the last Light*.  <a href="#ae51e93a3fdf6d996adc9806bb25d8ca6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a5c5a83086e8b63d21bcfcf38b0888101">LightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a08baa4f2d539cf1b6d54fce558858081">EndLight</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a70382bc80d3905971a04a77d5c6bcb33">LightIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a08baa4f2d539cf1b6d54fce558858081">EndLight</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a LightIterator to one past the last Light*.  <a href="#a08baa4f2d539cf1b6d54fce558858081"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a68a1a1ddc03cee28204759224405d40c">ParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a9fa8eca256c321e1eaa10e935c89feb1">EndParticleEffect</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f3bd65fb09c7a08202083cc48e46fe7">ParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a9fa8eca256c321e1eaa10e935c89feb1">EndParticleEffect</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ParticleEffectIterator to one past the last ParticleEffect*.  <a href="#a9fa8eca256c321e1eaa10e935c89feb1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#aa99ab0f491a991bda63127519b40b04f">ConstParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a27b7aab28a19e1ff92f09828b731877e">EndParticleEffect</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#ab1213cec08b0bc15ea58ed0d3617b887">ConstParticleEffectIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a27b7aab28a19e1ff92f09828b731877e">EndParticleEffect</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstParticleEffectIterator to one past the last ParticleEffect*.  <a href="#a27b7aab28a19e1ff92f09828b731877e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#aa58ecf1d7d283a576509b71133064a27">WorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a659a0804a38a84627b3d8bec1021e6e3">EndWorldNode</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a WorldNodeIterator to one past the last WorldNode*.  <a href="#a659a0804a38a84627b3d8bec1021e6e3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a39bddd192e396e2e7cf92bca33b4d03c">ConstWorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a603612da0ee539bb489184c2895431d8">EndWorldNode</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#ad60b6e15daa2395944d395b4e307b905">ConstWorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a603612da0ee539bb489184c2895431d8">EndWorldNode</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a ConstWorldNodeIterator to one past the last WorldNode*.  <a href="#a603612da0ee539bb489184c2895431d8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a498b2390acb176a185e1026d23b773f0">WorldNodeIterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a659a0804a38a84627b3d8bec1021e6e3">EndWorldNode</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a WorldNodeIterator to one past the last WorldNode*.  <a href="#a659a0804a38a84627b3d8bec1021e6e3"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ab23edaf46108b6cd00e64d4338bfc993">GetAmbientLight</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the level of the ambient light.  <a href="#ab23edaf46108b6cd00e64d4338bfc993"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7701c34c00ff4de64e81249953178003">GetEntity</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created entity by name.  <a href="#a7701c34c00ff4de64e81249953178003"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a9ac227854187f7c3e6ecd5acd171888d">GetEntity</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created entity by index.  <a href="#a9ac227854187f7c3e6ecd5acd171888d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Entity.html">Entity</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7701c34c00ff4de64e81249953178003">GetEntity</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created entity by name.  <a href="#a7701c34c00ff4de64e81249953178003"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Ogre::SceneManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc">GetGraphicsWorldPointer</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal Ogre Scene Manager pointer.  <a href="#a3156d3ec1b514e295368bfa4b94d4adc"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the internal <a class="el" href="namespaceOgre.html">Ogre</a> Scene Manager pointer.  <a href="#a3156d3ec1b514e295368bfa4b94d4adc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Light.html">Light</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad28337e68dac694721cbb798dedd151f">GetLight</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created light by name.  <a href="#ad28337e68dac694721cbb798dedd151f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Light.html">Light</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a38b93841cb86bd2cb9cf4b7431946f8e">GetLight</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index) const </td></tr>
@@ -261,12 +271,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of lights created and stored in this manager.  <a href="#aa1cafdcd750fda2452db42cb3ddf365c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae78bda0af2b0f11f32d283d5cf83086f">GetNumNodes</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of nodes created and stored in this manager.  <a href="#ae78bda0af2b0f11f32d283d5cf83086f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a4ad0850722dd634dddf4c00d2810be49">GetNumOrbitNodes</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of orbit type nodes created and stored in this manager.  <a href="#a4ad0850722dd634dddf4c00d2810be49"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a730f48b359f0028d7db491facd95d95d">GetNumParticleEffects</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of particle effects created and stored in this manager.  <a href="#a730f48b359f0028d7db491facd95d95d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a54c1f5986486dc64e18475f84f49f9f0">GetNumStandNodes</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of stand type nodes created and stored in this manager.  <a href="#a54c1f5986486dc64e18475f84f49f9f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a2e23ffc9c81b105ebf476e81dbcde74d">GetParticleEffect</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets an already created particle effect by index.  <a href="#a2e23ffc9c81b105ebf476e81dbcde74d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a3a6f2b9e9b442fdee17fd4d934d08d85">GetParticleEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name) const </td></tr>
@@ -288,8 +294,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a3b5cb55a06669d0fe64510c1b1a854"></a><!-- doxytag: member="Mezzanine::SceneManager::Initialize" ref="a8a3b5cb55a06669d0fe64510c1b1a854" args="()" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a8a3b5cb55a06669d0fe64510c1b1a854">Initialize</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from <a class="el" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f26c1c9b6714b48ad486e289eca16d0">SceneManager</a> (<a class="el" href="classMezzanine_1_1SceneManager.html#ad6e20c08b97a230314abda3e5826f274">SceneManager::SceneManagerType</a> ManagerType)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a5f26c1c9b6714b48ad486e289eca16d0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae14c8c163f1d17eeebf698f7326f1840">PauseAllParticles</a> (bool Pause)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pauses(or unpauses) all particles stored in this manager.  <a href="#ae14c8c163f1d17eeebf698f7326f1840"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae4b889a919e490edcc3a7d0c32135a82">SetAmbientLight</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Red=1.0, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Green=1.0, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Blue=1.0, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Alpha=1.0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the ambient light for the scene.  <a href="#ae4b889a919e490edcc3a7d0c32135a82"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a887c8fb632f4e64b5aec59900ec545aa">SetAmbientLight</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;LightColor)</td></tr>
@@ -306,28 +312,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of all texture based shadows.  <a href="#a303b871aa1475605d2711239d4d088ac"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1SceneManager.html#a80fac0c0b67191cb5450bddde74b470e">SkyMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a53459adabe43b627fae6c1cdad5094f6">WhichSky</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">get the kind of sy in use  <a href="#a53459adabe43b627fae6c1cdad5094f6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a8becb78de62a9e5c66c213066e7a421b">~SceneManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#a8becb78de62a9e5c66c213066e7a421b"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7263baed88ec60edbffdcaa12ccec53f"></a><!-- doxytag: member="Mezzanine::SceneManager::UpdateTrackingNodes" ref="a7263baed88ec60edbffdcaa12ccec53f" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7263baed88ec60edbffdcaa12ccec53f">UpdateTrackingNodes</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all nodes tracking other objects. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd99b7352531d06ff6ec3784ab0c3532"></a><!-- doxytag: member="Mezzanine::SceneManager::Entities" ref="afd99b7352531d06ff6ec3784ab0c3532" args="" -->
-std::vector&lt; <a class="el" href="classMezzanine_1_1Entity.html">Entity</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#afd99b7352531d06ff6ec3784ab0c3532">Entities</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af76f840b982cf140cebe9398b7caedb3"></a><!-- doxytag: member="Mezzanine::SceneManager::Entities" ref="af76f840b982cf140cebe9398b7caedb3" args="" -->
+EntityContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#af76f840b982cf140cebe9398b7caedb3">Entities</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the entities in use by this class. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6617e5a9daa666e657f01ce25a8d1ec"></a><!-- doxytag: member="Mezzanine::SceneManager::Lights" ref="ae6617e5a9daa666e657f01ce25a8d1ec" args="" -->
-std::vector&lt; <a class="el" href="classMezzanine_1_1Light.html">Light</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ae6617e5a9daa666e657f01ce25a8d1ec">Lights</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad80ecee7efce608a526befc597b3d613"></a><!-- doxytag: member="Mezzanine::SceneManager::Lights" ref="ad80ecee7efce608a526befc597b3d613" args="" -->
+LightContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#ad80ecee7efce608a526befc597b3d613">Lights</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the lights in use by this class. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af30c9b895cf2c991892d71aa481a82a1"></a><!-- doxytag: member="Mezzanine::SceneManager::Particles" ref="af30c9b895cf2c991892d71aa481a82a1" args="" -->
-std::vector&lt; <a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#af30c9b895cf2c991892d71aa481a82a1">Particles</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacac613a9a842967e1383f5004f76a77"></a><!-- doxytag: member="Mezzanine::SceneManager::Particles" ref="aacac613a9a842967e1383f5004f76a77" args="" -->
+ParticleContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#aacac613a9a842967e1383f5004f76a77">Particles</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the particle effects in use by this class. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0bbe199bc6b6e41d23428712dd3a3d23"></a><!-- doxytag: member="Mezzanine::SceneManager::WorldNodes" ref="a0bbe199bc6b6e41d23428712dd3a3d23" args="" -->
-std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a0bbe199bc6b6e41d23428712dd3a3d23">WorldNodes</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19cb85bda03fce0115a62869b5e819a5"></a><!-- doxytag: member="Mezzanine::SceneManager::TrackingNodes" ref="a19cb85bda03fce0115a62869b5e819a5" args="" -->
+std::set&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a19cb85bda03fce0115a62869b5e819a5">TrackingNodes</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Container of nodes currently tracking other objects. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7550a9ecf7060db5abef99d66c4ef757"></a><!-- doxytag: member="Mezzanine::SceneManager::WorldNodes" ref="a7550a9ecf7060db5abef99d66c4ef757" args="" -->
+WorldNodeContainer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1SceneManager.html#a7550a9ecf7060db5abef99d66c4ef757">WorldNodes</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing all the nodes in use by this class. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class contains utilities and functions to allow the manipulation of the Graphical scene, rather then the physics inside, or the object inside. </p>
 <p>This class contains functions that allow the manipulation of lighting, skyboxes, internal scenemanager types, and more. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00077">77</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00082">82</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="ad6e20c08b97a230314abda3e5826f274"></a><!-- doxytag: member="Mezzanine::SceneManager::SceneManagerType" ref="ad6e20c08b97a230314abda3e5826f274" args="" -->
 <div class="memitem">
@@ -358,7 +370,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00081">81</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00090">90</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +412,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00090">90</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00099">99</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +445,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00102">102</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8h_source.html#l00111">111</a> of file <a class="el" href="scenemanager_8h_source.html">scenemanager.h</a>.</p>
 
 </div>
 </div>
@@ -484,17 +496,71 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Class Destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00207">207</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00208">208</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ae5db6928dd653974b1d5b9076e9be2e2"></a><!-- doxytag: member="Mezzanine::SceneManager::_RegisterTrackingNode" ref="ae5db6928dd653974b1d5b9076e9be2e2" args="(WorldNode *Tracker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SceneManager::_RegisterTrackingNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td>
+          <td class="paramname"><em>Tracker</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Informs this manager that a node needs periodic updates for tracking. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Tracker</td><td>The node that is getting tracking enabled. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00658">658</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a850cf7390472c3a80aa9b278a8c82268"></a><!-- doxytag: member="Mezzanine::SceneManager::_UnRegisterTrackingNode" ref="a850cf7390472c3a80aa9b278a8c82268" args="(WorldNode *Tracker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SceneManager::_UnRegisterTrackingNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> *&#160;</td>
+          <td class="paramname"><em>Tracker</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Informs this manager a node is no longer tracking another object. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Tracker</td><td>The node that is getting tracking disabled. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00661">661</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="abc6dd9387dac2ae2aef9502d01d1ec35"></a><!-- doxytag: member="Mezzanine::SceneManager::BeginEntity" ref="abc6dd9387dac2ae2aef9502d01d1ec35" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a870dd323419dc7efe957cacc19a1391c">SceneManager::EntityIterator</a> Mezzanine::SceneManager::BeginEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a1e2d6cd6454bb900b31762eab8effc8b">SceneManager::EntityIterator</a> Mezzanine::SceneManager::BeginEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -506,7 +572,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get an EntityIterator to the first Entity*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An EntityIterator to the first Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00562">562</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00577">577</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -515,7 +581,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a4fb46d68331a77da9036a3f704f7ee40">SceneManager::ConstEntityIterator</a> Mezzanine::SceneManager::BeginEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a6837ab4cd75f30af8159f18db973e497">SceneManager::ConstEntityIterator</a> Mezzanine::SceneManager::BeginEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -527,7 +593,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ConstEntityIterator to the first Entity*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ConstEntityIterator to the first Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00568">568</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00583">583</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -536,7 +602,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a5c5a83086e8b63d21bcfcf38b0888101">SceneManager::LightIterator</a> Mezzanine::SceneManager::BeginLight </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a70382bc80d3905971a04a77d5c6bcb33">SceneManager::LightIterator</a> Mezzanine::SceneManager::BeginLight </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -548,7 +614,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a LightIterator to the first Light*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A LightIterator to the first Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00426">426</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00435">435</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -557,7 +623,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#ad4f4649f45b71ddc0d728e64facd03c3">SceneManager::ConstLightIterator</a> Mezzanine::SceneManager::BeginLight </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a04a257d3df126110aa545e856853a663">SceneManager::ConstLightIterator</a> Mezzanine::SceneManager::BeginLight </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -569,7 +635,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ConstLightIterator to the first Light*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ConstLightIterator to the first Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00432">432</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00441">441</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -578,7 +644,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a68a1a1ddc03cee28204759224405d40c">SceneManager::ParticleEffectIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f3bd65fb09c7a08202083cc48e46fe7">SceneManager::ParticleEffectIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -590,7 +656,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ParticleEffectIterator to the first ParticleEffect*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ParticleEffectIterator to the first ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00494">494</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00509">509</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -599,7 +665,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#aa99ab0f491a991bda63127519b40b04f">SceneManager::ConstParticleEffectIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#ab1213cec08b0bc15ea58ed0d3617b887">SceneManager::ConstParticleEffectIterator</a> Mezzanine::SceneManager::BeginParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -611,28 +677,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ConstParticleEffectIterator to the first ParticleEffect*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ConstParticleEffectIterator to the first ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00500">500</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0d374c51309d155a1e49fd033e863111"></a><!-- doxytag: member="Mezzanine::SceneManager::BeginWorldNode" ref="a0d374c51309d155a1e49fd033e863111" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a39bddd192e396e2e7cf92bca33b4d03c">SceneManager::ConstWorldNodeIterator</a> Mezzanine::SceneManager::BeginWorldNode </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get a ConstWorldNodeIterator to the first WorldNode*. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A ConstWorldNodeIterator to the first WorldNode* </dd></dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00702">702</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00515">515</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -641,7 +686,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#aa58ecf1d7d283a576509b71133064a27">SceneManager::WorldNodeIterator</a> Mezzanine::SceneManager::BeginWorldNode </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a498b2390acb176a185e1026d23b773f0">SceneManager::WorldNodeIterator</a> Mezzanine::SceneManager::BeginWorldNode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -653,7 +698,28 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a WorldNodeIterator to the first WorldNode*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A WorldNodeIterator to the first WorldNode* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00696">696</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00646">646</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0d374c51309d155a1e49fd033e863111"></a><!-- doxytag: member="Mezzanine::SceneManager::BeginWorldNode" ref="a0d374c51309d155a1e49fd033e863111" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#ad60b6e15daa2395944d395b4e307b905">SceneManager::ConstWorldNodeIterator</a> Mezzanine::SceneManager::BeginWorldNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get a ConstWorldNodeIterator to the first WorldNode*. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A ConstWorldNodeIterator to the first WorldNode* </dd></dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00652">652</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -700,52 +766,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the entity class which was created by this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00509">509</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7d200b747b15bba75833244a0bc8c25a"></a><!-- doxytag: member="Mezzanine::SceneManager::CreateFreeNode" ref="a7d200b747b15bba75833244a0bc8c25a" args="(const String &amp;Name, Vector3 LookAt, Vector3 Location)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * Mezzanine::SceneManager::CreateFreeNode </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>LookAt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>Location</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Creates a freely moveable node that will look at a location. </p>
-<p>This will create a node that can be freely moved. When created it will look at one location that you specify. This node can then have lights, particle effects or other attachables attached to it. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">LookAt</td><td>The location you want the node to look at. Automatically handles orientation. </td></tr>
-    <tr><td class="paramname">Location</td><td>The location of the node itself. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00607">607</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00524">524</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -773,58 +794,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the light class which was created by this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00373">373</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a227c6534ea2c4fb51a3174635e09eb58"></a><!-- doxytag: member="Mezzanine::SceneManager::CreateOrbitingNode" ref="a227c6534ea2c4fb51a3174635e09eb58" args="(const String &amp;Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * Mezzanine::SceneManager::CreateOrbitingNode </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>Target</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>RelativeLoc</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>AutoTrack</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Creates a node that will orbit around a point. </p>
-<p>This will create 2 nodes in the scene, the first being the point in the world you want to orbit the second node around. The second being the node that does the orbiting. You can then attach a light, particle effect, or ribbon trail to the orbiting node . </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Target</td><td>The location of the first node which you will be orbiting around. </td></tr>
-    <tr><td class="paramname">RelativeLoc</td><td>The location of the node that will be in orbit relative to the first node. Assume the first node is at Origin (0,0,0). </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00577">577</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00382">382</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -864,7 +834,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the particle effect class which was created by this function. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00441">441</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00450">450</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -924,7 +894,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00320">320</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00329">329</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1012,7 +982,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00332">332</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00341">341</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1100,52 +1070,34 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00308">308</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00317">317</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9c2288d7b82f59fad7213f9b21c1b4b6"></a><!-- doxytag: member="Mezzanine::SceneManager::CreateStandNode" ref="a9c2288d7b82f59fad7213f9b21c1b4b6" args="(const String &amp;Name, Vector3 LookAt, Vector3 Location)" -->
+<a class="anchor" id="a0b10c04c8d89926c8a7a0cf21da5a293"></a><!-- doxytag: member="Mezzanine::SceneManager::CreateWorldNode" ref="a0b10c04c8d89926c8a7a0cf21da5a293" args="(const String &amp;Name)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * Mezzanine::SceneManager::CreateStandNode </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode</a> * Mezzanine::SceneManager::CreateWorldNode </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>Name</em></td><td>)</td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>LookAt</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>Location</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Creates a stationary node that will look at a location. </p>
-<p>This will create a node that doesn't move, and will look at one location that you specify. This node can then have lights, particle effects, or ribbon trails attached to it. </p>
+<p>Creates a world node that can be manipulated. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">LookAt</td><td>The location you want the node to look at. Automatically handles orientation. </td></tr>
-    <tr><td class="paramname">Location</td><td>The location of the node itself. </td></tr>
+    <tr><td class="paramname">Name</td><td>The name to be given to the node. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00595">595</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00592">592</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1172,7 +1124,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00540">540</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00555">555</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1199,7 +1151,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00404">404</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00413">413</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1219,7 +1171,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memdoc">
 
 <p>Deletes a node and removes all trace of it from the manager. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>TODO: create SceneManager::GetNumFreeNodes </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">ToBeDestroyed</td><td>The node to be destroyed. </td></tr>
@@ -1227,7 +1178,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00674">674</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00624">624</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1254,7 +1205,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00472">472</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00481">481</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1275,7 +1226,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Disables the currently active skybox. </p>
 <p>Using this function effectively deletes the skybox, so you will have to provide a new set of parameters if you wish to re-create the skybox. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00327">327</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00336">336</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1296,7 +1247,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Disables the currently active skydome. </p>
 <p>Using this function effectively deletes the skydome, so you will have to provide a new set of parameters if you wish to re-create the skydome. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00340">340</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00349">349</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1317,7 +1268,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Disables the currently active skyplane. </p>
 <p>Using this function effectively deletes the skyplane, so you will have to provide a new set of parameters if you wish to re-create the skyplane. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00315">315</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00324">324</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1326,7 +1277,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a870dd323419dc7efe957cacc19a1391c">SceneManager::EntityIterator</a> Mezzanine::SceneManager::EndEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a1e2d6cd6454bb900b31762eab8effc8b">SceneManager::EntityIterator</a> Mezzanine::SceneManager::EndEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1338,7 +1289,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a EntityIterator to one past the last Entity*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A EntityIterator to one past the last Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00565">565</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00580">580</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1347,7 +1298,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a4fb46d68331a77da9036a3f704f7ee40">SceneManager::ConstEntityIterator</a> Mezzanine::SceneManager::EndEntity </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a6837ab4cd75f30af8159f18db973e497">SceneManager::ConstEntityIterator</a> Mezzanine::SceneManager::EndEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1359,28 +1310,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ConstEntityIterator to one past the last Entity*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ConstEntityIterator to one past the last Entity* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00571">571</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a08baa4f2d539cf1b6d54fce558858081"></a><!-- doxytag: member="Mezzanine::SceneManager::EndLight" ref="a08baa4f2d539cf1b6d54fce558858081" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a5c5a83086e8b63d21bcfcf38b0888101">SceneManager::LightIterator</a> Mezzanine::SceneManager::EndLight </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get a LightIterator to one past the last Light*. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A LightIterator to one past the last Light* </dd></dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00429">429</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00586">586</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1389,7 +1319,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#ad4f4649f45b71ddc0d728e64facd03c3">SceneManager::ConstLightIterator</a> Mezzanine::SceneManager::EndLight </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a04a257d3df126110aa545e856853a663">SceneManager::ConstLightIterator</a> Mezzanine::SceneManager::EndLight </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1401,7 +1331,28 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ConstLightIterator to one past the last Light*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ConstLightIterator to one past the last Light* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00435">435</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00444">444</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08baa4f2d539cf1b6d54fce558858081"></a><!-- doxytag: member="Mezzanine::SceneManager::EndLight" ref="a08baa4f2d539cf1b6d54fce558858081" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a70382bc80d3905971a04a77d5c6bcb33">SceneManager::LightIterator</a> Mezzanine::SceneManager::EndLight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get a LightIterator to one past the last Light*. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A LightIterator to one past the last Light* </dd></dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00438">438</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1410,7 +1361,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a68a1a1ddc03cee28204759224405d40c">SceneManager::ParticleEffectIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a5f3bd65fb09c7a08202083cc48e46fe7">SceneManager::ParticleEffectIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1422,7 +1373,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ParticleEffectIterator to one past the last ParticleEffect*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ParticleEffectIterator to one past the last ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00497">497</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00512">512</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1431,7 +1382,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#aa99ab0f491a991bda63127519b40b04f">SceneManager::ConstParticleEffectIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#ab1213cec08b0bc15ea58ed0d3617b887">SceneManager::ConstParticleEffectIterator</a> Mezzanine::SceneManager::EndParticleEffect </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1443,28 +1394,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a ConstParticleEffectIterator to one past the last ParticleEffect*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A ConstParticleEffectIterator to one past the last ParticleEffect* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00503">503</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a603612da0ee539bb489184c2895431d8"></a><!-- doxytag: member="Mezzanine::SceneManager::EndWorldNode" ref="a603612da0ee539bb489184c2895431d8" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a39bddd192e396e2e7cf92bca33b4d03c">SceneManager::ConstWorldNodeIterator</a> Mezzanine::SceneManager::EndWorldNode </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get a ConstWorldNodeIterator to one past the last WorldNode*. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A ConstWorldNodeIterator to one past the last WorldNode* </dd></dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00705">705</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00518">518</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1473,7 +1403,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#aa58ecf1d7d283a576509b71133064a27">SceneManager::WorldNodeIterator</a> Mezzanine::SceneManager::EndWorldNode </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#a498b2390acb176a185e1026d23b773f0">SceneManager::WorldNodeIterator</a> Mezzanine::SceneManager::EndWorldNode </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1485,7 +1415,28 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Get a WorldNodeIterator to one past the last WorldNode*. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A WorldNodeIterator to one past the last WorldNode* </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00699">699</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00649">649</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a603612da0ee539bb489184c2895431d8"></a><!-- doxytag: member="Mezzanine::SceneManager::EndWorldNode" ref="a603612da0ee539bb489184c2895431d8" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1SceneManager.html#ad60b6e15daa2395944d395b4e307b905">SceneManager::ConstWorldNodeIterator</a> Mezzanine::SceneManager::EndWorldNode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get a ConstWorldNodeIterator to one past the last WorldNode*. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A ConstWorldNodeIterator to one past the last WorldNode* </dd></dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00655">655</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1506,7 +1457,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Retrieve the level of the ambient light. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> with the ambient light levels </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00367">367</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00376">376</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1528,7 +1479,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets an already created entity by name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the entity of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00516">516</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00531">531</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1550,7 +1501,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets an already created entity by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the entity at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00530">530</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00545">545</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1568,32 +1519,10 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </div>
 <div class="memdoc">
 
-<p>Gets the internal Ogre Scene Manager pointer. </p>
+<p>Gets the internal <a class="el" href="namespaceOgre.html">Ogre</a> Scene Manager pointer. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the ogre Scene Manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00724">724</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad28337e68dac694721cbb798dedd151f"></a><!-- doxytag: member="Mezzanine::SceneManager::GetLight" ref="ad28337e68dac694721cbb798dedd151f" args="(const String &amp;Name) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Light.html">Light</a> * Mezzanine::SceneManager::GetLight </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets an already created light by name. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the light of the specified name. </dd></dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00380">380</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00679">679</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1615,7 +1544,29 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets an already created light by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the light at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00394">394</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00403">403</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad28337e68dac694721cbb798dedd151f"></a><!-- doxytag: member="Mezzanine::SceneManager::GetLight" ref="ad28337e68dac694721cbb798dedd151f" args="(const String &amp;Name) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Light.html">Light</a> * Mezzanine::SceneManager::GetLight </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>Name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets an already created light by name. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the light of the specified name. </dd></dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00389">389</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1636,7 +1587,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the name of this manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the name of this manager. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00712">712</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00667">667</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1659,7 +1610,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the node of the specified name, or 0 if no matching <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a> could be Found.</dd></dl>
 <p>This runs in Linear time </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00619">619</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00599">599</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1682,7 +1633,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the node at the specified index.</dd></dl>
 <p>This runs in constant time. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00634">634</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00614">614</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1703,7 +1654,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the number of entities created and stored in this manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of entities this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00535">535</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00550">550</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1724,7 +1675,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the number of lights created and stored in this manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of lights this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00399">399</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00408">408</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1746,29 +1697,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of nodes this manager is storing.</dd></dl>
 <p>This runs in constant time, this data is cached constantly. </p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00639">639</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4ad0850722dd634dddf4c00d2810be49"></a><!-- doxytag: member="Mezzanine::SceneManager::GetNumOrbitNodes" ref="a4ad0850722dd634dddf4c00d2810be49" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::SceneManager::GetNumOrbitNodes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the number of orbit type nodes created and stored in this manager. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of orbit type nodes this manager is storing.</dd></dl>
-<p>This runs in linear time, Nodes are counter every time this is called. </p>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00659">659</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00619">619</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1789,51 +1718,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the number of particle effects created and stored in this manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of particle effects this manager is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00467">467</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a54c1f5986486dc64e18475f84f49f9f0"></a><!-- doxytag: member="Mezzanine::SceneManager::GetNumStandNodes" ref="a54c1f5986486dc64e18475f84f49f9f0" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::SceneManager::GetNumStandNodes </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the number of stand type nodes created and stored in this manager. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of stand type nodes this manager is storing.</dd></dl>
-<p>This runs in linear time, Nodes are counter every time this is called. </p>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00644">644</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3a6f2b9e9b442fdee17fd4d934d08d85"></a><!-- doxytag: member="Mezzanine::SceneManager::GetParticleEffect" ref="a3a6f2b9e9b442fdee17fd4d934d08d85" args="(const String &amp;Name) const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> * Mezzanine::SceneManager::GetParticleEffect </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets an already created particle effect by name. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the particle effect of the specified name. </dd></dl>
-
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00448">448</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00476">476</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1855,7 +1740,29 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets an already created particle effect by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the particle effect at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00462">462</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00471">471</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3a6f2b9e9b442fdee17fd4d934d08d85"></a><!-- doxytag: member="Mezzanine::SceneManager::GetParticleEffect" ref="a3a6f2b9e9b442fdee17fd4d934d08d85" args="(const String &amp;Name) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1ParticleEffect.html">ParticleEffect</a> * Mezzanine::SceneManager::GetParticleEffect </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>Name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets an already created particle effect by name. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the particle effect of the specified name. </dd></dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00457">457</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1876,7 +1783,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the raw internal internal data. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a to the raw internal data. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00727">727</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00682">682</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1897,7 +1804,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the currently set shadow technique. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a SceneShadowTechnique enum value representing the currently set shadow technique. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00247">247</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00256">256</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1918,7 +1825,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the colour being used when casting shadows. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> representing the colour used when casting shadows. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00299">299</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00308">308</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1939,7 +1846,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the maximum distance from the camera that shadows will be visible. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the maximum distance from the camera shadows will be rendered. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00293">293</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00302">302</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1960,7 +1867,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Gets the currently set number of textures being used to make texture shadows. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Whole indicating the number of textures used to make texture shadows. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00278">278</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00287">287</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1981,7 +1888,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>Retrieve the size of textures. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An unsigned short which is the size of the textures. </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00287">287</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00296">296</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2004,7 +1911,34 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00721">721</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00676">676</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae14c8c163f1d17eeebf698f7326f1840"></a><!-- doxytag: member="Mezzanine::SceneManager::PauseAllParticles" ref="ae14c8c163f1d17eeebf698f7326f1840" args="(bool Pause)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SceneManager::PauseAllParticles </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Pause</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Pauses(or unpauses) all particles stored in this manager. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Pause</td><td>Will pause all Particles if true, unpause if false. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00503">503</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2031,7 +1965,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00362">362</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00371">371</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2084,7 +2018,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00357">357</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00366">366</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2112,7 +2046,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00218">218</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00227">227</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2139,7 +2073,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00296">296</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00305">305</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2166,7 +2100,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00290">290</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00299">299</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2194,7 +2128,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00275">275</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00284">284</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2222,7 +2156,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00281">281</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00290">290</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2243,7 +2177,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 <p>get the kind of sy in use </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>The kind of sky in use </dd></dl>
 
-<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00351">351</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scenemanager_8cpp_source.html#l00360">360</a> of file <a class="el" href="scenemanager_8cpp_source.html">scenemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -2257,7 +2191,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -2267,6 +2201,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1WorldNode.html">WorldNode<
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

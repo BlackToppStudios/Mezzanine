@@ -83,9 +83,13 @@ Inheritance diagram for Mezzanine::GravityWell:</div>
  <div class="center">
   <img src="classMezzanine_1_1GravityWell.png" usemap="#Mezzanine::GravityWell_map" alt=""/>
   <map id="Mezzanine::GravityWell_map" name="Mezzanine::GravityWell_map">
-<area href="classMezzanine_1_1AreaEffect.html" alt="Mezzanine::AreaEffect" shape="rect" coords="0,112,203,136"/>
-<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="0,56,203,80"/>
-<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,203,24"/>
+<area href="classMezzanine_1_1AreaEffect.html" alt="Mezzanine::AreaEffect" shape="rect" coords="266,168,469,192"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="106,112,309,136"/>
+<area href="classMezzanine_1_1AttachableChild.html" alt="Mezzanine::AttachableChild" shape="rect" coords="426,112,629,136"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,56,203,80"/>
+<area href="classMezzanine_1_1AttachableParent.html" alt="Mezzanine::AttachableParent" shape="rect" coords="213,56,416,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="426,56,629,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="213,0,416,24"/>
 </map>
  </div></div>
 
@@ -93,6 +97,10 @@ Inheritance diagram for Mezzanine::GravityWell:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a4f89751efb62bd71164a2864923dc149">GravityWell</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a4f89751efb62bd71164a2864923dc149"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#affc992ad5e1edafd654d16d6a13840d0">~GravityWell</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#affc992ad5e1edafd654d16d6a13840d0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a193e1683edaf80bb1a37979f196abf6e">ApplyEffect</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the effect this field has to object inside.  <a href="#a193e1683edaf80bb1a37979f196abf6e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#afa34a6efc22c6d8875be96cfce90c013">GetAllowWorldGravity</a> () const </td></tr>
@@ -103,17 +111,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Style of attenuation applied.  <a href="#ad26c5b44056826e55dac112d0e0600a7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a8fe42eeeb7483c35f1dfae170c2b2ec9">GetFieldStrength</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the strength of the field.  <a href="#a8fe42eeeb7483c35f1dfae170c2b2ec9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#aa7c7683357d133831b362c7c923c5271">GetType</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a4f89751efb62bd71164a2864923dc149">GravityWell</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a4f89751efb62bd71164a2864923dc149"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a7890d007afb7021a811d711e3b2ed950">GetType</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a80837168a132c3bffcefb839e1669a63">SetAllowWorldGravity</a> (bool WorldGravity)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not world gravity should be removed for objects in this field.  <a href="#a80837168a132c3bffcefb839e1669a63"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#ab7668c7c5c1c7c25a40315803efb0790">SetAttenuation</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Amount, const <a class="el" href="namespaceMezzanine.html#a2d10a79e11a2031df10af540eede12fa">Mezzanine::AttenuationStyle</a> &amp;Style)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the attenuation for this field.  <a href="#ab7668c7c5c1c7c25a40315803efb0790"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#a596a662feae83e04e4c299a8aaf8b862">SetFieldStrength</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;FieldStrength)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the strenth of the field.  <a href="#a596a662feae83e04e4c299a8aaf8b862"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1GravityWell.html#affc992ad5e1edafd654d16d6a13840d0">~GravityWell</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#affc992ad5e1edafd654d16d6a13840d0"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a869ff5ef7c317e642e2b366e18d4f818"></a><!-- doxytag: member="Mezzanine::GravityWell::AllowWorldGrav" ref="a869ff5ef7c317e642e2b366e18d4f818" args="" -->
@@ -134,7 +138,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>This class is not a gravity field, where gravity only pulls in one direction. Instead this class will always pull objects inside it towards the field center. <br/>
  This class works best with sphere's, but can be made to work with any shape. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00223">223</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8h_source.html#l00258">258</a> of file <a class="el" href="areaeffect_8h_source.html">areaeffect.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a4f89751efb62bd71164a2864923dc149"></a><!-- doxytag: member="Mezzanine::GravityWell::GravityWell" ref="a4f89751efb62bd71164a2864923dc149" args="(const String &amp;name, const Vector3 &amp;Location)" -->
 <div class="memitem">
@@ -171,7 +175,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00381">381</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00461">461</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -192,7 +196,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Destructor. </p>
 <p>Class destructor. </p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00390">390</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00470">470</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -216,7 +220,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 <p>Implements <a class="el" href="classMezzanine_1_1AreaEffect.html#a988cd958e49d65331a059951af3c2884">Mezzanine::AreaEffect</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00394">394</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00474">474</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -237,7 +241,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Gets whether or not world gravity is is removed for objects inside this field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether objects inside are affected by world gravity. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00475">475</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00555">555</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,7 +263,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>See <a class="el" href="classMezzanine_1_1GravityWell.html#ab7668c7c5c1c7c25a40315803efb0790" title="Sets the attenuation for this field.">SetAttenuation()</a> for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real value </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00491">491</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00571">571</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,7 +285,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>See the AttenuationStyle enum for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the style of attenuation currently being used by this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00486">486</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00566">566</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -302,16 +306,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Gets the strength of the field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00465">465</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00545">545</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aa7c7683357d133831b362c7c923c5271"></a><!-- doxytag: member="Mezzanine::GravityWell::GetType" ref="aa7c7683357d133831b362c7c923c5271" args="() const " -->
+<a class="anchor" id="a7890d007afb7021a811d711e3b2ed950"></a><!-- doxytag: member="Mezzanine::GravityWell::GetType" ref="a7890d007afb7021a811d711e3b2ed950" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::GravityWell::GetType </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> Mezzanine::GravityWell::GetType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [virtual]</code></td>
@@ -322,9 +326,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Gets the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance </dd></dl>
  
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1AreaEffect.html#a3eab7461632e01984cfb07f8c8fb5954">Mezzanine::AreaEffect</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1AreaEffect.html#a2f3df5433f02057d7a9deeb5e6666287">Mezzanine::AreaEffect</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00496">496</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00576">576</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,7 +356,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00470">470</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00550">550</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +394,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00480">480</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00560">560</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,7 +422,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00460">460</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00540">540</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -432,7 +436,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -442,6 +446,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:02 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

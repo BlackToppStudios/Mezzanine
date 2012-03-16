@@ -65,6 +65,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html">CollisionShapeDeSerializer</a>      </li>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::CollisionShapeDeSerializer Class Reference</h1>  </div>
 </div>
@@ -83,14 +86,174 @@ Inheritance diagram for Mezzanine::CollisionShapeDeSerializer:</div>
 <area href="classMezzanine_1_1DeSerializer.html" alt="Mezzanine::DeSerializer&lt; CollisionShape &gt;" shape="rect" coords="0,0,257,24"/>
 </map>
  </div></div>
+
+<p><a href="classMezzanine_1_1CollisionShapeDeSerializer-members.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#a84083c617b9c74f3e2110467ade361c3">ContainerName</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This will return the Name of the element that Contains multiple of the items to be DeSerialized.  <a href="#a84083c617b9c74f3e2110467ade361c3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#a9b5cc500f61b5df6423102b398267743">DeSerialize</a> (std::istream &amp;Stream)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a collision shape from the serialized version in a stream.  <a href="#a9b5cc500f61b5df6423102b398267743"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#a7acb9f3a9c80bf22bb0f84707ba16be8">DeSerializeAndRetrieve</a> (std::istream &amp;Stream)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a collision shape from the serialized version in a stream.  <a href="#a7acb9f3a9c80bf22bb0f84707ba16be8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#af8882919e03c91cd2a65d1a12ddbb85a">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node containing and one collision shape into a <a class="el" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a> of the corresponding type.  <a href="#af8882919e03c91cd2a65d1a12ddbb85a"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#adc76f2a2afbfb23483fa6f85d0ff5f83">PerformDeSerialization</a> (std::istream &amp;Stream)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do.  <a href="#adc76f2a2afbfb23483fa6f85d0ff5f83"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A tool to aid in deserialization for the specific instances that DeSerialization CollisionShapes other ways does not make sense. </p>
 
 <p>Definition at line <a class="el" href="collisionshape_8h_source.html#l01002">1002</a> of file <a class="el" href="collisionshape_8h_source.html">collisionshape.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a84083c617b9c74f3e2110467ade361c3"></a><!-- doxytag: member="Mezzanine::CollisionShapeDeSerializer::ContainerName" ref="a84083c617b9c74f3e2110467ade361c3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::CollisionShapeDeSerializer::ContainerName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will return the Name of the element that Contains multiple of the items to be DeSerialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A String containing "Shapes" </dd></dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1DeSerializer.html#a99e25b2dab4cde22af1c77fa31665bae">Mezzanine::DeSerializer&lt; CollisionShape &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01825">1825</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9b5cc500f61b5df6423102b398267743"></a><!-- doxytag: member="Mezzanine::CollisionShapeDeSerializer::DeSerialize" ref="a9b5cc500f61b5df6423102b398267743" args="(std::istream &amp;Stream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream &amp; Mezzanine::CollisionShapeDeSerializer::DeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Create a collision shape from the serialized version in a stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The std::istream to get the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This performs less checking than the original to allow for DeSerialization of multiple kinds of xml elements. Rather all the specific checking is done closer to the actual instantion of classes. This add the DeSerialized shape to the collsion shape manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DeSerializer.html#aaf31c38d936ec89323c3cb9196a5a97f">Mezzanine::DeSerializer&lt; CollisionShape &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01816">1816</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7acb9f3a9c80bf22bb0f84707ba16be8"></a><!-- doxytag: member="Mezzanine::CollisionShapeDeSerializer::DeSerializeAndRetrieve" ref="a7acb9f3a9c80bf22bb0f84707ba16be8" args="(std::istream &amp;Stream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> * Mezzanine::CollisionShapeDeSerializer::DeSerializeAndRetrieve </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Create a collision shape from the serialized version in a stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The std::istream to get the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This adds the DeSerialized shape to the collsion shape manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to the freshly created collsion shape </dd></dl>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01822">1822</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adc76f2a2afbfb23483fa6f85d0ff5f83"></a><!-- doxytag: member="Mezzanine::CollisionShapeDeSerializer::PerformDeSerialization" ref="adc76f2a2afbfb23483fa6f85d0ff5f83" args="(std::istream &amp;Stream)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> * Mezzanine::CollisionShapeDeSerializer::PerformDeSerialization </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>the stream to deserialize from. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>a pointer to the shape just created, this may or may not be added to the collision shape manager depending on implementation details </dd></dl>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01798">1798</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af8882919e03c91cd2a65d1a12ddbb85a"></a><!-- doxytag: member="Mezzanine::CollisionShapeDeSerializer::ProtoDeSerialize" ref="af8882919e03c91cd2a65d1a12ddbb85a" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> * Mezzanine::CollisionShapeDeSerializer::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert An XML Node containing and one collision shape into a <a class="el" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a> of the corresponding type. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into a live class instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>All items deserialized here will be added to the collision shape manager. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to the freshly deserialized and created class instance. </dd></dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1DeSerializer.html#a646390cf8138c622c64aa83a93b10cce">Mezzanine::DeSerializer&lt; CollisionShape &gt;</a>.</p>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01813">1813</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="collisionshape_8h_source.html">collisionshape.h</a></li>
+<li><a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a></li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -98,7 +261,7 @@ Inheritance diagram for Mezzanine::CollisionShapeDeSerializer:</div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,6 +271,6 @@ Inheritance diagram for Mezzanine::CollisionShapeDeSerializer:</div>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:38 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

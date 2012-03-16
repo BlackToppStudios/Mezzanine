@@ -105,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _uiviewportupdatetool_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uibasicrenderable.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uirectangle.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
 <a name="l00046"></a>00046 
 <a name="l00047"></a>00047 <span class="keyword">namespace </span>Mezzanine
@@ -368,19 +368,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00304"></a>00304         }
 <a name="l00305"></a>00305 
 <a name="l00306"></a>00306 
-<a name="l00307"></a><a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a6b070131c2a4174788246b95517a6528">00307</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a6b070131c2a4174788246b95517a6528" title="Updates a renderables size and position as needed.">ViewportUpdateTool::UpdateRenderable</a>(<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a>* ToBeUpdated)
+<a name="l00307"></a><a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#ad8659876641f9deea2488dcd9baa02c9">00307</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#ad8659876641f9deea2488dcd9baa02c9" title="Updates a renderables size and position as needed.">ViewportUpdateTool::UpdateRectangleRenderable</a>(<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* ToBeUpdated)
 <a name="l00308"></a>00308         {
 <a name="l00309"></a>00309             <span class="comment">// Setup the data to be used</span>
-<a name="l00310"></a>00310             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> RendActSize = ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a14b2ff20cdf114c34cc23074d0b7fb5c" title="Gets the size of this renderable in pixels.">GetActualSize</a>();
-<a name="l00311"></a>00311             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> RendActPos = ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7469e579a834b00bd90a87fd754d14af" title="Gets the top left position of this renderable in pixels.">GetActualPosition</a>();
+<a name="l00310"></a>00310             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> RendActSize = ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b" title="Gets the size of this renderable in pixels.">GetActualSize</a>();
+<a name="l00311"></a>00311             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> RendActPos = ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31" title="Gets the top left position of this renderable in pixels.">GetActualPosition</a>();
 <a name="l00312"></a>00312 
 <a name="l00313"></a>00313             <span class="comment">// Get the updated data</span>
 <a name="l00314"></a>00314             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewRendSize = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#ae941b5b9c30fc197771a4b8bc41f4c38" title="Gets the new size based on current settings.">GetUpdatedSize</a>(RendActSize);
 <a name="l00315"></a>00315             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewPosition = <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af3748a145393f0b4a60d252a7ceff5fe" title="Gets the new position based on current settings.">GetUpdatedPosition</a>(RendActPos,RendActSize,NewRendSize);
 <a name="l00316"></a>00316 
 <a name="l00317"></a>00317             <span class="comment">// Now apply the new values</span>
-<a name="l00318"></a>00318             ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a69c87db17cacc2980f68777258329531" title="Sets the size of this renderable in pixels.">SetActualSize</a>(NewRendSize);
-<a name="l00319"></a>00319             ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4741dde07f7eddddcc3d611d6c803fad" title="Sets the top left position of this renderable in pixels.">SetActualPosition</a>(NewPosition);
+<a name="l00318"></a>00318             ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274" title="Sets the size of this renderable in pixels.">SetActualSize</a>(NewRendSize);
+<a name="l00319"></a>00319             ToBeUpdated-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb" title="Sets the top left position of this renderable in pixels.">SetActualPosition</a>(NewPosition);
 <a name="l00320"></a>00320         }
 <a name="l00321"></a>00321 
 <a name="l00322"></a><a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d">00322</a>         WidgetResult <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d" title="Updates a widgets position as needed.">ViewportUpdateTool::UpdateWidget</a>(<a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* ToBeUpdated)
@@ -409,7 +409,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -419,6 +419,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

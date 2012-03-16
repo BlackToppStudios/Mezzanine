@@ -11,8 +11,25 @@ This is an object comprised of a series of lines.
 
 {\ttfamily \#include $<$uilinelist.h$>$}
 
+Inheritance diagram for Mezzanine::UI::LineList:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1UI_1_1LineList}
+\end{center}
+\end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1UI_1_1LineList_ad2401759d54e6cce32160e31a272e463}{LineList} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a1b87085b800ead91bc1bfec4d133039b}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1LineList_a1b87085b800ead91bc1bfec4d133039b}{$\sim$LineList} ()}
+\label{classMezzanine_1_1UI_1_1LineList_a1b87085b800ead91bc1bfec4d133039b}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_a847863aa5b36f1bf34181ff7b48de81d}{\_\-AppendVertices} (\hyperlink{classMezzanine_1_1UI_1_1ScreenVertexData}{ScreenVertexData} \&Vertices)
+\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_a5801106416279f51baa81934fa8d4083}{\_\-Redraw} ()
 \item 
 void \hyperlink{classMezzanine_1_1UI_1_1LineList_a78c3f9e972886851cbe877c8cde4e027}{AddActualPoint} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&X, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Y)
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via 2 reals. \item\end{DoxyCompactList}\item 
@@ -22,41 +39,23 @@ void \hyperlink{classMezzanine_1_1UI_1_1LineList_a6f689d10188e5973033fe7448ac7c6
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via 2 reals. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UI_1_1LineList_a40a814e86853fed53fc1bf4a7bde5e69}{AddPoint} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via a vector2. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1UI_1_1LineList_a0903825b873157e6733c20ad8da3e563}{Begin} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Thickness, const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Colour)
+void \hyperlink{classMezzanine_1_1UI_1_1LineList_ae5a45cc87def03c379665c6c5ec06f83}{Begin} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&LineThickness, const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&LineColour)
 \begin{DoxyCompactList}\small\item\em Starts a new line list. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UI_1_1LineList_aa216a1f529f4e8664ec2d6877f4c9cf5}{End} (bool Closed=false)
 \begin{DoxyCompactList}\small\item\em Finalizes the list and prepares it for rendering. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \hyperlink{classMezzanine_1_1UI_1_1LineList_aae3d6b141f56eb21a22a4c80dd60d419}{GetRenderPriority} ()
-\begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1LineList_aa48e17f637d9237ea9aa25294de87fe5}{
-virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_aa48e17f637d9237ea9aa25294de87fe5}{Hide} ()}
-\label{classMezzanine_1_1UI_1_1LineList_aa48e17f637d9237ea9aa25294de87fe5}
-
-\begin{DoxyCompactList}\small\item\em Forces this rectangle to hide. \item\end{DoxyCompactList}\item 
-virtual bool \hyperlink{classMezzanine_1_1UI_1_1LineList_a887ee9e85f989a907b1d74ba95ed6a41}{IsVisible} ()
-\begin{DoxyCompactList}\small\item\em Gets the visibility of this rectangle. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1LineList_a250e9a87fbe68f2251510dbad2f15b08}{LineList} (\hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_a42955b53aa178e4e1a40fd4b8c260bbe}{SetRenderPriority} (const \hyperlink{namespaceMezzanine_1_1UI_ac4c753eb6b5d66350a243acc9ce54130}{UI::RenderPriority} \&Priority)
-\begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_ace36d0bc1c9c465737b65c8f2bcc2d23}{SetVisible} (bool Visible)
-\begin{DoxyCompactList}\small\item\em Sets the visibility of this rectangle. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a1832190fc3111d58b8e086f2cc358fdc}{
-virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_a1832190fc3111d58b8e086f2cc358fdc}{Show} ()}
-\label{classMezzanine_1_1UI_1_1LineList_a1832190fc3111d58b8e086f2cc358fdc}
-
-\begin{DoxyCompactList}\small\item\em Forces this rectangle to be shown. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a1b87085b800ead91bc1bfec4d133039b}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1LineList_a1b87085b800ead91bc1bfec4d133039b}{$\sim$LineList} ()}
-\label{classMezzanine_1_1UI_1_1LineList_a1b87085b800ead91bc1bfec4d133039b}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classMezzanine_1_1UI_1_1LineList_a25e792075ec0c5165d5870d8e0710b7f}{UpdateDimensions} ()
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this renderable to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1LineList_acde2dc6afe2d8c16b27b50fbdea30f19}{
-Gorilla::LineList $\ast$ {\bfseries GLineList}}
-\label{classMezzanine_1_1UI_1_1LineList_acde2dc6afe2d8c16b27b50fbdea30f19}
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a9455e44973d03f369d606b2378e08230}{
+\hyperlink{classMezzanine_1_1ColourValue}{ColourValue} {\bfseries Colour}}
+\label{classMezzanine_1_1UI_1_1LineList_a9455e44973d03f369d606b2378e08230}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a638a168ebabaab5d719d500c5dc67816}{
+bool {\bfseries IsClosed}}
+\label{classMezzanine_1_1UI_1_1LineList_a638a168ebabaab5d719d500c5dc67816}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1LineList_aaf1394d7d9e4a3d86817d72d54dee6a9}{
@@ -68,42 +67,126 @@ Gorilla::LineList $\ast$ {\bfseries GLineList}}
 \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
 \label{classMezzanine_1_1UI_1_1LineList_a33aba7c9e6d8043858e71c19554facf4}
 
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1LineList_afde40ad4fddbddcc400e929c14115271}{
+std::vector$<$ \hyperlink{classMezzanine_1_1Vector2}{Vector2} $>$ {\bfseries Positions}}
+\label{classMezzanine_1_1UI_1_1LineList_afde40ad4fddbddcc400e929c14115271}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a3765285c824d442d64cc8d629102bc7b}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} {\bfseries Thickness}}
+\label{classMezzanine_1_1UI_1_1LineList_a3765285c824d442d64cc8d629102bc7b}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a834e4e869446be644f61b4b456604f31}{
+class {\bfseries Layer}}
+\label{classMezzanine_1_1UI_1_1LineList_a834e4e869446be644f61b4b456604f31}
+
 \end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 This is an object comprised of a series of lines. This class isn't an object, but rather just a series of lines. As such it doesn't have a position or size. The position functions exist only to create additional points for the lines to connect. 
 
-Definition at line 66 of file uilinelist.h.
+Definition at line 63 of file uilinelist.h.
 
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a250e9a87fbe68f2251510dbad2f15b08}{
+\hypertarget{classMezzanine_1_1UI_1_1LineList_ad2401759d54e6cce32160e31a272e463}{
 \index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!LineList@{LineList}}
 \index{LineList@{LineList}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
 \paragraph[{LineList}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::UI::LineList::LineList (
 \begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
 \item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_a250e9a87fbe68f2251510dbad2f15b08}
+\label{classMezzanine_1_1UI_1_1LineList_ad2401759d54e6cce32160e31a272e463}
 
 
 Class constructor. 
 
 
 \begin{DoxyParams}{Parameters}
+{\em name} & The name to give to this Linelist. \\
+\hline
 {\em \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer}} & Pointer to the parent \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} that created this rectangle. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 55 of file uilinelist.cpp.
+Definition at line 56 of file uilinelist.cpp.
 
 
 
 \subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a847863aa5b36f1bf34181ff7b48de81d}{
+\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!\_\-AppendVertices@{\_\-AppendVertices}}
+\index{\_\-AppendVertices@{\_\-AppendVertices}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
+\paragraph[{\_\-AppendVertices}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::\_\-AppendVertices (
+\begin{DoxyParamCaption}
+\item[{{\bf ScreenVertexData} \&}]{Vertices}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1LineList_a847863aa5b36f1bf34181ff7b48de81d}
+Appends the vertices of this renderable to another vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vertices} & The vector of vertex's to append to. \\
+\hline
+\end{DoxyParams}
+ 
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_aafd3dd1e288791b1071cb8c043866504}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 165 of file uilinelist.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a5801106416279f51baa81934fa8d4083}{
+\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!\_\-Redraw@{\_\-Redraw}}
+\index{\_\-Redraw@{\_\-Redraw}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
+\paragraph[{\_\-Redraw}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::\_\-Redraw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1UI_1_1LineList_a5801106416279f51baa81934fa8d4083}
+Regenerates the verticies in this renderable.  
+
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a2fc7dda5e44e8a8aca838864d67fde9b}{Mezzanine::UI::BasicRenderable}.
+
+
+
+Definition at line 110 of file uilinelist.cpp.
+
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a9f457889822f8c236d2e0cf7fccd8aeb}{
+\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!AddActualPoint@{AddActualPoint}}
+\index{AddActualPoint@{AddActualPoint}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
+\paragraph[{AddActualPoint}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::AddActualPoint (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UI_1_1LineList_a9f457889822f8c236d2e0cf7fccd8aeb}
+
+
+Adds a new point/line to the list via a vector2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the position on screen. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 88 of file uilinelist.cpp.
+
 \hypertarget{classMezzanine_1_1UI_1_1LineList_a78c3f9e972886851cbe877c8cde4e027}{
 \index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!AddActualPoint@{AddActualPoint}}
 \index{AddActualPoint@{AddActualPoint}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
@@ -127,29 +210,7 @@ Adds a new point/line to the list via 2 reals.
 \end{DoxyParams}
 
 
-Definition at line 103 of file uilinelist.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a9f457889822f8c236d2e0cf7fccd8aeb}{
-\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!AddActualPoint@{AddActualPoint}}
-\index{AddActualPoint@{AddActualPoint}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
-\paragraph[{AddActualPoint}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::AddActualPoint (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{Position}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_a9f457889822f8c236d2e0cf7fccd8aeb}
-
-
-Adds a new point/line to the list via a vector2. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Position} & A vector2 representing the position on screen. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 108 of file uilinelist.cpp.
+Definition at line 83 of file uilinelist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1LineList_a6f689d10188e5973033fe7448ac7c68d}{
 \index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!AddPoint@{AddPoint}}
@@ -174,7 +235,7 @@ Adds a new point/line to the list via 2 reals.
 \end{DoxyParams}
 
 
-Definition at line 93 of file uilinelist.cpp.
+Definition at line 73 of file uilinelist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1LineList_a40a814e86853fed53fc1bf4a7bde5e69}{
 \index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!AddPoint@{AddPoint}}
@@ -196,32 +257,32 @@ Adds a new point/line to the list via a vector2.
 \end{DoxyParams}
 
 
-Definition at line 98 of file uilinelist.cpp.
+Definition at line 78 of file uilinelist.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a0903825b873157e6733c20ad8da3e563}{
+\hypertarget{classMezzanine_1_1UI_1_1LineList_ae5a45cc87def03c379665c6c5ec06f83}{
 \index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!Begin@{Begin}}
 \index{Begin@{Begin}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
 \paragraph[{Begin}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::Begin (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{Thickness, }
-\item[{const {\bf ColourValue} \&}]{Colour}
+\item[{const {\bf Whole} \&}]{LineThickness, }
+\item[{const {\bf ColourValue} \&}]{LineColour}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_a0903825b873157e6733c20ad8da3e563}
+\label{classMezzanine_1_1UI_1_1LineList_ae5a45cc87def03c379665c6c5ec06f83}
 
 
 Starts a new line list. 
 
 If this function is called while lines have already been defined, it will clear the current list of lines and start a new list. 
 \begin{DoxyParams}{Parameters}
-{\em Thickness} & The thickness of the line to draw in pixels. \\
+{\em LineThickness} & The thickness of the line to draw in pixels. \\
 \hline
-{\em Colour} & The colour of the line. \\
+{\em LineColour} & The colour of the line. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 88 of file uilinelist.cpp.
+Definition at line 65 of file uilinelist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1LineList_aa216a1f529f4e8664ec2d6877f4c9cf5}{
 \index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!End@{End}}
@@ -243,91 +304,28 @@ Finalizes the list and prepares it for rendering.
 \end{DoxyParams}
 
 
-Definition at line 113 of file uilinelist.cpp.
+Definition at line 93 of file uilinelist.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1LineList_aae3d6b141f56eb21a22a4c80dd60d419}{
-\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!GetRenderPriority@{GetRenderPriority}}
-\index{GetRenderPriority@{GetRenderPriority}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
-\paragraph[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::RenderPriority} Mezzanine::UI::LineList::GetRenderPriority (
+\hypertarget{classMezzanine_1_1UI_1_1LineList_a25e792075ec0c5165d5870d8e0710b7f}{
+\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::UpdateDimensions (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_aae3d6b141f56eb21a22a4c80dd60d419}
+\label{classMezzanine_1_1UI_1_1LineList_a25e792075ec0c5165d5870d8e0710b7f}
 
 
-Gets the priority this button should be rendered with. 
+Updates the dimensions of this renderable to match those of the new screen size. 
 
-\begin{DoxyReturn}{Returns}
-Returns an enum value representing this button's priority level. 
-\end{DoxyReturn}
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
 
-
-Definition at line 138 of file uilinelist.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a887ee9e85f989a907b1d74ba95ed6a41}{
-\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!IsVisible@{IsVisible}}
-\index{IsVisible@{IsVisible}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
-\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::UI::LineList::IsVisible (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_a887ee9e85f989a907b1d74ba95ed6a41}
+Implements \hyperlink{classMezzanine_1_1UI_1_1BasicRenderable_a446b43c6dde21c7f0c021ca6833f841d}{Mezzanine::UI::BasicRenderable}.
 
 
-Gets the visibility of this rectangle. 
 
-\begin{DoxyReturn}{Returns}
-Returns a bool representing the visibility of this rectangle. 
-\end{DoxyReturn}
-
-
-Definition at line 73 of file uilinelist.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1LineList_a42955b53aa178e4e1a40fd4b8c260bbe}{
-\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!SetRenderPriority@{SetRenderPriority}}
-\index{SetRenderPriority@{SetRenderPriority}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
-\paragraph[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::SetRenderPriority (
-\begin{DoxyParamCaption}
-\item[{const {\bf UI::RenderPriority} \&}]{Priority}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_a42955b53aa178e4e1a40fd4b8c260bbe}
-
-
-Sets the priority this button should be rendered with. 
-
-The default value for this is Medium. 
-\begin{DoxyParams}{Parameters}
-{\em Priority} & The priority level to be used when rendering this button. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 118 of file uilinelist.cpp.
-
-\hypertarget{classMezzanine_1_1UI_1_1LineList_ace36d0bc1c9c465737b65c8f2bcc2d23}{
-\index{Mezzanine::UI::LineList@{Mezzanine::UI::LineList}!SetVisible@{SetVisible}}
-\index{SetVisible@{SetVisible}!Mezzanine::UI::LineList@{Mezzanine::UI::LineList}}
-\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::LineList::SetVisible (
-\begin{DoxyParamCaption}
-\item[{bool}]{Visible}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1LineList_ace36d0bc1c9c465737b65c8f2bcc2d23}
-
-
-Sets the visibility of this rectangle. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Visible} & Bool determining whether or not this rectangle should be visible. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 68 of file uilinelist.cpp.
+Definition at line 99 of file uilinelist.cpp.
 
 
 

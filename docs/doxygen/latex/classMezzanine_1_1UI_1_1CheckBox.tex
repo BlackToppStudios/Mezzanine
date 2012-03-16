@@ -22,8 +22,13 @@ Inheritance diagram for Mezzanine::UI::CheckBox:\begin{figure}[H]
 \item 
 \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a818afe38244e1cd196c65bf36bf1719a}{CheckBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&LabelText, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1CheckBox_aedc495e50db3adf0ed51b3c28107af3f}{CheckBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&LabelText, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\hyperlink{classMezzanine_1_1UI_1_1CheckBox_aedc495e50db3adf0ed51b3c28107af3f}{CheckBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&\hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph}, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&LabelText, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1CheckBox_a3881a44a1149755ea60e6329ad852b3b}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a3881a44a1149755ea60e6329ad852b3b}{$\sim$CheckBox} ()}
+\label{classMezzanine_1_1UI_1_1CheckBox_a3881a44a1149755ea60e6329ad852b3b}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a08fcd8aa8c6a521f4f08dc3ae6984936}{GetCheckBoxButton} ()
 \begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} this checkbox is based on. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1CheckBox_adde59a08d00bad4085aad204d29d48d1}{GetLabel} ()
@@ -49,12 +54,7 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a4fb7dc586245da0cdcfc78
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a48a0deb7a6bbb25185396fe63c864ac5}{SetUncheckedSprite} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Unchecked, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Hovered=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Sets the unchecked status sprite and an optional unchecked hovered sprite. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1CheckBox_ac7754437c455f40aaf6d4bca4cb0c7a9}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1CheckBox_a3881a44a1149755ea60e6329ad852b3b}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a3881a44a1149755ea60e6329ad852b3b}{$\sim$CheckBox} ()}
-\label{classMezzanine_1_1UI_1_1CheckBox_a3881a44a1149755ea60e6329ad852b3b}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -63,11 +63,6 @@ virtual bool \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a6a9f31c4bd0915b7405c10
 \label{classMezzanine_1_1UI_1_1CheckBox_a6a9f31c4bd0915b7405c10b8bfe6710a}
 
 \begin{DoxyCompactList}\small\item\em Child specific mouse hover method. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1CheckBox_a841ed282181848150b56aec13319d9a9}{
-void \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a841ed282181848150b56aec13319d9a9}{ConstructCheckBox} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&LabelText)}
-\label{classMezzanine_1_1UI_1_1CheckBox_a841ed282181848150b56aec13319d9a9}
-
-\begin{DoxyCompactList}\small\item\em Constructs a checkbox. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a8a32068338e6fedcf5d53d3eae5d909a}{
 void \hyperlink{classMezzanine_1_1UI_1_1CheckBox_a8a32068338e6fedcf5d53d3eae5d909a}{SetSpriteSet} (std::pair$<$ std::string, std::string $>$ \&SpriteSet)}
 \label{classMezzanine_1_1UI_1_1CheckBox_a8a32068338e6fedcf5d53d3eae5d909a}
@@ -196,7 +191,7 @@ Class constructor.
 \hline
 {\em Rect} & The Rect representing the position and size of the checkbox. \\
 \hline
-{\em Glyph} & The glyph index to use for the text in the label. \\
+{\em \hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph}} & The glyph index to use for the text in the label. \\
 \hline
 {\em LabelText} & The text to put into the label. \\
 \hline
@@ -205,7 +200,7 @@ Class constructor.
 \end{DoxyParams}
 
 
-Definition at line 72 of file uicheckbox.cpp.
+Definition at line 96 of file uicheckbox.cpp.
 
 
 
@@ -228,7 +223,7 @@ Returns a pointer to the button this checkbox is based on.
 \end{DoxyReturn}
 
 
-Definition at line 273 of file uicheckbox.cpp.
+Definition at line 293 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_adde59a08d00bad4085aad204d29d48d1}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!GetLabel@{GetLabel}}
@@ -248,7 +243,7 @@ Returns a pointer to the label for this checkbox.
 \end{DoxyReturn}
 
 
-Definition at line 278 of file uicheckbox.cpp.
+Definition at line 298 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a842ef69f568681a4e3b50d1b411467f6}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!GetLabelText@{GetLabelText}}
@@ -268,7 +263,7 @@ Returns a string containing the currently set label. If no label is set this wil
 \end{DoxyReturn}
 
 
-Definition at line 204 of file uicheckbox.cpp.
+Definition at line 224 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_aafe54951cd6a51b6ad43abb5fd29696d}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!IsChecked@{IsChecked}}
@@ -288,7 +283,7 @@ Returns a bool representing whether or not this checkbox is checked.
 \end{DoxyReturn}
 
 
-Definition at line 181 of file uicheckbox.cpp.
+Definition at line 201 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a83801877bb5b9de0f61895dabe4d0c62}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!ManualCheck@{ManualCheck}}
@@ -310,7 +305,7 @@ Manually check or uncheck this checkbox.
 \end{DoxyParams}
 
 
-Definition at line 186 of file uicheckbox.cpp.
+Definition at line 206 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_afa566e7ad9bd33354a76e4ea964e85bf}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetActualPosition@{SetActualPosition}}
@@ -336,7 +331,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e858
 
 
 
-Definition at line 236 of file uicheckbox.cpp.
+Definition at line 256 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a063a9c0ab24ddc4332711a7045e2786d}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetActualSize@{SetActualSize}}
@@ -362,7 +357,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753
 
 
 
-Definition at line 255 of file uicheckbox.cpp.
+Definition at line 275 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a8f53b9129268f6d75d3f6539b11222df}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetCheckedSprite@{SetCheckedSprite}}
@@ -387,7 +382,7 @@ Sets the checked status sprite and an optional checked hovered sprite.
 \end{DoxyParams}
 
 
-Definition at line 218 of file uicheckbox.cpp.
+Definition at line 238 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a720b1c4a1f4289b81204ed48016caf9e}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetLabelText@{SetLabelText}}
@@ -409,7 +404,7 @@ If a label hasn't been set when this is called, this funtion will create a new o
 \end{DoxyParams}
 
 
-Definition at line 199 of file uicheckbox.cpp.
+Definition at line 219 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_ab12deffc753623b224191ee294626a65}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetPosition@{SetPosition}}
@@ -435,7 +430,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007d
 
 
 
-Definition at line 226 of file uicheckbox.cpp.
+Definition at line 246 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a4fb7dc586245da0cdcfc789f8a1c83a3}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetSize@{SetSize}}
@@ -461,7 +456,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff0981
 
 
 
-Definition at line 246 of file uicheckbox.cpp.
+Definition at line 266 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_a48a0deb7a6bbb25185396fe63c864ac5}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!SetUncheckedSprite@{SetUncheckedSprite}}
@@ -486,7 +481,7 @@ Sets the unchecked status sprite and an optional unchecked hovered sprite.
 \end{DoxyParams}
 
 
-Definition at line 209 of file uicheckbox.cpp.
+Definition at line 229 of file uicheckbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1CheckBox_ac7754437c455f40aaf6d4bca4cb0c7a9}{
 \index{Mezzanine::UI::CheckBox@{Mezzanine::UI::CheckBox}!UpdateDimensions@{UpdateDimensions}}
@@ -507,7 +502,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848
 
 
 
-Definition at line 263 of file uicheckbox.cpp.
+Definition at line 283 of file uicheckbox.cpp.
 
 
 

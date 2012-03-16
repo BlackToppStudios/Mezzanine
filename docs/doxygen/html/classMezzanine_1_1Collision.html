@@ -105,6 +105,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Constructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#a1170d2c2e674ab3e9b1bf68c91171db4">Collision</a> (const <a class="el" href="classMezzanine_1_1Collision.html">Collision</a> &amp;Other)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy Constructor.  <a href="#a1170d2c2e674ab3e9b1bf68c91171db4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#abeac6cfc637fe44493602a04f75c0232">~Collision</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#abeac6cfc637fe44493602a04f75c0232"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#ad9d72f1d883214242803b72d1b82c343">GetAge</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Point)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of simulation steps the contact point has existed.  <a href="#ad9d72f1d883214242803b72d1b82c343"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#aa53aa5016ea75885b9be4f317968b407">GetAppliedImpulse</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Point)</td></tr>
@@ -134,8 +136,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afee98e7728b4f2a4865a2ef38a051577"></a><!-- doxytag: member="Mezzanine::Collision::Update" ref="afee98e7728b4f2a4865a2ef38a051577" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#afee98e7728b4f2a4865a2ef38a051577">Update</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates this collisions contact point data if it needs updating. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#abeac6cfc637fe44493602a04f75c0232">~Collision</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#abeac6cfc637fe44493602a04f75c0232"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Collision.html#a2f367a05c29086e86395ca5f6f2c4728">Collision</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *A, <a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *B, btCollisionAlgorithm *PhysicsAlgo)</td></tr>
@@ -412,7 +412,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> with the point of the collision in ObjectA's local space. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 with the point of the collision in ObjectA's local space. </dd></dl>
 
 <p>Definition at line <a class="el" href="collision_8cpp_source.html#l00173">173</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
@@ -440,7 +440,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> with the point of the collision in ObjectB's local space. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 with the point of the collision in ObjectB's local space. </dd></dl>
 
 <p>Definition at line <a class="el" href="collision_8cpp_source.html#l00178">178</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
@@ -468,7 +468,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> representing the collision normal for a contact point. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the collision normal for a contact point. </dd></dl>
 
 <p>Definition at line <a class="el" href="collision_8cpp_source.html#l00183">183</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
@@ -559,7 +559,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> containing the approximate world location of the collision. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 containing the approximate world location of the collision. </dd></dl>
 
 <p>Definition at line <a class="el" href="collision_8cpp_source.html#l00166">166</a> of file <a class="el" href="collision_8cpp_source.html">collision.cpp</a>.</p>
 
@@ -670,7 +670,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -680,6 +680,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

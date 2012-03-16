@@ -14,6 +14,10 @@ This is an instance of a sound that can be played and manipulated.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1Audio_1_1Sound_ad0739c73fe497ad407642da5597a7599}{Sound} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&SoundName, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&FileName, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Group, \hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295e}{Audio::SoundType} SType)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Audio_1_1Sound_a2aed211bc488b29b38fef7c54c4a7952}{$\sim$Sound} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Audio_1_1Sound_a59858396263b2f14fa937ff7c10011d7}{GetBaseVolume} () const 
 \begin{DoxyCompactList}\small\item\em Gets the current volume of the sound source. \item\end{DoxyCompactList}\item 
 virtual int \hyperlink{classMezzanine_1_1Audio_1_1Sound_ac6a79c5326a7a36b39f86604b62ccf98}{GetCompressedAudioSize} () const 
@@ -118,30 +122,26 @@ virtual void \hyperlink{classMezzanine_1_1Audio_1_1Sound_a473e3e46141c95b3ace664
 \begin{DoxyCompactList}\small\item\em Sets the strength of the sound source. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Audio_1_1Sound_a1c987846b4e33b70266afea6e350a7fd}{SetVelocity} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Velocity)
 \begin{DoxyCompactList}\small\item\em Sets the velocity of the sound source. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Audio_1_1Sound_ad0739c73fe497ad407642da5597a7599}{Sound} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&SoundName, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&FileName, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Group, \hyperlink{namespaceMezzanine_1_1Audio_a316b2244b8be1a8c441a39b0a246295e}{Audio::SoundType} SType)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Audio_1_1Sound_a7c1d618d573b6176056c9255d06872b5}{Stop} ()
 \item 
 \hypertarget{classMezzanine_1_1Audio_1_1Sound_ab4d3ddd9aed1bdd3b9c4592f776d29ca}{
 virtual void \hyperlink{classMezzanine_1_1Audio_1_1Sound_ab4d3ddd9aed1bdd3b9c4592f776d29ca}{UpdateVolume} ()}
 \label{classMezzanine_1_1Audio_1_1Sound_ab4d3ddd9aed1bdd3b9c4592f776d29ca}
 
-\begin{DoxyCompactList}\small\item\em Calculates all volume settings and applies them to this sound. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Audio_1_1Sound_a2aed211bc488b29b38fef7c54c4a7952}{$\sim$Sound} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculates all volume settings and applies them to this sound. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1Audio_1_1Sound_a534ecdd7cf8780f68377be655c37b6c0}{
-virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Audio_1_1Sound_a534ecdd7cf8780f68377be655c37b6c0}{GetTypeVolume} () const }
-\label{classMezzanine_1_1Audio_1_1Sound_a534ecdd7cf8780f68377be655c37b6c0}
-
-\begin{DoxyCompactList}\small\item\em Gets the volume of this sound type. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1Audio_1_1Sound_a4cc742a744facfc9f408f0deb28d7a0d}{
 \hyperlink{classMezzanine_1_1Audio_1_1Sound_a4cc742a744facfc9f408f0deb28d7a0d}{Sound} ()}
 \label{classMezzanine_1_1Audio_1_1Sound_a4cc742a744facfc9f408f0deb28d7a0d}
 
-\begin{DoxyCompactList}\small\item\em Class Constructor. Internal use only. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class Constructor. Internal use only. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Audio_1_1Sound_a534ecdd7cf8780f68377be655c37b6c0}{
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Audio_1_1Sound_a534ecdd7cf8780f68377be655c37b6c0}{GetTypeVolume} () const }
+\label{classMezzanine_1_1Audio_1_1Sound_a534ecdd7cf8780f68377be655c37b6c0}
+
+\begin{DoxyCompactList}\small\item\em Gets the volume of this sound type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -1049,7 +1049,7 @@ Sets the doppler velocity vector.
 
 In most cases you shouldn't need to call this as this is handled by the engine. Is called every time position, velocity, or direction is altered. 
 \begin{DoxyParams}{Parameters}
-{\em Velocity} & A \hyperlink{classvector3}{vector3} representing the doppler velocity to be applied. \\
+{\em Velocity} & A vector3 representing the doppler velocity to be applied. \\
 \hline
 \end{DoxyParams}
 

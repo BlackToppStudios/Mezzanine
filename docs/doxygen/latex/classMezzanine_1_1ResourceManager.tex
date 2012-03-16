@@ -20,8 +20,14 @@ Inheritance diagram for Mezzanine::ResourceManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classMezzanine_1_1ResourceManager_a0c94a75cc5136f857447500aa4d6265b}{AddResourceLocation} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Location, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Type, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, const bool \&recursive=false)
+\hyperlink{classMezzanine_1_1ResourceManager_a39de49ab83e338cb14057e599c4db499}{ResourceManager} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \_\-EngineDataPath)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ResourceManager_a10cfccc0ecb1322995c170f2756460ea}{$\sim$ResourceManager} ()
+\item 
+void \hyperlink{classMezzanine_1_1ResourceManager_ae3304024ab5ef4c0e4a2763f8a253f1c}{AddResourceLocation} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Location, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Type, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, const bool recursive=false)
 \begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1ResourceManager_a9f734f58e7e00d635876fef6a74554c4}{CreateResourceGroup} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&GroupName)
+\begin{DoxyCompactList}\small\item\em Creates a resource group. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1ResourceManager_ab9e13ac880017cac65c57d1ccae008c4}{DeclareResource} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Type, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group)
 \begin{DoxyCompactList}\small\item\em Prepares the resource for use. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1ResourceManager_aa827efdad18698b7d7319dab35864bbe}{DestroyResourceGroup} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&GroupName)
@@ -37,16 +43,7 @@ void \hyperlink{classMezzanine_1_1ResourceManager_a57b72306ed2bfaa198ff47d43c401
 void \hyperlink{classMezzanine_1_1ResourceManager_a4b4e77984e21e3eaa1c47772d2e9c6f4}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1ResourceManager_a836ed2ec024abe10433d8e4b18378c2c}{InitResourceGroup} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Makes a resource group ready to use. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ResourceManager_a78fc768b8bd9ec38ebebb06feb133fef}{
-void \hyperlink{classMezzanine_1_1ResourceManager_a78fc768b8bd9ec38ebebb06feb133fef}{ParseMaterialScripts} ()}
-\label{classMezzanine_1_1ResourceManager_a78fc768b8bd9ec38ebebb06feb133fef}
-
-\begin{DoxyCompactList}\small\item\em Parses all Ogre Material scripts. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1ResourceManager_a39de49ab83e338cb14057e599c4db499}{ResourceManager} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \_\-EngineDataPath)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1ResourceManager_a10cfccc0ecb1322995c170f2756460ea}{$\sim$ResourceManager} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Makes a resource group ready to use. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -83,7 +80,7 @@ std::vector$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{
 \subsubsection{Detailed Description}
 This is the manager responsible for the loading and unloading of files. This class is responsible for the reading and writing of files of all kinds, be it graphical meshes, physics data, or XMl files. 
 
-Definition at line 66 of file resourcemanager.h.
+Definition at line 72 of file resourcemanager.h.
 
 
 
@@ -126,7 +123,7 @@ Definition at line 74 of file resourcemanager.cpp.
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classMezzanine_1_1ResourceManager_a0c94a75cc5136f857447500aa4d6265b}{
+\hypertarget{classMezzanine_1_1ResourceManager_ae3304024ab5ef4c0e4a2763f8a253f1c}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!AddResourceLocation@{AddResourceLocation}}
 \index{AddResourceLocation@{AddResourceLocation}!Mezzanine::ResourceManager@{Mezzanine::ResourceManager}}
 \paragraph[{AddResourceLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ResourceManager::AddResourceLocation (
@@ -134,10 +131,10 @@ Definition at line 74 of file resourcemanager.cpp.
 \item[{const {\bf String} \&}]{Location, }
 \item[{const {\bf String} \&}]{Type, }
 \item[{const {\bf String} \&}]{Group, }
-\item[{const bool \&}]{recursive = {\ttfamily false}}
+\item[{const bool}]{recursive = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1ResourceManager_a0c94a75cc5136f857447500aa4d6265b}
+\label{classMezzanine_1_1ResourceManager_ae3304024ab5ef4c0e4a2763f8a253f1c}
 
 
 Adds a location for graphical resources. 
@@ -149,7 +146,7 @@ This function will add a location on the disk to find files needed to create and
 {\em Type} & The kind of file system the location can be found in. \par
  Options are: filesystem, zip. \\
 \hline
-{\em Group} & The name of the group the resources at this location belong to. \\
+{\em Group} & The name of the group the resources at this location belong to. If the group does not exist it will be created. \\
 \hline
 {\em recursive} & Whether or not to search sub-\/directories. \\
 \hline
@@ -157,6 +154,28 @@ This function will add a location on the disk to find files needed to create and
 
 
 Definition at line 94 of file resourcemanager.cpp.
+
+\hypertarget{classMezzanine_1_1ResourceManager_a9f734f58e7e00d635876fef6a74554c4}{
+\index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!CreateResourceGroup@{CreateResourceGroup}}
+\index{CreateResourceGroup@{CreateResourceGroup}!Mezzanine::ResourceManager@{Mezzanine::ResourceManager}}
+\paragraph[{CreateResourceGroup}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ResourceManager::CreateResourceGroup (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{GroupName}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ResourceManager_a9f734f58e7e00d635876fef6a74554c4}
+
+
+Creates a resource group. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GroupName} & The name to be given to the created resource group. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 100 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_ab9e13ac880017cac65c57d1ccae008c4}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!DeclareResource@{DeclareResource}}
@@ -185,7 +204,7 @@ This function can be thought of as a preloader. This will prepare the defined re
 \end{DoxyParams}
 
 
-Definition at line 123 of file resourcemanager.cpp.
+Definition at line 128 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_aa827efdad18698b7d7319dab35864bbe}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!DestroyResourceGroup@{DestroyResourceGroup}}
@@ -208,12 +227,12 @@ Destroys a resource group, unloading all of it's resources.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000024}{Todo}]This is a bit of a hack, but needs to be here until we can upgrade our resource system. \end{Desc}
+\item[\hyperlink{todo__todo000028}{Todo}]This is a bit of a hack, but needs to be here until we can upgrade our resource system. \end{Desc}
 
 
 
 
-Definition at line 100 of file resourcemanager.cpp.
+Definition at line 106 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_a57b72306ed2bfaa198ff47d43c4013fa}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -234,7 +253,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258
 
 
 
-Definition at line 164 of file resourcemanager.cpp.
+Definition at line 156 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_a5b2bd318749c5d6e236680410c13f8bc}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!GetEngineDataDirectory@{GetEngineDataDirectory}}
@@ -279,7 +298,7 @@ An derivative of std::istream a \hyperlink{classMezzanine_1_1ResourceInputStream
 \end{DoxyReturn}
 The returned \hyperlink{classMezzanine_1_1ResourceInputStream}{ResourceInputStream} is the Caller's responsibility to deal with. If it is not deleted it is a memory leak. 
 
-Definition at line 146 of file resourcemanager.cpp.
+Definition at line 138 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_aafe55f1095a67f30e97bff25200685d7}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!GetType@{GetType}}
@@ -303,7 +322,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf
 
 
 
-Definition at line 168 of file resourcemanager.cpp.
+Definition at line 160 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_a4b4e77984e21e3eaa1c47772d2e9c6f4}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!Initialize@{Initialize}}
@@ -326,7 +345,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d
 
 
 
-Definition at line 160 of file resourcemanager.cpp.
+Definition at line 152 of file resourcemanager.cpp.
 
 \hypertarget{classMezzanine_1_1ResourceManager_a836ed2ec024abe10433d8e4b18378c2c}{
 \index{Mezzanine::ResourceManager@{Mezzanine::ResourceManager}!InitResourceGroup@{InitResourceGroup}}
@@ -348,7 +367,7 @@ After adding all of your resources and declaring them as nessessary, this functi
 \end{DoxyParams}
 
 
-Definition at line 128 of file resourcemanager.cpp.
+Definition at line 133 of file resourcemanager.cpp.
 
 
 

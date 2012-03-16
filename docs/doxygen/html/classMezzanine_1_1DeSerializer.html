@@ -65,6 +65,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="classMezzanine_1_1DeSerializer.html">DeSerializer</a>      </li>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::DeSerializer&lt; DeSerializable &gt; Class Template Reference</h1>  </div>
 </div>
@@ -74,7 +76,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="serialization_8h_source.html">serialization.h</a>&gt;</code></p>
+
+<p><a href="classMezzanine_1_1DeSerializer-members.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#a99e25b2dab4cde22af1c77fa31665bae">ContainerName</a> () const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This will return the Name of the element that Contains multiple of the items to be DeSerialized.  <a href="#a99e25b2dab4cde22af1c77fa31665bae"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#aaf31c38d936ec89323c3cb9196a5a97f">DeSerialize</a> (std::istream &amp;Stream)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the serialized version of all the live data from the stream.  <a href="#aaf31c38d936ec89323c3cb9196a5a97f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#ab2765b0fe8f803344c6965df50333073">DeSerializeAll</a> (std::istream &amp;Stream)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them.  <a href="#ab2765b0fe8f803344c6965df50333073"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual DeSerializable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#a646390cf8138c622c64aa83a93b10cce">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node into a complete live data structure.  <a href="#a646390cf8138c622c64aa83a93b10cce"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#ad3dc2a569986dfcd169cc341d85a7d74">ProtoDeSerializeAll</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node into a complete series of live class instances.  <a href="#ad3dc2a569986dfcd169cc341d85a7d74"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class DeSerializable&gt;<br/>
@@ -88,7 +104,158 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and <a class="el" href="classMezzanine_1_1Serializer.html" title="A tool for serializing classes with specific issues serializing.">Mezzanine::Serializer</a>. </p>
 
 <p>Definition at line <a class="el" href="serialization_8h_source.html#l00369">369</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a99e25b2dab4cde22af1c77fa31665bae"></a><!-- doxytag: member="Mezzanine::DeSerializer::ContainerName" ref="a99e25b2dab4cde22af1c77fa31665bae" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DeSerializable&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::ContainerName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will return the Name of the element that Contains multiple of the items to be DeSerialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A String that correctly indicates the name of an xml tag. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#a4f28a9c4679891e249f9f5e4381a3f93">Mezzanine::ActorRigidDeSerializer</a>, and <a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#a84083c617b9c74f3e2110467ade361c3">Mezzanine::CollisionShapeDeSerializer</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf31c38d936ec89323c3cb9196a5a97f"></a><!-- doxytag: member="Mezzanine::DeSerializer::DeSerialize" ref="aaf31c38d936ec89323c3cb9196a5a97f" args="(std::istream &amp;Stream)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DeSerializable&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::istream&amp; <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::DeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the serialized version of all the live data from the stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The std::istream to get the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The default implementation of this uses ProtoDeSerializeAll(xml::Node*) to accept The complete XML to serialise and assemble it in memory. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#a9b5cc500f61b5df6423102b398267743">Mezzanine::CollisionShapeDeSerializer</a>.</p>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00411">411</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2765b0fe8f803344c6965df50333073"></a><!-- doxytag: member="Mezzanine::DeSerializer::DeSerializeAll" ref="ab2765b0fe8f803344c6965df50333073" args="(std::istream &amp;Stream)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DeSerializable&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::istream&amp; <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::DeSerializeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The std::istream to get the data from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The default implementation of this uses ProtoDeSerializeAll(xml::Node&amp;) to accept11 The complete XML to serialise and assemble it in memory. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00393">393</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a646390cf8138c622c64aa83a93b10cce"></a><!-- doxytag: member="Mezzanine::DeSerializer::ProtoDeSerialize" ref="a646390cf8138c622c64aa83a93b10cce" args="(const xml::Node &amp;OneNode)=0" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DeSerializable&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual DeSerializable* <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert An XML Node into a complete live data structure. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into a live class instance.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Not implemented in default serializer. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to the freshly deserialized class instance. </dd></dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#aff6fdcd7d7fdbc52e493ba2c8229b2e1">Mezzanine::ActorRigidDeSerializer</a>, and <a class="el" href="classMezzanine_1_1CollisionShapeDeSerializer.html#af8882919e03c91cd2a65d1a12ddbb85a">Mezzanine::CollisionShapeDeSerializer</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad3dc2a569986dfcd169cc341d85a7d74"></a><!-- doxytag: member="Mezzanine::DeSerializer::ProtoDeSerializeAll" ref="ad3dc2a569986dfcd169cc341d85a7d74" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class DeSerializable&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::ProtoDeSerializeAll </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert An XML Node into a complete series of live class instances. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into multiple Live classes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This is expected to put the deserialized items somewhere they can be accessed by the calling, but provides no facility for working them itself. <br/>
+ <br/>
+ Not implemented in default <a class="el" href="classMezzanine_1_1DeSerializer.html" title="A tool for deserializing classes with specific issues deserializing them.">DeSerializer</a>. </p>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00378">378</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="serialization_8h_source.html">serialization.h</a></li>
 </ul>
 </div>
@@ -97,7 +264,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -107,6 +274,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:39 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

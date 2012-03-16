@@ -14,6 +14,12 @@ Stores information about relative location and rotation in 3d space.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1Transform_a0949c0923e41e00af6c9537d5f9094b7}{Transform} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec=\hyperlink{classMezzanine_1_1Vector3}{Vector3}(), const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Quat=\hyperlink{classMezzanine_1_1Quaternion}{Quaternion}())
+\begin{DoxyCompactList}\small\item\em The multipurpose constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform_ad4974a80bdb1625119e98b059e4e91e0}{Transform} (const btTransform \&Btt)
+\begin{DoxyCompactList}\small\item\em The Conversion Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Transform_ad719d3280b8b94f27b5ba1ce3e8a9a59}{Transform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TheOther)
+\begin{DoxyCompactList}\small\item\em The copy constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Transform_ade790a95db2817427aea8b7a90f95925}{ExtractBulletTransform} (const btTransform \&temp)
 \begin{DoxyCompactList}\small\item\em Copies an existing Bullet transform. \item\end{DoxyCompactList}\item 
 btTransform \hyperlink{classMezzanine_1_1Transform_ae1745852b61f7388a5374eeebdc893cd}{GetBulletTransform} () const 
@@ -22,12 +28,20 @@ btTransform \hyperlink{classMezzanine_1_1Transform_ae1745852b61f7388a5374eeebdc8
 \begin{DoxyCompactList}\small\item\em Set the values of this \hyperlink{classMezzanine_1_1Transform}{Transform} to match an existing btTransform. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Transform}{Transform} \& \hyperlink{classMezzanine_1_1Transform_aa21521163611bf58988caf99c085d067}{operator=} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&rhs)
 \begin{DoxyCompactList}\small\item\em Set the values of this \hyperlink{classMezzanine_1_1Transform}{Transform} to match an existing \hyperlink{classMezzanine_1_1Transform}{Transform}. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Transform_ad4974a80bdb1625119e98b059e4e91e0}{Transform} (const btTransform \&Btt)
-\begin{DoxyCompactList}\small\item\em The Conversion Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Transform_a0949c0923e41e00af6c9537d5f9094b7}{Transform} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec=\hyperlink{classMezzanine_1_1Vector3}{Vector3}(), const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Quat=\hyperlink{classMezzanine_1_1Quaternion}{Quaternion}())
-\begin{DoxyCompactList}\small\item\em The multipurpose constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Transform_ad719d3280b8b94f27b5ba1ce3e8a9a59}{Transform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TheOther)
-\begin{DoxyCompactList}\small\item\em The copy constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classMezzanine_1_1Transform_aa58fe89c84a189cfb2c6a0594c37e071}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Transform_a7bc390c5875493870d8eff4a36685457}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Transform_a8d9f45cf621609dc884712c3beb3a501}{
+void \hyperlink{classMezzanine_1_1Transform_a8d9f45cf621609dc884712c3beb3a501}{SetIdentity} ()}
+\label{classMezzanine_1_1Transform_a8d9f45cf621609dc884712c3beb3a501}
+
+\begin{DoxyCompactList}\small\item\em Sets default construction values for all members. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Transform_aa654b59db0a5ae99778cfb89ad8f7045}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -143,7 +157,7 @@ This function will copy the values stored in an existing Bullet transform and se
 \end{DoxyParams}
 
 
-Definition at line 71 of file transform.cpp.
+Definition at line 77 of file transform.cpp.
 
 \hypertarget{classMezzanine_1_1Transform_ae1745852b61f7388a5374eeebdc893cd}{
 \index{Mezzanine::Transform@{Mezzanine::Transform}!GetBulletTransform@{GetBulletTransform}}
@@ -160,7 +174,7 @@ Gets a Bullet \hyperlink{classMezzanine_1_1Transform}{Transform}.
 
 Creates a Bullet \hyperlink{classMezzanine_1_1Transform}{Transform} with values equal to this class instance and returns it. 
 
-Definition at line 64 of file transform.cpp.
+Definition at line 70 of file transform.cpp.
 
 \hypertarget{classMezzanine_1_1Transform_aa21521163611bf58988caf99c085d067}{
 \index{Mezzanine::Transform@{Mezzanine::Transform}!operator=@{operator=}}
@@ -185,7 +199,7 @@ A reference to the freshly overwritten \hyperlink{classMezzanine_1_1Transform}{T
 \end{DoxyReturn}
 
 
-Definition at line 78 of file transform.cpp.
+Definition at line 84 of file transform.cpp.
 
 \hypertarget{classMezzanine_1_1Transform_a4ea68563eacb2f69a4e83a0c28392b74}{
 \index{Mezzanine::Transform@{Mezzanine::Transform}!operator=@{operator=}}
@@ -210,7 +224,74 @@ A reference to the freshly overwritten \hyperlink{classMezzanine_1_1Transform}{T
 \end{DoxyReturn}
 
 
-Definition at line 89 of file transform.cpp.
+Definition at line 95 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_aa58fe89c84a189cfb2c6a0594c37e071}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Transform::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Transform_aa58fe89c84a189cfb2c6a0594c37e071}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Definition at line 118 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_a7bc390c5875493870d8eff4a36685457}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Transform::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Transform_a7bc390c5875493870d8eff4a36685457}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file transform.cpp.
+
+\hypertarget{classMezzanine_1_1Transform_aa654b59db0a5ae99778cfb89ad8f7045}{
+\index{Mezzanine::Transform@{Mezzanine::Transform}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::Transform@{Mezzanine::Transform}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::Transform::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Transform_aa654b59db0a5ae99778cfb89ad8f7045}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Transform\char`\"{} 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file transform.cpp.
 
 
 

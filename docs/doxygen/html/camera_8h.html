@@ -61,7 +61,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>camera.h File Reference</h1>  </div>
 </div>
@@ -90,18 +91,154 @@ Namespaces</h2></td></tr>
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>The bulk of the engine components go in this namspace. </p>
 <br/></td></tr>
 </p>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceOgre.html">Ogre</a></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;MEZZ_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="camera_8h.html#ab5f16fad6ef8f76b4d1e4aeba87368bb">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a> &amp;Ev)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the passed <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> to XML.  <a href="#ab5f16fad6ef8f76b4d1e4aeba87368bb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;MEZZ_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="camera_8h.html#a0667d7be6ccbc8437d4969770e335080">operator&gt;&gt;</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;OneNode, <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a> &amp;Ev)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all values of a <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> from parsed xml.  <a href="#a0667d7be6ccbc8437d4969770e335080"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::istream &amp;MEZZ_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="camera_8h.html#a9a703b3ee254d0b13243b73ccf8d6b7a">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a> &amp;Ev)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize a <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>.  <a href="#a9a703b3ee254d0b13243b73ccf8d6b7a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Declaration of the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> class. </p>
 
 <p>Definition in file <a class="el" href="camera_8h_source.html">camera.h</a>.</p>
-</div></div>
+</div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="ab5f16fad6ef8f76b4d1e4aeba87368bb"></a><!-- doxytag: member="camera.h::operator&lt;&lt;" ref="ab5f16fad6ef8f76b4d1e4aeba87368bb" args="(std::ostream &amp;stream, const Mezzanine::Camera &amp;Ev)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; MEZZ_LIB operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>Ev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Serializes the passed <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> to XML. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The ostream to send the xml to. </td></tr>
+    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> to be serialized </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>this returns the ostream, now with the serialized data </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-serialized. </dd>
+<dd>
+This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. </dd></dl>
+
+<p>Definition at line <a class="el" href="camera_8cpp_source.html#l00288">288</a> of file <a class="el" href="camera_8cpp_source.html">camera.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0667d7be6ccbc8437d4969770e335080"></a><!-- doxytag: member="camera.h::operator&gt;&gt;" ref="a0667d7be6ccbc8437d4969770e335080" args="(const Mezzanine::xml::Node &amp;OneNode, Mezzanine::Camera &amp;Ev)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a>&amp; MEZZ_LIB operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>Ev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set all values of a <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> from parsed xml. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>The istream to get the xml from to (re)make the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>. </td></tr>
+    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> to be reset. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns thexml::Node that was passed in. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not attempt to de-serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera. </dd>
+<dd>
+This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. </dd></dl>
+
+<p>Definition at line <a class="el" href="camera_8cpp_source.html#l00315">315</a> of file <a class="el" href="camera_8cpp_source.html">camera.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a703b3ee254d0b13243b73ccf8d6b7a"></a><!-- doxytag: member="camera.h::operator&gt;&gt;" ref="a9a703b3ee254d0b13243b73ccf8d6b7a" args="(std::istream &amp;stream, Mezzanine::Camera &amp;Ev)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream&amp; MEZZ_LIB operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a> &amp;&#160;</td>
+          <td class="paramname"><em>Ev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Deserialize a <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The istream to get the xml from to (re)make the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a>. </td></tr>
+    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> to be deserialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>this returns the ostream, advanced past the <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Mezzanine::Camera</a> that was recreated onto Ev. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-serialized. </dd>
+<dd>
+This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. </dd></dl>
+
+<p>Definition at line <a class="el" href="camera_8cpp_source.html#l00305">305</a> of file <a class="el" href="camera_8cpp_source.html">camera.cpp</a>.</p>
+
+</div>
+</div>
+</div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -111,6 +248,6 @@ Namespaces</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

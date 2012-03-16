@@ -33,15 +33,20 @@ typedef std::map$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classMezzanine_1_1CollisionShapeManager_abec03ca004aae3ce0dc478e34e5d1252}{iterator} \hyperlink{classMezzanine_1_1CollisionShapeManager_a8b73066314e6fe91cce3507f5d85584f}{begin} ()
-\begin{DoxyCompactList}\small\item\em Get an Iterator pointing to the first item in the container. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1CollisionShapeManager_a44318f2b04d35ecc76d5c58ea574f0f0}{const\_\-iterator} \hyperlink{classMezzanine_1_1CollisionShapeManager_ad588bcca5ef47d467439171edf5640a0}{begin} () const 
-\begin{DoxyCompactList}\small\item\em Get a const Iterator pointing at the first item in the container. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1CollisionShapeManager_a47c3e4e886e22abb3c8017e8f244cac2}{
 \hyperlink{classMezzanine_1_1CollisionShapeManager_a47c3e4e886e22abb3c8017e8f244cac2}{CollisionShapeManager} ()}
 \label{classMezzanine_1_1CollisionShapeManager_a47c3e4e886e22abb3c8017e8f244cac2}
 
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CollisionShapeManager_aaa11539e5740540ec299c616b54556bf}{
+virtual \hyperlink{classMezzanine_1_1CollisionShapeManager_aaa11539e5740540ec299c616b54556bf}{$\sim$CollisionShapeManager} ()}
+\label{classMezzanine_1_1CollisionShapeManager_aaa11539e5740540ec299c616b54556bf}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CollisionShapeManager_a44318f2b04d35ecc76d5c58ea574f0f0}{const\_\-iterator} \hyperlink{classMezzanine_1_1CollisionShapeManager_ad588bcca5ef47d467439171edf5640a0}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Get a const Iterator pointing at the first item in the container. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CollisionShapeManager_abec03ca004aae3ce0dc478e34e5d1252}{iterator} \hyperlink{classMezzanine_1_1CollisionShapeManager_a8b73066314e6fe91cce3507f5d85584f}{begin} ()
+\begin{DoxyCompactList}\small\item\em Get an Iterator pointing to the first item in the container. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1CollisionShapeManager_aa7d9c7a9fe78def866e1abc02b261b53}{
 virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_aa7d9c7a9fe78def866e1abc02b261b53}{DestroyAllShapes} ()}
 \label{classMezzanine_1_1CollisionShapeManager_aa7d9c7a9fe78def866e1abc02b261b53}
@@ -81,18 +86,18 @@ virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a15ddc7bb06cf1cf
 \item 
 virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_af76b90ccca8183a6ddfc33b7a4e65773}{LoadAllShapesFromFile} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&FileName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group)
 \begin{DoxyCompactList}\small\item\em Loads all shapes saved in an existing .bullet file, and stores them in this manager. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1CompoundCollisionShape}{CompoundCollisionShape} $\ast$ \hyperlink{classMezzanine_1_1CollisionShapeManager_a639aa9c6c09f859dea4a200feb50528b}{PerformConvexDecomposition} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Depth, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} CPercent, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} PPercent, bool UseAllSubmeshes=false)
-\begin{DoxyCompactList}\small\item\em Generates a compound shape of Convex Hulls from a provided mesh. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1CompoundCollisionShape}{CompoundCollisionShape} $\ast$ \hyperlink{classMezzanine_1_1CollisionShapeManager_ab9a17c8322a36a7d1c8ee80ff11e1662}{PerformConvexDecomposition} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ObjectMesh, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Depth, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} CPercent, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} PPercent, bool UseAllSubmeshes=false)
+\begin{DoxyCompactList}\small\item\em Generates a compound shape of Convex Hulls from a provided mesh. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CompoundCollisionShape}{CompoundCollisionShape} $\ast$ \hyperlink{classMezzanine_1_1CollisionShapeManager_a639aa9c6c09f859dea4a200feb50528b}{PerformConvexDecomposition} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Depth, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} CPercent, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} PPercent, bool UseAllSubmeshes=false)
 \begin{DoxyCompactList}\small\item\em Generates a compound shape of Convex Hulls from a provided mesh. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1CollisionShapeManager_a0911f693b819bb1c32ef401893a47d1b}{
 virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a0911f693b819bb1c32ef401893a47d1b}{RemoveAllShapes} ()}
 \label{classMezzanine_1_1CollisionShapeManager_a0911f693b819bb1c32ef401893a47d1b}
 
 \begin{DoxyCompactList}\small\item\em Removes all shapes from the manager without deleting them. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a53331ac80a2ad503c049cc212d496c94}{RemoveShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Removes a shape from this manager without deleting it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a4b44e43059e853243bbe27c25be088ca}{RemoveShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
+\begin{DoxyCompactList}\small\item\em Removes a shape from this manager without deleting it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a53331ac80a2ad503c049cc212d496c94}{RemoveShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Removes a shape from this manager without deleting it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a3adf0debfcef2c6ef4d2d6da1cd700f2}{SaveAllStoredShapesToFile} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&FileName)
 \begin{DoxyCompactList}\small\item\em Takes all the shapes currently stored this manager and saves them to a .bullet file. \item\end{DoxyCompactList}\item 
@@ -101,12 +106,7 @@ virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_af024fba16fd19e4
 void \hyperlink{classMezzanine_1_1CollisionShapeManager_a6ee3a505210dbf09c46752d1b45bbfd0}{SetNameForUnnamedShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&NewName, \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
 \begin{DoxyCompactList}\small\item\em Assigns a name to an unnamed shape. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1CollisionShapeManager_a9873202c93a5d70327219cc700948908}{StoreShape} (\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$Shape)
-\begin{DoxyCompactList}\small\item\em Stores a pre-\/made shape in this manager. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1CollisionShapeManager_aaa11539e5740540ec299c616b54556bf}{
-virtual \hyperlink{classMezzanine_1_1CollisionShapeManager_aaa11539e5740540ec299c616b54556bf}{$\sim$CollisionShapeManager} ()}
-\label{classMezzanine_1_1CollisionShapeManager_aaa11539e5740540ec299c616b54556bf}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Stores a pre-\/made shape in this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -143,7 +143,7 @@ std::set$<$ \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ 
 \subsubsection{Detailed Description}
 This manager is for the storage of all shapes and creation of mesh shapes. \hyperlink{classMezzanine_1_1Collision}{Collision} shapes do not need to be stored in this manager, but can be re-\/used across multiple \hyperlink{classMezzanine_1_1World}{World} objects with physics representations. For performance reasons, it is recommended to store and re-\/use a collision shape anytime you need it in multiple objects, rather then re-\/creating the same shape again and again. 
 
-Definition at line 68 of file collisionshapemanager.h.
+Definition at line 74 of file collisionshapemanager.h.
 
 
 
@@ -842,7 +842,7 @@ Used to serialize and deserialize collisionshapes to xml.
 
 More Sophisticated shapes may reference a .bullet or a .mesh file. 
 
-Definition at line 210 of file collisionshapemanager.h.
+Definition at line 216 of file collisionshapemanager.h.
 
 
 

@@ -84,9 +84,11 @@ Inheritance diagram for Mezzanine::ActorSoft:</div>
  <div class="center">
   <img src="classMezzanine_1_1ActorSoft.png" usemap="#Mezzanine::ActorSoft_map" alt=""/>
   <map id="Mezzanine::ActorSoft_map" name="Mezzanine::ActorSoft_map">
-<area href="classMezzanine_1_1ActorBase.html" alt="Mezzanine::ActorBase" shape="rect" coords="0,112,203,136"/>
-<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="0,56,203,80"/>
-<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,0,203,24"/>
+<area href="classMezzanine_1_1ActorBase.html" alt="Mezzanine::ActorBase" shape="rect" coords="106,168,309,192"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="106,112,309,136"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="0,56,203,80"/>
+<area href="classMezzanine_1_1AttachableParent.html" alt="Mezzanine::AttachableParent" shape="rect" coords="213,56,416,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="213,0,416,24"/>
 </map>
  </div></div>
 
@@ -94,35 +96,36 @@ Inheritance diagram for Mezzanine::ActorSoft:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a1f255e52f48a9fec2cfe2f91664fb350">_Update</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a3ab7c4cb45c0308a1b398069095d81b2">ActorSoft</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> mass, <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> name, <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> file, <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> group)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a3ab7c4cb45c0308a1b398069095d81b2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a22e089e98fe83eeb379d399945a10fe9">AddObjectToWorld</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a4701cb3e90164c828247a43ff098f69b">~ActorSoft</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a4701cb3e90164c828247a43ff098f69b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a1f255e52f48a9fec2cfe2f91664fb350">_Update</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#ad314e449aea1ac0b641816f68a861159">AddToWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#ab0ddf931ccde766dc5e040077f1a3ec4">GetBulletObject</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Physics data raw from the physic subsystem.  <a href="#ab0ddf931ccde766dc5e040077f1a3ec4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a0192b3889eaf2786352d75ca03fcae4a">GetLocation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the location of the object.  <a href="#a0192b3889eaf2786352d75ca03fcae4a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a733138429fccf93f626e44ee9056e102">GetName</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the name of the object.  <a href="#a733138429fccf93f626e44ee9056e102"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#aa37860ec9b4d12111c74df7bd14fc58d">GetName</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the name of the object.  <a href="#aa37860ec9b4d12111c74df7bd14fc58d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ActorSoftPhysicsSettings.html">ActorSoftPhysicsSettings</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a9d2960eee35ecfefe76fce2dde3ea18e">GetPhysicsSettings</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the physics settings class associated with this actor.  <a href="#a9d2960eee35ecfefe76fce2dde3ea18e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a11cb2b406639b1dac2f9e396741f8f44">RemoveObjectFromWorld</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#adddd9e4dafbe78aa9fb55ab92a42dc42">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#ac1c30677a8be15080ba7bbdbf7ce696e">RemoveFromWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#ab76bcb0d227374ef5d69878783c7f89b">SetActorScaling</a> (<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> scale)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the scale of the actor.  <a href="#ab76bcb0d227374ef5d69878783c7f89b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a45178fcaf06a81e75d7d81b8fc90fc9e">SetInitLocation</a> (<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the starting location of the actor.  <a href="#a45178fcaf06a81e75d7d81b8fc90fc9e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a8ee3cce8eb7578cdeb2af771f16ab240">SetInitOrientation</a> (<a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Orientation)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the starting orientation of the actor.  <a href="#a8ee3cce8eb7578cdeb2af771f16ab240"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a9c96f61e8a39fc6b35eb35c03b8e0e42">SetLocation</a> (<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Place)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#a9c96f61e8a39fc6b35eb35c03b8e0e42"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#aad9c559bae769ac44d437a0612934bc2">SetLocation</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> x, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> y, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> z)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#aad9c559bae769ac44d437a0612934bc2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a9c96f61e8a39fc6b35eb35c03b8e0e42">SetLocation</a> (<a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Place)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually sets the location of the actor.  <a href="#a9c96f61e8a39fc6b35eb35c03b8e0e42"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a3490444768316d69b5560d3500550a4f">SetOrientation</a> (<a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Rotation)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#a3490444768316d69b5560d3500550a4f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#aa203dd4d6bde54f4551673e2690f20b8">SetOrientation</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> x, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> y, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> z, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> w)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the orientation of the actor.  <a href="#aa203dd4d6bde54f4551673e2690f20b8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#a4701cb3e90164c828247a43ff098f69b">~ActorSoft</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a4701cb3e90164c828247a43ff098f69b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ActorSoft.html#af2e618dd176d910834f146c62efe8f19">AttachToGraphics</a> ()</td></tr>
@@ -242,20 +245,20 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div>
 <div class="memdoc">
-<p>Utility function for altering or checking the actor every frame. </p>
+<p>Utility function for altering or checking the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object every frame. </p>
  
 <p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a8f5a36a6981f1249dbabab318531afd0">Mezzanine::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00241">241</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00246">246</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a22e089e98fe83eeb379d399945a10fe9"></a><!-- doxytag: member="Mezzanine::ActorSoft::AddObjectToWorld" ref="a22e089e98fe83eeb379d399945a10fe9" args="()" -->
+<a class="anchor" id="ad314e449aea1ac0b641816f68a861159"></a><!-- doxytag: member="Mezzanine::ActorSoft::AddToWorld" ref="ad314e449aea1ac0b641816f68a861159" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::ActorSoft::AddObjectToWorld </td>
+          <td class="memname">void Mezzanine::ActorSoft::AddToWorld </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -263,8 +266,11 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div>
 <div class="memdoc">
+<p>Adds the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object to the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. </p>
  
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00229">229</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#abe739a46f248a7ba257becfb560d9aa5">Mezzanine::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00234">234</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -308,7 +314,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="memdoc">
 
 <p>Creates and configures a manual object for rendering. </p>
-<p>This function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame. </p>
+<p>This function will create and configure an <a class="el" href="namespaceOgre.html">Ogre</a> manual object based on the mesh provided, that will be updateable each frame. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">TheMesh</td><td>The struct with all the appropriate mesh information to base the manual object on. </td></tr>
@@ -412,7 +418,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Get the Physics data raw from the physic subsystem. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Currently this returns a pointer to a btSoftBody. </dd></dl>
 
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00268">268</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00273">273</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -434,18 +440,18 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>This function will retrieve the location of the object within the world. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> with the actual locaiton of this Actor. </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1WorldObject.html#a66d040856234ceacfbba2532047ee9cb">Mezzanine::WorldObject</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#aefbebff39e4d21859f5fddb434f6165c">Mezzanine::NonStaticWorldObject</a>.</p>
 
 <p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00212">212</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a733138429fccf93f626e44ee9056e102"></a><!-- doxytag: member="Mezzanine::ActorSoft::GetName" ref="a733138429fccf93f626e44ee9056e102" args="() const " -->
+<a class="anchor" id="aa37860ec9b4d12111c74df7bd14fc58d"></a><!-- doxytag: member="Mezzanine::ActorSoft::GetName" ref="aa37860ec9b4d12111c74df7bd14fc58d" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Mezzanine::ActorSoft::GetName </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp; Mezzanine::ActorSoft::GetName </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [virtual]</code></td>
@@ -457,7 +463,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Retrieves the name of the object. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A String with the name of this Actor </dd></dl>
 
-<p>Reimplemented from <a class="el" href="classMezzanine_1_1WorldObject.html#a656f70caf8003cf7d47fdd3ac024efe2">Mezzanine::WorldObject</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#acb52c6e1718acb9f17e34bf4b6203304">Mezzanine::NonStaticWorldObject</a>.</p>
 
 <p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00169">169</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
@@ -484,12 +490,34 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a11cb2b406639b1dac2f9e396741f8f44"></a><!-- doxytag: member="Mezzanine::ActorSoft::RemoveObjectFromWorld" ref="a11cb2b406639b1dac2f9e396741f8f44" args="()" -->
+<a class="anchor" id="adddd9e4dafbe78aa9fb55ab92a42dc42"></a><!-- doxytag: member="Mezzanine::ActorSoft::GetType" ref="adddd9e4dafbe78aa9fb55ab92a42dc42" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::ActorSoft::RemoveObjectFromWorld </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> Mezzanine::ActorSoft::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a83f7356d743f1b59ea58aac6d7570901">Mezzanine::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00229">229</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac1c30677a8be15080ba7bbdbf7ce696e"></a><!-- doxytag: member="Mezzanine::ActorSoft::RemoveFromWorld" ref="ac1c30677a8be15080ba7bbdbf7ce696e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorSoft::RemoveFromWorld </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [virtual]</code></td>
@@ -497,8 +525,11 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div>
 <div class="memdoc">
+<p>Removes the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object from the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>. </p>
  
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00235">235</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1ActorBase.html#a30910dd0351bc29b2bf88cb3dc8d83db">Mezzanine::ActorBase</a>.</p>
+
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00240">240</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,10 +549,10 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <div class="memdoc">
 
 <p>Sets the scale of the actor. </p>
-<p>This function will alter the scaling/size of the actor with the given <a class="el" href="classvector3.html">vector3</a>. </p>
+<p>This function will alter the scaling/size of the actor with the given vector3. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">scale</td><td>The <a class="el" href="classvector3.html">vector3</a> by which to apply the scale. Will scale each axis' accordingly. </td></tr>
+    <tr><td class="paramname">scale</td><td>The vector3 by which to apply the scale. Will scale each axis' accordingly. </td></tr>
   </table>
   </dd>
 </dl>
@@ -646,35 +677,6 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a class="anchor" id="a9c96f61e8a39fc6b35eb35c03b8e0e42"></a><!-- doxytag: member="Mezzanine::ActorSoft::SetLocation" ref="a9c96f61e8a39fc6b35eb35c03b8e0e42" args="(Vector3 Place)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ActorSoft::SetLocation </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
-          <td class="paramname"><em>Place</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Manually sets the location of the actor. </p>
-<p>Calling this function prior to adding it to the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
- In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Place</td><td>The <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00206">206</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="aad9c559bae769ac44d437a0612934bc2"></a><!-- doxytag: member="Mezzanine::ActorSoft::SetLocation" ref="aad9c559bae769ac44d437a0612934bc2" args="(Real x, Real y, Real z)" -->
 <div class="memitem">
 <div class="memproto">
@@ -719,6 +721,35 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 
 <p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00200">200</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c96f61e8a39fc6b35eb35c03b8e0e42"></a><!-- doxytag: member="Mezzanine::ActorSoft::SetLocation" ref="a9c96f61e8a39fc6b35eb35c03b8e0e42" args="(Vector3 Place)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ActorSoft::SetLocation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td>
+          <td class="paramname"><em>Place</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Manually sets the location of the actor. </p>
+<p>Calling this function prior to adding it to the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> will have no effect. <br/>
+ In most situations you won't want to use this function, and instead produce movement through physics functions. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Place</td><td>The <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> representing the location. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="actorsoft_8cpp_source.html#l00206">206</a> of file <a class="el" href="actorsoft_8cpp_source.html">actorsoft.cpp</a>.</p>
 
 </div>
 </div>
@@ -813,7 +844,7 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -823,6 +854,6 @@ btSoftBody *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:55 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

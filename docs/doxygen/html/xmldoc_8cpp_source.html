@@ -109,7 +109,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00045"></a>00045 <span class="preprocessor">#ifndef _xmldoc_cpp</span>
 <a name="l00046"></a>00046 <span class="preprocessor"></span><span class="preprocessor">#define _xmldoc_cpp</span>
 <a name="l00047"></a>00047 <span class="preprocessor"></span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;xml.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;<a class="code" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>
 <a name="l00049"></a>00049 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
 <a name="l00050"></a>00050 <span class="preprocessor">#include &quot;world.h&quot;</span>
 <a name="l00051"></a>00051 
@@ -126,7 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00062"></a>00062 <span class="comment">        /// for the XML parser exist here instead of xml.h.</span>
 <a name="l00063"></a>00063 <span class="comment">        ///////////////////////////////////////</span>
 <a name="l00064"></a>00064 <span class="comment"></span>
-<a name="l00065"></a>00065         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetOneTag(std::istream&amp; stream )
+<a name="l00065"></a>00065         <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a> <a class="code" href="namespaceMezzanine_1_1xml.html#a4acd0a85d6e7e27cadab22203c6f41e4" title="Gets the first tag out of the Stream and returns it as a String.">GetOneTag</a>(std::istream&amp; stream )     <span class="comment">// this function might be optimizes by counting characters, then copying several characters, or something like that.</span>
 <a name="l00066"></a>00066         {
 <a name="l00067"></a>00067             <a class="code" href="namespaceMezzanine.html#ad5147a419db7627ee552a2b582f1052d" title="A datatype to represent one character.">Character</a> ReadOne = 0;
 <a name="l00068"></a>00068             <a class="code" href="namespaceMezzanine.html#ad5147a419db7627ee552a2b582f1052d" title="A datatype to represent one character.">Character</a> PrevOne = 0;
@@ -134,7 +134,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00070"></a>00070             <span class="keywordtype">bool</span> HaveSlash = <span class="keyword">false</span>;
 <a name="l00071"></a>00071             <span class="keywordtype">bool</span> InText = <span class="keyword">false</span>;
 <a name="l00072"></a>00072 
-<a name="l00073"></a>00073             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> OneTag;
+<a name="l00073"></a>00073             <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a> OneTag;
 <a name="l00074"></a>00074             <span class="keywordflow">while</span> (!stream.get(ReadOne).fail() &amp;&amp; !stream.eof())        <span class="comment">//Read one character and if you didn&#39;t fail continue the loop</span>
 <a name="l00075"></a>00075             {
 <a name="l00076"></a>00076                 OneTag.push_back(ReadOne);
@@ -170,7 +170,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00106"></a>00106 
 <a name="l00107"></a>00107         }
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109         Document* PreParseClassFromSingleTag(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; NameSpace, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; ClassName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; OneTag)
+<a name="l00109"></a>00109         Document* <a class="code" href="namespaceMezzanine_1_1xml.html#a2a36d04b6513680fd15fb21b4191d29a" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>&amp; NameSpace, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>&amp; ClassName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>&amp; OneTag)
 <a name="l00110"></a>00110         {
 <a name="l00111"></a>00111             Document* Doc = <span class="keyword">new</span> Document();
 <a name="l00112"></a>00112             <span class="keywordflow">if</span>(!Doc-&gt;Load(OneTag.c_str()))
@@ -182,7 +182,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00118"></a>00118             Node InputNode = Doc-&gt;GetFirstChild();
 <a name="l00119"></a>00119             <span class="keywordflow">if</span> (InputNode)
 <a name="l00120"></a>00120             {
-<a name="l00121"></a>00121                 <span class="keywordflow">if</span>( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(ClassName) == <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(InputNode.Name()))
+<a name="l00121"></a>00121                 <span class="keywordflow">if</span>( <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>(ClassName) == <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>(InputNode.Name()))
 <a name="l00122"></a>00122                 {
 <a name="l00123"></a>00123                     <span class="keywordflow">return</span> Doc;
 <a name="l00124"></a>00124                 }<span class="keywordflow">else</span>{
@@ -195,12 +195,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00131"></a>00131             }
 <a name="l00132"></a>00132         }
 <a name="l00133"></a>00133 
-<a name="l00134"></a>00134         Document* PreParseClassFromSingleTag(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; ClassName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; OneTag)
-<a name="l00135"></a>00135             { <span class="keywordflow">return</span> PreParseClassFromSingleTag(<span class="stringliteral">&quot;&quot;</span>,ClassName,OneTag); }
+<a name="l00134"></a>00134         Document* <a class="code" href="namespaceMezzanine_1_1xml.html#a2a36d04b6513680fd15fb21b4191d29a" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>&amp; ClassName, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>&amp; OneTag)
+<a name="l00135"></a>00135             { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a2a36d04b6513680fd15fb21b4191d29a" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;&quot;</span>,ClassName,OneTag); }
 <a name="l00136"></a>00136 
-<a name="l00137"></a>00137         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> EscapeXML(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; XMLText)
+<a name="l00137"></a>00137         <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a> <a class="code" href="namespaceMezzanine_1_1xml.html#a64a1ff23404d94c97f898c9a3816f3aa" title="Convert &amp;lt; &amp;gt; &amp;amp; and &quot; in text to &amp;amp;lt;, &amp;amp;gt;, &amp;amp;amp; and &amp;amp;quote so text can saf...">EscapeXML</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a>&amp; XMLText)
 <a name="l00138"></a>00138         {
-<a name="l00139"></a>00139             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Results;
+<a name="l00139"></a>00139             <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">String</a> Results;
 <a name="l00140"></a>00140             <span class="keywordflow">for</span>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Counter=0; Counter&lt;XMLText.size(); ++Counter)
 <a name="l00141"></a>00141             {
 <a name="l00142"></a>00142                 <span class="keywordflow">switch</span>(XMLText.at(Counter))
@@ -238,7 +238,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -248,6 +248,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

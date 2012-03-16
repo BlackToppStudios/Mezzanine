@@ -33,12 +33,17 @@ enum \hyperlink{classMezzanine_1_1GameWindow_ac31ba18e78ad8c6e749019726a0dbe6f}{
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1GameWindow_aa1e4dd956e39174acd5f86b9b549cd77}{GameWindow} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&WindowCaption, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Flags)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}{
+\hyperlink{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}{$\sim$GameWindow} ()}
+\label{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ \hyperlink{classMezzanine_1_1GameWindow_a9a5c31130d7d2970d1c0141173bcdce3}{CreateViewport} (\hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ViewportCamera, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&ZOrder=0)
 \begin{DoxyCompactList}\small\item\em Creates an additional \hyperlink{classMezzanine_1_1Viewport}{Viewport} within a created render window. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1GameWindow_a810561a4b96667bf88be137722d44407}{DestroyViewport} (\hyperlink{classMezzanine_1_1Viewport}{Viewport} $\ast$ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a viewport within this window. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1GameWindow_aa1e4dd956e39174acd5f86b9b549cd77}{GameWindow} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&WindowCaption, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Flags)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_ad6dcba20b92b4881a35a872ba36037d5}{GetAverageFPS} ()
 \begin{DoxyCompactList}\small\item\em Gets the Average FPS. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1GameWindow_a366478a0038149d243d0ef19eacea696}{GetBestFPS} ()
@@ -54,7 +59,7 @@ bool \hyperlink{classMezzanine_1_1GameWindow_a44e2caa0a6300c5365deb287c79c0153}{
 \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GameWindow_a69e900fe0f1cb85cd1723991ebf808c5}{GetNumViewports} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of viewports within this window. \item\end{DoxyCompactList}\item 
 Ogre::RenderWindow $\ast$ \hyperlink{classMezzanine_1_1GameWindow_aade1ad28994653f9a8bca94d0c30cd5c}{GetOgreWindowPointer} ()
-\begin{DoxyCompactList}\small\item\em This will get a pointer to the Ogre RenderWindow. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This will get a pointer to the \hyperlink{namespaceOgre}{Ogre} RenderWindow. \item\end{DoxyCompactList}\item 
 void $\ast$ \hyperlink{classMezzanine_1_1GameWindow_afa4d53d324199329435946b652f27950}{GetRenderContext} ()
 \begin{DoxyCompactList}\small\item\em Gets the render context being used by this window. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1GameWindow_a4df354cf07173e21e9c2802882424c4d}{getRenderHeight} () const 
@@ -82,12 +87,7 @@ void \hyperlink{classMezzanine_1_1GameWindow_abf4ede4f1d14639017d8cd4da7490b44}{
 void \hyperlink{classMezzanine_1_1GameWindow_a9228766fbdf9fc77b104647e49226a0d}{setRenderWidth} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Width)
 \begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1GameWindow_ab115ae2f4af6e3136208bb6d20433b97}{SetWindowCaption} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&NewCaption)
-\begin{DoxyCompactList}\small\item\em This can set the the Text in the titlebar. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}{
-\hyperlink{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}{$\sim$GameWindow} ()}
-\label{classMezzanine_1_1GameWindow_a39986f43fb1370d6458b20958a915535}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This can set the the Text in the titlebar. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -404,10 +404,10 @@ Definition at line 213 of file gamewindow.cpp.
 \label{classMezzanine_1_1GameWindow_aade1ad28994653f9a8bca94d0c30cd5c}
 
 
-This will get a pointer to the Ogre RenderWindow. 
+This will get a pointer to the \hyperlink{namespaceOgre}{Ogre} RenderWindow. 
 
 \begin{DoxyReturn}{Returns}
-Returns a pointer to the Ogre RenderWindow class in use. 
+Returns a pointer to the \hyperlink{namespaceOgre}{Ogre} RenderWindow class in use. 
 \end{DoxyReturn}
 
 

@@ -81,6 +81,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#a8789254da1d3e930681b793165fedeca">LineGroup</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *Parent_)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic Constructor.  <a href="#a8789254da1d3e930681b793165fedeca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#afd14821b5b54fff9d670458748125f3f">~LineGroup</a> (void)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Destructor.  <a href="#afd14821b5b54fff9d670458748125f3f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#a3326fcfa0207505082af2610d73c2e46">addPoint</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;p)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This add Either a start pointing, or a line segment to the next point.  <a href="#a3326fcfa0207505082af2610d73c2e46"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#acadb6f8ccbe70828b094f07a11f276ac">drawLine</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;start, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;end)</td></tr>
@@ -93,14 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the amount of points used to define Line Segments.  <a href="#a518e2ccf64cb6dc9bcc309a08d40f8c9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#a5a6aca5f86fa5751b335ee4a3d498cbf">getPoint</a> (<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> index) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Access points by order they were added.  <a href="#a5a6aca5f86fa5751b335ee4a3d498cbf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#a8789254da1d3e930681b793165fedeca">LineGroup</a> (<a class="el" href="classMezzanine_1_1World.html">World</a> *Parent_)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic Constructor.  <a href="#a8789254da1d3e930681b793165fedeca"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#ab94688dd800d390aefce0e6b9742b296">PrepareForRendering</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This assists in the rendering process.  <a href="#ab94688dd800d390aefce0e6b9742b296"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#adfb54ecbd62dc13d42b4e05c1b30a155">updatePoint</a> (<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> index, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;value)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This changes a specific point.  <a href="#adfb54ecbd62dc13d42b4e05c1b30a155"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1LineGroup.html#afd14821b5b54fff9d670458748125f3f">~LineGroup</a> (void)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Destructor.  <a href="#afd14821b5b54fff9d670458748125f3f"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a group of consectutive line segments to be rendered together. </p>
@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Basic Constructor. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>TODO: This class really should support rotation, the underlying implementation does. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>TODO: This class really should support rotation, the underlying implementation does. </dd></dl>
 <p>This creates a basic, empty, <a class="el" href="classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -215,7 +215,7 @@ Public Member Functions</h2></td></tr>
 
 <p>This adds Two points to the list. </p>
 <p>This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">start</td><td>The first point to be added </td></tr>
@@ -245,7 +245,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Renders the line segment chain. </p>
 <p>This send the Line segment information to the rending subsystem. <a class="el" href="classMezzanine_1_1LineGroup.html#ab94688dd800d390aefce0e6b9742b296" title="This assists in the rendering process.">PrepareForRendering()</a> should be called first </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd></dl>
 
 <p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00342">342</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
@@ -395,7 +395,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -405,6 +405,6 @@ Public Member Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:02 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

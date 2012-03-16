@@ -1,0 +1,1934 @@
+\hypertarget{classMezzanine_1_1xml_1_1Node}{
+\subsection{Mezzanine::xml::Node Class Reference}
+\label{classMezzanine_1_1xml_1_1Node}\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+}
+
+
+A light-\/weight handle for manipulating nodes in DOM tree.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+Inheritance diagram for Mezzanine::xml::Node:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1xml_1_1Node}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_a7ced1204b9d48db5803377ef8119206d}{
+typedef \hyperlink{classMezzanine_1_1xml_1_1AttributeIterator}{AttributeIterator} \hyperlink{classMezzanine_1_1xml_1_1Node_a7ced1204b9d48db5803377ef8119206d}{attribute\_\-iterator}}
+\label{classMezzanine_1_1xml_1_1Node_a7ced1204b9d48db5803377ef8119206d}
+
+\begin{DoxyCompactList}\small\item\em An iterator for \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} members on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_ab179c41680cc107bef8ebd377faed0b6}{
+typedef \hyperlink{classMezzanine_1_1xml_1_1NodeIterator}{NodeIterator} \hyperlink{classMezzanine_1_1xml_1_1Node_ab179c41680cc107bef8ebd377faed0b6}{iterator}}
+\label{classMezzanine_1_1xml_1_1Node_ab179c41680cc107bef8ebd377faed0b6}
+
+\begin{DoxyCompactList}\small\item\em An iterator for child Nodes. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_a8259956725a475e9fd6984d58aef25bb}{
+\hyperlink{classMezzanine_1_1xml_1_1Node_a8259956725a475e9fd6984d58aef25bb}{Node} ()}
+\label{classMezzanine_1_1xml_1_1Node_a8259956725a475e9fd6984d58aef25bb}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. Constructs an empty node. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node_ae03ada122b5289487cd9b7fec38ce326}{Node} (\hyperlink{classNodeStruct}{NodeStruct} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Constructs node from internal pointer. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a1f41ecc96128f478bb8f234022cc0b3c}{AppendAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it at the end of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_ae176f43c75b8bad16460fcb61925927d}{AppendAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it at the end of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_aa9e1bc91805a3c47609988cc824ea54a}{AppendChild} (\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{NodeType} Type=NodeElement)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a982d4f4d515fd321d69ae400eb524d9c}{AppendChild} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name)
+\begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a575b33a8912947de75d31643627cc435}{AppendChild} (const \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a3b001ee40ef50c6b2d86161db96159a2}{AppendCopy} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&proto)
+\begin{DoxyCompactList}\small\item\em Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy at the end of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a324617ba5510dd345e87222d2264e1f3}{AppendCopy} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&proto)
+\begin{DoxyCompactList}\small\item\em Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy at the end of the list of this Nodes Childrem. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} \hyperlink{classMezzanine_1_1xml_1_1Node_ac2b0aacde495d94e623d6ae6112a4a77}{attributes\_\-begin} () const 
+\begin{DoxyCompactList}\small\item\em Get an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} iterator that references the first \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} \hyperlink{classMezzanine_1_1xml_1_1Node_a7a8b4000d8b4a75deb0fd481121b0764}{attributes\_\-end} () const 
+\begin{DoxyCompactList}\small\item\em Get an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} iterator that references the one past the last \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1NodeIterator}{iterator} \hyperlink{classMezzanine_1_1xml_1_1Node_aeb8c1969bf9995a5718e9a4911738df5}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Get a Child node iterator that references the first child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Node_a2c16f475e52ceb2ef66e50fbe97211bc}{ChildValue} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve the value of this(or a child's) Nodes PCDATA child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Node_a4888fd417d117f8261b64ce5ab6854d3}{ChildValue} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name) const 
+\begin{DoxyCompactList}\small\item\em Get the PCDATA of a given child. The same a calling \char`\"{}GetChild(Name).ChildValue()\char`\"{}. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a3143d34f7cd807136c0e08a9ee67ca41}{Empty} () const 
+\begin{DoxyCompactList}\small\item\em Is this storing anything at all? \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1NodeIterator}{iterator} \hyperlink{classMezzanine_1_1xml_1_1Node_a08959c7e0c3f93be643dc3a29b40060b}{end} () const 
+\begin{DoxyCompactList}\small\item\em Get a Child node iterator that references one past the last child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_afbac679468f12378abbe025d57991fde}{FindAttribute} (Predicate pred) const 
+\begin{DoxyCompactList}\small\item\em Search for an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} using a function to check each \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} individually. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_af0b5f737f895f650faa83131a86ee2ac}{FindChild} (Predicate pred) const 
+\begin{DoxyCompactList}\small\item\em Search for an child ( only direct children ) \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} individually. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_ac30702431eb19fa0749e989c434ea090}{FindChildbyAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$AttrName, const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$AttrValue) const 
+\begin{DoxyCompactList}\small\item\em Find a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} by an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} it has. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a8263cc80d5f2977fc89823ba38952777}{FindChildbyAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name, const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$AttrName, const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$AttrValue) const 
+\begin{DoxyCompactList}\small\item\em Find a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} by an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} it has. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a0f241f6570fd68540578859c189155c8}{FindNode} (Predicate pred) const 
+\begin{DoxyCompactList}\small\item\em Search for any \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} descended from this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} individually. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classMezzanine_1_1xml_1_1Node_abe164532c32aaee48d85ce0b21270352}{FindNodes} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$query, \hyperlink{classMezzanine_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const 
+\begin{DoxyCompactList}\small\item\em Select a group of nodes by evaluating an XPath query. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classMezzanine_1_1xml_1_1Node_ad9ee673405aca199e92266ec31b8ac3e}{FindNodes} (const \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const 
+\begin{DoxyCompactList}\small\item\em Select a group of nodes by evaluating an XPath query. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classMezzanine_1_1xml_1_1Node_a6b07e3bbd21b2fe87ff2852a74566d3e}{FindSingleNode} (const \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const 
+\begin{DoxyCompactList}\small\item\em Select single node by evaluating an XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classMezzanine_1_1xml_1_1Node_af7a59c1099f231f45f640cdcbdcc6362}{FindSingleNode} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$query, \hyperlink{classMezzanine_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const 
+\begin{DoxyCompactList}\small\item\em Select single node by evaluating an XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a0cc23e97d5ed9b2c1c46fcb442d8b337}{FirstElementByPath} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Path, \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} delimiter= '/') const 
+\begin{DoxyCompactList}\small\item\em Search for a node by Path consisting of node names and . or .. elements. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_af165e3fb0e652483761b1408e141dd00}{GetAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name) const 
+\begin{DoxyCompactList}\small\item\em Attempt to get an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a given name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_abb2e51765b16a3373ee81b288fd74b22}{GetChild} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name) const 
+\begin{DoxyCompactList}\small\item\em Attempt to get a child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a given name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_af09cd42733bc14079085e237b1d70ae5}{GetChild} (const \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \&Name) const 
+\begin{DoxyCompactList}\small\item\em Attempt to get a child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a given name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_af16bcd37c220278b9f6b9f1c76e67ec8}{GetFirstAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the First \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} in this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a021b679fc715d49935de32d85ded2b65}{GetFirstChild} () const 
+\begin{DoxyCompactList}\small\item\em Get the first child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a54a54c244bf5e3b844e64eee0e704c86}{GetLastAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the Last \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} in this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a7b23c09b06898102858fd88c630231c9}{GetLastChild} () const 
+\begin{DoxyCompactList}\small\item\em Get the last child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a91ecfa366dbb196052a813f96fb6eab4}{GetNextSibling} () const 
+\begin{DoxyCompactList}\small\item\em Attempt to retrieve the next sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_afff799135cac68889e91cacaf1f800a7}{GetNextSibling} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name) const 
+\begin{DoxyCompactList}\small\item\em Attempt to retrieve the next sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a matching name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a49ed0fb3eee7cd4dfccdb72ad87bb210}{GetParent} () const 
+\begin{DoxyCompactList}\small\item\em Attempt to retrieve the parent of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a1a5a570c36e4e60b8b280be1443de3a0}{GetPreviousSibling} () const 
+\begin{DoxyCompactList}\small\item\em Attempt to retrieve the previous sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a88802799304ad5ed88eeb9988fe4d8e3}{GetPreviousSibling} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name) const 
+\begin{DoxyCompactList}\small\item\em Attempt to retrieve the first previous sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a matching name. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a488bb0d4f42bd9718baab5c0623764cb}{GetRoot} () const 
+\begin{DoxyCompactList}\small\item\em Attempt to retrieve the root \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or the most base \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} containing this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classMezzanine_1_1xml_1_1Node_a07e6ba623fc4def9da6ca3d1d861d8e9}{HashValue} () const 
+\begin{DoxyCompactList}\small\item\em Get hash Value (unique for handles to the same object) \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a7a1cfbedc5144b72d9002cdded32be43}{InsertAttributeAfter} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name, const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&attr)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it into the list of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a7614742c87922dd19f4a9ae2e393ebc3}{InsertAttributeBefore} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name, const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&attr)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it into the list of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a227829d650b184329245c5abdd0476df}{InsertChildAfter} (\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{NodeType} Type, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a130d3fc4581355cbf7faf9ce56583113}{InsertChildAfter} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a0f877b7c3d64ede9a73662ed2fff0ef5}{InsertChildBefore} (\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{NodeType} Type, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a5b5a42904325d45ebbe734ee33a028cb}{InsertChildBefore} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a6d8a04ed89f3ccc331c1d85d6a690d21}{InsertCopyAfter} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&proto, const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&attr)
+\begin{DoxyCompactList}\small\item\em Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy into the list of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_ad122538f533fc0fe4fb8d747025eeca2}{InsertCopyAfter} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&proto, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy in the middle the list of this Nodes Childrem. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_ab622185e44a06fc03436039e160292e6}{InsertCopyBefore} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&proto, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy in the middle the list of this Nodes Childrem. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a0daa45b11960680ce08a64b0258fb8ec}{InsertCopyBefore} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&proto, const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&attr)
+\begin{DoxyCompactList}\small\item\em Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy into the list of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classNodeStruct}{NodeStruct} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Node_acf3d61683c8129573770386aba4259f7}{InternalObject} () const 
+\begin{DoxyCompactList}\small\item\em Get internal pointer. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Node_a8b20d5b125625a218ece62d064396c4a}{Name} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_a42414021e87cadc815277d555fa7c3ab}{
+ptrdiff\_\-t \hyperlink{classMezzanine_1_1xml_1_1Node_a42414021e87cadc815277d555fa7c3ab}{OffSetDebug} () const }
+\label{classMezzanine_1_1xml_1_1Node_a42414021e87cadc815277d555fa7c3ab}
+
+\begin{DoxyCompactList}\small\item\em Get node Offset in parsed file/string (in char\_\-t units) for debugging purposes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node_a61a93d005bbf38ddeedb557bd05362ea}{operator unspecified\_\-bool\_\-type} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a9c668d6bcbc03f2d317373b28afde5df}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this node the opposite of it's normal boolean value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a67745da5a2906b374e91852a3ff20797}{operator!=} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_ab4271159148ab31e96ceba83eee7e7a4}{operator$<$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a0a3a82560a9771ca5550719e9b3434aa}{operator$<$=} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a9e57cbae6135b1ca4ef2b08d7e6dcb92}{operator==} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check equality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a6c2414435b19d076983579d518c98782}{operator$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_aeb26816317e5e06f81d0f8c36207363a}{operator$>$=} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \hyperlink{classMezzanine_1_1xml_1_1Node_a3b4b8226300b27a0f8073e4de48c1f54}{Path} (\hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} delimiter= '/') const 
+\begin{DoxyCompactList}\small\item\em Get the absolute path to this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_ad339153e7b8f6bc9d3a7e4ee3aaa55d2}{PrependAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it at the begining of this Nodes attributes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a2a1ed011242565f5f8f7541977311fd4}{PrependChild} (const \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the beginning of the children. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_afa84d785eb34c7f594fb6205ba9459c3}{PrependChild} (\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{NodeType} Type=NodeElement)
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the beginning of the Child Nodes. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a5d055f3328c147b712980b5ca49e4564}{PrependChild} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name)
+\begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the beginning of the children. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1Node_a1667a10461c554d35997eb132dc0b052}{PrependCopy} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&proto)
+\begin{DoxyCompactList}\small\item\em Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy at the start of the list of this Nodes Childrem. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Node_a2eba61972c390751d86c2d9beec9b00e}{PrependCopy} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&proto)
+\begin{DoxyCompactList}\small\item\em Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy at the beginning of this Nodes attributes. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1xml_1_1Node_a5d07199f212e7736889d370cc40a692b}{Print} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&os, const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{FormatDefault}, \hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804}{Encoding} DocumentEncoding=EncodingAuto, unsigned int Depth=0) const 
+\begin{DoxyCompactList}\small\item\em Output the XML document using a Output Stream. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1xml_1_1Node_a94b9b66aff6d1d6a26c1dd5949fabb25}{Print} (\hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} \&WriterInstance, const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{FormatDefault}, \hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804}{Encoding} DocumentEncoding=EncodingAuto, unsigned int Depth=0) const 
+\begin{DoxyCompactList}\small\item\em Output the XML document using a \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1xml_1_1Node_a6b3af942054ed0e53889bec30663e55d}{Print} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&os, const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{FormatDefault}, unsigned int Depth=0) const 
+\begin{DoxyCompactList}\small\item\em Output the XML document using a Output Stream. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_aca08c75bcb373fca5d96911d5373bc47}{RemoveAttribute} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&a)
+\begin{DoxyCompactList}\small\item\em Remove specified \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a543ae590b37d10e24d77ae97af762541}{RemoveAttribute} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name)
+\begin{DoxyCompactList}\small\item\em Remove \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} as specified by name. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_adccef0985791506dc216f57cf6d46546}{RemoveChild} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&n)
+\begin{DoxyCompactList}\small\item\em Remove specified child element. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_abac64ec627dbc59dbb8356620b2e6216}{RemoveChild} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$Name)
+\begin{DoxyCompactList}\small\item\em Remove child element as specified by name. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a486049e5b7dc8368f81d7ed536ea0556}{SetName} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em Set the name of . \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a606efad0e6f880cbb6b447005b2e24e0}{SetName} (const \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \&rhs)
+\begin{DoxyCompactList}\small\item\em Set the name of this object. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a86ca6281c21ba29a3e1476ac7cd5a48f}{SetValue} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em Set the value of this. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Node_a3115c4b78afaa9b27a54c1d4200dbcc7}{Traverse} (\hyperlink{classMezzanine_1_1xml_1_1TreeWalker}{TreeWalker} \&walker)
+\begin{DoxyCompactList}\small\item\em Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{NodeType} \hyperlink{classMezzanine_1_1xml_1_1Node_a939a7a98e48ca8abb3349909586dd081}{Type} () const 
+\begin{DoxyCompactList}\small\item\em Identify what kind of \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Node_a8fb0f29e78a3641ef14e3d71ac73144b}{Value} () const 
+\begin{DoxyCompactList}\small\item\em Get the Value of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_ae06889c194a23137077708c0879c92d0}{
+typedef \hyperlink{classNodeStruct}{NodeStruct} $\ast$Node:: \hyperlink{classMezzanine_1_1xml_1_1Node_ae06889c194a23137077708c0879c92d0}{unspecified\_\-bool\_\-type}}
+\label{classMezzanine_1_1xml_1_1Node_ae06889c194a23137077708c0879c92d0}
+
+\begin{DoxyCompactList}\small\item\em Used when testing an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} as a bool. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_ac2eb9a41489c682a24434526f2c178f6}{
+\hyperlink{classNodeStruct}{NodeStruct} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Node_ac2eb9a41489c682a24434526f2c178f6}{\_\-GetRoot}}
+\label{classMezzanine_1_1xml_1_1Node_ac2eb9a41489c682a24434526f2c178f6}
+
+\begin{DoxyCompactList}\small\item\em Stores pointers to the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} data and some metadata. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_a1ed8790083a80b2604beba1c666bce6e}{
+class {\bfseries AttributeIterator}}
+\label{classMezzanine_1_1xml_1_1Node_a1ed8790083a80b2604beba1c666bce6e}
+
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Node_ac5a1d2c6036b7ba1894a7c3b8d96a312}{
+class {\bfseries NodeIterator}}
+\label{classMezzanine_1_1xml_1_1Node_ac5a1d2c6036b7ba1894a7c3b8d96a312}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A light-\/weight handle for manipulating nodes in DOM tree. 
+
+Definition at line 476 of file xml.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ae03ada122b5289487cd9b7fec38ce326}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Node@{Node}}
+\index{Node@{Node}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Node}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Node (
+\begin{DoxyParamCaption}
+\item[{{\bf NodeStruct} $\ast$}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ae03ada122b5289487cd9b7fec38ce326}
+
+
+Constructs node from internal pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & An internal node pointer. \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a1f41ecc96128f478bb8f234022cc0b3c}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendAttribute@{AppendAttribute}}
+\index{AppendAttribute@{AppendAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendAttribute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} Mezzanine::xml::Node::AppendAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a1f41ecc96128f478bb8f234022cc0b3c}
+
+
+Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it at the end of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the New attribute to be created\\
+\hline
+\end{DoxyParams}
+This attempts to create an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it at the end of the list of attribute on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ae176f43c75b8bad16460fcb61925927d}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendAttribute@{AppendAttribute}}
+\index{AppendAttribute@{AppendAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendAttribute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} Mezzanine::xml::Node::AppendAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ae176f43c75b8bad16460fcb61925927d}
+
+
+Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it at the end of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the New attribute to be created \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+
+
+Definition at line 600 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_aa9e1bc91805a3c47609988cc824ea54a}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendChild@{AppendChild}}
+\index{AppendChild@{AppendChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::AppendChild (
+\begin{DoxyParamCaption}
+\item[{{\bf NodeType}}]{Type = {\ttfamily NodeElement}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_aa9e1bc91805a3c47609988cc824ea54a}
+
+
+Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type} & The NodeType of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be added to list of child Nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} if there was an error. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a982d4f4d515fd321d69ae400eb524d9c}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendChild@{AppendChild}}
+\index{AppendChild@{AppendChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::AppendChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a982d4f4d515fd321d69ae400eb524d9c}
+
+
+Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be created.\\
+\hline
+\end{DoxyParams}
+Calls \hyperlink{classMezzanine_1_1xml_1_1Node_aa9e1bc91805a3c47609988cc824ea54a}{Node::AppendChild(NodeType)}; using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a575b33a8912947de75d31643627cc435}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendChild@{AppendChild}}
+\index{AppendChild@{AppendChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::AppendChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a575b33a8912947de75d31643627cc435}
+
+
+Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be created.\\
+\hline
+\end{DoxyParams}
+Calls \hyperlink{classMezzanine_1_1xml_1_1Node_a982d4f4d515fd321d69ae400eb524d9c}{Node::AppendChild(const char\_\-t$\ast$)} \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 658 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_a3b001ee40ef50c6b2d86161db96159a2}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendCopy@{AppendCopy}}
+\index{AppendCopy@{AppendCopy}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} Mezzanine::xml::Node::AppendCopy (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{proto}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a3b001ee40ef50c6b2d86161db96159a2}
+
+
+Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy at the end of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The attribute to be copied.\\
+\hline
+\end{DoxyParams}
+This attempts to create a copy of an attribute \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it at the end of the list of attribute on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a324617ba5510dd345e87222d2264e1f3}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!AppendCopy@{AppendCopy}}
+\index{AppendCopy@{AppendCopy}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{AppendCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::AppendCopy (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{proto}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a324617ba5510dd345e87222d2264e1f3}
+
+
+Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy at the end of the list of this Nodes Childrem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The copied \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ac2b0aacde495d94e623d6ae6112a4a77}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!attributes\_\-begin@{attributes\_\-begin}}
+\index{attributes\_\-begin@{attributes\_\-begin}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{attributes\_\-begin}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::attributes\_\-begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ac2b0aacde495d94e623d6ae6112a4a77}
+
+
+Get an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} iterator that references the first \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the first child node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a7a8b4000d8b4a75deb0fd481121b0764}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!attributes\_\-end@{attributes\_\-end}}
+\index{attributes\_\-end@{attributes\_\-end}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{attributes\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::attributes\_\-end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a7a8b4000d8b4a75deb0fd481121b0764}
+
+
+Get an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} iterator that references the one past the last \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the last \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_aeb8c1969bf9995a5718e9a4911738df5}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!begin@{begin}}
+\index{begin@{begin}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{begin}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_aeb8c1969bf9995a5718e9a4911738df5}
+
+
+Get a Child node iterator that references the first child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the first child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a2c16f475e52ceb2ef66e50fbe97211bc}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!ChildValue@{ChildValue}}
+\index{ChildValue@{ChildValue}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{ChildValue}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::ChildValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a2c16f475e52ceb2ef66e50fbe97211bc}
+
+
+Retrieve the value of this(or a child's) Nodes PCDATA child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+If this node represents \char`\"{}$<$node$>$Some text in the PCDATA field, that is actually represent by a node$<$/node$>$\char`\"{}, then this would return \char`\"{}Some text in the PCDATA field, that is actually represent by a node\char`\"{}. This will iterate through child Nodes from until it finds a PCDATA node or fails \begin{DoxyReturn}{Returns}
+This will return the Value of the first available PCDATA node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a4888fd417d117f8261b64ce5ab6854d3}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!ChildValue@{ChildValue}}
+\index{ChildValue@{ChildValue}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{ChildValue}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::ChildValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a4888fd417d117f8261b64ce5ab6854d3}
+
+
+Get the PCDATA of a given child. The same a calling \char`\"{}GetChild(Name).ChildValue()\char`\"{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The Name of the desired child node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This will return the Value of the first available matching PCDATA node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a3143d34f7cd807136c0e08a9ee67ca41}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Empty@{Empty}}
+\index{Empty@{Empty}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Empty}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a3143d34f7cd807136c0e08a9ee67ca41}
+
+
+Is this storing anything at all? 
+
+\begin{DoxyReturn}{Returns}
+Returns True if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is storing nothing. False if it is storing anything. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a08959c7e0c3f93be643dc3a29b40060b}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!end@{end}}
+\index{end@{end}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{end}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a08959c7e0c3f93be643dc3a29b40060b}
+
+
+Get a Child node iterator that references one past the last child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the last child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_afbac679468f12378abbe025d57991fde}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindAttribute@{FindAttribute}}
+\index{FindAttribute@{FindAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindAttribute}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ {\bf Attribute} Mezzanine::xml::Node::FindAttribute (
+\begin{DoxyParamCaption}
+\item[{Predicate}]{pred}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_afbac679468f12378abbe025d57991fde}
+
+
+Search for an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} using a function to check each \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} individually. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pred} & a pointer to a function that accepts an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}, and returns bool.\\
+\hline
+\end{DoxyParams}
+This iterates through each \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this node, from begining to end and calls the Predicate function passing an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} to it. If the Predicate returns true the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} it was just passed is returned. If Precdicate never returns true, it is called on every \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and a blank \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
+This returns the first \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that causes Predicate to return true. 
+\end{DoxyReturn}
+
+
+Definition at line 724 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_af0b5f737f895f650faa83131a86ee2ac}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindChild@{FindChild}}
+\index{FindChild@{FindChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindChild}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ {\bf Node} Mezzanine::xml::Node::FindChild (
+\begin{DoxyParamCaption}
+\item[{Predicate}]{pred}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_af0b5f737f895f650faa83131a86ee2ac}
+
+
+Search for an child ( only direct children ) \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} individually. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pred} & a pointer to a function that accepts an \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and returns bool.\\
+\hline
+\end{DoxyParams}
+This iterates through all immediate children of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and calls the Predicate function passing a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to it. If the Predicate returns true the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} it was just passed is returned. If Predicate never returns true, it is called on every \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and a blank \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
+This returns the first \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that causes Predicate to return true. 
+\end{DoxyReturn}
+
+
+Definition at line 742 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_a8263cc80d5f2977fc89823ba38952777}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindChildbyAttribute@{FindChildbyAttribute}}
+\index{FindChildbyAttribute@{FindChildbyAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindChildbyAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::FindChildbyAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf char\_\-t} $\ast$}]{AttrName, }
+\item[{const {\bf char\_\-t} $\ast$}]{AttrValue}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a8263cc80d5f2977fc89823ba38952777}
+
+
+Find a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} by an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} it has. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the matching \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \\
+\hline
+{\em AttrName} & The name of the matching \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \\
+\hline
+{\em AttrValue} & The value of the matching \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
+Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. \begin{DoxyReturn}{Returns}
+The First matching \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ac30702431eb19fa0749e989c434ea090}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindChildbyAttribute@{FindChildbyAttribute}}
+\index{FindChildbyAttribute@{FindChildbyAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindChildbyAttribute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::FindChildbyAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{AttrName, }
+\item[{const {\bf char\_\-t} $\ast$}]{AttrValue}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ac30702431eb19fa0749e989c434ea090}
+
+
+Find a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} by an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} it has. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AttrName} & The name of the matching \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \\
+\hline
+{\em AttrValue} & The value of the matching \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
+Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. \begin{DoxyReturn}{Returns}
+The First matching \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a0f241f6570fd68540578859c189155c8}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindNode@{FindNode}}
+\index{FindNode@{FindNode}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindNode}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ {\bf Node} Mezzanine::xml::Node::FindNode (
+\begin{DoxyParamCaption}
+\item[{Predicate}]{pred}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a0f241f6570fd68540578859c189155c8}
+
+
+Search for any \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} descended from this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} individually. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pred} & a pointer to a function that accepts an \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and returns bool.\\
+\hline
+\end{DoxyParams}
+This iterates through all children of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and their children ( and so on), and calls the Predicate function passing each \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} it was just passed is returned. If Predicate never returns true, it is called on every \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and a blank \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
+This returns the first \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that causes Predicate to return true. 
+\end{DoxyReturn}
+
+
+Definition at line 760 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_abe164532c32aaee48d85ce0b21270352}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindNodes@{FindNodes}}
+\index{FindNodes@{FindNodes}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} Mezzanine::xml::Node::FindNodes (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{variables = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_abe164532c32aaee48d85ce0b21270352}
+
+
+Select a group of nodes by evaluating an XPath query. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The XPath query as a c-\/string to be evaluated. \\
+\hline
+{\em variables} & undocumented. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \hyperlink{classMezzanine_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of the XPath query. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ad9ee673405aca199e92266ec31b8ac3e}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindNodes@{FindNodes}}
+\index{FindNodes@{FindNodes}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} Mezzanine::xml::Node::FindNodes (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathQuery} \&}]{query}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ad9ee673405aca199e92266ec31b8ac3e}
+
+
+Select a group of nodes by evaluating an XPath query. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The XPath query \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \hyperlink{classMezzanine_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of the XPath query. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The XPath query \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a6b07e3bbd21b2fe87ff2852a74566d3e}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindSingleNode@{FindSingleNode}}
+\index{FindSingleNode@{FindSingleNode}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindSingleNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::FindSingleNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathQuery} \&}]{query}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a6b07e3bbd21b2fe87ff2852a74566d3e}
+
+
+Select single node by evaluating an XPath query. Returns first node from the resulting node set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The XPath query \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} The first matching XPath node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_af7a59c1099f231f45f640cdcbdcc6362}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FindSingleNode@{FindSingleNode}}
+\index{FindSingleNode@{FindSingleNode}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FindSingleNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::FindSingleNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{variables = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_af7a59c1099f231f45f640cdcbdcc6362}
+
+
+Select single node by evaluating an XPath query. Returns first node from the resulting node set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & The XPath query as a c-\/string to be evaluated. \\
+\hline
+{\em variables} & undocumented. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} The first matching XPath node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a0cc23e97d5ed9b2c1c46fcb442d8b337}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!FirstElementByPath@{FirstElementByPath}}
+\index{FirstElementByPath@{FirstElementByPath}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{FirstElementByPath}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::FirstElementByPath (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Path, }
+\item[{{\bf char\_\-t}}]{delimiter = {\ttfamily '/'}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a0cc23e97d5ed9b2c1c46fcb442d8b337}
+
+
+Search for a node by Path consisting of node names and . or .. elements. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000062}{Todo}]Investigate this more deeply. \end{Desc}
+
+\begin{DoxyParams}{Parameters}
+{\em Path} & The path to search for. \\
+\hline
+{\em delimiter} & The character to use as a pathname separator, this defaults to '/'. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matching \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, of an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_af165e3fb0e652483761b1408e141dd00}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetAttribute@{GetAttribute}}
+\index{GetAttribute@{GetAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_af165e3fb0e652483761b1408e141dd00}
+
+
+Attempt to get an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the desired \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that represents the first matching \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}, or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_abb2e51765b16a3373ee81b288fd74b22}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetChild@{GetChild}}
+\index{GetChild@{GetChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::GetChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_abb2e51765b16a3373ee81b288fd74b22}
+
+
+Attempt to get a child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the desired child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents the first desired child, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_af09cd42733bc14079085e237b1d70ae5}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetChild@{GetChild}}
+\index{GetChild@{GetChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::GetChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_af09cd42733bc14079085e237b1d70ae5}
+
+
+Attempt to get a child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a given name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the desired child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents the first desired child, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 550 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_af16bcd37c220278b9f6b9f1c76e67ec8}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetFirstAttribute@{GetFirstAttribute}}
+\index{GetFirstAttribute@{GetFirstAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetFirstAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetFirstAttribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_af16bcd37c220278b9f6b9f1c76e67ec8}
+
+
+Get the First \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} in this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+This attempts to return the First \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} in this node, if it cannot it returns an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a021b679fc715d49935de32d85ded2b65}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetFirstChild@{GetFirstChild}}
+\index{GetFirstChild@{GetFirstChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetFirstChild}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetFirstChild (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a021b679fc715d49935de32d85ded2b65}
+
+
+Get the first child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+Returns the First child node if it exists, otherwise it return an empty node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a54a54c244bf5e3b844e64eee0e704c86}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetLastAttribute@{GetLastAttribute}}
+\index{GetLastAttribute@{GetLastAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetLastAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetLastAttribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a54a54c244bf5e3b844e64eee0e704c86}
+
+
+Get the Last \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} in this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+This attempts to return the Last \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} in this node, if it cannot it returns an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a7b23c09b06898102858fd88c630231c9}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetLastChild@{GetLastChild}}
+\index{GetLastChild@{GetLastChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetLastChild}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetLastChild (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a7b23c09b06898102858fd88c630231c9}
+
+
+Get the last child \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+Returns the last child node if it exists, otherwise it return an empty node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a91ecfa366dbb196052a813f96fb6eab4}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetNextSibling@{GetNextSibling}}
+\index{GetNextSibling@{GetNextSibling}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetNextSibling}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetNextSibling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a91ecfa366dbb196052a813f96fb6eab4}
+
+
+Attempt to retrieve the next sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+A sibling of a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is another \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that shares the same parent. If this is and the sibling nodes are valid, this retrieves that \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, otherwise this return an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents a sibling, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_afff799135cac68889e91cacaf1f800a7}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetNextSibling@{GetNextSibling}}
+\index{GetNextSibling@{GetNextSibling}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetNextSibling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::GetNextSibling (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_afff799135cac68889e91cacaf1f800a7}
+
+
+Attempt to retrieve the next sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a matching name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & A c-\/string that has the name of the node you to find.\\
+\hline
+\end{DoxyParams}
+A sibling of a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is another \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, otherwise this return an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents a sibling with a matching name, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a49ed0fb3eee7cd4dfccdb72ad87bb210}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetParent@{GetParent}}
+\index{GetParent@{GetParent}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetParent}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetParent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a49ed0fb3eee7cd4dfccdb72ad87bb210}
+
+
+Attempt to retrieve the parent of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents the parent \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a1a5a570c36e4e60b8b280be1443de3a0}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetPreviousSibling@{GetPreviousSibling}}
+\index{GetPreviousSibling@{GetPreviousSibling}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetPreviousSibling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::GetPreviousSibling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a1a5a570c36e4e60b8b280be1443de3a0}
+
+
+Attempt to retrieve the previous sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+A sibling of a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is another \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that shares the same parent. If this is and the sibling nodes are valid, this retrieves that \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, otherwise this return an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents a sibling, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a88802799304ad5ed88eeb9988fe4d8e3}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetPreviousSibling@{GetPreviousSibling}}
+\index{GetPreviousSibling@{GetPreviousSibling}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetPreviousSibling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::GetPreviousSibling (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a88802799304ad5ed88eeb9988fe4d8e3}
+
+
+Attempt to retrieve the first previous sibling of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} with a matching name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & A c-\/string that has the name of the node you to find.\\
+\hline
+\end{DoxyParams}
+A sibling of a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is another \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, otherwise this return an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents a sibling with a matching name, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a488bb0d4f42bd9718baab5c0623764cb}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!GetRoot@{GetRoot}}
+\index{GetRoot@{GetRoot}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{GetRoot}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::GetRoot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a488bb0d4f42bd9718baab5c0623764cb}
+
+
+Attempt to retrieve the root \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or the most base \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} containing this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} that represents the root of the XML document, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. If there are multiple roots this attempts to retrieve the appropriate one. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a07e6ba623fc4def9da6ca3d1d861d8e9}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!HashValue@{HashValue}}
+\index{HashValue@{HashValue}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{HashValue}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::HashValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a07e6ba623fc4def9da6ca3d1d861d8e9}
+
+
+Get hash Value (unique for handles to the same object) 
+
+\begin{DoxyReturn}{Returns}
+ptrdiff\_\-t
+
+A size\_\-t that uniquely identifies this node. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a7a1cfbedc5144b72d9002cdded32be43}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertAttributeAfter@{InsertAttributeAfter}}
+\index{InsertAttributeAfter@{InsertAttributeAfter}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertAttributeAfter}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::InsertAttributeAfter (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Attribute} \&}]{attr}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a7a1cfbedc5144b72d9002cdded32be43}
+
+
+Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it into the list of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the New attribute to be created \\
+\hline
+{\em attr} & An \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and is just before where you want the new \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
+This attempts to create an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it in the list of attributes, Just after another \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}, on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a7614742c87922dd19f4a9ae2e393ebc3}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertAttributeBefore@{InsertAttributeBefore}}
+\index{InsertAttributeBefore@{InsertAttributeBefore}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertAttributeBefore}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::InsertAttributeBefore (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Attribute} \&}]{attr}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a7614742c87922dd19f4a9ae2e393ebc3}
+
+
+Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it into the list of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the New attribute to be created \\
+\hline
+{\em attr} & An \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and is just after where you want the new \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
+This attempts to create an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it in the list of attributes, Just before another \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}, on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a227829d650b184329245c5abdd0476df}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertChildAfter@{InsertChildAfter}}
+\index{InsertChildAfter@{InsertChildAfter}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertChildAfter}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::InsertChildAfter (
+\begin{DoxyParamCaption}
+\item[{{\bf NodeType}}]{Type, }
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a227829d650b184329245c5abdd0476df}
+
+
+Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000060}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+
+\begin{DoxyParams}{Parameters}
+{\em Type} & The NodeType of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be added, just after another specific node. \\
+\hline
+{\em node} & The specific node to add the new one after. \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[\hyperlink{todo__todo000061}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} if there was an error. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a130d3fc4581355cbf7faf9ce56583113}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertChildAfter@{InsertChildAfter}}
+\index{InsertChildAfter@{InsertChildAfter}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertChildAfter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::InsertChildAfter (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a130d3fc4581355cbf7faf9ce56583113}
+
+
+Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be created. \\
+\hline
+{\em node} & The node just before were the Create node is to be placed.\\
+\hline
+\end{DoxyParams}
+Calls Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a0f877b7c3d64ede9a73662ed2fff0ef5}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertChildBefore@{InsertChildBefore}}
+\index{InsertChildBefore@{InsertChildBefore}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertChildBefore}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::InsertChildBefore (
+\begin{DoxyParamCaption}
+\item[{{\bf NodeType}}]{Type, }
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a0f877b7c3d64ede9a73662ed2fff0ef5}
+
+
+Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type} & The NodeType of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be added, just before another specific node. \\
+\hline
+{\em node} & The specific node to add the new one before. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} if there was an error. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000055}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a5b5a42904325d45ebbe734ee33a028cb}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertChildBefore@{InsertChildBefore}}
+\index{InsertChildBefore@{InsertChildBefore}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertChildBefore}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::InsertChildBefore (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a5b5a42904325d45ebbe734ee33a028cb}
+
+
+Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be created. \\
+\hline
+{\em node} & The node just after were the Create node is to be placed.\\
+\hline
+\end{DoxyParams}
+Calls Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a6d8a04ed89f3ccc331c1d85d6a690d21}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertCopyAfter@{InsertCopyAfter}}
+\index{InsertCopyAfter@{InsertCopyAfter}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertCopyAfter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} Mezzanine::xml::Node::InsertCopyAfter (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{proto, }
+\item[{const {\bf Attribute} \&}]{attr}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a6d8a04ed89f3ccc331c1d85d6a690d21}
+
+
+Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy into the list of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The attribute to be copied. \\
+\hline
+{\em attr} & An \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and is just before where you want the new copy of proto.\\
+\hline
+\end{DoxyParams}
+This attempts to create a copy of an attribute \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it in the middle of the list of attributes, just after a selected attribute, on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ad122538f533fc0fe4fb8d747025eeca2}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertCopyAfter@{InsertCopyAfter}}
+\index{InsertCopyAfter@{InsertCopyAfter}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertCopyAfter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::InsertCopyAfter (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{proto, }
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ad122538f533fc0fe4fb8d747025eeca2}
+
+
+Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy in the middle the list of this Nodes Childrem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+{\em node} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} just before the desired place in the list of children to insert the copied node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The copied \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a0daa45b11960680ce08a64b0258fb8ec}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertCopyBefore@{InsertCopyBefore}}
+\index{InsertCopyBefore@{InsertCopyBefore}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertCopyBefore}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::InsertCopyBefore (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{proto, }
+\item[{const {\bf Attribute} \&}]{attr}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a0daa45b11960680ce08a64b0258fb8ec}
+
+
+Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy into the list of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The attribute to be copied. \\
+\hline
+{\em attr} & An \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, and is just after where you want the new copy of proto.\\
+\hline
+\end{DoxyParams}
+This attempts to create a copy of an attribute \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it in the middle of the list of attributes, just before a selected attribute, on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ab622185e44a06fc03436039e160292e6}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InsertCopyBefore@{InsertCopyBefore}}
+\index{InsertCopyBefore@{InsertCopyBefore}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InsertCopyBefore}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::InsertCopyBefore (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{proto, }
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ab622185e44a06fc03436039e160292e6}
+
+
+Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy in the middle the list of this Nodes Childrem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+{\em node} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} just after the desired place in the list of children to insert the copied node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The copied \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_acf3d61683c8129573770386aba4259f7}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!InternalObject@{InternalObject}}
+\index{InternalObject@{InternalObject}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{InternalObject}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::InternalObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_acf3d61683c8129573770386aba4259f7}
+
+
+Get internal pointer. 
+
+\begin{DoxyReturn}{Returns}
+A NodeStruct$\ast$ that points to the internal data of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a8b20d5b125625a218ece62d064396c4a}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Name@{Name}}
+\index{Name@{Name}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Name}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a8b20d5b125625a218ece62d064396c4a}
+
+
+Get the name of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+Returns A pointer to a const c-\/style array of the the character type (usually char or wchar\_\-t) containing the name. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+returns \char`\"{}\char`\"{} if \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a61a93d005bbf38ddeedb557bd05362ea}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
+\index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator {\bf unspecified\_\-bool\_\-type} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a61a93d005bbf38ddeedb557bd05362ea}
+
+
+Used to convert this to a boolean value in a safe way. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the internal data is set and false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a9c668d6bcbc03f2d317373b28afde5df}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator!@{operator!}}
+\index{operator!@{operator!}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a9c668d6bcbc03f2d317373b28afde5df}
+
+
+Used to convert this node the opposite of it's normal boolean value. 
+
+This is described in the PugiXML source a a workaround for a borland c++ issue. \begin{DoxyReturn}{Returns}
+Returns false if the internal pointer \hyperlink{classNodeStruct}{NodeStruct} is set and true otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a67745da5a2906b374e91852a3ff20797}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a67745da5a2906b374e91852a3ff20797}
+
+
+Compares the internal values to check inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if any of the internal values don't match between this and the other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ab4271159148ab31e96ceba83eee7e7a4}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ab4271159148ab31e96ceba83eee7e7a4}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is greater than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a0a3a82560a9771ca5550719e9b3434aa}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator$<$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a0a3a82560a9771ca5550719e9b3434aa}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is greater than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a9e57cbae6135b1ca4ef2b08d7e6dcb92}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a9e57cbae6135b1ca4ef2b08d7e6dcb92}
+
+
+Compares the internal values to check equality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if all the internal values match between this and the other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a6c2414435b19d076983579d518c98782}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a6c2414435b19d076983579d518c98782}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is less than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_aeb26816317e5e06f81d0f8c36207363a}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::operator$>$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_aeb26816317e5e06f81d0f8c36207363a}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is less than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a3b4b8226300b27a0f8073e4de48c1f54}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Path@{Path}}
+\index{Path@{Path}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Path}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Path (
+\begin{DoxyParamCaption}
+\item[{{\bf char\_\-t}}]{delimiter = {\ttfamily '/'}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a3b4b8226300b27a0f8073e4de48c1f54}
+
+
+Get the absolute path to this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delimiter} & The character to use as a pathname separator, this defaults to '/'. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A String containing an path 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_ad339153e7b8f6bc9d3a7e4ee3aaa55d2}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!PrependAttribute@{PrependAttribute}}
+\index{PrependAttribute@{PrependAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{PrependAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::PrependAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_ad339153e7b8f6bc9d3a7e4ee3aaa55d2}
+
+
+Creates an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts it at the begining of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the New attribute to be created\\
+\hline
+\end{DoxyParams}
+This attempts to create an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it at the beginning of the list of attributes on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a2a1ed011242565f5f8f7541977311fd4}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!PrependChild@{PrependChild}}
+\index{PrependChild@{PrependChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{PrependChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::PrependChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a2a1ed011242565f5f8f7541977311fd4}
+
+
+Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the beginning of the children. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be created.\\
+\hline
+\end{DoxyParams}
+Calls \hyperlink{classMezzanine_1_1xml_1_1Node_a5d055f3328c147b712980b5ca49e4564}{Node::PrependChild(const char\_\-t$\ast$)}; \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 669 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_afa84d785eb34c7f594fb6205ba9459c3}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!PrependChild@{PrependChild}}
+\index{PrependChild@{PrependChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{PrependChild}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::PrependChild (
+\begin{DoxyParamCaption}
+\item[{{\bf NodeType}}]{Type = {\ttfamily NodeElement}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_afa84d785eb34c7f594fb6205ba9459c3}
+
+
+Creates a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the beginning of the Child Nodes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Type} & The NodeType of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be added to the beginning list of child Nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} if there was an error. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a5d055f3328c147b712980b5ca49e4564}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!PrependChild@{PrependChild}}
+\index{PrependChild@{PrependChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{PrependChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::PrependChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a5d055f3328c147b712980b5ca49e4564}
+
+
+Creates an element \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, with the given name at the beginning of the children. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be created.\\
+\hline
+\end{DoxyParams}
+Calls \hyperlink{classMezzanine_1_1xml_1_1Node_afa84d785eb34c7f594fb6205ba9459c3}{Node::PrependChild(NodeType)}; using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a1667a10461c554d35997eb132dc0b052}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!PrependCopy@{PrependCopy}}
+\index{PrependCopy@{PrependCopy}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{PrependCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} Mezzanine::xml::Node::PrependCopy (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{proto}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a1667a10461c554d35997eb132dc0b052}
+
+
+Copies a \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} and puts the copy at the start of the list of this Nodes Childrem. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The copied \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a2eba61972c390751d86c2d9beec9b00e}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!PrependCopy@{PrependCopy}}
+\index{PrependCopy@{PrependCopy}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{PrependCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} Mezzanine::xml::Node::PrependCopy (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{proto}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a2eba61972c390751d86c2d9beec9b00e}
+
+
+Copies an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and puts the copy at the beginning of this Nodes attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em proto} & The attribute to be copied.\\
+\hline
+\end{DoxyParams}
+This attempts to create a copy of an attribute \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} and stick it at the beginning of the list of attribute on the current \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
+The created \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on Failure. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a94b9b66aff6d1d6a26c1dd5949fabb25}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Print@{Print}}
+\index{Print@{Print}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::xml::Node::Print (
+\begin{DoxyParamCaption}
+\item[{{\bf Writer} \&}]{WriterInstance, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}, }
+\item[{unsigned int}]{Depth = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a94b9b66aff6d1d6a26c1dd5949fabb25}
+
+
+Output the XML document using a \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em WriterInstance} & The \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} that will be used to output the xml text. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{xml::FormatDefault}. \\
+\hline
+{\em DocumentEncoding} & The \hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804}{xml::Encoding} of the document, whichs defaults to EncodingAuto \\
+\hline
+{\em Depth} & This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\\
+\hline
+\end{DoxyParams}
+This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. \hypertarget{classMezzanine_1_1xml_1_1Node_a6b3af942054ed0e53889bec30663e55d}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Print@{Print}}
+\index{Print@{Print}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::xml::Node::Print (
+\begin{DoxyParamCaption}
+\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{os, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{unsigned int}]{Depth = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a6b3af942054ed0e53889bec30663e55d}
+
+
+Output the XML document using a Output Stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & An output stream to send xml text to. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{xml::FormatDefault} \\
+\hline
+{\em Depth} & This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\\
+\hline
+\end{DoxyParams}
+This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. \hypertarget{classMezzanine_1_1xml_1_1Node_a5d07199f212e7736889d370cc40a692b}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Print@{Print}}
+\index{Print@{Print}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::xml::Node::Print (
+\begin{DoxyParamCaption}
+\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{os, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}, }
+\item[{unsigned int}]{Depth = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a5d07199f212e7736889d370cc40a692b}
+
+
+Output the XML document using a Output Stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & An output stream to send xml text to. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{xml::FormatDefault} \\
+\hline
+{\em DocumentEncoding} & The \hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804}{xml::Encoding} of the document, whichs defaults to EncodingAuto \\
+\hline
+{\em Depth} & This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\\
+\hline
+\end{DoxyParams}
+This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. \hypertarget{classMezzanine_1_1xml_1_1Node_aca08c75bcb373fca5d96911d5373bc47}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!RemoveAttribute@{RemoveAttribute}}
+\index{RemoveAttribute@{RemoveAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{RemoveAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::RemoveAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{a}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_aca08c75bcb373fca5d96911d5373bc47}
+
+
+Remove specified \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} to look for. If the given \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} doesn't belong to this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} then this will fail \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the removal was successful, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a543ae590b37d10e24d77ae97af762541}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!RemoveAttribute@{RemoveAttribute}}
+\index{RemoveAttribute@{RemoveAttribute}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{RemoveAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::RemoveAttribute (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a543ae590b37d10e24d77ae97af762541}
+
+
+Remove \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} as specified by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the removal was successful, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_adccef0985791506dc216f57cf6d46546}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!RemoveChild@{RemoveChild}}
+\index{RemoveChild@{RemoveChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{RemoveChild}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::RemoveChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{n}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_adccef0985791506dc216f57cf6d46546}
+
+
+Remove specified child element. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to look for. If the given \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} doesn't belong to this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} then this will fail \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the removal was successful, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_abac64ec627dbc59dbb8356620b2e6216}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!RemoveChild@{RemoveChild}}
+\index{RemoveChild@{RemoveChild}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{RemoveChild}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Node::RemoveChild (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_abac64ec627dbc59dbb8356620b2e6216}
+
+
+Remove child element as specified by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} to remove. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the removal was successful, false otherwise 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a486049e5b7dc8368f81d7ed536ea0556}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!SetName@{SetName}}
+\index{SetName@{SetName}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Node::SetName (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a486049e5b7dc8368f81d7ed536ea0556}
+
+
+Set the name of . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The desired name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if the name cannot be stored or there is not enough memory. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a606efad0e6f880cbb6b447005b2e24e0}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!SetName@{SetName}}
+\index{SetName@{SetName}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Node::SetName (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a606efad0e6f880cbb6b447005b2e24e0}
+
+
+Set the name of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The desired name . \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if the name cannot be stored or there is not enough memory. 
+\end{DoxyReturn}
+
+
+Definition at line 579 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Node_a86ca6281c21ba29a3e1476ac7cd5a48f}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Node::SetValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a86ca6281c21ba29a3e1476ac7cd5a48f}
+
+
+Set the value of this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new Value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if this is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000054}{Todo}]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a3115c4b78afaa9b27a54c1d4200dbcc7}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Traverse@{Traverse}}
+\index{Traverse@{Traverse}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Traverse}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Traverse (
+\begin{DoxyParamCaption}
+\item[{{\bf TreeWalker} \&}]{walker}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a3115c4b78afaa9b27a54c1d4200dbcc7}
+
+
+Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em walker} & Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if every descendant \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} was iterated through, false if it didn't go through every \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classMezzanine_1_1xml_1_1TreeWalker}{xml::TreeWalker} 
+\end{DoxySeeAlso}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a939a7a98e48ca8abb3349909586dd081}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Type@{Type}}
+\index{Type@{Type}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Type}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a939a7a98e48ca8abb3349909586dd081}
+
+
+Identify what kind of \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} this is. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{NodeType} identifying this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}, or o/NULL if this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Node_a8fb0f29e78a3641ef14e3d71ac73144b}{
+\index{Mezzanine::xml::Node@{Mezzanine::xml::Node}!Value@{Value}}
+\index{Value@{Value}!Mezzanine::xml::Node@{Mezzanine::xml::Node}}
+\paragraph[{Value}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Node::Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Node_a8fb0f29e78a3641ef14e3d71ac73144b}
+
+
+Get the Value of this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+Returns A pointer to a const c-\/style array of the the character type (usually char or wchar\_\-t) containing the value. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+returns \char`\"{}\char`\"{} if \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} is empty. 
+\end{DoxyWarning}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

@@ -40,6 +40,7 @@
 #ifndef _script_h
 #define _script_h
 
+#include "datatypes.h"
 #include "scriptargument.h"
 
 namespace Mezzanine

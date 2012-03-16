@@ -93,6 +93,12 @@ Inheritance diagram for Mezzanine::UI::Menu:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a8f3d2f15d3b620eba00e2c5c713881f5">Menu</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a8f3d2f15d3b620eba00e2c5c713881f5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb847e055541acb9d531391ba66b8681"></a><!-- doxytag: member="Mezzanine::UI::Menu::~Menu" ref="aeb847e055541acb9d531391ba66b8681" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#aeb847e055541acb9d531391ba66b8681">~Menu</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a2ca593a768f250398f92a7f8bfc5394c">_AppendVertices</a> (<a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;Vertices)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a514ab3a4afb50cd799fe7fde9f877c3d">GetActualPosition</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the pixel position of this widget.  <a href="#a514ab3a4afb50cd799fe7fde9f877c3d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a301e1b2290e4bc170f527c5dd0179884">GetActualSize</a> ()</td></tr>
@@ -105,8 +111,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this widget.  <a href="#a50298380a41d2e8801dffdb9750cb212"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI::MenuWindow</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a370c1411203c58698104a92d2b508b99">GetTopWindow</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current window at the top of the stack.  <a href="#a370c1411203c58698104a92d2b508b99"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a8f3d2f15d3b620eba00e2c5c713881f5">Menu</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a8f3d2f15d3b620eba00e2c5c713881f5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a671031f5e8ae5890d952e5f6646cdb66">RollMenuBackToWindow</a> (<a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI::MenuWindow</a> *Win)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Hides and removes from the stack all windows from the top until it reaches the specified window, or root window.  <a href="#a671031f5e8ae5890d952e5f6646cdb66"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a0638a7f234bc62e4c7b7dc0253a5d68e">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
@@ -119,9 +123,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this menu.  <a href="#ab3e0d3ea65a0bb5e19639bdd283796d0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#a8d0e0169fb5e1c0f864670ad6d34e521">UpdateDimensions</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this widget to match those of the new screen size.  <a href="#a8d0e0169fb5e1c0f864670ad6d34e521"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb847e055541acb9d531391ba66b8681"></a><!-- doxytag: member="Mezzanine::UI::Menu::~Menu" ref="aeb847e055541acb9d531391ba66b8681" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Menu.html#aeb847e055541acb9d531391ba66b8681">~Menu</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94054405f504ec8609cd5e0d17b0dc77"></a><!-- doxytag: member="Mezzanine::UI::Menu::CheckMouseHoverImpl" ref="a94054405f504ec8609cd5e0d17b0dc77" args="()" -->
@@ -146,7 +147,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
  <br/>
  Also it should be noted that since this is just a control system for other classes, it doesn't have a position or size like other classes. Instead when you call those functions to set or get the position or size, you'll be working with the current top level window. </p>
 
-<p>Definition at line <a class="el" href="uimenu_8h_source.html#l00061">61</a> of file <a class="el" href="uimenu_8h_source.html">uimenu.h</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8h_source.html#l00060">60</a> of file <a class="el" href="uimenu_8h_source.html">uimenu.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a8f3d2f15d3b620eba00e2c5c713881f5"></a><!-- doxytag: member="Mezzanine::UI::Menu::Menu" ref="a8f3d2f15d3b620eba00e2c5c713881f5" args="(ConstString name, const RenderableRect &amp;Rect, Layer *PLayer)" -->
 <div class="memitem">
@@ -194,6 +195,34 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a2ca593a768f250398f92a7f8bfc5394c"></a><!-- doxytag: member="Mezzanine::UI::Menu::_AppendVertices" ref="a2ca593a768f250398f92a7f8bfc5394c" args="(ScreenVertexData &amp;Vertices)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Menu::_AppendVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;&#160;</td>
+          <td class="paramname"><em>Vertices</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Appends the vertices of this renderable to another vector. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Vertices</td><td>The vector of vertex's to append to. </td></tr>
+  </table>
+  </dd>
+</dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a756bf060fd25e54a00cfa1f13d78df2e">Mezzanine::UI::Widget</a>.</p>
+
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00221">221</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a514ab3a4afb50cd799fe7fde9f877c3d"></a><!-- doxytag: member="Mezzanine::UI::Menu::GetActualPosition" ref="a514ab3a4afb50cd799fe7fde9f877c3d" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -211,7 +240,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 <p>Sets the pixel position of this widget. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the pixel position of this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00174">174</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00181">181</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -232,7 +261,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 <p>Sets the pixel size of this widget. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the pixel size of this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00194">194</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00201">201</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +283,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 <p>The position is relative to the screen size. Values range from 0.0 to 1.0. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the relative position of this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00164">164</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00171">171</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -275,7 +304,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 <p>Gets the Root window of this menu. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Root window of this menu. </dd></dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00204">204</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00211">211</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -297,7 +326,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 <p>The size is relative to the screen size. Values range from 0.0 to 1.0. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the relative size of this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00184">184</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00191">191</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -318,7 +347,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 <p>Gets the current window at the top of the stack. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the window currently at the top of the stack. </dd></dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00209">209</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00216">216</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -345,7 +374,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00141">141</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00147">147</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +403,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#a860bd8baea24d61a9cd661e85831f981">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00169">169</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00176">176</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +432,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#acc8a472036872bbbfd0476f753c80ba4">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00189">189</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00196">196</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -433,7 +462,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#ac83b59db51a6717ad7b822007dde3576">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00159">159</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00166">166</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -463,7 +492,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#adf8b14ce6641d4ec12f6ff09814fc9ab">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00179">179</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00186">186</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -486,7 +515,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1Widget.html#af23f919f2912ac10230953a848c9889c">Mezzanine::UI::Widget</a>.</p>
 
-<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00199">199</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uimenu_8cpp_source.html#l00206">206</a> of file <a class="el" href="uimenu_8cpp_source.html">uimenu.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +529,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -510,6 +539,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1UI_1_1MenuWindow.html">UI:
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

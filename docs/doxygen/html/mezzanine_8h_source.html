@@ -114,12 +114,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00050"></a>00050 <span class="comment">/// This file is also u</span>
 <a name="l00051"></a>00051 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00052"></a>00052 <span class="comment"></span>
-<a name="l00053"></a>00053 <span class="comment">// Tell SWIG to create a module that scripting languages can use called &quot;mezzanine&quot;</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#ifdef SWIG</span>
-<a name="l00055"></a>00055 <span class="preprocessor"></span>%module mezzanine
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
-<a name="l00057"></a>00057 <span class="preprocessor"></span>
-<a name="l00058"></a>00058                                         <span class="comment">// The remarks in Column 41 are use to help with serializing and deserializing</span>
+<a name="l00053"></a>00053 <span class="comment">// Tell SWIG to implement scripting language specific stuff, set compiler macros used else where, must be included first</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;<a class="code" href="swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor.">swig.h</a>&quot;</span>
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="comment">// This is required for the swig parser to skip the items that don&#39;t support scripting yet.</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#ifndef SWIG</span>
+<a name="l00058"></a>00058 <span class="preprocessor"></span>                                        <span class="comment">// The remarks in Column 41 are use to help with tracking progress on serializing and deserializing</span>
 <a name="l00059"></a>00059 
 <a name="l00060"></a>00060 <span class="comment">// We put headers in our headers so we can include while we include</span>
 <a name="l00061"></a>00061 <span class="preprocessor">#include &quot;<a class="code" href="actorbase_8h.html" title="The base class for all Actors is defined here.">actorbase.h</a>&quot;</span>                  <span class="comment">// serializes</span>
@@ -185,11 +185,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00121"></a>00121 <span class="preprocessor">#include &quot;resourcemanager.h&quot;</span>
 <a name="l00122"></a>00122 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>               <span class="comment">// Done</span>
 <a name="l00123"></a>00123 <span class="preprocessor">#include &quot;scriptingmanager.h&quot;</span>
-<a name="l00124"></a>00124 <span class="preprocessor">#include &quot;<a class="code" href="serialization_8h.html" title="The interface for serialization.">serialization.h</a>&quot;</span>              <span class="comment">// nothing to do</span>
-<a name="l00125"></a>00125 <span class="preprocessor">#include &quot;simpletimer.h&quot;</span>
-<a name="l00126"></a>00126 <span class="preprocessor">#include &quot;singleton.h&quot;</span>                  <span class="comment">// nothing to do</span>
-<a name="l00127"></a>00127 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
-<a name="l00128"></a>00128 <span class="preprocessor">#include &quot;<a class="code" href="swig_8h.html" title="Used to give commands specifically to the swig preprocessor.">swig.h</a>&quot;</span>
+<a name="l00124"></a>00124 <span class="preprocessor">#include &quot;scripting.h&quot;</span>
+<a name="l00125"></a>00125 <span class="preprocessor">#include &quot;<a class="code" href="serialization_8h.html" title="The interface for serialization.">serialization.h</a>&quot;</span>              <span class="comment">// nothing to do</span>
+<a name="l00126"></a>00126 <span class="preprocessor">#include &quot;simpletimer.h&quot;</span>
+<a name="l00127"></a>00127 <span class="preprocessor">#include &quot;singleton.h&quot;</span>                  <span class="comment">// nothing to do</span>
+<a name="l00128"></a>00128 <span class="preprocessor">#include &quot;stringtool.h&quot;</span>
 <a name="l00129"></a>00129 <span class="preprocessor">#include &quot;terrainbase.h&quot;</span>
 <a name="l00130"></a>00130 <span class="preprocessor">#include &quot;terrainmanager.h&quot;</span>
 <a name="l00131"></a>00131 <span class="preprocessor">#include &quot;timer.h&quot;</span>
@@ -198,21 +198,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00134"></a>00134 <span class="preprocessor">#include &quot;ui.h&quot;</span>
 <a name="l00135"></a>00135 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00136"></a>00136 <span class="preprocessor">#include &quot;vector2.h&quot;</span>                    <span class="comment">// done</span>
-<a name="l00137"></a>00137 <span class="preprocessor">#include &quot;vector3.h&quot;</span>                    <span class="comment">// done</span>
-<a name="l00138"></a>00138 <span class="preprocessor">#include &quot;vector3wactor.h&quot;</span>
-<a name="l00139"></a>00139 <span class="preprocessor">#include &quot;viewport.h&quot;</span>
-<a name="l00140"></a>00140 <span class="preprocessor">#include &quot;worldgetset.h&quot;</span>
-<a name="l00141"></a>00141 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00142"></a>00142 <span class="preprocessor">#include &quot;<a class="code" href="worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment.">worldnode.h</a>&quot;</span>                  <span class="comment">// done</span>
-<a name="l00143"></a>00143 <span class="preprocessor">#include &quot;worldobjectgraphicssettings.h&quot;</span><span class="comment">// done</span>
-<a name="l00144"></a>00144 <span class="preprocessor">#include &quot;worldobject.h&quot;</span>
-<a name="l00145"></a>00145 <span class="preprocessor">#include &quot;worldobjectphysicssettings.h&quot;</span>
-<a name="l00146"></a>00146 <span class="preprocessor">#include &quot;worldtrigger.h&quot;</span>
-<a name="l00147"></a>00147 <span class="preprocessor">#include &quot;xmldoc.h&quot;</span>
-<a name="l00148"></a>00148 <span class="preprocessor">#include &quot;xml.h&quot;</span>                        <span class="comment">// nothing to do</span>
-<a name="l00149"></a>00149 
-<a name="l00150"></a>00150 
-<a name="l00151"></a>00151 <span class="preprocessor">#endif</span>
+<a name="l00137"></a>00137 <span class="preprocessor">#endif // \no SWIG</span>
+<a name="l00138"></a>00138 <span class="preprocessor"></span>
+<a name="l00139"></a>00139 <span class="preprocessor">#include &quot;vector3.h&quot;</span>                    <span class="comment">// done</span>
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 <span class="comment">// more stuff swi shouldn&#39;t read yer</span>
+<a name="l00142"></a>00142 <span class="preprocessor">#ifndef SWIG</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span><span class="preprocessor">#include &quot;vector3wactor.h&quot;</span>
+<a name="l00144"></a>00144 <span class="preprocessor">#include &quot;viewport.h&quot;</span>
+<a name="l00145"></a>00145 <span class="preprocessor">#include &quot;worldgetset.h&quot;</span>
+<a name="l00146"></a>00146 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00147"></a>00147 <span class="preprocessor">#include &quot;<a class="code" href="worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment.">worldnode.h</a>&quot;</span>                  <span class="comment">// done</span>
+<a name="l00148"></a>00148 <span class="preprocessor">#include &quot;worldobjectgraphicssettings.h&quot;</span><span class="comment">// done</span>
+<a name="l00149"></a>00149 <span class="preprocessor">#include &quot;worldobject.h&quot;</span>
+<a name="l00150"></a>00150 <span class="preprocessor">#include &quot;worldobjectphysicssettings.h&quot;</span>
+<a name="l00151"></a>00151 <span class="preprocessor">#include &quot;worldtrigger.h&quot;</span>
+<a name="l00152"></a>00152 <span class="preprocessor">#include &quot;<a class="code" href="xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system.">xmldoc.h</a>&quot;</span>
+<a name="l00153"></a>00153 <span class="preprocessor">#include &quot;<a class="code" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>                        <span class="comment">// nothing to do</span>
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155 <span class="comment">// Individual scripting implementations</span>
+<a name="l00156"></a>00156 <span class="preprocessor">#ifdef MEZZLUA51</span>
+<a name="l00157"></a>00157 <span class="preprocessor"></span><span class="preprocessor">    #include &quot;<a class="code" href="scriptinglua51_8h.html" title="This file has the interface for the Lua based implementation of the Scripting system.">scriptinglua51.h</a>&quot;</span>
+<a name="l00158"></a>00158 <span class="preprocessor">#endif</span>
+<a name="l00159"></a>00159 <span class="preprocessor"></span>
+<a name="l00160"></a>00160 <span class="preprocessor">#endif // \no SWIG</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span>
+<a name="l00162"></a>00162 <span class="preprocessor">#endif // \ _mezzanine_h</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -220,7 +231,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -230,6 +241,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -27,6 +27,8 @@ typedef std::vector$<$ \hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c1
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+virtual \hyperlink{classMezzanine_1_1TypedConstraint_aebd4b22e76d1f693640436083d57f170}{$\sim$TypedConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ \hyperlink{classMezzanine_1_1TypedConstraint_a9243a78d94c136d127489b7780ad90d3}{GetActorA} () const 
 \begin{DoxyCompactList}\small\item\em Gets the first actor this constraint applies to. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ \hyperlink{classMezzanine_1_1TypedConstraint_a913d8cad2ce92bd3907bc40dc1a5afb8}{GetActorB} () const 
@@ -43,6 +45,10 @@ virtual bool \hyperlink{classMezzanine_1_1TypedConstraint_a96a6b4c16521f24d72fee
 \begin{DoxyCompactList}\small\item\em Has the given Param on the Given Axis been set yet. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1TypedConstraint_aeaaffe002055651f3db3e9150fe5a114}{IsParamValidOnAxis} (\hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} Param, int Axis) const 
 \begin{DoxyCompactList}\small\item\em Is a certain Parameter valid on a certain axis. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TypedConstraint_a18ea81954d7cc28dce3e5f4c03eac820}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1TypedConstraint_ae9d74e8e14d9e79bb4320603fbf824d6}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1TypedConstraint_aacb29d66ce974798bbc902d49a3025cc}{SetParam} (\hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} Param, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Value, int Axis=-\/1)
 \begin{DoxyCompactList}\small\item\em Provides override of constraint parameters. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1TypedConstraint_a09aacdc6f424623cc3a2fdad9c1d0caf}{SetPivotALocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotA)=0
@@ -58,12 +64,17 @@ virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_abd499db29c9e9755e9bb547d29eaa49a}{ParamList} \hyperlink{classMezzanine_1_1TypedConstraint_a3f895880ea78984a088996e1950fddcc}{ValidParamOnAxis} (int Axis) const =0
 \begin{DoxyCompactList}\small\item\em Get a sorted (low to high) list of Parameters that are valid on this Axis. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_abd499db29c9e9755e9bb547d29eaa49a}{ParamList} \hyperlink{classMezzanine_1_1TypedConstraint_a278d3baf36055e5d10a411139a2d2a7e}{ValidParams} () const 
-\begin{DoxyCompactList}\small\item\em Get A sorted (low to high) list of Parameters that are valid on all Axis. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1TypedConstraint_aebd4b22e76d1f693640436083d57f170}{$\sim$TypedConstraint} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get A sorted (low to high) list of Parameters that are valid on all Axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1TypedConstraint_accc0475bacd0b984dd30d74dbe2bc08e}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1TypedConstraint_a850beae54095af9ac2da27050955a338}{TypedConstraint} ()
+\begin{DoxyCompactList}\small\item\em No initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1TypedConstraint_a82175a88ddca2fe0f7063b7869a1f363}{
 void \hyperlink{classMezzanine_1_1TypedConstraint_a82175a88ddca2fe0f7063b7869a1f363}{SetBodies} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$Act1, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$Act2)}
 \label{classMezzanine_1_1TypedConstraint_a82175a88ddca2fe0f7063b7869a1f363}
@@ -73,9 +84,7 @@ void \hyperlink{classMezzanine_1_1TypedConstraint_a82175a88ddca2fe0f7063b7869a1f
 void \hyperlink{classMezzanine_1_1TypedConstraint_a678957e08faf3ded0b81cf4219ce5e77}{SetBodies} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$Act1)}
 \label{classMezzanine_1_1TypedConstraint_a678957e08faf3ded0b81cf4219ce5e77}
 
-\begin{DoxyCompactList}\small\item\em Sets the Internal actor pointers. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1TypedConstraint_a850beae54095af9ac2da27050955a338}{TypedConstraint} ()
-\begin{DoxyCompactList}\small\item\em No initialization constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the Internal actor pointers. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -377,6 +386,70 @@ True if Param is valid on Axis, and Axis is valid. If anything is invalid this r
 
 
 Definition at line 224 of file constraint.h.
+
+\hypertarget{classMezzanine_1_1TypedConstraint_a18ea81954d7cc28dce3e5f4c03eac820}{
+\index{Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::TypedConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TypedConstraint_a18ea81954d7cc28dce3e5f4c03eac820}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data.\\
+\hline
+\end{DoxyParams}
+This should only be run once all the actors have finishes being deserialized. This will fail if the actors it expects are not present. 
+
+Reimplemented in \hyperlink{classMezzanine_1_1DualTransformConstraint_aa69fcdbf84b8a509ee32d4233b96580c}{Mezzanine::DualTransformConstraint}, \hyperlink{classMezzanine_1_1Generic6DofConstraint_ae165de381e73cc5119d07e3fc563aa99}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a30cd26edd9d57aa68cf7f55f31fb99b0}{Mezzanine::Generic6DofSpringConstraint}, \hyperlink{classMezzanine_1_1HingeConstraint_a6cbd8328c7a047f8e7951ab482e733cb}{Mezzanine::HingeConstraint}, and \hyperlink{classMezzanine_1_1Point2PointConstraint_a1a5ae4370aa77dc4a07686a95e8c20bc}{Mezzanine::Point2PointConstraint}.
+
+\hypertarget{classMezzanine_1_1TypedConstraint_ae9d74e8e14d9e79bb4320603fbf824d6}{
+\index{Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::TypedConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TypedConstraint_ae9d74e8e14d9e79bb4320603fbf824d6}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to.\\
+\hline
+\end{DoxyParams}
+This stores each Actor's name and every constraint parameter on each if it has been set. This should allow for looking up the required actors in the Actor Manager. This should also prevent any interference with different values and minimize the size of the serialized version 
+
+Reimplemented in \hyperlink{classMezzanine_1_1DualTransformConstraint_a8e0c729e416c6c20507ef8ac029fa819}{Mezzanine::DualTransformConstraint}, \hyperlink{classMezzanine_1_1Generic6DofConstraint_a6595599905cd8b51440bf868d4a9806a}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a02841289ca30d307e1e39b47d610ff18}{Mezzanine::Generic6DofSpringConstraint}, \hyperlink{classMezzanine_1_1HingeConstraint_a49cf5f27bff730ee30ff52a741e35f2e}{Mezzanine::HingeConstraint}, and \hyperlink{classMezzanine_1_1Point2PointConstraint_a8da49ad2d84a9ecebe6be1f11bfdf2b8}{Mezzanine::Point2PointConstraint}.
+
+\hypertarget{classMezzanine_1_1TypedConstraint_accc0475bacd0b984dd30d74dbe2bc08e}{
+\index{Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} Mezzanine::TypedConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1TypedConstraint_accc0475bacd0b984dd30d74dbe2bc08e}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}TypedConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1DualTransformConstraint_a78694da6df0b2625220abb94e8f1c549}{Mezzanine::DualTransformConstraint}, \hyperlink{classMezzanine_1_1Generic6DofConstraint_acac3b309c947c1cd60635df1c7b46867}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_aa020b0ef38e950475dc8a36f06139933}{Mezzanine::Generic6DofSpringConstraint}, \hyperlink{classMezzanine_1_1HingeConstraint_a0bcb0756ff73f9d772e0c60d188d393a}{Mezzanine::HingeConstraint}, and \hyperlink{classMezzanine_1_1Point2PointConstraint_a181517fd02b075cf28c61f9101044b97}{Mezzanine::Point2PointConstraint}.
 
 \hypertarget{classMezzanine_1_1TypedConstraint_aacb29d66ce974798bbc902d49a3025cc}{
 \index{Mezzanine::TypedConstraint@{Mezzanine::TypedConstraint}!SetParam@{SetParam}}

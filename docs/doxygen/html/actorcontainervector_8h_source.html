@@ -115,100 +115,105 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00051"></a>00051 }
 <a name="l00052"></a>00052 
 <a name="l00053"></a>00053 <span class="keyword">namespace </span>Mezzanine
-<a name="l00054"></a>00054 {<span class="comment"></span>
-<a name="l00055"></a>00055 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00056"></a>00056 <span class="comment">    /// @class ActorContainerVector</span>
-<a name="l00057"></a>00057 <span class="comment">    /// @headerfile actorcontainervector.h</span>
-<a name="l00058"></a>00058 <span class="comment">    /// @brief A simple Actor Container using a vector</span>
-<a name="l00059"></a>00059 <span class="comment">    /// @details This inherits from std::vector and our Mezzanine::ActorContainerBase to</span>
-<a name="l00060"></a>00060 <span class="comment">    /// allow us to have access to a container through a standardized structure this</span>
-<a name="l00061"></a>00061 <span class="comment">    /// way the Mezzanine::world doesn&#39;t need to worry about the details when accessing</span>
-<a name="l00062"></a>00062 <span class="comment">    /// and storing actors</span>
-<a name="l00063"></a><a class="code" href="classMezzanine_1_1ActorContainerVector.html">00063</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding actors...">ActorContainerBase</a>, <span class="keyword">public</span> std::vector&lt;ActorBase*&gt;
-<a name="l00064"></a>00064     {
-<a name="l00065"></a>00065         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00066"></a>00066 <span class="comment">            /// @brief Simple Constructor</span>
-<a name="l00067"></a>00067 <span class="comment">            /// @details This creates and empty usable container based on std::vector.</span>
-<a name="l00068"></a>00068 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a> ();<span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment">            /// @brief Class destructor</span>
-<a name="l00070"></a>00070 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a>();
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072             <span class="comment">//Simply Inherited mmembers</span>
-<a name="l00073"></a>00073             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddActor(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd);
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* LastActorAdded();
+<a name="l00054"></a>00054 {
+<a name="l00055"></a>00055     <span class="comment">// Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances</span>
+<a name="l00056"></a>00056 <span class="preprocessor">    #ifdef SWIG</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>    %<span class="keyword">template</span>(VectorActorPtr) std::vector&lt; ActorBase * &gt;;
+<a name="l00058"></a>00058 <span class="preprocessor">    #endif</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00060"></a>00060 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00061"></a>00061 <span class="comment">    /// @class ActorContainerVector</span>
+<a name="l00062"></a>00062 <span class="comment">    /// @headerfile actorcontainervector.h</span>
+<a name="l00063"></a>00063 <span class="comment">    /// @brief A simple Actor Container using a vector</span>
+<a name="l00064"></a>00064 <span class="comment">    /// @details This inherits from std::vector and our Mezzanine::ActorContainerBase to</span>
+<a name="l00065"></a>00065 <span class="comment">    /// allow us to have access to a container through a standardized structure this</span>
+<a name="l00066"></a>00066 <span class="comment">    /// way the Mezzanine::world doesn&#39;t need to worry about the details when accessing</span>
+<a name="l00067"></a>00067 <span class="comment">    /// and storing actors</span>
+<a name="l00068"></a><a class="code" href="classMezzanine_1_1ActorContainerVector.html">00068</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ActorContainerBase.html" title="A base class to unify the interface for different kinds of containers for holding actors...">ActorContainerBase</a>, <span class="keyword">public</span> std::vector&lt;ActorBase*&gt;
+<a name="l00069"></a>00069     {
+<a name="l00070"></a>00070         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00071"></a>00071 <span class="comment">            /// @brief Simple Constructor</span>
+<a name="l00072"></a>00072 <span class="comment">            /// @details This creates and empty usable container based on std::vector.</span>
+<a name="l00073"></a>00073 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a> ();<span class="comment"></span>
+<a name="l00074"></a>00074 <span class="comment">            /// @brief Class destructor</span>
+<a name="l00075"></a>00075 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a>();
 <a name="l00076"></a>00076 
-<a name="l00077"></a>00077             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActor(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove);
-<a name="l00078"></a>00078 
-<a name="l00079"></a>00079             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActorAtCursor();
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveAllActors();
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083             <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetActorCount() <span class="keyword">const</span>;
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToFirst();
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToPrevious();
-<a name="l00088"></a>00088 
-<a name="l00089"></a>00089             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToNext();
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToLast();
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetAtCursor() <span class="keyword">const</span>;
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetFirst() <span class="keyword">const</span>;
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetLast() <span class="keyword">const</span>;
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099             <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetContainerType() <span class="keyword">const</span>;
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GetGameWorld() <span class="keyword">const</span>;
-<a name="l00102"></a>00102 <span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes.</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node.</span>
-<a name="l00106"></a>00106 <span class="comment">            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.</span>
-<a name="l00107"></a>00107 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(Ogre::SceneNode* GraphicsNode);
-<a name="l00108"></a>00108 <span class="comment"></span>
-<a name="l00109"></a>00109 <span class="comment">            /// @brief This finds an actor by searching for a physics subsystem object.</span>
-<a name="l00110"></a>00110 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.</span>
-<a name="l00111"></a>00111 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a physics object.</span>
-<a name="l00112"></a>00112 <span class="comment">            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.</span>
-<a name="l00113"></a>00113 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(btCollisionObject* PhysicsObject);
-<a name="l00114"></a>00114 <span class="comment"></span>
-<a name="l00115"></a>00115 <span class="comment">            /// @brief This finds an actor based on its name.</span>
-<a name="l00116"></a>00116 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
-<a name="l00117"></a>00117 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name.</span>
-<a name="l00118"></a>00118 <span class="comment">            /// @param Name This is the name of the Actor you want to find.</span>
-<a name="l00119"></a>00119 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name);
-<a name="l00120"></a>00120 <span class="comment"></span>
-<a name="l00121"></a>00121 <span class="comment">            /// @brief This is used to store information about the cursor.</span>
-<a name="l00122"></a>00122 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
-<a name="l00123"></a>00123 <span class="comment">            /// so feel free to use this instead.</span>
-<a name="l00124"></a><a class="code" href="classMezzanine_1_1ActorContainerVector.html#ac359dee117cfe4829c656f7599ea9092">00124</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator <a class="code" href="classMezzanine_1_1ActorContainerVector.html#ac359dee117cfe4829c656f7599ea9092" title="This is used to store information about the cursor.">cursor</a>;
+<a name="l00077"></a>00077             <span class="comment">//Simply Inherited mmembers</span>
+<a name="l00078"></a>00078             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddActor(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd);
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* LastActorAdded();
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActor(<a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove);
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActorAtCursor();
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveAllActors();
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088             <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetActorCount() <span class="keyword">const</span>;
+<a name="l00089"></a>00089 
+<a name="l00090"></a>00090             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToFirst();
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToPrevious();
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToNext();
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToLast();
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetAtCursor() <span class="keyword">const</span>;
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetFirst() <span class="keyword">const</span>;
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetLast() <span class="keyword">const</span>;
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104             <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetContainerType() <span class="keyword">const</span>;
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106             <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GetGameWorld() <span class="keyword">const</span>;
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.</span>
+<a name="l00110"></a>00110 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node.</span>
+<a name="l00111"></a>00111 <span class="comment">            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.</span>
+<a name="l00112"></a>00112 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(Ogre::SceneNode* GraphicsNode);
+<a name="l00113"></a>00113 <span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">            /// @brief This finds an actor by searching for a physics subsystem object.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a physics object.</span>
+<a name="l00117"></a>00117 <span class="comment">            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.</span>
+<a name="l00118"></a>00118 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(btCollisionObject* PhysicsObject);
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">            /// @brief This finds an actor based on its name.</span>
+<a name="l00121"></a>00121 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
+<a name="l00122"></a>00122 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name.</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @param Name This is the name of the Actor you want to find.</span>
+<a name="l00124"></a>00124 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name);
 <a name="l00125"></a>00125 <span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">            /// @brief This safely move all the Actors out of or into a Mezzanine::World</span>
-<a name="l00127"></a>00127 <span class="comment">            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system</span>
-<a name="l00128"></a>00128 <span class="comment">            /// if a Mezzanine::World is present. Then this sets up all actors with the new World unless it is NULL</span>
-<a name="l00129"></a>00129 <span class="comment">            /// @param GameWorld_ This is a pointer to the new Mezzanine::World to work with.</span>
-<a name="l00130"></a>00130 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ );
-<a name="l00131"></a>00131 <span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">            /// @brief Optionally move actors into or out of a world</span>
-<a name="l00133"></a>00133 <span class="comment">            /// @param GameWorld_ This is a pointer to the new Mezzanine::World to work with.</span>
-<a name="l00134"></a>00134 <span class="comment">            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add</span>
-<a name="l00135"></a>00135 <span class="comment">            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove</span>
-<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ , <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld);
-<a name="l00137"></a>00137 
-<a name="l00138"></a>00138         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
-<a name="l00141"></a>00141 <span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">            /// @brief The world in which we are running.</span>
-<a name="l00143"></a>00143 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld;
-<a name="l00144"></a>00144     };
-<a name="l00145"></a>00145 }
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147 <span class="preprocessor">#endif</span>
+<a name="l00126"></a>00126 <span class="comment">            /// @brief This is used to store information about the cursor.</span>
+<a name="l00127"></a>00127 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
+<a name="l00128"></a>00128 <span class="comment">            /// so feel free to use this instead.</span>
+<a name="l00129"></a><a class="code" href="classMezzanine_1_1ActorContainerVector.html#ac359dee117cfe4829c656f7599ea9092">00129</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator <a class="code" href="classMezzanine_1_1ActorContainerVector.html#ac359dee117cfe4829c656f7599ea9092" title="This is used to store information about the cursor.">cursor</a>;
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">            /// @brief This safely move all the Actors out of or into a Mezzanine::World</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system</span>
+<a name="l00133"></a>00133 <span class="comment">            /// if a Mezzanine::World is present. Then this sets up all actors with the new World unless it is NULL</span>
+<a name="l00134"></a>00134 <span class="comment">            /// @param GameWorld_ This is a pointer to the new Mezzanine::World to work with.</span>
+<a name="l00135"></a>00135 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ );
+<a name="l00136"></a>00136 <span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">            /// @brief Optionally move actors into or out of a world</span>
+<a name="l00138"></a>00138 <span class="comment">            /// @param GameWorld_ This is a pointer to the new Mezzanine::World to work with.</span>
+<a name="l00139"></a>00139 <span class="comment">            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add</span>
+<a name="l00140"></a>00140 <span class="comment">            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove</span>
+<a name="l00141"></a>00141 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ , <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld);
+<a name="l00142"></a>00142 
+<a name="l00143"></a>00143         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00144"></a>00144 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
+<a name="l00145"></a>00145 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">            /// @brief The world in which we are running.</span>
+<a name="l00148"></a>00148 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld;
+<a name="l00149"></a>00149     };
+<a name="l00150"></a>00150 }
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -216,7 +221,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -226,6 +231,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

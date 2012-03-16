@@ -122,7 +122,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Basic Constructor. </p>
 <p>This creates a WorldQueryTool Ready to run queries on the the world you pass it. </p>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00070">70</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00072">72</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -143,7 +143,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Destructor. </p>
 <p>Deletes everything in the world query tool. </p>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00074">74</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00076">76</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ Static Public Member Functions</h2></td></tr>
 <p>This will use </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">ObjectFlags</td><td>A whole comprising all the valid objects to be checked in the scene. See WorldObjectType in <a class="el" href="enumerations_8h_source.html">enumerations.h</a> for a listing of objects to use as flags. </td></tr>
+    <tr><td class="paramname">ObjectFlags</td><td>A whole comprising all the valid objects to be checked in the scene. See WorldAndSceneObjectType in <a class="el" href="enumerations_8h_source.html">enumerations.h</a> for a listing of objects to use as flags. </td></tr>
     <tr><td class="paramname">RayLength</td><td>The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0. </td></tr>
     <tr><td class="paramname">UsePolygon</td><td>If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB. </td></tr>
   </table>
@@ -191,7 +191,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a> which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. </dd></dl>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00214">214</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00216">216</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -225,18 +225,18 @@ Static Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">ActorRay</td><td>The <a class="el" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> to search along. </td></tr>
-    <tr><td class="paramname">ObjectFlags</td><td>A whole comprising all the valid objects to be checked in the scene. See WorldObjectType in <a class="el" href="enumerations_8h_source.html">enumerations.h</a> for a listing of objects to use as flags. </td></tr>
+    <tr><td class="paramname">ObjectFlags</td><td>A whole comprising all the valid objects to be checked in the scene. See WorldAndSceneObjectType in <a class="el" href="enumerations_8h_source.html">enumerations.h</a> for a listing of objects to use as flags. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray. </dd></dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00178">178</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00180">180</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -270,13 +270,13 @@ Static Public Member Functions</h2></td></tr>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">ActorRay</td><td>The <a class="el" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> to search along. </td></tr>
-    <tr><td class="paramname">ObjectFlags</td><td>A whole comprising all the valid objects to be checked in the scene. See WorldObjectType in <a class="el" href="enumerations_8h_source.html">enumerations.h</a> for a listing of objects to use as flags. </td></tr>
+    <tr><td class="paramname">ObjectFlags</td><td>A whole comprising all the valid objects to be checked in the scene. See WorldAndSceneObjectType in <a class="el" href="enumerations_8h_source.html">enumerations.h</a> for a listing of objects to use as flags. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to an <a class="el" href="classMezzanine_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>, which contains the first actor along the ray and the point of intersection Relative to the actor </dd></dl>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00080">80</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00082">82</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -305,7 +305,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer. </dd></dl>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00332">332</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00334">334</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -345,7 +345,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a vector that matches where the intersection of the plane and <a class="el" href="classMezzanine_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a>, if possible </dd></dl>
 
-<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00232">232</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
+<p>Definition at line <a class="el" href="rayquerytool_8cpp_source.html#l00234">234</a> of file <a class="el" href="rayquerytool_8cpp_source.html">rayquerytool.cpp</a>.</p>
 
 </div>
 </div>
@@ -359,7 +359,7 @@ Static Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -369,6 +369,6 @@ Static Public Member Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

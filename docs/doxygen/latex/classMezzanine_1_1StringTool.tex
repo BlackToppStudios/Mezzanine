@@ -27,58 +27,286 @@ This is a utility to help perform all kinds of string related tasks.
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+static bool \hyperlink{classMezzanine_1_1StringTool_a93db670931d3c9e7f90bc5e73513c273}{ConvertToBool} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert, const bool Default=false)
+\begin{DoxyCompactList}\small\item\em Converts a string into a bool. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1StringTool_a27b3e5bdd8761633fe2f3ccbb7f0700f}{ConvertToColourValue} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Convert four numbers in a string into a \hyperlink{classMezzanine_1_1ColourValue}{ColourValue}. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_adb602bffcbc8f1b381b2f529e9e364f6}{Int16} \hyperlink{classMezzanine_1_1StringTool_a790022e0ce2f12cf5b03b625c863d4d4}{ConvertToInt16} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a string into an Int16. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_a590a2f3eb4a187e1b25209e546e540e1}{Int32} \hyperlink{classMezzanine_1_1StringTool_aa8dce03a78fa30d85b4ce3562f93fcc4}{ConvertToInt32} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts an string into an Int32. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acbb048ee99aa07566d5a6eb33f5a2c2d}{Int8} \hyperlink{classMezzanine_1_1StringTool_a4977d023653eafcbf3a099a1ac8f41db}{ConvertToInt8} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a string into an Int8. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1StringTool_ae8febfde93224bea0b9891bdfc43bda2}{ConvertToQuaternion} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Convert four numbers in a string into a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1StringTool_a74e59c6e47dbc8ba08de9a75239d726e}{ConvertToReal} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a string into a Real. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_ad8cb0a779be5d7805def07a8534c75f6}{ConvertToString} (const \hyperlink{namespaceMezzanine_abea3b8e8e9b03d2547b2800284ba682d}{UInt32} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a UInt32 into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a95d8c60bc579bd3f0d6e82f68a8f3cb4}{ConvertToString} (const \hyperlink{namespaceMezzanine_a590a2f3eb4a187e1b25209e546e540e1}{Int32} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts an Int32 into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a6c6ae7843b5ab368f997ed400c9a9aa5}{ConvertToString} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code, bool ShiftPressed)
+\begin{DoxyCompactList}\small\item\em Converts a \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a87b8d888f2ab2ec5a07e6bbfe37c2f6a}{ConvertToString} (const \hyperlink{namespaceMezzanine_adb602bffcbc8f1b381b2f529e9e364f6}{Int16} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts an Int16 into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a57186e27bc1c5f3fb81f38b1b7de4228}{ConvertToString} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a \hyperlink{classMezzanine_1_1Vector3}{Vector3} into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a18622cda9566c17d50287086dcf03b2b}{ConvertToString} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} into a string. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a87c96f44624cff22342f79ca9667330c}{ConvertToString} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ToConvert)
 \begin{DoxyCompactList}\small\item\em Converts an Int8 into a string. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a46fbc1d0337193ab7cd8b2fddba0028c}{ConvertToString} (const \hyperlink{namespaceMezzanine_acbb048ee99aa07566d5a6eb33f5a2c2d}{Int8} \&ToConvert)
 \begin{DoxyCompactList}\small\item\em Converts an Int8 into a string. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a87b8d888f2ab2ec5a07e6bbfe37c2f6a}{ConvertToString} (const \hyperlink{namespaceMezzanine_adb602bffcbc8f1b381b2f529e9e364f6}{Int16} \&ToConvert)
-\begin{DoxyCompactList}\small\item\em Converts an Int16 into a string. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a6c6ae7843b5ab368f997ed400c9a9aa5}{ConvertToString} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code, bool ShiftPressed)
-\begin{DoxyCompactList}\small\item\em Converts a \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} into a string. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a8f5811cd7030a50a669cb8a775152cb2}{ConvertToString} (const \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \&ToConvert)
-\begin{DoxyCompactList}\small\item\em Converts a UInt16 into a string. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a7833e43dc4d039a2d708de97ccfaf2ea}{ConvertToString} (const \hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} \&ToConvert)
 \begin{DoxyCompactList}\small\item\em Converts a UInt8 into a string. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a95d8c60bc579bd3f0d6e82f68a8f3cb4}{ConvertToString} (const \hyperlink{namespaceMezzanine_a590a2f3eb4a187e1b25209e546e540e1}{Int32} \&ToConvert)
-\begin{DoxyCompactList}\small\item\em Converts an Int32 into a string. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_ad8cb0a779be5d7805def07a8534c75f6}{ConvertToString} (const \hyperlink{namespaceMezzanine_abea3b8e8e9b03d2547b2800284ba682d}{UInt32} \&ToConvert)
-\begin{DoxyCompactList}\small\item\em Converts a UInt32 into a string. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a51f6de1d1d4f51c43c71a7b34bbfcfec}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
-\begin{DoxyCompactList}\small\item\em Concatenates 2 Strings. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a4e93737cc124804f6d8fb70ece579611}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle1, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle2, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
-\begin{DoxyCompactList}\small\item\em Concatenates 4 Strings. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_af56c701a2859d61d3588a638d5176775}{ConvertToString} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a \hyperlink{classMezzanine_1_1Vector2}{Vector2} into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a8f5811cd7030a50a669cb8a775152cb2}{ConvertToString} (const \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a UInt16 into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a2cc1f3a264c33361db9b85457383975b}{ConvertToString} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} into a string. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{UInt16} \hyperlink{classMezzanine_1_1StringTool_aea8c4a2ef3aa12379c44a482408be2da}{ConvertToUInt16} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a string into a UInt16. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_abea3b8e8e9b03d2547b2800284ba682d}{UInt32} \hyperlink{classMezzanine_1_1StringTool_abd24055ae24d4b2cc1a586659d89a996}{ConvertToUInt32} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a string into a UInt32. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} \hyperlink{classMezzanine_1_1StringTool_a89cf53c1709dd4e946d1ec4d201e2c4c}{ConvertToUInt8} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Converts a string into a UInt8. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector2}{Vector2} \hyperlink{classMezzanine_1_1StringTool_a85fd0b8b7cd86ceb467e4d00d862adfa}{ConvertToVector2} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Convert two numbers in a string into a \hyperlink{classMezzanine_1_1Vector2}{Vector2}. \item\end{DoxyCompactList}\item 
+static \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1StringTool_a973b0f74c27d75ac0a86990297305b4c}{ConvertToVector3} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToConvert)
+\begin{DoxyCompactList}\small\item\em Convert three numbers in a string into a \hyperlink{classMezzanine_1_1Vector3}{Vector3}. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1StringTool_aa2fe09e887ce043f27de5bde382a097b}{EndsWith} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Str, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Pattern, const bool CaseSensitive)
+\begin{DoxyCompactList}\small\item\em Checks a string to see if it ends with a specific pattern. \item\end{DoxyCompactList}\item 
+static void \hyperlink{classMezzanine_1_1StringTool_a99c3458b983bce002f2d8866c9234106}{RemoveDuplicateWhitespaces} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Source)
+\begin{DoxyCompactList}\small\item\em Replaces all instances of multiple consecutive whitespaces with only a single whitespace. \item\end{DoxyCompactList}\item 
+static std::vector$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$ \hyperlink{classMezzanine_1_1StringTool_afade89bdf1ce7a883e8e2ba3e865f9bf}{Split} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Source, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Delims=\char`\"{} $\backslash$t$\backslash$n\char`\"{}, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&MaxSplits=0)
+\begin{DoxyCompactList}\small\item\em Splits a string into multiple substrings based on the specified delimiters. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1StringTool_aef394e6f5c80202142de6393e7b6064c}{StartsWith} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Str, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Pattern, const bool CaseSensitive)
+\begin{DoxyCompactList}\small\item\em Checks a string to see if it starts with a specific pattern. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a2d622a96cd5ba4c1a220de8d8b1e5334}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle1, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle2, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle3, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
 \begin{DoxyCompactList}\small\item\em Concatenates 5 Strings. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a162be6b13cf6fb9a75b436eaffff2847}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
+\begin{DoxyCompactList}\small\item\em Concatenates 3 Strings. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a4e93737cc124804f6d8fb70ece579611}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle1, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle2, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
+\begin{DoxyCompactList}\small\item\em Concatenates 4 Strings. \item\end{DoxyCompactList}\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a51f6de1d1d4f51c43c71a7b34bbfcfec}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
+\begin{DoxyCompactList}\small\item\em Concatenates 2 Strings. \item\end{DoxyCompactList}\item 
 static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a5a4999eab8853b9b98b2e56f1c7dbc27}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle1, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle2, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle3, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle4, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
 \begin{DoxyCompactList}\small\item\em Concatenates 6 Strings. \item\end{DoxyCompactList}\item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1StringTool_a162be6b13cf6fb9a75b436eaffff2847}{StringCat} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Front, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Middle, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Back)
-\begin{DoxyCompactList}\small\item\em Concatenates 3 Strings. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+static void \hyperlink{classMezzanine_1_1StringTool_a2d8ef1e6d8d320ec3086347ac9d59f7d}{ToLowerCase} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Source)
+\begin{DoxyCompactList}\small\item\em Converts all upper case characters in a string to their respective lower case. \item\end{DoxyCompactList}\item 
+static void \hyperlink{classMezzanine_1_1StringTool_a679376dd5968dcc42961227beeea4d3e}{ToUpperCase} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Source)
+\begin{DoxyCompactList}\small\item\em Converts all lower case characters in a string to their respective upper case. \item\end{DoxyCompactList}\item 
+static void \hyperlink{classMezzanine_1_1StringTool_a190c4a88ff529a4fd8c247fde565e027}{Trim} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Source, bool Left=true, bool Right=true)
+\begin{DoxyCompactList}\small\item\em Trims all whitespaces and tabs from a one or both sides of a string. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 This is a utility to help perform all kinds of string related tasks. 
 
-Definition at line 54 of file stringtool.h.
+Definition at line 57 of file stringtool.h.
 
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classMezzanine_1_1StringTool_a87c96f44624cff22342f79ca9667330c}{
+\hypertarget{classMezzanine_1_1StringTool_a93db670931d3c9e7f90bc5e73513c273}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToBool@{ConvertToBool}}
+\index{ConvertToBool@{ConvertToBool}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToBool}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::StringTool::ConvertToBool (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert, }
+\item[{const bool}]{Default = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a93db670931d3c9e7f90bc5e73513c273}
+
+
+Converts a string into a bool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted to a bool. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a bool with the converted value. 
+\end{DoxyReturn}
+
+
+Definition at line 254 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a27b3e5bdd8761633fe2f3ccbb7f0700f}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToColourValue@{ConvertToColourValue}}
+\index{ConvertToColourValue@{ConvertToColourValue}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToColourValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} Mezzanine::StringTool::ConvertToColourValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a27b3e5bdd8761633fe2f3ccbb7f0700f}
+
+
+Convert four numbers in a string into a \hyperlink{classMezzanine_1_1ColourValue}{ColourValue}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+The string is expected to have a certain format. The format should be \char`\"{}R G B A\char`\"{}. If there are not 4 numbers an exception will be thrown. 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} populated with the values from the string passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a790022e0ce2f12cf5b03b625c863d4d4}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToInt16@{ConvertToInt16}}
+\index{ConvertToInt16@{ConvertToInt16}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToInt16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Int16} Mezzanine::StringTool::ConvertToInt16 (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a790022e0ce2f12cf5b03b625c863d4d4}
+
+
+Converts a string into an Int16. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted to an Int16. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an Int16 with the converted value. 
+\end{DoxyReturn}
+
+
+Definition at line 291 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_aa8dce03a78fa30d85b4ce3562f93fcc4}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToInt32@{ConvertToInt32}}
+\index{ConvertToInt32@{ConvertToInt32}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToInt32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Int32} Mezzanine::StringTool::ConvertToInt32 (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_aa8dce03a78fa30d85b4ce3562f93fcc4}
+
+
+Converts an string into an Int32. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted to an Int32. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an Int32 with the converted value. 
+\end{DoxyReturn}
+
+
+Definition at line 307 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a4977d023653eafcbf3a099a1ac8f41db}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToInt8@{ConvertToInt8}}
+\index{ConvertToInt8@{ConvertToInt8}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToInt8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Int8} Mezzanine::StringTool::ConvertToInt8 (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a4977d023653eafcbf3a099a1ac8f41db}
+
+
+Converts a string into an Int8. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted to an Int8. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an Int8 with the converted value. 
+\end{DoxyReturn}
+
+
+Definition at line 275 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_ae8febfde93224bea0b9891bdfc43bda2}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToQuaternion@{ConvertToQuaternion}}
+\index{ConvertToQuaternion@{ConvertToQuaternion}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::StringTool::ConvertToQuaternion (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_ae8febfde93224bea0b9891bdfc43bda2}
+
+
+Convert four numbers in a string into a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+The string is expected to have a certain format. The format should be \char`\"{}X Y Z W\char`\"{}. If there are not 4 numbers an exception will be thrown. 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} populated with the values from the string passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 211 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a74e59c6e47dbc8ba08de9a75239d726e}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToReal@{ConvertToReal}}
+\index{ConvertToReal@{ConvertToReal}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToReal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::StringTool::ConvertToReal (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a74e59c6e47dbc8ba08de9a75239d726e}
+
+
+Converts a string into a Real. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted to a Real. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a Real with the converted value. 
+\end{DoxyReturn}
+
+
+Definition at line 267 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_ad8cb0a779be5d7805def07a8534c75f6}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
 \index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
 \paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ToConvert}
+\item[{const {\bf UInt32} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a87c96f44624cff22342f79ca9667330c}
+\label{classMezzanine_1_1StringTool_ad8cb0a779be5d7805def07a8534c75f6}
 
 
-Converts an Int8 into a string. 
+Converts a UInt32 into a string. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ToConvert} & The Int8 to be converted. \\
+{\em ToConvert} & The UInt32 to be converted. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -86,24 +314,24 @@ Returns a string containing the converted input.
 \end{DoxyReturn}
 
 
-Definition at line 56 of file stringtool.cpp.
+Definition at line 368 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_a46fbc1d0337193ab7cd8b2fddba0028c}{
+\hypertarget{classMezzanine_1_1StringTool_a95d8c60bc579bd3f0d6e82f68a8f3cb4}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
 \index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
 \paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
 \begin{DoxyParamCaption}
-\item[{const {\bf Int8} \&}]{ToConvert}
+\item[{const {\bf Int32} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a46fbc1d0337193ab7cd8b2fddba0028c}
+\label{classMezzanine_1_1StringTool_a95d8c60bc579bd3f0d6e82f68a8f3cb4}
 
 
-Converts an Int8 into a string. 
+Converts an Int32 into a string. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ToConvert} & The Int8 to be converted. \\
+{\em ToConvert} & The Int32 to be converted. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -111,32 +339,7 @@ Returns a string containing the converted input.
 \end{DoxyReturn}
 
 
-Definition at line 63 of file stringtool.cpp.
-
-\hypertarget{classMezzanine_1_1StringTool_a87b8d888f2ab2ec5a07e6bbfe37c2f6a}{
-\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
-\index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
-\paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
-\begin{DoxyParamCaption}
-\item[{const {\bf Int16} \&}]{ToConvert}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a87b8d888f2ab2ec5a07e6bbfe37c2f6a}
-
-
-Converts an Int16 into a string. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em ToConvert} & The Int16 to be converted. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Returns a string containing the converted input. 
-\end{DoxyReturn}
-
-
-Definition at line 77 of file stringtool.cpp.
+Definition at line 361 of file stringtool.cpp.
 
 \hypertarget{classMezzanine_1_1StringTool_a6c6ae7843b5ab368f997ed400c9a9aa5}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
@@ -164,24 +367,24 @@ Returns a string(usually with only one character) containing the converted input
 \end{DoxyReturn}
 
 
-Definition at line 105 of file stringtool.cpp.
+Definition at line 375 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_a8f5811cd7030a50a669cb8a775152cb2}{
+\hypertarget{classMezzanine_1_1StringTool_a87b8d888f2ab2ec5a07e6bbfe37c2f6a}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
 \index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
 \paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
 \begin{DoxyParamCaption}
-\item[{const {\bf UInt16} \&}]{ToConvert}
+\item[{const {\bf Int16} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a8f5811cd7030a50a669cb8a775152cb2}
+\label{classMezzanine_1_1StringTool_a87b8d888f2ab2ec5a07e6bbfe37c2f6a}
 
 
-Converts a UInt16 into a string. 
+Converts an Int16 into a string. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ToConvert} & The UInt16 to be converted. \\
+{\em ToConvert} & The Int16 to be converted. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -189,7 +392,107 @@ Returns a string containing the converted input.
 \end{DoxyReturn}
 
 
-Definition at line 84 of file stringtool.cpp.
+Definition at line 347 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a57186e27bc1c5f3fb81f38b1b7de4228}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
+\index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a57186e27bc1c5f3fb81f38b1b7de4228}
+
+
+Converts a \hyperlink{classMezzanine_1_1Vector3}{Vector3} into a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The \hyperlink{classMezzanine_1_1Vector3}{Vector3} to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the values from the \hyperlink{classMezzanine_1_1Vector3}{Vector3} in \char`\"{}X Y Z\char`\"{} format. 
+\end{DoxyReturn}
+
+
+Definition at line 204 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a18622cda9566c17d50287086dcf03b2b}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
+\index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a18622cda9566c17d50287086dcf03b2b}
+
+
+Converts a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} into a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the values from the \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} in \char`\"{}X Y Z W\char`\"{} format. 
+\end{DoxyReturn}
+
+
+Definition at line 224 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a87c96f44624cff22342f79ca9667330c}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
+\index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a87c96f44624cff22342f79ca9667330c}
+
+
+Converts an Int8 into a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The Int8 to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the converted input. 
+\end{DoxyReturn}
+
+
+Definition at line 326 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a46fbc1d0337193ab7cd8b2fddba0028c}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
+\index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
+\begin{DoxyParamCaption}
+\item[{const {\bf Int8} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a46fbc1d0337193ab7cd8b2fddba0028c}
+
+
+Converts an Int8 into a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The Int8 to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the converted input. 
+\end{DoxyReturn}
+
+
+Definition at line 333 of file stringtool.cpp.
 
 \hypertarget{classMezzanine_1_1StringTool_a7833e43dc4d039a2d708de97ccfaf2ea}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
@@ -214,24 +517,49 @@ Returns a string containing the converted input.
 \end{DoxyReturn}
 
 
-Definition at line 70 of file stringtool.cpp.
+Definition at line 340 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_a95d8c60bc579bd3f0d6e82f68a8f3cb4}{
+\hypertarget{classMezzanine_1_1StringTool_af56c701a2859d61d3588a638d5176775}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
 \index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
 \paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
 \begin{DoxyParamCaption}
-\item[{const {\bf Int32} \&}]{ToConvert}
+\item[{const {\bf Vector2} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a95d8c60bc579bd3f0d6e82f68a8f3cb4}
+\label{classMezzanine_1_1StringTool_af56c701a2859d61d3588a638d5176775}
 
 
-Converts an Int32 into a string. 
+Converts a \hyperlink{classMezzanine_1_1Vector2}{Vector2} into a string. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ToConvert} & The Int32 to be converted. \\
+{\em ToConvert} & The \hyperlink{classMezzanine_1_1Vector2}{Vector2} to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the values from the \hyperlink{classMezzanine_1_1Vector2}{Vector2} in \char`\"{}X Y\char`\"{} format. 
+\end{DoxyReturn}
+
+
+Definition at line 184 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a8f5811cd7030a50a669cb8a775152cb2}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
+\index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
+\begin{DoxyParamCaption}
+\item[{const {\bf UInt16} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a8f5811cd7030a50a669cb8a775152cb2}
+
+
+Converts a UInt16 into a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The UInt16 to be converted. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -239,94 +567,278 @@ Returns a string containing the converted input.
 \end{DoxyReturn}
 
 
-Definition at line 91 of file stringtool.cpp.
+Definition at line 354 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_ad8cb0a779be5d7805def07a8534c75f6}{
+\hypertarget{classMezzanine_1_1StringTool_a2cc1f3a264c33361db9b85457383975b}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToString@{ConvertToString}}
 \index{ConvertToString@{ConvertToString}!Mezzanine::StringTool@{Mezzanine::StringTool}}
 \paragraph[{ConvertToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::ConvertToString (
 \begin{DoxyParamCaption}
-\item[{const {\bf UInt32} \&}]{ToConvert}
+\item[{const {\bf ColourValue} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_ad8cb0a779be5d7805def07a8534c75f6}
+\label{classMezzanine_1_1StringTool_a2cc1f3a264c33361db9b85457383975b}
 
 
-Converts a UInt32 into a string. 
+Converts a \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} into a string. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em ToConvert} & The UInt32 to be converted. \\
+{\em ToConvert} & The \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} to be converted. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a string containing the converted input. 
+Returns a string containing the values from the \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} in \char`\"{}R G B A\char`\"{} format. 
 \end{DoxyReturn}
 
 
-Definition at line 98 of file stringtool.cpp.
+Definition at line 244 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_a51f6de1d1d4f51c43c71a7b34bbfcfec}{
-\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
-\index{StringCat@{StringCat}!Mezzanine::StringTool@{Mezzanine::StringTool}}
-\paragraph[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::StringCat (
+\hypertarget{classMezzanine_1_1StringTool_aea8c4a2ef3aa12379c44a482408be2da}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToUInt16@{ConvertToUInt16}}
+\index{ConvertToUInt16@{ConvertToUInt16}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToUInt16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt16} Mezzanine::StringTool::ConvertToUInt16 (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Front, }
-\item[{const {\bf String} \&}]{Back}
+\item[{const {\bf String} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a51f6de1d1d4f51c43c71a7b34bbfcfec}
+\label{classMezzanine_1_1StringTool_aea8c4a2ef3aa12379c44a482408be2da}
 
 
-Concatenates 2 Strings. 
+Converts a string into a UInt16. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Front} & The first String \\
-\hline
-{\em Back} & The last String \\
+{\em ToConvert} & The string to be converted to a UInt16. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A string containing the other Strings passed attached end to end 
+Returns a UInt16 with the converted value. 
 \end{DoxyReturn}
 
 
-Definition at line 452 of file stringtool.cpp.
+Definition at line 299 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_a4e93737cc124804f6d8fb70ece579611}{
-\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
-\index{StringCat@{StringCat}!Mezzanine::StringTool@{Mezzanine::StringTool}}
-\paragraph[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::StringCat (
+\hypertarget{classMezzanine_1_1StringTool_abd24055ae24d4b2cc1a586659d89a996}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToUInt32@{ConvertToUInt32}}
+\index{ConvertToUInt32@{ConvertToUInt32}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToUInt32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt32} Mezzanine::StringTool::ConvertToUInt32 (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Front, }
-\item[{const {\bf String} \&}]{Middle1, }
-\item[{const {\bf String} \&}]{Middle2, }
-\item[{const {\bf String} \&}]{Back}
+\item[{const {\bf String} \&}]{ToConvert}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a4e93737cc124804f6d8fb70ece579611}
+\label{classMezzanine_1_1StringTool_abd24055ae24d4b2cc1a586659d89a996}
 
 
-Concatenates 4 Strings. 
+Converts a string into a UInt32. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Front} & The first String \\
-\hline
-{\em Middle1} & The second string \\
-\hline
-{\em Middle2} & The third string \\
-\hline
-{\em Back} & The last String \\
+{\em ToConvert} & The string to be converted to a UInt32. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A string containing the other Strings passed attached end to end 
+Returns a UInt32 with the converted value. 
 \end{DoxyReturn}
 
 
-Definition at line 466 of file stringtool.cpp.
+Definition at line 315 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a89cf53c1709dd4e946d1ec4d201e2c4c}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToUInt8@{ConvertToUInt8}}
+\index{ConvertToUInt8@{ConvertToUInt8}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToUInt8}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt8} Mezzanine::StringTool::ConvertToUInt8 (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a89cf53c1709dd4e946d1ec4d201e2c4c}
+
+
+Converts a string into a UInt8. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted to a UInt8. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a UInt8 with the converted value. 
+\end{DoxyReturn}
+
+
+Definition at line 283 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a85fd0b8b7cd86ceb467e4d00d862adfa}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToVector2@{ConvertToVector2}}
+\index{ConvertToVector2@{ConvertToVector2}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToVector2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} Mezzanine::StringTool::ConvertToVector2 (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a85fd0b8b7cd86ceb467e4d00d862adfa}
+
+
+Convert two numbers in a string into a \hyperlink{classMezzanine_1_1Vector2}{Vector2}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+The string is expected to have a certain format. The format should be \char`\"{}X Y\char`\"{}. If there are not 2 numbers an exception will be thrown. 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector2}{Vector2} populated with the values from the string passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a973b0f74c27d75ac0a86990297305b4c}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ConvertToVector3@{ConvertToVector3}}
+\index{ConvertToVector3@{ConvertToVector3}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ConvertToVector3}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::StringTool::ConvertToVector3 (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ToConvert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a973b0f74c27d75ac0a86990297305b4c}
+
+
+Convert three numbers in a string into a \hyperlink{classMezzanine_1_1Vector3}{Vector3}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToConvert} & The string to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRemark}{Remarks}
+The string is expected to have a certain format. The format should be \char`\"{}X Y Z\char`\"{}. If there are not 3 numbers an exception will be thrown. 
+\end{DoxyRemark}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} populated with the values from the string passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 191 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_aa2fe09e887ce043f27de5bde382a097b}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!EndsWith@{EndsWith}}
+\index{EndsWith@{EndsWith}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{EndsWith}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::StringTool::EndsWith (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Str, }
+\item[{const {\bf String} \&}]{Pattern, }
+\item[{const bool}]{CaseSensitive}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_aa2fe09e887ce043f27de5bde382a097b}
+
+
+Checks a string to see if it ends with a specific pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Str} & The string to check. \\
+\hline
+{\em Pattern} & The sequence to check for at the end of the string. \\
+\hline
+{\em CaseSensitive} & If false this function will check lower-\/case copies for the pattern, otherwise the strings will be checked as is. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the string ends with the provided pattern, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a99c3458b983bce002f2d8866c9234106}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!RemoveDuplicateWhitespaces@{RemoveDuplicateWhitespaces}}
+\index{RemoveDuplicateWhitespaces@{RemoveDuplicateWhitespaces}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{RemoveDuplicateWhitespaces}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::StringTool::RemoveDuplicateWhitespaces (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{Source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a99c3458b983bce002f2d8866c9234106}
+
+
+Replaces all instances of multiple consecutive whitespaces with only a single whitespace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Source} & The string to be altered. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 157 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_afade89bdf1ce7a883e8e2ba3e865f9bf}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!Split@{Split}}
+\index{Split@{Split}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{Split}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf String} $>$ Mezzanine::StringTool::Split (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Source, }
+\item[{const {\bf String} \&}]{Delims = {\ttfamily \char`\"{}~$\backslash$t$\backslash$n\char`\"{}}, }
+\item[{const {\bf Whole} \&}]{MaxSplits = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_afade89bdf1ce7a883e8e2ba3e865f9bf}
+
+
+Splits a string into multiple substrings based on the specified delimiters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Source} & The string to be split. \\
+\hline
+{\em Delims} & The characters to look for and use as split points in the source string. \\
+\hline
+{\em MaxSplits} & The maximum number of splits to perform on this string. Value of zero means unlimited splits. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector containing all the substrings generated from the source string. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_aef394e6f5c80202142de6393e7b6064c}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StartsWith@{StartsWith}}
+\index{StartsWith@{StartsWith}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{StartsWith}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::StringTool::StartsWith (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Str, }
+\item[{const {\bf String} \&}]{Pattern, }
+\item[{const bool}]{CaseSensitive}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_aef394e6f5c80202142de6393e7b6064c}
+
+
+Checks a string to see if it starts with a specific pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Str} & The string to check. \\
+\hline
+{\em Pattern} & The sequence to check for at the start of the string. \\
+\hline
+{\em CaseSensitive} & If false this function will check lower-\/case copies for the pattern, otherwise the strings will be checked as is. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the string starts with the provided pattern, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 115 of file stringtool.cpp.
 
 \hypertarget{classMezzanine_1_1StringTool_a2d622a96cd5ba4c1a220de8d8b1e5334}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
@@ -363,7 +875,100 @@ A string containing the other Strings passed attached end to end
 \end{DoxyReturn}
 
 
-Definition at line 473 of file stringtool.cpp.
+Definition at line 746 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a162be6b13cf6fb9a75b436eaffff2847}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
+\index{StringCat@{StringCat}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::StringCat (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Front, }
+\item[{const {\bf String} \&}]{Middle, }
+\item[{const {\bf String} \&}]{Back}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a162be6b13cf6fb9a75b436eaffff2847}
+
+
+Concatenates 3 Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Front} & The first String \\
+\hline
+{\em Middle} & A String in the middle \\
+\hline
+{\em Back} & The last String \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the other Strings passed attached end to end 
+\end{DoxyReturn}
+
+
+Definition at line 732 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a4e93737cc124804f6d8fb70ece579611}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
+\index{StringCat@{StringCat}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::StringCat (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Front, }
+\item[{const {\bf String} \&}]{Middle1, }
+\item[{const {\bf String} \&}]{Middle2, }
+\item[{const {\bf String} \&}]{Back}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a4e93737cc124804f6d8fb70ece579611}
+
+
+Concatenates 4 Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Front} & The first String \\
+\hline
+{\em Middle1} & The second string \\
+\hline
+{\em Middle2} & The third string \\
+\hline
+{\em Back} & The last String \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the other Strings passed attached end to end 
+\end{DoxyReturn}
+
+
+Definition at line 739 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a51f6de1d1d4f51c43c71a7b34bbfcfec}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
+\index{StringCat@{StringCat}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::StringCat (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Front, }
+\item[{const {\bf String} \&}]{Back}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a51f6de1d1d4f51c43c71a7b34bbfcfec}
+
+
+Concatenates 2 Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Front} & The first String \\
+\hline
+{\em Back} & The last String \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the other Strings passed attached end to end 
+\end{DoxyReturn}
+
+
+Definition at line 725 of file stringtool.cpp.
 
 \hypertarget{classMezzanine_1_1StringTool_a5a4999eab8853b9b98b2e56f1c7dbc27}{
 \index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
@@ -403,38 +1008,79 @@ A string containing the other Strings passed attached end to end
 \end{DoxyReturn}
 
 
-Definition at line 480 of file stringtool.cpp.
+Definition at line 753 of file stringtool.cpp.
 
-\hypertarget{classMezzanine_1_1StringTool_a162be6b13cf6fb9a75b436eaffff2847}{
-\index{Mezzanine::StringTool@{Mezzanine::StringTool}!StringCat@{StringCat}}
-\index{StringCat@{StringCat}!Mezzanine::StringTool@{Mezzanine::StringTool}}
-\paragraph[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::StringTool::StringCat (
+\hypertarget{classMezzanine_1_1StringTool_a2d8ef1e6d8d320ec3086347ac9d59f7d}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ToLowerCase@{ToLowerCase}}
+\index{ToLowerCase@{ToLowerCase}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ToLowerCase}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::StringTool::ToLowerCase (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Front, }
-\item[{const {\bf String} \&}]{Middle, }
-\item[{const {\bf String} \&}]{Back}
+\item[{{\bf String} \&}]{Source}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1StringTool_a162be6b13cf6fb9a75b436eaffff2847}
+\label{classMezzanine_1_1StringTool_a2d8ef1e6d8d320ec3086347ac9d59f7d}
 
 
-Concatenates 3 Strings. 
+Converts all upper case characters in a string to their respective lower case. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Front} & The first String \\
-\hline
-{\em Middle} & A String in the middle \\
-\hline
-{\em Back} & The last String \\
+{\em Source} & The string to be converted. \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A string containing the other Strings passed attached end to end 
-\end{DoxyReturn}
 
 
-Definition at line 459 of file stringtool.cpp.
+Definition at line 110 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a679376dd5968dcc42961227beeea4d3e}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!ToUpperCase@{ToUpperCase}}
+\index{ToUpperCase@{ToUpperCase}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{ToUpperCase}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::StringTool::ToUpperCase (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{Source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a679376dd5968dcc42961227beeea4d3e}
+
+
+Converts all lower case characters in a string to their respective upper case. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Source} & The string to be converted. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 105 of file stringtool.cpp.
+
+\hypertarget{classMezzanine_1_1StringTool_a190c4a88ff529a4fd8c247fde565e027}{
+\index{Mezzanine::StringTool@{Mezzanine::StringTool}!Trim@{Trim}}
+\index{Trim@{Trim}!Mezzanine::StringTool@{Mezzanine::StringTool}}
+\paragraph[{Trim}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::StringTool::Trim (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{Source, }
+\item[{bool}]{Left = {\ttfamily true}, }
+\item[{bool}]{Right = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1StringTool_a190c4a88ff529a4fd8c247fde565e027}
+
+
+Trims all whitespaces and tabs from a one or both sides of a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Source} & The original string to be trimmed. \\
+\hline
+{\em Left} & Whether or not to trim the left side of the string. \\
+\hline
+{\em Right} & Whether or not to trim the right side of the string. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 63 of file stringtool.cpp.
 
 
 

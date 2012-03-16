@@ -17,14 +17,16 @@ Inheritance diagram for Mezzanine::UI::ListBox:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classMezzanine_1_1UI_1_1ListBox}
 \end{center}
 \end{figure}
-\subsubsection*{Classes}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams}{TemplateParams}
-\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1UI_1_1ListBox_a60130f372bc78fbb20f28270bbed8cf2}{ListBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1ListBox_a1fa312d9bc349a7a3b254afde3de81bd}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox_a1fa312d9bc349a7a3b254afde3de81bd}{$\sim$ListBox} ()}
+\label{classMezzanine_1_1UI_1_1ListBox_a1fa312d9bc349a7a3b254afde3de81bd}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1ListBox_aa2133933ef147bb658ddb9e7102cbddd}{AddSelection} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Text, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&BackgroundSprite=\char`\"{}\char`\"{})
 \begin{DoxyCompactList}\small\item\em Adds a selectable caption to the list to be displayed. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1ListBox_a943079b1c090b216fbd29817af42efcf}{DestroySelection} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToBeDestroyed)
@@ -37,12 +39,10 @@ virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{c
 \begin{DoxyCompactList}\small\item\em Gets the currently selected caption. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1ListBox_a793bd0f547a9f87ea74eb4204d591506}{GetSelection} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets a caption by name. \item\end{DoxyCompactList}\item 
-virtual const \hyperlink{structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams}{ListBox::TemplateParams} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_a9f03e4ca7e393839bc004337bf39db50}{GetTemplateInfo} ()
+virtual const \hyperlink{structMezzanine_1_1UI_1_1TemplateParams}{UI::TemplateParams} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_a65730a3d35fdddea0499d90991a31bcc}{GetTemplateInfo} ()
 \begin{DoxyCompactList}\small\item\em Gets the struct containing all the current template parameters used when creating a new selections. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{UI::Scrollbar} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1ListBox_a68873b3f128512572564ef11e9b48309}{GetVertScroll} ()
 \begin{DoxyCompactList}\small\item\em Gets the scrollbar used within this List Box. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1ListBox_a60130f372bc78fbb20f28270bbed8cf2}{ListBox} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
-\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1ListBox_a0bf39153416d2010e5bf36601873c73e}{SetActualPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this List Box. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1ListBox_ad277b2268dd5439c05ce300addf31815}{SetActualSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
@@ -61,7 +61,7 @@ virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{class
 \begin{DoxyCompactList}\small\item\em Sets the background colour to be applied to all created Selections. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_a2ce73aa7cca0365ef052de34b387fb8f}{SetTemplateCursorOffset} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Offset)
 \begin{DoxyCompactList}\small\item\em Set the cursor offset to be applied to all created Selections. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_a7aaf12f4ac3d15f059761646fc111b48}{SetTemplateGlyphIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph)
+virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_a7aaf12f4ac3d15f059761646fc111b48}{SetTemplateGlyphIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&\hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph})
 \begin{DoxyCompactList}\small\item\em Sets the glyph index to be applied to all created Selections. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_afcbed87ee667512e55b6bb4249582189}{SetTemplateHorizontalAlign} (const \hyperlink{namespaceMezzanine_1_1UI_aebbd46e62bb20d958f1915c1ec6cc549}{UI::TextHorizontalAlign} \&HorAlign)
 \begin{DoxyCompactList}\small\item\em Sets the horizontal alignment to be applied to all created Selections. \item\end{DoxyCompactList}\item 
@@ -76,12 +76,15 @@ virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{class
 virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox}{ListBox} \& \hyperlink{classMezzanine_1_1UI_1_1ListBox_a985a72063a7aa760c2aebd562b7adfa9}{SetTemplateVerticalAlign} (const \hyperlink{namespaceMezzanine_1_1UI_ab35e3845e2541698245262cc17147ae9}{UI::TextVerticalAlign} \&VertAlign)
 \begin{DoxyCompactList}\small\item\em Sets the vertical alignment to be applied to all created Selections. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1ListBox_a7bad6cce9fa22e882cc74f62a51fabdb}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1ListBox_a1fa312d9bc349a7a3b254afde3de81bd}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1ListBox_a1fa312d9bc349a7a3b254afde3de81bd}{$\sim$ListBox} ()}
-\label{classMezzanine_1_1UI_1_1ListBox_a1fa312d9bc349a7a3b254afde3de81bd}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1ListBox_a910fdad48b474cf8d8d5b46832f412d1}{
+\hyperlink{structMezzanine_1_1UI_1_1TemplateParams}{TemplateParams} {\bfseries Params}}
+\label{classMezzanine_1_1UI_1_1ListBox_a910fdad48b474cf8d8d5b46832f412d1}
 
-\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -163,9 +166,14 @@ std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ $>$ {
 \label{classMezzanine_1_1UI_1_1ListBox_aa80063e6f8282ca40aa760fc94d41fca}
 
 \item 
-\hypertarget{classMezzanine_1_1UI_1_1ListBox_a6491b3e714cfc1126a4255d40c31c364}{
-\hyperlink{structMezzanine_1_1UI_1_1ListBox_1_1TemplateParams}{TemplateParams} {\bfseries SelectionTemplate}}
-\label{classMezzanine_1_1UI_1_1ListBox_a6491b3e714cfc1126a4255d40c31c364}
+\hypertarget{classMezzanine_1_1UI_1_1ListBox_a7e322218b9ee2652e70613008bb65b2b}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries SelectionsAdded}}
+\label{classMezzanine_1_1UI_1_1ListBox_a7e322218b9ee2652e70613008bb65b2b}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1ListBox_ae8f22a3cbb41e146451923dd0df7e1a5}{
+\hyperlink{structMezzanine_1_1UI_1_1TemplateParams}{UI::TemplateParams} {\bfseries SelectionTemplate}}
+\label{classMezzanine_1_1UI_1_1ListBox_ae8f22a3cbb41e146451923dd0df7e1a5}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_af1bbde08aee122fe00f08379a0599e96}{
@@ -183,7 +191,7 @@ std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ $>$ {
 \subsubsection{Detailed Description}
 This is a widget for displaying a list of captions in a box. 
 
-Definition at line 61 of file uilistbox.h.
+Definition at line 74 of file uilistbox.h.
 
 
 
@@ -218,7 +226,7 @@ Standard initialization constructor.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000028}{Todo}]Currently this class has little support for a border around the selections. Ideally when the \hyperlink{namespaceMezzanine_1_1UI}{UI} system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. \end{Desc}
+\item[\hyperlink{todo__todo000034}{Todo}]Currently this class has little support for a border around the selections. Ideally when the \hyperlink{namespaceMezzanine_1_1UI}{UI} system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. \end{Desc}
 
 
 
@@ -254,7 +262,7 @@ If a colour other then white was set as the template and you try to set a backgr
 \end{DoxyParams}
 
 
-Definition at line 342 of file uilistbox.cpp.
+Definition at line 346 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a3926e83fb6bbde6205f156ea5c989edf}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!DestroySelection@{DestroySelection}}
@@ -276,7 +284,7 @@ Destroys a selectable caption.
 \end{DoxyParams}
 
 
-Definition at line 378 of file uilistbox.cpp.
+Definition at line 384 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a943079b1c090b216fbd29817af42efcf}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!DestroySelection@{DestroySelection}}
@@ -298,7 +306,7 @@ Destroys a selectable caption.
 \end{DoxyParams}
 
 
-Definition at line 391 of file uilistbox.cpp.
+Definition at line 405 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_ac24fd38d4300b8788b3e42ba2a17c6f7}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!GetBoxBack@{GetBoxBack}}
@@ -318,7 +326,7 @@ Returns a pointer to the background of this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 475 of file uilistbox.cpp.
+Definition at line 489 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_ae2b97c85a09fd6d74f659c1dc9cd125c}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!GetSelected@{GetSelected}}
@@ -338,7 +346,7 @@ Returns a pointer to the currently selected caption, or NULL if none are selecte
 \end{DoxyReturn}
 
 
-Definition at line 470 of file uilistbox.cpp.
+Definition at line 484 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a793bd0f547a9f87ea74eb4204d591506}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!GetSelection@{GetSelection}}
@@ -363,17 +371,17 @@ Returns a pointer to the named caption.
 \end{DoxyReturn}
 
 
-Definition at line 365 of file uilistbox.cpp.
+Definition at line 371 of file uilistbox.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1ListBox_a9f03e4ca7e393839bc004337bf39db50}{
+\hypertarget{classMezzanine_1_1UI_1_1ListBox_a65730a3d35fdddea0499d90991a31bcc}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!GetTemplateInfo@{GetTemplateInfo}}
 \index{GetTemplateInfo@{GetTemplateInfo}!Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}}
-\paragraph[{GetTemplateInfo}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf ListBox::TemplateParams} \& Mezzanine::UI::ListBox::GetTemplateInfo (
+\paragraph[{GetTemplateInfo}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf UI::TemplateParams} \& Mezzanine::UI::ListBox::GetTemplateInfo (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1ListBox_a9f03e4ca7e393839bc004337bf39db50}
+\label{classMezzanine_1_1UI_1_1ListBox_a65730a3d35fdddea0499d90991a31bcc}
 
 
 Gets the struct containing all the current template parameters used when creating a new selections. 
@@ -383,7 +391,7 @@ Returns a const reference to the structure containing all the template parameter
 \end{DoxyReturn}
 
 
-Definition at line 337 of file uilistbox.cpp.
+Definition at line 341 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a68873b3f128512572564ef11e9b48309}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!GetVertScroll@{GetVertScroll}}
@@ -403,7 +411,7 @@ Returns a pointer to the scrollbar of this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 480 of file uilistbox.cpp.
+Definition at line 494 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a0bf39153416d2010e5bf36601873c73e}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetActualPosition@{SetActualPosition}}
@@ -429,7 +437,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e858
 
 
 
-Definition at line 434 of file uilistbox.cpp.
+Definition at line 448 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_ad277b2268dd5439c05ce300addf31815}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetActualSize@{SetActualSize}}
@@ -455,7 +463,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753
 
 
 
-Definition at line 448 of file uilistbox.cpp.
+Definition at line 462 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a2bbbd32e977bf60ca9c91fd8bff8a7bd}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetAutoHideScroll@{SetAutoHideScroll}}
@@ -477,7 +485,7 @@ Eanbles or disables the scrollbar autohide.
 \end{DoxyParams}
 
 
-Definition at line 419 of file uilistbox.cpp.
+Definition at line 433 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_aec97a9717ade30b67b6bdf56329da13a}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetMaxDisplayedSelections@{SetMaxDisplayedSelections}}
@@ -499,7 +507,7 @@ Sets the maximum number of selections to display at once before the scrollbar ap
 \end{DoxyParams}
 
 
-Definition at line 410 of file uilistbox.cpp.
+Definition at line 424 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a7446cdc56d606fe52090e13ee8078124}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetPosition@{SetPosition}}
@@ -525,7 +533,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007d
 
 
 
-Definition at line 425 of file uilistbox.cpp.
+Definition at line 439 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a81ddebed01b1503478c2fa7b75ce4b24}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetSelected@{SetSelected}}
@@ -548,12 +556,12 @@ Sets the selection within this list to be \char`\"{}selected\char`\"{}.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000029}{Todo}]Maybe add a checker to verify the caption belongs to this widget? \end{Desc}
+\item[\hyperlink{todo__todo000035}{Todo}]Maybe add a checker to verify the caption belongs to this widget? \end{Desc}
 
 
 
 
-Definition at line 404 of file uilistbox.cpp.
+Definition at line 418 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a69058a4d45eeb28da12993d17a878ce2}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetSize@{SetSize}}
@@ -579,7 +587,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff0981
 
 
 
-Definition at line 443 of file uilistbox.cpp.
+Definition at line 457 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a1a2f8bd297f505c405ae80cff0d0ce22}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateBackgroundColour@{SetTemplateBackgroundColour}}
@@ -604,7 +612,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 313 of file uilistbox.cpp.
+Definition at line 317 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a2ce73aa7cca0365ef052de34b387fb8f}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateCursorOffset@{SetTemplateCursorOffset}}
@@ -629,7 +637,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 307 of file uilistbox.cpp.
+Definition at line 311 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a7aaf12f4ac3d15f059761646fc111b48}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateGlyphIndex@{SetTemplateGlyphIndex}}
@@ -644,9 +652,9 @@ Definition at line 307 of file uilistbox.cpp.
 
 Sets the glyph index to be applied to all created Selections. 
 
-This needs to be called prior to the creation of any selections(captions). This defaults to 0, which may not be a valid font index in your gorilla file. In which case it will throw an exception. 
+This needs to be called prior to the creation of any selections(captions). This defaults to 0, which may not be a valid font index in your mta file. In which case it will throw an exception. 
 \begin{DoxyParams}{Parameters}
-{\em Glyph} & The Glyph index to use for the text generated by all captions in this widget. \\
+{\em \hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph}} & The \hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph} index to use for the text generated by all captions in this widget. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -654,7 +662,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 289 of file uilistbox.cpp.
+Definition at line 293 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_afcbed87ee667512e55b6bb4249582189}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateHorizontalAlign@{SetTemplateHorizontalAlign}}
@@ -679,7 +687,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 319 of file uilistbox.cpp.
+Definition at line 323 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_ae4b5fd90298eaf10677011ecfaf7487c}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateRenderPriority@{SetTemplateRenderPriority}}
@@ -704,7 +712,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 331 of file uilistbox.cpp.
+Definition at line 335 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_af96485460545e5c77ae3b8640c274f0a}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateSize@{SetTemplateSize}}
@@ -732,7 +740,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 273 of file uilistbox.cpp.
+Definition at line 277 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_aa60c0565e8f114162d90de6ef646becf}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateTextColour@{SetTemplateTextColour}}
@@ -757,7 +765,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 295 of file uilistbox.cpp.
+Definition at line 299 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a220465a3c68071ad7b168f98ac191cd3}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateTextScale@{SetTemplateTextScale}}
@@ -782,7 +790,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 301 of file uilistbox.cpp.
+Definition at line 305 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a985a72063a7aa760c2aebd562b7adfa9}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!SetTemplateVerticalAlign@{SetTemplateVerticalAlign}}
@@ -807,7 +815,7 @@ Returns a reference to this List Box.
 \end{DoxyReturn}
 
 
-Definition at line 325 of file uilistbox.cpp.
+Definition at line 329 of file uilistbox.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1ListBox_a7bad6cce9fa22e882cc74f62a51fabdb}{
 \index{Mezzanine::UI::ListBox@{Mezzanine::UI::ListBox}!UpdateDimensions@{UpdateDimensions}}
@@ -828,7 +836,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848
 
 
 
-Definition at line 453 of file uilistbox.cpp.
+Definition at line 467 of file uilistbox.cpp.
 
 
 

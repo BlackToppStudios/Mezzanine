@@ -125,87 +125,93 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00061"></a><a class="code" href="classMezzanine_1_1Transform.html#ad719d3280b8b94f27b5ba1ce3e8a9a59">00061</a>     <a class="code" href="classMezzanine_1_1Transform.html#a0949c0923e41e00af6c9537d5f9094b7" title="The multipurpose constructor.">Transform::Transform</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; TheOther)
 <a name="l00062"></a>00062         { this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067" title="Set the values of this Transform to match an existing Transform.">operator=</a>(TheOther); }
 <a name="l00063"></a>00063 
-<a name="l00064"></a><a class="code" href="classMezzanine_1_1Transform.html#ae1745852b61f7388a5374eeebdc893cd">00064</a>     btTransform <a class="code" href="classMezzanine_1_1Transform.html#ae1745852b61f7388a5374eeebdc893cd" title="Gets a Bullet Transform.">Transform::GetBulletTransform</a>()<span class="keyword"> const</span>
-<a name="l00065"></a>00065 <span class="keyword">    </span>{
-<a name="l00066"></a>00066         <span class="keywordflow">return</span> btTransform( this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#a6d6b23f7ca6e8521873cd7c6198d7613" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>(),
-<a name="l00067"></a>00067                             this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>()
-<a name="l00068"></a>00068                             );
-<a name="l00069"></a>00069     }
-<a name="l00070"></a>00070 
-<a name="l00071"></a><a class="code" href="classMezzanine_1_1Transform.html#ade790a95db2817427aea8b7a90f95925">00071</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Transform.html#ade790a95db2817427aea8b7a90f95925" title="Copies an existing Bullet transform.">Transform::ExtractBulletTransform</a>(<span class="keyword">const</span> btTransform&amp; temp)
-<a name="l00072"></a>00072     {
-<a name="l00073"></a>00073         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#afc8fcb7fb9de94c05db4cc8a568363f9" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(temp.getOrigin());
-<a name="l00074"></a>00074         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#ad7d7badf6fff44472fea618647866d8c" title="Copies an existing Bullet quaternion.">ExtractBulletQuaternion</a>(temp.getRotation());
+<a name="l00064"></a><a class="code" href="classMezzanine_1_1Transform.html#a8d9f45cf621609dc884712c3beb3a501">00064</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Transform.html#a8d9f45cf621609dc884712c3beb3a501" title="Sets default construction values for all members.">Transform::SetIdentity</a>()
+<a name="l00065"></a>00065     {
+<a name="l00066"></a>00066         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#a54952c457428bbcb13e02972c205962f" title="Sets all the members of this vector3 to zero.">Zero</a>();
+<a name="l00067"></a>00067         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#a8f204c1529516ee03a80aa4f20613693" title="Sets default/identity values to the members of this quaternion.">SetIdentity</a>();
+<a name="l00068"></a>00068     }
+<a name="l00069"></a>00069 
+<a name="l00070"></a><a class="code" href="classMezzanine_1_1Transform.html#ae1745852b61f7388a5374eeebdc893cd">00070</a>     btTransform <a class="code" href="classMezzanine_1_1Transform.html#ae1745852b61f7388a5374eeebdc893cd" title="Gets a Bullet Transform.">Transform::GetBulletTransform</a>()<span class="keyword"> const</span>
+<a name="l00071"></a>00071 <span class="keyword">    </span>{
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> btTransform( this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#a6d6b23f7ca6e8521873cd7c6198d7613" title="Gets a Bullet quaternion.">GetBulletQuaternion</a>(),
+<a name="l00073"></a>00073                             this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#ab9fb84bdbfe3bed9fd210a6ad1cee8b7" title="Gets a Bullet vector3.">GetBulletVector3</a>()
+<a name="l00074"></a>00074                             );
 <a name="l00075"></a>00075     }
 <a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00078"></a><a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067">00078</a>     <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; <a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067" title="Set the values of this Transform to match an existing Transform.">Transform::operator= </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; rhs)
-<a name="l00079"></a>00079     {
-<a name="l00080"></a>00080         <span class="keywordflow">if</span>( <span class="keyword">this</span> == &amp;rhs ) <span class="comment">// Are we assigning to ourselves?!?!?!?</span>
-<a name="l00081"></a>00081         {
-<a name="l00082"></a>00082             <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00083"></a>00083         }<span class="keywordflow">else</span>{
-<a name="l00084"></a>00084             this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a> = rhs.<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>;
-<a name="l00085"></a>00085             this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a> = rhs.<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>;
-<a name="l00086"></a>00086         }
-<a name="l00087"></a>00087     }
-<a name="l00088"></a>00088 
-<a name="l00089"></a><a class="code" href="classMezzanine_1_1Transform.html#a4ea68563eacb2f69a4e83a0c28392b74">00089</a>     <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; <a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067" title="Set the values of this Transform to match an existing Transform.">Transform::operator= </a>(<span class="keyword">const</span> btTransform&amp; rhs)
-<a name="l00090"></a>00090     {
-<a name="l00091"></a>00091         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#afc8fcb7fb9de94c05db4cc8a568363f9" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(rhs.getOrigin());
-<a name="l00092"></a>00092         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#ad7d7badf6fff44472fea618647866d8c" title="Copies an existing Bullet quaternion.">ExtractBulletQuaternion</a>(rhs.getRotation());
-<a name="l00093"></a>00093         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00094"></a>00094     }
-<a name="l00095"></a>00095 
-<a name="l00096"></a>00096 <span class="preprocessor">#ifdef MEZZXML</span>
-<a name="l00097"></a>00097 <span class="preprocessor"></span>    <span class="keywordtype">void</span> Transform::ProtoSerialize(xml::Node&amp; CurrentRoot)<span class="keyword"> const</span>
-<a name="l00098"></a>00098 <span class="keyword">    </span>{
-<a name="l00099"></a>00099         xml::Node TransformNode = CurrentRoot.AppendChild(SerializableName());                     <span class="comment">// The base node all the base constraint stuff will go in</span>
-<a name="l00100"></a>00100         <span class="keywordflow">if</span> (!TransformNode)
-<a name="l00101"></a>00101             { SerializeError(<span class="stringliteral">&quot;Create TransformNode&quot;</span>, SerializableName()); }
-<a name="l00102"></a>00102 
-<a name="l00103"></a>00103         Mezzanine::xml::Attribute Version = TransformNode.AppendAttribute(<span class="stringliteral">&quot;Version&quot;</span>);                            <span class="comment">// Version</span>
-<a name="l00104"></a>00104         <span class="keywordflow">if</span> (!Version)
-<a name="l00105"></a>00105             { SerializeError(<span class="stringliteral">&quot;Create Version&quot;</span>, SerializableName()); }
-<a name="l00106"></a>00106         Version.SetValue(1);
-<a name="l00107"></a>00107 
-<a name="l00108"></a>00108         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.ProtoSerialize(TransformNode);
-<a name="l00109"></a>00109         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.ProtoSerialize(TransformNode);
-<a name="l00110"></a>00110     }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112     <span class="keywordtype">void</span> Transform::ProtoDeSerialize(<span class="keyword">const</span> xml::Node&amp; OneNode)
-<a name="l00113"></a>00113     {
-<a name="l00114"></a>00114         <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.Name())==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(SerializableName()) )
-<a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             <span class="keywordflow">if</span>(OneNode.GetAttribute(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
-<a name="l00117"></a>00117             {
-<a name="l00118"></a>00118                 this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.ProtoDeSerialize(OneNode.GetChild(<span class="stringliteral">&quot;Vector3&quot;</span>));
-<a name="l00119"></a>00119                 this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.ProtoDeSerialize(OneNode.GetChild(<span class="stringliteral">&quot;Quaternion&quot;</span>));
-<a name="l00120"></a>00120             }<span class="keywordflow">else</span>{
-<a name="l00121"></a>00121                 <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for &quot;</span>,SerializableName(),<span class="stringliteral">&quot;: Not Version 1&quot;</span>)) );
-<a name="l00122"></a>00122             }
-<a name="l00123"></a>00123         }<span class="keywordflow">else</span>{
-<a name="l00124"></a>00124             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a &quot;</span>,SerializableName(),<span class="stringliteral">&quot;, found a &quot;</span>, OneNode.Name())));
-<a name="l00125"></a>00125         }
-<a name="l00126"></a>00126     }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Transform::SerializableName()
-<a name="l00129"></a>00129         { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Transform&quot;</span>); }
-<a name="l00130"></a>00130 <span class="preprocessor">#endif // /MEZZXML</span>
-<a name="l00131"></a>00131 <span class="preprocessor"></span>}
-<a name="l00132"></a>00132 
-<a name="l00133"></a><a class="code" href="transform_8h.html#ad75aa38dd6fa149b3ba6ff53bd65ceda">00133</a> btTransform&amp; operator&lt;&lt; (btTransform&amp; lhs, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a>&amp; rhs)
-<a name="l00134"></a>00134 {
-<a name="l00135"></a>00135     lhs.setOrigin(rhs.<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.GetBulletVector3());
-<a name="l00136"></a>00136     lhs.setRotation(rhs.<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.GetBulletQuaternion());
-<a name="l00137"></a>00137     <span class="keywordflow">return</span> lhs;
-<a name="l00138"></a>00138 }
-<a name="l00139"></a>00139 
-<a name="l00140"></a><a class="code" href="transform_8h.html#ac55646a12b0e094db075c7e2665ef3b5">00140</a> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a>&amp; operator&lt;&lt; (<a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a>&amp; lhs, <span class="keyword">const</span> btTransform&amp; rhs)
-<a name="l00141"></a>00141     { <span class="keywordflow">return</span> lhs=rhs; }
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143 
-<a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
+<a name="l00077"></a><a class="code" href="classMezzanine_1_1Transform.html#ade790a95db2817427aea8b7a90f95925">00077</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Transform.html#ade790a95db2817427aea8b7a90f95925" title="Copies an existing Bullet transform.">Transform::ExtractBulletTransform</a>(<span class="keyword">const</span> btTransform&amp; temp)
+<a name="l00078"></a>00078     {
+<a name="l00079"></a>00079         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#afc8fcb7fb9de94c05db4cc8a568363f9" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(temp.getOrigin());
+<a name="l00080"></a>00080         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#ad7d7badf6fff44472fea618647866d8c" title="Copies an existing Bullet quaternion.">ExtractBulletQuaternion</a>(temp.getRotation());
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067">00084</a>     <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; <a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067" title="Set the values of this Transform to match an existing Transform.">Transform::operator= </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; rhs)
+<a name="l00085"></a>00085     {
+<a name="l00086"></a>00086         <span class="keywordflow">if</span>( <span class="keyword">this</span> == &amp;rhs ) <span class="comment">// Are we assigning to ourselves?!?!?!?</span>
+<a name="l00087"></a>00087         {
+<a name="l00088"></a>00088             <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00089"></a>00089         }<span class="keywordflow">else</span>{
+<a name="l00090"></a>00090             this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a> = rhs.<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>;
+<a name="l00091"></a>00091             this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a> = rhs.<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>;
+<a name="l00092"></a>00092         }
+<a name="l00093"></a>00093     }
+<a name="l00094"></a>00094 
+<a name="l00095"></a><a class="code" href="classMezzanine_1_1Transform.html#a4ea68563eacb2f69a4e83a0c28392b74">00095</a>     <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>&amp; <a class="code" href="classMezzanine_1_1Transform.html#aa21521163611bf58988caf99c085d067" title="Set the values of this Transform to match an existing Transform.">Transform::operator= </a>(<span class="keyword">const</span> btTransform&amp; rhs)
+<a name="l00096"></a>00096     {
+<a name="l00097"></a>00097         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#afc8fcb7fb9de94c05db4cc8a568363f9" title="Copies an existing Bullet vector3.">ExtractBulletVector3</a>(rhs.getOrigin());
+<a name="l00098"></a>00098         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#ad7d7badf6fff44472fea618647866d8c" title="Copies an existing Bullet quaternion.">ExtractBulletQuaternion</a>(rhs.getRotation());
+<a name="l00099"></a>00099         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00100"></a>00100     }
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00103"></a><a class="code" href="classMezzanine_1_1Transform.html#a7bc390c5875493870d8eff4a36685457">00103</a> <span class="preprocessor"></span>    <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Transform.html#a7bc390c5875493870d8eff4a36685457" title="Convert this class to an xml::Node ready for serialization.">Transform::ProtoSerialize</a>(<a class="code" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; CurrentRoot)<span class="keyword"> const</span>
+<a name="l00104"></a>00104 <span class="keyword">    </span>{
+<a name="l00105"></a>00105         <a class="code" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> TransformNode = CurrentRoot.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#aa9e1bc91805a3c47609988cc824ea54a" title="Creates a Node and makes it a child of this one.">AppendChild</a>(<a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>());                     <span class="comment">// The base node all the base constraint stuff will go in</span>
+<a name="l00106"></a>00106         <span class="keywordflow">if</span> (!TransformNode)
+<a name="l00107"></a>00107             { <a class="code" href="namespaceMezzanine.html#ab061665515c8e8a8b09ee54d93612da1" title="Simply does some string concatenation, then throws an Exception.">SerializeError</a>(<span class="stringliteral">&quot;Create TransformNode&quot;</span>, <a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>()); }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109         <a class="code" href="classMezzanine_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Mezzanine::xml::Attribute</a> Version = TransformNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#a1f41ecc96128f478bb8f234022cc0b3c" title="Creates an Attribute and puts it at the end of this Nodes attributes.">AppendAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>);                            <span class="comment">// Version</span>
+<a name="l00110"></a>00110         <span class="keywordflow">if</span> (!Version)
+<a name="l00111"></a>00111             { <a class="code" href="namespaceMezzanine.html#ab061665515c8e8a8b09ee54d93612da1" title="Simply does some string concatenation, then throws an Exception.">SerializeError</a>(<span class="stringliteral">&quot;Create Version&quot;</span>, <a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>()); }
+<a name="l00112"></a>00112         Version.<a class="code" href="classMezzanine_1_1xml_1_1Attribute.html#a850c7d6692ac542ea197952c734e3800" title="Set the value of this.">SetValue</a>(1);
+<a name="l00113"></a>00113 
+<a name="l00114"></a>00114         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#a26315562a108268e0ed3ef1bf707100d" title="Convert this class to an xml::Node ready for serialization.">ProtoSerialize</a>(TransformNode);
+<a name="l00115"></a>00115         this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#a883d87f95630da6f626ce8e007a35642" title="Convert this class to an xml::Node ready for serialization.">ProtoSerialize</a>(TransformNode);
+<a name="l00116"></a>00116     }
+<a name="l00117"></a>00117 
+<a name="l00118"></a><a class="code" href="classMezzanine_1_1Transform.html#aa58fe89c84a189cfb2c6a0594c37e071">00118</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Transform.html#aa58fe89c84a189cfb2c6a0594c37e071" title="Take the data stored in an XML and overwrite this instance of this object with it.">Transform::ProtoDeSerialize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>&amp; OneNode)
+<a name="l00119"></a>00119     {
+<a name="l00120"></a>00120         <span class="keywordflow">if</span> ( <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(OneNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#a8b20d5b125625a218ece62d064396c4a" title="Get the name of this Node.">Name</a>())==<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a>(<a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>()) )
+<a name="l00121"></a>00121         {
+<a name="l00122"></a>00122             <span class="keywordflow">if</span>(OneNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#af165e3fb0e652483761b1408e141dd00" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
+<a name="l00123"></a>00123             {
+<a name="l00124"></a>00124                 this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.<a class="code" href="classMezzanine_1_1Vector3.html#a75ed62196ecc449c6a4e6ea8242c4b14" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#abb2e51765b16a3373ee81b288fd74b22" title="Attempt to get a child Node with a given name.">GetChild</a>(<span class="stringliteral">&quot;Vector3&quot;</span>));
+<a name="l00125"></a>00125                 this-&gt;<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.<a class="code" href="classMezzanine_1_1Quaternion.html#a6cf6dcb5d3dcccec258b2e42157d8148" title="Take the data stored in an XML and overwrite this instance of this object with it.">ProtoDeSerialize</a>(OneNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#abb2e51765b16a3373ee81b288fd74b22" title="Attempt to get a child Node with a given name.">GetChild</a>(<span class="stringliteral">&quot;Quaternion&quot;</span>));
+<a name="l00126"></a>00126             }<span class="keywordflow">else</span>{
+<a name="l00127"></a>00127                 <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">StringTool::StringCat</a>(<span class="stringliteral">&quot;Incompatible XML Version for &quot;</span>,<a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>(),<span class="stringliteral">&quot;: Not Version 1&quot;</span>)) );
+<a name="l00128"></a>00128             }
+<a name="l00129"></a>00129         }<span class="keywordflow">else</span>{
+<a name="l00130"></a>00130             <span class="keywordflow">throw</span>( <a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a>(<a class="code" href="classMezzanine_1_1StringTool.html#a51f6de1d1d4f51c43c71a7b34bbfcfec" title="Concatenates 2 Strings.">Mezzanine::StringTool::StringCat</a>(<span class="stringliteral">&quot;Attempting to deserialize a &quot;</span>,<a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">SerializableName</a>(),<span class="stringliteral">&quot;, found a &quot;</span>, OneNode.<a class="code" href="classMezzanine_1_1xml_1_1Node.html#a8b20d5b125625a218ece62d064396c4a" title="Get the name of this Node.">Name</a>())));
+<a name="l00131"></a>00131         }
+<a name="l00132"></a>00132     }
+<a name="l00133"></a>00133 
+<a name="l00134"></a><a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045">00134</a>     <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1Transform.html#aa654b59db0a5ae99778cfb89ad8f7045" title="Get the name of the the XML tag this class will leave behind as its instances are serialized...">Transform::SerializableName</a>()
+<a name="l00135"></a>00135         { <span class="keywordflow">return</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;Transform&quot;</span>); }
+<a name="l00136"></a>00136 <span class="preprocessor">#endif // /MEZZXML</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span>}
+<a name="l00138"></a>00138 
+<a name="l00139"></a><a class="code" href="transform_8h.html#ad75aa38dd6fa149b3ba6ff53bd65ceda">00139</a> btTransform&amp; operator&lt;&lt; (btTransform&amp; lhs, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a>&amp; rhs)
+<a name="l00140"></a>00140 {
+<a name="l00141"></a>00141     lhs.setOrigin(rhs.<a class="code" href="classMezzanine_1_1Transform.html#a93498c9bcba2298f199f9ab04671a944" title="The location or relative location is stored in a Vector3.">Location</a>.GetBulletVector3());
+<a name="l00142"></a>00142     lhs.setRotation(rhs.<a class="code" href="classMezzanine_1_1Transform.html#a4f41685c108f02fd4faad209b1a438ef" title="The Rotation or relative rotation is stored in a Quaternion.">Rotation</a>.GetBulletQuaternion());
+<a name="l00143"></a>00143     <span class="keywordflow">return</span> lhs;
+<a name="l00144"></a>00144 }
+<a name="l00145"></a>00145 
+<a name="l00146"></a><a class="code" href="transform_8h.html#ac55646a12b0e094db075c7e2665ef3b5">00146</a> <a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a>&amp; operator&lt;&lt; (<a class="code" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a>&amp; lhs, <span class="keyword">const</span> btTransform&amp; rhs)
+<a name="l00147"></a>00147     { <span class="keywordflow">return</span> lhs=rhs; }
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149 
+<a name="l00150"></a>00150 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -213,7 +219,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -223,6 +229,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

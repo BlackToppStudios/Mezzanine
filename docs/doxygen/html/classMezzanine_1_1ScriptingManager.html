@@ -90,21 +90,32 @@ Inheritance diagram for Mezzanine::ScriptingManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a82c560b4d99f6df817866e1a5ae7f947">DoMainLoopItems</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerBase::ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a6c9799934a3edb229df8a497ef9e4ddb">GetType</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a472ede9f3d925b3eb4370d8b7f8de95b">Initialize</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a41b5cfe0b77fcf5fc68e1e4771cbdd6f">ScriptingManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a41b5cfe0b77fcf5fc68e1e4771cbdd6f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab02a893a15e451624263c892928a88b8"></a><!-- doxytag: member="Mezzanine::ScriptingManager::~ScriptingManager" ref="ab02a893a15e451624263c892928a88b8" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#ab02a893a15e451624263c892928a88b8">~ScriptingManager</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add2d6f76c421430823439c4f08981f05"></a><!-- doxytag: member="Mezzanine::ScriptingManager::AddScript" ref="add2d6f76c421430823439c4f08981f05" args="(Scripting::Script *ScriptToAdd)=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddScript</b> (<a class="el" href="classMezzanine_1_1Scripting_1_1Script.html">Scripting::Script</a> *ScriptToAdd)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5948df253d38dcce74ddb914719300ad"></a><!-- doxytag: member="Mezzanine::ScriptingManager::AddScript" ref="a5948df253d38dcce74ddb914719300ad" args="(String ScriptInString)=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddScript</b> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> ScriptInString)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bf35da7b8088d0c3a19e8f75a75e68e"></a><!-- doxytag: member="Mezzanine::ScriptingManager::CompileScript" ref="a7bf35da7b8088d0c3a19e8f75a75e68e" args="(Scripting::Script *ScriptToCompile)=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a7bf35da7b8088d0c3a19e8f75a75e68e">CompileScript</a> (<a class="el" href="classMezzanine_1_1Scripting_1_1Script.html">Scripting::Script</a> *ScriptToCompile)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">In implemented classes this. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a82c560b4d99f6df817866e1a5ae7f947">DoMainLoopItems</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47d1b5a899cf4ce5e6a50256aa16f7de"></a><!-- doxytag: member="Mezzanine::ScriptingManager::ExecuteScript" ref="a47d1b5a899cf4ce5e6a50256aa16f7de" args="(Scripting::Script *ScriptToRemove)=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteScript</b> (<a class="el" href="classMezzanine_1_1Scripting_1_1Script.html">Scripting::Script</a> *ScriptToRemove)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <br class="typebreak"/>
+<a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerBase::ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a6c9799934a3edb229df8a497ef9e4ddb">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ScriptingManager.html#a472ede9f3d925b3eb4370d8b7f8de95b">Initialize</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19af440a109ca6413c0501d84ae1e1ea"></a><!-- doxytag: member="Mezzanine::ScriptingManager::RemoveScript" ref="a19af440a109ca6413c0501d84ae1e1ea" args="(Scripting::Script *ScriptToRemove)=0" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveScript</b> (<a class="el" href="classMezzanine_1_1Scripting_1_1Script.html">Scripting::Script</a> *ScriptToRemove)=0</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>What a scripting manager should look like. </p>
-<p>This script manager implements no scripting language. </p>
+<p>This scripting manager implements no scripting language, but serves as model for what scripting managers </p>
 
-<p>Definition at line <a class="el" href="scriptingmanager_8h_source.html#l00053">53</a> of file <a class="el" href="scriptingmanager_8h_source.html">scriptingmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="scriptingmanager_8h_source.html#l00055">55</a> of file <a class="el" href="scriptingmanager_8h_source.html">scriptingmanager.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a41b5cfe0b77fcf5fc68e1e4771cbdd6f"></a><!-- doxytag: member="Mezzanine::ScriptingManager::ScriptingManager" ref="a41b5cfe0b77fcf5fc68e1e4771cbdd6f" args="()" -->
 <div class="memitem">
@@ -123,7 +134,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <p>Class constructor. </p>
 <p>Sets Priority to 350 </p>
 
-<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00049">49</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00050">50</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -146,7 +157,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
  
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a4ee29e4baf6c4b9a3bfec1b2258d5cd2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00064">64</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00065">65</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -169,7 +180,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
  
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00069">69</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00070">70</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -193,7 +204,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
  
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00059">59</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="scriptingmanager_8cpp_source.html#l00060">60</a> of file <a class="el" href="scriptingmanager_8cpp_source.html">scriptingmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -207,7 +218,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -217,6 +228,6 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

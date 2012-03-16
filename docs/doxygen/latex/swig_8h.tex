@@ -4,14 +4,19 @@
 }
 
 
-Used to give commands specifically to the swig preprocessor.  
+Used to give commands specifically to the SWIG preprocessor.  
 
 
 
 
 \subsubsection{Detailed Description}
-Used to give commands specifically to the swig preprocessor. This file exists primarily to make it easier for engine users to include parts of the \hyperlink{namespaceMezzanine}{Mezzanine} engine in their project with out needing to know or care about the internals of our project. \par
- This file is also u 
+Used to give commands specifically to the SWIG preprocessor. SWIG is a C/C++ source code preprocessor that reads source files and produces an implemtation of bindings for that language. Currently it is only used for Lua. It can be used for other items in the future. \par
+ This file defines a number of messages to make troubleshooting SWIG and the script bindings a little easier.
+\begin{DoxyItemize}
+\item SWIG\_\-INFO\_\-WARN -\/ 999: Warning 990 to 999 are informational messages.
+\item SWIG\_\-INFO\_\-BEGINCLASS -\/ 990: Begining parsing of class.
+\item SWIG\_\-INFO\_\-ENDCLASS -\/ 991: Completing parsing of class. 
+\end{DoxyItemize}
 
 Definition in file \hyperlink{swig_8h_source}{swig.h}.
 

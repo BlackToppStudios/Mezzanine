@@ -8,10 +8,7 @@ The declaration of the WorldNode, A class to facilitate navigation in 3d environ
 
 
 {\ttfamily \#include \char`\"{}attachable.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}crossplatformexport.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}datatypes.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}vector3.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}quaternion.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}enumerations.h\char`\"{}}\par
 {\ttfamily \#include \char`\"{}xml.h\char`\"{}}\par
 \subsubsection*{Classes}
 \begin{DoxyCompactItemize}
@@ -26,11 +23,128 @@ namespace \hyperlink{namespaceMezzanine}{Mezzanine}
 
 \begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
 
+\item 
+namespace \hyperlink{namespaceOgre}{Ogre}
 \end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::ostream \&MEZZ\_\-LIB \hyperlink{worldnode_8h_aa3ca22d274cd0da03ca62fd1cdf5fee0}{operator$<$$<$} (std::ostream \&stream, const \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} \&Ev)
+\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} to XML. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&MEZZ\_\-LIB \hyperlink{worldnode_8h_a6509ccb839197be1acefdc54e46a62fe}{operator$>$$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} \&Ev)
+\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} from parsed xml. \item\end{DoxyCompactList}\item 
+std::istream \&MEZZ\_\-LIB \hyperlink{worldnode_8h_a198e382378e57e89b812088268fd48ba}{operator$>$$>$} (std::istream \&stream, \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} \&Ev)
+\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 The declaration of the WorldNode, A class to facilitate navigation in 3d environment. 
 
 Definition in file \hyperlink{worldnode_8h_source}{worldnode.h}.
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{worldnode_8h_aa3ca22d274cd0da03ca62fd1cdf5fee0}{
+\index{worldnode.h@{worldnode.h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!worldnode.h@{worldnode.h}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& MEZZ\_\-LIB operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{stream, }
+\item[{const {\bf Mezzanine::WorldNode} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{worldnode_8h_aa3ca22d274cd0da03ca62fd1cdf5fee0}
+
+
+Serializes the passed \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} to XML. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The ostream to send the xml to. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this returns the ostream, now with the serialized data 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not added to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the Node is stored for possible future use. 
+\end{DoxyWarning}
+
+
+Definition at line 336 of file worldnode.cpp.
+
+\hypertarget{worldnode_8h_a6509ccb839197be1acefdc54e46a62fe}{
+\index{worldnode.h@{worldnode.h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!worldnode.h@{worldnode.h}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::xml::Node}\& MEZZ\_\-LIB operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::xml::Node} \&}]{OneNode, }
+\item[{{\bf Mezzanine::WorldNode} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{worldnode_8h_a6509ccb839197be1acefdc54e46a62fe}
+
+
+Set all values of a \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} from parsed xml. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} to be reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns thexml::Node that was passed in. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to de-\/serialize the name of the WorldNode. This is not currently changeable after the creation of a WorldNode. However, the WorldNodemanager will correctly create name WorldNode upon creation then deserialize the rest of the WorldNode. 
+
+This does not throw an exception if the WorldNode could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. 
+\end{DoxyWarning}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000045}{Todo}]This doesn't account for other objects aside from world nodes to be attached. Additional checks that fetch other types by name in the case of a null pointer should be implemented. \end{Desc}
+
+
+
+
+Definition at line 363 of file worldnode.cpp.
+
+\hypertarget{worldnode_8h_a198e382378e57e89b812088268fd48ba}{
+\index{worldnode.h@{worldnode.h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!worldnode.h@{worldnode.h}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& MEZZ\_\-LIB operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{stream, }
+\item[{{\bf Mezzanine::WorldNode} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{worldnode_8h_a198e382378e57e89b812088268fd48ba}
+
+
+Deserialize a \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} to be deserialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} that was recreated onto Ev. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to store the WorldNode aspect ratio. This is too often hardware dependent and may not be reliably re-\/serialized. 
+
+This does not the pointer to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. 
+\end{DoxyWarning}
+
+
+Definition at line 353 of file worldnode.cpp.
 

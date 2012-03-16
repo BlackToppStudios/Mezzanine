@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;<a class="code" href="attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec...">attachable.h</a>&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;colourvalue.h&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;xml.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;<a class="code" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>
 <a name="l00046"></a>00046 <span class="comment"></span>
 <a name="l00047"></a>00047 <span class="comment">/// @file light.h</span>
 <a name="l00048"></a>00048 <span class="comment">/// @brief Declaration of Mezzanine::Light</span>
@@ -133,7 +133,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00069"></a>00069 <span class="comment">    /// Note: If attaching a light to a node, all transform information(Location and orientation) becomes relative</span>
 <a name="l00070"></a>00070 <span class="comment">    /// to the nodes transform.</span>
 <a name="l00071"></a>00071 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00072"></a><a class="code" href="classMezzanine_1_1Light.html">00072</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a>
+<a name="l00072"></a><a class="code" href="classMezzanine_1_1Light.html">00072</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1AttachableChild.html" title="This class is the base class for objects that can be attached to AttachableParent.">AttachableChild</a>
 <a name="l00073"></a>00073     {
 <a name="l00074"></a>00074         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00075"></a>00075 <span class="comment">            /// @brief What kind of light Source.</span>
@@ -148,215 +148,206 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00084"></a><a class="code" href="classMezzanine_1_1Light.html#a228f1f22dbee36bed47894086d2191ff">00084</a> <span class="comment"></span>            Ogre::Light* <a class="code" href="classMezzanine_1_1Light.html#a228f1f22dbee36bed47894086d2191ff" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>;<span class="comment"></span>
 <a name="l00085"></a>00085 <span class="comment">            /// @brief Pointer to the manager that created this class.</span>
 <a name="l00086"></a><a class="code" href="classMezzanine_1_1Light.html#a33af923976c32b2a34aaae8549ed35e4">00086</a> <span class="comment"></span>            <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* <a class="code" href="classMezzanine_1_1Light.html#a33af923976c32b2a34aaae8549ed35e4" title="Pointer to the manager that created this class.">Manager</a>;
-<a name="l00087"></a>00087         <span class="keyword">public</span>:
-<a name="l00088"></a>00088 <span class="comment"></span>
-<a name="l00089"></a>00089 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00090"></a>00090 <span class="comment"></span>            <span class="comment">// Construction</span>
-<a name="l00091"></a>00091 <span class="comment"></span>
-<a name="l00092"></a>00092 <span class="comment">            /// @brief Standard initialization constructor.</span>
-<a name="l00093"></a>00093 <span class="comment">            /// @param Name The name of this light.</span>
-<a name="l00094"></a>00094 <span class="comment">            /// @param manager Pointer to the manager that this light is to be used in.</span>
-<a name="l00095"></a>00095 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* manager);
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">            /// @internal</span>
-<a name="l00098"></a>00098 <span class="comment">            /// @brief Internal Constructor</span>
-<a name="l00099"></a>00099 <span class="comment">            /// @details This constructor should not be called on manually.</span>
-<a name="l00100"></a>00100 <span class="comment">            /// @param light The Ogre light this class is based on.</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @param manager Pointer to the manager that this light is to be used in.</span>
-<a name="l00102"></a>00102 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a>(Ogre::Light* light, <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* manager);
+<a name="l00087"></a>00087         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00088"></a>00088 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00089"></a>00089 <span class="comment"></span>            <span class="comment">// Construction</span>
+<a name="l00090"></a>00090 <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">            /// @brief Standard initialization constructor.</span>
+<a name="l00092"></a>00092 <span class="comment">            /// @param Name The name of this light.</span>
+<a name="l00093"></a>00093 <span class="comment">            /// @param manager Pointer to the manager that this light is to be used in.</span>
+<a name="l00094"></a>00094 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* manager);<span class="comment"></span>
+<a name="l00095"></a>00095 <span class="comment">            /// @internal</span>
+<a name="l00096"></a>00096 <span class="comment">            /// @brief Internal Constructor</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @details This constructor should not be called on manually.</span>
+<a name="l00098"></a>00098 <span class="comment">            /// @param light The Ogre light this class is based on.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @param manager Pointer to the manager that this light is to be used in.</span>
+<a name="l00100"></a>00100 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a>(Ogre::Light* light, <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* manager);<span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a>();
 <a name="l00103"></a>00103 <span class="comment"></span>
-<a name="l00104"></a>00104 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a>();
+<a name="l00104"></a>00104 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00105"></a>00105 <span class="comment"></span>            <span class="comment">// Meta</span>
 <a name="l00106"></a>00106 <span class="comment"></span>
-<a name="l00107"></a>00107 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00108"></a>00108 <span class="comment"></span>            <span class="comment">// Meta</span>
-<a name="l00109"></a>00109 <span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">            /// @brief Gets the name of this light.</span>
-<a name="l00111"></a>00111 <span class="comment">            /// @return Returns a string containing the name given to this light.</span>
-<a name="l00112"></a>00112 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; GetName() <span class="keyword">const</span>;
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">            /// @brief Sets the type of light this light is.</span>
-<a name="l00115"></a>00115 <span class="comment">            /// @details The light types are listed with the class info.  Types are Directional, Point, and Spotlight.</span>
-<a name="l00116"></a>00116 <span class="comment">            /// @param Type The enum value representing the type of light this is.</span>
-<a name="l00117"></a>00117 <span class="comment"></span>            <span class="keywordtype">void</span> SetType(<a class="code" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be" title="What kind of light Source.">Light::LightType</a> Type);<span class="comment"></span>
-<a name="l00118"></a>00118 <span class="comment">            /// @brief Gets the type of light that this light is.</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @return Returns an enum value for this lights type.</span>
-<a name="l00120"></a>00120 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be" title="What kind of light Source.">Light::LightType</a> GetType() <span class="keyword">const</span>;
-<a name="l00121"></a>00121 <span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00123"></a>00123 <span class="comment"></span>            <span class="comment">// 3d navigation</span>
-<a name="l00124"></a>00124 <span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">            /// @brief Sets the location from where the light will originate.</span>
-<a name="l00126"></a>00126 <span class="comment">            /// @param Location A vector3 representing the location to set the light.</span>
+<a name="l00107"></a>00107 <span class="comment">            /// @brief Gets the name of this light.</span>
+<a name="l00108"></a>00108 <span class="comment">            /// @return Returns a string containing the name given to this light.</span>
+<a name="l00109"></a>00109 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; GetName() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00110"></a>00110 <span class="comment">            /// @brief Sets the type of light this light is.</span>
+<a name="l00111"></a>00111 <span class="comment">            /// @details The light types are listed with the class info.  Types are Directional, Point, and Spotlight.</span>
+<a name="l00112"></a>00112 <span class="comment">            /// @param Type The enum value representing the type of light this is.</span>
+<a name="l00113"></a>00113 <span class="comment"></span>            <span class="keywordtype">void</span> SetLightType(<a class="code" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be" title="What kind of light Source.">Light::LightType</a> Type);<span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">            /// @brief Gets the type of light that this light is.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @return Returns an enum value for this lights type.</span>
+<a name="l00116"></a>00116 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be" title="What kind of light Source.">Light::LightType</a> GetLightType() <span class="keyword">const</span>;
+<a name="l00117"></a>00117 <span class="comment"></span>
+<a name="l00118"></a>00118 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00119"></a>00119 <span class="comment"></span>            <span class="comment">// 3d navigation</span>
+<a name="l00120"></a>00120 <span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">            /// @brief Sets the location from where the light will originate.</span>
+<a name="l00122"></a>00122 <span class="comment">            /// @param Location A vector3 representing the location to set the light.</span>
+<a name="l00123"></a>00123 <span class="comment">            /// @details Not used in Directional Lights.</span>
+<a name="l00124"></a>00124 <span class="comment"></span>            <span class="keywordtype">void</span> SetLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);<span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">            /// @brief Gets the current location of the light.</span>
+<a name="l00126"></a>00126 <span class="comment">            /// @return Returns a vector3 representing the location of the light.</span>
 <a name="l00127"></a>00127 <span class="comment">            /// @details Not used in Directional Lights.</span>
-<a name="l00128"></a>00128 <span class="comment"></span>            <span class="keywordtype">void</span> SetLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);<span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLocation() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l00129"></a>00129 <span class="comment">            /// @brief Inherited from Attachable, does nothing on Light class.</span>
 <a name="l00130"></a>00130 <span class="comment">            /// @param Orientation The orientation.</span>
 <a name="l00131"></a>00131 <span class="comment"></span>            <span class="keywordtype">void</span> SetOrientation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation);<span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">            /// @brief Sets the direction the light will originate from.</span>
-<a name="l00133"></a>00133 <span class="comment">            /// @param Direction A vector3 representing the direction the light will come from.</span>
-<a name="l00134"></a>00134 <span class="comment">            /// @details Not used in point lights.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>            <span class="keywordtype">void</span> SetDirection(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Direction);
-<a name="l00136"></a>00136 <span class="comment"></span>
-<a name="l00137"></a>00137 <span class="comment">            /// @brief Gets the current location of the light.</span>
-<a name="l00138"></a>00138 <span class="comment">            /// @return Returns a vector3 representing the location of the light.</span>
-<a name="l00139"></a>00139 <span class="comment">            /// @details Not used in Directional Lights.</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetLocation() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">            /// @brief Inherited from Attachable, returns a default Quaternion.</span>
-<a name="l00142"></a>00142 <span class="comment">            /// @return Returns a quaternion with the orientation.</span>
-<a name="l00143"></a>00143 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetOrientation() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">            /// @brief Gets the currently set direction of the light.</span>
-<a name="l00145"></a>00145 <span class="comment">            /// @return Returns a vector3 representing the set direction of the light.</span>
-<a name="l00146"></a>00146 <span class="comment">            /// @details Not used in point lights.</span>
-<a name="l00147"></a>00147 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetDirection() <span class="keyword">const</span>;
-<a name="l00148"></a>00148 <span class="comment"></span>
-<a name="l00149"></a>00149 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00150"></a>00150 <span class="comment"></span>            <span class="comment">// Colour</span>
-<a name="l00151"></a>00151 <span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">            /// @brief Sets the colour for the Diffuse light from this source.</span>
-<a name="l00153"></a>00153 <span class="comment">            /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.</span>
-<a name="l00154"></a>00154 <span class="comment">            /// The 3 types are: Diffuse, Specular, and Ambient.</span>
-<a name="l00155"></a>00155 <span class="comment">            /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.</span>
-<a name="l00156"></a>00156 <span class="comment">            /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.</span>
-<a name="l00157"></a>00157 <span class="comment">            /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.</span>
-<a name="l00158"></a>00158 <span class="comment"></span>            <span class="keywordtype">void</span> SetDiffuseColour(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Red, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Green, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Blue);<span class="comment"></span>
-<a name="l00159"></a>00159 <span class="comment">            /// @brief Sets the colour for the Diffuse light from this source.</span>
-<a name="l00160"></a>00160 <span class="comment">            /// @details This allows the setting of Diffuse color by a premade ColourValue.</span>
-<a name="l00161"></a>00161 <span class="comment">            /// @param Colour ColourValue representing the color of the light to be set.</span>
-<a name="l00162"></a>00162 <span class="comment"></span>            <span class="keywordtype">void</span> SetDiffuseColour(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);<span class="comment"></span>
-<a name="l00163"></a>00163 <span class="comment">            /// @brief Sets the colour for the Specular light from this source.</span>
-<a name="l00164"></a>00164 <span class="comment">            /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.</span>
-<a name="l00165"></a>00165 <span class="comment">            /// The 3 types are: Diffuse, Specular, and Ambient.</span>
-<a name="l00166"></a>00166 <span class="comment">            /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.</span>
-<a name="l00167"></a>00167 <span class="comment">            /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.</span>
-<a name="l00168"></a>00168 <span class="comment">            /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.</span>
-<a name="l00169"></a>00169 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpecularColour(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Red, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Green, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Blue);<span class="comment"></span>
-<a name="l00170"></a>00170 <span class="comment">            /// @brief Sets the colour for the Specular light from this source.</span>
-<a name="l00171"></a>00171 <span class="comment">            /// @details This allows the setting of Specular color by a premade ColourValue.</span>
-<a name="l00172"></a>00172 <span class="comment">            /// @param Colour ColourValue representing the color of the light to be set.</span>
-<a name="l00173"></a>00173 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpecularColour(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);
-<a name="l00174"></a>00174 <span class="comment"></span>
-<a name="l00175"></a>00175 <span class="comment">            /// @brief Gets the current colour of the diffuse light.</span>
-<a name="l00176"></a>00176 <span class="comment">            /// @return Returns a colourvalue representing the currently set Diffuse light.</span>
-<a name="l00177"></a>00177 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> GetDiffuseColour() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00178"></a>00178 <span class="comment">            /// @brief Gets the current colour of the specular light.</span>
-<a name="l00179"></a>00179 <span class="comment">            /// @return Returns a colourvalue representing the currently set Specular light.</span>
-<a name="l00180"></a>00180 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> GetSpecularColour() <span class="keyword">const</span>;
-<a name="l00181"></a>00181 <span class="comment"></span>
-<a name="l00182"></a>00182 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00183"></a>00183 <span class="comment"></span>            <span class="comment">// Attenuation</span>
-<a name="l00184"></a>00184 <span class="comment"></span>
-<a name="l00185"></a>00185 <span class="comment">            /// @brief Sets the factors for the attenuation formula applied to this light.</span>
-<a name="l00186"></a>00186 <span class="comment">            /// @details This function is only applicable when using a spotlight or point type of light.</span>
-<a name="l00187"></a>00187 <span class="comment">            /// @param Range The absolute range of the light in world units.  Objects beyond this range will not be influenced by this light.</span>
-<a name="l00188"></a>00188 <span class="comment">            /// @param Constant The constant of the attenuation, ranging from 0.0 to 1.0.  1.0 means never attenuate, 0.0 is complete attenuation.</span>
-<a name="l00189"></a>00189 <span class="comment">            /// @param Linear The linear factor of the attentuation, ranging from 0.0 to 1.0.  1.0 means attenuate evenly over the distance.</span>
-<a name="l00190"></a>00190 <span class="comment">            /// @param Quadratic The Quadratic factor of the attenuation.  This value adds curvature to the attenuation.</span>
-<a name="l00191"></a>00191 <span class="comment"></span>            <span class="keywordtype">void</span> SetAttenuation(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Range, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Constant, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Linear, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Quadratic);<span class="comment"></span>
-<a name="l00192"></a>00192 <span class="comment">            /// @brief Gets the absolute range of attenuation in world units.</span>
-<a name="l00193"></a>00193 <span class="comment">            /// @return Returns a real representing the absolute range of attenuation.</span>
-<a name="l00194"></a>00194 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationRange() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00195"></a>00195 <span class="comment">            /// @brief Gets the constant factor of the attenuation.</span>
-<a name="l00196"></a>00196 <span class="comment">            /// @return Returns a real representing the constant factor of attenuation.</span>
-<a name="l00197"></a>00197 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationConstant() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00198"></a>00198 <span class="comment">            /// @brief Gets the linear factor of the attentuation.</span>
-<a name="l00199"></a>00199 <span class="comment">            /// @return Returns a real representing the linear factor of attenuation.</span>
-<a name="l00200"></a>00200 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationLinear() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00201"></a>00201 <span class="comment">            /// @brief Gets the quadric factor of the attenuation.</span>
-<a name="l00202"></a>00202 <span class="comment">            /// @return Returns a real representing the quadric factor of attenuation.</span>
-<a name="l00203"></a>00203 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationQuadric() <span class="keyword">const</span>;
-<a name="l00204"></a>00204 <span class="comment"></span>
-<a name="l00205"></a>00205 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00206"></a>00206 <span class="comment"></span>            <span class="comment">// Spotlight specific methods</span>
-<a name="l00207"></a>00207 <span class="comment"></span>
-<a name="l00208"></a>00208 <span class="comment">            /// @brief Defines the cone of light emitted by a spotlight.</span>
-<a name="l00209"></a>00209 <span class="comment">            /// @details InnerAngle and OuterAngle should be input as Radians.</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @brief Inherited from Attachable, returns a default Quaternion.</span>
+<a name="l00133"></a>00133 <span class="comment">            /// @return Returns a quaternion with the orientation.</span>
+<a name="l00134"></a>00134 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> GetOrientation() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00135"></a>00135 <span class="comment">            /// @brief Sets the direction the light will originate from.</span>
+<a name="l00136"></a>00136 <span class="comment">            /// @param Direction A vector3 representing the direction the light will come from.</span>
+<a name="l00137"></a>00137 <span class="comment">            /// @details Not used in point lights.</span>
+<a name="l00138"></a>00138 <span class="comment"></span>            <span class="keywordtype">void</span> SetDirection(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Direction);<span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">            /// @brief Gets the currently set direction of the light.</span>
+<a name="l00140"></a>00140 <span class="comment">            /// @return Returns a vector3 representing the set direction of the light.</span>
+<a name="l00141"></a>00141 <span class="comment">            /// @details Not used in point lights.</span>
+<a name="l00142"></a>00142 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetDirection() <span class="keyword">const</span>;
+<a name="l00143"></a>00143 <span class="comment"></span>
+<a name="l00144"></a>00144 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00145"></a>00145 <span class="comment"></span>            <span class="comment">// Colour</span>
+<a name="l00146"></a>00146 <span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">            /// @brief Sets the colour for the Diffuse light from this source.</span>
+<a name="l00148"></a>00148 <span class="comment">            /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.</span>
+<a name="l00149"></a>00149 <span class="comment">            /// The 3 types are: Diffuse, Specular, and Ambient.</span>
+<a name="l00150"></a>00150 <span class="comment">            /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.</span>
+<a name="l00151"></a>00151 <span class="comment">            /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.</span>
+<a name="l00152"></a>00152 <span class="comment">            /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.</span>
+<a name="l00153"></a>00153 <span class="comment"></span>            <span class="keywordtype">void</span> SetDiffuseColour(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Red, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Green, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Blue);<span class="comment"></span>
+<a name="l00154"></a>00154 <span class="comment">            /// @brief Sets the colour for the Diffuse light from this source.</span>
+<a name="l00155"></a>00155 <span class="comment">            /// @details This allows the setting of Diffuse color by a premade ColourValue.</span>
+<a name="l00156"></a>00156 <span class="comment">            /// @param Colour ColourValue representing the color of the light to be set.</span>
+<a name="l00157"></a>00157 <span class="comment"></span>            <span class="keywordtype">void</span> SetDiffuseColour(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);<span class="comment"></span>
+<a name="l00158"></a>00158 <span class="comment">            /// @brief Gets the current colour of the diffuse light.</span>
+<a name="l00159"></a>00159 <span class="comment">            /// @return Returns a colourvalue representing the currently set Diffuse light.</span>
+<a name="l00160"></a>00160 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> GetDiffuseColour() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00161"></a>00161 <span class="comment">            /// @brief Sets the colour for the Specular light from this source.</span>
+<a name="l00162"></a>00162 <span class="comment">            /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.</span>
+<a name="l00163"></a>00163 <span class="comment">            /// The 3 types are: Diffuse, Specular, and Ambient.</span>
+<a name="l00164"></a>00164 <span class="comment">            /// @param Red Real in the range of 0.0 to 1.0 determining the amount of red in the colour.</span>
+<a name="l00165"></a>00165 <span class="comment">            /// @param Red Green in the range of 0.0 to 1.0 determining the amount of green in the colour.</span>
+<a name="l00166"></a>00166 <span class="comment">            /// @param Red Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour.</span>
+<a name="l00167"></a>00167 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpecularColour(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Red, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Green, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Blue);<span class="comment"></span>
+<a name="l00168"></a>00168 <span class="comment">            /// @brief Sets the colour for the Specular light from this source.</span>
+<a name="l00169"></a>00169 <span class="comment">            /// @details This allows the setting of Specular color by a premade ColourValue.</span>
+<a name="l00170"></a>00170 <span class="comment">            /// @param Colour ColourValue representing the color of the light to be set.</span>
+<a name="l00171"></a>00171 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpecularColour(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> &amp;Colour);<span class="comment"></span>
+<a name="l00172"></a>00172 <span class="comment">            /// @brief Gets the current colour of the specular light.</span>
+<a name="l00173"></a>00173 <span class="comment">            /// @return Returns a colourvalue representing the currently set Specular light.</span>
+<a name="l00174"></a>00174 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> GetSpecularColour() <span class="keyword">const</span>;
+<a name="l00175"></a>00175 <span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00177"></a>00177 <span class="comment"></span>            <span class="comment">// Attenuation</span>
+<a name="l00178"></a>00178 <span class="comment"></span>
+<a name="l00179"></a>00179 <span class="comment">            /// @brief Sets the factors for the attenuation formula applied to this light.</span>
+<a name="l00180"></a>00180 <span class="comment">            /// @details This function is only applicable when using a spotlight or point type of light.</span>
+<a name="l00181"></a>00181 <span class="comment">            /// @param Range The absolute range of the light in world units.  Objects beyond this range will not be influenced by this light.</span>
+<a name="l00182"></a>00182 <span class="comment">            /// @param Constant The constant of the attenuation, ranging from 0.0 to 1.0.  1.0 means never attenuate, 0.0 is complete attenuation.</span>
+<a name="l00183"></a>00183 <span class="comment">            /// @param Linear The linear factor of the attentuation, ranging from 0.0 to 1.0.  1.0 means attenuate evenly over the distance.</span>
+<a name="l00184"></a>00184 <span class="comment">            /// @param Quadratic The Quadratic factor of the attenuation.  This value adds curvature to the attenuation.</span>
+<a name="l00185"></a>00185 <span class="comment"></span>            <span class="keywordtype">void</span> SetAttenuation(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Range, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Constant, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Linear, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Quadratic);<span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">            /// @brief Gets the absolute range of attenuation in world units.</span>
+<a name="l00187"></a>00187 <span class="comment">            /// @return Returns a real representing the absolute range of attenuation.</span>
+<a name="l00188"></a>00188 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationRange() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00189"></a>00189 <span class="comment">            /// @brief Gets the constant factor of the attenuation.</span>
+<a name="l00190"></a>00190 <span class="comment">            /// @return Returns a real representing the constant factor of attenuation.</span>
+<a name="l00191"></a>00191 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationConstant() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00192"></a>00192 <span class="comment">            /// @brief Gets the linear factor of the attentuation.</span>
+<a name="l00193"></a>00193 <span class="comment">            /// @return Returns a real representing the linear factor of attenuation.</span>
+<a name="l00194"></a>00194 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationLinear() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00195"></a>00195 <span class="comment">            /// @brief Gets the quadric factor of the attenuation.</span>
+<a name="l00196"></a>00196 <span class="comment">            /// @return Returns a real representing the quadric factor of attenuation.</span>
+<a name="l00197"></a>00197 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetAttenuationQuadric() <span class="keyword">const</span>;
+<a name="l00198"></a>00198 <span class="comment"></span>
+<a name="l00199"></a>00199 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00200"></a>00200 <span class="comment"></span>            <span class="comment">// Spotlight specific methods</span>
+<a name="l00201"></a>00201 <span class="comment"></span>
+<a name="l00202"></a>00202 <span class="comment">            /// @brief Defines the cone of light emitted by a spotlight.</span>
+<a name="l00203"></a>00203 <span class="comment">            /// @details InnerAngle and OuterAngle should be input as Radians.</span>
+<a name="l00204"></a>00204 <span class="comment">            /// @param InnerAngle Angle of the inner cone in radians.</span>
+<a name="l00205"></a>00205 <span class="comment">            /// @param OuterAngle Angle of the outer cone in radions.</span>
+<a name="l00206"></a>00206 <span class="comment">            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.</span>
+<a name="l00207"></a>00207 <span class="comment">            /// Less means slower falloff and higher means faster falloff.</span>
+<a name="l00208"></a>00208 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightRange(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; InnerAngle, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; OuterAngle, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Falloff = 1.0);<span class="comment"></span>
+<a name="l00209"></a>00209 <span class="comment">            /// @brief Sets the Inner angle of the cone of light emitted by a spotlight.</span>
 <a name="l00210"></a>00210 <span class="comment">            /// @param InnerAngle Angle of the inner cone in radians.</span>
-<a name="l00211"></a>00211 <span class="comment">            /// @param OuterAngle Angle of the outer cone in radions.</span>
-<a name="l00212"></a>00212 <span class="comment">            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.</span>
-<a name="l00213"></a>00213 <span class="comment">            /// Less means slower falloff and higher means faster falloff.</span>
-<a name="l00214"></a>00214 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightRange(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> InnerAngle, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> OuterAngle, <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Falloff=1.0);<span class="comment"></span>
-<a name="l00215"></a>00215 <span class="comment">            /// @brief Sets the Inner angle of the cone of light emitted by a spotlight.</span>
-<a name="l00216"></a>00216 <span class="comment">            /// @param InnerAngle Angle of the inner cone in radians.</span>
-<a name="l00217"></a>00217 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightInnerAngle(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> InnerAngle);<span class="comment"></span>
-<a name="l00218"></a>00218 <span class="comment">            /// @brief Sets the Outer angle of the cone of light emitted by a spotlight.</span>
-<a name="l00219"></a>00219 <span class="comment">            /// @param OuterAngle Angle of the outer cone in radians.</span>
-<a name="l00220"></a>00220 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightOuterAngle(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> OuterAngle);<span class="comment"></span>
+<a name="l00211"></a>00211 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightInnerAngle(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; InnerAngle);<span class="comment"></span>
+<a name="l00212"></a>00212 <span class="comment">            /// @brief Gets the Inner angle of the cone of light emitted by this spotlight.</span>
+<a name="l00213"></a>00213 <span class="comment">            /// @return Returns a real representing the inner angle of this spotlight, in radians.</span>
+<a name="l00214"></a>00214 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetSpotlightInnerAngle() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">            /// @brief Sets the Outer angle of the cone of light emitted by a spotlight.</span>
+<a name="l00216"></a>00216 <span class="comment">            /// @param OuterAngle Angle of the outer cone in radians.</span>
+<a name="l00217"></a>00217 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightOuterAngle(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; OuterAngle);<span class="comment"></span>
+<a name="l00218"></a>00218 <span class="comment">            /// @brief Gets the Outer angle of the cone of light emitted by this spotlight.</span>
+<a name="l00219"></a>00219 <span class="comment">            /// @return Returns a real representing the outer angle of this spotlight, in radians.</span>
+<a name="l00220"></a>00220 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetSpotlightOuterAngle() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l00221"></a>00221 <span class="comment">            /// @brief Sets the rate of falloff of the cone of light emitted by a spotlight.</span>
 <a name="l00222"></a>00222 <span class="comment">            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.</span>
 <a name="l00223"></a>00223 <span class="comment">            /// Less means slower falloff and higher means faster falloff.</span>
-<a name="l00224"></a>00224 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightFalloff(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Falloff);
-<a name="l00225"></a>00225 <span class="comment"></span>
-<a name="l00226"></a>00226 <span class="comment">            /// @brief Gets the Inner angle of the cone of light emitted by this spotlight.</span>
-<a name="l00227"></a>00227 <span class="comment">            /// @return Returns a real representing the inner angle of this spotlight, in radians.</span>
-<a name="l00228"></a>00228 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetSpotlightInnerAngle() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00229"></a>00229 <span class="comment">            /// @brief Gets the Outer angle of the cone of light emitted by this spotlight.</span>
-<a name="l00230"></a>00230 <span class="comment">            /// @return Returns a real representing the outer angle of this spotlight, in radians.</span>
-<a name="l00231"></a>00231 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetSpotlightOuterAngle() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00232"></a>00232 <span class="comment">            /// @brief Gets the rate of falloff of the cone of light emitted by this spotlight.</span>
-<a name="l00233"></a>00233 <span class="comment">            /// @return Returns a real representing the falloff of the cone of light.</span>
-<a name="l00234"></a>00234 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetSpotlightFalloff() <span class="keyword">const</span>;
-<a name="l00235"></a>00235 <span class="comment"></span>
-<a name="l00236"></a>00236 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00237"></a>00237 <span class="comment"></span>            <span class="comment">// Effects</span>
-<a name="l00238"></a>00238 <span class="comment"></span>
-<a name="l00239"></a>00239 <span class="comment">            /// @brief Gets the lights power scale.</span>
-<a name="l00240"></a>00240 <span class="comment">            /// @return Returns a real representing the power scale of the light.</span>
-<a name="l00241"></a>00241 <span class="comment">            /// @details Only used with HDR ( High Dynamic Range ) rendering</span>
-<a name="l00242"></a>00242 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetPowerScale() <span class="keyword">const</span>;
+<a name="l00224"></a>00224 <span class="comment"></span>            <span class="keywordtype">void</span> SetSpotlightFalloff(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Falloff);<span class="comment"></span>
+<a name="l00225"></a>00225 <span class="comment">            /// @brief Gets the rate of falloff of the cone of light emitted by this spotlight.</span>
+<a name="l00226"></a>00226 <span class="comment">            /// @return Returns a real representing the falloff of the cone of light.</span>
+<a name="l00227"></a>00227 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetSpotlightFalloff() <span class="keyword">const</span>;
+<a name="l00228"></a>00228 <span class="comment"></span>
+<a name="l00229"></a>00229 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00230"></a>00230 <span class="comment"></span>            <span class="comment">// Effects</span>
+<a name="l00231"></a>00231 <span class="comment"></span>
+<a name="l00232"></a>00232 <span class="comment">            /// @brief Sets the lights power scale.</span>
+<a name="l00233"></a>00233 <span class="comment">            /// @details The power scale of the light is a scaling factor indicating the relative power of the light.</span>
+<a name="l00234"></a>00234 <span class="comment">            /// @param Power Real representing the factor by which to scale the power of the light.</span>
+<a name="l00235"></a>00235 <span class="comment"></span>            <span class="keywordtype">void</span> SetPowerScale(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>&amp; Power);<span class="comment"></span>
+<a name="l00236"></a>00236 <span class="comment">            /// @brief Gets the lights power scale.</span>
+<a name="l00237"></a>00237 <span class="comment">            /// @return Returns a real representing the power scale of the light.</span>
+<a name="l00238"></a>00238 <span class="comment">            /// @details Only used with HDR ( High Dynamic Range ) rendering</span>
+<a name="l00239"></a>00239 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetPowerScale() <span class="keyword">const</span>;
+<a name="l00240"></a>00240 <span class="comment"></span>
+<a name="l00241"></a>00241 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00242"></a>00242 <span class="comment"></span>            <span class="comment">// Inherited From AttachableChild</span>
 <a name="l00243"></a>00243 <span class="comment"></span>
-<a name="l00244"></a>00244 <span class="comment">            /// @brief Sets the lights power scale.</span>
-<a name="l00245"></a>00245 <span class="comment">            /// @details The power scale of the light is a scaling factor indicating the relative power of the light.</span>
-<a name="l00246"></a>00246 <span class="comment">            /// @param Power Real representing the factor by which to scale the power of the light.</span>
-<a name="l00247"></a>00247 <span class="comment"></span>            <span class="keywordtype">void</span> SetPowerScale(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> Power);
-<a name="l00248"></a>00248 <span class="comment"></span>
-<a name="l00249"></a>00249 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00250"></a>00250 <span class="comment"></span>            <span class="comment">// Inherited From Attachable</span>
-<a name="l00251"></a>00251 <span class="comment"></span>
-<a name="l00252"></a>00252 <span class="comment">            /// @brief What kind of Attachable is this.</span>
-<a name="l00253"></a>00253 <span class="comment">            /// @return An Attachable::GetAttachableType containing Attachable::Light.</span>
-<a name="l00254"></a>00254 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9e" title="A list of possible types of this that could be attached to a WorldNode.">Attachable::AttachableElement</a> GetAttachableType() <span class="keyword">const</span>;
-<a name="l00255"></a>00255 <span class="comment"></span>
-<a name="l00256"></a>00256 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00257"></a>00257 <span class="comment"></span>            <span class="comment">// Internal Functions</span>
-<a name="l00258"></a>00258 <span class="comment"></span>
-<a name="l00259"></a>00259 <span class="comment">            /// @internal</span>
-<a name="l00260"></a>00260 <span class="comment">            /// @brief Gets pointers to the internal ogre structures for this attachable.</span>
-<a name="l00261"></a>00261 <span class="comment">            /// @return Returns an AttachableData struct with the internal data.</span>
-<a name="l00262"></a>00262 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="structMezzanine_1_1AttachableData.html" title="Helper class for the presentation of internal data of an attachable.">AttachableData</a> GetAttachableData() <span class="keyword">const</span>;
-<a name="l00263"></a>00263     };<span class="comment">//Light</span>
-<a name="l00264"></a>00264 }<span class="comment">//Mezzanine</span>
-<a name="l00265"></a>00265 <span class="comment"></span>
-<a name="l00266"></a>00266 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00267"></a>00267 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
-<a name="l00268"></a>00268 <span class="preprocessor">#ifdef MEZZXML</span>
-<a name="l00269"></a>00269 <span class="preprocessor"></span><span class="comment"></span>
-<a name="l00270"></a>00270 <span class="comment">/// @brief Serializes the passed Mezzanine::Light to XML</span>
-<a name="l00271"></a>00271 <span class="comment">/// @param stream The ostream to send the xml to.</span>
-<a name="l00272"></a>00272 <span class="comment">/// @param Ev the Mezzanine::Light to be serialized</span>
-<a name="l00273"></a>00273 <span class="comment">/// @return this returns the ostream, now with the serialized data</span>
-<a name="l00274"></a>00274 <span class="comment"></span>std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Mezzanine::Light</a>&amp; Ev);
-<a name="l00275"></a>00275 <span class="comment"></span>
-<a name="l00276"></a>00276 <span class="comment">/// @brief Deserialize a Mezzanine::Light</span>
-<a name="l00277"></a>00277 <span class="comment">/// @param stream The istream to get the xml from to (re)make the Mezzanine::Light.</span>
-<a name="l00278"></a>00278 <span class="comment">/// @param Ev the Mezzanine::Light to be deserialized.</span>
-<a name="l00279"></a>00279 <span class="comment">/// @return this returns the ostream, advanced past the Mezzanine::Light that was recreated onto Ev.</span>
-<a name="l00280"></a>00280 <span class="comment">/// @warning This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.</span>
-<a name="l00281"></a>00281 <span class="comment"></span>std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Mezzanine::Light</a>&amp; Ev);
-<a name="l00282"></a>00282 <span class="comment"></span>
-<a name="l00283"></a>00283 <span class="comment">/// @brief Set all values of a Mezzanine::Light from parsed xml.</span>
-<a name="l00284"></a>00284 <span class="comment">/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Light.</span>
-<a name="l00285"></a>00285 <span class="comment">/// @param Ev the Mezzanine::Light to be reset.</span>
-<a name="l00286"></a>00286 <span class="comment">/// @return This returns thexml::Node that was passed in.</span>
-<a name="l00287"></a>00287 <span class="comment">/// @warning This does not attempt to de-serialize the name of the Light. This is not currently changeable after the creation of a Light. However, the Lightmanager will correctly create name Light upon creation then deserialize the rest of the Light.</span>
-<a name="l00288"></a>00288 <span class="comment">/// @warning This does not throw an exception if the Light could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.</span>
-<a name="l00289"></a>00289 <span class="comment"></span>Mezzanine::xml::Node&amp; MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::xml::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Mezzanine::Light</a>&amp; Ev);
-<a name="l00290"></a>00290 
-<a name="l00291"></a>00291 <span class="preprocessor">#endif // \MEZZXML</span>
-<a name="l00292"></a>00292 <span class="preprocessor"></span>
-<a name="l00293"></a>00293 
-<a name="l00294"></a>00294 
-<a name="l00295"></a>00295 <span class="preprocessor">#endif</span>
+<a name="l00244"></a>00244 <span class="comment">            /// @copydoc AttachableBase::GetType()</span>
+<a name="l00245"></a>00245 <span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718" title="Used by various classes to help identify what class an object is.">WorldAndSceneObjectType</a> GetType() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00246"></a>00246 <span class="comment">            /// @copydoc WorldObject::SetScaling(Vector3&amp;)</span>
+<a name="l00247"></a>00247 <span class="comment"></span>            <span class="keywordtype">void</span> SetScaling(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Scale);<span class="comment"></span>
+<a name="l00248"></a>00248 <span class="comment">            /// @copydoc WorldObject::GetScaling()</span>
+<a name="l00249"></a>00249 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> GetScaling() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00250"></a>00250 <span class="comment">            /// @copydoc AttachableChild::SetLocalLocation(Vector3&amp;)</span>
+<a name="l00251"></a>00251 <span class="comment"></span>            <span class="keywordtype">void</span> SetLocalLocation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location);<span class="comment"></span>
+<a name="l00252"></a>00252 <span class="comment">            /// @copydoc AttachableChild::SetLocalOrientation(Quaternion&amp;)</span>
+<a name="l00253"></a>00253 <span class="comment"></span>            <span class="keywordtype">void</span> SetLocalOrientation(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation);
+<a name="l00254"></a>00254     };<span class="comment">//Light</span>
+<a name="l00255"></a>00255 }<span class="comment">//Mezzanine</span>
+<a name="l00256"></a>00256 <span class="comment"></span>
+<a name="l00257"></a>00257 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00258"></a>00258 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l00259"></a>00259 <span class="preprocessor">#ifdef MEZZXML</span>
+<a name="l00260"></a>00260 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00261"></a>00261 <span class="comment">/// @brief Serializes the passed Mezzanine::Light to XML</span>
+<a name="l00262"></a>00262 <span class="comment">/// @param stream The ostream to send the xml to.</span>
+<a name="l00263"></a>00263 <span class="comment">/// @param Ev the Mezzanine::Light to be serialized</span>
+<a name="l00264"></a>00264 <span class="comment">/// @return this returns the ostream, now with the serialized data</span>
+<a name="l00265"></a>00265 <span class="comment"></span>std::ostream&amp; MEZZ_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Mezzanine::Light</a>&amp; Ev);
+<a name="l00266"></a>00266 <span class="comment"></span>
+<a name="l00267"></a>00267 <span class="comment">/// @brief Deserialize a Mezzanine::Light</span>
+<a name="l00268"></a>00268 <span class="comment">/// @param stream The istream to get the xml from to (re)make the Mezzanine::Light.</span>
+<a name="l00269"></a>00269 <span class="comment">/// @param Ev the Mezzanine::Light to be deserialized.</span>
+<a name="l00270"></a>00270 <span class="comment">/// @return this returns the ostream, advanced past the Mezzanine::Light that was recreated onto Ev.</span>
+<a name="l00271"></a>00271 <span class="comment">/// @warning This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.</span>
+<a name="l00272"></a>00272 <span class="comment"></span>std::istream&amp; MEZZ_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Mezzanine::Light</a>&amp; Ev);
+<a name="l00273"></a>00273 <span class="comment"></span>
+<a name="l00274"></a>00274 <span class="comment">/// @brief Set all values of a Mezzanine::Light from parsed xml.</span>
+<a name="l00275"></a>00275 <span class="comment">/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Light.</span>
+<a name="l00276"></a>00276 <span class="comment">/// @param Ev the Mezzanine::Light to be reset.</span>
+<a name="l00277"></a>00277 <span class="comment">/// @return This returns thexml::Node that was passed in.</span>
+<a name="l00278"></a>00278 <span class="comment">/// @warning This does not attempt to de-serialize the name of the Light. This is not currently changeable after the creation of a Light. However, the Lightmanager will correctly create name Light upon creation then deserialize the rest of the Light.</span>
+<a name="l00279"></a>00279 <span class="comment">/// @warning This does not throw an exception if the Light could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.</span>
+<a name="l00280"></a>00280 <span class="comment"></span><a class="code" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::xml::Node</a>&amp; MEZZ_LIB operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::xml::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Mezzanine::Light</a>&amp; Ev);
+<a name="l00281"></a>00281 
+<a name="l00282"></a>00282 <span class="preprocessor">#endif // \MEZZXML</span>
+<a name="l00283"></a>00283 <span class="preprocessor"></span>
+<a name="l00284"></a>00284 
+<a name="l00285"></a>00285 
+<a name="l00286"></a>00286 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -364,7 +355,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -374,6 +365,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

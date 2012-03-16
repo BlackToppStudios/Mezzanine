@@ -1,0 +1,913 @@
+\hypertarget{classMezzanine_1_1xml_1_1Attribute}{
+\subsection{Mezzanine::xml::Attribute Class Reference}
+\label{classMezzanine_1_1xml_1_1Attribute}\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+}
+
+
+A light-\/weight handle for manipulating attributes in DOM tree.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a736cd7864163361a2cc76cd8cc85d50f}{
+\hyperlink{classMezzanine_1_1xml_1_1Attribute_a736cd7864163361a2cc76cd8cc85d50f}{Attribute} ()}
+\label{classMezzanine_1_1xml_1_1Attribute_a736cd7864163361a2cc76cd8cc85d50f}
+
+\begin{DoxyCompactList}\small\item\em Constructs an empty \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute_a8e1475291c327a6ebd018ded6e7ccb3e}{Attribute} (\hyperlink{classAttributeStruct}{AttributeStruct} $\ast$attr)
+\begin{DoxyCompactList}\small\item\em Constructs attribute from internal pointer. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a573583b7a252bd5f8d96c47c2bedbb16}{AsBool} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a float and returns the results. \item\end{DoxyCompactList}\item 
+double \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{AsDouble} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a double and returns the results. \item\end{DoxyCompactList}\item 
+float \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{AsFloat} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a float and returns the results. \item\end{DoxyCompactList}\item 
+int \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{AsInt} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to an int and returns the results. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \hyperlink{classMezzanine_1_1xml_1_1Attribute_a30f5709d3d40f9397c59a852d7b4a238}{AsInteger} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a Integer and returns the results. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1xml_1_1Attribute_a94bfba016ee52f80b1560a374185a3e9}{AsReal} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a Real and returns the results. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \hyperlink{classMezzanine_1_1xml_1_1Attribute_a65938b76fcd1ee7a9950d3eab06c4b41}{AsString} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a String and returns the results. \item\end{DoxyCompactList}\item 
+unsigned int \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{AsUint} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to an unsigned int and returns the results. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1xml_1_1Attribute_aaea08c5ea3d1578592e9f59932b674f5}{AsWhole} () const 
+\begin{DoxyCompactList}\small\item\em Attempts to convert the value of the attribute to a Whole and returns the results. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_af0729c966ed4f385e8791eb4c904b82f}{Empty} () const 
+\begin{DoxyCompactList}\small\item\em Is this storing anything at all? \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0e536a406969ff3ab7c859c197fe374e}{GetNextAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the next attribute. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1Attribute_a52aeec126d501ee0e6ded15c8b5fc811}{GetPreviousAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the previous attribute. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classMezzanine_1_1xml_1_1Attribute_ab7ddcd52f27d54683e4c6f29d4c54169}{HashValue} () const 
+\begin{DoxyCompactList}\small\item\em Get a unique identifying value for the \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this represents. \item\end{DoxyCompactList}\item 
+\hyperlink{classAttributeStruct}{AttributeStruct} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Attribute_a85eaa919b1982ce5c65eaeb7393f4368}{InternalObject} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve a pointer to the internal data. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5903b1a7c6d9e3fa620ad960118ec132}{Name} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of this \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute_a4986a63b38c79b74e13182d9e8ed4e28}{operator unspecified\_\-bool\_\-type} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a6ed5b74cdc8d1556cdf2d5f21ce08144}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this attribute the opposite of it's normal boolean value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa28a9fe2d91c72edb3fe19e8ffbb185e}{operator!=} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa70a0ce1196f3626048a4997f80be7f5}{operator$<$} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a8912c905e735a1f77af1389556b9b92d}{operator$<$=} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classMezzanine_1_1xml_1_1Attribute_a65304be10a0b2d94fbe3382958b45dfc}{operator=} (int rhs)
+\begin{DoxyCompactList}\small\item\em The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa4a83209cff8a1fcab19c825db642e1c}{operator=} (double rhs)
+\begin{DoxyCompactList}\small\item\em The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classMezzanine_1_1xml_1_1Attribute_a726b6a41f4791c2a879bb564eceabf31}{operator=} (unsigned int rhs)
+\begin{DoxyCompactList}\small\item\em The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classMezzanine_1_1xml_1_1Attribute_af196575d6ca9e8d229283230e0ce4dcb}{operator=} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classMezzanine_1_1xml_1_1Attribute_a2b4fc316431150dcfdd0ac20426ce973}{operator=} (bool rhs)
+\begin{DoxyCompactList}\small\item\em The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a730aabb87fd861852ba861246bdca85f}{operator==} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check equality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_ac4f2953b35e932943be7c74e7ed709c1}{operator$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a1edd7d0e101586df151b2347818e2483}{operator$>$=} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a749c66a49a9017ea6d3d7cddf1adae68}{SetName} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em Set the name of . \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_adaa012e942209fe0533322fc45a45333}{SetName} (const \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{String} \&rhs)
+\begin{DoxyCompactList}\small\item\em Set the name of this object. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{SetValue} (const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em Set the value of this. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_ab4ab2fb15cd198cd8527d796583cf994}{SetValue} (T rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}{SetValue} (double rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}{SetValue} (unsigned int rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}{SetValue} (int rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1Attribute_a4b4b035128dfe3c7fd70e228c70d5118}{SetValue} (bool rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+const \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{char\_\-t} $\ast$ \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa91fc0680d73602071a1b67b009cdb63}{Value} () const 
+\begin{DoxyCompactList}\small\item\em Get the Value of this \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a1ed8790083a80b2604beba1c666bce6e}{
+class {\bfseries AttributeIterator}}
+\label{classMezzanine_1_1xml_1_1Attribute_a1ed8790083a80b2604beba1c666bce6e}
+
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{classMezzanine_1_1xml_1_1Attribute_a6db9d28bd448a131448276ee03de1e6d}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A light-\/weight handle for manipulating attributes in DOM tree. 
+
+Definition at line 344 of file xml.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a8e1475291c327a6ebd018ded6e7ccb3e}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!Attribute@{Attribute}}
+\index{Attribute@{Attribute}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{Attribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::Attribute (
+\begin{DoxyParamCaption}
+\item[{{\bf AttributeStruct} $\ast$}]{attr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a8e1475291c327a6ebd018ded6e7ccb3e}
+
+
+Constructs attribute from internal pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attr} & An internal \hyperlink{classAttributeStruct}{AttributeStruct} pointer containing all the data to create an attribute. \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a573583b7a252bd5f8d96c47c2bedbb16}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsBool@{AsBool}}
+\index{AsBool@{AsBool}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsBool}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsBool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a573583b7a252bd5f8d96c47c2bedbb16}
+
+
+Attempts to convert the value of the attribute to a float and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsDouble@{AsDouble}}
+\index{AsDouble@{AsDouble}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsDouble}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsDouble (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}
+
+
+Attempts to convert the value of the attribute to a double and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000058}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\begin{DoxyWarning}{Warning}
+This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsFloat@{AsFloat}}
+\index{AsFloat@{AsFloat}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsFloat}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsFloat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}
+
+
+Attempts to convert the value of the attribute to a float and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000059}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\begin{DoxyWarning}{Warning}
+This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsInt@{AsInt}}
+\index{AsInt@{AsInt}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsInt}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsInt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}
+
+
+Attempts to convert the value of the attribute to an int and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000056}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\begin{DoxyWarning}{Warning}
+This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a30f5709d3d40f9397c59a852d7b4a238}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsInteger@{AsInteger}}
+\index{AsInteger@{AsInteger}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsInteger}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsInteger (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a30f5709d3d40f9397c59a852d7b4a238}
+
+
+Attempts to convert the value of the attribute to a Integer and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be converted to a Integer by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & can throw exception in certain overflow conditions \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a94bfba016ee52f80b1560a374185a3e9}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsReal@{AsReal}}
+\index{AsReal@{AsReal}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsReal}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsReal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a94bfba016ee52f80b1560a374185a3e9}
+
+
+Attempts to convert the value of the attribute to a Real and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be converted to a Real by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & can throw exception in certain overflow conditions \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a65938b76fcd1ee7a9950d3eab06c4b41}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsString@{AsString}}
+\index{AsString@{AsString}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsString}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsString (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a65938b76fcd1ee7a9950d3eab06c4b41}
+
+
+Attempts to convert the value of the attribute to a String and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be converted to a Real by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & can throw exception in certain overflow conditions \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsUint@{AsUint}}
+\index{AsUint@{AsUint}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsUint}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsUint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}
+
+
+Attempts to convert the value of the attribute to an unsigned int and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000057}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\begin{DoxyWarning}{Warning}
+This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_aaea08c5ea3d1578592e9f59932b674f5}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!AsWhole@{AsWhole}}
+\index{AsWhole@{AsWhole}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{AsWhole}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::AsWhole (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_aaea08c5ea3d1578592e9f59932b674f5}
+
+
+Attempts to convert the value of the attribute to a Whole and returns the results. 
+
+\begin{DoxyReturn}{Returns}
+If the value of this attribute can be converted to a Whole by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & can throw exception in certain overflow conditions \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_af0729c966ed4f385e8791eb4c904b82f}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!Empty@{Empty}}
+\index{Empty@{Empty}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{Empty}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_af0729c966ed4f385e8791eb4c904b82f}
+
+
+Is this storing anything at all? 
+
+\begin{DoxyReturn}{Returns}
+Returns True if this \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is storing nothing. False if it is storing anything. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a0e536a406969ff3ab7c859c197fe374e}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!GetNextAttribute@{GetNextAttribute}}
+\index{GetNextAttribute@{GetNextAttribute}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{GetNextAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::GetNextAttribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a0e536a406969ff3ab7c859c197fe374e}
+
+
+Get the next attribute. 
+
+This will get the next sibling attribute. That is, another \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on the same node as this attribute. This is internally a circular linked list, so once you reach the end, you simply be given the first node. If this attribute is empty this will return a empty attribute. \begin{DoxyReturn}{Returns}
+Either the next attribute or if this attribute is empty an empty attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a52aeec126d501ee0e6ded15c8b5fc811}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!GetPreviousAttribute@{GetPreviousAttribute}}
+\index{GetPreviousAttribute@{GetPreviousAttribute}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{GetPreviousAttribute}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::GetPreviousAttribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a52aeec126d501ee0e6ded15c8b5fc811}
+
+
+Get the previous attribute. 
+
+This will get the previous sibling attribute. That is, another \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} on the same node as this attribute. This is internally a circular linked list, so once you reach the beginning, you simply be given the last node. If this attribute is empty this will return a empty attribute. \begin{DoxyReturn}{Returns}
+Either the previous attribute or if this attribute is empty an empty attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_ab7ddcd52f27d54683e4c6f29d4c54169}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!HashValue@{HashValue}}
+\index{HashValue@{HashValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{HashValue}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::HashValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_ab7ddcd52f27d54683e4c6f29d4c54169}
+
+
+Get a unique identifying value for the \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this represents. 
+
+\begin{DoxyReturn}{Returns}
+A size\_\-t that is unique per \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} that an attribute could represent. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a85eaa919b1982ce5c65eaeb7393f4368}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!InternalObject@{InternalObject}}
+\index{InternalObject@{InternalObject}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{InternalObject}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::InternalObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a85eaa919b1982ce5c65eaeb7393f4368}
+
+
+Retrieve a pointer to the internal data. 
+
+\begin{DoxyReturn}{Returns}
+A void pointer to the internal data. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a5903b1a7c6d9e3fa620ad960118ec132}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!Name@{Name}}
+\index{Name@{Name}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{Name}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a5903b1a7c6d9e3fa620ad960118ec132}
+
+
+Get the name of this \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+
+\begin{DoxyReturn}{Returns}
+Returns A pointer to a const c-\/style array of the the character type (usually char or wchar\_\-t) containing the name. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+returns \char`\"{}\char`\"{} if attribute is empty. 
+\end{DoxyWarning}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a4986a63b38c79b74e13182d9e8ed4e28}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
+\index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator unspecified\_\-bool\_\-type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a4986a63b38c79b74e13182d9e8ed4e28}
+
+
+Used to convert this to a boolean value in a safe way. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the internal data is set and false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a6ed5b74cdc8d1556cdf2d5f21ce08144}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator!@{operator!}}
+\index{operator!@{operator!}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a6ed5b74cdc8d1556cdf2d5f21ce08144}
+
+
+Used to convert this attribute the opposite of it's normal boolean value. 
+
+This is described in the PugiXML source a a workaround for a borland c++ issue. \begin{DoxyReturn}{Returns}
+Returns false if the internal pointer \hyperlink{classAttributeStruct}{AttributeStruct} is set and true otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_aa28a9fe2d91c72edb3fe19e8ffbb185e}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_aa28a9fe2d91c72edb3fe19e8ffbb185e}
+
+
+Compares the internal values to check inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if any of the internal values don't match between this and the other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_aa70a0ce1196f3626048a4997f80be7f5}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_aa70a0ce1196f3626048a4997f80be7f5}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is greater than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a8912c905e735a1f77af1389556b9b92d}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator$<$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a8912c905e735a1f77af1389556b9b92d}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is greater than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a65304be10a0b2d94fbe3382958b45dfc}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{int}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a65304be10a0b2d94fbe3382958b45dfc}
+
+
+The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as an int. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_aa4a83209cff8a1fcab19c825db642e1c}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{double}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_aa4a83209cff8a1fcab19c825db642e1c}
+
+
+The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as a double. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a2b4fc316431150dcfdd0ac20426ce973}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{bool}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a2b4fc316431150dcfdd0ac20426ce973}
+
+
+The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & This with be interpretted, then converted to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} and used as the new value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a726b6a41f4791c2a879bb564eceabf31}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a726b6a41f4791c2a879bb564eceabf31}
+
+
+The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue()}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as an unsigned int. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_af196575d6ca9e8d229283230e0ce4dcb}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_af196575d6ca9e8d229283230e0ce4dcb}
+
+
+The same as \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as an c-\/style string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a730aabb87fd861852ba861246bdca85f}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a730aabb87fd861852ba861246bdca85f}
+
+
+Compares the internal values to check equality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if all the internal values match between this and the other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_ac4f2953b35e932943be7c74e7ed709c1}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_ac4f2953b35e932943be7c74e7ed709c1}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is less than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a1edd7d0e101586df151b2347818e2483}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::operator$>$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{r}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a1edd7d0e101586df151b2347818e2483}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & The other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} this is being compared to.\\
+\hline
+\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is less than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_adaa012e942209fe0533322fc45a45333}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetName@{SetName}}
+\index{SetName@{SetName}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetName (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_adaa012e942209fe0533322fc45a45333}
+
+
+Set the name of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The desired name . \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if the name cannot be stored or there is not enough memory. 
+\end{DoxyReturn}
+
+
+Definition at line 406 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a749c66a49a9017ea6d3d7cddf1adae68}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetName@{SetName}}
+\index{SetName@{SetName}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetName (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a749c66a49a9017ea6d3d7cddf1adae68}
+
+
+Set the name of . 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The desired name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if the name cannot be stored or there is not enough memory. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a4b4b035128dfe3c7fd70e228c70d5118}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{bool}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a4b4b035128dfe3c7fd70e228c70d5118}
+
+
+Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & This with be interpretted, then converted to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} and used as the new value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000052}{Todo}]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{int}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as an int. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000049}{Todo}]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as an unsigned int. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000050}{Todo}]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{double}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new value as a double. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000051}{Todo}]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}
+
+
+Set the value of this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The new Value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if this is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000048}{Todo}]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_ab4ab2fb15cd198cd8527d796583cf994}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ bool Mezzanine::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{T}]{rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_ab4ab2fb15cd198cd8527d796583cf994}
+
+
+Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & This with be converted to a character array using the appropriate streaming operator $<$$<$, then used as the new value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the \char`\"{}$>$\char`\"{} character, then you can reinsert it later 
+\end{DoxyWarning}
+\begin{Desc}
+\item[\hyperlink{todo__todo000053}{Todo}]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. \end{Desc}
+
+
+Definition at line 446 of file xml.h.
+
+\hypertarget{classMezzanine_1_1xml_1_1Attribute_aa91fc0680d73602071a1b67b009cdb63}{
+\index{Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}!Value@{Value}}
+\index{Value@{Value}!Mezzanine::xml::Attribute@{Mezzanine::xml::Attribute}}
+\paragraph[{Value}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::Attribute::Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1Attribute_aa91fc0680d73602071a1b67b009cdb63}
+
+
+Get the Value of this \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}. 
+
+\begin{DoxyReturn}{Returns}
+Returns A pointer to a const c-\/style array of the the character type (usually char or wchar\_\-t) containing the value. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+returns \char`\"{}\char`\"{} if attribute is empty. 
+\end{DoxyWarning}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

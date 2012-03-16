@@ -14,43 +14,45 @@ This class is useful for representing graphical bodies without a physics represe
 Inheritance diagram for Mezzanine::Entity:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classMezzanine_1_1Entity}
+\includegraphics[height=3.000000cm]{classMezzanine_1_1Entity}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classMezzanine_1_1Entity_add48bc9fd02f427e271392597b9dad9f}{AddToWorld} ()
-\begin{DoxyCompactList}\small\item\em Adds this entity to the world, allowing it to render. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Entity_a50fb69d94709026fc524cd0cbe3671b8}{Entity} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$manager)
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} \hyperlink{classMezzanine_1_1Entity_aba46f276ebfd6fcd29d2475c956f5ca8}{GetAttachableData} () const 
-\begin{DoxyCompactList}\small\item\em Gets pointers to the internal ogre structures for this attachable. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Attachable::AttachableElement} \hyperlink{classMezzanine_1_1Entity_aa844898af2b3d97593a414c8999b7e02}{GetAttachableType} () const 
-\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Entity_abef3e9fd62085c0ebc0bcab8199f7ce7}{GetLocation} () const 
-\item 
-\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Entity_aa1bf505993225def530582741e4e58c4}{GetName} () const 
-\item 
-\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1Entity_a3ffd4d4d16a5c3579201491af3363fc9}{GetOrientation} () const 
-\item 
-\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Entity_a958821b62fcedeff19d50de7fb01bbe0}{GetScale} () const 
-\begin{DoxyCompactList}\small\item\em Gets the scale currently be applied to this entity. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classMezzanine_1_1Entity_a150d2efaeff73bea1fe19735d81cfa30}{IsInWorld} () const 
-\begin{DoxyCompactList}\small\item\em Gets whether or not this entity is in the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1Entity_aa06ec4c242877260d6ca16a512294bf7}{RemoveFromWorld} ()
-\begin{DoxyCompactList}\small\item\em Removes this entity from the world, preventing it from rendering. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1Entity_a7cb26c149bc32945dcf12f60b2216079}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec)
-\item 
-void \hyperlink{classMezzanine_1_1Entity_ad498093c5a2b8ef3bfb9311aff719d67}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
-\item 
-void \hyperlink{classMezzanine_1_1Entity_a19c513720fa5657c262378b7b0435556}{SetScale} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)
-\begin{DoxyCompactList}\small\item\em Sets the scale to be applied to this entity. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1Entity_a030c609ef574de6f3c1e474dfe119e48}{
 virtual \hyperlink{classMezzanine_1_1Entity_a030c609ef574de6f3c1e474dfe119e48}{$\sim$Entity} ()}
 \label{classMezzanine_1_1Entity_a030c609ef574de6f3c1e474dfe119e48}
 
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Entity_add48bc9fd02f427e271392597b9dad9f}{AddToWorld} ()
+\begin{DoxyCompactList}\small\item\em Adds this entity to the world, allowing it to render. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Entity_abef3e9fd62085c0ebc0bcab8199f7ce7}{GetLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the location of this entity. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Entity_aa1bf505993225def530582741e4e58c4}{GetName} () const 
+\item 
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1Entity_a3ffd4d4d16a5c3579201491af3363fc9}{GetOrientation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current orientation of this entity. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Entity_adbe312d008e7395947c6a4565068ed90}{GetScaling} () const 
+\begin{DoxyCompactList}\small\item\em Gets the scale currently be applied to this entity. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1Entity_a176fea54a32a2e91027e12cecab4bb60}{GetType} () const 
+\item 
+bool \hyperlink{classMezzanine_1_1Entity_a150d2efaeff73bea1fe19735d81cfa30}{IsInWorld} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether or not this entity is in the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Entity_aa06ec4c242877260d6ca16a512294bf7}{RemoveFromWorld} ()
+\begin{DoxyCompactList}\small\item\em Removes this entity from the world, preventing it from rendering. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Entity_adb3d57eff59eba586a6c623264f38072}{SetLocalLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\item 
+void \hyperlink{classMezzanine_1_1Entity_a82485a3020bdba45744b094e08eaf087}{SetLocalOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
+\item 
+void \hyperlink{classMezzanine_1_1Entity_a6cb6c8f304e3cc30b7e6fdaa788e30a9}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Sets the location for this entity. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Entity_ad498093c5a2b8ef3bfb9311aff719d67}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the Orientation of this entity. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Entity_a91b2952a411d8ed80e0f809944c591b4}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)
+\begin{DoxyCompactList}\small\item\em Sets the scale to be applied to this entity. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -118,53 +120,7 @@ Adds this entity to the world, allowing it to render.
 
 If the entity is already in the world, this does nothing. 
 
-Definition at line 136 of file entity.cpp.
-
-\hypertarget{classMezzanine_1_1Entity_aba46f276ebfd6fcd29d2475c956f5ca8}{
-\index{Mezzanine::Entity@{Mezzanine::Entity}!GetAttachableData@{GetAttachableData}}
-\index{GetAttachableData@{GetAttachableData}!Mezzanine::Entity@{Mezzanine::Entity}}
-\paragraph[{GetAttachableData}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AttachableData} Mezzanine::Entity::GetAttachableData (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1Entity_aba46f276ebfd6fcd29d2475c956f5ca8}
-
-
-Gets pointers to the internal ogre structures for this attachable. 
-
-\begin{DoxyReturn}{Returns}
-Returns an \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} struct with the internal data. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}{Mezzanine::Attachable}.
-
-
-
-Definition at line 154 of file entity.cpp.
-
-\hypertarget{classMezzanine_1_1Entity_aa844898af2b3d97593a414c8999b7e02}{
-\index{Mezzanine::Entity@{Mezzanine::Entity}!GetAttachableType@{GetAttachableType}}
-\index{GetAttachableType@{GetAttachableType}!Mezzanine::Entity@{Mezzanine::Entity}}
-\paragraph[{GetAttachableType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attachable::AttachableElement} Mezzanine::Entity::GetAttachableType (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1Entity_aa844898af2b3d97593a414c8999b7e02}
-Gets the type of element this is. 
-
-\begin{DoxyReturn}{Returns}
-Returns an enum value indicating what type of element this is. 
-\end{DoxyReturn}
- 
-
-Implements \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{Mezzanine::Attachable}.
-
-
-
-Definition at line 108 of file entity.cpp.
+Definition at line 163 of file entity.cpp.
 
 \hypertarget{classMezzanine_1_1Entity_abef3e9fd62085c0ebc0bcab8199f7ce7}{
 \index{Mezzanine::Entity@{Mezzanine::Entity}!GetLocation@{GetLocation}}
@@ -175,18 +131,20 @@ Definition at line 108 of file entity.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1Entity_abef3e9fd62085c0ebc0bcab8199f7ce7}
-Get the location of the attachable object, relative to the Object is is attached to. 
+
+
+Gets the location of this entity. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the location. 
+Returns a vector3 reprensenting the current location of this entity in the world. 
 \end{DoxyReturn}
- 
-
-Implements \hyperlink{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}{Mezzanine::Attachable}.
 
 
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a927f25cb0f2ba3afd289586e7ab0f4e8}{Mezzanine::AttachableBase}.
 
-Definition at line 114 of file entity.cpp.
+
+
+Definition at line 119 of file entity.cpp.
 
 \hypertarget{classMezzanine_1_1Entity_aa1bf505993225def530582741e4e58c4}{
 \index{Mezzanine::Entity@{Mezzanine::Entity}!GetName@{GetName}}
@@ -197,9 +155,9 @@ Definition at line 114 of file entity.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1Entity_aa1bf505993225def530582741e4e58c4}
-Gets the name of the attachable element.  
+ 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a04b114eccfbf9092b84dfe24e81548b6}{Mezzanine::AttachableBase}.
 
 
 
@@ -214,38 +172,66 @@ Definition at line 105 of file entity.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1Entity_a3ffd4d4d16a5c3579201491af3363fc9}
-Get the orientation of the attachable object relative to the object it is attached to. 
+
+
+Gets the current orientation of this entity. 
 
 \begin{DoxyReturn}{Returns}
-Returns a quaternion with the orientation. 
+Returns a quaternion representing the current rotation of this enttiy. 
 \end{DoxyReturn}
- 
-
-Implements \hyperlink{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}{Mezzanine::Attachable}.
 
 
+Implements \hyperlink{classMezzanine_1_1AttachableBase_af18f7d1f20ee332facb314291673a313}{Mezzanine::AttachableBase}.
 
-Definition at line 120 of file entity.cpp.
 
-\hypertarget{classMezzanine_1_1Entity_a958821b62fcedeff19d50de7fb01bbe0}{
-\index{Mezzanine::Entity@{Mezzanine::Entity}!GetScale@{GetScale}}
-\index{GetScale@{GetScale}!Mezzanine::Entity@{Mezzanine::Entity}}
-\paragraph[{GetScale}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Entity::GetScale (
+
+Definition at line 130 of file entity.cpp.
+
+\hypertarget{classMezzanine_1_1Entity_adbe312d008e7395947c6a4565068ed90}{
+\index{Mezzanine::Entity@{Mezzanine::Entity}!GetScaling@{GetScaling}}
+\index{GetScaling@{GetScaling}!Mezzanine::Entity@{Mezzanine::Entity}}
+\paragraph[{GetScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Entity::GetScaling (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classMezzanine_1_1Entity_a958821b62fcedeff19d50de7fb01bbe0}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Entity_adbe312d008e7395947c6a4565068ed90}
 
 
 Gets the scale currently be applied to this entity. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} with the scale being applied to each axis. 
+Returns a vector3 with the scale being applied to each axis. 
 \end{DoxyReturn}
 
 
-Definition at line 131 of file entity.cpp.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a8e01242f06e5aabc3d53004325f1eeee}{Mezzanine::AttachableBase}.
+
+
+
+Definition at line 141 of file entity.cpp.
+
+\hypertarget{classMezzanine_1_1Entity_a176fea54a32a2e91027e12cecab4bb60}{
+\index{Mezzanine::Entity@{Mezzanine::Entity}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::Entity@{Mezzanine::Entity}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::Entity::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Entity_a176fea54a32a2e91027e12cecab4bb60}
+Gets the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+
+\begin{DoxyReturn}{Returns}
+Returns the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a42bb7c2cab933d28dea86d2ec2934c6a}{Mezzanine::AttachableBase}.
+
+
+
+Definition at line 108 of file entity.cpp.
 
 \hypertarget{classMezzanine_1_1Entity_a150d2efaeff73bea1fe19735d81cfa30}{
 \index{Mezzanine::Entity@{Mezzanine::Entity}!IsInWorld@{IsInWorld}}
@@ -265,7 +251,7 @@ True if in the world, false otherwise.
 \end{DoxyReturn}
 
 
-Definition at line 148 of file entity.cpp.
+Definition at line 175 of file entity.cpp.
 
 \hypertarget{classMezzanine_1_1Entity_aa06ec4c242877260d6ca16a512294bf7}{
 \index{Mezzanine::Entity@{Mezzanine::Entity}!RemoveFromWorld@{RemoveFromWorld}}
@@ -282,27 +268,63 @@ Removes this entity from the world, preventing it from rendering.
 
 If the entity is not in the world, this does nothing. 
 
-Definition at line 142 of file entity.cpp.
+Definition at line 169 of file entity.cpp.
 
-\hypertarget{classMezzanine_1_1Entity_a7cb26c149bc32945dcf12f60b2216079}{
+\hypertarget{classMezzanine_1_1Entity_adb3d57eff59eba586a6c623264f38072}{
+\index{Mezzanine::Entity@{Mezzanine::Entity}!SetLocalLocation@{SetLocalLocation}}
+\index{SetLocalLocation@{SetLocalLocation}!Mezzanine::Entity@{Mezzanine::Entity}}
+\paragraph[{SetLocalLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Entity::SetLocalLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Entity_adb3d57eff59eba586a6c623264f38072}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableChild_a527ef7ddbf4c3936214eff5af821ae63}{Mezzanine::AttachableChild}.
+
+
+
+Definition at line 144 of file entity.cpp.
+
+\hypertarget{classMezzanine_1_1Entity_a82485a3020bdba45744b094e08eaf087}{
+\index{Mezzanine::Entity@{Mezzanine::Entity}!SetLocalOrientation@{SetLocalOrientation}}
+\index{SetLocalOrientation@{SetLocalOrientation}!Mezzanine::Entity@{Mezzanine::Entity}}
+\paragraph[{SetLocalOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Entity::SetLocalOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Entity_a82485a3020bdba45744b094e08eaf087}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableChild_a3604a2450a1647ae882ef1d9dab1ec5d}{Mezzanine::AttachableChild}.
+
+
+
+Definition at line 152 of file entity.cpp.
+
+\hypertarget{classMezzanine_1_1Entity_a6cb6c8f304e3cc30b7e6fdaa788e30a9}{
 \index{Mezzanine::Entity@{Mezzanine::Entity}!SetLocation@{SetLocation}}
 \index{SetLocation@{SetLocation}!Mezzanine::Entity@{Mezzanine::Entity}}
 \paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Entity::SetLocation (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{Vec}
+\item[{const {\bf Vector3} \&}]{Location}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1Entity_a7cb26c149bc32945dcf12f60b2216079}
-Set the location of this attachable object relative to the object it is attached to. 
+\label{classMezzanine_1_1Entity_a6cb6c8f304e3cc30b7e6fdaa788e30a9}
+
+
+Sets the location for this entity. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Vec} & The location. \\
+{\em Location} & The global location to be applied to this entity. \\
 \hline
 \end{DoxyParams}
- 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}{Mezzanine::Attachable}.
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_ab4f0d73a5c313874766bd038a32f1ae2}{Mezzanine::AttachableBase}.
 
 
 
@@ -317,42 +339,48 @@ Definition at line 111 of file entity.cpp.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1Entity_ad498093c5a2b8ef3bfb9311aff719d67}
-Set the orientation of this attachable object relative to the object it is attached to. 
+
+
+Sets the Orientation of this entity. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Ori} & The Orientation. \\
+{\em Orientation} & The global orientation to be applied to this entity. \\
 \hline
 \end{DoxyParams}
- 
-
-Implements \hyperlink{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}{Mezzanine::Attachable}.
 
 
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a8c459c324efb01dc56cead8e7650f22e}{Mezzanine::AttachableBase}.
 
-Definition at line 117 of file entity.cpp.
 
-\hypertarget{classMezzanine_1_1Entity_a19c513720fa5657c262378b7b0435556}{
-\index{Mezzanine::Entity@{Mezzanine::Entity}!SetScale@{SetScale}}
-\index{SetScale@{SetScale}!Mezzanine::Entity@{Mezzanine::Entity}}
-\paragraph[{SetScale}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Entity::SetScale (
+
+Definition at line 122 of file entity.cpp.
+
+\hypertarget{classMezzanine_1_1Entity_a91b2952a411d8ed80e0f809944c591b4}{
+\index{Mezzanine::Entity@{Mezzanine::Entity}!SetScaling@{SetScaling}}
+\index{SetScaling@{SetScaling}!Mezzanine::Entity@{Mezzanine::Entity}}
+\paragraph[{SetScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Entity::SetScaling (
 \begin{DoxyParamCaption}
 \item[{const {\bf Vector3} \&}]{Scale}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1Entity_a19c513720fa5657c262378b7b0435556}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Entity_a91b2952a411d8ed80e0f809944c591b4}
 
 
 Sets the scale to be applied to this entity. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em Scale} & A \hyperlink{classvector3}{vector3} with the scales that will be applied to each axis. \\
+{\em Scale} & A vector3 with the scales that will be applied to each axis. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 126 of file entity.cpp.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a5201923c0685e592dee8cecabc72b508}{Mezzanine::AttachableBase}.
+
+
+
+Definition at line 133 of file entity.cpp.
 
 
 

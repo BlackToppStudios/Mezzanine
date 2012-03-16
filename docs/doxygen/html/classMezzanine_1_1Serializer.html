@@ -65,6 +65,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="navelem"><a class="el" href="classMezzanine_1_1Serializer.html">Serializer</a>      </li>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::Serializer&lt; Serializable &gt; Class Template Reference</h1>  </div>
 </div>
@@ -74,7 +76,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#_details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="serialization_8h_source.html">serialization.h</a>&gt;</code></p>
+
+<p><a href="classMezzanine_1_1Serializer-members.html">List of all members.</a></p>
 <table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#af756e6eba414a1dca624d452abf4bf63">ProtoSerialize</a> (const Serializable &amp;Target, <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the serialized data about one class instance in an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>.  <a href="#af756e6eba414a1dca624d452abf4bf63"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#a310e3fb563ccc12528ea9b8c25fcd7a8">ProtoSerializeAll</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all of the data from the serializable class instance.  <a href="#a310e3fb563ccc12528ea9b8c25fcd7a8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#af71f7716c36ba0a583ab1e29e08cac6d">Serialize</a> (std::ostream &amp;Stream, const Serializable &amp;Target)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the specified member to a stream.  <a href="#af71f7716c36ba0a583ab1e29e08cac6d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#aa178dfa519a2e73e84c0a2f35b2b8b5f">SerializeAll</a> (std::ostream &amp;Stream) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the complete serialized data to a stream.  <a href="#aa178dfa519a2e73e84c0a2f35b2b8b5f"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class Serializable&gt;<br/>
@@ -86,7 +100,157 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and <a class="el" href="classMezzanine_1_1DeSerializer.html" title="A tool for deserializing classes with specific issues deserializing them.">Mezzanine::DeSerializer</a>. The type of this template is expected to match what this is serializing. </p>
 
 <p>Definition at line <a class="el" href="serialization_8h_source.html#l00306">306</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="af756e6eba414a1dca624d452abf4bf63"></a><!-- doxytag: member="Mezzanine::Serializer::ProtoSerialize" ref="af756e6eba414a1dca624d452abf4bf63" args="(const Serializable &amp;Target, xml::Node &amp;CurrentRoot)=0" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMezzanine_1_1Serializer.html">Mezzanine::Serializer</a>&lt; Serializable &gt;::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const Serializable &amp;&#160;</td>
+          <td class="paramname"><em>Target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get all the serialized data about one class instance in an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Target</td><td>A reference to class instance to be deserialized.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This is not implemented by default. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vector3 should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a310e3fb563ccc12528ea9b8c25fcd7a8"></a><!-- doxytag: member="Mezzanine::Serializer::ProtoSerializeAll" ref="a310e3fb563ccc12528ea9b8c25fcd7a8" args="(xml::Node &amp;CurrentRoot) const =0" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void <a class="el" href="classMezzanine_1_1Serializer.html">Mezzanine::Serializer</a>&lt; Serializable &gt;::ProtoSerializeAll </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get all of the data from the serializable class instance. </p>
+<p>This is to be implemented in individual serializer with logic specific to the required tasks. It is expected to produce an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the entirety of the data required to reconstitute the serialized class. <br/>
+ <br/>
+ This is expected to gets it's knowledge about what to serialize some other than being passed as an argument. It could query a manager or be passed a series pointers that is needs to work with. <br/>
+ <br/>
+ This is not implemented by default. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all the items deserialized should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="af71f7716c36ba0a583ab1e29e08cac6d"></a><!-- doxytag: member="Mezzanine::Serializer::Serialize" ref="af71f7716c36ba0a583ab1e29e08cac6d" args="(std::ostream &amp;Stream, const Serializable &amp;Target)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::ostream&amp; <a class="el" href="classMezzanine_1_1Serializer.html">Mezzanine::Serializer</a>&lt; Serializable &gt;::Serialize </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Serializable &amp;&#160;</td>
+          <td class="paramname"><em>Target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Output the specified member to a stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Target</td><td>A reference to class instance to be deserialized. </td></tr>
+    <tr><td class="paramname">Stream</td><td>The std::ostream to send the data into.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The default implementation of this uses ProtoSerialize(const String&amp;) </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The std::ostream that was passed in. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00345">345</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa178dfa519a2e73e84c0a2f35b2b8b5f"></a><!-- doxytag: member="Mezzanine::Serializer::SerializeAll" ref="aa178dfa519a2e73e84c0a2f35b2b8b5f" args="(std::ostream &amp;Stream) const " -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Serializable &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::ostream&amp; <a class="el" href="classMezzanine_1_1Serializer.html">Mezzanine::Serializer</a>&lt; Serializable &gt;::SerializeAll </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em></td><td>)</td>
+          <td> const<code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Output the complete serialized data to a stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The std::ostream to send the data into.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>By default this is implemented in using <a class="el" href="classMezzanine_1_1Serializer.html#a310e3fb563ccc12528ea9b8c25fcd7a8" title="Get all of the data from the serializable class instance.">ProtoSerializeAll()</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The populated ostream. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00326">326</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="serialization_8h_source.html">serialization.h</a></li>
 </ul>
 </div>
@@ -95,7 +259,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,6 +269,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
