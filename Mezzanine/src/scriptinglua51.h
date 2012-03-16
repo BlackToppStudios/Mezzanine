@@ -64,10 +64,10 @@ namespace Mezzanine
     namespace Scripting
     {
         //simplistic error checking function, to be replace with proper exception driven code later.
-        int PrintErrorMessageOrNothing(int ErrorCode);
+        int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
 
         // super simple lua test
-        int test();
+        int MEZZ_LIB test();
     }
 
 

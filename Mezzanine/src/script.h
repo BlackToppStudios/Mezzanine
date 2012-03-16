@@ -61,7 +61,7 @@ namespace Mezzanine
         /// fewer security issues with a completely self contained language as opposed to
         /// actual native code.
         ///////////////////////////////////////
-        class Script
+        class MEZZ_LIB Script
         {
             public:
                 virtual void AddArgument(ScriptArgument Arg) = 0;
@@ -82,7 +82,7 @@ namespace Mezzanine
                 virtual ScriptArgument Execute() = 0;
         };
 
-        class ScriptCompilable : public Script
+        class MEZZ_LIB ScriptCompilable : public Script
         {
             public:
                 virtual void SetByteCode(String Code) = 0;

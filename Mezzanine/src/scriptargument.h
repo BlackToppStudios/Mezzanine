@@ -41,6 +41,7 @@
 #define _scriptargument_h
 
 #include "scriptargument.h"
+#include "crossplatformexport.h"
 
 namespace Mezzanine
 {
@@ -52,7 +53,7 @@ namespace Mezzanine
         /// @n @n
         /// These are created to provide data to scripts.
         ///////////////////////////////////////
-        class ScriptArgument
+        class MEZZ_LIB ScriptArgument
         {
             public:
 
