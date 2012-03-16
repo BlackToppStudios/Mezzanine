@@ -44,15 +44,10 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-#include "eventbase.h"
-#include "eventcollision.h"
-#include "eventgamewindow.h"
-#include "eventquit.h"
-#include "eventrendertime.h"
-#include "eventuserinput.h"
 #include "managerbase.h"
-#include "singleton.h"
 #include "metacode.h"
+#include "eventbase.h"
+#include "singleton.h"
 #include "vector2.h"
 #include "xml.h"
 
@@ -87,6 +82,8 @@ void MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Event
 namespace Mezzanine
 {
     class World;
+    class EventCollision;
+    class EventGameWindow;
     class EventRenderTime;
     class EventUserInput;
     class EventQuit;
