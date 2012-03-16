@@ -14,20 +14,20 @@ This is used to represent a flat infinite slice of the game world.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classMezzanine_1_1Plane_a8a2df34f4af3ef8bc70a91a613b03ed5}{ExtractOgrePlane} (const Ogre::Plane \&Plane2)
-\begin{DoxyCompactList}\small\item\em Changes this \hyperlink{classMezzanine_1_1Plane}{Plane} to match the Ogre \hyperlink{classMezzanine_1_1Plane}{Plane}. \item\end{DoxyCompactList}\item 
-Ogre::Plane \hyperlink{classMezzanine_1_1Plane_ad1bc798271d903d1045498f0eb5691a0}{GetOgrePlane} () const 
-\begin{DoxyCompactList}\small\item\em Gets an Ogre::Plane that contains this Plane's information. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1Plane_ae4249e24fa92eb28d6adc70b6b98e32d}{operator=} (const Ogre::Plane \&Plane2)
-\begin{DoxyCompactList}\small\item\em The assignment operator from Ogre::Plane to \hyperlink{classMezzanine_1_1Plane}{Mezzanine::Plane}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Plane_a5d8a918982fe5424be3e9a11b1a849c2}{Plane} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Plane_a2d0bf4ad989b90b37cfb2eb386f144d2}{Plane} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} Normal\_\-, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Distance\_\-)
 \begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Plane_aabe30579ed531b3b0b2a7bd9ad412d3f}{Plane} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&rkPoint0, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&rkPoint1, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&rkPoint2)
 \begin{DoxyCompactList}\small\item\em Triangle constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Plane_a6f6efb7d12fa74b76945d90d2d7bad0e}{Plane} (Ogre::Plane Plane\_\-)
 \begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Plane_a5d8a918982fe5424be3e9a11b1a849c2}{Plane} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{classMezzanine_1_1Plane_a8a2df34f4af3ef8bc70a91a613b03ed5}{ExtractOgrePlane} (const Ogre::Plane \&Plane2)
+\begin{DoxyCompactList}\small\item\em Changes this \hyperlink{classMezzanine_1_1Plane}{Plane} to match the \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Plane}{Plane}. \item\end{DoxyCompactList}\item 
+Ogre::Plane \hyperlink{classMezzanine_1_1Plane_ad1bc798271d903d1045498f0eb5691a0}{GetOgrePlane} () const 
+\begin{DoxyCompactList}\small\item\em Gets an Ogre::Plane that contains this Plane's information. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Plane_ae4249e24fa92eb28d6adc70b6b98e32d}{operator=} (const Ogre::Plane \&Plane2)
+\begin{DoxyCompactList}\small\item\em The assignment operator from Ogre::Plane to \hyperlink{classMezzanine_1_1Plane}{Mezzanine::Plane}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -106,7 +106,7 @@ Definition at line 62 of file plane.cpp.
 
 Compatibily constructor. 
 
-This accepts an Ogre \hyperlink{classMezzanine_1_1Plane}{Plane}, (graphics subsystem) to make this \hyperlink{classMezzanine_1_1Plane}{Plane} 
+This accepts an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Plane}{Plane}, (graphics subsystem) to make this \hyperlink{classMezzanine_1_1Plane}{Plane} 
 \begin{DoxyParams}{Parameters}
 {\em Plane\_\-} & This is the Ogre::Plane \\
 \hline
@@ -157,7 +157,7 @@ Definition at line 68 of file plane.cpp.
 \label{classMezzanine_1_1Plane_a8a2df34f4af3ef8bc70a91a613b03ed5}
 
 
-Changes this \hyperlink{classMezzanine_1_1Plane}{Plane} to match the Ogre \hyperlink{classMezzanine_1_1Plane}{Plane}. 
+Changes this \hyperlink{classMezzanine_1_1Plane}{Plane} to match the \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Plane}{Plane}. 
 
 Used to aid interopability, this will result in this \hyperlink{classMezzanine_1_1Plane}{Plane} exactly matching the Ogre::Plane 
 \begin{DoxyParams}{Parameters}

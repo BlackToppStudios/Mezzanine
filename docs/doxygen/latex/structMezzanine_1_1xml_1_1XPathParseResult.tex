@@ -1,0 +1,86 @@
+\hypertarget{structMezzanine_1_1xml_1_1XPathParseResult}{
+\subsection{Mezzanine::xml::XPathParseResult Struct Reference}
+\label{structMezzanine_1_1xml_1_1XPathParseResult}\index{Mezzanine::xml::XPathParseResult@{Mezzanine::xml::XPathParseResult}}
+}
+
+
+XPath parsing result.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structMezzanine_1_1xml_1_1XPathParseResult_ae73dd4d4d4280b84cbc73726f3993ab8}{
+\hyperlink{structMezzanine_1_1xml_1_1XPathParseResult_ae73dd4d4d4280b84cbc73726f3993ab8}{XPathParseResult} ()}
+\label{structMezzanine_1_1xml_1_1XPathParseResult_ae73dd4d4d4280b84cbc73726f3993ab8}
+
+\begin{DoxyCompactList}\small\item\em Default constructor, initializes object to failed state. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{structMezzanine_1_1xml_1_1XPathParseResult_a1c7e16a8fd998517cb8ff0abc918162c}{Description} () const 
+\begin{DoxyCompactList}\small\item\em Creates a text description of the error situation, if any exists. \item\end{DoxyCompactList}\item 
+\hyperlink{structMezzanine_1_1xml_1_1XPathParseResult_a7de82a94dbc4d78b1593fe6630b3acb1}{operator bool} () const 
+\begin{DoxyCompactList}\small\item\em Cast to bool operator. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structMezzanine_1_1xml_1_1XPathParseResult_a0e7536896277a77bc3735c54b92a2bac}{
+const char $\ast$ \hyperlink{structMezzanine_1_1xml_1_1XPathParseResult_a0e7536896277a77bc3735c54b92a2bac}{error}}
+\label{structMezzanine_1_1xml_1_1XPathParseResult_a0e7536896277a77bc3735c54b92a2bac}
+
+\begin{DoxyCompactList}\small\item\em Error message (0 if no error). \item\end{DoxyCompactList}\item 
+\hypertarget{structMezzanine_1_1xml_1_1XPathParseResult_a629247033b40d2a0256021eb557e1c4c}{
+ptrdiff\_\-t \hyperlink{structMezzanine_1_1xml_1_1XPathParseResult_a629247033b40d2a0256021eb557e1c4c}{Offset}}
+\label{structMezzanine_1_1xml_1_1XPathParseResult_a629247033b40d2a0256021eb557e1c4c}
+
+\begin{DoxyCompactList}\small\item\em Last parsed Offset (in Character units from string start) \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+XPath parsing result. 
+
+Definition at line 1173 of file xml.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{structMezzanine_1_1xml_1_1XPathParseResult_a1c7e16a8fd998517cb8ff0abc918162c}{
+\index{Mezzanine::xml::XPathParseResult@{Mezzanine::xml::XPathParseResult}!Description@{Description}}
+\index{Description@{Description}!Mezzanine::xml::XPathParseResult@{Mezzanine::xml::XPathParseResult}}
+\paragraph[{Description}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ Mezzanine::xml::XPathParseResult::Description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{structMezzanine_1_1xml_1_1XPathParseResult_a1c7e16a8fd998517cb8ff0abc918162c}
+
+
+Creates a text description of the error situation, if any exists. 
+
+\begin{DoxyReturn}{Returns}
+A const char$\ast$ with a brief error description based on the \hyperlink{structMezzanine_1_1xml_1_1ParseResult_a00e5bb8ce5cc4a7b8219cf648681d882}{ParseResult::Status} 
+\end{DoxyReturn}
+\hypertarget{structMezzanine_1_1xml_1_1XPathParseResult_a7de82a94dbc4d78b1593fe6630b3acb1}{
+\index{Mezzanine::xml::XPathParseResult@{Mezzanine::xml::XPathParseResult}!operator bool@{operator bool}}
+\index{operator bool@{operator bool}!Mezzanine::xml::XPathParseResult@{Mezzanine::xml::XPathParseResult}}
+\paragraph[{operator bool}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathParseResult::operator bool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{structMezzanine_1_1xml_1_1XPathParseResult_a7de82a94dbc4d78b1593fe6630b3acb1}
+
+
+Cast to bool operator. 
+
+\begin{DoxyReturn}{Returns}
+This returns true if the \hyperlink{structMezzanine_1_1xml_1_1ParseResult_a00e5bb8ce5cc4a7b8219cf648681d882}{ParseResult::Status} member is set to ParseStatus::StatusOk, otherwise this returns false. 
+\end{DoxyReturn}
+
+
+The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

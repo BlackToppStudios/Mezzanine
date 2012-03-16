@@ -27,11 +27,124 @@ namespace \hyperlink{namespaceMezzanine}{Mezzanine}
 
 \begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
 
+\item 
+namespace \hyperlink{namespaceOgre}{Ogre}
 \end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::ostream \&MEZZ\_\-LIB \hyperlink{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}{operator$<$$<$} (std::ostream \&stream, const \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} \&Ev)
+\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to XML. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&MEZZ\_\-LIB \hyperlink{camera_8h_a0667d7be6ccbc8437d4969770e335080}{operator$>$$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} \&Ev)
+\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} from parsed xml. \item\end{DoxyCompactList}\item 
+std::istream \&MEZZ\_\-LIB \hyperlink{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}{operator$>$$>$} (std::istream \&stream, \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} \&Ev)
+\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
 Declaration of the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} class. 
 
 Definition in file \hyperlink{camera_8h_source}{camera.h}.
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}{
+\index{camera.h@{camera.h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!camera.h@{camera.h}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& MEZZ\_\-LIB operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{stream, }
+\item[{const {\bf Mezzanine::Camera} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}
+
+
+Serializes the passed \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to XML. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The ostream to send the xml to. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this returns the ostream, now with the serialized data 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-\/serialized. 
+
+This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. 
+\end{DoxyWarning}
+
+
+Definition at line 288 of file camera.cpp.
+
+\hypertarget{camera_8h_a0667d7be6ccbc8437d4969770e335080}{
+\index{camera.h@{camera.h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!camera.h@{camera.h}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::xml::Node}\& MEZZ\_\-LIB operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Mezzanine::xml::Node} \&}]{OneNode, }
+\item[{{\bf Mezzanine::Camera} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{camera_8h_a0667d7be6ccbc8437d4969770e335080}
+
+
+Set all values of a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} from parsed xml. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to be reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns thexml::Node that was passed in. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to de-\/serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera. 
+
+This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. 
+\end{DoxyWarning}
+
+
+Definition at line 315 of file camera.cpp.
+
+\hypertarget{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}{
+\index{camera.h@{camera.h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!camera.h@{camera.h}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& MEZZ\_\-LIB operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{stream, }
+\item[{{\bf Mezzanine::Camera} \&}]{Ev}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}
+
+
+Deserialize a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to be deserialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} that was recreated onto Ev. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-\/serialized. 
+
+This does not s the pointer to the camera manager. When a camera manager is serialized, this data is implicitly stored by the cameras location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. 
+\end{DoxyWarning}
+
+
+Definition at line 305 of file camera.cpp.
 

@@ -7,6 +7,11 @@
 The interface for serialization.  
 
 
+{\ttfamily \#include \char`\"{}datatypes.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}xml.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}xmldoc.h\char`\"{}}\par
+{\ttfamily \#include $<$ostream$>$}\par
+{\ttfamily \#include $<$memory$>$}\par
 \subsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -23,6 +28,19 @@ namespace \hyperlink{namespaceMezzanine}{Mezzanine}
 \begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
 
 \end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\std::istream \& \hyperlink{namespaceMezzanine_af7841a01c9f5e835029a9c70c0de0de5}{Mezzanine::DeSerialize} (std::istream \&Stream, T \&Converted)
+\begin{DoxyCompactList}\small\item\em Deserialize the next xml tag in the stream into a specific in memory class instance. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_aec75a8a3369287cb02f331c62b32df73}{Mezzanine::DeSerializeError} (const String \&FailedTo, const String \&ClassName, bool SOrD=false)
+\begin{DoxyCompactList}\small\item\em Simply does some string concatenation, then throws an \hyperlink{classMezzanine_1_1Exception}{Exception}. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\std::ostream \& \hyperlink{namespaceMezzanine_a21d2dc7a6ca76ae9b193118a215ba523}{Mezzanine::Serialize} (std::ostream \&Stream, const T \&Converted, const String \&Indent=String(\char`\"{}\char`\"{}))
+\begin{DoxyCompactList}\small\item\em Convert any class that supports serialization or has a serializer to a string of chars in a stream. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}{Mezzanine::SerializeError} (const String \&FailedTo, const String \&ClassName, bool SOrD=true)
+\begin{DoxyCompactList}\small\item\em Simply does some string concatenation, then throws an \hyperlink{classMezzanine_1_1Exception}{Exception}. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceMezzanine_ab855b02f8aecd53b0f876e20d6f04f05}{Mezzanine::SloppyProtoSerialize} (const T \&Converted, xml::Node \&CurrentRoot)
+\begin{DoxyCompactList}\small\item\em Used to interface with a previous version of the serialization code. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

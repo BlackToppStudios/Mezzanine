@@ -96,9 +96,19 @@ Namespaces</h2></td></tr>
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is used for internal helper classes, and in general it should be ignored by game developers. </p>
 <br/></td></tr>
 </p>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Scripting.html">Scripting</a></td></tr>
+
+<p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is for all the classes belonging to the <a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem.">Scripting</a> Subsystem. </p>
+<br/></td></tr>
+</p>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1UI.html">UI</a></td></tr>
 
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is for all the classes belonging to the Graphical User Interface Subsystem. </p>
+<br/></td></tr>
+</p>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1xml.html">xml</a></td></tr>
+
+<p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This is where bulk of the XML subsystem resides, (See <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. </p>
 <br/></td></tr>
 </p>
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
@@ -127,10 +137,12 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a helper class for configuring physics settings of an <a class="el" href="classMezzanine_1_1ActorSoft.html" title="This is the actor class for Soft Objects.">ActorSoft</a>.  <a href="classMezzanine_1_1ActorSoftPhysicsSettings.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html">AreaEffect</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is used to define area's in the world that have unique effects.  <a href="classMezzanine_1_1AreaEffect.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Attachable.html">Attachable</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is just a base class to be used by elements that are attachable to worldnodes.  <a href="classMezzanine_1_1Attachable.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1AttachableData.html">AttachableData</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper class for the presentation of internal data of an attachable.  <a href="structMezzanine_1_1AttachableData.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AttachableBase.html">AttachableBase</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is the base class for other attachable classes and is responsible for transform updates to attachables.  <a href="classMezzanine_1_1AttachableBase.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AttachableChild.html">AttachableChild</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is the base class for objects that can be attached to <a class="el" href="classMezzanine_1_1AttachableParent.html" title="Base class for objects that can have attachables attached to them.">AttachableParent</a>.  <a href="classMezzanine_1_1AttachableChild.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AttachableParent.html">AttachableParent</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for objects that can have attachables attached to them.  <a href="classMezzanine_1_1AttachableParent.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html">AudioManager</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is simply a place for storing all the Sound utilities and functions.  <a href="classMezzanine_1_1AudioManager.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1BoxCollisionShape.html">BoxCollisionShape</a></td></tr>
@@ -229,6 +241,9 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the base class from which all the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Managers inherit.  <a href="classMezzanine_1_1ManagerBase.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MathTool.html">MathTool</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This provides a number of generic math related utilities.  <a href="classMezzanine_1_1MathTool.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix3x3.html">Matrix3x3</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a 3x3 Matrix class used for representing rotations and scaling in an object.  <a href="classMezzanine_1_1Matrix3x3.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is used to check and modify the properties of a graphics mesh.  <a href="classMezzanine_1_1Mesh.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MeshCollisionShape.html">MeshCollisionShape</a></td></tr>
@@ -290,6 +305,8 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A sphere physics shape.  <a href="classMezzanine_1_1SphereCollisionShape.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1StaticMeshCollisionShape.html">StaticMeshCollisionShape</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A triangle mesh collsion shape based on a graphics mesh.  <a href="classMezzanine_1_1StaticMeshCollisionShape.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1StickyConstraintConstructionInfo.html">StickyConstraintConstructionInfo</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple struct for holding information on how sticky constraints should be constructed.  <a href="structMezzanine_1_1StickyConstraintConstructionInfo.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1StickyData.html">StickyData</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a basic class for storing the data related to the sticky behavior available to actorrigid's.  <a href="structMezzanine_1_1StickyData.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1StringTool.html">StringTool</a></td></tr>
@@ -365,9 +382,6 @@ typedef signed long long&#160;</td><td class="memItemRight" valign="bottom"><a c
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A Datatype used to represent a real floating point number.  <a href="#a726731b1a7df72bf3583e4a97282c6f6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a538e16995de98802eeb28ca209d721"></a><!-- doxytag: member="Mezzanine::StickyConstraint" ref="a4a538e16995de98802eeb28ca209d721" args="" -->
 typedef <a class="el" href="classMezzanine_1_1SliderConstraint.html">SliderConstraint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>StickyConstraint</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad4b7200ca0d9b0a31e5edf8f63ad1c8c"></a><!-- doxytag: member="Mezzanine::StickyDataPair" ref="ad4b7200ca0d9b0a31e5edf8f63ad1c8c" args="" -->
-typedef std::pair&lt; <a class="el" href="classMezzanine_1_1Collision.html">Collision</a> <br class="typebreak"/>
-*, <a class="el" href="classMezzanine_1_1SliderConstraint.html">StickyConstraint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>StickyDataPair</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A Datatype used to a series of characters.  <a href="#acf9fcc130e6ebf08e3d8491aebcf1c86"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b6c09063432c7ddd87011c88306c767"></a><!-- doxytag: member="Mezzanine::UInt16" ref="a1b6c09063432c7ddd87011c88306c767" args="" -->
@@ -384,8 +398,8 @@ typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a clas
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An 8-bit unsigned integer. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A Datatype used to represent an postive integer numbers.  <a href="#adcbb6ce6d1eb4379d109e51171e2e493"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9bd8d22fdfaf143314aa59a4374697e5"></a><!-- doxytag: member="Mezzanine::WideString" ref="a9bd8d22fdfaf143314aa59a4374697e5" args="" -->
-typedef std::wstring&#160;</td><td class="memItemRight" valign="bottom"><b>WideString</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef std::wstring&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a08b3adb0d2632e4f6a454fdf3cf5efda">WideString</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A wide version of the String typedef.  <a href="#a08b3adb0d2632e4f6a454fdf3cf5efda"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a4f14cccd98d1bdc1bf934c1c028e3eaf">AspectRatio</a> { <br/>
@@ -433,16 +447,29 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used by constraints for setting some parameters. </p>
  <a href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a">RenderSystem</a> { <br/>
-&#160;&#160;<b>RS_DirectX9</b>, 
-<b>RS_DirectX10</b>, 
-<b>RS_DirectX11</b>, 
-<b>RS_OpenGL2</b>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33">OrientationMode</a> { <br/>
+&#160;&#160;<b>OM_Degree_0</b> =  0, 
+<b>OM_Degree_90</b> =  1, 
+<b>OM_Degree_180</b> =  2, 
+<b>OM_Degree_270</b> =  3, 
 <br/>
-&#160;&#160;<b>RS_OpenGL3</b>, 
-<b>RS_OpenGL4</b>, 
-<b>RS_OpenGLES1</b>, 
-<b>RS_OpenGLES2</b>
+&#160;&#160;<b>OM_Portrait</b> =  OM_Degree_0, 
+<b>OM_LandscapeRight</b> =  OM_Degree_90, 
+<b>OM_LandscapeLeft</b> =  OM_Degree_270
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering. </p>
+ <a href="namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a1bb0347c37954bc71c4344e4b55c729a">RenderSystem</a> { <br/>
+&#160;&#160;<b>RS_DirectX9</b> =  0, 
+<b>RS_DirectX10</b> =  1, 
+<b>RS_DirectX11</b> =  2, 
+<b>RS_OpenGL2</b> =  3, 
+<br/>
+&#160;&#160;<b>RS_OpenGL3</b> =  4, 
+<b>RS_OpenGL4</b> =  5, 
+<b>RS_OpenGLES1</b> =  6, 
+<b>RS_OpenGLES2</b> =  7
 <br/>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used primarily by the graphics manager class during initialization. </p>
@@ -453,6 +480,50 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used to identify different Axis in a 3d coordinate system. </p>
  <a href="namespaceMezzanine.html#ab41a00a8c6a47b576dc987ec34e16ba1">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3">TransformSpace</a> { <a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3aa1986039b3e4c80c8564c8916e68e61c">TS_Local</a> =  0, 
+<a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3a352c41c07844c77508ce36b43a30b553">TS_Parent</a> =  1, 
+<a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d">TS_World</a> =  2
+ }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used to define what frame of reference is to be used when positioning or rotating objects. </p>
+ <a href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> { <br/>
+&#160;&#160;<b>WSO_ActorFirst</b> =  1, 
+<b>WSO_ActorRigid</b> =  1, 
+<b>WSO_ActorSoft</b> =  2, 
+<b>WSO_ActorCharacter</b> =  4, 
+<br/>
+&#160;&#160;<b>WSO_ActorUnknown</b> =  8, 
+<b>WSO_ActorLast</b> =  8, 
+<b>WSO_TerrainFirst</b> =  16, 
+<b>WSO_MeshTerrain</b> =  16, 
+<br/>
+&#160;&#160;<b>WSO_UnimplementedTerrain1</b> =  32, 
+<b>WSO_UnimplementedTerrain2</b> =  64, 
+<b>WSO_UnimplementedTerrain3</b> =  128, 
+<b>WSO_UnimplementedTerrain4</b> =  256, 
+<br/>
+&#160;&#160;<b>WSO_UnknownTerrain</b> =  512, 
+<b>WSO_TerrainLast</b> =  512, 
+<b>WSO_AEFirst</b> =  1024, 
+<b>WSO_AEGravityField</b> =  1024, 
+<br/>
+&#160;&#160;<b>WSO_AEGravityWell</b> =  2048, 
+<b>WSO_AEFieldOfForce</b> =  4096, 
+<b>WSO_AEPlaceHolder1</b> =  8192, 
+<b>WSO_AEPlaceHolder2</b> =  16384, 
+<br/>
+&#160;&#160;<b>WSO_AEUnknown</b> =  32768, 
+<b>WSO_AELast</b> =  32768, 
+<b>WSO_Camera</b> =  65536, 
+<b>WSO_Entity</b> =  131072, 
+<br/>
+&#160;&#160;<b>WSO_Light</b> =  262144, 
+<b>WSO_ParticleEffect</b> =  524288, 
+<b>WSO_WorldNode</b> =  1048576
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used by various classes to help identify what class an object is. </p>
+ <a href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ac4d9d4570b1963390325ad6a083108e1">WorldObjectActivationState</a> { <br/>
 &#160;&#160;<b>WOAS_Active</b> =  1, 
 <b>WOAS_Island_Sleeping</b> =  2, 
@@ -464,52 +535,33 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This is used by all the world objects to monitor and set their physics activation. </p>
 <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> { <br/>
-&#160;&#160;<b>WOT_ActorFirst</b> =  1, 
-<b>WOT_ActorRigid</b> =  1, 
-<b>WOT_ActorSoft</b> =  2, 
-<b>WOT_ActorCharacter</b> =  4, 
-<br/>
-&#160;&#160;<b>WOT_ActorUnknown</b> =  8, 
-<b>WOT_ActorLast</b> =  8, 
-<b>WOT_TerrainFirst</b> =  16, 
-<b>WOT_MeshTerrain</b> =  16, 
-<br/>
-&#160;&#160;<b>WOT_UnimplementedTerrain1</b> =  32, 
-<b>WOT_UnimplementedTerrain2</b> =  64, 
-<b>WOT_UnimplementedTerrain3</b> =  128, 
-<b>WOT_UnknownTerrain</b> =  256, 
-<br/>
-&#160;&#160;<b>WOT_TerrainLast</b> =  256, 
-<b>WOT_AEFirst</b> =  512, 
-<b>WOT_AEGravityField</b> =  512, 
-<b>WOT_AEGravityWell</b> =  1024, 
-<br/>
-&#160;&#160;<b>WOT_AEFieldOfForce</b> =  2048, 
-<b>WOT_AEPlaceHolder1</b> =  4096, 
-<b>WOT_AEPlaceHolder2</b> =  8192, 
-<b>WOT_AEUnknown</b> =  16384, 
-<br/>
-&#160;&#160;<b>WOT_AELast</b> =  16384
-<br/>
- }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Used by various classes to help identify what class an object is. </p>
- <a href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#af007af1ad839d251e61e95488ab78876">BulletSapeTypeToShapeType</a> (int BulletShapeType)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert from a Bullet <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Shape to a <a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a>.  <a href="#af007af1ad839d251e61e95488ab78876"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a11080ec435c80a89d4da498ea8049c3e">ConstraintParamAsString</a> (<a class="el" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">ConstraintParam</a> Param)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a Constraint Parameter as a String.  <a href="#a11080ec435c80a89d4da498ea8049c3e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ac7be2623357ff699de474212404a4227">CreateShape</a> (xml::Node OneNode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a3b5904fe847274e3bd0d6a1b39cbed02">CreateShape</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a <a class="el" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a> from a snippet of xml.  <a href="#a3b5904fe847274e3bd0d6a1b39cbed02"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a945376a411966f62fad3f13e14550d74">CreateShape</a> (<a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d">CollisionShape::ShapeType</a> ShapeToCreate, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name_, btCollisionShape *ShapeToModel)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create A shape of a type and optionally model it after an example.  <a href="#a945376a411966f62fad3f13e14550d74"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe96281c14ddf42e63226b6ef43fa8d3"></a><!-- doxytag: member="Mezzanine::DeSerializeError" ref="afe96281c14ddf42e63226b6ef43fa8d3" args="(const String &amp;FailedTo, const String &amp;ClassName, bool SOrD)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DeSerializeError</b> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FailedTo, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ClassName, bool SOrD)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8e6c4e2c916816ff634c860cb0cf3f9"></a><!-- doxytag: member="Mezzanine::SerializeError" ref="ad8e6c4e2c916816ff634c860cb0cf3f9" args="(const String &amp;FailedTo, const String &amp;ClassName, bool SOrD)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SerializeError</b> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FailedTo, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ClassName, bool SOrD)</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#af7841a01c9f5e835029a9c70c0de0de5">DeSerialize</a> (std::istream &amp;Stream, T &amp;Converted)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize the next xml tag in the stream into a specific in memory class instance.  <a href="#af7841a01c9f5e835029a9c70c0de0de5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#aec75a8a3369287cb02f331c62b32df73">DeSerializeError</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FailedTo, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ClassName, bool SOrD=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simply does some string concatenation, then throws an <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>.  <a href="#aec75a8a3369287cb02f331c62b32df73"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f11f2ef7129480d902dc4995c3c8633"></a><!-- doxytag: member="Mezzanine::PrintHello" ref="a2f11f2ef7129480d902dc4995c3c8633" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a21d2dc7a6ca76ae9b193118a215ba523">Serialize</a> (std::ostream &amp;Stream, const T &amp;Converted, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Indent=<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>(&quot;&quot;))</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert any class that supports serialization or has a serializer to a string of chars in a stream.  <a href="#a21d2dc7a6ca76ae9b193118a215ba523"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ab061665515c8e8a8b09ee54d93612da1">SerializeError</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FailedTo, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;ClassName, bool SOrD=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Simply does some string concatenation, then throws an <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>.  <a href="#ab061665515c8e8a8b09ee54d93612da1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a52369c62b87ecdbfbc6b82a572f21651">ShapeTypeToString</a> (<a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d">CollisionShape::ShapeType</a> ShapeToConvert)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a string suitable for human eyes from a <a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d" title="This enum describes what kind of shape you are currently working with.">CollisionShape::ShapeType</a>, may not be suitable for endusers.  <a href="#a52369c62b87ecdbfbc6b82a572f21651"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#ab855b02f8aecd53b0f876e20d6f04f05">SloppyProtoSerialize</a> (const T &amp;Converted, <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to interface with a previous version of the serialization code.  <a href="#ab855b02f8aecd53b0f876e20d6f04f05"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">ConstraintParam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#a198eb79806849ed29c2a329b60a094ab">StringAsConstraintParam</a> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Param)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert A string that might be ConstraintParam to one.  <a href="#a198eb79806849ed29c2a329b60a094ab"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html#acae3fd66fbd56ed04a8d61bebee11769">StringToShapeType</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;TypeName)</td></tr>
@@ -561,7 +613,7 @@ Variables</h2></td></tr>
 <p>A datatype to represent one character. </p>
 <p>This should be a char if String is an std::string. The XML parser expects this to be either char or wchar_t and has not be test with external types. The XML Parser expects XML_WCHAR_MODE to be defined if wchar_t is used. A remarked definition of this exists near the Character typedef in <a class="el" href="datatypes_8h_source.html">datatypes.h</a> </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00152">152</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00153">153</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -579,7 +631,7 @@ Variables</h2></td></tr>
 <p>A Datatype used to a series of imutable characters. </p>
 <p>This is a typedef to const String, but could change. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00145">145</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00146">146</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -595,9 +647,9 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>An 8-bit integer. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Verify that these "fixed-width" type-defs work on mobiles and tablets.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Verify that these "fixed-width" type-defs work on mobiles and tablets.</dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00078">78</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00079">79</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -615,7 +667,7 @@ Variables</h2></td></tr>
 <p>A datatype use to represent any integer close to. </p>
 <p>This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00129">129</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00130">130</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -633,7 +685,7 @@ Variables</h2></td></tr>
 <p>This is an internal datatype use to communicate with the User input Subsystem. </p>
 <p>This is a typedef to SDL_Event. See the SDL Documentation for more details </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00159">159</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00160">160</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -649,9 +701,9 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>A Datatype used to represent a real floating point number. </p>
-<p>This Datatype is currently a typedef to a float, This is to match our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. </p>
+<p>This Datatype is currently a typedef to a float, This is to match our compilations of <a class="el" href="namespaceOgre.html">Ogre</a> (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00118">118</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00119">119</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -669,7 +721,7 @@ Variables</h2></td></tr>
 <p>A Datatype used to a series of characters. </p>
 <p>This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00135">135</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00136">136</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -687,7 +739,25 @@ Variables</h2></td></tr>
 <p>A Datatype used to represent an postive integer numbers. </p>
 <p>This is a typedef to unsigned Long. but could be smaller in some situations </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00123">123</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00124">124</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a08b3adb0d2632e4f6a454fdf3cf5efda"></a><!-- doxytag: member="Mezzanine::WideString" ref="a08b3adb0d2632e4f6a454fdf3cf5efda" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a08b3adb0d2632e4f6a454fdf3cf5efda">Mezzanine::WideString</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>A wide version of the String typedef. </p>
+<p>Wide strings are seldom used, but often come in handy when dealing with Unicode strings. </p>
+
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00141">141</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -817,6 +887,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a8892173bd6aaf7d0e34a07b2b30aad33"></a><!-- doxytag: member="Mezzanine::OrientationMode" ref="a8892173bd6aaf7d0e34a07b2b30aad33" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33">Mezzanine::OrientationMode</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Simple enum for communicating the orientation the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> and <a class="el" href="classMezzanine_1_1Camera.html" title="This is the camera class.">Camera</a> have relative to the world it is rendering. </p>
+<p>This enum is used by the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> and graphics sub-systems for when a change in orientation is detected. Under normal circumstances this kind of thing should only occur in mobile devices such as SmartPhones and Tablets. However this can be forced on other devices/platforms. </p>
+
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00103">103</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1bb0347c37954bc71c4344e4b55c729a"></a><!-- doxytag: member="Mezzanine::RenderSystem" ref="a1bb0347c37954bc71c4344e4b55c729a" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -831,7 +919,7 @@ Variables</h2></td></tr>
 <p>Used primarily by the graphics manager class during initialization. </p>
 <p>This enum specifies which Rendersystem is to be used for rendering. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00102">102</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00118">118</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -862,25 +950,55 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00116">116</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00133">133</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a30335416fc857844e8360c84d1d1b56c"></a><!-- doxytag: member="Mezzanine::WorldObjectType" ref="a30335416fc857844e8360c84d1d1b56c" args="" -->
+<a class="anchor" id="ad81c74de3529f1e643bd145173924ed3"></a><!-- doxytag: member="Mezzanine::TransformSpace" ref="ad81c74de3529f1e643bd145173924ed3" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">Mezzanine::WorldObjectType</a></td>
+          <td class="memname">enum <a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3">Mezzanine::TransformSpace</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used to define what frame of reference is to be used when positioning or rotating objects. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="ad81c74de3529f1e643bd145173924ed3aa1986039b3e4c80c8564c8916e68e61c"></a><!-- doxytag: member="TS_Local" ref="ad81c74de3529f1e643bd145173924ed3aa1986039b3e4c80c8564c8916e68e61c" args="" -->TS_Local</em>&nbsp;</td><td>
+<p>Local space, aka the object in questions world position is used as origin. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ad81c74de3529f1e643bd145173924ed3a352c41c07844c77508ce36b43a30b553"></a><!-- doxytag: member="TS_Parent" ref="ad81c74de3529f1e643bd145173924ed3a352c41c07844c77508ce36b43a30b553" args="" -->TS_Parent</em>&nbsp;</td><td>
+<p>Mostly reserved for rotations, means a rotation to occur around the parent instead of self. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d"></a><!-- doxytag: member="TS_World" ref="ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d" args="" -->TS_World</em>&nbsp;</td><td>
+<p><a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> space. </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00142">142</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae8cd04f706f4998be62f454b7119c718"></a><!-- doxytag: member="Mezzanine::WorldAndSceneObjectType" ref="ae8cd04f706f4998be62f454b7119c718" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">Mezzanine::WorldAndSceneObjectType</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Used by various classes to help identify what class an object is. </p>
-<p>This is mostly used internally for casting void pointers. </p>
+<p>This enum can be used to express any object which could be considered "insertable" into the game world. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00137">137</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.html#l00163">163</a> of file <a class="el" href="enumerations_8h_source.html">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -945,12 +1063,12 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ac7be2623357ff699de474212404a4227"></a><!-- doxytag: member="Mezzanine::CreateShape" ref="ac7be2623357ff699de474212404a4227" args="(xml::Node OneNode)" -->
+<a class="anchor" id="a3b5904fe847274e3bd0d6a1b39cbed02"></a><!-- doxytag: member="Mezzanine::CreateShape" ref="a3b5904fe847274e3bd0d6a1b39cbed02" args="(xml::Node OneNode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a>* Mezzanine::CreateShape </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1CollisionShape.html">CollisionShape</a> *MEZZ_LIB Mezzanine::CreateShape </td>
           <td>(</td>
           <td class="paramtype">xml::Node&#160;</td>
           <td class="paramname"><em>OneNode</em></td><td>)</td>
@@ -960,9 +1078,18 @@ Variables</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">DynamicMeshCollisionShape</a> can be deserialized </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a> can be deserialized </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> can be deserialized </dd></dl>
+<p>Create a <a class="el" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a> from a snippet of xml. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>A Node for any <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Shape that can be instanstiated </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="classMezzanine_1_1CollisionShape.html" title="This is the base class for all collision shapes.">CollisionShape</a> of the Correct Type with the values stored in the XML. </dd></dl>
+
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1DynamicMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">DynamicMeshCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1ActorSoftCollisionShape.html" title="A collision shape for soft actors.">ActorSoftCollisionShape</a> can be deserialized </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Complete CreateShape function once <a class="el" href="classMezzanine_1_1StaticMeshCollisionShape.html" title="A triangle mesh collsion shape based on a graphics mesh.">StaticMeshCollisionShape</a> can be deserialized </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01640">1640</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
@@ -1016,6 +1143,200 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af7841a01c9f5e835029a9c70c0de0de5"></a><!-- doxytag: member="Mezzanine::DeSerialize" ref="af7841a01c9f5e835029a9c70c0de0de5" args="(std::istream &amp;Stream, T &amp;Converted)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream&amp; Mezzanine::DeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;&#160;</td>
+          <td class="paramname"><em>Converted</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Deserialize the next xml tag in the stream into a specific in memory class instance. </p>
+<p>"void ProtoDeSerialize(const xml::Node&amp;)" and "static String SerializableName() const" must be implemented on the class instance that is passed in for this to work </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The istream to extract the required data from </td></tr>
+    <tr><td class="paramname">Converted</td><td>The Class member that is deserialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns the istream that provided the serialized data. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00449">449</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aec75a8a3369287cb02f331c62b32df73"></a><!-- doxytag: member="Mezzanine::DeSerializeError" ref="aec75a8a3369287cb02f331c62b32df73" args="(const String &amp;FailedTo, const String &amp;ClassName, bool SOrD=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::DeSerializeError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>FailedTo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>ClassName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>SOrD</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Simply does some string concatenation, then throws an <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">FailedTo</td><td>What failed to happed for example "create testnode" or "acquire a mutex" </td></tr>
+    <tr><td class="paramname">ClassName</td><td>The name of the class throw the exception </td></tr>
+    <tr><td class="paramname">SOrD</td><td>Defaults to false, and if true uses the word "Serialization", otherwise uses the word "DeSerialization" </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">A</td><td><a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a> with the message "Could not {FailedTo} during {ClassName} [De]Serialization."</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This just calls <a class="el" href="namespaceMezzanine.html#ab061665515c8e8a8b09ee54d93612da1" title="Simply does some string concatenation, then throws an Exception.">SerializeError()</a> with the third parameter false. This exists solely to make code A little more readable. </p>
+
+<p>Definition at line <a class="el" href="serialization_8cpp_source.html#l00051">51</a> of file <a class="el" href="serialization_8cpp_source.html">serialization.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a21d2dc7a6ca76ae9b193118a215ba523"></a><!-- doxytag: member="Mezzanine::Serialize" ref="a21d2dc7a6ca76ae9b193118a215ba523" args="(std::ostream &amp;Stream, const T &amp;Converted, const String &amp;Indent=String(&quot;&quot;))" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; Mezzanine::Serialize </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>Stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>Converted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>Indent</em> = <code>String(&quot;&quot;)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert any class that supports serialization or has a serializer to a string of chars in a stream. </p>
+<p>Any Class will work with this template as long as it implements the method "xml::Node ProtoSerialize(xml::Document&amp;) const" </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Stream</td><td>The ostream to put the serializable into. </td></tr>
+    <tr><td class="paramname">Converted</td><td>The item to be serialized, which must have a "xml::Node ProtoSerialize(xml::Node&amp; CurrentRoot) const" method. </td></tr>
+    <tr><td class="paramname">Indent</td><td>Defaults to nothing but can be set to "\t" to get normal </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A the stream that was passed and now contains the serialized object. </dd></dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00433">433</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab061665515c8e8a8b09ee54d93612da1"></a><!-- doxytag: member="Mezzanine::SerializeError" ref="ab061665515c8e8a8b09ee54d93612da1" args="(const String &amp;FailedTo, const String &amp;ClassName, bool SOrD=true)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SerializeError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>FailedTo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&#160;</td>
+          <td class="paramname"><em>ClassName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>SOrD</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Simply does some string concatenation, then throws an <a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">FailedTo</td><td>What failed to happed for example "create testnode" or "acquire a mutex" </td></tr>
+    <tr><td class="paramname">ClassName</td><td>The name of the class throw the exception </td></tr>
+    <tr><td class="paramname">SOrD</td><td>Defaults to true, and if true uses the word "Serialization", otherwise uses the word "DeSerialization" </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">A</td><td><a class="el" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Mezzanine::Exception</a> with the message "Could not {FailedTo} during {ClassName} [De]Serialization.""Could not {FailedTo} during {ClassName} [De]Serialization." </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="serialization_8cpp_source.html#l00048">48</a> of file <a class="el" href="serialization_8cpp_source.html">serialization.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a52369c62b87ecdbfbc6b82a572f21651"></a><!-- doxytag: member="Mezzanine::ShapeTypeToString" ref="a52369c62b87ecdbfbc6b82a572f21651" args="(CollisionShape::ShapeType ShapeToConvert)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1041,6 +1362,47 @@ Variables</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A String with human readable contents corresponding to the passed in type. </dd></dl>
 
 <p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l01704">1704</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab855b02f8aecd53b0f876e20d6f04f05"></a><!-- doxytag: member="Mezzanine::SloppyProtoSerialize" ref="ab855b02f8aecd53b0f876e20d6f04f05" args="(const T &amp;Converted, xml::Node &amp;CurrentRoot)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::SloppyProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>Converted</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">xml::Node &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used to interface with a previous version of the serialization code. </p>
+<p>The older serialization was implemented entirely in streaming operators. This uses those, however inneficient to get the <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> that the current serialization solution is centered around. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Converted</td><td>The class implementing older serialization code. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The place in the xml hiearchy to append the items to be sloppily ProtoSerialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="serialization_8h_source.html#l00466">466</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
 
 </div>
 </div>
@@ -1137,7 +1499,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A double with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Typedefs could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00257">257</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00258">258</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1168,7 +1530,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A float with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Real Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00244">244</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00245">245</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1199,7 +1561,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00204">204</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00205">205</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1591,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Integer with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00190">190</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00191">191</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1259,7 +1621,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Real with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00230">230</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00231">231</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1289,7 +1651,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A String with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00168">168</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00169">169</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1320,7 +1682,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An unsigned int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00218">218</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00219">219</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1350,7 +1712,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Whole with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00178">178</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00179">179</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1379,7 +1741,7 @@ template&lt;class T &gt; </div>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1389,6 +1751,6 @@ template&lt;class T &gt; </div>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

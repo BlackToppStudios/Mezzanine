@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::UI::Rectangle Class Reference</h1>  </div>
@@ -84,7 +85,11 @@ Inheritance diagram for Mezzanine::UI::Rectangle:</div>
  <div class="center">
   <img src="classMezzanine_1_1UI_1_1Rectangle.png" usemap="#Mezzanine::UI::Rectangle_map" alt=""/>
   <map id="Mezzanine::UI::Rectangle_map" name="Mezzanine::UI::Rectangle_map">
-<area href="classMezzanine_1_1UI_1_1BasicRenderable.html" alt="Mezzanine::UI::BasicRenderable" shape="rect" coords="0,0,192,24"/>
+<area href="classMezzanine_1_1UI_1_1BasicRenderable.html" alt="Mezzanine::UI::BasicRenderable" shape="rect" coords="202,0,394,24"/>
+<area href="classMezzanine_1_1UI_1_1Button.html" alt="Mezzanine::UI::Button" shape="rect" coords="0,112,192,136"/>
+<area href="classMezzanine_1_1UI_1_1Caption.html" alt="Mezzanine::UI::Caption" shape="rect" coords="202,112,394,136"/>
+<area href="classMezzanine_1_1UI_1_1MarkupText.html" alt="Mezzanine::UI::MarkupText" shape="rect" coords="404,112,596,136"/>
+<area href="classMezzanine_1_1UI_1_1TextButton.html" alt="Mezzanine::UI::TextButton" shape="rect" coords="0,168,192,192"/>
 </map>
  </div></div>
 
@@ -92,75 +97,178 @@ Inheritance diagram for Mezzanine::UI::Rectangle:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09">CheckMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the mouse is over this rectangle.  <a href="#ad4d0f9a0e2a445acea1ef0a2d1edfc09"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31">GetActualPosition</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top left position of this rectangle in pixels.  <a href="#a642bbe279ac7c4473f8449e58f61ac31"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b">GetActualSize</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this rectangle in pixels.  <a href="#a172e2725569b4d5c234349fe5b797d2b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#aa55d6bb667692c4b94bbc8c749851e76">GetMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stored value of whether or not the mouse is over the rectangle.  <a href="#aa55d6bb667692c4b94bbc8c749851e76"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a8df1f5fbba85a0a6f252ae470ce93c07">GetPosition</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative top left position of this rectangle.  <a href="#a8df1f5fbba85a0a6f252ae470ce93c07"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a1ac92749826bce7b8f9b3d3e9d27a12f">GetPrimaryAtlas</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set primary atlas.  <a href="#a1ac92749826bce7b8f9b3d3e9d27a12f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a552cc0809a838c25f39248d16b591518">GetRenderPriority</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#a552cc0809a838c25f39248d16b591518"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a2deccb0b2e08116b01941afdd4eb7475">GetSize</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this rectangle.  <a href="#a2deccb0b2e08116b01941afdd4eb7475"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95c50cd38af0f250ff5902d54b5f425e"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::Hide" ref="a95c50cd38af0f250ff5902d54b5f425e" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a95c50cd38af0f250ff5902d54b5f425e">Hide</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to hide. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a71056f4bec912c0b4c9b3cc48ed34ec5">IsVisible</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this rectangle.  <a href="#a71056f4bec912c0b4c9b3cc48ed34ec5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6940d920a491fde80b9df599fab9daa"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::NoBorder" ref="ac6940d920a491fde80b9df599fab9daa" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ac6940d920a491fde80b9df599fab9daa">NoBorder</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables any border set on this rectangle if one is currently set. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a2048370186db33f608584c9a33de71a1">Rectangle</a> (const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a2048370186db33f608584c9a33de71a1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the top left position of this rectangle in pixels.  <a href="#ae0fa331126efedd6517a0a7775bdbbcb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274">SetActualSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of this rectangle in pixels.  <a href="#afa29e6cc6d4a180d2b4a718a237aa274"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a11a3444ba78ad8c8f6303ccc73543c4b">SetBackgroundColour</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background colour of the rectangle.  <a href="#a11a3444ba78ad8c8f6303ccc73543c4b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ada0a67a6718ce99a2e869ecb81ddcf35">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the rectangle.  <a href="#ada0a67a6718ce99a2e869ecb81ddcf35"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a9607ad557ba41738a2b6dc31abba6b5c">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the rectangle.  <a href="#a9607ad557ba41738a2b6dc31abba6b5c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a7a5309d467b85191c6f9ff82ab09a136">SetBorder</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Width, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a border and sets it's colour.  <a href="#a7a5309d467b85191c6f9ff82ab09a136"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674">SetPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative top left position of this rectangle.  <a href="#a95511f0a8505f07892434bdc363a7674"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a7be99336eb1a608b1cf96d6f7e63477e">SetPrimaryAtlas</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Atlas to be assumed when one isn't provided for atlas related tasks.  <a href="#a7be99336eb1a608b1cf96d6f7e63477e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a30985ea691f36eaafe5d6864eec8ae19">SetRenderPriority</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;Priority)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#a30985ea691f36eaafe5d6864eec8ae19"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c">SetSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this rectangle.  <a href="#a1f7a9a5686063b03a254c26a420f458c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#adca7d64f834767ac6aa6440920920f36">SetVisible</a> (bool Visible)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this rectangle.  <a href="#adca7d64f834767ac6aa6440920920f36"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a724c379dadc2743801c9495875d3a93c"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::Show" ref="a724c379dadc2743801c9495875d3a93c" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a724c379dadc2743801c9495875d3a93c">Show</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this rectangle to be shown. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c">UpdateDimensions</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this rectangle to match those of the new screen size.  <a href="#a86d759d43ec0c1d429c572a782405e8c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c2a466100f36a45c7ed2f85f0a9e269"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::~Rectangle" ref="a1c2a466100f36a45c7ed2f85f0a9e269" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a1c2a466100f36a45c7ed2f85f0a9e269">~Rectangle</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a63c0d8868a46039cffc03151eb546604">_AppendVertices</a> (<a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;Vertices)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ac9753a163a9f0e0cae1d7840472e9923">_Redraw</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09">CheckMouseHover</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the mouse is over this renderable.  <a href="#ad4d0f9a0e2a445acea1ef0a2d1edfc09"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a642bbe279ac7c4473f8449e58f61ac31">GetActualPosition</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top left position of this renderable in pixels.  <a href="#a642bbe279ac7c4473f8449e58f61ac31"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a172e2725569b4d5c234349fe5b797d2b">GetActualSize</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this renderable in pixels.  <a href="#a172e2725569b4d5c234349fe5b797d2b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ab83257db4897765e4c097826a8df58bd">GetBackgroundColour</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">UI::QuadCorner</a> &amp;Corner) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the colour of a corner of this renderable.  <a href="#ab83257db4897765e4c097826a8df58bd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a41c1a24d9c615cabbccb9a71e6f28e66">GetBorderColour</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a060de8b459e4991f4a1627166079c406">UI::Border</a> &amp;Side) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the colour of a border on this renderable.  <a href="#a41c1a24d9c615cabbccb9a71e6f28e66"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#afd59e442de88083fa432714ec2486bcc">GetBorderWidth</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the border width of this renderable.  <a href="#afd59e442de88083fa432714ec2486bcc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#aa55d6bb667692c4b94bbc8c749851e76">GetMouseHover</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stored value of whether or not the mouse is over the renderable.  <a href="#aa55d6bb667692c4b94bbc8c749851e76"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a8df1f5fbba85a0a6f252ae470ce93c07">GetPosition</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative top left position of this renderable.  <a href="#a8df1f5fbba85a0a6f252ae470ce93c07"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ac8d1a3c0f7584812e00ef2d1688d20aa">GetRotationCenter</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current set rotation point.  <a href="#ac8d1a3c0f7584812e00ef2d1688d20aa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a6049b39f58d294ae2ae5256889d79311">GetRotationDegrees</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current rotation applied to this renderable in degrees.  <a href="#a6049b39f58d294ae2ae5256889d79311"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#af7628218ad7b2a1b12d75d578849261e">GetRotationRadians</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current rotation applied to this renderable in radians.  <a href="#af7628218ad7b2a1b12d75d578849261e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a2deccb0b2e08116b01941afdd4eb7475">GetSize</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this renderable.  <a href="#a2deccb0b2e08116b01941afdd4eb7475"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6940d920a491fde80b9df599fab9daa"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::NoBorder" ref="ac6940d920a491fde80b9df599fab9daa" args="()" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ac6940d920a491fde80b9df599fab9daa">NoBorder</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables any border set on this renderable if one is currently set. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ae0fa331126efedd6517a0a7775bdbbcb">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the top left position of this renderable in pixels.  <a href="#ae0fa331126efedd6517a0a7775bdbbcb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#afa29e6cc6d4a180d2b4a718a237aa274">SetActualSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of this renderable in pixels.  <a href="#afa29e6cc6d4a180d2b4a718a237aa274"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a11a3444ba78ad8c8f6303ccc73543c4b">SetBackgroundColour</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background colour of the renderable.  <a href="#a11a3444ba78ad8c8f6303ccc73543c4b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a84a84444478426d12e92a6b573d0b403">SetBackgroundColour</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">UI::QuadCorner</a> &amp;Corner, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background colour for one corner the renderable.  <a href="#a84a84444478426d12e92a6b573d0b403"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a0540906339a6827ca1e8bf52482c44aa">SetBackgroundGradient</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a694cd1781f4196f8c391c9147cd41e8e">UI::Gradient</a> &amp;Grad, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;ColourA, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;ColourB)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a colour gradient to be applied to this renderable.  <a href="#a0540906339a6827ca1e8bf52482c44aa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a7022346cea3766eba2338f9304c20218">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the renderable.  <a href="#a7022346cea3766eba2338f9304c20218"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a0e9e0664fd82258df48145cfe9d6000d">SetBackgroundSprite</a> (<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *PSprite)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the renderable.  <a href="#a0e9e0664fd82258df48145cfe9d6000d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad0814b6b4b13a4857b3bcaa163fd3210">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the renderable.  <a href="#ad0814b6b4b13a4857b3bcaa163fd3210"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a631b89f63f524ede7d5e0a622058493d">SetBorder</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Width, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;North, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;South, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;East, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;West)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets all parameters for enabling a border.  <a href="#a631b89f63f524ede7d5e0a622058493d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a7a5309d467b85191c6f9ff82ab09a136">SetBorder</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Width, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets all parameters for enabling a border.  <a href="#a7a5309d467b85191c6f9ff82ab09a136"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#abd6a232787fe71303ea2f567f210657f">SetBorderColour</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#a060de8b459e4991f4a1627166079c406">UI::Border</a> &amp;Side, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour of one side of the border for this renderable.  <a href="#abd6a232787fe71303ea2f567f210657f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a8ef6d94b2d5a0bb933102026c8bea565">SetBorderColour</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour of the border for this renderable.  <a href="#a8ef6d94b2d5a0bb933102026c8bea565"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a25420a995854de81d7cd16be403141a7">SetBorderWidth</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Width)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the width of the border for this renderable.  <a href="#a25420a995854de81d7cd16be403141a7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a95511f0a8505f07892434bdc363a7674">SetPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative top left position of this renderable.  <a href="#a95511f0a8505f07892434bdc363a7674"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a3d04e80e480f70b1db601c8c364c699d">SetRotationCenter</a> (bool Custom, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Center=<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>())</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the point around which this renderable should rotate.  <a href="#a3d04e80e480f70b1db601c8c364c699d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a150b80178ff979c63a009464ba66b7e2">SetRotationDegrees</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Degrees)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rotation to be applied to this renderable.  <a href="#a150b80178ff979c63a009464ba66b7e2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a03e8cb54ff9ff0c2a87e69895ac34080">SetRotationRadians</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Radians)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rotation to be applied to this renderable.  <a href="#a03e8cb54ff9ff0c2a87e69895ac34080"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a1f7a9a5686063b03a254c26a420f458c">SetSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this renderable.  <a href="#a1f7a9a5686063b03a254c26a420f458c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a86d759d43ec0c1d429c572a782405e8c">UpdateDimensions</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this renderable to match those of the new screen size.  <a href="#a86d759d43ec0c1d429c572a782405e8c"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#aa891d12c602dff942e8c00cfea078bd3">Rectangle</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inheritance constructor.  <a href="#aa891d12c602dff942e8c00cfea078bd3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a902a27c0ac1f9b3b20f9134538aebd37"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::ConstructRectangle" ref="a902a27c0ac1f9b3b20f9134538aebd37" args="(const UI::RenderableRect &amp;Rect)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a902a27c0ac1f9b3b20f9134538aebd37">ConstructRectangle</a> (const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">UI::RenderableRect</a> &amp;Rect)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the rectangle. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ac9f21e25cee101b44bd79da9200c60"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::DrawBorder" ref="a6ac9f21e25cee101b44bd79da9200c60" args="(const Vector2 &amp;TopLeft, const Vector2 &amp;TopRight, const Vector2 &amp;BottomLeft, const Vector2 &amp;BottomRight, const Vector2 &amp;OuterTopLeft, const Vector2 &amp;OuterTopRight, const Vector2 &amp;OuterBottomLeft, const Vector2 &amp;OuterBottomRight)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a6ac9f21e25cee101b44bd79da9200c60">DrawBorder</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;TopLeft, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;TopRight, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;BottomLeft, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;BottomRight, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;OuterTopLeft, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;OuterTopRight, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;OuterBottomLeft, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;OuterBottomRight)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the border, if any is set. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6f23c178e4a3298ee99a90ed72f2296"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::DrawFill" ref="ad6f23c178e4a3298ee99a90ed72f2296" args="(const Vector2 &amp;TopLeft, const Vector2 &amp;TopRight, const Vector2 &amp;BottomLeft, const Vector2 &amp;BottomRight)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad6f23c178e4a3298ee99a90ed72f2296">DrawFill</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;TopLeft, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;TopRight, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;BottomLeft, const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;BottomRight)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the main rectangle. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae326bafaa0b801e0fb801fb4c229fc83"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::RotationTransform" ref="ae326bafaa0b801e0fb801fb4c229fc83" args="(Vector2 &amp;TopLeft, Vector2 &amp;TopRight, Vector2 &amp;BottomLeft, Vector2 &amp;BottomRight)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ae326bafaa0b801e0fb801fb4c229fc83">RotationTransform</a> (<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;TopLeft, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;TopRight, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;BottomLeft, <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;BottomRight)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms coordinates to be used in rendering. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a408bbcbdc321f48b4cbbfef427410596"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetHovered" ref="a408bbcbdc321f48b4cbbfef427410596" args="(bool Hovered)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a408bbcbdc321f48b4cbbfef427410596">SetHovered</a> (bool Hovered)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the hovered state of this renderable. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a205de435ea7020b58a4c9a2dc538ce25"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetSprite" ref="a205de435ea7020b58a4c9a2dc538ce25" args="(Sprite *PSprite)" -->
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a205de435ea7020b58a4c9a2dc538ce25">SetSprite</a> (<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *PSprite)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets all the sprite meta-data of this class to render a specific sprite. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2943bd6d67a357ff21995b6424812c9e"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GRectangle" ref="a2943bd6d67a357ff21995b6424812c9e" args="" -->
-Gorilla::Rectangle *&#160;</td><td class="memItemRight" valign="bottom"><b>GRectangle</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a1844ffdc3a1df1261257c237945dee"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::ActPosition" ref="a0a1844ffdc3a1df1261257c237945dee" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ActPosition</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57fdf2b6f459a24b5f9552a07338d2e8"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::ActSize" ref="a57fdf2b6f459a24b5f9552a07338d2e8" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ActSize</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a602939b91407226cab6a7368e8fbbf54"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::BackgroundColours" ref="a602939b91407226cab6a7368e8fbbf54" args="[4]" -->
+<a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><b>BackgroundColours</b> [4]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2017900278d9408f4a97aff23fe6318e"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::BorderColours" ref="a2017900278d9408f4a97aff23fe6318e" args="[4]" -->
+<a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><b>BorderColours</b> [4]</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2296bd0a7ef0e5b1ab833bae09ee44cc"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::BorderWidth" ref="a2296bd0a7ef0e5b1ab833bae09ee44cc" args="" -->
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>BorderWidth</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3373f28f6ca1a63bb6281249d4cce204"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::CustomCenter" ref="a3373f28f6ca1a63bb6281249d4cce204" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>CustomCenter</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf9284f83f1452b37b301bc12cc1f254"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::MouseHover" ref="abf9284f83f1452b37b301bc12cc1f254" args="" -->
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bf94d32f713e155bb17cc6ce6539644"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::RelPosition" ref="a4bf94d32f713e155bb17cc6ce6539644" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RelPosition</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a19cf1c15e52ff83dabd7564c7f458a2c"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::RelSize" ref="a19cf1c15e52ff83dabd7564c7f458a2c" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RelSize</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49588b7cfb30ed704686a79b181e1a58"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::RotAngle" ref="a49588b7cfb30ed704686a79b181e1a58" args="" -->
+<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RotAngle</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04438e63ac29ff1da22fa0158fefe907"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::RotCenter" ref="a04438e63ac29ff1da22fa0158fefe907" args="" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>RotCenter</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac12f647fac7888a766574540a77eba2b"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::UVs" ref="ac12f647fac7888a766574540a77eba2b" args="[4]" -->
+<a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UVs</b> [4]</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is a helper class, specifically for use with background sprites and colours. </p>
 <p>Unlike a button, this class cannot be interacted with by clicking. It is important to understand what you want your space to do when selecting the class to use. </p>
 
-<p>Definition at line <a class="el" href="uirectangle_8h_source.html#l00068">68</a> of file <a class="el" href="uirectangle_8h_source.html">uirectangle.h</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8h_source.html#l00062">62</a> of file <a class="el" href="uirectangle_8h_source.html">uirectangle.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aa891d12c602dff942e8c00cfea078bd3"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::Rectangle" ref="aa891d12c602dff942e8c00cfea078bd3" args="(const String &amp;name, const RenderableRect &amp;Rect, Layer *PLayer)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::UI::Rectangle::Rectangle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *&#160;</td>
+          <td class="paramname"><em>PLayer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Inheritance constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name to be given to this renderable. </td></tr>
+    <tr><td class="paramname">Rect</td><td>The Rect representing the position and size of the rectangle. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a></td><td>Pointer to the parent <a class="el" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a> that created this rectangle. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00067">67</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a2048370186db33f608584c9a33de71a1"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::Rectangle" ref="a2048370186db33f608584c9a33de71a1" args="(const RenderableRect &amp;Rect, Layer *PLayer)" -->
 <div class="memitem">
 <div class="memproto">
@@ -195,11 +303,62 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00058">58</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00057">57</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a63c0d8868a46039cffc03151eb546604"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::_AppendVertices" ref="a63c0d8868a46039cffc03151eb546604" args="(ScreenVertexData &amp;Vertices)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::_AppendVertices </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">ScreenVertexData</a> &amp;&#160;</td>
+          <td class="paramname"><em>Vertices</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Appends the vertices of this renderable to another vector. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Vertices</td><td>The vector of vertex's to append to. </td></tr>
+  </table>
+  </dd>
+</dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aafd3dd1e288791b1071cb8c043866504">Mezzanine::UI::BasicRenderable</a>.</p>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00570">570</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac9753a163a9f0e0cae1d7840472e9923"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::_Redraw" ref="ac9753a163a9f0e0cae1d7840472e9923" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::_Redraw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Regenerates the verticies in this renderable. </p>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a2fc7dda5e44e8a8aca838864d67fde9b">Mezzanine::UI::BasicRenderable</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#aba11ec4c0ed480eb4210031c0a370f7e">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a40beb1a89e01e9d3cbdfa939969e44ce">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a1db8e160fd6f9327b298b69776ed7da7">Mezzanine::UI::TextButton</a>.</p>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00471">471</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad4d0f9a0e2a445acea1ef0a2d1edfc09"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::CheckMouseHover" ref="ad4d0f9a0e2a445acea1ef0a2d1edfc09" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -214,10 +373,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Determines whether the mouse is over this rectangle. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether the mouse is over this rectangle. </dd></dl>
+<p>Determines whether the mouse is over this renderable. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether the mouse is over this renderable. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00103">103</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00229">229</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -235,12 +394,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the top left position of this rectangle in pixels. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this rectangle. </dd></dl>
+<p>Gets the top left position of this renderable in pixels. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7469e579a834b00bd90a87fd754d14af">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00167">167</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00433">433</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -258,12 +415,87 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the size of this rectangle in pixels. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this rectangle. </dd></dl>
+<p>Gets the size of this renderable in pixels. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this renderable. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a14b2ff20cdf114c34cc23074d0b7fb5c">Mezzanine::UI::BasicRenderable</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00459">459</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00193">193</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="ab83257db4897765e4c097826a8df58bd"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetBackgroundColour" ref="ab83257db4897765e4c097826a8df58bd" args="(const UI::QuadCorner &amp;Corner) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> Mezzanine::UI::Rectangle::GetBackgroundColour </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">UI::QuadCorner</a> &amp;&#160;</td>
+          <td class="paramname"><em>Corner</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the colour of a corner of this renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Corner</td><td>The corner to get the colour for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the colour of the specified corner. </dd></dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00321">321</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a41c1a24d9c615cabbccb9a71e6f28e66"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetBorderColour" ref="a41c1a24d9c615cabbccb9a71e6f28e66" args="(const UI::Border &amp;Side) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> Mezzanine::UI::Rectangle::GetBorderColour </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#a060de8b459e4991f4a1627166079c406">UI::Border</a> &amp;&#160;</td>
+          <td class="paramname"><em>Side</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the colour of a border on this renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Side</td><td>The side to retrieve the colour for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the colour of the border on the specified side. </dd></dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00373">373</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd59e442de88083fa432714ec2486bcc"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetBorderWidth" ref="afd59e442de88083fa432714ec2486bcc" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::UI::Rectangle::GetBorderWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the border width of this renderable. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real with the currently set width of the border. </dd></dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00368">368</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -281,11 +513,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the stored value of whether or not the mouse is over the rectangle. </p>
-<p>This function does not perform any checks. If you want to do a manual check, call <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09" title="Determines whether the mouse is over this rectangle.">CheckMouseHover()</a>. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the stored value of whether or not the mouse is over the rectangle. </dd></dl>
+<p>Gets the stored value of whether or not the mouse is over the renderable. </p>
+<p>This function does not perform any checks. If you want to do a manual check, call <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad4d0f9a0e2a445acea1ef0a2d1edfc09" title="Determines whether the mouse is over this renderable.">CheckMouseHover()</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the stored value of whether or not the mouse is over the renderable. </dd></dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00117">117</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00241">241</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,21 +535,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the relative top left position of this rectangle. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this rectangle. </dd></dl>
+<p>Gets the relative top left position of this renderable. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ab6aa1fb10dc7e9e412e7caac9133c9a6">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00156">156</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00420">420</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1ac92749826bce7b8f9b3d3e9d27a12f"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetPrimaryAtlas" ref="a1ac92749826bce7b8f9b3d3e9d27a12f" args="() const " -->
+<a class="anchor" id="ac8d1a3c0f7584812e00ef2d1688d20aa"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetRotationCenter" ref="ac8d1a3c0f7584812e00ef2d1688d20aa" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::UI::Rectangle::GetPrimaryAtlas </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::Rectangle::GetRotationCenter </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [virtual]</code></td>
@@ -326,21 +556,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the currently set primary atlas. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of the primary atlas that is set, or an empty string if none. </dd></dl>
+<p>Gets the current set rotation point. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector 2 with the point around which this renderable rotates in screen space. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#abdb08ae3577da75762209b8cee486b24">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00244">244</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00407">407</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a552cc0809a838c25f39248d16b591518"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetRenderPriority" ref="a552cc0809a838c25f39248d16b591518" args="() const " -->
+<a class="anchor" id="a6049b39f58d294ae2ae5256889d79311"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetRotationDegrees" ref="a6049b39f58d294ae2ae5256889d79311" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> Mezzanine::UI::Rectangle::GetRenderPriority </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::UI::Rectangle::GetRotationDegrees </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [virtual]</code></td>
@@ -349,12 +577,31 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the priority this button should be rendered with. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing this button's priority level. </dd></dl>
+<p>Gets the current rotation applied to this renderable in degrees. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real with the current rotation. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a3279ed466dfc69203467b2bb32cf89be">Mezzanine::UI::BasicRenderable</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00390">390</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00219">219</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="af7628218ad7b2a1b12d75d578849261e"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::GetRotationRadians" ref="af7628218ad7b2a1b12d75d578849261e" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Mezzanine::UI::Rectangle::GetRotationRadians </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the current rotation applied to this renderable in radians. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real with the current rotation. </dd></dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00395">395</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -372,35 +619,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Gets the relative size of this rectangle. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this rectangle. </dd></dl>
+<p>Gets the relative size of this renderable. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this renderable. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a6486ceae69273b990bfe19b88c29d328">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00181">181</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a71056f4bec912c0b4c9b3cc48ed34ec5"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::IsVisible" ref="a71056f4bec912c0b4c9b3cc48ed34ec5" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::UI::Rectangle::IsVisible </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the visibility of this rectangle. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visibility of this rectangle. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a443bdeb7d95e6b765a5548966d380ecf">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00088">88</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00446">446</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,17 +641,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Sets the top left position of this rectangle in pixels. </p>
+<p>Sets the top left position of this renderable in pixels. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this rectangle. </td></tr>
+    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4741dde07f7eddddcc3d611d6c803fad">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00161">161</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00425">425</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -448,17 +668,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Sets the size of this rectangle in pixels. </p>
+<p>Sets the size of this renderable in pixels. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this rectangle. </td></tr>
+    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this renderable. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a69c87db17cacc2980f68777258329531">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00186">186</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00451">451</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -477,7 +695,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Sets the background colour of the rectangle. </p>
+<p>Sets the background colour of the renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">Colour</td><td>A colour value representing the colour to be set. </td></tr>
@@ -485,38 +703,123 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00122">122</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00246">246</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ada0a67a6718ce99a2e869ecb81ddcf35"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundSprite" ref="ada0a67a6718ce99a2e869ecb81ddcf35" args="(const String &amp;Name)" -->
+<a class="anchor" id="a84a84444478426d12e92a6b573d0b403"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundColour" ref="a84a84444478426d12e92a6b573d0b403" args="(const UI::QuadCorner &amp;Corner, const ColourValue &amp;Colour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBackgroundColour </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">UI::QuadCorner</a> &amp;&#160;</td>
+          <td class="paramname"><em>Corner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>Colour</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the background colour for one corner the renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Corner</td><td>Which corner the colour should be applied to. </td></tr>
+    <tr><td class="paramname">Colour</td><td>A colour value representing the colour to be set. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00255">255</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0540906339a6827ca1e8bf52482c44aa"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundGradient" ref="a0540906339a6827ca1e8bf52482c44aa" args="(const UI::Gradient &amp;Grad, const ColourValue &amp;ColourA, const ColourValue &amp;ColourB)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBackgroundGradient </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#a694cd1781f4196f8c391c9147cd41e8e">UI::Gradient</a> &amp;&#160;</td>
+          <td class="paramname"><em>Grad</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>ColourA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>ColourB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets a colour gradient to be applied to this renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Grad</td><td>The direction/style of gradient to enable. </td></tr>
+    <tr><td class="paramname">ColourA</td><td>The colour to apply to the first side of the gradient. </td></tr>
+    <tr><td class="paramname">ColourB</td><td>The colour to apply to the second side of the gradient. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00278">278</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e9e0664fd82258df48145cfe9d6000d"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundSprite" ref="a0e9e0664fd82258df48145cfe9d6000d" args="(Sprite *PSprite)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::UI::Rectangle::SetBackgroundSprite </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td>
+          <td class="paramname"><em>PSprite</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets the background image(if provided in the atlas) of the rectangle. </p>
+<p>Sets the background image(if provided in the atlas) of the renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the background. </td></tr>
+    <tr><td class="paramname">PSprite</td><td>A pointer to the sprite to set as the background. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00127">127</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728">Mezzanine::UI::Button</a>.</p>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00261">261</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9607ad557ba41738a2b6dc31abba6b5c"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundSprite" ref="a9607ad557ba41738a2b6dc31abba6b5c" args="(const String &amp;Name, const String &amp;Atlas)" -->
+<a class="anchor" id="a7022346cea3766eba2338f9304c20218"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundSprite" ref="a7022346cea3766eba2338f9304c20218" args="(const String &amp;SpriteName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -524,7 +827,36 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
           <td class="memname">void Mezzanine::UI::Rectangle::SetBackgroundSprite </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
+          <td class="paramname"><em>SpriteName</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the background image(if provided in the atlas) of the renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the background. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#a92731109f8888d1e82e27185d4c9d559">Mezzanine::UI::Button</a>.</p>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00266">266</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad0814b6b4b13a4857b3bcaa163fd3210"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBackgroundSprite" ref="ad0814b6b4b13a4857b3bcaa163fd3210" args="(const String &amp;SpriteName, const String &amp;Atlas)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBackgroundSprite </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>SpriteName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -541,16 +873,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Sets the background image(if provided in the atlas) of the rectangle. </p>
+<p>Sets the background image(if provided in the atlas) of the renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the background. </td></tr>
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the background. </td></tr>
     <tr><td class="paramname">Atlas</td><td>The Atlas to load the sprite from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00133">133</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Button.html#acd2b68924ad5f790afde9a32f83ca206">Mezzanine::UI::Button</a>.</p>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00272">272</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -579,15 +913,167 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Enables a border and sets it's colour. </p>
+<p>Sets all parameters for enabling a border. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Colour</td><td>A colour value representing the colour to be set. </td></tr>
+    <tr><td class="paramname">Width</td><td>The width to set for the border. </td></tr>
+    <tr><td class="paramname">Colour</td><td>The colour to be applied to all sides of the border. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00139">139</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00347">347</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a631b89f63f524ede7d5e0a622058493d"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBorder" ref="a631b89f63f524ede7d5e0a622058493d" args="(const Real &amp;Width, const ColourValue &amp;North, const ColourValue &amp;South, const ColourValue &amp;East, const ColourValue &amp;West)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBorder </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>North</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>South</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>East</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>West</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets all parameters for enabling a border. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Width</td><td>The width to set for the border. </td></tr>
+    <tr><td class="paramname">North</td><td>The colour to apply to the north side of the border. </td></tr>
+    <tr><td class="paramname">South</td><td>The colour to apply to the south side of the border. </td></tr>
+    <tr><td class="paramname">East</td><td>The colour to apply to the east side of the border. </td></tr>
+    <tr><td class="paramname">West</td><td>The colour to apply to the west side of the border. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00353">353</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8ef6d94b2d5a0bb933102026c8bea565"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBorderColour" ref="a8ef6d94b2d5a0bb933102026c8bea565" args="(const ColourValue &amp;Colour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBorderColour </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>Colour</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the colour of the border for this renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Colour</td><td>The colour to set for the border. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00332">332</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd6a232787fe71303ea2f567f210657f"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBorderColour" ref="abd6a232787fe71303ea2f567f210657f" args="(const UI::Border &amp;Side, const ColourValue &amp;Colour)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBorderColour </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#a060de8b459e4991f4a1627166079c406">UI::Border</a> &amp;&#160;</td>
+          <td class="paramname"><em>Side</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
+          <td class="paramname"><em>Colour</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the colour of one side of the border for this renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Side</td><td>The side to have the colour applied to. </td></tr>
+    <tr><td class="paramname">Colour</td><td>The colour to be applied. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00341">341</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25420a995854de81d7cd16be403141a7"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetBorderWidth" ref="a25420a995854de81d7cd16be403141a7" args="(const Real &amp;Width)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetBorderWidth </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Width</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the width of the border for this renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Width</td><td>The width to set for the border. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00326">326</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -606,76 +1092,108 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Sets the relative top left position of this rectangle. </p>
+<p>Sets the relative top left position of this renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this rectangle. </td></tr>
+    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this renderable. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aab42dabeaeb7a56fb4b98ae8f7ab6afb">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00149">149</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00412">412</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7be99336eb1a608b1cf96d6f7e63477e"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetPrimaryAtlas" ref="a7be99336eb1a608b1cf96d6f7e63477e" args="(const String &amp;Atlas)" -->
+<a class="anchor" id="a3d04e80e480f70b1db601c8c364c699d"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetRotationCenter" ref="a3d04e80e480f70b1db601c8c364c699d" args="(bool Custom, const Vector2 &amp;Center=Vector2())" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::UI::Rectangle::SetPrimaryAtlas </td>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetRotationCenter </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Atlas</em></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Custom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
+          <td class="paramname"><em>Center</em> = <code><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the point around which this renderable should rotate. </p>
+<dl class="remark"><dt><b>Remarks:</b></dt><dd>By default, when rotating a renderable it will rotate around the center of it's quad. Using this however you can rotate it around any point in screen space. When disabling this feature, you can simple pass in "false" as the only arguement. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Custom</td><td>Whether to enable or disable a custom rotation point. </td></tr>
+    <tr><td class="paramname">Center</td><td>The point in screen space where this renderable should rotate around. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00400">400</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a150b80178ff979c63a009464ba66b7e2"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetRotationDegrees" ref="a150b80178ff979c63a009464ba66b7e2" args="(const Real &amp;Degrees)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetRotationDegrees </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Degrees</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets the Atlas to be assumed when one isn't provided for atlas related tasks. </p>
+<p>Sets the rotation to be applied to this renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Atlas</td><td>The name of the atlas to be used. </td></tr>
+    <tr><td class="paramname">Degrees</td><td>The angle of rotation in degrees. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ab1195ccf1e8acf126aee6d06c1d9e93b">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00239">239</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00378">378</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a30985ea691f36eaafe5d6864eec8ae19"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetRenderPriority" ref="a30985ea691f36eaafe5d6864eec8ae19" args="(const UI::RenderPriority &amp;Priority)" -->
+<a class="anchor" id="a03e8cb54ff9ff0c2a87e69895ac34080"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetRotationRadians" ref="a03e8cb54ff9ff0c2a87e69895ac34080" args="(const Real &amp;Radians)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::UI::Rectangle::SetRenderPriority </td>
+          <td class="memname">void Mezzanine::UI::Rectangle::SetRotationRadians </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;&#160;</td>
-          <td class="paramname"><em>Priority</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Radians</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets the priority this button should be rendered with. </p>
-<p>The default value for this is Medium. </p>
+<p>Sets the rotation to be applied to this renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Priority</td><td>The priority level to be used when rendering this button. </td></tr>
+    <tr><td class="paramname">Radians</td><td>The angle of rotation in radians. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a05be25ff56fbd498841c33da0cfe5410">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00199">199</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00384">384</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -694,46 +1212,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Sets the relative size of this rectangle. </p>
+<p>Sets the relative size of this renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this rectangle. </td></tr>
+    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this renderable. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ace14123b4a7bdb83e4e86275823f7b6e">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00173">173</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="adca7d64f834767ac6aa6440920920f36"></a><!-- doxytag: member="Mezzanine::UI::Rectangle::SetVisible" ref="adca7d64f834767ac6aa6440920920f36" args="(bool Visible)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Rectangle::SetVisible </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>Visible</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the visibility of this rectangle. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Visible</td><td>Bool determining whether or not this rectangle should be visible. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a3dd62b1390d4f3931cfc8d0188cdcc7c">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00083">83</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00438">438</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -751,12 +1238,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 <div class="memdoc">
 
-<p>Updates the dimensions of this rectangle to match those of the new screen size. </p>
+<p>Updates the dimensions of this renderable to match those of the new screen size. </p>
 <p>This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. </p>
 
 <p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a446b43c6dde21c7f0c021ca6833f841d">Mezzanine::UI::BasicRenderable</a>.</p>
 
-<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00249">249</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1Caption.html#ab6c528d41fb194d19b2ec426a9d95db7">Mezzanine::UI::Caption</a>, <a class="el" href="classMezzanine_1_1UI_1_1MarkupText.html#a3a7e102a8b5b3217526ce183465ed69e">Mezzanine::UI::MarkupText</a>, and <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9">Mezzanine::UI::TextButton</a>.</p>
+
+<p>Definition at line <a class="el" href="uirectangle_8cpp_source.html#l00464">464</a> of file <a class="el" href="uirectangle_8cpp_source.html">uirectangle.cpp</a>.</p>
 
 </div>
 </div>
@@ -770,7 +1259,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -780,6 +1269,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:10 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

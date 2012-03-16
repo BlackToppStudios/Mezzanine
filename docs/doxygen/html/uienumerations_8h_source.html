@@ -117,90 +117,121 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00053"></a>00053 <span class="comment">        /// is pressed or lifted.</span>
 <a name="l00054"></a><a class="code" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0">00054</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0" title="Used primarily by UI buttons to decide how/when a button is activated.">ActivationCondition</a>
 <a name="l00055"></a>00055         {
-<a name="l00056"></a>00056             AC_OnPress,
-<a name="l00057"></a>00057             AC_OnLift
+<a name="l00056"></a>00056             AC_OnPress = 0,
+<a name="l00057"></a>00057             AC_OnLift  = 1
 <a name="l00058"></a>00058         };<span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">        /// @enum RenderPriority</span>
-<a name="l00060"></a>00060 <span class="comment">        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.</span>
-<a name="l00061"></a>00061 <span class="comment">        /// @details This essentially means we&#39;re adding layers to our layers without the messy</span>
-<a name="l00062"></a>00062 <span class="comment">        /// and un-intuitive re-coding necessary to actually accomplish that.</span>
-<a name="l00063"></a><a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">00063</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">RenderPriority</a>
-<a name="l00064"></a>00064         {
-<a name="l00065"></a>00065             RP_Low,
-<a name="l00066"></a>00066             RP_Medium,
-<a name="l00067"></a>00067             RP_High
+<a name="l00059"></a>00059 <span class="comment">        /// @enum Border</span>
+<a name="l00060"></a>00060 <span class="comment">        /// @brief Used by various basic renderables for border effects.</span>
+<a name="l00061"></a>00061 <span class="comment">        /// @details Internally border information is stored in small arrays, and this facilitates the proper index being called every time.</span>
+<a name="l00062"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a060de8b459e4991f4a1627166079c406">00062</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a060de8b459e4991f4a1627166079c406" title="Used by various basic renderables for border effects.">Border</a>
+<a name="l00063"></a>00063         {
+<a name="l00064"></a>00064             Border_North = 0,
+<a name="l00065"></a>00065             Border_South = 1,
+<a name="l00066"></a>00066             Border_East  = 2,
+<a name="l00067"></a>00067             Border_West  = 3
 <a name="l00068"></a>00068         };<span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment">        /// @enum ResizeableAnchor</span>
-<a name="l00070"></a>00070 <span class="comment">        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.</span>
-<a name="l00071"></a>00071 <span class="comment">        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.</span>
-<a name="l00072"></a>00072 <span class="comment">        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means</span>
-<a name="l00073"></a>00073 <span class="comment">        /// it&#39;ll change position by half of the pixels that the container was resized.</span>
-<a name="l00074"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a1c571649db3aa98f4e16285b5b754928">00074</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a1c571649db3aa98f4e16285b5b754928" title="Used by UI container classes to determine their movement behavior when the container is resized...">ResizeableAnchor</a>
-<a name="l00075"></a>00075         {
-<a name="l00076"></a>00076             RA_AnchorTopLeft,
-<a name="l00077"></a>00077             RA_AnchorTop,
-<a name="l00078"></a>00078             RA_AnchorTopRight,
-<a name="l00079"></a>00079             RA_AnchorLeft,
-<a name="l00080"></a>00080             RA_AnchorMiddle,
-<a name="l00081"></a>00081             RA_AnchorRight,
-<a name="l00082"></a>00082             RA_AnchorBottomLeft,
-<a name="l00083"></a>00083             RA_AnchorBottom,
-<a name="l00084"></a>00084             RA_AnchorBottomRight
-<a name="l00085"></a>00085         };<span class="comment"></span>
-<a name="l00086"></a>00086 <span class="comment">        /// @enum ResizeableTether</span>
-<a name="l00087"></a>00087 <span class="comment">        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.</span>
-<a name="l00088"></a>00088 <span class="comment">        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.</span>
-<a name="l00089"></a>00089 <span class="comment">        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it&#39;ll do both.</span>
-<a name="l00090"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a0334e290e4c9f6a5468fbe11164a17b9">00090</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a0334e290e4c9f6a5468fbe11164a17b9" title="Used by UI container classes to determine their resize behavior when the container is resized...">ResizeableTether</a>
-<a name="l00091"></a>00091         {
-<a name="l00092"></a>00092             RT_TetherBoth,
-<a name="l00093"></a>00093             RT_TetherNone,
-<a name="l00094"></a>00094             RT_TetherHorizontal,
-<a name="l00095"></a>00095             RT_TetherVertical
-<a name="l00096"></a>00096         };<span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">        /// @enum ScrollbarStyle</span>
-<a name="l00098"></a>00098 <span class="comment">        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.</span>
-<a name="l00099"></a>00099 <span class="comment">        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.</span>
-<a name="l00100"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763">00100</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763" title="Used by the scrollbar class to determine what styling should be used for the scrollbar.">ScrollbarStyle</a>
-<a name="l00101"></a>00101         {
-<a name="l00102"></a>00102             SB_NoButtons,
-<a name="l00103"></a>00103             SB_Separate,
-<a name="l00104"></a>00104             SB_TogetherUpLeft,
-<a name="l00105"></a>00105             SB_TogetherDownRight
-<a name="l00106"></a>00106         };<span class="comment"></span>
-<a name="l00107"></a>00107 <span class="comment">        /// @enum SpinnerStyle</span>
-<a name="l00108"></a>00108 <span class="comment">        /// @brief Used by the spinner class to determine what styling should be used for the spinner.</span>
-<a name="l00109"></a>00109 <span class="comment">        /// @details In the case of the buttons being together, the increment button will be above the decrement button.</span>
-<a name="l00110"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a62462d4df783dcdda77e1590a96bc6d6">00110</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a62462d4df783dcdda77e1590a96bc6d6" title="Used by the spinner class to determine what styling should be used for the spinner.">SpinnerStyle</a>
-<a name="l00111"></a>00111         {
-<a name="l00112"></a>00112             Spn_Separate,
-<a name="l00113"></a>00113             Spn_Together_Left,
-<a name="l00114"></a>00114             Spn_Together_Right
-<a name="l00115"></a>00115         };<span class="comment"></span>
-<a name="l00116"></a>00116 <span class="comment">        /// @enum TextHorizontalAlign</span>
-<a name="l00117"></a>00117 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
-<a name="l00118"></a>00118 <span class="comment">        /// @details This enum determines the Horizontal alignment of text.</span>
-<a name="l00119"></a>00119 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
-<a name="l00120"></a><a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549">00120</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549" title="Used by UI classes to determine the placement of text within a given area.">TextHorizontalAlign</a>
-<a name="l00121"></a>00121         {
-<a name="l00122"></a>00122             Txt_Left,
-<a name="l00123"></a>00123             Txt_Right,
-<a name="l00124"></a>00124             Txt_Middle
-<a name="l00125"></a>00125         };<span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">        /// @enum TextVerticalAlign</span>
-<a name="l00127"></a>00127 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
-<a name="l00128"></a>00128 <span class="comment">        /// @details This enum determines the Vertical alignment of text.</span>
-<a name="l00129"></a>00129 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
-<a name="l00130"></a><a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9">00130</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9" title="Used by UI classes to determine the placement of text within a given area.">TextVerticalAlign</a>
-<a name="l00131"></a>00131         {
-<a name="l00132"></a>00132             Txt_Top,
-<a name="l00133"></a>00133             Txt_Bottom,
-<a name="l00134"></a>00134             Txt_Center
-<a name="l00135"></a>00135         };
-<a name="l00136"></a>00136     }<span class="comment">//ui</span>
-<a name="l00137"></a>00137 }<span class="comment">//Mezzanine</span>
-<a name="l00138"></a>00138 
-<a name="l00139"></a>00139 <span class="preprocessor">#endif</span>
+<a name="l00069"></a>00069 <span class="comment">        /// @enum Gradient</span>
+<a name="l00070"></a>00070 <span class="comment">        /// @brief Used by various basic renderables for applying a gradient effect to a colour or texture on a quad.</span>
+<a name="l00071"></a>00071 <span class="comment">        /// @details Details regarding the colour or texture depends on the individual settings of the renderable the gradient is being applied to.</span>
+<a name="l00072"></a>00072 <span class="comment">        /// Gradients simply allow one colour on one portion of a quad to fade into another.</span>
+<a name="l00073"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a694cd1781f4196f8c391c9147cd41e8e">00073</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a694cd1781f4196f8c391c9147cd41e8e" title="Used by various basic renderables for applying a gradient effect to a colour or texture on a quad...">Gradient</a>
+<a name="l00074"></a>00074         {
+<a name="l00075"></a>00075             Gradient_NorthSouth = 0,
+<a name="l00076"></a>00076             Gradient_WestEast   = 1,
+<a name="l00077"></a>00077             Gradient_Diagonal_1 = 2,
+<a name="l00078"></a>00078             Gradient_Diagonal_2 = 3
+<a name="l00079"></a>00079         };<span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">        /// @enum QuadCorner</span>
+<a name="l00081"></a>00081 <span class="comment">        /// @brief Used by Sprites and Glyphs for tracking their placement on a TextureAtlas.</span>
+<a name="l00082"></a>00082 <span class="comment">        /// @details This helps to ensure the proper indexs are accessed at all times when getting UV information.</span>
+<a name="l00083"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36">00083</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a61a42a62e4838bc93b194886a363fe36" title="Used by Sprites and Glyphs for tracking their placement on a TextureAtlas.">QuadCorner</a>
+<a name="l00084"></a>00084         {
+<a name="l00085"></a>00085             QC_TopLeft     = 0,
+<a name="l00086"></a>00086             QC_TopRight    = 1,
+<a name="l00087"></a>00087             QC_BottomRight = 2,
+<a name="l00088"></a>00088             QC_BottomLeft  = 3
+<a name="l00089"></a>00089         };<span class="comment"></span>
+<a name="l00090"></a>00090 <span class="comment">        /// @enum RenderPriority</span>
+<a name="l00091"></a>00091 <span class="comment">        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.</span>
+<a name="l00092"></a>00092 <span class="comment">        /// @details This essentially means we&#39;re adding layers to our layers without the messy</span>
+<a name="l00093"></a>00093 <span class="comment">        /// and un-intuitive re-coding necessary to actually accomplish that.</span>
+<a name="l00094"></a><a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">00094</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130" title="Used by UI elements created by layers to determine z-ordering within a layer.">RenderPriority</a>
+<a name="l00095"></a>00095         {
+<a name="l00096"></a>00096             RP_Low,
+<a name="l00097"></a>00097             RP_Medium,
+<a name="l00098"></a>00098             RP_High
+<a name="l00099"></a>00099         };<span class="comment"></span>
+<a name="l00100"></a>00100 <span class="comment">        /// @enum ResizeableAnchor</span>
+<a name="l00101"></a>00101 <span class="comment">        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.</span>
+<a name="l00102"></a>00102 <span class="comment">        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.</span>
+<a name="l00103"></a>00103 <span class="comment">        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means</span>
+<a name="l00104"></a>00104 <span class="comment">        /// it&#39;ll change position by half of the pixels that the container was resized.</span>
+<a name="l00105"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a1c571649db3aa98f4e16285b5b754928">00105</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a1c571649db3aa98f4e16285b5b754928" title="Used by UI container classes to determine their movement behavior when the container is resized...">ResizeableAnchor</a>
+<a name="l00106"></a>00106         {
+<a name="l00107"></a>00107             RA_AnchorTopLeft,
+<a name="l00108"></a>00108             RA_AnchorTop,
+<a name="l00109"></a>00109             RA_AnchorTopRight,
+<a name="l00110"></a>00110             RA_AnchorLeft,
+<a name="l00111"></a>00111             RA_AnchorMiddle,
+<a name="l00112"></a>00112             RA_AnchorRight,
+<a name="l00113"></a>00113             RA_AnchorBottomLeft,
+<a name="l00114"></a>00114             RA_AnchorBottom,
+<a name="l00115"></a>00115             RA_AnchorBottomRight
+<a name="l00116"></a>00116         };<span class="comment"></span>
+<a name="l00117"></a>00117 <span class="comment">        /// @enum ResizeableTether</span>
+<a name="l00118"></a>00118 <span class="comment">        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.</span>
+<a name="l00119"></a>00119 <span class="comment">        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.</span>
+<a name="l00120"></a>00120 <span class="comment">        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it&#39;ll do both.</span>
+<a name="l00121"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a0334e290e4c9f6a5468fbe11164a17b9">00121</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a0334e290e4c9f6a5468fbe11164a17b9" title="Used by UI container classes to determine their resize behavior when the container is resized...">ResizeableTether</a>
+<a name="l00122"></a>00122         {
+<a name="l00123"></a>00123             RT_TetherBoth,
+<a name="l00124"></a>00124             RT_TetherNone,
+<a name="l00125"></a>00125             RT_TetherHorizontal,
+<a name="l00126"></a>00126             RT_TetherVertical
+<a name="l00127"></a>00127         };<span class="comment"></span>
+<a name="l00128"></a>00128 <span class="comment">        /// @enum ScrollbarStyle</span>
+<a name="l00129"></a>00129 <span class="comment">        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.</span>
+<a name="l00130"></a>00130 <span class="comment">        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.</span>
+<a name="l00131"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763">00131</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a5998a9bf372a7e92605c0c461736e763" title="Used by the scrollbar class to determine what styling should be used for the scrollbar.">ScrollbarStyle</a>
+<a name="l00132"></a>00132         {
+<a name="l00133"></a>00133             SB_NoButtons,
+<a name="l00134"></a>00134             SB_Separate,
+<a name="l00135"></a>00135             SB_TogetherUpLeft,
+<a name="l00136"></a>00136             SB_TogetherDownRight
+<a name="l00137"></a>00137         };<span class="comment"></span>
+<a name="l00138"></a>00138 <span class="comment">        /// @enum SpinnerStyle</span>
+<a name="l00139"></a>00139 <span class="comment">        /// @brief Used by the spinner class to determine what styling should be used for the spinner.</span>
+<a name="l00140"></a>00140 <span class="comment">        /// @details In the case of the buttons being together, the increment button will be above the decrement button.</span>
+<a name="l00141"></a><a class="code" href="namespaceMezzanine_1_1UI.html#a62462d4df783dcdda77e1590a96bc6d6">00141</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#a62462d4df783dcdda77e1590a96bc6d6" title="Used by the spinner class to determine what styling should be used for the spinner.">SpinnerStyle</a>
+<a name="l00142"></a>00142         {
+<a name="l00143"></a>00143             Spn_Separate,
+<a name="l00144"></a>00144             Spn_Together_Left,
+<a name="l00145"></a>00145             Spn_Together_Right
+<a name="l00146"></a>00146         };<span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">        /// @enum TextHorizontalAlign</span>
+<a name="l00148"></a>00148 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
+<a name="l00149"></a>00149 <span class="comment">        /// @details This enum determines the Horizontal alignment of text.</span>
+<a name="l00150"></a>00150 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
+<a name="l00151"></a><a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549">00151</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#aebbd46e62bb20d958f1915c1ec6cc549" title="Used by UI classes to determine the placement of text within a given area.">TextHorizontalAlign</a>
+<a name="l00152"></a>00152         {
+<a name="l00153"></a>00153             Txt_Left,
+<a name="l00154"></a>00154             Txt_Right,
+<a name="l00155"></a>00155             Txt_Middle
+<a name="l00156"></a>00156         };<span class="comment"></span>
+<a name="l00157"></a>00157 <span class="comment">        /// @enum TextVerticalAlign</span>
+<a name="l00158"></a>00158 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
+<a name="l00159"></a>00159 <span class="comment">        /// @details This enum determines the Vertical alignment of text.</span>
+<a name="l00160"></a>00160 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
+<a name="l00161"></a><a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9">00161</a> <span class="comment"></span>        <span class="keyword">enum</span> <a class="code" href="namespaceMezzanine_1_1UI.html#ab35e3845e2541698245262cc17147ae9" title="Used by UI classes to determine the placement of text within a given area.">TextVerticalAlign</a>
+<a name="l00162"></a>00162         {
+<a name="l00163"></a>00163             Txt_Top,
+<a name="l00164"></a>00164             Txt_Bottom,
+<a name="l00165"></a>00165             Txt_Center
+<a name="l00166"></a>00166         };
+<a name="l00167"></a>00167     }<span class="comment">//ui</span>
+<a name="l00168"></a>00168 }<span class="comment">//Mezzanine</span>
+<a name="l00169"></a>00169 
+<a name="l00170"></a>00170 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -208,7 +239,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -218,6 +249,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

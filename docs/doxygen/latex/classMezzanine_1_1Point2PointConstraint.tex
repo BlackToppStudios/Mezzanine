@@ -20,6 +20,12 @@ Inheritance diagram for Mezzanine::Point2PointConstraint:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1Point2PointConstraint_a216daa575bd4dc2589875ca24a97faa8}{Point2PointConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotB)
+\begin{DoxyCompactList}\small\item\em Double body constructor. Binds the two bodies. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Point2PointConstraint_a62ddd5588e4b7c95892eca8486cea099}{Point2PointConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotA)
+\begin{DoxyCompactList}\small\item\em Single body constructor. Binds the body to world space. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Point2PointConstraint_a9a928ba39d2b8f9887d981afd8f776aa}{$\sim$Point2PointConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual btTypedConstraint $\ast$ \hyperlink{classMezzanine_1_1Point2PointConstraint_a99f25e594a55a5c84db10981c30ffd60}{GetConstraintBase} () const 
 \item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Point2PointConstraint_a5578b5727952e6c225a989d88380774e}{GetDamping} () const 
@@ -34,10 +40,10 @@ virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \
 \begin{DoxyCompactList}\small\item\em Retrieve the Tau Setting. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1Point2PointConstraint_a658027a5d0f5774a92a279485ccfe29d}{HasParamBeenSet} (\hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} Param, int Axis) const 
 \item 
-\hyperlink{classMezzanine_1_1Point2PointConstraint_a62ddd5588e4b7c95892eca8486cea099}{Point2PointConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotA)
-\begin{DoxyCompactList}\small\item\em Single body constructor. Binds the body to world space. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Point2PointConstraint_a216daa575bd4dc2589875ca24a97faa8}{Point2PointConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotB)
-\begin{DoxyCompactList}\small\item\em Double body constructor. Binds the two bodies. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Point2PointConstraint_a1a5ae4370aa77dc4a07686a95e8c20bc}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Point2PointConstraint_a8da49ad2d84a9ecebe6be1f11bfdf2b8}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Point2PointConstraint_a85187ada76b4637851bd80cafcb3d704}{SetDamping} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Damping)
 \begin{DoxyCompactList}\small\item\em Set a resistive force against the constraint, not too dissimilar to from hinge friction or Air resistance. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1Point2PointConstraint_a609bf21f94cd31189f222350d4b0049e}{SetImpulseClamping} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Clamping)
@@ -53,9 +59,12 @@ virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5db47a4}{TypedConstraint::AxisList} \hyperlink{classMezzanine_1_1Point2PointConstraint_a3ee9d805802f459d6e418f4c0d9f83c1}{ValidLinearAxis} () const 
 \item 
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_abd499db29c9e9755e9bb547d29eaa49a}{TypedConstraint::ParamList} \hyperlink{classMezzanine_1_1Point2PointConstraint_a3170aad8175d6c6c064e6d4e8e30cfa6}{ValidParamOnAxis} (int Axis) const 
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{classMezzanine_1_1Point2PointConstraint_a9a928ba39d2b8f9887d981afd8f776aa}{$\sim$Point2PointConstraint} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Point2PointConstraint_a181517fd02b075cf28c61f9101044b97}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -258,6 +267,73 @@ The Tau value as a Real
 
 Implements \hyperlink{classMezzanine_1_1TypedConstraint_a96a6b4c16521f24d72feea98044ef3a8}{Mezzanine::TypedConstraint}.
 
+\hypertarget{classMezzanine_1_1Point2PointConstraint_a1a5ae4370aa77dc4a07686a95e8c20bc}{
+\index{Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Point2PointConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Point2PointConstraint_a1a5ae4370aa77dc4a07686a95e8c20bc}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1TypedConstraint_a18ea81954d7cc28dce3e5f4c03eac820}{Mezzanine::TypedConstraint}.
+
+\hypertarget{classMezzanine_1_1Point2PointConstraint_a8da49ad2d84a9ecebe6be1f11bfdf2b8}{
+\index{Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Point2PointConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Point2PointConstraint_a8da49ad2d84a9ecebe6be1f11bfdf2b8}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1TypedConstraint_ae9d74e8e14d9e79bb4320603fbf824d6}{Mezzanine::TypedConstraint}.
+
+\hypertarget{classMezzanine_1_1Point2PointConstraint_a181517fd02b075cf28c61f9101044b97}{
+\index{Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} Mezzanine::Point2PointConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Point2PointConstraint_a181517fd02b075cf28c61f9101044b97}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Point2PointConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1TypedConstraint_accc0475bacd0b984dd30d74dbe2bc08e}{Mezzanine::TypedConstraint}.
+
 \hypertarget{classMezzanine_1_1Point2PointConstraint_a85187ada76b4637851bd80cafcb3d704}{
 \index{Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}!SetDamping@{SetDamping}}
 \index{SetDamping@{SetDamping}!Mezzanine::Point2PointConstraint@{Mezzanine::Point2PointConstraint}}
@@ -352,7 +428,7 @@ Implements \hyperlink{classMezzanine_1_1TypedConstraint_ad59aa55a0e4b8aa107db9c9
 This may be a scalar for how strongly Angular momentum affects linear momemtum. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]Research this more carefully \end{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]Research this more carefully \end{Desc}
 
 
 This function is a tightly wrapped bullet 3d function. No real documentation for it exists, from its responsibility/location in Bullet3d and a basic understanding of torque ( see \href{http://en.wikipedia.org/wiki/Torque}{\tt http://en.wikipedia.org/wiki/Torque} ) It is highly likely that it is a value to adjust how torque affects momentum. \hypertarget{classMezzanine_1_1Point2PointConstraint_a3398535453abbf5e573aec88669a41a6}{

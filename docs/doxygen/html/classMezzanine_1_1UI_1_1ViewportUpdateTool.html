@@ -129,8 +129,8 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set reposition mode.  <a href="#a6a1dffe6f6ba85063ad34279d6ba5700"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static const <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89afdf79f52d5bf18bdffd323911a549">ResizeMode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a4aca6a54d42ad2bf33b471376549bde2">GetResizeMode</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set resize mode.  <a href="#a4aca6a54d42ad2bf33b471376549bde2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a6b070131c2a4174788246b95517a6528">UpdateRenderable</a> (<a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a> *ToBeUpdated)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a renderables size and position as needed.  <a href="#a6b070131c2a4174788246b95517a6528"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#ad8659876641f9deea2488dcd9baa02c9">UpdateRectangleRenderable</a> (<a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html">Rectangle</a> *ToBeUpdated)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a renderables size and position as needed.  <a href="#ad8659876641f9deea2488dcd9baa02c9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static WidgetResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#af735913610e633fb127b08c146e7d16d">UpdateWidget</a> (<a class="el" href="classMezzanine_1_1UI_1_1Widget.html">Widget</a> *ToBeUpdated)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a widgets position as needed.  <a href="#af735913610e633fb127b08c146e7d16d"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-static-methods"></a>
@@ -175,7 +175,7 @@ static <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89af
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class facilitates the resizing and repositioning of all renderables in the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> system during a viewport update. </p>
 
-<p>Definition at line <a class="el" href="uiviewportupdatetool_8h_source.html#l00058">58</a> of file <a class="el" href="uiviewportupdatetool_8h_source.html">uiviewportupdatetool.h</a>.</p>
+<p>Definition at line <a class="el" href="uiviewportupdatetool_8h_source.html#l00059">59</a> of file <a class="el" href="uiviewportupdatetool_8h_source.html">uiviewportupdatetool.h</a>.</p>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="ad2de82a6fc57859d914845ce676ff67e"></a><!-- doxytag: member="Mezzanine::UI::ViewportUpdateTool::RepositionMode" ref="ad2de82a6fc57859d914845ce676ff67e" args="" -->
 <div class="memitem">
@@ -209,7 +209,7 @@ static <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89af
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uiviewportupdatetool_8h_source.html#l00073">73</a> of file <a class="el" href="uiviewportupdatetool_8h_source.html">uiviewportupdatetool.h</a>.</p>
+<p>Definition at line <a class="el" href="uiviewportupdatetool_8h_source.html#l00074">74</a> of file <a class="el" href="uiviewportupdatetool_8h_source.html">uiviewportupdatetool.h</a>.</p>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ static <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89af
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uiviewportupdatetool_8h_source.html#l00064">64</a> of file <a class="el" href="uiviewportupdatetool_8h_source.html">uiviewportupdatetool.h</a>.</p>
+<p>Definition at line <a class="el" href="uiviewportupdatetool_8h_source.html#l00065">65</a> of file <a class="el" href="uiviewportupdatetool_8h_source.html">uiviewportupdatetool.h</a>.</p>
 
 </div>
 </div>
@@ -453,14 +453,14 @@ static <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89af
 
 </div>
 </div>
-<a class="anchor" id="a6b070131c2a4174788246b95517a6528"></a><!-- doxytag: member="Mezzanine::UI::ViewportUpdateTool::UpdateRenderable" ref="a6b070131c2a4174788246b95517a6528" args="(BasicRenderable *ToBeUpdated)" -->
+<a class="anchor" id="ad8659876641f9deea2488dcd9baa02c9"></a><!-- doxytag: member="Mezzanine::UI::ViewportUpdateTool::UpdateRectangleRenderable" ref="ad8659876641f9deea2488dcd9baa02c9" args="(Rectangle *ToBeUpdated)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Mezzanine::UI::ViewportUpdateTool::UpdateRenderable </td>
+          <td class="memname">void Mezzanine::UI::ViewportUpdateTool::UpdateRectangleRenderable </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html">BasicRenderable</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html">Rectangle</a> *&#160;</td>
           <td class="paramname"><em>ToBeUpdated</em></td><td>)</td>
           <td><code> [static]</code></td>
         </tr>
@@ -517,7 +517,7 @@ static <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89af
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -527,6 +527,6 @@ static <a class="el" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a89af
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:11 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -1,0 +1,43 @@
+\hypertarget{xmldoc_8h}{
+\subsection{xmldoc.h File Reference}
+\label{xmldoc_8h}\index{xmldoc.h@{xmldoc.h}}
+}
+
+
+The Doxygen documentation and minor tools to assist with the XML system.  
+
+
+{\ttfamily \#include \char`\"{}datatypes.h\char`\"{}}\par
+\subsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceMezzanine}{Mezzanine}
+
+
+\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
+
+\item 
+namespace \hyperlink{namespaceMezzanine_1_1xml}{Mezzanine::xml}
+
+
+\begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem resides, (See \hyperlink{XMLManual}{Mezzanine::xml Manual} for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+String MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a64a1ff23404d94c97f898c9a3816f3aa}{Mezzanine::xml::EscapeXML} (const String \&XMLText)
+\begin{DoxyCompactList}\small\item\em Convert $<$ $>$ \& and " in text to \&lt;, \&gt;, \&amp; and \&quote so text can safely be stored in XML. \item\end{DoxyCompactList}\item 
+String MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a4acd0a85d6e7e27cadab22203c6f41e4}{Mezzanine::xml::GetOneTag} (std::istream \&stream)
+\begin{DoxyCompactList}\small\item\em Gets the first tag out of the Stream and returns it as a String. \item\end{DoxyCompactList}\item 
+Document $\ast$MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a95f62a3e002247b98f10a0e8b8027f4f}{Mezzanine::xml::PreParseClassFromSingleTag} (const String \&ClassName, const String \&OneTag)
+\begin{DoxyCompactList}\small\item\em Calls PreParseClassFromSingleTag passing a \char`\"{}\char`\"{} as the Namespace. \item\end{DoxyCompactList}\item 
+Document $\ast$MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a2a36d04b6513680fd15fb21b4191d29a}{Mezzanine::xml::PreParseClassFromSingleTag} (const String \&NameSpace, const String \&ClassName, const String \&OneTag)
+\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+The Doxygen documentation and minor tools to assist with the XML system. The integration process for PugiXML requires that our changes all be stored in shell script. This is not condusive to good clean documentation and is why the doxygen documention for the XML parser exist here instead of \hyperlink{xml_8h}{xml.h}. 
+
+Definition in file \hyperlink{xmldoc_8h_source}{xmldoc.h}.
+

@@ -109,198 +109,617 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uibutton.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;uiviewportupdatetool.h&quot;</span>
-<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;viewport.h&quot;</span>
-<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">namespace </span>Mezzanine
-<a name="l00053"></a>00053 {
-<a name="l00054"></a>00054     <span class="keyword">namespace </span>UI
-<a name="l00055"></a>00055     {
-<a name="l00056"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa39b4b7b96af6251c7304c266ecd85c9">00056</a>         <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa39b4b7b96af6251c7304c266ecd85c9" title="Internal constructor.">Screen::Screen</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* WindowViewport)
-<a name="l00057"></a>00057             : Name(name),
-<a name="l00058"></a>00058               PrimaryAtlas(Atlas),
-<a name="l00059"></a>00059               GameViewport(WindowViewport)
-<a name="l00060"></a>00060         {
-<a name="l00061"></a>00061             Manager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>();
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063             GorillaScreen = Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#a931bcf654541cb3ca43553ae349eab04" title="Gets the internal silverback pointer.">GetSilverbackPointer</a>()-&gt;createScreen(WindowViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#a54af912f78ca05aaab8dcea5465e61b9" title="Gets the internal Ogre Viewport.">GetOgreViewport</a>());
-<a name="l00064"></a>00064             KnownViewportSize = <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>((<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#a033b546e1fc35f5835262c270a7d8a94" title="Gets the width of the viewport in pixels.">GetActualWidth</a>(),(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#ab76a92f62936a525509c12672e42203a" title="Gets the height of the viewport in pixels.">GetActualHeight</a>());
-<a name="l00065"></a>00065         }
-<a name="l00066"></a>00066 
-<a name="l00067"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a99bd65284d2402f653d121b3412f4aca">00067</a>         <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a99bd65284d2402f653d121b3412f4aca" title="Class destructor.">Screen::~Screen</a>()
-<a name="l00068"></a>00068         {
-<a name="l00069"></a>00069             Manager-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#a931bcf654541cb3ca43553ae349eab04" title="Gets the internal silverback pointer.">GetSilverbackPointer</a>()-&gt;destroyScreen(GorillaScreen);
-<a name="l00070"></a>00070         }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5f1f23c666513a658e7297a0bea49629">00072</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5f1f23c666513a658e7297a0bea49629" title="Gets the name of this screen.">Screen::GetName</a>()
-<a name="l00073"></a>00073         {
-<a name="l00074"></a>00074             <span class="keywordflow">return</span> Name;
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a32ac3cc1bdfd2799b5bfef7f904b322d">00077</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a32ac3cc1bdfd2799b5bfef7f904b322d" title="Sets the screens visability.">Screen::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
-<a name="l00078"></a>00078         {
-<a name="l00079"></a>00079             GorillaScreen-&gt;setVisible(Visible);
-<a name="l00080"></a>00080         }
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae">00082</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae" title="Gets the screens visability.">Screen::IsVisible</a>()
-<a name="l00083"></a>00083         {
-<a name="l00084"></a>00084             <span class="keywordflow">return</span> GorillaScreen-&gt;isVisible();
-<a name="l00085"></a>00085         }
-<a name="l00086"></a>00086 
-<a name="l00087"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a6d77c9fd4e2da65ed85f13b0bb7eebe4">00087</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a6d77c9fd4e2da65ed85f13b0bb7eebe4" title="Forces the screen to be shown.">Screen::Show</a>()
-<a name="l00088"></a>00088         {
-<a name="l00089"></a>00089             GorillaScreen-&gt;show();
-<a name="l00090"></a>00090         }
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;uitextureatlas.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;viewport.h&quot;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;mathtool.h&quot;</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="preprocessor">#include &lt;OgreRoot.h&gt;</span>
+<a name="l00055"></a>00055 <span class="preprocessor">#include &lt;OgreMatrix4.h&gt;</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#include &lt;OgreRenderSystem.h&gt;</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#include &lt;OgreRenderOperation.h&gt;</span>
+<a name="l00058"></a>00058 <span class="preprocessor">#include &lt;OgreHardwareBufferManager.h&gt;</span>
+<a name="l00059"></a>00059 <span class="preprocessor">#include &lt;OgreHardwareVertexBuffer.h&gt;</span>
+<a name="l00060"></a>00060 <span class="preprocessor">#include &lt;OgreRenderQueueListener.h&gt;</span>
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062 <span class="keyword">namespace </span>Mezzanine
+<a name="l00063"></a>00063 {
+<a name="l00064"></a>00064     <span class="keyword">namespace </span>UI
+<a name="l00065"></a>00065     {<span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">        /// @struct ScreenInternalData</span>
+<a name="l00067"></a>00067 <span class="comment">        /// @brief Basic struct holding some of the internal bits of this class that could not be placed on the class directly.</span>
+<a name="l00068"></a><a class="code" href="structMezzanine_1_1UI_1_1ScreenInternalData.html">00068</a> <span class="comment"></span>        <span class="keyword">struct </span><a class="code" href="structMezzanine_1_1UI_1_1ScreenInternalData.html" title="Basic struct holding some of the internal bits of this class that could not be placed on the class di...">ScreenInternalData</a> : <span class="keyword">public</span> Ogre::RenderQueueListener
+<a name="l00069"></a>00069         {
+<a name="l00070"></a>00070             <a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>* ParentScreen;
+<a name="l00071"></a>00071             Ogre::RenderOperation RenderOp;
+<a name="l00072"></a>00072             Ogre::RenderSystem* RenderSys;
+<a name="l00073"></a>00073             Ogre::HardwareVertexBufferSharedPtr VertexBuffer;
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075             <span class="keywordtype">void</span> renderQueueStarted(Ogre::uint8, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp;, <span class="keywordtype">bool</span>&amp;) {};
+<a name="l00076"></a>00076             <span class="keywordtype">void</span> renderQueueEnded(Ogre::uint8 queueGroupId, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1xml.html#a3ddf35656ecc38b6fa1d0364d9ad3b2c" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; invocation, <span class="keywordtype">bool</span>&amp; repeatThisInvocation)
+<a name="l00077"></a>00077             {
+<a name="l00078"></a>00078                 <span class="keywordflow">if</span>( RenderSys-&gt;_getViewport() != ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#afda0f83107b413f14fb56e6cd007b243" title="Gets the Viewport this screen is currently rendering to.">GetViewport</a>()-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#a54af912f78ca05aaab8dcea5465e61b9" title="Gets the internal Ogre Viewport.">GetOgreViewport</a>() || queueGroupId != Ogre::RENDER_QUEUE_OVERLAY )
+<a name="l00079"></a>00079                     <span class="keywordflow">return</span>;
+<a name="l00080"></a>00080                 <span class="keywordflow">if</span>( ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae" title="Gets the screens visability.">IsVisible</a>() &amp;&amp; ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa76a0066086f4d4b1968cfb18ddcb96c" title="Gets the number of layers created and stored in this class.">GetNumLayers</a>() )
+<a name="l00081"></a>00081                     ParentScreen-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Screen.html#af76f7b0640ad5f7f37cdc5eaf8d5f0cd" title="Manually calls the UI system to render this screen.">_RenderScreen</a>();
+<a name="l00082"></a>00082             }
+<a name="l00083"></a>00083         };
+<a name="l00084"></a>00084 
+<a name="l00085"></a><a class="code" href="structMezzanine_1_1UI_1_1OgreVertex.html">00085</a>         <span class="keyword">struct </span><a class="code" href="structMezzanine_1_1UI_1_1OgreVertex.html">OgreVertex</a>
+<a name="l00086"></a>00086         {
+<a name="l00087"></a>00087             Ogre::Vector3 Position;
+<a name="l00088"></a>00088             Ogre::ColourValue Colour;
+<a name="l00089"></a>00089             Ogre::Vector2 UV;
+<a name="l00090"></a>00090         };
 <a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aad220f00a62a75ab73e4620e853acdca">00092</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aad220f00a62a75ab73e4620e853acdca" title="Forces the screen to hide.">Screen::Hide</a>()
+<a name="l00092"></a>00092         <span class="keywordtype">void</span> ScreenVertexData::Clear()
 <a name="l00093"></a>00093         {
-<a name="l00094"></a>00094             GorillaScreen-&gt;hide();
-<a name="l00095"></a>00095         }
-<a name="l00096"></a>00096 
-<a name="l00097"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a4c7471ee8b43649a5eab8c43e28f31b7">00097</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a4c7471ee8b43649a5eab8c43e28f31b7" title="Creates a layer in the GUI screen to place GUI objects in.">Screen::CreateLayer</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Zorder)
-<a name="l00098"></a>00098         {
-<a name="l00099"></a>00099             Gorilla::Layer* layer = GorillaScreen-&gt;createLayer(Zorder);
-<a name="l00100"></a>00100             <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* Mezzlayer = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>(Name, layer, <span class="keyword">this</span>);
-<a name="l00101"></a>00101             std::pair&lt;std::map&lt;Whole,Layer*&gt;::iterator,<span class="keywordtype">bool</span>&gt; TestPair = Layers.insert(std::pair&lt;Whole,Layer*&gt;(Zorder,Mezzlayer));
-<a name="l00102"></a>00102             <span class="keywordflow">if</span>(TestPair.second)
-<a name="l00103"></a>00103             {
-<a name="l00104"></a>00104                 <span class="keywordflow">return</span> Mezzlayer;
-<a name="l00105"></a>00105             }<span class="keywordflow">else</span>{<span class="comment"></span>
-<a name="l00106"></a>00106 <span class="comment">                /// @todo add an exception here or maybe log entry, some notification it failed.</span>
-<a name="l00107"></a>00107 <span class="comment"></span>                <span class="keywordflow">return</span> 0;
-<a name="l00108"></a>00108             }
-<a name="l00109"></a>00109         }
-<a name="l00110"></a>00110 
-<a name="l00111"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac61f47f88af6f4ee6a4f0b705c37647b">00111</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac61f47f88af6f4ee6a4f0b705c37647b" title="Gets an already created layer by name.">Screen::GetLayer</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00112"></a>00112         {
-<a name="l00113"></a>00113             <span class="keywordflow">for</span> ( std::map&lt;Whole,Layer*&gt;::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
-<a name="l00114"></a>00114             {
-<a name="l00115"></a>00115                 <span class="keywordflow">if</span> ( Name == (*it).second-&gt;GetName() )
-<a name="l00116"></a>00116                 {
-<a name="l00117"></a>00117                     <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a> = (*it).second;
-<a name="l00118"></a>00118                     <span class="keywordflow">return</span> Layer;
-<a name="l00119"></a>00119                 }
-<a name="l00120"></a>00120             }
-<a name="l00121"></a>00121             <span class="keywordflow">return</span> 0;
-<a name="l00122"></a>00122         }
-<a name="l00123"></a>00123 
-<a name="l00124"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#af37dcc72cefce4dc605a918ce9e23d5e">00124</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac61f47f88af6f4ee6a4f0b705c37647b" title="Gets an already created layer by name.">Screen::GetLayer</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00125"></a>00125         {
-<a name="l00126"></a>00126             std::map&lt;Whole,Layer*&gt;::iterator it = Layers.begin();
-<a name="l00127"></a>00127             <span class="keywordflow">while</span>(0 &lt; Index)
-<a name="l00128"></a>00128             {
-<a name="l00129"></a>00129                 it++;
-<a name="l00130"></a>00130                 Index--;
-<a name="l00131"></a>00131             }
-<a name="l00132"></a>00132             <span class="keywordflow">if</span>(it!=Layers.end())
-<a name="l00133"></a>00133                 <span class="keywordflow">return</span> (*it).second;
-<a name="l00134"></a>00134             <span class="keywordflow">return</span> 0;
-<a name="l00135"></a>00135         }
-<a name="l00136"></a>00136 
-<a name="l00137"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#afb19dd4e688a1ccc89f606306895015b">00137</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#afb19dd4e688a1ccc89f606306895015b" title="Gets an already created layer by it&amp;#39;s Zorder.">Screen::GetLayerbyZorder</a>(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Zorder)
-<a name="l00138"></a>00138         {
-<a name="l00139"></a>00139             std::map&lt;Whole,Layer*&gt;::iterator it = Layers.find(Zorder);
-<a name="l00140"></a>00140             <span class="keywordflow">if</span>(it!=Layers.end())
-<a name="l00141"></a>00141                 <span class="keywordflow">return</span> (*it).second;
-<a name="l00142"></a>00142             <span class="keywordflow">return</span> 0;
-<a name="l00143"></a>00143         }
-<a name="l00144"></a>00144 
-<a name="l00145"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa76a0066086f4d4b1968cfb18ddcb96c">00145</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa76a0066086f4d4b1968cfb18ddcb96c" title="Gets the number of layers created and stored in this class.">Screen::GetNumLayers</a>()
-<a name="l00146"></a>00146         {
-<a name="l00147"></a>00147             <span class="keywordflow">return</span> Layers.size();
-<a name="l00148"></a>00148         }
-<a name="l00149"></a>00149 
-<a name="l00150"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7f81a6d97593c7c152d543e499f3b2a1">00150</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7f81a6d97593c7c152d543e499f3b2a1" title="Destroy&amp;#39;s a previously created layer.">Screen::DestroyLayer</a>(<a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* ToBeDestroyed)
-<a name="l00151"></a>00151         {
-<a name="l00152"></a>00152             <span class="keywordflow">if</span>(Layers.empty())
-<a name="l00153"></a>00153                 <span class="keywordflow">return</span>;
-<a name="l00154"></a>00154             <span class="keywordflow">for</span>( std::map&lt;Whole,Layer*&gt;::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
-<a name="l00155"></a>00155             {
-<a name="l00156"></a>00156                 <span class="keywordflow">if</span>( ToBeDestroyed == (*it).second )
-<a name="l00157"></a>00157                 {
-<a name="l00158"></a>00158                     <span class="keyword">delete</span> (*it).second;
-<a name="l00159"></a>00159                     Layers.erase(it);
-<a name="l00160"></a>00160                     <span class="keywordflow">return</span>;
-<a name="l00161"></a>00161                 }
-<a name="l00162"></a>00162             }
-<a name="l00163"></a>00163         }
-<a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0">00165</a>         <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">Screen::GetViewportDimensions</a>()
-<a name="l00166"></a>00166         {
-<a name="l00167"></a>00167             <span class="keywordflow">return</span> KnownViewportSize;
-<a name="l00168"></a>00168         }
-<a name="l00169"></a>00169 
-<a name="l00170"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a55bf51bc4923effdd180ee945a4a0aa7">00170</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a55bf51bc4923effdd180ee945a4a0aa7" title="Gets the button the mouse is over if any.">Screen::CheckButtonMouseIsOver</a>()
-<a name="l00171"></a>00171         {
-<a name="l00172"></a>00172             <span class="keywordflow">for</span>( std::map&lt;Whole,Layer*&gt;::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
-<a name="l00173"></a>00173             {
-<a name="l00174"></a>00174                 <span class="keywordflow">if</span>( (*it).second-&gt;IsVisible() )
-<a name="l00175"></a>00175                 {
-<a name="l00176"></a>00176                     <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* button = (*it).second-&gt;CheckButtonMouseIsOver();
-<a name="l00177"></a>00177                     <span class="keywordflow">if</span>(button)
-<a name="l00178"></a>00178                     {
-<a name="l00179"></a>00179                         <span class="keywordflow">return</span> button;
-<a name="l00180"></a>00180                     }
-<a name="l00181"></a>00181                 }
-<a name="l00182"></a>00182             }
-<a name="l00183"></a>00183             <span class="keywordflow">return</span> 0;
-<a name="l00184"></a>00184         }
+<a name="l00094"></a>00094             LowVertices.clear();
+<a name="l00095"></a>00095             MediumVertices.clear();
+<a name="l00096"></a>00096             HighVertices.clear();
+<a name="l00097"></a>00097         }
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> ScreenVertexData::Size()
+<a name="l00100"></a>00100         {
+<a name="l00101"></a>00101             <span class="keywordflow">return</span> LowVertices.size() + MediumVertices.size() + HighVertices.size();
+<a name="l00102"></a>00102         }
+<a name="l00103"></a>00103 
+<a name="l00104"></a>00104         VertexData&amp; ScreenVertexData::operator[](<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index)
+<a name="l00105"></a>00105         {
+<a name="l00106"></a>00106             <span class="keywordflow">if</span>( Index &lt; LowVertices.size() )
+<a name="l00107"></a>00107                 <span class="keywordflow">return</span> LowVertices[Index];
+<a name="l00108"></a>00108             <span class="keywordflow">else</span> <span class="keywordflow">if</span>( Index &lt; LowVertices.size() + MediumVertices.size() )
+<a name="l00109"></a>00109                 <span class="keywordflow">return</span> MediumVertices[Index - LowVertices.size()];
+<a name="l00110"></a>00110             <span class="keywordflow">else</span> <span class="keywordflow">if</span>( Index &lt; LowVertices.size() + MediumVertices.size() + HighVertices.size() )
+<a name="l00111"></a>00111                 <span class="keywordflow">return</span> HighVertices[Index - (LowVertices.size() + MediumVertices.size())];
+<a name="l00112"></a>00112             <span class="keywordflow">else</span>
+<a name="l00113"></a>00113                 <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<span class="stringliteral">&quot;Out of bounds index requested in ScreenVertexData::operator[].&quot;</span>));
+<a name="l00114"></a>00114         }
+<a name="l00115"></a>00115 
+<a name="l00116"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa39b4b7b96af6251c7304c266ecd85c9">00116</a>         <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa39b4b7b96af6251c7304c266ecd85c9" title="Internal constructor.">Screen::Screen</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* WindowViewport)
+<a name="l00117"></a>00117             : Name(name),
+<a name="l00118"></a>00118               PrimaryAtlas(Atlas),
+<a name="l00119"></a>00119               GameViewport(WindowViewport),
+<a name="l00120"></a>00120               Scale(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(1,1,1)),
+<a name="l00121"></a>00121               VertexBufferSize(0),
+<a name="l00122"></a>00122               CanRender(true),
+<a name="l00123"></a>00123               Visible(true),
+<a name="l00124"></a>00124               IndexRedrawNeeded(false),
+<a name="l00125"></a>00125               IndexRedrawAll(false),
+<a name="l00126"></a>00126               OrientationChanged(false),
+<a name="l00127"></a>00127               ViewportSizeChanged(false),
+<a name="l00128"></a>00128               Orientation(Mezzanine::OM_Degree_0)
+<a name="l00129"></a>00129         {
+<a name="l00130"></a>00130             Manager = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>();
+<a name="l00131"></a>00131             SceneMan = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">SceneManager::GetSingletonPtr</a>();
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133             KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#a033b546e1fc35f5835262c270a7d8a94" title="Gets the width of the viewport in pixels.">GetActualWidth</a>();
+<a name="l00134"></a>00134             KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = (<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#ab76a92f62936a525509c12672e42203a" title="Gets the height of the viewport in pixels.">GetActualHeight</a>();
+<a name="l00135"></a>00135             InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = 1 / KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00136"></a>00136             InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = 1 / KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00137"></a>00137 
+<a name="l00138"></a>00138             SID = <span class="keyword">new</span> <a class="code" href="structMezzanine_1_1UI_1_1ScreenInternalData.html" title="Basic struct holding some of the internal bits of this class that could not be placed on the class di...">ScreenInternalData</a>();
+<a name="l00139"></a>00139             SID-&gt;RenderSys = Ogre::Root::getSingletonPtr()-&gt;getRenderSystem();
+<a name="l00140"></a>00140             SID-&gt;ParentScreen = <span class="keyword">this</span>;
+<a name="l00141"></a>00141 
+<a name="l00142"></a>00142             SceneMan-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;addRenderQueueListener(SID);
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144             VertexTransform.<a class="code" href="classMezzanine_1_1Matrix4x4.html#a76a0cceae3c8cbc8ed8ff093794fcd67" title="Sets the Matrix based on a provided position, scale, and rotation.">SetTransform</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0),Scale,<a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(0,0,0,1));
+<a name="l00145"></a>00145             CreateVertexBuffer();
+<a name="l00146"></a>00146         }
+<a name="l00147"></a>00147 
+<a name="l00148"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a99bd65284d2402f653d121b3412f4aca">00148</a>         <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a99bd65284d2402f653d121b3412f4aca" title="Class destructor.">Screen::~Screen</a>()
+<a name="l00149"></a>00149         {
+<a name="l00150"></a>00150         }
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152         <span class="keywordtype">void</span> Screen::PrepareRenderSystem()
+<a name="l00153"></a>00153         {
+<a name="l00154"></a>00154             this-&gt;SID-&gt;RenderSys-&gt;_setWorldMatrix( Ogre::Matrix4::IDENTITY );
+<a name="l00155"></a>00155             this-&gt;SID-&gt;RenderSys-&gt;_setProjectionMatrix( Ogre::Matrix4::IDENTITY );
+<a name="l00156"></a>00156             this-&gt;SID-&gt;RenderSys-&gt;_setViewMatrix( Ogre::Matrix4::IDENTITY );
+<a name="l00157"></a>00157             SceneMan-&gt;<a class="code" href="classMezzanine_1_1SceneManager.html#a3156d3ec1b514e295368bfa4b94d4adc" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;_setPass( <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>()-&gt;GetAtlas(PrimaryAtlas)-&gt;_Get2DPass() );
+<a name="l00158"></a>00158         }
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160         <span class="keywordtype">void</span> Screen::CreateVertexBuffer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; InitialSize)
+<a name="l00161"></a>00161         {
+<a name="l00162"></a>00162             VertexBufferSize = InitialSize * 6;
+<a name="l00163"></a>00163             this-&gt;SID-&gt;RenderOp.vertexData = OGRE_NEW Ogre::VertexData;
+<a name="l00164"></a>00164             this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexStart = 0;
+<a name="l00165"></a>00165 
+<a name="l00166"></a>00166             Ogre::VertexDeclaration* VertexDecl = this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexDeclaration;
+<a name="l00167"></a>00167             <span class="keywordtype">size_t</span> Offset = 0;
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169             <span class="comment">// Position.</span>
+<a name="l00170"></a>00170             VertexDecl-&gt;addElement(0,0,Ogre::VET_FLOAT3,Ogre::VES_POSITION);
+<a name="l00171"></a>00171             Offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT3);
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173             <span class="comment">// Colour</span>
+<a name="l00174"></a>00174             VertexDecl-&gt;addElement(0,Offset,Ogre::VET_FLOAT4,Ogre::VES_DIFFUSE);
+<a name="l00175"></a>00175             Offset += Ogre::VertexElement::getTypeSize(Ogre::VET_FLOAT4);
+<a name="l00176"></a>00176 
+<a name="l00177"></a>00177             <span class="comment">// Texture Coordinates</span>
+<a name="l00178"></a>00178             VertexDecl-&gt;addElement(0,Offset,Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES);
+<a name="l00179"></a>00179 
+<a name="l00180"></a>00180             this-&gt;SID-&gt;VertexBuffer = Ogre::HardwareBufferManager::getSingletonPtr()-&gt;createVertexBuffer(
+<a name="l00181"></a>00181                 VertexDecl-&gt;getVertexSize(0),
+<a name="l00182"></a>00182                 VertexBufferSize,
+<a name="l00183"></a>00183                 Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+<a name="l00184"></a>00184                 <span class="keyword">false</span>);
 <a name="l00185"></a>00185 
-<a name="l00186"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aba94ad01214919f9a7506bdef39aee64">00186</a>         <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aba94ad01214919f9a7506bdef39aee64" title="Gets the widget the mouse is over if any.">Screen::CheckWidgetMouseIsOver</a>()
-<a name="l00187"></a>00187         {
-<a name="l00188"></a>00188             <span class="keywordflow">for</span>( std::map&lt;Whole,Layer*&gt;::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
-<a name="l00189"></a>00189             {
-<a name="l00190"></a>00190                 <span class="keywordflow">if</span>( (*it).second-&gt;IsVisible() )
-<a name="l00191"></a>00191                 {
-<a name="l00192"></a>00192                     <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* widget = (*it).second-&gt;CheckWidgetMouseIsOver();
-<a name="l00193"></a>00193                     <span class="keywordflow">if</span>(widget)
-<a name="l00194"></a>00194                     {
-<a name="l00195"></a>00195                         <span class="keywordflow">return</span> widget;
-<a name="l00196"></a>00196                     }
-<a name="l00197"></a>00197                 }
-<a name="l00198"></a>00198             }
-<a name="l00199"></a>00199             <span class="keywordflow">return</span> 0;
-<a name="l00200"></a>00200         }
-<a name="l00201"></a>00201 
-<a name="l00202"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ae19e1d289996d93af69ff1ee500be2ad">00202</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ae19e1d289996d93af69ff1ee500be2ad" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">Screen::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
-<a name="l00203"></a>00203         {
-<a name="l00204"></a>00204             PrimaryAtlas = Atlas;
-<a name="l00205"></a>00205         }
-<a name="l00206"></a>00206 
-<a name="l00207"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177">00207</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">Screen::GetPrimaryAtlas</a>()
-<a name="l00208"></a>00208         {
-<a name="l00209"></a>00209             <span class="keywordflow">return</span> PrimaryAtlas;
-<a name="l00210"></a>00210         }
-<a name="l00211"></a>00211 
-<a name="l00212"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7ccbb6d2424f8d7bf437ebd717af84c1">00212</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7ccbb6d2424f8d7bf437ebd717af84c1" title="Checks to see if the viewport has changed in size. If so it updates all the UI elements on the screen...">Screen::CheckViewportSize</a>()
-<a name="l00213"></a>00213         {
-<a name="l00214"></a>00214             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrentSize((<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#a033b546e1fc35f5835262c270a7d8a94" title="Gets the width of the viewport in pixels.">GetActualWidth</a>(),(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#ab76a92f62936a525509c12672e42203a" title="Gets the height of the viewport in pixels.">GetActualHeight</a>());
-<a name="l00215"></a>00215             <span class="keywordflow">if</span>(KnownViewportSize == CurrentSize)
-<a name="l00216"></a>00216                 <span class="keywordflow">return</span>;
-<a name="l00217"></a>00217 
-<a name="l00218"></a>00218             <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a75bbcaf494a69d0c5fe9351916d9598a" title="Updates the internal sizes being used for calculating necessary resizes.">ViewportUpdateTool::ConfigureSizes</a>(KnownViewportSize,CurrentSize);
-<a name="l00219"></a>00219             KnownViewportSize = CurrentSize;
-<a name="l00220"></a>00220             <span class="keywordflow">for</span>( std::map&lt;Whole,Layer*&gt;::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
-<a name="l00221"></a>00221             {
-<a name="l00222"></a>00222                 (*it).second-&gt;ViewportUpdate();
-<a name="l00223"></a>00223             }
-<a name="l00224"></a>00224         }
-<a name="l00225"></a>00225 
-<a name="l00226"></a>00226         <span class="comment">/*void Screen::RenderOnce()</span>
-<a name="l00227"></a>00227 <span class="comment">        {</span>
-<a name="l00228"></a>00228 <span class="comment">            if(IsVisible() &amp;&amp; Layers.size())</span>
-<a name="l00229"></a>00229 <span class="comment">                GorillaScreen-&gt;renderOnce();</span>
-<a name="l00230"></a>00230 <span class="comment">        }*/</span>
+<a name="l00186"></a>00186             this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexBufferBinding-&gt;setBinding(0,this-&gt;SID-&gt;VertexBuffer);
+<a name="l00187"></a>00187             this-&gt;SID-&gt;RenderOp.operationType = Ogre::RenderOperation::OT_TRIANGLE_LIST;
+<a name="l00188"></a>00188             this-&gt;SID-&gt;RenderOp.useIndexes = <span class="keyword">false</span>;
+<a name="l00189"></a>00189         }
+<a name="l00190"></a>00190 
+<a name="l00191"></a>00191         <span class="keywordtype">void</span> Screen::DestroyVertexBuffer()
+<a name="l00192"></a>00192         {
+<a name="l00193"></a>00193             OGRE_DELETE this-&gt;SID-&gt;RenderOp.vertexData;
+<a name="l00194"></a>00194             this-&gt;SID-&gt;RenderOp.vertexData = 0;
+<a name="l00195"></a>00195             this-&gt;SID-&gt;VertexBuffer.setNull();
+<a name="l00196"></a>00196             VertexBufferSize = 0;
+<a name="l00197"></a>00197         }
+<a name="l00198"></a>00198 
+<a name="l00199"></a>00199         <span class="keywordtype">void</span> Screen::ResizeVertexBuffer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; RequestedSize)
+<a name="l00200"></a>00200         {
+<a name="l00201"></a>00201             <span class="keywordflow">if</span>( VertexBufferSize == 0 )
+<a name="l00202"></a>00202                 CreateVertexBuffer(RequestedSize);
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204             <span class="keywordflow">if</span>(RequestedSize &gt; VertexBufferSize)
+<a name="l00205"></a>00205             {
+<a name="l00206"></a>00206                 <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> NewVertexBufferSize = 1;
+<a name="l00207"></a>00207 
+<a name="l00208"></a>00208                 <span class="keywordflow">while</span>(NewVertexBufferSize &lt; RequestedSize)
+<a name="l00209"></a>00209                     NewVertexBufferSize &lt;&lt;= 1;
+<a name="l00210"></a>00210 
+<a name="l00211"></a>00211                 this-&gt;SID-&gt;VertexBuffer = Ogre::HardwareBufferManager::getSingletonPtr()-&gt;createVertexBuffer(
+<a name="l00212"></a>00212                     this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexDeclaration-&gt;getVertexSize(0),
+<a name="l00213"></a>00213                     NewVertexBufferSize,
+<a name="l00214"></a>00214                     Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+<a name="l00215"></a>00215                     <span class="keyword">false</span>);
+<a name="l00216"></a>00216                 VertexBufferSize = NewVertexBufferSize;
+<a name="l00217"></a>00217                 this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexStart = 0;
+<a name="l00218"></a>00218                 this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexBufferBinding-&gt;setBinding(0,this-&gt;SID-&gt;VertexBuffer);
+<a name="l00219"></a>00219             }
+<a name="l00220"></a>00220         }
+<a name="l00221"></a>00221 
+<a name="l00222"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5f1f23c666513a658e7297a0bea49629">00222</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5f1f23c666513a658e7297a0bea49629" title="Gets the name of this screen.">Screen::GetName</a>()
+<a name="l00223"></a>00223         {
+<a name="l00224"></a>00224             <span class="keywordflow">return</span> Name;
+<a name="l00225"></a>00225         }
+<a name="l00226"></a>00226 
+<a name="l00227"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a32ac3cc1bdfd2799b5bfef7f904b322d">00227</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a32ac3cc1bdfd2799b5bfef7f904b322d" title="Sets the screens visability.">Screen::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
+<a name="l00228"></a>00228         {
+<a name="l00229"></a>00229             this-&gt;Visible = Visible;
+<a name="l00230"></a>00230         }
 <a name="l00231"></a>00231 
-<a name="l00232"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abd6f36565db2aaf29a46180fcfe0bef2">00232</a>         Gorilla::Screen* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abd6f36565db2aaf29a46180fcfe0bef2" title="Manually calls the UI system to render this screen.">Screen::GetGorillaScreen</a>()
+<a name="l00232"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae">00232</a>         <span class="keywordtype">bool</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abe4941cec0c43850bafa4b76397944ae" title="Gets the screens visability.">Screen::IsVisible</a>()
 <a name="l00233"></a>00233         {
-<a name="l00234"></a>00234             <span class="keywordflow">return</span> GorillaScreen;
+<a name="l00234"></a>00234             <span class="keywordflow">return</span> Visible;
 <a name="l00235"></a>00235         }
-<a name="l00236"></a>00236     }<span class="comment">//ui</span>
-<a name="l00237"></a>00237 }<span class="comment">//Mezzanine</span>
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239 <span class="preprocessor">#endif</span>
+<a name="l00236"></a>00236 
+<a name="l00237"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a6d77c9fd4e2da65ed85f13b0bb7eebe4">00237</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a6d77c9fd4e2da65ed85f13b0bb7eebe4" title="Forces the screen to be shown.">Screen::Show</a>()
+<a name="l00238"></a>00238         {
+<a name="l00239"></a>00239             this-&gt;Visible = <span class="keyword">true</span>;
+<a name="l00240"></a>00240         }
+<a name="l00241"></a>00241 
+<a name="l00242"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aad220f00a62a75ab73e4620e853acdca">00242</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aad220f00a62a75ab73e4620e853acdca" title="Forces the screen to hide.">Screen::Hide</a>()
+<a name="l00243"></a>00243         {
+<a name="l00244"></a>00244             this-&gt;Visible = <span class="keyword">false</span>;
+<a name="l00245"></a>00245         }
+<a name="l00246"></a>00246 
+<a name="l00247"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a47c85a1fad08b96b3b24b2c1402a4fcd">00247</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a47c85a1fad08b96b3b24b2c1402a4fcd" title="Creates a layer in the GUI screen to place GUI objects in.">Screen::CreateLayer</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Zorder)
+<a name="l00248"></a>00248         {
+<a name="l00249"></a>00249             <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* NewLayer = <span class="keyword">new</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>(Name, Zorder, <span class="keyword">this</span>);
+<a name="l00250"></a>00250             <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>* NewIndexData = <span class="keyword">new</span> <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>();
+<a name="l00251"></a>00251             NewIndexData-&gt;IndexLayer = NewLayer;
+<a name="l00252"></a>00252             NewIndexData-&gt;RedrawNeeded = <span class="keyword">true</span>;
+<a name="l00253"></a>00253             std::pair&lt;std::map&lt;Whole,IndexData*&gt;::iterator,<span class="keywordtype">bool</span>&gt; TestPair = Indexes.insert(std::pair&lt;Whole,IndexData*&gt;(Zorder,NewIndexData));
+<a name="l00254"></a>00254             Layers.push_back(NewLayer);
+<a name="l00255"></a>00255             <span class="keywordflow">if</span>(TestPair.second)
+<a name="l00256"></a>00256             {
+<a name="l00257"></a>00257                 <span class="keywordflow">return</span> NewLayer;
+<a name="l00258"></a>00258             }<span class="keywordflow">else</span>{<span class="comment"></span>
+<a name="l00259"></a>00259 <span class="comment">                /// @todo add an exception here or maybe log entry, some notification it failed.</span>
+<a name="l00260"></a>00260 <span class="comment"></span>                <span class="keywordflow">return</span> 0;
+<a name="l00261"></a>00261             }
+<a name="l00262"></a>00262             IndexRedrawNeeded = <span class="keyword">true</span>;
+<a name="l00263"></a>00263         }
+<a name="l00264"></a>00264 
+<a name="l00265"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac61f47f88af6f4ee6a4f0b705c37647b">00265</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac61f47f88af6f4ee6a4f0b705c37647b" title="Gets an already created layer by name.">Screen::GetLayer</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00266"></a>00266         {
+<a name="l00267"></a>00267             <span class="keywordflow">for</span> ( std::vector&lt;Layer*&gt;::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+<a name="l00268"></a>00268             {
+<a name="l00269"></a>00269                 <span class="keywordflow">if</span> ( Name == (*it)-&gt;GetName() )
+<a name="l00270"></a>00270                 {
+<a name="l00271"></a>00271                     <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* Ret = (*it);
+<a name="l00272"></a>00272                     <span class="keywordflow">return</span> Ret;
+<a name="l00273"></a>00273                 }
+<a name="l00274"></a>00274             }
+<a name="l00275"></a>00275             <span class="keywordflow">return</span> 0;
+<a name="l00276"></a>00276         }
+<a name="l00277"></a>00277 
+<a name="l00278"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#abdfa0751c3738ef9545cb36096dcf7a6">00278</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac61f47f88af6f4ee6a4f0b705c37647b" title="Gets an already created layer by name.">Screen::GetLayer</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index)
+<a name="l00279"></a>00279         {
+<a name="l00280"></a>00280             <span class="keywordflow">return</span> Layers.at(Index);
+<a name="l00281"></a>00281             <span class="comment">/*std::vector&lt;Layer*&gt;::iterator it = Layers.begin();</span>
+<a name="l00282"></a>00282 <span class="comment">            while(0 &lt; Index)</span>
+<a name="l00283"></a>00283 <span class="comment">            {</span>
+<a name="l00284"></a>00284 <span class="comment">                it++;</span>
+<a name="l00285"></a>00285 <span class="comment">                Index--;</span>
+<a name="l00286"></a>00286 <span class="comment">            }</span>
+<a name="l00287"></a>00287 <span class="comment">            if(it != Layers.end())</span>
+<a name="l00288"></a>00288 <span class="comment">                return (*it).second;</span>
+<a name="l00289"></a>00289 <span class="comment">            return 0;//*/</span>
+<a name="l00290"></a>00290         }
+<a name="l00291"></a>00291 
+<a name="l00292"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a6c9bc9b6161920d4f8c6b7bda7931af1">00292</a>         <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a6c9bc9b6161920d4f8c6b7bda7931af1" title="Gets an already created layer by it&amp;#39;s Zorder.">Screen::GetLayerbyZorder</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Zorder)
+<a name="l00293"></a>00293         {
+<a name="l00294"></a>00294             std::map&lt;Whole,IndexData*&gt;::iterator it = Indexes.find(Zorder);
+<a name="l00295"></a>00295             <span class="keywordflow">if</span>(it != Indexes.end())
+<a name="l00296"></a>00296                 <span class="keywordflow">return</span> (*it).second-&gt;IndexLayer;
+<a name="l00297"></a>00297             <span class="keywordflow">return</span> 0;
+<a name="l00298"></a>00298         }
+<a name="l00299"></a>00299 
+<a name="l00300"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa76a0066086f4d4b1968cfb18ddcb96c">00300</a>         <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aa76a0066086f4d4b1968cfb18ddcb96c" title="Gets the number of layers created and stored in this class.">Screen::GetNumLayers</a>()
+<a name="l00301"></a>00301         {
+<a name="l00302"></a>00302             <span class="keywordflow">return</span> Layers.size();
+<a name="l00303"></a>00303         }
+<a name="l00304"></a>00304 
+<a name="l00305"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7f81a6d97593c7c152d543e499f3b2a1">00305</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7f81a6d97593c7c152d543e499f3b2a1" title="Destroy&amp;#39;s a previously created layer.">Screen::DestroyLayer</a>(<a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* ToBeDestroyed)
+<a name="l00306"></a>00306         {
+<a name="l00307"></a>00307             <span class="keywordflow">if</span>(Layers.empty())
+<a name="l00308"></a>00308                 <span class="keywordflow">return</span>;
+<a name="l00309"></a>00309             <span class="keywordflow">for</span>( std::vector&lt;Layer*&gt;::iterator it = Layers.begin() ; it != Layers.end() ; ++it )
+<a name="l00310"></a>00310             {
+<a name="l00311"></a>00311                 <span class="keywordflow">if</span>( ToBeDestroyed == (*it) )
+<a name="l00312"></a>00312                 {
+<a name="l00313"></a>00313                     Layers.erase(it);
+<a name="l00314"></a>00314                     <span class="keywordflow">break</span>;
+<a name="l00315"></a>00315                 }
+<a name="l00316"></a>00316             }
+<a name="l00317"></a>00317             <span class="keywordflow">for</span>( std::map&lt;Whole,IndexData*&gt;::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
+<a name="l00318"></a>00318             {
+<a name="l00319"></a>00319                 <span class="keywordflow">if</span>( ToBeDestroyed == (*it).second-&gt;IndexLayer )
+<a name="l00320"></a>00320                 {
+<a name="l00321"></a>00321                     <span class="keyword">delete</span> (*it).second-&gt;IndexLayer;
+<a name="l00322"></a>00322                     Indexes.erase(it);
+<a name="l00323"></a>00323                     <span class="keywordflow">break</span>;
+<a name="l00324"></a>00324                 }
+<a name="l00325"></a>00325             }
+<a name="l00326"></a>00326         }
+<a name="l00327"></a>00327 
+<a name="l00328"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0">00328</a>         <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a12199967ad8a0e91cf816083aaa2a5d0" title="Gets the current viewport dimensions.">Screen::GetViewportDimensions</a>()
+<a name="l00329"></a>00329         {
+<a name="l00330"></a>00330             <span class="keywordflow">return</span> KnownViewportSize;
+<a name="l00331"></a>00331         }
+<a name="l00332"></a>00332 
+<a name="l00333"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a55bf51bc4923effdd180ee945a4a0aa7">00333</a>         <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a55bf51bc4923effdd180ee945a4a0aa7" title="Gets the button the mouse is over if any.">Screen::CheckButtonMouseIsOver</a>()
+<a name="l00334"></a>00334         {
+<a name="l00335"></a>00335             <span class="keywordflow">for</span>( std::map&lt;Whole,IndexData*&gt;::reverse_iterator it = Indexes.rbegin() ; it != Indexes.rend() ; it++ )
+<a name="l00336"></a>00336             {
+<a name="l00337"></a>00337                 <span class="keywordflow">if</span>( (*it).second-&gt;IndexLayer-&gt;IsVisible() )
+<a name="l00338"></a>00338                 {
+<a name="l00339"></a>00339                     <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* button = (*it).second-&gt;IndexLayer-&gt;CheckButtonMouseIsOver();
+<a name="l00340"></a>00340                     <span class="keywordflow">if</span>(button)
+<a name="l00341"></a>00341                     {
+<a name="l00342"></a>00342                         <span class="keywordflow">return</span> button;
+<a name="l00343"></a>00343                     }
+<a name="l00344"></a>00344                 }
+<a name="l00345"></a>00345             }
+<a name="l00346"></a>00346             <span class="keywordflow">return</span> 0;
+<a name="l00347"></a>00347         }
+<a name="l00348"></a>00348 
+<a name="l00349"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#af713ab0b229c33e0878e1f0d681e731f">00349</a>         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#af713ab0b229c33e0878e1f0d681e731f" title="Gets the X axis Texel Offset for the current rendersystem.">Screen::GetTexelOffsetX</a>()<span class="keyword"> const</span>
+<a name="l00350"></a>00350 <span class="keyword">        </span>{
+<a name="l00351"></a>00351             <span class="keywordflow">return</span> this-&gt;SID-&gt;RenderSys-&gt;getHorizontalTexelOffset();
+<a name="l00352"></a>00352         }
+<a name="l00353"></a>00353 
+<a name="l00354"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a1b8584eaecf431a164a8d31c55bf38b5">00354</a>         <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a1b8584eaecf431a164a8d31c55bf38b5" title="Gets the Y axis Texel Offset for the current rendersystem.">Screen::GetTexelOffsetY</a>()<span class="keyword"> const</span>
+<a name="l00355"></a>00355 <span class="keyword">        </span>{
+<a name="l00356"></a>00356             <span class="keywordflow">return</span> this-&gt;SID-&gt;RenderSys-&gt;getVerticalTexelOffset();
+<a name="l00357"></a>00357         }
+<a name="l00358"></a>00358 
+<a name="l00359"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aba94ad01214919f9a7506bdef39aee64">00359</a>         <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#aba94ad01214919f9a7506bdef39aee64" title="Gets the widget the mouse is over if any.">Screen::CheckWidgetMouseIsOver</a>()
+<a name="l00360"></a>00360         {
+<a name="l00361"></a>00361             <span class="keywordflow">for</span>( std::map&lt;Whole,IndexData*&gt;::reverse_iterator it = Indexes.rbegin() ; it != Indexes.rend() ; it++ )
+<a name="l00362"></a>00362             {
+<a name="l00363"></a>00363                 <span class="keywordflow">if</span>( (*it).second-&gt;IndexLayer-&gt;IsVisible() )
+<a name="l00364"></a>00364                 {
+<a name="l00365"></a>00365                     <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* widget = (*it).second-&gt;IndexLayer-&gt;CheckWidgetMouseIsOver();
+<a name="l00366"></a>00366                     <span class="keywordflow">if</span>(widget)
+<a name="l00367"></a>00367                     {
+<a name="l00368"></a>00368                         <span class="keywordflow">return</span> widget;
+<a name="l00369"></a>00369                     }
+<a name="l00370"></a>00370                 }
+<a name="l00371"></a>00371             }
+<a name="l00372"></a>00372             <span class="keywordflow">return</span> 0;
+<a name="l00373"></a>00373         }
+<a name="l00374"></a>00374 
+<a name="l00375"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ae19e1d289996d93af69ff1ee500be2ad">00375</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ae19e1d289996d93af69ff1ee500be2ad" title="Sets the Atlas to be assumed when one isn&amp;#39;t provided for atlas related tasks.">Screen::SetPrimaryAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas)
+<a name="l00376"></a>00376         {
+<a name="l00377"></a>00377             PrimaryAtlas = Atlas;
+<a name="l00378"></a>00378         }
+<a name="l00379"></a>00379 
+<a name="l00380"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177">00380</a>         <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#adafbc28919ebb4d2d65e54daa0676177" title="Gets the currently set primary atlas.">Screen::GetPrimaryAtlas</a>()
+<a name="l00381"></a>00381         {
+<a name="l00382"></a>00382             <span class="keywordflow">return</span> PrimaryAtlas;
+<a name="l00383"></a>00383         }
+<a name="l00384"></a>00384 
+<a name="l00385"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7ccbb6d2424f8d7bf437ebd717af84c1">00385</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a7ccbb6d2424f8d7bf437ebd717af84c1" title="Checks to see if the viewport has changed in size. If so it updates all the UI elements on the screen...">Screen::CheckViewportSize</a>()
+<a name="l00386"></a>00386         {
+<a name="l00387"></a>00387             <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrentSize((<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#a033b546e1fc35f5835262c270a7d8a94" title="Gets the width of the viewport in pixels.">GetActualWidth</a>(),(<a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a>)GameViewport-&gt;<a class="code" href="classMezzanine_1_1Viewport.html#ab76a92f62936a525509c12672e42203a" title="Gets the height of the viewport in pixels.">GetActualHeight</a>());
+<a name="l00388"></a>00388             <span class="keywordflow">if</span>(KnownViewportSize == CurrentSize)
+<a name="l00389"></a>00389                 <span class="keywordflow">return</span>;
+<a name="l00390"></a>00390 
+<a name="l00391"></a>00391             <a class="code" href="classMezzanine_1_1UI_1_1ViewportUpdateTool.html#a75bbcaf494a69d0c5fe9351916d9598a" title="Updates the internal sizes being used for calculating necessary resizes.">ViewportUpdateTool::ConfigureSizes</a>(KnownViewportSize,CurrentSize);
+<a name="l00392"></a>00392             KnownViewportSize = CurrentSize;
+<a name="l00393"></a>00393 
+<a name="l00394"></a>00394             InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a> = 1.0 / KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>;
+<a name="l00395"></a>00395             InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a> = 1.0 / KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00396"></a>00396 
+<a name="l00397"></a>00397             <span class="keywordflow">for</span>( std::vector&lt;Layer*&gt;::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+<a name="l00398"></a>00398             {
+<a name="l00399"></a>00399                 (*it)-&gt;ViewportUpdate();
+<a name="l00400"></a>00400             }
+<a name="l00401"></a>00401             IndexRedrawAll = <span class="keyword">true</span>;
+<a name="l00402"></a>00402             ViewportSizeChanged = <span class="keyword">true</span>;
+<a name="l00403"></a>00403         }
+<a name="l00404"></a>00404 
+<a name="l00405"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#afda0f83107b413f14fb56e6cd007b243">00405</a>         <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#afda0f83107b413f14fb56e6cd007b243" title="Gets the Viewport this screen is currently rendering to.">Screen::GetViewport</a>()
+<a name="l00406"></a>00406         {
+<a name="l00407"></a>00407             <span class="keywordflow">return</span> GameViewport;
+<a name="l00408"></a>00408         }
+<a name="l00409"></a>00409 
+<a name="l00410"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#af76f7b0640ad5f7f37cdc5eaf8d5f0cd">00410</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#af76f7b0640ad5f7f37cdc5eaf8d5f0cd" title="Manually calls the UI system to render this screen.">Screen::_RenderScreen</a>()
+<a name="l00411"></a>00411         {
+<a name="l00412"></a>00412             <span class="keywordtype">bool</span> Force = <span class="keyword">false</span>;
+<a name="l00413"></a>00413             <span class="comment">// force == true if viewport size changed.</span>
+<a name="l00414"></a>00414             <span class="keywordflow">if</span>(ViewportSizeChanged
+<a name="l00415"></a>00415 #<span class="keywordflow">if</span> OGRE_NO_VIEWPORT_ORIENTATIONMODE == 0
+<a name="l00416"></a>00416             || Orientation != GameViewport-&gt;getOrientationMode()
+<a name="l00417"></a>00417 <span class="preprocessor">#else</span>
+<a name="l00418"></a>00418 <span class="preprocessor"></span>            || OrientationChanged
+<a name="l00419"></a>00419 <span class="preprocessor">#endif</span>
+<a name="l00420"></a>00420 <span class="preprocessor"></span>            )
+<a name="l00421"></a>00421             {
+<a name="l00422"></a>00422                 <span class="comment">/*KnownViewportSize.X = GameViewport-&gt;GetActualWidth();</span>
+<a name="l00423"></a>00423 <span class="comment">                KnownViewportSize.Y = GameViewport-&gt;GetActualHeight();</span>
+<a name="l00424"></a>00424 <span class="comment"></span>
+<a name="l00425"></a>00425 <span class="comment">                InverseViewportSize.X = 1.0 / KnownViewportSize.X;</span>
+<a name="l00426"></a>00426 <span class="comment">                InverseViewportSize.Y = 1.0 / KnownViewportSize.Y;// */</span>
+<a name="l00427"></a>00427 
+<a name="l00428"></a>00428 <span class="preprocessor">#if OGRE_NO_VIEWPORT_ORIENTATIONMODE == 0</span>
+<a name="l00429"></a>00429 <span class="preprocessor"></span>                Orientation = GameViewport-&gt;getOrientationMode();
+<a name="l00430"></a>00430 <span class="preprocessor">#else</span>
+<a name="l00431"></a>00431 <span class="preprocessor"></span>                <span class="keywordflow">if</span>(Orientation == Mezzanine::OM_Degree_90 || Orientation == Mezzanine::OM_Degree_270)
+<a name="l00432"></a>00432                 {
+<a name="l00433"></a>00433                     std::swap(KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00434"></a>00434                     std::swap(InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00435"></a>00435                 }
+<a name="l00436"></a>00436                 OrientationChanged = <span class="keyword">false</span>;
+<a name="l00437"></a>00437 <span class="preprocessor">#endif</span>
+<a name="l00438"></a>00438 <span class="preprocessor"></span>                <span class="keywordflow">if</span>(Orientation == Mezzanine::OM_Degree_90)
+<a name="l00439"></a>00439                     VertexTransform.<a class="code" href="classMezzanine_1_1Matrix4x4.html#a76a0cceae3c8cbc8ed8ff093794fcd67" title="Sets the Matrix based on a provided position, scale, and rotation.">SetTransform</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0),Scale,<a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(<a class="code" href="classMezzanine_1_1MathTool.html#afeaaaf9f445283c16310b4f15c44d03e" title="Gets Pi * 0.5.">MathTool::GetHalfPi</a>(),<a class="code" href="classMezzanine_1_1Vector3.html#a6a70011d21182d44fd458458b1627ea1" title="Gets a vector representing the Z unit of a vector.">Vector3::Unit_Z</a>()));
+<a name="l00440"></a>00440                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Orientation == Mezzanine::OM_Degree_180)
+<a name="l00441"></a>00441                     VertexTransform.<a class="code" href="classMezzanine_1_1Matrix4x4.html#a76a0cceae3c8cbc8ed8ff093794fcd67" title="Sets the Matrix based on a provided position, scale, and rotation.">SetTransform</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0),Scale,<a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(<a class="code" href="classMezzanine_1_1MathTool.html#a041b328e51d402deda1660b6d30508f5" title="Gets Pi.">MathTool::GetPi</a>(),<a class="code" href="classMezzanine_1_1Vector3.html#a6a70011d21182d44fd458458b1627ea1" title="Gets a vector representing the Z unit of a vector.">Vector3::Unit_Z</a>()));
+<a name="l00442"></a>00442                 <span class="keywordflow">else</span> <span class="keywordflow">if</span>(Orientation == Mezzanine::OM_Degree_270)
+<a name="l00443"></a>00443                     VertexTransform.<a class="code" href="classMezzanine_1_1Matrix4x4.html#a76a0cceae3c8cbc8ed8ff093794fcd67" title="Sets the Matrix based on a provided position, scale, and rotation.">SetTransform</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0),Scale,<a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(<a class="code" href="classMezzanine_1_1MathTool.html#a041b328e51d402deda1660b6d30508f5" title="Gets Pi.">MathTool::GetPi</a>() * 1.5,<a class="code" href="classMezzanine_1_1Vector3.html#a6a70011d21182d44fd458458b1627ea1" title="Gets a vector representing the Z unit of a vector.">Vector3::Unit_Z</a>()));
+<a name="l00444"></a>00444                 <span class="keywordflow">else</span>
+<a name="l00445"></a>00445                     VertexTransform.<a class="code" href="classMezzanine_1_1Matrix4x4.html#a76a0cceae3c8cbc8ed8ff093794fcd67" title="Sets the Matrix based on a provided position, scale, and rotation.">SetTransform</a>(<a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(0,0,0),Scale,<a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>(0,0,0,1));
+<a name="l00446"></a>00446                 Force = <span class="keyword">true</span>;
+<a name="l00447"></a>00447             }
+<a name="l00448"></a>00448             <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a80ed9d29431e152d7d1ab6d7568d2033" title="Prepares all vertices for rendering to the screen.">_RenderVertices</a>(Force);
+<a name="l00449"></a>00449             <span class="keywordtype">size_t</span> KnownVertexCount = 0;
+<a name="l00450"></a>00450             KnownVertexCount = this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexCount;
+<a name="l00451"></a>00451             <span class="keywordflow">if</span>(this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexCount)
+<a name="l00452"></a>00452             {
+<a name="l00453"></a>00453                 <span class="keywordflow">if</span>(TextureByVertex.size() == 0)
+<a name="l00454"></a>00454                 {
+<a name="l00455"></a>00455                     <a class="code" href="structMezzanine_1_1UI_1_1AtlasAndPosition.html" title="This class stores how the calls to Render are to be done.">AtlasAndPosition</a> MyObject;
+<a name="l00456"></a>00456                     MyObject.RenderStart = 0;
+<a name="l00457"></a>00457                     MyObject.RenderEnd = KnownVertexCount;
+<a name="l00458"></a>00458                     MyObject.Atlas = PrimaryAtlas;
+<a name="l00459"></a>00459                     TextureByVertex.push_back(MyObject);
+<a name="l00460"></a>00460                 }
+<a name="l00461"></a>00461                 PrepareRenderSystem();
+<a name="l00462"></a>00462                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> CurrAtlas = PrimaryAtlas;
+<a name="l00463"></a>00463                 <span class="keywordflow">for</span>( <span class="keywordtype">int</span> i = 0 ; i &lt; TextureByVertex.size() ; i++ )
+<a name="l00464"></a>00464                 {
+<a name="l00465"></a>00465                     <span class="keywordflow">if</span>(TextureByVertex[i].Atlas != CurrAtlas)
+<a name="l00466"></a>00466                     {
+<a name="l00467"></a>00467                         CurrAtlas = TextureByVertex[i].Atlas;
+<a name="l00468"></a>00468                         Ogre::TexturePtr TextureUse = <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">UIManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1UIManager.html#a904d4d7a3957a13cf5e27e8d97dd1add" title="Gets a loaded Atlas being stored in this manager.">GetAtlas</a>(CurrAtlas)-&gt;<a class="code" href="classMezzanine_1_1UI_1_1TextureAtlas.html#a22d0cccf6e3603db136510a075fc6d50" title="Gets the texture being used by this Atlas.">_GetTexture</a>();
+<a name="l00469"></a>00469                         this-&gt;SID-&gt;RenderSys-&gt;_setTexture(0,<span class="keyword">true</span>,TextureUse);
+<a name="l00470"></a>00470                     }
+<a name="l00471"></a>00471                     this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexCount = TextureByVertex[i].RenderEnd - TextureByVertex[i].RenderStart;
+<a name="l00472"></a>00472                     this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexStart = TextureByVertex[i].RenderStart;
+<a name="l00473"></a>00473                     this-&gt;SID-&gt;RenderSys-&gt;_render(this-&gt;SID-&gt;RenderOp);
+<a name="l00474"></a>00474                 }
+<a name="l00475"></a>00475             }
+<a name="l00476"></a>00476         }
+<a name="l00477"></a>00477 
+<a name="l00478"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a48a51680bf92223a2820215bc408012d">00478</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a48a51680bf92223a2820215bc408012d" title="Forces an orientation mode change for this screen.">Screen::_SetOrientation</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33" title="Simple enum for communicating the orientation the UI and Camera have relative to the world it is rend...">Mezzanine::OrientationMode</a>&amp; Mode)
+<a name="l00479"></a>00479         {
+<a name="l00480"></a>00480 <span class="preprocessor">#if OGRE_NO_VIEWPORT_ORIENTATIONMODE == 1</span>
+<a name="l00481"></a>00481 <span class="preprocessor"></span>            Orientation = Mode;
+<a name="l00482"></a>00482             OrientationChanged = <span class="keyword">true</span>;
+<a name="l00483"></a>00483 
+<a name="l00484"></a>00484             <span class="keywordflow">if</span>( Orientation == Mezzanine::OM_Degree_90 || Orientation == Mezzanine::OM_Degree_270 )
+<a name="l00485"></a>00485             {
+<a name="l00486"></a>00486                 std::swap(KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,KnownViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00487"></a>00487                 std::swap(InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>,InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00488"></a>00488             }
+<a name="l00489"></a>00489 <span class="preprocessor">#endif</span>
+<a name="l00490"></a>00490 <span class="preprocessor"></span>        }
+<a name="l00491"></a>00491 
+<a name="l00492"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a3087b47a2098d51ebff5498616a3b8cf">00492</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a3087b47a2098d51ebff5498616a3b8cf" title="Updates the vertex positions so they are in front of the camera in world space.">Screen::_Transform</a>(std::vector&lt;VertexData&gt;&amp; Vertices, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Begin, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; End)
+<a name="l00493"></a>00493         {
+<a name="l00494"></a>00494             <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> Iden;
+<a name="l00495"></a>00495             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> X;
+<a name="l00496"></a>00496             <span class="keywordflow">if</span>( Begin != End )
+<a name="l00497"></a>00497             {
+<a name="l00498"></a>00498                 <span class="keywordflow">for</span>( X = Begin ; X &lt; End ; X++ )
+<a name="l00499"></a>00499                 {
+<a name="l00500"></a>00500                     Vertices[X].Vert.Position.X = ((Vertices[X].Vert.Position.X) * InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#a204bb23ce90f944f342fe86203f539d1" title="Coordinate on the X vector.">X</a>) * 2 - 1;
+<a name="l00501"></a>00501                     Vertices[X].Vert.Position.Y = ((Vertices[X].Vert.Position.Y) * InverseViewportSize.<a class="code" href="classMezzanine_1_1Vector2.html#aa189e2585580d3f82b29584844fad0ad" title="Coordinate on the Y vector.">Y</a>) * -2 + 1;
+<a name="l00502"></a>00502                 }
+<a name="l00503"></a>00503             }
+<a name="l00504"></a>00504             <span class="keywordflow">if</span>( VertexTransform != Iden )
+<a name="l00505"></a>00505             {
+<a name="l00506"></a>00506                 <span class="keywordflow">for</span>( X = Begin ; X &lt; End ; X++ )
+<a name="l00507"></a>00507                     Vertices[X].Vert.Position = VertexTransform * Vertices[X].Vert.Position;
+<a name="l00508"></a>00508             }
+<a name="l00509"></a>00509         }
+<a name="l00510"></a>00510 
+<a name="l00511"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#acce659197f0ac025974f88f294d793d4">00511</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#acce659197f0ac025974f88f294d793d4" title="Clears the layer and index data and rebuilds in from the existing layers.">Screen::_RecalculateIndexes</a>()
+<a name="l00512"></a>00512         {
+<a name="l00513"></a>00513             std::map&lt;UInt32,IndexData*&gt;::iterator IndIt;
+<a name="l00514"></a>00514             <span class="keywordflow">for</span>( IndIt = Indexes.begin() ; IndIt != Indexes.end() ; IndIt++ )
+<a name="l00515"></a>00515             {
+<a name="l00516"></a>00516                 (*IndIt).second-&gt;Vertices.Clear();
+<a name="l00517"></a>00517                 (*IndIt).second-&gt;IndexLayer = NULL;
+<a name="l00518"></a>00518                 (*IndIt).second-&gt;RedrawNeeded = <span class="keyword">false</span>;
+<a name="l00519"></a>00519             }
+<a name="l00520"></a>00520             <span class="keywordflow">for</span>( std::vector&lt;Layer*&gt;::iterator LayerIt = Layers.begin() ; LayerIt != Layers.end() ; LayerIt++ )
+<a name="l00521"></a>00521             {
+<a name="l00522"></a>00522                 IndIt = Indexes.find( (*LayerIt)-&gt;GetIndex() );
+<a name="l00523"></a>00523                 <span class="keywordflow">if</span> (IndIt == Indexes.end())
+<a name="l00524"></a>00524                 {
+<a name="l00525"></a>00525                     Indexes[(*LayerIt)-&gt;GetIndex()] = <span class="keyword">new</span> <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>();
+<a name="l00526"></a>00526                     IndIt = Indexes.find( (*LayerIt)-&gt;GetIndex() );
+<a name="l00527"></a>00527                 }
+<a name="l00528"></a>00528 
+<a name="l00529"></a>00529                 (*IndIt).second-&gt;IndexLayer = (*LayerIt);
+<a name="l00530"></a>00530             }
+<a name="l00531"></a>00531             <span class="keywordtype">bool</span> Deleted = <span class="keyword">false</span>;
+<a name="l00532"></a>00532 
+<a name="l00533"></a>00533             <span class="keywordflow">for</span>(;;)
+<a name="l00534"></a>00534             {
+<a name="l00535"></a>00535                 Deleted = <span class="keyword">false</span>;
+<a name="l00536"></a>00536                 <span class="keywordflow">for</span>( IndIt = Indexes.begin() ; IndIt != Indexes.end() ; IndIt++ )
+<a name="l00537"></a>00537                 {
+<a name="l00538"></a>00538                     <span class="keywordflow">if</span>( (*IndIt).second-&gt;IndexLayer == NULL )
+<a name="l00539"></a>00539                     {
+<a name="l00540"></a>00540                         <span class="keyword">delete</span> (*IndIt).second;
+<a name="l00541"></a>00541                         Indexes.erase(IndIt);
+<a name="l00542"></a>00542                         Deleted = <span class="keyword">true</span>;
+<a name="l00543"></a>00543                         <span class="keywordflow">break</span>;
+<a name="l00544"></a>00544                     }
+<a name="l00545"></a>00545                 }
+<a name="l00546"></a>00546                 <span class="keywordflow">if</span>( IndIt == Indexes.end() )
+<a name="l00547"></a>00547                     <span class="keywordflow">break</span>;
+<a name="l00548"></a>00548                 <span class="keywordflow">if</span>(!Deleted)
+<a name="l00549"></a>00549                     <span class="keywordflow">break</span>;
+<a name="l00550"></a>00550             }
+<a name="l00551"></a>00551             IndexRedrawAll = <span class="keyword">true</span>;
+<a name="l00552"></a>00552         }
+<a name="l00553"></a>00553 
+<a name="l00554"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ad3077ec20a6aeb42b8b77b58a619b08c">00554</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ad3077ec20a6aeb42b8b77b58a619b08c" title="Clears the existing verticies and regenerates them for a specific index(layer).">Screen::_RedrawIndex</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a>&amp; Index, <span class="keywordtype">bool</span> Force)
+<a name="l00555"></a>00555         {
+<a name="l00556"></a>00556             std::map&lt;UInt32,IndexData*&gt;::iterator it = Indexes.find( Index );
+<a name="l00557"></a>00557             <span class="keywordflow">if</span> (it == Indexes.end())
+<a name="l00558"></a>00558                 <span class="keywordflow">return</span>;
+<a name="l00559"></a>00559 
+<a name="l00560"></a>00560             <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>* CurrIndexData = (*it).second;
+<a name="l00561"></a>00561 
+<a name="l00562"></a>00562             CurrIndexData-&gt;Vertices.Clear();
+<a name="l00563"></a>00563             CurrIndexData-&gt;RedrawNeeded = <span class="keyword">false</span>;
+<a name="l00564"></a>00564 
+<a name="l00565"></a>00565             <span class="keywordflow">if</span>( CurrIndexData-&gt;IndexLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8a9222e729f47a4cfec32325a03cf7f3" title="Gets the layers&amp;#39; visability.">IsVisible</a>() )
+<a name="l00566"></a>00566                 CurrIndexData-&gt;IndexLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a477e9da0a01828455dad7d9f23b804bb" title="Retrieves the list of verticies for all objects in this layer.">_Render</a>( CurrIndexData-&gt;Vertices, Force );
+<a name="l00567"></a>00567         }
+<a name="l00568"></a>00568 
+<a name="l00569"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5b14cece4f37e9eee8e0ac20dd0fdcfd">00569</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5b14cece4f37e9eee8e0ac20dd0fdcfd" title="Clears all verticies for every layer and regenerates them for rendering.">Screen::_RedrawAllIndexes</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00570"></a>00570         {
+<a name="l00571"></a>00571             IndexRedrawNeeded = <span class="keyword">false</span>;
+<a name="l00572"></a>00572             IndexRedrawAll = <span class="keyword">false</span>;
+<a name="l00573"></a>00573             <span class="keywordflow">for</span>( std::map&lt;UInt32,IndexData*&gt;::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
+<a name="l00574"></a>00574             {
+<a name="l00575"></a>00575                 <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>* CurrIndexData = (*it).second;
+<a name="l00576"></a>00576                 <span class="keywordflow">if</span>( CurrIndexData-&gt;RedrawNeeded || Force )
+<a name="l00577"></a>00577                 {
+<a name="l00578"></a>00578                     CurrIndexData-&gt;Vertices.Clear();
+<a name="l00579"></a>00579                     CurrIndexData-&gt;RedrawNeeded = <span class="keyword">false</span>;
+<a name="l00580"></a>00580 
+<a name="l00581"></a>00581                     <span class="keywordflow">if</span>( CurrIndexData-&gt;IndexLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a8a9222e729f47a4cfec32325a03cf7f3" title="Gets the layers&amp;#39; visability.">IsVisible</a>() )
+<a name="l00582"></a>00582                         CurrIndexData-&gt;IndexLayer-&gt;<a class="code" href="classMezzanine_1_1UI_1_1Layer.html#a477e9da0a01828455dad7d9f23b804bb" title="Retrieves the list of verticies for all objects in this layer.">_Render</a>( CurrIndexData-&gt;Vertices, Force );
+<a name="l00583"></a>00583                 }
+<a name="l00584"></a>00584             }
+<a name="l00585"></a>00585         }
+<a name="l00586"></a>00586 
+<a name="l00587"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac33d1f47594d63413a41f254756e961c">00587</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#ac33d1f47594d63413a41f254756e961c" title="Flags a layer for redraw before the next render.">Screen::_RequestIndexRedraw</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a>&amp; Index)
+<a name="l00588"></a>00588         {
+<a name="l00589"></a>00589             std::map&lt;UInt32,IndexData*&gt;::iterator it = Indexes.find( Index );
+<a name="l00590"></a>00590             <span class="keywordflow">if</span> (it == Indexes.end())
+<a name="l00591"></a>00591                 <span class="keywordflow">return</span>;
+<a name="l00592"></a>00592 
+<a name="l00593"></a>00593             (*it).second-&gt;RedrawNeeded = <span class="keyword">true</span>;
+<a name="l00594"></a>00594             IndexRedrawNeeded = <span class="keyword">true</span>;
+<a name="l00595"></a>00595         }
+<a name="l00596"></a>00596 
+<a name="l00597"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a80ed9d29431e152d7d1ab6d7568d2033">00597</a>         <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a80ed9d29431e152d7d1ab6d7568d2033" title="Prepares all vertices for rendering to the screen.">Screen::_RenderVertices</a>(<span class="keywordtype">bool</span> Force)
+<a name="l00598"></a>00598         {
+<a name="l00599"></a>00599             <span class="keywordflow">if</span>(IndexRedrawNeeded == <span class="keyword">false</span>)
+<a name="l00600"></a>00600                 <span class="keywordflow">if</span>(!Force)
+<a name="l00601"></a>00601                     <span class="keywordflow">return</span>;
+<a name="l00602"></a>00602 
+<a name="l00603"></a>00603             <a class="code" href="classMezzanine_1_1UI_1_1Screen.html#a5b14cece4f37e9eee8e0ac20dd0fdcfd" title="Clears all verticies for every layer and regenerates them for rendering.">_RedrawAllIndexes</a>(Force);
+<a name="l00604"></a>00604 
+<a name="l00605"></a>00605             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> KnownVertexCount = 0;
+<a name="l00606"></a>00606 
+<a name="l00607"></a>00607             <span class="keywordflow">for</span>(std::map&lt;UInt32,IndexData*&gt;::iterator it = Indexes.begin(); it != Indexes.end();it++)
+<a name="l00608"></a>00608                 KnownVertexCount += (*it).second-&gt;Vertices.Size();
+<a name="l00609"></a>00609 
+<a name="l00610"></a>00610             ResizeVertexBuffer(KnownVertexCount);
+<a name="l00611"></a>00611             <a class="code" href="structMezzanine_1_1UI_1_1OgreVertex.html">OgreVertex</a>* WriteIterator = (<a class="code" href="structMezzanine_1_1UI_1_1OgreVertex.html">OgreVertex</a>*) this-&gt;SID-&gt;VertexBuffer-&gt;lock(Ogre::HardwareBuffer::HBL_DISCARD);
+<a name="l00612"></a>00612             <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>* CurrIndexData = NULL;
+<a name="l00613"></a>00613             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> CurrentName = PrimaryAtlas;
+<a name="l00614"></a>00614             TextureByVertex.clear();
+<a name="l00615"></a>00615             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> PreviousTally = 0;
+<a name="l00616"></a>00616             <a class="code" href="structMezzanine_1_1UI_1_1AtlasAndPosition.html" title="This class stores how the calls to Render are to be done.">AtlasAndPosition</a> MyObject;
+<a name="l00617"></a>00617             MyObject.RenderStart = 0;
+<a name="l00618"></a>00618             MyObject.Atlas = PrimaryAtlas;
+<a name="l00619"></a>00619             <span class="keywordflow">for</span>( std::map&lt;UInt32,IndexData*&gt;::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
+<a name="l00620"></a>00620             {
+<a name="l00621"></a>00621                 CurrIndexData = (*it).second;
+<a name="l00622"></a>00622                 <span class="keywordflow">for</span>( <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> I = 0 ; I &lt; CurrIndexData-&gt;Vertices.Size() ; I++ )
+<a name="l00623"></a>00623                 {
+<a name="l00624"></a>00624                     <span class="keywordflow">if</span>( CurrIndexData-&gt;Vertices[I].Atlas.empty() )
+<a name="l00625"></a>00625                     {
+<a name="l00626"></a>00626                         <a class="code" href="classMezzanine_1_1World.html#a8d714f7655aa563cd66cee8db59f9116" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="classMezzanine_1_1World.html#a93405caf197f9324f3620ecefa1efc77" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<a class="code" href="classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions.">Exception</a>(<span class="stringliteral">&quot;Null or Empty String Atlas found when rendering UI.&quot;</span>));
+<a name="l00627"></a>00627                     }
+<a name="l00628"></a>00628                     <span class="keywordflow">if</span>( CurrIndexData-&gt;Vertices[I].Atlas != CurrentName )
+<a name="l00629"></a>00629                     {
+<a name="l00630"></a>00630                         <span class="keywordflow">if</span>( I + PreviousTally != 0 )
+<a name="l00631"></a>00631                         {
+<a name="l00632"></a>00632                             MyObject.RenderEnd = I + PreviousTally;
+<a name="l00633"></a>00633                             TextureByVertex.push_back(MyObject);
+<a name="l00634"></a>00634                         }
+<a name="l00635"></a>00635                         MyObject.Atlas = CurrIndexData-&gt;Vertices[I].Atlas;
+<a name="l00636"></a>00636                         MyObject.RenderStart = I + PreviousTally;
+<a name="l00637"></a>00637                         CurrentName = CurrIndexData-&gt;Vertices[I].Atlas;
+<a name="l00638"></a>00638                     }
+<a name="l00639"></a>00639                     <a class="code" href="structMezzanine_1_1UI_1_1OgreVertex.html">OgreVertex</a> NewVertex;
+<a name="l00640"></a>00640                     NewVertex.Position = CurrIndexData-&gt;Vertices[I].Vert.Position.GetOgreVector3();
+<a name="l00641"></a>00641                     NewVertex.Colour = CurrIndexData-&gt;Vertices[I].Vert.Colour.GetOgreColourValue();
+<a name="l00642"></a>00642                     NewVertex.UV = CurrIndexData-&gt;Vertices[I].Vert.UV.GetOgreVector2();<span class="comment">// */</span>
+<a name="l00643"></a>00643 
+<a name="l00644"></a>00644                     *WriteIterator++ = NewVertex;<span class="comment">//CurrIndexData-&gt;Vertices[I].Vert;</span>
+<a name="l00645"></a>00645                 }
+<a name="l00646"></a>00646                 PreviousTally += CurrIndexData-&gt;Vertices.Size();
+<a name="l00647"></a>00647             }
+<a name="l00648"></a>00648             MyObject.RenderEnd = KnownVertexCount;
+<a name="l00649"></a>00649             MyObject.Atlas = CurrentName;
+<a name="l00650"></a>00650             TextureByVertex.push_back(MyObject);
+<a name="l00651"></a>00651 
+<a name="l00652"></a>00652             this-&gt;SID-&gt;VertexBuffer-&gt;unlock();
+<a name="l00653"></a>00653             this-&gt;SID-&gt;RenderOp.vertexData-&gt;vertexCount = KnownVertexCount;
+<a name="l00654"></a>00654         }
+<a name="l00655"></a>00655     }<span class="comment">//ui</span>
+<a name="l00656"></a>00656 }<span class="comment">//Mezzanine</span>
+<a name="l00657"></a>00657 
+<a name="l00658"></a>00658 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -308,7 +727,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -318,6 +737,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

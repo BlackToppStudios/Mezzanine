@@ -22,8 +22,13 @@ Inheritance diagram for Mezzanine::UI::DropDownList:\begin{figure}[H]
 \item 
 \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a62db40919995b782f115b45e740eec76}{DropDownList} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&LineHeight, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1DropDownList_af9e6380b4cc92d3e30a9e3c88449be75}{DropDownList} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\hyperlink{classMezzanine_1_1UI_1_1DropDownList_af9e6380b4cc92d3e30a9e3c88449be75}{DropDownList} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&\hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph}, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1DropDownList_a236fbd4bb8f5f2e32653fdedceab4fb5}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a236fbd4bb8f5f2e32653fdedceab4fb5}{$\sim$DropDownList} ()}
+\label{classMezzanine_1_1UI_1_1DropDownList_a236fbd4bb8f5f2e32653fdedceab4fb5}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a6b8b0d0ba15389eb8a0c9c2b29d6bde4}{GetListToggle} ()
 \begin{DoxyCompactList}\small\item\em Gets the button that toggles the appearance of the listbox in this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1DropDownList_af70d48bd353cc533e123b0bc7c739632}{GetSelection} ()
@@ -36,19 +41,14 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a83f213b851c8336c06
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a480682783cfaf4ea18b90a058c958ea7}{SetPosition} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_aaeb03cbcb2e5a3c5bde4d4f513d70ed8}{SetSelection} (\hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ToBeSelected)
-\begin{DoxyCompactList}\small\item\em Manually sets a selection in the list as \char`\"{}selected\char`\"{}. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_ae65a61e7a199b75b80805cbcd6fb979a}{SetSelection} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ToBeSelected)
+\begin{DoxyCompactList}\small\item\em Manually sets a selection in the list as \char`\"{}selected\char`\"{}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_aaeb03cbcb2e5a3c5bde4d4f513d70ed8}{SetSelection} (\hyperlink{classMezzanine_1_1UI_1_1Caption}{Caption} $\ast$ToBeSelected)
 \begin{DoxyCompactList}\small\item\em Manually sets a selection in the list as \char`\"{}selected\char`\"{}. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_af9a2fa5e0631162995826326e66108ec}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_aeb27e8fc8b99e7c627f53efbddcb4fb3}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1DropDownList_a236fbd4bb8f5f2e32653fdedceab4fb5}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a236fbd4bb8f5f2e32653fdedceab4fb5}{$\sim$DropDownList} ()}
-\label{classMezzanine_1_1UI_1_1DropDownList_a236fbd4bb8f5f2e32653fdedceab4fb5}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,7 +58,7 @@ virtual bool \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a4b11111a24d568251b
 
 \begin{DoxyCompactList}\small\item\em Child specific mouse hover method. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_a7ff7ebd9f7779e72dcba7c84870fc074}{
-void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a7ff7ebd9f7779e72dcba7c84870fc074}{ConstructDropDownList} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Glyph, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle)}
+void \hyperlink{classMezzanine_1_1UI_1_1DropDownList_a7ff7ebd9f7779e72dcba7c84870fc074}{ConstructDropDownList} (const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&Rect, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&\hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph}, const \hyperlink{namespaceMezzanine_1_1UI_a5998a9bf372a7e92605c0c461736e763}{UI::ScrollbarStyle} \&ScrollStyle)}
 \label{classMezzanine_1_1UI_1_1DropDownList_a7ff7ebd9f7779e72dcba7c84870fc074}
 
 \begin{DoxyCompactList}\small\item\em Internal construction function. \item\end{DoxyCompactList}\item 
@@ -162,7 +162,7 @@ Class constructor.
 \hline
 {\em Rect} & The renderable rect representing the position and size of ths widget. \\
 \hline
-{\em Glyph} & The Glyph index to be applied to all text in this widget. Must be valid. \\
+{\em \hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph}} & The \hyperlink{classMezzanine_1_1UI_1_1Glyph}{Glyph} index to be applied to all text in this widget. Must be valid. \\
 \hline
 {\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classMezzanine_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
 \hline
@@ -194,7 +194,7 @@ Returns a pointer to the button controlling the visibility of the listbox.
 \end{DoxyReturn}
 
 
-Definition at line 273 of file uidropdownlist.cpp.
+Definition at line 277 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_af70d48bd353cc533e123b0bc7c739632}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!GetSelection@{GetSelection}}
@@ -214,7 +214,7 @@ Returns a pointer to the caption showing the current selection.
 \end{DoxyReturn}
 
 
-Definition at line 268 of file uidropdownlist.cpp.
+Definition at line 272 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_a5fe973285b5122fe0b74d0a81e8a26ca}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!GetSelectionList@{GetSelectionList}}
@@ -234,7 +234,7 @@ Returns a pointer to the listbox containing the possible choices.
 \end{DoxyReturn}
 
 
-Definition at line 278 of file uidropdownlist.cpp.
+Definition at line 282 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_ab038f951f09d18eaa2dad6c4eff01b7b}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!SetActualPosition@{SetActualPosition}}
@@ -260,7 +260,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e858
 
 
 
-Definition at line 229 of file uidropdownlist.cpp.
+Definition at line 233 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_a83f213b851c8336c064398fe21cea202}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!SetActualSize@{SetActualSize}}
@@ -286,7 +286,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753
 
 
 
-Definition at line 248 of file uidropdownlist.cpp.
+Definition at line 252 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_a480682783cfaf4ea18b90a058c958ea7}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!SetPosition@{SetPosition}}
@@ -312,7 +312,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007d
 
 
 
-Definition at line 220 of file uidropdownlist.cpp.
+Definition at line 224 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_ae65a61e7a199b75b80805cbcd6fb979a}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!SetSelection@{SetSelection}}
@@ -334,7 +334,7 @@ Manually sets a selection in the list as \char`\"{}selected\char`\"{}.
 \end{DoxyParams}
 
 
-Definition at line 215 of file uidropdownlist.cpp.
+Definition at line 219 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_aaeb03cbcb2e5a3c5bde4d4f513d70ed8}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!SetSelection@{SetSelection}}
@@ -356,7 +356,7 @@ Manually sets a selection in the list as \char`\"{}selected\char`\"{}.
 \end{DoxyParams}
 
 
-Definition at line 209 of file uidropdownlist.cpp.
+Definition at line 213 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_af9a2fa5e0631162995826326e66108ec}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!SetSize@{SetSize}}
@@ -382,7 +382,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff0981
 
 
 
-Definition at line 238 of file uidropdownlist.cpp.
+Definition at line 242 of file uidropdownlist.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1DropDownList_aeb27e8fc8b99e7c627f53efbddcb4fb3}{
 \index{Mezzanine::UI::DropDownList@{Mezzanine::UI::DropDownList}!UpdateDimensions@{UpdateDimensions}}
@@ -403,7 +403,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848
 
 
 
-Definition at line 257 of file uidropdownlist.cpp.
+Definition at line 261 of file uidropdownlist.cpp.
 
 
 

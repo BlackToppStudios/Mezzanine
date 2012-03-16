@@ -153,7 +153,7 @@
 #include "xml.h"                        // nothing to do
 
 // Individual scripting implementations
-#ifdef MEZZLUA
+#ifdef MEZZLUA51
     #include "scriptinglua51.h"
 #endif
 

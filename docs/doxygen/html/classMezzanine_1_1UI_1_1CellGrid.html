@@ -107,10 +107,13 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab162c701a9c24dde35709d71edf53972">AddCell</a> (<a class="el" href="classMezzanine_1_1UI_1_1Cell.html">UI::Cell</a> *ToBeAdded)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Addes a <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a> to this widget that will be rendered.  <a href="#ab162c701a9c24dde35709d71edf53972"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a198dfab3b71fbd9f89b7aa76c43881bb">CellGrid</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *parent)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a198dfab3b71fbd9f89b7aa76c43881bb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ffeba2ec2e555c80f7224efcf886e42"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::~CellGrid" ref="a4ffeba2ec2e555c80f7224efcf886e42" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a4ffeba2ec2e555c80f7224efcf886e42">~CellGrid</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab162c701a9c24dde35709d71edf53972">AddCell</a> (<a class="el" href="classMezzanine_1_1UI_1_1Cell.html">UI::Cell</a> *ToBeAdded)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Addes a <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a> to this widget that will be rendered.  <a href="#ab162c701a9c24dde35709d71edf53972"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a98a6713c4723fd6021a167380c92d716">CellsOffGrid</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if there are any remaining cells that aren't on the grid due to a lack of space.  <a href="#a98a6713c4723fd6021a167380c92d716"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11e4c5d524ed68823a61011e75bbaddb"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::ClearSelected" ref="a11e4c5d524ed68823a61011e75bbaddb" args="()" -->
@@ -126,18 +129,20 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a> on the grid by name.  <a href="#a5d6f3a71557437f087b83698e4cdc69c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Cell.html">UI::Cell</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab53b9ca40c4c7a2133f9cc6511842caf">GetCell</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Row, const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Column)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a> at the specified row/column.  <a href="#ab53b9ca40c4c7a2133f9cc6511842caf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a23d22d0dc36a1dc021a1a832e86d5337">GetCellSpacing</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set cell spacing.  <a href="#a23d22d0dc36a1dc021a1a832e86d5337"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a400ab7ea328f722413bb276e5dead944">GetEdgeSpacing</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set edge spacing.  <a href="#a400ab7ea328f722413bb276e5dead944"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a24a055d77eaf9a73a5d9b1b778847807">GetFixedCellSize</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set fixed size applied to all cells in this widget.  <a href="#a24a055d77eaf9a73a5d9b1b778847807"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#abe28918cfb8b1e3bbfbe9ac615b3b653">GetCellSpacing</a> (bool Relative=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set cell spacing.  <a href="#abe28918cfb8b1e3bbfbe9ac615b3b653"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a8717b4d4b9f4fe8759ec6c10101f2248">GetEdgeSpacing</a> (bool Relative=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set edge spacing.  <a href="#a8717b4d4b9f4fe8759ec6c10101f2248"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a4f8fa97d440202c7216ae468b069afa0">GetFixedCellSize</a> (bool Relative=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set fixed size applied to all cells in this widget.  <a href="#a4f8fa97d440202c7216ae468b069afa0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html">Rectangle</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a56d852192197e405ccc4b12a4b7fe2ce">GetGridBack</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the background to this Grid.  <a href="#a56d852192197e405ccc4b12a4b7fe2ce"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237">CellGrid::OrderingStyle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a9bac2c8bbb242176b29d2102febe2d89">GetGridOrdering</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current setting for how to sort the cells in the grid.  <a href="#a9bac2c8bbb242176b29d2102febe2d89"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1UI_1_1Cell.html">UI::Cell</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab2ba8fdab8c52b374291d0bb89bb9cc7">GetSelected</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently selected <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>.  <a href="#ab2ba8fdab8c52b374291d0bb89bb9cc7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#acd18bf256b34033a7c53424d559b6dba">GetWorkAreaLimits</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set logical limits for the grid.  <a href="#acd18bf256b34033a7c53424d559b6dba"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#aec6daabfb59ae56385fbe60fe067b6b1">GetWorkAreaLimits</a> (bool Relative=true)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set logical limits for the grid.  <a href="#aec6daabfb59ae56385fbe60fe067b6b1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab3b93eb4e588899e51e68fbd4bf6b84e">RemoveCell</a> (<a class="el" href="classMezzanine_1_1UI_1_1Cell.html">UI::Cell</a> *ToBeRemoved)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a> from this widget.  <a href="#ab3b93eb4e588899e51e68fbd4bf6b84e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#aec72d4eae4497e7ffa62f7697d4dc468">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
@@ -150,6 +155,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the spacing from the edge of the entire grid area that no cell should overlap.  <a href="#a9b086636cf3b6830db5948a24380ee1a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#aae3aa4503b5673470a83dd9edd445e77">SetFixedCellSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;FixedSize, bool Relative=true)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the fixed size cells in this grid are to have.  <a href="#aae3aa4503b5673470a83dd9edd445e77"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a6f5768054e49b85d47eba5df6e9b28a9">SetGridOrdering</a> (const <a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237">CellGrid::OrderingStyle</a> &amp;GridOrdering)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets how cells in this grid should be ordered.  <a href="#a6f5768054e49b85d47eba5df6e9b28a9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab6e210edb5ec0167f61c9dc2dafef108">SetPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative position of this widget.  <a href="#ab6e210edb5ec0167f61c9dc2dafef108"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#afcff9353be7ea7408aa2ea621efdaf99">SetSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
@@ -161,9 +168,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts the grid based on the priority set in the cells. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a11cda11f70cd331c9bd39daf0b0f24aa">UpdateDimensions</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this widget to match those of the new screen size.  <a href="#a11cda11f70cd331c9bd39daf0b0f24aa"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ffeba2ec2e555c80f7224efcf886e42"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::~CellGrid" ref="a4ffeba2ec2e555c80f7224efcf886e42" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#a4ffeba2ec2e555c80f7224efcf886e42">~CellGrid</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-types"></a>
 Protected Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a270e31ea905815bb232654a3eab0d6a7"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::CellList" ref="a270e31ea905815bb232654a3eab0d6a7" args="" -->
@@ -215,6 +219,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a323e3922d9e6f7659e0de372b9eda76d"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::Cells" ref="a323e3922d9e6f7659e0de372b9eda76d" args="" -->
 CellList&#160;</td><td class="memItemRight" valign="bottom"><b>Cells</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf40f46bfd499ed31c7a7e4e6e70353b"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::CellsAdded" ref="acf40f46bfd499ed31c7a7e4e6e70353b" args="" -->
+<a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CellsAdded</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75d164866c3e1006e94b90236ed18e2b"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::CellSpacing" ref="a75d164866c3e1006e94b90236ed18e2b" args="" -->
 <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><b>CellSpacing</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42cb3b0ecb2d50d6d24c72fb5ddb451a"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::EdgeSpacing" ref="a42cb3b0ecb2d50d6d24c72fb5ddb451a" args="" -->
@@ -370,7 +376,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00350">350</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00353">353</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -391,7 +397,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <p>Checks to see if there are any remaining cells that aren't on the grid due to a lack of space. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether or not this widgets work area needs to be increased. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00442">442</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00491">491</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -419,7 +425,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a> requested, or NULL if not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00358">358</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00363">363</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -458,18 +464,19 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the cell requested, or NULL if nothing is at the requested row/column. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00372">372</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00377">377</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a23d22d0dc36a1dc021a1a832e86d5337"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetCellSpacing" ref="a23d22d0dc36a1dc021a1a832e86d5337" args="()" -->
+<a class="anchor" id="abe28918cfb8b1e3bbfbe9ac615b3b653"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetCellSpacing" ref="abe28918cfb8b1e3bbfbe9ac615b3b653" args="(bool Relative=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::CellGrid::GetCellSpacing </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Relative</em> = <code>true</code></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -477,20 +484,27 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <div class="memdoc">
 
 <p>Gets the currently set cell spacing. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Relative</td><td>Optional parameter for getting the spacing in relative units. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the spacing to be used between Cells of this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00437">437</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00475">475</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a400ab7ea328f722413bb276e5dead944"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetEdgeSpacing" ref="a400ab7ea328f722413bb276e5dead944" args="()" -->
+<a class="anchor" id="a8717b4d4b9f4fe8759ec6c10101f2248"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetEdgeSpacing" ref="a8717b4d4b9f4fe8759ec6c10101f2248" args="(bool Relative=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::CellGrid::GetEdgeSpacing </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Relative</em> = <code>true</code></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -498,20 +512,27 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <div class="memdoc">
 
 <p>Gets the currently set edge spacing. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Relative</td><td>Optional parameter for getting the spacing in relative units. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the spacing to be used on edges of this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00426">426</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00463">463</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a24a055d77eaf9a73a5d9b1b778847807"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetFixedCellSize" ref="a24a055d77eaf9a73a5d9b1b778847807" args="()" -->
+<a class="anchor" id="a4f8fa97d440202c7216ae468b069afa0"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetFixedCellSize" ref="a4f8fa97d440202c7216ae468b069afa0" args="(bool Relative=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::CellGrid::GetFixedCellSize </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Relative</em> = <code>true</code></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -519,9 +540,15 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <div class="memdoc">
 
 <p>Gets the currently set fixed size applied to all cells in this widget. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Relative</td><td>Optional parameter for getting the size in relative units. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> containing the size applied to all cells in this widget. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00345">345</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00347">347</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -542,7 +569,28 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <p>Gets the background to this Grid. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the background of this grid. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00508">508</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00557">557</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9bac2c8bbb242176b29d2102febe2d89"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetGridOrdering" ref="a9bac2c8bbb242176b29d2102febe2d89" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237">CellGrid::OrderingStyle</a> Mezzanine::UI::CellGrid::GetGridOrdering </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the current setting for how to sort the cells in the grid. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing the current order cells have in the grid. </dd></dl>
+
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00486">486</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -563,18 +611,19 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <p>Gets the currently selected <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the selected <a class="el" href="classMezzanine_1_1UI_1_1Cell.html" title="This class is a base class to be used with the CellGrid class.">Cell</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00513">513</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00562">562</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acd18bf256b34033a7c53424d559b6dba"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetWorkAreaLimits" ref="acd18bf256b34033a7c53424d559b6dba" args="()" -->
+<a class="anchor" id="aec6daabfb59ae56385fbe60fe067b6b1"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::GetWorkAreaLimits" ref="aec6daabfb59ae56385fbe60fe067b6b1" args="(bool Relative=true)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::CellGrid::GetWorkAreaLimits </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>Relative</em> = <code>true</code></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -582,9 +631,15 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 <div class="memdoc">
 
 <p>Gets the currently set logical limits for the grid. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Relative</td><td>Optional parameter for getting the limits in relative units. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the logical limits of the grid. </dd></dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00415">415</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00451">451</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -611,7 +666,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00385">385</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00390">390</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -642,7 +697,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#a0daef581b08b9c5ca547bfc3db23a384">Mezzanine::UI::ScrolledCellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00470">470</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00519">519</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,7 +728,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#ae55c3df53dd4e40e51df62a08a2a2f69">Mezzanine::UI::ScrolledCellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00484">484</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00533">533</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -712,7 +767,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00431">431</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00469">469</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -751,7 +806,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00420">420</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00457">457</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -789,7 +844,34 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00339">339</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00341">341</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6f5768054e49b85d47eba5df6e9b28a9"></a><!-- doxytag: member="Mezzanine::UI::CellGrid::SetGridOrdering" ref="a6f5768054e49b85d47eba5df6e9b28a9" args="(const CellGrid::OrderingStyle &amp;GridOrdering)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::CellGrid::SetGridOrdering </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1UI_1_1CellGrid.html#ab054f3bbb294e4a584b8ab63b4d3f237">CellGrid::OrderingStyle</a> &amp;&#160;</td>
+          <td class="paramname"><em>GridOrdering</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets how cells in this grid should be ordered. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GridOrdering</td><td>The manner in which the cells in this grid should be sorted. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00481">481</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -821,7 +903,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#ab4e8250c846990325c3a6ccfbf5b322a">Mezzanine::UI::ScrolledCellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00463">463</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00512">512</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -853,7 +935,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#ac924cf5c94e3eb52bffc7d984683f1e6">Mezzanine::UI::ScrolledCellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00477">477</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00526">526</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -892,7 +974,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00409">409</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00445">445</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -917,7 +999,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1PagedCellGrid.html#a1ff79a778710a517abb5c55a13b6a273">Mezzanine::UI::PagedCellGrid</a>, and <a class="el" href="classMezzanine_1_1UI_1_1ScrolledCellGrid.html#abb580fbe187054004c6f3f0eadec8b7e">Mezzanine::UI::ScrolledCellGrid</a>.</p>
 
-<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00491">491</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uicellgrid_8cpp_source.html#l00540">540</a> of file <a class="el" href="uicellgrid_8cpp_source.html">uicellgrid.cpp</a>.</p>
 
 </div>
 </div>
@@ -931,7 +1013,7 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -941,6 +1023,6 @@ CellVector&#160;</td><td class="memItemRight" valign="bottom"><b>VisibleCells</b
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

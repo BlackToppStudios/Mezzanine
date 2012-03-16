@@ -1,0 +1,271 @@
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile}{
+\subsection{Mezzanine::Resource::TextSettingsFile Class Reference}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile}\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_aa2709cbc85ea58c1a155270febd0ebfd}{
+typedef std::map$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, SettingsMap $\ast$ $>$::iterator {\bfseries SectionIterator}}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_aa2709cbc85ea58c1a155270febd0ebfd}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_ae756712e9a9141bf51b9c92bfc1d1934}{
+typedef std::multimap$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$::iterator {\bfseries SettingsIterator}}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_ae756712e9a9141bf51b9c92bfc1d1934}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a8f8b1c8d644ac1424a71004c31a565fd}{
+typedef std::multimap$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$ {\bfseries SettingsMap}}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a8f8b1c8d644ac1424a71004c31a565fd}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a8cbb2cec71b9818f66eae422f6936b4b}{
+typedef std::map$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, SettingsMap $\ast$ $>$ {\bfseries SettingsSectionMap}}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a8cbb2cec71b9818f66eae422f6936b4b}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a234309e4dce6edf7c07a134dffbd3c72}{
+\hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a234309e4dce6edf7c07a134dffbd3c72}{TextSettingsFile} ()}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a234309e4dce6edf7c07a134dffbd3c72}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a826401beb76b2e80e9496ffa9fa82bb2}{
+\hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a826401beb76b2e80e9496ffa9fa82bb2}{$\sim$TextSettingsFile} ()}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a826401beb76b2e80e9496ffa9fa82bb2}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_aba595a736d3e023b818cbae9ed97aa92}{
+void \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_aba595a736d3e023b818cbae9ed97aa92}{Clear} ()}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_aba595a736d3e023b818cbae9ed97aa92}
+
+\begin{DoxyCompactList}\small\item\em Clears all data from this class. \item\end{DoxyCompactList}\item 
+std::vector$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} $>$ \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a397e8267a6f5a3aa4177c944c2dc4fc9}{GetMultiSetting} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Key, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Section)
+\begin{DoxyCompactList}\small\item\em Gets all the values of the specified setting in the specified section. \item\end{DoxyCompactList}\item 
+SectionIterator \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_aff6329d67f5a405eab6b92f987d76158}{GetSectionBegin} ()
+\begin{DoxyCompactList}\small\item\em Gets an iterator to the first section in the file. \item\end{DoxyCompactList}\item 
+SectionIterator \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_acd6aa009c17194fcf96caaf4aba44991}{GetSectionEnd} ()
+\begin{DoxyCompactList}\small\item\em Gets an iterator to the last section in the file. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a17dc824a46dd09030fe04eabf7349a1a}{GetSetting} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Key, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Section)
+\begin{DoxyCompactList}\small\item\em Gets the value of the specified setting in the specified section. \item\end{DoxyCompactList}\item 
+SettingsIterator \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a9bf4f3b5941be890a27466133a4a4b12}{GetSettingsBegin} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Section)
+\begin{DoxyCompactList}\small\item\em Gets an iterator to the first setting in the specified Section. \item\end{DoxyCompactList}\item 
+SettingsIterator \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a49131d2303b455296dac96b566b87685}{GetSettingsEnd} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Section)
+\begin{DoxyCompactList}\small\item\em Gets an iterator to the last setting in the specified Section. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a5ffb86d6822701880e1dc47b4f37a637}{Load} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Filename, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Separators=\char`\"{} $\backslash$t:=\char`\"{}, bool TrimWhitespace=true)
+\begin{DoxyCompactList}\small\item\em Loads and parses a text file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a0e391a598d79ac3252d5b539e38fb037}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries FileName}}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a0e391a598d79ac3252d5b539e38fb037}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a237130c9fefec3c4d25826333166ec40}{
+SettingsSectionMap {\bfseries Sections}}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a237130c9fefec3c4d25826333166ec40}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 54 of file resourcetextsettingsfile.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a397e8267a6f5a3aa4177c944c2dc4fc9}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!GetMultiSetting@{GetMultiSetting}}
+\index{GetMultiSetting@{GetMultiSetting}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{GetMultiSetting}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf String} $>$ Mezzanine::Resource::TextSettingsFile::GetMultiSetting (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Key, }
+\item[{const {\bf String} \&}]{Section}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a397e8267a6f5a3aa4177c944c2dc4fc9}
+
+
+Gets all the values of the specified setting in the specified section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Key} & The name of the setting to get the value for. \\
+\hline
+{\em Section} & The name of the section to search for the Key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a vector of strings, all of which are the values of the specified setting. 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file resourcetextsettingsfile.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_aff6329d67f5a405eab6b92f987d76158}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!GetSectionBegin@{GetSectionBegin}}
+\index{GetSectionBegin@{GetSectionBegin}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{GetSectionBegin}]{\setlength{\rightskip}{0pt plus 5cm}TextSettingsFile::SectionIterator Mezzanine::Resource::TextSettingsFile::GetSectionBegin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_aff6329d67f5a405eab6b92f987d76158}
+
+
+Gets an iterator to the first section in the file. 
+
+\begin{DoxyReturn}{Returns}
+Returns an iterator to the first section. 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file resourcetextsettingsfile.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_acd6aa009c17194fcf96caaf4aba44991}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!GetSectionEnd@{GetSectionEnd}}
+\index{GetSectionEnd@{GetSectionEnd}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{GetSectionEnd}]{\setlength{\rightskip}{0pt plus 5cm}TextSettingsFile::SectionIterator Mezzanine::Resource::TextSettingsFile::GetSectionEnd (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_acd6aa009c17194fcf96caaf4aba44991}
+
+
+Gets an iterator to the last section in the file. 
+
+\begin{DoxyReturn}{Returns}
+Returns an iterator to the last section. 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file resourcetextsettingsfile.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a17dc824a46dd09030fe04eabf7349a1a}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!GetSetting@{GetSetting}}
+\index{GetSetting@{GetSetting}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{GetSetting}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::Resource::TextSettingsFile::GetSetting (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Key, }
+\item[{const {\bf String} \&}]{Section}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a17dc824a46dd09030fe04eabf7349a1a}
+
+
+Gets the value of the specified setting in the specified section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Key} & The name of the setting to get the value for. \\
+\hline
+{\em Section} & The name of the section to search for the Key. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing the value for the named setting. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file resourcetextsettingsfile.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a9bf4f3b5941be890a27466133a4a4b12}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!GetSettingsBegin@{GetSettingsBegin}}
+\index{GetSettingsBegin@{GetSettingsBegin}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{GetSettingsBegin}]{\setlength{\rightskip}{0pt plus 5cm}TextSettingsFile::SettingsIterator Mezzanine::Resource::TextSettingsFile::GetSettingsBegin (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Section}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a9bf4f3b5941be890a27466133a4a4b12}
+
+
+Gets an iterator to the first setting in the specified Section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Section} & The name of the section desired. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an iterator to the first setting in the named section. 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file resourcetextsettingsfile.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a49131d2303b455296dac96b566b87685}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!GetSettingsEnd@{GetSettingsEnd}}
+\index{GetSettingsEnd@{GetSettingsEnd}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{GetSettingsEnd}]{\setlength{\rightskip}{0pt plus 5cm}TextSettingsFile::SettingsIterator Mezzanine::Resource::TextSettingsFile::GetSettingsEnd (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Section}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a49131d2303b455296dac96b566b87685}
+
+
+Gets an iterator to the last setting in the specified Section. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Section} & The name of the section desired. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns an iterator to the last setting in the named section. 
+\end{DoxyReturn}
+
+
+Definition at line 182 of file resourcetextsettingsfile.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1TextSettingsFile_a5ffb86d6822701880e1dc47b4f37a637}{
+\index{Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}!Load@{Load}}
+\index{Load@{Load}!Mezzanine::Resource::TextSettingsFile@{Mezzanine::Resource::TextSettingsFile}}
+\paragraph[{Load}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Resource::TextSettingsFile::Load (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Filename, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{const {\bf String} \&}]{Separators = {\ttfamily \char`\"{}~$\backslash$t:=\char`\"{}}, }
+\item[{bool}]{TrimWhitespace = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1TextSettingsFile_a5ffb86d6822701880e1dc47b4f37a637}
+
+
+Loads and parses a text file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Filename} & The name of the file to load. \\
+\hline
+{\em Group} & The resource group the file is in. \\
+\hline
+{\em Separators} & The characters that should be observed when separating settings and their values on a single line. \\
+\hline
+{\em TrimWhitespace} & Whether or not to remove any white spaces before or after settings or their values. \\
+\hline
+\end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000029}{Todo}]Once the resource system has been updated to be independant of Ogre's, this function needs to be updated to access our methods instead of theirs. \end{Desc}
+
+
+
+
+Definition at line 62 of file resourcetextsettingsfile.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+resourcetextsettingsfile.h\item 
+resourcetextsettingsfile.cpp\end{DoxyCompactItemize}

@@ -32,6 +32,10 @@ virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMez
 \begin{DoxyCompactList}\small\item\em Get the relative rotation for ActorB. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Transform}{Transform} \hyperlink{classMezzanine_1_1DualTransformConstraint_a43e5f5d4cfd9b0ab7032d81df5c935d7}{GetPivotBTransform} () const =0
 \begin{DoxyCompactList}\small\item\em Get the current Rotation and Location of Actor B. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_aa69fcdbf84b8a509ee32d4233b96580c}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_a8e0c729e416c6c20507ef8ac029fa819}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_a3dc5e7afcf612a481f81071201ecdeb7}{SetPivotALocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Set The relative location of the pivot from ActorA's Center of gravity. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_a73cba60ff65f8ac2775b19f74e5cbe9e}{SetPivotARotation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
@@ -44,6 +48,11 @@ virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_ab25460e03f187
 \begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorB. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1DualTransformConstraint_ac5ee69ce5d68f4e299e7916f764ee396}{SetPivotBTransform} (const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TranB)=0
 \begin{DoxyCompactList}\small\item\em Set the Position and Rotation using a \hyperlink{classMezzanine_1_1Transform}{Transform}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1DualTransformConstraint_a78694da6df0b2625220abb94e8f1c549}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -199,6 +208,82 @@ This returns a \hyperlink{classMezzanine_1_1Transform}{Mezzanine::Transform}
 
 
 Implemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_ad38e140ea8edf8d9d74e99bbebf68417}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1HingeConstraint_a7d9a9ddc367d1a9105f1eb27fd76a65f}{Mezzanine::HingeConstraint}, and \hyperlink{classMezzanine_1_1SliderConstraint_a22964857b7c94edf895d1ea9812614b1}{Mezzanine::SliderConstraint}.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_aa69fcdbf84b8a509ee32d4233b96580c}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_aa69fcdbf84b8a509ee32d4233b96580c}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1TypedConstraint_a18ea81954d7cc28dce3e5f4c03eac820}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_ae165de381e73cc5119d07e3fc563aa99}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a30cd26edd9d57aa68cf7f55f31fb99b0}{Mezzanine::Generic6DofSpringConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a6cbd8328c7a047f8e7951ab482e733cb}{Mezzanine::HingeConstraint}.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a8e0c729e416c6c20507ef8ac029fa819}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::DualTransformConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a8e0c729e416c6c20507ef8ac029fa819}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to.\\
+\hline
+\end{DoxyParams}
+This stores each Actor's \hyperlink{classMezzanine_1_1Transform}{Transform} 
+
+Reimplemented from \hyperlink{classMezzanine_1_1TypedConstraint_ae9d74e8e14d9e79bb4320603fbf824d6}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_a6595599905cd8b51440bf868d4a9806a}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_a02841289ca30d307e1e39b47d610ff18}{Mezzanine::Generic6DofSpringConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a49cf5f27bff730ee30ff52a741e35f2e}{Mezzanine::HingeConstraint}.
+
+\hypertarget{classMezzanine_1_1DualTransformConstraint_a78694da6df0b2625220abb94e8f1c549}{
+\index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} Mezzanine::DualTransformConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1DualTransformConstraint_a78694da6df0b2625220abb94e8f1c549}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}DualTransformConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1TypedConstraint_accc0475bacd0b984dd30d74dbe2bc08e}{Mezzanine::TypedConstraint}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Generic6DofConstraint_acac3b309c947c1cd60635df1c7b46867}{Mezzanine::Generic6DofConstraint}, \hyperlink{classMezzanine_1_1Generic6DofSpringConstraint_aa020b0ef38e950475dc8a36f06139933}{Mezzanine::Generic6DofSpringConstraint}, and \hyperlink{classMezzanine_1_1HingeConstraint_a0bcb0756ff73f9d772e0c60d188d393a}{Mezzanine::HingeConstraint}.
 
 \hypertarget{classMezzanine_1_1DualTransformConstraint_a3dc5e7afcf612a481f81071201ecdeb7}{
 \index{Mezzanine::DualTransformConstraint@{Mezzanine::DualTransformConstraint}!SetPivotALocation@{SetPivotALocation}}

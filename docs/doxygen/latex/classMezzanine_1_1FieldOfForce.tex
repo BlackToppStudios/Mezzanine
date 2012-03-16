@@ -14,16 +14,21 @@ This is field that applies force in a direction, and doesn't tamper with gravity
 Inheritance diagram for Mezzanine::FieldOfForce:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.000000cm]{classMezzanine_1_1FieldOfForce}
+\includegraphics[height=4.423381cm]{classMezzanine_1_1FieldOfForce}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classMezzanine_1_1FieldOfForce_ae82e9a45515d40513ad1ac2e606c627b}{ApplyEffect} ()
-\begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1FieldOfForce_aa212c5cde10986e1d511a3843af9428c}{FieldOfForce} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a89c}{
+virtual \hyperlink{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a89c}{$\sim$FieldOfForce} ()}
+\label{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a89c}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1FieldOfForce_ae82e9a45515d40513ad1ac2e606c627b}{ApplyEffect} ()
+\begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1FieldOfForce_a0f5340224f7cec6e9086d49a3d51ae07}{GetAttenuationAmount} () const 
 \begin{DoxyCompactList}\small\item\em Gets the amount force is attenuated over distance. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1FieldOfForce_a0f1232162d04d967907a55e8c9bc8661}{GetAttenuationSource} () const 
@@ -34,19 +39,14 @@ virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Gets the currenly set direction force is to be applied. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1FieldOfForce_ae8071fe3ad4397b57cff5f3816d72e02}{GetFieldStrength} () const 
 \begin{DoxyCompactList}\small\item\em Gets the strength of the field. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1FieldOfForce_a67c2eceec144d9a20f1bb3777b0bd666}{GetType} () const 
+virtual \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1FieldOfForce_ad6247ff9543681daa74a9297c1c7653e}{GetType} () const 
 \item 
 virtual void \hyperlink{classMezzanine_1_1FieldOfForce_aa2ba435821f4abc4c59b0ca99f077759}{SetAttenuation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Amount, const \hyperlink{namespaceMezzanine_a2d10a79e11a2031df10af540eede12fa}{Mezzanine::AttenuationStyle} \&Style, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Source)
 \begin{DoxyCompactList}\small\item\em Sets the attenuation for this field. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1FieldOfForce_aaa4df06c275221b2b7c313a7d45ec71a}{SetDirectionOfForce} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&ForceDirection)
 \begin{DoxyCompactList}\small\item\em Sets the direction force is to be applied within this field. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1FieldOfForce_abef745957f95ac58f756d84f00fbf549}{SetFieldStrength} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&FieldStrength)
-\begin{DoxyCompactList}\small\item\em Sets the strenth of the field. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a89c}{
-virtual \hyperlink{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a89c}{$\sim$FieldOfForce} ()}
-\label{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a89c}
-
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the strenth of the field. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -81,7 +81,7 @@ virtual \hyperlink{classMezzanine_1_1FieldOfForce_ae9d68bc47f8598fd764b4ed9ae28a
 This is field that applies force in a direction, and doesn't tamper with gravity. This class is similiar to a gravity well in that it can attenuate, but different in that the direction is constant, the source of force(for calculating attenuation) can be outside the field itself, and the direction is constant. \par
  Placing the source of attenuation inside the field will cause the object to accelerate as it gets close to the source, and then will be applied less force(but in the same direction) as it moves from the source. This behavior makes this class good for creating a booster-\/like AE. 
 
-Definition at line 289 of file areaeffect.h.
+Definition at line 324 of file areaeffect.h.
 
 
 
@@ -109,7 +109,7 @@ Class Constructor.
 \end{DoxyParams}
 
 
-Definition at line 504 of file areaeffect.cpp.
+Definition at line 584 of file areaeffect.cpp.
 
 
 
@@ -133,7 +133,7 @@ Implements \hyperlink{classMezzanine_1_1AreaEffect_a988cd958e49d65331a059951af3c
 
 
 
-Definition at line 518 of file areaeffect.cpp.
+Definition at line 598 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_a0f5340224f7cec6e9086d49a3d51ae07}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!GetAttenuationAmount@{GetAttenuationAmount}}
@@ -153,7 +153,7 @@ Returns a Real value
 \end{DoxyReturn}
 
 
-Definition at line 601 of file areaeffect.cpp.
+Definition at line 681 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_a0f1232162d04d967907a55e8c9bc8661}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!GetAttenuationSource@{GetAttenuationSource}}
@@ -173,7 +173,7 @@ Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the source
 \end{DoxyReturn}
 
 
-Definition at line 606 of file areaeffect.cpp.
+Definition at line 686 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_a45f3ea5f8a48ff4a7dbe135d5003d267}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!GetAttenuationStyle@{GetAttenuationStyle}}
@@ -193,7 +193,7 @@ Returns the style of attenuation currently being used by this field.
 \end{DoxyReturn}
 
 
-Definition at line 596 of file areaeffect.cpp.
+Definition at line 676 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_aa38710cbe67fad1b0be2e0a414d8e55c}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!GetDirectionOfForce@{GetDirectionOfForce}}
@@ -209,11 +209,11 @@ Definition at line 596 of file areaeffect.cpp.
 Gets the currenly set direction force is to be applied. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} representing the direction of force in this field. 
+Returns a vector3 representing the direction of force in this field. 
 \end{DoxyReturn}
 
 
-Definition at line 584 of file areaeffect.cpp.
+Definition at line 664 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_ae8071fe3ad4397b57cff5f3816d72e02}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!GetFieldStrength@{GetFieldStrength}}
@@ -233,17 +233,17 @@ Returns a Real representing the value that is being multiplied by the direction 
 \end{DoxyReturn}
 
 
-Definition at line 574 of file areaeffect.cpp.
+Definition at line 654 of file areaeffect.cpp.
 
-\hypertarget{classMezzanine_1_1FieldOfForce_a67c2eceec144d9a20f1bb3777b0bd666}{
+\hypertarget{classMezzanine_1_1FieldOfForce_ad6247ff9543681daa74a9297c1c7653e}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!GetType@{GetType}}
 \index{GetType@{GetType}!Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldObjectType} Mezzanine::FieldOfForce::GetType (
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::FieldOfForce::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1FieldOfForce_a67c2eceec144d9a20f1bb3777b0bd666}
+\label{classMezzanine_1_1FieldOfForce_ad6247ff9543681daa74a9297c1c7653e}
 Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
 
 \begin{DoxyReturn}{Returns}
@@ -251,11 +251,11 @@ Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instan
 \end{DoxyReturn}
  
 
-Reimplemented from \hyperlink{classMezzanine_1_1AreaEffect_a3eab7461632e01984cfb07f8c8fb5954}{Mezzanine::AreaEffect}.
+Reimplemented from \hyperlink{classMezzanine_1_1AreaEffect_a2f3df5433f02057d7a9deeb5e6666287}{Mezzanine::AreaEffect}.
 
 
 
-Definition at line 611 of file areaeffect.cpp.
+Definition at line 691 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_aa2ba435821f4abc4c59b0ca99f077759}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!SetAttenuation@{SetAttenuation}}
@@ -278,12 +278,12 @@ Sets the attenuation for this field.
 \hline
 {\em Style} & The style of attenuation to apply, see the AttenuationStyle enum for more details. \\
 \hline
-{\em Source} & A \hyperlink{classvector3}{vector3} representing the source of force to use when calculating attenuation. \\
+{\em Source} & A vector3 representing the source of force to use when calculating attenuation. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 589 of file areaeffect.cpp.
+Definition at line 669 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_aaa4df06c275221b2b7c313a7d45ec71a}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!SetDirectionOfForce@{SetDirectionOfForce}}
@@ -300,12 +300,12 @@ Sets the direction force is to be applied within this field.
 
 
 \begin{DoxyParams}{Parameters}
-{\em ForceDirection} & A \hyperlink{classvector3}{vector3} representing the direction force is to be applied. \\
+{\em ForceDirection} & A vector3 representing the direction force is to be applied. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 579 of file areaeffect.cpp.
+Definition at line 659 of file areaeffect.cpp.
 
 \hypertarget{classMezzanine_1_1FieldOfForce_abef745957f95ac58f756d84f00fbf549}{
 \index{Mezzanine::FieldOfForce@{Mezzanine::FieldOfForce}!SetFieldStrength@{SetFieldStrength}}
@@ -327,7 +327,7 @@ Sets the strenth of the field.
 \end{DoxyParams}
 
 
-Definition at line 569 of file areaeffect.cpp.
+Definition at line 649 of file areaeffect.cpp.
 
 
 

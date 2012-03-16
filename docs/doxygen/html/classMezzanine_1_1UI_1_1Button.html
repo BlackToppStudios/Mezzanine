@@ -69,12 +69,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a>  </div>
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::UI::Button Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::UI::Button" --><!-- doxytag: inherits="Mezzanine::UI::BasicRenderable" -->
+<!-- doxytag: class="Mezzanine::UI::Button" --><!-- doxytag: inherits="Mezzanine::UI::Rectangle" -->
 <p>This class is a helper class, specifically for use as a button.  
 <a href="#_details">More...</a></p>
 
@@ -85,8 +86,9 @@ Inheritance diagram for Mezzanine::UI::Button:</div>
  <div class="center">
   <img src="classMezzanine_1_1UI_1_1Button.png" usemap="#Mezzanine::UI::Button_map" alt=""/>
   <map id="Mezzanine::UI::Button_map" name="Mezzanine::UI::Button_map">
+<area href="classMezzanine_1_1UI_1_1Rectangle.html" alt="Mezzanine::UI::Rectangle" shape="rect" coords="0,56,192,80"/>
 <area href="classMezzanine_1_1UI_1_1BasicRenderable.html" alt="Mezzanine::UI::BasicRenderable" shape="rect" coords="0,0,192,24"/>
-<area href="classMezzanine_1_1UI_1_1TextButton.html" alt="Mezzanine::UI::TextButton" shape="rect" coords="0,112,192,136"/>
+<area href="classMezzanine_1_1UI_1_1TextButton.html" alt="Mezzanine::UI::TextButton" shape="rect" coords="0,168,192,192"/>
 </map>
  </div></div>
 
@@ -94,91 +96,55 @@ Inheritance diagram for Mezzanine::UI::Button:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd">BindActivationKeyOrButton</a> (const <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &amp;Code)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a keyboard key or mouse button that can activate this button.  <a href="#aae0a7f6a07f79856ed6da8b8b3bc5ecd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a910cce5a558e9f41ede146e9675b757f">Button</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;name, const <a class="el" href="structMezzanine_1_1UI_1_1RenderableRect.html">RenderableRect</a> &amp;Rect, <a class="el" href="classMezzanine_1_1UI_1_1Layer.html">Layer</a> *PLayer)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal constructor.  <a href="#a910cce5a558e9f41ede146e9675b757f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ae35f5b685df6bb09626f3f53b41416bd">CheckMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether the mouse is over this button.  <a href="#ae35f5b685df6bb09626f3f53b41416bd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c84044c337735482919fcc82085cf46"></a><!-- doxytag: member="Mezzanine::UI::Button::~Button" ref="a8c84044c337735482919fcc82085cf46" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a8c84044c337735482919fcc82085cf46">~Button</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#aae0a7f6a07f79856ed6da8b8b3bc5ecd">BindActivationKeyOrButton</a> (const <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &amp;Code)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers a keyboard key or mouse button that can activate this button.  <a href="#aae0a7f6a07f79856ed6da8b8b3bc5ecd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab68c4ae03c41abb6d25179962f4e4f60">EnableMultipleActivations</a> (bool Enable)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables or disables whether or not the button should be allowed to activate multiple times per frame.  <a href="#ab68c4ae03c41abb6d25179962f4e4f60"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#af01bb0b214995c3cb6af06fcaa84975d">EnableUserSprite</a> (bool Enable)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables(or disables) the currently set User sprite.  <a href="#af01bb0b214995c3cb6af06fcaa84975d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0">UI::ActivationCondition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a09b751800679937e1b1e79b33c164397">GetActivationCondition</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the condition for activation for this button.  <a href="#a09b751800679937e1b1e79b33c164397"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a5c1e8f0a8efe73d6d556f876a4c709f8">GetActualPosition</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the top left position of this button in pixels.  <a href="#a5c1e8f0a8efe73d6d556f876a4c709f8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a19adecf3f260923b07016347623dc33e">GetActualSize</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the size of this button in pixels.  <a href="#a19adecf3f260923b07016347623dc33e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual std::vector<br class="typebreak"/>
 &lt; <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab0a32f06b46ae49813c9ad86e8346274">GetKeyboardActivationKeys</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a vector with all the keyboard input codes used to activate this button.  <a href="#ab0a32f06b46ae49813c9ad86e8346274"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual std::vector<br class="typebreak"/>
 &lt; <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a41d41a678b9164806fff2a17acabf1ae">GetMouseActivationButtons</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a vector with all the mouse input codes used to activate this button.  <a href="#a41d41a678b9164806fff2a17acabf1ae"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a18e33bd98a247c8fce95a504bd52e767">GetMouseHover</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stored value of whether or not the mouse is over the button.  <a href="#a18e33bd98a247c8fce95a504bd52e767"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab49077b4d05873f0a6d397720790ae49">GetPosition</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative top left position of this button.  <a href="#ab49077b4d05873f0a6d397720790ae49"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab4dabfe9ce18dd255d2b8724f610058d">GetPrimaryAtlas</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set primary atlas.  <a href="#ab4dabfe9ce18dd255d2b8724f610058d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ad2e567a12e059c612e474e96fd9cd5da">GetRenderPriority</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the priority this button should be rendered with.  <a href="#ad2e567a12e059c612e474e96fd9cd5da"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a6836b68da28da089584dd02547674286">GetSize</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the relative size of this button.  <a href="#a6836b68da28da089584dd02547674286"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4d892127653d709b6cff9207f473c9e"></a><!-- doxytag: member="Mezzanine::UI::Button::Hide" ref="ae4d892127653d709b6cff9207f473c9e" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ae4d892127653d709b6cff9207f473c9e">Hide</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this button to hide. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a1b64587eec4d23911c488edf40c7a0c7">IsActivated</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not this button is currently activated.  <a href="#a1b64587eec4d23911c488edf40c7a0c7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a4aff4ca86ab252ef8796a9cba203041e">IsMultipleActivationsEnabled</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not multiple activations per frame are enabled for this button.  <a href="#a4aff4ca86ab252ef8796a9cba203041e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a37a43c703a3f7bc8a59c8940ba53afe1">IsTextButton</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether this is a text button.  <a href="#a37a43c703a3f7bc8a59c8940ba53afe1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a8d8afe5870bcf5bf1de02ece187ab238">IsVisible</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the visibility of this button.  <a href="#a8d8afe5870bcf5bf1de02ece187ab238"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab72a24b501975cd5a60f671593158362"></a><!-- doxytag: member="Mezzanine::UI::Button::NoBorder" ref="ab72a24b501975cd5a60f671593158362" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab72a24b501975cd5a60f671593158362">NoBorder</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables any border set on this rectangle if one is currently set. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a89d0a1d2b0023be59e864b3c125f0dea">SetActivation</a> (bool Activate)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the button as activated, also calling any set callbacks.  <a href="#a89d0a1d2b0023be59e864b3c125f0dea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a6c99108a01d71c521318640f52d2ee11">SetActivationCondition</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#aca58497951b1b9c7da10f214da3392f0">UI::ActivationCondition</a> &amp;Condition)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the condition for activation for this button.  <a href="#a6c99108a01d71c521318640f52d2ee11"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ad7218bce5dda1c0e0bf91a83feaae47e">SetActualPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the top left position of this button in pixels.  <a href="#ad7218bce5dda1c0e0bf91a83feaae47e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a6a19f0e460a63e13f8c9bda3e18fcc96">SetActualSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the size of this button in pixels.  <a href="#a6a19f0e460a63e13f8c9bda3e18fcc96"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a4cd47608dc2074f400d04812bf439f6f">SetBackgroundColour</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background colour of the button.  <a href="#a4cd47608dc2074f400d04812bf439f6f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#af34e8bd2454368345da7b23dc17f077c">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the button.  <a href="#af34e8bd2454368345da7b23dc17f077c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a27dcfac26f2ace96dcb0e43ce13ed68c">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set.  <a href="#a27dcfac26f2ace96dcb0e43ce13ed68c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a75bad31e5f93373fe1e16761689b354b">SetBorder</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Width, const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables a border and sets it's colour.  <a href="#a75bad31e5f93373fe1e16761689b354b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#af16ce9c5182ca4a4e52649b517499728">SetBackgroundSprite</a> (<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *PSprite)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the renderable.  <a href="#af16ce9c5182ca4a4e52649b517499728"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a92731109f8888d1e82e27185d4c9d559">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the renderable.  <a href="#a92731109f8888d1e82e27185d4c9d559"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#acd2b68924ad5f790afde9a32f83ca206">SetBackgroundSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the background image(if provided in the atlas) of the renderable.  <a href="#acd2b68924ad5f790afde9a32f83ca206"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a0eda9fd6641f9ca52fd5e8e1c3767970">SetButtonCallback</a> (<a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html">ButtonCallback</a> *Call)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the callback for this button. See the <a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html" title="This class provides customizable functionality to the button class.">ButtonCallback</a> class for more info.  <a href="#a0eda9fd6641f9ca52fd5e8e1c3767970"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ad23caa85fbf5ae1c3fc9b5d0873d455b">SetHoveredSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that will be applied when the mouse is over this button.  <a href="#ad23caa85fbf5ae1c3fc9b5d0873d455b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ae47110a04c883f83a30e7bc060a35692">SetHoveredSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set.  <a href="#ae47110a04c883f83a30e7bc060a35692"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#aff2d96a45c88627098ac0b902059bfc3">SetPosition</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Position)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative top left position of this button.  <a href="#aff2d96a45c88627098ac0b902059bfc3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#af1248af0bf094b29f65547b1697c3c23">SetPrimaryAtlas</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Atlas to be assumed when one isn't provided for atlas related tasks.  <a href="#af1248af0bf094b29f65547b1697c3c23"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#aebb9eb3fc42b2f6e77fe0a213c297450">SetRenderPriority</a> (const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;Priority)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the priority this button should be rendered with.  <a href="#aebb9eb3fc42b2f6e77fe0a213c297450"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a2a654b05e925924d5842f36b2a486af5">SetSize</a> (const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;Size)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the relative size of this button.  <a href="#a2a654b05e925924d5842f36b2a486af5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ab4335cbb2c9da9b5b61d9ba53793efb6">SetUserSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.  <a href="#ab4335cbb2c9da9b5b61d9ba53793efb6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a7e6246ca07c0c659a3aec7babd49219f">SetUserSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that is stored and can be quickly swapped with the active sprite.  <a href="#a7e6246ca07c0c659a3aec7babd49219f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a12840e06233a6feb88f61d88a0ce7e60">SetVisible</a> (bool Visible)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the visibility of this button.  <a href="#a12840e06233a6feb88f61d88a0ce7e60"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88d9f87d335041d612f6c35ff5ba2f65"></a><!-- doxytag: member="Mezzanine::UI::Button::Show" ref="a88d9f87d335041d612f6c35ff5ba2f65" args="()" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a88d9f87d335041d612f6c35ff5ba2f65">Show</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Forces this button to be shown. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a1465419bd4ff0a60c740d02dd61d0e3f">SetHoveredSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that will be applied when the mouse is over this button.  <a href="#a1465419bd4ff0a60c740d02dd61d0e3f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a93f0554750c433dc9c14f0611fc00a10">SetHoveredSprite</a> (<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *PSprite)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that will be applied when the mouse is over this button.  <a href="#a93f0554750c433dc9c14f0611fc00a10"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a6fa21a055fb5d806248240bbae5f5ad6">SetHoveredSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that will be applied when the mouse is over this button.  <a href="#a6fa21a055fb5d806248240bbae5f5ad6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a94b9ce563b2aacbd71e559c660026cc8">SetUserSprite</a> (<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *PSprite)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.  <a href="#a94b9ce563b2aacbd71e559c660026cc8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#aecb07e754310f1c53af92b323c385e92">SetUserSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.  <a href="#aecb07e754310f1c53af92b323c385e92"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a7ea91306176ad94d136ca8de7321a5ae">SetUserSprite</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SpriteName, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Atlas)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.  <a href="#a7ea91306176ad94d136ca8de7321a5ae"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#ac4253cbf25d298280579fd2fe122b3e2">UnbindActivationKeyOrButton</a> (const <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &amp;Code)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a previously registered activation key or button.  <a href="#ac4253cbf25d298280579fd2fe122b3e2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae36443efdf271672157ae25a824d5cc5"></a><!-- doxytag: member="Mezzanine::UI::Button::UnbindAllActivationKeysAndButtons" ref="ae36443efdf271672157ae25a824d5cc5" args="()" -->
@@ -190,15 +156,11 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a759f6fd2a76b68ef3aae1bb8c2677cf7"></a><!-- doxytag: member="Mezzanine::UI::Button::UnbindAllMouseActivationButtons" ref="a759f6fd2a76b68ef3aae1bb8c2677cf7" args="()" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a759f6fd2a76b68ef3aae1bb8c2677cf7">UnbindAllMouseActivationButtons</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all mouse input codes from the list of activation buttons. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a65764b075c03b2a6eb17039a73a260ce">UpdateDimensions</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the dimensions of this button to match those of the new screen size.  <a href="#a65764b075c03b2a6eb17039a73a260ce"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c84044c337735482919fcc82085cf46"></a><!-- doxytag: member="Mezzanine::UI::Button::~Button" ref="a8c84044c337735482919fcc82085cf46" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#a8c84044c337735482919fcc82085cf46">~Button</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd58ff783face0390389e840879fb8fb"></a><!-- doxytag: member="Mezzanine::UI::Button::SetHovered" ref="acd58ff783face0390389e840879fb8fb" args="(bool Hovered)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHovered</b> (bool Hovered)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1Button.html#acd58ff783face0390389e840879fb8fb">SetHovered</a> (bool Hovered)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the hovered state of this renderable. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab8ec63546baad2c3fe73833c55185026"></a><!-- doxytag: member="Mezzanine::UI::Button::ActCond" ref="ab8ec63546baad2c3fe73833c55185026" args="" -->
@@ -207,28 +169,30 @@ Protected Attributes</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Activated</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2aafa20c1e6ff918cbe6374b773f5320"></a><!-- doxytag: member="Mezzanine::UI::Button::Callback" ref="a2aafa20c1e6ff918cbe6374b773f5320" args="" -->
 <a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html">ButtonCallback</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>Callback</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0c01f2585a9bfd95466c81caab6cda1"></a><!-- doxytag: member="Mezzanine::UI::Button::GorillaRectangle" ref="ae0c01f2585a9bfd95466c81caab6cda1" args="" -->
-Gorilla::Rectangle *&#160;</td><td class="memItemRight" valign="bottom"><b>GorillaRectangle</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7725a08b53f43045a38b61ce57945db1"></a><!-- doxytag: member="Mezzanine::UI::Button::HoveredSprite" ref="a7725a08b53f43045a38b61ce57945db1" args="" -->
-Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>HoveredSprite</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab22a57c3999b872f7167e64c2c1aac9b"></a><!-- doxytag: member="Mezzanine::UI::Button::HoveredSprite" ref="ab22a57c3999b872f7167e64c2c1aac9b" args="" -->
+<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>HoveredSprite</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3fc77631f527f820b3ee2f00a5be50f1"></a><!-- doxytag: member="Mezzanine::UI::Button::KeyboardActivationKeys" ref="a3fc77631f527f820b3ee2f00a5be50f1" args="" -->
 std::vector&lt; <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>KeyboardActivationKeys</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab112d6485c6ddd70dd638f3e8454d5d"></a><!-- doxytag: member="Mezzanine::UI::Button::MouseActivationButtons" ref="aab112d6485c6ddd70dd638f3e8454d5d" args="" -->
 std::vector&lt; <a class="el" href="classMezzanine_1_1MetaCode.html#a3b5633f0145bf3287cf53a3f05b5563c">MetaCode::InputCode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>MouseActivationButtons</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbc7a35d1922c62517e968ac4ac38316"></a><!-- doxytag: member="Mezzanine::UI::Button::MouseHover" ref="afbc7a35d1922c62517e968ac4ac38316" args="" -->
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>MouseHover</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3eabadf14193c4e125e64daa419527f"></a><!-- doxytag: member="Mezzanine::UI::Button::MultipleActivations" ref="ae3eabadf14193c4e125e64daa419527f" args="" -->
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>MultipleActivations</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fc26232d2b237d97d954aaa1116fcc3"></a><!-- doxytag: member="Mezzanine::UI::Button::NormalSprite" ref="a8fc26232d2b237d97d954aaa1116fcc3" args="" -->
-Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>NormalSprite</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bfdbf734d45501a4fb0073654161bc4"></a><!-- doxytag: member="Mezzanine::UI::Button::UserSprite" ref="a1bfdbf734d45501a4fb0073654161bc4" args="" -->
-Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSprite</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36975b437489593e609ef69c52e6e7cf"></a><!-- doxytag: member="Mezzanine::UI::Button::NormalSprite" ref="a36975b437489593e609ef69c52e6e7cf" args="" -->
+<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>NormalSprite</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a359fcd7bfe07e68eeaeae2eb089ccac4"></a><!-- doxytag: member="Mezzanine::UI::Button::UserSprite" ref="a359fcd7bfe07e68eeaeae2eb089ccac4" args="" -->
+<a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSprite</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91fc20d4e07c9f2204ea65db980df4ad"></a><!-- doxytag: member="Mezzanine::UI::Button::UserSpriteEnabled" ref="a91fc20d4e07c9f2204ea65db980df4ad" args="" -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpriteEnabled</b></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab811b36cd63b54fe42b6acb231ea21bc"></a><!-- doxytag: member="Mezzanine::UI::Button::UIManager" ref="ab811b36cd63b54fe42b6acb231ea21bc" args="" -->
+class&#160;</td><td class="memItemRight" valign="bottom"><b>UIManager</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This class is a helper class, specifically for use as a button. </p>
 <p>Unlike rectangles and captions, this class can be interacted with by clicking. It is important to understand what you want your space to do when selecting the class to use. </p>
 
-<p>Definition at line <a class="el" href="uibutton_8h_source.html#l00072">72</a> of file <a class="el" href="uibutton_8h_source.html">uibutton.h</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8h_source.html#l00063">63</a> of file <a class="el" href="uibutton_8h_source.html">uibutton.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a910cce5a558e9f41ede146e9675b757f"></a><!-- doxytag: member="Mezzanine::UI::Button::Button" ref="a910cce5a558e9f41ede146e9675b757f" args="(ConstString &amp;name, const RenderableRect &amp;Rect, Layer *PLayer)" -->
 <div class="memitem">
@@ -271,7 +235,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00057">57</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00056">56</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -300,32 +264,10 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>Throw an error? </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000031">Todo:</a></b></dt><dd>Throw an error? </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00138">138</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae35f5b685df6bb09626f3f53b41416bd"></a><!-- doxytag: member="Mezzanine::UI::Button::CheckMouseHover" ref="ae35f5b685df6bb09626f3f53b41416bd" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::UI::Button::CheckMouseHover </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Determines whether the mouse is over this button. </p>
-<p>While this can be called manually, it'll provide the same result if called more the once per frame. Currently the <a class="el" href="classMezzanine_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a> calls this on it's own once per frame, so there isn't much point in calling this manually. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether the mouse is over this button. </dd></dl>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00238">238</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00107">107</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -354,7 +296,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00228">228</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00197">197</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -381,7 +323,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00299">299</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00268">268</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,53 +345,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p>See the ActivationCondition enum for more details. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value indicating the condition for activation for this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00209">209</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5c1e8f0a8efe73d6d556f876a4c709f8"></a><!-- doxytag: member="Mezzanine::UI::Button::GetActualPosition" ref="a5c1e8f0a8efe73d6d556f876a4c709f8" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::Button::GetActualPosition </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the top left position of this button in pixels. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this button. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a7469e579a834b00bd90a87fd754d14af">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00339">339</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a19adecf3f260923b07016347623dc33e"></a><!-- doxytag: member="Mezzanine::UI::Button::GetActualSize" ref="a19adecf3f260923b07016347623dc33e" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::Button::GetActualSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the size of this button in pixels. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this button. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a14b2ff20cdf114c34cc23074d0b7fb5c">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00365">365</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00178">178</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -470,7 +366,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p>Gets a vector with all the keyboard input codes used to activate this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to an std::vector containing all the keyboard keys that will activate this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00421">421</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00283">283</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -491,121 +387,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p>Gets a vector with all the mouse input codes used to activate this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to an std::vector containing all the mouse buttons that will activate this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00426">426</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a18e33bd98a247c8fce95a504bd52e767"></a><!-- doxytag: member="Mezzanine::UI::Button::GetMouseHover" ref="a18e33bd98a247c8fce95a504bd52e767" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::UI::Button::GetMouseHover </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the stored value of whether or not the mouse is over the button. </p>
-<p>This function does not perform any checks. If you want to do a manual check, call <a class="el" href="classMezzanine_1_1UI_1_1Button.html#ae35f5b685df6bb09626f3f53b41416bd" title="Determines whether the mouse is over this button.">CheckMouseHover()</a>. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the stored value of whether or not the mouse is over the button. </dd></dl>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00249">249</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab49077b4d05873f0a6d397720790ae49"></a><!-- doxytag: member="Mezzanine::UI::Button::GetPosition" ref="ab49077b4d05873f0a6d397720790ae49" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::Button::GetPosition </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the relative top left position of this button. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this button. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ab6aa1fb10dc7e9e412e7caac9133c9a6">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00327">327</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab4dabfe9ce18dd255d2b8724f610058d"></a><!-- doxytag: member="Mezzanine::UI::Button::GetPrimaryAtlas" ref="ab4dabfe9ce18dd255d2b8724f610058d" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::UI::Button::GetPrimaryAtlas </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the currently set primary atlas. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of the primary atlas that is set, or an empty string if none. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#abdb08ae3577da75762209b8cee486b24">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00416">416</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ad2e567a12e059c612e474e96fd9cd5da"></a><!-- doxytag: member="Mezzanine::UI::Button::GetRenderPriority" ref="ad2e567a12e059c612e474e96fd9cd5da" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> Mezzanine::UI::Button::GetRenderPriority </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the priority this button should be rendered with. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing this button's priority level. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a3279ed466dfc69203467b2bb32cf89be">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00391">391</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6836b68da28da089584dd02547674286"></a><!-- doxytag: member="Mezzanine::UI::Button::GetSize" ref="a6836b68da28da089584dd02547674286" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> Mezzanine::UI::Button::GetSize </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the relative size of this button. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector2 representing the size of this button. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a6486ceae69273b990bfe19b88c29d328">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00353">353</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00288">288</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -627,7 +409,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p><a class="el" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a> activations are cleared every frame by the <a class="el" href="namespaceMezzanine_1_1UI.html" title="This namespace is for all the classes belonging to the Graphical User Interface Subsystem.">UI</a> manager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns whether or not this button has been activated. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00223">223</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00192">192</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -648,7 +430,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p>Gets whether or not multiple activations per frame are enabled for this button. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether or not multiple activations are allowed for this button. </dd></dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00233">233</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00202">202</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -671,30 +453,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#ad4cab393b8c00c43c1b8bfb878c73073">Mezzanine::UI::TextButton</a>.</p>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00125">125</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a8d8afe5870bcf5bf1de02ece187ab238"></a><!-- doxytag: member="Mezzanine::UI::Button::IsVisible" ref="a8d8afe5870bcf5bf1de02ece187ab238" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Mezzanine::UI::Button::IsVisible </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets the visibility of this button. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visibility of this button. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a443bdeb7d95e6b765a5548966d380ecf">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00110">110</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00094">94</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -722,7 +481,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00214">214</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00183">183</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -750,100 +509,11 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00204">204</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00173">173</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad7218bce5dda1c0e0bf91a83feaae47e"></a><!-- doxytag: member="Mezzanine::UI::Button::SetActualPosition" ref="ad7218bce5dda1c0e0bf91a83feaae47e" args="(const Vector2 &amp;Position)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetActualPosition </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the top left position of this button in pixels. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this button. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a4741dde07f7eddddcc3d611d6c803fad">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#adc3f524897031fffc7c25c4adc460d15">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00332">332</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6a19f0e460a63e13f8c9bda3e18fcc96"></a><!-- doxytag: member="Mezzanine::UI::Button::SetActualSize" ref="a6a19f0e460a63e13f8c9bda3e18fcc96" args="(const Vector2 &amp;Size)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetActualSize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the size of this button in pixels. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this button. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a69c87db17cacc2980f68777258329531">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a81171ff142c9e991daeec099bebfdc82">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00358">358</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a4cd47608dc2074f400d04812bf439f6f"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBackgroundColour" ref="a4cd47608dc2074f400d04812bf439f6f" args="(const ColourValue &amp;Colour)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetBackgroundColour </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
-          <td class="paramname"><em>Colour</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the background colour of the button. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Colour</td><td>A colour value representing the colour to be set. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00254">254</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a27dcfac26f2ace96dcb0e43ce13ed68c"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBackgroundSprite" ref="a27dcfac26f2ace96dcb0e43ce13ed68c" args="(const String &amp;Name, const String &amp;Atlas)" -->
+<a class="anchor" id="a92731109f8888d1e82e27185d4c9d559"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBackgroundSprite" ref="a92731109f8888d1e82e27185d4c9d559" args="(const String &amp;SpriteName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -851,7 +521,36 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
           <td class="memname">void Mezzanine::UI::Button::SetBackgroundSprite </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
+          <td class="paramname"><em>SpriteName</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the background image(if provided in the atlas) of the renderable. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the background. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a7022346cea3766eba2338f9304c20218">Mezzanine::UI::Rectangle</a>.</p>
+
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00216">216</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acd2b68924ad5f790afde9a32f83ca206"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBackgroundSprite" ref="acd2b68924ad5f790afde9a32f83ca206" args="(const String &amp;SpriteName, const String &amp;Atlas)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Button::SetBackgroundSprite </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>SpriteName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -868,80 +567,47 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 </div>
 <div class="memdoc">
 
-<p>Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set. </p>
+<p>Sets the background image(if provided in the atlas) of the renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the background. </td></tr>
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the background. </td></tr>
     <tr><td class="paramname">Atlas</td><td>The Atlas to load the sprite from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00266">266</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#ad0814b6b4b13a4857b3bcaa163fd3210">Mezzanine::UI::Rectangle</a>.</p>
+
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00221">221</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af34e8bd2454368345da7b23dc17f077c"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBackgroundSprite" ref="af34e8bd2454368345da7b23dc17f077c" args="(const String &amp;Name)" -->
+<a class="anchor" id="af16ce9c5182ca4a4e52649b517499728"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBackgroundSprite" ref="af16ce9c5182ca4a4e52649b517499728" args="(Sprite *PSprite)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::UI::Button::SetBackgroundSprite </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td>
+          <td class="paramname"><em>PSprite</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets the background image(if provided in the atlas) of the button. </p>
+<p>Sets the background image(if provided in the atlas) of the renderable. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the background. </td></tr>
+    <tr><td class="paramname">PSprite</td><td>A pointer to the sprite to set as the background. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00259">259</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1UI_1_1Rectangle.html#a0e9e0664fd82258df48145cfe9d6000d">Mezzanine::UI::Rectangle</a>.</p>
 
-</div>
-</div>
-<a class="anchor" id="a75bad31e5f93373fe1e16761689b354b"></a><!-- doxytag: member="Mezzanine::UI::Button::SetBorder" ref="a75bad31e5f93373fe1e16761689b354b" args="(const Real &amp;Width, const ColourValue &amp;Colour)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetBorder </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
-          <td class="paramname"><em>Width</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;&#160;</td>
-          <td class="paramname"><em>Colour</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Enables a border and sets it's colour. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Colour</td><td>A colour value representing the colour to be set. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00309">309</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00207">207</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -969,19 +635,19 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00130">130</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00099">99</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad23caa85fbf5ae1c3fc9b5d0873d455b"></a><!-- doxytag: member="Mezzanine::UI::Button::SetHoveredSprite" ref="ad23caa85fbf5ae1c3fc9b5d0873d455b" args="(const String &amp;Name)" -->
+<a class="anchor" id="a93f0554750c433dc9c14f0611fc00a10"></a><!-- doxytag: member="Mezzanine::UI::Button::SetHoveredSprite" ref="a93f0554750c433dc9c14f0611fc00a10" args="(Sprite *PSprite)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::UI::Button::SetHoveredSprite </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td>
+          <td class="paramname"><em>PSprite</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
@@ -991,16 +657,16 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p>Sets an alternate background image that will be applied when the mouse is over this button. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the alternate background. </td></tr>
+    <tr><td class="paramname">PSprite</td><td>A pointer to the sprite to set as the alternate background. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00273">273</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00226">226</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae47110a04c883f83a30e7bc060a35692"></a><!-- doxytag: member="Mezzanine::UI::Button::SetHoveredSprite" ref="ae47110a04c883f83a30e7bc060a35692" args="(const String &amp;Name, const String &amp;Atlas)" -->
+<a class="anchor" id="a6fa21a055fb5d806248240bbae5f5ad6"></a><!-- doxytag: member="Mezzanine::UI::Button::SetHoveredSprite" ref="a6fa21a055fb5d806248240bbae5f5ad6" args="(const String &amp;SpriteName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1008,7 +674,34 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
           <td class="memname">void Mezzanine::UI::Button::SetHoveredSprite </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
+          <td class="paramname"><em>SpriteName</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets an alternate background image that will be applied when the mouse is over this button. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the alternate background. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00235">235</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1465419bd4ff0a60c740d02dd61d0e3f"></a><!-- doxytag: member="Mezzanine::UI::Button::SetHoveredSprite" ref="a1465419bd4ff0a60c740d02dd61d0e3f" args="(const String &amp;SpriteName, const String &amp;Atlas)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Button::SetHoveredSprite </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>SpriteName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1025,143 +718,20 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 </div>
 <div class="memdoc">
 
-<p>Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set. </p>
+<p>Sets an alternate background image that will be applied when the mouse is over this button. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the alternate background. </td></tr>
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the alternate background. </td></tr>
     <tr><td class="paramname">Atlas</td><td>The Atlas to load the sprite from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00281">281</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00241">241</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aff2d96a45c88627098ac0b902059bfc3"></a><!-- doxytag: member="Mezzanine::UI::Button::SetPosition" ref="aff2d96a45c88627098ac0b902059bfc3" args="(const Vector2 &amp;Position)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetPosition </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Position</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the relative top left position of this button. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Position</td><td>A <a class="el" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the location of this button. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#aab42dabeaeb7a56fb4b98ae8f7ab6afb">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#af91cf1040a11180eba704e054def6a7a">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00319">319</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af1248af0bf094b29f65547b1697c3c23"></a><!-- doxytag: member="Mezzanine::UI::Button::SetPrimaryAtlas" ref="af1248af0bf094b29f65547b1697c3c23" args="(const String &amp;Atlas)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetPrimaryAtlas </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Atlas</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the Atlas to be assumed when one isn't provided for atlas related tasks. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Atlas</td><td>The name of the atlas to be used. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ab1195ccf1e8acf126aee6d06c1d9e93b">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00411">411</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aebb9eb3fc42b2f6e77fe0a213c297450"></a><!-- doxytag: member="Mezzanine::UI::Button::SetRenderPriority" ref="aebb9eb3fc42b2f6e77fe0a213c297450" args="(const UI::RenderPriority &amp;Priority)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetRenderPriority </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespaceMezzanine_1_1UI.html#ac4c753eb6b5d66350a243acc9ce54130">UI::RenderPriority</a> &amp;&#160;</td>
-          <td class="paramname"><em>Priority</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the priority this button should be rendered with. </p>
-<p>The default value for this is Medium. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Priority</td><td>The priority level to be used when rendering this button. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a05be25ff56fbd498841c33da0cfe5410">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a546446b4b6394fb7e58bfa64d554ada3">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00371">371</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2a654b05e925924d5842f36b2a486af5"></a><!-- doxytag: member="Mezzanine::UI::Button::SetSize" ref="a2a654b05e925924d5842f36b2a486af5" args="(const Vector2 &amp;Size)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetSize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector2.html">Vector2</a> &amp;&#160;</td>
-          <td class="paramname"><em>Size</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the relative size of this button. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Size</td><td>A vector2 representing the size of this button. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#ace14123b4a7bdb83e4e86275823f7b6e">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a066e09081624a520a5e86f7cfd81ee5d">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00345">345</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a7e6246ca07c0c659a3aec7babd49219f"></a><!-- doxytag: member="Mezzanine::UI::Button::SetUserSprite" ref="a7e6246ca07c0c659a3aec7babd49219f" args="(const String &amp;Name)" -->
+<a class="anchor" id="aecb07e754310f1c53af92b323c385e92"></a><!-- doxytag: member="Mezzanine::UI::Button::SetUserSprite" ref="aecb07e754310f1c53af92b323c385e92" args="(const String &amp;SpriteName)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1169,26 +739,53 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
           <td class="memname">void Mezzanine::UI::Button::SetUserSprite </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em></td><td>)</td>
+          <td class="paramname"><em>SpriteName</em></td><td>)</td>
           <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets an alternate background image that is stored and can be quickly swapped with the active sprite. </p>
+<p>Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the alternate background. </td></tr>
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the alternate background. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00287">287</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00256">256</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab4335cbb2c9da9b5b61d9ba53793efb6"></a><!-- doxytag: member="Mezzanine::UI::Button::SetUserSprite" ref="ab4335cbb2c9da9b5b61d9ba53793efb6" args="(const String &amp;Name, const String &amp;Atlas)" -->
+<a class="anchor" id="a94b9ce563b2aacbd71e559c660026cc8"></a><!-- doxytag: member="Mezzanine::UI::Button::SetUserSprite" ref="a94b9ce563b2aacbd71e559c660026cc8" args="(Sprite *PSprite)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::UI::Button::SetUserSprite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMezzanine_1_1UI_1_1Sprite.html">Sprite</a> *&#160;</td>
+          <td class="paramname"><em>PSprite</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">PSprite</td><td>A pointer to the sprite to set as the alternate background. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00247">247</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7ea91306176ad94d136ca8de7321a5ae"></a><!-- doxytag: member="Mezzanine::UI::Button::SetUserSprite" ref="a7ea91306176ad94d136ca8de7321a5ae" args="(const String &amp;SpriteName, const String &amp;Atlas)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -1196,7 +793,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
           <td class="memname">void Mezzanine::UI::Button::SetUserSprite </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
-          <td class="paramname"><em>Name</em>, </td>
+          <td class="paramname"><em>SpriteName</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1216,44 +813,13 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 <p>Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Name</td><td>The name of the sprite to set as the alternate background. </td></tr>
+    <tr><td class="paramname">SpriteName</td><td>The name of the sprite to set as the alternate background. </td></tr>
     <tr><td class="paramname">Atlas</td><td>The Atlas to load the sprite from. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00293">293</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a12840e06233a6feb88f61d88a0ce7e60"></a><!-- doxytag: member="Mezzanine::UI::Button::SetVisible" ref="a12840e06233a6feb88f61d88a0ce7e60" args="(bool Visible)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::SetVisible </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>Visible</em></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the visibility of this button. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Visible</td><td>Bool determining whether or not this button should be visible. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a3dd62b1390d4f3931cfc8d0188cdcc7c">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a0e7af5bb48039675e31ddcd1f72f5752">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00105">105</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00262">262</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1280,32 +846,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00162">162</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a65764b075c03b2a6eb17039a73a260ce"></a><!-- doxytag: member="Mezzanine::UI::Button::UpdateDimensions" ref="a65764b075c03b2a6eb17039a73a260ce" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::UI::Button::UpdateDimensions </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Updates the dimensions of this button to match those of the new screen size. </p>
-<p>This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. </p>
-
-<p>Implements <a class="el" href="classMezzanine_1_1UI_1_1BasicRenderable.html#a446b43c6dde21c7f0c021ca6833f841d">Mezzanine::UI::BasicRenderable</a>.</p>
-
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1UI_1_1TextButton.html#a06a5a6400dff268de5c91737de09fda9">Mezzanine::UI::TextButton</a>.</p>
-
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00431">431</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00131">131</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -1319,7 +860,7 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1329,6 +870,6 @@ Gorilla::Sprite *&#160;</td><td class="memItemRight" valign="bottom"><b>UserSpri
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -457,6 +457,12 @@ enum \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{In
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1MetaCode_a94dca88ec5dd3fc0c9c860bfa875a983}{MetaCode} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_a2d32eb008845b54c70b510450259404f}{MetaCode} (const int \&MetaValue\_\-, const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1MetaCode_abe2e7fa16bab17df5b1794c26bf191be}{MetaCode} (const \hyperlink{namespaceMezzanine_ae8d4c0ab783af89a250b0225b75753e5}{RawEvent} \&RawEvent\_\-)
+\begin{DoxyCompactList}\small\item\em The Heavy Lifting Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \hyperlink{classMezzanine_1_1MetaCode_a83484f23e49db65d343d2ea75c9af66c}{GetCode} () const 
 \begin{DoxyCompactList}\small\item\em This Returns the Inputcode. \item\end{DoxyCompactList}\item 
 int \hyperlink{classMezzanine_1_1MetaCode_a650c4ae1fb698233516d978dd83dfca7}{GetMetaValue} () const 
@@ -483,18 +489,18 @@ bool \hyperlink{classMezzanine_1_1MetaCode_a3af3c353b814482fa2c6c68238ced612}{Is
 \begin{DoxyCompactList}\small\item\em Is this a left or right Shift key. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1MetaCode_a85c370eb28387758e4498d2da656915a}{IsSuperKey} () const 
 \begin{DoxyCompactList}\small\item\em Is this a left or right Super key (Windows logo key, Apple logo key, etc...) \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1MetaCode_abe2e7fa16bab17df5b1794c26bf191be}{MetaCode} (const \hyperlink{namespaceMezzanine_ae8d4c0ab783af89a250b0225b75753e5}{RawEvent} \&RawEvent\_\-)
-\begin{DoxyCompactList}\small\item\em The Heavy Lifting Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1MetaCode_a2d32eb008845b54c70b510450259404f}{MetaCode} (const int \&MetaValue\_\-, const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code\_\-)
-\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1MetaCode_a94dca88ec5dd3fc0c9c860bfa875a983}{MetaCode} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1MetaCode_a9766ecefce7d3e8a8e379c8e19fcf414}{operator==} (const \hyperlink{classMezzanine_1_1MetaCode}{MetaCode} \&other) const 
 \begin{DoxyCompactList}\small\item\em Compares two MetaCodes for equality. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1MetaCode_a8c5fa366af24a273ea945aaa8cc7050c}{SetCode} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code\_\-)
-\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1MetaCode_a49a98adb36a3e6242b2e243927babcb8}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1MetaCode_a87d4b4402a1d2b8221747b7d136b0f64}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1MetaCode_a50215ce2068922095f5608f17a2a3d15}{SerializableName} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1MetaCode_aeec5b1c0411d1f7851945f4da69c28e2}{SetCode} (int Code\_\-)
 \begin{DoxyCompactList}\small\item\em This Sets The InputCode using an int. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1MetaCode_a8c5fa366af24a273ea945aaa8cc7050c}{SetCode} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&Code\_\-)
+\begin{DoxyCompactList}\small\item\em This Sets The InputCode. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1MetaCode_a6a98dad161c7e45a3f9154b2864db47b}{SetMetaValue} (const int \&MetaValue\_\-)
 \begin{DoxyCompactList}\small\item\em This Sets The MetaValue. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
@@ -511,7 +517,7 @@ static \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{
 \subsubsection{Detailed Description}
 This Determines the kind of user input. A Metacode contains the data that is passed around with an input event. It stores one type of button press or analog representation (Mouse move, joystick tilt, wheel spin, etc...). If it is an analog representation it will also store how far or how it is pushed, pressed, rotated, or whatever. Several of these can be used in combination to represent button combinations, or complex input combinations (like portions of fighter game moves). 
 
-Definition at line 88 of file metacode.h.
+Definition at line 86 of file metacode.h.
 
 
 
@@ -549,7 +555,7 @@ BUTTON\_\-DOWN}
 
 
 
-Definition at line 552 of file metacode.h.
+Definition at line 550 of file metacode.h.
 
 \hypertarget{classMezzanine_1_1MetaCode_ad37143a88b8c94cb6b2f40f5d66104ad}{
 \index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!DirectionalMotionState@{DirectionalMotionState}}
@@ -580,7 +586,7 @@ DIRECTIONALMOTION\_\-DOWNRIGHT}
 
 
 
-Definition at line 563 of file metacode.h.
+Definition at line 561 of file metacode.h.
 
 \hypertarget{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{
 \index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!InputCode@{InputCode}}
@@ -810,7 +816,7 @@ INPUTEVENT\_\-LAST}
 
 
 
-Definition at line 97 of file metacode.h.
+Definition at line 95 of file metacode.h.
 
 
 
@@ -1249,6 +1255,70 @@ Compares two MetaCodes for equality.
 This returns true if the MetaValue and Code are the Same, this ignores ID. 
 
 Definition at line 265 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a49a98adb36a3e6242b2e243927babcb8}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::MetaCode::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MetaCode_a49a98adb36a3e6242b2e243927babcb8}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 300 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a87d4b4402a1d2b8221747b7d136b0f64}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::MetaCode::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1MetaCode_a87d4b4402a1d2b8221747b7d136b0f64}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vector3 should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 277 of file metacode.cpp.
+
+\hypertarget{classMezzanine_1_1MetaCode_a50215ce2068922095f5608f17a2a3d15}{
+\index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::MetaCode@{Mezzanine::MetaCode}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::MetaCode::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1MetaCode_a50215ce2068922095f5608f17a2a3d15}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Vector3\char`\"{} 
+\end{DoxyReturn}
+
+
+Definition at line 316 of file metacode.cpp.
 
 \hypertarget{classMezzanine_1_1MetaCode_aeec5b1c0411d1f7851945f4da69c28e2}{
 \index{Mezzanine::MetaCode@{Mezzanine::MetaCode}!SetCode@{SetCode}}

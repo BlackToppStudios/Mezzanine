@@ -17,6 +17,49 @@ Inheritance diagram for Mezzanine::ActorManager:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classMezzanine_1_1ActorManager}
 \end{center}
 \end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_a436b56aadfc9f939454be461c904b8e5}{
+typedef std::vector$<$ ActorCharacter $\ast$ $>$::iterator {\bfseries ActorCharacterIterator}}
+\label{classMezzanine_1_1ActorManager_a436b56aadfc9f939454be461c904b8e5}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_a7adacffc50a291974d306a3008c18b87}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$::iterator {\bfseries ActorIterator}}
+\label{classMezzanine_1_1ActorManager_a7adacffc50a291974d306a3008c18b87}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_ac4f47c8bddcfec7a4ae2904db967e020}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ $>$::iterator {\bfseries ActorRigidIterator}}
+\label{classMezzanine_1_1ActorManager_ac4f47c8bddcfec7a4ae2904db967e020}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_af182ad519a3381e8893a29db11b037db}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft} $\ast$ $>$::iterator {\bfseries ActorSoftIterator}}
+\label{classMezzanine_1_1ActorManager_af182ad519a3381e8893a29db11b037db}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_a985136f1466c825eb2f4437243e0d892}{
+typedef std::vector$<$ ActorCharacter $\ast$ $>$::const\_\-iterator {\bfseries ConstActorCharacterIterator}}
+\label{classMezzanine_1_1ActorManager_a985136f1466c825eb2f4437243e0d892}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_ac623530bb722052c2f90e2e737d01f27}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$::const\_\-iterator {\bfseries ConstActorIterator}}
+\label{classMezzanine_1_1ActorManager_ac623530bb722052c2f90e2e737d01f27}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_a08bfd16e9ea28fc9941aeb19a10145e2}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ $>$::const\_\-iterator {\bfseries ConstActorRigidIterator}}
+\label{classMezzanine_1_1ActorManager_a08bfd16e9ea28fc9941aeb19a10145e2}
+
+\item 
+\hypertarget{classMezzanine_1_1ActorManager_abe3c0c6a2cf63cd6795d7bd61b68acc0}{
+typedef std::vector$<$ \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft} $\ast$ $>$::const\_\-iterator {\bfseries ConstActorSoftIterator}}
+\label{classMezzanine_1_1ActorManager_abe3c0c6a2cf63cd6795d7bd61b68acc0}
+
+\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,6 +68,11 @@ Inheritance diagram for Mezzanine::ActorManager:\begin{figure}[H]
 \label{classMezzanine_1_1ActorManager_aa9074e3c8dd87865e957c4d76fbc5e25}
 
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}{
+virtual \hyperlink{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}{$\sim$ActorManager} ()}
+\label{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorManager_af801d07590853b3ae0c52574a340ea44}{AddActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor)
 \begin{DoxyCompactList}\small\item\em Adds a pre-\/created actor to the manager. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorManager_a5e4daba372199d0d140fd590a4d0f501}{DestroyActor} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
@@ -51,20 +99,20 @@ virtual void \hyperlink{classMezzanine_1_1ActorManager_a3b5b383066473d09243d13ad
 \label{classMezzanine_1_1ActorManager_a3b5b383066473d09243d13ad702c4868}
 
 \begin{DoxyCompactList}\small\item\em Empty initializer that has been implemented from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorManager_a5c28bea0eb64822ce94ce38762aedc1e}{RemoveActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ToBeRemoved)
-\begin{DoxyCompactList}\small\item\em Removes an actor from this manager without destroying it. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorManager_ac74758ad6d5c03b20105d641f0e37de3}{RemoveActor} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Removes an actor from this manager without destroying it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorManager_a5c28bea0eb64822ce94ce38762aedc1e}{RemoveActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ToBeRemoved)
 \begin{DoxyCompactList}\small\item\em Removes an actor from this manager without destroying it. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorManager_a6ca8342617fa221b0548ff9bc6bf4477}{
 virtual void \hyperlink{classMezzanine_1_1ActorManager_a6ca8342617fa221b0548ff9bc6bf4477}{RemoveAllActors} ()}
 \label{classMezzanine_1_1ActorManager_a6ca8342617fa221b0548ff9bc6bf4477}
 
 \begin{DoxyCompactList}\small\item\em Removes all actors from this manager without destroying them. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}{
-virtual \hyperlink{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}{$\sim$ActorManager} ()}
-\label{classMezzanine_1_1ActorManager_acb09f9f1b4766dd2ca9e645bb505ac2f}
+\hypertarget{classMezzanine_1_1ActorManager_a09ae1e126a501cd932dbbc9290120b7d}{
+virtual void \hyperlink{classMezzanine_1_1ActorManager_a09ae1e126a501cd932dbbc9290120b7d}{UpdateAllActors} ()}
+\label{classMezzanine_1_1ActorManager_a09ae1e126a501cd932dbbc9290120b7d}
 
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calls to update every actor currently stored in the manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -93,7 +141,7 @@ std::vector$<$ \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft} $\ast$ $>$ \hy
 \subsubsection{Detailed Description}
 A manager responsible for the storage and management of all actors in use. More or less Management point for a container of actors to help keep them sorted. 
 
-Definition at line 59 of file actormanager.h.
+Definition at line 65 of file actormanager.h.
 
 
 
@@ -184,7 +232,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258
 
 
 
-Definition at line 163 of file actormanager.cpp.
+Definition at line 171 of file actormanager.cpp.
 
 \hypertarget{classMezzanine_1_1ActorManager_a9657cdc7c0cef46a172ad73f366e4199}{
 \index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!GetActor@{GetActor}}
@@ -278,7 +326,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf
 
 
 
-Definition at line 167 of file actormanager.cpp.
+Definition at line 176 of file actormanager.cpp.
 
 \hypertarget{classMezzanine_1_1ActorManager_a5c28bea0eb64822ce94ce38762aedc1e}{
 \index{Mezzanine::ActorManager@{Mezzanine::ActorManager}!RemoveActor@{RemoveActor}}

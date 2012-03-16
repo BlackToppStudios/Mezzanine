@@ -14,6 +14,13 @@ A stream from a file, can read from zip files as well.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1ResourceInputStream_a03a7bc47014d7d27cf0db3c0fff68715}{ResourceInputStream} (std::streambuf $\ast$InputBuffer, \hyperlink{classMezzanine_1_1ResourceManager}{ResourceManager} $\ast$ResourceManager\_\-)
+\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}{
+virtual \hyperlink{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}{$\sim$ResourceInputStream} ()}
+\label{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}
+
+\begin{DoxyCompactList}\small\item\em Tears down the Stream, and Delete the Buffer Passed in. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ResourceInputStream_a241faad0fdcadeca6288a3f49797c05d}{
 {\footnotesize template$<$class T $>$ }\\\hyperlink{classMezzanine_1_1ResourceInputStream}{ResourceInputStream} \& {\bfseries operator$>$$>$} (T \&Data)}
 \label{classMezzanine_1_1ResourceInputStream_a241faad0fdcadeca6288a3f49797c05d}
@@ -21,15 +28,8 @@ A stream from a file, can read from zip files as well.
 \item 
 bool \hyperlink{classMezzanine_1_1ResourceInputStream_a1a09cf1e237b4344df907b799af52e96}{Readable} ()
 \begin{DoxyCompactList}\small\item\em Can this be read from. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1ResourceInputStream_a03a7bc47014d7d27cf0db3c0fff68715}{ResourceInputStream} (std::streambuf $\ast$InputBuffer, \hyperlink{classMezzanine_1_1ResourceManager}{ResourceManager} $\ast$ResourceManager\_\-)
-\begin{DoxyCompactList}\small\item\em Descriptive Constructor. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1ResourceInputStream_ae2fa58b048fedc97126184a72ccb7689}{Writeable} ()
-\begin{DoxyCompactList}\small\item\em Can this be written to. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}{
-virtual \hyperlink{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}{$\sim$ResourceInputStream} ()}
-\label{classMezzanine_1_1ResourceInputStream_ac99716411e0277ffd97b2db98003fc54}
-
-\begin{DoxyCompactList}\small\item\em Tears down the Stream, and Delete the Buffer Passed in. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Can this be written to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -59,7 +59,7 @@ Descriptive Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-{\em InputBuffer} & A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. \\
+{\em InputBuffer} & A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of \hyperlink{namespaceOgre}{Ogre}). This Stream will assume ownership of this buffer and will handle deleting it. \\
 \hline
 {\em ResourceManager\_\-} & Currently unused, future functionality may tuse this. \\
 \hline

@@ -92,6 +92,12 @@ Inheritance diagram for Mezzanine::TerrainManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc5ec25398260bc73cbb3c6d206f76d6"></a><!-- doxytag: member="Mezzanine::TerrainManager::TerrainManager" ref="acc5ec25398260bc73cbb3c6d206f76d6" args="()" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#acc5ec25398260bc73cbb3c6d206f76d6">TerrainManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3896cc32b3a674511c851716e251d1a"></a><!-- doxytag: member="Mezzanine::TerrainManager::~TerrainManager" ref="ae3896cc32b3a674511c851716e251d1a" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#ae3896cc32b3a674511c851716e251d1a">~TerrainManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#ace206114313eb7dcd96706a10195dea6">AddTerrain</a> (<a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainBase</a> *Terrain)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a pre-made terrain to the world and the manager.  <a href="#ace206114313eb7dcd96706a10195dea6"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1MeshTerrain.html">MeshTerrain</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#acb65dd655f4e42ac530442ffb35f12e0">CreateMeshTerrain</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;InitPosition, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;file, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;group)</td></tr>
@@ -107,7 +113,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#a586514cfc367b5852612292cab69a8b7">GetNumTerrains</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of terrains being stored in this manager.  <a href="#a586514cfc367b5852612292cab69a8b7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#a6ac0d776447d798c07f801b29109228b">GetTerrainByIndex</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrives a <a class="el" href="classMezzanine_1_1MeshTerrain.html">MeshTerrain</a> from the list of terrains.  <a href="#a6ac0d776447d798c07f801b29109228b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a <a class="el" href="classMezzanine_1_1MeshTerrain.html">MeshTerrain</a> from the list of terrains.  <a href="#a6ac0d776447d798c07f801b29109228b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#aa582965012dc57bd39b01d6dc8773642">GetTerrainByName</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a Meshterrain from the list of terrains.  <a href="#aa582965012dc57bd39b01d6dc8773642"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e">ManagerTypeName</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#a86fbb914cfbc0de3dc555d670bb35107">GetType</a> () const </td></tr>
@@ -118,12 +124,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a terrain from the world and this manager.  <a href="#ae304121e1f5023bb76cfda962d860395"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#abd5fec432a277253d08c5c7a462f3cd6">RemoveTerrain</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a terrain from the world and this manager by index.  <a href="#abd5fec432a277253d08c5c7a462f3cd6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc5ec25398260bc73cbb3c6d206f76d6"></a><!-- doxytag: member="Mezzanine::TerrainManager::TerrainManager" ref="acc5ec25398260bc73cbb3c6d206f76d6" args="()" -->
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#acc5ec25398260bc73cbb3c6d206f76d6">TerrainManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3896cc32b3a674511c851716e251d1a"></a><!-- doxytag: member="Mezzanine::TerrainManager::~TerrainManager" ref="ae3896cc32b3a674511c851716e251d1a" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TerrainManager.html#ae3896cc32b3a674511c851716e251d1a">~TerrainManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0790111fe5b0afabf775e74f172d0614"></a><!-- doxytag: member="Mezzanine::TerrainManager::MeshTerrains" ref="a0790111fe5b0afabf775e74f172d0614" args="" -->
@@ -136,7 +136,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainB
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is manager for terrains and their functions. </p>
 
-<p>Definition at line <a class="el" href="terrainmanager_8h_source.html#l00058">58</a> of file <a class="el" href="terrainmanager_8h_source.html">terrainmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="terrainmanager_8h_source.html#l00065">65</a> of file <a class="el" href="terrainmanager_8h_source.html">terrainmanager.h</a>.</p>
 </div><hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="ace206114313eb7dcd96706a10195dea6"></a><!-- doxytag: member="Mezzanine::TerrainManager::AddTerrain" ref="ace206114313eb7dcd96706a10195dea6" args="(TerrainBase *Terrain)" -->
 <div class="memitem">
@@ -331,7 +331,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainB
 </div>
 <div class="memdoc">
 
-<p>Retrives a <a class="el" href="classMezzanine_1_1MeshTerrain.html">MeshTerrain</a> from the list of terrains. </p>
+<p>Retrieves a <a class="el" href="classMezzanine_1_1MeshTerrain.html">MeshTerrain</a> from the list of terrains. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">index</td><td>Index of desired terrain in MeshTerrains. </td></tr>
@@ -435,7 +435,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainB
 
 <p>Removes all terrains currently in this manager from the world and the manager. </p>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000026">Todo:</a></b></dt><dd>When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000030">Todo:</a></b></dt><dd>When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="terrainmanager_8cpp_source.html#l00109">109</a> of file <a class="el" href="terrainmanager_8cpp_source.html">terrainmanager.cpp</a>.</p>
@@ -506,7 +506,7 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainB
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -516,6 +516,6 @@ std::vector&lt; <a class="el" href="classMezzanine_1_1TerrainBase.html">TerrainB
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:47 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -22,6 +22,8 @@ Inheritance diagram for Mezzanine::CameraManager:\begin{figure}[H]
 \item 
 \hyperlink{classMezzanine_1_1CameraManager_a2beb54ad16ce87e9febc941818384b8e}{CameraManager} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} SceneManagerIndex)
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1CameraManager_a1aad56c3d298c86bde95c26ce231697f}{$\sim$CameraManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ \hyperlink{classMezzanine_1_1CameraManager_a4e97870f483d294683c508c04b41ac9c}{CreateCamera} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Creates a camera and returns a pointer. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Camera}{Camera} $\ast$ \hyperlink{classMezzanine_1_1CameraManager_a59b4343ed87c095cca6cb529d27babcc}{CreateDefaultCamera} ()
@@ -57,9 +59,7 @@ virtual void \hyperlink{classMezzanine_1_1CameraManager_a91db1fdfe96f32d06f689d3
 virtual \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerTypeName} \hyperlink{classMezzanine_1_1CameraManager_a1eb75dabfd7df1c901432d841a92fcbc}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1CameraManager_a4b7f0d25f77306bca4b5c885e35363cc}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1CameraManager_a1aad56c3d298c86bde95c26ce231697f}{$\sim$CameraManager} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -119,7 +119,7 @@ This is the manager class for all camera functions. This class contains all the 
  All functions that manipulate the camera will default to the default camera, so if you only use one camera you should never have to name the camera you want to use. \par
  This class should only be created after the \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} has been created. 
 
-Definition at line 72 of file cameramanager.h.
+Definition at line 78 of file cameramanager.h.
 
 
 

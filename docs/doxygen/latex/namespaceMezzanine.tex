@@ -34,10 +34,22 @@ namespace \hyperlink{namespaceMezzanine_1_1internal}{internal}
 \begin{DoxyCompactList}\small\item\em This namespace is used for internal helper classes, and in general it should be ignored by game developers. \item\end{DoxyCompactList}
 
 \item 
+namespace \hyperlink{namespaceMezzanine_1_1Scripting}{Scripting}
+
+
+\begin{DoxyCompactList}\small\item\em This namespace is for all the classes belonging to the \hyperlink{namespaceMezzanine_1_1Scripting}{Scripting} Subsystem. \item\end{DoxyCompactList}
+
+\item 
 namespace \hyperlink{namespaceMezzanine_1_1UI}{UI}
 
 
 \begin{DoxyCompactList}\small\item\em This namespace is for all the classes belonging to the Graphical User Interface Subsystem. \item\end{DoxyCompactList}
+
+\item 
+namespace \hyperlink{namespaceMezzanine_1_1xml}{xml}
+
+
+\begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem resides, (See \hyperlink{XMLManual}{Mezzanine::xml Manual} for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
 
 \end{DoxyCompactItemize}
 \subsubsection*{Classes}
@@ -67,10 +79,12 @@ class \hyperlink{classMezzanine_1_1ActorSoftPhysicsSettings}{ActorSoftPhysicsSet
 \begin{DoxyCompactList}\small\item\em This is a helper class for configuring physics settings of an \hyperlink{classMezzanine_1_1ActorSoft}{ActorSoft}. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect}
 \begin{DoxyCompactList}\small\item\em This class is used to define area's in the world that have unique effects. \item\end{DoxyCompactList}\item 
-class \hyperlink{classMezzanine_1_1Attachable}{Attachable}
-\begin{DoxyCompactList}\small\item\em This is just a base class to be used by elements that are attachable to worldnodes. \item\end{DoxyCompactList}\item 
-class \hyperlink{structMezzanine_1_1AttachableData}{AttachableData}
-\begin{DoxyCompactList}\small\item\em Helper class for the presentation of internal data of an attachable. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1AttachableBase}{AttachableBase}
+\begin{DoxyCompactList}\small\item\em This class is the base class for other attachable classes and is responsible for transform updates to attachables. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1AttachableChild}{AttachableChild}
+\begin{DoxyCompactList}\small\item\em This class is the base class for objects that can be attached to \hyperlink{classMezzanine_1_1AttachableParent}{AttachableParent}. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1AttachableParent}{AttachableParent}
+\begin{DoxyCompactList}\small\item\em Base class for objects that can have attachables attached to them. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1AudioManager}{AudioManager}
 \begin{DoxyCompactList}\small\item\em This is simply a place for storing all the Sound utilities and functions. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1BoxCollisionShape}{BoxCollisionShape}
@@ -171,6 +185,10 @@ class \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}
 \begin{DoxyCompactList}\small\item\em This is the base class from which all the \hyperlink{classMezzanine_1_1World}{World} Managers inherit. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1MathTool}{MathTool}
 \begin{DoxyCompactList}\small\item\em This provides a number of generic math related utilities. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3}
+\begin{DoxyCompactList}\small\item\em This is a 3x3 Matrix class used for representing rotations and scaling in an object. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}
+\item 
 class \hyperlink{classMezzanine_1_1Mesh}{Mesh}
 \begin{DoxyCompactList}\small\item\em This class is used to check and modify the properties of a graphics mesh. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1MeshCollisionShape}{MeshCollisionShape}
@@ -235,6 +253,8 @@ class \hyperlink{classMezzanine_1_1SphereCollisionShape}{SphereCollisionShape}
 \begin{DoxyCompactList}\small\item\em A sphere physics shape. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1StaticMeshCollisionShape}{StaticMeshCollisionShape}
 \begin{DoxyCompactList}\small\item\em A triangle mesh collsion shape based on a graphics mesh. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structMezzanine_1_1StickyConstraintConstructionInfo}{StickyConstraintConstructionInfo}
+\begin{DoxyCompactList}\small\item\em Simple struct for holding information on how sticky constraints should be constructed. \item\end{DoxyCompactList}\item 
 struct \hyperlink{structMezzanine_1_1StickyData}{StickyData}
 \begin{DoxyCompactList}\small\item\em This is a basic class for storing the data related to the sticky behavior available to actorrigid's. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1StringTool}{StringTool}
@@ -323,11 +343,6 @@ typedef \hyperlink{classMezzanine_1_1SliderConstraint}{SliderConstraint} {\bfser
 \label{namespaceMezzanine_a4a538e16995de98802eeb28ca209d721}
 
 \item 
-\hypertarget{namespaceMezzanine_ad4b7200ca0d9b0a31e5edf8f63ad1c8c}{
-typedef std::pair$<$ \hyperlink{classMezzanine_1_1Collision}{Collision} $\ast$, \hyperlink{classMezzanine_1_1SliderConstraint}{StickyConstraint} $\ast$ $>$ {\bfseries StickyDataPair}}
-\label{namespaceMezzanine_ad4b7200ca0d9b0a31e5edf8f63ad1c8c}
-
-\item 
 typedef std::string \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}
 \begin{DoxyCompactList}\small\item\em A Datatype used to a series of characters. \item\end{DoxyCompactList}\item 
 \hypertarget{namespaceMezzanine_a1b6c09063432c7ddd87011c88306c767}{
@@ -352,11 +367,8 @@ typedef unsigned char \hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e9
 \begin{DoxyCompactList}\small\item\em An 8-\/bit unsigned integer. \item\end{DoxyCompactList}\item 
 typedef unsigned long \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole}
 \begin{DoxyCompactList}\small\item\em A Datatype used to represent an postive integer numbers. \item\end{DoxyCompactList}\item 
-\hypertarget{namespaceMezzanine_a9bd8d22fdfaf143314aa59a4374697e5}{
-typedef std::wstring {\bfseries WideString}}
-\label{namespaceMezzanine_a9bd8d22fdfaf143314aa59a4374697e5}
-
-\end{DoxyCompactItemize}
+typedef std::wstring \hyperlink{namespaceMezzanine_a08b3adb0d2632e4f6a454fdf3cf5efda}{WideString}
+\begin{DoxyCompactList}\small\item\em A wide version of the String typedef. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -399,16 +411,27 @@ enum \hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{Constraint
 {\bfseries Con\_\-Stop\_\-CFM} =  4
  \}
 \begin{DoxyCompactList}\small\item\em Used by constraints for setting some parameters. \item\end{DoxyCompactList}\item 
-enum \hyperlink{namespaceMezzanine_a1bb0347c37954bc71c4344e4b55c729a}{RenderSystem} \{ \par
-{\bfseries RS\_\-DirectX9}, 
-{\bfseries RS\_\-DirectX10}, 
-{\bfseries RS\_\-DirectX11}, 
-{\bfseries RS\_\-OpenGL2}, 
+enum \hyperlink{namespaceMezzanine_a8892173bd6aaf7d0e34a07b2b30aad33}{OrientationMode} \{ \par
+{\bfseries OM\_\-Degree\_\-0} =  0, 
+{\bfseries OM\_\-Degree\_\-90} =  1, 
+{\bfseries OM\_\-Degree\_\-180} =  2, 
+{\bfseries OM\_\-Degree\_\-270} =  3, 
 \par
-{\bfseries RS\_\-OpenGL3}, 
-{\bfseries RS\_\-OpenGL4}, 
-{\bfseries RS\_\-OpenGLES1}, 
-{\bfseries RS\_\-OpenGLES2}
+{\bfseries OM\_\-Portrait} =  OM\_\-Degree\_\-0, 
+{\bfseries OM\_\-LandscapeRight} =  OM\_\-Degree\_\-90, 
+{\bfseries OM\_\-LandscapeLeft} =  OM\_\-Degree\_\-270
+ \}
+\begin{DoxyCompactList}\small\item\em Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceMezzanine_a1bb0347c37954bc71c4344e4b55c729a}{RenderSystem} \{ \par
+{\bfseries RS\_\-DirectX9} =  0, 
+{\bfseries RS\_\-DirectX10} =  1, 
+{\bfseries RS\_\-DirectX11} =  2, 
+{\bfseries RS\_\-OpenGL2} =  3, 
+\par
+{\bfseries RS\_\-OpenGL3} =  4, 
+{\bfseries RS\_\-OpenGL4} =  5, 
+{\bfseries RS\_\-OpenGLES1} =  6, 
+{\bfseries RS\_\-OpenGLES2} =  7
  \}
 \begin{DoxyCompactList}\small\item\em Used primarily by the graphics manager class during initialization. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAxis} \{ \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126}{Axis\_\-X} =  0, 
@@ -416,6 +439,47 @@ enum \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{StandardAx
 \hyperlink{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1a6af6621383cc7da1fe11a86ba6de37c0}{Axis\_\-Z} =  2
  \}
 \begin{DoxyCompactList}\small\item\em Used to identify different Axis in a 3d coordinate system. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{TransformSpace} \{ \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aa1986039b3e4c80c8564c8916e68e61c}{TS\_\-Local} =  0, 
+\hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3a352c41c07844c77508ce36b43a30b553}{TS\_\-Parent} =  1, 
+\hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d}{TS\_\-World} =  2
+ \}
+\begin{DoxyCompactList}\small\item\em Used to define what frame of reference is to be used when positioning or rotating objects. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \{ \par
+{\bfseries WSO\_\-ActorFirst} =  1, 
+{\bfseries WSO\_\-ActorRigid} =  1, 
+{\bfseries WSO\_\-ActorSoft} =  2, 
+{\bfseries WSO\_\-ActorCharacter} =  4, 
+\par
+{\bfseries WSO\_\-ActorUnknown} =  8, 
+{\bfseries WSO\_\-ActorLast} =  8, 
+{\bfseries WSO\_\-TerrainFirst} =  16, 
+{\bfseries WSO\_\-MeshTerrain} =  16, 
+\par
+{\bfseries WSO\_\-UnimplementedTerrain1} =  32, 
+{\bfseries WSO\_\-UnimplementedTerrain2} =  64, 
+{\bfseries WSO\_\-UnimplementedTerrain3} =  128, 
+{\bfseries WSO\_\-UnimplementedTerrain4} =  256, 
+\par
+{\bfseries WSO\_\-UnknownTerrain} =  512, 
+{\bfseries WSO\_\-TerrainLast} =  512, 
+{\bfseries WSO\_\-AEFirst} =  1024, 
+{\bfseries WSO\_\-AEGravityField} =  1024, 
+\par
+{\bfseries WSO\_\-AEGravityWell} =  2048, 
+{\bfseries WSO\_\-AEFieldOfForce} =  4096, 
+{\bfseries WSO\_\-AEPlaceHolder1} =  8192, 
+{\bfseries WSO\_\-AEPlaceHolder2} =  16384, 
+\par
+{\bfseries WSO\_\-AEUnknown} =  32768, 
+{\bfseries WSO\_\-AELast} =  32768, 
+{\bfseries WSO\_\-Camera} =  65536, 
+{\bfseries WSO\_\-Entity} =  131072, 
+\par
+{\bfseries WSO\_\-Light} =  262144, 
+{\bfseries WSO\_\-ParticleEffect} =  524288, 
+{\bfseries WSO\_\-WorldNode} =  1048576
+ \}
+\begin{DoxyCompactList}\small\item\em Used by various classes to help identify what class an object is. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespaceMezzanine_ac4d9d4570b1963390325ad6a083108e1}{WorldObjectActivationState} \{ \par
 {\bfseries WOAS\_\-Active} =  1, 
 {\bfseries WOAS\_\-Island\_\-Sleeping} =  2, 
@@ -424,36 +488,7 @@ enum \hyperlink{namespaceMezzanine_ac4d9d4570b1963390325ad6a083108e1}{WorldObjec
 \par
 {\bfseries WOAS\_\-DisableSimulation} =  5
  \}
-\begin{DoxyCompactList}\small\item\em This is used by all the world objects to monitor and set their physics activation. \item\end{DoxyCompactList}\item 
-enum \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \{ \par
-{\bfseries WOT\_\-ActorFirst} =  1, 
-{\bfseries WOT\_\-ActorRigid} =  1, 
-{\bfseries WOT\_\-ActorSoft} =  2, 
-{\bfseries WOT\_\-ActorCharacter} =  4, 
-\par
-{\bfseries WOT\_\-ActorUnknown} =  8, 
-{\bfseries WOT\_\-ActorLast} =  8, 
-{\bfseries WOT\_\-TerrainFirst} =  16, 
-{\bfseries WOT\_\-MeshTerrain} =  16, 
-\par
-{\bfseries WOT\_\-UnimplementedTerrain1} =  32, 
-{\bfseries WOT\_\-UnimplementedTerrain2} =  64, 
-{\bfseries WOT\_\-UnimplementedTerrain3} =  128, 
-{\bfseries WOT\_\-UnknownTerrain} =  256, 
-\par
-{\bfseries WOT\_\-TerrainLast} =  256, 
-{\bfseries WOT\_\-AEFirst} =  512, 
-{\bfseries WOT\_\-AEGravityField} =  512, 
-{\bfseries WOT\_\-AEGravityWell} =  1024, 
-\par
-{\bfseries WOT\_\-AEFieldOfForce} =  2048, 
-{\bfseries WOT\_\-AEPlaceHolder1} =  4096, 
-{\bfseries WOT\_\-AEPlaceHolder2} =  8192, 
-{\bfseries WOT\_\-AEUnknown} =  16384, 
-\par
-{\bfseries WOT\_\-AELast} =  16384
- \}
-\begin{DoxyCompactList}\small\item\em Used by various classes to help identify what class an object is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is used by all the world objects to monitor and set their physics activation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -461,22 +496,27 @@ enum \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjec
 \begin{DoxyCompactList}\small\item\em Convert from a Bullet \hyperlink{classMezzanine_1_1Collision}{Collision} Shape to a \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType}. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{namespaceMezzanine_a11080ec435c80a89d4da498ea8049c3e}{ConstraintParamAsString} (\hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} Param)
 \begin{DoxyCompactList}\small\item\em Get a Constraint Parameter as a String. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{namespaceMezzanine_ac7be2623357ff699de474212404a4227}{CreateShape} (xml::Node OneNode)
-\item 
+\hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{namespaceMezzanine_a3b5904fe847274e3bd0d6a1b39cbed02}{CreateShape} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} OneNode)
+\begin{DoxyCompactList}\small\item\em Create a \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} from a snippet of xml. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} $\ast$ \hyperlink{namespaceMezzanine_a945376a411966f62fad3f13e14550d74}{CreateShape} (\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} ShapeToCreate, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name\_\-, btCollisionShape $\ast$ShapeToModel)
 \begin{DoxyCompactList}\small\item\em Create A shape of a type and optionally model it after an example. \item\end{DoxyCompactList}\item 
-\hypertarget{namespaceMezzanine_afe96281c14ddf42e63226b6ef43fa8d3}{
-void {\bfseries DeSerializeError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&FailedTo, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ClassName, bool SOrD)}
-\label{namespaceMezzanine_afe96281c14ddf42e63226b6ef43fa8d3}
+{\footnotesize template$<$class T $>$ }\\std::istream \& \hyperlink{namespaceMezzanine_af7841a01c9f5e835029a9c70c0de0de5}{DeSerialize} (std::istream \&Stream, T \&Converted)
+\begin{DoxyCompactList}\small\item\em Deserialize the next xml tag in the stream into a specific in memory class instance. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_aec75a8a3369287cb02f331c62b32df73}{DeSerializeError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&FailedTo, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ClassName, bool SOrD=false)
+\begin{DoxyCompactList}\small\item\em Simply does some string concatenation, then throws an \hyperlink{classMezzanine_1_1Exception}{Exception}. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_a2f11f2ef7129480d902dc4995c3c8633}{
+void {\bfseries PrintHello} ()}
+\label{namespaceMezzanine_a2f11f2ef7129480d902dc4995c3c8633}
 
 \item 
-\hypertarget{namespaceMezzanine_ad8e6c4e2c916816ff634c860cb0cf3f9}{
-void {\bfseries SerializeError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&FailedTo, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ClassName, bool SOrD)}
-\label{namespaceMezzanine_ad8e6c4e2c916816ff634c860cb0cf3f9}
-
-\item 
+{\footnotesize template$<$class T $>$ }\\std::ostream \& \hyperlink{namespaceMezzanine_a21d2dc7a6ca76ae9b193118a215ba523}{Serialize} (std::ostream \&Stream, const T \&Converted, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Indent=\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}(\char`\"{}\char`\"{}))
+\begin{DoxyCompactList}\small\item\em Convert any class that supports serialization or has a serializer to a string of chars in a stream. \item\end{DoxyCompactList}\item 
+void \hyperlink{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}{SerializeError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&FailedTo, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&ClassName, bool SOrD=true)
+\begin{DoxyCompactList}\small\item\em Simply does some string concatenation, then throws an \hyperlink{classMezzanine_1_1Exception}{Exception}. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{namespaceMezzanine_a52369c62b87ecdbfbc6b82a572f21651}{ShapeTypeToString} (\hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} ShapeToConvert)
 \begin{DoxyCompactList}\small\item\em Get a string suitable for human eyes from a \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType}, may not be suitable for endusers. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{namespaceMezzanine_ab855b02f8aecd53b0f876e20d6f04f05}{SloppyProtoSerialize} (const T \&Converted, \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot)
+\begin{DoxyCompactList}\small\item\em Used to interface with a previous version of the serialization code. \item\end{DoxyCompactList}\item 
 \hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} \hyperlink{namespaceMezzanine_a198eb79806849ed29c2a329b60a094ab}{StringAsConstraintParam} (\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} Param)
 \begin{DoxyCompactList}\small\item\em Convert A string that might be ConstraintParam to one. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6dd100d}{CollisionShape::ShapeType} \hyperlink{namespaceMezzanine_acae3fd66fbd56ed04a8d61bebee11769}{StringToShapeType} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&TypeName)
@@ -519,7 +559,7 @@ A datatype to represent one character.
 
 This should be a char if String is an std::string. The XML parser expects this to be either char or wchar\_\-t and has not be test with external types. The XML Parser expects XML\_\-WCHAR\_\-MODE to be defined if wchar\_\-t is used. A remarked definition of this exists near the Character typedef in \hyperlink{datatypes_8h_source}{datatypes.h} 
 
-Definition at line 152 of file datatypes.h.
+Definition at line 153 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{
 \index{Mezzanine@{Mezzanine}!ConstString@{ConstString}}
@@ -532,7 +572,7 @@ A Datatype used to a series of imutable characters.
 
 This is a typedef to const String, but could change. 
 
-Definition at line 145 of file datatypes.h.
+Definition at line 146 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_acbb048ee99aa07566d5a6eb33f5a2c2d}{
 \index{Mezzanine@{Mezzanine}!Int8@{Int8}}
@@ -544,10 +584,10 @@ Definition at line 145 of file datatypes.h.
 An 8-\/bit integer. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000010}{Todo}]Verify that these \char`\"{}fixed-\/width\char`\"{} type-\/defs work on mobiles and tablets.\end{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]Verify that these \char`\"{}fixed-\/width\char`\"{} type-\/defs work on mobiles and tablets.\end{Desc}
 
 
-Definition at line 78 of file datatypes.h.
+Definition at line 79 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{
 \index{Mezzanine@{Mezzanine}!Integer@{Integer}}
@@ -560,7 +600,7 @@ A datatype use to represent any integer close to.
 
 This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms 
 
-Definition at line 129 of file datatypes.h.
+Definition at line 130 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_ae8d4c0ab783af89a250b0225b75753e5}{
 \index{Mezzanine@{Mezzanine}!RawEvent@{RawEvent}}
@@ -573,7 +613,7 @@ This is an internal datatype use to communicate with the User input Subsystem.
 
 This is a typedef to SDL\_\-Event. See the SDL Documentation for more details 
 
-Definition at line 159 of file datatypes.h.
+Definition at line 160 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{
 \index{Mezzanine@{Mezzanine}!Real@{Real}}
@@ -584,9 +624,9 @@ Definition at line 159 of file datatypes.h.
 
 A Datatype used to represent a real floating point number. 
 
-This Datatype is currently a typedef to a float, This is to match our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. 
+This Datatype is currently a typedef to a float, This is to match our compilations of \hyperlink{namespaceOgre}{Ogre} (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. 
 
-Definition at line 118 of file datatypes.h.
+Definition at line 119 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{
 \index{Mezzanine@{Mezzanine}!String@{String}}
@@ -599,7 +639,7 @@ A Datatype used to a series of characters.
 
 This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. 
 
-Definition at line 135 of file datatypes.h.
+Definition at line 136 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{
 \index{Mezzanine@{Mezzanine}!Whole@{Whole}}
@@ -612,7 +652,20 @@ A Datatype used to represent an postive integer numbers.
 
 This is a typedef to unsigned Long. but could be smaller in some situations 
 
-Definition at line 123 of file datatypes.h.
+Definition at line 124 of file datatypes.h.
+
+\hypertarget{namespaceMezzanine_a08b3adb0d2632e4f6a454fdf3cf5efda}{
+\index{Mezzanine@{Mezzanine}!WideString@{WideString}}
+\index{WideString@{WideString}!Mezzanine@{Mezzanine}}
+\paragraph[{WideString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::WideString}}\hfill}
+\label{namespaceMezzanine_a08b3adb0d2632e4f6a454fdf3cf5efda}
+
+
+A wide version of the String typedef. 
+
+Wide strings are seldom used, but often come in handy when dealing with Unicode strings. 
+
+Definition at line 141 of file datatypes.h.
 
 
 
@@ -743,6 +796,19 @@ Con\_\-CFM}
 
 Definition at line 70 of file constraint.h.
 
+\hypertarget{namespaceMezzanine_a8892173bd6aaf7d0e34a07b2b30aad33}{
+\index{Mezzanine@{Mezzanine}!OrientationMode@{OrientationMode}}
+\index{OrientationMode@{OrientationMode}!Mezzanine@{Mezzanine}}
+\paragraph[{OrientationMode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::OrientationMode}}\hfill}
+\label{namespaceMezzanine_a8892173bd6aaf7d0e34a07b2b30aad33}
+
+
+Simple enum for communicating the orientation the \hyperlink{namespaceMezzanine_1_1UI}{UI} and \hyperlink{classMezzanine_1_1Camera}{Camera} have relative to the world it is rendering. 
+
+This enum is used by the \hyperlink{namespaceMezzanine_1_1UI}{UI} and graphics sub-\/systems for when a change in orientation is detected. Under normal circumstances this kind of thing should only occur in mobile devices such as SmartPhones and Tablets. However this can be forced on other devices/platforms. 
+
+Definition at line 103 of file enumerations.h.
+
 \hypertarget{namespaceMezzanine_a1bb0347c37954bc71c4344e4b55c729a}{
 \index{Mezzanine@{Mezzanine}!RenderSystem@{RenderSystem}}
 \index{RenderSystem@{RenderSystem}!Mezzanine@{Mezzanine}}
@@ -754,7 +820,7 @@ Used primarily by the graphics manager class during initialization.
 
 This enum specifies which Rendersystem is to be used for rendering. 
 
-Definition at line 102 of file enumerations.h.
+Definition at line 118 of file enumerations.h.
 
 \hypertarget{namespaceMezzanine_ab41a00a8c6a47b576dc987ec34e16ba1}{
 \index{Mezzanine@{Mezzanine}!StandardAxis@{StandardAxis}}
@@ -788,20 +854,51 @@ Axis\_\-Z}
 
 
 
-Definition at line 116 of file enumerations.h.
+Definition at line 133 of file enumerations.h.
 
-\hypertarget{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{
-\index{Mezzanine@{Mezzanine}!WorldObjectType@{WorldObjectType}}
-\index{WorldObjectType@{WorldObjectType}!Mezzanine@{Mezzanine}}
-\paragraph[{WorldObjectType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::WorldObjectType}}\hfill}
-\label{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}
+\hypertarget{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{
+\index{Mezzanine@{Mezzanine}!TransformSpace@{TransformSpace}}
+\index{TransformSpace@{TransformSpace}!Mezzanine@{Mezzanine}}
+\paragraph[{TransformSpace}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::TransformSpace}}\hfill}
+\label{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}
+
+
+Used to define what frame of reference is to be used when positioning or rotating objects. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{TS\_\-Local@{TS\_\-Local}!Mezzanine@{Mezzanine}}\index{Mezzanine@{Mezzanine}!TS\_\-Local@{TS\_\-Local}}\item[{\em 
+\hypertarget{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aa1986039b3e4c80c8564c8916e68e61c}{
+TS\_\-Local}
+\label{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aa1986039b3e4c80c8564c8916e68e61c}
+}]Local space, aka the object in questions world position is used as origin. \index{TS\_\-Parent@{TS\_\-Parent}!Mezzanine@{Mezzanine}}\index{Mezzanine@{Mezzanine}!TS\_\-Parent@{TS\_\-Parent}}\item[{\em 
+\hypertarget{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3a352c41c07844c77508ce36b43a30b553}{
+TS\_\-Parent}
+\label{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3a352c41c07844c77508ce36b43a30b553}
+}]Mostly reserved for rotations, means a rotation to occur around the parent instead of self. \index{TS\_\-World@{TS\_\-World}!Mezzanine@{Mezzanine}}\index{Mezzanine@{Mezzanine}!TS\_\-World@{TS\_\-World}}\item[{\em 
+\hypertarget{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d}{
+TS\_\-World}
+\label{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d}
+}]\hyperlink{classMezzanine_1_1World}{World} space. \end{description}
+\end{Desc}
+
+
+
+Definition at line 142 of file enumerations.h.
+
+\hypertarget{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{
+\index{Mezzanine@{Mezzanine}!WorldAndSceneObjectType@{WorldAndSceneObjectType}}
+\index{WorldAndSceneObjectType@{WorldAndSceneObjectType}!Mezzanine@{Mezzanine}}
+\paragraph[{WorldAndSceneObjectType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::WorldAndSceneObjectType}}\hfill}
+\label{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}
 
 
 Used by various classes to help identify what class an object is. 
 
-This is mostly used internally for casting void pointers. 
+This enum can be used to express any object which could be considered \char`\"{}insertable\char`\"{} into the game world. 
 
-Definition at line 137 of file enumerations.h.
+Definition at line 163 of file enumerations.h.
 
 
 
@@ -857,27 +954,39 @@ Get a Constraint Parameter as a String.
 \begin{DoxyReturn}{Returns}
 A String That contains the name of a ConstraintParam. 
 \end{DoxyReturn}
-\hypertarget{namespaceMezzanine_ac7be2623357ff699de474212404a4227}{
+\hypertarget{namespaceMezzanine_a3b5904fe847274e3bd0d6a1b39cbed02}{
 \index{Mezzanine@{Mezzanine}!CreateShape@{CreateShape}}
 \index{CreateShape@{CreateShape}!Mezzanine@{Mezzanine}}
-\paragraph[{CreateShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape}$\ast$ Mezzanine::CreateShape (
+\paragraph[{CreateShape}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionShape} $\ast$MEZZ\_\-LIB Mezzanine::CreateShape (
 \begin{DoxyParamCaption}
 \item[{xml::Node}]{OneNode}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{namespaceMezzanine_ac7be2623357ff699de474212404a4227}
+\label{namespaceMezzanine_a3b5904fe847274e3bd0d6a1b39cbed02}
+
+
+Create a \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} from a snippet of xml. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & A Node for any \hyperlink{classMezzanine_1_1Collision}{Collision} Shape that can be instanstiated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a \hyperlink{classMezzanine_1_1CollisionShape}{CollisionShape} of the Correct Type with the values stored in the XML. 
+\end{DoxyReturn}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000005}{Todo}]Complete CreateShape function once \hyperlink{classMezzanine_1_1DynamicMeshCollisionShape}{DynamicMeshCollisionShape} can be deserialized \end{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]Complete CreateShape function once \hyperlink{classMezzanine_1_1DynamicMeshCollisionShape}{DynamicMeshCollisionShape} can be deserialized \end{Desc}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000006}{Todo}]Complete CreateShape function once \hyperlink{classMezzanine_1_1ActorSoftCollisionShape}{ActorSoftCollisionShape} can be deserialized \end{Desc}
+\item[\hyperlink{todo__todo000008}{Todo}]Complete CreateShape function once \hyperlink{classMezzanine_1_1ActorSoftCollisionShape}{ActorSoftCollisionShape} can be deserialized \end{Desc}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000007}{Todo}]Complete CreateShape function once \hyperlink{classMezzanine_1_1StaticMeshCollisionShape}{StaticMeshCollisionShape} can be deserialized \end{Desc}
+\item[\hyperlink{todo__todo000009}{Todo}]Complete CreateShape function once \hyperlink{classMezzanine_1_1StaticMeshCollisionShape}{StaticMeshCollisionShape} can be deserialized \end{Desc}
 
 
 
@@ -918,6 +1027,131 @@ The only checking done on the bullet shape is to verify it is not a null pointer
 
 Definition at line 1600 of file collisionshape.cpp.
 
+\hypertarget{namespaceMezzanine_af7841a01c9f5e835029a9c70c0de0de5}{
+\index{Mezzanine@{Mezzanine}!DeSerialize@{DeSerialize}}
+\index{DeSerialize@{DeSerialize}!Mezzanine@{Mezzanine}}
+\paragraph[{DeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ std::istream\& Mezzanine::DeSerialize (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{Stream, }
+\item[{T \&}]{Converted}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_af7841a01c9f5e835029a9c70c0de0de5}
+
+
+Deserialize the next xml tag in the stream into a specific in memory class instance. 
+
+\char`\"{}void ProtoDeSerialize(const xml::Node\&)\char`\"{} and \char`\"{}static String SerializableName() const\char`\"{} must be implemented on the class instance that is passed in for this to work 
+\begin{DoxyParams}{Parameters}
+{\em Stream} & The istream to extract the required data from \\
+\hline
+{\em Converted} & The Class member that is deserialized. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns the istream that provided the serialized data. 
+\end{DoxyReturn}
+
+
+Definition at line 449 of file serialization.h.
+
+\hypertarget{namespaceMezzanine_aec75a8a3369287cb02f331c62b32df73}{
+\index{Mezzanine@{Mezzanine}!DeSerializeError@{DeSerializeError}}
+\index{DeSerializeError@{DeSerializeError}!Mezzanine@{Mezzanine}}
+\paragraph[{DeSerializeError}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::DeSerializeError (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{FailedTo, }
+\item[{const String \&}]{ClassName, }
+\item[{bool}]{SOrD = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_aec75a8a3369287cb02f331c62b32df73}
+
+
+Simply does some string concatenation, then throws an \hyperlink{classMezzanine_1_1Exception}{Exception}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FailedTo} & What failed to happed for example \char`\"{}create testnode\char`\"{} or \char`\"{}acquire a mutex\char`\"{} \\
+\hline
+{\em ClassName} & The name of the class throw the exception \\
+\hline
+{\em SOrD} & Defaults to false, and if true uses the word \char`\"{}Serialization\char`\"{}, otherwise uses the word \char`\"{}DeSerialization\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em A} & \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} with the message \char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{}\\
+\hline
+\end{DoxyExceptions}
+This just calls \hyperlink{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}{SerializeError()} with the third parameter false. This exists solely to make code A little more readable. 
+
+Definition at line 51 of file serialization.cpp.
+
+\hypertarget{namespaceMezzanine_a21d2dc7a6ca76ae9b193118a215ba523}{
+\index{Mezzanine@{Mezzanine}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!Mezzanine@{Mezzanine}}
+\paragraph[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ std::ostream\& Mezzanine::Serialize (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{Stream, }
+\item[{const T \&}]{Converted, }
+\item[{const String \&}]{Indent = {\ttfamily String(\char`\"{}\char`\"{})}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_a21d2dc7a6ca76ae9b193118a215ba523}
+
+
+Convert any class that supports serialization or has a serializer to a string of chars in a stream. 
+
+Any Class will work with this template as long as it implements the method \char`\"{}xml::Node ProtoSerialize(xml::Document\&) const\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em Stream} & The ostream to put the serializable into. \\
+\hline
+{\em Converted} & The item to be serialized, which must have a \char`\"{}xml::Node ProtoSerialize(xml::Node\& CurrentRoot) const\char`\"{} method. \\
+\hline
+{\em Indent} & Defaults to nothing but can be set to \char`\"{}$\backslash$t\char`\"{} to get normal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A the stream that was passed and now contains the serialized object. 
+\end{DoxyReturn}
+
+
+Definition at line 433 of file serialization.h.
+
+\hypertarget{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}{
+\index{Mezzanine@{Mezzanine}!SerializeError@{SerializeError}}
+\index{SerializeError@{SerializeError}!Mezzanine@{Mezzanine}}
+\paragraph[{SerializeError}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::SerializeError (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{FailedTo, }
+\item[{const String \&}]{ClassName, }
+\item[{bool}]{SOrD = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}
+
+
+Simply does some string concatenation, then throws an \hyperlink{classMezzanine_1_1Exception}{Exception}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FailedTo} & What failed to happed for example \char`\"{}create testnode\char`\"{} or \char`\"{}acquire a mutex\char`\"{} \\
+\hline
+{\em ClassName} & The name of the class throw the exception \\
+\hline
+{\em SOrD} & Defaults to true, and if true uses the word \char`\"{}Serialization\char`\"{}, otherwise uses the word \char`\"{}DeSerialization\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em A} & \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} with the message \char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{}\char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{} \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 48 of file serialization.cpp.
+
 \hypertarget{namespaceMezzanine_a52369c62b87ecdbfbc6b82a572f21651}{
 \index{Mezzanine@{Mezzanine}!ShapeTypeToString@{ShapeTypeToString}}
 \index{ShapeTypeToString@{ShapeTypeToString}!Mezzanine@{Mezzanine}}
@@ -942,6 +1176,31 @@ A String with human readable contents corresponding to the passed in type.
 
 
 Definition at line 1704 of file collisionshape.cpp.
+
+\hypertarget{namespaceMezzanine_ab855b02f8aecd53b0f876e20d6f04f05}{
+\index{Mezzanine@{Mezzanine}!SloppyProtoSerialize@{SloppyProtoSerialize}}
+\index{SloppyProtoSerialize@{SloppyProtoSerialize}!Mezzanine@{Mezzanine}}
+\paragraph[{SloppyProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void Mezzanine::SloppyProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{const T \&}]{Converted, }
+\item[{xml::Node \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{namespaceMezzanine_ab855b02f8aecd53b0f876e20d6f04f05}
+
+
+Used to interface with a previous version of the serialization code. 
+
+The older serialization was implemented entirely in streaming operators. This uses those, however inneficient to get the \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} that the current serialization solution is centered around. 
+\begin{DoxyParams}{Parameters}
+{\em Converted} & The class implementing older serialization code. \\
+\hline
+{\em CurrentRoot} & The place in the xml hiearchy to append the items to be sloppily ProtoSerialized. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 466 of file serialization.h.
 
 \hypertarget{namespaceMezzanine_a198eb79806849ed29c2a329b60a094ab}{
 \index{Mezzanine@{Mezzanine}!StringAsConstraintParam@{StringAsConstraintParam}}
@@ -1022,7 +1281,7 @@ A double with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
 
-Definition at line 257 of file datatypes.h.
+Definition at line 258 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a033b1e899e15516a76027b1090942d69}{
 \index{Mezzanine@{Mezzanine}!Tofloat@{Tofloat}}
@@ -1047,7 +1306,7 @@ A float with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
 
-Definition at line 244 of file datatypes.h.
+Definition at line 245 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_aadc9a78cb1529bed06ae6645aa64e26b}{
 \index{Mezzanine@{Mezzanine}!Toint@{Toint}}
@@ -1072,7 +1331,7 @@ An int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 204 of file datatypes.h.
+Definition at line 205 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a7105ab0353c89b20aff864c637b905d2}{
 \index{Mezzanine@{Mezzanine}!ToInteger@{ToInteger}}
@@ -1097,7 +1356,7 @@ An Integer with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 190 of file datatypes.h.
+Definition at line 191 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_af7cf17f4a378b989eacb874a6a879f41}{
 \index{Mezzanine@{Mezzanine}!ToReal@{ToReal}}
@@ -1122,7 +1381,7 @@ A Real with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 230 of file datatypes.h.
+Definition at line 231 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a206e6571c4a738a16f9d103205c235f8}{
 \index{Mezzanine@{Mezzanine}!ToString@{ToString}}
@@ -1147,7 +1406,7 @@ A String with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 168 of file datatypes.h.
+Definition at line 169 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a39068f48126065146fa64fe90e459382}{
 \index{Mezzanine@{Mezzanine}!Tounsignedint@{Tounsignedint}}
@@ -1172,7 +1431,7 @@ An unsigned int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 218 of file datatypes.h.
+Definition at line 219 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a5df12bb5a875e3b8f8e28f2dd91a5304}{
 \index{Mezzanine@{Mezzanine}!ToWhole@{ToWhole}}
@@ -1197,7 +1456,7 @@ A Whole with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 178 of file datatypes.h.
+Definition at line 179 of file datatypes.h.
 
 
 

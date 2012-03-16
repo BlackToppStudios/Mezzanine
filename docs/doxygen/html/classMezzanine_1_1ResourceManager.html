@@ -93,8 +93,13 @@ Inheritance diagram for Mezzanine::ResourceManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a0c94a75cc5136f857447500aa4d6265b">AddResourceLocation</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Location, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Type, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group, const bool &amp;recursive=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a location for graphical resources.  <a href="#a0c94a75cc5136f857447500aa4d6265b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a39de49ab83e338cb14057e599c4db499">ResourceManager</a> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> _EngineDataPath)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a39de49ab83e338cb14057e599c4db499"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a10cfccc0ecb1322995c170f2756460ea">~ResourceManager</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#ae3304024ab5ef4c0e4a2763f8a253f1c">AddResourceLocation</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Location, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Type, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group, const bool recursive=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a location for graphical resources.  <a href="#ae3304024ab5ef4c0e4a2763f8a253f1c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a9f734f58e7e00d635876fef6a74554c4">CreateResourceGroup</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;GroupName)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a resource group.  <a href="#a9f734f58e7e00d635876fef6a74554c4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#ab9e13ac880017cac65c57d1ccae008c4">DeclareResource</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Type, const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Group)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares the resource for use.  <a href="#ab9e13ac880017cac65c57d1ccae008c4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#aa827efdad18698b7d7319dab35864bbe">DestroyResourceGroup</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;GroupName)</td></tr>
@@ -111,12 +116,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty Initializor.  <a href="#a4b4e77984e21e3eaa1c47772d2e9c6f4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a836ed2ec024abe10433d8e4b18378c2c">InitResourceGroup</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a resource group ready to use.  <a href="#a836ed2ec024abe10433d8e4b18378c2c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78fc768b8bd9ec38ebebb06feb133fef"></a><!-- doxytag: member="Mezzanine::ResourceManager::ParseMaterialScripts" ref="a78fc768b8bd9ec38ebebb06feb133fef" args="()" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a78fc768b8bd9ec38ebebb06feb133fef">ParseMaterialScripts</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses all Ogre Material scripts. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a39de49ab83e338cb14057e599c4db499">ResourceManager</a> (<a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> _EngineDataPath)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#a39de49ab83e338cb14057e599c4db499"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html#a10cfccc0ecb1322995c170f2756460ea">~ResourceManager</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5d5f9eeaf17337556bc833d8befae19"></a><!-- doxytag: member="Mezzanine::ResourceManager::AddResourceGroupName" ref="ab5d5f9eeaf17337556bc833d8befae19" args="(String Name)" -->
@@ -140,7 +139,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 <div class="textblock"><p>This is the manager responsible for the loading and unloading of files. </p>
 <p>This class is responsible for the reading and writing of files of all kinds, be it graphical meshes, physics data, or XMl files. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8h_source.html#l00066">66</a> of file <a class="el" href="resourcemanager_8h_source.html">resourcemanager.h</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8h_source.html#l00072">72</a> of file <a class="el" href="resourcemanager_8h_source.html">resourcemanager.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a39de49ab83e338cb14057e599c4db499"></a><!-- doxytag: member="Mezzanine::ResourceManager::ResourceManager" ref="a39de49ab83e338cb14057e599c4db499" args="(String _EngineDataPath)" -->
 <div class="memitem">
@@ -190,7 +189,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a0c94a75cc5136f857447500aa4d6265b"></a><!-- doxytag: member="Mezzanine::ResourceManager::AddResourceLocation" ref="a0c94a75cc5136f857447500aa4d6265b" args="(const String &amp;Location, const String &amp;Type, const String &amp;Group, const bool &amp;recursive=false)" -->
+<a class="anchor" id="ae3304024ab5ef4c0e4a2763f8a253f1c"></a><!-- doxytag: member="Mezzanine::ResourceManager::AddResourceLocation" ref="ae3304024ab5ef4c0e4a2763f8a253f1c" args="(const String &amp;Location, const String &amp;Type, const String &amp;Group, const bool recursive=false)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -215,7 +214,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const bool &amp;&#160;</td>
+          <td class="paramtype">const bool&#160;</td>
           <td class="paramname"><em>recursive</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
@@ -234,13 +233,40 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
     <tr><td class="paramname">Location</td><td>The location on the file system the resource can be found. </td></tr>
     <tr><td class="paramname">Type</td><td>The kind of file system the location can be found in. <br/>
  Options are: filesystem, zip. </td></tr>
-    <tr><td class="paramname">Group</td><td>The name of the group the resources at this location belong to. </td></tr>
+    <tr><td class="paramname">Group</td><td>The name of the group the resources at this location belong to. If the group does not exist it will be created. </td></tr>
     <tr><td class="paramname">recursive</td><td>Whether or not to search sub-directories. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00094">94</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f734f58e7e00d635876fef6a74554c4"></a><!-- doxytag: member="Mezzanine::ResourceManager::CreateResourceGroup" ref="a9f734f58e7e00d635876fef6a74554c4" args="(const String &amp;GroupName)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ResourceManager::CreateResourceGroup </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>GroupName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Creates a resource group. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">GroupName</td><td>The name to be given to the created resource group. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00100">100</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,7 +313,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00123">123</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00128">128</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -314,10 +340,10 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000028">Todo:</a></b></dt><dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system. </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00100">100</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00106">106</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,7 +366,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a4ee29e4baf6c4b9a3bfec1b2258d5cd2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00164">164</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00156">156</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -390,7 +416,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 <dl class="return"><dt><b>Returns:</b></dt><dd>An derivative of std::istream a <a class="el" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> that will pull it's data from the desired resource</dd></dl>
 <p>The returned <a class="el" href="classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> is the Caller's responsibility to deal with. If it is not deleted it is a memory leak. </p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00146">146</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00138">138</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -413,7 +439,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a6fbfe9e847156915b195b6de1cf76973">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00160">160</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -437,7 +463,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 
 <p>Implements <a class="el" href="classMezzanine_1_1ManagerBase.html#a864e3cac11928a602c1db28fa2d52ee2">Mezzanine::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00160">160</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00152">152</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +491,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00128">128</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="resourcemanager_8cpp_source.html#l00133">133</a> of file <a class="el" href="resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -479,7 +505,7 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -489,6 +515,6 @@ std::vector&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

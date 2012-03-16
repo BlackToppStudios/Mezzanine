@@ -1,0 +1,272 @@
+\hypertarget{xml_8h}{
+\subsection{xml.h File Reference}
+\label{xml_8h}\index{xml.h@{xml.h}}
+}
+
+
+This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.  
+
+
+{\ttfamily \#include \char`\"{}crossplatform.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}xmldoc.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}exception.h\char`\"{}}\par
+{\ttfamily \#include $<$exception$>$}\par
+{\ttfamily \#include $<$stddef.h$>$}\par
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Mezzanine::xml::Attribute}
+\begin{DoxyCompactList}\small\item\em A light-\/weight handle for manipulating attributes in DOM tree. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1AttributeIterator}{Mezzanine::xml::AttributeIterator}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} iterator (a bidirectional iterator over a collection of \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute}). \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1Document}{Mezzanine::xml::Document}
+\begin{DoxyCompactList}\small\item\em The root node of any xml hierarchy is a \hyperlink{classMezzanine_1_1xml_1_1Document}{Document} \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node}
+\begin{DoxyCompactList}\small\item\em A light-\/weight handle for manipulating nodes in DOM tree. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1NodeIterator}{Mezzanine::xml::NodeIterator}
+\begin{DoxyCompactList}\small\item\em Child node iterator (a bidirectional iterator over a collection of \hyperlink{classMezzanine_1_1xml_1_1Node}{Node}) \item\end{DoxyCompactList}\item 
+struct \hyperlink{structMezzanine_1_1xml_1_1ParseResult}{Mezzanine::xml::ParseResult}
+\begin{DoxyCompactList}\small\item\em All the information needed to troubleshoot a Parsing error. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1TreeWalker}{Mezzanine::xml::TreeWalker}
+\begin{DoxyCompactList}\small\item\em Used to call a function for\_\-each member of the subtree of nodes descended from a specific node. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1Writer}{Mezzanine::xml::Writer}
+\begin{DoxyCompactList}\small\item\em Interface for node printing (see \hyperlink{classMezzanine_1_1xml_1_1Node_a94b9b66aff6d1d6a26c1dd5949fabb25}{Node::Print}) \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1WriterFile}{Mezzanine::xml::WriterFile}
+\begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1WriterStream}{Mezzanine::xml::WriterStream}
+\begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classMezzanine_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1XPathException}{Mezzanine::xml::XPathException}
+\begin{DoxyCompactList}\small\item\em Thrown in a variety of XPath only situations, to indicate type mismatch or other issues. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{Mezzanine::xml::XPathNode}
+\begin{DoxyCompactList}\small\item\em An XPath node which can store handles to a \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1XPathNodeSet}{Mezzanine::xml::XPathNodeSet}
+\begin{DoxyCompactList}\small\item\em A collection of nodes that an \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{XPathQuery} can work on. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structMezzanine_1_1xml_1_1XPathParseResult}{Mezzanine::xml::XPathParseResult}
+\begin{DoxyCompactList}\small\item\em XPath parsing result. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1XPathQuery}{Mezzanine::xml::XPathQuery}
+\begin{DoxyCompactList}\small\item\em A compiled XPath query object. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1XPathVariable}{Mezzanine::xml::XPathVariable}
+\begin{DoxyCompactList}\small\item\em A single XPath variable. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1xml_1_1XPathVariableSet}{Mezzanine::xml::XPathVariableSet}
+\begin{DoxyCompactList}\small\item\em A set of XPath variables. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceMezzanine}{Mezzanine}
+
+
+\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
+
+\item 
+namespace \hyperlink{namespaceMezzanine_1_1xml}{Mezzanine::xml}
+
+
+\begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem resides, (See \hyperlink{XMLManual}{Mezzanine::xml Manual} for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{
+\#define \hyperlink{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{\_\-XML\_\-H}}
+\label{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}
+
+\begin{DoxyCompactList}\small\item\em Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times. \item\end{DoxyCompactList}\item 
+\hypertarget{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{
+\#define \hyperlink{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{XML\_\-CHAR}~char}
+\label{xml_8h_a75d691145d9a12b8a9ea795964a0c917}
+
+\begin{DoxyCompactList}\small\item\em Links the Pugi character datatype to match the \hyperlink{namespaceMezzanine}{Mezzanine} Mezzanine::Characterdatatype. \item\end{DoxyCompactList}\item 
+\hypertarget{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{
+\#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}}
+\label{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}
+
+\begin{DoxyCompactList}\small\item\em Used to mark XML internals as deprecated at the compiler level. \item\end{DoxyCompactList}\item 
+\hypertarget{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{
+\#define \hyperlink{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{XML\_\-TEXT}(t)~t}
+\label{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}
+
+\begin{DoxyCompactList}\small\item\em Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespaceMezzanine_1_1xml_a63e924e0606b9268d2ac756d9b453e76}{
+typedef void $\ast$($\ast$ \hyperlink{namespaceMezzanine_1_1xml_a63e924e0606b9268d2ac756d9b453e76}{Mezzanine::xml::AllocationFunction} )(size\_\-t size)}
+\label{namespaceMezzanine_1_1xml_a63e924e0606b9268d2ac756d9b453e76}
+
+\begin{DoxyCompactList}\small\item\em Memory allocation function interface; returns pointer to allocated memory or NULL on failure. \item\end{DoxyCompactList}\item 
+typedef Character \hyperlink{namespaceMezzanine_1_1xml_a29b8a47c179e9895c4e9e66c45d1dbbc}{Mezzanine::xml::char\_\-t}
+\begin{DoxyCompactList}\small\item\em Used to represent a UTF8 code point, char, or wchar\_\-t depending on how compiled. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_ab6e6202dc17fc372cddce061a45812d1}{
+typedef void($\ast$ \hyperlink{namespaceMezzanine_1_1xml_ab6e6202dc17fc372cddce061a45812d1}{Mezzanine::xml::deAllocationFunction} )(void $\ast$ptr)}
+\label{namespaceMezzanine_1_1xml_ab6e6202dc17fc372cddce061a45812d1}
+
+\begin{DoxyCompactList}\small\item\em Memory deallocation function interface. \item\end{DoxyCompactList}\item 
+typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR $>$, std::allocator$<$ XML\_\-CHAR $>$ $>$ \hyperlink{namespaceMezzanine_1_1xml_a3ddf35656ecc38b6fa1d0364d9ad3b2c}{Mezzanine::xml::String}
+\begin{DoxyCompactList}\small\item\em Used to represent a string of UTF8 code point, char, or wchar\_\-t depending on how compiled. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804}{Mezzanine::xml::Encoding} \{ \par
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a303b320bd2328a84eae5d4e5cc46c885}{Mezzanine::xml::EncodingAuto}, 
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a59138132633d4eaf6be6b9aeebc2553f}{Mezzanine::xml::EncodingUTF8}, 
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a9bdf6c9f179b5d748e7eec3d8d0d8ddc}{Mezzanine::xml::EncodingUTF16LE}, 
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a0262666c5077433915570f2808a064f1}{Mezzanine::xml::EncodingUTF16BE}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a68eb27855ed7d381db0b648d022464bf}{Mezzanine::xml::EncodingUTF16}, 
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804ac92bd9352f86b6e135771305e77ebdec}{Mezzanine::xml::EncodingUTF32LE}, 
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804ac2fa00f578738cec0c048eef2b28d240}{Mezzanine::xml::EncodingUTF32BE}, 
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a2a1590a15026b893610e8903249ef0c5}{Mezzanine::xml::EncodingUTF32}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_ab1e7e96991b9c08ac13e797a15253804a81a663e659d619801a8e37dd84f4a4b9}{Mezzanine::xml::Encodingwchar\_\-t}
+ \}
+\begin{DoxyCompactList}\small\item\em These flags determine the encoding of input data for an XML document. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80}{Mezzanine::xml::NodeType} \{ \par
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a946ce292f9a634abb136995a3846105a}{Mezzanine::xml::NodeNull}, 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a52b25e1163d2f23214bf42f34d0bfd9e}{Mezzanine::xml::NodeDocument}, 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a2bb22ce62dcd3e3d2bb9752d1d34e3ff}{Mezzanine::xml::NodeElement}, 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80aa291a3c3321f69e9097acaf8a54cf158}{Mezzanine::xml::NodePcdata}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a7db25b5f30df46c20d470d1ff1bf1e0c}{Mezzanine::xml::NodeCdata}, 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a5fd7fd35c06d2c1e45844d7dbb1bfba3}{Mezzanine::xml::NodeComment}, 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a66da969e3a2d62bc13db31c5a454923e}{Mezzanine::xml::NodePi}, 
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a3de283fbf0e1bb739bad01be409fa4a7}{Mezzanine::xml::NodeDeclaration}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_a524d867e34ff408b8f45a51b7924cb80a04845cb7d97534c9da3691f66361f440}{Mezzanine::xml::NodeDocType}
+ \}
+\begin{DoxyCompactList}\small\item\em The types of nodes. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796}{Mezzanine::xml::ParseStatus} \{ \par
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796aeb33cdfe82f65a4219af39ad38e2f142}{Mezzanine::xml::StatusOk} =  0, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a53de5ad786a8bfab4df202b64e9b8615}{Mezzanine::xml::StatusFileNotFound}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a4e8d46da4d798e70f6a1e2dc8873f9b7}{Mezzanine::xml::StatusIOError}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a24c8d3a3a7860ec4024bef2aba73838b}{Mezzanine::xml::StatusOutOfMemory}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a7449981a1a4e68c2d0acd2b25f9d3dde}{Mezzanine::xml::StatusInternalError}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a771b0cfe3cb541cae49ac44fb47ad588}{Mezzanine::xml::StatusUnrecognizedTag}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796ab7929063b2c39f174ba684ba40ba7d78}{Mezzanine::xml::StatusBadPi}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796ab0952a9bc2a7338a0d2c020abb2bf444}{Mezzanine::xml::StatusBadComment}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a188ec9ab22057d6852ebbbb562e8114b}{Mezzanine::xml::StatusBadCdata}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796aa9c97cf8b13c952fa22593ada666db2f}{Mezzanine::xml::StatusBadDocType}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a246f6b383d3ce6c6604f913a894376aa}{Mezzanine::xml::StatusBadPcdata}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796ab98c669c7b6a58f66d7ac63f26a677d2}{Mezzanine::xml::StatusBadStartElement}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796ad2a8db4b09b737b361b035191fef3a60}{Mezzanine::xml::StatusBadAttribute}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a2ef32e42a32922e4d6eb420528d5b291}{Mezzanine::xml::StatusBadEndElement}, 
+\hyperlink{namespaceMezzanine_1_1xml_a119489767bc2293563aef2066d960796a7e82f0ab883c8712c91426b802fd6699}{Mezzanine::xml::StatusEndElementMismatch}
+ \}
+\begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespaceMezzanine_1_1xml_aca3f7ad3597c316e5ee6c216e126e7b0}{Mezzanine::xml::XPathValueType} \{ \par
+\hyperlink{namespaceMezzanine_1_1xml_aca3f7ad3597c316e5ee6c216e126e7b0ac0e65173bc9ba7fbb14da6c14672adca}{Mezzanine::xml::XPathTypeNone}, 
+\hyperlink{namespaceMezzanine_1_1xml_aca3f7ad3597c316e5ee6c216e126e7b0a4212e930cfc880a56d3f333e2e0ab1b3}{Mezzanine::xml::XPathTypeNodeSet}, 
+\hyperlink{namespaceMezzanine_1_1xml_aca3f7ad3597c316e5ee6c216e126e7b0a24f2e6b0d3e5de11a1084cc9ceac38ac}{Mezzanine::xml::XPathTypeNumber}, 
+\hyperlink{namespaceMezzanine_1_1xml_aca3f7ad3597c316e5ee6c216e126e7b0ab021af570c5d1fe4eab5f45a123785fc}{Mezzanine::xml::XPathTypeString}, 
+\par
+\hyperlink{namespaceMezzanine_1_1xml_aca3f7ad3597c316e5ee6c216e126e7b0a0c73a55cace18c4b552277d839c56c71}{Mezzanine::xml::XPathTypeBoolean}
+ \}
+\begin{DoxyCompactList}\small\item\em XPathQuery return type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a679ef661140ac56d6a5cbb90a5a162ff}{Mezzanine::xml::AsUtf8} (const wchar\_\-t $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a9e7d78d778421925a789ecf62d9d1134}{Mezzanine::xml::AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a std::wstring to a UTF8 std::string. \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a809e6b8634f3b484c074e4605961819d}{Mezzanine::xml::AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a88f919ddcc4c95f33dff0e44e6427b1c}{Mezzanine::xml::AsWide} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+AllocationFunction MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a31baea68d7e1fb4a2728dc2dbc314f99}{Mezzanine::xml::GetMemoryAllocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
+deAllocationFunction MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_a79299150ec78ed767931d86d8e0496a6}{Mezzanine::xml::GetMemoryDeallocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
+void MEZZ\_\-LIB \hyperlink{namespaceMezzanine_1_1xml_aca6a20ae32bb7188fc0248c257464956}{Mezzanine::xml::SetMemory\_\-management\_\-functions} (AllocationFunction allocate, deAllocationFunction deallocate)
+\begin{DoxyCompactList}\small\item\em Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}{Mezzanine::xml::FormatDefault} = FormatRaw}
+\label{namespaceMezzanine_1_1xml_ad6b5ebd9ea7799aba19391495e2b09e5}
+
+\begin{DoxyCompactList}\small\item\em The default set of formatting flags. Only FormatRaw is enabled. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a70e77a101c278236eeb7eb3c40f56184}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a70e77a101c278236eeb7eb3c40f56184}{Mezzanine::xml::FormatIndent} = 0x01}
+\label{namespaceMezzanine_1_1xml_a70e77a101c278236eeb7eb3c40f56184}
+
+\begin{DoxyCompactList}\small\item\em Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a24412cfad59b402e85cbe6ad5093917a}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a24412cfad59b402e85cbe6ad5093917a}{Mezzanine::xml::FormatNoDeclaration} = 0x08}
+\label{namespaceMezzanine_1_1xml_a24412cfad59b402e85cbe6ad5093917a}
+
+\begin{DoxyCompactList}\small\item\em Omit default XML declaration even if there is no declaration in the document. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a92396af17ca2c698180d7394362b9a70}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a92396af17ca2c698180d7394362b9a70}{Mezzanine::xml::FormatRaw} = 0x04}
+\label{namespaceMezzanine_1_1xml_a92396af17ca2c698180d7394362b9a70}
+
+\begin{DoxyCompactList}\small\item\em Use raw output mode (no indentation and no line breaks are written). This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a984338522c305d986b8fa5a3818bf338}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a984338522c305d986b8fa5a3818bf338}{Mezzanine::xml::FormatWriteBom} = 0x02}
+\label{namespaceMezzanine_1_1xml_a984338522c305d986b8fa5a3818bf338}
+
+\begin{DoxyCompactList}\small\item\em Write encoding-\/specific Byte Order Mark (BOM) to the output stream. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a33da07bddbf04d06d501881b3e13d616}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a33da07bddbf04d06d501881b3e13d616}{Mezzanine::xml::ParseCdata} = 0x0004}
+\label{namespaceMezzanine_1_1xml_a33da07bddbf04d06d501881b3e13d616}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_af7f6768222908469cd315b24c4095f4f}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_af7f6768222908469cd315b24c4095f4f}{Mezzanine::xml::ParseComments} = 0x0002}
+\label{namespaceMezzanine_1_1xml_af7f6768222908469cd315b24c4095f4f}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a642e0534edcb90c314a3767941077cd0}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a642e0534edcb90c314a3767941077cd0}{Mezzanine::xml::ParseDeclaration} = 0x0100}
+\label{namespaceMezzanine_1_1xml_a642e0534edcb90c314a3767941077cd0}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a0eb617274d4b3cb604f3120bcdaf9850}{Mezzanine::xml::ParseDefault} = ParseCdata $|$ ParseEscapes $|$ ParseWconvAttribute $|$ ParseEol
+\begin{DoxyCompactList}\small\item\em The default parsing mode. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_aea8775764346a3988ca2aef15beecd5e}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_aea8775764346a3988ca2aef15beecd5e}{Mezzanine::xml::ParseDocType} = 0x0200}
+\label{namespaceMezzanine_1_1xml_aea8775764346a3988ca2aef15beecd5e}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a4b763117fdd2d6ff31b21a710f6b4cdd}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a4b763117fdd2d6ff31b21a710f6b4cdd}{Mezzanine::xml::ParseEol} = 0x0020}
+\label{namespaceMezzanine_1_1xml_a4b763117fdd2d6ff31b21a710f6b4cdd}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if EOL characters are normalized (converted to \#xA) during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a5f0acdde0e19954a8e333b2899708e62}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a5f0acdde0e19954a8e333b2899708e62}{Mezzanine::xml::ParseEscapes} = 0x0010}
+\label{namespaceMezzanine_1_1xml_a5f0acdde0e19954a8e333b2899708e62}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if character and entity references are expanded during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a14a1b1a8836c431265e35c5bbc60655d}{Mezzanine::xml::ParseFull} = ParseDefault $|$ ParsePi $|$ ParseComments $|$ ParseDeclaration $|$ ParseDocType
+\begin{DoxyCompactList}\small\item\em The full parsing mode. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a019444c8f75908387adc214812b1f5ef}{Mezzanine::xml::ParseMinimal} = 0x0000
+\begin{DoxyCompactList}\small\item\em Minimal parsing mode (equivalent to turning all other flags off). \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_ab7885d16db7e01d710dffb803fc9a896}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_ab7885d16db7e01d710dffb803fc9a896}{Mezzanine::xml::ParsePi} = 0x0001}
+\label{namespaceMezzanine_1_1xml_ab7885d16db7e01d710dffb803fc9a896}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_a9e9a386f6a2e7dac28df4b581d8f49b3}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_a9e9a386f6a2e7dac28df4b581d8f49b3}{Mezzanine::xml::ParseWconvAttribute} = 0x0040}
+\label{namespaceMezzanine_1_1xml_a9e9a386f6a2e7dac28df4b581d8f49b3}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespaceMezzanine_1_1xml_ad805b2d64aacf612603631761f3317d6}{
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_ad805b2d64aacf612603631761f3317d6}{Mezzanine::xml::ParseWnormAttribute} = 0x0080}
+\label{namespaceMezzanine_1_1xml_ad805b2d64aacf612603631761f3317d6}
+
+\begin{DoxyCompactList}\small\item\em This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespaceMezzanine_1_1xml_ad1540f35280d1c679102542125ed94ac}{Mezzanine::xml::ParseWsPcdata} = 0x0008
+\begin{DoxyCompactList}\small\item\em This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. See \hyperlink{xmldoc_8h}{xmldoc.h} for additional details. 
+
+Definition in file \hyperlink{xml_8h_source}{xml.h}.
+

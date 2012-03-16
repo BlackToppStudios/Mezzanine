@@ -14,6 +14,13 @@ This is a helper class for configuring graphics settings of a \hyperlink{classMe
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a0000391cba0056b375dc324833ef747d}{WorldObjectGraphicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, Ogre::Entity $\ast$GraphicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}{
+virtual \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}{$\sim$WorldObjectGraphicsSettings} ()}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a36002a588b5a0a7494d29f8e7a7a30b1}{CloneMaterial} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&NewName)
 \begin{DoxyCompactList}\small\item\em Creates a copy of the material script of the graphics object and places it in the same resource group. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a7cc74921d09f867ef90f24dea9f86e69}{GetMaterialAmbient} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0) const 
@@ -30,6 +37,10 @@ virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} 
 \begin{DoxyCompactList}\small\item\em Gets the number of submeshes in the mesh of the graphics ohject. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a90d4e4516181052ea6afcb257a864887}{HasMaterialSet} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
 \begin{DoxyCompactList}\small\item\em Gets whether or not the specified submesh has a material script assigned to it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a0f3fbc4ea728847e3aa283a360bdf32e}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a17de93ea24636d2dd1e91cc20ced04a8}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a99a72f423f55280da67c4691d220c9a4}{SetMaterial} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MatName, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
 \begin{DoxyCompactList}\small\item\em Sets the material of the specified submesh. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a88597e16ded3a60970c28683c7cb756a}{SetMaterialAmbient} (const \hyperlink{classMezzanine_1_1ColourValue}{ColourValue} \&Ambient, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Submesh=0)
@@ -41,14 +52,12 @@ virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_adec80c34b
 virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a33259391dac7ba356848da9b27cc0a4a}{SetMesh} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&MeshName, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group)
 \begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a29ebce82dbfd0a27ddf385504341569c}{SetMesh} (\hyperlink{classMezzanine_1_1Mesh}{Mesh} $\ast$ObjectMesh)
-\begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a0000391cba0056b375dc324833ef747d}{WorldObjectGraphicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, Ogre::Entity $\ast$GraphicsObject)
-\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}{
-virtual \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}{$\sim$WorldObjectGraphicsSettings} ()}
-\label{classMezzanine_1_1WorldObjectGraphicsSettings_a72709c5d15de08cba37501510a87bfca}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the mesh to be used along with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings_adfcbfa444f5b443ea176daf3279a8193}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -299,6 +308,70 @@ Returns a bool indicating whether there is a material assigned to the specified 
 
 
 Definition at line 176 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a0f3fbc4ea728847e3aa283a360bdf32e}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a0f3fbc4ea728847e3aa283a360bdf32e}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 302 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a17de93ea24636d2dd1e91cc20ced04a8}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObjectGraphicsSettings::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_a17de93ea24636d2dd1e91cc20ced04a8}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this quaternion should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 240 of file worldobjectgraphicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_adfcbfa444f5b443ea176daf3279a8193}{
+\index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::WorldObjectGraphicsSettings::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObjectGraphicsSettings_adfcbfa444f5b443ea176daf3279a8193}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}ActorGraphicsSettings\char`\"{} 
+\end{DoxyReturn}
+
+
+Definition at line 362 of file worldobjectgraphicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObjectGraphicsSettings_a99a72f423f55280da67c4691d220c9a4}{
 \index{Mezzanine::WorldObjectGraphicsSettings@{Mezzanine::WorldObjectGraphicsSettings}!SetMaterial@{SetMaterial}}

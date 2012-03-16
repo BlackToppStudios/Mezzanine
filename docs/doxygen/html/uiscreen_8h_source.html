@@ -104,119 +104,216 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00040"></a>00040 <span class="preprocessor">#ifndef _uiscreen_h</span>
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _uiscreen_h</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
-<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;vector2.h&quot;</span>
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">namespace </span>Gorilla
-<a name="l00048"></a>00048 {
-<a name="l00049"></a>00049     <span class="keyword">class </span>Screen;
-<a name="l00050"></a>00050     <span class="keyword">class </span>Layer;
-<a name="l00051"></a>00051 }
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="keyword">namespace </span>Mezzanine
-<a name="l00054"></a>00054 {
-<a name="l00055"></a>00055     <span class="keyword">class </span>Viewport;
-<a name="l00056"></a>00056     <span class="keyword">class </span>UIManager;
-<a name="l00057"></a>00057     <span class="keyword">namespace </span>UI
-<a name="l00058"></a>00058     {
-<a name="l00059"></a>00059         <span class="keyword">class </span>Button;
-<a name="l00060"></a>00060         <span class="keyword">class </span>Widget;
-<a name="l00061"></a>00061         <span class="keyword">class </span>Layer;<span class="comment"></span>
-<a name="l00062"></a>00062 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00063"></a>00063 <span class="comment">        /// @headerfile uiscreen.h</span>
-<a name="l00064"></a>00064 <span class="comment">        /// @brief This class is a helper class for creating UI&#39;s.  It is responsible for storing and keeping</span>
-<a name="l00065"></a>00065 <span class="comment">        /// track of all the elements of a single UI screen.</span>
-<a name="l00066"></a>00066 <span class="comment">        /// @details UI&#39;s can optionally be divided up into Screens, or &quot;pages&quot;.  Each screen is batched together</span>
-<a name="l00067"></a>00067 <span class="comment">        /// for rendering, so keeping the amount of screens to a minimum will improve performance.</span>
-<a name="l00068"></a>00068 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00069"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html">00069</a> <span class="comment"></span>        <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>
-<a name="l00070"></a>00070         {
-<a name="l00071"></a>00071             <span class="keyword">protected</span>:
-<a name="l00072"></a>00072                 Gorilla::Screen* GorillaScreen;
-<a name="l00073"></a>00073                 <a class="code" href="classMezzanine_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>* Manager;
-<a name="l00074"></a>00074                 <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* GameViewport;
-<a name="l00075"></a>00075                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name;
-<a name="l00076"></a>00076                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> PrimaryAtlas;
-<a name="l00077"></a>00077                 <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> KnownViewportSize;
-<a name="l00078"></a>00078                 std::map&lt;Whole,Layer*&gt; Layers;
-<a name="l00079"></a>00079             <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00080"></a>00080 <span class="comment">                /// @brief Internal constructor.</span>
-<a name="l00081"></a>00081 <span class="comment">                /// @param name The name of this screen.</span>
-<a name="l00082"></a>00082 <span class="comment">                /// @param Atlas The name of the primary atlas to be assigned to this screen.</span>
-<a name="l00083"></a>00083 <span class="comment">                /// This can be overridden later, even by individual UI elements.</span>
-<a name="l00084"></a>00084 <span class="comment">                /// @param WindowViewport The Viewport to which this screen belongs.</span>
-<a name="l00085"></a>00085 <span class="comment"></span>                <a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* WindowViewport);<span class="comment"></span>
-<a name="l00086"></a>00086 <span class="comment">                /// @brief Class destructor.</span>
-<a name="l00087"></a>00087 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>();<span class="comment"></span>
-<a name="l00088"></a>00088 <span class="comment">                /// @brief Gets the name of this screen.</span>
-<a name="l00089"></a>00089 <span class="comment">                /// @return Returns a string containing the name of this screen.</span>
-<a name="l00090"></a>00090 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; GetName();<span class="comment"></span>
-<a name="l00091"></a>00091 <span class="comment">                /// @brief Sets the screens visability.</span>
-<a name="l00092"></a>00092 <span class="comment">                /// @param Visable A bool representing the visability of the screen.</span>
-<a name="l00093"></a>00093 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> Visible);<span class="comment"></span>
-<a name="l00094"></a>00094 <span class="comment">                /// @brief Gets the screens visability.</span>
-<a name="l00095"></a>00095 <span class="comment">                /// @return Returns a bool representing the visability of the screen.</span>
-<a name="l00096"></a>00096 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">                /// @brief Forces the screen to be shown.</span>
-<a name="l00098"></a>00098 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
-<a name="l00099"></a>00099 <span class="comment">                /// @brief Forces the screen to hide.</span>
-<a name="l00100"></a>00100 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
-<a name="l00101"></a>00101 <span class="comment">                /// @brief Creates a layer in the GUI screen to place GUI objects in.</span>
-<a name="l00102"></a>00102 <span class="comment">                /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI</span>
-<a name="l00103"></a>00103 <span class="comment">                /// layers per screen.  The Zorder of the layer determines it&#39;s visability if there are multiple</span>
-<a name="l00104"></a>00104 <span class="comment">                /// layers.  If the Zorder of one layer is higher then another in the same space, then the Zorder</span>
-<a name="l00105"></a>00105 <span class="comment">                /// with the higher Zorder will be rendered...giving it the appearance of being on top of the other</span>
-<a name="l00106"></a>00106 <span class="comment">                /// GUI object or objects.</span>
-<a name="l00107"></a>00107 <span class="comment">                /// @param Name The name to be given to the layer.</span>
-<a name="l00108"></a>00108 <span class="comment">                /// @param Zorder The layers Zorder, as explained above.</span>
-<a name="l00109"></a>00109 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* CreateLayer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Zorder);<span class="comment"></span>
-<a name="l00110"></a>00110 <span class="comment">                /// @brief Gets an already created layer by name.</span>
-<a name="l00111"></a>00111 <span class="comment">                /// @return Returns a pointer to the layer of the specified name.</span>
-<a name="l00112"></a>00112 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* GetLayer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">                /// @brief Gets an already created layer by it&#39;s index.</span>
-<a name="l00114"></a>00114 <span class="comment">                /// @return Returns a pointer to the layer at the specified index.</span>
-<a name="l00115"></a>00115 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* GetLayer(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
-<a name="l00116"></a>00116 <span class="comment">                /// @brief Gets an already created layer by it&#39;s Zorder.</span>
-<a name="l00117"></a>00117 <span class="comment">                /// @return Returns a pointer to the layer with the specified Zorder.</span>
-<a name="l00118"></a>00118 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* GetLayerbyZorder(<a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Zorder);<span class="comment"></span>
-<a name="l00119"></a>00119 <span class="comment">                /// @brief Gets the number of layers created and stored in this class.</span>
-<a name="l00120"></a>00120 <span class="comment">                /// @return Returns the number of layers this class is storing.</span>
-<a name="l00121"></a>00121 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumLayers();<span class="comment"></span>
-<a name="l00122"></a>00122 <span class="comment">                /// @brief Destroy&#39;s a previously created layer.</span>
-<a name="l00123"></a>00123 <span class="comment">                /// @param ToBeDestroyed The layer to be destroyed.</span>
-<a name="l00124"></a>00124 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyLayer(<a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* ToBeDestroyed);<span class="comment"></span>
-<a name="l00125"></a>00125 <span class="comment">                /// @brief Gets the current viewport dimensions.</span>
-<a name="l00126"></a>00126 <span class="comment">                /// @return Returns a Vector2 representing the current viewport dimensions.</span>
-<a name="l00127"></a>00127 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; GetViewportDimensions();<span class="comment"></span>
-<a name="l00128"></a>00128 <span class="comment">                /// @brief Gets the button the mouse is over if any.</span>
-<a name="l00129"></a>00129 <span class="comment">                /// @details This function searches only the visable layers contained in this screen.</span>
-<a name="l00130"></a>00130 <span class="comment">                /// @return Returns the button the mouse is over, or NULL if there are none.</span>
-<a name="l00131"></a>00131 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* CheckButtonMouseIsOver();<span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">                /// @brief Gets the widget the mouse is over if any.</span>
-<a name="l00133"></a>00133 <span class="comment">                /// @details This function searches only the visable layers contained in this screen.</span>
-<a name="l00134"></a>00134 <span class="comment">                /// @return Returns the widget the mouse is over, or NULL if there are none.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* CheckWidgetMouseIsOver();<span class="comment"></span>
-<a name="l00136"></a>00136 <span class="comment">                /// @brief Sets the Atlas to be assumed when one isn&#39;t provided for atlas related tasks.</span>
-<a name="l00137"></a>00137 <span class="comment">                /// @param Atlas The name of the atlas to be used.</span>
-<a name="l00138"></a>00138 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPrimaryAtlas(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas);<span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">                /// @brief Gets the currently set primary atlas.</span>
-<a name="l00140"></a>00140 <span class="comment">                /// @return Returns a string containing the name of the primary atlas that is set.</span>
-<a name="l00141"></a>00141 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetPrimaryAtlas();<span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">                /// @brief Checks to see if the viewport has changed in size.  If so it updates all the UI elements on the screen.</span>
-<a name="l00143"></a>00143 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CheckViewportSize();<span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">                /// @internal</span>
-<a name="l00145"></a>00145 <span class="comment">                /// @brief Manually calls the UI system to render this screen.</span>
-<a name="l00146"></a>00146 <span class="comment"></span>                <span class="comment">//virtual void RenderOnce();</span><span class="comment"></span>
-<a name="l00147"></a>00147 <span class="comment">                /// @internal</span>
-<a name="l00148"></a>00148 <span class="comment">                /// @brief Gets the internal screen this screen is based on.</span>
-<a name="l00149"></a>00149 <span class="comment">                /// @return Returns a pointer to the Gorilla screen this screen is based on.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>                <span class="keyword">virtual</span> Gorilla::Screen* GetGorillaScreen();
-<a name="l00151"></a>00151         };<span class="comment">//uiscreen</span>
-<a name="l00152"></a>00152     }<span class="comment">//ui</span>
-<a name="l00153"></a>00153 }<span class="comment">//Mezzanine</span>
-<a name="l00154"></a>00154 
-<a name="l00155"></a>00155 <span class="preprocessor">#endif</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#include &quot;matrix4x4.h&quot;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uivertex.h&quot;</span>
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
+<a name="l00047"></a>00047 {
+<a name="l00048"></a>00048     <span class="keyword">class </span>Viewport;
+<a name="l00049"></a>00049     <span class="keyword">class </span>UIManager;
+<a name="l00050"></a>00050     <span class="keyword">class </span>SceneManager;
+<a name="l00051"></a>00051     <span class="keyword">namespace </span>UI
+<a name="l00052"></a>00052     {
+<a name="l00053"></a>00053         <span class="keyword">class </span>Button;
+<a name="l00054"></a>00054         <span class="keyword">class </span>Widget;
+<a name="l00055"></a>00055         <span class="keyword">class </span>Layer;
+<a name="l00056"></a>00056         <span class="keyword">struct </span>ScreenInternalData;<span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00058"></a>00058 <span class="comment">        /// @class AtlasAndPosition</span>
+<a name="l00059"></a>00059 <span class="comment">        /// @headerfile uiscreen.h</span>
+<a name="l00060"></a>00060 <span class="comment">        /// @brief This class stores how the calls to Render are to be done.</span>
+<a name="l00061"></a>00061 <span class="comment">        /// @details</span>
+<a name="l00062"></a>00062 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00063"></a><a class="code" href="structMezzanine_1_1UI_1_1AtlasAndPosition.html">00063</a> <span class="comment"></span>        <span class="keyword">struct </span><a class="code" href="structMezzanine_1_1UI_1_1AtlasAndPosition.html" title="This class stores how the calls to Render are to be done.">AtlasAndPosition</a>
+<a name="l00064"></a>00064         {
+<a name="l00065"></a>00065             <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Atlas;
+<a name="l00066"></a>00066             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> RenderCount;
+<a name="l00067"></a>00067             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> RenderStart;
+<a name="l00068"></a>00068             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> RenderEnd;
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070             <a class="code" href="structMezzanine_1_1UI_1_1AtlasAndPosition.html" title="This class stores how the calls to Render are to be done.">AtlasAndPosition</a>() : RenderCount(0), RenderStart(0), RenderEnd(0) {};
+<a name="l00071"></a>00071         };<span class="comment"></span>
+<a name="l00072"></a>00072 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00073"></a>00073 <span class="comment">        /// @class ScreenVertexData</span>
+<a name="l00074"></a>00074 <span class="comment">        /// @headerfile uiscreen.h</span>
+<a name="l00075"></a>00075 <span class="comment">        /// @brief This class stores all vertices pertaining to a layer sorted by their priority for rendering.</span>
+<a name="l00076"></a>00076 <span class="comment">        /// @details</span>
+<a name="l00077"></a>00077 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00078"></a><a class="code" href="classMezzanine_1_1UI_1_1ScreenVertexData.html">00078</a> <span class="comment"></span>        <span class="keyword">class </span><a class="code" href="classMezzanine_1_1UI_1_1ScreenVertexData.html" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">ScreenVertexData</a>
+<a name="l00079"></a>00079         {
+<a name="l00080"></a>00080             <span class="keyword">public</span>:
+<a name="l00081"></a>00081             std::vector&lt;VertexData&gt; LowVertices;
+<a name="l00082"></a>00082             std::vector&lt;VertexData&gt; MediumVertices;
+<a name="l00083"></a>00083             std::vector&lt;VertexData&gt; HighVertices;
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085             <span class="keywordtype">void</span> Clear();
+<a name="l00086"></a>00086             <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Size();
+<a name="l00087"></a>00087             <a class="code" href="structMezzanine_1_1UI_1_1VertexData.html" title="Basic class describing a vertex in the UI to be rendered.">VertexData</a>&amp; operator[](<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index);
+<a name="l00088"></a>00088         };<span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00090"></a>00090 <span class="comment">        /// @class IndexData</span>
+<a name="l00091"></a>00091 <span class="comment">        /// @headerfile uiscreen.h</span>
+<a name="l00092"></a>00092 <span class="comment">        /// @brief This is a basic class for storing data relating to a specific zorder in the UI.</span>
+<a name="l00093"></a>00093 <span class="comment">        /// @details This class caches the Layer, it&#39;s verticies, and whether it needs to be redrawn.</span>
+<a name="l00094"></a>00094 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00095"></a><a class="code" href="structMezzanine_1_1UI_1_1IndexData.html">00095</a> <span class="comment"></span>        <span class="keyword">struct </span><a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>
+<a name="l00096"></a>00096         {
+<a name="l00097"></a>00097             <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* IndexLayer;
+<a name="l00098"></a>00098             <span class="keywordtype">bool</span> RedrawNeeded;
+<a name="l00099"></a>00099             <a class="code" href="classMezzanine_1_1UI_1_1ScreenVertexData.html" title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">ScreenVertexData</a> Vertices;
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101             <a class="code" href="structMezzanine_1_1UI_1_1IndexData.html" title="This is a basic class for storing data relating to a specific zorder in the UI.">IndexData</a>() : IndexLayer(NULL), RedrawNeeded(<span class="keyword">true</span>) {};
+<a name="l00102"></a>00102         };<span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00104"></a>00104 <span class="comment">        /// @class Screen</span>
+<a name="l00105"></a>00105 <span class="comment">        /// @headerfile uiscreen.h</span>
+<a name="l00106"></a>00106 <span class="comment">        /// @brief This class is a helper class for creating UI&#39;s.  It is responsible for storing and keeping</span>
+<a name="l00107"></a>00107 <span class="comment">        /// track of all the elements of a single UI screen.</span>
+<a name="l00108"></a>00108 <span class="comment">        /// @details UI&#39;s can optionally be divided up into Screens, or &quot;pages&quot;.  Each screen is batched together</span>
+<a name="l00109"></a>00109 <span class="comment">        /// for rendering, so keeping the amount of screens to a minimum will improve performance.</span>
+<a name="l00110"></a>00110 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00111"></a><a class="code" href="classMezzanine_1_1UI_1_1Screen.html">00111</a> <span class="comment"></span>        <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>
+<a name="l00112"></a>00112         {
+<a name="l00113"></a>00113             <span class="keyword">protected</span>:
+<a name="l00114"></a>00114                 <a class="code" href="classMezzanine_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>* Manager;
+<a name="l00115"></a>00115                 <a class="code" href="classMezzanine_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* SceneMan;
+<a name="l00116"></a>00116                 <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* GameViewport;
+<a name="l00117"></a>00117                 <a class="code" href="structMezzanine_1_1UI_1_1ScreenInternalData.html" title="Basic struct holding some of the internal bits of this class that could not be placed on the class di...">ScreenInternalData</a>* SID;
+<a name="l00118"></a>00118                 <span class="keywordtype">bool</span> OrientationChanged;
+<a name="l00119"></a>00119                 <span class="keywordtype">bool</span> Visible;
+<a name="l00120"></a>00120                 <span class="keywordtype">bool</span> CanRender;
+<a name="l00121"></a>00121                 <span class="keywordtype">bool</span> IndexRedrawNeeded;
+<a name="l00122"></a>00122                 <span class="keywordtype">bool</span> IndexRedrawAll;
+<a name="l00123"></a>00123                 <span class="keywordtype">bool</span> ViewportSizeChanged;
+<a name="l00124"></a>00124                 <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> VertexBufferSize;
+<a name="l00125"></a>00125                 <a class="code" href="namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33" title="Simple enum for communicating the orientation the UI and Camera have relative to the world it is rend...">Mezzanine::OrientationMode</a> Orientation;
+<a name="l00126"></a>00126                 <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> KnownViewportSize;
+<a name="l00127"></a>00127                 <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> InverseViewportSize;
+<a name="l00128"></a>00128                 <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Scale;
+<a name="l00129"></a>00129                 <a class="code" href="classMezzanine_1_1Matrix4x4.html">Matrix4x4</a> VertexTransform;
+<a name="l00130"></a>00130                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> Name;
+<a name="l00131"></a>00131                 <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> PrimaryAtlas;
+<a name="l00132"></a>00132                 std::vector&lt;AtlasAndPosition&gt; TextureByVertex;
+<a name="l00133"></a>00133                 std::vector&lt;Layer*&gt; Layers;
+<a name="l00134"></a>00134                 std::map&lt;Whole,IndexData*&gt; Indexes;
+<a name="l00135"></a>00135 
+<a name="l00136"></a>00136                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> PrepareRenderSystem();
+<a name="l00137"></a>00137                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> CreateVertexBuffer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; InitialSize = 32);
+<a name="l00138"></a>00138                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyVertexBuffer();
+<a name="l00139"></a>00139                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> ResizeVertexBuffer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; RequestedSize);
+<a name="l00140"></a>00140             <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">                /// @brief Internal constructor.</span>
+<a name="l00142"></a>00142 <span class="comment">                /// @param name The name of this screen.</span>
+<a name="l00143"></a>00143 <span class="comment">                /// @param Atlas The name of the primary atlas to be assigned to this screen.</span>
+<a name="l00144"></a>00144 <span class="comment">                /// This can be overridden later, even by individual UI elements.</span>
+<a name="l00145"></a>00145 <span class="comment">                /// @param WindowViewport The Viewport to which this screen belongs.</span>
+<a name="l00146"></a>00146 <span class="comment"></span>                <a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* WindowViewport);<span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">                /// @brief Class destructor.</span>
+<a name="l00148"></a>00148 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1UI_1_1Screen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">Screen</a>();<span class="comment"></span>
+<a name="l00149"></a>00149 <span class="comment">                /// @brief Gets the name of this screen.</span>
+<a name="l00150"></a>00150 <span class="comment">                /// @return Returns a string containing the name of this screen.</span>
+<a name="l00151"></a>00151 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; GetName();<span class="comment"></span>
+<a name="l00152"></a>00152 <span class="comment">                /// @brief Sets the screens visability.</span>
+<a name="l00153"></a>00153 <span class="comment">                /// @param Visable A bool representing the visability of the screen.</span>
+<a name="l00154"></a>00154 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetVisible(<span class="keywordtype">bool</span> Visible);<span class="comment"></span>
+<a name="l00155"></a>00155 <span class="comment">                /// @brief Gets the screens visability.</span>
+<a name="l00156"></a>00156 <span class="comment">                /// @return Returns a bool representing the visability of the screen.</span>
+<a name="l00157"></a>00157 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">bool</span> IsVisible();<span class="comment"></span>
+<a name="l00158"></a>00158 <span class="comment">                /// @brief Forces the screen to be shown.</span>
+<a name="l00159"></a>00159 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Show();<span class="comment"></span>
+<a name="l00160"></a>00160 <span class="comment">                /// @brief Forces the screen to hide.</span>
+<a name="l00161"></a>00161 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> Hide();<span class="comment"></span>
+<a name="l00162"></a>00162 <span class="comment">                /// @brief Creates a layer in the GUI screen to place GUI objects in.</span>
+<a name="l00163"></a>00163 <span class="comment">                /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI</span>
+<a name="l00164"></a>00164 <span class="comment">                /// layers per screen.  The Zorder of the layer determines it&#39;s visability if there are multiple</span>
+<a name="l00165"></a>00165 <span class="comment">                /// layers.  If the Zorder of one layer is higher then another in the same space, then the Zorder</span>
+<a name="l00166"></a>00166 <span class="comment">                /// with the higher Zorder will be rendered...giving it the appearance of being on top of the other</span>
+<a name="l00167"></a>00167 <span class="comment">                /// GUI object or objects.</span>
+<a name="l00168"></a>00168 <span class="comment">                /// @param Name The name to be given to the layer.</span>
+<a name="l00169"></a>00169 <span class="comment">                /// @param Zorder The layers Zorder, as explained above.</span>
+<a name="l00170"></a>00170 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* CreateLayer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Zorder);<span class="comment"></span>
+<a name="l00171"></a>00171 <span class="comment">                /// @brief Gets an already created layer by name.</span>
+<a name="l00172"></a>00172 <span class="comment">                /// @return Returns a pointer to the layer of the specified name.</span>
+<a name="l00173"></a>00173 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* GetLayer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00174"></a>00174 <span class="comment">                /// @brief Gets an already created layer by it&#39;s index.</span>
+<a name="l00175"></a>00175 <span class="comment">                /// @return Returns a pointer to the layer at the specified index.</span>
+<a name="l00176"></a>00176 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* GetLayer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index);<span class="comment"></span>
+<a name="l00177"></a>00177 <span class="comment">                /// @brief Gets an already created layer by it&#39;s Zorder.</span>
+<a name="l00178"></a>00178 <span class="comment">                /// @return Returns a pointer to the layer with the specified Zorder.</span>
+<a name="l00179"></a>00179 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* GetLayerbyZorder(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Zorder);<span class="comment"></span>
+<a name="l00180"></a>00180 <span class="comment">                /// @brief Gets the number of layers created and stored in this class.</span>
+<a name="l00181"></a>00181 <span class="comment">                /// @return Returns the number of layers this class is storing.</span>
+<a name="l00182"></a>00182 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumLayers();<span class="comment"></span>
+<a name="l00183"></a>00183 <span class="comment">                /// @brief Destroy&#39;s a previously created layer.</span>
+<a name="l00184"></a>00184 <span class="comment">                /// @param ToBeDestroyed The layer to be destroyed.</span>
+<a name="l00185"></a>00185 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyLayer(<a class="code" href="classMezzanine_1_1UI_1_1Layer.html" title="This class is the basic container class for UI elements.">Layer</a>* ToBeDestroyed);<span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">                /// @brief Gets the current viewport dimensions.</span>
+<a name="l00187"></a>00187 <span class="comment">                /// @return Returns a Vector2 representing the current viewport dimensions.</span>
+<a name="l00188"></a>00188 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>&amp; GetViewportDimensions();<span class="comment"></span>
+<a name="l00189"></a>00189 <span class="comment">                /// @brief Gets the X axis Texel Offset for the current rendersystem.</span>
+<a name="l00190"></a>00190 <span class="comment">                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.</span>
+<a name="l00191"></a>00191 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetTexelOffsetX() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00192"></a>00192 <span class="comment">                /// @brief Gets the Y axis Texel Offset for the current rendersystem.</span>
+<a name="l00193"></a>00193 <span class="comment">                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.</span>
+<a name="l00194"></a>00194 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6" title="A Datatype used to represent a real floating point number.">Real</a> GetTexelOffsetY() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00195"></a>00195 <span class="comment">                /// @brief Gets the button the mouse is over if any.</span>
+<a name="l00196"></a>00196 <span class="comment">                /// @details This function searches only the visable layers contained in this screen.</span>
+<a name="l00197"></a>00197 <span class="comment">                /// @return Returns the button the mouse is over, or NULL if there are none.</span>
+<a name="l00198"></a>00198 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* CheckButtonMouseIsOver();<span class="comment"></span>
+<a name="l00199"></a>00199 <span class="comment">                /// @brief Gets the widget the mouse is over if any.</span>
+<a name="l00200"></a>00200 <span class="comment">                /// @details This function searches only the visable layers contained in this screen.</span>
+<a name="l00201"></a>00201 <span class="comment">                /// @return Returns the widget the mouse is over, or NULL if there are none.</span>
+<a name="l00202"></a>00202 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* CheckWidgetMouseIsOver();<span class="comment"></span>
+<a name="l00203"></a>00203 <span class="comment">                /// @brief Sets the Atlas to be assumed when one isn&#39;t provided for atlas related tasks.</span>
+<a name="l00204"></a>00204 <span class="comment">                /// @param Atlas The name of the atlas to be used.</span>
+<a name="l00205"></a>00205 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPrimaryAtlas(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Atlas);<span class="comment"></span>
+<a name="l00206"></a>00206 <span class="comment">                /// @brief Gets the currently set primary atlas.</span>
+<a name="l00207"></a>00207 <span class="comment">                /// @return Returns a string containing the name of the primary atlas that is set.</span>
+<a name="l00208"></a>00208 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> GetPrimaryAtlas();<span class="comment"></span>
+<a name="l00209"></a>00209 <span class="comment">                /// @brief Checks to see if the viewport has changed in size.  If so it updates all the UI elements on the screen.</span>
+<a name="l00210"></a>00210 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> CheckViewportSize();<span class="comment"></span>
+<a name="l00211"></a>00211 <span class="comment">                /// @brief Gets the Viewport this screen is currently rendering to.</span>
+<a name="l00212"></a>00212 <span class="comment">                /// @return Returns a pointer to the Viewport this screen is applied to.</span>
+<a name="l00213"></a>00213 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* GetViewport();
+<a name="l00214"></a>00214 <span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">                /// @internal</span>
+<a name="l00216"></a>00216 <span class="comment">                /// @brief Manually calls the UI system to render this screen.</span>
+<a name="l00217"></a>00217 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _RenderScreen();<span class="comment"></span>
+<a name="l00218"></a>00218 <span class="comment">                /// @internal</span>
+<a name="l00219"></a>00219 <span class="comment">                /// @brief Forces an orientation mode change for this screen.</span>
+<a name="l00220"></a>00220 <span class="comment">                /// @param Mode The orientation mode to be applied to the UI on this screen.</span>
+<a name="l00221"></a>00221 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _SetOrientation(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#a8892173bd6aaf7d0e34a07b2b30aad33" title="Simple enum for communicating the orientation the UI and Camera have relative to the world it is rend...">Mezzanine::OrientationMode</a>&amp; Mode);<span class="comment"></span>
+<a name="l00222"></a>00222 <span class="comment">                /// @internal</span>
+<a name="l00223"></a>00223 <span class="comment">                /// @brief Updates the vertex positions so they are in front of the camera in world space.</span>
+<a name="l00224"></a>00224 <span class="comment">                /// @param Vertices Vector of the vertices to be transformed.</span>
+<a name="l00225"></a>00225 <span class="comment">                /// @param Begin The first Vertex to transform in the range.</span>
+<a name="l00226"></a>00226 <span class="comment">                /// @param End The last Vertex to transform in the range.</span>
+<a name="l00227"></a>00227 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _Transform(std::vector&lt;VertexData&gt;&amp; Vertices, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Begin, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; End);<span class="comment"></span>
+<a name="l00228"></a>00228 <span class="comment">                /// @internal</span>
+<a name="l00229"></a>00229 <span class="comment">                /// @brief Clears the layer and index data and rebuilds in from the existing layers.</span>
+<a name="l00230"></a>00230 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _RecalculateIndexes();<span class="comment"></span>
+<a name="l00231"></a>00231 <span class="comment">                /// @internal</span>
+<a name="l00232"></a>00232 <span class="comment">                /// @brief Clears the existing verticies and regenerates them for a specific index(layer).</span>
+<a name="l00233"></a>00233 <span class="comment">                /// @param Index The Index corresponding to the layer you want regenerated.</span>
+<a name="l00234"></a>00234 <span class="comment">                /// @param Force Whether or not to force a redraw even if the layer doesn&#39;t need it.</span>
+<a name="l00235"></a>00235 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _RedrawIndex(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a>&amp; Index, <span class="keywordtype">bool</span> Force);<span class="comment"></span>
+<a name="l00236"></a>00236 <span class="comment">                /// @internal</span>
+<a name="l00237"></a>00237 <span class="comment">                /// @brief Clears all verticies for every layer and regenerates them for rendering.</span>
+<a name="l00238"></a>00238 <span class="comment">                /// @param Force Whether or not to force a redraw on all layers regardless of if they need it.</span>
+<a name="l00239"></a>00239 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _RedrawAllIndexes(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);<span class="comment"></span>
+<a name="l00240"></a>00240 <span class="comment">                /// @internal</span>
+<a name="l00241"></a>00241 <span class="comment">                /// @brief Flags a layer for redraw before the next render.</span>
+<a name="l00242"></a>00242 <span class="comment">                /// @param Index The ID or Index of the layer to be flagged for redraw.</span>
+<a name="l00243"></a>00243 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _RequestIndexRedraw(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#abea3b8e8e9b03d2547b2800284ba682d" title="An 32-bit unsigned integer.">UInt32</a>&amp; Index);<span class="comment"></span>
+<a name="l00244"></a>00244 <span class="comment">                /// @internal</span>
+<a name="l00245"></a>00245 <span class="comment">                /// @brief Prepares all vertices for rendering to the screen.</span>
+<a name="l00246"></a>00246 <span class="comment">                /// @param Force Whether or not to force preparation regardless of if they need it.</span>
+<a name="l00247"></a>00247 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> _RenderVertices(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);
+<a name="l00248"></a>00248         };<span class="comment">//uiscreen</span>
+<a name="l00249"></a>00249     }<span class="comment">//ui</span>
+<a name="l00250"></a>00250 }<span class="comment">//Mezzanine</span>
+<a name="l00251"></a>00251 
+<a name="l00252"></a>00252 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -224,7 +321,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -234,6 +331,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:33 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

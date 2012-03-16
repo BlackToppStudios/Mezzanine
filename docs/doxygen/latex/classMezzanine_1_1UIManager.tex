@@ -20,6 +20,10 @@ Inheritance diagram for Mezzanine::UIManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1UIManager_a2101862a8b3f08f2fa657b0bffb75bd0}{UIManager} ()
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UIManager_ad480071e4f02d2e24903da56425e6b6a}{$\sim$UIManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UIManager_a79796c009d0481370bd66d7006016776}{AddAutoRegisterCode} (\hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} Code)
 \begin{DoxyCompactList}\small\item\em Adds a key or button that will be auto-\/registered with every created \hyperlink{namespaceMezzanine_1_1UI}{UI} button. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UIManager_aa4f168f84cc9ab88d04964913b3982f3}{BindHotKey} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&HotKey, \hyperlink{classMezzanine_1_1UI_1_1Button}{UI::Button} $\ast$BoundButton)
@@ -46,6 +50,8 @@ void \hyperlink{classMezzanine_1_1UIManager_af774da651d30b4fe1ea086899c1961ca}{D
 \begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UIManager_a5dda002532786846f076ed9c685af2f5}{EnableButtonAutoRegister} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables whether or not to automatically set the activation key or button for \hyperlink{namespaceMezzanine_1_1UI}{UI} buttons. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1UI_1_1TextureAtlas}{UI::TextureAtlas} $\ast$ \hyperlink{classMezzanine_1_1UIManager_a904d4d7a3957a13cf5e27e8d97dd1add}{GetAtlas} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&AtlasName)
+\begin{DoxyCompactList}\small\item\em Gets a loaded Atlas being stored in this manager. \item\end{DoxyCompactList}\item 
 std::vector$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classMezzanine_1_1UIManager_ab8e71134409a4375236f866774d61fcf}{GetAutoRegisteredCodes} ()
 \begin{DoxyCompactList}\small\item\em Gets the list of codes that will be auto-\/registered with each \hyperlink{namespaceMezzanine_1_1UI}{UI} button. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classMezzanine_1_1UIManager_a2430f2ea7e8ca90f320c9205a871fda3}{GetHoveredButton} ()
@@ -62,8 +68,6 @@ std::vector$<$ \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05
 \begin{DoxyCompactList}\small\item\em Gets an already created screen by name. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1Screen}{UI::Screen} $\ast$ \hyperlink{classMezzanine_1_1UIManager_aa98be268099fc5a68f5a030a61e286d9}{GetScreen} (\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created screen by index. \item\end{DoxyCompactList}\item 
-Gorilla::Silverback $\ast$ \hyperlink{classMezzanine_1_1UIManager_a931bcf654541cb3ca43553ae349eab04}{GetSilverbackPointer} ()
-\begin{DoxyCompactList}\small\item\em Gets the internal silverback pointer. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}{ManagerBase::ManagerTypeName} \hyperlink{classMezzanine_1_1UIManager_a0a576d8f14aa475d9f1750b4cf76cf10}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em Gets the type of manager that this manager is. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classMezzanine_1_1UIManager_ac4fda10f2f5af5df7ecbc089eb1ee359}{GetWidgetCapturingInput} ()
@@ -75,8 +79,8 @@ void \hyperlink{classMezzanine_1_1UIManager_a51dc53c08ac8657133279e75fbce466a}{I
 \label{classMezzanine_1_1UIManager_a51dc53c08ac8657133279e75fbce466a}
 
 \begin{DoxyCompactList}\small\item\em Inherited from \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1UIManager_afd46390fd59084a5d834fc7cfecfbd3d}{LoadGorilla} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Loads a Gorilla file for use with this manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1UIManager_a78c3b7a0aafc83e0b4ea55b0b0ad640c}{LoadMTA} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Group=\char`\"{}UI\char`\"{})
+\begin{DoxyCompactList}\small\item\em Loads a \hyperlink{namespaceMezzanine}{Mezzanine} Texture Atlas file for use with \hyperlink{classMezzanine_1_1UI_1_1Screen}{UI::Screen}'s. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1UIManager_a7f3ea82551d2a894545235f4a9cba549}{MouseIsInUISystem} ()
 \begin{DoxyCompactList}\small\item\em Checks to see if the mouse is over a \hyperlink{namespaceMezzanine_1_1UI}{UI} element. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UIManager_a62fe2ec9d4dad13762aa154f65d707a7}{RedrawAll} (bool Force=false)
@@ -95,12 +99,8 @@ void \hyperlink{classMezzanine_1_1UIManager_a38a2c2037d0f73c2ddae51b62b171815}{R
 \begin{DoxyCompactList}\small\item\em Removes a previously set auto-\/registering input code. \item\end{DoxyCompactList}\item 
 std::pair$<$ \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole}, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} $>$ \hyperlink{classMezzanine_1_1UIManager_aaf4698cd4bac16736c81134aa977a0f9}{SuggestGlyphIndex} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Height, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Atlas)
 \begin{DoxyCompactList}\small\item\em Suggests a glyph index based on the desired actual height. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UIManager_a2101862a8b3f08f2fa657b0bffb75bd0}{UIManager} ()
-\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1UIManager_aad7572eab280b81844c011cc28ca1be3}{UnbindHotKey} (const \hyperlink{classMezzanine_1_1MetaCode_a3b5633f0145bf3287cf53a3f05b5563c}{MetaCode::InputCode} \&HotKey, \hyperlink{classMezzanine_1_1UI_1_1Button}{UI::Button} $\ast$BoundButton)
-\begin{DoxyCompactList}\small\item\em Removes a previously set hotkey binding. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UIManager_ad480071e4f02d2e24903da56425e6b6a}{$\sim$UIManager} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Removes a previously set hotkey binding. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -145,6 +145,11 @@ void {\bfseries WidgetUpdates} ()}
 \hypertarget{classMezzanine_1_1UIManager_afc8f4929c4ebd442c56abd1ee80ca841}{
 std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Button}{UI::Button} $\ast$ $>$ {\bfseries ActivatedButtons}}
 \label{classMezzanine_1_1UIManager_afc8f4929c4ebd442c56abd1ee80ca841}
+
+\item 
+\hypertarget{classMezzanine_1_1UIManager_ab3da97dd3bcd7b791252f71ae611c5a5}{
+std::map$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}, \hyperlink{classMezzanine_1_1UI_1_1TextureAtlas}{UI::TextureAtlas} $\ast$ $>$ {\bfseries Atlases}}
+\label{classMezzanine_1_1UIManager_ab3da97dd3bcd7b791252f71ae611c5a5}
 
 \item 
 \hypertarget{classMezzanine_1_1UIManager_a362c2799989a67d06a461dfbd2bab84a}{
@@ -192,11 +197,6 @@ std::vector$<$ \hyperlink{classMezzanine_1_1UI_1_1Screen}{UI::Screen} $\ast$ $>$
 \label{classMezzanine_1_1UIManager_a2021e925ef8115dd42a6ce1a151ccf22}
 
 \item 
-\hypertarget{classMezzanine_1_1UIManager_af04023901dcec07fea9e6549fdf1c93f}{
-Gorilla::Silverback $\ast$ \hyperlink{classMezzanine_1_1UIManager_af04023901dcec07fea9e6549fdf1c93f}{Silver}}
-\label{classMezzanine_1_1UIManager_af04023901dcec07fea9e6549fdf1c93f}
-
-\begin{DoxyCompactList}\small\item\em Pointer for the Gorilla core class, where this manager gets it's functionality. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UIManager_a6ee130f7ac74f239e02c68919671afa4}{
 \hyperlink{classMezzanine_1_1UI_1_1Widget}{UI::Widget} $\ast$ {\bfseries WidgetFocus}}
 \label{classMezzanine_1_1UIManager_a6ee130f7ac74f239e02c68919671afa4}
@@ -205,9 +205,9 @@ Gorilla::Silverback $\ast$ \hyperlink{classMezzanine_1_1UIManager_af04023901dcec
 
 
 \subsubsection{Detailed Description}
-This class is responsible for any and all user interactions with the User interface/HUD. Currently, you have to create the UI/HUD in code. Font and sprite data is loaded through a premade Gorilla file($\ast$.gorilla). 
+This class is responsible for any and all user interactions with the User interface/HUD. Currently, you have to create the UI/HUD in code. Font and sprite data is loaded through a premade mta file($\ast$.mta). 
 
-Definition at line 74 of file uimanager.h.
+Definition at line 73 of file uimanager.h.
 
 
 
@@ -227,7 +227,7 @@ Class Constructor.
 
 Standard class initialization constructor. 
 
-Definition at line 68 of file uimanager.cpp.
+Definition at line 65 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_ad480071e4f02d2e24903da56425e6b6a}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!$\sim$UIManager@{$\sim$UIManager}}
@@ -244,7 +244,7 @@ Class Destructor.
 
 The class destructor. 
 
-Definition at line 86 of file uimanager.cpp.
+Definition at line 78 of file uimanager.cpp.
 
 
 
@@ -269,7 +269,7 @@ Adds a key or button that will be auto-\/registered with every created \hyperlin
 \end{DoxyParams}
 
 
-Definition at line 299 of file uimanager.cpp.
+Definition at line 314 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_aa4f168f84cc9ab88d04964913b3982f3}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!BindHotKey@{BindHotKey}}
@@ -294,7 +294,7 @@ This function allows buttons to behave like they are pressed without mouse input
 \end{DoxyParams}
 
 
-Definition at line 265 of file uimanager.cpp.
+Definition at line 280 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a7e88a8d25ae95440032333179f2f493f}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!ButtonAutoRegisterEnabled@{ButtonAutoRegisterEnabled}}
@@ -314,7 +314,7 @@ Returns a bool indicating whether or not the ButtonAutoRegister feature is enabl
 \end{DoxyReturn}
 
 
-Definition at line 294 of file uimanager.cpp.
+Definition at line 309 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_ae4ad1d9ca321006a995c530a0debe835}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!CheckButtonMouseIsOver@{CheckButtonMouseIsOver}}
@@ -334,7 +334,7 @@ Returns the button clicked if there is one, NULL if not.
 \end{DoxyReturn}
 
 
-Definition at line 425 of file uimanager.cpp.
+Definition at line 440 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_ab12c172934cb6836e97568266d973e50}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
@@ -354,7 +354,7 @@ Returns the widget clicked if there is one, NULL if not.
 \end{DoxyReturn}
 
 
-Definition at line 441 of file uimanager.cpp.
+Definition at line 456 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a1470d292a2ebea8438eddcc9abcf139f}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!CreateScreen@{CreateScreen}}
@@ -375,14 +375,14 @@ Screens are the base set of renderable \hyperlink{namespaceMezzanine_1_1UI}{UI} 
 \begin{DoxyParams}{Parameters}
 {\em ScreenName} & The name to be given to the screen. \\
 \hline
-{\em Atlas} & The name of a previously loaded Gorilla file to be used with this screen. \\
+{\em Atlas} & The name of a previously loaded mta file to be used with this screen. \\
 \hline
 {\em WindowViewport} & The viewport to create this screen in. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 356 of file uimanager.cpp.
+Definition at line 371 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a8634d75235a218f1b7c77a33fb2c4273}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!DestroyScreen@{DestroyScreen}}
@@ -404,7 +404,7 @@ Destroying a screen will also destroy all of it's layers, and everything contain
 \end{DoxyParams}
 
 
-Definition at line 387 of file uimanager.cpp.
+Definition at line 402 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a5dda002532786846f076ed9c685af2f5}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!EnableButtonAutoRegister@{EnableButtonAutoRegister}}
@@ -427,7 +427,38 @@ If true, this will cause every \hyperlink{namespaceMezzanine_1_1UI}{UI} button t
 \end{DoxyParams}
 
 
-Definition at line 289 of file uimanager.cpp.
+Definition at line 304 of file uimanager.cpp.
+
+\hypertarget{classMezzanine_1_1UIManager_a904d4d7a3957a13cf5e27e8d97dd1add}{
+\index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetAtlas@{GetAtlas}}
+\index{GetAtlas@{GetAtlas}!Mezzanine::UIManager@{Mezzanine::UIManager}}
+\paragraph[{GetAtlas}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::TextureAtlas} $\ast$ Mezzanine::UIManager::GetAtlas (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{AtlasName}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1UIManager_a904d4d7a3957a13cf5e27e8d97dd1add}
+
+
+Gets a loaded Atlas being stored in this manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AtlasName} & The name of the Atlas, which is usually the name of the file without the extension. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the requested Atlas, or NULL if it doesn't exist. 
+\end{DoxyReturn}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000036}{Todo}]These NULL returns should probably be exceptions. \end{Desc}
+
+
+
+
+Definition at line 258 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_ab8e71134409a4375236f866774d61fcf}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetAutoRegisteredCodes@{GetAutoRegisteredCodes}}
@@ -447,7 +478,7 @@ Returns a pointer to the vector containing all the codes to be auto-\/registered
 \end{DoxyReturn}
 
 
-Definition at line 326 of file uimanager.cpp.
+Definition at line 341 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a2430f2ea7e8ca90f320c9205a871fda3}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetHoveredButton@{GetHoveredButton}}
@@ -467,7 +498,7 @@ Returns a pointer to the button, or NULL if it's not over any visable buttons.
 \end{DoxyReturn}
 
 
-Definition at line 331 of file uimanager.cpp.
+Definition at line 346 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_ac4a7e054c5a5e52d37f1ff38f5328e9e}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetHoveredWidget@{GetHoveredWidget}}
@@ -487,7 +518,7 @@ Returns a pointer to the widget, or NULL if it's not over any visable buttons.
 \end{DoxyReturn}
 
 
-Definition at line 341 of file uimanager.cpp.
+Definition at line 356 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a8595c1650244accdff29f7e835bd3043}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetHoveredWidgetButton@{GetHoveredWidgetButton}}
@@ -507,7 +538,7 @@ Returns a pointer to the button, or NULL if it's not over any visable buttons.
 \end{DoxyReturn}
 
 
-Definition at line 336 of file uimanager.cpp.
+Definition at line 351 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_abdd684382023792153add6c5766c9e4c}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetLayer@{GetLayer}}
@@ -527,7 +558,7 @@ Returns the named layer if found, NULL if not.
 \end{DoxyReturn}
 
 
-Definition at line 414 of file uimanager.cpp.
+Definition at line 429 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a847efdfe7496f7bf3aeaef9991a3a631}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetNumScreens@{GetNumScreens}}
@@ -547,27 +578,7 @@ Returns the number of screens this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 382 of file uimanager.cpp.
-
-\hypertarget{classMezzanine_1_1UIManager_a11a4962c5f55d915d01a5598afcff6d6}{
-\index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetScreen@{GetScreen}}
-\index{GetScreen@{GetScreen}!Mezzanine::UIManager@{Mezzanine::UIManager}}
-\paragraph[{GetScreen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Screen} $\ast$ Mezzanine::UIManager::GetScreen (
-\begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1UIManager_a11a4962c5f55d915d01a5598afcff6d6}
-
-
-Gets an already created screen by name. 
-
-\begin{DoxyReturn}{Returns}
-Returns a pointer to the screen of the specified name. 
-\end{DoxyReturn}
-
-
-Definition at line 363 of file uimanager.cpp.
+Definition at line 397 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_aa98be268099fc5a68f5a030a61e286d9}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetScreen@{GetScreen}}
@@ -587,27 +598,27 @@ Returns a pointer to the screen at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 377 of file uimanager.cpp.
+Definition at line 392 of file uimanager.cpp.
 
-\hypertarget{classMezzanine_1_1UIManager_a931bcf654541cb3ca43553ae349eab04}{
-\index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetSilverbackPointer@{GetSilverbackPointer}}
-\index{GetSilverbackPointer@{GetSilverbackPointer}!Mezzanine::UIManager@{Mezzanine::UIManager}}
-\paragraph[{GetSilverbackPointer}]{\setlength{\rightskip}{0pt plus 5cm}Gorilla::Silverback $\ast$ Mezzanine::UIManager::GetSilverbackPointer (
+\hypertarget{classMezzanine_1_1UIManager_a11a4962c5f55d915d01a5598afcff6d6}{
+\index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetScreen@{GetScreen}}
+\index{GetScreen@{GetScreen}!Mezzanine::UIManager@{Mezzanine::UIManager}}
+\paragraph[{GetScreen}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Screen} $\ast$ Mezzanine::UIManager::GetScreen (
 \begin{DoxyParamCaption}
-{}
+\item[{const {\bf String} \&}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1UIManager_a931bcf654541cb3ca43553ae349eab04}
+\label{classMezzanine_1_1UIManager_a11a4962c5f55d915d01a5598afcff6d6}
 
 
-Gets the internal silverback pointer. 
+Gets an already created screen by name. 
 
 \begin{DoxyReturn}{Returns}
-Returns a pointer to the internal silverback class. 
+Returns a pointer to the screen of the specified name. 
 \end{DoxyReturn}
 
 
-Definition at line 494 of file uimanager.cpp.
+Definition at line 378 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a0a576d8f14aa475d9f1750b4cf76cf10}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetType@{GetType}}
@@ -631,7 +642,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf
 
 
 
-Definition at line 491 of file uimanager.cpp.
+Definition at line 514 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_ac4fda10f2f5af5df7ecbc089eb1ee359}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetWidgetCapturingInput@{GetWidgetCapturingInput}}
@@ -651,7 +662,7 @@ Returns a pointer to the widget that currently capturing input, or NULL if no wi
 \end{DoxyReturn}
 
 
-Definition at line 351 of file uimanager.cpp.
+Definition at line 366 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a57b306a3fca917e2dfa1c05ca87f6262}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!GetWidgetFocus@{GetWidgetFocus}}
@@ -671,24 +682,27 @@ Returns a pointer to the currently controlled widget, or NULL if none are being 
 \end{DoxyReturn}
 
 
-Definition at line 346 of file uimanager.cpp.
+Definition at line 361 of file uimanager.cpp.
 
-\hypertarget{classMezzanine_1_1UIManager_afd46390fd59084a5d834fc7cfecfbd3d}{
-\index{Mezzanine::UIManager@{Mezzanine::UIManager}!LoadGorilla@{LoadGorilla}}
-\index{LoadGorilla@{LoadGorilla}!Mezzanine::UIManager@{Mezzanine::UIManager}}
-\paragraph[{LoadGorilla}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UIManager::LoadGorilla (
+\hypertarget{classMezzanine_1_1UIManager_a78c3b7a0aafc83e0b4ea55b0b0ad640c}{
+\index{Mezzanine::UIManager@{Mezzanine::UIManager}!LoadMTA@{LoadMTA}}
+\index{LoadMTA@{LoadMTA}!Mezzanine::UIManager@{Mezzanine::UIManager}}
+\paragraph[{LoadMTA}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UIManager::LoadMTA (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{Name}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Group = {\ttfamily \char`\"{}UI\char`\"{}}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1UIManager_afd46390fd59084a5d834fc7cfecfbd3d}
+\label{classMezzanine_1_1UIManager_a78c3b7a0aafc83e0b4ea55b0b0ad640c}
 
 
-Loads a Gorilla file for use with this manager. 
+Loads a \hyperlink{namespaceMezzanine}{Mezzanine} Texture Atlas file for use with \hyperlink{classMezzanine_1_1UI_1_1Screen}{UI::Screen}'s. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of the file to be loaded, not including the extension. \\
+\hline
+{\em Group} & The resource group where the MTA file can be found. \\
 \hline
 \end{DoxyParams}
 
@@ -713,7 +727,7 @@ Returns true if the mouse is over a visable \hyperlink{namespaceMezzanine_1_1UI}
 \end{DoxyReturn}
 
 
-Definition at line 457 of file uimanager.cpp.
+Definition at line 472 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a62fe2ec9d4dad13762aa154f65d707a7}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!RedrawAll@{RedrawAll}}
@@ -735,7 +749,7 @@ Forces everything loaded into the \hyperlink{namespaceMezzanine_1_1UI}{UI} syste
 \end{DoxyParams}
 
 
-Definition at line 257 of file uimanager.cpp.
+Definition at line 272 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_a38a2c2037d0f73c2ddae51b62b171815}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!RemoveAutoRegisterCode@{RemoveAutoRegisterCode}}
@@ -757,7 +771,7 @@ Removes a previously set auto-\/registering input code.
 \end{DoxyParams}
 
 
-Definition at line 309 of file uimanager.cpp.
+Definition at line 324 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_aaf4698cd4bac16736c81134aa977a0f9}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!SuggestGlyphIndex@{SuggestGlyphIndex}}
@@ -785,7 +799,7 @@ Returns a std::pair, First is a whole for the Glyph index and second is a Real f
 \end{DoxyReturn}
 
 
-Definition at line 467 of file uimanager.cpp.
+Definition at line 482 of file uimanager.cpp.
 
 \hypertarget{classMezzanine_1_1UIManager_aad7572eab280b81844c011cc28ca1be3}{
 \index{Mezzanine::UIManager@{Mezzanine::UIManager}!UnbindHotKey@{UnbindHotKey}}
@@ -810,7 +824,7 @@ Removes a previously set hotkey binding.
 \end{DoxyParams}
 
 
-Definition at line 271 of file uimanager.cpp.
+Definition at line 286 of file uimanager.cpp.
 
 
 

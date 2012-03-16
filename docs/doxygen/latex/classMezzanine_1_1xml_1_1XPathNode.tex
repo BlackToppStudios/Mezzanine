@@ -1,0 +1,210 @@
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode}{
+\subsection{Mezzanine::xml::XPathNode Class Reference}
+\label{classMezzanine_1_1xml_1_1XPathNode}\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+}
+
+
+An XPath node which can store handles to a \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a7c6037666eb8beaaeb21414956d20709}{
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode_a7c6037666eb8beaaeb21414956d20709}{XPathNode} ()}
+\label{classMezzanine_1_1xml_1_1XPathNode_a7c6037666eb8beaaeb21414956d20709}
+
+\begin{DoxyCompactList}\small\item\em Default constructor; constructs empty XPath node. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode_a204e98f8857e36678e2968a0a93ef7e9}{XPathNode} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Construct From a \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode_ae73694af07ead76db472d118223e5a8d}{XPathNode} (const \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \&GetAttribute, const \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \&GetParent)
+\begin{DoxyCompactList}\small\item\em Construct From a \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a50be9e2ee7547d9d2d4e8965560006ea}{
+\hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} \hyperlink{classMezzanine_1_1xml_1_1XPathNode_a50be9e2ee7547d9d2d4e8965560006ea}{GetAttribute} () const }
+\label{classMezzanine_1_1xml_1_1XPathNode_a50be9e2ee7547d9d2d4e8965560006ea}
+
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute} this is referencing. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1XPathNode_a3f4d8aac2c941a30d8e4b230fc17eddb}{GetNode} () const 
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} this is referencing. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1Node}{Node} \hyperlink{classMezzanine_1_1xml_1_1XPathNode_a62bf7ad43204f9ed8805bab559a922e8}{GetParent} () const 
+\begin{DoxyCompactList}\small\item\em Get the parent of the \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} or \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute} this refers to. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1xml_1_1XPathNode_a2990195cf4c7163c80b40914574e745c}{operator unspecified\_\-bool\_\-type} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1XPathNode_afc075c0837405d889e465be501508f29}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Logical not operator, used a workaround for borland compiler. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1XPathNode_ae0ee1b5c42ce8445b4a8f2da96b77ea4}{operator!=} (const \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
+\begin{DoxyCompactList}\small\item\em Called when comparing two \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} instances for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1xml_1_1XPathNode_a36f43ce486cae2f5c8e8ae1da7272b0e}{operator==} (const \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
+\begin{DoxyCompactList}\small\item\em Called when comparing two \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} instances for equality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+An XPath node which can store handles to a \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}. Because an XPath node can be either a \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}, there is a special type, \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode}, which is a discriminated union of these types. A value of this type contains two node handles, one of \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} type, and another one of \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute} type; at most one of them can be non-\/null. The accessors to get these handles are available: \hyperlink{classMezzanine_1_1xml_1_1XPathNode_a3f4d8aac2c941a30d8e4b230fc17eddb}{XPathNode::GetNode()} an \hyperlink{classMezzanine_1_1xml_1_1XPathNode_a50be9e2ee7547d9d2d4e8965560006ea}{XPathNode::GetAttribute()} . \par
+ \par
+ XPath nodes can be null, in which case both accessors return null handles. 
+
+Definition at line 1403 of file xml.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a204e98f8857e36678e2968a0a93ef7e9}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!XPathNode@{XPathNode}}
+\index{XPathNode@{XPathNode}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{XPathNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathNode::XPathNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{node}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_a204e98f8857e36678e2968a0a93ef7e9}
+
+
+Construct From a \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} this handle should reference. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_ae73694af07ead76db472d118223e5a8d}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!XPathNode@{XPathNode}}
+\index{XPathNode@{XPathNode}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{XPathNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathNode::XPathNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{GetAttribute, }
+\item[{const {\bf Node} \&}]{GetParent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_ae73694af07ead76db472d118223e5a8d}
+
+
+Construct From a \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GetAttribute} & The \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute} this handle should reference. \\
+\hline
+{\em GetParent} & The \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} the \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute} is on. \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a3f4d8aac2c941a30d8e4b230fc17eddb}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathNode::GetNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_a3f4d8aac2c941a30d8e4b230fc17eddb}
+
+
+Get the \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} this is referencing. 
+
+\begin{DoxyReturn}{Returns}
+A valid \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}, or a null node if this doesn't reference a an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a62bf7ad43204f9ed8805bab559a922e8}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!GetParent@{GetParent}}
+\index{GetParent@{GetParent}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{GetParent}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathNode::GetParent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_a62bf7ad43204f9ed8805bab559a922e8}
+
+
+Get the parent of the \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} or \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute} this refers to. 
+
+\begin{DoxyReturn}{Returns}
+A valid \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}, or a null node if this doesn't reference a an \hyperlink{classMezzanine_1_1xml_1_1Attribute}{xml::Attribute}. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a2990195cf4c7163c80b40914574e745c}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
+\index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathNode::operator unspecified\_\-bool\_\-type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_a2990195cf4c7163c80b40914574e745c}
+
+
+Used to convert this to a boolean value in a safe way. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the internal data is set and false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_afc075c0837405d889e465be501508f29}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!operator!@{operator!}}
+\index{operator!@{operator!}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::xml::XPathNode::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_afc075c0837405d889e465be501508f29}
+
+
+Logical not operator, used a workaround for borland compiler. 
+
+\begin{DoxyReturn}{Returns}
+A valid \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}, or a null node if this doesn't reference a an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}. 
+
+A bool that is the opposite of evaluatig this as a bool normally. 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_ae0ee1b5c42ce8445b4a8f2da96b77ea4}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::XPathNode::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathNode} \&}]{n}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_ae0ee1b5c42ce8445b4a8f2da96b77ea4}
+
+
+Called when comparing two \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} instances for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The other \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} against for inequality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this and the other \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{xml::XPathNode} are referencing the same item, false otherwise; 
+\end{DoxyReturn}
+\hypertarget{classMezzanine_1_1xml_1_1XPathNode_a36f43ce486cae2f5c8e8ae1da7272b0e}{
+\index{Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::xml::XPathNode@{Mezzanine::xml::XPathNode}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::xml::XPathNode::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathNode} \&}]{n}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1xml_1_1XPathNode_a36f43ce486cae2f5c8e8ae1da7272b0e}
+
+
+Called when comparing two \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{XPathNode} instances for equality. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The other \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classMezzanine_1_1xml_1_1Node}{Node} against for equality. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this and the other \hyperlink{classMezzanine_1_1xml_1_1XPathNode}{xml::XPathNode} are referencing the same item, false otherwise; 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

@@ -11,6 +11,17 @@ A tool for serializing classes with specific issues serializing.
 
 {\ttfamily \#include $<$serialization.h$>$}
 
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}{ProtoSerialize} (const Serializable \&Target, \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot)=0
+\begin{DoxyCompactList}\small\item\em Get all the serialized data about one class instance in an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Serializer_a310e3fb563ccc12528ea9b8c25fcd7a8}{ProtoSerializeAll} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const =0
+\begin{DoxyCompactList}\small\item\em Get all of the data from the serializable class instance. \item\end{DoxyCompactList}\item 
+virtual std::ostream \& \hyperlink{classMezzanine_1_1Serializer_af71f7716c36ba0a583ab1e29e08cac6d}{Serialize} (std::ostream \&Stream, const Serializable \&Target)
+\begin{DoxyCompactList}\small\item\em Output the specified member to a stream. \item\end{DoxyCompactList}\item 
+virtual std::ostream \& \hyperlink{classMezzanine_1_1Serializer_aa178dfa519a2e73e84c0a2f35b2b8b5f}{SerializeAll} (std::ostream \&Stream) const 
+\begin{DoxyCompactList}\small\item\em Output the complete serialized data to a stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -21,6 +32,108 @@ A tool for serializing classes with specific issues serializing. Some classes ha
  This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and \hyperlink{classMezzanine_1_1DeSerializer}{Mezzanine::DeSerializer}. The type of this template is expected to match what this is serializing. 
 
 Definition at line 306 of file serialization.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}{
+\index{Mezzanine::Serializer@{Mezzanine::Serializer}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::Serializer@{Mezzanine::Serializer}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual void {\bf Mezzanine::Serializer}$<$ Serializable $>$::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{const Serializable \&}]{Target, }
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}
+
+
+Get all the serialized data about one class instance in an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Target} & A reference to class instance to be deserialized.\\
+\hline
+\end{DoxyParams}
+This is not implemented by default. 
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vector3 should be appended to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1Serializer_a310e3fb563ccc12528ea9b8c25fcd7a8}{
+\index{Mezzanine::Serializer@{Mezzanine::Serializer}!ProtoSerializeAll@{ProtoSerializeAll}}
+\index{ProtoSerializeAll@{ProtoSerializeAll}!Mezzanine::Serializer@{Mezzanine::Serializer}}
+\paragraph[{ProtoSerializeAll}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual void {\bf Mezzanine::Serializer}$<$ Serializable $>$::ProtoSerializeAll (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Serializer_a310e3fb563ccc12528ea9b8c25fcd7a8}
+
+
+Get all of the data from the serializable class instance. 
+
+This is to be implemented in individual serializer with logic specific to the required tasks. It is expected to produce an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the entirety of the data required to reconstitute the serialized class. \par
+ \par
+ This is expected to gets it's knowledge about what to serialize some other than being passed as an argument. It could query a manager or be passed a series pointers that is needs to work with. \par
+ \par
+ This is not implemented by default. 
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all the items deserialized should be appended to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1Serializer_af71f7716c36ba0a583ab1e29e08cac6d}{
+\index{Mezzanine::Serializer@{Mezzanine::Serializer}!Serialize@{Serialize}}
+\index{Serialize@{Serialize}!Mezzanine::Serializer@{Mezzanine::Serializer}}
+\paragraph[{Serialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual std::ostream\& {\bf Mezzanine::Serializer}$<$ Serializable $>$::Serialize (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{Stream, }
+\item[{const Serializable \&}]{Target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Serializer_af71f7716c36ba0a583ab1e29e08cac6d}
+
+
+Output the specified member to a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Target} & A reference to class instance to be deserialized. \\
+\hline
+{\em Stream} & The std::ostream to send the data into.\\
+\hline
+\end{DoxyParams}
+The default implementation of this uses ProtoSerialize(const String\&) \begin{DoxyReturn}{Returns}
+The std::ostream that was passed in. 
+\end{DoxyReturn}
+
+
+Definition at line 345 of file serialization.h.
+
+\hypertarget{classMezzanine_1_1Serializer_aa178dfa519a2e73e84c0a2f35b2b8b5f}{
+\index{Mezzanine::Serializer@{Mezzanine::Serializer}!SerializeAll@{SerializeAll}}
+\index{SerializeAll@{SerializeAll}!Mezzanine::Serializer@{Mezzanine::Serializer}}
+\paragraph[{SerializeAll}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Serializable $>$ virtual std::ostream\& {\bf Mezzanine::Serializer}$<$ Serializable $>$::SerializeAll (
+\begin{DoxyParamCaption}
+\item[{std::ostream \&}]{Stream}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Serializer_aa178dfa519a2e73e84c0a2f35b2b8b5f}
+
+
+Output the complete serialized data to a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Stream} & The std::ostream to send the data into.\\
+\hline
+\end{DoxyParams}
+By default this is implemented in using \hyperlink{classMezzanine_1_1Serializer_a310e3fb563ccc12528ea9b8c25fcd7a8}{ProtoSerializeAll()}. \begin{DoxyReturn}{Returns}
+The populated ostream. 
+\end{DoxyReturn}
+
+
+Definition at line 326 of file serialization.h.
 
 
 

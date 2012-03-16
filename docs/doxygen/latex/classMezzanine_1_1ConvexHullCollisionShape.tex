@@ -20,12 +20,19 @@ Inheritance diagram for Mezzanine::ConvexHullCollisionShape:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a6e6f3da8515bfd2b1d33563e86f3ed1e}{AddPoint} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Point)
-\begin{DoxyCompactList}\small\item\em Adds a point to this shape. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a73119a35d5ba1e5cfebde7d58f894889}{ConvexHullCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, const std::vector$<$ \hyperlink{classMezzanine_1_1Vector3}{Vector3} $>$ \&Points)
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a100c6b3009ad46976a0484446a3d5da2}{ConvexHullCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btConvexHullShape $\ast$BulletShape)
 \begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ConvexHullCollisionShape_ae2b4a603258a2da06a56f8521673affa}{ConvexHullCollisionShape} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} OneNode)
+\item 
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}{
+virtual \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}{$\sim$ConvexHullCollisionShape} ()}
+\label{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a6e6f3da8515bfd2b1d33563e86f3ed1e}{AddPoint} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Point)
+\begin{DoxyCompactList}\small\item\em Adds a point to this shape. \item\end{DoxyCompactList}\item 
 virtual btConvexHullShape $\ast$ \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a35acc9fd0c3e990bcacf1caf6d65a094}{GetBulletHullShape} () const 
 \item 
 virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a8eaf9dccce90a9366d37ab9112bc0f22}{GetNumPoints} () const 
@@ -38,11 +45,15 @@ virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Gets an unscaled stored point in this ConvexHull. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a6aa3c6afad74091dec9c933eef257301}{IsInside} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Tolerance) const 
 \begin{DoxyCompactList}\small\item\em Checks to see if a point in local space is inside this shape. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}{
-virtual \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}{$\sim$ConvexHullCollisionShape} ()}
-\label{classMezzanine_1_1ConvexHullCollisionShape_ae6c30c38604747a2d2500b25d88de50e}
-
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a3ad727374ebb82699f8dae7344139add}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\item 
+virtual void \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a60a91d12cc13b8886e6feaddeb32e556}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ConvexHullCollisionShape_a58cda94bb88fd44976747e0600b2356f}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -104,6 +115,26 @@ Internal Constructor.
 
 
 Definition at line 957 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_ae2b4a603258a2da06a56f8521673affa}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!ConvexHullCollisionShape@{ConvexHullCollisionShape}}
+\index{ConvexHullCollisionShape@{ConvexHullCollisionShape}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{ConvexHullCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ConvexHullCollisionShape::ConvexHullCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node}}]{OneNode}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_ae2b4a603258a2da06a56f8521673affa}
+DeSerializing Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & The node to use for constructing this shape \\
+\hline
+\end{DoxyParams}
+ 
+
+Definition at line 965 of file collisionshape.cpp.
 
 
 
@@ -267,6 +298,74 @@ Returns a bool indicating whether or not the specified point is inside the shape
 
 
 Definition at line 1009 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a3ad727374ebb82699f8dae7344139add}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ConvexHullCollisionShape::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a3ad727374ebb82699f8dae7344139add}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a2257312048ee9085fa5d14f6b34caae1}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 1045 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a60a91d12cc13b8886e6feaddeb32e556}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ConvexHullCollisionShape::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a60a91d12cc13b8886e6feaddeb32e556}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_acfaab953833e9be503fddb2ee0f56d4f}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 1023 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1ConvexHullCollisionShape_a58cda94bb88fd44976747e0600b2356f}{
+\index{Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::ConvexHullCollisionShape@{Mezzanine::ConvexHullCollisionShape}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ConvexHullCollisionShape::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ConvexHullCollisionShape_a58cda94bb88fd44976747e0600b2356f}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}ConeCollisionShape\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a19bb44a705ff86606834feb2783500e5}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 1075 of file collisionshape.cpp.
 
 
 

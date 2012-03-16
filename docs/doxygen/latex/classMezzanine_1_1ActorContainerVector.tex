@@ -22,6 +22,11 @@ Inheritance diagram for Mezzanine::ActorContainerVector:\begin{figure}[H]
 \item 
 \hyperlink{classMezzanine_1_1ActorContainerVector_a20cb603431e4499c1c6d3c901493f224}{ActorContainerVector} ()
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}{
+virtual \hyperlink{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}{$\sim$ActorContainerVector} ()}
+\label{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a1341d51fa9ed279301eed579a2de79b2}{AddActor} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ActorToAdd)
 \begin{DoxyCompactList}\small\item\em This will add an Actor to this container and the world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a2b09e4eac9bc6392f47dd81fb7592ce3}{CursorToFirst} ()
@@ -64,12 +69,7 @@ virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_ae34237a2ba5649f0
 virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_ab974d2704bfc3d74e3f008250ed893d8}{SetGameWorld} (\hyperlink{classMezzanine_1_1World}{World} $\ast$GameWorld\_\-)
 \begin{DoxyCompactList}\small\item\em This safely move all the Actors out of or into a \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorContainerVector_a7011795fcc3c3eb51b981aaebff23fac}{SetGameWorld} (\hyperlink{classMezzanine_1_1World}{World} $\ast$GameWorld\_\-, bool AddToWorld, bool RemoveFromWorld)
-\begin{DoxyCompactList}\small\item\em Optionally move actors into or out of a world. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}{
-virtual \hyperlink{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}{$\sim$ActorContainerVector} ()}
-\label{classMezzanine_1_1ActorContainerVector_a84a9f721addd5bdfbc611393913e68fd}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Optionally move actors into or out of a world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -80,7 +80,7 @@ vector$<$ \hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$ $>$::iterato
 \subsubsection{Detailed Description}
 A simple Actor Container using a vector. This inherits from std::vector and our \hyperlink{classMezzanine_1_1ActorContainerBase}{Mezzanine::ActorContainerBase} to allow us to have access to a container through a standardized structure this way the Mezzanine::world doesn't need to worry about the details when accessing and storing actors 
 
-Definition at line 63 of file actorcontainervector.h.
+Definition at line 68 of file actorcontainervector.h.
 
 
 
@@ -540,7 +540,7 @@ Definition at line 81 of file actorcontainervector.cpp.
 
 This safely move all the Actors out of or into a \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. 
 
-This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system if a \hyperlink{classMezzanine_1_1World}{Mezzanine::World} is present. Then this sets up all actors with the new \hyperlink{classMezzanine_1_1World}{World} unless it is NULL 
+This Removes all scene nodes from the \hyperlink{namespaceOgre}{Ogre} the graphics subsystem, and removes all bodies from the physics system if a \hyperlink{classMezzanine_1_1World}{Mezzanine::World} is present. Then this sets up all actors with the new \hyperlink{classMezzanine_1_1World}{World} unless it is NULL 
 \begin{DoxyParams}{Parameters}
 {\em GameWorld\_\-} & This is a pointer to the new \hyperlink{classMezzanine_1_1World}{Mezzanine::World} to work with. \\
 \hline
@@ -599,7 +599,7 @@ This is used to store information about the cursor.
 
 This implementation of \hyperlink{classMezzanine_1_1ActorContainerBase}{ActorContainerBase} will use this, and only this to access the cursor so feel free to use this instead. 
 
-Definition at line 124 of file actorcontainervector.h.
+Definition at line 129 of file actorcontainervector.h.
 
 
 

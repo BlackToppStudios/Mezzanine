@@ -24,6 +24,13 @@ Inheritance diagram for Mezzanine::BoxCollisionShape:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1BoxCollisionShape_ae715de5cb9f343f10973f06bf4f9acbb}{BoxCollisionShape} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&\hyperlink{classMezzanine_1_1CollisionShape_aac524c5c56fa4d158bc071f8aecfbe79}{Name}, btBoxShape $\ast$BulletShape)
 \begin{DoxyCompactList}\small\item\em Internal Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1BoxCollisionShape_a20fe1b0eef928087c30fbb90bf718e97}{BoxCollisionShape} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} OneNode)
+\begin{DoxyCompactList}\small\item\em DeSerializing Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}{
+virtual \hyperlink{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}{$\sim$BoxCollisionShape} ()}
+\label{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
 virtual btBoxShape $\ast$ \hyperlink{classMezzanine_1_1BoxCollisionShape_a408a3b15bf4425d827c7cf4ee908efef}{GetBulletBoxShape} () const 
 \item 
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1BoxCollisionShape_a5214ce314dc7d383ae81995e618f87cb}{GetCleanHalfExtents} () const 
@@ -36,11 +43,15 @@ virtual \hyperlink{classMezzanine_1_1CollisionShape_ad04186055565998879b64176d6d
 \item 
 virtual bool \hyperlink{classMezzanine_1_1BoxCollisionShape_a1902aa75d5c18ad4ce090952b6af0050}{IsInside} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Tolerance) const 
 \begin{DoxyCompactList}\small\item\em Checks to see if a point in local space is inside this shape. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}{
-virtual \hyperlink{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}{$\sim$BoxCollisionShape} ()}
-\label{classMezzanine_1_1BoxCollisionShape_a3698d2ef0c9a0ab92809b2ff2ba62792}
-
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual void \hyperlink{classMezzanine_1_1BoxCollisionShape_aeff89859ae98a391bf1232e190c839b5}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\item 
+virtual void \hyperlink{classMezzanine_1_1BoxCollisionShape_abdd854fc0f165b3b17baecb0bb3961b4}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1BoxCollisionShape_aa96e3055ec21f18198bceccdeaafa538}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -72,7 +83,7 @@ Class Constructor.
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this shape. \\
 \hline
-{\em HalfExtents} & A \hyperlink{classvector3}{vector3} representing half the shapes size on each axis. \\
+{\em HalfExtents} & A vector3 representing half the shapes size on each axis. \\
 \hline
 \end{DoxyParams}
 
@@ -103,6 +114,28 @@ Internal Constructor.
 
 
 Definition at line 506 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_a20fe1b0eef928087c30fbb90bf718e97}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!BoxCollisionShape@{BoxCollisionShape}}
+\index{BoxCollisionShape@{BoxCollisionShape}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{BoxCollisionShape}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::BoxCollisionShape::BoxCollisionShape (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node}}]{OneNode}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_a20fe1b0eef928087c30fbb90bf718e97}
+
+
+DeSerializing Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & The node to use for constructing this shape \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 513 of file collisionshape.cpp.
 
 
 
@@ -139,7 +172,7 @@ Definition at line 564 of file collisionshape.cpp.
 Gets the half extents used to construct this box. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} containing the half extents of this box, with no scaling or margin (Original value). 
+Returns a vector3 containing the half extents of this box, with no scaling or margin (Original value). 
 \end{DoxyReturn}
 
 
@@ -159,7 +192,7 @@ Definition at line 539 of file collisionshape.cpp.
 Gets the current half extents used in collision checking. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} containing the half extents of this box, with scaling applied, minus the size of the margin(Original value $\ast$ Scaling -\/ margin). 
+Returns a vector3 containing the half extents of this box, with scaling applied, minus the size of the margin(Original value $\ast$ Scaling -\/ margin). 
 \end{DoxyReturn}
 
 
@@ -179,7 +212,7 @@ Definition at line 544 of file collisionshape.cpp.
 Gets the half extents with padding, this is the size the shape will appear to be. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} containing the half extents, with scaling applied, with the margin added to each axis (Original value $\ast$ Scaling). 
+Returns a vector3 containing the half extents, with scaling applied, with the margin added to each axis (Original value $\ast$ Scaling). 
 \end{DoxyReturn}
 
 
@@ -234,6 +267,74 @@ Returns a bool indicating whether or not the specified point is inside the shape
 
 
 Definition at line 554 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_aeff89859ae98a391bf1232e190c839b5}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::BoxCollisionShape::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_aeff89859ae98a391bf1232e190c839b5}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a2257312048ee9085fa5d14f6b34caae1}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 588 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_abdd854fc0f165b3b17baecb0bb3961b4}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::BoxCollisionShape::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_abdd854fc0f165b3b17baecb0bb3961b4}
+Gets the internal shape pointer this collision shape is based on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the internal collision shape. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_acfaab953833e9be503fddb2ee0f56d4f}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 567 of file collisionshape.cpp.
+
+\hypertarget{classMezzanine_1_1BoxCollisionShape_aa96e3055ec21f18198bceccdeaafa538}{
+\index{Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::BoxCollisionShape@{Mezzanine::BoxCollisionShape}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::BoxCollisionShape::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1BoxCollisionShape_aa96e3055ec21f18198bceccdeaafa538}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}BoxCollisionShape\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1PrimitiveCollisionShape_a19bb44a705ff86606834feb2783500e5}{Mezzanine::PrimitiveCollisionShape}.
+
+
+
+Definition at line 606 of file collisionshape.cpp.
 
 
 

@@ -20,6 +20,13 @@ Inheritance diagram for Mezzanine::UI::TabSet:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1UI_1_1TabSet_a4ae5a3399c55d8c0d1933e8ddd30f582}{TabSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SetRect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1UI_1_1TabSet_aefeb37272d3019a728fcf93232831ab9}{
+virtual \hyperlink{classMezzanine_1_1UI_1_1TabSet_aefeb37272d3019a728fcf93232831ab9}{$\sim$TabSet} ()}
+\label{classMezzanine_1_1UI_1_1TabSet_aefeb37272d3019a728fcf93232831ab9}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{RenderableSetData} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_a8b3fd7e997f0a4cd7c68d915077621a7}{CreateRenderableSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&AccessorRect, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&GlyphHeight, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Text)
 \begin{DoxyCompactList}\small\item\em Creates a new Set in this widget. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a37399125aa416568a72376d0ffd799ed}{
@@ -37,12 +44,12 @@ virtual \hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$ \hyper
 \begin{DoxyCompactList}\small\item\em Gets an Accessor by Name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1UI_1_1TabSet_aeed203c0d970a51b12e8559211cfaeba}{GetNumRenderableSets} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of Sets stored in this \hyperlink{classMezzanine_1_1UI_1_1TabSet}{TabSet}. \item\end{DoxyCompactList}\item 
+virtual RenderableCollection $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_a44e57083881081eacfe86e2cf238fbc1}{GetRenderableCollection} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SetDataName)
+\begin{DoxyCompactList}\small\item\em Gets an RenderableCollection by Name. \item\end{DoxyCompactList}\item 
 virtual RenderableCollection $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_ad0ae1d3d1f180e4a4df5f590b98f1055}{GetRenderableCollection} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets a RenderableCollection by Index. \item\end{DoxyCompactList}\item 
 virtual RenderableCollection $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_a50e0f42e0400ea33dfb67a39bd296ed4}{GetRenderableCollection} (\hyperlink{classMezzanine_1_1UI_1_1TextButton}{TextButton} $\ast$Accessor)
 \begin{DoxyCompactList}\small\item\em Gets a RenderableCollection by Accessor button. \item\end{DoxyCompactList}\item 
-virtual RenderableCollection $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_a44e57083881081eacfe86e2cf238fbc1}{GetRenderableCollection} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SetDataName)
-\begin{DoxyCompactList}\small\item\em Gets an RenderableCollection by Name. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{RenderableSetData} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_adbefc53cf485e2d4c937c9f08c13958e}{GetRenderableSetData} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index)
 \begin{DoxyCompactList}\small\item\em Gets a \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{RenderableSetData} by Index. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{RenderableSetData} $\ast$ \hyperlink{classMezzanine_1_1UI_1_1TabSet_ab70db8423339f4ad5c11070201e42cc2}{GetRenderableSetData} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SetDataName)
@@ -55,15 +62,8 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1TabSet_a7474438cae418c74f192dc48
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1TabSet_ac125a2abc7b12d3c81969bdd407be883}{SetSize} (const \hyperlink{classMezzanine_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1UI_1_1TabSet_a4ae5a3399c55d8c0d1933e8ddd30f582}{TabSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&name, const \hyperlink{structMezzanine_1_1UI_1_1RenderableRect}{RenderableRect} \&SetRect, \hyperlink{classMezzanine_1_1UI_1_1Layer}{Layer} $\ast$parent)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1UI_1_1TabSet_a191f67ec19fc80f63eb842305f8cfb05}{UpdateDimensions} ()
-\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1UI_1_1TabSet_aefeb37272d3019a728fcf93232831ab9}{
-virtual \hyperlink{classMezzanine_1_1UI_1_1TabSet_aefeb37272d3019a728fcf93232831ab9}{$\sim$TabSet} ()}
-\label{classMezzanine_1_1UI_1_1TabSet_aefeb37272d3019a728fcf93232831ab9}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -98,6 +98,11 @@ virtual void \hyperlink{classMezzanine_1_1UI_1_1TabSet_a2499619c7e53f0de004bfd06
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_adbdc5d1f6fbcc74bd5368aefadcb1936}{
 std::vector$<$ \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{RenderableSetData} $\ast$ $>$ {\bfseries Sets}}
 \label{classMezzanine_1_1UI_1_1TabSet_adbdc5d1f6fbcc74bd5368aefadcb1936}
+
+\item 
+\hypertarget{classMezzanine_1_1UI_1_1TabSet_a3b216f19debc173b86789e43eeb83611}{
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} {\bfseries SetsAdded}}
+\label{classMezzanine_1_1UI_1_1TabSet_a3b216f19debc173b86789e43eeb83611}
 
 \item 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a77944b01be57054ee0f218a63e3dc891}{
@@ -183,7 +188,7 @@ Returns a \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{RenderableSetDa
 \end{DoxyParams}
 
 
-Definition at line 181 of file uitabset.cpp.
+Definition at line 182 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_aadfa25f3232b2012f0247c556f040615}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!DestroyRenderableSet@{DestroyRenderableSet}}
@@ -205,7 +210,7 @@ Destroys an existing \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{Rend
 \end{DoxyParams}
 
 
-Definition at line 265 of file uitabset.cpp.
+Definition at line 269 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a0351acf8a015618188589cfe1c7ee4ed}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetAccessor@{GetAccessor}}
@@ -230,7 +235,7 @@ Returns a pointer to the Accessor at the requested Index.
 \end{DoxyParams}
 
 
-Definition at line 238 of file uitabset.cpp.
+Definition at line 242 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a0196021d80bb0e1fa43d254da6facd79}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetAccessor@{GetAccessor}}
@@ -255,7 +260,7 @@ Returns a pointer to the Accessor of the requested Name.
 \end{DoxyParams}
 
 
-Definition at line 243 of file uitabset.cpp.
+Definition at line 247 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_aa52787865ef814fbacc1c2badd8d57e6}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetAccessor@{GetAccessor}}
@@ -280,7 +285,7 @@ Returns a pointer to the Accessor associated with the provided RenderableCollect
 \end{DoxyParams}
 
 
-Definition at line 250 of file uitabset.cpp.
+Definition at line 254 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_aeed203c0d970a51b12e8559211cfaeba}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetNumRenderableSets@{GetNumRenderableSets}}
@@ -300,7 +305,7 @@ Returns a Whole representing the number of RenderableSets being stored in this \
 \end{DoxyReturn}
 
 
-Definition at line 260 of file uitabset.cpp.
+Definition at line 264 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a50e0f42e0400ea33dfb67a39bd296ed4}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetRenderableCollection@{GetRenderableCollection}}
@@ -325,7 +330,7 @@ Returns a pointer to the RenderableCollection associated with the provided Acces
 \end{DoxyParams}
 
 
-Definition at line 228 of file uitabset.cpp.
+Definition at line 232 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_ad0ae1d3d1f180e4a4df5f590b98f1055}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetRenderableCollection@{GetRenderableCollection}}
@@ -350,7 +355,7 @@ Returns a pointer to the RenderableSet at the requested Index.
 \end{DoxyParams}
 
 
-Definition at line 216 of file uitabset.cpp.
+Definition at line 220 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a44e57083881081eacfe86e2cf238fbc1}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetRenderableCollection@{GetRenderableCollection}}
@@ -375,7 +380,7 @@ Returns a pointer to the RenderableSet of the requested Name.
 \end{DoxyParams}
 
 
-Definition at line 221 of file uitabset.cpp.
+Definition at line 225 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_adbefc53cf485e2d4c937c9f08c13958e}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetRenderableSetData@{GetRenderableSetData}}
@@ -400,7 +405,7 @@ Returns a pointer to the \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{
 \end{DoxyParams}
 
 
-Definition at line 201 of file uitabset.cpp.
+Definition at line 205 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_ab70db8423339f4ad5c11070201e42cc2}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!GetRenderableSetData@{GetRenderableSetData}}
@@ -425,7 +430,7 @@ Returns a pointer to the \hyperlink{structMezzanine_1_1UI_1_1RenderableSetData}{
 \end{DoxyParams}
 
 
-Definition at line 206 of file uitabset.cpp.
+Definition at line 210 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_ac4cb545982397148d0df237eee062cb3}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!SetActualPosition@{SetActualPosition}}
@@ -451,7 +456,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_a860bd8baea24d61a9cd661e858
 
 
 
-Definition at line 154 of file uitabset.cpp.
+Definition at line 155 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a1093eb0ab0b862665cfb567bb5d73341}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!SetActualSize@{SetActualSize}}
@@ -477,7 +482,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_acc8a472036872bbbfd0476f753
 
 
 
-Definition at line 166 of file uitabset.cpp.
+Definition at line 167 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a7474438cae418c74f192dc48ad5a4170}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!SetPosition@{SetPosition}}
@@ -505,7 +510,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_ac83b59db51a6717ad7b822007d
 
 
 
-Definition at line 148 of file uitabset.cpp.
+Definition at line 149 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_ac125a2abc7b12d3c81969bdd407be883}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!SetSize@{SetSize}}
@@ -533,7 +538,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_adf8b14ce6641d4ec12f6ff0981
 
 
 
-Definition at line 160 of file uitabset.cpp.
+Definition at line 161 of file uitabset.cpp.
 
 \hypertarget{classMezzanine_1_1UI_1_1TabSet_a191f67ec19fc80f63eb842305f8cfb05}{
 \index{Mezzanine::UI::TabSet@{Mezzanine::UI::TabSet}!UpdateDimensions@{UpdateDimensions}}
@@ -554,7 +559,7 @@ Implements \hyperlink{classMezzanine_1_1UI_1_1Widget_af23f919f2912ac10230953a848
 
 
 
-Definition at line 172 of file uitabset.cpp.
+Definition at line 173 of file uitabset.cpp.
 
 
 

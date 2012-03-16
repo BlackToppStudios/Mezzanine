@@ -20,10 +20,12 @@ Inheritance diagram for Mezzanine::AudioManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual void \hyperlink{classMezzanine_1_1AudioManager_a8db9deed28afb7b07017cb6fd99b624a}{AddSoundToSoundSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SoundSetName, \hyperlink{classMezzanine_1_1Audio_1_1Sound}{Audio::Sound} $\ast$SoundInst)
-\begin{DoxyCompactList}\small\item\em Add's a sound to the defined set. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1AudioManager_a30da8ac656fdacf5c420f03304f4e109}{AudioManager} (bool DefaultSettings=true)
 \begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1AudioManager_aed11c120ed062fa13a0881099859a957}{$\sim$AudioManager} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AudioManager_a8db9deed28afb7b07017cb6fd99b624a}{AddSoundToSoundSet} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&SoundSetName, \hyperlink{classMezzanine_1_1Audio_1_1Sound}{Audio::Sound} $\ast$SoundInst)
+\begin{DoxyCompactList}\small\item\em Add's a sound to the defined set. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1AudioManager_a4452ecf4eabfae18e0f6651e35530579}{ClearLogs} ()
 \begin{DoxyCompactList}\small\item\em This empties logs that the audio subystem creates. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Audio_1_1Sound}{Audio::Sound} $\ast$ \hyperlink{classMezzanine_1_1AudioManager_aadb6ab0fd58253567da61c8b3432b104}{CreateAmbientSound} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&SoundName, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&FileName, \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&Group)
@@ -94,9 +96,7 @@ virtual void \hyperlink{classMezzanine_1_1AudioManager_ae3120d9f9877113fbe019f63
 virtual void \hyperlink{classMezzanine_1_1AudioManager_a8df0f5fb1e426a59cfafee4f54201db7}{SetMusicVolume} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Music)
 \begin{DoxyCompactList}\small\item\em Sets the volume for all stored Music sounds. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1AudioManager_a1171a0dece85578907c6bbf82da56936}{UpdateAllVolumes} ()
-\begin{DoxyCompactList}\small\item\em Calls on all sounds stored in this manager to update their volume after a settings change. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1AudioManager_aed11c120ed062fa13a0881099859a957}{$\sim$AudioManager} ()
-\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calls on all sounds stored in this manager to update their volume after a settings change. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -185,7 +185,7 @@ std::map$<$ \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{Str
 \subsubsection{Detailed Description}
 This is simply a place for storing all the Sound utilities and functions. This is a place for loading, storing, and running sound files as necessary in a given game. 
 
-Definition at line 71 of file audiomanager.h.
+Definition at line 77 of file audiomanager.h.
 
 
 

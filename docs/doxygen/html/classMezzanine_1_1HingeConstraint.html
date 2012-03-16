@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::HingeConstraint Class Reference</h1>  </div>
@@ -92,6 +93,16 @@ Inheritance diagram for Mezzanine::HingeConstraint:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a65d04021f0ac11d284de975d7552012e">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotInA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotInB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInB, bool UseReferenceFrameA=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Hinge constraint that will connect two actors together by their offsets.  <a href="#a65d04021f0ac11d284de975d7552012e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#acb7f380b212a396b92d78ac055c55a68">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotInA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInA, bool UseReferenceFrameA=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Hinge constraint that will attach an actor to a point in world space.  <a href="#acb7f380b212a396b92d78ac055c55a68"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#af769aacbd1756b528fe8724ecf5fc654">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TransformA, const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TransformB, bool UseReferenceFrameA=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#af769aacbd1756b528fe8724ecf5fc654"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a62a733c3ad51d3e7c5f51ae5a8adadd0">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionA, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseReferenceFrameA=false)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#a62a733c3ad51d3e7c5f51ae5a8adadd0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a9964c958874d5c6c7d410b4c09818837">~HingeConstraint</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a9964c958874d5c6c7d410b4c09818837"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a4a87201e6370d7ce29f967aecaf54d8e">EnableMotor</a> (bool EnableMotor, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> TargetVelocity, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> MaxMotorImpulse)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables(or Disables) the motor on the hinge and sets it's parameters.  <a href="#a4a87201e6370d7ce29f967aecaf54d8e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a92a4d535a069ecb4dea600f7c4ac38ef">EnableMotor</a> (bool EnableMotor)</td></tr>
@@ -130,14 +141,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a638b7b76542d850becea2d49d3f1c8b1">GetUseReferenceFrameA</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Is this Using Reference Frame A.  <a href="#a638b7b76542d850becea2d49d3f1c8b1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a58f5758cb5926f785c07c7ebb544d91b">HasParamBeenSet</a> (<a class="el" href="namespaceMezzanine.html#a6c62e8c2938fb203eb7a7072c12176f4">ConstraintParam</a> Param, int Axis) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#af769aacbd1756b528fe8724ecf5fc654">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TransformA, const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TransformB, bool UseReferenceFrameA=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#af769aacbd1756b528fe8724ecf5fc654"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a65d04021f0ac11d284de975d7552012e">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotInA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotInB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInB, bool UseReferenceFrameA=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Hinge constraint that will connect two actors together by their offsets.  <a href="#a65d04021f0ac11d284de975d7552012e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#acb7f380b212a396b92d78ac055c55a68">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;PivotInA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInA, bool UseReferenceFrameA=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a Hinge constraint that will attach an actor to a point in world space.  <a href="#acb7f380b212a396b92d78ac055c55a68"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a62a733c3ad51d3e7c5f51ae5a8adadd0">HingeConstraint</a> (<a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorA, <a class="el" href="classMezzanine_1_1ActorRigid.html">ActorRigid</a> *ActorB, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorA, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;VectorB, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionA, const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;QuaternionB, bool UseReferenceFrameA=false)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a Hinge with components of a tranform.  <a href="#a62a733c3ad51d3e7c5f51ae5a8adadd0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a6cbd8328c7a047f8e7951ab482e733cb">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a6cbd8328c7a047f8e7951ab482e733cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a49cf5f27bff730ee30ff52a741e35f2e">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a49cf5f27bff730ee30ff52a741e35f2e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#aa38c63cb80624e1e26043cf84e5c01c2">SetAPivotRotation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative rotation of ActorA.  <a href="#aa38c63cb80624e1e26043cf84e5c01c2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a4c8bbe6e1d7f1fec78b1e8b0296ad61f">SetAxis</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;AxisInA)</td></tr>
@@ -167,8 +174,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#aaed95fc3750346a6f9791b025e600aa0">ValidAngularAxis</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#ac6b8e0839cd686f73d0c9e9ad5db47a4">TypedConstraint::AxisList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a2af69ea5320ff27bf4d5de7ae9530594">ValidLinearAxis</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1TypedConstraint.html#abd499db29c9e9755e9bb547d29eaa49a">TypedConstraint::ParamList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a3ea048fe9e7eda83e4ef42174a0c6157">ValidParamOnAxis</a> (int Axis) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a9964c958874d5c6c7d410b4c09818837">~HingeConstraint</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor.  <a href="#a9964c958874d5c6c7d410b4c09818837"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1HingeConstraint.html#a0bcb0756ff73f9d772e0c60d188d393a">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a0bcb0756ff73f9d772e0c60d188d393a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d199b12753d7143ddd521d5f4728b45"></a><!-- doxytag: member="Mezzanine::HingeConstraint::Hinge" ref="a5d199b12753d7143ddd521d5f4728b45" args="" -->
@@ -897,6 +906,82 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 </div>
 </div>
+<a class="anchor" id="a6cbd8328c7a047f8e7951ab482e733cb"></a><!-- doxytag: member="Mezzanine::HingeConstraint::ProtoDeSerialize" ref="a6cbd8328c7a047f8e7951ab482e733cb" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::HingeConstraint::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>A precondition of using this is that all of the actors intended for use must already be Deserialized. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#aa69fcdbf84b8a509ee32d4233b96580c">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49cf5f27bff730ee30ff52a741e35f2e"></a><!-- doxytag: member="Mezzanine::HingeConstraint::ProtoSerialize" ref="a49cf5f27bff730ee30ff52a741e35f2e" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::HingeConstraint::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a8e0c729e416c6c20507ef8ac029fa819">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0bcb0756ff73f9d772e0c60d188d393a"></a><!-- doxytag: member="Mezzanine::HingeConstraint::SerializableName" ref="a0bcb0756ff73f9d772e0c60d188d393a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::HingeConstraint::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "HingeConstraint" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a78694da6df0b2625220abb94e8f1c549">Mezzanine::DualTransformConstraint</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa38c63cb80624e1e26043cf84e5c01c2"></a><!-- doxytag: member="Mezzanine::HingeConstraint::SetAPivotRotation" ref="aa38c63cb80624e1e26043cf84e5c01c2" args="(const Quaternion &amp;Rotation)" -->
 <div class="memitem">
 <div class="memproto">
@@ -941,7 +1026,7 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <p>Sets the axis on which this constraint acts. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">AxisInA</td><td>A <a class="el" href="classvector3.html">vector3</a> representing the axis to be used with this constraint. </td></tr>
+    <tr><td class="paramname">AxisInA</td><td>A vector3 representing the axis to be used with this constraint. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1056,6 +1141,42 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 
 </div>
 </div>
+<a class="anchor" id="ab6ec259478024f5fedc055563cf15ee6"></a><!-- doxytag: member="Mezzanine::HingeConstraint::SetMotorTarget" ref="ab6ec259478024f5fedc055563cf15ee6" args="(Real TargetAngle, Real Dt)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::HingeConstraint::SetMotorTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramname"><em>TargetAngle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramname"><em>Dt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the Rotational velocity in a more direct fashion. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">TargetAngle</td><td>The desired angle in radians. </td></tr>
+    <tr><td class="paramname">Dt</td><td>The Desired <a class="el" href="structMezzanine_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> steps that the target rotational velocity should be reached in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a7d195f18c2fbe6f458c4af94320c923c"></a><!-- doxytag: member="Mezzanine::HingeConstraint::SetMotorTarget" ref="a7d195f18c2fbe6f458c4af94320c923c" args="(const Quaternion &amp;QuatAInB, Real Dt)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1086,42 +1207,6 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">QuatAInB</td><td>The angle a quaternion relative to the two objects in the constraint. </td></tr>
-    <tr><td class="paramname">Dt</td><td>The Desired <a class="el" href="structMezzanine_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> steps that the target rotational velocity should be reached in. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="ab6ec259478024f5fedc055563cf15ee6"></a><!-- doxytag: member="Mezzanine::HingeConstraint::SetMotorTarget" ref="ab6ec259478024f5fedc055563cf15ee6" args="(Real TargetAngle, Real Dt)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void Mezzanine::HingeConstraint::SetMotorTarget </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>TargetAngle</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>Dt</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Set the Rotational velocity in a more direct fashion. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">TargetAngle</td><td>The desired angle in radians. </td></tr>
     <tr><td class="paramname">Dt</td><td>The Desired <a class="el" href="structMezzanine_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> steps that the target rotational velocity should be reached in. </td></tr>
   </table>
   </dd>
@@ -1378,7 +1463,7 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1388,6 +1473,6 @@ btHingeConstraint *&#160;</td><td class="memItemRight" valign="bottom"><a class=
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:02 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

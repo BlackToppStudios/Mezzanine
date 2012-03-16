@@ -20,23 +20,32 @@ Inheritance diagram for Mezzanine::NonTriggerPhysicsSettings:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aaeda1ca7117e33be5c285e59f4d78cba}{NonTriggerPhysicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, btCollisionObject $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}{
+virtual \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}{$\sim$NonTriggerPhysicsSettings} ()}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a8a26cd19ebf73d58b52c794665c66c79}{GetFriction} () const 
 \begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_afcd2fa0a18a77f08d95f5824f94a8d1b}{GetRestitution} () const 
 \begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aaeda1ca7117e33be5c285e59f4d78cba}{NonTriggerPhysicsSettings} (\hyperlink{classMezzanine_1_1WorldObject}{WorldObject} $\ast$WO, btCollisionObject $\ast$PhysicsObject)
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aef475cdfe28b1f2ee121b64d32d6f0a6}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a7a09c93f7d14a7aeec7ae261bd4d4ea5}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a4812a17ef87c192ee6204e216334c878}{SetCollisionResponse} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object to be able to collide with other objects in the world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a75f0c352df35028b7b51c8c14bcba8ce}{SetFriction} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Friction)
 \begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object friction coefficient. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aafac25739c10d408c38a3fdd107897be}{SetRestitution} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Restitution)
-\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}{
-virtual \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}{$\sim$NonTriggerPhysicsSettings} ()}
-\label{classMezzanine_1_1NonTriggerPhysicsSettings_a7c32afaa05f2f971533659ddca2f95b4}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the \hyperlink{classMezzanine_1_1World}{World} Object restitution coefficient. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aaa6448dd1e05f3ca9ac673e924ef26af}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -114,6 +123,94 @@ Returns a Real representing the \hyperlink{classMezzanine_1_1World}{World} Objec
 
 
 Definition at line 280 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_aef475cdfe28b1f2ee121b64d32d6f0a6}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::NonTriggerPhysicsSettings::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_aef475cdfe28b1f2ee121b64d32d6f0a6}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_a87004034a7ff1c583d842e43b2fedc70}{Mezzanine::WorldObjectPhysicsSettings}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a8acd986f63a0c58ad6df9e4d3e291067}{Mezzanine::ActorBasePhysicsSettings}, and \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a3858fe916114998aee33005fd2a968e7}{Mezzanine::ActorRigidPhysicsSettings}.
+
+
+
+Definition at line 310 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a7a09c93f7d14a7aeec7ae261bd4d4ea5}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::NonTriggerPhysicsSettings::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_a7a09c93f7d14a7aeec7ae261bd4d4ea5}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this quaternion should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_acad7197baec929749819b36c5a3985bb}{Mezzanine::WorldObjectPhysicsSettings}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ad3c4f8ac2df1c14f9cd498e1a60a34b2}{Mezzanine::ActorBasePhysicsSettings}, and \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ab3977a3b5939b9e68657b84b5a80a24d}{Mezzanine::ActorRigidPhysicsSettings}.
+
+
+
+Definition at line 285 of file worldobjectphysicssettings.cpp.
+
+\hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_aaa6448dd1e05f3ca9ac673e924ef26af}{
+\index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::NonTriggerPhysicsSettings::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1NonTriggerPhysicsSettings_aaa6448dd1e05f3ca9ac673e924ef26af}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}ActorBasePhysicsSettings\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings_aeb904cc45c213f55febfe397f7bc639b}{Mezzanine::WorldObjectPhysicsSettings}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}{Mezzanine::ActorBasePhysicsSettings}, and \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a8dab39e71eb26175a3cb4bbb3966c9b1}{Mezzanine::ActorRigidPhysicsSettings}.
+
+
+
+Definition at line 328 of file worldobjectphysicssettings.cpp.
 
 \hypertarget{classMezzanine_1_1NonTriggerPhysicsSettings_a4812a17ef87c192ee6204e216334c878}{
 \index{Mezzanine::NonTriggerPhysicsSettings@{Mezzanine::NonTriggerPhysicsSettings}!SetCollisionResponse@{SetCollisionResponse}}

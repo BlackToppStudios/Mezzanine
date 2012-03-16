@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
@@ -83,6 +84,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a0000391cba0056b375dc324833ef747d">WorldObjectGraphicsSettings</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *WO, Ogre::Entity *GraphicsObject)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a0000391cba0056b375dc324833ef747d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72709c5d15de08cba37501510a87bfca"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::~WorldObjectGraphicsSettings" ref="a72709c5d15de08cba37501510a87bfca" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a72709c5d15de08cba37501510a87bfca">~WorldObjectGraphicsSettings</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a36002a588b5a0a7494d29f8e7a7a30b1">CloneMaterial</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;NewName)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a copy of the material script of the graphics object and places it in the same resource group.  <a href="#a36002a588b5a0a7494d29f8e7a7a30b1"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a7cc74921d09f867ef90f24dea9f86e69">GetMaterialAmbient</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Submesh=0) const </td></tr>
@@ -99,6 +105,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of submeshes in the mesh of the graphics ohject.  <a href="#ae1e210b72aac44a75890acdb777baa9c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a90d4e4516181052ea6afcb257a864887">HasMaterialSet</a> (const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Submesh=0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets whether or not the specified submesh has a material script assigned to it.  <a href="#a90d4e4516181052ea6afcb257a864887"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a0f3fbc4ea728847e3aa283a360bdf32e">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a0f3fbc4ea728847e3aa283a360bdf32e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a17de93ea24636d2dd1e91cc20ced04a8">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a17de93ea24636d2dd1e91cc20ced04a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a99a72f423f55280da67c4691d220c9a4">SetMaterial</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;MatName, const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Submesh=0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the material of the specified submesh.  <a href="#a99a72f423f55280da67c4691d220c9a4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a88597e16ded3a60970c28683c7cb756a">SetMaterialAmbient</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Ambient, const <a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Submesh=0)</td></tr>
@@ -111,11 +121,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mesh to be used along with this <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object.  <a href="#a33259391dac7ba356848da9b27cc0a4a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a29ebce82dbfd0a27ddf385504341569c">SetMesh</a> (<a class="el" href="classMezzanine_1_1Mesh.html">Mesh</a> *ObjectMesh)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mesh to be used along with this <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object.  <a href="#a29ebce82dbfd0a27ddf385504341569c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a0000391cba0056b375dc324833ef747d">WorldObjectGraphicsSettings</a> (<a class="el" href="classMezzanine_1_1WorldObject.html">WorldObject</a> *WO, Ogre::Entity *GraphicsObject)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard Constructor.  <a href="#a0000391cba0056b375dc324833ef747d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72709c5d15de08cba37501510a87bfca"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::~WorldObjectGraphicsSettings" ref="a72709c5d15de08cba37501510a87bfca" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#a72709c5d15de08cba37501510a87bfca">~WorldObjectGraphicsSettings</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1WorldObjectGraphicsSettings.html#adfcbfa444f5b443ea176daf3279a8193">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#adfcbfa444f5b443ea176daf3279a8193"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0580ad16e378357dfa47944097db9f80"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::GetMaterial" ref="a0580ad16e378357dfa47944097db9f80" args="(const Whole &amp;Submesh=0)" -->
@@ -391,6 +400,81 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a0f3fbc4ea728847e3aa283a360bdf32e"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::ProtoDeSerialize" ref="a0f3fbc4ea728847e3aa283a360bdf32e" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::WorldObjectGraphicsSettings::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="worldobjectgraphicssettings_8cpp_source.html#l00302">302</a> of file <a class="el" href="worldobjectgraphicssettings_8cpp_source.html">worldobjectgraphicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a17de93ea24636d2dd1e91cc20ced04a8"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::ProtoSerialize" ref="a17de93ea24636d2dd1e91cc20ced04a8" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::WorldObjectGraphicsSettings::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this quaternion should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="worldobjectgraphicssettings_8cpp_source.html#l00240">240</a> of file <a class="el" href="worldobjectgraphicssettings_8cpp_source.html">worldobjectgraphicssettings.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adfcbfa444f5b443ea176daf3279a8193"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::SerializableName" ref="adfcbfa444f5b443ea176daf3279a8193" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::WorldObjectGraphicsSettings::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "ActorGraphicsSettings" </dd></dl>
+
+<p>Definition at line <a class="el" href="worldobjectgraphicssettings_8cpp_source.html#l00362">362</a> of file <a class="el" href="worldobjectgraphicssettings_8cpp_source.html">worldobjectgraphicssettings.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a99a72f423f55280da67c4691d220c9a4"></a><!-- doxytag: member="Mezzanine::WorldObjectGraphicsSettings::SetMaterial" ref="a99a72f423f55280da67c4691d220c9a4" args="(const String &amp;MatName, const Whole &amp;Submesh=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -622,7 +706,7 @@ Protected Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -632,6 +716,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:49 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

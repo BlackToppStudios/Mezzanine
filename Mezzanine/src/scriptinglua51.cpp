@@ -40,10 +40,11 @@
 #ifndef _scriptinglua51_cpp
 #define _scriptinglua51_cpp
 
-// The file that SWIG generated was made with the following command.
-// echo "#ifndef _scriptbindinglua51_cpp" > scriptbindinglua51.cpp && echo "#define _scripbindinglua51_cpp" >> scriptbindinglua51.cpp && swig2.0 -c++ -v -lua -importall -o scriptbindinglua51.cpp.tmp mezzanine.h && cat scriptbindinglua51.cpp.tmp >> scriptbindinglua51.cpp && echo "#endif" >> scriptbindinglua51.cpp
-// swig2.0 -c++ -v -Wall -lua -importall -o scriptbindinglua51.cpp mezzanine.h
-// #include "scriptbindinglua51.cpp"
+#include "scriptinglua51.h"
+
+/// @file
+/// @brief This file has the interface for the Lua based implementation of the Scripting system.
+
 extern "C"
 {
     #include "lua.h"            // Lua Core

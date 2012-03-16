@@ -14,6 +14,12 @@ This is used to indicate a line with one end.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1Ray_ad189f8e1e9a28bb50c1da50d24e988b4}{Ray} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Ray_a9b7c14d23e934927b6c35b81c65b9916}{Ray} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} From\_\-, \hyperlink{classMezzanine_1_1Vector3}{Vector3} To\_\-)
+\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Ray_a60cc4b4fd34049f7cb36d8aa402f9005}{Ray} (Ogre::Ray Ray2)
+\begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Ray_a25326a57c34b359064c9161ed2eeb004}{GetDirection} () const 
 \begin{DoxyCompactList}\small\item\em Gets the direction of this ray. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1Ray}{Ray} \hyperlink{classMezzanine_1_1Ray_a7164d929caf75bcebceed9149e9a3540}{GetNormal} () const 
@@ -31,13 +37,7 @@ void \hyperlink{classMezzanine_1_1Ray_aae46f14a24ddbf11e841f73121e513b7}{operato
 \hyperlink{classMezzanine_1_1Ray}{Ray} \hyperlink{classMezzanine_1_1Ray_a6ebf84f9c9e6d77a3155ed04be4ac71e}{operator/} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&scalar) const 
 \begin{DoxyCompactList}\small\item\em This returns a ray scaled by the given divisor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1Ray_a4b66bd341d7f5e2bfc86cca7f2d665b9}{operator/=} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&scalar)
-\begin{DoxyCompactList}\small\item\em This scales the \hyperlink{classMezzanine_1_1Ray}{Ray} by the given divisor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Ray_ad189f8e1e9a28bb50c1da50d24e988b4}{Ray} ()
-\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Ray_a9b7c14d23e934927b6c35b81c65b9916}{Ray} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} From\_\-, \hyperlink{classMezzanine_1_1Vector3}{Vector3} To\_\-)
-\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Ray_a60cc4b4fd34049f7cb36d8aa402f9005}{Ray} (Ogre::Ray Ray2)
-\begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This scales the \hyperlink{classMezzanine_1_1Ray}{Ray} by the given divisor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -116,7 +116,7 @@ Definition at line 63 of file ray.cpp.
 
 Compatibily constructor. 
 
-This accepts an Ogre \hyperlink{classMezzanine_1_1Ray}{Ray}, (graphics subsystem) to make ray. 
+This accepts an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Ray}{Ray}, (graphics subsystem) to make ray. 
 \begin{DoxyParams}{Parameters}
 {\em Ray2} & This is the Ogre::Ray. \\
 \hline
@@ -142,7 +142,7 @@ Definition at line 69 of file ray.cpp.
 Gets the direction of this ray. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} that is the direction from it's origin to it's destination. 
+Returns a vector3 that is the direction from it's origin to it's destination. 
 \end{DoxyReturn}
 
 
@@ -167,7 +167,7 @@ Returns a ray that is a normalized copy of this array.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000020}{Todo}]discuss the merits throwing an error here. \end{Desc}
+\item[\hyperlink{todo__todo000024}{Todo}]discuss the merits throwing an error here. \end{Desc}
 
 
 

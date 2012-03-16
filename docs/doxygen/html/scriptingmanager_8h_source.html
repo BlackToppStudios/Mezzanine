@@ -105,46 +105,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _scriptingmanager_h</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;managerbase.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;singleton.h&quot;</span>
-<a name="l00045"></a>00045 
-<a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
-<a name="l00047"></a>00047 {<span class="comment"></span>
-<a name="l00048"></a>00048 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00049"></a>00049 <span class="comment">    /// @class ScriptingManager</span>
-<a name="l00050"></a>00050 <span class="comment">    /// @brief What a scripting manager should look like.</span>
-<a name="l00051"></a>00051 <span class="comment">    /// @details This script manager implements no scripting language.</span>
-<a name="l00052"></a>00052 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00053"></a><a class="code" href="classMezzanine_1_1ScriptingManager.html">00053</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ScriptingManager.html" title="What a scripting manager should look like.">ScriptingManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> <span class="comment">//, public Singleton&lt;ScriptingManager&gt;</span>
-<a name="l00054"></a>00054     {
-<a name="l00055"></a>00055         <span class="keyword">protected</span>:
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00058"></a>00058 <span class="comment">            /// @brief Class constructor.</span>
-<a name="l00059"></a>00059 <span class="comment">            /// @details Sets Priority to 350</span>
-<a name="l00060"></a>00060 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ScriptingManager.html" title="What a scripting manager should look like.">ScriptingManager</a>();
-<a name="l00061"></a>00061 <span class="comment"></span>
-<a name="l00062"></a>00062 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l00063"></a>00063 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ScriptingManager.html" title="What a scripting manager should look like.">ScriptingManager</a>();
-<a name="l00064"></a>00064 <span class="comment"></span>
-<a name="l00065"></a>00065 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00066"></a>00066 <span class="comment"></span>            <span class="comment">// Scripting Manager Core Functionality</span>
-<a name="l00067"></a>00067 <span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00069"></a>00069 <span class="comment"></span>            <span class="comment">// Inherited from Managerbase</span><span class="comment"></span>
-<a name="l00070"></a>00070 <span class="comment">            /// @copydoc Mezzanine::ManagerBase::Initialize()</span>
-<a name="l00071"></a>00071 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
-<a name="l00072"></a>00072 <span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">            /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()</span>
-<a name="l00074"></a>00074 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
-<a name="l00075"></a>00075 <span class="comment"></span>
-<a name="l00076"></a>00076 <span class="comment">            /// @copydoc Mezzanine::ManagerBase::GetType()</span>
-<a name="l00077"></a>00077 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> GetType() <span class="keyword">const</span>;
-<a name="l00078"></a>00078     }; <span class="comment">//ScriptingManager</span>
-<a name="l00079"></a>00079 }<span class="comment">//Mezzanine</span>
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081 <span class="comment">// possible languages Lua, Tcl, squirrel, Angelscript</span>
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083 <span class="preprocessor">#endif // \_scriptingmanager_h</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;scripting.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;singleton.h&quot;</span>
+<a name="l00046"></a>00046 
+<a name="l00047"></a>00047 <span class="keyword">namespace </span>Mezzanine
+<a name="l00048"></a>00048 {<span class="comment"></span>
+<a name="l00049"></a>00049 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00050"></a>00050 <span class="comment">    /// @class ScriptingManager</span>
+<a name="l00051"></a>00051 <span class="comment">    /// @brief What a scripting manager should look like.</span>
+<a name="l00052"></a>00052 <span class="comment">    /// @details This scripting manager implements no scripting language, but serves as</span>
+<a name="l00053"></a>00053 <span class="comment">    /// model for what scripting managers</span>
+<a name="l00054"></a>00054 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00055"></a><a class="code" href="classMezzanine_1_1ScriptingManager.html">00055</a> <span class="comment"></span>    <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1ScriptingManager.html" title="What a scripting manager should look like.">ScriptingManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> <span class="comment">//, public Singleton&lt;ScriptingManager&gt;</span>
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057         <span class="keyword">protected</span>:
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00060"></a>00060 <span class="comment">            /// @brief Class constructor.</span>
+<a name="l00061"></a>00061 <span class="comment">            /// @details Sets Priority to 350</span>
+<a name="l00062"></a>00062 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1ScriptingManager.html" title="What a scripting manager should look like.">ScriptingManager</a>();
+<a name="l00063"></a>00063 <span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l00065"></a>00065 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1ScriptingManager.html" title="What a scripting manager should look like.">ScriptingManager</a>();
+<a name="l00066"></a>00066 <span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00068"></a>00068 <span class="comment"></span>            <span class="comment">// Scripting Manager Core Functionality</span>
+<a name="l00069"></a>00069 <span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">            /// @brief In implemented classes this</span>
+<a name="l00071"></a>00071 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> CompileScript(<a class="code" href="classMezzanine_1_1Scripting_1_1Script.html" title="The interface for a script.">Scripting::Script</a>* ScriptToCompile) = 0;
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddScript(<a class="code" href="classMezzanine_1_1Scripting_1_1Script.html" title="The interface for a script.">Scripting::Script</a>* ScriptToAdd) = 0;
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddScript(<a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ScriptInString) = 0;
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveScript(<a class="code" href="classMezzanine_1_1Scripting_1_1Script.html" title="The interface for a script.">Scripting::Script</a>* ScriptToRemove) = 0;
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079             <span class="keyword">virtual</span> <span class="keywordtype">void</span> ExecuteScript(<a class="code" href="classMezzanine_1_1Scripting_1_1Script.html" title="The interface for a script.">Scripting::Script</a>* ScriptToRemove) = 0;
+<a name="l00080"></a>00080 <span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment">            ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00082"></a>00082 <span class="comment"></span>            <span class="comment">// Inherited from Managerbase</span><span class="comment"></span>
+<a name="l00083"></a>00083 <span class="comment">            /// @copydoc Mezzanine::ManagerBase::Initialize()</span>
+<a name="l00084"></a>00084 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
+<a name="l00085"></a>00085 <span class="comment"></span>
+<a name="l00086"></a>00086 <span class="comment">            /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()</span>
+<a name="l00087"></a>00087 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
+<a name="l00088"></a>00088 <span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment">            /// @copydoc Mezzanine::ManagerBase::GetType()</span>
+<a name="l00090"></a>00090 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> GetType() <span class="keyword">const</span>;
+<a name="l00091"></a>00091     }; <span class="comment">//ScriptingManager</span>
+<a name="l00092"></a>00092 }<span class="comment">//Mezzanine</span>
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094 <span class="comment">// possible languages Lua, Tcl, squirrel, Angelscript, falcon</span>
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096 <span class="preprocessor">#endif // \_scriptingmanager_h</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -152,7 +165,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -162,6 +175,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

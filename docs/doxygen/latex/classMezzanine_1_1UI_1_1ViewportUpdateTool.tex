@@ -60,7 +60,7 @@ static const \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_ad2de82a6fc57
 \begin{DoxyCompactList}\small\item\em Gets the currently set reposition mode. \item\end{DoxyCompactList}\item 
 static const \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_a89afdf79f52d5bf18bdffd323911a549}{ResizeMode} \& \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_a4aca6a54d42ad2bf33b471376549bde2}{GetResizeMode} ()
 \begin{DoxyCompactList}\small\item\em Gets the currently set resize mode. \item\end{DoxyCompactList}\item 
-static void \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_a6b070131c2a4174788246b95517a6528}{UpdateRenderable} (\hyperlink{classMezzanine_1_1UI_1_1BasicRenderable}{BasicRenderable} $\ast$ToBeUpdated)
+static void \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_ad8659876641f9deea2488dcd9baa02c9}{UpdateRectangleRenderable} (\hyperlink{classMezzanine_1_1UI_1_1Rectangle}{Rectangle} $\ast$ToBeUpdated)
 \begin{DoxyCompactList}\small\item\em Updates a renderables size and position as needed. \item\end{DoxyCompactList}\item 
 static WidgetResult \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_af735913610e633fb127b08c146e7d16d}{UpdateWidget} (\hyperlink{classMezzanine_1_1UI_1_1Widget}{Widget} $\ast$ToBeUpdated)
 \begin{DoxyCompactList}\small\item\em Updates a widgets position as needed. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -140,7 +140,7 @@ static \hyperlink{classMezzanine_1_1UI_1_1ViewportUpdateTool_a89afdf79f52d5bf18b
 \subsubsection{Detailed Description}
 This class facilitates the resizing and repositioning of all renderables in the \hyperlink{namespaceMezzanine_1_1UI}{UI} system during a viewport update. 
 
-Definition at line 58 of file uiviewportupdatetool.h.
+Definition at line 59 of file uiviewportupdatetool.h.
 
 
 
@@ -182,7 +182,7 @@ RPM\_\-Absolute\_\-Quadrents}
 
 
 
-Definition at line 73 of file uiviewportupdatetool.h.
+Definition at line 74 of file uiviewportupdatetool.h.
 
 \hypertarget{classMezzanine_1_1UI_1_1ViewportUpdateTool_a89afdf79f52d5bf18bdffd323911a549}{
 \index{Mezzanine::UI::ViewportUpdateTool@{Mezzanine::UI::ViewportUpdateTool}!ResizeMode@{ResizeMode}}
@@ -213,7 +213,7 @@ RSM\_\-Scale\_\-By\_\-Height}
 
 
 
-Definition at line 64 of file uiviewportupdatetool.h.
+Definition at line 65 of file uiviewportupdatetool.h.
 
 
 
@@ -393,15 +393,15 @@ Returns a const ResizeMode reference enum value indicating the behavior being us
 
 Definition at line 296 of file uiviewportupdatetool.cpp.
 
-\hypertarget{classMezzanine_1_1UI_1_1ViewportUpdateTool_a6b070131c2a4174788246b95517a6528}{
-\index{Mezzanine::UI::ViewportUpdateTool@{Mezzanine::UI::ViewportUpdateTool}!UpdateRenderable@{UpdateRenderable}}
-\index{UpdateRenderable@{UpdateRenderable}!Mezzanine::UI::ViewportUpdateTool@{Mezzanine::UI::ViewportUpdateTool}}
-\paragraph[{UpdateRenderable}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::ViewportUpdateTool::UpdateRenderable (
+\hypertarget{classMezzanine_1_1UI_1_1ViewportUpdateTool_ad8659876641f9deea2488dcd9baa02c9}{
+\index{Mezzanine::UI::ViewportUpdateTool@{Mezzanine::UI::ViewportUpdateTool}!UpdateRectangleRenderable@{UpdateRectangleRenderable}}
+\index{UpdateRectangleRenderable@{UpdateRectangleRenderable}!Mezzanine::UI::ViewportUpdateTool@{Mezzanine::UI::ViewportUpdateTool}}
+\paragraph[{UpdateRectangleRenderable}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::UI::ViewportUpdateTool::UpdateRectangleRenderable (
 \begin{DoxyParamCaption}
-\item[{{\bf BasicRenderable} $\ast$}]{ToBeUpdated}
+\item[{{\bf Rectangle} $\ast$}]{ToBeUpdated}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1UI_1_1ViewportUpdateTool_a6b070131c2a4174788246b95517a6528}
+\label{classMezzanine_1_1UI_1_1ViewportUpdateTool_ad8659876641f9deea2488dcd9baa02c9}
 
 
 Updates a renderables size and position as needed. 

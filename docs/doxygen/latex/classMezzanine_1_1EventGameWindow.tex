@@ -53,6 +53,11 @@ enum \hyperlink{classMezzanine_1_1EventGameWindow_a0f0ff29853317334f018bcf48d502
 \begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow} from manually assigned values. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1EventGameWindow_aec071261cc581c6b6767f77691e20996}{EventGameWindow} (const \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow} \&Other)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1EventGameWindow_a68195b843c1126e30846e791c7ef3d99}{
+\hyperlink{classMezzanine_1_1EventGameWindow_a68195b843c1126e30846e791c7ef3d99}{$\sim$EventGameWindow} ()}
+\label{classMezzanine_1_1EventGameWindow_a68195b843c1126e30846e791c7ef3d99}
+
+\begin{DoxyCompactList}\small\item\em Deconstructs this \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow}. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1EventGameWindow_a0f0ff29853317334f018bcf48d502af2}{GameWindowEventID} \hyperlink{classMezzanine_1_1EventGameWindow_ace6bd54e020a18818027cdfc88970e81}{GetEventID} () const 
 \begin{DoxyCompactList}\small\item\em What just happened, what kind of event was it. \item\end{DoxyCompactList}\item 
 int \hyperlink{classMezzanine_1_1EventGameWindow_aff42c9bc5c487536e2101547da8162e8}{GetFirstEventData} () const 
@@ -65,15 +70,10 @@ bool \hyperlink{classMezzanine_1_1EventGameWindow_ab51a632acaf07f9a46817467ca54e
 \begin{DoxyCompactList}\small\item\em Used to help determine if this Event is valid by checking the contents of the GameWindowEventID. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1EventGameWindow_a6935c29b1cf42798871e8a6e6600fa2e}{operator=} (const \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow} \&Other)
 \begin{DoxyCompactList}\small\item\em Assignment of a this \hyperlink{classMezzanine_1_1EventGameWindowData}{EventGameWindowData}. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classMezzanine_1_1EventGameWindow_aedf12ca51b11e074d8cb8baa801c19fa}{operator==} (const \hyperlink{classMezzanine_1_1EventGameWindow_a0f0ff29853317334f018bcf48d502af2}{GameWindowEventID} \&Other) const 
-\begin{DoxyCompactList}\small\item\em Equality comparison of this \hyperlink{classMezzanine_1_1EventGameWindowData}{EventGameWindowData} and a GameWindowEventID. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1EventGameWindow_a10469157e4d442072a5751029a347056}{operator==} (const \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow} \&Other) const 
 \begin{DoxyCompactList}\small\item\em Equality comparison of two \hyperlink{classMezzanine_1_1EventGameWindowData}{EventGameWindowData}. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1EventGameWindow_a68195b843c1126e30846e791c7ef3d99}{
-\hyperlink{classMezzanine_1_1EventGameWindow_a68195b843c1126e30846e791c7ef3d99}{$\sim$EventGameWindow} ()}
-\label{classMezzanine_1_1EventGameWindow_a68195b843c1126e30846e791c7ef3d99}
-
-\begin{DoxyCompactList}\small\item\em Deconstructs this \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \hyperlink{classMezzanine_1_1EventGameWindow_aedf12ca51b11e074d8cb8baa801c19fa}{operator==} (const \hyperlink{classMezzanine_1_1EventGameWindow_a0f0ff29853317334f018bcf48d502af2}{GameWindowEventID} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Equality comparison of this \hyperlink{classMezzanine_1_1EventGameWindowData}{EventGameWindowData} and a GameWindowEventID. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -92,7 +92,7 @@ static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} 
 \subsubsection{Detailed Description}
 Convey the message that Something happened to a game window. 
 
-Definition at line 61 of file eventgamewindow.h.
+Definition at line 59 of file eventgamewindow.h.
 
 
 
@@ -182,7 +182,7 @@ GAME\_\-WINDOW\_\-LAST}
 
 
 
-Definition at line 65 of file eventgamewindow.h.
+Definition at line 63 of file eventgamewindow.h.
 
 
 

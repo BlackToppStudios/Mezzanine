@@ -66,7 +66,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::DualTransformConstraint Class Reference</h1>  </div>
 </div>
@@ -108,6 +109,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the relative rotation for ActorB.  <a href="#a56e30c94d128e4c13f449b9933f815fe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Transform.html">Transform</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a43e5f5d4cfd9b0ab7032d81df5c935d7">GetPivotBTransform</a> () const =0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current Rotation and Location of Actor B.  <a href="#a43e5f5d4cfd9b0ab7032d81df5c935d7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#aa69fcdbf84b8a509ee32d4233b96580c">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#aa69fcdbf84b8a509ee32d4233b96580c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a8e0c729e416c6c20507ef8ac029fa819">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a8e0c729e416c6c20507ef8ac029fa819"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a3dc5e7afcf612a481f81071201ecdeb7">SetPivotALocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative location of the pivot from ActorA's Center of gravity.  <a href="#a3dc5e7afcf612a481f81071201ecdeb7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a73cba60ff65f8ac2775b19f74e5cbe9e">SetPivotARotation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
@@ -120,6 +125,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set The relative rotation of ActorB.  <a href="#ab25460e03f187dd56657e43e6302ef45"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#ac5ee69ce5d68f4e299e7916f764ee396">SetPivotBTransform</a> (const <a class="el" href="classMezzanine_1_1Transform.html">Transform</a> &amp;TranB)=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Position and Rotation using a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a>.  <a href="#ac5ee69ce5d68f4e299e7916f764ee396"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DualTransformConstraint.html#a78694da6df0b2625220abb94e8f1c549">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a78694da6df0b2625220abb94e8f1c549"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>All constraints that track rotation and location of the Pivot relative to each Actor inherit from this. </p>
@@ -264,6 +273,88 @@ Public Member Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Mezzanine::Transform</a> </dd></dl>
 
 <p>Implemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ad38e140ea8edf8d9d74e99bbebf68417">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1HingeConstraint.html#a7d9a9ddc367d1a9105f1eb27fd76a65f">Mezzanine::HingeConstraint</a>, and <a class="el" href="classMezzanine_1_1SliderConstraint.html#a22964857b7c94edf895d1ea9812614b1">Mezzanine::SliderConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa69fcdbf84b8a509ee32d4233b96580c"></a><!-- doxytag: member="Mezzanine::DualTransformConstraint::ProtoDeSerialize" ref="aa69fcdbf84b8a509ee32d4233b96580c" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::DualTransformConstraint::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1TypedConstraint.html#a18ea81954d7cc28dce3e5f4c03eac820">Mezzanine::TypedConstraint</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#ae165de381e73cc5119d07e3fc563aa99">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofSpringConstraint.html#a30cd26edd9d57aa68cf7f55f31fb99b0">Mezzanine::Generic6DofSpringConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a6cbd8328c7a047f8e7951ab482e733cb">Mezzanine::HingeConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8e0c729e416c6c20507ef8ac029fa819"></a><!-- doxytag: member="Mezzanine::DualTransformConstraint::ProtoSerialize" ref="a8e0c729e416c6c20507ef8ac029fa819" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::DualTransformConstraint::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This stores each Actor's <a class="el" href="classMezzanine_1_1Transform.html" title="Stores information about relative location and rotation in 3d space.">Transform</a> </p>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1TypedConstraint.html#ae9d74e8e14d9e79bb4320603fbf824d6">Mezzanine::TypedConstraint</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#a6595599905cd8b51440bf868d4a9806a">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofSpringConstraint.html#a02841289ca30d307e1e39b47d610ff18">Mezzanine::Generic6DofSpringConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a49cf5f27bff730ee30ff52a741e35f2e">Mezzanine::HingeConstraint</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a78694da6df0b2625220abb94e8f1c549"></a><!-- doxytag: member="Mezzanine::DualTransformConstraint::SerializableName" ref="a78694da6df0b2625220abb94e8f1c549" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::DualTransformConstraint::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "DualTransformConstraint" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1TypedConstraint.html#accc0475bacd0b984dd30d74dbe2bc08e">Mezzanine::TypedConstraint</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Generic6DofConstraint.html#acac3b309c947c1cd60635df1c7b46867">Mezzanine::Generic6DofConstraint</a>, <a class="el" href="classMezzanine_1_1Generic6DofSpringConstraint.html#aa020b0ef38e950475dc8a36f06139933">Mezzanine::Generic6DofSpringConstraint</a>, and <a class="el" href="classMezzanine_1_1HingeConstraint.html#a0bcb0756ff73f9d772e0c60d188d393a">Mezzanine::HingeConstraint</a>.</p>
 
 </div>
 </div>
@@ -454,7 +545,7 @@ Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -464,6 +555,6 @@ Public Member Functions</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:39 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

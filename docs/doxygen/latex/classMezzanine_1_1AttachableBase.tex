@@ -1,0 +1,354 @@
+\hypertarget{classMezzanine_1_1AttachableBase}{
+\subsection{Mezzanine::AttachableBase Class Reference}
+\label{classMezzanine_1_1AttachableBase}\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+}
+
+
+This class is the base class for other attachable classes and is responsible for transform updates to attachables.  
+
+
+
+
+{\ttfamily \#include $<$attachable.h$>$}
+
+Inheritance diagram for Mezzanine::AttachableBase:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.308057cm]{classMezzanine_1_1AttachableBase}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1AttachableBase_a72bee4c7d028162ececabf6010f9015d}{
+\hyperlink{classMezzanine_1_1AttachableBase_a72bee4c7d028162ececabf6010f9015d}{AttachableBase} ()}
+\label{classMezzanine_1_1AttachableBase_a72bee4c7d028162ececabf6010f9015d}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1AttachableBase_aaae9b3fa22b54bafefe5f994ed6eae93}{
+virtual \hyperlink{classMezzanine_1_1AttachableBase_aaae9b3fa22b54bafefe5f994ed6eae93}{$\sim$AttachableBase} ()}
+\label{classMezzanine_1_1AttachableBase_aaae9b3fa22b54bafefe5f994ed6eae93}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1AttachableBase_a33eb528b2e924ef70a9bab7fd79c70d0}{ConvertGlobalToLocal} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location) const 
+\begin{DoxyCompactList}\small\item\em Converts a point in global space to the same point in local space. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1AttachableBase_a39338b566a38828b8c9b1ddf3e2c865e}{ConvertGlobalToLocal} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation) const 
+\begin{DoxyCompactList}\small\item\em Converts a rotation in global space to the same rotation in local space. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1AttachableBase_a709ad287377d07a576ebaca995392e15}{ConvertLocalToGlobal} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation) const 
+\begin{DoxyCompactList}\small\item\em Converts a rotation in local space to the same rotation in global space. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1AttachableBase_ab8a5b6e1379ff5cedb5758c4aafe61ed}{ConvertLocalToGlobal} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location) const 
+\begin{DoxyCompactList}\small\item\em Converts a point in local space to the same point in global space. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1AttachableBase_a927f25cb0f2ba3afd289586e7ab0f4e8}{GetLocation} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the Location of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1AttachableBase_a04b114eccfbf9092b84dfe24e81548b6}{GetName} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the name of this attachable. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1AttachableBase_af18f7d1f20ee332facb314291673a313}{GetOrientation} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the orientation of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1AttachableBase_a8e01242f06e5aabc3d53004325f1eeee}{GetScaling} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the scale of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1AttachableBase_a42bb7c2cab933d28dea86d2ec2934c6a}{GetType} () const =0
+\begin{DoxyCompactList}\small\item\em Gets the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AttachableBase_ab4f0d73a5c313874766bd038a32f1ae2}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)=0
+\begin{DoxyCompactList}\small\item\em Sets the Location of this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AttachableBase_a8c459c324efb01dc56cead8e7650f22e}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)=0
+\begin{DoxyCompactList}\small\item\em Sets the orientation of this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1AttachableBase_a5201923c0685e592dee8cecabc72b508}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)=0
+\begin{DoxyCompactList}\small\item\em Sets the scale of this object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1AttachableBase_a0d62e3708056e62911d6ec7c6beb3a97}{
+bool \hyperlink{classMezzanine_1_1AttachableBase_a0d62e3708056e62911d6ec7c6beb3a97}{GetUpdating} (\hyperlink{classMezzanine_1_1AttachableBase}{AttachableBase} $\ast$AB) const }
+\label{classMezzanine_1_1AttachableBase_a0d62e3708056e62911d6ec7c6beb3a97}
+
+\begin{DoxyCompactList}\small\item\em Gets the update status of another attachable. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1AttachableBase_ab1042d571c1a40f0ab79e33206ab9761}{
+bool {\bfseries Updating}}
+\label{classMezzanine_1_1AttachableBase_ab1042d571c1a40f0ab79e33206ab9761}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is the base class for other attachable classes and is responsible for transform updates to attachables. 
+
+Definition at line 70 of file attachable.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1AttachableBase_a33eb528b2e924ef70a9bab7fd79c70d0}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!ConvertGlobalToLocal@{ConvertGlobalToLocal}}
+\index{ConvertGlobalToLocal@{ConvertGlobalToLocal}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{ConvertGlobalToLocal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::AttachableBase::ConvertGlobalToLocal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1AttachableBase_a33eb528b2e924ef70a9bab7fd79c70d0}
+
+
+Converts a point in global space to the same point in local space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The point in global space to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the point in local space corresponding to the provided global space point. 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a39338b566a38828b8c9b1ddf3e2c865e}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!ConvertGlobalToLocal@{ConvertGlobalToLocal}}
+\index{ConvertGlobalToLocal@{ConvertGlobalToLocal}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{ConvertGlobalToLocal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::AttachableBase::ConvertGlobalToLocal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1AttachableBase_a39338b566a38828b8c9b1ddf3e2c865e}
+
+
+Converts a rotation in global space to the same rotation in local space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Orientation} & The rotation in global space to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the rotation in local space corresponding to the provided global space rotation. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a709ad287377d07a576ebaca995392e15}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!ConvertLocalToGlobal@{ConvertLocalToGlobal}}
+\index{ConvertLocalToGlobal@{ConvertLocalToGlobal}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{ConvertLocalToGlobal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::AttachableBase::ConvertLocalToGlobal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1AttachableBase_a709ad287377d07a576ebaca995392e15}
+
+
+Converts a rotation in local space to the same rotation in global space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Orientation} & The rotation in local space to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the rotation in global space corresponding to the provided local space rotation. 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1AttachableBase_ab8a5b6e1379ff5cedb5758c4aafe61ed}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!ConvertLocalToGlobal@{ConvertLocalToGlobal}}
+\index{ConvertLocalToGlobal@{ConvertLocalToGlobal}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{ConvertLocalToGlobal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::AttachableBase::ConvertLocalToGlobal (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1AttachableBase_ab8a5b6e1379ff5cedb5758c4aafe61ed}
+
+
+Converts a point in local space to the same point in global space. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & The point in local space to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} representing the point in global space corresponding to the provided local space point. 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file attachable.cpp.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a927f25cb0f2ba3afd289586e7ab0f4e8}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!GetLocation@{GetLocation}}
+\index{GetLocation@{GetLocation}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::AttachableBase::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_a927f25cb0f2ba3afd289586e7ab0f4e8}
+
+
+Gets the Location of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the location of this object. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}{Mezzanine::ActorSoft}, \hyperlink{classMezzanine_1_1AreaEffect_a37d04f8e6d6e8451348ee60fd083968b}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_afb87a19855c4cd5361861e1e400d5481}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_abef3e9fd62085c0ebc0bcab8199f7ce7}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a997d299abec130a6a9111b5659a6b0d2}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a45174a2138b031322ddc57fe1be006de}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_a7941d8f3347b810d31b511c3b59585f8}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_aefbebff39e4d21859f5fddb434f6165c}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a04b114eccfbf9092b84dfe24e81548b6}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf ConstString}\& Mezzanine::AttachableBase::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_a04b114eccfbf9092b84dfe24e81548b6}
+
+
+Gets the name of this attachable. 
+
+\begin{DoxyReturn}{Returns}
+Returns a const reference to a string containing the name of this attachable. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorSoft_aa37860ec9b4d12111c74df7bd14fc58d}{Mezzanine::ActorSoft}, \hyperlink{classMezzanine_1_1AreaEffect_ae0205e57786da97300357d7ac1afd180}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_abf6e3c2e642753023acd91f6d1413455}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_aa1bf505993225def530582741e4e58c4}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a1488e39ce34aab274ee5618aeb1f810d}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a43176eb1ad80019bc2a839e597141dd7}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_a9538be39292a297f64d15bf1335ee0cf}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_acb52c6e1718acb9f17e34bf4b6203304}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_af18f7d1f20ee332facb314291673a313}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Quaternion} Mezzanine::AttachableBase::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_af18f7d1f20ee332facb314291673a313}
+
+
+Gets the orientation of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a quaternion representing the orientation of this object. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1AreaEffect_a18c9fa2cbac6e1b62d9c34b56e8f7dc9}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_af693fe97c4f281940a33dc8087a80fcb}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_a3ffd4d4d16a5c3579201491af3363fc9}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a08a415b00c94345ebb5155fa15819296}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_ac47f0c537dd4b789c502bb2a3af61a56}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_ad250735dcbc77c3c96bd4d6b21e43867}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a16243dfa38c5ae15725746f56119cb14}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a8e01242f06e5aabc3d53004325f1eeee}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!GetScaling@{GetScaling}}
+\index{GetScaling@{GetScaling}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{GetScaling}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector3} Mezzanine::AttachableBase::GetScaling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_a8e01242f06e5aabc3d53004325f1eeee}
+
+
+Gets the scale of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the scale being applied to this object. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1AreaEffect_adc4af3aa8a43d2e08d716990153fb89d}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_a026f364d2eb9a13d216cd9d6c600db17}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_adbe312d008e7395947c6a4565068ed90}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_ac8742d7d9ac0b4059eeed80b4b566471}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_ad593e62458141a8e5a684fad55342caf}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_a82be69b653bb3463bec52a114bbb46ef}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a309577416e71ab3b290c575e9877ca4b}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a42bb7c2cab933d28dea86d2ec2934c6a}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WorldAndSceneObjectType} Mezzanine::AttachableBase::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_a42bb7c2cab933d28dea86d2ec2934c6a}
+
+
+Gets the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+
+\begin{DoxyReturn}{Returns}
+Returns the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorBase_a83f7356d743f1b59ea58aac6d7570901}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_afc18444d5f13990a3458455c217f58cd}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1ActorSoft_adddd9e4dafbe78aa9fb55ab92a42dc42}{Mezzanine::ActorSoft}, \hyperlink{classMezzanine_1_1AreaEffect_a2f3df5433f02057d7a9deeb5e6666287}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1GravityField_a9b48f173312a02cd98ac19a8c444c10e}{Mezzanine::GravityField}, \hyperlink{classMezzanine_1_1GravityWell_a7890d007afb7021a811d711e3b2ed950}{Mezzanine::GravityWell}, \hyperlink{classMezzanine_1_1FieldOfForce_ad6247ff9543681daa74a9297c1c7653e}{Mezzanine::FieldOfForce}, \hyperlink{classMezzanine_1_1Camera_a1c00772101a06add4b3dde9e3bc9f8aa}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_a176fea54a32a2e91027e12cecab4bb60}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_aa5cd7878d7507c0985d1cec54caa344e}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_af0004d25fea2ac8a3ace7226193e9aaf}{Mezzanine::ParticleEffect}, and \hyperlink{classMezzanine_1_1WorldNode_a604fe6096c4c9b6e3b7614ef4be3d677}{Mezzanine::WorldNode}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_ab4f0d73a5c313874766bd038a32f1ae2}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::AttachableBase::SetLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_ab4f0d73a5c313874766bd038a32f1ae2}
+
+
+Sets the Location of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Location} & A vector3 representing the location of this object. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1AreaEffect_a4dd22757bc627242de169e31a1717139}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_afdc236c2c875035c8a11473350d0d17a}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_a6cb6c8f304e3cc30b7e6fdaa788e30a9}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_ac06da317651df700c2969cc81c3f8d3d}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a36457d7e42405ac69a30114f21bd3f3f}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_a636852458b226f1c2f3089f17558e678}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_ab80106c2fec881169184eff5165e73b6}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a8c459c324efb01dc56cead8e7650f22e}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::AttachableBase::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_a8c459c324efb01dc56cead8e7650f22e}
+
+
+Sets the orientation of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Orientation} & A \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the orientation of this object. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1AreaEffect_a62bcda0a0c2a95b8f1ccdfe2cd3d1018}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_af502b9c47b1acce46e1482ce049320eb}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_ad498093c5a2b8ef3bfb9311aff719d67}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_aa2f3fe2b7cb7bf459f2526d2e5c234ed}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a8e16be90e8c9d59b7c48b11a38179f76}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a9183791c3e61b701b152e245786a63a5}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1AttachableBase_a5201923c0685e592dee8cecabc72b508}{
+\index{Mezzanine::AttachableBase@{Mezzanine::AttachableBase}!SetScaling@{SetScaling}}
+\index{SetScaling@{SetScaling}!Mezzanine::AttachableBase@{Mezzanine::AttachableBase}}
+\paragraph[{SetScaling}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::AttachableBase::SetScaling (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1AttachableBase_a5201923c0685e592dee8cecabc72b508}
+
+
+Sets the scale of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scale} & A vector3 representing the scale to be applied to this object. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1AreaEffect_ae0448d98c3689ae407734bbcd85a08cb}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1Camera_ad49a68805d03d18d7ca42c9fbc54db2b}{Mezzanine::Camera}, \hyperlink{classMezzanine_1_1Entity_a91b2952a411d8ed80e0f809944c591b4}{Mezzanine::Entity}, \hyperlink{classMezzanine_1_1Light_a643fa07c0b48ec2edad53e3c27345ab9}{Mezzanine::Light}, \hyperlink{classMezzanine_1_1ParticleEffect_a4d8ab250edb3e6f8ba8c60710ccd6c0a}{Mezzanine::ParticleEffect}, \hyperlink{classMezzanine_1_1WorldNode_a3f7797ef81aaf763cdf011728f6b6b05}{Mezzanine::WorldNode}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a03fec7fb4abcd6747695d139d00c7662}{Mezzanine::NonStaticWorldObject}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{attachable_8h}{attachable.h}\item 
+\hyperlink{attachable_8cpp}{attachable.cpp}\end{DoxyCompactItemize}

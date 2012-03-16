@@ -14,19 +14,21 @@ This is the base class from which all the actors inherit.
 Inheritance diagram for Mezzanine::ActorBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=4.000000cm]{classMezzanine_1_1ActorBase}
+\includegraphics[height=5.000000cm]{classMezzanine_1_1ActorBase}
 \end{center}
 \end{figure}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1ActorBase_aa9cc2fce1ff708a96d4a879b87054f18}{ActorBase} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorBase_a0b49f2bc589504c908ccc47a635e1e79}{$\sim$ActorBase} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBase_a8f5a36a6981f1249dbabab318531afd0}{
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a8f5a36a6981f1249dbabab318531afd0}{\_\-Update} ()=0}
 \label{classMezzanine_1_1ActorBase_a8f5a36a6981f1249dbabab318531afd0}
 
 \begin{DoxyCompactList}\small\item\em Utility function for altering or checking the actor every frame. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1ActorBase_aa9cc2fce1ff708a96d4a879b87054f18}{ActorBase} ()
-\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBase_abe739a46f248a7ba257becfb560d9aa5}{
 virtual void \hyperlink{classMezzanine_1_1ActorBase_abe739a46f248a7ba257becfb560d9aa5}{AddToWorld} ()=0}
 \label{classMezzanine_1_1ActorBase_abe739a46f248a7ba257becfb560d9aa5}
@@ -36,10 +38,18 @@ virtual void \hyperlink{classMezzanine_1_1ActorBase_ab245d50e649ec7335bbfcba86d9
 \begin{DoxyCompactList}\small\item\em Advances the animation, making it animate. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a28c9397e90ec680faf61845525312864}{EnableAnimation} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables the animation if one is set. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}{GetType} () const =0
+virtual \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1ActorBase_a83f7356d743f1b59ea58aac6d7570901}{GetType} () const =0
 \item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorBase_a636a0dbf78907d565d4cabd994442637}{GraphicsSettingsSerializableName} () const =0
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ActorBase_ade1c3e7a2e24df64a79d2acb8d6fc084}{IsAnimated} () const 
 \begin{DoxyCompactList}\small\item\em Tells whether this actor is animated or not. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorBase_a7a18ac81a996e2d68057223ebbc7959c}{PhysicsSettingsSerializableName} () const =0
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag that implementations of this class will use to save the serialized s settings. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBase_a32c1aee35ce5b3ad6c64d3cfa34c4a2d}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBase_ad3cb5ddfcd7abe2b39e690a8b6a79d47}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d83db}{
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d83db}{RemoveFromWorld} ()=0}
 \label{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8d83db}
@@ -48,9 +58,17 @@ virtual void \hyperlink{classMezzanine_1_1ActorBase_a30910dd0351bc29b2bf88cb3dc8
 virtual void \hyperlink{classMezzanine_1_1ActorBase_a148df02e486650cba1aa384faf85975f}{RemoveSetAnimation} ()
 \begin{DoxyCompactList}\small\item\em Unloads a loaded animation. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ActorBase_af81c2b16a0a73608d9af4f9fb7e82ef4}{SetAnimation} (\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \&AnimationName, bool Loop)
-\begin{DoxyCompactList}\small\item\em Sets the animation for this object. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1ActorBase_a0b49f2bc589504c908ccc47a635e1e79}{$\sim$ActorBase} ()
-\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the animation for this object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorBase_af6f41bdc0932b99f82f317d27d8dc906}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBase_a24d196b9fc55048fb183a7920b5bbd3e}{ThrowSerialError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Fail) const 
+\begin{DoxyCompactList}\small\item\em a Helper function that assembles strings and throws an exception \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -175,15 +193,15 @@ This function will enable the animation if passed true, making the object animat
 
 Definition at line 95 of file actorbase.cpp.
 
-\hypertarget{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}{
+\hypertarget{classMezzanine_1_1ActorBase_a83f7356d743f1b59ea58aac6d7570901}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GetType@{GetType}}
 \index{GetType@{GetType}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WorldObjectType} Mezzanine::ActorBase::GetType (
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WorldAndSceneObjectType} Mezzanine::ActorBase::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}
+\label{classMezzanine_1_1ActorBase_a83f7356d743f1b59ea58aac6d7570901}
 Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
 
 \begin{DoxyReturn}{Returns}
@@ -191,11 +209,35 @@ Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instan
 \end{DoxyReturn}
  
 
-Implements \hyperlink{classMezzanine_1_1WorldObject_a88b76eaad3ea97b3540e5f23cbc50f73}{Mezzanine::WorldObject}.
+Implements \hyperlink{classMezzanine_1_1WorldObject_aaa860c068e93d09175f9cc187ced17e6}{Mezzanine::WorldObject}.
 
 
 
-Implemented in \hyperlink{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}{Mezzanine::ActorRigid}.
+Implemented in \hyperlink{classMezzanine_1_1ActorRigid_afc18444d5f13990a3458455c217f58cd}{Mezzanine::ActorRigid}, and \hyperlink{classMezzanine_1_1ActorSoft_adddd9e4dafbe78aa9fb55ab92a42dc42}{Mezzanine::ActorSoft}.
+
+\hypertarget{classMezzanine_1_1ActorBase_a636a0dbf78907d565d4cabd994442637}{
+\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!GraphicsSettingsSerializableName@{GraphicsSettingsSerializableName}}
+\index{GraphicsSettingsSerializableName@{GraphicsSettingsSerializableName}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
+\paragraph[{GraphicsSettingsSerializableName}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} Mezzanine::ActorBase::GraphicsSettingsSerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBase_a636a0dbf78907d565d4cabd994442637}
+
+
+Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings. 
+
+\begin{DoxyReturn}{Returns}
+A string containing name of the serialized graphics settings. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1NonStaticWorldObject_a641a2f221c0a3fba0f0ffc646d634b31}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorRigid_a935069f346c516e07f3aa7a89388dea0}{Mezzanine::ActorRigid}.
 
 \hypertarget{classMezzanine_1_1ActorBase_ade1c3e7a2e24df64a79d2acb8d6fc084}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!IsAnimated@{IsAnimated}}
@@ -217,6 +259,93 @@ Returns true if an animation is set and enabled.
 
 Definition at line 103 of file actorbase.cpp.
 
+\hypertarget{classMezzanine_1_1ActorBase_a7a18ac81a996e2d68057223ebbc7959c}{
+\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!PhysicsSettingsSerializableName@{PhysicsSettingsSerializableName}}
+\index{PhysicsSettingsSerializableName@{PhysicsSettingsSerializableName}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
+\paragraph[{PhysicsSettingsSerializableName}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} Mezzanine::ActorBase::PhysicsSettingsSerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBase_a7a18ac81a996e2d68057223ebbc7959c}
+
+
+Get the name of the the XML tag that implementations of this class will use to save the serialized s settings. 
+
+\begin{DoxyReturn}{Returns}
+A string containing name of the serialized graphics settings. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classMezzanine_1_1NonStaticWorldObject_a1e1decda1e208587eeafa90e3f185c01}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorRigid_ac91177e6d50052f97997a4dfef975a59}{Mezzanine::ActorRigid}.
+
+\hypertarget{classMezzanine_1_1ActorBase_a32c1aee35ce5b3ad6c64d3cfa34c4a2d}{
+\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBase_a32c1aee35ce5b3ad6c64d3cfa34c4a2d}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1NonStaticWorldObject_a099e9ba0ce5980b3d1af9784f4bdb155}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_a1b73b6506648f874e7962148d21feecb}{Mezzanine::ActorRigid}.
+
+
+
+Definition at line 148 of file actorbase.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBase_ad3cb5ddfcd7abe2b39e690a8b6a79d47}{
+\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBase_ad3cb5ddfcd7abe2b39e690a8b6a79d47}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1NonStaticWorldObject_a8ea65216bedac69ad8105f39d952f738}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_ac64f6a903b0741043d2a5995b8ade39f}{Mezzanine::ActorRigid}.
+
+
+
+Definition at line 137 of file actorbase.cpp.
+
 \hypertarget{classMezzanine_1_1ActorBase_a148df02e486650cba1aa384faf85975f}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!RemoveSetAnimation@{RemoveSetAnimation}}
 \index{RemoveSetAnimation@{RemoveSetAnimation}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
@@ -233,6 +362,34 @@ Unloads a loaded animation.
 This function will remove the existing set animation. 
 
 Definition at line 121 of file actorbase.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBase_af6f41bdc0932b99f82f317d27d8dc906}{
+\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ActorBase::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBase_af6f41bdc0932b99f82f317d27d8dc906}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Point2PointConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1NonStaticWorldObject_a015b0e13455f960e9eaaa420f0802395}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_a9f4272bae46df5bd1dfed8753cd19dc6}{Mezzanine::ActorRigid}.
+
+
+
+Definition at line 159 of file actorbase.cpp.
 
 \hypertarget{classMezzanine_1_1ActorBase_af81c2b16a0a73608d9af4f9fb7e82ef4}{
 \index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!SetAnimation@{SetAnimation}}
@@ -258,6 +415,36 @@ This function will get the specified animation for this object stored in the mes
 
 
 Definition at line 85 of file actorbase.cpp.
+
+\hypertarget{classMezzanine_1_1ActorBase_a24d196b9fc55048fb183a7920b5bbd3e}{
+\index{Mezzanine::ActorBase@{Mezzanine::ActorBase}!ThrowSerialError@{ThrowSerialError}}
+\index{ThrowSerialError@{ThrowSerialError}!Mezzanine::ActorBase@{Mezzanine::ActorBase}}
+\paragraph[{ThrowSerialError}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBase::ThrowSerialError (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Fail}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1ActorBase_a24d196b9fc55048fb183a7920b5bbd3e}
+
+
+a Helper function that assembles strings and throws an exception 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Fail} & The item that failed. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1NonStaticWorldObject_a1e1300809a35fe8263928ce890e1f91a}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_ad640944179df98fbaf5ecf5e2ed5ba2c}{Mezzanine::ActorRigid}.
+
+
+
+Definition at line 134 of file actorbase.cpp.
 
 
 

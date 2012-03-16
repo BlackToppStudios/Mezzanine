@@ -61,7 +61,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>worldnode.h File Reference</h1>  </div>
 </div>
@@ -70,11 +71,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The declaration of the WorldNode, A class to facilitate navigation in 3d environment.  
 <a href="#_details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="attachable_8h_source.html">attachable.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="crossplatformexport_8h_source.html">crossplatformexport.h</a>&quot;</code><br/>
-<code>#include &quot;datatypes.h&quot;</code><br/>
-<code>#include &quot;vector3.h&quot;</code><br/>
-<code>#include &quot;quaternion.h&quot;</code><br/>
-<code>#include &quot;xml.h&quot;</code><br/>
+<code>#include &quot;enumerations.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="xml_8h_source.html">xml.h</a>&quot;</code><br/>
 </div>
 <p><a href="worldnode_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -89,18 +87,155 @@ Namespaces</h2></td></tr>
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>The bulk of the engine components go in this namspace. </p>
 <br/></td></tr>
 </p>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceOgre.html">Ogre</a></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;MEZZ_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="worldnode_8h.html#aa3ca22d274cd0da03ca62fd1cdf5fee0">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classMezzanine_1_1WorldNode.html">Mezzanine::WorldNode</a> &amp;Ev)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the passed <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> to XML.  <a href="#aa3ca22d274cd0da03ca62fd1cdf5fee0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;MEZZ_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="worldnode_8h.html#a6509ccb839197be1acefdc54e46a62fe">operator&gt;&gt;</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;OneNode, <a class="el" href="classMezzanine_1_1WorldNode.html">Mezzanine::WorldNode</a> &amp;Ev)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set all values of a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> from parsed xml.  <a href="#a6509ccb839197be1acefdc54e46a62fe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::istream &amp;MEZZ_LIB&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="worldnode_8h.html#a198e382378e57e89b812088268fd48ba">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classMezzanine_1_1WorldNode.html">Mezzanine::WorldNode</a> &amp;Ev)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a>.  <a href="#a198e382378e57e89b812088268fd48ba"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The declaration of the WorldNode, A class to facilitate navigation in 3d environment. </p>
 
 <p>Definition in file <a class="el" href="worldnode_8h_source.html">worldnode.h</a>.</p>
-</div></div>
+</div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="aa3ca22d274cd0da03ca62fd1cdf5fee0"></a><!-- doxytag: member="worldnode.h::operator&lt;&lt;" ref="aa3ca22d274cd0da03ca62fd1cdf5fee0" args="(std::ostream &amp;stream, const Mezzanine::WorldNode &amp;Ev)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; MEZZ_LIB operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1WorldNode.html">Mezzanine::WorldNode</a> &amp;&#160;</td>
+          <td class="paramname"><em>Ev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Serializes the passed <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> to XML. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The ostream to send the xml to. </td></tr>
+    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> to be serialized </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>this returns the ostream, now with the serialized data </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not added to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the Node is stored for possible future use. </dd></dl>
+
+<p>Definition at line <a class="el" href="worldnode_8cpp_source.html#l00336">336</a> of file <a class="el" href="worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6509ccb839197be1acefdc54e46a62fe"></a><!-- doxytag: member="worldnode.h::operator&gt;&gt;" ref="a6509ccb839197be1acefdc54e46a62fe" args="(const Mezzanine::xml::Node &amp;OneNode, Mezzanine::WorldNode &amp;Ev)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a>&amp; MEZZ_LIB operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldNode.html">Mezzanine::WorldNode</a> &amp;&#160;</td>
+          <td class="paramname"><em>Ev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set all values of a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> from parsed xml. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>The istream to get the xml from to (re)make the <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a>. </td></tr>
+    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> to be reset. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns thexml::Node that was passed in. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not attempt to de-serialize the name of the WorldNode. This is not currently changeable after the creation of a WorldNode. However, the WorldNodemanager will correctly create name WorldNode upon creation then deserialize the rest of the WorldNode. </dd>
+<dd>
+This does not throw an exception if the WorldNode could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. </dd></dl>
+
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000045">Todo:</a></b></dt><dd>This doesn't account for other objects aside from world nodes to be attached. Additional checks that fetch other types by name in the case of a null pointer should be implemented. </dd></dl>
+</p>
+
+<p>Definition at line <a class="el" href="worldnode_8cpp_source.html#l00363">363</a> of file <a class="el" href="worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a198e382378e57e89b812088268fd48ba"></a><!-- doxytag: member="worldnode.h::operator&gt;&gt;" ref="a198e382378e57e89b812088268fd48ba" args="(std::istream &amp;stream, Mezzanine::WorldNode &amp;Ev)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream&amp; MEZZ_LIB operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1WorldNode.html">Mezzanine::WorldNode</a> &amp;&#160;</td>
+          <td class="paramname"><em>Ev</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Deserialize a <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>The istream to get the xml from to (re)make the <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a>. </td></tr>
+    <tr><td class="paramname">Ev</td><td>the <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> to be deserialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>this returns the ostream, advanced past the <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> that was recreated onto Ev. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>This does not attempt to store the WorldNode aspect ratio. This is too often hardware dependent and may not be reliably re-serialized. </dd>
+<dd>
+This does not the pointer to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. </dd></dl>
+
+<p>Definition at line <a class="el" href="worldnode_8cpp_source.html#l00353">353</a> of file <a class="el" href="worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+
+</div>
+</div>
+</div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,6 +245,6 @@ Namespaces</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:34 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

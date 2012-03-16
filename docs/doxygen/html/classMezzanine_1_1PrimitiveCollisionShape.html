@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::PrimitiveCollisionShape Class Reference</h1>  </div>
@@ -98,14 +99,20 @@ Inheritance diagram for Mezzanine::PrimitiveCollisionShape:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual btConvexInternalShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#ac7eecc4d144b72fdfbea8a013fca441c">GetBulletConvexShape</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#ad3d4143a5640204b987e0b57eb24af41">GetType</a> () const =0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b2158d50aa727df63b0855cc7b92506"></a><!-- doxytag: member="Mezzanine::PrimitiveCollisionShape::PrimitiveCollisionShape" ref="a8b2158d50aa727df63b0855cc7b92506" args="()" -->
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#a8b2158d50aa727df63b0855cc7b92506">PrimitiveCollisionShape</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2bbe57380bf282703f997286a5efde3"></a><!-- doxytag: member="Mezzanine::PrimitiveCollisionShape::~PrimitiveCollisionShape" ref="af2bbe57380bf282703f997286a5efde3" args="()" -->
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#af2bbe57380bf282703f997286a5efde3">~PrimitiveCollisionShape</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual btConvexInternalShape *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#ac7eecc4d144b72fdfbea8a013fca441c">GetBulletConvexShape</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1CollisionShape.html#ad04186055565998879b64176d6dd100d">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#ad3d4143a5640204b987e0b57eb24af41">GetType</a> () const =0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#a2257312048ee9085fa5d14f6b34caae1">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#acfaab953833e9be503fddb2ee0f56d4f">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1PrimitiveCollisionShape.html#a19bb44a705ff86606834feb2783500e5">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a19bb44a705ff86606834feb2783500e5"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86988cdc020efa02d292a76b9b256f7b"></a><!-- doxytag: member="Mezzanine::PrimitiveCollisionShape::SetPointers" ref="a86988cdc020efa02d292a76b9b256f7b" args="(btConvexInternalShape *Shape)" -->
@@ -160,6 +167,81 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a class="anchor" id="a2257312048ee9085fa5d14f6b34caae1"></a><!-- doxytag: member="Mezzanine::PrimitiveCollisionShape::ProtoDeSerialize" ref="a2257312048ee9085fa5d14f6b34caae1" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::PrimitiveCollisionShape::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the internal shape pointer this collision shape is based on. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal collision shape. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1CollisionShape.html#aab25ef5e044b27e8e43b7e4c54ab777a">Mezzanine::CollisionShape</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1BoxCollisionShape.html#aeff89859ae98a391bf1232e190c839b5">Mezzanine::BoxCollisionShape</a>, <a class="el" href="classMezzanine_1_1CapsuleCollisionShape.html#a16ede5d5ed04ae7d146ff28a4484c41d">Mezzanine::CapsuleCollisionShape</a>, <a class="el" href="classMezzanine_1_1ConeCollisionShape.html#a5a47688b99093433fd2e9cb11dff9535">Mezzanine::ConeCollisionShape</a>, <a class="el" href="classMezzanine_1_1ConvexHullCollisionShape.html#a3ad727374ebb82699f8dae7344139add">Mezzanine::ConvexHullCollisionShape</a>, <a class="el" href="classMezzanine_1_1CylinderCollisionShape.html#a5587a08c2cea384bef3035a9eadc09f5">Mezzanine::CylinderCollisionShape</a>, <a class="el" href="classMezzanine_1_1MultiSphereCollisionShape.html#ac933bcaf3025f03b0f7193bf9f894220">Mezzanine::MultiSphereCollisionShape</a>, and <a class="el" href="classMezzanine_1_1SphereCollisionShape.html#a3504227628734579055f242b1ace4d74">Mezzanine::SphereCollisionShape</a>.</p>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00188">188</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acfaab953833e9be503fddb2ee0f56d4f"></a><!-- doxytag: member="Mezzanine::PrimitiveCollisionShape::ProtoSerialize" ref="acfaab953833e9be503fddb2ee0f56d4f" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::PrimitiveCollisionShape::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the internal shape pointer this collision shape is based on. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the internal collision shape. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1CollisionShape.html#ac0995091062903d9777d0fa9bef09b90">Mezzanine::CollisionShape</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1BoxCollisionShape.html#abdd854fc0f165b3b17baecb0bb3961b4">Mezzanine::BoxCollisionShape</a>, <a class="el" href="classMezzanine_1_1CapsuleCollisionShape.html#a997e8ab5bc03e7858b51b449e12be26c">Mezzanine::CapsuleCollisionShape</a>, <a class="el" href="classMezzanine_1_1ConeCollisionShape.html#a881cc9722b623c3c5e5a64bbc01a45c8">Mezzanine::ConeCollisionShape</a>, <a class="el" href="classMezzanine_1_1ConvexHullCollisionShape.html#a60a91d12cc13b8886e6feaddeb32e556">Mezzanine::ConvexHullCollisionShape</a>, <a class="el" href="classMezzanine_1_1CylinderCollisionShape.html#ae4cb206ad4761a817633af5f611e2c0b">Mezzanine::CylinderCollisionShape</a>, <a class="el" href="classMezzanine_1_1MultiSphereCollisionShape.html#a4ff1d5afc23bf6694b01cad56ef17b05">Mezzanine::MultiSphereCollisionShape</a>, and <a class="el" href="classMezzanine_1_1SphereCollisionShape.html#a5d960502c435c80d6ce45bc409e90d94">Mezzanine::SphereCollisionShape</a>.</p>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00169">169</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a19bb44a705ff86606834feb2783500e5"></a><!-- doxytag: member="Mezzanine::PrimitiveCollisionShape::SerializableName" ref="a19bb44a705ff86606834feb2783500e5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::PrimitiveCollisionShape::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "PrimitiveCollisionShape" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1CollisionShape.html#ae5a97a76b687d450f17d0ac86b227f1d">Mezzanine::CollisionShape</a>.</p>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1BoxCollisionShape.html#aa96e3055ec21f18198bceccdeaafa538">Mezzanine::BoxCollisionShape</a>, <a class="el" href="classMezzanine_1_1CapsuleCollisionShape.html#a6225978757c6b80f590336cb04f9ebf5">Mezzanine::CapsuleCollisionShape</a>, <a class="el" href="classMezzanine_1_1ConeCollisionShape.html#a41c55ca94878cb62836540b871457d77">Mezzanine::ConeCollisionShape</a>, <a class="el" href="classMezzanine_1_1ConvexHullCollisionShape.html#a58cda94bb88fd44976747e0600b2356f">Mezzanine::ConvexHullCollisionShape</a>, <a class="el" href="classMezzanine_1_1CylinderCollisionShape.html#a7fa7200a26ab2788416c729e28ed6688">Mezzanine::CylinderCollisionShape</a>, <a class="el" href="classMezzanine_1_1MultiSphereCollisionShape.html#a5b64cbb0b59708f6e3d21ab6b9894afa">Mezzanine::MultiSphereCollisionShape</a>, and <a class="el" href="classMezzanine_1_1SphereCollisionShape.html#a41c14d2a29a4ed2f0d5fe6fd386ab71e">Mezzanine::SphereCollisionShape</a>.</p>
+
+<p>Definition at line <a class="el" href="collisionshape_8cpp_source.html#l00211">211</a> of file <a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="collisionshape_8h_source.html">collisionshape.h</a></li>
 <li><a class="el" href="collisionshape_8cpp_source.html">collisionshape.cpp</a></li>
@@ -170,7 +252,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -180,6 +262,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:46 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

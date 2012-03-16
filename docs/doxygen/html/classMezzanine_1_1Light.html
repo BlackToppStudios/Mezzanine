@@ -73,7 +73,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::Light Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::Light" --><!-- doxytag: inherits="Mezzanine::Attachable" -->
+<!-- doxytag: class="Mezzanine::Light" --><!-- doxytag: inherits="Mezzanine::AttachableChild" -->
 <p>This class is the class used for dynamic lighting within the scene.  
 <a href="#_details">More...</a></p>
 
@@ -84,7 +84,8 @@ Inheritance diagram for Mezzanine::Light:</div>
  <div class="center">
   <img src="classMezzanine_1_1Light.png" usemap="#Mezzanine::Light_map" alt=""/>
   <map id="Mezzanine::Light_map" name="Mezzanine::Light_map">
-<area href="classMezzanine_1_1Attachable.html" alt="Mezzanine::Attachable" shape="rect" coords="0,0,139,24"/>
+<area href="classMezzanine_1_1AttachableChild.html" alt="Mezzanine::AttachableChild" shape="rect" coords="0,56,168,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="0,0,168,24"/>
 </map>
  </div></div>
 
@@ -100,11 +101,13 @@ Public Types</h2></td></tr>
  <a href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structMezzanine_1_1AttachableData.html">AttachableData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aefbd732fe2b4a5b00cdb9d30dce2c5ce">GetAttachableData</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets pointers to the internal ogre structures for this attachable.  <a href="#aefbd732fe2b4a5b00cdb9d30dce2c5ce"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <br class="typebreak"/>
-<a class="el" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9e">Attachable::AttachableElement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a530d776b916f3d8164dc2b8583040f64">GetAttachableType</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">What kind of <a class="el" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a> is this.  <a href="#a530d776b916f3d8164dc2b8583040f64"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a22277def5a6adfa4ad0c510faa08f90a">Light</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a22277def5a6adfa4ad0c510faa08f90a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a78f9b77376839f757826336bf8f93f00">Light</a> (Ogre::Light *light, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal Constructor.  <a href="#a78f9b77376839f757826336bf8f93f00"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa86b020d33393ff4e14d3ff40fc9b506"></a><!-- doxytag: member="Mezzanine::Light::~Light" ref="aa86b020d33393ff4e14d3ff40fc9b506" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aa86b020d33393ff4e14d3ff40fc9b506">~Light</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a9564b933f74967b89b144650abe75a48">GetAttenuationConstant</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the constant factor of the attenuation.  <a href="#a9564b933f74967b89b144650abe75a48"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aeb3f9b4ce95a43fe9253dc455e83f45e">GetAttenuationLinear</a> () const </td></tr>
@@ -117,14 +120,17 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current colour of the diffuse light.  <a href="#af21912b8f7421f79bc8a24e7127b8d51"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a86b7fec45b3b9476a5f02cee0386c29c">GetDirection</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the currently set direction of the light.  <a href="#a86b7fec45b3b9476a5f02cee0386c29c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aab2517f0763552587f7d21e60e167069">GetLightType</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of light that this light is.  <a href="#aab2517f0763552587f7d21e60e167069"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a997d299abec130a6a9111b5659a6b0d2">GetLocation</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current location of the light.  <a href="#a997d299abec130a6a9111b5659a6b0d2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a1488e39ce34aab274ee5618aeb1f810d">GetName</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name of this light.  <a href="#a1488e39ce34aab274ee5618aeb1f810d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a08a415b00c94345ebb5155fa15819296">GetOrientation</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from <a class="el" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a>, returns a default <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>.  <a href="#a08a415b00c94345ebb5155fa15819296"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from Attachable, returns a default <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>.  <a href="#a08a415b00c94345ebb5155fa15819296"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a3206b96ca2e21c861e3a141464709beb">GetPowerScale</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the lights power scale.  <a href="#a3206b96ca2e21c861e3a141464709beb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#ac8742d7d9ac0b4059eeed80b4b566471">GetScaling</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#af3cef4b433cc3563ae3abd3675c5b922">GetSpecularColour</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current colour of the specular light.  <a href="#af3cef4b433cc3563ae3abd3675c5b922"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#adc25087fe48fe78c1bae8785c28d30e0">GetSpotlightFalloff</a> () const </td></tr>
@@ -133,43 +139,38 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Inner angle of the cone of light emitted by this spotlight.  <a href="#a88bb2a7515c4f67c8d367acfc1764420"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a750426a53eeed92787c996f8b35c1d32">GetSpotlightOuterAngle</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Outer angle of the cone of light emitted by this spotlight.  <a href="#a750426a53eeed92787c996f8b35c1d32"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a05cbcc2c73bf309f6b7036895bc44307">GetType</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of light that this light is.  <a href="#a05cbcc2c73bf309f6b7036895bc44307"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a78f9b77376839f757826336bf8f93f00">Light</a> (Ogre::Light *light, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal Constructor.  <a href="#a78f9b77376839f757826336bf8f93f00"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a22277def5a6adfa4ad0c510faa08f90a">Light</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Name, <a class="el" href="classMezzanine_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard initialization constructor.  <a href="#a22277def5a6adfa4ad0c510faa08f90a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#adcac90175a780d07564a41648c22892c">SetAttenuation</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Range, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Constant, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Linear, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Quadratic)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the factors for the attenuation formula applied to this light.  <a href="#adcac90175a780d07564a41648c22892c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aa5cd7878d7507c0985d1cec54caa344e">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a67cf2007b51378b1a3d22d1c63b6f54a">SetAttenuation</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Range, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Constant, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Linear, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Quadratic)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the factors for the attenuation formula applied to this light.  <a href="#a67cf2007b51378b1a3d22d1c63b6f54a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#ae18656f81c8f9ac9490adb9f9d225c5c">SetDiffuseColour</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Red, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Green, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Blue)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour for the Diffuse light from this source.  <a href="#ae18656f81c8f9ac9490adb9f9d225c5c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a577e92239a463c40207dc749b3f6c14a">SetDiffuseColour</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour for the Diffuse light from this source.  <a href="#a577e92239a463c40207dc749b3f6c14a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a6f669a5d25e6c9b40be8656606da854c">SetDiffuseColour</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Red, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Green, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Blue)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour for the Diffuse light from this source.  <a href="#a6f669a5d25e6c9b40be8656606da854c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a22cbfb15ef1c7caf1011574f568d19de">SetDirection</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Direction)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the direction the light will originate from.  <a href="#a22cbfb15ef1c7caf1011574f568d19de"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aedd1d87f5d1dffac4633ca8fe9ab4e15">SetLightType</a> (<a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a> Type)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of light this light is.  <a href="#aedd1d87f5d1dffac4633ca8fe9ab4e15"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a16815beba535ae398e8ae6016c6579f6">SetLocalLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#ac97ef9f7544c0710ce8c18dac91ec1ce">SetLocalOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Orientation)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#ac06da317651df700c2969cc81c3f8d3d">SetLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the location from where the light will originate.  <a href="#ac06da317651df700c2969cc81c3f8d3d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aa2f3fe2b7cb7bf459f2526d2e5c234ed">SetOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Orientation)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from <a class="el" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a>, does nothing on <a class="el" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> class.  <a href="#aa2f3fe2b7cb7bf459f2526d2e5c234ed"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#ad1a8c423c21f192429c01313905fd69a">SetPowerScale</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Power)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the lights power scale.  <a href="#ad1a8c423c21f192429c01313905fd69a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a1594396da60d45ba12b04f7d8a4ba90e">SetSpecularColour</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Red, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Green, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Blue)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour for the Specular light from this source.  <a href="#a1594396da60d45ba12b04f7d8a4ba90e"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited from Attachable, does nothing on <a class="el" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> class.  <a href="#aa2f3fe2b7cb7bf459f2526d2e5c234ed"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#af30837442661a8255a592b1a540b9692">SetPowerScale</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Power)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the lights power scale.  <a href="#af30837442661a8255a592b1a540b9692"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a643fa07c0b48ec2edad53e3c27345ab9">SetScaling</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Scale)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a6fdcce86ef61cf45f93378b381b9c3fe">SetSpecularColour</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Red, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Green, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Blue)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour for the Specular light from this source.  <a href="#a6fdcce86ef61cf45f93378b381b9c3fe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a920d4d00a76b5643e3f7318a92011bbf">SetSpecularColour</a> (const <a class="el" href="classMezzanine_1_1ColourValue.html">ColourValue</a> &amp;Colour)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the colour for the Specular light from this source.  <a href="#a920d4d00a76b5643e3f7318a92011bbf"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aed419cb9a43757aa86c491fb4ad22132">SetSpotlightFalloff</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Falloff)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rate of falloff of the cone of light emitted by a spotlight.  <a href="#aed419cb9a43757aa86c491fb4ad22132"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#acf532728dbcb894f4b3ada6492670ed2">SetSpotlightInnerAngle</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> InnerAngle)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Inner angle of the cone of light emitted by a spotlight.  <a href="#acf532728dbcb894f4b3ada6492670ed2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a149bd5af4b9120bab0703fc5ae638ac3">SetSpotlightOuterAngle</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> OuterAngle)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Outer angle of the cone of light emitted by a spotlight.  <a href="#a149bd5af4b9120bab0703fc5ae638ac3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a1f45a8de84131b1cea1566d7c175c597">SetSpotlightRange</a> (<a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> InnerAngle, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> OuterAngle, <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> Falloff=1.0)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the cone of light emitted by a spotlight.  <a href="#a1f45a8de84131b1cea1566d7c175c597"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a3eb8a8a9919dee3ae8e403d6f1946f45">SetType</a> (<a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a> Type)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the type of light this light is.  <a href="#a3eb8a8a9919dee3ae8e403d6f1946f45"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa86b020d33393ff4e14d3ff40fc9b506"></a><!-- doxytag: member="Mezzanine::Light::~Light" ref="aa86b020d33393ff4e14d3ff40fc9b506" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aa86b020d33393ff4e14d3ff40fc9b506">~Light</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a2c729cbbcd38835159e82b3a7a3a2963">SetSpotlightFalloff</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Falloff)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the rate of falloff of the cone of light emitted by a spotlight.  <a href="#a2c729cbbcd38835159e82b3a7a3a2963"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a2ceaa2d5334fc944613f21ef705914ad">SetSpotlightInnerAngle</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;InnerAngle)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Inner angle of the cone of light emitted by a spotlight.  <a href="#a2ceaa2d5334fc944613f21ef705914ad"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#a233ded1ccf6c7fe3fb83533ab1e8bb2a">SetSpotlightOuterAngle</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;OuterAngle)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Outer angle of the cone of light emitted by a spotlight.  <a href="#a233ded1ccf6c7fe3fb83533ab1e8bb2a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Light.html#aebd96e0d10af9a5a6ad008d4360b649f">SetSpotlightRange</a> (const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;InnerAngle, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;OuterAngle, const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Falloff=1.0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the cone of light emitted by a spotlight.  <a href="#aebd96e0d10af9a5a6ad008d4360b649f"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33af923976c32b2a34aaae8549ed35e4"></a><!-- doxytag: member="Mezzanine::Light::Manager" ref="a33af923976c32b2a34aaae8549ed35e4" args="" -->
@@ -287,7 +288,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>This constructor should not be called on manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">light</td><td>The Ogre light this class is based on. </td></tr>
+    <tr><td class="paramname">light</td><td>The <a class="el" href="namespaceOgre.html">Ogre</a> light this class is based on. </td></tr>
     <tr><td class="paramname">manager</td><td>Pointer to the manager that this light is to be used in. </td></tr>
   </table>
   </dd>
@@ -298,52 +299,6 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="aefbd732fe2b4a5b00cdb9d30dce2c5ce"></a><!-- doxytag: member="Mezzanine::Light::GetAttachableData" ref="aefbd732fe2b4a5b00cdb9d30dce2c5ce" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structMezzanine_1_1AttachableData.html">AttachableData</a> Mezzanine::Light::GetAttachableData </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets pointers to the internal ogre structures for this attachable. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an <a class="el" href="structMezzanine_1_1AttachableData.html" title="Helper class for the presentation of internal data of an attachable.">AttachableData</a> struct with the internal data. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#aeed457c614552bd753e7669cb7624b19">Mezzanine::Attachable</a>.</p>
-
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00236">236</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a530d776b916f3d8164dc2b8583040f64"></a><!-- doxytag: member="Mezzanine::Light::GetAttachableType" ref="a530d776b916f3d8164dc2b8583040f64" args="() const " -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9e">Attachable::AttachableElement</a> Mezzanine::Light::GetAttachableType </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const<code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>What kind of <a class="el" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a> is this. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An <a class="el" href="classMezzanine_1_1Attachable.html#aacb1a1958cca1f005c1313f14e3d098d" title="Gets the type of element this is.">Attachable::GetAttachableType</a> containing <a class="el" href="classMezzanine_1_1Attachable.html#a274bd45f9666f6e50f6fdd8a0162bc9ea1e169d7d694a091e31c6b59f18841e16" title="This is a Mezzanine::Light.">Attachable::Light</a>. </dd></dl>
-
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#aacb1a1958cca1f005c1313f14e3d098d">Mezzanine::Attachable</a>.</p>
-
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00230">230</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a9564b933f74967b89b144650abe75a48"></a><!-- doxytag: member="Mezzanine::Light::GetAttenuationConstant" ref="a9564b933f74967b89b144650abe75a48" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -361,7 +316,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the constant factor of the attenuation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the constant factor of attenuation. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00175">175</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00180">180</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +337,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the linear factor of the attentuation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the linear factor of attenuation. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00178">178</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00183">183</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -403,7 +358,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the quadric factor of the attenuation. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the quadric factor of attenuation. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00181">181</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00186">186</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -424,7 +379,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the absolute range of attenuation in world units. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the absolute range of attenuation. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00172">172</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00177">177</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -445,7 +400,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the current colour of the diffuse light. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a colourvalue representing the currently set Diffuse light. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00160">160</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00159">159</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -464,10 +419,31 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memdoc">
 
 <p>Gets the currently set direction of the light. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> representing the set direction of the light.</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the set direction of the light.</dd></dl>
 <p>Not used in point lights. </p>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00142">142</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00147">147</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aab2517f0763552587f7d21e60e167069"></a><!-- doxytag: member="Mezzanine::Light::GetLightType" ref="aab2517f0763552587f7d21e60e167069" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a> Mezzanine::Light::GetLightType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the type of light that this light is. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value for this lights type. </dd></dl>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00103">103</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -486,12 +462,12 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <div class="memdoc">
 
 <p>Gets the current location of the light. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="classvector3.html">vector3</a> representing the location of the light.</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the location of the light.</dd></dl>
 <p>Not used in Directional Lights. </p>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#a1a8e18e5654c50f24bc049c228603d71">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a927f25cb0f2ba3afd289586e7ab0f4e8">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00136">136</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00135">135</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -512,7 +488,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the name of this light. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name given to this light. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#a6a49ac8c2ddb2dd8ed7dd17f96ecafe5">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a04b114eccfbf9092b84dfe24e81548b6">Mezzanine::AttachableBase</a>.</p>
 
 <p>Definition at line <a class="el" href="light_8cpp_source.html#l00079">79</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
@@ -532,12 +508,12 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </div>
 <div class="memdoc">
 
-<p>Inherited from <a class="el" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a>, returns a default <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
+<p>Inherited from Attachable, returns a default <a class="el" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion with the orientation. </dd></dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#ab3e094cbc373edb05866783290991e7d">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#af18f7d1f20ee332facb314291673a313">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00139">139</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00141">141</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -559,7 +535,29 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the power scale of the light.</dd></dl>
 <p>Only used with HDR ( High Dynamic Range ) rendering </p>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00221">221</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00229">229</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8742d7d9ac0b4059eeed80b4b566471"></a><!-- doxytag: member="Mezzanine::Light::GetScaling" ref="ac8742d7d9ac0b4059eeed80b4b566471" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::Light::GetScaling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the current scaling being applied to the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the scaling being applied on all axes of this <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a8e01242f06e5aabc3d53004325f1eeee">Mezzanine::AttachableBase</a>.</p>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00241">241</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -580,7 +578,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the current colour of the specular light. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a colourvalue representing the currently set Specular light. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00163">163</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00168">168</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -601,7 +599,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the rate of falloff of the cone of light emitted by this spotlight. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the falloff of the cone of light. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00215">215</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00220">220</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -622,7 +620,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the Inner angle of the cone of light emitted by this spotlight. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the inner angle of this spotlight, in radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00209">209</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00205">205</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -643,57 +641,58 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Gets the Outer angle of the cone of light emitted by this spotlight. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a real representing the outer angle of this spotlight, in radians. </dd></dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00212">212</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00214">214</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a05cbcc2c73bf309f6b7036895bc44307"></a><!-- doxytag: member="Mezzanine::Light::GetType" ref="a05cbcc2c73bf309f6b7036895bc44307" args="() const " -->
+<a class="anchor" id="aa5cd7878d7507c0985d1cec54caa344e"></a><!-- doxytag: member="Mezzanine::Light::GetType" ref="aa5cd7878d7507c0985d1cec54caa344e" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a> Mezzanine::Light::GetType </td>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> Mezzanine::Light::GetType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Gets the type of <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> or Scene object this attachable is. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> or Scene object this attachable is. </dd></dl>
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a42bb7c2cab933d28dea86d2ec2934c6a">Mezzanine::AttachableBase</a>.</p>
 
-<p>Gets the type of light that this light is. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value for this lights type. </dd></dl>
-
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00103">103</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00235">235</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adcac90175a780d07564a41648c22892c"></a><!-- doxytag: member="Mezzanine::Light::SetAttenuation" ref="adcac90175a780d07564a41648c22892c" args="(Real Range, Real Constant, Real Linear, Real Quadratic)" -->
+<a class="anchor" id="a67cf2007b51378b1a3d22d1c63b6f54a"></a><!-- doxytag: member="Mezzanine::Light::SetAttenuation" ref="a67cf2007b51378b1a3d22d1c63b6f54a" args="(const Real &amp;Range, const Real &amp;Constant, const Real &amp;Linear, const Real &amp;Quadratic)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetAttenuation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Range</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Constant</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Linear</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Quadratic</em>&#160;</td>
         </tr>
         <tr>
@@ -717,30 +716,30 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00169">169</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00174">174</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a6f669a5d25e6c9b40be8656606da854c"></a><!-- doxytag: member="Mezzanine::Light::SetDiffuseColour" ref="a6f669a5d25e6c9b40be8656606da854c" args="(Real Red, Real Green, Real Blue)" -->
+<a class="anchor" id="ae18656f81c8f9ac9490adb9f9d225c5c"></a><!-- doxytag: member="Mezzanine::Light::SetDiffuseColour" ref="ae18656f81c8f9ac9490adb9f9d225c5c" args="(const Real &amp;Red, const Real &amp;Green, const Real &amp;Blue)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetDiffuseColour </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Red</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Green</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Blue</em>&#160;</td>
         </tr>
         <tr>
@@ -763,7 +762,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00148">148</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00153">153</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -791,7 +790,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00151">151</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00156">156</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -813,13 +812,83 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Sets the direction the light will originate from. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Direction</td><td>A <a class="el" href="classvector3.html">vector3</a> representing the direction the light will come from.</td></tr>
+    <tr><td class="paramname">Direction</td><td>A vector3 representing the direction the light will come from.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Not used in point lights. </p>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00133">133</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00144">144</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aedd1d87f5d1dffac4633ca8fe9ab4e15"></a><!-- doxytag: member="Mezzanine::Light::SetLightType" ref="aedd1d87f5d1dffac4633ca8fe9ab4e15" args="(Light::LightType Type)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Light::SetLightType </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a>&#160;</td>
+          <td class="paramname"><em>Type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the type of light this light is. </p>
+<p>The light types are listed with the class info. Types are Directional, Point, and Spotlight. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Type</td><td>The enum value representing the type of light this is. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00082">82</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a16815beba535ae398e8ae6016c6579f6"></a><!-- doxytag: member="Mezzanine::Light::SetLocalLocation" ref="a16815beba535ae398e8ae6016c6579f6" args="(const Vector3 &amp;Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Light::SetLocalLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableChild.html#a527ef7ddbf4c3936214eff5af821ae63">Mezzanine::AttachableChild</a>.</p>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00244">244</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac97ef9f7544c0710ce8c18dac91ec1ce"></a><!-- doxytag: member="Mezzanine::Light::SetLocalOrientation" ref="ac97ef9f7544c0710ce8c18dac91ec1ce" args="(const Quaternion &amp;Orientation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Light::SetLocalOrientation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Orientation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableChild.html#a3604a2450a1647ae882ef1d9dab1ec5d">Mezzanine::AttachableChild</a>.</p>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00252">252</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -841,13 +910,13 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 <p>Sets the location from where the light will originate. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">Location</td><td>A <a class="el" href="classvector3.html">vector3</a> representing the location to set the light.</td></tr>
+    <tr><td class="paramname">Location</td><td>A vector3 representing the location to set the light.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Not used in Directional Lights. </p>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#ae326a2b74e7187504de91106be64b956">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#ab4f0d73a5c313874766bd038a32f1ae2">Mezzanine::AttachableBase</a>.</p>
 
 <p>Definition at line <a class="el" href="light_8cpp_source.html#l00127">127</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
@@ -868,7 +937,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </div>
 <div class="memdoc">
 
-<p>Inherited from <a class="el" href="classMezzanine_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a>, does nothing on <a class="el" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> class. </p>
+<p>Inherited from Attachable, does nothing on <a class="el" href="classMezzanine_1_1Light.html" title="This class is the class used for dynamic lighting within the scene.">Light</a> class. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">Orientation</td><td>The orientation. </td></tr>
@@ -876,20 +945,20 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="classMezzanine_1_1Attachable.html#a4e987cfdaf8d261764504dbf2f009c74">Mezzanine::Attachable</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a8c459c324efb01dc56cead8e7650f22e">Mezzanine::AttachableBase</a>.</p>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00130">130</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00138">138</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad1a8c423c21f192429c01313905fd69a"></a><!-- doxytag: member="Mezzanine::Light::SetPowerScale" ref="ad1a8c423c21f192429c01313905fd69a" args="(Real Power)" -->
+<a class="anchor" id="af30837442661a8255a592b1a540b9692"></a><!-- doxytag: member="Mezzanine::Light::SetPowerScale" ref="af30837442661a8255a592b1a540b9692" args="(const Real &amp;Power)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetPowerScale </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Power</em></td><td>)</td>
           <td></td>
         </tr>
@@ -906,7 +975,74 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00224">224</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00226">226</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a643fa07c0b48ec2edad53e3c27345ab9"></a><!-- doxytag: member="Mezzanine::Light::SetScaling" ref="a643fa07c0b48ec2edad53e3c27345ab9" args="(const Vector3 &amp;Scale)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Light::SetScaling </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Scale</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a5201923c0685e592dee8cecabc72b508">Mezzanine::AttachableBase</a>.</p>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00238">238</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6fdcce86ef61cf45f93378b381b9c3fe"></a><!-- doxytag: member="Mezzanine::Light::SetSpecularColour" ref="a6fdcce86ef61cf45f93378b381b9c3fe" args="(const Real &amp;Red, const Real &amp;Green, const Real &amp;Blue)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::Light::SetSpecularColour </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Red</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Green</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
+          <td class="paramname"><em>Blue</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the colour for the Specular light from this source. </p>
+<p>When rendering the final color of an object values of the colours of 3 types of lights are taken into account. The 3 types are: Diffuse, Specular, and Ambient. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Red</td><td>Real in the range of 0.0 to 1.0 determining the amount of red in the colour. </td></tr>
+    <tr><td class="paramname">Red</td><td>Green in the range of 0.0 to 1.0 determining the amount of green in the colour. </td></tr>
+    <tr><td class="paramname">Red</td><td>Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00162">162</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -934,64 +1070,18 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00157">157</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00165">165</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1594396da60d45ba12b04f7d8a4ba90e"></a><!-- doxytag: member="Mezzanine::Light::SetSpecularColour" ref="a1594396da60d45ba12b04f7d8a4ba90e" args="(Real Red, Real Green, Real Blue)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Light::SetSpecularColour </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>Red</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>Green</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
-          <td class="paramname"><em>Blue</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the colour for the Specular light from this source. </p>
-<p>When rendering the final color of an object values of the colours of 3 types of lights are taken into account. The 3 types are: Diffuse, Specular, and Ambient. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Red</td><td>Real in the range of 0.0 to 1.0 determining the amount of red in the colour. </td></tr>
-    <tr><td class="paramname">Red</td><td>Green in the range of 0.0 to 1.0 determining the amount of green in the colour. </td></tr>
-    <tr><td class="paramname">Red</td><td>Blue in the range of 0.0 to 1.0 determining the amount of blue in the colour. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00154">154</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="aed419cb9a43757aa86c491fb4ad22132"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightFalloff" ref="aed419cb9a43757aa86c491fb4ad22132" args="(Real Falloff)" -->
+<a class="anchor" id="a2c729cbbcd38835159e82b3a7a3a2963"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightFalloff" ref="a2c729cbbcd38835159e82b3a7a3a2963" args="(const Real &amp;Falloff)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetSpotlightFalloff </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Falloff</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1007,18 +1097,18 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00206">206</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00217">217</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acf532728dbcb894f4b3ada6492670ed2"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightInnerAngle" ref="acf532728dbcb894f4b3ada6492670ed2" args="(Real InnerAngle)" -->
+<a class="anchor" id="a2ceaa2d5334fc944613f21ef705914ad"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightInnerAngle" ref="a2ceaa2d5334fc944613f21ef705914ad" args="(const Real &amp;InnerAngle)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetSpotlightInnerAngle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>InnerAngle</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1034,18 +1124,18 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00194">194</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00199">199</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a149bd5af4b9120bab0703fc5ae638ac3"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightOuterAngle" ref="a149bd5af4b9120bab0703fc5ae638ac3" args="(Real OuterAngle)" -->
+<a class="anchor" id="a233ded1ccf6c7fe3fb83533ab1e8bb2a"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightOuterAngle" ref="a233ded1ccf6c7fe3fb83533ab1e8bb2a" args="(const Real &amp;OuterAngle)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetSpotlightOuterAngle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>OuterAngle</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1061,30 +1151,30 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00200">200</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00208">208</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1f45a8de84131b1cea1566d7c175c597"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightRange" ref="a1f45a8de84131b1cea1566d7c175c597" args="(Real InnerAngle, Real OuterAngle, Real Falloff=1.0)" -->
+<a class="anchor" id="aebd96e0d10af9a5a6ad008d4360b649f"></a><!-- doxytag: member="Mezzanine::Light::SetSpotlightRange" ref="aebd96e0d10af9a5a6ad008d4360b649f" args="(const Real &amp;InnerAngle, const Real &amp;OuterAngle, const Real &amp;Falloff=1.0)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Mezzanine::Light::SetSpotlightRange </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>InnerAngle</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>OuterAngle</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td>
           <td class="paramname"><em>Falloff</em> = <code>1.0</code>&#160;</td>
         </tr>
         <tr>
@@ -1107,35 +1197,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00187">187</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a3eb8a8a9919dee3ae8e403d6f1946f45"></a><!-- doxytag: member="Mezzanine::Light::SetType" ref="a3eb8a8a9919dee3ae8e403d6f1946f45" args="(Light::LightType Type)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::Light::SetType </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1Light.html#a783df27d8261c5af2226bc75586944be">Light::LightType</a>&#160;</td>
-          <td class="paramname"><em>Type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Sets the type of light this light is. </p>
-<p>The light types are listed with the class info. Types are Directional, Point, and Spotlight. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">Type</td><td>The enum value representing the type of light this is. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="light_8cpp_source.html#l00082">82</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
+<p>Definition at line <a class="el" href="light_8cpp_source.html#l00192">192</a> of file <a class="el" href="light_8cpp_source.html">light.cpp</a>.</p>
 
 </div>
 </div>
@@ -1149,7 +1211,7 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1159,6 +1221,6 @@ Ogre::Light *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" h
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:43 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:02 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

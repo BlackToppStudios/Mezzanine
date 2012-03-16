@@ -50,6 +50,13 @@ enum \hyperlink{classMezzanine_1_1ManagerBase_a08cecf5169cad3e82be81a3a159b0b6e}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classMezzanine_1_1ManagerBase_a6ee3249f71f330394e81e349370d57a8}{
+\hyperlink{classMezzanine_1_1ManagerBase_a6ee3249f71f330394e81e349370d57a8}{ManagerBase} ()}
+\label{classMezzanine_1_1ManagerBase_a6ee3249f71f330394e81e349370d57a8}
+
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ManagerBase_a04cb832dc79f4559cc5b2f57cabfa70d}{$\sim$ManagerBase} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258d5cd2}{DoMainLoopItems} ()=0
 \begin{DoxyCompactList}\small\item\em The main loop calls this once per frame. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1ManagerBase_acff151003c2370c857dadb67148faffc}{
@@ -76,11 +83,6 @@ std::string \hyperlink{classMezzanine_1_1ManagerBase_afb2572589f8389155be7ce256c
 \begin{DoxyCompactList}\small\item\em This Allows any manager name to be sent to a stream. Primarily used for logging. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d52ee2}{Initialize} ()=0
 \begin{DoxyCompactList}\small\item\em Configure Items requiring other Managers. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ManagerBase_a6ee3249f71f330394e81e349370d57a8}{
-\hyperlink{classMezzanine_1_1ManagerBase_a6ee3249f71f330394e81e349370d57a8}{ManagerBase} ()}
-\label{classMezzanine_1_1ManagerBase_a6ee3249f71f330394e81e349370d57a8}
-
-\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ManagerBase_a2a1bfb2a137c6013a8a5e5fae4c4bb85}{PostMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em This runs any callback that is required after the mainloop items are run. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1ManagerBase_a9e0f19b5472eab47fbcd986656838070}{PreMainLoopItems} ()
@@ -92,9 +94,7 @@ virtual void \hyperlink{classMezzanine_1_1ManagerBase_a4ec52058f4c8a3f1c5fb20230
 virtual void \hyperlink{classMezzanine_1_1ManagerBase_a84dd669c15e9db08c9efbc84c4fa3b0b}{SetPreMainLoopItems} (\hyperlink{classMezzanine_1_1ManagerBase_ab23a9aa27c4e3cb58d902a149d3c6de2}{Callback} PreMainCallback)
 \begin{DoxyCompactList}\small\item\em This assigns a function to be the callback function to run prior to the main loop. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1ManagerBase_ac71cd03e0a60427a1ee22637a3cc1b3e}{SetPriority} (short int Priority\_\-)
-\begin{DoxyCompactList}\small\item\em This gets the Priority of this manager. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1ManagerBase_a04cb832dc79f4559cc5b2f57cabfa70d}{$\sim$ManagerBase} ()
-\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This gets the Priority of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 

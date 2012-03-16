@@ -14,115 +14,125 @@ This is a helper class which non-\/physics objects, such as lights, cameras, rib
 Inheritance diagram for Mezzanine::WorldNode:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{classMezzanine_1_1WorldNode}
+\includegraphics[height=3.000000cm]{classMezzanine_1_1WorldNode}
 \end{center}
 \end{figure}
-\subsubsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classMezzanine_1_1WorldNode_aa7097dbbb9b0920f6d9952e3315227fa}{
-typedef std::vector$<$ \hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$ $>$::\hyperlink{classMezzanine_1_1WorldNode_aa7097dbbb9b0920f6d9952e3315227fa}{const\_\-iterator} \hyperlink{classMezzanine_1_1WorldNode_aa7097dbbb9b0920f6d9952e3315227fa}{const\_\-iterator}}
-\label{classMezzanine_1_1WorldNode_aa7097dbbb9b0920f6d9952e3315227fa}
-
-\begin{DoxyCompactList}\small\item\em Used to make working with the attached items easier, and avoid the risk of accidentally changing them. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldNode_a2057d95435b0675936fe71ccb047f261}{
-typedef std::vector$<$ \hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$ $>$::\hyperlink{classMezzanine_1_1WorldNode_a2057d95435b0675936fe71ccb047f261}{iterator} \hyperlink{classMezzanine_1_1WorldNode_a2057d95435b0675936fe71ccb047f261}{iterator}}
-\label{classMezzanine_1_1WorldNode_a2057d95435b0675936fe71ccb047f261}
-
-\begin{DoxyCompactList}\small\item\em Used to make working with the attached items easier. \item\end{DoxyCompactList}\item 
-enum \hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493}{NodeType} \{ \hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493ab728930f8f7ab3d8f07bdcdde49ebf51}{Free} =  0, 
-\hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493a6c2339a568e17d9e4cc4532fc64f858b}{Center} =  1, 
-\hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493a021c60f772db0c6cc856300903f38646}{Orbit} =  2, 
-\hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493ac37c7343618aecc1d1aa060024ddcf93}{Stand} =  3
- \}
-\begin{DoxyCompactList}\small\item\em Kinds of movement (or non-\/movement modes) a world node could have. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classMezzanine_1_1WorldNode_a241c57161dea141aa0820e9439517f85}{AttachObject} (\hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$Target)
-\begin{DoxyCompactList}\small\item\em Attaches an attachable element to this Node. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_a2057d95435b0675936fe71ccb047f261}{iterator} \hyperlink{classMezzanine_1_1WorldNode_a5b32b7d9aa01b687a833578fd2df85d8}{begin} ()
-\begin{DoxyCompactList}\small\item\em Get an iterator to the first item. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_aa7097dbbb9b0920f6d9952e3315227fa}{const\_\-iterator} \hyperlink{classMezzanine_1_1WorldNode_af3b785a3ce4d47b449ff561946a814e6}{begin} () const 
-\begin{DoxyCompactList}\small\item\em Get an const\_\-iterator to the first item. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldNode_a5143813d93701bd6d3eb0a52149eb23d}{
-void \hyperlink{classMezzanine_1_1WorldNode_a5143813d93701bd6d3eb0a52149eb23d}{DetachAll} ()}
-\label{classMezzanine_1_1WorldNode_a5143813d93701bd6d3eb0a52149eb23d}
-
-\begin{DoxyCompactList}\small\item\em Detaches all attached cameras, lights, particle effects and anything else attached. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_ada720c4ee3ab582c307f9490396e6cfd}{DetachObject} (\hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$Target)
-\begin{DoxyCompactList}\small\item\em Detaches an attachable element from this Node. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldNode_a4166c8c884ac8a05b45ae0b4244f4ee9}{
-void \hyperlink{classMezzanine_1_1WorldNode_a4166c8c884ac8a05b45ae0b4244f4ee9}{DisableAutoTracking} ()}
-\label{classMezzanine_1_1WorldNode_a4166c8c884ac8a05b45ae0b4244f4ee9}
-
-\begin{DoxyCompactList}\small\item\em Disables any active autotracking for this node. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_a2057d95435b0675936fe71ccb047f261}{iterator} \hyperlink{classMezzanine_1_1WorldNode_a8897f8140ad6677add5fc89f5893f488}{end} ()
-\begin{DoxyCompactList}\small\item\em Get an iterator to one past the last item. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_aa7097dbbb9b0920f6d9952e3315227fa}{const\_\-iterator} \hyperlink{classMezzanine_1_1WorldNode_ac114e0c9e40b99fc8e2ff80cdac39c7d}{end} () const 
-\begin{DoxyCompactList}\small\item\em Get an const\_\-iterator to one past the last item. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} \hyperlink{classMezzanine_1_1WorldNode_a9bbabb7b15f63c40bd3d563d9dd277a2}{GetAttachableData} () const 
-\begin{DoxyCompactList}\small\item\em Gets pointers to the internal ogre structures for this attachable. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Attachable_a274bd45f9666f6e50f6fdd8a0162bc9e}{Attachable::AttachableElement} \hyperlink{classMezzanine_1_1WorldNode_a98048b61fe6493bee14d247aab1c8a1f}{GetAttachableType} () const 
-\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classMezzanine_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$ \hyperlink{classMezzanine_1_1WorldNode_a3673b8846216b3f1e7d0a63225a4f9f1}{GetAttached} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Index) const 
-\begin{DoxyCompactList}\small\item\em Get a specific attached Item. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1WorldNode_a7941d8f3347b810d31b511c3b59585f8}{GetLocation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Location of this node. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1WorldNode_a9538be39292a297f64d15bf1335ee0cf}{GetName} () const 
-\begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
-\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1WorldNode_a77a6e084b4383f125a9c6686eba7583d}{GetNumAttached} () const 
-\begin{DoxyCompactList}\small\item\em Gets the number of elements attached to this node. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1WorldNode_ad250735dcbc77c3c96bd4d6b21e43867}{GetOrientation} () const 
-\begin{DoxyCompactList}\small\item\em Gets the orientation of this node. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493}{WorldNode::NodeType} \hyperlink{classMezzanine_1_1WorldNode_a524f3569c7e1999bd86a74d47ea4d884}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em Gets the type of node that this is. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_a4d09b9262a3d8a4e18bb0ffb5a8eeb2b}{IncrementOrbit} (\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} Radians)
-\begin{DoxyCompactList}\small\item\em Increments the orbit of this node if this is an orbiting node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_abddad51fbb7f9e51410e9eda8ba633a3}{LookAt} (\hyperlink{classMezzanine_1_1Vector3}{Vector3} LookAt)
-\begin{DoxyCompactList}\small\item\em Automatically sets the orientation needed to point this node at a location in the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_a085837f737b8932857eb96cdd748705e}{SetAutoTracking} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classMezzanine_1_1Vector3}{Vector3} Offset=\hyperlink{classMezzanine_1_1Vector3}{Vector3}())
-\begin{DoxyCompactList}\small\item\em Makes this node autotrack an actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_accb11fd94c98482d5d1b28894a1f4d9b}{SetAutoTracking} (\hyperlink{classMezzanine_1_1WorldNode}{WorldNode} $\ast$node, \hyperlink{classMezzanine_1_1Vector3}{Vector3} Offset=\hyperlink{classMezzanine_1_1Vector3}{Vector3}())
-\begin{DoxyCompactList}\small\item\em Makes this node autotrack another node. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1WorldNode_a636852458b226f1c2f3089f17558e678}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
-\begin{DoxyCompactList}\small\item\em Sets the Location of this node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
-\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classMezzanine_1_1WorldNode_acccc6e4d11aad8bb7a495a64b5886b69}{SetType} (\hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493}{WorldNode::NodeType} type)
-\begin{DoxyCompactList}\small\item\em Sets the type of node that this is. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_ad9bb9f0f1d375fbd21d44c5520b0a58f}{WorldNode} (Ogre::SceneNode $\ast$snode, \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$manager)
-\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1WorldNode_a28cfcc431cacc61e0361010f6eff07ab}{WorldNode} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$manager)
+\hyperlink{classMezzanine_1_1WorldNode_acb3be02579f07d95d55d040d10cc12a0}{WorldNode} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, \hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$SManager)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classMezzanine_1_1WorldNode_a7584e9792b3ceb2bd5effc1ddb50c266}{
-\hyperlink{classMezzanine_1_1WorldNode_a7584e9792b3ceb2bd5effc1ddb50c266}{$\sim$WorldNode} ()}
+virtual \hyperlink{classMezzanine_1_1WorldNode_a7584e9792b3ceb2bd5effc1ddb50c266}{$\sim$WorldNode} ()}
 \label{classMezzanine_1_1WorldNode_a7584e9792b3ceb2bd5effc1ddb50c266}
 
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldNode_a065e8789f8b4b49866d1f7ca3a38d0d0}{
+void \hyperlink{classMezzanine_1_1WorldNode_a065e8789f8b4b49866d1f7ca3a38d0d0}{\_\-UpdateTracking} ()}
+\label{classMezzanine_1_1WorldNode_a065e8789f8b4b49866d1f7ca3a38d0d0}
+
+\begin{DoxyCompactList}\small\item\em Updates this object to continue tracking another object. \item\end{DoxyCompactList}\item 
+const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1WorldNode_a24bedb35bbddea779da919fcff7561ee}{GetAutoTrackingDirection} () const 
+\begin{DoxyCompactList}\small\item\em Gets the local direction used to face at the autotracked target. \item\end{DoxyCompactList}\item 
+const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1WorldNode_a6143ff48ae180f5fdcd8903f2804f105}{GetAutoTrackingOffset} () const 
+\begin{DoxyCompactList}\small\item\em Gets the offset from the target applied to the autotracked target. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1AttachableBase}{AttachableBase} $\ast$ \hyperlink{classMezzanine_1_1WorldNode_a6768b6aa1ca9a4a427917b88d8a95295}{GetAutoTrackingTarget} () const 
+\begin{DoxyCompactList}\small\item\em Gets the target currently being tracked. \item\end{DoxyCompactList}\item 
+const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \& \hyperlink{classMezzanine_1_1WorldNode_a27a9f2fb9a638cebb8ee8a328c1a4803}{GetFixedYawAxis} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Axis used to yaw. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1WorldNode_ae4f695676c1c57c277595349cf4984d1}{GetFixedYawAxisEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether or not Fixed Yaw is enabled. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1WorldNode_a7941d8f3347b810d31b511c3b59585f8}{GetLocation} () const 
+\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1WorldNode_a9538be39292a297f64d15bf1335ee0cf}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1WorldNode_ad250735dcbc77c3c96bd4d6b21e43867}{GetOrientation} () const 
+\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1WorldNode_a82be69b653bb3463bec52a114bbb46ef}{GetScaling} () const 
+\item 
+\hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1WorldNode_a604fe6096c4c9b6e3b7614ef4be3d677}{GetType} () const 
+\item 
+void \hyperlink{classMezzanine_1_1WorldNode_ad9ec8a56450e749cddedef9748594b6d}{LookAt} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&LookAt, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-World, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&LocalDirection=Vector3::Neg\_\-Unit\_\-Z())
+\begin{DoxyCompactList}\small\item\em Automatically sets the orientation needed to point this node at a location in the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a3498ef1f78331824a36a2287b25a5506}{Pitch} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Angle, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-Local)
+\begin{DoxyCompactList}\small\item\em Applies a rotation around the X axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_acfcae16b95b2a9978ff56567af01e0df}{Roll} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Angle, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-Local)
+\begin{DoxyCompactList}\small\item\em Applies a rotation around the Z axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a62f367c6b799f4b8216a72f39f568d35}{Rotate} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-Local)
+\begin{DoxyCompactList}\small\item\em Applies a rotation from a quaternion. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_aa9d52b9b88c9005524bc97187125fc43}{Rotate} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Angle, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Axis, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-Local)
+\begin{DoxyCompactList}\small\item\em Applies a rotation from an angle and an axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a417e459d58c4d612bcbbe98a328c7b50}{SetAutoTracking} (\hyperlink{classMezzanine_1_1AttachableBase}{AttachableBase} $\ast$Target, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&LocalDirection=Vector3::Neg\_\-Unit\_\-Z(), const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Offset=\hyperlink{classMezzanine_1_1Vector3}{Vector3}())
+\begin{DoxyCompactList}\small\item\em Makes this node constantly face another object. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_ab088981b0bea9d73e9bfaac5f237abc8}{SetDirection} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Direction, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-World, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&LocalAxis=Vector3::Neg\_\-Unit\_\-Z())
+\begin{DoxyCompactList}\small\item\em Sets the direction this node is facing. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a3d4066a1b9f9862ea026f15dfa3a3e81}{SetFixedYawAxis} (bool Enable, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&FixedAxis=Vector3::Unit\_\-Y())
+\begin{DoxyCompactList}\small\item\em Tells this node to always yaw around a specific axis. Useful for AutoTracking. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a03feb41f719612123fe8d9055603efe6}{SetLocalLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a32259918c2d5695141371ca364a813c2}{SetLocalOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
+\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a636852458b226f1c2f3089f17558e678}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
+\item 
+void \hyperlink{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{SetOrientation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Orientation)
+\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a3f7797ef81aaf763cdf011728f6b6b05}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)
+\item 
+void \hyperlink{classMezzanine_1_1WorldNode_a07ee43210a28041f2debf1cea0c5ce2a}{Yaw} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Angle, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-Local)
+\begin{DoxyCompactList}\small\item\em Applies a rotation around the Y axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1WorldNode_a220b3039234945c8c79a47d153b3c4ef}{
-std::vector$<$ \hyperlink{classMezzanine_1_1Attachable}{Attachable} $\ast$ $>$ \hyperlink{classMezzanine_1_1WorldNode_a220b3039234945c8c79a47d153b3c4ef}{Elements}}
-\label{classMezzanine_1_1WorldNode_a220b3039234945c8c79a47d153b3c4ef}
+\hypertarget{classMezzanine_1_1WorldNode_a78db6f8cd8b7efe2f73798b2af54a3ac}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries AutoTrackDirection}}
+\label{classMezzanine_1_1WorldNode_a78db6f8cd8b7efe2f73798b2af54a3ac}
 
-\begin{DoxyCompactList}\small\item\em Vector storing all attached cameras, lights, etc... . \item\end{DoxyCompactList}\item 
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_a4d75977ecf332b6c49d717fe926a2c43}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries AutoTrackOffset}}
+\label{classMezzanine_1_1WorldNode_a4d75977ecf332b6c49d717fe926a2c43}
+
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_ac198af3901c8d4af70e06b16e85b9b30}{
+\hyperlink{classMezzanine_1_1AttachableBase}{AttachableBase} $\ast$ {\bfseries AutoTrackTarget}}
+\label{classMezzanine_1_1WorldNode_ac198af3901c8d4af70e06b16e85b9b30}
+
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_a269b40d3160b5ffe4e650d7855357401}{
+bool {\bfseries FixedYaw}}
+\label{classMezzanine_1_1WorldNode_a269b40d3160b5ffe4e650d7855357401}
+
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_aa5599bba6092394523a0df5692904c3f}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries FixedYawAxis}}
+\label{classMezzanine_1_1WorldNode_aa5599bba6092394523a0df5692904c3f}
+
+\item 
 \hypertarget{classMezzanine_1_1WorldNode_a99c96cab509b8e8d68d888beea424046}{
-\hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classMezzanine_1_1WorldNode_a99c96cab509b8e8d68d888beea424046}{Manager}}
+\hyperlink{classMezzanine_1_1SceneManager}{SceneManager} $\ast$ {\bfseries Manager}}
 \label{classMezzanine_1_1WorldNode_a99c96cab509b8e8d68d888beea424046}
 
-\begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldNode_a5ff677facd647d3bd49662e5bc916f54}{
-Ogre::SceneNode $\ast$ \hyperlink{classMezzanine_1_1WorldNode_a5ff677facd647d3bd49662e5bc916f54}{OgreNode}}
-\label{classMezzanine_1_1WorldNode_a5ff677facd647d3bd49662e5bc916f54}
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_ad1eed7c94e2740c65c2870e30b716421}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries NodeLoc}}
+\label{classMezzanine_1_1WorldNode_ad1eed7c94e2740c65c2870e30b716421}
 
-\begin{DoxyCompactList}\small\item\em Pointer to the ogre scenenode from which this class gets it's functionality. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldNode_a39b4ed5cf8e81dd0a3b8b1d41220d4e2}{
-\hyperlink{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493}{WorldNode::NodeType} \hyperlink{classMezzanine_1_1WorldNode_a39b4ed5cf8e81dd0a3b8b1d41220d4e2}{Type}}
-\label{classMezzanine_1_1WorldNode_a39b4ed5cf8e81dd0a3b8b1d41220d4e2}
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_ad1649916790a898f3ffde53278e6820b}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} {\bfseries NodeName}}
+\label{classMezzanine_1_1WorldNode_ad1649916790a898f3ffde53278e6820b}
 
-\begin{DoxyCompactList}\small\item\em Enum value storing the type of node this class is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_ada8bf349fdd73cc5b0c45e8841266d06}{
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} {\bfseries NodeOri}}
+\label{classMezzanine_1_1WorldNode_ada8bf349fdd73cc5b0c45e8841266d06}
+
+\item 
+\hypertarget{classMezzanine_1_1WorldNode_aafb8f011a5b2451b72444df0eb4b9921}{
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} {\bfseries NodeScale}}
+\label{classMezzanine_1_1WorldNode_aafb8f011a5b2451b72444df0eb4b9921}
+
+\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -134,59 +144,21 @@ This is a helper class which non-\/physics objects, such as lights, cameras, rib
  Free -\/ A node with no rules governing how it moves. \par
  Note: There are no rules restricting the use of nodes anyway, this enum is here simply to help indicate the intended use upon creation. 
 
-Definition at line 81 of file worldnode.h.
-
-
-
-\subsubsection{Member Enumeration Documentation}
-\hypertarget{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!NodeType@{NodeType}}
-\index{NodeType@{NodeType}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{NodeType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf Mezzanine::WorldNode::NodeType}}\hfill}
-\label{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493}
-
-
-Kinds of movement (or non-\/movement modes) a world node could have. 
-
-\begin{Desc}
-\item[Enumerator: ]\par
-\begin{description}
-\index{Free@{Free}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Free@{Free}}\item[{\em 
-\hypertarget{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493ab728930f8f7ab3d8f07bdcdde49ebf51}{
-Free}
-\label{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493ab728930f8f7ab3d8f07bdcdde49ebf51}
-}]Not bound by a any kind of movement. \index{Center@{Center}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Center@{Center}}\item[{\em 
-\hypertarget{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493a6c2339a568e17d9e4cc4532fc64f858b}{
-Center}
-\label{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493a6c2339a568e17d9e4cc4532fc64f858b}
-}]Designed to be be rotate to simulate orbits in a simple way. \index{Orbit@{Orbit}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Orbit@{Orbit}}\item[{\em 
-\hypertarget{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493a021c60f772db0c6cc856300903f38646}{
-Orbit}
-\label{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493a021c60f772db0c6cc856300903f38646}
-}]A node that orbits aroud a center. \index{Stand@{Stand}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Stand@{Stand}}\item[{\em 
-\hypertarget{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493ac37c7343618aecc1d1aa060024ddcf93}{
-Stand}
-\label{classMezzanine_1_1WorldNode_a7b41cfe149e688905e56fb395d6a2493ac37c7343618aecc1d1aa060024ddcf93}
-}]Stationary/Standing. \end{description}
-\end{Desc}
-
-
-
-Definition at line 85 of file worldnode.h.
+Definition at line 78 of file worldnode.h.
 
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1WorldNode_a28cfcc431cacc61e0361010f6eff07ab}{
+\hypertarget{classMezzanine_1_1WorldNode_acb3be02579f07d95d55d040d10cc12a0}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!WorldNode@{WorldNode}}
 \index{WorldNode@{WorldNode}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
 \paragraph[{WorldNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::WorldNode::WorldNode (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{Name, }
-\item[{{\bf SceneManager} $\ast$}]{manager}
+\item[{{\bf SceneManager} $\ast$}]{SManager}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1WorldNode_a28cfcc431cacc61e0361010f6eff07ab}
+\label{classMezzanine_1_1WorldNode_acb3be02579f07d95d55d040d10cc12a0}
 
 
 Standard initialization constructor. 
@@ -195,242 +167,115 @@ Standard initialization constructor.
 \begin{DoxyParams}{Parameters}
 {\em Name} & The name of this node. \\
 \hline
-{\em manager} & Pointer to the manager that this node is to be used in. \\
+{\em SManager} & Pointer to the manager that this node is to be used in. \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 64 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_ad9bb9f0f1d375fbd21d44c5520b0a58f}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!WorldNode@{WorldNode}}
-\index{WorldNode@{WorldNode}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{WorldNode}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::WorldNode::WorldNode (
-\begin{DoxyParamCaption}
-\item[{Ogre::SceneNode $\ast$}]{snode, }
-\item[{{\bf SceneManager} $\ast$}]{manager}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1WorldNode_ad9bb9f0f1d375fbd21d44c5520b0a58f}
-
-
-Internal constructor. 
-
-This constructor should not be called on manually. 
-\begin{DoxyParams}{Parameters}
-{\em snode} & Pointer to the Ogre SceneNode this class is based on. \\
-\hline
-{\em manager} & Pointer to the manager that this node is to be used in. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 75 of file worldnode.cpp.
-
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classMezzanine_1_1WorldNode_a241c57161dea141aa0820e9439517f85}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!AttachObject@{AttachObject}}
-\index{AttachObject@{AttachObject}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{AttachObject}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::AttachObject (
-\begin{DoxyParamCaption}
-\item[{{\bf Attachable} $\ast$}]{Target}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1WorldNode_a241c57161dea141aa0820e9439517f85}
-
-
-Attaches an attachable element to this Node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Target} & The \hyperlink{classMezzanine_1_1Attachable}{Attachable} to be attached. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 155 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_a5b32b7d9aa01b687a833578fd2df85d8}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!begin@{begin}}
-\index{begin@{begin}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode::iterator} Mezzanine::WorldNode::begin (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1WorldNode_a5b32b7d9aa01b687a833578fd2df85d8}
-
-
-Get an iterator to the first item. 
-
-\begin{DoxyReturn}{Returns}
-An Iterator to the first 
-\end{DoxyReturn}
-
-
-Definition at line 191 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_af3b785a3ce4d47b449ff561946a814e6}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!begin@{begin}}
-\index{begin@{begin}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{begin}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode::const\_\-iterator} Mezzanine::WorldNode::begin (
+\hypertarget{classMezzanine_1_1WorldNode_a24bedb35bbddea779da919fcff7561ee}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetAutoTrackingDirection@{GetAutoTrackingDirection}}
+\index{GetAutoTrackingDirection@{GetAutoTrackingDirection}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetAutoTrackingDirection}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3} \& Mezzanine::WorldNode::GetAutoTrackingDirection (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\hfill}
-\label{classMezzanine_1_1WorldNode_af3b785a3ce4d47b449ff561946a814e6}
+\label{classMezzanine_1_1WorldNode_a24bedb35bbddea779da919fcff7561ee}
 
 
-Get an const\_\-iterator to the first item. 
+Gets the local direction used to face at the autotracked target. 
 
 \begin{DoxyReturn}{Returns}
-An Iterator to the first 
+Returns a const reference to a vector3 representing the facing direction of the autotracked target. 
 \end{DoxyReturn}
 
 
-Definition at line 197 of file worldnode.cpp.
+Definition at line 187 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_ada720c4ee3ab582c307f9490396e6cfd}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!DetachObject@{DetachObject}}
-\index{DetachObject@{DetachObject}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{DetachObject}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::DetachObject (
-\begin{DoxyParamCaption}
-\item[{{\bf Attachable} $\ast$}]{Target}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1WorldNode_ada720c4ee3ab582c307f9490396e6cfd}
-
-
-Detaches an attachable element from this Node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Target} & The \hyperlink{classMezzanine_1_1Attachable}{Attachable} to be detached.\\
-\hline
-\end{DoxyParams}
-Detach an item is done in linear time relative to the amount of attached items 
-
-Definition at line 169 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_a8897f8140ad6677add5fc89f5893f488}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!end@{end}}
-\index{end@{end}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode::iterator} Mezzanine::WorldNode::end (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1WorldNode_a8897f8140ad6677add5fc89f5893f488}
-
-
-Get an iterator to one past the last item. 
-
-\begin{DoxyReturn}{Returns}
-An Iterator to one past the last item 
-\end{DoxyReturn}
-
-
-Definition at line 194 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_ac114e0c9e40b99fc8e2ff80cdac39c7d}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!end@{end}}
-\index{end@{end}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{end}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode::const\_\-iterator} Mezzanine::WorldNode::end (
+\hypertarget{classMezzanine_1_1WorldNode_a6143ff48ae180f5fdcd8903f2804f105}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetAutoTrackingOffset@{GetAutoTrackingOffset}}
+\index{GetAutoTrackingOffset@{GetAutoTrackingOffset}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetAutoTrackingOffset}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3} \& Mezzanine::WorldNode::GetAutoTrackingOffset (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\hfill}
-\label{classMezzanine_1_1WorldNode_ac114e0c9e40b99fc8e2ff80cdac39c7d}
+\label{classMezzanine_1_1WorldNode_a6143ff48ae180f5fdcd8903f2804f105}
 
 
-Get an const\_\-iterator to one past the last item. 
+Gets the offset from the target applied to the autotracked target. 
 
 \begin{DoxyReturn}{Returns}
-An Iterator to one past the last item 
+Returns a const reference to a vector3 representing the offset from the autotracked target being used. 
 \end{DoxyReturn}
 
 
-Definition at line 200 of file worldnode.cpp.
+Definition at line 192 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_a9bbabb7b15f63c40bd3d563d9dd277a2}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetAttachableData@{GetAttachableData}}
-\index{GetAttachableData@{GetAttachableData}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{GetAttachableData}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AttachableData} Mezzanine::WorldNode::GetAttachableData (
+\hypertarget{classMezzanine_1_1WorldNode_a6768b6aa1ca9a4a427917b88d8a95295}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetAutoTrackingTarget@{GetAutoTrackingTarget}}
+\index{GetAutoTrackingTarget@{GetAutoTrackingTarget}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetAutoTrackingTarget}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AttachableBase} $\ast$ Mezzanine::WorldNode::GetAutoTrackingTarget (
 \begin{DoxyParamCaption}
 {}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1WorldNode_a9bbabb7b15f63c40bd3d563d9dd277a2}
-
-
-Gets pointers to the internal ogre structures for this attachable. 
-
-\begin{DoxyReturn}{Returns}
-Returns an \hyperlink{structMezzanine_1_1AttachableData}{AttachableData} struct with the internal data. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_aeed457c614552bd753e7669cb7624b19}{Mezzanine::Attachable}.
-
-
-
-Definition at line 217 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_a98048b61fe6493bee14d247aab1c8a1f}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetAttachableType@{GetAttachableType}}
-\index{GetAttachableType@{GetAttachableType}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{GetAttachableType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attachable::AttachableElement} Mezzanine::WorldNode::GetAttachableType (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1WorldNode_a98048b61fe6493bee14d247aab1c8a1f}
-
-
-What kind of \hyperlink{classMezzanine_1_1Attachable}{Attachable} is this. 
-
-\begin{DoxyReturn}{Returns}
-An \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{Attachable::GetAttachableType} containing Attachable::WorldNode. 
-\end{DoxyReturn}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_aacb1a1958cca1f005c1313f14e3d098d}{Mezzanine::Attachable}.
-
-
-
-Definition at line 146 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_a3673b8846216b3f1e7d0a63225a4f9f1}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetAttached@{GetAttached}}
-\index{GetAttached@{GetAttached}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{GetAttached}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attachable} $\ast$ Mezzanine::WorldNode::GetAttached (
-\begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
 ) const}\hfill}
-\label{classMezzanine_1_1WorldNode_a3673b8846216b3f1e7d0a63225a4f9f1}
+\label{classMezzanine_1_1WorldNode_a6768b6aa1ca9a4a427917b88d8a95295}
 
 
-Get a specific attached Item. 
+Gets the target currently being tracked. 
 
-
-\begin{DoxyParams}{Parameters}
-{\em Index} & A number indicating which \hyperlink{classMezzanine_1_1Attachable}{Attachable} you want a pointer to. The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} is like an Array starts at 0 and goes to \hyperlink{classMezzanine_1_1WorldNode_a77a6e084b4383f125a9c6686eba7583d}{WorldNode::GetNumAttached()} -\/ 1. \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A pointer to an \hyperlink{classMezzanine_1_1Attachable}{Attachable} Item attached to this. 
+Returns a pointer to the target being currently tracked or NULL if none are being tracked. 
 \end{DoxyReturn}
 
-\begin{DoxyExceptions}{Exceptions}
-{\em This} & can throw an out of bounds std::exception if used incorrectly \\
-\hline
-\end{DoxyExceptions}
+
+Definition at line 182 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a27a9f2fb9a638cebb8ee8a328c1a4803}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetFixedYawAxis@{GetFixedYawAxis}}
+\index{GetFixedYawAxis@{GetFixedYawAxis}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Vector3} \& Mezzanine::WorldNode::GetFixedYawAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1WorldNode_a27a9f2fb9a638cebb8ee8a328c1a4803}
 
 
-Definition at line 188 of file worldnode.cpp.
+Gets the Axis used to yaw. 
+
+\begin{DoxyReturn}{Returns}
+Returns a const reference to a vector3 representing the Fixed Axis used. 
+\end{DoxyReturn}
+
+
+Definition at line 248 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_ae4f695676c1c57c277595349cf4984d1}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetFixedYawAxisEnabled@{GetFixedYawAxisEnabled}}
+\index{GetFixedYawAxisEnabled@{GetFixedYawAxisEnabled}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetFixedYawAxisEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::WorldNode::GetFixedYawAxisEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1WorldNode_ae4f695676c1c57c277595349cf4984d1}
+
+
+Gets whether or not Fixed Yaw is enabled. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if Fixed Yaw is enabled, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file worldnode.cpp.
 
 \hypertarget{classMezzanine_1_1WorldNode_a7941d8f3347b810d31b511c3b59585f8}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetLocation@{GetLocation}}
@@ -441,20 +286,18 @@ Definition at line 188 of file worldnode.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1WorldNode_a7941d8f3347b810d31b511c3b59585f8}
-
-
-Gets the Location of this node. 
+Gets the Location of this object. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} representing the location of this node. 
+Returns a vector3 representing the location of this object. 
 \end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a927f25cb0f2ba3afd289586e7ab0f4e8}{Mezzanine::AttachableBase}.
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_a1a8e18e5654c50f24bc049c228603d71}{Mezzanine::Attachable}.
 
-
-
-Definition at line 95 of file worldnode.cpp.
+Definition at line 265 of file worldnode.cpp.
 
 \hypertarget{classMezzanine_1_1WorldNode_a9538be39292a297f64d15bf1335ee0cf}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetName@{GetName}}
@@ -474,31 +317,11 @@ Returns a string containing the name given to this node.
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_a6a49ac8c2ddb2dd8ed7dd17f96ecafe5}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a04b114eccfbf9092b84dfe24e81548b6}{Mezzanine::AttachableBase}.
 
 
 
-Definition at line 149 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_a77a6e084b4383f125a9c6686eba7583d}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetNumAttached@{GetNumAttached}}
-\index{GetNumAttached@{GetNumAttached}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{GetNumAttached}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} Mezzanine::WorldNode::GetNumAttached (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hfill}
-\label{classMezzanine_1_1WorldNode_a77a6e084b4383f125a9c6686eba7583d}
-
-
-Gets the number of elements attached to this node. 
-
-\begin{DoxyReturn}{Returns}
-Returns the number of elements attached to this node. 
-\end{DoxyReturn}
-
-
-Definition at line 211 of file worldnode.cpp.
+Definition at line 83 of file worldnode.cpp.
 
 \hypertarget{classMezzanine_1_1WorldNode_ad250735dcbc77c3c96bd4d6b21e43867}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetOrientation@{GetOrientation}}
@@ -509,136 +332,325 @@ Definition at line 211 of file worldnode.cpp.
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1WorldNode_ad250735dcbc77c3c96bd4d6b21e43867}
-
-
-Gets the orientation of this node. 
+Gets the orientation of this object. 
 
 \begin{DoxyReturn}{Returns}
-Returns a quaternion representing the orientation of this node. 
+Returns a quaternion representing the orientation of this object. 
 \end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_af18f7d1f20ee332facb314291673a313}{Mezzanine::AttachableBase}.
 
 
-Implements \hyperlink{classMezzanine_1_1Attachable_ab3e094cbc373edb05866783290991e7d}{Mezzanine::Attachable}.
 
+Definition at line 279 of file worldnode.cpp.
 
-
-Definition at line 101 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_a524f3569c7e1999bd86a74d47ea4d884}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetType@{GetType}}
-\index{GetType@{GetType}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode::NodeType} Mezzanine::WorldNode::GetType (
+\hypertarget{classMezzanine_1_1WorldNode_a82be69b653bb3463bec52a114bbb46ef}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetScaling@{GetScaling}}
+\index{GetScaling@{GetScaling}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetScaling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::WorldNode::GetScaling (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\hfill}
-\label{classMezzanine_1_1WorldNode_a524f3569c7e1999bd86a74d47ea4d884}
-
-
-Gets the type of node that this is. 
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldNode_a82be69b653bb3463bec52a114bbb46ef}
+Gets the scale of this object. 
 
 \begin{DoxyReturn}{Returns}
-Returns the type of node this is set as. 
+Returns a vector3 representing the scale being applied to this object. 
 \end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a8e01242f06e5aabc3d53004325f1eeee}{Mezzanine::AttachableBase}.
 
 
-Definition at line 141 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_a4d09b9262a3d8a4e18bb0ffb5a8eeb2b}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!IncrementOrbit@{IncrementOrbit}}
-\index{IncrementOrbit@{IncrementOrbit}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{IncrementOrbit}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::IncrementOrbit (
+Definition at line 293 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a604fe6096c4c9b6e3b7614ef4be3d677}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!GetType@{GetType}}
+\index{GetType@{GetType}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldAndSceneObjectType} Mezzanine::WorldNode::GetType (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{Radians}
+{}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1WorldNode_a4d09b9262a3d8a4e18bb0ffb5a8eeb2b}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldNode_a604fe6096c4c9b6e3b7614ef4be3d677}
+Gets the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+
+\begin{DoxyReturn}{Returns}
+Returns the type of \hyperlink{classMezzanine_1_1World}{World} or Scene object this attachable is. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a42bb7c2cab933d28dea86d2ec2934c6a}{Mezzanine::AttachableBase}.
 
 
-Increments the orbit of this node if this is an orbiting node. 
 
-This function has no effect if this isn't an orbiting node. 
-\begin{DoxyParams}{Parameters}
-{\em Radians} & A real reprsenting the amount of orbit to increment in radians. \\
-\hline
-\end{DoxyParams}
+Definition at line 298 of file worldnode.cpp.
 
-
-Definition at line 107 of file worldnode.cpp.
-
-\hypertarget{classMezzanine_1_1WorldNode_abddad51fbb7f9e51410e9eda8ba633a3}{
+\hypertarget{classMezzanine_1_1WorldNode_ad9ec8a56450e749cddedef9748594b6d}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!LookAt@{LookAt}}
 \index{LookAt@{LookAt}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
 \paragraph[{LookAt}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::LookAt (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{LookAt}
+\item[{const {\bf Vector3} \&}]{LookAt, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-World}, }
+\item[{const {\bf Vector3} \&}]{LocalDirection = {\ttfamily Vector3::Neg\_\-Unit\_\-Z()}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1WorldNode_abddad51fbb7f9e51410e9eda8ba633a3}
+\label{classMezzanine_1_1WorldNode_ad9ec8a56450e749cddedef9748594b6d}
 
 
 Automatically sets the orientation needed to point this node at a location in the world. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em LookAt} & The location in world space to point at. \\
+{\em LookAt} & The location in the specified transform space to point at. \\
+\hline
+{\em TS} & The transform space to use for the position to look at. \\
+\hline
+{\em LocalDirection} & The local direction that will be aligned with the position being looked at. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 104 of file worldnode.cpp.
+Definition at line 89 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_accb11fd94c98482d5d1b28894a1f4d9b}{
+\hypertarget{classMezzanine_1_1WorldNode_a3498ef1f78331824a36a2287b25a5506}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Pitch@{Pitch}}
+\index{Pitch@{Pitch}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{Pitch}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::Pitch (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Angle, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-Local}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldNode_a3498ef1f78331824a36a2287b25a5506}
+
+
+Applies a rotation around the X axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Angle} & The angle in radians to rotate. \\
+\hline
+{\em TS} & The transform space the rotation is to be applied in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 227 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_acfcae16b95b2a9978ff56567af01e0df}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Roll@{Roll}}
+\index{Roll@{Roll}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{Roll}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::Roll (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Angle, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-Local}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldNode_acfcae16b95b2a9978ff56567af01e0df}
+
+
+Applies a rotation around the Z axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Angle} & The angle in radians to rotate. \\
+\hline
+{\em TS} & The transform space the rotation is to be applied in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 232 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a62f367c6b799f4b8216a72f39f568d35}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{Rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::Rotate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Rotation, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-Local}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldNode_a62f367c6b799f4b8216a72f39f568d35}
+
+
+Applies a rotation from a quaternion. 
+
+\begin{DoxyRemark}{Remarks}
+This function differs from \hyperlink{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{SetOrientation()} in that it won't override the previous rotation, but instead will merge this rotation with the existing rotation. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Rotation} & The rotation to be applied. \\
+\hline
+{\em TS} & The transform space the rotation is to be applied in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 197 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_aa9d52b9b88c9005524bc97187125fc43}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{Rotate}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::Rotate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Angle, }
+\item[{const {\bf Vector3} \&}]{Axis, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-Local}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldNode_aa9d52b9b88c9005524bc97187125fc43}
+
+
+Applies a rotation from an angle and an axis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Angle} & The angle to be applied in radians. \\
+\hline
+{\em Axis} & The axis on which the angle is to be applied. \\
+\hline
+{\em TS} & The transform space the rotation is to be applied in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 215 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a417e459d58c4d612bcbbe98a328c7b50}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetAutoTracking@{SetAutoTracking}}
 \index{SetAutoTracking@{SetAutoTracking}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
 \paragraph[{SetAutoTracking}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetAutoTracking (
 \begin{DoxyParamCaption}
-\item[{{\bf WorldNode} $\ast$}]{node, }
-\item[{{\bf Vector3}}]{Offset = {\ttfamily {\bf Vector3}()}}
+\item[{{\bf AttachableBase} $\ast$}]{Target, }
+\item[{const {\bf Vector3} \&}]{LocalDirection = {\ttfamily Vector3::Neg\_\-Unit\_\-Z()}, }
+\item[{const {\bf Vector3} \&}]{Offset = {\ttfamily {\bf Vector3}()}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1WorldNode_accb11fd94c98482d5d1b28894a1f4d9b}
+\label{classMezzanine_1_1WorldNode_a417e459d58c4d612bcbbe98a328c7b50}
 
 
-Makes this node autotrack another node. 
+Makes this node constantly face another object. 
 
-This function will make this node update it's orientation every frame automatically so that it's always facing the target node. 
+This function will make this node update it's orientation every frame automatically so that it's always facing the target object. 
 \begin{DoxyParams}{Parameters}
-{\em node} & The node to be tracked. \\
+{\em Target} & The object to be tracked or NULL if you want to disable autotracking. \\
 \hline
-{\em Offset} & A \hyperlink{classvector3}{vector3} representing the offset from the nodes location to be tracked. \\
+{\em LocalDirection} & The local axis that is to be facing the other object. \\
+\hline
+{\em Offset} & A vector3 representing the offset from the objects location to be tracked. \\
 \hline
 \end{DoxyParams}
 \begin{Desc}
-\item[\hyperlink{todo__todo000034}{Todo}]TODO: The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} Does not Correctly Serialize AutoTracking. \end{Desc}
+\item[\hyperlink{todo__todo000047}{Todo}]TODO: The \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} Does not Correctly Serialize AutoTracking. \end{Desc}
 
 
-Definition at line 118 of file worldnode.cpp.
+Definition at line 166 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_a085837f737b8932857eb96cdd748705e}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetAutoTracking@{SetAutoTracking}}
-\index{SetAutoTracking@{SetAutoTracking}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{SetAutoTracking}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetAutoTracking (
+\hypertarget{classMezzanine_1_1WorldNode_ab088981b0bea9d73e9bfaac5f237abc8}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{SetDirection}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetDirection (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{Actor, }
-\item[{{\bf Vector3}}]{Offset = {\ttfamily {\bf Vector3}()}}
+\item[{const {\bf Vector3} \&}]{Direction, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-World}, }
+\item[{const {\bf Vector3} \&}]{LocalAxis = {\ttfamily Vector3::Neg\_\-Unit\_\-Z()}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1WorldNode_a085837f737b8932857eb96cdd748705e}
+\label{classMezzanine_1_1WorldNode_ab088981b0bea9d73e9bfaac5f237abc8}
 
 
-Makes this node autotrack an actor. 
+Sets the direction this node is facing. 
 
-This function will make this node update it's orientation every frame automatically so that it's always facing the target actor. 
+\begin{DoxyRemark}{Remarks}
+At first glace it may seem odd why this function accepts two different direction vectors as arguements. This function really just generates a rotation and applies it. The Direction vector is where you want the LocalAxis(which can be any local axis) to be when computing the rotation. So LocalAxis is the base, and Direction is the target. 
+\end{DoxyRemark}
+
 \begin{DoxyParams}{Parameters}
-{\em Actor} & The actor to be tracked. \\
+{\em Direction} & The desired end direction in the specified transform space. \\
 \hline
-{\em Offset} & A \hyperlink{classvector3}{vector3} representing the offset from the actor's location to be tracked. \\
+{\em TS} & The transform space to use for the direction specified. \\
+\hline
+{\em LocalAxis} & The axis in local space to use for lining up with the direction specified. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 123 of file worldnode.cpp.
+\begin{Desc}
+\item[\hyperlink{todo__todo000046}{Todo}]May want to change this to an exception, maybe. \end{Desc}
+
+
+
+
+Definition at line 109 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a3d4066a1b9f9862ea026f15dfa3a3e81}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetFixedYawAxis@{SetFixedYawAxis}}
+\index{SetFixedYawAxis@{SetFixedYawAxis}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{SetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetFixedYawAxis (
+\begin{DoxyParamCaption}
+\item[{bool}]{Enable, }
+\item[{const {\bf Vector3} \&}]{FixedAxis = {\ttfamily Vector3::Unit\_\-Y()}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1WorldNode_a3d4066a1b9f9862ea026f15dfa3a3e81}
+
+
+Tells this node to always yaw around a specific axis. Useful for AutoTracking. 
+
+\begin{DoxyRemark}{Remarks}
+It's important to note that this will only be corrected in methods that do not explictly set the orientation, such as with autotracking or use of the \hyperlink{classMezzanine_1_1WorldNode_ad9ec8a56450e749cddedef9748594b6d}{LookAt()} function, or the \hyperlink{classMezzanine_1_1WorldNode_a62f367c6b799f4b8216a72f39f568d35}{Rotate()} function. Explicitly setting the orientation with \hyperlink{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{SetOrientation()} or \hyperlink{classMezzanine_1_1WorldNode_a32259918c2d5695141371ca364a813c2}{SetLocalOrientation()} will not be corrected. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Enable} & Whether to enable to disable the use of a fixed yaw axis. \\
+\hline
+{\em FixedAxis} & The axis on which yawing will be fixed for any rotations applied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 237 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a03feb41f719612123fe8d9055603efe6}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetLocalLocation@{SetLocalLocation}}
+\index{SetLocalLocation@{SetLocalLocation}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{SetLocalLocation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetLocalLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldNode_a03feb41f719612123fe8d9055603efe6}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableChild_a527ef7ddbf4c3936214eff5af821ae63}{Mezzanine::AttachableChild}.
+
+
+
+Definition at line 303 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a32259918c2d5695141371ca364a813c2}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetLocalOrientation@{SetLocalOrientation}}
+\index{SetLocalOrientation@{SetLocalOrientation}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{SetLocalOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetLocalOrientation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{Orientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldNode_a32259918c2d5695141371ca364a813c2}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableChild_a3604a2450a1647ae882ef1d9dab1ec5d}{Mezzanine::AttachableChild}.
+
+
+
+Definition at line 312 of file worldnode.cpp.
 
 \hypertarget{classMezzanine_1_1WorldNode_a636852458b226f1c2f3089f17558e678}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetLocation@{SetLocation}}
@@ -649,22 +661,13 @@ Definition at line 123 of file worldnode.cpp.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1WorldNode_a636852458b226f1c2f3089f17558e678}
+ 
 
-
-Sets the Location of this node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Location} & A \hyperlink{classvector3}{vector3} representing the location of this node. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_ae326a2b74e7187504de91106be64b956}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_ab4f0d73a5c313874766bd038a32f1ae2}{Mezzanine::AttachableBase}.
 
 
 
-Definition at line 92 of file worldnode.cpp.
+Definition at line 256 of file worldnode.cpp.
 
 \hypertarget{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}{
 \index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetOrientation@{SetOrientation}}
@@ -675,44 +678,55 @@ Definition at line 92 of file worldnode.cpp.
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{classMezzanine_1_1WorldNode_afe9db5c3abeb608bf2d589c2a61da546}
+ 
 
-
-Sets the orientation of this node. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Orientation} & A \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} representing the orientation of this node. \\
-\hline
-\end{DoxyParams}
-
-
-Implements \hyperlink{classMezzanine_1_1Attachable_a4e987cfdaf8d261764504dbf2f009c74}{Mezzanine::Attachable}.
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a8c459c324efb01dc56cead8e7650f22e}{Mezzanine::AttachableBase}.
 
 
 
-Definition at line 98 of file worldnode.cpp.
+Definition at line 270 of file worldnode.cpp.
 
-\hypertarget{classMezzanine_1_1WorldNode_acccc6e4d11aad8bb7a495a64b5886b69}{
-\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetType@{SetType}}
-\index{SetType@{SetType}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
-\paragraph[{SetType}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetType (
+\hypertarget{classMezzanine_1_1WorldNode_a3f7797ef81aaf763cdf011728f6b6b05}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!SetScaling@{SetScaling}}
+\index{SetScaling@{SetScaling}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{SetScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::SetScaling (
 \begin{DoxyParamCaption}
-\item[{{\bf WorldNode::NodeType}}]{type}
+\item[{const {\bf Vector3} \&}]{Scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldNode_a3f7797ef81aaf763cdf011728f6b6b05}
+ 
+
+Implements \hyperlink{classMezzanine_1_1AttachableBase_a5201923c0685e592dee8cecabc72b508}{Mezzanine::AttachableBase}.
+
+
+
+Definition at line 284 of file worldnode.cpp.
+
+\hypertarget{classMezzanine_1_1WorldNode_a07ee43210a28041f2debf1cea0c5ce2a}{
+\index{Mezzanine::WorldNode@{Mezzanine::WorldNode}!Yaw@{Yaw}}
+\index{Yaw@{Yaw}!Mezzanine::WorldNode@{Mezzanine::WorldNode}}
+\paragraph[{Yaw}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldNode::Yaw (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Angle, }
+\item[{const {\bf Mezzanine::TransformSpace} \&}]{TS = {\ttfamily Mezzanine::TS\_\-Local}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1WorldNode_acccc6e4d11aad8bb7a495a64b5886b69}
+\label{classMezzanine_1_1WorldNode_a07ee43210a28041f2debf1cea0c5ce2a}
 
 
-Sets the type of node that this is. 
+Applies a rotation around the Y axis. 
 
-This is intended for internal/expert use only. Manually calling this could disrupt normal function. 
+
 \begin{DoxyParams}{Parameters}
-{\em type} & The type of node this is to be set as. \\
+{\em Angle} & The angle in radians to rotate. \\
+\hline
+{\em TS} & The transform space the rotation is to be applied in. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 136 of file worldnode.cpp.
+Definition at line 221 of file worldnode.cpp.
 
 
 

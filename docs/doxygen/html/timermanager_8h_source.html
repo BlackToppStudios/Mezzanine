@@ -117,58 +117,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00053"></a>00053 <span class="keyword">namespace </span>Mezzanine
 <a name="l00054"></a>00054 {
 <a name="l00055"></a>00055     <span class="keyword">class </span>ExtendedTimer;
-<a name="l00056"></a>00056     <span class="keyword">class </span>SimpleTimer;<span class="comment"></span>
-<a name="l00057"></a>00057 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00058"></a>00058 <span class="comment">    /// @class TimerManager</span>
-<a name="l00059"></a>00059 <span class="comment">    /// @headerfile timermanager.h</span>
-<a name="l00060"></a>00060 <span class="comment">    /// @brief A manager responsible for the updating of all timers in use by this engine.</span>
-<a name="l00061"></a>00061 <span class="comment">    /// @details</span>
-<a name="l00062"></a>00062 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00063"></a><a class="code" href="classMezzanine_1_1TimerManager.html">00063</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>, <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Singleton.html" title="This is a convenient base class intended to be used with classes that need to be singletons.">Singleton</a>&lt;TimerManager&gt;
-<a name="l00064"></a>00064     {
-<a name="l00065"></a>00065         <span class="keyword">protected</span>:
-<a name="l00066"></a>00066             std::vector&lt;Timer*&gt; Timers;
-<a name="l00067"></a>00067             Ogre::Timer* MasterTimer;
-<a name="l00068"></a>00068         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00069"></a>00069 <span class="comment">            /// @brief Standard Constructor.</span>
-<a name="l00070"></a>00070 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1TimerManager.html#a14fa291d74cf22e5c7f0d0bd2d7ebdf3" title="Standard Constructor.">TimerManager</a>();<span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00072"></a>00072 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1TimerManager.html#a54a485339c796245ca01bb7a58829cb7" title="Class Destructor.">~TimerManager</a>();<span class="comment"></span>
-<a name="l00073"></a>00073 <span class="comment">            /// @brief Creates a simple timer within this manager.</span>
-<a name="l00074"></a>00074 <span class="comment">            /// @return Returns a pointer to the created timer.</span>
-<a name="l00075"></a>00075 <span class="comment">            /// @param Style The style of timer you wish to create.</span>
-<a name="l00076"></a>00076 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>* <a class="code" href="classMezzanine_1_1TimerManager.html#abe68dba04eac77cb8a2a333aea26bb4c" title="Creates a simple timer within this manager.">CreateSimpleTimer</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Timer.html#a1db436d4e0d6f1676e41ba3cb2ea3aaa" title="The style of timer to be used.">Timer::TimerStyle</a> Style);<span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">            /// @brief Creates an extended timer within this manager.</span>
-<a name="l00078"></a>00078 <span class="comment">            /// @return Returns a pointer to the created timer.</span>
-<a name="l00079"></a>00079 <span class="comment">            /// @param Style The style of timer you wish to create.</span>
-<a name="l00080"></a>00080 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>* <a class="code" href="classMezzanine_1_1TimerManager.html#a2f96dc0fdc223b2c78f18f515bca2c34" title="Creates an extended timer within this manager.">CreateExtendedTimer</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Timer.html#a1db436d4e0d6f1676e41ba3cb2ea3aaa" title="The style of timer to be used.">Timer::TimerStyle</a> Style);<span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">            /// @brief Gets a Timer by index.</span>
-<a name="l00082"></a>00082 <span class="comment">            /// @return Returns a pointer to the Timer at the specified index.</span>
-<a name="l00083"></a>00083 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>* <a class="code" href="classMezzanine_1_1TimerManager.html#a8e546d703c06c261771ce1cc3ac40779" title="Gets a Timer by index.">GetTimer</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
-<a name="l00084"></a>00084 <span class="comment">            /// @brief Gets the number of Timers created and stored in this manager.</span>
-<a name="l00085"></a>00085 <span class="comment">            /// @return Returns the number of Timers this manager is storing.</span>
-<a name="l00086"></a>00086 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="classMezzanine_1_1TimerManager.html#a683dcef5328ff001adb1f3fc40fd6132" title="Gets the number of Timers created and stored in this manager.">GetNumTimers</a>();<span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">            /// @brief Destroys a timer within this manager.</span>
-<a name="l00088"></a>00088 <span class="comment">            /// @param ToBeDestroyed A pointer to the timer class to be destroyed.</span>
-<a name="l00089"></a>00089 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1TimerManager.html#a7ac6225d3e7fd72d53cf213464bded6e" title="Destroys a timer within this manager.">DestroyTimer</a>(<a class="code" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>* ToBeDestroyed);
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091             <span class="comment">//Inherited From ManagerBase</span><span class="comment"></span>
-<a name="l00092"></a>00092 <span class="comment">            /// @brief Empty Initializor.</span>
-<a name="l00093"></a>00093 <span class="comment">            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists</span>
-<a name="l00094"></a>00094 <span class="comment">            /// in case a derived class wants to override it for some reason.</span>
-<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1TimerManager.html#ac670fd396b7fb2b7f8d7c67bb95582ba" title="Empty Initializor.">Initialize</a>();
-<a name="l00096"></a>00096 <span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">            /// @brief Items to be done during the mainloop.</span>
-<a name="l00098"></a>00098 <span class="comment">            /// @details Updates all the timers.</span>
-<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1TimerManager.html#a6ac7544b79fb023e4596e350a5586f85" title="Items to be done during the mainloop.">DoMainLoopItems</a>();
-<a name="l00100"></a>00100 <span class="comment"></span>
-<a name="l00101"></a>00101 <span class="comment">            /// @brief This returns the type of this manager.</span>
-<a name="l00102"></a>00102 <span class="comment">            /// @return This returns ManagerTypeName::TimerManager.</span>
-<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerTypeName</a> <a class="code" href="classMezzanine_1_1TimerManager.html#ad62b8c89fa33085768284781aa28116a" title="This returns the type of this manager.">GetType</a>() <span class="keyword">const</span>;
-<a name="l00104"></a>00104     };
-<a name="l00105"></a>00105 }
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107 <span class="preprocessor">#endif</span>
+<a name="l00056"></a>00056     <span class="keyword">class </span>SimpleTimer;
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058     <span class="comment">// Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances</span>
+<a name="l00059"></a>00059 <span class="preprocessor">    #ifdef SWIG</span>
+<a name="l00060"></a>00060 <span class="preprocessor"></span>    %<span class="keyword">template</span>(SingletonTimerManager) Singleton&lt;TimerManager&gt;;
+<a name="l00061"></a>00061 <span class="preprocessor">    #endif</span>
+<a name="l00062"></a>00062 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00063"></a>00063 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00064"></a>00064 <span class="comment">    /// @class TimerManager</span>
+<a name="l00065"></a>00065 <span class="comment">    /// @headerfile timermanager.h</span>
+<a name="l00066"></a>00066 <span class="comment">    /// @brief A manager responsible for the updating of all timers in use by this engine.</span>
+<a name="l00067"></a>00067 <span class="comment">    /// @details</span>
+<a name="l00068"></a>00068 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00069"></a><a class="code" href="classMezzanine_1_1TimerManager.html">00069</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>, <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Singleton.html">Singleton&lt;TimerManager&gt;</a>
+<a name="l00070"></a>00070     {
+<a name="l00071"></a>00071         <span class="keyword">protected</span>:
+<a name="l00072"></a>00072             std::vector&lt;Timer*&gt; Timers;
+<a name="l00073"></a>00073             Ogre::Timer* MasterTimer;
+<a name="l00074"></a>00074         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">            /// @brief Standard Constructor.</span>
+<a name="l00076"></a>00076 <span class="comment"></span>            <a class="code" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a>();<span class="comment"></span>
+<a name="l00077"></a>00077 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00078"></a>00078 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1TimerManager.html" title="A manager responsible for the updating of all timers in use by this engine.">TimerManager</a>();<span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">            /// @brief Creates a simple timer within this manager.</span>
+<a name="l00080"></a>00080 <span class="comment">            /// @return Returns a pointer to the created timer.</span>
+<a name="l00081"></a>00081 <span class="comment">            /// @param Style The style of timer you wish to create.</span>
+<a name="l00082"></a>00082 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time.">SimpleTimer</a>* CreateSimpleTimer(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Timer.html#a1db436d4e0d6f1676e41ba3cb2ea3aaa" title="The style of timer to be used.">Timer::TimerStyle</a> Style);<span class="comment"></span>
+<a name="l00083"></a>00083 <span class="comment">            /// @brief Creates an extended timer within this manager.</span>
+<a name="l00084"></a>00084 <span class="comment">            /// @return Returns a pointer to the created timer.</span>
+<a name="l00085"></a>00085 <span class="comment">            /// @param Style The style of timer you wish to create.</span>
+<a name="l00086"></a>00086 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>* CreateExtendedTimer(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Timer.html#a1db436d4e0d6f1676e41ba3cb2ea3aaa" title="The style of timer to be used.">Timer::TimerStyle</a> Style);<span class="comment"></span>
+<a name="l00087"></a>00087 <span class="comment">            /// @brief Gets a Timer by index.</span>
+<a name="l00088"></a>00088 <span class="comment">            /// @return Returns a pointer to the Timer at the specified index.</span>
+<a name="l00089"></a>00089 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>* GetTimer(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
+<a name="l00090"></a>00090 <span class="comment">            /// @brief Gets the number of Timers created and stored in this manager.</span>
+<a name="l00091"></a>00091 <span class="comment">            /// @return Returns the number of Timers this manager is storing.</span>
+<a name="l00092"></a>00092 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumTimers();<span class="comment"></span>
+<a name="l00093"></a>00093 <span class="comment">            /// @brief Destroys a timer within this manager.</span>
+<a name="l00094"></a>00094 <span class="comment">            /// @param ToBeDestroyed A pointer to the timer class to be destroyed.</span>
+<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DestroyTimer(<a class="code" href="classMezzanine_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>* ToBeDestroyed);
+<a name="l00096"></a>00096 
+<a name="l00097"></a>00097             <span class="comment">//Inherited From ManagerBase</span><span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">            /// @brief Empty Initializor.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists</span>
+<a name="l00100"></a>00100 <span class="comment">            /// in case a derived class wants to override it for some reason.</span>
+<a name="l00101"></a>00101 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
+<a name="l00102"></a>00102 <span class="comment"></span>
+<a name="l00103"></a>00103 <span class="comment">            /// @brief Items to be done during the mainloop.</span>
+<a name="l00104"></a>00104 <span class="comment">            /// @details Updates all the timers.</span>
+<a name="l00105"></a>00105 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
+<a name="l00106"></a>00106 <span class="comment"></span>
+<a name="l00107"></a>00107 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00108"></a>00108 <span class="comment">            /// @return This returns ManagerTypeName::TimerManager.</span>
+<a name="l00109"></a>00109 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="classMezzanine_1_1ManagerBase.html#a08cecf5169cad3e82be81a3a159b0b6e" title="A listing of Manager TypeNames.">ManagerTypeName</a> GetType() <span class="keyword">const</span>;
+<a name="l00110"></a>00110     };
+<a name="l00111"></a>00111 }
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -176,7 +182,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -186,6 +192,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:32 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

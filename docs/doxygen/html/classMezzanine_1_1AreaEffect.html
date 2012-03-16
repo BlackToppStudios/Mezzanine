@@ -67,6 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
@@ -74,7 +75,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h1>Mezzanine::AreaEffect Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Mezzanine::AreaEffect" --><!-- doxytag: inherits="Mezzanine::NonStaticWorldObject" -->
+<!-- doxytag: class="Mezzanine::AreaEffect" --><!-- doxytag: inherits="Mezzanine::NonStaticWorldObject,Mezzanine::AttachableChild" -->
 <p>This class is used to define area's in the world that have unique effects.  
 <a href="#_details">More...</a></p>
 
@@ -85,12 +86,16 @@ Inheritance diagram for Mezzanine::AreaEffect:</div>
  <div class="center">
   <img src="classMezzanine_1_1AreaEffect.png" usemap="#Mezzanine::AreaEffect_map" alt=""/>
   <map id="Mezzanine::AreaEffect_map" name="Mezzanine::AreaEffect_map">
-<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="319,56,522,80"/>
-<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="319,0,522,24"/>
-<area href="classMezzanine_1_1FieldOfForce.html" alt="Mezzanine::FieldOfForce" shape="rect" coords="0,168,203,192"/>
-<area href="classMezzanine_1_1GravityField.html" alt="Mezzanine::GravityField" shape="rect" coords="213,168,416,192"/>
-<area href="classMezzanine_1_1GravityWell.html" alt="Mezzanine::GravityWell" shape="rect" coords="426,168,629,192"/>
-<area href="classMezzanine_1_1TestAE.html" alt="Mezzanine::TestAE" shape="rect" coords="639,168,842,192"/>
+<area href="classMezzanine_1_1NonStaticWorldObject.html" alt="Mezzanine::NonStaticWorldObject" shape="rect" coords="159,112,362,136"/>
+<area href="classMezzanine_1_1AttachableChild.html" alt="Mezzanine::AttachableChild" shape="rect" coords="479,112,682,136"/>
+<area href="classMezzanine_1_1WorldObject.html" alt="Mezzanine::WorldObject" shape="rect" coords="53,56,256,80"/>
+<area href="classMezzanine_1_1AttachableParent.html" alt="Mezzanine::AttachableParent" shape="rect" coords="266,56,469,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="479,56,682,80"/>
+<area href="classMezzanine_1_1AttachableBase.html" alt="Mezzanine::AttachableBase" shape="rect" coords="266,0,469,24"/>
+<area href="classMezzanine_1_1FieldOfForce.html" alt="Mezzanine::FieldOfForce" shape="rect" coords="0,224,203,248"/>
+<area href="classMezzanine_1_1GravityField.html" alt="Mezzanine::GravityField" shape="rect" coords="213,224,416,248"/>
+<area href="classMezzanine_1_1GravityWell.html" alt="Mezzanine::GravityWell" shape="rect" coords="426,224,629,248"/>
+<area href="classMezzanine_1_1TestAE.html" alt="Mezzanine::TestAE" shape="rect" coords="639,224,842,248"/>
 </map>
  </div></div>
 
@@ -98,22 +103,41 @@ Inheritance diagram for Mezzanine::AreaEffect:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a58cc7fb0725297113bbc32d619e57705">AreaEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a58cc7fb0725297113bbc32d619e57705"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a1e825ce1dcb2d78c190b17d7bff7306c">~AreaEffect</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a1e825ce1dcb2d78c190b17d7bff7306c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aa852e811bf900d209be137901f7e536c">_Update</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aed1323d5e951b5c02c789b4d30d6d9d7">AddToWorld</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a988cd958e49d65331a059951af3c2884">ApplyEffect</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines and applies the effect of the field.  <a href="#a988cd958e49d65331a059951af3c2884"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a58cc7fb0725297113bbc32d619e57705">AreaEffect</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;name, const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a58cc7fb0725297113bbc32d619e57705"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac349f091e923cbb92740aaa35f2f5c2e">GetAddedActors</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac349f091e923cbb92740aaa35f2f5c2e">GetAddedActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of actors that have been added to the list since the last simulation step.  <a href="#ac349f091e923cbb92740aaa35f2f5c2e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual std::list&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a69f19ed2d67dca2623df6e6331b31462">GetOverlappingActors</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a37d04f8e6d6e8451348ee60fd083968b">GetLocation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ae0205e57786da97300357d7ac1afd180">GetName</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a40bbe87e9212eccae31bef25eaf142b1">GetNumAddedActors</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of actors added to this AE since the last update.  <a href="#a40bbe87e9212eccae31bef25eaf142b1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#af257df2bf68c1c34bc4ced3daa182ee5">GetNumOverlappingActors</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of actors currently overlapping with this AE.  <a href="#af257df2bf68c1c34bc4ced3daa182ee5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac5755475929edb8c24474ec976772072">GetNumRemovedActors</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of actors removed from this AE since the last update.  <a href="#ac5755475929edb8c24474ec976772072"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a18c9fa2cbac6e1b62d9c34b56e8f7dc9">GetOrientation</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a69f19ed2d67dca2623df6e6331b31462">GetOverlappingActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of actors within this field.  <a href="#a69f19ed2d67dca2623df6e6331b31462"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac657b565ca47198c6fd900c8a588948b">GetRemovedActors</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ac657b565ca47198c6fd900c8a588948b">GetRemovedActors</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of actors that have been removed from the list since the last simulation step.  <a href="#ac657b565ca47198c6fd900c8a588948b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a3eab7461632e01984cfb07f8c8fb5954">GetType</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#adc4af3aa8a43d2e08d716990153fb89d">GetScaling</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a2f3df5433f02057d7a9deeb5e6666287">GetType</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#aaf2aab50bfb000f3dfec58e97b423a29">RemoveFromWorld</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a1e825ce1dcb2d78c190b17d7bff7306c">~AreaEffect</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a1e825ce1dcb2d78c190b17d7bff7306c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a93056bdf18b07d8067367b368fbf24a1">SetLocalLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a59907341f2a0c8814b7962f010cea587">SetLocalOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Orientation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a4dd22757bc627242de169e31a1717139">SetLocation</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a62bcda0a0c2a95b8f1ccdfe2cd3d1018">SetOrientation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ae0448d98c3689ae407734bbcd85a08cb">SetScaling</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Scale)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#abfe41a07b8aa9bf9adf1be8b7f621e8a">SerializableName</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#abfe41a07b8aa9bf9adf1be8b7f621e8a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a81d9d5920f375aa9a5ff27c1de97e0"></a><!-- doxytag: member="Mezzanine::AreaEffect::AddActorToList" ref="a4a81d9d5920f375aa9a5ff27c1de97e0" args="(ActorBase *Actor)" -->
@@ -121,9 +145,19 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for adding actors to relevant lists. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a198ad58cec706d508785cbd8e319ba54">CreateGhostObject</a> (const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;Location)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor Function.  <a href="#a198ad58cec706d508785cbd8e319ba54"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#ae93ea4e6554abb1afc919322c6c7e352">GraphicsSettingsSerializableName</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings.  <a href="#ae93ea4e6554abb1afc919322c6c7e352"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#adb8b3c92f78a8b070be9fa22f87e9f9d">PhysicsSettingsSerializableName</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag that implementations of this class will use to save the serialized s settings.  <a href="#adb8b3c92f78a8b070be9fa22f87e9f9d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a42194d495d73b76497cf804fadcb327d">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;OneNode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a42194d495d73b76497cf804fadcb327d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a15ea11f3f0c1998f775c2b92d2941cc8">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;CurrentRoot) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization.  <a href="#a15ea11f3f0c1998f775c2b92d2941cc8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a676a36ba3fb8b0d7ced951f1b5010852"></a><!-- doxytag: member="Mezzanine::AreaEffect::RemoveActorFromList" ref="a676a36ba3fb8b0d7ced951f1b5010852" args="(ActorBase *Actor)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#a676a36ba3fb8b0d7ced951f1b5010852">RemoveActorFromList</a> (<a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> *Actor)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for adding actors to relevant lists. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AreaEffect.html#acb6f2cb173aa78725d82d5d33af5b866">ThrowSerialError</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Fail) const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">a Helper function that assembles strings and throws an exception  <a href="#acb6f2cb173aa78725d82d5d33af5b866"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a7e333c5e52fd5d7ae892f4691dbc16"></a><!-- doxytag: member="Mezzanine::AreaEffect::AddedActors" ref="a9a7e333c5e52fd5d7ae892f4691dbc16" args="" -->
@@ -228,7 +262,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
  
 <p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#af54c2dd470b534a51f12baae51631359">Mezzanine::WorldObject</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00160">160</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00240">240</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -249,7 +283,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
  
 <p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a73f51f4025bfbb1f86075de45d33d10a">Mezzanine::WorldObject</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00141">141</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00221">221</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +344,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
           <td class="memname">std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp; Mezzanine::AreaEffect::GetAddedActors </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -319,7 +353,139 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors that have been added to the list since the last simulation step. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector storing all the actors that have been added to the list since the last simulation step. </dd></dl>
 
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00141">141</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a37d04f8e6d6e8451348ee60fd083968b"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetLocation" ref="a37d04f8e6d6e8451348ee60fd083968b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::AreaEffect::GetLocation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Retrieves the location of the object. </p>
+<p>This function will retrieve the location of the object within the world. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Mezzanine::Vector3</a> containing the location. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#aefbebff39e4d21859f5fddb434f6165c">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00165">165</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0205e57786da97300357d7ac1afd180"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetName" ref="ae0205e57786da97300357d7ac1afd180" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp; Mezzanine::AreaEffect::GetName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the name of this <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of this <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#acb52c6e1718acb9f17e34bf4b6203304">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00151">151</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a40bbe87e9212eccae31bef25eaf142b1"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetNumAddedActors" ref="a40bbe87e9212eccae31bef25eaf142b1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::AreaEffect::GetNumAddedActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the number of actors added to this AE since the last update. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>Updates are usually once per frame, but can be manipulated to be more or less frequent. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of new actors overlapping with this AE. </dd></dl>
+
 <p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00126">126</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af257df2bf68c1c34bc4ced3daa182ee5"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetNumOverlappingActors" ref="af257df2bf68c1c34bc4ced3daa182ee5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::AreaEffect::GetNumOverlappingActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the number of actors currently overlapping with this AE. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of actors inside this AE. </dd></dl>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00121">121</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac5755475929edb8c24474ec976772072"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetNumRemovedActors" ref="ac5755475929edb8c24474ec976772072" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> Mezzanine::AreaEffect::GetNumRemovedActors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the number of actors removed from this AE since the last update. </p>
+<dl class="note"><dt><b>Note:</b></dt><dd>Updates are usually once per frame, but can be manipulated to be more or less frequent. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of actors that were found to no longer be overlapping during the last update. </dd></dl>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00131">131</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a18c9fa2cbac6e1b62d9c34b56e8f7dc9"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetOrientation" ref="a18c9fa2cbac6e1b62d9c34b56e8f7dc9" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> Mezzanine::AreaEffect::GetOrientation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the orientation of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the rotation of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a16243dfa38c5ae15725746f56119cb14">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00179">179</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -331,7 +497,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
           <td class="memname">std::list&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp; Mezzanine::AreaEffect::GetOverlappingActors </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -340,7 +506,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors within this field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the list of actors contained within this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00121">121</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00136">136</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -352,7 +518,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
           <td class="memname">std::vector&lt; <a class="el" href="classMezzanine_1_1ActorBase.html">ActorBase</a> * &gt; &amp; Mezzanine::AreaEffect::GetRemovedActors </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td><code> [virtual]</code></td>
+          <td></td>
         </tr>
       </table>
 </div>
@@ -361,16 +527,38 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors that have been removed from the list since the last simulation step. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector storing all the actors that have been removed from the list since the last simulation step. </dd></dl>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00131">131</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00146">146</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3eab7461632e01984cfb07f8c8fb5954"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetType" ref="a3eab7461632e01984cfb07f8c8fb5954" args="() const " -->
+<a class="anchor" id="adc4af3aa8a43d2e08d716990153fb89d"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetScaling" ref="adc4af3aa8a43d2e08d716990153fb89d" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceMezzanine.html#a30335416fc857844e8360c84d1d1b56c">WorldObjectType</a> Mezzanine::AreaEffect::GetType </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> Mezzanine::AreaEffect::GetScaling </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Gets the current scaling being applied to the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the scaling being applied on all axes of this <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object. </dd></dl>
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a309577416e71ab3b290c575e9877ca4b">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00193">193</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2f3df5433f02057d7a9deeb5e6666287"></a><!-- doxytag: member="Mezzanine::AreaEffect::GetType" ref="a2f3df5433f02057d7a9deeb5e6666287" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#ae8cd04f706f4998be62f454b7119c718">WorldAndSceneObjectType</a> Mezzanine::AreaEffect::GetType </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [virtual]</code></td>
@@ -381,11 +569,116 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of the <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">World</a> Object instance </dd></dl>
  
-<p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a88b76eaad3ea97b3540e5f23cbc50f73">Mezzanine::WorldObject</a>.</p>
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableBase.html#a42bb7c2cab933d28dea86d2ec2934c6a">Mezzanine::AttachableBase</a>.</p>
 
-<p>Reimplemented in <a class="el" href="classMezzanine_1_1GravityField.html#ae8c07e694ebcbcb226c1375bec3772b4">Mezzanine::GravityField</a>, <a class="el" href="classMezzanine_1_1GravityWell.html#aa7c7683357d133831b362c7c923c5271">Mezzanine::GravityWell</a>, and <a class="el" href="classMezzanine_1_1FieldOfForce.html#a67c2eceec144d9a20f1bb3777b0bd666">Mezzanine::FieldOfForce</a>.</p>
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1GravityField.html#a9b48f173312a02cd98ac19a8c444c10e">Mezzanine::GravityField</a>, <a class="el" href="classMezzanine_1_1GravityWell.html#a7890d007afb7021a811d711e3b2ed950">Mezzanine::GravityWell</a>, and <a class="el" href="classMezzanine_1_1FieldOfForce.html#ad6247ff9543681daa74a9297c1c7653e">Mezzanine::FieldOfForce</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00136">136</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00216">216</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae93ea4e6554abb1afc919322c6c7e352"></a><!-- doxytag: member="Mezzanine::AreaEffect::GraphicsSettingsSerializableName" ref="ae93ea4e6554abb1afc919322c6c7e352" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::AreaEffect::GraphicsSettingsSerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing name of the serialized graphics settings. </dd></dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a641a2f221c0a3fba0f0ffc646d634b31">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00329">329</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adb8b3c92f78a8b070be9fa22f87e9f9d"></a><!-- doxytag: member="Mezzanine::AreaEffect::PhysicsSettingsSerializableName" ref="adb8b3c92f78a8b070be9fa22f87e9f9d" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::AreaEffect::PhysicsSettingsSerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag that implementations of this class will use to save the serialized s settings. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing name of the serialized graphics settings. </dd></dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a1e1decda1e208587eeafa90e3f185c01">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00332">332</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42194d495d73b76497cf804fadcb327d"></a><!-- doxytag: member="Mezzanine::AreaEffect::ProtoDeSerialize" ref="a42194d495d73b76497cf804fadcb327d" args="(const xml::Node &amp;OneNode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::ProtoDeSerialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>OneNode</em></td><td>)</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> containing the data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>A precondition of using this is that all of the actors intended for use must already be Deserialized. </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a099e9ba0ce5980b3d1af9784f4bdb155">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00346">346</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a15ea11f3f0c1998f775c2b92d2941cc8"></a><!-- doxytag: member="Mezzanine::AreaEffect::ProtoSerialize" ref="a15ea11f3f0c1998f775c2b92d2941cc8" args="(xml::Node &amp;CurrentRoot) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::ProtoSerialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1xml_1_1Node.html">xml::Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
+          <td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert this class to an <a class="el" href="classMezzanine_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> ready for serialization. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a8ea65216bedac69ad8105f39d952f738">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00335">335</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -406,7 +699,164 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
  
 <p>Implements <a class="el" href="classMezzanine_1_1WorldObject.html#a67e3c05d50cc1ff631beecd37d87255a">Mezzanine::WorldObject</a>.</p>
 
-<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00147">147</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00227">227</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abfe41a07b8aa9bf9adf1be8b7f621e8a"></a><!-- doxytag: member="Mezzanine::AreaEffect::SerializableName" ref="abfe41a07b8aa9bf9adf1be8b7f621e8a" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> Mezzanine::AreaEffect::SerializableName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing "Point2PointConstraint" </dd></dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a015b0e13455f960e9eaaa420f0802395">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00357">357</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93056bdf18b07d8067367b368fbf24a1"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetLocalLocation" ref="a93056bdf18b07d8067367b368fbf24a1" args="(const Vector3 &amp;Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::SetLocalLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableChild.html#a527ef7ddbf4c3936214eff5af821ae63">Mezzanine::AttachableChild</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00198">198</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a59907341f2a0c8814b7962f010cea587"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetLocalOrientation" ref="a59907341f2a0c8814b7962f010cea587" args="(const Quaternion &amp;Orientation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::SetLocalOrientation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Orientation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Implements <a class="el" href="classMezzanine_1_1AttachableChild.html#a3604a2450a1647ae882ef1d9dab1ec5d">Mezzanine::AttachableChild</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00207">207</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4dd22757bc627242de169e31a1717139"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetLocation" ref="a4dd22757bc627242de169e31a1717139" args="(const Vector3 &amp;Location)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::SetLocation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Location</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#ab80106c2fec881169184eff5165e73b6">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00156">156</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a62bcda0a0c2a95b8f1ccdfe2cd3d1018"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetOrientation" ref="a62bcda0a0c2a95b8f1ccdfe2cd3d1018" args="(const Quaternion &amp;Rotation)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::SetOrientation </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;&#160;</td>
+          <td class="paramname"><em>Rotation</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a9183791c3e61b701b152e245786a63a5">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00170">170</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0448d98c3689ae407734bbcd85a08cb"></a><!-- doxytag: member="Mezzanine::AreaEffect::SetScaling" ref="ae0448d98c3689ae407734bbcd85a08cb" args="(const Vector3 &amp;Scale)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::SetScaling </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1Vector3.html">Vector3</a> &amp;&#160;</td>
+          <td class="paramname"><em>Scale</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+ 
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a03fec7fb4abcd6747695d139d00c7662">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00184">184</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acb6f2cb173aa78725d82d5d33af5b866"></a><!-- doxytag: member="Mezzanine::AreaEffect::ThrowSerialError" ref="acb6f2cb173aa78725d82d5d33af5b866" args="(const String &amp;Fail) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::AreaEffect::ThrowSerialError </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td>
+          <td class="paramname"><em>Fail</em></td><td>)</td>
+          <td> const<code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>a Helper function that assembles strings and throws an exception </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Fail</td><td>The item that failed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classMezzanine_1_1NonStaticWorldObject.html#a1e1300809a35fe8263928ce890e1f91a">Mezzanine::NonStaticWorldObject</a>.</p>
+
+<p>Definition at line <a class="el" href="areaeffect_8cpp_source.html#l00326">326</a> of file <a class="el" href="areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -420,7 +870,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -430,6 +880,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:56 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

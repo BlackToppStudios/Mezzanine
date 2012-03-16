@@ -5,7 +5,7 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = MezzanineEngine
-PROJECT_NUMBER         = "September 8, 2011"
+PROJECT_NUMBER         = "March 18, 2011"
 PROJECT_BRIEF          = A Game Engine Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
 PROJECT_LOGO           = doxyfiles/logogreen100pxtall.png
 OUTPUT_DIRECTORY       = ../../docs/doxygen
@@ -61,7 +61,7 @@ FORCE_LOCAL_INCLUDES   = NO
 INLINE_INFO            = YES
 SORT_MEMBER_DOCS       = YES
 SORT_BRIEF_DOCS        = YES
-SORT_MEMBERS_CTORS_1ST = NO
+SORT_MEMBERS_CTORS_1ST = YES
 SORT_GROUP_NAMES       = NO
 SORT_BY_SCOPE_NAME     = YES
 STRICT_PROTO_MATCHING  = NO
@@ -232,7 +232,7 @@ EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
 INCLUDE_PATH           =
 INCLUDE_FILE_PATTERNS  =
-PREDEFINED             = MEZZ_XML, MEZZ_LUA
+PREDEFINED             = MEZZXML=1, MEZZLUA51=1
 EXPAND_AS_DEFINED      =
 SKIP_FUNCTION_MACROS   = YES
 #---------------------------------------------------------------------------

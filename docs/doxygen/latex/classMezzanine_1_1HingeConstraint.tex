@@ -20,6 +20,16 @@ Inheritance diagram for Mezzanine::HingeConstraint:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1HingeConstraint_a65d04021f0ac11d284de975d7552012e}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will connect two actors together by their offsets. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_acb7f380b212a396b92d78ac055c55a68}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will attach an actor to a point in world space. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_af769aacbd1756b528fe8724ecf5fc654}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1HingeConstraint_a62a733c3ad51d3e7c5f51ae5a8adadd0}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseReferenceFrameA=false)
+\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1HingeConstraint_a9964c958874d5c6c7d410b4c09818837}{$\sim$HingeConstraint} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a4a87201e6370d7ce29f967aecaf54d8e}{EnableMotor} (bool EnableMotor, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} TargetVelocity, \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} MaxMotorImpulse)
 \begin{DoxyCompactList}\small\item\em Enables(or Disables) the motor on the hinge and sets it's parameters. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a92a4d535a069ecb4dea600f7c4ac38ef}{EnableMotor} (bool EnableMotor)
@@ -62,14 +72,10 @@ virtual bool \hyperlink{classMezzanine_1_1HingeConstraint_a638b7b76542d850becea2
 \begin{DoxyCompactList}\small\item\em Is this Using Reference Frame A. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1HingeConstraint_a58f5758cb5926f785c07c7ebb544d91b}{HasParamBeenSet} (\hyperlink{namespaceMezzanine_a6c62e8c2938fb203eb7a7072c12176f4}{ConstraintParam} Param, int Axis) const 
 \item 
-\hyperlink{classMezzanine_1_1HingeConstraint_af769aacbd1756b528fe8724ecf5fc654}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformA, const \hyperlink{classMezzanine_1_1Transform}{Transform} \&TransformB, bool UseReferenceFrameA=false)
-\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1HingeConstraint_a65d04021f0ac11d284de975d7552012e}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInB, bool UseReferenceFrameA=false)
-\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will connect two actors together by their offsets. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1HingeConstraint_acb7f380b212a396b92d78ac055c55a68}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&PivotInA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA, bool UseReferenceFrameA=false)
-\begin{DoxyCompactList}\small\item\em Creates a Hinge constraint that will attach an actor to a point in world space. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1HingeConstraint_a62a733c3ad51d3e7c5f51ae5a8adadd0}{HingeConstraint} (\hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorA, \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ActorB, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorA, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&VectorB, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionA, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&QuaternionB, bool UseReferenceFrameA=false)
-\begin{DoxyCompactList}\small\item\em Create a Hinge with components of a tranform. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a6cbd8328c7a047f8e7951ab482e733cb}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a49cf5f27bff730ee30ff52a741e35f2e}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1HingeConstraint_aa38c63cb80624e1e26043cf84e5c01c2}{SetAPivotRotation} (const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
 \begin{DoxyCompactList}\small\item\em Set The relative rotation of ActorA. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1HingeConstraint_a4c8bbe6e1d7f1fec78b1e8b0296ad61f}{SetAxis} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&AxisInA)
@@ -103,9 +109,12 @@ virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_ac6b8e0839cd686f73d0c9e9ad5db47a4}{TypedConstraint::AxisList} \hyperlink{classMezzanine_1_1HingeConstraint_a2af69ea5320ff27bf4d5de7ae9530594}{ValidLinearAxis} () const 
 \item 
 virtual \hyperlink{classMezzanine_1_1TypedConstraint_abd499db29c9e9755e9bb547d29eaa49a}{TypedConstraint::ParamList} \hyperlink{classMezzanine_1_1HingeConstraint_a3ea048fe9e7eda83e4ef42174a0c6157}{ValidParamOnAxis} (int Axis) const 
+\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
 \item 
-virtual \hyperlink{classMezzanine_1_1HingeConstraint_a9964c958874d5c6c7d410b4c09818837}{$\sim$HingeConstraint} ()
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1HingeConstraint_a0bcb0756ff73f9d772e0c60d188d393a}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -620,6 +629,73 @@ A the value UseReferenceFrameA is set to internally.
 
 Implements \hyperlink{classMezzanine_1_1TypedConstraint_a96a6b4c16521f24d72feea98044ef3a8}{Mezzanine::TypedConstraint}.
 
+\hypertarget{classMezzanine_1_1HingeConstraint_a6cbd8328c7a047f8e7951ab482e733cb}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a6cbd8328c7a047f8e7951ab482e733cb}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_aa69fcdbf84b8a509ee32d4233b96580c}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a49cf5f27bff730ee30ff52a741e35f2e}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a49cf5f27bff730ee30ff52a741e35f2e}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_a8e0c729e416c6c20507ef8ac029fa819}{Mezzanine::DualTransformConstraint}.
+
+\hypertarget{classMezzanine_1_1HingeConstraint_a0bcb0756ff73f9d772e0c60d188d393a}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf String} Mezzanine::HingeConstraint::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a0bcb0756ff73f9d772e0c60d188d393a}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}HingeConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classMezzanine_1_1DualTransformConstraint_a78694da6df0b2625220abb94e8f1c549}{Mezzanine::DualTransformConstraint}.
+
 \hypertarget{classMezzanine_1_1HingeConstraint_aa38c63cb80624e1e26043cf84e5c01c2}{
 \index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetAPivotRotation@{SetAPivotRotation}}
 \index{SetAPivotRotation@{SetAPivotRotation}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
@@ -653,7 +729,7 @@ Sets the axis on which this constraint acts.
 
 
 \begin{DoxyParams}{Parameters}
-{\em AxisInA} & A \hyperlink{classvector3}{vector3} representing the axis to be used with this constraint. \\
+{\em AxisInA} & A vector3 representing the axis to be used with this constraint. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classMezzanine_1_1HingeConstraint_a99f32e38d0df3bdfb266f36b83f4f1f6}{
@@ -722,27 +798,6 @@ Sets the maximum amount of force the motor is to apply.
 {\em MaxMotorImpulse} & The maximum amount of force the motor is to apply to try and reach it's target velocity. \\
 \hline
 \end{DoxyParams}
-\hypertarget{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}{
-\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
-\index{SetMotorTarget@{SetMotorTarget}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
-\paragraph[{SetMotorTarget}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetMotorTarget (
-\begin{DoxyParamCaption}
-\item[{const {\bf Quaternion} \&}]{QuatAInB, }
-\item[{{\bf Real}}]{Dt}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}
-
-
-Sets a Target Velocity, indirectly using the angle stored in a quaternion. 
-
-Is implemented in terms of \hyperlink{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}{SetMotorTarget(Real, Real)}; 
-\begin{DoxyParams}{Parameters}
-{\em QuatAInB} & The angle a quaternion relative to the two objects in the constraint. \\
-\hline
-{\em Dt} & The Desired \hyperlink{structMezzanine_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
-\hline
-\end{DoxyParams}
 \hypertarget{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}{
 \index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
 \index{SetMotorTarget@{SetMotorTarget}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
@@ -760,6 +815,27 @@ Set the Rotational velocity in a more direct fashion.
 
 \begin{DoxyParams}{Parameters}
 {\em TargetAngle} & The desired angle in radians. \\
+\hline
+{\em Dt} & The Desired \hyperlink{structMezzanine_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}{
+\index{Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}!SetMotorTarget@{SetMotorTarget}}
+\index{SetMotorTarget@{SetMotorTarget}!Mezzanine::HingeConstraint@{Mezzanine::HingeConstraint}}
+\paragraph[{SetMotorTarget}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::HingeConstraint::SetMotorTarget (
+\begin{DoxyParamCaption}
+\item[{const {\bf Quaternion} \&}]{QuatAInB, }
+\item[{{\bf Real}}]{Dt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1HingeConstraint_a7d195f18c2fbe6f458c4af94320c923c}
+
+
+Sets a Target Velocity, indirectly using the angle stored in a quaternion. 
+
+Is implemented in terms of \hyperlink{classMezzanine_1_1HingeConstraint_ab6ec259478024f5fedc055563cf15ee6}{SetMotorTarget(Real, Real)}; 
+\begin{DoxyParams}{Parameters}
+{\em QuatAInB} & The angle a quaternion relative to the two objects in the constraint. \\
 \hline
 {\em Dt} & The Desired \hyperlink{structMezzanine_1_1Time}{Time} steps that the target rotational velocity should be reached in. \\
 \hline

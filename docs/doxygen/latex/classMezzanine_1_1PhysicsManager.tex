@@ -33,15 +33,21 @@ typedef std::map$<$ \hyperlink{classMezzanine_1_1ObjectPair}{ObjectPair}, \hyper
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{classMezzanine_1_1PhysicsManager_af734a8d307507e261995a838a0ad0dfb}{PhysicsManager} ()
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1PhysicsManager_a0fe5d7e0c4ce3eac834478862cef73b1}{PhysicsManager} (const \hyperlink{classMezzanine_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&Info)
+\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1PhysicsManager_a1d265da29c5a4030a3f6ad97f5027709}{$\sim$PhysicsManager} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_a62c7bb223d2712a4f1806216429015a9}{AddAreaEffect} (\hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} $\ast$AE)
 \begin{DoxyCompactList}\small\item\em Adds an area effect to the world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_ae07ea8ae4877fcc3d0757e42d2726b65}{AddConstraint} (\hyperlink{classMezzanine_1_1TypedConstraint}{TypedConstraint} $\ast$Constraint, bool DisableCollisions=false)
 \begin{DoxyCompactList}\small\item\em Adds a constraint to the world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_a4dfbe87e03c09b1fcce946c9b9271fa6}{AddWorldTrigger} (\hyperlink{classMezzanine_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
 \begin{DoxyCompactList}\small\item\em Adds a trigger to the world. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1PhysicsManager_a8d2fa60cdfdc7997a09cb8a3434371af}{CollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_a6633a616c8ff9739ec16d028d7ab5d27}{BeginEntity} ()
+\hyperlink{classMezzanine_1_1PhysicsManager_a8d2fa60cdfdc7997a09cb8a3434371af}{CollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_ae7dd5afd48cb25dc72807f7a5a0efc0b}{BeginCollision} ()
 \begin{DoxyCompactList}\small\item\em Get an CollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Collision}. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1PhysicsManager_a667151fe9525d7f3f174ad55a499065f}{ConstCollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_af38a7946fe715ce9aee66cff478c4619}{BeginEntity} () const 
+\hyperlink{classMezzanine_1_1PhysicsManager_a667151fe9525d7f3f174ad55a499065f}{ConstCollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_ac05c8da294e6556d1e07bffc954005a6}{BeginCollision} () const 
 \begin{DoxyCompactList}\small\item\em Get a ConstCollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Collision}. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_a82fc7833487bbc792a671b032cfd7a6b}{ClearPhysicsMetaData} ()
 \begin{DoxyCompactList}\small\item\em Clears all data relating to actors and other simulation objects from the physics world. \item\end{DoxyCompactList}\item 
@@ -66,9 +72,9 @@ void \hyperlink{classMezzanine_1_1PhysicsManager_a9fffb77acb0644d31ea78de4e823c0
 \begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1PhysicsManager_a21df393f2356a20151fce997577e3d76}{DoMainLoopItems} ()
 \item 
-\hyperlink{classMezzanine_1_1PhysicsManager_a8d2fa60cdfdc7997a09cb8a3434371af}{CollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_a5c5f6e44ee8cb787bddf4b813a642bea}{EndEntity} ()
+\hyperlink{classMezzanine_1_1PhysicsManager_a8d2fa60cdfdc7997a09cb8a3434371af}{CollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_a4cf5887ebd7e0f21ee639478ccd5ca65}{EndCollision} ()
 \begin{DoxyCompactList}\small\item\em Get a CollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collision}{Collision}. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1PhysicsManager_a667151fe9525d7f3f174ad55a499065f}{ConstCollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_aadf3425aa56497b63229a092cf0f798c}{EndEntity} () const 
+\hyperlink{classMezzanine_1_1PhysicsManager_a667151fe9525d7f3f174ad55a499065f}{ConstCollisionIterator} \hyperlink{classMezzanine_1_1PhysicsManager_aae308444076255406bc67399fb8fca24}{EndCollision} () const 
 \begin{DoxyCompactList}\small\item\em Get a ConstCollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collision}{Collision}. \item\end{DoxyCompactList}\item 
 \hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} $\ast$ \hyperlink{classMezzanine_1_1PhysicsManager_a820856e1a0bad25203b86d6e53391f13}{GetAreaEffect} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an Area Effect by name. \item\end{DoxyCompactList}\item 
@@ -113,10 +119,6 @@ virtual void \hyperlink{classMezzanine_1_1PhysicsManager_ab09c912dc48b7082bd07a5
 \item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_a83b7f0be56d405ecbc51fe770e1f93b6}{PauseSimulation} (bool Pause)
 \begin{DoxyCompactList}\small\item\em Pauses the simulation, preventing the physics world from taking action. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1PhysicsManager_a0fe5d7e0c4ce3eac834478862cef73b1}{PhysicsManager} (const \hyperlink{classMezzanine_1_1PhysicsConstructionInfo}{PhysicsConstructionInfo} \&Info)
-\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1PhysicsManager_af734a8d307507e261995a838a0ad0dfb}{PhysicsManager} ()
-\begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_afb424692ede644ccef8327aae1ea9674}{RemoveAreaEffect} (\hyperlink{classMezzanine_1_1AreaEffect}{AreaEffect} $\ast$AE)
 \begin{DoxyCompactList}\small\item\em Removes an area effect from the world. \item\end{DoxyCompactList}\item 
 void \hyperlink{classMezzanine_1_1PhysicsManager_a7f36766f759962902d4af3b78b94e53e}{RemoveCollision} (\hyperlink{classMezzanine_1_1Collision}{Collision} $\ast$Col)
@@ -144,9 +146,7 @@ void \hyperlink{classMezzanine_1_1PhysicsManager_acbe6ef0e6554702a005c152079bb40
 void \hyperlink{classMezzanine_1_1PhysicsManager_ab7f73d5ea910fc68120d33ee8c491d88}{SetSoftGravity} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&sgrav)
 \begin{DoxyCompactList}\small\item\em Sets the gravity for soft bodies. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classMezzanine_1_1PhysicsManager_a2124e18b9fd28d1dc3c0da54224154b2}{SimulationIsPaused} ()
-\begin{DoxyCompactList}\small\item\em Gets Whether or not the simulation is currently paused. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1PhysicsManager_a1d265da29c5a4030a3f6ad97f5027709}{$\sim$PhysicsManager} ()
-\begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets Whether or not the simulation is currently paused. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -160,7 +160,7 @@ class {\bfseries CollisionDispatcher}}
 \subsubsection{Detailed Description}
 This is simply a place for storing all the Physics Related functions. This is a place for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
 
-Definition at line 134 of file physicsmanager.h.
+Definition at line 144 of file physicsmanager.h.
 
 
 
@@ -180,7 +180,7 @@ Simple Constructor.
 
 This constructor will assign some sane default values and will create a physics world that can be used immediately 
 
-Definition at line 422 of file physicsmanager.cpp.
+Definition at line 426 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a0fe5d7e0c4ce3eac834478862cef73b1}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!PhysicsManager@{PhysicsManager}}
@@ -202,7 +202,7 @@ This constructor will assign some sane default values and will create a physics 
 \end{DoxyParams}
 
 
-Definition at line 432 of file physicsmanager.cpp.
+Definition at line 436 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a1d265da29c5a4030a3f6ad97f5027709}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!$\sim$PhysicsManager@{$\sim$PhysicsManager}}
@@ -219,7 +219,7 @@ Deconstructor.
 
 This deletes all those crazy pointers that Bullet, the physics subsystem need. 
 
-Definition at line 440 of file physicsmanager.cpp.
+Definition at line 444 of file physicsmanager.cpp.
 
 
 
@@ -244,7 +244,7 @@ Adds an area effect to the world so that it can/will take effect.
 \end{DoxyParams}
 
 
-Definition at line 689 of file physicsmanager.cpp.
+Definition at line 700 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_ae07ea8ae4877fcc3d0757e42d2726b65}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!AddConstraint@{AddConstraint}}
@@ -269,7 +269,7 @@ Adds the constraint to the world so that it can/will take effect.
 \end{DoxyParams}
 
 
-Definition at line 650 of file physicsmanager.cpp.
+Definition at line 661 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a4dfbe87e03c09b1fcce946c9b9271fa6}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!AddWorldTrigger@{AddWorldTrigger}}
@@ -291,17 +291,17 @@ Adds a trigger to the world so that it can/will take effect.
 \end{DoxyParams}
 
 
-Definition at line 740 of file physicsmanager.cpp.
+Definition at line 751 of file physicsmanager.cpp.
 
-\hypertarget{classMezzanine_1_1PhysicsManager_af38a7946fe715ce9aee66cff478c4619}{
-\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!BeginEntity@{BeginEntity}}
-\index{BeginEntity@{BeginEntity}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
-\paragraph[{BeginEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstCollisionIterator} Mezzanine::PhysicsManager::BeginEntity (
+\hypertarget{classMezzanine_1_1PhysicsManager_ac05c8da294e6556d1e07bffc954005a6}{
+\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!BeginCollision@{BeginCollision}}
+\index{BeginCollision@{BeginCollision}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
+\paragraph[{BeginCollision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysicsManager::ConstCollisionIterator} Mezzanine::PhysicsManager::BeginCollision (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\hfill}
-\label{classMezzanine_1_1PhysicsManager_af38a7946fe715ce9aee66cff478c4619}
+\label{classMezzanine_1_1PhysicsManager_ac05c8da294e6556d1e07bffc954005a6}
 
 
 Get a ConstCollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Collision}. 
@@ -309,15 +309,19 @@ Get a ConstCollisionIterator to the first \hyperlink{classMezzanine_1_1Collision
 \begin{DoxyReturn}{Returns}
 A ConstCollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Collision}. 
 \end{DoxyReturn}
-\hypertarget{classMezzanine_1_1PhysicsManager_a6633a616c8ff9739ec16d028d7ab5d27}{
-\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!BeginEntity@{BeginEntity}}
-\index{BeginEntity@{BeginEntity}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
-\paragraph[{BeginEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionIterator} Mezzanine::PhysicsManager::BeginEntity (
+
+
+Definition at line 866 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1PhysicsManager_ae7dd5afd48cb25dc72807f7a5a0efc0b}{
+\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!BeginCollision@{BeginCollision}}
+\index{BeginCollision@{BeginCollision}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
+\paragraph[{BeginCollision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysicsManager::CollisionIterator} Mezzanine::PhysicsManager::BeginCollision (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1PhysicsManager_a6633a616c8ff9739ec16d028d7ab5d27}
+\label{classMezzanine_1_1PhysicsManager_ae7dd5afd48cb25dc72807f7a5a0efc0b}
 
 
 Get an CollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Collision}. 
@@ -325,6 +329,10 @@ Get an CollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Co
 \begin{DoxyReturn}{Returns}
 An CollisionIterator to the first \hyperlink{classMezzanine_1_1Collision}{Collision}. 
 \end{DoxyReturn}
+
+
+Definition at line 856 of file physicsmanager.cpp.
+
 \hypertarget{classMezzanine_1_1PhysicsManager_a82fc7833487bbc792a671b032cfd7a6b}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!ClearPhysicsMetaData@{ClearPhysicsMetaData}}
 \index{ClearPhysicsMetaData@{ClearPhysicsMetaData}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
@@ -340,7 +348,7 @@ Clears all data relating to actors and other simulation objects from the physics
 
 This is best used with simulation cleanup. 
 
-Definition at line 929 of file physicsmanager.cpp.
+Definition at line 965 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a8f127a13daa6fc9bbd3bf0e0237239fe}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!DestroyAllConstraints@{DestroyAllConstraints}}
@@ -357,7 +365,7 @@ Destroys all constraints currently in the manager.
 
 In practice it is cleaner to remove constraints from the world before removing any constrained actors. 
 
-Definition at line 679 of file physicsmanager.cpp.
+Definition at line 690 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a9fffb77acb0644d31ea78de4e823c0a0}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -379,7 +387,7 @@ This does all the work reuired for the main loop to process physics.
 \end{DoxyParams}
 
 
-Definition at line 959 of file physicsmanager.cpp.
+Definition at line 995 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a21df393f2356a20151fce997577e3d76}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -398,17 +406,17 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258
 
 
 
-Definition at line 1083 of file physicsmanager.cpp.
+Definition at line 1119 of file physicsmanager.cpp.
 
-\hypertarget{classMezzanine_1_1PhysicsManager_aadf3425aa56497b63229a092cf0f798c}{
-\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!EndEntity@{EndEntity}}
-\index{EndEntity@{EndEntity}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
-\paragraph[{EndEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstCollisionIterator} Mezzanine::PhysicsManager::EndEntity (
+\hypertarget{classMezzanine_1_1PhysicsManager_aae308444076255406bc67399fb8fca24}{
+\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!EndCollision@{EndCollision}}
+\index{EndCollision@{EndCollision}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
+\paragraph[{EndCollision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysicsManager::ConstCollisionIterator} Mezzanine::PhysicsManager::EndCollision (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\hfill}
-\label{classMezzanine_1_1PhysicsManager_aadf3425aa56497b63229a092cf0f798c}
+\label{classMezzanine_1_1PhysicsManager_aae308444076255406bc67399fb8fca24}
 
 
 Get a ConstCollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collision}{Collision}. 
@@ -416,15 +424,19 @@ Get a ConstCollisionIterator to one past the last \hyperlink{classMezzanine_1_1C
 \begin{DoxyReturn}{Returns}
 A ConstCollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collision}{Collision}. 
 \end{DoxyReturn}
-\hypertarget{classMezzanine_1_1PhysicsManager_a5c5f6e44ee8cb787bddf4b813a642bea}{
-\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!EndEntity@{EndEntity}}
-\index{EndEntity@{EndEntity}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
-\paragraph[{EndEntity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CollisionIterator} Mezzanine::PhysicsManager::EndEntity (
+
+
+Definition at line 871 of file physicsmanager.cpp.
+
+\hypertarget{classMezzanine_1_1PhysicsManager_a4cf5887ebd7e0f21ee639478ccd5ca65}{
+\index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!EndCollision@{EndCollision}}
+\index{EndCollision@{EndCollision}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
+\paragraph[{EndCollision}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PhysicsManager::CollisionIterator} Mezzanine::PhysicsManager::EndCollision (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{classMezzanine_1_1PhysicsManager_a5c5f6e44ee8cb787bddf4b813a642bea}
+\label{classMezzanine_1_1PhysicsManager_a4cf5887ebd7e0f21ee639478ccd5ca65}
 
 
 Get a CollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collision}{Collision}. 
@@ -432,6 +444,10 @@ Get a CollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collis
 \begin{DoxyReturn}{Returns}
 A CollisionIterator to one past the last \hyperlink{classMezzanine_1_1Collision}{Collision}. 
 \end{DoxyReturn}
+
+
+Definition at line 861 of file physicsmanager.cpp.
+
 \hypertarget{classMezzanine_1_1PhysicsManager_a820856e1a0bad25203b86d6e53391f13}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetAreaEffect@{GetAreaEffect}}
 \index{GetAreaEffect@{GetAreaEffect}!Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}}
@@ -455,7 +471,7 @@ Returns a pointer to the named area effect, or NULL if it doesn't exist.
 \end{DoxyReturn}
 
 
-Definition at line 695 of file physicsmanager.cpp.
+Definition at line 706 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a648b109c3e2cf4436f492f5fce455878}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetAreaEffect@{GetAreaEffect}}
@@ -480,7 +496,7 @@ Returns a pointer to the area effect at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 707 of file physicsmanager.cpp.
+Definition at line 718 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a101a1b5f5b5c6950ec37cdbc15527413}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetCollision@{GetCollision}}
@@ -505,7 +521,7 @@ Returns a pointer to the \hyperlink{classMezzanine_1_1Collision}{Collision} if a
 \end{DoxyReturn}
 
 
-Definition at line 786 of file physicsmanager.cpp.
+Definition at line 797 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_aa9e127b310b017f72ca70fc12255ba97}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetCollisionAge@{GetCollisionAge}}
@@ -525,7 +541,7 @@ This function will return the number of physics ticks the collision has to have 
 \end{DoxyReturn}
 
 
-Definition at line 846 of file physicsmanager.cpp.
+Definition at line 882 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a2b96309bee2a20bb5c05ceda44baff0c}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetConstraint@{GetConstraint}}
@@ -550,7 +566,7 @@ Returns a pointer to the specified constraint.
 \end{DoxyReturn}
 
 
-Definition at line 656 of file physicsmanager.cpp.
+Definition at line 667 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a3dc5dbf00d4a6567561ea6fbf63da49d}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetDebugPhysicsRendering@{GetDebugPhysicsRendering}}
@@ -570,7 +586,7 @@ lets you check if Physics Debug Drawing is enabled or not. \begin{DoxyReturn}{Re
 \end{DoxyReturn}
 
 
-Definition at line 873 of file physicsmanager.cpp.
+Definition at line 909 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a04e47cd46c50c979026a801caac1020c}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}}
@@ -590,7 +606,7 @@ This returns either 2 or the last amount passed into World::SetDebugPhysicsWireC
 \end{DoxyReturn}
 
 
-Definition at line 897 of file physicsmanager.cpp.
+Definition at line 933 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_aaad40d1888caa36c158dc6e94d63c068}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetGravity@{GetGravity}}
@@ -610,7 +626,7 @@ Returns the currently set world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 624 of file physicsmanager.cpp.
+Definition at line 635 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a2c7e1ac9660cdc3b1a4bf2dbb9433288}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetImpulse@{GetImpulse}}
@@ -630,7 +646,7 @@ This function will return the lower limit of the allowed force of the collision 
 \end{DoxyReturn}
 
 
-Definition at line 851 of file physicsmanager.cpp.
+Definition at line 887 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a29d29a586387400426857fc2897b91dc}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetNumAreaEffects@{GetNumAreaEffects}}
@@ -650,7 +666,7 @@ Returns a whole representing the number of Area Effects in the world.
 \end{DoxyReturn}
 
 
-Definition at line 712 of file physicsmanager.cpp.
+Definition at line 723 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_acadfd5d67fdc193a81ad726a2b41c748}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetNumCollisions@{GetNumCollisions}}
@@ -670,7 +686,7 @@ Returns a whole representing the number of Collisions in the world.
 \end{DoxyReturn}
 
 
-Definition at line 793 of file physicsmanager.cpp.
+Definition at line 804 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a7c29c81cb88d3a347433130614237eec}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetNumConstraints@{GetNumConstraints}}
@@ -690,7 +706,7 @@ Returns a whole representing the number of constraints in the world.
 \end{DoxyReturn}
 
 
-Definition at line 661 of file physicsmanager.cpp.
+Definition at line 672 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a43aa5298c72eba68b017838e902bc19b}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetNumWorldTriggers@{GetNumWorldTriggers}}
@@ -710,7 +726,7 @@ Returns a whole representing the number of triggers in the world.
 \end{DoxyReturn}
 
 
-Definition at line 762 of file physicsmanager.cpp.
+Definition at line 773 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_aa1fdbb815c43718c1c0e68b29a3e9915}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetSoftGravity@{GetSoftGravity}}
@@ -730,7 +746,7 @@ Returns the currently set soft body world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 635 of file physicsmanager.cpp.
+Definition at line 646 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a87b1640bc429ee1850c408bd8a13cdce}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetType@{GetType}}
@@ -752,7 +768,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf
 
 
 
-Definition at line 1088 of file physicsmanager.cpp.
+Definition at line 1124 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_adecd547ebb51380ae23fcbb889ed544c}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetWorldTrigger@{GetWorldTrigger}}
@@ -777,7 +793,7 @@ Returns a pointer to the named trigger, or NULL if it doesn't exist.
 \end{DoxyReturn}
 
 
-Definition at line 745 of file physicsmanager.cpp.
+Definition at line 756 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a9995e10453b675587423134c82d5cbe0}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!GetWorldTrigger@{GetWorldTrigger}}
@@ -802,7 +818,7 @@ Returns a pointer to the trigger at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 757 of file physicsmanager.cpp.
+Definition at line 768 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_ab09c912dc48b7082bd07a536167bc3d3}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!Initialize@{Initialize}}
@@ -823,7 +839,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d
 
 
 
-Definition at line 1078 of file physicsmanager.cpp.
+Definition at line 1114 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a83b7f0be56d405ecbc51fe770e1f93b6}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!PauseSimulation@{PauseSimulation}}
@@ -845,7 +861,7 @@ Pauses the simulation, preventing the physics world from taking action.
 \end{DoxyParams}
 
 
-Definition at line 609 of file physicsmanager.cpp.
+Definition at line 620 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_afb424692ede644ccef8327aae1ea9674}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!RemoveAreaEffect@{RemoveAreaEffect}}
@@ -867,7 +883,7 @@ Removes an area effect from the world so that it will have no effect.
 \end{DoxyParams}
 
 
-Definition at line 717 of file physicsmanager.cpp.
+Definition at line 728 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a7f36766f759962902d4af3b78b94e53e}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!RemoveCollision@{RemoveCollision}}
@@ -892,7 +908,7 @@ In general it's not a great idea to call on this manually, but there are some si
 \end{DoxyParams}
 
 
-Definition at line 798 of file physicsmanager.cpp.
+Definition at line 809 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_ade3423f416ddeeafcde5e89d6edcd221}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!RemoveCollisionsContainingObject@{RemoveCollisionsContainingObject}}
@@ -914,7 +930,7 @@ Removes all stored collisions that involve the specified Object.
 \end{DoxyParams}
 
 
-Definition at line 807 of file physicsmanager.cpp.
+Definition at line 823 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a78713bb51e2d3247964647bc35f166f8}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!RemoveConstraint@{RemoveConstraint}}
@@ -936,7 +952,7 @@ Removes a constraint from the world so that it will have no effect.
 \end{DoxyParams}
 
 
-Definition at line 666 of file physicsmanager.cpp.
+Definition at line 677 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_ab3d96f132ab95690c520348f986140b8}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!RemoveWorldTrigger@{RemoveWorldTrigger}}
@@ -958,7 +974,7 @@ Removes a trigger from the world so that it will have no effect.
 \end{DoxyParams}
 
 
-Definition at line 767 of file physicsmanager.cpp.
+Definition at line 778 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_aa4333ad1d8382ead2401e2870603ae89}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!ResetPhysicsWorld@{ResetPhysicsWorld}}
@@ -983,7 +999,7 @@ This should only be called while the world is emtpy and objects have be unloaded
 \end{DoxyParams}
 
 
-Definition at line 905 of file physicsmanager.cpp.
+Definition at line 941 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_acda375c8effd99c6bb01f2aeb0e55741}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetCollisionParams@{SetCollisionParams}}
@@ -1009,7 +1025,7 @@ Sets the \hyperlink{classMezzanine_1_1Collision}{Collision} Age and Force Filter
 \end{DoxyParams}
 
 
-Definition at line 840 of file physicsmanager.cpp.
+Definition at line 876 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_ac1104ad21c6c779bb93147163d066f7e}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetDebugPhysicsRendering@{SetDebugPhysicsRendering}}
@@ -1031,7 +1047,7 @@ Enables and Disables Physics Debug Drawing using default wireframes. This will f
 \end{DoxyParams}
 
 
-Definition at line 857 of file physicsmanager.cpp.
+Definition at line 893 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a7a2fd072c1035b744ce4c22265219d8b}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}}
@@ -1053,7 +1069,7 @@ Each frame of the action gets its own wire frame, and how many of those back did
 \end{DoxyParams}
 
 
-Definition at line 886 of file physicsmanager.cpp.
+Definition at line 922 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a565b338b5930571713ff72de45c95485}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetGravity@{SetGravity}}
@@ -1075,7 +1091,7 @@ Sets the strength and direction of gravity within the world.
 \end{DoxyParams}
 
 
-Definition at line 619 of file physicsmanager.cpp.
+Definition at line 630 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a63f9fe303e30542249d263773ae9dc08}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetIndividualGravity@{SetIndividualGravity}}
@@ -1100,7 +1116,7 @@ This function does not change the global gravity, only how gravity behaves for t
 \end{DoxyParams}
 
 
-Definition at line 641 of file physicsmanager.cpp.
+Definition at line 652 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_acbe6ef0e6554702a005c152079bb40c0}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetSimulationSubstepModifier@{SetSimulationSubstepModifier}}
@@ -1125,7 +1141,7 @@ For the most part, the simulation tick is determined by your target framerate se
 \end{DoxyParams}
 
 
-Definition at line 954 of file physicsmanager.cpp.
+Definition at line 990 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_ab7f73d5ea910fc68120d33ee8c491d88}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SetSoftGravity@{SetSoftGravity}}
@@ -1147,7 +1163,7 @@ Gravity for soft bodies is stored separately from rigid bodies. So if you plan t
 \end{DoxyParams}
 
 
-Definition at line 630 of file physicsmanager.cpp.
+Definition at line 641 of file physicsmanager.cpp.
 
 \hypertarget{classMezzanine_1_1PhysicsManager_a2124e18b9fd28d1dc3c0da54224154b2}{
 \index{Mezzanine::PhysicsManager@{Mezzanine::PhysicsManager}!SimulationIsPaused@{SimulationIsPaused}}
@@ -1167,7 +1183,7 @@ Returns whether or not the simulation is paused.
 \end{DoxyReturn}
 
 
-Definition at line 614 of file physicsmanager.cpp.
+Definition at line 625 of file physicsmanager.cpp.
 
 
 

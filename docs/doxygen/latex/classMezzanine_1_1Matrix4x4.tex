@@ -1,0 +1,785 @@
+\hypertarget{classMezzanine_1_1Matrix4x4}{
+\subsection{Mezzanine::Matrix4x4 Class Reference}
+\label{classMezzanine_1_1Matrix4x4}\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Matrix4x4_a529aa6f03eccc97eb14ebbd20e599588}{
+\hyperlink{classMezzanine_1_1Matrix4x4_a529aa6f03eccc97eb14ebbd20e599588}{Matrix4x4} ()}
+\label{classMezzanine_1_1Matrix4x4_a529aa6f03eccc97eb14ebbd20e599588}
+
+\begin{DoxyCompactList}\small\item\em Non-\/Initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4_a135b5021758ab1e94236691bbe28df68}{Matrix4x4} (const Ogre::Matrix4 \&Mat)
+\begin{DoxyCompactList}\small\item\em \hyperlink{namespaceOgre}{Ogre} Matrix Initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4_a72142ef87b57f85a672ffedd1fc8525d}{Matrix4x4} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Position, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classMezzanine_1_1Transform}{Transform} Information Initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4_a02ee16f22f14fc8632b901379606001c}{Matrix4x4} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XW, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YW, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZW, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WW)
+\begin{DoxyCompactList}\small\item\em Explict Initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Matrix4x4_a3273ea5ae21403d1067a924bcbbf646a}{
+\hyperlink{classMezzanine_1_1Matrix4x4_a3273ea5ae21403d1067a924bcbbf646a}{$\sim$Matrix4x4} ()}
+\label{classMezzanine_1_1Matrix4x4_a3273ea5ae21403d1067a924bcbbf646a}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_ab7a2042ea144a0ed3ea8b6c5a1062956}{Adjoint} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Adjoint of this Matrix. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_abe22ec7824d294d68ac6182ea1fed5c9}{Concatenate} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Mat) const 
+\begin{DoxyCompactList}\small\item\em Combines the translation/rotation of two Matricies. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Matrix4x4_a7e4c5a55410bf4d75d1ba0a960b07461}{ExtractOgreMatrix4x4} (const Ogre::Matrix4 \&temp)
+\begin{DoxyCompactList}\small\item\em Gets the data from an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} and applies it to this. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Matrix4x4_acbe25840db867b09851027688fbca25d}{GetDeterminant} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Determinant of this Matrix. \item\end{DoxyCompactList}\item 
+Ogre::Matrix4 \hyperlink{classMezzanine_1_1Matrix4x4_a82c48555352de02a8e8fec1bd48f8699}{GetOgreMatrix4x4} () const 
+\begin{DoxyCompactList}\small\item\em Gets an \hyperlink{namespaceOgre}{Ogre} copy of this \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3} \hyperlink{classMezzanine_1_1Matrix4x4_abfef465fa32bb60cda6a7f21a61c7016}{GetRotationAsMatrix3x3} () const 
+\begin{DoxyCompactList}\small\item\em Gets the rotation portion of this Matrix as a \hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \hyperlink{classMezzanine_1_1Matrix4x4_a51046e0d0d0caca1e66b8aed8a161884}{GetRotationAsQuaternion} () const 
+\begin{DoxyCompactList}\small\item\em Gets the rotation portion of this Matrix as a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_a6b7fda3ac627b32e0032c0c6ca476abc}{Inverse} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Inverse of this Matrix. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Matrix4x4_a81db9634d7306f76211e73ab42edf0db}{Minor} (const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Row1, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Row2, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Row3, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Col1, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Col2, const \hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \&Col3) const 
+\begin{DoxyCompactList}\small\item\em Gets the Minor of the specified rows/columns of this Matrix. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Matrix4x4_aa8b51da721cbf89db3d0b7b5354179f7}{operator!=} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Inequality comparison operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_ab52300faa884768232f4e89ffa78e2fe}{operator$\ast$} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Multiplication operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1Matrix4x4_a69dad38dd4608baa6649948e0b839a97}{operator$\ast$} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Vec) const 
+\begin{DoxyCompactList}\small\item\em Multiply by \hyperlink{classMezzanine_1_1Vector3}{Vector3} operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_aff669e1db622c1727a4683cd43713337}{operator$\ast$} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Scalar) const 
+\begin{DoxyCompactList}\small\item\em Multiply by Real operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \& \hyperlink{classMezzanine_1_1Matrix4x4_a139e94d0b0b0ca7958253c338a3835b0}{operator$\ast$=} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other)
+\begin{DoxyCompactList}\small\item\em Multiplication Assignment operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \& \hyperlink{classMezzanine_1_1Matrix4x4_ab17c9eddca23436dad038a5472fc57ef}{operator$\ast$=} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Scalar)
+\begin{DoxyCompactList}\small\item\em Multiply Assignment by Real operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_ab999ad70d1c48ddf79a86101411e845c}{operator+} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Addition operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \& \hyperlink{classMezzanine_1_1Matrix4x4_a006856d4b726dfd14b5c8205bfc9da2d}{operator+=} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other)
+\begin{DoxyCompactList}\small\item\em Addition Assignment operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_aefc5eaacbd32c66f47b46b6238486ee0}{operator-\/} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Subtraction operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \& \hyperlink{classMezzanine_1_1Matrix4x4_a10908beb3a751d7a7e892114889d5e70}{operator-\/=} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other)
+\begin{DoxyCompactList}\small\item\em Subtraction Assignment operator. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Matrix4x4_af57f56486fbfcd46cd962506d31c4d55}{operator=} (const \hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Matrix4x4_a0b4d95ea15826e4e07f257b3ab9c4c11}{operator=} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1Matrix4x4_ae9930131974ed84a89dab482b8473d3c}{operator==} (const \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Equality comparison operator. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Matrix4x4_a98e92577c1990358b559675fd910744f}{SetIdentity} ()
+\begin{DoxyCompactList}\small\item\em Sets all values in this Matrix to Identity values. \item\end{DoxyCompactList}\item 
+void \hyperlink{classMezzanine_1_1Matrix4x4_a76a0cceae3c8cbc8ed8ff093794fcd67}{SetTransform} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Position, const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale, const \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} \&Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the Matrix based on a provided position, scale, and rotation. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Matrix4x4_ad77e9326617838d731d3da66d8d2a9b8}{
+void \hyperlink{classMezzanine_1_1Matrix4x4_ad77e9326617838d731d3da66d8d2a9b8}{SetValues} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&XW, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&YW, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&ZW, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WX, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WY, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WZ, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&WW)}
+\label{classMezzanine_1_1Matrix4x4_ad77e9326617838d731d3da66d8d2a9b8}
+
+\begin{DoxyCompactList}\small\item\em Sets the values for every number in the matrix. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Matrix4x4_a36fe24d1052b40ed0075abc4341c3b13}{
+void \hyperlink{classMezzanine_1_1Matrix4x4_a36fe24d1052b40ed0075abc4341c3b13}{SetZero} ()}
+\label{classMezzanine_1_1Matrix4x4_a36fe24d1052b40ed0075abc4341c3b13}
+
+\begin{DoxyCompactList}\small\item\em Sets all values in this Matrix to zero. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} \hyperlink{classMezzanine_1_1Matrix4x4_a1330573388a3070bc747bad97d93d3e9}{Transpose} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Transpose of this Matrix. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Matrix4x4_ab2743b0013e37a3fc294500e1bbed227}{
+\hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1Matrix4x4_ab2743b0013e37a3fc294500e1bbed227}{Matrix} \mbox{[}4\mbox{]}\mbox{[}4\mbox{]}}
+\label{classMezzanine_1_1Matrix4x4_ab2743b0013e37a3fc294500e1bbed227}
+
+\begin{DoxyCompactList}\small\item\em The bigger Matrix. Fo' Reals. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+
+
+Definition at line 57 of file matrix4x4.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Matrix4x4_a02ee16f22f14fc8632b901379606001c}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Matrix4x4}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Matrix4x4::Matrix4x4 (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{XX, }
+\item[{const {\bf Real} \&}]{XY, }
+\item[{const {\bf Real} \&}]{XZ, }
+\item[{const {\bf Real} \&}]{XW, }
+\item[{const {\bf Real} \&}]{YX, }
+\item[{const {\bf Real} \&}]{YY, }
+\item[{const {\bf Real} \&}]{YZ, }
+\item[{const {\bf Real} \&}]{YW, }
+\item[{const {\bf Real} \&}]{ZX, }
+\item[{const {\bf Real} \&}]{ZY, }
+\item[{const {\bf Real} \&}]{ZZ, }
+\item[{const {\bf Real} \&}]{ZW, }
+\item[{const {\bf Real} \&}]{WX, }
+\item[{const {\bf Real} \&}]{WY, }
+\item[{const {\bf Real} \&}]{WZ, }
+\item[{const {\bf Real} \&}]{WW}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a02ee16f22f14fc8632b901379606001c}
+
+
+Explict Initialization constructor. 
+
+Provides initialization for every number in the matrix. 
+
+Definition at line 65 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a135b5021758ab1e94236691bbe28df68}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Matrix4x4}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Matrix4x4::Matrix4x4 (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Matrix4 \&}]{Mat}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a135b5021758ab1e94236691bbe28df68}
+
+
+\hyperlink{namespaceOgre}{Ogre} Matrix Initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mat} & The \hyperlink{namespaceOgre}{Ogre} Matrix to build this Matrix from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 74 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a72142ef87b57f85a672ffedd1fc8525d}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Matrix4x4@{Matrix4x4}}
+\index{Matrix4x4@{Matrix4x4}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Matrix4x4}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Matrix4x4::Matrix4x4 (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Position, }
+\item[{const {\bf Vector3} \&}]{Scale, }
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a72142ef87b57f85a672ffedd1fc8525d}
+
+
+\hyperlink{classMezzanine_1_1Transform}{Transform} Information Initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & The position of the transform. \\
+\hline
+{\em Scale} & The scale of the transform. \\
+\hline
+{\em Rotation} & The rotation of the transform. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 79 of file matrix4x4.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Matrix4x4_ab7a2042ea144a0ed3ea8b6c5a1062956}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Adjoint@{Adjoint}}
+\index{Adjoint@{Adjoint}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Adjoint}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::Adjoint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_ab7a2042ea144a0ed3ea8b6c5a1062956}
+
+
+Gets the Adjoint of this Matrix. 
+
+\begin{DoxyReturn}{Returns}
+Returns a new \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} that is the Adjoint of this. 
+\end{DoxyReturn}
+
+
+Definition at line 391 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_abe22ec7824d294d68ac6182ea1fed5c9}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Concatenate@{Concatenate}}
+\index{Concatenate@{Concatenate}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Concatenate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::Concatenate (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Mat}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_abe22ec7824d294d68ac6182ea1fed5c9}
+
+
+Combines the translation/rotation of two Matricies. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mat} & The other Matrix to combine with this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the product of the two Matricies. 
+\end{DoxyReturn}
+
+
+Definition at line 461 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a7e4c5a55410bf4d75d1ba0a960b07461}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!ExtractOgreMatrix4x4@{ExtractOgreMatrix4x4}}
+\index{ExtractOgreMatrix4x4@{ExtractOgreMatrix4x4}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{ExtractOgreMatrix4x4}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Matrix4x4::ExtractOgreMatrix4x4 (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Matrix4 \&}]{temp}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a7e4c5a55410bf4d75d1ba0a960b07461}
+
+
+Gets the data from an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} and applies it to this. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em temp} & The \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to copy from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 162 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_acbe25840db867b09851027688fbca25d}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!GetDeterminant@{GetDeterminant}}
+\index{GetDeterminant@{GetDeterminant}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{GetDeterminant}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Matrix4x4::GetDeterminant (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_acbe25840db867b09851027688fbca25d}
+
+
+Gets the Determinant of this Matrix. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the Determinant of this Matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a82c48555352de02a8e8fec1bd48f8699}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!GetOgreMatrix4x4@{GetOgreMatrix4x4}}
+\index{GetOgreMatrix4x4@{GetOgreMatrix4x4}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{GetOgreMatrix4x4}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Matrix4 Mezzanine::Matrix4x4::GetOgreMatrix4x4 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a82c48555352de02a8e8fec1bd48f8699}
+
+
+Gets an \hyperlink{namespaceOgre}{Ogre} copy of this \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. 
+
+\begin{DoxyReturn}{Returns}
+Returns an \hyperlink{namespaceOgre}{Ogre} \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} with the same values as this \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_abfef465fa32bb60cda6a7f21a61c7016}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!GetRotationAsMatrix3x3@{GetRotationAsMatrix3x3}}
+\index{GetRotationAsMatrix3x3@{GetRotationAsMatrix3x3}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{GetRotationAsMatrix3x3}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix3x3} Mezzanine::Matrix4x4::GetRotationAsMatrix3x3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_abfef465fa32bb60cda6a7f21a61c7016}
+
+
+Gets the rotation portion of this Matrix as a \hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3} that expresses the rotation of this Matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a51046e0d0d0caca1e66b8aed8a161884}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!GetRotationAsQuaternion@{GetRotationAsQuaternion}}
+\index{GetRotationAsQuaternion@{GetRotationAsQuaternion}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{GetRotationAsQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} Mezzanine::Matrix4x4::GetRotationAsQuaternion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a51046e0d0d0caca1e66b8aed8a161884}
+
+
+Gets the rotation portion of this Matrix as a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Quaternion}{Quaternion} that expresses the rotation of this Matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a6b7fda3ac627b32e0032c0c6ca476abc}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Inverse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::Inverse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a6b7fda3ac627b32e0032c0c6ca476abc}
+
+
+Gets the Inverse of this Matrix. 
+
+\begin{DoxyReturn}{Returns}
+Returns a new \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} that is this Matrix inversed. 
+\end{DoxyReturn}
+
+
+Definition at line 399 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a81db9634d7306f76211e73ab42edf0db}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Minor@{Minor}}
+\index{Minor@{Minor}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Minor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::Matrix4x4::Minor (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Row1, }
+\item[{const {\bf Whole} \&}]{Row2, }
+\item[{const {\bf Whole} \&}]{Row3, }
+\item[{const {\bf Whole} \&}]{Col1, }
+\item[{const {\bf Whole} \&}]{Col2, }
+\item[{const {\bf Whole} \&}]{Col3}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a81db9634d7306f76211e73ab42edf0db}
+
+
+Gets the Minor of the specified rows/columns of this Matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Row1} & Row for the first Real of the calculated minor. \\
+\hline
+{\em Row2} & Row for the second Real of the calculated minor. \\
+\hline
+{\em Row3} & Row for the third Real of the calculated minor. \\
+\hline
+{\em Col1} & Column for the first Real of the calculated minor. \\
+\hline
+{\em Col2} & Column for the second Real of the calculated minor. \\
+\hline
+{\em Col3} & Column for the third Real of the calculated minor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a Real containing the minor of the Matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 487 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_aa8b51da721cbf89db3d0b7b5354179f7}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Matrix4x4::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_aa8b51da721cbf89db3d0b7b5354179f7}
+
+
+Inequality comparison operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to compare against. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the two Matrix4x4's are not equal, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 194 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a69dad38dd4608baa6649948e0b839a97}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} Mezzanine::Matrix4x4::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a69dad38dd4608baa6649948e0b839a97}
+
+
+Multiply by \hyperlink{classMezzanine_1_1Vector3}{Vector3} operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vec} & The Vector to be rotated. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classMezzanine_1_1Vector3}{Vector3} with the rotation and translation of this Matrix applied to it. 
+\end{DoxyReturn}
+
+
+Definition at line 328 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_aff669e1db622c1727a4683cd43713337}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Scalar}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_aff669e1db622c1727a4683cd43713337}
+
+
+Multiply by Real operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scalar} & The Real to multiply each member of this Matrix by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a new \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} that is a copy of this \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} with each of it's members multiplied by the scaler. 
+\end{DoxyReturn}
+
+
+Definition at line 341 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_ab52300faa884768232f4e89ffa78e2fe}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_ab52300faa884768232f4e89ffa78e2fe}
+
+
+Multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to multiply this by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a fresh \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. 
+\end{DoxyReturn}
+
+
+Definition at line 264 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a139e94d0b0b0ca7958253c338a3835b0}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} \& Mezzanine::Matrix4x4::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a139e94d0b0b0ca7958253c338a3835b0}
+
+
+Multiplication Assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to add to this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to $\ast$this. 
+\end{DoxyReturn}
+
+
+Definition at line 319 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_ab17c9eddca23436dad038a5472fc57ef}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} \& Mezzanine::Matrix4x4::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Scalar}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_ab17c9eddca23436dad038a5472fc57ef}
+
+
+Multiply Assignment by Real operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scalar} & The Real to multiply each member of this Matrix by. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to $\ast$this, being the modified \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. 
+\end{DoxyReturn}
+
+
+Definition at line 350 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_ab999ad70d1c48ddf79a86101411e845c}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator+@{operator+}}
+\index{operator+@{operator+}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_ab999ad70d1c48ddf79a86101411e845c}
+
+
+Addition operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to add to this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a fresh \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. 
+\end{DoxyReturn}
+
+
+Definition at line 210 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a006856d4b726dfd14b5c8205bfc9da2d}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} \& Mezzanine::Matrix4x4::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a006856d4b726dfd14b5c8205bfc9da2d}
+
+
+Addition Assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to add to this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to $\ast$this. 
+\end{DoxyReturn}
+
+
+Definition at line 269 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_aefc5eaacbd32c66f47b46b6238486ee0}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_aefc5eaacbd32c66f47b46b6238486ee0}
+
+
+Subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to subtract from this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a fresh \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4}. 
+\end{DoxyReturn}
+
+
+Definition at line 237 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a10908beb3a751d7a7e892114889d5e70}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} \& Mezzanine::Matrix4x4::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a10908beb3a751d7a7e892114889d5e70}
+
+
+Subtraction Assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to subtract from this. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a reference to $\ast$this. 
+\end{DoxyReturn}
+
+
+Definition at line 294 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_af57f56486fbfcd46cd962506d31c4d55}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Matrix4x4::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix3x3} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_af57f56486fbfcd46cd962506d31c4d55}
+
+
+Assignment operator. 
+
+This will copy the rotation portions of the other Matrix into this Matrix. 
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix3x3}{Matrix3x3} to copy from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 373 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a0b4d95ea15826e4e07f257b3ab9c4c11}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Matrix4x4::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a0b4d95ea15826e4e07f257b3ab9c4c11}
+
+
+Assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to copy from. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 362 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_ae9930131974ed84a89dab482b8473d3c}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!operator==@{operator==}}
+\index{operator==@{operator==}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Matrix4x4::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix4x4} \&}]{Other}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_ae9930131974ed84a89dab482b8473d3c}
+
+
+Equality comparison operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Other} & The other \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} to compare against. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the two Matrix4x4's are equal, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a98e92577c1990358b559675fd910744f}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!SetIdentity@{SetIdentity}}
+\index{SetIdentity@{SetIdentity}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{SetIdentity}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Matrix4x4::SetIdentity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a98e92577c1990358b559675fd910744f}
+
+
+Sets all values in this Matrix to Identity values. 
+
+Identity values for a 4x4 matrix is all zeros except for the values at \mbox{[}0\mbox{]}\mbox{[}0\mbox{]}, \mbox{[}1\mbox{]}\mbox{[}1\mbox{]}, \mbox{[}2\mbox{]}\mbox{[}2\mbox{]}, \mbox{[}3\mbox{]}\mbox{[}3\mbox{]}, which are set to one. 
+
+Definition at line 107 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a76a0cceae3c8cbc8ed8ff093794fcd67}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!SetTransform@{SetTransform}}
+\index{SetTransform@{SetTransform}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{SetTransform}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Matrix4x4::SetTransform (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Position, }
+\item[{const {\bf Vector3} \&}]{Scale, }
+\item[{const {\bf Quaternion} \&}]{Rotation}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a76a0cceae3c8cbc8ed8ff093794fcd67}
+
+
+Sets the Matrix based on a provided position, scale, and rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & The position of the transform. \\
+\hline
+{\em Scale} & The scale of the transform. \\
+\hline
+{\em Rotation} & The rotation of the transform. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 96 of file matrix4x4.cpp.
+
+\hypertarget{classMezzanine_1_1Matrix4x4_a1330573388a3070bc747bad97d93d3e9}{
+\index{Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}!Transpose@{Transpose}}
+\index{Transpose@{Transpose}!Mezzanine::Matrix4x4@{Mezzanine::Matrix4x4}}
+\paragraph[{Transpose}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix4x4} Mezzanine::Matrix4x4::Transpose (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Matrix4x4_a1330573388a3070bc747bad97d93d3e9}
+
+
+Gets the Transpose of this Matrix. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000021}{Todo}]I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review. \end{Desc}
+\begin{DoxyReturn}{Returns}
+Returns a new \hyperlink{classMezzanine_1_1Matrix4x4}{Matrix4x4} that is a Transposed copy of this. 
+\end{DoxyReturn}
+
+
+Definition at line 383 of file matrix4x4.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+matrix4x4.h\item 
+matrix4x4.cpp\end{DoxyCompactItemize}

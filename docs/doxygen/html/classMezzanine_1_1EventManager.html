@@ -66,7 +66,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <h1>Mezzanine::EventManager Class Reference</h1>  </div>
 </div>
@@ -91,6 +92,10 @@ Inheritance diagram for Mezzanine::EventManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">EventManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a95ce9d2d865b0d8d9468448969b0ade2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a39b9e0f783c2ab0d39f5574a7a106141">~EventManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Deconstructor.  <a href="#a39b9e0f783c2ab0d39f5574a7a106141"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#aa791c61d2665422614d54c7653e87e88">AddEvent</a> (<a class="el" href="classMezzanine_1_1EventBase.html">EventBase</a> *EventToAdd)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an event of any kind to the end of the Event Queue.  <a href="#aa791c61d2665422614d54c7653e87e88"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a2da4ef46b2ce56206412782eec43d93e">AddPollingCheck</a> (const <a class="el" href="classMezzanine_1_1MetaCode.html">MetaCode</a> &amp;InputToTryPolling)</td></tr>
@@ -99,8 +104,6 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Look for Joysticks that are hooked up to the system.  <a href="#a3cf0fd9e33392aa24e9a735363212185"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a69d44403974ed8d974846e929eb8adda">DoMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#a69d44403974ed8d974846e929eb8adda"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">EventManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a95ce9d2d865b0d8d9468448969b0ade2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classMezzanine_1_1EventCollision.html">EventCollision</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#ab630dfe228b7a4246680953cdfbbfc0a">GetAllCollisionEvents</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This returns a complete list of all the <a class="el" href="classMezzanine_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Collision</a> Events.  <a href="#ab630dfe228b7a4246680953cdfbbfc0a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classMezzanine_1_1EventGameWindow.html">EventGameWindow</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#abd6f4de517d07ab7a1a0c330c4e29032">GetAllGameWindowEvents</a> ()</td></tr>
@@ -169,8 +172,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes Events from the list(s) of what needs to be polled.  <a href="#a446cab99c7c67b42e28753cda14d79a4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a07119a541a60a515e2108c79cf6e3aac">UpdateEvents</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Pulls Events from the all the subsystems for use in the <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>.  <a href="#a07119a541a60a515e2108c79cf6e3aac"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a39b9e0f783c2ab0d39f5574a7a106141">~EventManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Deconstructor.  <a href="#a39b9e0f783c2ab0d39f5574a7a106141"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e84a2260b3cad6e78c2e569c3617835"></a><!-- doxytag: member="Mezzanine::EventManager::MEZZ_LIB::operator&lt;&lt;" ref="a3e84a2260b3cad6e78c2e569c3617835" args="(std::ostream &amp;stream, const Mezzanine::EventManager &amp;Mgr)" -->
+std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>MEZZ_LIB::operator&lt;&lt;</b> (std::ostream &amp;stream, const <a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> &amp;Mgr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8909ab0c0d6f45635eb3c8e156ac469"></a><!-- doxytag: member="Mezzanine::EventManager::MEZZ_LIB::operator&gt;&gt;" ref="ad8909ab0c0d6f45635eb3c8e156ac469" args="(const Mezzanine::xml::Node &amp;OneNode, Mezzanine::EventManager &amp;Mgr)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><b>MEZZ_LIB::operator&gt;&gt;</b> (const <a class="el" href="classMezzanine_1_1xml_1_1Node.html">Mezzanine::xml::Node</a> &amp;OneNode, <a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> &amp;Mgr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63dad9f5ed1ea4002e82d523b009894d"></a><!-- doxytag: member="Mezzanine::EventManager::MEZZ_LIB::operator&gt;&gt;" ref="a63dad9f5ed1ea4002e82d523b009894d" args="(std::istream &amp;stream, Mezzanine::EventManager &amp;Mgr)" -->
+std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>MEZZ_LIB::operator&gt;&gt;</b> (std::istream &amp;stream, <a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> &amp;Mgr)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is a container for Events and facilitates the transfer of data. </p>
@@ -181,7 +190,7 @@ Public Member Functions</h2></td></tr>
 <dd>
 Currently this is not thread safe, even though it should be. </dd></dl>
 
-<p>Definition at line <a class="el" href="eventmanager_8h_source.html#l00123">123</a> of file <a class="el" href="eventmanager_8h_source.html">eventmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="eventmanager_8h_source.html#l00126">126</a> of file <a class="el" href="eventmanager_8h_source.html">eventmanager.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a95ce9d2d865b0d8d9468448969b0ade2"></a><!-- doxytag: member="Mezzanine::EventManager::EventManager" ref="a95ce9d2d865b0d8d9468448969b0ade2" args="()" -->
 <div class="memitem">
@@ -199,7 +208,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Default constructor. </p>
 <p>This creates an empty EventManger</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
 <p>Definition at line <a class="el" href="eventmanager_8cpp_source.html#l00253">253</a> of file <a class="el" href="eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -1178,7 +1187,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1188,6 +1197,6 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:40 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:00 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

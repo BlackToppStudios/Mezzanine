@@ -66,7 +66,7 @@
  codebase. When we are done with "Catch!" We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone
  app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.
 
- @section What can I expect here
+ @section expectations What can I expect here
  This is the Doxygen API documentation for the Mezzanine Engine. This is a document for programmers to use as reference. With just a few clicks this should allow
  a technically oriented person find
 
@@ -75,7 +75,7 @@
 
  Here we will detail the engine structure and different classes and datatypes, but some of these need an update.
 
- @section Engine Structure
+ @section enginestructure Engine Structure
   The engine is laid out in a variety of classes. Some classes are focal points for functionality and internally unify a number of components to do what they do, these
   managers sometimes conceal a large amount of complexity. Managers generally have a very rigid in the structure of the engine and these are generally managed by the
   world and are rarely manaully created. This is where are the logic that says how something is done exists, for example "how does something get drawn on the screen?"
@@ -92,15 +92,14 @@
   some utility classes Other class that really are just convient places to put functions, things like the @ref Mezzanine::ActorRigidDeSerializer and the @ref Mezzanine::StringTool are good
   examples of these logical grouping of functions. Finally, there are few
 
-  @subsection Managers
+  @subsection managers Managers
 
    A manager is simply a logical grouping of functionality. A number of them exist covering all the major functionality that a game using the the Mezzanine engine would
    need in most situations.
 
    All Managers inherit from ManagerBase. They all support the basic callback and priority functionality because of this.
 
-   @subsubsection A list of managers
-    Here is a list of managers in the engine:
+   @subsubsection managerlist A list of Managers in the Mezzanine
     - @ref Mezzanine::ActorManager - Store and allows retrieval of Actors, when an actor is in this it is part of the game simulaiton
     - @ref Mezzanine::AudioManager - Play, stop and otherwise work with sound and music.
     - @ref Mezzanine::CameraManager - Add/remove Multiple camera's from the world
@@ -117,6 +116,7 @@
     - @ref Mezzanine::UIManager - Create and manage buttons, scrollbars and other widgets.
 
     @subsubsection The World, A manager of managers
+        A thorough description needs to go here
 
   @subpage mainloop1 "Main Loop Flow"
 
@@ -132,7 +132,7 @@
 
    @ref Mezzanine::ColourValue
 
-   @ref Mezzanine::MetaCode "MetaCode - A unit of user input"
+   @ref Mezzanine::MetaCode "Mezzanine::MetaCode - A unit of user input"
 
    @ref Mezzanine::Plane
 
@@ -171,7 +171,9 @@
 
   @ref Mezzanine::GraphicsManager
 
-  @ref XMLManual "Mezzanine::XML Manual"
+  @ref XMLManual
+
+  @ref LuaManual
 
   @ref Serialization
 

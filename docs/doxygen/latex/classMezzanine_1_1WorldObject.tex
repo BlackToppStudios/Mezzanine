@@ -20,6 +20,16 @@ Inheritance diagram for Mezzanine::WorldObject:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{classMezzanine_1_1WorldObject_a7718ab150d1337b52715b0db1a4a4762}{
+\hyperlink{classMezzanine_1_1WorldObject_a7718ab150d1337b52715b0db1a4a4762}{WorldObject} ()}
+\label{classMezzanine_1_1WorldObject_a7718ab150d1337b52715b0db1a4a4762}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1WorldObject_a3d7a43cbe188b33cb2c6e6e88aab3db9}{
+virtual \hyperlink{classMezzanine_1_1WorldObject_a3d7a43cbe188b33cb2c6e6e88aab3db9}{$\sim$WorldObject} ()}
+\label{classMezzanine_1_1WorldObject_a3d7a43cbe188b33cb2c6e6e88aab3db9}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
 virtual btCollisionObject $\ast$ \hyperlink{classMezzanine_1_1WorldObject_a4564b948a585aac1764ee13f2a61c110}{\_\-GetBasePhysicsObject} () const 
 \begin{DoxyCompactList}\small\item\em Gets the internal physics object this \hyperlink{classMezzanine_1_1World}{World} Object is based on. \item\end{DoxyCompactList}\item 
 virtual Ogre::SceneNode $\ast$ \hyperlink{classMezzanine_1_1WorldObject_a1123ace3f7730eaf1eb395b3aad714a4}{\_\-GetGraphicsNode} () const 
@@ -42,7 +52,7 @@ virtual \hyperlink{classMezzanine_1_1WorldObjectGraphicsSettings}{WorldObjectGra
 \begin{DoxyCompactList}\small\item\em Gets the graphics settings class associated with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine_1_1WorldObject_a66d040856234ceacfbba2532047ee9cb}{GetLocation} () const 
 \begin{DoxyCompactList}\small\item\em Retrieves the location of the object. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1WorldObject_a656f70caf8003cf7d47fdd3ac024efe2}{GetName} () const 
+virtual \hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1WorldObject_ace3603d68df4db612c3233df0b0af512}{GetName} () const 
 \begin{DoxyCompactList}\small\item\em Gets the name of this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1WorldObjectPhysicsSettings}{WorldObjectPhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1WorldObject_ad845988a6ff31d0e7cea45d6a45bd6c1}{GetPhysicsSettings} () const 
 \begin{DoxyCompactList}\small\item\em Gets the physics settings class associated with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
@@ -50,7 +60,7 @@ virtual \hyperlink{classMezzanine_1_1Vector3}{Vector3} \hyperlink{classMezzanine
 \begin{DoxyCompactList}\small\item\em Gets the current scaling being applied to the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{Audio::SoundSet} $\ast$ \hyperlink{classMezzanine_1_1WorldObject_a91408939a400205f41da74129dd82ff2}{GetSounds} () const 
 \begin{DoxyCompactList}\small\item\em Gets the set of sounds associated with this \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a30335416fc857844e8360c84d1d1b56c}{WorldObjectType} \hyperlink{classMezzanine_1_1WorldObject_a88b76eaad3ea97b3540e5f23cbc50f73}{GetType} () const =0
+virtual \hyperlink{namespaceMezzanine_ae8cd04f706f4998be62f454b7119c718}{WorldAndSceneObjectType} \hyperlink{classMezzanine_1_1WorldObject_aaa860c068e93d09175f9cc187ced17e6}{GetType} () const =0
 \begin{DoxyCompactList}\small\item\em Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classMezzanine_1_1WorldObject_a2e773e73a7a190ad56d2afedeeeb8e87}{IsInWorld} () const 
 \begin{DoxyCompactList}\small\item\em Gets whether or not this object is currently in the world. \item\end{DoxyCompactList}\item 
@@ -61,24 +71,19 @@ virtual void \hyperlink{classMezzanine_1_1WorldObject_a67e3c05d50cc1ff631beecd37
 \label{classMezzanine_1_1WorldObject_a67e3c05d50cc1ff631beecd37d87255a}
 
 \begin{DoxyCompactList}\small\item\em Removes the \hyperlink{classMezzanine_1_1World}{World} Object from the \hyperlink{classMezzanine_1_1World}{World}. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1WorldObject_a453c9b26ba93d0640d95013944173fc4}{SetLocation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&x, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&y, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&z)
-\begin{DoxyCompactList}\small\item\em Manually sets the location of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1WorldObject_a461ab18e5d01e09b15f14aa3fc8964c8}{SetLocation} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Manually sets the location of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1WorldObject_a9a42a794a499e6c51c81e36ff18c3823}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&scale)
+virtual void \hyperlink{classMezzanine_1_1WorldObject_a453c9b26ba93d0640d95013944173fc4}{SetLocation} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&x, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&y, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&z)
+\begin{DoxyCompactList}\small\item\em Manually sets the location of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObject_a13b936fe377c4e5b6361b23c74e3a2d5}{SetScaling} (const \hyperlink{classMezzanine_1_1Vector3}{Vector3} \&Scale)
 \begin{DoxyCompactList}\small\item\em Sets the scale of the \hyperlink{classMezzanine_1_1World}{World} Object. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classMezzanine_1_1WorldObject_a0e117f3bb42577953439ad00e3a08cd3}{SetSounds} (\hyperlink{classMezzanine_1_1Audio_1_1SoundSet}{Audio::SoundSet} $\ast$Sounds)
-\begin{DoxyCompactList}\small\item\em Sets the sounds to be used by this object. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldObject_a7718ab150d1337b52715b0db1a4a4762}{
-\hyperlink{classMezzanine_1_1WorldObject_a7718ab150d1337b52715b0db1a4a4762}{WorldObject} ()}
-\label{classMezzanine_1_1WorldObject_a7718ab150d1337b52715b0db1a4a4762}
-
-\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1WorldObject_a3d7a43cbe188b33cb2c6e6e88aab3db9}{
-virtual \hyperlink{classMezzanine_1_1WorldObject_a3d7a43cbe188b33cb2c6e6e88aab3db9}{$\sim$WorldObject} ()}
-\label{classMezzanine_1_1WorldObject_a3d7a43cbe188b33cb2c6e6e88aab3db9}
-
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets the sounds to be used by this object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1WorldObject_af092fc48b1bf9721435470acc069ddf0}{SerializableName} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -91,7 +96,17 @@ virtual void \hyperlink{classMezzanine_1_1WorldObject_a0e073941d71cbbd083a257d74
 virtual void \hyperlink{classMezzanine_1_1WorldObject_a93d52c90fdd9a3ada46b2539012f1bf5}{DetachFromGraphics} ()}
 \label{classMezzanine_1_1WorldObject_a93d52c90fdd9a3ada46b2539012f1bf5}
 
-\begin{DoxyCompactList}\small\item\em Makes the terrain invisible. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Makes the terrain invisible. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1WorldObject_adfdac35dc7396b6bc073e4e4c0af2f70}{GraphicsSettingsSerializableName} () const =0
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1WorldObject_aefb4d8e679e03f55428404eb5cbe65d5}{PhysicsSettingsSerializableName} () const =0
+\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag that implementations of this class will use to save the serialized s settings. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObject_a9175fe7ece14c44155ffa13e32ab3934}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObject_a230cac0a630447d0466af326745c1e55}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1WorldObject_a4e7eeb271f355e1c35262f41bb1e63bc}{ThrowSerialError} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Fail) const 
+\begin{DoxyCompactList}\small\item\em A Helper function that assembles strings and throws an exception. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -163,7 +178,7 @@ class {\bfseries WorldObjectPhysicsSettings}}
 \subsubsection{Detailed Description}
 This is the base class from which classes that are insertable into the physical world. In short a \hyperlink{classMezzanine_1_1WorldObject}{WorldObject} is an object that has a physical representation and may also have a graphical representation and can be added and removed from the world. In almost all occasions these objects can also collide with other objects. 
 
-Definition at line 86 of file worldobject.h.
+Definition at line 87 of file worldobject.h.
 
 
 
@@ -186,7 +201,7 @@ Returns a pointer to the internal Bullet object.
 \end{DoxyReturn}
 
 
-Definition at line 179 of file worldobject.cpp.
+Definition at line 180 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a1123ace3f7730eaf1eb395b3aad714a4}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!\_\-GetGraphicsNode@{\_\-GetGraphicsNode}}
@@ -206,7 +221,7 @@ Returns a pointer to the internal graphics node.
 \end{DoxyReturn}
 
 
-Definition at line 189 of file worldobject.cpp.
+Definition at line 190 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_ac01aba8d4eff2df4e68bb15e5b086660}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!\_\-GetGraphicsObject@{\_\-GetGraphicsObject}}
@@ -226,7 +241,7 @@ Returns a pointer to the internal graphics object.
 \end{DoxyReturn}
 
 
-Definition at line 184 of file worldobject.cpp.
+Definition at line 185 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_aacf9e82bfb2f25ee309a1871a2032030}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!\_\-NotifyCollisionState@{\_\-NotifyCollisionState}}
@@ -255,7 +270,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_a68827280395bc3b9e02667
 
 
 
-Definition at line 166 of file worldobject.cpp.
+Definition at line 167 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a7ce5266a3f5a31a3528f6fdba043aa0e}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetGraphicsSettings@{GetGraphicsSettings}}
@@ -275,7 +290,7 @@ Returns a pointer to the graphics settings class in use by this \hyperlink{class
 \end{DoxyReturn}
 
 
-Definition at line 143 of file worldobject.cpp.
+Definition at line 144 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a66d040856234ceacfbba2532047ee9cb}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetLocation@{GetLocation}}
@@ -295,21 +310,21 @@ A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} containing the locat
 \end{DoxyReturn}
 
 
-Reimplemented in \hyperlink{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}{Mezzanine::ActorSoft}.
+Reimplemented in \hyperlink{classMezzanine_1_1ActorSoft_a0192b3889eaf2786352d75ca03fcae4a}{Mezzanine::ActorSoft}, \hyperlink{classMezzanine_1_1AreaEffect_a37d04f8e6d6e8451348ee60fd083968b}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_aefbebff39e4d21859f5fddb434f6165c}{Mezzanine::NonStaticWorldObject}.
 
 
 
-Definition at line 106 of file worldobject.cpp.
+Definition at line 107 of file worldobject.cpp.
 
-\hypertarget{classMezzanine_1_1WorldObject_a656f70caf8003cf7d47fdd3ac024efe2}{
+\hypertarget{classMezzanine_1_1WorldObject_ace3603d68df4db612c3233df0b0af512}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetName@{GetName}}
 \index{GetName@{GetName}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
-\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::WorldObject::GetName (
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::WorldObject::GetName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1WorldObject_a656f70caf8003cf7d47fdd3ac024efe2}
+\label{classMezzanine_1_1WorldObject_ace3603d68df4db612c3233df0b0af512}
 
 
 Gets the name of this \hyperlink{classMezzanine_1_1World}{World} Object. 
@@ -319,11 +334,11 @@ Returns a string containing the name of this \hyperlink{classMezzanine_1_1World}
 \end{DoxyReturn}
 
 
-Reimplemented in \hyperlink{classMezzanine_1_1ActorSoft_a733138429fccf93f626e44ee9056e102}{Mezzanine::ActorSoft}.
+Reimplemented in \hyperlink{classMezzanine_1_1ActorSoft_aa37860ec9b4d12111c74df7bd14fc58d}{Mezzanine::ActorSoft}, \hyperlink{classMezzanine_1_1AreaEffect_ae0205e57786da97300357d7ac1afd180}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_acb52c6e1718acb9f17e34bf4b6203304}{Mezzanine::NonStaticWorldObject}.
 
 
 
-Definition at line 116 of file worldobject.cpp.
+Definition at line 117 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_ad845988a6ff31d0e7cea45d6a45bd6c1}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetPhysicsSettings@{GetPhysicsSettings}}
@@ -347,7 +362,7 @@ Reimplemented in \hyperlink{classMezzanine_1_1ActorRigid_a6ed901638c88e4b9e09605
 
 
 
-Definition at line 148 of file worldobject.cpp.
+Definition at line 149 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_acfb7a99466bc0b5b5fb914983799b2b6}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetScaling@{GetScaling}}
@@ -363,11 +378,15 @@ Definition at line 148 of file worldobject.cpp.
 Gets the current scaling being applied to the \hyperlink{classMezzanine_1_1World}{World} Object. 
 
 \begin{DoxyReturn}{Returns}
-Returns a \hyperlink{classvector3}{vector3} representing the scaling being applied on all axes of this \hyperlink{classMezzanine_1_1World}{World} Object. 
+Returns a vector3 representing the scaling being applied on all axes of this \hyperlink{classMezzanine_1_1World}{World} Object. 
 \end{DoxyReturn}
 
 
-Definition at line 137 of file worldobject.cpp.
+Reimplemented in \hyperlink{classMezzanine_1_1AreaEffect_adc4af3aa8a43d2e08d716990153fb89d}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a309577416e71ab3b290c575e9877ca4b}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 138 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a91408939a400205f41da74129dd82ff2}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetSounds@{GetSounds}}
@@ -387,17 +406,17 @@ Returns a pointer to a soundset containing all the sounds this \hyperlink{classM
 \end{DoxyReturn}
 
 
-Definition at line 158 of file worldobject.cpp.
+Definition at line 159 of file worldobject.cpp.
 
-\hypertarget{classMezzanine_1_1WorldObject_a88b76eaad3ea97b3540e5f23cbc50f73}{
+\hypertarget{classMezzanine_1_1WorldObject_aaa860c068e93d09175f9cc187ced17e6}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GetType@{GetType}}
 \index{GetType@{GetType}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
-\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WorldObjectType} Mezzanine::WorldObject::GetType (
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WorldAndSceneObjectType} Mezzanine::WorldObject::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1WorldObject_a88b76eaad3ea97b3540e5f23cbc50f73}
+\label{classMezzanine_1_1WorldObject_aaa860c068e93d09175f9cc187ced17e6}
 
 
 Gets the type of the \hyperlink{classMezzanine_1_1World}{World} Object instance. 
@@ -407,7 +426,27 @@ Returns the type of the \hyperlink{classMezzanine_1_1World}{World} Object instan
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classMezzanine_1_1ActorBase_a6e9cce7e660471cc0f9b9df019663f8d}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_a1369a0e640a8f0c5af9e2c2efc715121}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_a3eab7461632e01984cfb07f8c8fb5954}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1GravityField_ae8c07e694ebcbcb226c1375bec3772b4}{Mezzanine::GravityField}, \hyperlink{classMezzanine_1_1GravityWell_aa7c7683357d133831b362c7c923c5271}{Mezzanine::GravityWell}, and \hyperlink{classMezzanine_1_1FieldOfForce_a67c2eceec144d9a20f1bb3777b0bd666}{Mezzanine::FieldOfForce}.
+Implemented in \hyperlink{classMezzanine_1_1ActorBase_a83f7356d743f1b59ea58aac6d7570901}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_afc18444d5f13990a3458455c217f58cd}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1ActorSoft_adddd9e4dafbe78aa9fb55ab92a42dc42}{Mezzanine::ActorSoft}, \hyperlink{classMezzanine_1_1AreaEffect_a2f3df5433f02057d7a9deeb5e6666287}{Mezzanine::AreaEffect}, \hyperlink{classMezzanine_1_1GravityField_a9b48f173312a02cd98ac19a8c444c10e}{Mezzanine::GravityField}, \hyperlink{classMezzanine_1_1GravityWell_a7890d007afb7021a811d711e3b2ed950}{Mezzanine::GravityWell}, and \hyperlink{classMezzanine_1_1FieldOfForce_ad6247ff9543681daa74a9297c1c7653e}{Mezzanine::FieldOfForce}.
+
+\hypertarget{classMezzanine_1_1WorldObject_adfdac35dc7396b6bc073e4e4c0af2f70}{
+\index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!GraphicsSettingsSerializableName@{GraphicsSettingsSerializableName}}
+\index{GraphicsSettingsSerializableName@{GraphicsSettingsSerializableName}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
+\paragraph[{GraphicsSettingsSerializableName}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} Mezzanine::WorldObject::GraphicsSettingsSerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObject_adfdac35dc7396b6bc073e4e4c0af2f70}
+
+
+Get the name of the the XML tag that implementations of this class will use to save the serialized graphics settings. 
+
+\begin{DoxyReturn}{Returns}
+A string containing name of the serialized graphics settings. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorBase_a636a0dbf78907d565d4cabd994442637}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_a935069f346c516e07f3aa7a89388dea0}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_ae93ea4e6554abb1afc919322c6c7e352}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a641a2f221c0a3fba0f0ffc646d634b31}{Mezzanine::NonStaticWorldObject}.
 
 \hypertarget{classMezzanine_1_1WorldObject_a2e773e73a7a190ad56d2afedeeeb8e87}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!IsInWorld@{IsInWorld}}
@@ -427,7 +466,7 @@ Returns a bool indicating if this object has been added to the world.
 \end{DoxyReturn}
 
 
-Definition at line 126 of file worldobject.cpp.
+Definition at line 127 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_ab5ebc61c589f90c990a9b4df29fd35f6}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!IsStaticOrKinematic@{IsStaticOrKinematic}}
@@ -447,7 +486,106 @@ Returns true if the \hyperlink{classMezzanine_1_1World}{World} Object is static 
 \end{DoxyReturn}
 
 
-Definition at line 121 of file worldobject.cpp.
+Definition at line 122 of file worldobject.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObject_aefb4d8e679e03f55428404eb5cbe65d5}{
+\index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!PhysicsSettingsSerializableName@{PhysicsSettingsSerializableName}}
+\index{PhysicsSettingsSerializableName@{PhysicsSettingsSerializableName}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
+\paragraph[{PhysicsSettingsSerializableName}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf String} Mezzanine::WorldObject::PhysicsSettingsSerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObject_aefb4d8e679e03f55428404eb5cbe65d5}
+
+
+Get the name of the the XML tag that implementations of this class will use to save the serialized s settings. 
+
+\begin{DoxyReturn}{Returns}
+A string containing name of the serialized graphics settings. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1ActorBase_a7a18ac81a996e2d68057223ebbc7959c}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_ac91177e6d50052f97997a4dfef975a59}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_adb8b3c92f78a8b070be9fa22f87e9f9d}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a1e1decda1e208587eeafa90e3f185c01}{Mezzanine::NonStaticWorldObject}.
+
+\hypertarget{classMezzanine_1_1WorldObject_a9175fe7ece14c44155ffa13e32ab3934}{
+\index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!ProtoDeSerialize@{ProtoDeSerialize}}
+\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
+\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObject::ProtoDeSerialize (
+\begin{DoxyParamCaption}
+\item[{const {\bf xml::Node} \&}]{OneNode}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObject_a9175fe7ece14c44155ffa13e32ab3934}
+
+
+Take the data stored in an XML and overwrite this instance of this object with it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+A precondition of using this is that all of the actors intended for use must already be Deserialized. 
+\end{DoxyWarning}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBase_a32c1aee35ce5b3ad6c64d3cfa34c4a2d}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_a1b73b6506648f874e7962148d21feecb}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_a42194d495d73b76497cf804fadcb327d}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a099e9ba0ce5980b3d1af9784f4bdb155}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 235 of file worldobject.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObject_a230cac0a630447d0466af326745c1e55}{
+\index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!ProtoSerialize@{ProtoSerialize}}
+\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
+\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObject::ProtoSerialize (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObject_a230cac0a630447d0466af326745c1e55}
+
+
+Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CurrentRoot} & The point in the XML hierarchy that all this vectorw should be appended to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBase_ad3cb5ddfcd7abe2b39e690a8b6a79d47}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_ac64f6a903b0741043d2a5995b8ade39f}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_a15ea11f3f0c1998f775c2b92d2941cc8}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a8ea65216bedac69ad8105f39d952f738}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 201 of file worldobject.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObject_af092fc48b1bf9721435470acc069ddf0}{
+\index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!SerializableName@{SerializableName}}
+\index{SerializableName@{SerializableName}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
+\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::WorldObject::SerializableName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObject_af092fc48b1bf9721435470acc069ddf0}
+
+
+Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+
+\begin{DoxyReturn}{Returns}
+A string containing \char`\"{}Point2PointConstraint\char`\"{} 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBase_af6f41bdc0932b99f82f317d27d8dc906}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_a9f4272bae46df5bd1dfed8753cd19dc6}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_abfe41a07b8aa9bf9adf1be8b7f621e8a}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a015b0e13455f960e9eaaa420f0802395}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 284 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a461ab18e5d01e09b15f14aa3fc8964c8}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!SetLocation@{SetLocation}}
@@ -470,7 +608,11 @@ Calling this function prior to adding it to the \hyperlink{classMezzanine_1_1Wor
 \end{DoxyParams}
 
 
-Definition at line 97 of file worldobject.cpp.
+Reimplemented in \hyperlink{classMezzanine_1_1AreaEffect_a4dd22757bc627242de169e31a1717139}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_ab80106c2fec881169184eff5165e73b6}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 98 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a453c9b26ba93d0640d95013944173fc4}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!SetLocation@{SetLocation}}
@@ -499,29 +641,33 @@ Calling this function prior to adding it to the \hyperlink{classMezzanine_1_1Wor
 \end{DoxyParams}
 
 
-Definition at line 91 of file worldobject.cpp.
+Definition at line 92 of file worldobject.cpp.
 
-\hypertarget{classMezzanine_1_1WorldObject_a9a42a794a499e6c51c81e36ff18c3823}{
+\hypertarget{classMezzanine_1_1WorldObject_a13b936fe377c4e5b6361b23c74e3a2d5}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!SetScaling@{SetScaling}}
 \index{SetScaling@{SetScaling}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
 \paragraph[{SetScaling}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObject::SetScaling (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{scale}
+\item[{const {\bf Vector3} \&}]{Scale}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1WorldObject_a9a42a794a499e6c51c81e36ff18c3823}
+\label{classMezzanine_1_1WorldObject_a13b936fe377c4e5b6361b23c74e3a2d5}
 
 
 Sets the scale of the \hyperlink{classMezzanine_1_1World}{World} Object. 
 
-This function will alter the scaling/size of the \hyperlink{classMezzanine_1_1World}{World} Object with the given \hyperlink{classvector3}{vector3}. 
+This function will alter the scaling/size of the \hyperlink{classMezzanine_1_1World}{World} Object with the given vector3. 
 \begin{DoxyParams}{Parameters}
-{\em scale} & The \hyperlink{classvector3}{vector3} by which to apply the scale. Will scale each axis' accordingly. \\
+{\em Scale} & The vector3 by which to apply the scale. Will scale each axis' accordingly. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 131 of file worldobject.cpp.
+Reimplemented in \hyperlink{classMezzanine_1_1AreaEffect_ae0448d98c3689ae407734bbcd85a08cb}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a03fec7fb4abcd6747695d139d00c7662}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 132 of file worldobject.cpp.
 
 \hypertarget{classMezzanine_1_1WorldObject_a0e117f3bb42577953439ad00e3a08cd3}{
 \index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!SetSounds@{SetSounds}}
@@ -543,7 +689,33 @@ Sets the sounds to be used by this object.
 \end{DoxyParams}
 
 
-Definition at line 153 of file worldobject.cpp.
+Definition at line 154 of file worldobject.cpp.
+
+\hypertarget{classMezzanine_1_1WorldObject_a4e7eeb271f355e1c35262f41bb1e63bc}{
+\index{Mezzanine::WorldObject@{Mezzanine::WorldObject}!ThrowSerialError@{ThrowSerialError}}
+\index{ThrowSerialError@{ThrowSerialError}!Mezzanine::WorldObject@{Mezzanine::WorldObject}}
+\paragraph[{ThrowSerialError}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::WorldObject::ThrowSerialError (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Fail}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1WorldObject_a4e7eeb271f355e1c35262f41bb1e63bc}
+
+
+A Helper function that assembles strings and throws an exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Fail} & The item that failed. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1ActorBase_a24d196b9fc55048fb183a7920b5bbd3e}{Mezzanine::ActorBase}, \hyperlink{classMezzanine_1_1ActorRigid_ad640944179df98fbaf5ecf5e2ed5ba2c}{Mezzanine::ActorRigid}, \hyperlink{classMezzanine_1_1AreaEffect_acb6f2cb173aa78725d82d5d33af5b866}{Mezzanine::AreaEffect}, and \hyperlink{classMezzanine_1_1NonStaticWorldObject_a1e1300809a35fe8263928ce890e1f91a}{Mezzanine::NonStaticWorldObject}.
+
+
+
+Definition at line 198 of file worldobject.cpp.
 
 
 

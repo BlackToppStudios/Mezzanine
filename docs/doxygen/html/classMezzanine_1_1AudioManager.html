@@ -92,10 +92,12 @@ Inheritance diagram for Mezzanine::AudioManager:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#a8db9deed28afb7b07017cb6fd99b624a">AddSoundToSoundSet</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SoundSetName, <a class="el" href="classMezzanine_1_1Audio_1_1Sound.html">Audio::Sound</a> *SoundInst)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Add's a sound to the defined set.  <a href="#a8db9deed28afb7b07017cb6fd99b624a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#a30da8ac656fdacf5c420f03304f4e109">AudioManager</a> (bool DefaultSettings=true)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Constructor.  <a href="#a30da8ac656fdacf5c420f03304f4e109"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#aed11c120ed062fa13a0881099859a957">~AudioManager</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#aed11c120ed062fa13a0881099859a957"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#a8db9deed28afb7b07017cb6fd99b624a">AddSoundToSoundSet</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;SoundSetName, <a class="el" href="classMezzanine_1_1Audio_1_1Sound.html">Audio::Sound</a> *SoundInst)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Add's a sound to the defined set.  <a href="#a8db9deed28afb7b07017cb6fd99b624a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#a4452ecf4eabfae18e0f6651e35530579">ClearLogs</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This empties logs that the audio subystem creates.  <a href="#a4452ecf4eabfae18e0f6651e35530579"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Audio_1_1Sound.html">Audio::Sound</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#aadb6ab0fd58253567da61c8b3432b104">CreateAmbientSound</a> (<a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;SoundName, <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;FileName, <a class="el" href="namespaceMezzanine.html#a63cd699ac54b73953f35ec9cfc05e506">ConstString</a> &amp;Group)</td></tr>
@@ -163,8 +165,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the volume for all stored Music sounds.  <a href="#a8df0f5fb1e426a59cfafee4f54201db7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#a1171a0dece85578907c6bbf82da56936">UpdateAllVolumes</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls on all sounds stored in this manager to update their volume after a settings change.  <a href="#a1171a0dece85578907c6bbf82da56936"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1AudioManager.html#aed11c120ed062fa13a0881099859a957">~AudioManager</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor.  <a href="#aed11c120ed062fa13a0881099859a957"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff24fe21e09898d3adc052b27e792bad"></a><!-- doxytag: member="Mezzanine::AudioManager::AmbientSounds" ref="aff24fe21e09898d3adc052b27e792bad" args="" -->
@@ -205,7 +205,7 @@ std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d849
 <div class="textblock"><p>This is simply a place for storing all the Sound utilities and functions. </p>
 <p>This is a place for loading, storing, and running sound files as necessary in a given game. </p>
 
-<p>Definition at line <a class="el" href="audiomanager_8h_source.html#l00071">71</a> of file <a class="el" href="audiomanager_8h_source.html">audiomanager.h</a>.</p>
+<p>Definition at line <a class="el" href="audiomanager_8h_source.html#l00077">77</a> of file <a class="el" href="audiomanager_8h_source.html">audiomanager.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a30da8ac656fdacf5c420f03304f4e109"></a><!-- doxytag: member="Mezzanine::AudioManager::AudioManager" ref="a30da8ac656fdacf5c420f03304f4e109" args="(bool DefaultSettings=true)" -->
 <div class="memitem">
@@ -1200,7 +1200,7 @@ std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d849
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -1210,6 +1210,6 @@ std::map&lt; <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d849
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:25:57 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

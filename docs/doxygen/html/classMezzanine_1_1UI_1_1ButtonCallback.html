@@ -85,6 +85,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html#af7cd7252696a7c4a47e0753eeef41d72">ButtonCallback</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class constructor.  <a href="#af7cd7252696a7c4a47e0753eeef41d72"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2db8a95ef38e7036d3e31cbf01e8f126"></a><!-- doxytag: member="Mezzanine::UI::ButtonCallback::~ButtonCallback" ref="a2db8a95ef38e7036d3e31cbf01e8f126" args="()" -->
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a2db8a95ef38e7036d3e31cbf01e8f126">~ButtonCallback</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e5b608adea7aa2b8589f2b1644ef698"></a><!-- doxytag: member="Mezzanine::UI::ButtonCallback::DoActivateItems" ref="a4e5b608adea7aa2b8589f2b1644ef698" args="()=0" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a4e5b608adea7aa2b8589f2b1644ef698">DoActivateItems</a> ()=0</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The activation function for this callback. This will be called every time the button is activated by the mouse or keyboard. <br/></td></tr>
@@ -94,9 +97,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59e06318745a208789d21bde7ad01349"></a><!-- doxytag: member="Mezzanine::UI::ButtonCallback::SetCaller" ref="a59e06318745a208789d21bde7ad01349" args="(Button *Caller)" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a59e06318745a208789d21bde7ad01349">SetCaller</a> (<a class="el" href="classMezzanine_1_1UI_1_1Button.html">Button</a> *Caller)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the button this callback belongs to. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2db8a95ef38e7036d3e31cbf01e8f126"></a><!-- doxytag: member="Mezzanine::UI::ButtonCallback::~ButtonCallback" ref="a2db8a95ef38e7036d3e31cbf01e8f126" args="()" -->
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UI_1_1ButtonCallback.html#a2db8a95ef38e7036d3e31cbf01e8f126">~ButtonCallback</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Class Destructor. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeda7036edbf0c2dbcb06c85c7ac1bd47"></a><!-- doxytag: member="Mezzanine::UI::ButtonCallback::Caller" ref="aeda7036edbf0c2dbcb06c85c7ac1bd47" args="" -->
@@ -106,7 +106,7 @@ Protected Attributes</h2></td></tr>
 <div class="textblock"><p>This class provides customizable functionality to the button class. </p>
 <p>This is a pure virtual class that must be inherited from for use with specialized behaviors when working with buttons. </p>
 
-<p>Definition at line <a class="el" href="uibutton_8h_source.html#l00248">248</a> of file <a class="el" href="uibutton_8h_source.html">uibutton.h</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8h_source.html#l00185">185</a> of file <a class="el" href="uibutton_8h_source.html">uibutton.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af7cd7252696a7c4a47e0753eeef41d72"></a><!-- doxytag: member="Mezzanine::UI::ButtonCallback::ButtonCallback" ref="af7cd7252696a7c4a47e0753eeef41d72" args="()" -->
 <div class="memitem">
@@ -130,7 +130,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00438">438</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="uibutton_8cpp_source.html#l00293">293</a> of file <a class="el" href="uibutton_8cpp_source.html">uibutton.cpp</a>.</p>
 
 </div>
 </div>
@@ -144,7 +144,7 @@ Protected Attributes</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -154,6 +154,6 @@ Protected Attributes</h2></td></tr>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Dec 28 2011 12:21:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Fri Mar 16 2012 12:26:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
