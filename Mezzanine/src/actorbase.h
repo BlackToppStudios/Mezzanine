@@ -71,6 +71,7 @@ namespace Mezzanine
     namespace internal
     {
         class PhysMotionState;
+        class AttachableMotionState;
     }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorBase
@@ -95,7 +96,7 @@ namespace Mezzanine
             Ogre::AnimationState* Animation;
 
             /// @brief This class encapsulates the functionality of the PhysMotionState using this
-            internal::PhysMotionState* MotionState;
+            internal::AttachableMotionState* MotionState;
         public:
             ///////////////////////////////////////////////////////////////////////////////
             // Creation, Destruction and Initialization

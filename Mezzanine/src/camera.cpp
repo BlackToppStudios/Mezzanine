@@ -136,7 +136,7 @@ namespace Mezzanine
     void Camera::SetLocation(const Vector3& Location)
     {
         this->Cam->setPosition(Location.GetOgreVector3());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }
@@ -149,7 +149,7 @@ namespace Mezzanine
     void Camera::SetOrientation(const Quaternion& Orientation)
     {
         this->Cam->setOrientation(Orientation.GetOgreQuaternion());
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
     }

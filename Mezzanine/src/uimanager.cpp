@@ -42,6 +42,7 @@
 
 #include "uimanager.h"
 #include "inputquerytool.h"
+#include "mathtool.h"
 #include "uitextureatlas.h"
 #include "world.h"
 #include "cameramanager.h"
@@ -491,24 +492,48 @@ namespace Mezzanine
             World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
         }
         std::map<UInt32,UI::GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
-        Whole BestMatch = 0;
-        Real BestHeight = 0;
-        Real BestMatchDiff = 1000000.f;
+        Whole LargerMatch = 0;
+        Whole SmallerMatch = 0;
+        Real LargerHeight = 0;
+        Real SmallerHeight = 0;
+        Real LargerMatchDiff = 1000000.0;
+        Real SmallerMatchDiff = 1000000.0;
         Real RequestedHeight = (Real)Height;
 
         for( std::map<UInt32,UI::GlyphData*>::iterator it = Glyphs.begin() ; it != Glyphs.end() ; it++ )
         {
-            Real Diff = (Real)Height > (*it).second->LineHeight ? (Real)Height - (*it).second->LineHeight : (*it).second->LineHeight - (Real)Height;
-            if(Diff < BestMatchDiff)
+            Real Diff = 0.0;
+            if((*it).second->LineHeight > RequestedHeight)
             {
-                BestMatch = (*it).first;
-                BestHeight = (*it).second->LineHeight;
-                BestMatchDiff = Diff;
+                Diff = (*it).second->LineHeight - RequestedHeight;
+                if(Diff < LargerMatchDiff)
+                {
+                    LargerMatch = (*it).first;
+                    LargerHeight = (*it).second->LineHeight;
+                    LargerMatchDiff = Diff;
+                    continue;
+                }
+            }else{
+                Diff = RequestedHeight - (*it).second->LineHeight;
+                if(Diff < SmallerMatchDiff)
+                {
+                    SmallerMatch = (*it).first;
+                    SmallerHeight = (*it).second->LineHeight;
+                    SmallerMatchDiff = Diff;
+                    continue;
+                }
             }
         }
 
-        Real Scale = BestHeight / RequestedHeight;
-        return std::pair<Whole,Real>(BestMatch,Scale);
+        Real Scale = 1;
+        if(LargerMatch != 0)
+        {
+            Scale = RequestedHeight / LargerHeight;
+            return std::pair<Whole,Real>(LargerMatch,Scale);
+        }else{
+            Scale = RequestedHeight / SmallerHeight;
+            return std::pair<Whole,Real>(SmallerMatch,Scale);
+        }
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const

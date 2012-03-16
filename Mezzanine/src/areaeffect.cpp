@@ -154,7 +154,7 @@ namespace Mezzanine
     void AreaEffect::SetLocation(const Vector3& Location)
     {
         WorldObject::SetLocation(Location);
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
         _RecalculateAllChildTransforms();
@@ -168,7 +168,7 @@ namespace Mezzanine
     void AreaEffect::SetOrientation(const Quaternion& Rotation)
     {
         NonStaticWorldObject::InternalSetOrientation(Rotation);
-        LocalTransformDirty = true;
+        LocalTransformDirty = !(GetUpdating(Parent));
 
         _RecalculateLocalTransform();
         _RecalculateAllChildTransforms();

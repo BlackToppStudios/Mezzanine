@@ -65,7 +65,7 @@ namespace Mezzanine
 
     bool AttachableBase::GetUpdating(AttachableBase* AB) const
     {
-        return AB ? AB->Updating : false;
+        return (AB ? AB->Updating : false);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
