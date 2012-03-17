@@ -900,8 +900,6 @@ bool CatchApp::PostUI()
         if(!UIManager::GetSingletonPtr()->MouseIsInUISystem())
         {
             Ray *MouseRay = RayQueryer->GetMouseRay(5000);
-            //*MouseRay *= 1000;
-            //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
             Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
             #ifdef MEZZDEBUG
@@ -935,13 +933,8 @@ bool CatchApp::PostUI()
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
                             rigid->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
-                            //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
-                            //Dragger->SetLinearLowerLimit(Vector3(0.f,0.f,0.f));
-                            //Dragger->SetLinearUpperLimit(Vector3(0.f,0.f,0.f));
-                            //Dragger->SetAngularLowerLimit(Vector3(0.f,0.f,0.f));
-                            //Dragger->SetAngularUpperLimit(Vector3(0.f,0.f,0.f));
                             PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
                             Dragger->SetParam(Con_Stop_CFM,0.8,0); Dragger->SetParam(Con_Stop_CFM,0.8,1); Dragger->SetParam(Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
                             Dragger->SetParam(Con_Stop_ERP,0.1,0); Dragger->SetParam(Con_Stop_ERP,0.1,1); Dragger->SetParam(Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
