@@ -718,6 +718,7 @@ void LevelLoader::LoadJustice()
     // Create the series of constraints for connecting all the pieces of the scale together
     // Starting with creating the anchor for the scale
     HingeConstraint* ScaleAnchor = new HingeConstraint(LadyJustice,JusticeScale,Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    ScaleAnchor->SetLimit( -(MathTool::GetPi() * 0.20),(MathTool::GetPi() * 0.20) );
     PhysMan->AddConstraint(ScaleAnchor,true);
 
     // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
