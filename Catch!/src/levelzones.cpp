@@ -25,6 +25,7 @@ bool LevelZone::IsInside(ActorBase* Actor)
             return true;
         }
     }
+    return false;
 }
 
 bool LevelZone::IsEmpty()
