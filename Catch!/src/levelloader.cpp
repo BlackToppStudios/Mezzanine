@@ -462,7 +462,7 @@ void LevelLoader::LoadBlowsNotSucks()
     // Create the fan
     ActorRigid* Fan = new ActorRigid(25,"Fan","fan.mesh",BlowsNotSucksGroup);
     Fan->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Fan"));
-    Fan->SetLocation(Vector3(30,-15,0));
+    Fan->SetLocation(Vector3(103.388,-58.888,7.5));
     Fan->SetOrientation(Quaternion(MathTool::GetHalfPi() * 0.5,Vector3(0,0,1)));
     Fan->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
     ActMan->AddActor(Fan);
