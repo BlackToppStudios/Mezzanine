@@ -635,24 +635,34 @@ bool CatchApp::CheckEndOfLevel()
         return false;
     if(CurrentState == CatchApp::Catch_ScoreScreen)
         return true;
-    if(!EndTimer)
+    if(AllStartZonesEmpty())
     {
-        EndTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
-        EndTimer->SetInitialTime(5 * 1000000);
-        EndTimer->SetCurrentTime(5 * 1000000);
-        EndTimer->SetGoalTime(0);
-        EndTimer->Start();
-    }
-    for( Whole SA = 0 ; SA < ScoreAreas.size() ; SA++ )
-    {
-        std::vector<ActorBase*>& FinalTest = ScoreAreas[SA]->GetAddedActors();
-        for( Whole F = 0 ; F < FinalTest.size() ; F++ )
+        if(!EndTimer)
         {
-            if(LastActorThrown == FinalTest[F])
-                EndTimer->Reset();
+            EndTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::StopWatch);
+            EndTimer->SetInitialTime(5 * 1000000);
+            EndTimer->SetCurrentTime(5 * 1000000);
+            EndTimer->SetGoalTime(0);
+            EndTimer->Start();
         }
+        for( Whole SA = 0 ; SA < ScoreAreas.size() ; SA++ )
+        {
+            std::vector<ActorBase*>& FinalTest = ScoreAreas[SA]->GetAddedActors();
+            for( Whole F = 0 ; F < FinalTest.size() ; F++ )
+            {
+                if(LastActorThrown == FinalTest[F])
+                    EndTimer->Reset();
+            }
+        }
+        return 0 == EndTimer->GetCurrentTime();
+    }else{
+        if(EndTimer)
+        {
+            TimerManager::GetSingletonPtr()->DestroyTimer(EndTimer);
+            EndTimer = NULL;
+        }
+        return false;
     }
-    return 0 == EndTimer->GetCurrentTime();
 }
 
 bool CatchApp::AllStartZonesEmpty()
@@ -1064,7 +1074,7 @@ bool CatchApp::PostRender()
     //See if the level is over
     if(CurrentState != CatchApp::Catch_ScoreScreen)
     {
-        if(AllStartZonesEmpty() && CheckEndOfLevel())
+        if(CheckEndOfLevel())
         {
             ChangeState(CatchApp::Catch_ScoreScreen);
         }

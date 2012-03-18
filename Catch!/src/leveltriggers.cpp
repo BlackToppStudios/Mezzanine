@@ -41,8 +41,7 @@ void BNS_Fan::ApplyTrigger()
     if(FieldStrength > 60.0) WindClutter->AddToWorld();
 
     /*std::stringstream stream;
-    stream << "Fan rotation is: " << RotationSpeed << ".";
-    stream << "Wind Force is: " << FieldStrength << ".";
+    stream << ;
     World::GetWorldPointer()->LogString(stream.str());
     World::GetWorldPointer()->DoMainLoopLogging();// */
 }

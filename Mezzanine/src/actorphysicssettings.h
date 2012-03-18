@@ -64,7 +64,7 @@ namespace Mezzanine
     class Generic6DofConstraint;
     class SliderConstraint;
 
-    typedef SliderConstraint StickyConstraint;
+    typedef Generic6DofConstraint StickyConstraint;
     /// @struct StickyConstraintConstructionInfo
     /// @headerfile actorphysicssettings.h
     /// @brief Simple struct for holding information on how sticky constraints should be constructed.

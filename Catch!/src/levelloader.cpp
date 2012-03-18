@@ -462,7 +462,7 @@ void LevelLoader::LoadBlowsNotSucks()
     // Create the fan
     ActorRigid* Fan = new ActorRigid(25,"Fan","fan.mesh",BlowsNotSucksGroup);
     Fan->GetPhysicsSettings()->SetCollisionShape(CShapeMan->GetShape("Fan"));
-    Fan->SetLocation(Vector3(30,-15,0));
+    Fan->SetLocation(Vector3(103.388,-58.888,7.5));
     Fan->SetOrientation(Quaternion(MathTool::GetHalfPi() * 0.5,Vector3(0,0,1)));
     Fan->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
     ActMan->AddActor(Fan);
@@ -718,6 +718,7 @@ void LevelLoader::LoadJustice()
     // Create the series of constraints for connecting all the pieces of the scale together
     // Starting with creating the anchor for the scale
     HingeConstraint* ScaleAnchor = new HingeConstraint(LadyJustice,JusticeScale,Vector3(-12,127.4,103.35),Vector3(0,30,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    ScaleAnchor->SetLimit( -(MathTool::GetPi() * 0.20),(MathTool::GetPi() * 0.20) );
     PhysMan->AddConstraint(ScaleAnchor,true);
 
     // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
