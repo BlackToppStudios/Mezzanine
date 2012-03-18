@@ -130,7 +130,7 @@ Currently this is not thread safe, even though it should be.
 \end{DoxyWarning}
 
 
-Definition at line 126 of file eventmanager.h.
+Definition at line 123 of file eventmanager.h.
 
 
 
@@ -154,7 +154,7 @@ This creates an empty EventManger
 \item[\hyperlink{todo__todo000014}{Todo}]TODO: Make the \hyperlink{classMezzanine_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
 
 
-Definition at line 253 of file eventmanager.cpp.
+Definition at line 254 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a39b9e0f783c2ab0d39f5574a7a106141}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!$\sim$EventManager@{$\sim$EventManager}}
@@ -171,7 +171,7 @@ Default Deconstructor.
 
 This deletes everything still in the event manager and tears it down. 
 
-Definition at line 264 of file eventmanager.cpp.
+Definition at line 265 of file eventmanager.cpp.
 
 
 
@@ -196,7 +196,7 @@ Adds an event of any kind to the end of the Event Queue.
 \end{DoxyParams}
 This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the responsibilty of the code that pulls it out of Event Manager. 
 
-Definition at line 317 of file eventmanager.cpp.
+Definition at line 318 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a2da4ef46b2ce56206412782eec43d93e}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!AddPollingCheck@{AddPollingCheck}}
@@ -223,7 +223,7 @@ This will trigger the input system to generate an event (or add to an exiting ev
 \end{DoxyExceptions}
 
 
-Definition at line 630 of file eventmanager.cpp.
+Definition at line 631 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a3cf0fd9e33392aa24e9a735363212185}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!DetectJoysticks@{DetectJoysticks}}
@@ -240,7 +240,7 @@ Look for Joysticks that are hooked up to the system.
 
 Currently this will only find the first joystick. This only needs to be done once after the joystick has been connected and detected/configured by the operating system. Joystick events may not be added if this has not been called. The is called once at when the Event manager is contructed, but if the joystick was not connected yet then it might not be found. 
 
-Definition at line 276 of file eventmanager.cpp.
+Definition at line 277 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a69d44403974ed8d974846e929eb8adda}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -261,7 +261,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a4ee29e4baf6c4b9a3bfec1b2258
 
 
 
-Definition at line 668 of file eventmanager.cpp.
+Definition at line 669 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_ab630dfe228b7a4246680953cdfbbfc0a}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetAllCollisionEvents@{GetAllCollisionEvents}}
@@ -281,7 +281,7 @@ This returns a list$<$EventCollision$\ast$$>$ pointer which is this a subset of 
 \end{DoxyReturn}
 
 
-Definition at line 562 of file eventmanager.cpp.
+Definition at line 563 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_abd6f4de517d07ab7a1a0c330c4e29032}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetAllGameWindowEvents@{GetAllGameWindowEvents}}
@@ -301,7 +301,7 @@ This returns a list$<$EventGameWindow$\ast$$>$ pointer which is this a subset of
 \end{DoxyReturn}
 
 
-Definition at line 578 of file eventmanager.cpp.
+Definition at line 579 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_ae54b0f6e266c738ceb2b5192d2412a38}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetAllQuitEvents@{GetAllQuitEvents}}
@@ -324,7 +324,7 @@ This returns a std::list$<$EventQuit$\ast$$>$ pointer which is this a subset of 
 \end{DoxyReturn}
 
 
-Definition at line 624 of file eventmanager.cpp.
+Definition at line 625 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a671df48c725e661274f21751ab2ec2f9}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetAllRenderTimeEvents@{GetAllRenderTimeEvents}}
@@ -344,7 +344,7 @@ This returns a list$<$EventRenderTime$\ast$$>$ pointer which is this a subset of
 \end{DoxyReturn}
 
 
-Definition at line 593 of file eventmanager.cpp.
+Definition at line 594 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_af149e3c8893bdd214d4c1d6aea5388b2}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetAllSpecificEvents@{GetAllSpecificEvents}}
@@ -367,7 +367,7 @@ This returns a std::list$<$EventBase$\ast$$>$ pointer which is this a subset of 
 \end{DoxyReturn}
 
 
-Definition at line 525 of file eventmanager.cpp.
+Definition at line 526 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a50abe233b2f932105d0f33cd38badb26}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetAllUserInputEvents@{GetAllUserInputEvents}}
@@ -387,7 +387,7 @@ This returns a std::list$<$EventUserInput$\ast$$>$ pointer which is this a subse
 \end{DoxyReturn}
 
 
-Definition at line 608 of file eventmanager.cpp.
+Definition at line 609 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_adfba3feeb1e4174909db98412f894a3b}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextCollisionEvent@{GetNextCollisionEvent}}
@@ -407,7 +407,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventCollision}{EventCollision}, tha
 \end{DoxyReturn}
 
 
-Definition at line 553 of file eventmanager.cpp.
+Definition at line 554 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_aea5b5a53dabead276cee5f94152bd9c2}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextEvent@{GetNextEvent}}
@@ -427,7 +427,7 @@ A pointer to a Event, that still needs to be removed from the event manager and 
 \end{DoxyReturn}
 
 
-Definition at line 297 of file eventmanager.cpp.
+Definition at line 298 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a60f9633517b214128a359c4ef92bafb7}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextGameWindowEvent@{GetNextGameWindowEvent}}
@@ -447,7 +447,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventGameWindow}{EventGameWindow}, t
 \end{DoxyReturn}
 
 
-Definition at line 569 of file eventmanager.cpp.
+Definition at line 570 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_afd185415d7a139df30eb35309e8dee45}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextQuitEvent@{GetNextQuitEvent}}
@@ -467,7 +467,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventQuit}{EventQuit}, that still ne
 \end{DoxyReturn}
 
 
-Definition at line 615 of file eventmanager.cpp.
+Definition at line 616 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a9a1d195b08d34de39cbd72f95ab01190}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextRenderTimeEvent@{GetNextRenderTimeEvent}}
@@ -487,7 +487,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventRenderTime}{EventRenderTime}, t
 \end{DoxyReturn}
 
 
-Definition at line 584 of file eventmanager.cpp.
+Definition at line 585 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a1ef3a915c26ab96fa6958a9e80c8aaaa}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextSpecificEvent@{GetNextSpecificEvent}}
@@ -513,7 +513,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventUserInput}{EventUserInput}, tha
 \end{DoxyReturn}
 
 
-Definition at line 487 of file eventmanager.cpp.
+Definition at line 488 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a8d1af0c4bcb070edb8d013e1cf9ebf34}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetNextUserInputEvent@{GetNextUserInputEvent}}
@@ -533,7 +533,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventUserInput}{EventUserInput}, tha
 \end{DoxyReturn}
 
 
-Definition at line 599 of file eventmanager.cpp.
+Definition at line 600 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_aa3f1b41578307c7ac801340b275af027}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetRemainingEventCount@{GetRemainingEventCount}}
@@ -553,7 +553,7 @@ This returns an unsigned integer with the amount of of total events
 \end{DoxyReturn}
 
 
-Definition at line 294 of file eventmanager.cpp.
+Definition at line 295 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a6e4c72bcaa437863fdf167b5b9ef5034}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!GetType@{GetType}}
@@ -577,7 +577,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a6fbfe9e847156915b195b6de1cf
 
 
 
-Definition at line 674 of file eventmanager.cpp.
+Definition at line 675 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a2bf1969aadd0fb5a3da284423e44b081}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!Initialize@{Initialize}}
@@ -598,7 +598,7 @@ Implements \hyperlink{classMezzanine_1_1ManagerBase_a864e3cac11928a602c1db28fa2d
 
 
 
-Definition at line 665 of file eventmanager.cpp.
+Definition at line 666 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a25b42c9f5a4ac2910d5e0d79b2bd2c17}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextCollisionEvent@{PopNextCollisionEvent}}
@@ -618,7 +618,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventRenderTime}{EventRenderTime}, t
 \end{DoxyReturn}
 
 
-Definition at line 556 of file eventmanager.cpp.
+Definition at line 557 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a48861de138f2c59480527cf16518444a}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextEvent@{PopNextEvent}}
@@ -638,7 +638,7 @@ A pointer to a Event, that will need to be deleted once it has been used.
 \end{DoxyReturn}
 
 
-Definition at line 305 of file eventmanager.cpp.
+Definition at line 306 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a91f8be3fedf91ba5a32825a8dd97de95}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextGameWindowEvent@{PopNextGameWindowEvent}}
@@ -658,7 +658,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventRenderTime}{EventRenderTime}, t
 \end{DoxyReturn}
 
 
-Definition at line 572 of file eventmanager.cpp.
+Definition at line 573 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_aa7cefb4728acb84517e2891adc450c27}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextQuitEvent@{PopNextQuitEvent}}
@@ -678,7 +678,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventQuit}{EventQuit}, that still ne
 \end{DoxyReturn}
 
 
-Definition at line 618 of file eventmanager.cpp.
+Definition at line 619 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_aedbb7374cf4c97a5f5ab5283627da83f}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextRenderTimeEvent@{PopNextRenderTimeEvent}}
@@ -698,7 +698,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventRenderTime}{EventRenderTime}, t
 \end{DoxyReturn}
 
 
-Definition at line 587 of file eventmanager.cpp.
+Definition at line 588 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a1e142f7a2c658e0bbbd3e962ba24f8bb}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextSpecificEvent@{PopNextSpecificEvent}}
@@ -723,7 +723,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventUserInput}{EventUserInput}, tha
 \end{DoxyReturn}
 
 
-Definition at line 501 of file eventmanager.cpp.
+Definition at line 502 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a9a372e5988a549f61a1ff064b7239a8e}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!PopNextUserInputEvent@{PopNextUserInputEvent}}
@@ -743,7 +743,7 @@ A pointer to a \hyperlink{classMezzanine_1_1EventUserInput}{EventUserInput}, tha
 \end{DoxyReturn}
 
 
-Definition at line 602 of file eventmanager.cpp.
+Definition at line 603 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a209b69a260ea1a2351e005802d13803b}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveAllSpecificEvents@{RemoveAllSpecificEvents}}
@@ -763,7 +763,7 @@ This does not delete the events. This is a memory leak unless used with GetAllSp
 \end{DoxyWarning}
 
 
-Definition at line 539 of file eventmanager.cpp.
+Definition at line 540 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_ae3a90f7fdd0b75b4e4ff5e5d3ad3e332}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveEvent@{RemoveEvent}}
@@ -785,7 +785,7 @@ Removes an event of any kind from the Event Queue.
 \end{DoxyParams}
 In most cases you will want to use the \hyperlink{classMezzanine_1_1EventManager_a48861de138f2c59480527cf16518444a}{PopNextEvent()} methods when going through events. In some expert use cases however you may want to remove a specific event at an arbitrary place in the Queue. This is the method for doing so. 
 
-Definition at line 320 of file eventmanager.cpp.
+Definition at line 321 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_ac35a0aa7e6e98a8024025f3babd40749}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextCollisionEvent@{RemoveNextCollisionEvent}}
@@ -810,7 +810,7 @@ If you did not call \hyperlink{classMezzanine_1_1EventManager_adfba3feeb1e417490
 \end{DoxyExceptions}
 
 
-Definition at line 559 of file eventmanager.cpp.
+Definition at line 560 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a0694b97c1b9696f5b28d0baf7a2f7c40}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextEvent@{RemoveNextEvent}}
@@ -835,7 +835,7 @@ If you did not call \hyperlink{classMezzanine_1_1EventManager_aea5b5a53dabead276
 \end{DoxyExceptions}
 
 
-Definition at line 314 of file eventmanager.cpp.
+Definition at line 315 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a6108fd63aed85b5a3f38987f75603c53}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextGameWindowEvent@{RemoveNextGameWindowEvent}}
@@ -860,7 +860,7 @@ If you did not call \hyperlink{classMezzanine_1_1EventManager_a60f9633517b214128
 \end{DoxyExceptions}
 
 
-Definition at line 575 of file eventmanager.cpp.
+Definition at line 576 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a10735469d564d6731c3741acf265879c}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextQuitEvent@{RemoveNextQuitEvent}}
@@ -885,7 +885,7 @@ If you did not call \hyperlink{classMezzanine_1_1EventManager_afd185415d7a139df3
 \end{DoxyExceptions}
 
 
-Definition at line 621 of file eventmanager.cpp.
+Definition at line 622 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a9a0b6340a0b0a6a96b7918f758f44c31}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextRenderTimeEvent@{RemoveNextRenderTimeEvent}}
@@ -910,7 +910,7 @@ If you did not call \hyperlink{classMezzanine_1_1EventManager_a9a1d195b08d34de39
 \end{DoxyExceptions}
 
 
-Definition at line 590 of file eventmanager.cpp.
+Definition at line 591 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a8fe12f47a64f3af8dcb30f13ee60e303}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextSpecificEvent@{RemoveNextSpecificEvent}}
@@ -940,7 +940,7 @@ If you did not call GetNextSpecificEvent(Event::EventType SpecificType) and have
 \end{DoxyExceptions}
 
 
-Definition at line 516 of file eventmanager.cpp.
+Definition at line 517 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a1d2681b16ec802f8271f2651ff40c083}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemoveNextUserInputEvent@{RemoveNextUserInputEvent}}
@@ -965,7 +965,7 @@ If you did not call \hyperlink{classMezzanine_1_1EventManager_a8d1af0c4bcb070edb
 \end{DoxyExceptions}
 
 
-Definition at line 605 of file eventmanager.cpp.
+Definition at line 606 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a446cab99c7c67b42e28753cda14d79a4}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!RemovePollingCheck@{RemovePollingCheck}}
@@ -992,7 +992,7 @@ This will remove any check for polling that share the same inputcode and ID. Thi
 \end{DoxyExceptions}
 
 
-Definition at line 640 of file eventmanager.cpp.
+Definition at line 641 of file eventmanager.cpp.
 
 \hypertarget{classMezzanine_1_1EventManager_a07119a541a60a515e2108c79cf6e3aac}{
 \index{Mezzanine::EventManager@{Mezzanine::EventManager}!UpdateEvents@{UpdateEvents}}
@@ -1009,7 +1009,7 @@ Pulls Events from the all the subsystems for use in the \hyperlink{classMezzanin
 
 The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop. This adds system events, like \hyperlink{classMezzanine_1_1EventQuit}{EventQuit} and Other Windows manager events, and if any user input event actions, this generates one \hyperlink{classMezzanine_1_1EventUserInput}{EventUserInput} that stores everythin that happened. 
 
-Definition at line 332 of file eventmanager.cpp.
+Definition at line 333 of file eventmanager.cpp.
 
 
 

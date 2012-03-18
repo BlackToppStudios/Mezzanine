@@ -117,46 +117,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00053"></a>00053 <span class="comment">///     - SWIG_INFO_ENDCLASS - 991: Completing parsing of class.</span>
 <a name="l00054"></a>00054 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00055"></a>00055 <span class="comment"></span>
-<a name="l00056"></a>00056 <span class="comment">// Prevent doxygen parsing of the items to insert in the bindings files</span><span class="comment"></span>
-<a name="l00057"></a>00057 <span class="comment">/// @cond 0</span>
-<a name="l00058"></a>00058 <span class="comment"></span><span class="preprocessor">#ifdef SWIG</span>
-<a name="l00059"></a>00059 <span class="preprocessor"></span>
-<a name="l00060"></a>00060     <span class="comment">// Tell SWIG to create a module that scripting languages can use called &quot;mezzanine&quot;</span>
-<a name="l00061"></a>00061     <span class="comment">// and insert a minimum of documentation into the bindingfile</span>
-<a name="l00062"></a>00062     %{
-<a name="l00063"></a>00063     <span class="comment">// These headers are copied verbatim into the swig bindings file</span>
-<a name="l00064"></a>00064 <span class="preprocessor">    #include &lt;Ogre.h&gt;</span>
-<a name="l00065"></a>00065 <span class="preprocessor">    #include &quot;btBulletDynamicsCommon.h&quot;</span>
-<a name="l00066"></a>00066 <span class="preprocessor">    #include &lt;cAudio.h&gt;</span>
-<a name="l00067"></a>00067 <span class="preprocessor">    #include &quot;<a class="code" href="mezzanine_8h.html" title="A single file that includes all of the Mezzanine engine.">mezzanine.h</a>&quot;</span>
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">    #ifdef MEZZLUA51</span>
-<a name="l00070"></a>00070 <span class="preprocessor"></span><span class="comment">    /// @file</span>
-<a name="l00071"></a>00071 <span class="comment"></span><span class="comment">    /// @brief This file has the interface for the Lua based implementation of the Scripting system.</span>
-<a name="l00072"></a>00072 <span class="comment"></span><span class="preprocessor">    #endif</span>
-<a name="l00073"></a>00073 <span class="preprocessor"></span>    %}
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075     %include stl.i
-<a name="l00076"></a>00076     %module Mezzanine
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078 <span class="preprocessor">    #define SWIG_INFO_BEGINCLASS        %warn &quot;990: Begining parsing of class.&quot;</span>
-<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_ENDCLASS          %warn &quot;991: Completing parsing of class.&quot;</span>
-<a name="l00080"></a>00080 <span class="preprocessor"></span>
-<a name="l00081"></a>00081 <span class="preprocessor">    #define SWIG_INFO_WARN              %warn &quot;999: Warning 990 to 999 are informational messages.&quot;</span>
-<a name="l00082"></a>00082 <span class="preprocessor"></span><span class="preprocessor">#else</span>
-<a name="l00083"></a>00083 <span class="preprocessor"></span>    <span class="comment">// Define warnings as nothing as to not fuck with other classes</span>
-<a name="l00084"></a>00084 <span class="preprocessor">    #define SWIG_INFO_BEGINCLASS</span>
-<a name="l00085"></a>00085 <span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_ENDCLASS</span>
-<a name="l00086"></a>00086 <span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_WARN</span>
-<a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
-<a name="l00088"></a>00088 <span class="preprocessor"></span><span class="comment">/// @endcond</span>
-<a name="l00089"></a>00089 <span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">// Warn SWIG users of the messages that Swig will produce</span>
-<a name="l00091"></a>00091 SWIG_INFO_WARN
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095 <span class="preprocessor">#endif</span>
+<a name="l00056"></a>00056 <span class="comment">// Prevent doxygen parsing of the items to insert in the bindings files</span>
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="preprocessor">#ifdef SWIG</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span>    <span class="comment">// Tell SWIG to create a module that scripting languages can use called &quot;mezzanine&quot;</span>
+<a name="l00060"></a>00060     <span class="comment">// and insert a minimum of documentation into the bindingfile</span>
+<a name="l00061"></a>00061     %{
+<a name="l00062"></a>00062         <span class="comment">// code to be inserted verbatim into the swig file that does not go at the top or bottom like the build script does it</span>
+<a name="l00063"></a>00063     %}
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065     %include stl.i
+<a name="l00066"></a>00066     %module Mezzanine
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068 <span class="preprocessor">    #define SWIG_INFO_BEGINCLASS        %warn &quot;990: Begining parsing of class.&quot;</span>
+<a name="l00069"></a>00069 <span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_ENDCLASS          %warn &quot;991: Completing parsing of class.&quot;</span>
+<a name="l00070"></a>00070 <span class="preprocessor"></span>
+<a name="l00071"></a>00071 <span class="preprocessor">    #define SWIG_INFO_WARN              %warn &quot;999: Warning 990 to 999 are informational messages.&quot;</span>
+<a name="l00072"></a>00072 <span class="preprocessor"></span><span class="preprocessor">#else</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>    <span class="comment">// Define warnings as nothing as to not fuck with other classes</span>
+<a name="l00074"></a>00074 <span class="preprocessor">    #define SWIG_INFO_BEGINCLASS</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_ENDCLASS</span>
+<a name="l00076"></a>00076 <span class="preprocessor"></span><span class="preprocessor">    #define SWIG_INFO_WARN</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span>
+<a name="l00079"></a>00079 
+<a name="l00080"></a>00080 <span class="comment">// Warn SWIG users of the messages that Swig will produce</span>
+<a name="l00081"></a>00081 SWIG_INFO_WARN
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -174,6 +164,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Mar 18 2012 16:43:59 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

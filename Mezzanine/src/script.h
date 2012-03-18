@@ -64,11 +64,11 @@ namespace Mezzanine
         class MEZZ_LIB Script
         {
             public:
-                virtual void AddArgument(ScriptArgument Arg) = 0;
-                virtual void RemoveArgument(ScriptArgument Arg) = 0;
+                virtual void AddArgument(ScriptArgument* Arg) = 0;
+                virtual void RemoveArgument(ScriptArgument* Arg) = 0;
                 virtual void ClearArguments() = 0;
                 virtual Whole GetArgumentCount() = 0;
-                virtual ScriptArgument GetArgument(Whole ArgNumber) = 0;
+                virtual ScriptArgument* GetArgument(Whole ArgNumber) = 0;
 
                 virtual void SetCode(String Code) = 0;
                 virtual String GetCode() = 0;
@@ -79,7 +79,7 @@ namespace Mezzanine
                 virtual bool IsAvailableAsString() = 0;
                 virtual bool IsAbleToReturnMultiple() = 0;
 
-                virtual ScriptArgument Execute() = 0;
+                virtual ScriptArgument* Execute() = 0;
         };
 
         class MEZZ_LIB ScriptCompilable : public Script
@@ -93,9 +93,8 @@ namespace Mezzanine
                     { return true; }
                 virtual bool IsAvailableAsString() = 0;
 
-
                 virtual void Compile() = 0;
-                virtual ScriptArgument Execute() = 0;
+                virtual ScriptArgument* Execute() = 0;
         };
 
     }

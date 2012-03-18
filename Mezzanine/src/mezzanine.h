@@ -138,7 +138,7 @@
 
 #include "vector3.h"                    // done
 
-// more stuff swi shouldn't read yer
+// more stuff swig shouldn't read yet
 #ifndef SWIG
 #include "vector3wactor.h"
 #include "viewport.h"
