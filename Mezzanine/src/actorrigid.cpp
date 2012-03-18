@@ -147,20 +147,27 @@ namespace Mezzanine
         StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
         if(StickyD->CreationQueue.empty())
             return;
+        RemoveFromWorld();
+        AddToWorld();
         for( Whole X = 0 ; X < StickyD->CreationQueue.size() ; ++X )
         {
             StickyConstraintConstructionInfo& CurrInfo = StickyD->CreationQueue[X];
-            ObjectPair NewPair(CurrInfo.ActA,CurrInfo.ActB);
+            /*ObjectPair NewPair(CurrInfo.ActA,CurrInfo.ActB);
             Collision* Col = PhysicsManager::GetSingletonPtr()->GetCollision(&NewPair);
-            if(Col) PhysicsManager::GetSingletonPtr()->RemoveCollision(Col);
+            if(Col) PhysicsManager::GetSingletonPtr()->RemoveCollision(Col);//*/
             StickyConstraint* NewSticky = new StickyConstraint(CurrInfo.ActA,CurrInfo.ActB,CurrInfo.TransA,CurrInfo.TransB);
-            NewSticky->SetUpperLinLimit(0.0);
+            NewSticky->SetAngularLimitLower(Vector3());
+            NewSticky->SetAngularLimitUpper(Vector3());
+            NewSticky->SetLinearLimitLower(Vector3());
+            NewSticky->SetLinearLimitUpper(Vector3());
+            /*NewSticky->SetUpperLinLimit(0.0);
             NewSticky->SetUpperAngLimit(0.0);
             NewSticky->SetLowerLinLimit(0.0);
-            NewSticky->SetLowerAngLimit(0.0);
+            NewSticky->SetLowerAngLimit(0.0);//*/
             PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addConstraint(NewSticky->GetConstraintBase(),true);
             StickyD->StickyConstraints.push_back(NewSticky);
             CurrInfo.ActA->GetPhysicsSettings()->GetStickyData()->StickyConstraints.push_back(NewSticky);
+            NewSticky->GetConstraintBase()->setOverrideNumSolverIterations(100);
         }
         StickyD->CreationQueue.clear();
     }
