@@ -42,7 +42,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Any Special data types that we need will get declared right here
 ///////////////////////////////////////
-#include "swig.h"
 #include "crossplatformexport.h"
 
 // Standard Headers are not included in SWIG preprocessing
@@ -152,6 +151,10 @@ namespace Mezzanine
     /// definition of this exists near the Character typedef in datatypes.h
     typedef char Character;
     // #define XML_WCHAR_MODE   //UNREMARK ME if changing the above line to typedef wchar_t Character;
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Complex Data types
+    ///////////////////////////////////////
 
     /// @internal
     /// @typedef RawEvent

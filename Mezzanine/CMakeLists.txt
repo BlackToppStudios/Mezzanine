@@ -158,6 +158,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}scripting.h"
 	"${${PROJECT_NAME}_SRC_DIR}scriptargument.h"
 	"${${PROJECT_NAME}_SRC_DIR}script.h"
+	"${${PROJECT_NAME}_SRC_DIR}sharedptr.h"
 	"${${PROJECT_NAME}_SRC_DIR}simpletimer.h"
 	"${${PROJECT_NAME}_SRC_DIR}singleton.h"
 	"${${PROJECT_NAME}_SRC_DIR}serialization.h"

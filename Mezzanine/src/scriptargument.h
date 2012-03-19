@@ -41,7 +41,6 @@
 #define _scriptargument_h
 
 #include "datatypes.h"
-#include "scriptargument.h"
 #include "crossplatformexport.h"
 
 namespace Mezzanine
