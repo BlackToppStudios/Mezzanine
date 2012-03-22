@@ -41,10 +41,10 @@ LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& R
     Description->HorizontallyAlign(Mezzanine::UI::Txt_Right);
     Score->HorizontallyAlign(Mezzanine::UI::Txt_Left);
 
-    //Description->SetBackgroundColour(ColourValue::Transparent());
-    //Score->SetBackgroundColour(ColourValue::Transparent());
-    Description->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.2));
-    Score->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.2));
+    Description->SetBackgroundColour(ColourValue::Transparent());
+    Score->SetBackgroundColour(ColourValue::Transparent());
+    //Description->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.2));
+    //Score->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.2));
 
     AddSubRenderable(0,RenderablePair(Description,NULL));
     AddSubRenderable(1,RenderablePair(Score,NULL));
