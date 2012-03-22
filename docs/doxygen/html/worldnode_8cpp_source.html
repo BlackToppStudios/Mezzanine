@@ -320,7 +320,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00256"></a><a class="code" href="classMezzanine_1_1WorldNode.html#a636852458b226f1c2f3089f17558e678">00256</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1WorldNode.html#a636852458b226f1c2f3089f17558e678">WorldNode::SetLocation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
 <a name="l00257"></a>00257     {
 <a name="l00258"></a>00258         NodeLoc = Location;
-<a name="l00259"></a>00259         LocalTransformDirty = <span class="keyword">true</span>;
+<a name="l00259"></a>00259         LocalTransformDirty = !(<a class="code" href="classMezzanine_1_1AttachableBase.html#a0d62e3708056e62911d6ec7c6beb3a97" title="Gets the update status of another attachable.">GetUpdating</a>(Parent));
 <a name="l00260"></a>00260 
 <a name="l00261"></a>00261         <a class="code" href="classMezzanine_1_1AttachableChild.html#a500d824fc29de69ac05ffcdbdaf67e9e" title="Recalculates this objects local transform based on it&amp;#39;s current global position.">_RecalculateLocalTransform</a>();
 <a name="l00262"></a>00262         <a class="code" href="classMezzanine_1_1AttachableParent.html#a9c76fdc43b1cddada62385215ca6c8d4" title="Recalculates the transforms of all children of this attachable.">_RecalculateAllChildTransforms</a>();
@@ -334,7 +334,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00270"></a><a class="code" href="classMezzanine_1_1WorldNode.html#afe9db5c3abeb608bf2d589c2a61da546">00270</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1WorldNode.html#afe9db5c3abeb608bf2d589c2a61da546">WorldNode::SetOrientation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation)
 <a name="l00271"></a>00271     {
 <a name="l00272"></a>00272         NodeOri = Orientation;
-<a name="l00273"></a>00273         LocalTransformDirty = <span class="keyword">true</span>;
+<a name="l00273"></a>00273         LocalTransformDirty = !(<a class="code" href="classMezzanine_1_1AttachableBase.html#a0d62e3708056e62911d6ec7c6beb3a97" title="Gets the update status of another attachable.">GetUpdating</a>(Parent));
 <a name="l00274"></a>00274 
 <a name="l00275"></a>00275         <a class="code" href="classMezzanine_1_1AttachableChild.html#a500d824fc29de69ac05ffcdbdaf67e9e" title="Recalculates this objects local transform based on it&amp;#39;s current global position.">_RecalculateLocalTransform</a>();
 <a name="l00276"></a>00276         <a class="code" href="classMezzanine_1_1AttachableParent.html#a9c76fdc43b1cddada62385215ca6c8d4" title="Recalculates the transforms of all children of this attachable.">_RecalculateAllChildTransforms</a>();
@@ -515,6 +515,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 16 2012 12:25:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Mar 18 2012 16:44:00 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -1,24 +1,14 @@
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:351: warning: Compound swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:331: warning: Compound swig_type_info is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uitextureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:810: warning: Compound swig_lua_rawdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:786: warning: Compound swig_lua_class is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uibasicrenderable.h:62: warning: Compound Mezzanine::UI::BasicRenderable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:759: warning: Compound swig_lua_var_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:341: warning: Compound swig_cast_info is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:69: warning: Compound Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uiscreen.cpp:86: warning: Compound Mezzanine::UI::OgreVertex is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/physicsmanager.h:89: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:799: warning: Compound swig_lua_userdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:766: warning: Compound swig_lua_const_info is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:86: warning: Compound Mezzanine::Scripting::ScriptCompilable is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:1560: warning: Compound swig::LANGUAGE_OBJ is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfile.h.cpp:128: warning: Compound Mezzanine::internal::BulletFilePtr is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/resourcetextsettingsfile.h:55: warning: Compound Mezzanine::Resource::TextSettingsFile is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:775: warning: Compound swig_lua_method is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uitextureatlas.cpp:64: warning: Compound Mezzanine::UI::TextureAtlasInternalData is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:780: warning: Compound swig_lua_attribute is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uilistbox.h:52: warning: Compound Mezzanine::UI::TemplateParams is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfilemanager.cpp:50: warning: documented function `BulletFileManager * Mezzanine::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
 /home/sqeaky/Mezzanine/Mezzanine/src/world.h:109: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
@@ -36,50 +26,6 @@
 todo:122: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 todo:125: warning: explicit link request to 'TS_World' could not be resolved
 todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:343: warning: Member converter (variable) of class swig_cast_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:344: warning: Member next (variable) of class swig_cast_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:345: warning: Member prev (variable) of class swig_cast_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:342: warning: Member type (variable) of class swig_cast_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:782: warning: Member getmethod (variable) of class swig_lua_attribute is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:781: warning: Member name (variable) of class swig_lua_attribute is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:783: warning: Member setmethod (variable) of class swig_lua_attribute is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:792: warning: Member attributes (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:794: warning: Member base_names (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:793: warning: Member bases (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:789: warning: Member constructor (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:790: warning: Member destructor)(void *) (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:791: warning: Member methods (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:787: warning: Member name (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:788: warning: Member type (variable) of class swig_lua_class is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:770: warning: Member dvalue (variable) of class swig_lua_const_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:769: warning: Member lvalue (variable) of class swig_lua_const_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:768: warning: Member name (variable) of class swig_lua_const_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:772: warning: Member ptype (variable) of class swig_lua_const_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:771: warning: Member pvalue (variable) of class swig_lua_const_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:767: warning: Member type (variable) of class swig_lua_const_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:777: warning: Member method (variable) of class swig_lua_method is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:776: warning: Member name (variable) of class swig_lua_method is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:813: warning: Member data[1] (variable) of class swig_lua_rawdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:812: warning: Member own (variable) of class swig_lua_rawdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:811: warning: Member type (variable) of class swig_lua_rawdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:801: warning: Member own (variable) of class swig_lua_userdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:802: warning: Member ptr (variable) of class swig_lua_userdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:800: warning: Member type (variable) of class swig_lua_userdata is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:761: warning: Member get (variable) of class swig_lua_var_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:760: warning: Member name (variable) of class swig_lua_var_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:762: warning: Member set (variable) of class swig_lua_var_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:356: warning: Member cast_initial (variable) of class swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:357: warning: Member clientdata (variable) of class swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:354: warning: Member next (variable) of class swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:353: warning: Member size (variable) of class swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:355: warning: Member type_initial (variable) of class swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:352: warning: Member types (variable) of class swig_module_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:335: warning: Member cast (variable) of class swig_type_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:336: warning: Member clientdata (variable) of class swig_type_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:334: warning: Member dcast (variable) of class swig_type_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:332: warning: Member name (variable) of class swig_type_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:337: warning: Member owndata (variable) of class swig_type_info is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptbindinglua51.cpp:333: warning: Member str (variable) of class swig_type_info is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/physicsmanager.cpp:273: warning: Member AlgoList (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/actorphysicssettings.h:67: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/vector3.cpp:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
@@ -259,11 +205,11 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/eventcollision.h:103: warning: return type of member Mezzanine::EventCollision::GetType is not documented
 /home/sqeaky/Mezzanine/Mezzanine/src/eventgamewindow.h:106: warning: return type of member Mezzanine::EventGameWindow::GetType is not documented
 /home/sqeaky/Mezzanine/Mezzanine/src/eventgamewindow.cpp:62: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class Mezzanine::EventGameWindowData is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/eventmanager.h:395: warning: parameters of member Mezzanine::EventManager::GetAllSpecificEvents are not (all) documented
-/home/sqeaky/Mezzanine/Mezzanine/src/eventmanager.h:402: warning: parameters of member Mezzanine::EventManager::RemoveAllSpecificEvents are not (all) documented
+/home/sqeaky/Mezzanine/Mezzanine/src/eventmanager.h:392: warning: parameters of member Mezzanine::EventManager::GetAllSpecificEvents are not (all) documented
+/home/sqeaky/Mezzanine/Mezzanine/src/eventmanager.h:399: warning: parameters of member Mezzanine::EventManager::RemoveAllSpecificEvents are not (all) documented
 /home/sqeaky/Mezzanine/Mezzanine/src/eventquit.h:66: warning: return type of member Mezzanine::EventQuit::GetType is not documented
 /home/sqeaky/Mezzanine/Mezzanine/src/eventrendertime.h:70: warning: return type of member Mezzanine::EventRenderTime::GetType is not documented
-/home/sqeaky/Mezzanine/Mezzanine/src/eventuserinput.h:160: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
+/home/sqeaky/Mezzanine/Mezzanine/src/eventuserinput.h:158: warning: parameters of member Mezzanine::EventUserInput::GetMetaCode are not (all) documented
 /home/sqeaky/Mezzanine/Mezzanine/src/extendedtimer.h:96: warning: Member CheckAll(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/extendedtimer.h:95: warning: Member CheckDays(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/extendedtimer.h:94: warning: Member CheckHours(const ExtendedTimer::TimeStruct Struct) (function) of class Mezzanine::ExtendedTimer is not documented.
@@ -472,7 +418,7 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
   parameter 'style'
 /home/sqeaky/Mezzanine/Mezzanine/src/simpletimer.h:73: warning: parameters of member Mezzanine::SimpleTimer::SetAutoReset are not (all) documented
 /home/sqeaky/Mezzanine/Mezzanine/src/actormanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/uimanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/uimanager.cpp:64: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/timermanager.cpp:50: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/terrainmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/scenemanager.cpp:175: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
@@ -480,7 +426,7 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/physicsmanager.cpp:424: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/meshmanager.cpp:51: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/graphicsmanager.cpp:66: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/eventmanager.cpp:249: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/eventmanager.cpp:250: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/collisionshapemanager.cpp:63: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/cameramanager.cpp:58: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/audiomanager.cpp:53: warning: Member SingletonPtr (function) of class Mezzanine::Singleton is not documented.
@@ -732,7 +678,7 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/resourcetextsettingsfile.h:63: warning: Member Sections (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/scriptinglua51.cpp:65: warning: Member PrintErrorMessageOrNothing(int ErrorCode) (function) of namespace Mezzanine::Scripting is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/scriptinglua51.cpp:90: warning: Member test() (function) of namespace Mezzanine::Scripting is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/script.h:67: warning: Member AddArgument(ScriptArgument Arg)=0 (function) of class Mezzanine::Scripting::Script is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/script.h:67: warning: Member AddArgument(ScriptArgument *Arg)=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:69: warning: Member ClearArguments()=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:82: warning: Member Execute()=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:71: warning: Member GetArgument(Whole ArgNumber)=0 (function) of class Mezzanine::Scripting::Script is not documented.
@@ -742,10 +688,15 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:79: warning: Member IsAvailableAsString()=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:78: warning: Member IsCompilable() (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:76: warning: Member IsCompiled()=0 (function) of class Mezzanine::Scripting::Script is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/script.h:68: warning: Member RemoveArgument(ScriptArgument Arg)=0 (function) of class Mezzanine::Scripting::Script is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/script.h:68: warning: Member RemoveArgument(ScriptArgument *Arg)=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:73: warning: Member SetCode(String Code)=0 (function) of class Mezzanine::Scripting::Script is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/script.h:97: warning: Member Compile()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/script.h:98: warning: Member Execute()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:61: warning: Member ToString()=0 (function) of class Mezzanine::Scripting::ScriptArgument is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:75: warning: Member ScriptArgumentSpecific(T _Datum) (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:84: warning: Member GetValue() (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:81: warning: Member SetValue(T _Datum) (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:78: warning: Member ToString() (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/script.h:96: warning: Member Compile()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/script.h:97: warning: Member Execute()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:89: warning: Member GetByteCode()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:94: warning: Member IsAvailableAsString()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:93: warning: Member IsCompilable() (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.

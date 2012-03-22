@@ -200,7 +200,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00136"></a><a class="code" href="classMezzanine_1_1Camera.html#afdc236c2c875035c8a11473350d0d17a">00136</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#afdc236c2c875035c8a11473350d0d17a" title="Sets the location of a camera.">Camera::SetLocation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>&amp; Location)
 <a name="l00137"></a>00137     {
 <a name="l00138"></a>00138         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setPosition(Location.<a class="code" href="classMezzanine_1_1Vector3.html#a2948167508c456d64032acfc8c2f6fd8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
-<a name="l00139"></a>00139         LocalTransformDirty = <span class="keyword">true</span>;
+<a name="l00139"></a>00139         LocalTransformDirty = !(<a class="code" href="classMezzanine_1_1AttachableBase.html#a0d62e3708056e62911d6ec7c6beb3a97" title="Gets the update status of another attachable.">GetUpdating</a>(Parent));
 <a name="l00140"></a>00140 
 <a name="l00141"></a>00141         <a class="code" href="classMezzanine_1_1AttachableChild.html#a500d824fc29de69ac05ffcdbdaf67e9e" title="Recalculates this objects local transform based on it&amp;#39;s current global position.">_RecalculateLocalTransform</a>();
 <a name="l00142"></a>00142     }
@@ -213,7 +213,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00149"></a><a class="code" href="classMezzanine_1_1Camera.html#af502b9c47b1acce46e1482ce049320eb">00149</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Camera.html#af502b9c47b1acce46e1482ce049320eb" title="Sets the orientation of the camera.">Camera::SetOrientation</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a>&amp; Orientation)
 <a name="l00150"></a>00150     {
 <a name="l00151"></a>00151         this-&gt;<a class="code" href="classMezzanine_1_1Camera.html#a992cc6bb14cd49e4030118dbb4b8e1ed" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;setOrientation(Orientation.<a class="code" href="classMezzanine_1_1Quaternion.html#a152abb6ccfe1c9dfb22218fd54b84863" title="Gets a Ogre quaternion.">GetOgreQuaternion</a>());
-<a name="l00152"></a>00152         LocalTransformDirty = <span class="keyword">true</span>;
+<a name="l00152"></a>00152         LocalTransformDirty = !(<a class="code" href="classMezzanine_1_1AttachableBase.html#a0d62e3708056e62911d6ec7c6beb3a97" title="Gets the update status of another attachable.">GetUpdating</a>(Parent));
 <a name="l00153"></a>00153 
 <a name="l00154"></a>00154         <a class="code" href="classMezzanine_1_1AttachableChild.html#a500d824fc29de69ac05ffcdbdaf67e9e" title="Recalculates this objects local transform based on it&amp;#39;s current global position.">_RecalculateLocalTransform</a>();
 <a name="l00155"></a>00155     }
@@ -458,6 +458,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 16 2012 12:25:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Sun Mar 18 2012 16:43:58 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

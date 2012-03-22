@@ -65,8 +65,8 @@ class CompilerFlagTests : public UnitTestGroup
                 temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZNETWORK set to \"", BoolToString(MEZZNETWORK), "\" when this was configured with CMake(where it is called Mezz_Network) or other config tool? "));
                 AddTestResult("CompilerFlag::MEZZNETWORK", temp);
 
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZLUA set to \"", BoolToString(MEZZLUA), "\" when this was configured with CMake(where it is called Mezz_Lua) or other config tool? "));
-                AddTestResult("CompilerFlag::MEZZLUA", temp);
+                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZLUA51 set to \"", BoolToString(MEZZLUA51), "\" when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? "));
+                AddTestResult("CompilerFlag::MEZZLUA51", temp);
 
                 temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was THROW_ON_FETCH_FAIL set to \"", BoolToString(THROW_ON_FETCH_FAIL), "\" when this was configured with CMake(where it is called Mezz_ThrowOnSingletonFetch) or other config tool? "));
                 AddTestResult("CompilerFlag::THROW_ON_FETCH_FAIL", temp);

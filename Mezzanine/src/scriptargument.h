@@ -40,6 +40,7 @@
 #ifndef _scriptargument_h
 #define _scriptargument_h
 
+#include "datatypes.h"
 #include "scriptargument.h"
 #include "crossplatformexport.h"
 
@@ -57,8 +58,35 @@ namespace Mezzanine
         {
             public:
 
-            virtual ~ScriptArgument();
+                virtual String ToString() = 0;
+
+                virtual ~ScriptArgument()
+                    {}
         };
+
+        template <class T>
+        class ScriptArgumentSpecific : public ScriptArgument
+        {
+            private:
+                T Datum;
+
+            public:
+                ScriptArgumentSpecific(T _Datum): Datum(_Datum)
+                    {}
+
+                virtual String ToString()
+                    { return ToString(Datum); }
+
+                virtual void SetValue(T _Datum)
+                    { Datum=_Datum; }
+
+                virtual T GetValue()
+                    { return Datum; }
+
+                virtual ~ScriptArgumentSpecific()
+                    {}
+        };
+
 
     }
 
