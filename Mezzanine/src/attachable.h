@@ -167,7 +167,7 @@ namespace Mezzanine
             /// @details Detach an item is done in linear time relative to the amount of attached items.
             virtual void DetachObject(AttachableChild* Target);
             /// @brief Detaches all attachables currently attached.
-            virtual void DetachAll();
+            virtual void DetachAllChildren();
             /// @brief Gets the number of elements attached to this object.
             /// @return Returns the number of elements attached to this object.
             virtual Whole GetNumAttached() const;

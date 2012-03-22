@@ -233,6 +233,7 @@ namespace Mezzanine
         }// */
         BWorld->removeCollisionObject(this->PhysicsObject);
         this->DetachFromGraphics();
+        DetachAllChildren();
     }
 
     void AreaEffect::_Update()

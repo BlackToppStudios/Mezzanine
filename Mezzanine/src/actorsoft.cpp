@@ -241,6 +241,7 @@ namespace Mezzanine
     {
         PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->removeSoftBody(this->PhysicsSoftBody);
         this->DetachFromGraphics();
+        DetachAllChildren();
     }
 
     void ActorSoft::_Update()

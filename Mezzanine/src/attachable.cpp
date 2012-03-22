@@ -112,6 +112,9 @@ namespace Mezzanine
     {
         if((AttachableBase*)Target == (AttachableBase*)this) //don't be stoopid, can't attach to yourself
             return;
+        /*if( ( this->GetType() >= Mezzanine::WSO_AEFirst && this->GetType() <= Mezzanine::WSO_AELast ) &&
+            ( Target->GetType() >= Mezzanine::WSO_AEFirst && Target->GetType() <= Mezzanine::WSO_AELast ) ) //do not permit AE's to attach to other AE's
+            World::GetWorldPointer()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects."));//*/
         if(Target->Parent)
         {
             if(Target->Parent == this) return;
@@ -138,7 +141,7 @@ namespace Mezzanine
         Target->Parent = NULL;
     }
 
-    void AttachableParent::DetachAll()
+    void AttachableParent::DetachAllChildren()
         { Attached.clear(); }
 
     Whole AttachableParent::GetNumAttached() const

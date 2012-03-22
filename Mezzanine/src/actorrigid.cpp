@@ -129,6 +129,7 @@ namespace Mezzanine
             PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
             btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
             BWorld->removeRigidBody(this->PhysicsRigidBody);
+            DetachAllChildren();
         }catch (Ogre::Exception e) {
             World::GetWorldPointer()->Log("Failed to locate PhysicsManager While Destructing ActorRigid. This is not a problem if already shutting down.");
         }
