@@ -40,15 +40,18 @@
 
 #include "main.h"
 
+// 4. When adding new tests - Add the new file to the includes in unittests/main.cpp
 #include "actortests.h"
 #include "collisionshapetests.h"
 #include "compilerflagtests.h"
 #include "constrainttests.h"
 #include "eventmanagertests.h"
 #include "lua51tests.h"
+#include "notatest.h"
 #include "metacodetests.h"
 #include "particleeffecttests.h"
 #include "scenemanagertests.h"
+#include "smartptrtests.h"
 #include "transformtests.h"
 #include "vector2tests.h"
 #include "vector3tests.h"
@@ -147,7 +150,10 @@ int main (int argc, char** argv)
     }
 
     atexit(&DeleteTests);
+
     // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here too
+
+    // 5. When adding new tests - Add the line to create a new UnitTest in the TestGroup Container in the main function
     TestGroups["actor"] = new ActorTests;
     TestGroups["collisionshape"] = new CollisionShapeTests;
     TestGroups["compilerflag"] = new CompilerFlagTests;
@@ -155,8 +161,10 @@ int main (int argc, char** argv)
     TestGroups["eventmanager"] = new EventManagerTests;
     TestGroups["lua5.1"] = new Lua51Tests;
     TestGroups["metacode"] = new MetaCodeTests;
+    TestGroups["notatest"] = new notatestTests;
     TestGroups["particleeffect"] = new ParticleEffectTests;
     TestGroups["scenemanager"] = new SceneManagerTests;
+    TestGroups["smartptr"] = new SmartPtrTests;
     TestGroups["transform"] = new TransformTests;
     TestGroups["vector2"] = new Vector2Tests;
     TestGroups["vector3"] = new Vector3Tests;

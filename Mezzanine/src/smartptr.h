@@ -37,14 +37,89 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _sharedptr_h
-#define _sharedptr_h
+#ifndef _smartptr_h
+#define _smartptr_h
 
 #include "datatypes.h"
 
+#include <memory>
 
 namespace Mezzanine
 {
+
+    // pointer from http://ootips.org/yonat/4dev/smart-pointers.html
+    // with written permission for use "Feel free to use my own smart pointers in your code." on that page
+    template <class X> class counted_ptr
+    {
+    public:
+        typedef X element_type;
+
+        // allocate a new counter
+        explicit counted_ptr(X* p = 0) : itsCounter(0)
+            {if (p) itsCounter = new counter(p);}
+
+        ~counted_ptr()
+            {release();}
+
+        counted_ptr(const counted_ptr& r) throw()
+            {acquire(r.itsCounter);}
+
+        counted_ptr& operator=(const counted_ptr& r)
+        {
+            if (this != &r) {
+                release();
+                acquire(r.itsCounter);
+            }
+            return *this;
+        }
+
+        //template <class Y> friend class Mezzaninecounted_ptr<Y>;
+        template <class Y> counted_ptr(const counted_ptr<Y>& r) throw()
+            {acquire(r.itsCounter);}
+        template <class Y> counted_ptr& operator=(const counted_ptr<Y>& r)
+        {
+            if (this != &r) {
+                release();
+                acquire(r.itsCounter);
+            }
+            return *this;
+        }
+
+        X& operator*()  const throw()   {return *itsCounter->ptr;}
+        X* operator->() const throw()   {return itsCounter->ptr;}
+        X* get()        const throw()   {return itsCounter ? itsCounter->ptr : 0;}
+        bool unique()   const throw()
+            {return (itsCounter ? itsCounter->count == 1 : true);}
+
+    private:
+
+        struct counter {
+            counter(X* p = 0, unsigned c = 1) : ptr(p), count(c) {}
+            X*          ptr;
+            unsigned    count;
+        }* itsCounter;
+
+        void acquire(counter* c) throw()
+        { // increment the count
+            itsCounter = c;
+            if (c) ++c->count;
+        }
+
+        void release()
+        { // decrement the count, delete if it is 0
+            if (itsCounter) {
+                if (--itsCounter->count == 0) {
+                    delete itsCounter->ptr;
+                    delete itsCounter;
+                }
+                itsCounter = 0;
+            }
+        }
+    };
+
+
+
+    /*
     /// @class
     /// @brief This is a reference counting shared pointer.
     /// @details This is a single threaded reference counting shared pointer. This is not thread safe and is
@@ -62,14 +137,16 @@ namespace Mezzanine
         public:
             /// @brief Constructor, does not initialise the SharedPtr.
             /// @warn Dangerous! You have to call bind() before using the SharedPtr.
-            */
+
             SharedPtr() : pRep(0), pUseCount(0)
                 {}
-
+	}
+	// */
+	/*
 		/// Constructor.
 		@param rep The pointer to take ownership of
 		@param freeMode The mechanism to use to free the pointer
-		*/
+
         template< class Y>
 		explicit SharedPtr(Y* rep)
 			: pRep(rep)
@@ -155,7 +232,7 @@ namespace Mezzanine
 		/** Binds rep to the SharedPtr.
 			@remarks
 				Assumes that the SharedPtr is uninitialised!
-		*/
+
 		void bind(T* rep, SharedPtrFreeMethod inFreeMethod = SPFM_DELETE) {
 			assert(!pRep && !pUseCount);
 
@@ -191,7 +268,7 @@ namespace Mezzanine
 
             /* If the mutex is not initialized to a non-zero value, then
                neither is pUseCount nor pRep.
-             */
+
 
             OGRE_MUTEX_CONDITIONAL(OGRE_AUTO_MUTEX_NAME)
 			{
@@ -260,7 +337,10 @@ namespace Mezzanine
 
 
     template<class T> class SharedPtrSingle
+*/
+
+
 
 } // \Mezzanine
 
-#endif
+#endif // _smartptr_h
