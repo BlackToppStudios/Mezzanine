@@ -172,13 +172,13 @@ void LevelLoader::LoadFerris()
     CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
-    Uranium1->GetPhysicsSettings()->SetStickyData(1);
+    //Uranium1->GetPhysicsSettings()->SetStickyData(1);
     Uranium1->SetLocation(-145,60,0);
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
     ActorRigid* Uranium2 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium2->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
-    Uranium2->GetPhysicsSettings()->SetStickyData(1);
+    //Uranium2->GetPhysicsSettings()->SetStickyData(1);
     Uranium2->SetLocation(-195,60,0);
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
