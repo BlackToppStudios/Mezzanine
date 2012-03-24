@@ -117,7 +117,7 @@
 #include "quaternion.h"                 // done
 #include "ray.h"
 #include "rayquerytool.h"               // nothing to do
-#include "resourceinputstream.h"
+#include "resource.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"               // Done
 #include "scriptingmanager.h"

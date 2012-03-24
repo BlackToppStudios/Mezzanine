@@ -72,8 +72,11 @@ namespace Mezzanine
                 size_t Size;
             public:
                 /// @brief Class constructor.
+                /// @param Mode The access mode for the stream.
                 DataStream(const AccessMode& Mode = DS_Read);
                 /// @brief Named constructor.
+                /// @param Name The name of the stream.
+                /// @param Mode The access mode for the stream.
                 DataStream(const String& Name, const AccessMode& Mode = DS_Read);
                 /// @brief Class destructor.
                 virtual ~DataStream();
@@ -153,18 +156,174 @@ namespace Mezzanine
         class MEZZ_LIB MemoryDataStream : public DataStream
         {
             protected:
+                bool FreeBuffer;
+                UInt8* BufferStart;
+                UInt8* BufferPos;
+                UInt8* BufferEnd;
             public:
-                /// @brief
-                MemoryDataStream();
-                /// @brief
-                MemoryDataStream();
-                /// @brief
-                MemoryDataStream();
-                /// @brief
-                MemoryDataStream();
+                /// @brief Buffer creation constructor.
+                /// @param BufferSize The size of the buffer to be created.
+                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
+                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
+                MemoryDataStream(const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
+                /// @brief Named buffer creation constructor.
+                /// @param Name The name of the stream.
+                /// @param BufferSize The size of the buffer to be created.
+                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
+                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
+                MemoryDataStream(const String& Name, const size_t& BufferSize, bool FreeOnClose = true, bool ReadOnly = false);
+                /// @brief Pre-made buffer constructor.
+                /// @param Buffer The premade buffer to stream from.
+                /// @param BufferSize The size of the buffer to stream to/from.
+                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
+                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
+                MemoryDataStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
+                /// @brief Named pre-made buffer constructor.
+                /// @param Name The name of the stream.
+                /// @param Buffer The premade buffer to stream from.
+                /// @param BufferSize The size of the buffer to stream to/from.
+                /// @param FreeOnClose If true this will delete the memory buffer when the stream is closed.
+                /// @param ReadOnly If true, writing operations on this stream will be prohibited.
+                MemoryDataStream(const String& Name, void* Buffer, const size_t& BufferSize, bool FreeOnClose = false, bool ReadOnly = false);
                 /// @brief Class destructor.
                 virtual ~MemoryDataStream();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility
+
+                /// @brief Gets a pointer to the start of the memory buffer used by this stream.
+                /// @return Returns a pointer to the start of the memory buffer.
+                UInt8* GetBufferStart() const;
+                /// @brief Gets a pointer to the current position in the memory buffer used by this stream.
+                /// @return Returns a pointer to the current position in the memory buffer.
+                UInt8* GetBufferPosition() const;
+                /// @brief Gets a pointer to the end of the memory buffer used by this stream.
+                /// @return Returns a pointer to the end of the memory buffer.
+                UInt8* GetBufferEnd() const;
+                /// @brief Sets whether or not you want this stream to free the memory buffer when it closes.
+                /// @param True if you want this stream to free the buffer when it closes, false if you want it preserved.
+                void SetFreeOnClose(bool FreeOnClose);
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Stream Access and Manipulation
+
+                /// @copydoc DataStream::ReadLine
+                virtual size_t ReadLine(Character* Buffer, size_t MaxCount, const String& Delim = "\n");
+                /// @copydoc DataStream::SkipLine
+                virtual size_t SkipLine(const String& Delim = "\n");
+                /// @copydoc DataStream::Read
+                virtual size_t Read(void* Buffer, const size_t& Count);
+                /// @copydoc DataStream::Write
+                virtual size_t Write(const void* Buffer, const size_t& Count);
+                /// @copydoc DataStream::Skip
+                virtual void Skip(const Integer& Count);
+                /// @copydoc DataStream::Seek
+                virtual void Seek(const size_t& Position);
+                /// @copydoc DataStream::Tell
+                virtual size_t Tell();
+                /// @copydoc DataStream::EoF
+                virtual bool EoF() const;
+                /// @copydoc DataStream::Close
+                virtual void Close();
         };//MemoryDataStream
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class FileHandleDataStream
+        /// @headerfile resourcedatastream.h
+        /// @brief This represents a stream to a file on disk using the C file API.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB FileHandleDataStream : public DataStream
+        {
+            protected:
+                FILE* FileHandle;
+            public:
+                /// @brief Class constructor.
+                /// @param Handle The handle to the file being streamed to/from.
+                /// @param Mode The access mode for the stream.
+                FileHandleDataStream(FILE* Handle, const DataStream::AccessMode& Mode = DataStream::DS_Read);
+                /// @brief Named constructor.
+                /// @param Name The name of the stream.
+                /// @param Handle The handle to the file being streamed to/from.
+                /// @param Mode The access mode for the stream.
+                FileHandleDataStream(const String& Name, FILE* Handle, const DataStream::AccessMode& Mode = DataStream::DS_Read);
+                /// @brief Self loading constructor.
+                /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
+                /// @param Path The path to the file being loaded.
+                /// @param Mode The access mode for the stream.
+                /// @param CreateOnFail Whether or not to create the file if the system fails to locate it.
+                /// @param IsBinary Whether or not to set the stream to read/write as binary.
+                FileHandleDataStream(const String& Name, const String& Path, const DataStream::AccessMode& Mode = DataStream::DS_Read, bool CreateOnFail = false, bool IsBinary = false);
+                /// @brief Class destructor.
+                virtual ~FileHandleDataStream();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Stream Access and Manipulation
+
+                /// @copydoc DataStream::Read
+                virtual size_t Read(void* Buffer, const size_t& Count);
+                /// @copydoc DataStream::Write
+                virtual size_t Write(const void* Buffer, const size_t& Count);
+                /// @copydoc DataStream::Skip
+                virtual void Skip(const Integer& Count);
+                /// @copydoc DataStream::Seek
+                virtual void Seek(const size_t& Position);
+                /// @copydoc DataStream::Tell
+                virtual size_t Tell();
+                /// @copydoc DataStream::EoF
+                virtual bool EoF() const;
+                /// @copydoc DataStream::Close
+                virtual void Close();
+        };//FileHandleDataStream
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class FileStreamDataStream
+        /// @headerfile resourcedatastream.h
+        /// @brief This represents a stream to a file on disk using the C++ file stream API.
+        /// @details
+        ///////////////////////////////////////
+        class MEZZ_LIB FileStreamDataStream : public DataStream
+        {
+            protected:
+                std::fstream* FileStream;
+            public:
+                /// @brief Class constructor.
+                /// @param Stream The stream to the file being streamed to/from.
+                /// @param Mode The access mode for the stream.
+                FileStreamDataStream(std::fstream* Stream, const DataStream::AccessMode& Mode = DataStream::DS_Read);
+                /// @brief Named constructor.
+                /// @param Name The name of the stream.
+                /// @param Stream The stream to the file being streamed to/from.
+                /// @param Mode The access mode for the stream.
+                FileStreamDataStream(const String& Name, std::fstream* Stream, const DataStream::AccessMode& Mode = DataStream::DS_Read);
+                /// @brief Self loading constructor.
+                /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
+                /// @param Path The path to the file being loaded.
+                /// @param Mode The access mode for the stream.
+                /// @param CreateOnFail Whether or not to create the file if the system fails to locate it.
+                /// @param IsBinary Whether or not to set the stream to read/write as binary.
+                FileStreamDataStream(const String& Name, const String& Path, const DataStream::AccessMode& Mode = DataStream::DS_Read, bool CreateOnFail = false, bool IsBinary = false);
+                /// @brief Class destructor.
+                virtual ~FileStreamDataStream();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Stream Access and Manipulation
+
+                /// @copydoc DataStream::Read
+                virtual size_t Read(void* Buffer, const size_t& Count);
+                /// @copydoc DataStream::Write
+                virtual size_t Write(const void* Buffer, const size_t& Count);
+                /// @copydoc DataStream::Skip
+                virtual void Skip(const Integer& Count);
+                /// @copydoc DataStream::Seek
+                virtual void Seek(const size_t& Position);
+                /// @copydoc DataStream::Tell
+                virtual size_t Tell();
+                /// @copydoc DataStream::EoF
+                virtual bool EoF() const;
+                /// @copydoc DataStream::Close
+                virtual void Close();
+        };//FileStreamDataStream
     }//Resource
 }//Mezzanine
 

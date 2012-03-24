@@ -149,6 +149,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}quaternion.h"
 	"${${PROJECT_NAME}_SRC_DIR}ray.h"
 	"${${PROJECT_NAME}_SRC_DIR}rayquerytool.h"
+	"${${PROJECT_NAME}_SRC_DIR}resource.h"
 	"${${PROJECT_NAME}_SRC_DIR}resourcedatastream.h"
 	"${${PROJECT_NAME}_SRC_DIR}resourceinputstream.h"
 	"${${PROJECT_NAME}_SRC_DIR}resourcemanager.h"
