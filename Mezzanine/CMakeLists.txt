@@ -163,6 +163,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}simpletimer.h"
 	"${${PROJECT_NAME}_SRC_DIR}singleton.h"
 	"${${PROJECT_NAME}_SRC_DIR}serialization.h"
+	"${${PROJECT_NAME}_SRC_DIR}smartptr.h"
 	"${${PROJECT_NAME}_SRC_DIR}stringtool.h"
 	"${${PROJECT_NAME}_SRC_DIR}swig.h"
 	"${${PROJECT_NAME}_SRC_DIR}terrainbase.h"

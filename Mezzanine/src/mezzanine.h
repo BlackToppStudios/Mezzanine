@@ -125,6 +125,7 @@
 #include "serialization.h"              // nothing to do
 #include "simpletimer.h"
 #include "singleton.h"                  // nothing to do
+#include "smartptr.h"
 #include "stringtool.h"
 #include "terrainbase.h"
 #include "terrainmanager.h"

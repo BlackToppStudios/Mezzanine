@@ -47,8 +47,6 @@ namespace Mezzanine
 {
     namespace Scripting
     {
-
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script
         /// @details All the members that all script for all languages must implement
@@ -64,6 +62,8 @@ namespace Mezzanine
         class MEZZ_LIB Script
         {
             public:
+                /// @brief
+                /// @param Arg This accepts a pointer to a script argument
                 virtual void AddArgument(ScriptArgument* Arg) = 0;
                 virtual void RemoveArgument(ScriptArgument* Arg) = 0;
                 virtual void ClearArguments() = 0;
