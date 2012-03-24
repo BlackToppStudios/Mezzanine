@@ -824,6 +824,8 @@ void CatchApp::PauseGame(bool Pause)
         return;
     if(CurrentState == CatchApp::Catch_ScoreScreen && !Pause)
         return;
+    if( !Pause && (UIManager::GetSingletonPtr()->GetLayer("MenuLayer")->IsVisible() || UIManager::GetSingletonPtr()->GetLayer("ItemShopLayer")->IsVisible()) )
+        return;
     TheWorld->PauseWorld(Pause);
     if(Pause) LevelTimer->Stop();
     else LevelTimer->Start();
