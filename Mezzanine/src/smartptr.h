@@ -51,6 +51,13 @@ namespace Mezzanine
     // with written permission for use "Feel free to use my own smart pointers in your code." on that page
     template <class X> class counted_ptr
     {
+    private:
+        struct counter {
+            counter(X* p = 0, unsigned c = 1) : ptr(p), count(c) {}
+            X*          ptr;
+            unsigned int count;
+        }* itsCounter;
+
     public:
         typedef X element_type;
 
@@ -63,6 +70,9 @@ namespace Mezzanine
 
         counted_ptr(const counted_ptr& r) throw()
             {acquire(r.itsCounter);}
+
+        unsigned int use_count()
+            { if (itsCounter) return itsCounter->count; }
 
         counted_ptr& operator=(const counted_ptr& r)
         {
@@ -92,12 +102,6 @@ namespace Mezzanine
             {return (itsCounter ? itsCounter->count == 1 : true);}
 
     private:
-
-        struct counter {
-            counter(X* p = 0, unsigned c = 1) : ptr(p), count(c) {}
-            X*          ptr;
-            unsigned    count;
-        }* itsCounter;
 
         void acquire(counter* c) throw()
         { // increment the count
