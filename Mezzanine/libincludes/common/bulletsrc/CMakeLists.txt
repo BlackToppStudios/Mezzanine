@@ -10,6 +10,8 @@ message ( STATUS "Putting Bullet binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 # I added "add_definitions( ${CommonBuildFlags} )" near the top just after the project command
 # addtionally I had to "SET (LIBRARY_OUTPUT_PATH ${Bullet_BINARY_DIR})" near the end of the output
 
+# Also a .patch file describing the changes in more detail was generated for the CMake changes for version 2.80
+
 add_subdirectory ( bulletsvnsrc )
 
 message ("${PROJECT_NAME} - End")

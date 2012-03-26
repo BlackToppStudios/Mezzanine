@@ -1,0 +1,190 @@
+10,12d9
+< #Added by BTS to make compiler flags the same across the board
+< add_definitions( ${CommonBuildFlags} )
+< 
+26,31c23,25
+< #OPTION(USE_DOUBLE_PRECISION "Use double precision"	OFF)
+< SET(USE_DOUBLE_PRECISION	OFF)
+< #OPTION(USE_GRAPHICAL_BENCHMARK "Use Graphical Benchmark" OFF)
+< SET(USE_GRAPHICAL_BENCHMARK OFF)
+< #OPTION(USE_MULTITHREADED_BENCHMARK "Use Multithreaded Benchmark" OFF)
+< SET(USE_MULTITHREADED_BENCHMARK OFF)
+---
+> OPTION(USE_DOUBLE_PRECISION "Use double precision"	OFF)
+> OPTION(USE_GRAPHICAL_BENCHMARK "Use Graphical Benchmark" ON)
+> OPTION(USE_MULTITHREADED_BENCHMARK "Use Multithreaded Benchmark" OFF)
+37,41c31,32
+< #OPTION(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC Runtime Library DLL (/MD or /MDd)" ON)
+< #OPTION(USE_MSVC_INCREMENTAL_LINKING "Use MSVC Incremental Linking" OFF)
+< SET(USE_MSVC_RUNTIME_LIBRARY_DLL OFF)
+< SET(USE_MSVC_INCREMENTAL_LINKING OFF)
+< 
+---
+> OPTION(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC Runtime Library DLL (/MD or /MDd)" OFF)
+> OPTION(USE_MSVC_INCREMENTAL_LINKING "Use MSVC Incremental Linking" OFF)
+43,44c34
+< #OPTION(USE_CUSTOM_VECTOR_MATH "Use custom vectormath library" OFF)
+< SET(USE_CUSTOM_VECTOR_MATH OFF)
+---
+> OPTION(USE_CUSTOM_VECTOR_MATH "Use custom vectormath library" OFF)
+58,59c48
+< 		#OPTION(USE_DX11 "Use DirectX 11"	ON)
+< 		SET(USE_DX11 ON)
+---
+> 		OPTION(USE_DX11 "Use DirectX 11"	ON)
+61,62c50
+< 		#OPTION(USE_DX11 "Use DirectX 11"	OFF)
+< 		SET(USE_DX11 OFF)
+---
+> 		OPTION(USE_DX11 "Use DirectX 11"	OFF)
+106,107c94
+< 	#OPTION(USE_MSVC_SSE "Use MSVC /arch:sse option" ON)
+< 	SET(USE_MSVC_SSE ON)
+---
+> 	OPTION(USE_MSVC_SSE "Use MSVC /arch:sse option"	ON)
+111,112c98
+< 	#OPTION(USE_MSVC_FAST_FLOATINGPOINT "Use MSVC /fp:fast option"	ON)
+< 	SET(USE_MSVC_FAST_FLOATINGPOINT ON)
+---
+> 	OPTION(USE_MSVC_FAST_FLOATINGPOINT "Use MSVC /fp:fast option"	ON)
+121,122c107,108
+< #OPTION(INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES "Create MSVC projectfiles that can be distributed" OFF)
+< SET(INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES OFF)
+---
+> OPTION(INTERNAL_CREATE_DISTRIBUTABLE_MSVC_PROJECTFILES "Create MSVC projectfiles that can be distributed" OFF)
+> 
+134,137c120,124
+< #OPTION(INTERNAL_CREATE_MSVC_RELATIVE_PATH_PROJECTFILES "Create MSVC projectfiles with relative paths" OFF)
+< SET(INTERNAL_CREATE_MSVC_RELATIVE_PATH_PROJECTFILES OFF)
+< #OPTION(INTERNAL_ADD_POSTFIX_EXECUTABLE_NAMES "Add MSVC postfix for executable names (_Debug)" OFF)
+< SET(INTERNAL_ADD_POSTFIX_EXECUTABLE_NAMES OFF)
+---
+> 
+> 
+> OPTION(INTERNAL_CREATE_MSVC_RELATIVE_PATH_PROJECTFILES "Create MSVC projectfiles with relative paths" OFF)
+> OPTION(INTERNAL_ADD_POSTFIX_EXECUTABLE_NAMES "Add MSVC postfix for executable names (_Debug)" OFF)
+> 
+172,173c159
+< 		#OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"	ON)
+< 		SET(BUILD_INTEL_OPENCL_DEMOS ON)
+---
+> 		OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"	ON)
+175,176c161
+< 		#OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"	OFF)
+< 		SET(BUILD_INTEL_OPENCL_DEMOS OFF)
+---
+> 		OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"	OFF)
+191,192c176
+< 		#OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	ON)
+< 		SET(BUILD_NVIDIA_OPENCL_DEMOS OFF)
+---
+> 		OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	ON)
+194,195c178
+< 		#OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	OFF)
+< 		SET(BUILD_NVIDIA_OPENCL_DEMOS OFF)
+---
+> 		OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	OFF)
+209,210c192
+< 	#OPTION(BUILD_MINICL_OPENCL_DEMOS "Build OpenCL demos for MiniCL (Generic CPU)"  ON)
+< 	SET(BUILD_MINICL_OPENCL_DEMOS OFF)
+---
+> 	OPTION(BUILD_MINICL_OPENCL_DEMOS "Build OpenCL demos for MiniCL (Generic CPU)"  ON)
+212,213c194,195
+< 	#OPTION(BUILD_MINICL_OPENCL_DEMOS "Build OpenCL demos for MiniCL (Generic CPU)" OFF)
+< 	SET(BUILD_MINICL_OPENCL_DEMOS OFF)
+---
+> 	OPTION(BUILD_MINICL_OPENCL_DEMOS "Build OpenCL demos for MiniCL (Generic CPU)" OFF)
+> 	
+220,221c202
+<                 #OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"        ON)
+< 				SET(BUILD_INTEL_OPENCL_DEMOS ON)
+---
+>                 OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"        ON)
+224,225c205
+<                 #OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"        OFF)
+< 				SET(BUILD_INTEL_OPENCL_DEMOS OFF)
+---
+>                 OPTION(BUILD_INTEL_OPENCL_DEMOS "Build OpenCL demos for Intel (CPU)"        OFF)
+234,235c214
+< 		#OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	ON)
+< 		SET(BUILD_NVIDIA_OPENCL_DEMOS OFF)
+---
+> 		OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	ON)
+237,239c216,217
+< 		MESSAGE("OPENCL NOT FOUND")
+< 		#OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	OFF)
+< 		SET(BUILD_NVIDIA_OPENCL_DEMOS OFF)
+---
+>                 MESSAGE("NVidia OPENCL NOT FOUND")
+> 		OPTION(BUILD_NVIDIA_OPENCL_DEMOS "Build OpenCL demos for NVidia (GPU)"	OFF)
+244,245c222,223
+< #OPTION(BUILD_CPU_DEMOS "Build original Bullet CPU demos"        OFF)
+< set(BUILD_CPU_DEMOS OFF)
+---
+> OPTION(BUILD_CPU_DEMOS "Build original Bullet CPU demos"        ON)
+> 
+248,249c226
+< #OPTION(INTERNAL_UPDATE_SERIALIZATION_STRUCTURES "Internal update serialization structures" OFF)
+< SET(INTERNAL_UPDATE_SERIALIZATION_STRUCTURES OFF)
+---
+> OPTION(INTERNAL_UPDATE_SERIALIZATION_STRUCTURES "Internal update serialization structures" OFF)
+264,265c241
+< #OPTION(USE_GLUT "Use Glut"	ON)
+< SET(USE_GLUT OFF)
+---
+> OPTION(USE_GLUT "Use Glut"	ON)
+279,280c255
+< #OPTION(USE_GLUT "Use Glut"	ON)
+< SET(USE_GLUT OFF)
+---
+> OPTION(USE_GLUT "Use Glut"	ON)
+340,342c315
+< #OPTION(BUILD_DEMOS "Set when you want to build the demos" ON)
+< set( BUILD_DEMOS off )
+< 
+---
+> OPTION(BUILD_DEMOS "Set when you want to build the demos" ON)
+360,361c333
+< #OPTION(BUILD_EXTRAS "Set when you want to build the extras" ON)
+< SET(BUILD_EXTRAS ON)
+---
+> OPTION(BUILD_EXTRAS "Set when you want to build the extras" ON)
+371,372c343
+< 	#OPTION(INSTALL_LIBS "Set when you want to install libraries" ON)
+< 	SET(INSTALL_LIBS OFF)
+---
+> 	OPTION(INSTALL_LIBS "Set when you want to install libraries" ON)
+375,376c346
+< 		#OPTION(INSTALL_LIBS "Set when you want to install libraries" ON)
+< 		SET(INSTALL_LIBS OFF)
+---
+> 		OPTION(INSTALL_LIBS "Set when you want to install libraries" ON)
+379,380c349
+< 		#OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
+< 		SET(INSTALL_LIBS OFF)
+---
+> 		OPTION(INSTALL_LIBS "Set when you want to install libraries" OFF)
+402,403c371
+< 	#OPTION(INSTALL_EXTRA_LIBS "Set when you want extra libraries installed" OFF)
+< 	SET(INSTALL_EXTRA_LIBS OFF)
+---
+> 	OPTION(INSTALL_EXTRA_LIBS "Set when you want extra libraries installed" OFF)
+406,421c374
+< #OPTION(BUILD_UNIT_TESTS "Build Unit Tests"	OFF)
+< SET(BUILD_UNIT_TESTS OFF)
+< 
+< #Hack to put the libs directly into the phys source tree
+< #if(${WIN32})
+< #	set(BuildPlat "windows")
+< #endif(${WIN32})
+< #if(${UNIX})
+< #	set(BuildPlat "linux")
+< #endif(${UNIX})
+< #if(${APPLE})
+< #	set(BuildPlat "macosx")
+< #endif(${APPLE})
+< #SET (LIBRARY_OUTPUT_PATH "${BULLET_PHYSICS_SOURCE_DIR}/../../../../data/${BuildPlat}/bullet/")
+< # /HACK
+< SET (LIBRARY_OUTPUT_PATH ${Bullet_BINARY_DIR})
+---
+> OPTION(BUILD_UNIT_TESTS "Build Unit Tests"	OFF)
