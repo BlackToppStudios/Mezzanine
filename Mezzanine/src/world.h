@@ -354,6 +354,11 @@ namespace Mezzanine
             /// @return This returns a pointer the one and only Mezzanine::World
             static World* GetWorldPointer();
 
+            /// @brief Is the world pointer valid.
+            /// @details This exists to allow for future checks beyond just compare teh pointer to 0;
+            /// @return true if the world pointer is valid.
+            static bool GetWorldPointerValidity();
+
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.

@@ -111,6 +111,11 @@ namespace Mezzanine
         return TheRealWorld;
     }
 
+    bool World::GetWorldPointerValidity()
+    {
+        return 0!=World::TheRealWorld;
+    }
+
     namespace
     {
         // Since there doesn't seem to be anyway to check if the ogre root exists yet.

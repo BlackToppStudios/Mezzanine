@@ -54,7 +54,7 @@ class SmartPtrTests : public UnitTestGroup
                 TestResult temp = Success;
 
                 std::cout << std::endl << "Creating A Vector3 in a counted pointed." << std::endl;
-                Mezzanine::counted_ptr<Mezzanine::Vector3> Stabby (new Mezzanine::Vector3);
+                Mezzanine::CountedPtr<Mezzanine::Vector3> Stabby (new Mezzanine::Vector3);
                 std::cout << "Count of references: " << Stabby.use_count() << std::endl;
                 if (1 == Stabby.use_count())
                 {
@@ -64,11 +64,10 @@ class SmartPtrTests : public UnitTestGroup
                 }
 
 
-
                 std::cout << "Creating creating a scoped copy of counted pointer." << std::endl;
                 bool notfailed=true;
                 {
-                    Mezzanine::counted_ptr<Mezzanine::Vector3> StabbyScoped (Stabby);
+                    Mezzanine::CountedPtr<Mezzanine::Vector3> StabbyScoped (Stabby);
                     std::cout << "In scope count of references: " << Stabby.use_count() << std::endl;
                     if (2 != Stabby.use_count())
                         { notfailed=false; }
