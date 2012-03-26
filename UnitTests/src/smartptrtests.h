@@ -42,6 +42,8 @@
 
 #include "main.h"
 
+#include <iostream>
+
 class SmartPtrTests : public UnitTestGroup
 {
     public:
@@ -50,13 +52,39 @@ class SmartPtrTests : public UnitTestGroup
             if (RunAutomaticTests)
             {
                 TestResult temp = Success;
-                AddTestResult("smartptr::GotThisFar", temp);
 
-                Mezzanine::counted_ptr<Mezzanine::Vector3> Stabby (new Mezzanine::Vector3);
+                std::cout << std::endl << "Creating A Vector3 in a counted pointed." << std::endl;
+                Mezzanine::CountedPtr<Mezzanine::Vector3> Stabby (new Mezzanine::Vector3);
+                std::cout << "Count of references: " << Stabby.use_count() << std::endl;
+                if (1 == Stabby.use_count())
+                {
+                    AddTestResult("SmartPtr::Create", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("SmartPtr::Create", Failed, UnitTestGroup::OverWrite);
+                }
+
+
+                std::cout << "Creating creating a scoped copy of counted pointer." << std::endl;
+                bool notfailed=true;
+                {
+                    Mezzanine::CountedPtr<Mezzanine::Vector3> StabbyScoped (Stabby);
+                    std::cout << "In scope count of references: " << Stabby.use_count() << std::endl;
+                    if (2 != Stabby.use_count())
+                        { notfailed=false; }
+                }
+                std::cout << "Post scope count of references: " << Stabby.use_count() << std::endl;
+                if (1 == Stabby.use_count() && notfailed)
+                {
+                    AddTestResult("SmartPtr::ScopedChanged", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("SmartPtr::ScopedChanged", Failed, UnitTestGroup::OverWrite);
+                }
 
 
             }else{
-                AddTestResult("smartptr::GotThisFar", Skipped);
+                AddTestResult("SmartPtr::Create", Skipped);
+                AddTestResult("SmartPtr::ScopedChanged", Skipped);
+
 
             }
 

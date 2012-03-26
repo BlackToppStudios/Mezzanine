@@ -44,301 +44,178 @@
 
 #include <memory>
 
+#ifdef MEZZDEBUG
+#include "world.h"
+#include <iostream>
+#endif
+
+/// @file This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and exposes in its API
+
 namespace Mezzanine
 {
-
-    // pointer from http://ootips.org/yonat/4dev/smart-pointers.html
-    // with written permission for use "Feel free to use my own smart pointers in your code." on that page
-    template <class X> class counted_ptr
+    /// @brief This exists once per object managed by a group of shared pointer to track items in memory.
+    /// @details This exists to track the pointer to the managed object, and stores the single
+    /// counter of existing references. Only one of these should be created for each group of
+    /// pointers managing the same object.
+    /// @note It should be extremely rare to need to create one of these outside of pointer implemenation.
+    template <class TypePointedTo> struct ReferenceCounter
     {
-    public:
-        typedef X element_type;
+        /// @brief Constructor
+        /// @param InitialPointer A pointer to the type of this template. This defaults to 0 if not provided
+        /// @param InitialCount The number of references to default to this defaults to 1 if not provided.
+        ReferenceCounter(TypePointedTo* InitialPointer = 0, unsigned InitialCount = 1)
+            : ptr(InitialPointer), Count(InitialCount)
+            {}
 
-        // allocate a new counter
-        explicit counted_ptr(X* p = 0) : itsCounter(0)
-            {if (p) itsCounter = new counter(p);}
+        /// @brief  The Pointer that is the crux of this class, At this smart pointer's core there must be a raw pointer.
+        TypePointedTo*          ptr;
 
-        ~counted_ptr()
-            {release();}
-
-        counted_ptr(const counted_ptr& r) throw()
-            {acquire(r.itsCounter);}
-
-        counted_ptr& operator=(const counted_ptr& r)
-        {
-            if (this != &r) {
-                release();
-                acquire(r.itsCounter);
-            }
-            return *this;
-        }
-
-        //template <class Y> friend class Mezzaninecounted_ptr<Y>;
-        template <class Y> counted_ptr(const counted_ptr<Y>& r) throw()
-            {acquire(r.itsCounter);}
-        template <class Y> counted_ptr& operator=(const counted_ptr<Y>& r)
-        {
-            if (this != &r) {
-                release();
-                acquire(r.itsCounter);
-            }
-            return *this;
-        }
-
-        X& operator*()  const throw()   {return *itsCounter->ptr;}
-        X* operator->() const throw()   {return itsCounter->ptr;}
-        X* get()        const throw()   {return itsCounter ? itsCounter->ptr : 0;}
-        bool unique()   const throw()
-            {return (itsCounter ? itsCounter->count == 1 : true);}
-
-    private:
-
-        struct counter {
-            counter(X* p = 0, unsigned c = 1) : ptr(p), count(c) {}
-            X*          ptr;
-            unsigned    count;
-        }* itsCounter;
-
-        void acquire(counter* c) throw()
-        { // increment the count
-            itsCounter = c;
-            if (c) ++c->count;
-        }
-
-        void release()
-        { // decrement the count, delete if it is 0
-            if (itsCounter) {
-                if (--itsCounter->count == 0) {
-                    delete itsCounter->ptr;
-                    delete itsCounter;
-                }
-                itsCounter = 0;
-            }
-        }
+        /// @brief This is the Counter that stores how many references exist
+        Whole Count;
     };
 
+    /// @brief A single threaded referencing counting pointer.
+    /// @details This is a pointer that automatically deallocates the object it manages when
+    /// all counted_ptr intances managing it are destroyed or fall out of scope. This is a
+    /// simpler version of std::shared_ptr.
+    /// @warning This is not thread safe in any way.
+    /// @note The basis of this class originated externally, please see the counted pointer
+    /// from http://ootips.org/yonat/4dev/smart-pointers.htm0 which came with written permission
+    /// for use stated as "Feel free to use my own smart pointers in your code" on that page.
+    template <class TypePointedTo> class CountedPtr
+    {
+        private:
 
+            /// @brief This is the only data on this class, a pointer to the counter and the managed object.
+            ReferenceCounter<TypePointedTo> *itsCounter;
 
-    /*
-    /// @class
-    /// @brief This is a reference counting shared pointer.
-    /// @details This is a single threaded reference counting shared pointer. This is not thread safe and is
-    /// intended to be used from a single thread. This is a reipl
-    template<class T> class SharedPtrSingle
-	{
         protected:
 
-            /// @brief The item pointed to and owned by the shared pointer
-            T* pRep;
+            /// @brief Used when Creating a new CountedPtr but the reference already exists
+            /// @param CounterToAcquire The ReferenceCounter that this pointer will use
+            /// @warning This does not Release the previous Reference counter. This means it is possible leak memory if a ReferenceCounter is acquired that differs from the previous one without plans to manage the original.
+            void Acquire(ReferenceCounter<TypePointedTo>* CounterToAcquire)
+            {
+                #ifdef MEZZDEBUG
+                std::ostream *Log;
+                if (World::GetWorldPointerValidity())
+                    { Log = & (World::GetWorldPointer()->LogStream); }
+                else
+                    { Log = & std::cout; }
+                *Log << "Acquiring ReferenceCounter, previous counter " << (!itsCounter?"did not exist.":("had "+ToString(itsCounter->Count)+" references.")) << std::endl;
+                #endif
 
-            /// @brief The single count of references
-            unsigned int* pUseCount;
+                itsCounter = CounterToAcquire;
+
+                #ifdef MEZZDEBUG
+                *Log << "ReferenceCounter assigned, reference count is now " << (!itsCounter?"invalid.":(ToString(itsCounter->Count)+".")) << std::endl;
+                #endif
+
+                if (CounterToAcquire) ++CounterToAcquire->Count; // I am concerned that some platform somewhere will try to increment the struct pointer, then dereference it.
+
+                #ifdef MEZZDEBUG
+                *Log << "ReferenceCounter incremented, reference count is now " << (!itsCounter?"invalid.":(ToString(itsCounter->Count)+".")) << std::endl;
+                #endif
+            }
+
+            /// @brief This decrements the reference count and deletes the managed items if there are no remaining reference
+            void Release()
+            {
+                #ifdef MEZZDEBUG
+                std::ostream *Log;
+                if (World::GetWorldPointerValidity())
+                    { Log = & (World::GetWorldPointer()->LogStream); }
+                else
+                    { Log = & std::cout; }
+                *Log << "Releasing ReferenceCounter, counter " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+".")) << std::endl;
+                #endif
+
+                if (itsCounter) {
+                    if (--itsCounter->Count == 0) {
+                        #ifdef MEZZDEBUG
+                        *Log << "ReferenceCounter deleted and " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+" after decrementing.")) << std::endl;
+                        #endif
+                        delete itsCounter->ptr;
+                        delete itsCounter;
+                    }
+                    #ifdef MEZZDEBUG
+                    else { *Log << "ReferenceCounter removed and " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+".")) << std::endl; }
+                    #endif
+
+                    itsCounter = 0;
+                }
+                #ifdef MEZZDEBUG
+                else { *Log << "ReferenceCounter not deleted or removed and " << (!itsCounter?"did not exist.":("had "+ToString(itsCounter->Count)+"references.")) << std::endl; }
+                #endif
+
+
+            }
 
         public:
-            /// @brief Constructor, does not initialise the SharedPtr.
-            /// @warn Dangerous! You have to call bind() before using the SharedPtr.
+            /// @brief This makes referencing the type of the point object easier.
+            typedef TypePointedTo element_type;
 
-            SharedPtr() : pRep(0), pUseCount(0)
-                {}
-	}
-	// */
-	/*
-		/// Constructor.
-		@param rep The pointer to take ownership of
-		@param freeMode The mechanism to use to free the pointer
+            /// @brief Initial Constructor
+            /// @details This should only be used for initial creation of a shared pointer group. This will allocate the raw
+            /// pointer and the ReferenceCounter that will be used to track the pointer passed. This will only be explicitly
+            /// called to prevent accidental premature deletion of the item managed.
+            /// @n @n It is quite easy to accidentally
+            /// make a secondary grup of counted pointers if not using the new statement inline with this constructor, and it is
+            /// not recomended to use this in any other way. Here is an exmple of the reccomended way to use new inline with this:
+            /// "Mezzanine::CountedPtr<Mezzanine::Vector3> VecPtr (new Mezzanine::Vector3);"
+            /// @param PointerTarget The item that will be deleted once all the pointer of this group disappear.
+            explicit CountedPtr(TypePointedTo* PointerTarget = 0) : itsCounter(0)
+                {if (PointerTarget) itsCounter = new ReferenceCounter<TypePointedTo>(PointerTarget);}
 
-        template< class Y>
-		explicit SharedPtr(Y* rep)
-			: pRep(rep)
-			, pUseCount(rep ? OGRE_NEW_T(unsigned int, MEMCATEGORY_GENERAL)(1) : 0)
-			, useFreeMethod(inFreeMethod)
-		{
-            OGRE_SET_AUTO_SHARED_MUTEX_NULL
-			if (rep)
-			{
-				OGRE_NEW_AUTO_SHARED_MUTEX
-			}
-		}
-		SharedPtr(const SharedPtr& r)
-            : pRep(0), pUseCount(0), useFreeMethod(SPFM_DELETE)
-		{
-			// lock & copy other mutex pointer
+            /// @brief Deconstructor, Just calls Release().
+            ~CountedPtr()
+                {Release();}
 
-            OGRE_SET_AUTO_SHARED_MUTEX_NULL
-            OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
+            /// @brief Copy constructor
+            /// @param Original The pointer being copied. This fresh pointer will use the same ReferenceCounter as the original.
+            CountedPtr(const CountedPtr& Original)
+                {Acquire(Original.itsCounter);}
+
+            /// @brief Get the current count of references.
+            /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
+            /// @return The amount of reference which still exist, or 0 if the reference counter is somehow invalid.
+            Whole use_count()
             {
-			    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-			    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-			    pRep = r.pRep;
-			    pUseCount = r.pUseCount;
-				useFreeMethod = r.useFreeMethod;
-			    // Handle zero pointer gracefully to manage STL containers
-			    if(pUseCount)
-			    {
-				    ++(*pUseCount);
-			    }
+                if (itsCounter)
+                    { return itsCounter->Count; }
+                else
+                    { return 0; }
             }
-		}
-		SharedPtr& operator=(const SharedPtr& r) {
-			if (pRep == r.pRep)
-				return *this;
-			// Swap current data into a local copy
-			// this ensures we deal with rhs and this being dependent
-			SharedPtr<T> tmp(r);
-			swap(tmp);
-			return *this;
-		}
 
-		template< class Y>
-		SharedPtr(const SharedPtr<Y>& r)
-            : pRep(0), pUseCount(0), useFreeMethod(SPFM_DELETE)
-		{
-			// lock & copy other mutex pointer
-
-            OGRE_SET_AUTO_SHARED_MUTEX_NULL
-            OGRE_MUTEX_CONDITIONAL(r.OGRE_AUTO_MUTEX_NAME)
+            CountedPtr& operator=(const CountedPtr& r)
             {
-			    OGRE_LOCK_MUTEX(*r.OGRE_AUTO_MUTEX_NAME)
-			    OGRE_COPY_AUTO_SHARED_MUTEX(r.OGRE_AUTO_MUTEX_NAME)
-			    pRep = r.getPointer();
-			    pUseCount = r.useCountPointer();
-				useFreeMethod = r.freeMethod();
-			    // Handle zero pointer gracefully to manage STL containers
-			    if(pUseCount)
-			    {
-				    ++(*pUseCount);
-			    }
+                if (this != &r) {
+                    Release();
+                    Acquire(r.itsCounter);
+                }
+                return *this;
             }
-		}
-		template< class Y>
-		SharedPtr& operator=(const SharedPtr<Y>& r) {
-			if (pRep == r.getPointer())
-				return *this;
-			// Swap current data into a local copy
-			// this ensures we deal with rhs and this being dependent
-			SharedPtr<T> tmp(r);
-			swap(tmp);
-			return *this;
-		}
-		virtual ~SharedPtr() {
-            release();
-		}
 
-
-		inline T& operator*() const { assert(pRep); return *pRep; }
-		inline T* operator->() const { assert(pRep); return pRep; }
-		inline T* get() const { return pRep; }
-
-		/** Binds rep to the SharedPtr.
-			@remarks
-				Assumes that the SharedPtr is uninitialised!
-
-		void bind(T* rep, SharedPtrFreeMethod inFreeMethod = SPFM_DELETE) {
-			assert(!pRep && !pUseCount);
-
-			pUseCount = OGRE_NEW_T(unsigned int, MEMCATEGORY_GENERAL)(1);
-			pRep = rep;
-			useFreeMethod = inFreeMethod;
-		}
-
-		inline bool unique() const { OGRE_LOCK_AUTO_SHARED_MUTEX assert(pUseCount); return *pUseCount == 1; }
-		inline unsigned int useCount() const { OGRE_LOCK_AUTO_SHARED_MUTEX assert(pUseCount); return *pUseCount; }
-		inline unsigned int* useCountPointer() const { return pUseCount; }
-
-		inline T* getPointer() const { return pRep; }
-		inline SharedPtrFreeMethod freeMethod() const { return useFreeMethod; }
-
-		inline bool isNull(void) const { return pRep == 0; }
-
-        inline void setNull(void) {
-			if (pRep)
-			{
-				// can't scope lock mutex before release in case deleted
-				release();
-				pRep = 0;
-				pUseCount = 0;
-			}
-        }
-
-    protected:
-
-        inline void release(void)
-        {
-			bool destroyThis = false;
-
-            /* If the mutex is not initialized to a non-zero value, then
-               neither is pUseCount nor pRep.
-
-
-            OGRE_MUTEX_CONDITIONAL(OGRE_AUTO_MUTEX_NAME)
-			{
-				// lock own mutex in limited scope (must unlock before destroy)
-				OGRE_LOCK_AUTO_SHARED_MUTEX
-				if (pUseCount)
-				{
-					if (--(*pUseCount) == 0)
-					{
-						destroyThis = true;
-	                }
-				}
+            //template <class Y> friend class Mezzanine::counted_ptr<Y>;
+            template <class Y> CountedPtr(const CountedPtr<Y>& r) throw()
+                {Acquire(r.itsCounter);}
+            template <class Y> CountedPtr& operator=(const CountedPtr<Y>& r)
+            {
+                if (this != &r) {
+                    Release();
+                    Acquire(r.itsCounter);
+                }
+                return *this;
             }
-			if (destroyThis)
-				destroy();
 
-            OGRE_SET_AUTO_SHARED_MUTEX_NULL
-        }
-
-        virtual void destroy(void)
-        {
-            // IF YOU GET A CRASH HERE, YOU FORGOT TO FREE UP POINTERS
-            // BEFORE SHUTTING OGRE DOWN
-            // Use setNull() before shutdown or make sure your pointer goes
-            // out of scope before OGRE shuts down to avoid this.
-			switch(useFreeMethod)
-			{
-			case SPFM_DELETE:
-				OGRE_DELETE pRep;
-				break;
-			case SPFM_DELETE_T:
-				OGRE_DELETE_T(pRep, T, MEMCATEGORY_GENERAL);
-				break;
-			case SPFM_FREE:
-				OGRE_FREE(pRep, MEMCATEGORY_GENERAL);
-				break;
-			};
-			// use OGRE_FREE instead of OGRE_DELETE_T since 'unsigned int' isn't a destructor
-			// we only used OGRE_NEW_T to be able to use constructor
-            OGRE_FREE(pUseCount, MEMCATEGORY_GENERAL);
-			OGRE_DELETE_AUTO_SHARED_MUTEX
-        }
-
-		virtual void swap(SharedPtr<T> &other)
-		{
-			std::swap(pRep, other.pRep);
-			std::swap(pUseCount, other.pUseCount);
-			std::swap(useFreeMethod, other.useFreeMethod);
-		}
-	};
-
-	template<class T, class U> inline bool operator==(SharedPtr<T> const& a, SharedPtr<U> const& b)
-	{
-		return a.get() == b.get();
-	}
-
-	template<class T, class U> inline bool operator!=(SharedPtr<T> const& a, SharedPtr<U> const& b)
-	{
-		return a.get() != b.get();
-	}
-
-	template<class T, class U> inline bool operator<(SharedPtr<T> const& a, SharedPtr<U> const& b)
-	{
-		return std::less<const void*>()(a.get(), b.get());
-	}
+            TypePointedTo& operator*()  const throw()   {return *itsCounter->ptr;}
+            TypePointedTo* operator->() const throw()   {return itsCounter->ptr;}
+            TypePointedTo* get()        const throw()   {return itsCounter ? itsCounter->ptr : 0;}
+            bool unique()   const throw()
+                {return (itsCounter ? itsCounter->count == 1 : true);}
 
 
-    template<class T> class SharedPtrSingle
-*/
-
+    };
 
 
 } // \Mezzanine
