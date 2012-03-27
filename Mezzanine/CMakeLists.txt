@@ -464,7 +464,8 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"			#only on windows, which doesn't build ogre
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogresvnsrc/OgreMain/include"
+	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"			#only on windows, which doesn't build ogre
 	"${Mezz_SDLBuildDir}/SDL/include/"
 )
 if(${Mezz_Lua51})
@@ -493,6 +494,7 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 # Prepare Common Dependencies
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
+add_subdirectory (libincludes/common/ogresrc)
 if(${Mezz_Lua51})
 	add_subdirectory (libincludes/common/lua51)
 endif(${Mezz_Lua51})
