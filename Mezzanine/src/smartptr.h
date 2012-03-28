@@ -80,7 +80,7 @@ namespace Mezzanine
     /// simpler version of std::shared_ptr.
     /// @warning This is not thread safe in any way.
     /// @note The basis of this class originated externally, please see the counted pointer
-    /// from http://ootips.org/yonat/4dev/smart-pointers.htm0 which came with written permission
+    /// from http://ootips.org/yonat/4dev/smart-pointers.html which came with written permission
     /// for use stated as "Feel free to use my own smart pointers in your code" on that page.
     template <class TypePointedTo> class CountedPtr
     {
@@ -94,7 +94,8 @@ namespace Mezzanine
             /// @brief Used when Creating a new CountedPtr but the reference already exists
             /// @param CounterToAcquire The ReferenceCounter that this pointer will use
             /// @warning This does not Release the previous Reference counter. This means it is possible leak memory if a ReferenceCounter is acquired that differs from the previous one without plans to manage the original.
-            void Acquire(ReferenceCounter<TypePointedTo>* CounterToAcquire)
+            /// @throw Nothing This member function does not throw exceptions.
+            void Acquire(ReferenceCounter<TypePointedTo>* CounterToAcquire) throw()
             {
                 #ifdef MEZZDEBUG
                 std::ostream *Log;
@@ -173,13 +174,15 @@ namespace Mezzanine
 
             /// @brief Copy constructor
             /// @param Original The pointer being copied. This fresh pointer will use the same ReferenceCounter as the original.
-            CountedPtr(const CountedPtr& Original)
+            /// @throw Nothing This member function does not throw exceptions.
+            CountedPtr(const CountedPtr& Original) throw()
                 {Acquire(Original.itsCounter);}
 
             /// @brief Get the current count of references.
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             /// @return The amount of reference which still exist, or 0 if the reference counter is somehow invalid.
-            Whole use_count()
+            /// @throw Nothing This member function does not throw exceptions.
+            Whole use_count() throw()
             {
                 if (itsCounter)
                     { return itsCounter->Count; }
@@ -187,18 +190,25 @@ namespace Mezzanine
                     { return 0; }
             }
 
-            CountedPtr& operator=(const CountedPtr& r)
+            /// @brief Assignement operator
+            /// @details This safely handles the semantics or release the previously assigned object and acquiring the new
+            /// managed object. This performs basic checks as expected.
+            /// @param Other The Item on the right hand side of the '=', which this class instance will copy.
+            /// @return A reference to the this.
+            CountedPtr& operator=(const CountedPtr& Other)
             {
-                if (this != &r) {
+                if (this != &Other) {
                     Release();
-                    Acquire(r.itsCounter);
+                    Acquire(Other.itsCounter);
                 }
                 return *this;
             }
 
-            //template <class Y> friend class Mezzanine::counted_ptr<Y>;
-            template <class Y> CountedPtr(const CountedPtr<Y>& r) throw()
-                {Acquire(r.itsCounter);}
+            // I am pretty sure most of these are to work with derived types, I will work with this later.
+            //template <class Y> friend class Mezzanine::CountedPtr<Y>;
+            //template <class Y> CountedPtr(const CountedPtr<Y>& r) throw()
+            //    {Acquire(r.itsCounter);}
+            /*
             template <class Y> CountedPtr& operator=(const CountedPtr<Y>& r)
             {
                 if (this != &r) {
@@ -207,14 +217,33 @@ namespace Mezzanine
                 }
                 return *this;
             }
+            */
 
-            TypePointedTo& operator*()  const throw()   {return *itsCounter->ptr;}
-            TypePointedTo* operator->() const throw()   {return itsCounter->ptr;}
-            TypePointedTo* get()        const throw()   {return itsCounter ? itsCounter->ptr : 0;}
-            bool unique()   const throw()
+            /// @brief Dereference operator.
+            /// @return The managed object is returned by reference.
+            /// @throw Nothing This member function does not throw exceptions.
+            TypePointedTo& operator*() const throw()
+                {return *itsCounter->ptr;}
+
+            /// @brief The Structure dereference operator.
+            /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
+            /// @throw Nothing This member function does not throw exceptions.
+            TypePointedTo* operator->() const throw()
+                {return itsCounter->ptr;}
+
+            /// @brief Get the raw pointer to the managed object.
+            /// @return The raw pointer to the managed object or 0 if this pointer is invalid.
+            /// @throw Nothing This member function does not throw exceptions.
+            /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
+            TypePointedTo* get() const throw()
+                {return itsCounter ? itsCounter->ptr : 0;}
+
+            /// @brief Is this the only pointer to the managed object
+            /// @return True if use_count() == 1 or if the pointer is invalid
+            /// @throw Nothing This member function does not throw exceptions.
+            /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
+            bool unique() const throw()
                 {return (itsCounter ? itsCounter->count == 1 : true);}
-
-
     };
 
 

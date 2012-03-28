@@ -736,6 +736,7 @@ table.memberdecls {
 
 .memproto {
         border-top: 1px solid #444;
+	border-bottom: 1px solid #444;
         border-left: 1px solid #444;
         border-right: 1px solid #444;
         padding: 6px 0px 6px 0px;
@@ -757,8 +758,9 @@ table.memberdecls {
 	-khtml-border-top-right-radius: 5px;
 	-khtml-border-bottom-left-radius: 0px;
 	-khtml-border-bottom-right-radius: 0px;
-	background-color: #57a277;
-        background-image:url('nav_f.png');
+	background-color: #222; 
+	/* background-color: #57a277; 
+        background-image:url('nav_f.png'); */
         background-repeat:repeat-x;
 }
 

@@ -1,0 +1,515 @@
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream}{
+\subsection{Mezzanine::Resource::DataStream Class Reference}
+\label{classMezzanine_1_1Resource_1_1DataStream}\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+}
+
+
+This represents a stream to a piece of data, usually a file.  
+
+
+
+
+{\ttfamily \#include $<$resourcedatastream.h$>$}
+
+Inheritance diagram for Mezzanine::Resource::DataStream:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.367521cm]{classMezzanine_1_1Resource_1_1DataStream}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classMezzanine_1_1Resource_1_1DataStream_afe2916e4ed8c06130d032d99c5a532f2}{AccessMode} \{ {\bfseries DS\_\-Read} =  1, 
+{\bfseries DS\_\-Write} =  2
+ \}
+\begin{DoxyCompactList}\small\item\em This enum describes the type of access to the resource. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1Resource_1_1DataStream_a5d69345b9e91455ce5bcc3e56e33f0f2}{DataStream} (const \hyperlink{classMezzanine_1_1Resource_1_1DataStream_afe2916e4ed8c06130d032d99c5a532f2}{AccessMode} \&Mode=DS\_\-Read)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Resource_1_1DataStream_a3efd57c5ec4a24ae0f03469c7aae3f40}{DataStream} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const \hyperlink{classMezzanine_1_1Resource_1_1DataStream_afe2916e4ed8c06130d032d99c5a532f2}{AccessMode} \&Mode=DS\_\-Read)
+\begin{DoxyCompactList}\small\item\em Named constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_aafa07b258113f048729ae8e285d9ea8c}{
+virtual \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aafa07b258113f048729ae8e285d9ea8c}{$\sim$DataStream} ()}
+\label{classMezzanine_1_1Resource_1_1DataStream_aafa07b258113f048729ae8e285d9ea8c}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_aff1a3ceed4d6db62361544440c1bac32}{
+virtual void \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aff1a3ceed4d6db62361544440c1bac32}{Close} ()=0}
+\label{classMezzanine_1_1Resource_1_1DataStream_aff1a3ceed4d6db62361544440c1bac32}
+
+\begin{DoxyCompactList}\small\item\em Closes the stream to the resource. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a606ec8602a93ddda483be1454f7e98a4}{EoF} () const =0
+\begin{DoxyCompactList}\small\item\em Gets whether or not the current position is at the end of the file/stream. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Resource_1_1DataStream_afe2916e4ed8c06130d032d99c5a532f2}{AccessMode} \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a8896048db87b3ee57d7e62e72e828b76}{GetAccessMode} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set access mode for this data stream. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a62a1623251773ab3a237a548ffb67d6a}{GetAsString} ()
+\begin{DoxyCompactList}\small\item\em Gets the contents of the stream as a string. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a164d641a57fd2dcea7e012d381fedc1f}{GetLine} (bool Trim=true)
+\begin{DoxyCompactList}\small\item\em Gets the contents of the current line in the stream. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{ConstString} \& \hyperlink{classMezzanine_1_1Resource_1_1DataStream_ac1b962945968bf5076b7cf0b09c83f9c}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this resource. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aa2f840e59423e73557b1c8781ac4ad22}{GetSize} () const 
+\begin{DoxyCompactList}\small\item\em Gets the size of the stream. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aaf7a1451e8f097a2294887cf6979940e}{IsReadable} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether this stream can be read. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aa01c6819a0cc70e1a7f2988c9381993b}{IsWriteable} () const 
+\begin{DoxyCompactList}\small\item\em Gets whether this stream can be written to. \item\end{DoxyCompactList}\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_ad9b597f7d4561a7425b96bb497e6dce2}{Read} (void $\ast$Buffer, const size\_\-t \&Count)=0
+\begin{DoxyCompactList}\small\item\em Reads data from the stream, copying to a buffer. \item\end{DoxyCompactList}\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_ae8efbf678f876fb838632a9f7973b2f8}{ReadLine} (\hyperlink{namespaceMezzanine_ad5147a419db7627ee552a2b582f1052d}{Character} $\ast$Buffer, size\_\-t MaxCount, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Delim=\char`\"{}$\backslash$n\char`\"{})
+\begin{DoxyCompactList}\small\item\em Reads a single line from a string. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a93e869b3f6bb6f8cad75522f01d68e78}{Seek} (const size\_\-t \&Position)=0
+\begin{DoxyCompactList}\small\item\em Sets the current position in the stream. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a5ba58755ae72eae04678c42e5e2c22b9}{Skip} (const \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \&Count)=0
+\begin{DoxyCompactList}\small\item\em Advances the position in the stream. \item\end{DoxyCompactList}\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a8b55a5a1fc3ade2eeb5966a9563ec3ec}{SkipLine} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Delim=\char`\"{}$\backslash$n\char`\"{})
+\begin{DoxyCompactList}\small\item\em Moves the current position to the start of the next line. \item\end{DoxyCompactList}\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a0fa4e7d3297ffead34f4aed868dcb633}{Tell} ()=0
+\begin{DoxyCompactList}\small\item\em Gets the offset of the current position from the start position. \item\end{DoxyCompactList}\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aafdbe4aeb8e8743d514fbd1075a30859}{Write} (const void $\ast$Buffer, const size\_\-t \&Count)=0
+\begin{DoxyCompactList}\small\item\em Writes data from the stream, copying from the provided buffer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a1331a3a41cc51912619443af35b0a4f6}{
+\hyperlink{classMezzanine_1_1Resource_1_1DataStream_afe2916e4ed8c06130d032d99c5a532f2}{AccessMode} \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a1331a3a41cc51912619443af35b0a4f6}{Access}}
+\label{classMezzanine_1_1Resource_1_1DataStream_a1331a3a41cc51912619443af35b0a4f6}
+
+\begin{DoxyCompactList}\small\item\em The type of access this stream has to the resource. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a4c8f09b002ce06283df8f1f1791fef07}{
+\hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a4c8f09b002ce06283df8f1f1791fef07}{ResourceName}}
+\label{classMezzanine_1_1Resource_1_1DataStream_a4c8f09b002ce06283df8f1f1791fef07}
+
+\begin{DoxyCompactList}\small\item\em Name of the resource. If this is a stream to a file, this should be the filename. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a3d92c94764fb8d3cdd1c7e4575625a51}{
+size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a3d92c94764fb8d3cdd1c7e4575625a51}{Size}}
+\label{classMezzanine_1_1Resource_1_1DataStream_a3d92c94764fb8d3cdd1c7e4575625a51}
+
+\begin{DoxyCompactList}\small\item\em The size of the stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This represents a stream to a piece of data, usually a file. This is a base class that can be overriden to read from a variey of sources including data in memory, and archive files. 
+
+Definition at line 56 of file resourcedatastream.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a5d69345b9e91455ce5bcc3e56e33f0f2}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!DataStream@{DataStream}}
+\index{DataStream@{DataStream}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{DataStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Resource::DataStream::DataStream (
+\begin{DoxyParamCaption}
+\item[{const {\bf AccessMode} \&}]{Mode = {\ttfamily DS\_\-Read}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a5d69345b9e91455ce5bcc3e56e33f0f2}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Mode} & The access mode for the stream. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a3efd57c5ec4a24ae0f03469c7aae3f40}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!DataStream@{DataStream}}
+\index{DataStream@{DataStream}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{DataStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Resource::DataStream::DataStream (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf AccessMode} \&}]{Mode = {\ttfamily DS\_\-Read}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a3efd57c5ec4a24ae0f03469c7aae3f40}
+
+
+Named constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the stream. \\
+\hline
+{\em Mode} & The access mode for the stream. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 68 of file resourcedatastream.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a606ec8602a93ddda483be1454f7e98a4}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!EoF@{EoF}}
+\index{EoF@{EoF}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{EoF}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool Mezzanine::Resource::DataStream::EoF (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a606ec8602a93ddda483be1454f7e98a4}
+
+
+Gets whether or not the current position is at the end of the file/stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the current position has reached the end of the stream, false otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a42397450c2f66c07e21bc4aed30c323f}{Mezzanine::Resource::MemoryDataStream}, \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_a69f00d256dd737696d7628ff2aa784d2}{Mezzanine::Resource::FileHandleDataStream}, and \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_a8802b49ee4f9e28408fd435ab6640fd7}{Mezzanine::Resource::FileStreamDataStream}.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a8896048db87b3ee57d7e62e72e828b76}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!GetAccessMode@{GetAccessMode}}
+\index{GetAccessMode@{GetAccessMode}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{GetAccessMode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf DataStream::AccessMode} Mezzanine::Resource::DataStream::GetAccessMode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a8896048db87b3ee57d7e62e72e828b76}
+
+
+Gets the currently set access mode for this data stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the current access mode for this data stream. 
+\end{DoxyReturn}
+
+
+Definition at line 84 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a62a1623251773ab3a237a548ffb67d6a}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!GetAsString@{GetAsString}}
+\index{GetAsString@{GetAsString}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{GetAsString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::Resource::DataStream::GetAsString (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a62a1623251773ab3a237a548ffb67d6a}
+
+
+Gets the contents of the stream as a string. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string with the contents of the stream. 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a164d641a57fd2dcea7e012d381fedc1f}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!GetLine@{GetLine}}
+\index{GetLine@{GetLine}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{GetLine}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::Resource::DataStream::GetLine (
+\begin{DoxyParamCaption}
+\item[{bool}]{Trim = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a164d641a57fd2dcea7e012d381fedc1f}
+
+
+Gets the contents of the current line in the stream. 
+
+\begin{DoxyRemark}{Remarks}
+This function should only be used if a file was opened in binary mode. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Trim} & Whether or not to trim whitespaces on both sides of the string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a string containing characters from the current position in the stream to the end of the line. 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_ac1b962945968bf5076b7cf0b09c83f9c}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!GetName@{GetName}}
+\index{GetName@{GetName}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& Mezzanine::Resource::DataStream::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_ac1b962945968bf5076b7cf0b09c83f9c}
+
+
+Gets the name of this resource. 
+
+\begin{DoxyReturn}{Returns}
+Returns a const reference to a string containing the name of this resource if one was assigned. 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_aa2f840e59423e73557b1c8781ac4ad22}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::DataStream::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_aa2f840e59423e73557b1c8781ac4ad22}
+
+
+Gets the size of the stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns the size of this stream in bytes. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_aaf7a1451e8f097a2294887cf6979940e}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!IsReadable@{IsReadable}}
+\index{IsReadable@{IsReadable}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{IsReadable}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Resource::DataStream::IsReadable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_aaf7a1451e8f097a2294887cf6979940e}
+
+
+Gets whether this stream can be read. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if this stream is in reading mode, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_aa01c6819a0cc70e1a7f2988c9381993b}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!IsWriteable@{IsWriteable}}
+\index{IsWriteable@{IsWriteable}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{IsWriteable}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Resource::DataStream::IsWriteable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_aa01c6819a0cc70e1a7f2988c9381993b}
+
+
+Gets whether this stream can be written to. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if this stream is in writing mode, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_ad9b597f7d4561a7425b96bb497e6dce2}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!Read@{Read}}
+\index{Read@{Read}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{Read}]{\setlength{\rightskip}{0pt plus 5cm}virtual size\_\-t Mezzanine::Resource::DataStream::Read (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{Buffer, }
+\item[{const size\_\-t \&}]{Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_ad9b597f7d4561a7425b96bb497e6dce2}
+
+
+Reads data from the stream, copying to a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & The buffer to place data from the stream. \\
+\hline
+{\em Count} & The number of bytes to read from the stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes read. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a3b054bb40739588b40b6b04e92c31621}{Mezzanine::Resource::MemoryDataStream}, \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_a3bf9c99e02da81b3e4dbd7b99f3db9e7}{Mezzanine::Resource::FileHandleDataStream}, and \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_a0f636c192abec4251cfcf5a5f62aea39}{Mezzanine::Resource::FileStreamDataStream}.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_ae8efbf678f876fb838632a9f7973b2f8}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!ReadLine@{ReadLine}}
+\index{ReadLine@{ReadLine}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{ReadLine}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::DataStream::ReadLine (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} $\ast$}]{Buffer, }
+\item[{size\_\-t}]{MaxCount, }
+\item[{const {\bf String} \&}]{Delim = {\ttfamily \char`\"{}$\backslash$n\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_ae8efbf678f876fb838632a9f7973b2f8}
+
+
+Reads a single line from a string. 
+
+\begin{DoxyRemark}{Remarks}
+This function should only be used if a file was opened in binary mode. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & Pointer to the buffer to copy to. \\
+\hline
+{\em MaxCount} & The maximum number of bytes to read. Usually you want this to be your buffer size. \\
+\hline
+{\em Delim} & The character that marks the end of a line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes actually read, not including the Delimiter. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_aee8d813b5f3d2596fde2bd45a7882ae0}{Mezzanine::Resource::MemoryDataStream}.
+
+
+
+Definition at line 123 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a93e869b3f6bb6f8cad75522f01d68e78}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!Seek@{Seek}}
+\index{Seek@{Seek}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{Seek}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Resource::DataStream::Seek (
+\begin{DoxyParamCaption}
+\item[{const size\_\-t \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a93e869b3f6bb6f8cad75522f01d68e78}
+
+
+Sets the current position in the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & The position in the stream to be set as current. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_af93bbd902e5960e046d566f5061064b7}{Mezzanine::Resource::MemoryDataStream}, \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_a7e1d7ceb895878aa3041fdf00c13462b}{Mezzanine::Resource::FileHandleDataStream}, and \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_afb74e428122d26344bbf42c4297a4a5a}{Mezzanine::Resource::FileStreamDataStream}.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a5ba58755ae72eae04678c42e5e2c22b9}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!Skip@{Skip}}
+\index{Skip@{Skip}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{Skip}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Resource::DataStream::Skip (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integer} \&}]{Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a5ba58755ae72eae04678c42e5e2c22b9}
+
+
+Advances the position in the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Count} & The number of bytes to skip/advance in the stream from the current position. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a1864addc676c5832e08704bd8341859f}{Mezzanine::Resource::MemoryDataStream}, \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_a72d74a2a15281635afb443d66e64d16b}{Mezzanine::Resource::FileHandleDataStream}, and \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_a7f14ae01a36a4d0445d86c422532eb07}{Mezzanine::Resource::FileStreamDataStream}.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a8b55a5a1fc3ade2eeb5966a9563ec3ec}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!SkipLine@{SkipLine}}
+\index{SkipLine@{SkipLine}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{SkipLine}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::DataStream::SkipLine (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Delim = {\ttfamily \char`\"{}$\backslash$n\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a8b55a5a1fc3ade2eeb5966a9563ec3ec}
+
+
+Moves the current position to the start of the next line. 
+
+\begin{DoxyRemark}{Remarks}
+This function should only be used if a file was opened in binary mode. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Delim} & The character that marks the end of a line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes skipped. 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_af6dedcd3c5301e1631917664efabe3cb}{Mezzanine::Resource::MemoryDataStream}.
+
+
+
+Definition at line 204 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_a0fa4e7d3297ffead34f4aed868dcb633}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!Tell@{Tell}}
+\index{Tell@{Tell}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{Tell}]{\setlength{\rightskip}{0pt plus 5cm}virtual size\_\-t Mezzanine::Resource::DataStream::Tell (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_a0fa4e7d3297ffead34f4aed868dcb633}
+
+
+Gets the offset of the current position from the start position. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes the current position is from the beginning of the stream. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_aac15b613b78cd970e01d3592c7f2efc9}{Mezzanine::Resource::MemoryDataStream}, \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_abf537e96aa6b764a9006d22df3f448a1}{Mezzanine::Resource::FileHandleDataStream}, and \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_af38a6ac30ebd547d560eba470600edb0}{Mezzanine::Resource::FileStreamDataStream}.
+
+\hypertarget{classMezzanine_1_1Resource_1_1DataStream_aafdbe4aeb8e8743d514fbd1075a30859}{
+\index{Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}!Write@{Write}}
+\index{Write@{Write}!Mezzanine::Resource::DataStream@{Mezzanine::Resource::DataStream}}
+\paragraph[{Write}]{\setlength{\rightskip}{0pt plus 5cm}virtual size\_\-t Mezzanine::Resource::DataStream::Write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{Buffer, }
+\item[{const size\_\-t \&}]{Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1DataStream_aafdbe4aeb8e8743d514fbd1075a30859}
+
+
+Writes data from the stream, copying from the provided buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & The buffer of data to be written. \\
+\hline
+{\em Count} & The number of bytes to write from the buffer to the stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes written. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a5c1e161caf74c74d7d6f9c2d0d5718b1}{Mezzanine::Resource::MemoryDataStream}, \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_aa966e5def906aae90c8f5bf0aa9e8678}{Mezzanine::Resource::FileHandleDataStream}, and \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_a1d4f4788475e9d2bf2d720b47b4ad7f0}{Mezzanine::Resource::FileStreamDataStream}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+resourcedatastream.h\item 
+resourcedatastream.cpp\end{DoxyCompactItemize}

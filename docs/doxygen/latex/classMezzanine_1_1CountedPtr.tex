@@ -1,0 +1,321 @@
+\hypertarget{classMezzanine_1_1CountedPtr}{
+\subsection{Mezzanine::CountedPtr$<$ TypePointedTo $>$ Class Template Reference}
+\label{classMezzanine_1_1CountedPtr}\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+}
+
+
+A single threaded referencing counting pointer.  
+
+
+
+
+{\ttfamily \#include $<$smartptr.h$>$}
+
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1CountedPtr_a3bad88b1ac4c311ca63891bc5689582b}{
+typedef TypePointedTo \hyperlink{classMezzanine_1_1CountedPtr_a3bad88b1ac4c311ca63891bc5689582b}{element\_\-type}}
+\label{classMezzanine_1_1CountedPtr_a3bad88b1ac4c311ca63891bc5689582b}
+
+\begin{DoxyCompactList}\small\item\em This makes referencing the type of the point object easier. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1CountedPtr_ab53831e2af99d19396cfab5016c640bd}{CountedPtr} (TypePointedTo $\ast$PointerTarget=0)
+\begin{DoxyCompactList}\small\item\em Initial Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CountedPtr_a6cfa958ec832f805959518cb9eeb8302}{CountedPtr} (const \hyperlink{classMezzanine_1_1CountedPtr}{CountedPtr} \&Original)  throw ()
+\begin{DoxyCompactList}\small\item\em Copy constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CountedPtr_a8f9ed87946e558881b33070519764240}{
+\hyperlink{classMezzanine_1_1CountedPtr_a8f9ed87946e558881b33070519764240}{$\sim$CountedPtr} ()}
+\label{classMezzanine_1_1CountedPtr_a8f9ed87946e558881b33070519764240}
+
+\begin{DoxyCompactList}\small\item\em Deconstructor, Just calls \hyperlink{classMezzanine_1_1CountedPtr_aedb1e5da381fcbf10c7737d4383fb715}{Release()}. \item\end{DoxyCompactList}\item 
+TypePointedTo $\ast$ \hyperlink{classMezzanine_1_1CountedPtr_a6f00c38226d1ae4f7797fe5944a53333}{get} () const   throw ()
+\begin{DoxyCompactList}\small\item\em Get the raw pointer to the managed object. \item\end{DoxyCompactList}\item 
+TypePointedTo \& \hyperlink{classMezzanine_1_1CountedPtr_a9fbe491e40d8adbaa372890501dcc5b1}{operator$\ast$} () const   throw ()
+\begin{DoxyCompactList}\small\item\em Dereference operator. \item\end{DoxyCompactList}\item 
+TypePointedTo $\ast$ \hyperlink{classMezzanine_1_1CountedPtr_a88d0f8a1a22daa3a06394aa1430a6299}{operator-\/$>$} () const   throw ()
+\begin{DoxyCompactList}\small\item\em The Structure dereference operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1CountedPtr}{CountedPtr} \& \hyperlink{classMezzanine_1_1CountedPtr_afccd80ffc3d1e940b26dbbec0653e0f9}{operator=} (const \hyperlink{classMezzanine_1_1CountedPtr}{CountedPtr} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignement operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classMezzanine_1_1CountedPtr_ae991b2beca4077dc40c53110bc97308c}{unique} () const   throw ()
+\begin{DoxyCompactList}\small\item\em Is this the only pointer to the managed object. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{Whole} \hyperlink{classMezzanine_1_1CountedPtr_a5c97a5c62736f9304fca9ec38df71ed2}{use\_\-count} ()  throw ()
+\begin{DoxyCompactList}\small\item\em Get the current count of references. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classMezzanine_1_1CountedPtr_aa236cd0fffaeab68d49ac6855bcbee17}{Acquire} (\hyperlink{structMezzanine_1_1ReferenceCounter}{ReferenceCounter}$<$ TypePointedTo $>$ $\ast$CounterToAcquire)  throw ()
+\begin{DoxyCompactList}\small\item\em Used when Creating a new \hyperlink{classMezzanine_1_1CountedPtr}{CountedPtr} but the reference already exists. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1CountedPtr_aedb1e5da381fcbf10c7737d4383fb715}{
+void \hyperlink{classMezzanine_1_1CountedPtr_aedb1e5da381fcbf10c7737d4383fb715}{Release} ()}
+\label{classMezzanine_1_1CountedPtr_aedb1e5da381fcbf10c7737d4383fb715}
+
+\begin{DoxyCompactList}\small\item\em This decrements the reference count and deletes the managed items if there are no remaining reference. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+\subsubsection*{template$<$class TypePointedTo$>$ class Mezzanine::CountedPtr$<$ TypePointedTo $>$}
+
+A single threaded referencing counting pointer. This is a pointer that automatically deallocates the object it manages when all counted\_\-ptr intances managing it are destroyed or fall out of scope. This is a simpler version of std::shared\_\-ptr. \begin{DoxyWarning}{Warning}
+This is not thread safe in any way. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+The basis of this class originated externally, please see the counted pointer from \href{http://ootips.org/yonat/4dev/smart-pointers.html}{\tt http://ootips.org/yonat/4dev/smart-\/pointers.html} which came with written permission for use stated as \char`\"{}Feel free to use my own smart pointers in your code\char`\"{} on that page. 
+\end{DoxyNote}
+
+
+Definition at line 85 of file smartptr.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1CountedPtr_ab53831e2af99d19396cfab5016c640bd}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!CountedPtr@{CountedPtr}}
+\index{CountedPtr@{CountedPtr}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{CountedPtr}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::{\bf CountedPtr} (
+\begin{DoxyParamCaption}
+\item[{TypePointedTo $\ast$}]{PointerTarget = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, explicit\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_ab53831e2af99d19396cfab5016c640bd}
+
+
+Initial Constructor. 
+
+This should only be used for initial creation of a shared pointer group. This will allocate the raw pointer and the \hyperlink{structMezzanine_1_1ReferenceCounter}{ReferenceCounter} that will be used to track the pointer passed. This will only be explicitly called to prevent accidental premature deletion of the item managed. \par
+ \par
+ It is quite easy to accidentally make a secondary grup of counted pointers if not using the new statement inline with this constructor, and it is not recomended to use this in any other way. Here is an exmple of the reccomended way to use new inline with this: \char`\"{}Mezzanine::CountedPtr$<$Mezzanine::Vector3$>$ VecPtr (new Mezzanine::Vector3);\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em PointerTarget} & The item that will be deleted once all the pointer of this group disappear. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 168 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_a6cfa958ec832f805959518cb9eeb8302}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!CountedPtr@{CountedPtr}}
+\index{CountedPtr@{CountedPtr}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{CountedPtr}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::{\bf CountedPtr} (
+\begin{DoxyParamCaption}
+\item[{const {\bf CountedPtr}$<$ TypePointedTo $>$ \&}]{Original}
+\end{DoxyParamCaption}
+)  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_a6cfa958ec832f805959518cb9eeb8302}
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Original} & The pointer being copied. This fresh pointer will use the same \hyperlink{structMezzanine_1_1ReferenceCounter}{ReferenceCounter} as the original. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 178 of file smartptr.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1CountedPtr_aa236cd0fffaeab68d49ac6855bcbee17}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!Acquire@{Acquire}}
+\index{Acquire@{Acquire}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{Acquire}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ void {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::Acquire (
+\begin{DoxyParamCaption}
+\item[{{\bf ReferenceCounter}$<$ TypePointedTo $>$ $\ast$}]{CounterToAcquire}
+\end{DoxyParamCaption}
+)  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline, protected\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_aa236cd0fffaeab68d49ac6855bcbee17}
+
+
+Used when Creating a new \hyperlink{classMezzanine_1_1CountedPtr}{CountedPtr} but the reference already exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CounterToAcquire} & The \hyperlink{structMezzanine_1_1ReferenceCounter}{ReferenceCounter} that this pointer will use \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+This does not Release the previous Reference counter. This means it is possible leak memory if a \hyperlink{structMezzanine_1_1ReferenceCounter}{ReferenceCounter} is acquired that differs from the previous one without plans to manage the original. 
+\end{DoxyWarning}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 98 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_a6f00c38226d1ae4f7797fe5944a53333}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!get@{get}}
+\index{get@{get}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{get}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ TypePointedTo$\ast$ {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::get (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_a6f00c38226d1ae4f7797fe5944a53333}
+
+
+Get the raw pointer to the managed object. 
+
+\begin{DoxyReturn}{Returns}
+The raw pointer to the managed object or 0 if this pointer is invalid. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyNote}{Note}
+This name was chosen to match standard compliant names, and should be usable in templates that require this function. 
+\end{DoxyNote}
+
+
+Definition at line 238 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_a9fbe491e40d8adbaa372890501dcc5b1}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ TypePointedTo\& {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::operator$\ast$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_a9fbe491e40d8adbaa372890501dcc5b1}
+
+
+Dereference operator. 
+
+\begin{DoxyReturn}{Returns}
+The managed object is returned by reference. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 225 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_a88d0f8a1a22daa3a06394aa1430a6299}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!operator-\/$>$@{operator-\/$>$}}
+\index{operator-\/$>$@{operator-\/$>$}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{operator-\/$>$}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ TypePointedTo$\ast$ {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::operator-\/$>$ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_a88d0f8a1a22daa3a06394aa1430a6299}
+
+
+The Structure dereference operator. 
+
+\begin{DoxyReturn}{Returns}
+Makes it appear, syntactically, as though you are dereferencing the raw pointer. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 231 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_afccd80ffc3d1e940b26dbbec0653e0f9}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!operator=@{operator=}}
+\index{operator=@{operator=}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ {\bf CountedPtr}\& {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf CountedPtr}$<$ TypePointedTo $>$ \&}]{Other}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_afccd80ffc3d1e940b26dbbec0653e0f9}
+
+
+Assignement operator. 
+
+This safely handles the semantics or release the previously assigned object and acquiring the new managed object. This performs basic checks as expected. 
+\begin{DoxyParams}{Parameters}
+{\em Other} & The Item on the right hand side of the '=', which this class instance will copy. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A reference to the this. 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_ae991b2beca4077dc40c53110bc97308c}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!unique@{unique}}
+\index{unique@{unique}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{unique}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ bool {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::unique (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_ae991b2beca4077dc40c53110bc97308c}
+
+
+Is this the only pointer to the managed object. 
+
+\begin{DoxyReturn}{Returns}
+True if \hyperlink{classMezzanine_1_1CountedPtr_a5c97a5c62736f9304fca9ec38df71ed2}{use\_\-count()} == 1 or if the pointer is invalid 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyNote}{Note}
+This name was chosen to match standard compliant names, and should be usable in templates that require this function. 
+\end{DoxyNote}
+
+
+Definition at line 245 of file smartptr.h.
+
+\hypertarget{classMezzanine_1_1CountedPtr_a5c97a5c62736f9304fca9ec38df71ed2}{
+\index{Mezzanine::CountedPtr@{Mezzanine::CountedPtr}!use\_\-count@{use\_\-count}}
+\index{use\_\-count@{use\_\-count}!Mezzanine::CountedPtr@{Mezzanine::CountedPtr}}
+\paragraph[{use\_\-count}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class TypePointedTo $>$ {\bf Whole} {\bf Mezzanine::CountedPtr}$<$ TypePointedTo $>$::use\_\-count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)  throw ()\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1CountedPtr_a5c97a5c62736f9304fca9ec38df71ed2}
+
+
+Get the current count of references. 
+
+\begin{DoxyNote}{Note}
+This name was chosen to match standard compliant names, and should be usable in templates that require this function. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+The amount of reference which still exist, or 0 if the reference counter is somehow invalid. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Nothing} & This member function does not throw exceptions. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 185 of file smartptr.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+smartptr.h\end{DoxyCompactItemize}

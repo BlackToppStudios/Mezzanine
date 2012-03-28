@@ -110,25 +110,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
 <a name="l00047"></a>00047 {
 <a name="l00048"></a><a class="code" href="namespaceMezzanine_1_1Scripting.html">00048</a>     <span class="keyword">namespace </span>Scripting
-<a name="l00049"></a>00049     {
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051 <span class="comment"></span>
-<a name="l00052"></a>00052 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00053"></a>00053 <span class="comment">        /// @brief The interface for a script</span>
-<a name="l00054"></a>00054 <span class="comment">        /// @details All the members that all script for all languages must implement</span>
-<a name="l00055"></a>00055 <span class="comment">        /// @n @n</span>
-<a name="l00056"></a>00056 <span class="comment">        /// These are tiny pieces of data that can be run like miniature programs. They</span>
-<a name="l00057"></a>00057 <span class="comment">        /// will be compiled to a bytecode that can swiftly be executed by the appropriate</span>
-<a name="l00058"></a>00058 <span class="comment">        /// bytecode interpretter. This is faster than interpretting text, but slower than</span>
-<a name="l00059"></a>00059 <span class="comment">        /// running native code. It is more flexible and safer than native code, because</span>
-<a name="l00060"></a>00060 <span class="comment">        /// scripts may be provided by others than the original developers, and there are</span>
-<a name="l00061"></a>00061 <span class="comment">        /// fewer security issues with a completely self contained language as opposed to</span>
-<a name="l00062"></a>00062 <span class="comment">        /// actual native code.</span>
-<a name="l00063"></a>00063 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00064"></a><a class="code" href="classMezzanine_1_1Scripting_1_1Script.html">00064</a> <span class="comment"></span>        <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Scripting_1_1Script.html" title="The interface for a script.">Script</a>
-<a name="l00065"></a>00065         {
-<a name="l00066"></a>00066             <span class="keyword">public</span>:
-<a name="l00067"></a>00067                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddArgument(<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>* Arg) = 0;
+<a name="l00049"></a>00049     {<span class="comment"></span>
+<a name="l00050"></a>00050 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00051"></a>00051 <span class="comment">        /// @brief The interface for a script</span>
+<a name="l00052"></a>00052 <span class="comment">        /// @details All the members that all script for all languages must implement</span>
+<a name="l00053"></a>00053 <span class="comment">        /// @n @n</span>
+<a name="l00054"></a>00054 <span class="comment">        /// These are tiny pieces of data that can be run like miniature programs. They</span>
+<a name="l00055"></a>00055 <span class="comment">        /// will be compiled to a bytecode that can swiftly be executed by the appropriate</span>
+<a name="l00056"></a>00056 <span class="comment">        /// bytecode interpretter. This is faster than interpretting text, but slower than</span>
+<a name="l00057"></a>00057 <span class="comment">        /// running native code. It is more flexible and safer than native code, because</span>
+<a name="l00058"></a>00058 <span class="comment">        /// scripts may be provided by others than the original developers, and there are</span>
+<a name="l00059"></a>00059 <span class="comment">        /// fewer security issues with a completely self contained language as opposed to</span>
+<a name="l00060"></a>00060 <span class="comment">        /// actual native code.</span>
+<a name="l00061"></a>00061 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00062"></a><a class="code" href="classMezzanine_1_1Scripting_1_1Script.html">00062</a> <span class="comment"></span>        <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Scripting_1_1Script.html" title="The interface for a script.">Script</a>
+<a name="l00063"></a>00063         {
+<a name="l00064"></a>00064             <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">                /// @brief</span>
+<a name="l00066"></a>00066 <span class="comment">                /// @param Arg This accepts a pointer to a script argument</span>
+<a name="l00067"></a>00067 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddArgument(<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>* Arg) = 0;
 <a name="l00068"></a>00068                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveArgument(<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>* Arg) = 0;
 <a name="l00069"></a>00069                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> ClearArguments() = 0;
 <a name="l00070"></a>00070                 <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetArgumentCount() = 0;
@@ -186,6 +186,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 18 2012 16:54:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Mar 28 2012 02:00:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

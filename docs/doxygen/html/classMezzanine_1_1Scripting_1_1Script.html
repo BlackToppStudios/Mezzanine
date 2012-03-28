@@ -91,8 +91,7 @@ Inheritance diagram for Mezzanine::Scripting::Script:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fa994729309867dff663c694218a33b"></a><!-- doxytag: member="Mezzanine::Scripting::Script::AddArgument" ref="a0fa994729309867dff663c694218a33b" args="(ScriptArgument *Arg)=0" -->
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>AddArgument</b> (<a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html">ScriptArgument</a> *Arg)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Scripting_1_1Script.html#a0fa994729309867dff663c694218a33b">AddArgument</a> (<a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html">ScriptArgument</a> *Arg)=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a504d19bd50b8d9c5b23e85c5e3131a96"></a><!-- doxytag: member="Mezzanine::Scripting::Script::ClearArguments" ref="a504d19bd50b8d9c5b23e85c5e3131a96" args="()=0" -->
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearArguments</b> ()=0</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f167dbb18b66c36e6ff486751a79691"></a><!-- doxytag: member="Mezzanine::Scripting::Script::Execute" ref="a4f167dbb18b66c36e6ff486751a79691" args="()=0" -->
@@ -122,8 +121,32 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetCode</b> (
  <br/>
  These are tiny pieces of data that can be run like miniature programs. They will be compiled to a bytecode that can swiftly be executed by the appropriate bytecode interpretter. This is faster than interpretting text, but slower than running native code. It is more flexible and safer than native code, because scripts may be provided by others than the original developers, and there are fewer security issues with a completely self contained language as opposed to actual native code. </p>
 
-<p>Definition at line <a class="el" href="script_8h_source.html#l00064">64</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="script_8h_source.html#l00062">62</a> of file <a class="el" href="script_8h_source.html">script.h</a>.</p>
+</div><hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a0fa994729309867dff663c694218a33b"></a><!-- doxytag: member="Mezzanine::Scripting::Script::AddArgument" ref="a0fa994729309867dff663c694218a33b" args="(ScriptArgument *Arg)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::Scripting::Script::AddArgument </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html">ScriptArgument</a> *&#160;</td>
+          <td class="paramname"><em>Arg</em></td><td>)</td>
+          <td><code> [pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Arg</td><td>This accepts a pointer to a script argument </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="script_8h_source.html">script.h</a></li>
 </ul>
 </div>
@@ -142,6 +165,6 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>SetCode</b> (
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 18 2012 16:55:00 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Mar 28 2012 02:00:39 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

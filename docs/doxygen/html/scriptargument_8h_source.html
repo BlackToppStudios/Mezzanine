@@ -105,61 +105,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _scriptargument_h</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;scriptargument.h&quot;</span>
-<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;<a class="code" href="crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047 <span class="keyword">namespace </span>Mezzanine
-<a name="l00048"></a>00048 {
-<a name="l00049"></a>00049     <span class="keyword">namespace </span>Scripting
-<a name="l00050"></a>00050     {<span class="comment"></span>
-<a name="l00051"></a>00051 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00052"></a>00052 <span class="comment">        /// @brief The interface for a script argument</span>
-<a name="l00053"></a>00053 <span class="comment">        /// @details All the members that all script for all languages must implement.</span>
-<a name="l00054"></a>00054 <span class="comment">        /// @n @n</span>
-<a name="l00055"></a>00055 <span class="comment">        /// These are created to provide data to scripts.</span>
-<a name="l00056"></a>00056 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00057"></a><a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html">00057</a> <span class="comment"></span>        <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>
-<a name="l00058"></a>00058         {
-<a name="l00059"></a>00059             <span class="keyword">public</span>:
-<a name="l00060"></a>00060 
-<a name="l00061"></a>00061                 <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine.html#a206e6571c4a738a16f9d103205c235f8" title="Converts whatever to a String as long as a streaming operator is available for it.">ToString</a>() = 0;
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063                 <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>()
-<a name="l00064"></a>00064                     {}
-<a name="l00065"></a>00065         };
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067         <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;
-<a name="l00068"></a><a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">00068</a>         <span class="keyword">class </span><a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">ScriptArgumentSpecific</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>
-<a name="l00069"></a>00069         {
-<a name="l00070"></a>00070             <span class="keyword">private</span>:
-<a name="l00071"></a>00071                 T Datum;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073             <span class="keyword">public</span>:
-<a name="l00074"></a>00074                 <a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">ScriptArgumentSpecific</a>(T _Datum): Datum(_Datum)
-<a name="l00075"></a>00075                     {}
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077                 <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ToString()
-<a name="l00078"></a>00078                     { <span class="keywordflow">return</span> ToString(Datum); }
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetValue(T _Datum)
-<a name="l00081"></a>00081                     { Datum=_Datum; }
-<a name="l00082"></a>00082 
-<a name="l00083"></a>00083                 <span class="keyword">virtual</span> T GetValue()
-<a name="l00084"></a>00084                     { <span class="keywordflow">return</span> Datum; }
-<a name="l00085"></a>00085 
-<a name="l00086"></a>00086                 <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">ScriptArgumentSpecific</a>()
-<a name="l00087"></a>00087                     {}
-<a name="l00088"></a>00088         };
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;<a class="code" href="crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046 <span class="keyword">namespace </span>Mezzanine
+<a name="l00047"></a>00047 {
+<a name="l00048"></a>00048     <span class="keyword">namespace </span>Scripting
+<a name="l00049"></a>00049     {<span class="comment"></span>
+<a name="l00050"></a>00050 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00051"></a>00051 <span class="comment">        /// @brief The interface for a script argument</span>
+<a name="l00052"></a>00052 <span class="comment">        /// @details All the members that all script for all languages must implement.</span>
+<a name="l00053"></a>00053 <span class="comment">        /// @n @n</span>
+<a name="l00054"></a>00054 <span class="comment">        /// These are created to provide data to scripts.</span>
+<a name="l00055"></a>00055 <span class="comment">        ///////////////////////////////////////</span>
+<a name="l00056"></a><a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html">00056</a> <span class="comment"></span>        <span class="keyword">class </span>MEZZ_LIB <a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>
+<a name="l00057"></a>00057         {
+<a name="l00058"></a>00058             <span class="keyword">public</span>:
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060                 <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="namespaceMezzanine.html#a206e6571c4a738a16f9d103205c235f8" title="Converts whatever to a String as long as a streaming operator is available for it.">ToString</a>() = 0;
+<a name="l00061"></a>00061 
+<a name="l00062"></a>00062                 <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>()
+<a name="l00063"></a>00063                     {}
+<a name="l00064"></a>00064         };
+<a name="l00065"></a>00065 
+<a name="l00066"></a>00066         <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;
+<a name="l00067"></a><a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">00067</a>         <span class="keyword">class </span><a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">ScriptArgumentSpecific</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgument.html" title="The interface for a script argument.">ScriptArgument</a>
+<a name="l00068"></a>00068         {
+<a name="l00069"></a>00069             <span class="keyword">private</span>:
+<a name="l00070"></a>00070                 T Datum;
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072             <span class="keyword">public</span>:
+<a name="l00073"></a>00073                 <a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">ScriptArgumentSpecific</a>(T _Datum): Datum(_Datum)
+<a name="l00074"></a>00074                     {}
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076                 <span class="keyword">virtual</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ToString()
+<a name="l00077"></a>00077                     { <span class="keywordflow">return</span> ToString(Datum); }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079                 <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetValue(T _Datum)
+<a name="l00080"></a>00080                     { Datum=_Datum; }
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082                 <span class="keyword">virtual</span> T GetValue()
+<a name="l00083"></a>00083                     { <span class="keywordflow">return</span> Datum; }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085                 <span class="keyword">virtual</span> ~<a class="code" href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html">ScriptArgumentSpecific</a>()
+<a name="l00086"></a>00086                     {}
+<a name="l00087"></a>00087         };
+<a name="l00088"></a>00088 
 <a name="l00089"></a>00089 
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091     }
+<a name="l00090"></a>00090     }
+<a name="l00091"></a>00091 
 <a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094 }<span class="comment">//Mezzanine</span>
+<a name="l00093"></a>00093 }<span class="comment">//Mezzanine</span>
+<a name="l00094"></a>00094 
 <a name="l00095"></a>00095 
 <a name="l00096"></a>00096 
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="preprocessor">#endif // \_scriptargument_h</span>
+<a name="l00097"></a>00097 <span class="preprocessor">#endif // \_scriptargument_h</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -177,6 +176,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 18 2012 16:54:42 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Mar 28 2012 02:00:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>
