@@ -704,6 +704,19 @@ endif ()
 
 set (TARGET_LINK_FLAGS "")
 
+include_directories(
+	"${OGRE_SOURCE_DIR}/Dependencies/src/FreeImage/Source"
+	"${OGRE_SOURCE_DIR}/Dependencies/src/freetype/include"
+	"${OGRE_SOURCE_DIR}/Dependencies/src/freetype/include/freetype"
+	"${OGRE_SOURCE_DIR}/Dependencies/src/zlib"
+	"${OGRE_SOURCE_DIR}/Dependencies/src/zziplib")
+	
+link_directories("${Mezzanine_LIBBINARY_DIR}/${BuildPlatform}/ogre/deps")
+
+if (NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+	include_directories("${OGRE_SOURCE_DIR}/Dependencies/src/Cg/include/Cg")
+endif(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+
 # setup OgreMain target
 # exclude OgreAlignedAllocator.cpp from unity builds; causes problems on Linux
 ogre_add_library(OgreMain ${OGRE_LIB_TYPE} ${PREC_HEADER} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADER_FILES} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES} SEPARATE "src/OgreAlignedAllocator.cpp")
@@ -716,6 +729,15 @@ if(WIN32 AND MSVC10 AND CMAKE_CL_64)
 else()
   set_target_properties(OgreMain PROPERTIES VERSION ${OGRE_SOVERSION})
 endif()
+
+# Added by BTS to integrate dependancy sources.
+if(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+	add_dependencies(OgreMain Cg FreeImage freetype zlib zziplib)
+	target_link_libraries(OgreMain Cg FreeImage freetype zlib zziplib)
+else()
+	add_dependencies(OgreMain FreeImage freetype zlib zziplib)
+	target_link_libraries(OgreMain FreeImage freetype zlib zziplib)
+endif(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
 
 if (APPLE)
   if (OGRE_BUILD_PLATFORM_APPLE_IOS)

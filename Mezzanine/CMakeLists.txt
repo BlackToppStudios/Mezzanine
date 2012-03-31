@@ -498,7 +498,6 @@ add_subdirectory (libincludes/common/ogresrc)
 if(${Mezz_Lua51})
 	add_subdirectory (libincludes/common/lua51)
 endif(${Mezz_Lua51})
-#add_subdirectory (libincludes/common/ogresrc) # not quite ready yet
 
 add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio Bullet Ogre ${LuaProject})
 

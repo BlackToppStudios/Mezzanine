@@ -1,2 +1,2 @@
 #!/bin/bash
-hg clone http://bitbucket.org/sinbad/ogre/ -u v1-7 ogresvnsrc
+hg clone http://bitbucket.org/sinbad/ogre/ -u v1-8 ogresvnsrc

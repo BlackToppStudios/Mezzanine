@@ -34,6 +34,9 @@ endif()
 
 project(OGRE)
 
+# Added by BTS for merging
+add_definitions( ${CommonBuildFlags} )
+
 # Include necessary submodules
 set(CMAKE_MODULE_PATH 
   "${OGRE_SOURCE_DIR}/CMake"
@@ -63,11 +66,11 @@ endif ()
 # Set up the basic build environment
 #####################################################################
 
-if (CMAKE_BUILD_TYPE STREQUAL "")
+#if (CMAKE_BUILD_TYPE STREQUAL "")
   # CMake defaults to leaving CMAKE_BUILD_TYPE empty. This screws up
   # differentiation between debug and release builds.
-  set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
-endif ()
+  #set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
+#endif ()
 
 # determine Ogre version numbers
 include(OgreGetVersion)
@@ -175,8 +178,10 @@ if (APPLE)
   endif ()
 endif (APPLE)
 
+# Commented out by BTS since we are integrating dependancies differently.
 # Find dependencies
-include(Dependencies)
+# include(Dependencies)
+
 # definitions for samples
 set(OGRE_LIBRARIES OgreMain) 
 set(OGRE_Paging_LIBRARIES OgrePaging)
@@ -184,10 +189,14 @@ set(OGRE_Terrain_LIBRARIES OgreTerrain)
 set(OGRE_Plugin_PCZSceneManager_LIBRARIES Plugin_PCZSceneManager)
 set(OGRE_Plugin_OctreeZone_LIBRARIES Plugin_OctreeZone)
 
+# Modified by BTS to output to the proper directory.
 # Specify build paths
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${OGRE_BINARY_DIR}/lib")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${OGRE_BINARY_DIR}/lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${OGRE_BINARY_DIR}/bin")
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${OGRE_BINARY_DIR}/lib")
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${OGRE_BINARY_DIR}/lib")
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${OGRE_BINARY_DIR}/bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${Ogre_BINARY_DIR}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${Ogre_BINARY_DIR}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${Ogre_BINARY_DIR}")
 if (WIN32 OR APPLE)
   if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     # We don't want to install in default system location, install is really for the SDK, so call it that
@@ -269,11 +278,41 @@ option(OGRE_BUILD_COMPONENT_RTSHADERSYSTEM "Build RTShader System component" TRU
 cmake_dependent_option(OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS "Build RTShader System FFP core shaders" TRUE "OGRE_BUILD_COMPONENT_RTSHADERSYSTEM" FALSE)
 cmake_dependent_option(OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS "Build RTShader System extensions shaders" TRUE "OGRE_BUILD_COMPONENT_RTSHADERSYSTEM" FALSE)
 
-option(OGRE_BUILD_SAMPLES "Build Ogre demos" TRUE)
-cmake_dependent_option(OGRE_BUILD_TOOLS "Build the command-line tools" TRUE "NOT OGRE_BUILD_PLATFORM_APPLE_IOS;NOT SYMBIAN" FALSE)
-cmake_dependent_option(OGRE_BUILD_XSIEXPORTER "Build the Softimage exporter" FALSE "Softimage_FOUND" FALSE)
-option(OGRE_BUILD_TESTS "Build the unit tests & PlayPen" FALSE)
+#option(OGRE_BUILD_SAMPLES "Build Ogre demos" TRUE)
+#cmake_dependent_option(OGRE_BUILD_TOOLS "Build the command-line tools" TRUE "NOT OGRE_BUILD_PLATFORM_APPLE_IOS;NOT SYMBIAN" FALSE)
+#cmake_dependent_option(OGRE_BUILD_XSIEXPORTER "Build the Softimage exporter" FALSE "Softimage_FOUND" FALSE)
+#option(OGRE_BUILD_TESTS "Build the unit tests & PlayPen" FALSE)
+set(OGRE_BUILD_SAMPLES FALSE)
+set(OGRE_BUILD_TOOLS FALSE)
+set(OGRE_BUILD_XSIEXPORTER FALSE)
+set(OGRE_BUILD_TESTS FALSE)
 option(OGRE_CONFIG_DOUBLE "Use doubles instead of floats in Ogre" FALSE)
+
+mark_as_advanced(
+	OGRE_STATIC
+	OGRE_BUILD_RENDERSYSTEM_D3D9
+	OGRE_BUILD_RENDERSYSTEM_D3D11
+	OGRE_BUILD_RENDERSYSTEM_GL
+	OGRE_BUILD_RENDERSYSTEM_GLES
+	OGRE_BUILD_RENDERSYSTEM_GLES2
+	OGRE_BUILD_PLATFORM_APPLE_IOS
+	OGRE_BUILD_PLATFORM_NACL
+	OGRE_BUILD_PLUGIN_BSP
+	OGRE_BUILD_PLUGIN_OCTREE
+	OGRE_BUILD_PLUGIN_PFX
+	OGRE_BUILD_PLUGIN_PCZ
+	OGRE_BUILD_COMPONENT_PAGING
+	OGRE_BUILD_COMPONENT_TERRAIN
+	OGRE_BUILD_COMPONENT_PROPERTY
+	OGRE_BUILD_PLUGIN_CG
+	OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
+	OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
+	OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS
+	OGRE_BUILD_SAMPLES
+	OGRE_BUILD_TOOLS
+	OGRE_BUILD_XSIEXPORTER
+	OGRE_BUILD_TESTS
+	OGRE_CONFIG_DOUBLE)
 
 if (SYMBIAN)
 # Symbian can only use the standard allocator
@@ -287,13 +326,17 @@ set(OGRE_CONFIG_ALLOCATOR 4 CACHE STRING
   4 - nedmalloc with pooling"
 )
 endif ()
+mark_as_advanced(OGRE_CONFIG_ALLOCATOR)
 
 cmake_dependent_option(OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR "STL containers in Ogre use the custom allocator" TRUE "NOT SYMBIAN" FALSE)
 option(OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR "Ogre String uses the custom allocator" FALSE)
 option(OGRE_CONFIG_MEMTRACK_DEBUG "Enable Ogre's memory tracker in debug mode" FALSE)
 option(OGRE_CONFIG_MEMTRACK_RELEASE "Enable Ogre's memory tracker in release mode" FALSE)
+mark_as_advanced(OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_MEMTRACK_DEBUG OGRE_CONFIG_MEMTRACK_RELEASE)
+
 # determine threading options
 include(PrepareThreadingOptions)
+
 cmake_dependent_option(OGRE_CONFIG_ENABLE_FREEIMAGE "Build FreeImage codec. If you disable this option, you need to provide your own image handling codecs." TRUE "FreeImage_FOUND" FALSE)
 option(OGRE_CONFIG_ENABLE_DDS "Build DDS codec." TRUE)
 option(OGRE_CONFIG_ENABLE_PVRTC "Build PVRTC codec." FALSE)
@@ -303,13 +346,21 @@ option(OGRE_CONFIG_NEW_COMPILERS "Use the new script compilers." TRUE)
 cmake_dependent_option(OGRE_CONFIG_ENABLE_GLES2_CG_SUPPORT "Enable Cg support to ES 2 render system" FALSE "OGRE_BUILD_RENDERSYSTEM_GLES2" FALSE)
 cmake_dependent_option(OGRE_CONFIG_ENABLE_GLES2_GLSL_OPTIMISER "Enable GLSL optimiser use in GLES 2 render system" FALSE "OGRE_BUILD_RENDERSYSTEM_GLES2" FALSE)
 cmake_dependent_option(OGRE_USE_BOOST "Use Boost extensions" TRUE "Boost_FOUND" FALSE)
+
 # Customise what to install
-option(OGRE_INSTALL_SAMPLES "Install Ogre demos." FALSE)
-option(OGRE_INSTALL_TOOLS "Install Ogre tools." TRUE)
-option(OGRE_INSTALL_DOCS "Install documentation." FALSE)
-option(OGRE_INSTALL_SAMPLES_SOURCE "Install samples source files." FALSE)
-cmake_dependent_option(OGRE_INSTALL_PDB "Install debug pdb files" FALSE "MSVC" FALSE)
-cmake_dependent_option(OGRE_FULL_RPATH "Build executables with the full required RPATH to run from their install location." FALSE "NOT WIN32" FALSE)
+# option(OGRE_INSTALL_SAMPLES "Install Ogre demos." FALSE)
+# option(OGRE_INSTALL_TOOLS "Install Ogre tools." TRUE)
+# option(OGRE_INSTALL_DOCS "Install documentation." FALSE)
+# option(OGRE_INSTALL_SAMPLES_SOURCE "Install samples source files." FALSE)
+# cmake_dependent_option(OGRE_INSTALL_PDB "Install debug pdb files" FALSE "MSVC" FALSE)
+# cmake_dependent_option(OGRE_FULL_RPATH "Build executables with the full required RPATH to run from their install location." FALSE "NOT WIN32" FALSE)
+set(OGRE_INSTALL_SAMPLES FALSE)
+set(OGRE_INSTALL_TOOLS FALSE)
+set(OGRE_INSTALL_DOCS FALSE)
+set(OGRE_INSTALL_SAMPLES_SOURCE FALSE)
+set(OGRE_INSTALL_PDB FALSE)
+set(OGRE_FULL_RPATH FALSE)
+
 option(OGRE_PROFILING "Enable internal profiling support." FALSE)
 cmake_dependent_option(OGRE_CONFIG_STATIC_LINK_CRT "Statically link the MS CRT dlls (msvcrt)" FALSE "MSVC" FALSE)
 set(OGRE_LIB_DIRECTORY "lib${LIB_SUFFIX}" CACHE STRING "Install path for libraries, e.g. 'lib64' on some 64-bit Linux distros.")
@@ -319,6 +370,7 @@ set(OGRE_LIB_DIRECTORY "lib${LIB_SUFFIX}" CACHE STRING "Install path for librari
 # to potentially speed up the compilation.
 option(OGRE_UNITY_BUILD "Enable unity build for Ogre." FALSE)
 set(OGRE_UNITY_FILES_PER_UNIT "50" CACHE STRING "Number of files per compilation unit in Unity build.")
+mark_as_advanced(OGRE_UNITY_BUILD OGRE_UNITY_FILES_PER_UNIT)
 
 if (SYMBIAN)
 SET (CMAKE_SYMBIAN_UID_3 "0xA0007218" CACHE STRING 
@@ -364,6 +416,10 @@ include(ConfigureBuild)
 # install resource files
 include(InstallResources)
 
+# Added by BTS
+# Setup the dependancies for ogre
+add_subdirectory(Dependencies)
+
 # Setup OgreMain project
 add_subdirectory(OgreMain)
 
@@ -385,7 +441,7 @@ if (OGRE_BUILD_TESTS)
 endif ()
 
 # Setup samples
-add_subdirectory(Samples) 
+#add_subdirectory(Samples) 
 
 # Setup command-line tools
 if (OGRE_BUILD_TOOLS)
@@ -402,7 +458,7 @@ add_subdirectory(Docs)
 
 # Install media files
 if (OGRE_INSTALL_SAMPLES OR OGRE_INSTALL_SAMPLES_SOURCE)
-  add_subdirectory(Samples/Media)
+  #add_subdirectory(Samples/Media)
 endif ()
 
 # Install CMake modules
