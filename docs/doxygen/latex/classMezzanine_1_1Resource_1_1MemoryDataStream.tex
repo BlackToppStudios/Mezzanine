@@ -1,0 +1,544 @@
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream}{
+\subsection{Mezzanine::Resource::MemoryDataStream Class Reference}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream}\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+}
+
+
+This represents a stream to a buffer in memory.  
+
+
+
+
+{\ttfamily \#include $<$resourcedatastream.h$>$}
+
+Inheritance diagram for Mezzanine::Resource::MemoryDataStream:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMezzanine_1_1Resource_1_1MemoryDataStream}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a34a16a7e6be93233073c9af87fd26a00}{MemoryDataStream} (const size\_\-t \&BufferSize, bool FreeOnClose=true, bool ReadOnly=false)
+\begin{DoxyCompactList}\small\item\em Buffer creation constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a395645ef567a4d807bc835f4fa96206a}{MemoryDataStream} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, const size\_\-t \&BufferSize, bool FreeOnClose=true, bool ReadOnly=false)
+\begin{DoxyCompactList}\small\item\em Named buffer creation constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a55987263974a0ceeceeda7ddcc52ed1d}{MemoryDataStream} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Name, void $\ast$Buffer, const size\_\-t \&BufferSize, bool FreeOnClose=false, bool ReadOnly=false)
+\begin{DoxyCompactList}\small\item\em Named pre-\/made buffer constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a018900010dcbc7ebca89ec6c00157fd6}{MemoryDataStream} (void $\ast$Buffer, const size\_\-t \&BufferSize, bool FreeOnClose=false, bool ReadOnly=false)
+\begin{DoxyCompactList}\small\item\em Pre-\/made buffer constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_aadcb282b8e6c80f12331c388c001fb49}{
+virtual \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_aadcb282b8e6c80f12331c388c001fb49}{$\sim$MemoryDataStream} ()}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_aadcb282b8e6c80f12331c388c001fb49}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a78b5d296a5c483cd9a1b15e3c5b0ef28}{Close} ()
+\item 
+virtual bool \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a42397450c2f66c07e21bc4aed30c323f}{EoF} () const 
+\item 
+\hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} $\ast$ \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a10bc659bb3deb8ace7f4fa11b26567f6}{GetBufferEnd} () const 
+\begin{DoxyCompactList}\small\item\em Gets a pointer to the end of the memory buffer used by this stream. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} $\ast$ \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a1e18cd84d11385321f1cf9dd03dc6519}{GetBufferPosition} () const 
+\begin{DoxyCompactList}\small\item\em Gets a pointer to the current position in the memory buffer used by this stream. \item\end{DoxyCompactList}\item 
+\hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} $\ast$ \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a3fde0e9b62586a1380bab2a227dd756a}{GetBufferStart} () const 
+\begin{DoxyCompactList}\small\item\em Gets a pointer to the start of the memory buffer used by this stream. \item\end{DoxyCompactList}\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a3b054bb40739588b40b6b04e92c31621}{Read} (void $\ast$Buffer, const size\_\-t \&Count)
+\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_aee8d813b5f3d2596fde2bd45a7882ae0}{ReadLine} (\hyperlink{namespaceMezzanine_ad5147a419db7627ee552a2b582f1052d}{Character} $\ast$Buffer, size\_\-t MaxCount, const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Delim=\char`\"{}$\backslash$n\char`\"{})
+\item 
+virtual void \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_af93bbd902e5960e046d566f5061064b7}{Seek} (const size\_\-t \&Position)
+\item 
+void \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a4e6dbb4c89ff2512dbffa69852a06fda}{SetFreeOnClose} (bool FreeOnClose)
+\begin{DoxyCompactList}\small\item\em Sets whether or not you want this stream to free the memory buffer when it closes. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a1864addc676c5832e08704bd8341859f}{Skip} (const \hyperlink{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{Integer} \&Count)
+\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_af6dedcd3c5301e1631917664efabe3cb}{SkipLine} (const \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \&Delim=\char`\"{}$\backslash$n\char`\"{})
+\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_aac15b613b78cd970e01d3592c7f2efc9}{Tell} ()
+\item 
+virtual size\_\-t \hyperlink{classMezzanine_1_1Resource_1_1MemoryDataStream_a5c1e161caf74c74d7d6f9c2d0d5718b1}{Write} (const void $\ast$Buffer, const size\_\-t \&Count)
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a4bb72ac6ff5f54abfc5bcf675374927f}{
+\hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} $\ast$ {\bfseries BufferEnd}}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a4bb72ac6ff5f54abfc5bcf675374927f}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a7631501e3e159b8113fc00fb29142d2f}{
+\hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} $\ast$ {\bfseries BufferPos}}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a7631501e3e159b8113fc00fb29142d2f}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_aaac73aa94fe15d6c2846a935b06688a3}{
+\hyperlink{namespaceMezzanine_aa5f38583d9025e05fa33d6e32e97b457}{UInt8} $\ast$ {\bfseries BufferStart}}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_aaac73aa94fe15d6c2846a935b06688a3}
+
+\item 
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a0ebe10faf8b63b5ebf4e4632f64f5d18}{
+bool {\bfseries FreeBuffer}}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a0ebe10faf8b63b5ebf4e4632f64f5d18}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This represents a stream to a buffer in memory. 
+
+Definition at line 156 of file resourcedatastream.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a34a16a7e6be93233073c9af87fd26a00}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!MemoryDataStream@{MemoryDataStream}}
+\index{MemoryDataStream@{MemoryDataStream}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{MemoryDataStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Resource::MemoryDataStream::MemoryDataStream (
+\begin{DoxyParamCaption}
+\item[{const size\_\-t \&}]{BufferSize, }
+\item[{bool}]{FreeOnClose = {\ttfamily true}, }
+\item[{bool}]{ReadOnly = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a34a16a7e6be93233073c9af87fd26a00}
+
+
+Buffer creation constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em BufferSize} & The size of the buffer to be created. \\
+\hline
+{\em FreeOnClose} & If true this will delete the memory buffer when the stream is closed. \\
+\hline
+{\em ReadOnly} & If true, writing operations on this stream will be prohibited. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 231 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a395645ef567a4d807bc835f4fa96206a}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!MemoryDataStream@{MemoryDataStream}}
+\index{MemoryDataStream@{MemoryDataStream}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{MemoryDataStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Resource::MemoryDataStream::MemoryDataStream (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const size\_\-t \&}]{BufferSize, }
+\item[{bool}]{FreeOnClose = {\ttfamily true}, }
+\item[{bool}]{ReadOnly = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a395645ef567a4d807bc835f4fa96206a}
+
+
+Named buffer creation constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the stream. \\
+\hline
+{\em BufferSize} & The size of the buffer to be created. \\
+\hline
+{\em FreeOnClose} & If true this will delete the memory buffer when the stream is closed. \\
+\hline
+{\em ReadOnly} & If true, writing operations on this stream will be prohibited. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a018900010dcbc7ebca89ec6c00157fd6}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!MemoryDataStream@{MemoryDataStream}}
+\index{MemoryDataStream@{MemoryDataStream}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{MemoryDataStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Resource::MemoryDataStream::MemoryDataStream (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{Buffer, }
+\item[{const size\_\-t \&}]{BufferSize, }
+\item[{bool}]{FreeOnClose = {\ttfamily false}, }
+\item[{bool}]{ReadOnly = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a018900010dcbc7ebca89ec6c00157fd6}
+
+
+Pre-\/made buffer constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & The premade buffer to stream from. \\
+\hline
+{\em BufferSize} & The size of the buffer to stream to/from. \\
+\hline
+{\em FreeOnClose} & If true this will delete the memory buffer when the stream is closed. \\
+\hline
+{\em ReadOnly} & If true, writing operations on this stream will be prohibited. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 257 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a55987263974a0ceeceeda7ddcc52ed1d}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!MemoryDataStream@{MemoryDataStream}}
+\index{MemoryDataStream@{MemoryDataStream}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{MemoryDataStream}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::Resource::MemoryDataStream::MemoryDataStream (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{void $\ast$}]{Buffer, }
+\item[{const size\_\-t \&}]{BufferSize, }
+\item[{bool}]{FreeOnClose = {\ttfamily false}, }
+\item[{bool}]{ReadOnly = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a55987263974a0ceeceeda7ddcc52ed1d}
+
+
+Named pre-\/made buffer constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the stream. \\
+\hline
+{\em Buffer} & The premade buffer to stream from. \\
+\hline
+{\em BufferSize} & The size of the buffer to stream to/from. \\
+\hline
+{\em FreeOnClose} & If true this will delete the memory buffer when the stream is closed. \\
+\hline
+{\em ReadOnly} & If true, writing operations on this stream will be prohibited. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 269 of file resourcedatastream.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a78b5d296a5c483cd9a1b15e3c5b0ef28}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!Close@{Close}}
+\index{Close@{Close}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{Close}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Resource::MemoryDataStream::Close (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a78b5d296a5c483cd9a1b15e3c5b0ef28}
+Closes the stream to the resource.  
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aff1a3ceed4d6db62361544440c1bac32}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 413 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a42397450c2f66c07e21bc4aed30c323f}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!EoF@{EoF}}
+\index{EoF@{EoF}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{EoF}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::Resource::MemoryDataStream::EoF (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a42397450c2f66c07e21bc4aed30c323f}
+Gets whether or not the current position is at the end of the file/stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the current position has reached the end of the stream, false otherwise. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a606ec8602a93ddda483be1454f7e98a4}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 408 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a10bc659bb3deb8ace7f4fa11b26567f6}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!GetBufferEnd@{GetBufferEnd}}
+\index{GetBufferEnd@{GetBufferEnd}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{GetBufferEnd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt8} $\ast$ Mezzanine::Resource::MemoryDataStream::GetBufferEnd (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a10bc659bb3deb8ace7f4fa11b26567f6}
+
+
+Gets a pointer to the end of the memory buffer used by this stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the end of the memory buffer. 
+\end{DoxyReturn}
+
+
+Definition at line 299 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a1e18cd84d11385321f1cf9dd03dc6519}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!GetBufferPosition@{GetBufferPosition}}
+\index{GetBufferPosition@{GetBufferPosition}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{GetBufferPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt8} $\ast$ Mezzanine::Resource::MemoryDataStream::GetBufferPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a1e18cd84d11385321f1cf9dd03dc6519}
+
+
+Gets a pointer to the current position in the memory buffer used by this stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the current position in the memory buffer. 
+\end{DoxyReturn}
+
+
+Definition at line 294 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a3fde0e9b62586a1380bab2a227dd756a}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!GetBufferStart@{GetBufferStart}}
+\index{GetBufferStart@{GetBufferStart}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{GetBufferStart}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UInt8} $\ast$ Mezzanine::Resource::MemoryDataStream::GetBufferStart (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a3fde0e9b62586a1380bab2a227dd756a}
+
+
+Gets a pointer to the start of the memory buffer used by this stream. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the start of the memory buffer. 
+\end{DoxyReturn}
+
+
+Definition at line 289 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a3b054bb40739588b40b6b04e92c31621}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!Read@{Read}}
+\index{Read@{Read}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{Read}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::MemoryDataStream::Read (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{Buffer, }
+\item[{const size\_\-t \&}]{Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a3b054bb40739588b40b6b04e92c31621}
+Reads data from the stream, copying to a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & The buffer to place data from the stream. \\
+\hline
+{\em Count} & The number of bytes to read from the stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes read. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_ad9b597f7d4561a7425b96bb497e6dce2}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 353 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_aee8d813b5f3d2596fde2bd45a7882ae0}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!ReadLine@{ReadLine}}
+\index{ReadLine@{ReadLine}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{ReadLine}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::MemoryDataStream::ReadLine (
+\begin{DoxyParamCaption}
+\item[{{\bf Character} $\ast$}]{Buffer, }
+\item[{size\_\-t}]{MaxCount, }
+\item[{const {\bf String} \&}]{Delim = {\ttfamily \char`\"{}$\backslash$n\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_aee8d813b5f3d2596fde2bd45a7882ae0}
+Reads a single line from a string. 
+
+\begin{DoxyRemark}{Remarks}
+This function should only be used if a file was opened in binary mode. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & Pointer to the buffer to copy to. \\
+\hline
+{\em MaxCount} & The maximum number of bytes to read. Usually you want this to be your buffer size. \\
+\hline
+{\em Delim} & The character that marks the end of a line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes actually read, not including the Delimiter. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1Resource_1_1DataStream_ae8efbf678f876fb838632a9f7973b2f8}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 312 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_af93bbd902e5960e046d566f5061064b7}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!Seek@{Seek}}
+\index{Seek@{Seek}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{Seek}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Resource::MemoryDataStream::Seek (
+\begin{DoxyParamCaption}
+\item[{const size\_\-t \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_af93bbd902e5960e046d566f5061064b7}
+Sets the current position in the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & The position in the stream to be set as current. \\
+\hline
+\end{DoxyParams}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a93e869b3f6bb6f8cad75522f01d68e78}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 395 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a4e6dbb4c89ff2512dbffa69852a06fda}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!SetFreeOnClose@{SetFreeOnClose}}
+\index{SetFreeOnClose@{SetFreeOnClose}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{SetFreeOnClose}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Resource::MemoryDataStream::SetFreeOnClose (
+\begin{DoxyParamCaption}
+\item[{bool}]{FreeOnClose}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a4e6dbb4c89ff2512dbffa69852a06fda}
+
+
+Sets whether or not you want this stream to free the memory buffer when it closes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em True} & if you want this stream to free the buffer when it closes, false if you want it preserved. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 304 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a1864addc676c5832e08704bd8341859f}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!Skip@{Skip}}
+\index{Skip@{Skip}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{Skip}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::Resource::MemoryDataStream::Skip (
+\begin{DoxyParamCaption}
+\item[{const {\bf Integer} \&}]{Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a1864addc676c5832e08704bd8341859f}
+Advances the position in the stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Count} & The number of bytes to skip/advance in the stream from the current position. \\
+\hline
+\end{DoxyParams}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a5ba58755ae72eae04678c42e5e2c22b9}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 386 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_af6dedcd3c5301e1631917664efabe3cb}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!SkipLine@{SkipLine}}
+\index{SkipLine@{SkipLine}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{SkipLine}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::MemoryDataStream::SkipLine (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Delim = {\ttfamily \char`\"{}$\backslash$n\char`\"{}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_af6dedcd3c5301e1631917664efabe3cb}
+Moves the current position to the start of the next line. 
+
+\begin{DoxyRemark}{Remarks}
+This function should only be used if a file was opened in binary mode. 
+\end{DoxyRemark}
+
+\begin{DoxyParams}{Parameters}
+{\em Delim} & The character that marks the end of a line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes skipped. 
+\end{DoxyReturn}
+ 
+
+Reimplemented from \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a8b55a5a1fc3ade2eeb5966a9563ec3ec}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 339 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_aac15b613b78cd970e01d3592c7f2efc9}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!Tell@{Tell}}
+\index{Tell@{Tell}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{Tell}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::MemoryDataStream::Tell (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_aac15b613b78cd970e01d3592c7f2efc9}
+Gets the offset of the current position from the start position. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes the current position is from the beginning of the stream. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_a0fa4e7d3297ffead34f4aed868dcb633}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 403 of file resourcedatastream.cpp.
+
+\hypertarget{classMezzanine_1_1Resource_1_1MemoryDataStream_a5c1e161caf74c74d7d6f9c2d0d5718b1}{
+\index{Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}!Write@{Write}}
+\index{Write@{Write}!Mezzanine::Resource::MemoryDataStream@{Mezzanine::Resource::MemoryDataStream}}
+\paragraph[{Write}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t Mezzanine::Resource::MemoryDataStream::Write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{Buffer, }
+\item[{const size\_\-t \&}]{Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Resource_1_1MemoryDataStream_a5c1e161caf74c74d7d6f9c2d0d5718b1}
+Writes data from the stream, copying from the provided buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Buffer} & The buffer of data to be written. \\
+\hline
+{\em Count} & The number of bytes to write from the buffer to the stream. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of bytes written. 
+\end{DoxyReturn}
+ 
+
+Implements \hyperlink{classMezzanine_1_1Resource_1_1DataStream_aafdbe4aeb8e8743d514fbd1075a30859}{Mezzanine::Resource::DataStream}.
+
+
+
+Definition at line 369 of file resourcedatastream.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+resourcedatastream.h\item 
+resourcedatastream.cpp\end{DoxyCompactItemize}

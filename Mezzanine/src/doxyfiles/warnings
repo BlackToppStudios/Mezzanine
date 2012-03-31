@@ -1,8 +1,9 @@
+/home/sqeaky/Mezzanine/Mezzanine/src/smartptr.h:52: warning: the name `This' supplied as the second argument in the \file statement is not an input file
 /home/sqeaky/Mezzanine/Mezzanine/src/uitextureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uibasicrenderable.h:62: warning: Compound Mezzanine::UI::BasicRenderable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/matrix4x4.h:58: warning: Compound Mezzanine::Matrix4x4 is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:69: warning: Compound Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:68: warning: Compound Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/uiscreen.cpp:86: warning: Compound Mezzanine::UI::OgreVertex is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/physicsmanager.h:89: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:86: warning: Compound Mezzanine::Scripting::ScriptCompilable is not documented.
@@ -23,9 +24,11 @@
 /home/sqeaky/Mezzanine/Mezzanine/src/xmldoc.h:1102: warning: explicit link request to 'wstream' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/xmldoc.h:1096: warning: explicit link request to 'x' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/xmldoc.h:1096: warning: explicit link request to 'x' could not be resolved
-todo:122: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
-todo:125: warning: explicit link request to 'TS_World' could not be resolved
-todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
+todo:70: warning: explicit link request to 'DS_Read' could not be resolved
+todo:73: warning: explicit link request to 'DS_Read' could not be resolved
+todo:128: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
+todo:131: warning: explicit link request to 'TS_World' could not be resolved
+todo:131: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/physicsmanager.cpp:273: warning: Member AlgoList (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/actorphysicssettings.h:67: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/vector3.cpp:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
@@ -670,6 +673,15 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfile.h.cpp:133: warning: Member BulletFilePtr(const BulletFilePtr &r) (function) of class Mezzanine::internal::BulletFilePtr is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/internalbulletfile.h.cpp:150: warning: Member operator=(const Ogre::ResourcePtr &r) (function) of class Mezzanine::internal::BulletFilePtr is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/worldobjectgraphicssettings.cpp:87: warning: Member InternalWorldObjectGraphicsSettings(Ogre::Entity *GraphicsObject) (function) of class Mezzanine::internal::InternalWorldObjectGraphicsSettings is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:239: warning: Member FileHandle (variable) of class Mezzanine::Resource::FileHandleDataStream is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:288: warning: Member FileStream (variable) of class Mezzanine::Resource::FileStreamDataStream is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:162: warning: Member BufferEnd (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:161: warning: Member BufferPos (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:160: warning: Member BufferStart (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:159: warning: Member FreeBuffer (variable) of class Mezzanine::Resource::MemoryDataStream is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:203: warning: argument 'True' of command @param is not found in the argument list of Mezzanine::Resource::MemoryDataStream::SetFreeOnClose(bool FreeOnClose)
+/home/sqeaky/Mezzanine/Mezzanine/src/resourcedatastream.h:203: warning: The following parameters of Mezzanine::Resource::MemoryDataStream::SetFreeOnClose(bool FreeOnClose) are not documented:
+  parameter 'FreeOnClose'
 /home/sqeaky/Mezzanine/Mezzanine/src/resourcetextsettingsfile.h:60: warning: Member SectionIterator (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/resourcetextsettingsfile.h:59: warning: Member SettingsIterator (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/resourcetextsettingsfile.h:57: warning: Member SettingsMap (typedef) of class Mezzanine::Resource::TextSettingsFile is not documented.
@@ -678,7 +690,6 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/resourcetextsettingsfile.h:63: warning: Member Sections (variable) of class Mezzanine::Resource::TextSettingsFile is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/scriptinglua51.cpp:65: warning: Member PrintErrorMessageOrNothing(int ErrorCode) (function) of namespace Mezzanine::Scripting is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/scriptinglua51.cpp:90: warning: Member test() (function) of namespace Mezzanine::Scripting is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/script.h:67: warning: Member AddArgument(ScriptArgument *Arg)=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:69: warning: Member ClearArguments()=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:82: warning: Member Execute()=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:71: warning: Member GetArgument(Whole ArgNumber)=0 (function) of class Mezzanine::Scripting::Script is not documented.
@@ -690,11 +701,11 @@ todo:125: warning: explicit link request to 'Neg_Unit_Z()' could not be resolved
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:76: warning: Member IsCompiled()=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:68: warning: Member RemoveArgument(ScriptArgument *Arg)=0 (function) of class Mezzanine::Scripting::Script is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:73: warning: Member SetCode(String Code)=0 (function) of class Mezzanine::Scripting::Script is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:61: warning: Member ToString()=0 (function) of class Mezzanine::Scripting::ScriptArgument is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:75: warning: Member ScriptArgumentSpecific(T _Datum) (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:84: warning: Member GetValue() (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:81: warning: Member SetValue(T _Datum) (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
-/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:78: warning: Member ToString() (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:60: warning: Member ToString()=0 (function) of class Mezzanine::Scripting::ScriptArgument is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:74: warning: Member ScriptArgumentSpecific(T _Datum) (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:83: warning: Member GetValue() (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:80: warning: Member SetValue(T _Datum) (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
+/home/sqeaky/Mezzanine/Mezzanine/src/scriptargument.h:77: warning: Member ToString() (function) of class Mezzanine::Scripting::ScriptArgumentSpecific is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:96: warning: Member Compile()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:97: warning: Member Execute()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.
 /home/sqeaky/Mezzanine/Mezzanine/src/script.h:89: warning: Member GetByteCode()=0 (function) of class Mezzanine::Scripting::ScriptCompilable is not documented.

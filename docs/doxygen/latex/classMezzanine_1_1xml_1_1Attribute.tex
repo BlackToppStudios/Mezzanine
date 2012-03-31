@@ -172,7 +172,7 @@ Attempts to convert the value of the attribute to a double and returns the resul
 If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000058}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000060}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -193,7 +193,7 @@ Attempts to convert the value of the attribute to a float and returns the result
 If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000059}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000061}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -214,7 +214,7 @@ Attempts to convert the value of the attribute to an int and returns the results
 If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000056}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000058}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -298,7 +298,7 @@ Attempts to convert the value of the attribute to an unsigned int and returns th
 If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000057}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000059}{Todo}]Update \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -753,7 +753,7 @@ Convert rhs to a character array that contains the meaning of rhs, then use that
 True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000052}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000054}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 \hypertarget{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}{
@@ -778,7 +778,7 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000049}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000051}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 \hypertarget{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}{
@@ -803,7 +803,7 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000050}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000052}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 \hypertarget{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}{
@@ -828,7 +828,7 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000051}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000053}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 \hypertarget{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{
@@ -853,7 +853,7 @@ Set the value of this.
 True if successful, returns false if this is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000048}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000050}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 \hypertarget{classMezzanine_1_1xml_1_1Attribute_ab4ab2fb15cd198cd8527d796583cf994}{
@@ -881,7 +881,7 @@ True if successful, returns false if \hyperlink{classMezzanine_1_1xml_1_1Attribu
 You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the \char`\"{}$>$\char`\"{} character, then you can reinsert it later 
 \end{DoxyWarning}
 \begin{Desc}
-\item[\hyperlink{todo__todo000053}{Todo}]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. \end{Desc}
+\item[\hyperlink{todo__todo000055}{Todo}]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. \end{Desc}
 
 
 Definition at line 446 of file xml.h.

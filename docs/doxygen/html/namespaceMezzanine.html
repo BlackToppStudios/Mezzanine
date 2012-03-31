@@ -96,6 +96,11 @@ Namespaces</h2></td></tr>
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is used for internal helper classes, and in general it should be ignored by game developers. </p>
 <br/></td></tr>
 </p>
+<tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Resource.html">Resource</a></td></tr>
+
+<p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is for all the classes belonging to the non-network I/O Subsystem. </p>
+<br/></td></tr>
+</p>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1Scripting.html">Scripting</a></td></tr>
 
 <p><tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>This namespace is for all the classes belonging to the <a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem.">Scripting</a> Subsystem. </p>
@@ -176,6 +181,8 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ConeTwistConstraint.html">ConeTwistConstraint</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ConvexHullCollisionShape.html">ConvexHullCollisionShape</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple convex shape built from a low number of points in local space.  <a href="classMezzanine_1_1ConvexHullCollisionShape.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CountedPtr.html">CountedPtr</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A single threaded referencing counting pointer.  <a href="classMezzanine_1_1CountedPtr.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1CylinderCollisionShape.html">CylinderCollisionShape</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A cylinder physics shape.  <a href="classMezzanine_1_1CylinderCollisionShape.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html">DeSerializer</a></td></tr>
@@ -286,6 +293,8 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to indicate a line with one end.  <a href="classMezzanine_1_1Ray.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1RayQueryTool.html">RayQueryTool</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This provides a number of optional tools for working with a <a class="el" href="classMezzanine_1_1World.html" title="This is the main entry point for the entire library.">Mezzanine::World</a>.  <a href="classMezzanine_1_1RayQueryTool.html#_details">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ReferenceCounter.html">ReferenceCounter</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">This exists once per object managed by a group of shared pointer to track items in memory.  <a href="structMezzanine_1_1ReferenceCounter.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceInputStream.html">ResourceInputStream</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A stream from a file, can read from zip files as well.  <a href="classMezzanine_1_1ResourceInputStream.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ResourceManager.html">ResourceManager</a></td></tr>
@@ -613,7 +622,7 @@ Variables</h2></td></tr>
 <p>A datatype to represent one character. </p>
 <p>This should be a char if String is an std::string. The XML parser expects this to be either char or wchar_t and has not be test with external types. The XML Parser expects XML_WCHAR_MODE to be defined if wchar_t is used. A remarked definition of this exists near the Character typedef in <a class="el" href="datatypes_8h_source.html">datatypes.h</a> </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00153">153</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00152">152</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -631,7 +640,7 @@ Variables</h2></td></tr>
 <p>A Datatype used to a series of imutable characters. </p>
 <p>This is a typedef to const String, but could change. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00146">146</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00145">145</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -649,7 +658,7 @@ Variables</h2></td></tr>
 <p>An 8-bit integer. </p>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Verify that these "fixed-width" type-defs work on mobiles and tablets.</dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00079">79</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00078">78</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -667,7 +676,7 @@ Variables</h2></td></tr>
 <p>A datatype use to represent any integer close to. </p>
 <p>This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00130">130</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00129">129</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +694,7 @@ Variables</h2></td></tr>
 <p>This is an internal datatype use to communicate with the User input Subsystem. </p>
 <p>This is a typedef to SDL_Event. See the SDL Documentation for more details </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00160">160</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00163">163</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -703,7 +712,7 @@ Variables</h2></td></tr>
 <p>A Datatype used to represent a real floating point number. </p>
 <p>This Datatype is currently a typedef to a float, This is to match our compilations of <a class="el" href="namespaceOgre.html">Ogre</a> (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00119">119</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00118">118</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -721,7 +730,7 @@ Variables</h2></td></tr>
 <p>A Datatype used to a series of characters. </p>
 <p>This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00136">136</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00135">135</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -739,7 +748,7 @@ Variables</h2></td></tr>
 <p>A Datatype used to represent an postive integer numbers. </p>
 <p>This is a typedef to unsigned Long. but could be smaller in some situations </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00124">124</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00123">123</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -757,7 +766,7 @@ Variables</h2></td></tr>
 <p>A wide version of the String typedef. </p>
 <p>Wide strings are seldom used, but often come in handy when dealing with Unicode strings. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00141">141</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00140">140</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1499,7 +1508,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A double with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Typedefs could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00258">258</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00261">261</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1530,7 +1539,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A float with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Real Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00245">245</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00248">248</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1561,7 +1570,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00205">205</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00208">208</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1591,7 +1600,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Integer with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00191">191</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00194">194</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1621,7 +1630,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Real with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00231">231</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00234">234</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1651,7 +1660,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A String with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00169">169</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00172">172</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1682,7 +1691,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An unsigned int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00219">219</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00222">222</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1712,7 +1721,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Whole with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00179">179</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00182">182</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1751,6 +1760,6 @@ template&lt;class T &gt; </div>
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 18 2012 16:54:44 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Mar 28 2012 02:00:22 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

@@ -173,6 +173,8 @@ class UnitTestGroup : public TestDataStorage
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
             {}
 
+        // This is used to control the behavior of the function AddTestResult(), this can optionally be passed as a third argument
+        // to prioritize whether newer vs older or0 successful vs failing results are more important
         enum OverWriteResults{
             OverWriteIfLessSuccessful,
             OverWriteIfMoreSuccessful,

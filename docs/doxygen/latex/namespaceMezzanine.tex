@@ -34,6 +34,12 @@ namespace \hyperlink{namespaceMezzanine_1_1internal}{internal}
 \begin{DoxyCompactList}\small\item\em This namespace is used for internal helper classes, and in general it should be ignored by game developers. \item\end{DoxyCompactList}
 
 \item 
+namespace \hyperlink{namespaceMezzanine_1_1Resource}{Resource}
+
+
+\begin{DoxyCompactList}\small\item\em This namespace is for all the classes belonging to the non-\/network I/O Subsystem. \item\end{DoxyCompactList}
+
+\item 
 namespace \hyperlink{namespaceMezzanine_1_1Scripting}{Scripting}
 
 
@@ -119,6 +125,8 @@ class \hyperlink{classMezzanine_1_1ConeTwistConstraint}{ConeTwistConstraint}
 \item 
 class \hyperlink{classMezzanine_1_1ConvexHullCollisionShape}{ConvexHullCollisionShape}
 \begin{DoxyCompactList}\small\item\em A simple convex shape built from a low number of points in local space. \item\end{DoxyCompactList}\item 
+class \hyperlink{classMezzanine_1_1CountedPtr}{CountedPtr}
+\begin{DoxyCompactList}\small\item\em A single threaded referencing counting pointer. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1CylinderCollisionShape}{CylinderCollisionShape}
 \begin{DoxyCompactList}\small\item\em A cylinder physics shape. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1DeSerializer}{DeSerializer}
@@ -233,6 +241,8 @@ class \hyperlink{classMezzanine_1_1Ray}{Ray}
 \begin{DoxyCompactList}\small\item\em This is used to indicate a line with one end. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1RayQueryTool}{RayQueryTool}
 \begin{DoxyCompactList}\small\item\em This provides a number of optional tools for working with a \hyperlink{classMezzanine_1_1World}{Mezzanine::World}. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structMezzanine_1_1ReferenceCounter}{ReferenceCounter}
+\begin{DoxyCompactList}\small\item\em This exists once per object managed by a group of shared pointer to track items in memory. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1ResourceInputStream}{ResourceInputStream}
 \begin{DoxyCompactList}\small\item\em A stream from a file, can read from zip files as well. \item\end{DoxyCompactList}\item 
 class \hyperlink{classMezzanine_1_1ResourceManager}{ResourceManager}
@@ -559,7 +569,7 @@ A datatype to represent one character.
 
 This should be a char if String is an std::string. The XML parser expects this to be either char or wchar\_\-t and has not be test with external types. The XML Parser expects XML\_\-WCHAR\_\-MODE to be defined if wchar\_\-t is used. A remarked definition of this exists near the Character typedef in \hyperlink{datatypes_8h_source}{datatypes.h} 
 
-Definition at line 153 of file datatypes.h.
+Definition at line 152 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a63cd699ac54b73953f35ec9cfc05e506}{
 \index{Mezzanine@{Mezzanine}!ConstString@{ConstString}}
@@ -572,7 +582,7 @@ A Datatype used to a series of imutable characters.
 
 This is a typedef to const String, but could change. 
 
-Definition at line 146 of file datatypes.h.
+Definition at line 145 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_acbb048ee99aa07566d5a6eb33f5a2c2d}{
 \index{Mezzanine@{Mezzanine}!Int8@{Int8}}
@@ -587,7 +597,7 @@ An 8-\/bit integer.
 \item[\hyperlink{todo__todo000012}{Todo}]Verify that these \char`\"{}fixed-\/width\char`\"{} type-\/defs work on mobiles and tablets.\end{Desc}
 
 
-Definition at line 79 of file datatypes.h.
+Definition at line 78 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_ac3576e52af3c62d13dde94829e0c5465}{
 \index{Mezzanine@{Mezzanine}!Integer@{Integer}}
@@ -600,7 +610,7 @@ A datatype use to represent any integer close to.
 
 This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms 
 
-Definition at line 130 of file datatypes.h.
+Definition at line 129 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_ae8d4c0ab783af89a250b0225b75753e5}{
 \index{Mezzanine@{Mezzanine}!RawEvent@{RawEvent}}
@@ -613,7 +623,7 @@ This is an internal datatype use to communicate with the User input Subsystem.
 
 This is a typedef to SDL\_\-Event. See the SDL Documentation for more details 
 
-Definition at line 160 of file datatypes.h.
+Definition at line 163 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{
 \index{Mezzanine@{Mezzanine}!Real@{Real}}
@@ -626,7 +636,7 @@ A Datatype used to represent a real floating point number.
 
 This Datatype is currently a typedef to a float, This is to match our compilations of \hyperlink{namespaceOgre}{Ogre} (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. 
 
-Definition at line 119 of file datatypes.h.
+Definition at line 118 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{
 \index{Mezzanine@{Mezzanine}!String@{String}}
@@ -639,7 +649,7 @@ A Datatype used to a series of characters.
 
 This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. 
 
-Definition at line 136 of file datatypes.h.
+Definition at line 135 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_adcbb6ce6d1eb4379d109e51171e2e493}{
 \index{Mezzanine@{Mezzanine}!Whole@{Whole}}
@@ -652,7 +662,7 @@ A Datatype used to represent an postive integer numbers.
 
 This is a typedef to unsigned Long. but could be smaller in some situations 
 
-Definition at line 124 of file datatypes.h.
+Definition at line 123 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a08b3adb0d2632e4f6a454fdf3cf5efda}{
 \index{Mezzanine@{Mezzanine}!WideString@{WideString}}
@@ -665,7 +675,7 @@ A wide version of the String typedef.
 
 Wide strings are seldom used, but often come in handy when dealing with Unicode strings. 
 
-Definition at line 141 of file datatypes.h.
+Definition at line 140 of file datatypes.h.
 
 
 
@@ -1281,7 +1291,7 @@ A double with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
 
-Definition at line 258 of file datatypes.h.
+Definition at line 261 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a033b1e899e15516a76027b1090942d69}{
 \index{Mezzanine@{Mezzanine}!Tofloat@{Tofloat}}
@@ -1306,7 +1316,7 @@ A float with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
 
-Definition at line 245 of file datatypes.h.
+Definition at line 248 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_aadc9a78cb1529bed06ae6645aa64e26b}{
 \index{Mezzanine@{Mezzanine}!Toint@{Toint}}
@@ -1331,7 +1341,7 @@ An int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 205 of file datatypes.h.
+Definition at line 208 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a7105ab0353c89b20aff864c637b905d2}{
 \index{Mezzanine@{Mezzanine}!ToInteger@{ToInteger}}
@@ -1356,7 +1366,7 @@ An Integer with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 191 of file datatypes.h.
+Definition at line 194 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_af7cf17f4a378b989eacb874a6a879f41}{
 \index{Mezzanine@{Mezzanine}!ToReal@{ToReal}}
@@ -1381,7 +1391,7 @@ A Real with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 231 of file datatypes.h.
+Definition at line 234 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a206e6571c4a738a16f9d103205c235f8}{
 \index{Mezzanine@{Mezzanine}!ToString@{ToString}}
@@ -1406,7 +1416,7 @@ A String with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 169 of file datatypes.h.
+Definition at line 172 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a39068f48126065146fa64fe90e459382}{
 \index{Mezzanine@{Mezzanine}!Tounsignedint@{Tounsignedint}}
@@ -1431,7 +1441,7 @@ An unsigned int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 219 of file datatypes.h.
+Definition at line 222 of file datatypes.h.
 
 \hypertarget{namespaceMezzanine_a5df12bb5a875e3b8f8e28f2dd91a5304}{
 \index{Mezzanine@{Mezzanine}!ToWhole@{ToWhole}}
@@ -1456,7 +1466,7 @@ A Whole with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 179 of file datatypes.h.
+Definition at line 182 of file datatypes.h.
 
 
 

@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _smartptrtests_h
-#define _smartptrtests_h
+#ifndef _CountedPtrtests_h
+#define _CountedPtrtests_h
 
 #include "main.h"
 
@@ -51,41 +51,87 @@ class SmartPtrTests : public UnitTestGroup
         {
             if (RunAutomaticTests)
             {
-                TestResult temp = Success;
+                AddTestResult("CountedPtr::Create", Unknown);
+                AddTestResult("CountedPtr::ScopedChanged", Unknown);
+                AddTestResult("CountedPtr::operator=", Unknown);
+                AddTestResult("CountedPtr::CopyConstructor", Unknown);
+                AddTestResult("CountedPtr::operator->", Unknown);
+                AddTestResult("CountedPtr::operator*", Unknown);
 
-                std::cout << std::endl << "Creating A Vector3 in a counted pointed." << std::endl;
-                Mezzanine::CountedPtr<Mezzanine::Vector3> Stabby (new Mezzanine::Vector3);
-                std::cout << "Count of references: " << Stabby.use_count() << std::endl;
-                if (1 == Stabby.use_count())
+                std::cout << std::endl << "Creating A Vector3 in a counted pointer: VecPtr" << std::endl;
+                Mezzanine::CountedPtr<Mezzanine::Vector3> VecPtr (new Mezzanine::Vector3(3.0,4.0,5.0));
+                std::cout << "Count of references: " << VecPtr.use_count() << std::endl;
+                if (1 == VecPtr.use_count())
                 {
-                    AddTestResult("SmartPtr::Create", Success, UnitTestGroup::OverWrite);
+                    AddTestResult("CountedPtr::Create", Success, UnitTestGroup::OverWrite);
                 }else{
-                    AddTestResult("SmartPtr::Create", Failed, UnitTestGroup::OverWrite);
+                    AddTestResult("CountedPtr::Create", Failed, UnitTestGroup::OverWrite);
+                    return; // If we cannot create a pointer then nothing else matters
                 }
 
 
                 std::cout << "Creating creating a scoped copy of counted pointer." << std::endl;
                 bool notfailed=true;
                 {
-                    Mezzanine::CountedPtr<Mezzanine::Vector3> StabbyScoped (Stabby);
-                    std::cout << "In scope count of references: " << Stabby.use_count() << std::endl;
-                    if (2 != Stabby.use_count())
+                    Mezzanine::CountedPtr<Mezzanine::Vector3> StabbyScoped (VecPtr);
+                    std::cout << "In scope count of references: " << VecPtr.use_count() << std::endl;
+                    if (2 != VecPtr.use_count())
                         { notfailed=false; }
                 }
-                std::cout << "Post scope count of references: " << Stabby.use_count() << std::endl;
-                if (1 == Stabby.use_count() && notfailed)
+                std::cout << "Post scope count of references: " << VecPtr.use_count() << std::endl;
+                if (1 == VecPtr.use_count() && notfailed)
                 {
-                    AddTestResult("SmartPtr::ScopedChanged", Success, UnitTestGroup::OverWrite);
+                    AddTestResult("CountedPtr::ScopedChanged", Success, UnitTestGroup::OverWrite);
                 }else{
-                    AddTestResult("SmartPtr::ScopedChanged", Failed, UnitTestGroup::OverWrite);
+                    AddTestResult("CountedPtr::ScopedChanged", Failed, UnitTestGroup::OverWrite);
+                }
+
+
+                std::cout << std::endl << "Creating A fresh Vector3 in a counted pointer: OtherPtr." << std::endl;
+                Mezzanine::CountedPtr<Mezzanine::Vector3> OtherPtr (new Mezzanine::Vector3(0.0,0.0,0.0));
+                std::cout << "Count of OtherPtr references: " << OtherPtr.use_count() << std::endl;
+                std::cout << "Creating OtherPtr2 with copy constructor, using OtherPtr as Original."<< std::endl;
+                Mezzanine::CountedPtr<Mezzanine::Vector3> OtherPtr2 (OtherPtr);
+                std::cout << "Count of OtherPtr references: " << OtherPtr.use_count() << std::endl;
+                if (2 == OtherPtr.use_count())
+                {
+                    AddTestResult("CountedPtr::CopyConstructor", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("CountedPtr::CopyConstructor", Failed, UnitTestGroup::OverWrite);
+                }
+
+
+                std::cout << std::endl << "Assigning OtherPtr the values of VecPtr." << std::endl;
+                OtherPtr = VecPtr;
+                if (2 == VecPtr.use_count() && 2 == OtherPtr.use_count() && 1 == OtherPtr2.use_count())
+                {
+                    AddTestResult("CountedPtr::operator=", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("CountedPtr::operator=", Failed, UnitTestGroup::OverWrite);
+                }
+
+                if (3.0 == OtherPtr->X && 4.0 == OtherPtr->Y && 5.0 == OtherPtr->Z)
+                {
+                    AddTestResult("CountedPtr::operator->", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("CountedPtr::operator->", Failed, UnitTestGroup::OverWrite);
+                }
+
+                if (3.0 == (*OtherPtr).X && 4.0 == (*OtherPtr).Y && 5.0 == (*OtherPtr).Z)
+                {
+                    AddTestResult("CountedPtr::operator*", Success, UnitTestGroup::OverWrite);
+                }else{
+                    AddTestResult("CountedPtr::operator*", Failed, UnitTestGroup::OverWrite);
                 }
 
 
             }else{
-                AddTestResult("SmartPtr::Create", Skipped);
-                AddTestResult("SmartPtr::ScopedChanged", Skipped);
-
-
+                AddTestResult("CountedPtr::Create", Skipped);
+                AddTestResult("CountedPtr::ScopedChanged", Skipped);
+                AddTestResult("CountedPtr::operator=", Skipped);
+                AddTestResult("CountedPtr::CopyConstructor", Skipped);
+                AddTestResult("CountedPtr::operator->", Skipped);
+                AddTestResult("CountedPtr::operator*", Skipped);
             }
 
         }

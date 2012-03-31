@@ -110,7 +110,9 @@ void \hyperlink{classMezzanine_1_1World_ab134ca0bf6b75572409a3ebf20ac2e6b}{Updat
 \begin{DoxyCompactItemize}
 \item 
 static \hyperlink{classMezzanine_1_1World}{World} $\ast$ \hyperlink{classMezzanine_1_1World_a8d714f7655aa563cd66cee8db59f9116}{GetWorldPointer} ()
-\begin{DoxyCompactList}\small\item\em Return a pointer to the world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Return a pointer to the world. \item\end{DoxyCompactList}\item 
+static bool \hyperlink{classMezzanine_1_1World_a98370ba288303e706826cd80401baed9}{GetWorldPointerValidity} ()
+\begin{DoxyCompactList}\small\item\em Is the world pointer valid. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -167,7 +169,7 @@ LogOncePerXSeconds}
 
 
 
-Definition at line 412 of file world.h.
+Definition at line 417 of file world.h.
 
 
 
@@ -284,7 +286,7 @@ Deconstructor.
 
 This Tears down all the items created by the world, and safely frees any graphical resources, we will also delete any Objects passed into the world by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) 
 
-Definition at line 205 of file world.cpp.
+Definition at line 210 of file world.cpp.
 
 
 
@@ -309,7 +311,7 @@ Internally the world had a list of managers that is sorted by the \hyperlink{cla
 \end{DoxyParams}
 
 
-Definition at line 533 of file world.cpp.
+Definition at line 538 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a62999cde70050a850fd8191bde7440e3}{
 \index{Mezzanine::World@{Mezzanine::World}!BreakMainLoop@{BreakMainLoop}}
@@ -326,7 +328,7 @@ This makes the main loop end after it's current iteration.
 
 If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit. 
 
-Definition at line 496 of file world.cpp.
+Definition at line 501 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a1cd71f4206c4b22cd887222511188a55}{
 \index{Mezzanine::World@{Mezzanine::World}!CommitLog@{CommitLog}}
@@ -343,7 +345,7 @@ Forces the log to commit to disk (or whereever)
 
 Any outstanding log messages or entries into the logstream will be written in chronological order to to the appropriate place. 
 
-Definition at line 363 of file world.cpp.
+Definition at line 368 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a3e3b7f68987ee841862835cec9c6f118}{
 \index{Mezzanine::World@{Mezzanine::World}!DoMainLoopLogging@{DoMainLoopLogging}}
@@ -360,7 +362,7 @@ This commits the log stream to the log.
 
 This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop. 
 
-Definition at line 487 of file world.cpp.
+Definition at line 492 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a72d6d82926bfbfca96c246f109f0fc58}{
 \index{Mezzanine::World@{Mezzanine::World}!GameInit@{GameInit}}
@@ -382,7 +384,7 @@ This creates the game window and starts the game.
 \end{DoxyParams}
 Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed false. 
 
-Definition at line 383 of file world.cpp.
+Definition at line 388 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_abeee5435e00825ea4e776f508794c978}{
 \index{Mezzanine::World@{Mezzanine::World}!GetActorManager@{GetActorManager}}
@@ -407,7 +409,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1ActorManager}{ActorMana
 \end{DoxyReturn}
 
 
-Definition at line 663 of file world.cpp.
+Definition at line 668 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a5eacbc4dadfbed87bcf09d2840572cca}{
 \index{Mezzanine::World@{Mezzanine::World}!GetAudioManager@{GetAudioManager}}
@@ -432,7 +434,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1AudioManager}{AudioMana
 \end{DoxyReturn}
 
 
-Definition at line 668 of file world.cpp.
+Definition at line 673 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a5fb7e735bf7f64060cf2479ebf70f467}{
 \index{Mezzanine::World@{Mezzanine::World}!GetCameraManager@{GetCameraManager}}
@@ -457,7 +459,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1CameraManager}{CameraMa
 \end{DoxyReturn}
 
 
-Definition at line 673 of file world.cpp.
+Definition at line 678 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a0062fc5934ff6d0824a7c794d52bc888}{
 \index{Mezzanine::World@{Mezzanine::World}!GetCollisionShapeManager@{GetCollisionShapeManager}}
@@ -482,7 +484,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1CollisionShapeManager}{
 \end{DoxyReturn}
 
 
-Definition at line 678 of file world.cpp.
+Definition at line 683 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a9e1c735cae7ec2df827d5b1616483bad}{
 \index{Mezzanine::World@{Mezzanine::World}!GetEventManager@{GetEventManager}}
@@ -507,7 +509,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1EventManager}{EventMana
 \end{DoxyReturn}
 
 
-Definition at line 683 of file world.cpp.
+Definition at line 688 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_aa2f076a12d41fa662b5ee81d83ea165b}{
 \index{Mezzanine::World@{Mezzanine::World}!GetFrameTime@{GetFrameTime}}
@@ -527,7 +529,7 @@ This returns a whole number which can be used to aid in the timimg of various al
 \end{DoxyReturn}
 
 
-Definition at line 520 of file world.cpp.
+Definition at line 525 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a93ffca4d93a2b2bdda4edf45fc3cc1f0}{
 \index{Mezzanine::World@{Mezzanine::World}!GetGraphicsManager@{GetGraphicsManager}}
@@ -552,7 +554,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1GraphicsManager}{Graphi
 \end{DoxyReturn}
 
 
-Definition at line 688 of file world.cpp.
+Definition at line 693 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a78b3114180552852368491862f35904a}{
 \index{Mezzanine::World@{Mezzanine::World}!GetLoggingFrequency@{GetLoggingFrequency}}
@@ -572,7 +574,7 @@ A \hyperlink{classMezzanine_1_1World_a535c832832bbdebcdc623c3472a32e25}{World::L
 \end{DoxyReturn}
 
 
-Definition at line 348 of file world.cpp.
+Definition at line 353 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_af372567d368cb98d1c6a8920a7e31fb7}{
 \index{Mezzanine::World@{Mezzanine::World}!GetManager@{GetManager}}
@@ -600,7 +602,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1ManagerBase}{ManagerBas
 \end{DoxyReturn}
 
 
-Definition at line 596 of file world.cpp.
+Definition at line 601 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a8acc20c71ce08de18214103f16096462}{
 \index{Mezzanine::World@{Mezzanine::World}!GetMeshManager@{GetMeshManager}}
@@ -625,7 +627,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1MeshManager}{MeshManage
 \end{DoxyReturn}
 
 
-Definition at line 693 of file world.cpp.
+Definition at line 698 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a77965d0aa164af69fb0e096841d4c422}{
 \index{Mezzanine::World@{Mezzanine::World}!GetPhysicsManager@{GetPhysicsManager}}
@@ -650,7 +652,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1PhysicsManager}{Physics
 \end{DoxyReturn}
 
 
-Definition at line 703 of file world.cpp.
+Definition at line 708 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_ab758bcb0cc819a254ba8590cf999a2ea}{
 \index{Mezzanine::World@{Mezzanine::World}!GetResourceManager@{GetResourceManager}}
@@ -675,7 +677,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1ResourceManager}{Resour
 \end{DoxyReturn}
 
 
-Definition at line 713 of file world.cpp.
+Definition at line 718 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a33f082a0683317ff7dccbf573da6c63e}{
 \index{Mezzanine::World@{Mezzanine::World}!GetSceneManager@{GetSceneManager}}
@@ -700,7 +702,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1SceneManager}{SceneMana
 \end{DoxyReturn}
 
 
-Definition at line 708 of file world.cpp.
+Definition at line 713 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a6ca3b0c1ae38545df40bea731f6ba9cf}{
 \index{Mezzanine::World@{Mezzanine::World}!GetTargetFrameTime@{GetTargetFrameTime}}
@@ -720,7 +722,7 @@ This returns a Whole with the current Value
 \end{DoxyReturn}
 
 
-Definition at line 505 of file world.cpp.
+Definition at line 510 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a3916b6823fa3978561ba36d0b7bf7ad0}{
 \index{Mezzanine::World@{Mezzanine::World}!GetTimerManager@{GetTimerManager}}
@@ -745,7 +747,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1TimerManager}{TimerMana
 \end{DoxyReturn}
 
 
-Definition at line 718 of file world.cpp.
+Definition at line 723 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_ad23a75672aa43a6cc30521b36595b345}{
 \index{Mezzanine::World@{Mezzanine::World}!GetUIManager@{GetUIManager}}
@@ -770,7 +772,7 @@ This returns a pointer to a \hyperlink{classMezzanine_1_1UIManager}{UIManager}, 
 \end{DoxyReturn}
 
 
-Definition at line 723 of file world.cpp.
+Definition at line 728 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a8d714f7655aa563cd66cee8db59f9116}{
 \index{Mezzanine::World@{Mezzanine::World}!GetWorldPointer@{GetWorldPointer}}
@@ -792,6 +794,26 @@ This returns a pointer the one and only \hyperlink{classMezzanine_1_1World}{Mezz
 
 Definition at line 108 of file world.cpp.
 
+\hypertarget{classMezzanine_1_1World_a98370ba288303e706826cd80401baed9}{
+\index{Mezzanine::World@{Mezzanine::World}!GetWorldPointerValidity@{GetWorldPointerValidity}}
+\index{GetWorldPointerValidity@{GetWorldPointerValidity}!Mezzanine::World@{Mezzanine::World}}
+\paragraph[{GetWorldPointerValidity}]{\setlength{\rightskip}{0pt plus 5cm}bool Mezzanine::World::GetWorldPointerValidity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classMezzanine_1_1World_a98370ba288303e706826cd80401baed9}
+
+
+Is the world pointer valid. 
+
+This exists to allow for future checks beyond just compare teh pointer to 0; \begin{DoxyReturn}{Returns}
+true if the world pointer is valid. 
+\end{DoxyReturn}
+
+
+Definition at line 114 of file world.cpp.
+
 \hypertarget{classMezzanine_1_1World_a693eea2a435e55618283e94f4cbaba64}{
 \index{Mezzanine::World@{Mezzanine::World}!Log@{Log}}
 \index{Log@{Log}!Mezzanine::World@{Mezzanine::World}}
@@ -812,29 +834,7 @@ Runtime event and message logging.
 \end{DoxyParams}
 This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the Only ones to produce meaningul log messages. 
 
-Definition at line 444 of file world.h.
-
-\hypertarget{classMezzanine_1_1World_a93405caf197f9324f3620ecefa1efc77}{
-\index{Mezzanine::World@{Mezzanine::World}!LogAndThrow@{LogAndThrow}}
-\index{LogAndThrow@{LogAndThrow}!Mezzanine::World@{Mezzanine::World}}
-\paragraph[{LogAndThrow}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::World::LogAndThrow (
-\begin{DoxyParamCaption}
-\item[{{\bf Exception}}]{Err}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
-\label{classMezzanine_1_1World_a93405caf197f9324f3620ecefa1efc77}
-
-
-This is the preferred way to throw an exception. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em Err} & A \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} to be logged and thrown \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 459 of file world.h.
+Definition at line 449 of file world.h.
 
 \hypertarget{classMezzanine_1_1World_ab0ddaf91f518f7d3f6044b03936e9ea4}{
 \index{Mezzanine::World@{Mezzanine::World}!LogAndThrow@{LogAndThrow}}
@@ -856,7 +856,29 @@ This will log the Message, and will throw an exception with the Message included
 \end{DoxyParams}
 
 
-Definition at line 471 of file world.h.
+Definition at line 476 of file world.h.
+
+\hypertarget{classMezzanine_1_1World_a93405caf197f9324f3620ecefa1efc77}{
+\index{Mezzanine::World@{Mezzanine::World}!LogAndThrow@{LogAndThrow}}
+\index{LogAndThrow@{LogAndThrow}!Mezzanine::World@{Mezzanine::World}}
+\paragraph[{LogAndThrow}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::World::LogAndThrow (
+\begin{DoxyParamCaption}
+\item[{{\bf Exception}}]{Err}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
+\label{classMezzanine_1_1World_a93405caf197f9324f3620ecefa1efc77}
+
+
+This is the preferred way to throw an exception. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Err} & A \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} to be logged and thrown \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 464 of file world.h.
 
 \hypertarget{classMezzanine_1_1World_a326001a06856d359fa7164db25d7c68c}{
 \index{Mezzanine::World@{Mezzanine::World}!LogString@{LogString}}
@@ -878,7 +900,7 @@ Log String directly with no conversion.
 \end{DoxyParams}
 
 
-Definition at line 366 of file world.cpp.
+Definition at line 371 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a7c19ed5889b3de00a6f475b5922f9545}{
 \index{Mezzanine::World@{Mezzanine::World}!MainLoop@{MainLoop}}
@@ -913,7 +935,29 @@ Pauses all animations, particles, and object movement throughout the world.
 \end{DoxyParams}
 
 
-Definition at line 235 of file world.cpp.
+Definition at line 240 of file world.cpp.
+
+\hypertarget{classMezzanine_1_1World_a01fadbd8c39094bac02d855da8d4a30f}{
+\index{Mezzanine::World@{Mezzanine::World}!RemoveManager@{RemoveManager}}
+\index{RemoveManager@{RemoveManager}!Mezzanine::World@{Mezzanine::World}}
+\paragraph[{RemoveManager}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::World::RemoveManager (
+\begin{DoxyParamCaption}
+\item[{{\bf ManagerBase} $\ast$}]{ManagerToRemove}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1World_a01fadbd8c39094bac02d855da8d4a30f}
+
+
+This removes a manager by finding the matching pointer. 
+
+Currently this just iterates through the list looking for the matching pointer, at some future point this could replaced with more sophisticated algorithm, but for now assume this operates in linear time. 
+\begin{DoxyParams}{Parameters}
+{\em ManagerToRemove} & A pointer to the manager to be removed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 563 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a64ac8469729593975fc5551f75a60283}{
 \index{Mezzanine::World@{Mezzanine::World}!RemoveManager@{RemoveManager}}
@@ -938,29 +982,7 @@ This starts at the beginning (should be the lowest priority)of the list and iter
 \end{DoxyParams}
 
 
-Definition at line 575 of file world.cpp.
-
-\hypertarget{classMezzanine_1_1World_a01fadbd8c39094bac02d855da8d4a30f}{
-\index{Mezzanine::World@{Mezzanine::World}!RemoveManager@{RemoveManager}}
-\index{RemoveManager@{RemoveManager}!Mezzanine::World@{Mezzanine::World}}
-\paragraph[{RemoveManager}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::World::RemoveManager (
-\begin{DoxyParamCaption}
-\item[{{\bf ManagerBase} $\ast$}]{ManagerToRemove}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1World_a01fadbd8c39094bac02d855da8d4a30f}
-
-
-This removes a manager by finding the matching pointer. 
-
-Currently this just iterates through the list looking for the matching pointer, at some future point this could replaced with more sophisticated algorithm, but for now assume this operates in linear time. 
-\begin{DoxyParams}{Parameters}
-{\em ManagerToRemove} & A pointer to the manager to be removed \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 558 of file world.cpp.
+Definition at line 580 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a6c00a6eda421a1d6969621bf366524f3}{
 \index{Mezzanine::World@{Mezzanine::World}!SetFrameTime@{SetFrameTime}}
@@ -982,7 +1004,7 @@ Sets the amount of time since the last time Rendering began.
 \end{DoxyParams}
 This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of stuff, for the most part this should be by the rendering manager during the rendering process. 
 
-Definition at line 525 of file world.cpp.
+Definition at line 530 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a6622e9bf41f2bf7fc046745018c05554}{
 \index{Mezzanine::World@{Mezzanine::World}!SetLoggingFrequency@{SetLoggingFrequency}}
@@ -1009,7 +1031,7 @@ By default this is set to LogOncePerFrame. \par
  \par
  There are a series of functions internally that represent each of the LoggingFrequency values. When You pass in one of these values you are setting which of these functions will be called. This way the only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time). Additionally the members of the enum are sorted by the amount of time they are expected to take to run, of course your performance will vary, the best way to know how it will perform is to test. 
 
-Definition at line 321 of file world.cpp.
+Definition at line 326 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a799427ea004a3954d8d1c30b2537e691}{
 \index{Mezzanine::World@{Mezzanine::World}!SetTargetFrameRate@{SetTargetFrameRate}}
@@ -1034,7 +1056,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 515 of file world.cpp.
+Definition at line 520 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_afd7ea23e2108a1ddd0407e77110f35a0}{
 \index{Mezzanine::World@{Mezzanine::World}!SetTargetFrameTime@{SetTargetFrameTime}}
@@ -1059,24 +1081,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 510 of file world.cpp.
-
-\hypertarget{classMezzanine_1_1World_ab134ca0bf6b75572409a3ebf20ac2e6b}{
-\index{Mezzanine::World@{Mezzanine::World}!UpdateManagerOrder@{UpdateManagerOrder}}
-\index{UpdateManagerOrder@{UpdateManagerOrder}!Mezzanine::World@{Mezzanine::World}}
-\paragraph[{UpdateManagerOrder}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::World::UpdateManagerOrder (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1World_ab134ca0bf6b75572409a3ebf20ac2e6b}
-
-
-This forces the list of managers to be resorted. 
-
-This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers 
-
-Definition at line 648 of file world.cpp.
+Definition at line 515 of file world.cpp.
 
 \hypertarget{classMezzanine_1_1World_a13b4ca08c4e7764232de0d1b3053a6a5}{
 \index{Mezzanine::World@{Mezzanine::World}!UpdateManagerOrder@{UpdateManagerOrder}}
@@ -1101,7 +1106,24 @@ Searches through the Manager list and removes any previous entries to the changi
 \end{DoxyParams}
 
 
-Definition at line 628 of file world.cpp.
+Definition at line 633 of file world.cpp.
+
+\hypertarget{classMezzanine_1_1World_ab134ca0bf6b75572409a3ebf20ac2e6b}{
+\index{Mezzanine::World@{Mezzanine::World}!UpdateManagerOrder@{UpdateManagerOrder}}
+\index{UpdateManagerOrder@{UpdateManagerOrder}!Mezzanine::World@{Mezzanine::World}}
+\paragraph[{UpdateManagerOrder}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::World::UpdateManagerOrder (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classMezzanine_1_1World_ab134ca0bf6b75572409a3ebf20ac2e6b}
+
+
+This forces the list of managers to be resorted. 
+
+This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers 
+
+Definition at line 653 of file world.cpp.
 
 
 
@@ -1117,7 +1139,7 @@ This is another way to put data in the log.
 
 The contents of this will be commited to the log as per the logging frequency. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
 
-Definition at line 455 of file world.h.
+Definition at line 460 of file world.h.
 
 
 

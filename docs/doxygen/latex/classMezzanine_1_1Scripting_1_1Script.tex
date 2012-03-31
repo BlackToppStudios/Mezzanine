@@ -20,10 +20,7 @@ Inheritance diagram for Mezzanine::Scripting::Script:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1Scripting_1_1Script_a0fa994729309867dff663c694218a33b}{
-virtual void {\bfseries AddArgument} (\hyperlink{classMezzanine_1_1Scripting_1_1ScriptArgument}{ScriptArgument} $\ast$Arg)=0}
-\label{classMezzanine_1_1Scripting_1_1Script_a0fa994729309867dff663c694218a33b}
-
+virtual void \hyperlink{classMezzanine_1_1Scripting_1_1Script_a0fa994729309867dff663c694218a33b}{AddArgument} (\hyperlink{classMezzanine_1_1Scripting_1_1ScriptArgument}{ScriptArgument} $\ast$Arg)=0
 \item 
 \hypertarget{classMezzanine_1_1Scripting_1_1Script_a504d19bd50b8d9c5b23e85c5e3131a96}{
 virtual void {\bfseries ClearArguments} ()=0}
@@ -87,8 +84,25 @@ The interface for a script. All the members that all script for all languages mu
  \par
  These are tiny pieces of data that can be run like miniature programs. They will be compiled to a bytecode that can swiftly be executed by the appropriate bytecode interpretter. This is faster than interpretting text, but slower than running native code. It is more flexible and safer than native code, because scripts may be provided by others than the original developers, and there are fewer security issues with a completely self contained language as opposed to actual native code. 
 
-Definition at line 64 of file script.h.
+Definition at line 62 of file script.h.
 
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classMezzanine_1_1Scripting_1_1Script_a0fa994729309867dff663c694218a33b}{
+\index{Mezzanine::Scripting::Script@{Mezzanine::Scripting::Script}!AddArgument@{AddArgument}}
+\index{AddArgument@{AddArgument}!Mezzanine::Scripting::Script@{Mezzanine::Scripting::Script}}
+\paragraph[{AddArgument}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Mezzanine::Scripting::Script::AddArgument (
+\begin{DoxyParamCaption}
+\item[{{\bf ScriptArgument} $\ast$}]{Arg}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{classMezzanine_1_1Scripting_1_1Script_a0fa994729309867dff663c694218a33b}
+
+\begin{DoxyParams}{Parameters}
+{\em Arg} & This accepts a pointer to a script argument \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}

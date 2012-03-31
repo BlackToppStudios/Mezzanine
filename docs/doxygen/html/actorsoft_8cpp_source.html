@@ -305,41 +305,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00241"></a>00241     {
 <a name="l00242"></a>00242         <a class="code" href="classMezzanine_1_1Singleton.html#a78fc425584913f0b2c615ec440871a67" title="Fetches a pointer to the singleton.">PhysicsManager::GetSingletonPtr</a>()-&gt;<a class="code" href="classMezzanine_1_1PhysicsManager.html#ae8ba569b66769515c8efa8eba2131c14" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;removeSoftBody(this-&gt;<a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>);
 <a name="l00243"></a>00243         this-&gt;<a class="code" href="classMezzanine_1_1ActorSoft.html#a3ec90b87480ba28553656eb10552f6d6" title="Makes the actor invisable.">DetachFromGraphics</a>();
-<a name="l00244"></a>00244     }
-<a name="l00245"></a>00245 
-<a name="l00246"></a><a class="code" href="classMezzanine_1_1ActorSoft.html#a1f255e52f48a9fec2cfe2f91664fb350">00246</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorSoft.html#a1f255e52f48a9fec2cfe2f91664fb350">ActorSoft::_Update</a>()
-<a name="l00247"></a>00247     {
-<a name="l00248"></a>00248         <span class="comment">/*Ogre::VertexData* vertexData = entity-&gt;getMesh()-&gt;getSubMesh(0)-&gt;vertexData;</span>
-<a name="l00249"></a>00249 <span class="comment"></span>
-<a name="l00250"></a>00250 <span class="comment">        const Ogre::VertexElement* posElem = vertexData-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);</span>
-<a name="l00251"></a>00251 <span class="comment">        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());</span>
-<a name="l00252"></a>00252 <span class="comment"></span>
-<a name="l00253"></a>00253 <span class="comment">        unsigned char* vertex = static_cast&lt;unsigned char*&gt;(vBuffer-&gt;lock(Ogre::HardwareBuffer::HBL_NORMAL));</span>
-<a name="l00254"></a>00254 <span class="comment">        float* pReal = NULL;</span>
-<a name="l00255"></a>00255 <span class="comment">        for (size_t j = 0; j &lt; vertexData-&gt;vertexCount; j++ )</span>
-<a name="l00256"></a>00256 <span class="comment">        {</span>
-<a name="l00257"></a>00257 <span class="comment">            posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);</span>
-<a name="l00258"></a>00258 <span class="comment">            *pReal++ = this-&gt;PhysicsSoftBody-&gt;m_nodes[j].m_x.x();</span>
-<a name="l00259"></a>00259 <span class="comment">            *pReal++ = this-&gt;PhysicsSoftBody-&gt;m_nodes[j].m_x.y();</span>
-<a name="l00260"></a>00260 <span class="comment">            *pReal++ = this-&gt;PhysicsSoftBody-&gt;m_nodes[j].m_x.z();</span>
-<a name="l00261"></a>00261 <span class="comment">            vertex += vBuffer-&gt;getVertexSize();</span>
-<a name="l00262"></a>00262 <span class="comment">        }</span>
-<a name="l00263"></a>00263 <span class="comment">        vBuffer-&gt;unlock();// */</span>
-<a name="l00264"></a>00264 
-<a name="l00265"></a>00265         <span class="comment">//btVector3 position = this-&gt;PhysicsSoftBody-&gt;getWorldTransform().getOrigin();</span>
-<a name="l00266"></a>00266         <span class="comment">//btQuaternion rotation = this-&gt;PhysicsSoftBody-&gt;getWorldTransform().getRotation();</span>
-<a name="l00267"></a>00267         btVector3 position = this-&gt;<a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>-&gt;m_clusters[0]-&gt;m_framexform.getOrigin();
-<a name="l00268"></a>00268         btQuaternion rotation = this-&gt;<a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>-&gt;m_clusters[0]-&gt;m_framexform.getRotation();
-<a name="l00269"></a>00269         this-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#af9682da6de09a649bf5c7cef150124f5" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>-&gt;setPosition(position.x(), position.y(), position.z());
-<a name="l00270"></a>00270         this-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#af9682da6de09a649bf5c7cef150124f5" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>-&gt;setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
-<a name="l00271"></a>00271     }
-<a name="l00272"></a>00272 
-<a name="l00273"></a><a class="code" href="classMezzanine_1_1ActorSoft.html#ab0ddf931ccde766dc5e040077f1a3ec4">00273</a>     btSoftBody* <a class="code" href="classMezzanine_1_1ActorSoft.html#ab0ddf931ccde766dc5e040077f1a3ec4" title="Get the Physics data raw from the physic subsystem.">ActorSoft::GetBulletObject</a>()
-<a name="l00274"></a>00274     {
-<a name="l00275"></a>00275         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>;
-<a name="l00276"></a>00276     }
-<a name="l00277"></a>00277 }
-<a name="l00278"></a>00278 <span class="preprocessor">#endif</span>
+<a name="l00244"></a>00244         <a class="code" href="classMezzanine_1_1AttachableParent.html#ae4c567231013730e4259fb164e8e1f0d" title="Detaches all attachables currently attached.">DetachAllChildren</a>();
+<a name="l00245"></a>00245     }
+<a name="l00246"></a>00246 
+<a name="l00247"></a><a class="code" href="classMezzanine_1_1ActorSoft.html#a1f255e52f48a9fec2cfe2f91664fb350">00247</a>     <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1ActorSoft.html#a1f255e52f48a9fec2cfe2f91664fb350">ActorSoft::_Update</a>()
+<a name="l00248"></a>00248     {
+<a name="l00249"></a>00249         <span class="comment">/*Ogre::VertexData* vertexData = entity-&gt;getMesh()-&gt;getSubMesh(0)-&gt;vertexData;</span>
+<a name="l00250"></a>00250 <span class="comment"></span>
+<a name="l00251"></a>00251 <span class="comment">        const Ogre::VertexElement* posElem = vertexData-&gt;vertexDeclaration-&gt;findElementBySemantic(Ogre::VES_POSITION);</span>
+<a name="l00252"></a>00252 <span class="comment">        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData-&gt;vertexBufferBinding-&gt;getBuffer(posElem-&gt;getSource());</span>
+<a name="l00253"></a>00253 <span class="comment"></span>
+<a name="l00254"></a>00254 <span class="comment">        unsigned char* vertex = static_cast&lt;unsigned char*&gt;(vBuffer-&gt;lock(Ogre::HardwareBuffer::HBL_NORMAL));</span>
+<a name="l00255"></a>00255 <span class="comment">        float* pReal = NULL;</span>
+<a name="l00256"></a>00256 <span class="comment">        for (size_t j = 0; j &lt; vertexData-&gt;vertexCount; j++ )</span>
+<a name="l00257"></a>00257 <span class="comment">        {</span>
+<a name="l00258"></a>00258 <span class="comment">            posElem-&gt;baseVertexPointerToElement(vertex, &amp;pReal);</span>
+<a name="l00259"></a>00259 <span class="comment">            *pReal++ = this-&gt;PhysicsSoftBody-&gt;m_nodes[j].m_x.x();</span>
+<a name="l00260"></a>00260 <span class="comment">            *pReal++ = this-&gt;PhysicsSoftBody-&gt;m_nodes[j].m_x.y();</span>
+<a name="l00261"></a>00261 <span class="comment">            *pReal++ = this-&gt;PhysicsSoftBody-&gt;m_nodes[j].m_x.z();</span>
+<a name="l00262"></a>00262 <span class="comment">            vertex += vBuffer-&gt;getVertexSize();</span>
+<a name="l00263"></a>00263 <span class="comment">        }</span>
+<a name="l00264"></a>00264 <span class="comment">        vBuffer-&gt;unlock();// */</span>
+<a name="l00265"></a>00265 
+<a name="l00266"></a>00266         <span class="comment">//btVector3 position = this-&gt;PhysicsSoftBody-&gt;getWorldTransform().getOrigin();</span>
+<a name="l00267"></a>00267         <span class="comment">//btQuaternion rotation = this-&gt;PhysicsSoftBody-&gt;getWorldTransform().getRotation();</span>
+<a name="l00268"></a>00268         btVector3 position = this-&gt;<a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>-&gt;m_clusters[0]-&gt;m_framexform.getOrigin();
+<a name="l00269"></a>00269         btQuaternion rotation = this-&gt;<a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>-&gt;m_clusters[0]-&gt;m_framexform.getRotation();
+<a name="l00270"></a>00270         this-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#af9682da6de09a649bf5c7cef150124f5" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>-&gt;setPosition(position.x(), position.y(), position.z());
+<a name="l00271"></a>00271         this-&gt;<a class="code" href="classMezzanine_1_1WorldObject.html#af9682da6de09a649bf5c7cef150124f5" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>-&gt;setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+<a name="l00272"></a>00272     }
+<a name="l00273"></a>00273 
+<a name="l00274"></a><a class="code" href="classMezzanine_1_1ActorSoft.html#ab0ddf931ccde766dc5e040077f1a3ec4">00274</a>     btSoftBody* <a class="code" href="classMezzanine_1_1ActorSoft.html#ab0ddf931ccde766dc5e040077f1a3ec4" title="Get the Physics data raw from the physic subsystem.">ActorSoft::GetBulletObject</a>()
+<a name="l00275"></a>00275     {
+<a name="l00276"></a>00276         <span class="keywordflow">return</span> <a class="code" href="classMezzanine_1_1ActorSoft.html#a4eb4bcfe665df0c4741f5c17ff268c88" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">PhysicsSoftBody</a>;
+<a name="l00277"></a>00277     }
+<a name="l00278"></a>00278 }
+<a name="l00279"></a>00279 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -357,6 +358,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 18 2012 16:54:41 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
+Generated on Wed Mar 28 2012 02:00:19 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3</small></address>
 </body>
 </html>

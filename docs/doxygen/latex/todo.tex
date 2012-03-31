@@ -1,12 +1,12 @@
-\label{todo__todo000043}
-\hypertarget{todo__todo000043}{}
+\label{todo__todo000045}
+\hypertarget{todo__todo000045}{}
  
 \begin{DoxyDescription}
 \item[Page \hyperlink{mainloop1}{Main Loop Structure and Flow} ]create a lighting manager and put this in there 
 \end{DoxyDescription}
 
-\label{todo__todo000044}
-\hypertarget{todo__todo000044}{}
+\label{todo__todo000046}
+\hypertarget{todo__todo000046}{}
  
 \begin{DoxyDescription}
 \item[page \hyperlink{index}{Mezzanine} ]Fill out the Simple Data Types with all the enumerations.
@@ -149,15 +149,29 @@ TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested 
 TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account 
 \end{DoxyDescription}
 
+\label{todo__todo000028}
+\hypertarget{todo__todo000028}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_a719a6d2600f7f4228d44cbfcf961acc5}{Mezzanine::Resource::FileHandleDataStream::FileHandleDataStream}(const String \&Name, const String \&Path, const DataStream::AccessMode \&Mode=DataStream::DS\_\-Read, bool CreateOnFail=false, bool IsBinary=false) ]We should probably add something to fetch/interpret the error and add it to the exception. 
+\end{DoxyDescription}
+
 \label{todo__todo000029}
 \hypertarget{todo__todo000029}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_ac000582b45359ff0013dccea8ec3a830}{Mezzanine::Resource::FileStreamDataStream::FileStreamDataStream}(const String \&Name, const String \&Path, const DataStream::AccessMode \&Mode=DataStream::DS\_\-Read, bool CreateOnFail=false, bool IsBinary=false) ]We should probably add something to fetch/interpret the error and add it to the exception. 
+\end{DoxyDescription}
+
+\label{todo__todo000031}
+\hypertarget{todo__todo000031}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a5ffb86d6822701880e1dc47b4f37a637}{Mezzanine::Resource::TextSettingsFile::Load}(const String \&Filename, const String \&Group, const String \&Separators=\char`\"{} $\backslash$t:=\char`\"{}, bool TrimWhitespace=true) ]Once the resource system has been updated to be independant of Ogre's, this function needs to be updated to access our methods instead of theirs. 
 \end{DoxyDescription}
 
-\label{todo__todo000028}
-\hypertarget{todo__todo000028}{}
+\label{todo__todo000030}
+\hypertarget{todo__todo000030}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1ResourceManager_aa827efdad18698b7d7319dab35864bbe}{Mezzanine::ResourceManager::DestroyResourceGroup}(const String \&GroupName) ]This is a bit of a hack, but needs to be here until we can upgrade our resource system. 
@@ -170,148 +184,166 @@ TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other 
 \item[Member \hyperlink{classMezzanine_1_1StaticMeshCollisionShape_a1c565cc4d62ab7a0cd5cf55254905f05}{Mezzanine::StaticMeshCollisionShape::StaticMeshCollisionShape}(const String \&Name, btBvhTriangleMeshShape $\ast$BulletShape) ]May need to create a btScaledBvhTriangleMeshShape for scaling this shape appropriately. 
 \end{DoxyDescription}
 
-\label{todo__todo000030}
-\hypertarget{todo__todo000030}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}{Mezzanine::TerrainManager::RemoveAllTerrains}() ]When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. 
-\end{DoxyDescription}
-
-\label{todo__todo000031}
-\hypertarget{todo__todo000031}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Button_aae0a7f6a07f79856ed6da8b8b3bc5ecd}{Mezzanine::UI::Button::BindActivationKeyOrButton}(const MetaCode::InputCode \&Code) ]Throw an error? 
-\end{DoxyDescription}
-
 \label{todo__todo000032}
 \hypertarget{todo__todo000032}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Caption_a2cc9da9ae1e10cd5829117f0d473186a}{Mezzanine::UI::Caption::SetGlyphIndex}(const Whole \&GlyphIndex) ]Throw an error? 
+\item[Member \hyperlink{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}{Mezzanine::TerrainManager::RemoveAllTerrains}() ]When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. 
 \end{DoxyDescription}
 
 \label{todo__todo000033}
 \hypertarget{todo__todo000033}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Caption_abe41befd65e977a1bb300427d0dd5936}{Mezzanine::UI::Caption::SetGlyphIndex}(const Whole \&GlyphIndex, const String \&Atlas) ]Throw an error? 
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1Button_aae0a7f6a07f79856ed6da8b8b3bc5ecd}{Mezzanine::UI::Button::BindActivationKeyOrButton}(const MetaCode::InputCode \&Code) ]Throw an error? 
 \end{DoxyDescription}
 
 \label{todo__todo000034}
 \hypertarget{todo__todo000034}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1ListBox_a60130f372bc78fbb20f28270bbed8cf2}{Mezzanine::UI::ListBox::ListBox}(ConstString \&name, const RenderableRect \&Rect, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. 
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1Caption_a2cc9da9ae1e10cd5829117f0d473186a}{Mezzanine::UI::Caption::SetGlyphIndex}(const Whole \&GlyphIndex) ]Throw an error? 
 \end{DoxyDescription}
 
 \label{todo__todo000035}
 \hypertarget{todo__todo000035}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1ListBox_a81ddebed01b1503478c2fa7b75ce4b24}{Mezzanine::UI::ListBox::SetSelected}(Caption $\ast$ToBeSelected) ]Maybe add a checker to verify the caption belongs to this widget? 
-\end{DoxyDescription}
-
-\label{todo__todo000037}
-\hypertarget{todo__todo000037}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a8455dbc85e8ed56f366c14f1cab24f49}{Mezzanine::UI::MarkupText::SetDefaultGlyphIndex}(const Whole \&DefaultGlyphIndex) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000038}
-\hypertarget{todo__todo000038}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a2cff9446978935a555fafdc0795de517}{Mezzanine::UI::MarkupText::SetDefaultGlyphIndex}(const Whole \&DefaultGlyphIndex, const String \&Atlas) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000039}
-\hypertarget{todo__todo000039}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Screen_a47c85a1fad08b96b3b24b2c1402a4fcd}{Mezzanine::UI::Screen::CreateLayer}(const String \&Name, const Whole \&Zorder) ]add an exception here or maybe log entry, some notification it failed. 
-\end{DoxyDescription}
-
-\label{todo__todo000040}
-\hypertarget{todo__todo000040}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_a259a2f007e7afc5b2fa967c02b0d5627}{Mezzanine::UI::ScrolledCellGrid::SetVisibleImpl}(bool visible) ]Currently this disregards auto-\/hides. Something should be implemented to account for that. 
-\end{DoxyDescription}
-
-\label{todo__todo000042}
-\hypertarget{todo__todo000042}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1TextButton_a472deffab04ac63c4938cc928d24f11e}{Mezzanine::UI::TextButton::SetGlyphIndex}(const Whole \&GlyphIndex, const String \&Atlas) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000041}
-\hypertarget{todo__todo000041}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1TextButton_ab81057cd97a96390ae23c12cc729a07b}{Mezzanine::UI::TextButton::SetGlyphIndex}(const Whole \&GlyphIndex) ]Throw an error? 
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1Caption_abe41befd65e977a1bb300427d0dd5936}{Mezzanine::UI::Caption::SetGlyphIndex}(const Whole \&GlyphIndex, const String \&Atlas) ]Throw an error? 
 \end{DoxyDescription}
 
 \label{todo__todo000036}
 \hypertarget{todo__todo000036}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1ListBox_a60130f372bc78fbb20f28270bbed8cf2}{Mezzanine::UI::ListBox::ListBox}(ConstString \&name, const RenderableRect \&Rect, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. 
+\end{DoxyDescription}
+
+\label{todo__todo000037}
+\hypertarget{todo__todo000037}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1ListBox_a81ddebed01b1503478c2fa7b75ce4b24}{Mezzanine::UI::ListBox::SetSelected}(Caption $\ast$ToBeSelected) ]Maybe add a checker to verify the caption belongs to this widget? 
+\end{DoxyDescription}
+
+\label{todo__todo000039}
+\hypertarget{todo__todo000039}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a8455dbc85e8ed56f366c14f1cab24f49}{Mezzanine::UI::MarkupText::SetDefaultGlyphIndex}(const Whole \&DefaultGlyphIndex) ]Throw an error? 
+\end{DoxyDescription}
+
+\label{todo__todo000040}
+\hypertarget{todo__todo000040}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a2cff9446978935a555fafdc0795de517}{Mezzanine::UI::MarkupText::SetDefaultGlyphIndex}(const Whole \&DefaultGlyphIndex, const String \&Atlas) ]Throw an error? 
+\end{DoxyDescription}
+
+\label{todo__todo000041}
+\hypertarget{todo__todo000041}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1Screen_a47c85a1fad08b96b3b24b2c1402a4fcd}{Mezzanine::UI::Screen::CreateLayer}(const String \&Name, const Whole \&Zorder) ]add an exception here or maybe log entry, some notification it failed. 
+\end{DoxyDescription}
+
+\label{todo__todo000042}
+\hypertarget{todo__todo000042}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_a259a2f007e7afc5b2fa967c02b0d5627}{Mezzanine::UI::ScrolledCellGrid::SetVisibleImpl}(bool visible) ]Currently this disregards auto-\/hides. Something should be implemented to account for that. 
+\end{DoxyDescription}
+
+\label{todo__todo000043}
+\hypertarget{todo__todo000043}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1TextButton_ab81057cd97a96390ae23c12cc729a07b}{Mezzanine::UI::TextButton::SetGlyphIndex}(const Whole \&GlyphIndex) ]Throw an error? 
+\end{DoxyDescription}
+
+\label{todo__todo000044}
+\hypertarget{todo__todo000044}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1UI_1_1TextButton_a472deffab04ac63c4938cc928d24f11e}{Mezzanine::UI::TextButton::SetGlyphIndex}(const Whole \&GlyphIndex, const String \&Atlas) ]Throw an error? 
+\end{DoxyDescription}
+
+\label{todo__todo000038}
+\hypertarget{todo__todo000038}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1UIManager_a904d4d7a3957a13cf5e27e8d97dd1add}{Mezzanine::UIManager::GetAtlas}(const String \&AtlasName) ]These NULL returns should probably be exceptions. 
 \end{DoxyDescription}
 
-\label{todo__todo000047}
-\hypertarget{todo__todo000047}{}
+\label{todo__todo000049}
+\hypertarget{todo__todo000049}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1WorldNode_a417e459d58c4d612bcbbe98a328c7b50}{Mezzanine::WorldNode::SetAutoTracking}(AttachableBase $\ast$Target, const Vector3 \&LocalDirection=Vector3::Neg\_\-Unit\_\-Z(), const Vector3 \&Offset=Vector3()) ]TODO: The WorldNode Does not Correctly Serialize AutoTracking. 
 \end{DoxyDescription}
 
-\label{todo__todo000046}
-\hypertarget{todo__todo000046}{}
+\label{todo__todo000048}
+\hypertarget{todo__todo000048}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1WorldNode_ab088981b0bea9d73e9bfaac5f237abc8}{Mezzanine::WorldNode::SetDirection}(const Vector3 \&Direction, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-World, const Vector3 \&LocalAxis=Vector3::Neg\_\-Unit\_\-Z()) ]May want to change this to an exception, maybe. 
+\end{DoxyDescription}
+
+\label{todo__todo000060}
+\hypertarget{todo__todo000060}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{Mezzanine::xml::Attribute::AsDouble}() const  ]Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\end{DoxyDescription}
+
+\label{todo__todo000061}
+\hypertarget{todo__todo000061}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{Mezzanine::xml::Attribute::AsFloat}() const  ]Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
 \end{DoxyDescription}
 
 \label{todo__todo000058}
 \hypertarget{todo__todo000058}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{Mezzanine::xml::Attribute::AsDouble}() const  ]Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{Mezzanine::xml::Attribute::AsInt}() const  ]Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
 \end{DoxyDescription}
 
 \label{todo__todo000059}
 \hypertarget{todo__todo000059}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{Mezzanine::xml::Attribute::AsFloat}() const  ]Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000056}
-\hypertarget{todo__todo000056}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{Mezzanine::xml::Attribute::AsInt}() const  ]Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000057}
-\hypertarget{todo__todo000057}{}
- 
-\begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{Mezzanine::xml::Attribute::AsUint}() const  ]Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
+\end{DoxyDescription}
+
+\label{todo__todo000052}
+\hypertarget{todo__todo000052}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}{Mezzanine::xml::Attribute::SetValue}(unsigned int rhs) ]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
 
 \label{todo__todo000053}
 \hypertarget{todo__todo000053}{}
  
 \begin{DoxyDescription}
+\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}{Mezzanine::xml::Attribute::SetValue}(double rhs) ]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. 
+\end{DoxyDescription}
+
+\label{todo__todo000055}
+\hypertarget{todo__todo000055}{}
+ 
+\begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_ab4ab2fb15cd198cd8527d796583cf994}{Mezzanine::xml::Attribute::SetValue}(T rhs) ]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. 
 \end{DoxyDescription}
 
-\label{todo__todo000052}
-\hypertarget{todo__todo000052}{}
+\label{todo__todo000054}
+\hypertarget{todo__todo000054}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a4b4b035128dfe3c7fd70e228c70d5118}{Mezzanine::xml::Attribute::SetValue}(bool rhs) ]update this to make the error return code redundant and use an exception instead. 
@@ -319,17 +351,8 @@ TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other 
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
 
-\label{todo__todo000049}
-\hypertarget{todo__todo000049}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}{Mezzanine::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000048}
-\hypertarget{todo__todo000048}{}
+\label{todo__todo000050}
+\hypertarget{todo__todo000050}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Mezzanine::xml::Attribute::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
@@ -341,29 +364,20 @@ Review for possiblity of buffer overflow.
 \hypertarget{todo__todo000051}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}{Mezzanine::xml::Attribute::SetValue}(double rhs) ]update this to make the error return code redundant and use an exception instead. 
+\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}{Mezzanine::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
 
-\label{todo__todo000050}
-\hypertarget{todo__todo000050}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}{Mezzanine::xml::Attribute::SetValue}(unsigned int rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000062}
-\hypertarget{todo__todo000062}{}
+\label{todo__todo000064}
+\hypertarget{todo__todo000064}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a0cc23e97d5ed9b2c1c46fcb442d8b337}{Mezzanine::xml::Node::FirstElementByPath}(const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const  ]Investigate this more deeply. 
 \end{DoxyDescription}
 
-\label{todo__todo000060}
-\hypertarget{todo__todo000060}{}
+\label{todo__todo000062}
+\hypertarget{todo__todo000062}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a227829d650b184329245c5abdd0476df}{Mezzanine::xml::Node::InsertChildAfter}(NodeType Type, const Node \&node) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
@@ -371,15 +385,15 @@ Review for possiblity of buffer overflow.
 Not all nodes can be added to other nodes, we need to figure it out and put it here. 
 \end{DoxyDescription}
 
-\label{todo__todo000055}
-\hypertarget{todo__todo000055}{}
+\label{todo__todo000057}
+\hypertarget{todo__todo000057}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a0f877b7c3d64ede9a73662ed2fff0ef5}{Mezzanine::xml::Node::InsertChildBefore}(NodeType Type, const Node \&node) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
 \end{DoxyDescription}
 
-\label{todo__todo000054}
-\hypertarget{todo__todo000054}{}
+\label{todo__todo000056}
+\hypertarget{todo__todo000056}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a86ca6281c21ba29a3e1476ac7cd5a48f}{Mezzanine::xml::Node::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
@@ -394,8 +408,8 @@ Review for possiblity of buffer overflow.
 \item[Namespace \hyperlink{namespaceOgre}{Ogre} ]Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this. 
 \end{DoxyDescription}
 
-\label{todo__todo000045}
-\hypertarget{todo__todo000045}{}
+\label{todo__todo000047}
+\hypertarget{todo__todo000047}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{worldnode_8h_a6509ccb839197be1acefdc54e46a62fe}{operator$>$$>$}(const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} \&Ev) ]This doesn't account for other objects aside from world nodes to be attached. Additional checks that fetch other types by name in the case of a null pointer should be implemented. 

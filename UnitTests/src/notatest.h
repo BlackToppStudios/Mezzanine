@@ -58,16 +58,49 @@ class notatestTests : public UnitTestGroup
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
-            {
-                TestResult temp = Success;
-                AddTestResult("notatest::GotThisFar-ThisJustExistsAsABlankSlateForOtherTests", temp);
+            {   // All the test that can run without human interaction should run in this block
+
+                // At the top of each block of tests you should assign each test an unknown value
+                // this way if the test crashes or acts up we have a good idea of what test it did or didn't do
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Automatic", Unknown);
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Automatic2", Unknown);
+
+
+                TestResult temp = Success;// Any logic require for a test should go here
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Automatic", temp, UnitTestGroup::OverWrite);
+
+                temp = Success;// Any logic require for a second test should go here
+                // The 3rd argument of AddTestResult() tells it how to treat duplicate results. By default AddTestResult()
+                // Will only overwrite an existing value if the new value is more failing than the old value. See the
+                // enum TestResult near the top of main.h for the ranks of failure->success. You
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Automatic2", temp, UnitTestGroup::OverWrite);
 
 
             }else{
-                AddTestResult("notatest::GotThisFar-ThisJustExistsAsABlankSlateForOtherTests", Skipped);
-
+                // this block will run if test that can run without human interaction are to be skipped.
+                // All tests that the above block could run should be assigned a skipped value here so that
+                // the final report remains accurate.
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Automatic", Skipped);
             }
 
+            if (RunInteractiveTests)
+            {   // All the test that require human interation should be in this block
+
+                // At the top of this block we should declare all of our interactive tests as unknown
+                // this will help troubleshoot when a test is not run.
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Interactive", Unknown);
+
+                TestResult temp = Success; // Any logic require for a test should go here
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Interactive", temp, UnitTestGroup::OverWrite);
+
+
+            }else{
+                // this block will run if test that require human interaction are to be skipped.
+                // All tests that the above block could run should be assigned a skipped value here so that
+                // the final report remains accurate.
+                AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Interactive", Skipped);
+
+            }
         }
 };
 #endif
