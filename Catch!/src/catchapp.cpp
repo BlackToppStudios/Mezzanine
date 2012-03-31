@@ -541,10 +541,10 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
     Grid->SetCellSpacing(CellSpacing);
     UI::Layer* ParentLayer = Grid->GetLayer();
 
-    std::set<String>* Files = crossplatform::GetDirContents("./Levels");
+    std::set<String>* Files = ResourceMan->GetDirContents("./Levels");
     if(Files->empty())
         return;
-    std::set<String>* Previews = crossplatform::GetDirContents("./Previews");
+    std::set<String>* Previews = ResourceMan->GetDirContents("./Previews");
     for( std::set<String>::iterator it = Files->begin() ; it != Files->end() ; it++ )
     {
         const String& FileName = (*it);

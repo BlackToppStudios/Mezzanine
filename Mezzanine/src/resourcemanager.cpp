@@ -43,15 +43,22 @@
 #include <iostream>
 #include <fstream>
 
-#include <Ogre.h>
-#include <btBulletWorldImporter.h>
-#include <btBulletDynamicsCommon.h>
-
 #include "resourcemanager.h"
 #include "meshmanager.h"
 #include "actorbase.h"
 #include "internalogredatastreambuf.h.cpp"
 #include "internalbulletfilemanager.h.cpp"
+
+#include <Ogre.h>
+#include <btBulletWorldImporter.h>
+#include <btBulletDynamicsCommon.h>
+
+#ifdef WINDOWS
+    #include <Winuser.h>
+    #include <direct.h> // for _getcwd
+#else
+	#include <unistd.h>//for sleep and getcwd
+#endif
 
 #ifdef MEZZDEBUG
 #include "world.h"
@@ -61,13 +68,13 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(String _EngineDataPath)
+    ResourceManager::ResourceManager(const String& EngineDataPath)
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
-        EngineDataPath = _EngineDataPath;
-        this->AddResourceLocation(_EngineDataPath, "FileSystem", "EngineData", false);
+        EngineDataDir = EngineDataPath;
+        this->AddResourceLocation(EngineDataPath, "FileSystem", "EngineData", false);
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
@@ -77,9 +84,41 @@ namespace Mezzanine
             { delete *Iter; }
     }
 
+    std::set<String>* ResourceManager::GetDirContents(const String& Dir)
+    {
+        std::set<String>* Results = new std::set<String>;
+        DIR *Directory;
+        struct dirent *DirEntry;
+        if(Directory = opendir(Dir.c_str()))
+        {
+            while(DirEntry = readdir(Directory))
+            {
+                Results->insert(DirEntry->d_name);
+                //DirEntry->d_type Later this can be modified to include the type of file entry it is, like a file, block device, directory, socket etc...
+            }
+
+            closedir(Directory);
+            return Results;
+        }else{
+            delete Results;
+            return NULL;
+        }
+    }
+
+    String ResourceManager::GetWorkingDirectory() const
+    {
+        char cCurrentPath[FILENAME_MAX];
+        //char cCurrentPath[MAXPATHLEN];
+        #ifdef WINDOWS
+        String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
+        #else
+        String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
+        #endif
+        return Results;
+    }
+
     String ResourceManager::GetEngineDataDirectory() const
         { return EngineDataPath; }
-
 
     void ResourceManager::AddResourceGroupName(String Name)
     {

@@ -82,19 +82,38 @@ namespace Mezzanine
             void AddResourceGroupName(String Name);
 
             /// @brief The location of engine data
-            String EngineDataPath;
+            String EngineDataDir;
 
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
-            ResourceManager(String _EngineDataPath);
+            ResourceManager(const String& EngineDataPath);
             /// @details Class Destructor.
             ~ResourceManager();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Directory Management
+
+            /// @brief Get a Listing of the files and subdirectories in a directory.
+            /// @details This follows normal command line conventions, "." is the current directory,
+            /// ".." is the parent directory. To access the file system root you will need to use a
+            /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
+            /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
+            /// @param Dir The directory to check.
+            std::set<String>* GetDirContents(const String& Dir = ".");
+            /// @brief Get the working directory as a Mezzanine::String
+            /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
+            String GetWorkingDir();
             /// @brief Get the pathname where engine data is stored
             /// @return A String that contains the pathname
             String GetEngineDataDirectory() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Management
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Resource Management
 
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and

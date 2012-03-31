@@ -110,18 +110,6 @@ namespace Mezzanine
         /// @param ActualWidth The modified value of the rendering width, after window decorations have been taken into account.
         /// @param ActualHeight The modified value of the rendering height, after window decorations have been taken into account.
         void MEZZ_LIB SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight);
-
-        /// @brief Get the working directory as a Mezzanine::String
-        /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
-        String MEZZ_LIB GetWorkingDir();
-
-        /// @brief Get a Listing of the files and subdirectories in a directory.
-        /// @details This follows normal command line conventions, "." is the current directory,
-        /// ".." is the parent directory. To access the file system root you will need to use a
-        /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
-        /// @return this will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
-        /// @param Dir The directory to check.
-        std::set<String>* MEZZ_LIB GetDirContents(const String& Dir = ".");
     }
 }
 #endif
