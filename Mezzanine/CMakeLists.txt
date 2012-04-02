@@ -476,7 +476,6 @@ if(${Mezz_Lua51})
 	include_directories( libincludes/common/lua51/lua5.1/src )
 endif(${Mezz_Lua51})
 
-
 link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
@@ -516,6 +515,7 @@ target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Mezzanine Depend
 	cAudio
 	${SDL}
 	${NetworkLibrary}
+	RenderSystem_GL Plugin_ParticleFX Plugin_CgProgramManager
 )
 
 ###############################################################################

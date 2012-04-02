@@ -36,6 +36,7 @@ project(OGRE)
 
 # Added by BTS for merging
 add_definitions( ${CommonBuildFlags} )
+set(OGRE_BUILD_RENDERSYSTEM_GL TRUE)
 
 # Include necessary submodules
 set(CMAKE_MODULE_PATH 
@@ -180,7 +181,7 @@ endif (APPLE)
 
 # Commented out by BTS since we are integrating dependancies differently.
 # Find dependencies
-# include(Dependencies)
+include(Dependencies)
 
 # definitions for samples
 set(OGRE_LIBRARIES OgreMain) 
@@ -312,7 +313,9 @@ mark_as_advanced(
 	OGRE_BUILD_TOOLS
 	OGRE_BUILD_XSIEXPORTER
 	OGRE_BUILD_TESTS
-	OGRE_CONFIG_DOUBLE)
+	OGRE_CONFIG_DOUBLE
+	OGRE_DEPENDENCIES_DIR
+)
 
 if (SYMBIAN)
 # Symbian can only use the standard allocator
@@ -418,7 +421,7 @@ include(InstallResources)
 
 # Added by BTS
 # Setup the dependancies for ogre
-add_subdirectory(Dependencies)
+#add_subdirectory(Dependencies)
 
 # Setup OgreMain project
 add_subdirectory(OgreMain)

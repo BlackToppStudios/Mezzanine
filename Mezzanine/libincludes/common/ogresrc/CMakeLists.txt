@@ -4,8 +4,6 @@ message ( "${PROJECT_NAME} - Begin" )
 
 #Choose the destination directory
 set (${PROJECT_NAME}_BINARY_DIR "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/ogre/")
-message ( "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
-Message( ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 # Long list of changes necessary to get ogre properly merged with our project.
@@ -15,7 +13,7 @@ message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 # Before you get started it's good to know that the Dependancies folder referenced here has to be created and placed manually, and the contents of the dependancy source 
 # repo placed in it minus the hg config files.
 #
-# The root CMakeLists.txt the version number should be manually entered around line 236
+# The root /Mezzanine/CMakeLists.txt the version number should be manually entered around line 236
 #
 # In ogresvnsrc\CMake\Utils\OgreConfigTargets.cmake:
 # Have to change the output dirs listed near the top to instead use the binary dir defined above.
@@ -31,14 +29,18 @@ message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 #
 # In ogresvnsrc\cmakelists.txt:
 # Comment out the "if" statement regarding the cmake build type from lines 69 to 73.
-# Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package.
+# Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package. this entry is responsible for
+# finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421
 # Also have to change the output directories just below the dependancies line to use the binary dir defined above.
 # Next, comment out the 4 lines around line 281 that say to build the samples, tools, xsi export, and tests.  These need to be set to false.
 # Next, have to mark all the cmake options that are listed starting around line 256 as advanced until the allocator options at around line 314.
 # Next, the install options have to all be set to false, and disabled.  These options start around line 351.
 # Next, mark the Unity options at around line 368 as advanced.
-# Next, where the sub-directories are being added for the actual libs, add the subdirectory for Dependancies above OgreMain.  Around line 421.
+# Next, where the sub-directories are being added for the actual libs, add the subdirectory for Dependancies above OgreMain.  Around line 421. This
+# one was remarked out in favor of the original on line 180ish
 # Lastly, comment out the lines where the additional sub-directories are being added for the Samples and Media.  Starting around line 436.
+# set(OGRE_BUILD_RENDERSYSTEM_GL TRUE) was added near the add_definitions that we already added neat the beggining of the file.
+# OGRE_DEPENDENCIES_DIR was marked as advanced
 #
 # In ogresvnsrc\Dependancies\CMakeLists.txt:
 # Add a section to define the output directory similar to the one at the top of this file.  Put it in the same dir listed above plus "deps".
