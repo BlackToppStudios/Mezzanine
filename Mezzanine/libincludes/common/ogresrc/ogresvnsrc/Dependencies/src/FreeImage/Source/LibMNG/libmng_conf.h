@@ -77,7 +77,7 @@
 #define MNG_OPTIMIZE_CHUNKINITFREE
 #define MNG_OPTIMIZE_OBJCLEANUP
 #define MNG_OPTIMIZE_CHUNKASSIGN
-#define MNG_OPTIMIZE_CHUNKREADER
+//#define MNG_OPTIMIZE_CHUNKREADER
 
 /* ************************************************************************** */
 

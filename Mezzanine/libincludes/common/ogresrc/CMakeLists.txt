@@ -65,6 +65,10 @@ message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 # Also, just after the include directories, add a line to declare the link directory.
 # After the ogremain target is created at around line 733, add a line to define the dependancies of OgreMain, with an "if" statement to exclude Cg on iOS.
 # Next, in the same if statement above, add lines for declaring the link libraries for the ogre dependancies.
+#
+# ogresvnsrc/Dependencies/src/FreeImage/Source/LibMNG/libmng_conf.h
+# remark out line 80 to disable the definition of MNG_OPTIMIZE_CHUNKREADER to allow compilation
+
 
 add_subdirectory ( ogresvnsrc )
 
