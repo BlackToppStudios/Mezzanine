@@ -59,10 +59,14 @@
 #	Mezz_ThrowOnSingletonFetch	- When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
 # That affect only build time values:
-#	Mezz_OgreBuildDir		- The location of the Ogre source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
 #	Mezz_SDLBuildDir		- The location of the SDL source code. The cmake routine attempts to find it in a few specific directory, or the developer can enter it manually
-#	Mezz_UseOgreDebug		- True if the developer wants to the use the ogre debug libraries, this adjusts a number of other files that child cmake scripts can use.
-#	Mezz_UseOgreVersion		- This defaults to the version of cmake that ships with the engine, but can be changed (and should be) if a different version of ogre is desired.
+#	OgreLinkName			- This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
+#	OgresD				- This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
+#	OgreLibFileName			- The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
+#	OgreLinuxSoName			- Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
+#	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
+#	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
+#	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
@@ -72,13 +76,6 @@
 #	LibSuffix			- This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
 #	LuaLinkName			- This is the name that of the actual compiled lua library, it will be blank if lua is not to be linked
 #	LuaProject			- The Name of the lua cmake project
-#	OgreLinkName			- This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
-#	OgresD				- This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
-#	OgreLibFileName			- The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
-#	OgreLinuxSoName			- Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
-#	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
-#	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
-#	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
 #	MezzanineLinkName		- What should be entered when somethings needs to link against Mezzanine usually "Mezzanine" sometime it specifies and import library, like
 #	MezzanineLibFileName		- The actual name of the file the Mezzanine is called.
 
@@ -224,19 +221,19 @@ else(${TempDirDefined} EQUAL 0)
 endif(${TempDirDefined} EQUAL 0)
 
 #######################################
-# Ogre related values
-option(Mezz_UseOgreDebug "Use Ogre Debug Libraries, instead of Release Libs" OFF)
-set(Mezz_UseOgreVersion 1.7.3 CACHE STRING "The version of the ogre libraries to link against")
-mark_as_advanced(Mezz_UseOgreDebug Mezz_UseOgreVersion)
-if(${Mezz_UseOgreDebug})
+# Ogre3d related values
+if(${Mezz_Debug})
 	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Debug libraries")
 	set(OgreLinkName OgreMain_d)
 	set(OgresD _d)
-else(${Mezz_UseOgreDebug})
+else(${Mezz_Debug})
 	message ( STATUS "${PROJECT_NAME} - Will we use Ogre Release libraries")
 	set(OgreLinkName OgreMain)
 	set(OgresD "")
-endif(${Mezz_UseOgreDebug})
+endif(${Mezz_Debug})
+
+#This must be set manually each time ogre is upgraded.
+set(Mezz_UseOgreVersion 1.8.0 CACHE STRING "The version of the ogre libraries to link against")
 
 set(OgreLibFileName ${LibPrefix}${OgreLinkName}${LibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})		#This value is gibberish on non-Linux platforms
@@ -245,36 +242,6 @@ set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})		#This value is g
 set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix} )
 set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix} )
 set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix} )
-
-#Find the Ogre source
-message ( STATUS "${PROJECT_NAME} - Looking for Ogre Source/Headers")
-if(${WIN32})
-else(${WIN32})
-	file(GLOB PossibleMatches ${ProjectRootDir}Mezzanine/libincludes/*/ogresrc/OgreBuild ${ProjectRootDir}Mezzanine/OgreBuild ${ProjectRootDir}../*/OgreBuild ${ProjectRootDir}../*/Mezzanine/OgreBuild)
-	foreach(Current ${PossibleMatches})
-		message ( STATUS "${PROJECT_NAME} - Checking for Ogre headers in ${Current}")
-		if(IS_DIRECTORY ${Current})
-			set(OgreTempDir ${Current})
-		else(IS_DIRECTORY ${Current})
-			message( STATUS "Found something similar to Ogre build directory, not using: ${Current}")
-		endif(IS_DIRECTORY ${Current})
-	endforeach(Current ${PossibleMatches})
-
-	set(TempDirDefined 0)
-	if(DEFINED OgreTempDir)
-		set(TempDirDefined 1)
-	endif(DEFINED OgreTempDir)
-
-	set(Mezz_OgreBuildDir ${OgreTempDir} CACHE FILEPATH "Where were Ogre was built")
-
-	if(${TempDirDefined} EQUAL 0)
-		message( SEND_ERROR "Could not find SDL source, please provide path in Mezz_OgreBuildDir")
-	else(${TempDirDefined} EQUAL 0)
-		message( STATUS "Found Ogre build directory. Using: ${OgreTempDir}")
-		mark_as_advanced(Mezz_OgreBuildDir)
-	endif(${TempDirDefined} EQUAL 0)
-endif(${WIN32})
-
 ###############################################################################
 # Network Library Define
 
@@ -306,5 +273,4 @@ add_subdirectory (UnitTests)
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine
 mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY )
-
 

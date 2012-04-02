@@ -4,7 +4,9 @@ message ( "${PROJECT_NAME} - Begin" )
 
 #Choose the destination directory
 set (${PROJECT_NAME}_BINARY_DIR "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/ogre/")
-message ( STATUS "Putting Ogre binaries in: ${Mezzanine_BINARY_DIR}")
+message ( "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
+Message( ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 # Long list of changes necessary to get ogre properly merged with our project.
 # One quick thing to note is that all I applied these changes from top to bottom noting their line number as I went.  If you try to use the mentioned
@@ -13,10 +15,13 @@ message ( STATUS "Putting Ogre binaries in: ${Mezzanine_BINARY_DIR}")
 # Before you get started it's good to know that the Dependancies folder referenced here has to be created and placed manually, and the contents of the dependancy source 
 # repo placed in it minus the hg config files.
 #
+# The root CMakeLists.txt the version number should be manually entered around line 236
+#
 # In ogresvnsrc\CMake\Utils\OgreConfigTargets.cmake:
 # Have to change the output dirs listed near the top to instead use the binary dir defined above.
 # Also have to update the additional paths listed below the output dirs to be empty, since we want to put it all in one place regardless of build.
-# There is one exception to this, the variable "OGRE_PLUGIN_PATH" should be left as "/".  Possibly others but in my tests it did not complain.
+# There is one exception to this, the variable "OGRE_PLUGIN_PATH" should be left as "/" or ".", but never as "".  Possibly others but in my tests
+# it did not complain.
 #
 # In ogresvnsrc\CMake\PrepareThreadingOptions.cmake:
 # Only thing here is have to comment out line 19, where it sets boost as the threading option if/when it finds boost.

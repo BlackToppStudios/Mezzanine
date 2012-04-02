@@ -52,6 +52,7 @@ namespace Mezzanine
 {
     namespace internal
     {
+        /*
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal
         /// @class BulletFileManager
@@ -83,6 +84,8 @@ namespace Mezzanine
                 /// @return Returns a pointer to this manager.
                 static BulletFileManager* getSingletonPtr();
         };//bulletfilemanager
+        */
+
     }//internal
 }//Mezzanine
 

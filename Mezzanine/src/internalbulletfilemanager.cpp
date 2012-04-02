@@ -46,7 +46,7 @@ namespace Mezzanine
 {
     namespace internal
     {
-        template<> BulletFileManager* Ogre::Singleton<BulletFileManager>::ms_Singleton = 0;
+       /* template<> BulletFileManager* Ogre::Singleton<BulletFileManager>::ms_Singleton = 0;
 
         BulletFileManager::BulletFileManager()
         {
@@ -89,7 +89,8 @@ namespace Mezzanine
         BulletFileManager* BulletFileManager::getSingletonPtr()
         {
             return ms_Singleton;
-        }
+        }*/
+
     }//internal
 }//Mezzanine
 

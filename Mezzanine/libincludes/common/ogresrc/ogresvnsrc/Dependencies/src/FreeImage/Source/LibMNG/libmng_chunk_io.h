@@ -86,7 +86,7 @@ mng_retcode mng_inflate_buffer (mng_datap  pData,
                                      mng_chunkp* ppChunk)
 
 #ifdef MNG_OPTIMIZE_CHUNKREADER
-READ_CHUNK (mng_read_general) ;
+READ_CHUNK ( mng_read_general) ;
 #endif
 
 READ_CHUNK (mng_read_ihdr) ;

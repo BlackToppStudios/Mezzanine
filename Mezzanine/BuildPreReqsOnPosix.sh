@@ -1,5 +1,5 @@
 #!/bin/bash
-# © Copyright 2010 - 2011 BlackTopp Studios Inc.
+# © Copyright 2010 - 2011 BlackTopp Studios Inc../
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -47,17 +47,15 @@
 # Functions
 function Usage {
 	echo
-	echo "Usage: `basename $0` Debug|Release [ThreadCount [OutputDir  [SkipOgre] [SkipSDL] [SDLNoArchive] [OgreNoArchive] [NoCompile] [NoArchive] [NoChanges] ] ] ] "
+	echo "Usage: `basename $0` Debug|Release [ThreadCount [OutputDir [SkipSDL] [SDLNoArchive] [NoCompile] [NoArchive] [NoChanges] ]]]"
 	echo "   Release - If the word Debug is the first argument, then The software will be compiled with Debug Symbols"
 	echo "   Debug - If the word Debug is the first argument, then The software will be compiled with Debug Symbols"
 	echo "   ThreadCount is the number of threads to compile with. You usually want to enter you amount of CPU cores."
 	echo "   OutputDir - Before compilation the source is copied to prevent interference with revision tools, where should these copies be placed"
 	echo ""
 	echo "  You must supply values for the first three arguments as listed above to use any of the following advanced arguments. Advanced arguments can be entered in any order as long they are are entered after the 3rd argument. These options simply stop this script from performing work, if multiple options are chosen, then they will all prevent functionality and none will be enabled."
-        echo "   SkipOgre - Do not compile ogre, but still extract Ogre source"
         echo "   SkipSDL - Do not compile, but still extract SDL source"
         echo "   SDLNoArchive - Do not extract SDL from source archive, but do attempt compile"
-        echo "   OgreNoArchive - Do not extract Ogre from source archive but do attempt to compile"
         echo "   NoCompile - Do not compile, but archive like normal"
         echo "   NoArchive - Do not unarchive any source, any compilations will attempt to use source as it is present"
         echo "   NoChanges - Do not unarchive or compile anything"
@@ -178,19 +176,14 @@ then
 
 	#########################################################
 	# Prepare other command line arguments
-	CompileOgre=1
-	CompileSDL=1
 	DecompressSDL=1
-	DecompressOgre=1
+	CompileSDL=1
 
 	shift 3
 	while (( $# ));
 	do
 		case "$1" in
-		"SkipOgre" )
-			CompileOgre=0
-			echo "Skipping Ogre Compilation"
-			;;
+
 		"SkipSDL" )
 			CompileSDL=0
 			echo "Skipping SDL Compilation"
@@ -198,10 +191,6 @@ then
 		"SDLNoArchive" )
 			DecompressSDL=0
 			echo "Skipping SDL Decompression"
-			;;
-		"OgreNoArchive" )
-			DecompressOgre=0
-			echo "Skipping Ogre Decompression"
 			;;
 		"NoCompile" )
 			CompileOgre=0
@@ -226,8 +215,6 @@ then
 		esac
 		shift
 	done
-
-
 fi
 
 
@@ -255,6 +242,7 @@ echo "Preparing SDL source Files in: \"$SDLOutputDir\""
 cd $WorkingDir			#next line needs to be executed from the working dir or it could fail if the user entered a relative path
 mkdir -p $SDLOutputDir
 cd $SDLOutputDir
+
 if [ 1 -eq $DecompressSDL ]
 then
 	tar xf $WorkingDir/libincludes/common/sdlsrc/SDL.tar.gz
@@ -291,64 +279,6 @@ then
 	cp -a $SDLCompileDir/build/libSDLmain.a $WorkingDir/$BinaryRecievingDir/sdl/
 fi
 
-########################################################
-# Prepare Ogre Library
-CMakeOutput="CodeBlocks - Unix Makefiles"
-OgreDepsLocation=""
-CmakeMinGWPATH=""
-OriginalPATH=$PATH
-
-OgreOutputDir="$OutputDir/OgreBuild"
-OgreCompileDir="$OutputDir/OgreBuild/ogre"
-OgreRelOutputDir=".."
-
-if [ 1 -eq $MinGW32 ]
-then
-	CMakeOutput="CodeBlocks - MinGW Makefiles"
-	OgreDepsLocation="-DOGRE_DEPENDENCIES_DIR=../ogredepsbuild"
-	exit	#this needs to stay until the ogre build is somehow in the unified build system
-fi
-
-echo "Preparing Ogre source Files in: \"$OgreOutputDir\""
-cd $WorkingDir
-mkdir -p $OgreOutputDir
-#cp -a libincludes/common/ogresrc/ogre/ $OgreOutputDir/
-cd $OgreOutputDir
-if [ 1 -eq $DecompressOgre ]
-then
-	tar xf $WorkingDir/libincludes/common/ogresrc/ogre.tar.gz
-else
-        echo "Skipping Ogre decompression"
-fi
-cd $WorkingDir
-cd $OgreCompileDir
-
-if [ 1 -eq $CompileOgre ]
-then
-	echo "Configuring Ogre3d, putting output in: $OgreOutputDir/Configurelog.txt"
-	cmake -G"$CMakeOutput" $DebugCMake -DOGRE_STATIC=false $OgreDepsLocation > ../Configurelog.txt
-
-	echo "Compiling Ogre3d, OgreMain, putting output in: $OgreOutputDir/Compilelog-OgreMain.txt"
-	make -j$ThreadCount OgreMain > $OgreRelOutputDir/Compilelog-OgreMain.txt
-
-	echo "Compiling Ogre3d, RenderSystem_GL, putting output in: $OgreOutputDir/Compilelog-RenderSystem_GL.txt"
-	make -j$ThreadCount RenderSystem_GL > $OgreRelOutputDir/Compilelog-RenderSystem_GL.txt
-
-	echo "Compiling Ogre3d, Plugin_CgProgramManager, putting output in: $OgreOutputDir/Compilelog-Plugin_CgProgramManager.txt"
-	make -j$ThreadCount Plugin_CgProgramManager > $OgreRelOutputDir/Compilelog-Plugin_CgProgramManager.txt
-
-	echo "Compiling Ogre3d, Plugin_ParticleFX, putting output in: $OgreOutputDir/Compilelog-Plugin_ParticleFX.txt"
-	make -j$ThreadCount Plugin_ParticleFX > $OgreRelOutputDir/Compilelog-Plugin_ParticleFX.txt
-
-	cd $WorkingDir
-	echo "Putting Compiled Ogre binaries in: $WorkingDir/$BinaryRecievingDir/ogre/"
-	cp -a $OgreCompileDir/lib/* $WorkingDir/$BinaryRecievingDir/ogre/
-else
-	echo "Skipping Ogre Compilation"
-fi
-
-
-exit
 
 #if [ 1 -eq $MinGW32 ]		#MinGW does not work well with a cluttered $PATH
 #then
