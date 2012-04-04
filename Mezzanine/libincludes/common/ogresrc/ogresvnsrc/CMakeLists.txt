@@ -98,7 +98,9 @@ endif ()
 if (CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
   check_cxx_compiler_flag(-msse OGRE_GCC_HAS_SSE)
   if (OGRE_GCC_HAS_SSE)
-    add_definitions(-msse)
+#    add_definitions(-msse)
+   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
   endif ()
   # This is a set of sensible warnings that provide meaningful output
   add_definitions(-Wno-deprecated -Wall -Wctor-dtor-privacy -Winit-self -Wno-overloaded-virtual -Wcast-qual -Wwrite-strings -Wextra -Wno-unused-parameter -pedantic -Wshadow -Wno-unused-but-set-parameter -Wno-missing-field-initializers -Wno-long-long)
@@ -180,6 +182,7 @@ if (APPLE)
 endif (APPLE)
 
 # Commented out by BTS since we are integrating dependancies differently.
+# Was commented out, instead there are other things aside from the core dependancies that we need to find and have available.
 # Find dependencies
 include(Dependencies)
 
@@ -473,4 +476,6 @@ include(Packaging)
 
 # Show feature summary
 include(FeatureSummary)
+
+mark_as_advanced(Boost_LIB_DIAGNOSTIC_DEFINITIONS)
 

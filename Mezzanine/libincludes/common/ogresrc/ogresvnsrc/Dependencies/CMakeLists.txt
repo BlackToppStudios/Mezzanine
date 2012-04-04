@@ -3,8 +3,8 @@ project(OGREDEPS)
 set(CMAKE_MODULE_PATH "${OGREDEPS_SOURCE_DIR}/CMake" ${CMAKE_MODULE_PATH})
 
 #Choose the destination directory
-set (OGREDEPS_BINARY_DIR "${Ogre_BINARY_DIR}deps")
-message ( STATUS "Putting Ogre Dependancy binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
+#set (OGREDEPS_BINARY_DIR "${Ogre_BINARY_DIR}deps")
+#message ( STATUS "Putting Ogre Dependancy binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 
 if (WIN32)
   # look for DirectX which is needed by OIS

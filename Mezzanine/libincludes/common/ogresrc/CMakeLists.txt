@@ -3,8 +3,10 @@ project (Ogre)
 message ( "${PROJECT_NAME} - Begin" )
 
 #Choose the destination directory
-set (${PROJECT_NAME}_BINARY_DIR "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/ogre/")
-message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
+set (Ogre_BINARY_DIR "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/ogre/")
+set (OGREDEPS_BINARY_DIR "${Ogre_BINARY_DIR}deps")
+message ( STATUS "Putting Ogre binaries in: ${Ogre_BINARY_DIR}")
+message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 
 # Long list of changes necessary to get ogre properly merged with our project.
 # One quick thing to note is that all I applied these changes from top to bottom noting their line number as I went.  If you try to use the mentioned
@@ -24,13 +26,23 @@ message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 # In ogresvnsrc\CMake\PrepareThreadingOptions.cmake:
 # Only thing here is have to comment out line 19, where it sets boost as the threading option if/when it finds boost.
 #
-# In ogresvnsrc\Dependancies\cmake\FindDirectX.cmake
+# In ogresvnsrc\Dependancies\cmake\FindDirectX.cmake:
 # At line 79 they mark a bunch of options and paths as advanced, but missed the variable "DirectX_DINPUT8_LIBRARY".  Add it to the list of things being marked as advanced.
+#
+# In ogresvnsrc\CMake\Dependencies.cmake:
+# Need to comment out lines 56 to 72 that try to find the 4 core ogre dependencies: Zlip, Zziplib, FreeImage, and Freetype.
+# Next, comment out lines 169 and 170 where it tries to find OIS.
+#
+# In ogresvnsrc\CMake\InstallDependencies.cmake:
+# On line 23, mark the options OGRE_INSTALL_DEPENDENCIES and OGRE_COPY_DEPENDENCIES as advanced.
 #
 # In ogresvnsrc\cmakelists.txt:
 # Comment out the "if" statement regarding the cmake build type from lines 69 to 73.
+# At around line 101, comment out the line that adds definitions and add these two lines below it:
+#   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
+#   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
 # Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package. this entry is responsible for
-# finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421
+# finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421 
 # Also have to change the output directories just below the dependancies line to use the binary dir defined above.
 # Next, comment out the 4 lines around line 281 that say to build the samples, tools, xsi export, and tests.  These need to be set to false.
 # Next, have to mark all the cmake options that are listed starting around line 256 as advanced until the allocator options at around line 314.
@@ -38,21 +50,23 @@ message ( STATUS "Putting Ogre binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 # Next, mark the Unity options at around line 368 as advanced.
 # Next, where the sub-directories are being added for the actual libs, add the subdirectory for Dependancies above OgreMain.  Around line 421. This
 # one was remarked out in favor of the original on line 180ish
-# Lastly, comment out the lines where the additional sub-directories are being added for the Samples and Media.  Starting around line 436.
+# Next, comment out the lines where the additional sub-directories are being added for the Samples and Media.  Starting around line 436.
 # set(OGRE_BUILD_RENDERSYSTEM_GL TRUE) was added near the add_definitions that we already added neat the beggining of the file.
 # OGRE_DEPENDENCIES_DIR was marked as advanced
+# Lastly, at the end of the file add "mark_as_advanced(Boost_LIB_DIAGNOSTIC_DEFINITIONS)"
 #
-# In ogresvnsrc\Dependancies\CMakeLists.txt:
+# In ogresvnsrc\Dependencies\CMakeLists.txt:
 # Add a section to define the output directory similar to the one at the top of this file.  Put it in the same dir listed above plus "deps".
+#  I commented out the section mentioned above and instead moved it to this file, so that it could be used in the other dependencies setup.
 #
-# In ogresvnsrc\Dependancies\src\CMakeLists.txt:
+# In ogresvnsrc\Dependencies\src\CMakeLists.txt:
 # At the top of the file all the options to build the various dependancies must be set to true with the exception of OIS, which must be set to false.
 # Next, "OGREDEPS_LIB_DIRECTORY" needs to be set to the OGREDEPS_BINARY_DIR.
 # Next, Comment out the lines starting around line 22 that refer to release and debug paths, and runtime output.  Replace the runtime output with the output directory set in the above file.
 #  Also replace the release and debug paths with just a "/"
 # Next, Add two lines inside the "install_dep" function, near the top.  One for the Archive and another for the Library output.  Set them both to OGREDEPS_BINARY_DIR.
 #
-# In ogresvnsrc\Dependancies\src\Cg\CMakeLists.txt:
+# In ogresvnsrc\Dependencies\src\Cg\CMakeLists.txt:
 # At the top of the file, around line 4 just after the option "Cg_INCLUDE_DIR", need to add a line marking it as advanced.
 # Also, at line 43, you must mark the options "Cg_LIBRARY_REL" and "Cg_LIBRARY_DBG" as advanced.
 #
