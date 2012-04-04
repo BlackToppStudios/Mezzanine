@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "scriptargument.h"
+#include "smartptr.h"
 
 namespace Mezzanine
 {
@@ -49,52 +50,89 @@ namespace Mezzanine
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script
+        /// @details All the members that all script for all languages must implement.
+        /// These are tiny pieces of data that can be run like miniature programs.
+        ///////////////////////////////////////
+        class MEZZ_LIB Script
+        {
+            public:
+                /// @brief This adds an argument to be passed to the script.
+                /// @details All arguments added with this are passed in FIFO order to the Script during or just
+                /// before execution. This should normally run in constant time. Some scripting implementations may
+                /// change the order arguments are passed if doing it another way mays more sense.
+                /// @param Arg This accepts a pointer to a script argument and The script assumes responsibility for deleting the argument.
+                virtual void AddArgument(ScriptArgument* Arg) = 0;
+
+                /// @brief This adds an argument to be passed to the script.
+                /// @details All arguments added with this are passed in FIFO order to the Script during or just
+                /// before execution. This should normally run in constant time. Some scripting implementations may
+                /// change the order arguments are passed if doing it another way mays more sense.
+                /// @param Arg This accepts a CountedPtr to a script argument and The script shares responsibility with caller for deleting the argument.
+                virtual void AddArgument(CountedPtr<ScriptArgument> Arg) = 0;
+
+                /// @brief Remove an argument based on a CountedPtr to the script
+                /// @detail This searches through the internal list and removes the first entry it finds matching this.
+                /// This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run.
+                /// This can be used with AddArgument to re-order the way parameters are passed into a script
+                /// @param Arg A CountedPtr matching the one to be removed
+                virtual void RemoveArgument(CountedPtr<ScriptArgument> Arg) = 0;
+
+                /// @brief Remove a Script argument based on the order it will be passed into the Script at Execution.
+                /// @detail This removes the  specified Argument from the internal list. This should be treated as taking linear
+                /// time, relative to the total count of arguments assigned to this script, to run.
+                /// @param ArgNumber The number of the Argument to be removed. This behaves similar to an array or vector as it starts counting at 0.
+                virtual void RemoveArgument(Whole ArgNumber) = 0;
+
+                /// @brief Remove all the ARGs!!! http://imgur.com/DJhw7
+                /// @details This should run in constant time. It still might be slower than removing and readding just one a few arguments
+                /// in simple cases
+                virtual void ClearArguments() = 0;
+
+                virtual Whole GetArgumentCount() const = 0;
+
+                virtual CountedPtr<ScriptArgument> GetArgument(Whole ArgNumber) const = 0;
+
+                virtual void SetCode(String Code) = 0;
+                virtual String GetCode() const = 0;
+
+                virtual bool IsCompiled() const
+                    { return false; }
+                virtual bool IsCompilable() const
+                    { return false; }
+
+                virtual bool IsAvailableAsString() const = 0;
+                virtual bool IsAbleToReturnMultiple() const = 0;
+
+                virtual CountedPtr<ScriptArgument> Execute() = 0;
+
+        };
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief The interface for a script that can be compiled to bytecode
         /// @details All the members that all script for all languages must implement
         /// @n @n
-        /// These are tiny pieces of data that can be run like miniature programs. They
-        /// will be compiled to a bytecode that can swiftly be executed by the appropriate
+        /// These are tiny pieces of data that can be run like miniature programs. In some cases
+        /// they will be compiled to a bytecode that can swiftly be executed by the appropriate
         /// bytecode interpretter. This is faster than interpretting text, but slower than
         /// running native code. It is more flexible and safer than native code, because
         /// scripts may be provided by others than the original developers, and there are
         /// fewer security issues with a completely self contained language as opposed to
         /// actual native code.
         ///////////////////////////////////////
-        class MEZZ_LIB Script
-        {
-            public:
-                /// @brief
-                /// @param Arg This accepts a pointer to a script argument
-                virtual void AddArgument(ScriptArgument* Arg) = 0;
-                virtual void RemoveArgument(ScriptArgument* Arg) = 0;
-                virtual void ClearArguments() = 0;
-                virtual Whole GetArgumentCount() = 0;
-                virtual ScriptArgument* GetArgument(Whole ArgNumber) = 0;
-
-                virtual void SetCode(String Code) = 0;
-                virtual String GetCode() = 0;
-
-                virtual bool IsCompiled() = 0;
-                virtual bool IsCompilable()
-                    { return false; }
-                virtual bool IsAvailableAsString() = 0;
-                virtual bool IsAbleToReturnMultiple() = 0;
-
-                virtual ScriptArgument* Execute() = 0;
-        };
-
         class MEZZ_LIB ScriptCompilable : public Script
         {
             public:
                 virtual void SetByteCode(String Code) = 0;
-                virtual String GetByteCode() = 0;
+                virtual String GetByteCode() const = 0;
 
-                virtual bool IsCompiled() = 0;
-                virtual bool IsCompilable()
+                virtual bool IsCompiled() const = 0;
+                virtual bool IsCompilable() const
                     { return true; }
-                virtual bool IsAvailableAsString() = 0;
+
+                virtual bool IsAvailableAsString() const = 0;
 
                 virtual void Compile() = 0;
-                virtual ScriptArgument* Execute() = 0;
+                virtual CountedPtr<ScriptArgument> Execute() = 0;
         };
 
     }

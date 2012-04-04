@@ -140,22 +140,22 @@ namespace Mezzanine
                 break;*/
 
             case SDL_MOUSEMOTION:{       //Can contain Multiple Metacodes
-                vector<MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
+                std::vector<MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
             case SDL_JOYAXISMOTION: {       //Can contain Multiple Metacodes
-                vector<MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
+                std::vector<MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
             case SDL_JOYBALLMOTION:{
-                vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
+                std::vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
             case SDL_JOYHATMOTION:{
-                vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickHat(RawEvent_));
+                std::vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickHat(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
