@@ -148,7 +148,7 @@ namespace Mezzanine
             /// @brief Multi Data Point constructor
             /// @param Codes_ The MetaCodes in this vecotor will be added to the EventUserInput during creation.
             /// @details This creates a ready to use EventUserInput which already contains all the metacodes included.
-            EventUserInput(const vector<MetaCode> &Codes_);
+            EventUserInput(const std::vector<MetaCode> &Codes_);
 
             /// @brief Default desstructor
             /// @details This tears down the
@@ -193,7 +193,7 @@ namespace Mezzanine
             /// @brief Add Several MetaCodes from a vector
             /// @param Codes A vector of MetaCodes to be added to this event
             /// @details This adds several existing metacodes to this event.
-            void AddCodes(const vector<MetaCode> &Codes);
+            void AddCodes(const std::vector<MetaCode> &Codes);
 
             /// @brief Adds all possible MetaCodes that can be created from the given RawEvent
             /// @param RawEvent_ The RawEvent which will be translated into a group of metacodes and added to this
@@ -204,7 +204,7 @@ namespace Mezzanine
             /// with new version of the engine
             /// \n This Function is currently incomplete, and does not yet process all events such as joysticks events and some mouse events.
             /// @return this returns a complete set of all the MetaCodes added.
-            vector<MetaCode> AddCodesFromRawEvent(const RawEvent &RawEvent_);
+            std::vector<MetaCode> AddCodesFromRawEvent(const RawEvent &RawEvent_);
 
             /// @brief Removes a specific code from storage.
             /// @param Code_ This will search for all matching copies of this

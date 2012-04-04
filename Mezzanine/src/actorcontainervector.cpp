@@ -67,7 +67,7 @@ namespace Mezzanine
     void ActorContainerVector::RemoveActor(ActorBase* ActorToRemove)
     {
         //we need to iterate through and remove all items of that match the actor to match the description in the container base
-        for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+        for( std::vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
         {
             if ( ActorToRemove == *c )
             {
@@ -140,7 +140,7 @@ namespace Mezzanine
     ActorBase* ActorContainerVector::FindActor(btCollisionObject* PhysicsObject)
     {
         //we need to iterate through and remove all items of that match the actor to match the description in the container base
-        for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+        for( std::vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
         {
             if ( PhysicsObject == GetCollisionObject(*c) )
             { return *c; }
@@ -151,7 +151,7 @@ namespace Mezzanine
     ActorBase* ActorContainerVector::FindActor(Ogre::SceneNode* GraphicsNode)
     {
         //we need to iterate through and remove all items of that match the actor to match the description in the container base
-        for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+        for( std::vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
         {
             if ( GraphicsNode == GetNode(*c) )
             { return *c; }
@@ -162,7 +162,7 @@ namespace Mezzanine
     ActorBase* ActorContainerVector::FindActor(String Name)
     {
         //we need to iterate through and remove all items of that match the actor to match the description in the container base
-        for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+        for( std::vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
         {
             if ( Name == (*c)->GetName() )
             { return *c; }
@@ -183,7 +183,7 @@ namespace Mezzanine
     {
         if (RemoveFromWorld && World::GetWorldPointer() != NULL)
         {
-            for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+            for( std::vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
                 { (*c)->RemoveFromWorld(); }
         }
 
@@ -191,7 +191,7 @@ namespace Mezzanine
 
         if (AddToWorld && this->GameWorld != NULL)
         {
-            for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
+            for( std::vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
                 { (*c)->AddToWorld(); }
         }
     }

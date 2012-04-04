@@ -244,8 +244,15 @@ namespace Mezzanine
             /// @note This name was chosen to match standard compliant names, and should be usable in templates that require this function.
             bool unique() const throw()
                 {return (itsCounter ? itsCounter->count == 1 : true);}
-    };
 
+            /// @brief A comparision of two CountedPtr instances
+            /// @details This is used to see if this and another CountedPtr are managing the same
+            /// object and are part of the same group of CountedPtr managing that object.
+            /// @param Other The CountedPtr on the right hand side of the ==
+            /// @return This returns true if this and Other use the same reference count and pointer.
+            bool operator==(const CountedPtr& Other)
+                { return Other.itsCounter == itsCounter; }
+    };
 
 } // \Mezzanine
 

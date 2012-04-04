@@ -70,6 +70,9 @@ namespace Mezzanine
                 T Datum;
 
             public:
+
+                typedef T Type;
+
                 ScriptArgumentSpecific(T _Datum): Datum(_Datum)
                     {}
 

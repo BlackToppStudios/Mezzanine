@@ -45,6 +45,8 @@
 #include "datatypes.h"
 #include "managerbase.h"
 
+#include <vector>
+
 namespace Ogre
 {
     class Node;
@@ -126,7 +128,7 @@ namespace Mezzanine
             /// @brief This is used to store information about the cursor.
             /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor
             /// so feel free to use this instead.
-            vector<ActorBase*>::iterator cursor;
+            std::vector<ActorBase*>::iterator cursor;
 
             /// @brief This safely move all the Actors out of or into a Mezzanine::World
             /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system
