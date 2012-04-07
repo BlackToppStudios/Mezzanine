@@ -60,8 +60,19 @@ namespace Mezzanine
                 /// @brief This enum describes the type of access to the resource.
                 enum AccessMode
                 {
-                    DS_Read = 1,
+                    DS_Read  = 1,
                     DS_Write = 2
+                };
+                /// @enum StreamFlags
+                /// @brief This enum describes the flags that control certain behaviors of a stream.
+                /// @details It is important to note that not all of these flags are used by all streams.
+                enum StreamFlags
+                {
+                    SF_None         = 0,
+                    // Used by the File DataStreams
+                    SF_CreateOnFail = 1,  ///< In the event of a failure to find the file, create it.
+                    SF_Binary       = 2,  ///< Tell the stream that the file in question is Binary.
+                    SF_Truncate     = 4   ///< Clear the contents of the file when opening.  Note that this will also create the file if it's not found.
                 };
             protected:
                 /// @brief Name of the resource.  If this is a stream to a file, this should be the filename.
@@ -250,10 +261,9 @@ namespace Mezzanine
                 /// @brief Self loading constructor.
                 /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
                 /// @param Path The path to the file being loaded.
+                /// @param Flags Additional conditions to apply when opening the file.  See DataStream::StreamFlags enum for more information.
                 /// @param Mode The access mode for the stream.
-                /// @param CreateOnFail Whether or not to create the file if the system fails to locate it.
-                /// @param IsBinary Whether or not to set the stream to read/write as binary.
-                FileHandleDataStream(const String& Name, const String& Path, const DataStream::AccessMode& Mode = DataStream::DS_Read, bool CreateOnFail = false, bool IsBinary = false);
+                FileHandleDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags, const DataStream::AccessMode& Mode = DataStream::DS_Read);
                 /// @brief Class destructor.
                 virtual ~FileHandleDataStream();
 
@@ -299,10 +309,9 @@ namespace Mezzanine
                 /// @brief Self loading constructor.
                 /// @param Name The name of the file to be loaded.  This will also become the name of the stream.
                 /// @param Path The path to the file being loaded.
+                /// @param Flags Additional conditions to apply when opening the file.  See DataStream::StreamFlags enum for more information.
                 /// @param Mode The access mode for the stream.
-                /// @param CreateOnFail Whether or not to create the file if the system fails to locate it.
-                /// @param IsBinary Whether or not to set the stream to read/write as binary.
-                FileStreamDataStream(const String& Name, const String& Path, const DataStream::AccessMode& Mode = DataStream::DS_Read, bool CreateOnFail = false, bool IsBinary = false);
+                FileStreamDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags, const DataStream::AccessMode& Mode = DataStream::DS_Read);
                 /// @brief Class destructor.
                 virtual ~FileStreamDataStream();
 

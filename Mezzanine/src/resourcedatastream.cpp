@@ -440,23 +440,30 @@ namespace Mezzanine
             fseek(FileHandle,0,SEEK_SET);
         }
 
-        FileHandleDataStream::FileHandleDataStream(const String& Name, const String& Path, const DataStream::AccessMode& Mode, bool CreateOnFail, bool IsBinary)
+        FileHandleDataStream::FileHandleDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags, const DataStream::AccessMode& Mode)
             : DataStream( Name, Mode )
         {
             String Options;
-            if(CreateOnFail)
+            if(Flags & DataStream::SF_Truncate)
             {
                 Options.append("w+");
             }else{
                 Options.append("r+");
             }
-            if(IsBinary)
+            if(Flags & DataStream::SF_Binary)
             {
                 Options.append("b");
             }
 
             String FullPath = Path+Name;
             FileHandle = fopen(FullPath.c_str(),Options.c_str());
+
+            if(!FileHandle && (Flags & DataStream::SF_CreateOnFail))
+            {
+                if(Flags & DataStream::SF_Binary) Options.assign("r+b");
+                else Options.assign("r+");
+                FileHandle = fopen(FullPath.c_str(),Options.c_str());
+            }
 
             if(!FileHandle)
             {
@@ -544,21 +551,25 @@ namespace Mezzanine
             Seek(0);
         }
 
-        FileStreamDataStream::FileStreamDataStream(const String& Name, const String& Path, const DataStream::AccessMode& Mode, bool CreateOnFail, bool IsBinary)
+        FileStreamDataStream::FileStreamDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags, const DataStream::AccessMode& Mode)
             : DataStream( Name, Mode )
         {
             FileStream = new std::fstream();
 
             std::ios_base::openmode Options = (std::ios_base::in | std::ios_base::out);
-            if(IsBinary)
+            if(Flags & DataStream::SF_Binary)
             {
                 Options = (Options | std::ios_base::binary);
+            }
+            if(Flags & DataStream::SF_Truncate)
+            {
+                Options = (Options | std::ios_base::trunc);
             }
 
             String FullPath = Path+Name;
             FileStream->open(FullPath.c_str(),Options);
 
-            if(!FileStream->is_open())
+            if(!FileStream->is_open() && (Flags & DataStream::SF_CreateOnFail))
             {
                 Options = (Options | std::ios_base::trunc);
                 FileStream->open(FullPath.c_str(),Options);
