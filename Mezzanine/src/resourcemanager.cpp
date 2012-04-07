@@ -53,15 +53,24 @@
 #include <btBulletWorldImporter.h>
 #include <btBulletDynamicsCommon.h>
 
+#include <dirent.h>
 #ifdef WINDOWS
     #include <Winuser.h>
+    #include <WinBase.h>
     #include <direct.h> // for _getcwd
 #else
 	#include <unistd.h>//for sleep and getcwd
+	#include <errno.h>
+	#include <sys/stat.h>
+	#include <sys/types.h>
 #endif
 
 #ifdef MEZZDEBUG
 #include "world.h"
+#endif
+
+#ifdef CreateDirectory
+#undef CreateDirectory
 #endif
 
 namespace Mezzanine
@@ -82,6 +91,41 @@ namespace Mezzanine
     {
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
             { delete *Iter; }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Directory Management
+
+    bool ResourceManager::CreateDirectory(const String& DirectoryPath)
+    {
+        #ifdef WINDOWS
+        if(::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0)
+        {
+            std::stringstream exceptionstream;
+            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
+            if(ERROR_ALREADY_EXISTS == ::GetLastError())
+            {
+                exceptionstream << "Requested directory already exists.";
+            }
+            else if(ERROR_PATH_NOT_FOUND == ::GetLastError())
+            {
+                exceptionstream << "Path to requested directory does not exist.";
+            }
+            else
+            {
+                exceptionstream << "Error Unknown. :(";
+            }
+            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        #else
+        if(::mkdir(DirectoryPath.c_str(),0777) < 0)
+        {
+            std::stringstream exceptionstream;
+            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
+            exceptionstream << strerror();
+            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        #endif
     }
 
     std::set<String>* ResourceManager::GetDirContents(const String& Dir)
@@ -118,7 +162,13 @@ namespace Mezzanine
     }
 
     String ResourceManager::GetEngineDataDirectory() const
-        { return EngineDataPath; }
+        { return EngineDataDir; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Stream Management
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Resource Management
 
     void ResourceManager::AddResourceGroupName(String Name)
     {
