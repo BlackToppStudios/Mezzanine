@@ -96,6 +96,12 @@ namespace Mezzanine
                 #endif
                 return SingletonPtr;
             };
+            /// @brief Checks to see if the singleton pointer is valid.
+            /// @return Returns true if the singleton is valid, false otherwise.
+            static bool SingletonValid()
+            {
+                return SingletonPtr != NULL;
+            };
     };//Singleton
 }//Mezzanine
 
