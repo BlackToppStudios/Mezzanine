@@ -171,7 +171,7 @@ namespace Mezzanine
         Camera* camera = NULL;
         if(GameWorld->GetCameraManager()==0)
         {
-            GameWorld->AddManager(new Mezzanine::CameraManager(0));
+            GameWorld->AddManager(new Mezzanine::CameraManager());
         }
         camera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
         #ifdef MEZZDEBUG
