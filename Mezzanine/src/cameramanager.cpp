@@ -56,7 +56,7 @@ namespace Mezzanine
 {
     template<> CameraManager* Singleton<CameraManager>::SingletonPtr = 0;
 
-    CameraManager::CameraManager(Whole SceneManagerIndex)
+    CameraManager::CameraManager()
     {
         this->SManager = SceneManager::GetSingletonPtr();
         this->DefaultCamera = NULL;

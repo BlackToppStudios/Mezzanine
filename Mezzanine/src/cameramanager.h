@@ -86,20 +86,13 @@ namespace Mezzanine
             std::vector< Camera* > Cameras;
             std::map< Camera* , CameraController* > CameraControllers;
             Camera* FindCamera(const String& Name);
-        public:
             /// @internal
             /// @brief Used to reference the appropriate scene
             Mezzanine::SceneManager* SManager;
-
+        public:
             /// @brief Class Constructor.
-            /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
-            /// function and should never need to be called manually.
-            /// @param SceneManagerIndex The SceneManager to user as indexed by Mezzanine::World
-            // /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
-            // /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
-            CameraManager(Whole SceneManagerIndex);
+            CameraManager();
             /// @brief Class Destructor.
-            /// @details The calss Destuctor
             virtual ~CameraManager();
             /// @brief Creates (or recreates) the default camera for this manager.
             /// @details If this function is called while there is a valid default camera already created, it will delete that camera.
