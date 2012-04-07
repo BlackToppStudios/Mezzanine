@@ -37,11 +37,13 @@ CatchApp::CatchApp()
     }
     Loader = new LevelLoader();
     Scorer = new LevelScorer();
+    Profiles = new ProfileManager("Profiles/");
     Shop = new ItemShop();
 }
 
 CatchApp::~CatchApp()
 {
+    delete Profiles;
     delete Loader;
     delete Scorer;
     delete Shop;
@@ -85,8 +87,6 @@ void CatchApp::MakeGUI()
     MMLevelSelectGrid->GetPageSpinner()->GetIncrement()->SetBackgroundSprite("MMIncrementPage");
     MMLevelSelectGrid->GetPageSpinner()->GetDecrement()->SetBackgroundSprite("MMDecrementPage");
     MMLevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
-    PopulateLevelList(MMLevelSelectGrid);
-    MMLevelSelectGrid->GenerateGrid();
     UI::TextButton* MMLevelStart = MMLevelSelectWin->CreateTextButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),MMStartLineHeight,"Start");
     MMLevelStart->SetButtonCallback(new MSStart(MMLevelSelectGrid));
     MMLevelStart->SetBackgroundSprite("MMLevelStart");
@@ -529,53 +529,6 @@ void CatchApp::InitMusic()
     //MPlayer->SwitchToSong(Track4);
 }
 
-void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
-{
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
-    ResourceMan->AddResourceLocation("/Previews","FileSystem","Previews",false);
-    ResourceMan->InitResourceGroup("Previews");
-    UI::RenderableRect CellRect(Vector2(0.1,0.1),Vector2(0.33,0.11),true);
-    Vector2 CellSpacing(0.06,0.04);
-    Grid->SetFixedCellSize(CellRect.Size);
-    Grid->SetCellSpacing(CellSpacing);
-    UI::Layer* ParentLayer = Grid->GetLayer();
-
-    std::set<String>* Files = ResourceMan->GetDirContents("./Levels");
-    if(Files->empty())
-        return;
-    std::set<String>* Previews = ResourceMan->GetDirContents("./Previews");
-    for( std::set<String>::iterator it = Files->begin() ; it != Files->end() ; it++ )
-    {
-        const String& FileName = (*it);
-        if(String::npos == FileName.find(".lvl"))
-            continue;
-
-        String LevelName = FileName.substr(0,(*it).size() - 4);
-        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellRect,ParentLayer);
-        CurrCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
-        CurrCell->GetPreviewBorder()->SetBackgroundSprite("MMLevelPreviewBox");
-        CurrCell->GetLevelTitle()->SetText(LevelName);
-        CurrCell->GetLevelTitle()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-        /// @todo Here's where we would get existing scores and put them in the cells.
-        /*String Score;
-        String MaxScore;
-        String EarnedScore;
-        Score+=(EarnedScore+"/"+MaxScore);
-        CurrCell->GetEarnedMaxScore()->SetText(Score);// */
-        CurrCell->GetEarnedMaxScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-        if(Previews->count(LevelName+".mta"))
-        {
-            UIMan->LoadMTA(LevelName);
-            CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
-        }
-        CurrCell->SetCellCallback(new LevelSelectCB());
-        Grid->AddCell(CurrCell);
-    }
-    delete Files;
-    delete Previews;
-}
-
 void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
 {
     if(CurrentState == StateToSet)
@@ -622,7 +575,9 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
         case CatchApp::Catch_ScoreScreen:
         {
             PauseGame(true);
-            Scorer->CalculateFinalScore();
+            Whole LevelScore = Scorer->CalculateFinalScore();
+            if(LevelScore > Profiles->GetActiveProfile()->GetHighestScore(Loader->GetCurrentLevel()))
+                Profiles->GetActiveProfile()->SetNewHighScore(Loader->GetCurrentLevel(),LevelScore);
             break;
         }
     }
@@ -789,6 +744,10 @@ int CatchApp::GetCatchin()
 
     //Generate the UI
     MakeGUI();
+
+    //Setup the Profile
+    if(1 == Profiles->GetNumLoadedProfiles())
+        Profiles->SetActiveProfile(Profiles->GetProfile(0));
 
     AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
