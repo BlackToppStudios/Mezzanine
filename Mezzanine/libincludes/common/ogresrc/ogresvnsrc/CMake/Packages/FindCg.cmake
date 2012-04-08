@@ -13,6 +13,7 @@
 #  Cg_FOUND - system has Cg
 #  Cg_INCLUDE_DIRS - the Cg include directories 
 #  Cg_LIBRARIES - link these to use Cg
+message ( "Finding Cg - Begin" )
 
 include(FindPkgMacros)
 findpkg_begin(Cg)
@@ -51,3 +52,4 @@ make_library_set(Cg_LIBRARY)
 
 findpkg_finish(Cg)
 add_parent_dir(Cg_INCLUDE_DIRS Cg_INCLUDE_DIR)
+message ( "Finding Cg - End" )

@@ -36,6 +36,9 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # In ogresvnsrc\CMake\InstallDependencies.cmake:
 # On line 23, mark the options OGRE_INSTALL_DEPENDENCIES and OGRE_COPY_DEPENDENCIES as advanced.
 #
+# in ogresrc/ogresvnsrc/Dependencies/src/Cg/CMakeLists.txt
+# surround the bulk of the file, after the "project(Cg)" if(MINGW) and endif(MINGW)
+#
 # In ogresvnsrc\cmakelists.txt:
 # Comment out the "if" statement regarding the cmake build type from lines 69 to 73.
 # At around line 101, comment out the line that adds definitions and add these two lines below it (wrapped in an if to target just mingw):
