@@ -38,7 +38,7 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 #
 # In ogresvnsrc\cmakelists.txt:
 # Comment out the "if" statement regarding the cmake build type from lines 69 to 73.
-# At around line 101, comment out the line that adds definitions and add these two lines below it:
+# At around line 101, comment out the line that adds definitions and add these two lines below it (wrapped in an if to target just mingw):
 #   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
 #   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
 # Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package. this entry is responsible for
@@ -54,6 +54,7 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # set(OGRE_BUILD_RENDERSYSTEM_GL TRUE) was added near the add_definitions that we already added neat the beggining of the file.
 # OGRE_DEPENDENCIES_DIR was marked as advanced
 # Lastly, at the end of the file add "mark_as_advanced(Boost_LIB_DIAGNOSTIC_DEFINITIONS)"
+# near line 169 a check for big endianess is performed, but isn't required on 64bit systems.
 #
 # In ogresvnsrc\Dependencies\CMakeLists.txt:
 # Add a section to define the output directory similar to the one at the top of this file.  Put it in the same dir listed above plus "deps".

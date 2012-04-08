@@ -98,9 +98,11 @@ endif ()
 if (CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
   check_cxx_compiler_flag(-msse OGRE_GCC_HAS_SSE)
   if (OGRE_GCC_HAS_SSE)
-#    add_definitions(-msse)
-   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
-   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
+    #add_definitions(-msse)
+    if(MINGW)
+      set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
+      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
+    endif(MINGW)
   endif ()
   # This is a set of sensible warnings that provide meaningful output
   add_definitions(-Wno-deprecated -Wall -Wctor-dtor-privacy -Winit-self -Wno-overloaded-virtual -Wcast-qual -Wwrite-strings -Wextra -Wno-unused-parameter -pedantic -Wshadow -Wno-unused-but-set-parameter -Wno-missing-field-initializers -Wno-long-long)
@@ -163,8 +165,12 @@ if (MSVC)
   # MSVC only builds for intel anyway
   set(OGRE_TEST_BIG_ENDIAN FALSE)
 else()
-  include(TestBigEndian)
-  test_big_endian(OGRE_TEST_BIG_ENDIAN)
+  if(OGRE_PLATFORM_X64) #Sparc is the only little endian 64bit chip and it has no good GPUs at the time of this writing.
+    set(OGRE_TEST_BIG_ENDIAN FALSE)
+  else(OGRE_PLATFORM_X64)  #eventually an arm8 chip check will be required here.
+    include(TestBigEndian)
+    test_big_endian(OGRE_TEST_BIG_ENDIAN)
+  endif(OGRE_PLATFORM_X64)
 endif()
 
 # Add OgreMain include path
