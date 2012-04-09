@@ -41,8 +41,9 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # At around line 101, comment out the line that adds definitions and add these two lines below it:
 #   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
 #   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
+# Lines 346 and 349 were changed from "cmake_dependant_option" to "option", and removed the extra conditions to change the default.  
 # Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package. this entry is responsible for
-# finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421 
+#  finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421 
 # Also have to change the output directories just below the dependancies line to use the binary dir defined above.
 # Next, comment out the 4 lines around line 281 that say to build the samples, tools, xsi export, and tests.  These need to be set to false.
 # Next, have to mark all the cmake options that are listed starting around line 256 as advanced until the allocator options at around line 314.
