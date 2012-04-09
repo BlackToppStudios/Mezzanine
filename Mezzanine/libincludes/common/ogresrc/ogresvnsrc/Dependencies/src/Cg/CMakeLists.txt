@@ -1,4 +1,8 @@
+message ( "Declaring Cg - Begin" )
+
 project(Cg)
+
+if(MINGW)
 
 set(Cg_INCLUDE_DIR "${Cg_SOURCE_DIR}/include" CACHE PATH "" FORCE)
 mark_as_advanced(Cg_INCLUDE_DIR)
@@ -53,3 +57,7 @@ if (OGREDEPS_INSTALL_DEV)
     endif ()
   endif ()
 endif ()
+
+endif(MINGW)
+
+message ( "Declaring Cg - Begin" )

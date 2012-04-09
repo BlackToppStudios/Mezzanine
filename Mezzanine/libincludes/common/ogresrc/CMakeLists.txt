@@ -36,9 +36,12 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # In ogresvnsrc\CMake\InstallDependencies.cmake:
 # On line 23, mark the options OGRE_INSTALL_DEPENDENCIES and OGRE_COPY_DEPENDENCIES as advanced.
 #
+# in ogresrc/ogresvnsrc/Dependencies/src/Cg/CMakeLists.txt
+# surround the bulk of the file, after the "project(Cg)" if(MINGW) and endif(MINGW)
+#
 # In ogresvnsrc\cmakelists.txt:
 # Comment out the "if" statement regarding the cmake build type from lines 69 to 73.
-# At around line 101, comment out the line that adds definitions and add these two lines below it:
+# At around line 101, comment out the line that adds definitions and add these two lines below it (wrapped in an if to target just mingw):
 #   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
 #   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
 # Lines 346 and 349 were changed from "cmake_dependant_option" to "option", and removed the extra conditions to change the default.  
@@ -55,6 +58,7 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # set(OGRE_BUILD_RENDERSYSTEM_GL TRUE) was added near the add_definitions that we already added neat the beggining of the file.
 # OGRE_DEPENDENCIES_DIR was marked as advanced
 # Lastly, at the end of the file add "mark_as_advanced(Boost_LIB_DIAGNOSTIC_DEFINITIONS)"
+# near line 169 a check for big endianess is performed, but isn't required on 64bit systems.
 #
 # In ogresvnsrc\Dependencies\CMakeLists.txt:
 # Add a section to define the output directory similar to the one at the top of this file.  Put it in the same dir listed above plus "deps".
