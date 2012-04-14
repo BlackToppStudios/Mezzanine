@@ -36,6 +36,7 @@ CatchApp::CatchApp()
     Scorer = new LevelScorer();
     Profiles = new ProfileManager("Profiles/");
     Shop = new ItemShop();
+    ThrowableGenerator::ParseThrowables("");
 }
 
 CatchApp::~CatchApp()
@@ -480,24 +481,8 @@ void CatchApp::CreateLoadingScreen()
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     Load->SetBackgroundSprite("BTSBanner");
-    //crossplatform::RenderMezzWorld();
     GraphicsMan->RenderOneFrame();
     Load->SetBackgroundSprite("LoadingBackground");
-}
-
-void CatchApp::ConfigResources()
-{
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    String CommonGroup("Common");
-    String datadir = "Data/";
-    ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation(datadir+"UI.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation(datadir+"Music.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
-    ResourceMan->InitResourceGroup(CommonGroup);
-    /// @todo Change this to parse an actual file
-    ThrowableGenerator::ParseThrowables("");
 }
 
 void CatchApp::InitMusic()
@@ -712,10 +697,9 @@ int CatchApp::GetCatchin()
     UIMan->SetPreMainLoopItems(&CPreUI);
     UIMan->SetPostMainLoopItems(&CPostUI);
 
-    //Set the Make the RenderWindow and load system stuff
+    // Initialize the managers.
 	TheWorld->GameInit(false);
 
-    ConfigResources();
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
 

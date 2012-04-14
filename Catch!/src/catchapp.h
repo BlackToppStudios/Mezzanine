@@ -44,7 +44,6 @@ class CatchApp
 
         void MakeGUI();
         void CreateLoadingScreen();
-        void ConfigResources();
         void InitMusic();
 
         void ChangeState(const CatchApp::GameState &StateToSet);
