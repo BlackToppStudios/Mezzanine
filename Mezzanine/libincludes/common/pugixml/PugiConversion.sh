@@ -8,6 +8,8 @@
 
 #for reference this took 5 to 15 seconds to run on my i7 and 2+ minutes to my on my p4.
 
+exit
+
 #disable Bash filename expansion
 set -f
 
@@ -18,7 +20,6 @@ E_MISSINGPUGIXML=3
 #Input Files
 PugiFolder="pugisrc"
 PugiCppFile="$PugiFolder/pugixml.cpp"
-#PugiTempCppFile="PugiSrc/temp.cpp"
 PugiHFile="$PugiFolder/pugixml.hpp"
 PugiConfigFile="$PugiFolder/pugiconfig.hpp"
 PugiTempHFile="$PugiFolder/temp.hpp"
@@ -26,6 +27,16 @@ MezzxmlifdefFile="ifdef.txt"
 MezzxmlendifFile="endif.txt"
 DoxEnd="DoxEnd.txt"
 DoxResume="DoxResume.txt"
+echo "asdf"
+if [ -d "$PugiFolder" ]; then
+	echo "Found old copy of src, removing it."
+fi
+
+end
+
+
+exit
+echo "Checkout time"
 
 #Output Files
 OutDir="../../Mezzanine/src"
