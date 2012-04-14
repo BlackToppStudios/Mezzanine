@@ -42,7 +42,7 @@ void LevelLoader::LoadFerris()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -298,7 +298,7 @@ void LevelLoader::LoadBigCurve()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -417,7 +417,7 @@ void LevelLoader::LoadBlowsNotSucks()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -618,7 +618,7 @@ void LevelLoader::LoadJustice()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -830,7 +830,7 @@ void LevelLoader::LoadRollers()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
@@ -965,7 +965,7 @@ void LevelLoader::LoadJustBounce()
     Shop->SetLevelCash(100);
 
     // Camera Setup
-	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
+	Camera* DefCamera = CameraManager::GetSingletonPtr()->GetCamera(0);
 	DefCamera->SetLocation(Vector3(0,0,425));
 	DefCamera->LookAt(Vector3(0,0,0));
 
