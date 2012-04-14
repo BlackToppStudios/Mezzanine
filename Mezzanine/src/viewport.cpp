@@ -48,16 +48,29 @@
 
 namespace Mezzanine
 {
-    Viewport::Viewport(Camera* ViewportCamera, Whole ZOrder, GameWindow* ParentWindow)
+    Viewport::Viewport(Camera* ViewportCamera, const Whole& ZOrder, GameWindow* ParentWindow)
         : Parent(ParentWindow),
           ViewportCam(ViewportCamera)
     {
-        OgreViewport = Parent->GetOgreWindowPointer()->addViewport(ViewportCamera->GetOgreCamera(),ZOrder);
+        Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->GetOgreCamera() : NULL;
+        OgreViewport = Parent->GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
     }
 
     Viewport::~Viewport()
     {
         Parent->GetOgreWindowPointer()->removeViewport(OgreViewport->getZOrder());
+    }
+
+    void Viewport::SetCamera(Camera* ViewportCamera)
+    {
+        Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->GetOgreCamera() : NULL;
+        if(ViewportCam && ViewportCam != ViewportCamera)
+            ViewportCam->CameraVP = NULL;
+
+        OgreViewport->setCamera(ViewCam);
+        this->ViewportCam = ViewportCamera;
+        if(ViewportCam)
+            ViewportCam->CameraVP = this;
     }
 
     GameWindow* Viewport::GetParentWindow()
