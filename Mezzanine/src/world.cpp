@@ -490,7 +490,41 @@ namespace Mezzanine
         // Load additional resource groups
         if(!ResourceInit.empty())
         {
-
+            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath,Resource::DataStream::SF_None);
+            xml::Document ResourceDoc;
+            ResourceDoc.Load(ResourceStream);
+            // Get an iterator to the first resource group node, and declare them all.
+            xml::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
+            for( xml::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
+            {
+                String GroupName, GroupType, GroupPath;
+                bool GroupRecursive = false;
+                // Get the group path
+                CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
+                if(!CurrAttrib.Empty())
+                    GroupPath = CurrAttrib.AsString();
+                // Get the group type
+                CurrAttrib = (*GroupIt).GetAttribute("GroupType");
+                if(!CurrAttrib.Empty())
+                    GroupType = CurrAttrib.AsString();
+                // Get the group name
+                CurrAttrib = (*GroupIt).GetAttribute("GroupName");
+                if(!CurrAttrib.Empty())
+                    GroupName = CurrAttrib.AsString();
+                // Get whether this is recursive
+                CurrAttrib = (*GroupIt).GetAttribute("Recursive");
+                if(!CurrAttrib.Empty())
+                    GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
+                // Finally create the resource location.
+                ResourceMan->AddResourceLocation(GroupPath,GroupType,GroupName,GroupRecursive);
+            }
+            // Get what resource groups should be initialized.
+            xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
+            for( xml::AttributeIterator AttribIt = InitGroups.attributes_begin() ; AttribIt != InitGroups.attributes_end() ; ++AttribIt )
+            {
+                String GroupName = (*AttribIt).AsString();
+                ResourceMan->InitResourceGroup(GroupName);
+            }
         }
 
         // Configure the UI
@@ -548,12 +582,19 @@ namespace Mezzanine
             return true;
         }else{
             std::stringstream exceptionstream;
-            exceptionstream << "Manager(s): ";
-            for( std::vector<String>::iterator Iter = ManagerNames.begin() ; Iter != ManagerNames.end() ; ++Iter )
+            if(1 == ManagerNames.size())
             {
-                exceptionstream << (*Iter) << ", ";
+                exceptionstream << "Manager: ";
+                exceptionstream << ManagerNames.at(0);
+                exceptionstream << "is not initialized.  All managers need to be initiailzed when entering the main loop.";
+            }else{
+                exceptionstream << "Managers: ";
+                for( std::vector<String>::iterator Iter = ManagerNames.begin() ; Iter != ManagerNames.end() ; ++Iter )
+                {
+                    exceptionstream << (*Iter) << ", ";
+                }
+                exceptionstream << "are not initialized.  All managers need to be initiailzed when entering the main loop.";
             }
-            exceptionstream << "are/is not initialized.  All managers need to be initiailzed when entering the main loop.";
             this->LogAndThrow(Exception(exceptionstream.str()));
             return false;
         }
