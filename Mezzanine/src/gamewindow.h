@@ -65,36 +65,35 @@ namespace Mezzanine
         public:
             /// @enum WindowFlags
             /// @brief A listing of potential options for configuring a game window during construction.
-            /// @details Brief descriptions of the values are as follows: @n
-            /// WF_Fullscreen: This enables fullscreen on the window. @n
-            /// WF_Hidden: This hides the window so that it isn't visible. @n
-            /// WF_VsyncEnabled: This enables vsync for the window. @n
-            /// WF_FSAA_2: Enables Fullscreen Anti-Aliasing level 2 for the window. @n
-            /// WF_FSAA_4: Enables Fullscreen Anti-Aliasing level 4 for the window. @n
-            /// WF_FSAA_8: Enables Fullscreen Anti-Aliasing level 8 for the window. @n
-            /// WF_FSAA_16: Enables Fullscreen Anti-Aliasing level 16 for the window. @n
-            /// WF_Resizeable: Creates a window with resizable borders, otherwise it is fixed size. @n
-            /// WF_Minimized: Minimizes the window to the task bar immediately after construction. @n
-            /// WF_Maximized: Maximizes the window immediately after construction. @n
-            /// WF_Borderless: Removes all window decorations from the window(titlebar, borders, etc.). @n
             enum WindowFlags
             {
-                WF_Fullscreen = 1,
-                WF_Hidden = 2,
-                WF_VsyncEnabled = 4,
-                WF_FSAA_2 = 8,
-                WF_FSAA_4 = 16,
-                WF_FSAA_8 = 32,
-                WF_FSAA_16 = 64,
-                WF_Resizeable = 128,
-                WF_Minimized = 256,
-                WF_Maximized = 512,
-                WF_Borderless = 1024,
+                WF_Fullscreen = 1,    ///< This enables fullscreen on the window.
+                WF_Hidden = 2,        ///< This hides the window so that it isn't visible.
+                WF_VsyncEnabled = 4,  ///< This enables vsync for the window.
+                WF_FSAA_2 = 8,        ///< Enables Fullscreen Anti-Aliasing level 2 for the window.
+                WF_FSAA_4 = 16,       ///< Enables Fullscreen Anti-Aliasing level 4 for the window.
+                WF_FSAA_8 = 32,       ///< Enables Fullscreen Anti-Aliasing level 8 for the window.
+                WF_FSAA_16 = 64,      ///< Enables Fullscreen Anti-Aliasing level 16 for the window.
+                WF_Resizeable = 128,  ///< Creates a window with resizable borders, otherwise it is fixed size.
+                WF_Maximized = 256,   ///< Maximizes the window immediately after construction.
+                WF_Borderless = 512,  ///< Removes all window decorations from the window(titlebar, borders, etc.).
+            };
+            /// @enum ViewportLayout
+            /// @brief This enum describes a quick configuration a viewport or viewports could have in a window.
+            enum ViewportLayout
+            {
+                VL_Custom,            ///< Do not attempt to set the viewport configuration, user defined.
+                VL_1_FullWindow,      ///< Create only one viewport taking up the full window.
+                VL_2_HorizontalSplit, ///< Create two viewports each taking half of the screen split horizontally.  One viewport for the top half, other for the bottom half.
+                VL_2_VerticalSplit,   ///< Create two viewports each taking half of the screen split vertically.  One viewport for the left half, other for the right half.
+                VL_3_TopLarge,        ///< Create three viewports.  Top viewport will take half of the screen.  Two additional viewports taking a quarter of the screen to fill the bottom half.
+                VL_4_EvenlySpaced     ///< Create four viewports.  Each viewport will take an equal amount of the screen in each corner.
             };
         protected:
             Ogre::RenderWindow* OgreWindow;
             SDL_Window* SDLWindow;
             GraphicsSettings Settings;
+            ViewportLayout ViewLayout;
 
             std::vector< Viewport* > Viewports;
 
@@ -102,8 +101,8 @@ namespace Mezzanine
 
             //void* RenderContext;
 
-            void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
-            void CorrectViewportAndCamera(const Whole& Index);
+            void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf);
+            void UpdateViewportsAndCameras();
             int IsLargerThenDesktop(const Whole& Width, const Whole& Height);
         public:
             /// @brief Class constructor.
@@ -111,7 +110,8 @@ namespace Mezzanine
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
-            GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
+            /// @param ViewportConf The configuration/layout of the viewports on this window.
+            GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf = VL_Custom);
 
             /// @brief Class destructor.
             ~GameWindow();
@@ -145,42 +145,42 @@ namespace Mezzanine
             /// @brief Set the Fullscreen Setting
             /// @details Set the Fullscreen Setting
             /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
-            void setFullscreen(const bool &Fullscreen);
+            void SetFullscreen(const bool &Fullscreen);
 
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
             /// @return This returns a bool, true if fullscreen is set, false otherwise
-            bool getFullscreen() const;
+            bool GetFullscreen() const;
 
             /// @brief Sets the Height.
             /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Height This accepts a Whole.
-            void setRenderHeight(const Whole &Height);
+            void SetRenderHeight(const Whole &Height);
 
             /// @brief Gets the Height of the Rendering Area
             /// @details Gets the Height of the Rendering Area
             /// @return This returns the Height of the Rendering Area
-            Whole getRenderHeight() const;
+            Whole GetRenderHeight() const;
 
             /// @brief Sets the Width.
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Width This accepts a Whole.
-            void setRenderWidth(const Whole &Width);
+            void SetRenderWidth(const Whole &Width);
 
             /// @brief Gets the Width of the Rendering Area
             /// @details Gets the Width of the Rendering Area
             /// @return This returns the Width of the Rendering Area
-            Whole getRenderWidth() const;
+            Whole GetRenderWidth() const;
 
             /// @brief Changes the X and Y Resolution at the same time
             /// @details This should be useful in situations where it is not possible to update the width and height separately.
             /// @param Width The new desired Width for the rendering area as a whole number
             /// @param Height The new desired Width for the rendering area as a whole number
-            void setRenderResolution(const Whole &Width, const Whole &Height);
+            void SetRenderResolution(const Whole &Width, const Whole &Height);
 
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.
-            void setRenderOptions(const GraphicsSettings& NewSettings);
+            void SetRenderOptions(const GraphicsSettings& NewSettings);
 
             /// @brief Gets the current level of Anti-Aliasing enabled on this Window.
             /// @return Returns a Whole indicating which level of AA is enabled on this window, or 0 if AA is disabled.

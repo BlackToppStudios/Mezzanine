@@ -54,6 +54,14 @@ namespace Mezzanine
         Priority = 20;
     }
 
+#ifdef MEZZXML
+    ActorManager::ActorManager(xml::Node& XMLNode)
+    {
+        Priority = 20;
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     ActorManager::~ActorManager()
     {
         DestroyAllActors();
@@ -165,6 +173,7 @@ namespace Mezzanine
     //Inherited From ManagerBase
     void ActorManager::Initialize()
     {
+        Initialized = true;
     }
 
     void ActorManager::DoMainLoopItems()

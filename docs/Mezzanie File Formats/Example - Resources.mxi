@@ -1,0 +1,10 @@
+<!-- This file describes the resource groups to be set for Mezzanine. -->
+<?xml version="1.0"?>
+<ResourceLocations>
+	<!-- Sets the parameters for declaring a resource location.  Multiple resource groups can be declared here, and is encouraged to do so. -->
+	<!-- GroupName is a string, can be anything.  GroupType is a string and has to be either "Zip" or "FileSystem".  -->
+	<!-- GroupPath is a string, and the path which will be represented by this resource group. Recursive is a bool determining whether or not subdirectories will be included. -->
+	<ResourceLocation GroupPath="." GroupType="FileSystem" GroupName="Group" Recursive="false" />
+</ResourceLocations>
+<!-- This section describes the groups that should be initialized immediately after all the above resource groups have been declared.  Must contain a valid groupname listed above. -->
+<InitGroups GroupName="Group1" GroupName="Group2" />

@@ -42,15 +42,17 @@
 
 #include "managerbase.h"
 #include "world.h"
+#include "stringtool.h"
 
 namespace Mezzanine
 {
     ManagerBase::ManagerBase()
+        : PreMainLoop(NULL),
+          PostMainLoop(NULL),
+          Initialized(false),
+          Priority(0)
     {
         this->GameWorld = World::GetWorldPointer();
-        this->PreMainLoop = NULL;
-        this->PostMainLoop = NULL;
-        this->Priority = 0;
     }
 
     /*ManagerBase::ManagerBase(World* GameWorld_)
@@ -60,6 +62,9 @@ namespace Mezzanine
         this->PostMainLoop = NULL;
         this->Priority = 0;
     }*/
+
+    bool ManagerBase::IsInitialized()
+        { return Initialized; }
 
     World* ManagerBase::GetGameWorld() const
         { return this->GameWorld; }
@@ -107,9 +112,14 @@ namespace Mezzanine
     void ManagerBase::ErasePostMainLoopItems()
         { this->SetPostMainLoopItems(0); }
 
-    std::string ManagerBase::GetTypeName()
+    String ManagerBase::GetTypeName()
     {
-        switch (this->GetType())
+        return ManagerBase::GetStringNameFromType(this->GetType());
+    }// */
+
+    String ManagerBase::GetStringNameFromType(const ManagerBase::ManagerTypeName& ManagerType)
+    {
+        switch (ManagerType)
         {
             case ManagerBase::ActorManager:
                 return "ActorManager";
@@ -131,6 +141,9 @@ namespace Mezzanine
                 break;
             case ManagerBase::MeshManager:
                 return "MeshManager";
+                break;
+            case ManagerBase::NetworkManager:
+                return "NetworkManager";
                 break;
             case ManagerBase::PhysicsManager:
                 return "PhysicsManager";
@@ -160,7 +173,80 @@ namespace Mezzanine
                 return "Unknown";
                 break;
         }
-    }// */
+    }
+
+    ManagerBase::ManagerTypeName ManagerBase::GetTypeNameFromString(const String& ManagerName)
+    {
+        String Lower = ManagerName;
+        StringTool::ToLowerCase(Lower);
+        switch ( Lower.at(0) )
+        {
+            case 'a':
+            {
+                if( 'c' == Lower.at(1) ) return ManagerBase::ActorManager;
+                else if( 'u' == Lower.at(1) ) return ManagerBase::AudioManager;
+                break;
+            }
+            case 'c':
+            {
+                if( 'a' == Lower.at(1) ) return ManagerBase::CameraManager;
+                else if( 'o' == Lower.at(1) ) return ManagerBase::CollisionShapeManager;
+                break;
+            }
+            case 'e':
+            {
+                return ManagerBase::EventManager;
+                break;
+            }
+            case 'g':
+            {
+                return ManagerBase::GraphicsManager;
+                break;
+            }
+            case 'm':
+            {
+                return ManagerBase::MeshManager;
+                break;
+            }
+            case 'n':
+            {
+                return ManagerBase::NetworkManager;
+                break;
+            }
+            case 'p':
+            {
+                return ManagerBase::PhysicsManager;
+                break;
+            }
+            case 'r':
+            {
+                return ManagerBase::ResourceManager;
+                break;
+            }
+            case 's':
+            {
+                // Both of these start with the same two letters, so skip to the third.
+                if( 'e' == Lower.at(2) ) return ManagerBase::SceneManager;
+                else if( 'r' == Lower.at(2) ) return ManagerBase::ScriptingManager;
+                break;
+            }
+            case 't':
+            {
+                if( 'e' == Lower.at(1) ) return ManagerBase::TerrainManager;
+                else if( 'i' == Lower.at(1) ) return ManagerBase::TimerManager;
+                break;
+            }
+            case 'u':
+            {
+                if( 'i' == Lower.at(1) ) return ManagerBase::UIManager;
+                else if( 's' == Lower.at(1) ) return ManagerBase::UserCreated;
+                break;
+            }
+        }
+
+        //If we got this far, there was a problem with the string provided.
+        World::GetWorldPointer()->LogAndThrow(Exception("Attempting to get ManagerType from string, but no match was found.  Is the string valid?  In ManagerBase::GetTypeNameFromString."));
+    }
 
     short int ManagerBase::GetPriority()
     {

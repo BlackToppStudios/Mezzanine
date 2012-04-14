@@ -52,19 +52,27 @@ namespace Mezzanine
         this->Priority = 60;
     }
 
+#ifdef MEZZXML
+    NetworkManager::NetworkManager(xml::Node& XMLNode)
+    {
+        this->Priority = 60;
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     NetworkManager::~NetworkManager()
     {
 
     }
 
     void NetworkManager::Initialize()
-    {}
+        { Initialized = true; }
 
     void NetworkManager::DoMainLoopItems()
-    {}
+        {}
 
     ManagerBase::ManagerTypeName NetworkManager::GetType() const
-    { return ManagerBase::NetworkManager; }
+        { return ManagerBase::NetworkManager; }
 }//Mezzanine
 
 #endif

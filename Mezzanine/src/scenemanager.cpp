@@ -205,6 +205,80 @@ namespace Mezzanine
         //OgreManager->setShadowCameraSetup(ShadowCam);
     }
 
+#ifdef MEZZXML
+    SceneManager::SceneManager(xml::Node& XMLNode)
+    {
+        this->SMD = new internal::SceneManagerData(this);
+        this->Priority = 25;
+
+        xml::Attribute CurrAttrib;
+        // Get the name of the manager to construct.
+        String ManagerName;
+        xml::Node ManagerType = XMLNode.GetChild("ManagerType");
+        if(!ManagerType.Empty())
+        {
+            CurrAttrib = ManagerType.GetAttribute("TypeName");
+            if(!CurrAttrib.Empty())
+                ManagerName = CurrAttrib.AsString();
+        }
+        if(ManagerName.empty())
+            ManagerName = "Default";
+        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(ManagerName+"SceneManager");
+
+        // Setup the shadow configuration
+        bool TextureShadows = false;
+        xml::Node ShadowSettings = XMLNode.GetChild("ShadowSettings");
+        if(!ShadowSettings.Empty())
+        {
+            String TechniqueName;
+            CurrAttrib = ShadowSettings.GetAttribute("Technique");
+            if(!CurrAttrib.Empty())
+            {
+                TechniqueName = CurrAttrib.AsString();
+                if( "StencilModulative" == TechniqueName )
+                    SetSceneShadowTechnique(SST_Stencil_Modulative);
+                else if( "StencilAdditive" == TechniqueName )
+                    SetSceneShadowTechnique(SST_Stencil_Additive);
+                else if( "TextureModulative" == TechniqueName )
+                    SetSceneShadowTechnique(SST_Texture_Modulative);
+                else if( "TextureAdditive" == TechniqueName )
+                    SetSceneShadowTechnique(SST_Texture_Additive);
+                else if( "TextureAdditiveIntegrated" == TechniqueName )
+                    SetSceneShadowTechnique(SST_Texture_Additive_Integrated);
+                else if( "TextureModulativeIntegrated" == TechniqueName )
+                    SetSceneShadowTechnique(SST_Texture_Modulative_Integrated);
+            }
+
+            if(!TechniqueName.empty())
+            {
+                if(String::npos != TechniqueName.find("Texture"))
+                    TextureShadows = true;
+
+                CurrAttrib = ShadowSettings.GetAttribute("ShadowColour");
+                if(!CurrAttrib)
+                    SetShadowColour(StringTool::ConvertToColourValue(CurrAttrib.AsString()));
+
+                CurrAttrib = ShadowSettings.GetAttribute("ShadowFarDistance");
+                if(!CurrAttrib)
+                    SetShadowFarDistance(CurrAttrib.AsReal());
+            }
+        }
+
+        // Setup texture shadow settings if any are set.
+        xml::Node TextureShadowSettings = XMLNode.GetChild("TextureShadowSettings");
+        if(!TextureShadowSettings.Empty() && TextureShadows)
+        {
+            CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureCount");
+            if(!CurrAttrib.Empty())
+                SetShadowTextureCount(CurrAttrib.AsWhole());
+
+            CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureSize");
+            if(!CurrAttrib.Empty())
+                SetShadowTextureSize(static_cast<unsigned short>(CurrAttrib.AsWhole()));
+        }
+    }
+#endif
+
     SceneManager::~SceneManager()
     {
         DestroyAllLights();
@@ -668,7 +742,7 @@ namespace Mezzanine
         { return this->SMD->OgreManager->getName(); }
 
     void SceneManager::Initialize()
-        { }
+        { this->Initialized = true; }
 
     void SceneManager::DoMainLoopItems()
         { UpdateTrackingNodes(); }

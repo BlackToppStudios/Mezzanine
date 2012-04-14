@@ -135,7 +135,7 @@ void OptsVideoRes::SetCaller(UI::Widget* Caller)
     std::stringstream ResStream;
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     GameWindow* PriWin = GraphicsMan->GetPrimaryGameWindow();
-    ResStream << PriWin->getRenderWidth() << " x " << PriWin->getRenderHeight();
+    ResStream << PriWin->GetRenderWidth() << " x " << PriWin->GetRenderHeight();
     String CurrentRes(ResStream.str());
     const std::vector<String>* Resolutions = GraphicsMan->GetSupportedResolutions();
     for( Whole X = 0 ; X < Resolutions->size() ; ++X )
@@ -167,7 +167,7 @@ void OptsVideoRes::DoVisibilityChangeItems()
         UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
         GameWindow* PriWin = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow();
         std::stringstream ResStream;
-        ResStream << PriWin->getRenderWidth() << " x " << PriWin->getRenderHeight();
+        ResStream << PriWin->GetRenderWidth() << " x " << PriWin->GetRenderHeight();
         ResList->SetSelection(ResStream.str());
     }
 }
@@ -183,7 +183,7 @@ void OptsVideoFullscreen::SetCaller(UI::Widget* Caller)
     UI::WidgetCallback::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     /// @todo Temp code to verify fullscreen setting is set properly.
-    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getFullscreen();
+    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetFullscreen();
     UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(FullScreen != FSCheck->IsChecked())
         FSCheck->ManualCheck(FullScreen);
@@ -203,7 +203,7 @@ void OptsVideoFullscreen::DoPostUpdateItems()
 
 void OptsVideoFullscreen::DoVisibilityChangeItems()
 {
-    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getFullscreen();
+    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetFullscreen();
     UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(FullScreen != FSCheck->IsChecked())
         FSCheck->ManualCheck(FullScreen);

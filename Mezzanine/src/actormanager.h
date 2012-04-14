@@ -64,6 +64,15 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB ActorManager : public ManagerBase, public Singleton<ActorManager>
     {
+        public:
+            typedef std::vector<ActorBase*>::iterator ActorIterator;
+            typedef std::vector<ActorBase*>::const_iterator ConstActorIterator;
+            typedef std::vector<ActorRigid*>::iterator ActorRigidIterator;
+            typedef std::vector<ActorRigid*>::const_iterator ConstActorRigidIterator;
+            typedef std::vector<ActorSoft*>::iterator ActorSoftIterator;
+            typedef std::vector<ActorSoft*>::const_iterator ConstActorSoftIterator;
+            typedef std::vector<ActorCharacter*>::iterator ActorCharacterIterator;
+            typedef std::vector<ActorCharacter*>::const_iterator ConstActorCharacterIterator;
         protected:
             /// @brief The actual actor container
             std::vector<ActorBase*> Actors;
@@ -79,17 +88,13 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             ActorManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            ActorManager(xml::Node& XMLNode);
+#endif
             /// @brief Class destructor.
             virtual ~ActorManager();
-
-            typedef std::vector<ActorBase*>::iterator ActorIterator;
-            typedef std::vector<ActorBase*>::const_iterator ConstActorIterator;
-            typedef std::vector<ActorRigid*>::iterator ActorRigidIterator;
-            typedef std::vector<ActorRigid*>::const_iterator ConstActorRigidIterator;
-            typedef std::vector<ActorSoft*>::iterator ActorSoftIterator;
-            typedef std::vector<ActorSoft*>::const_iterator ConstActorSoftIterator;
-            typedef std::vector<ActorCharacter*>::iterator ActorCharacterIterator;
-            typedef std::vector<ActorCharacter*>::const_iterator ConstActorCharacterIterator;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Managing all actors

@@ -87,6 +87,11 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             CollisionShapeManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            CollisionShapeManager(xml::Node& XMLNode);
+#endif
             /// @brief Class destructor.
             virtual ~CollisionShapeManager();
 

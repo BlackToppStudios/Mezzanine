@@ -76,6 +76,22 @@ namespace Mezzanine
         Priority = 10;
     }
 
+#ifdef MEZZXML
+    UIManager::UIManager(xml::Node& XMLNode)
+        : HoveredButton(NULL),
+          HoveredWidgetButton(NULL),
+          HoveredWidget(NULL),
+          WidgetFocus(NULL),
+          InputCapture(NULL),
+          LastWidgetSelected(NULL),
+          ButtonAutoRegister(false)
+    {
+        ResourceManager::GetSingletonPtr()->CreateResourceGroup("UI");
+        Priority = 10;
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     UIManager::~UIManager()
     {
         DestroyAllScreens();
@@ -238,6 +254,7 @@ namespace Mezzanine
 
     void UIManager::Initialize()
     {
+        Initialized = true;
     }
 
     void UIManager::DoMainLoopItems()

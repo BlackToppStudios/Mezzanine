@@ -150,6 +150,10 @@ namespace Mezzanine
     /// and has not be test with external types. The XML Parser expects XML_WCHAR_MODE to be defined if wchar_t is used. A remarked
     /// definition of this exists near the Character typedef in datatypes.h
     typedef char Character;
+
+    /// @typedef StringStream
+    /// @brief A Datatype used for streaming operations with strings.
+    typedef std::stringstream StringStream;
     // #define XML_WCHAR_MODE   //UNREMARK ME if changing the above line to typedef wchar_t Character;
 
     ///////////////////////////////////////////////////////////////////////////////

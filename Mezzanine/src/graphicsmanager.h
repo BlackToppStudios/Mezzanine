@@ -44,6 +44,7 @@
 #include "singleton.h"
 #include "graphicssettings.h"
 #include "enumerations.h"
+#include "gamewindow.h"
 
 namespace Ogre
 {
@@ -57,8 +58,6 @@ struct SDL_Window;
 
 namespace Mezzanine
 {
-    class GameWindow;
-
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
     #ifdef SWIG
     %template(SingletonGraphicsManager) Singleton<GraphicsManager>;
@@ -92,12 +91,11 @@ namespace Mezzanine
             /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
-            void Construct( const Whole &Width, const Whole &Height, const bool &FullScreen);
+            void Construct( const Whole& Width, const Whole& Height, const bool& FullScreen);
             String ConvertRenderSystem(const Mezzanine::RenderSystem& RS);
 
-            void InitOgre();
+            void InitOgreRenderSystem();
             void ShutdownSDL();
-            void InitViewportAndCamera(GameWindow* NewWindow);
 
             Ogre::Timer* RenderTimer;
             GameWindow* PrimaryGameWindow;
@@ -106,8 +104,6 @@ namespace Mezzanine
             Mezzanine::RenderSystem CurrRenderSys;
 
             bool OgreBeenInitialized;
-            bool GraphicsInitialized;
-
         public:
             /// @internal
             /// @brief SDL is used for use input, and must be initialized prior to use.
@@ -116,7 +112,11 @@ namespace Mezzanine
             /// @brief Basic constructor
             /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
             GraphicsManager();
-
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            GraphicsManager(xml::Node& XMLNode);
+#endif
             /// @brief Versatile Constructor
             /// @param Width The desired width.
             /// @param Height The desired height.
@@ -135,7 +135,8 @@ namespace Mezzanine
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see GameWindow class for more info.
-            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
+            /// @param ViewportConf The configuration/layout of the viewports on this window.
+            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf = GameWindow::VL_Custom);
 
             /// @brief Gets a game window by index.
             /// @return Returns a pointer to the game window requested.
@@ -177,7 +178,8 @@ namespace Mezzanine
             /// @remarks This will only work prior to a window being created/graphics manager being initialized.  The internal structures to be built need
             /// to know what rendersystem to build for.  Additionally this cannot be swapped/changed at runtime.  If called after a window has been made this will throw an exception.
             /// @param RenderSys The Render system to be used.
-            void SetRenderSystem(const Mezzanine::RenderSystem& RenderSys);
+            /// @param InitializeRenderSystem Whether to immediately initialize the rendersystem afterwords.
+            void SetRenderSystem(const Mezzanine::RenderSystem& RenderSys, bool InitializeRenderSystem = false);
 
             /// @brief Gets the current rendersystem being used.
             /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.

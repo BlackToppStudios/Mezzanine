@@ -51,7 +51,6 @@
 #include "camera.h"
 #include "cameramanager.h"
 #include "crossplatform.h"
-#include "gamewindow.h"
 #include "viewport.h"
 #include "stringtool.h"
 
@@ -81,12 +80,139 @@ namespace Mezzanine
         Construct( Width, Height, FullScreen );
     }
 
+#ifdef MEZZXML
+    GraphicsManager::GraphicsManager(xml::Node& XMLNode)
+    {
+        Construct( 800, 600, false );
+
+        xml::Attribute CurrAttrib;
+        for( xml::NodeIterator SecIt = XMLNode.begin() ; SecIt != XMLNode.end() ; ++SecIt )
+        {
+            String SecName = (*SecIt).Name();
+            if( "RenderSystem" == SecName && !OgreBeenInitialized )
+            {
+                CurrAttrib = (*SecIt).GetAttribute("Name");
+                String RenderSystemName = CurrAttrib.AsString();
+                if( "Direct3D9" == RenderSystemName )
+                    SetRenderSystem(Mezzanine::RS_DirectX9,true);
+                else if( "Direct3D11" == RenderSystemName )
+                    SetRenderSystem(Mezzanine::RS_DirectX11,true);
+                else if( "OpenGL" == RenderSystemName )
+                    SetRenderSystem(Mezzanine::RS_OpenGL2,true);
+                else if( "OpenGLES1.x" == RenderSystemName )
+                    SetRenderSystem(Mezzanine::RS_OpenGLES1,true);
+                else if( "OpenGLES2.x" == RenderSystemName )
+                    SetRenderSystem(Mezzanine::RS_OpenGLES2,true);
+            }
+            else if( "GameWindow" == SecName )
+            {
+                String WinCaption("Mezzanine Window");
+                Whole WinWidth, WinHeight, WinFlags;
+                GameWindow::ViewportLayout VPLayout = GameWindow::VL_Custom;
+
+                // Get the caption.
+                CurrAttrib = (*SecIt).GetAttribute("Caption");
+                if(!CurrAttrib.Empty())
+                    WinCaption = CurrAttrib.AsString();
+                // Get the width.
+                CurrAttrib = (*SecIt).GetAttribute("Width");
+                if(!CurrAttrib.Empty())
+                    WinWidth = CurrAttrib.AsWhole();
+                // Get the height.
+                CurrAttrib = (*SecIt).GetAttribute("Height");
+                if(!CurrAttrib.Empty())
+                    WinHeight = CurrAttrib.AsWhole();
+                // Get fullscreen.
+                CurrAttrib = (*SecIt).GetAttribute("Fullscreen");
+                if(!CurrAttrib.Empty())
+                {
+                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
+                        WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
+                }
+                // Get hidden.
+                CurrAttrib = (*SecIt).GetAttribute("Hidden");
+                if(!CurrAttrib.Empty())
+                {
+                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
+                        WinFlags = (WinFlags | GameWindow::WF_Hidden);
+                }
+                // Get vsync.
+                CurrAttrib = (*SecIt).GetAttribute("Vsync");
+                if(!CurrAttrib.Empty())
+                {
+                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
+                        WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
+                }
+                // Get resizable.
+                CurrAttrib = (*SecIt).GetAttribute("Resizeable");
+                if(!CurrAttrib.Empty())
+                {
+                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
+                        WinFlags = (WinFlags | GameWindow::WF_Resizeable);
+                }
+                // Get maximized.
+                CurrAttrib = (*SecIt).GetAttribute("Maximized");
+                if(!CurrAttrib.Empty())
+                {
+                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
+                        WinFlags = (WinFlags | GameWindow::WF_Maximized);
+                }
+                // Get borderless.
+                CurrAttrib = (*SecIt).GetAttribute("Borderless");
+                if(!CurrAttrib.Empty())
+                {
+                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
+                        WinFlags = (WinFlags | GameWindow::WF_Borderless);
+                }
+                // Get the FSAA level
+                CurrAttrib = (*SecIt).GetAttribute("FSAA");
+                if(!CurrAttrib.Empty())
+                {
+                    switch (CurrAttrib.AsWhole())
+                    {
+                        case 2:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_2);
+                            break;
+                        case 4:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_4);
+                            break;
+                        case 8:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_8);
+                            break;
+                        case 16:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_16);
+                            break;
+                    }
+                }
+                // Get the viewport layout
+                CurrAttrib = (*SecIt).GetAttribute("ViewportConf");
+                if(!CurrAttrib.Empty())
+                {
+                    String VPConf = CurrAttrib.AsString();
+                    if( "1-FullWindow" == VPConf )
+                        VPLayout = GameWindow::VL_1_FullWindow;
+                    else if( "2-HorizontalSplit" == VPConf )
+                        VPLayout = GameWindow::VL_2_HorizontalSplit;
+                    else if( "2-VerticalSplit" == VPConf )
+                        VPLayout = GameWindow::VL_2_VerticalSplit;
+                    else if( "3-TopLarge" == VPConf )
+                        VPLayout = GameWindow::VL_3_TopLarge;
+                    else if( "4-EvenlySplit" == VPConf )
+                        VPLayout = GameWindow::VL_4_EvenlySpaced;
+                }
+                // Finally, construct the window.
+                CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags,VPLayout);
+            }
+        }
+    }
+#endif
+
     GraphicsManager::~GraphicsManager()
     {
         DestroyAllGameWindows(false);
     }
 
-    void GraphicsManager::Construct(const Whole &Width, const Whole &Height, const bool &FullScreen )
+    void GraphicsManager::Construct(const Whole& Width, const Whole& Height, const bool& FullScreen )
     {
         DefaultSettings.Fullscreen = FullScreen;
         DefaultSettings.RenderHeight = Height;
@@ -108,95 +234,60 @@ namespace Mezzanine
         switch(RS)
         {
             case Mezzanine::RS_DirectX9: return "Direct3D9 Rendering Subsystem"; break;
-            case Mezzanine::RS_DirectX10: return "Direct3D10 Rendering Subsystem"; break;
             case Mezzanine::RS_DirectX11: return "Direct3D11 Rendering Subsystem"; break;
             case Mezzanine::RS_OpenGL2: return "OpenGL Rendering Subsystem"; break;  /// @todo This will likely have to change when other OGL systems are implemented
             //case Mezzanine::RS_OpenGL3: return ""; break;  Not yet implemented
             //case Mezzanine::RS_OpenGL4: return ""; break;  Not yet implemented
             case Mezzanine::RS_OpenGLES1: return "OpenGL ES 1.x Rendering Subsystem"; break;
-            //case Mezzanine::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;  Not yet implemented
+            case Mezzanine::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;
         }
         return "";
     }
 
+    void GraphicsManager::InitOgreRenderSystem()
+    {
+        if(!OgreBeenInitialized)
+        {
+            Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
+            OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(ConvertRenderSystem(CurrRenderSys)));
+            OgreCore->initialise(false,"");
+            OgreBeenInitialized = true;
+        }
+    }
+
     void GraphicsManager::InitSDL()
     {
-        #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log( String("Initializing SDL :")+SDL_GetError() );
+        /*#ifdef MEZZDEBUG
+        World::GetWorldPointer()->Log( String("Initializing SDL: ") );
         #endif
 
         if(!SDL_WasInit(SDL_INIT_VIDEO))
         {
             if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
             {
-                World::GetWorldPointer()->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error:")+SDL_GetError() );
+                GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
             }
             //atexit(SDL_Quit);
         }
 
         #ifdef MEZZDEBUG
         World::GetWorldPointer()->Log( String("Initialized SDL :")+SDL_GetError() );
-        #endif
-    }
-
-    void GraphicsManager::InitOgre()
-    {
-        if(!OgreBeenInitialized)
-        {
-            //if (!Ogre::Root::getSingleton().restoreConfig())
-            //{
-            //    GameWorld->LogAndThrow(Exception("Failed to load Ogre settings during OgreInit in GraphicsManager::InitOgre()."));
-            //}
-            Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
-            OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(ConvertRenderSystem(CurrRenderSys)));
-            OgreCore->initialise(false,"AppName");
-            #ifdef MEZZDEBUG
-            GameWorld->Log("Setup Ogre Window");
-            #endif
-            OgreBeenInitialized = true;
-        }
+        #endif//*/
     }
 
     void GraphicsManager::ShutdownSDL()
     {
-        //SDL_DeleteContext();
-        //SDL_DestroyWindow(SDLwindow);
-        //SDL_FreeSurface(SDLscreen);
-        SDL_Quit();               // replaced with atexist call
+        //SDL_Quit();
     }
 
-    void GraphicsManager::InitViewportAndCamera(GameWindow* NewWindow)
+    GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf)
     {
-        //setup a default camera unless has been setup yet
-        Camera* camera = NULL;
-        if(GameWorld->GetCameraManager()==0)
-        {
-            GameWorld->AddManager(new Mezzanine::CameraManager(0));
-        }
-        camera = CameraManager::GetSingletonPtr()->GetDefaultCamera();
-        #ifdef MEZZDEBUG
-        GameWorld->Log("Created Default Camera");
-        #endif
+        if(!OgreBeenInitialized) InitOgreRenderSystem();
 
-        //viewport connects camera and render window
-        Viewport* PrimaryViewport = NewWindow->CreateViewport(camera);
-
-        //setting the aspect ratio must be done after we setup the viewport
-        camera->SetAspectRatio( (Real)(PrimaryViewport->GetActualWidth()) / (Real)(PrimaryViewport->GetActualHeight()) );
-        #ifdef MEZZDEBUG
-        GameWorld->Log("Configured Viewport and Aspect Ratio");
-        #endif
-    }
-
-    GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
-    {
-        if(!OgreBeenInitialized) InitOgre();
-
-        GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
+        GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags,ViewportConf);
 
         if(GameWindows.empty())
         {
-            InitViewportAndCamera(NewWindow);
             PrimaryGameWindow = NewWindow;
             PrimarySettings = NewWindow->GetSettings();
         }
@@ -265,10 +356,13 @@ namespace Mezzanine
         return OgreBeenInitialized;
     }
 
-    void GraphicsManager::SetRenderSystem(const Mezzanine::RenderSystem& RenderSys)
+    void GraphicsManager::SetRenderSystem(const Mezzanine::RenderSystem& RenderSys, bool InitializeRenderSystem)
     {
         if(!OgreBeenInitialized) CurrRenderSys = RenderSys;
         else GameWorld->LogAndThrow(Exception("Attempting to set RenderSystem after graphics has been initialized.  This is not supported."));
+
+        if(InitializeRenderSystem)
+            InitOgreRenderSystem();
     }
 
     Mezzanine::RenderSystem GraphicsManager::GetCurrRenderSystem()
@@ -323,7 +417,7 @@ namespace Mezzanine
     void GraphicsManager::Initialize()
     {
         if(GameWindows.empty())
-            CreateGameWindow("",DefaultSettings.RenderWidth,DefaultSettings.RenderHeight,DefaultSettings.Fullscreen?GameWindow::WF_Fullscreen:0);
+            CreateGameWindow("",DefaultSettings.RenderWidth,DefaultSettings.RenderHeight,DefaultSettings.Fullscreen?GameWindow::WF_Fullscreen:0,GameWindow::VL_1_FullWindow);
         this->RenderTimer = new Ogre::Timer();
 
         Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
@@ -349,13 +443,12 @@ namespace Mezzanine
             }
         }
 
-        GraphicsInitialized = true;
+        Initialized = true;
     }
 
     void GraphicsManager::DoMainLoopItems()
     {
         Ogre::WindowEventUtilities::messagePump();
-        //crossplatform::RenderMezzWorld();
         RenderOneFrame();
 
         //Do Time Calculations to Determine Rendering Time

@@ -46,6 +46,7 @@
 #include "stringtool.h"
 #include "exception.h"
 #include "scenemanager.h"
+#include "viewport.h"
 #include "world.h"
 #include "xml.h"
 
@@ -87,6 +88,11 @@ namespace Mezzanine
     ConstString& Camera::GetName() const
     {
         return this->Cam->getName();
+    }
+
+    Viewport* Camera::GetViewport() const
+    {
+        return this->CameraVP;
     }
 
     void Camera::SetCameraType(const ProjectionType& Type)

@@ -1,0 +1,13 @@
+<!-- This file describes the plugins to be loaded for Mezzanine and it's subsystems. -->
+<?xml version="1.0"?>
+<!-- Plugins don't abide by the rules of regular resources, and thus need their directory indicated here. -->
+<PluginPath Path="." />
+<!-- Currently we have to define the Ogre plugins separately. -->
+<!-- The platform appropriate file extension will be appended automatically and does not need to be defined here. -->
+<OgrePlugins>
+	<Plugin FileName="Plugin" />
+	<Plugin FileName="Plugin" />
+</OgrePlugins>
+<Plugins>
+	<Plugin FileName="Plugin" />
+</Plugins>

@@ -66,6 +66,14 @@ namespace Mezzanine
         this->Priority = 40;
     }
 
+#ifdef MEZZXML
+    CollisionShapeManager::CollisionShapeManager(xml::Node& XMLNode)
+    {
+        this->Priority = 40;
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     CollisionShapeManager::~CollisionShapeManager()
     {
         DestroyAllShapes();
@@ -690,13 +698,13 @@ namespace Mezzanine
     }
 
     void CollisionShapeManager::Initialize()
-    {}
+        { Initialized = true; }
 
     void CollisionShapeManager::DoMainLoopItems()
-    {}
+        {}
 
     ManagerBase::ManagerTypeName CollisionShapeManager::GetType() const
-    { return ManagerBase::CollisionShapeManager; }
+        { return ManagerBase::CollisionShapeManager; }
 }//Mezzanine
 
 #endif

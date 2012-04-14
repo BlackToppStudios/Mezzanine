@@ -3211,6 +3211,23 @@ namespace
 		return doc.LoadBufferInplaceOwn(contents, size, options, DocumentEncoding);
 	}
 
+	ParseResult LoadDataStreamImpl(Document& doc, Mezzanine::Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
+	{
+	    // Copying mostly from the function below, a lot of what they try to do isn't applicable with data streams since they already do it to some extent.
+	    size_t pos = stream.Tell();
+	    size_t length = stream.GetSize() - pos;
+
+	    if (pos < 0) return make_ParseResult(StatusIOError);
+
+	    buffer_holder buffer(global_allocate(stream.GetSize() > 0 ? length : 1), global_deallocate);
+		if (!buffer.data) return make_ParseResult(StatusOutOfMemory);
+
+		size_t actual_length = stream.Read(buffer.data, length);
+		assert(actual_length <= length);
+
+		return doc.LoadBufferInplaceOwn(buffer.release(), actual_length, options, DocumentEncoding);
+    }
+
 #ifndef XML_NO_STL
 	template <typename T> ParseResult LoadStreamImpl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding DocumentEncoding)
 	{
@@ -4644,6 +4661,13 @@ namespace Mezzanine
 		}
 	}
 
+	ParseResult Document::Load(Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
+	{
+	    Reset();
+
+	    return LoadDataStreamImpl(*this, stream, options, DocumentEncoding);
+	}
+
 #ifndef XML_NO_STL
 	ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding)
 	{
@@ -4734,6 +4758,13 @@ namespace Mezzanine
 	ParseResult Document::LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding)
 	{
 		return LoadBufferImpl(contents, size, options, DocumentEncoding, true, true);
+	}
+
+	void Document::Save(Resource::DataStream& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+	{
+        XMLStreamWrapper WriterInstance(&stream);
+
+        Save(WriterInstance, indent, flags, DocumentEncoding);
 	}
 
 	void Document::Save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const

@@ -60,6 +60,10 @@ namespace Mezzanine
     class CameraController;
     class SceneManager;
     class GraphicsManager;
+    namespace internal
+    {
+        class SceneManagerData;
+    }
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
     #ifdef SWIG
@@ -78,6 +82,7 @@ namespace Mezzanine
     class MEZZ_LIB CameraManager : public ManagerBase, public Singleton<CameraManager>
     {
         protected:
+            friend class internal::SceneManagerData;
             friend class GraphicsManager;
             friend class World;
             friend class Camera;
@@ -86,33 +91,27 @@ namespace Mezzanine
             std::vector< Camera* > Cameras;
             std::map< Camera* , CameraController* > CameraControllers;
             Camera* FindCamera(const String& Name);
-        public:
             /// @internal
             /// @brief Used to reference the appropriate scene
             Mezzanine::SceneManager* SManager;
-
+        public:
             /// @brief Class Constructor.
-            /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
-            /// function and should never need to be called manually.
-            /// @param SceneManagerIndex The SceneManager to user as indexed by Mezzanine::World
-            // /// @param SceneManagerName Name of the created SceneManager for this camera manager to use.
-            // /// @param SManager A pointer to the Scenemanager where you will be creating/manipulating all the cameras.
-            CameraManager(Whole SceneManagerIndex);
+            CameraManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            CameraManager(xml::Node& XMLNode);
+#endif
             /// @brief Class Destructor.
-            /// @details The calss Destuctor
             virtual ~CameraManager();
-            /// @brief Creates (or recreates) the default camera for this manager.
-            /// @details If this function is called while there is a valid default camera already created, it will delete that camera.
+
+            /// @brief Creates a camera.
+            /// @remarks This function will autogenerate the name for the camera.
             /// @return Returns a pointer to the created camera.
-            Camera* CreateDefaultCamera();
-            /// @brief Gets the default camera if it has been initialized.
-            /// @return Returns the Default Camera or a null point if it hasn't been created yet.
-            Camera* GetDefaultCamera();
-            /// @brief Destroys the default camera.
-            void DestroyDefaultCamera();
-            /// @brief Creates a camera and returns a pointer.
-            /// @details This function does the same as the other CreateCamera function but will also return a pointer to
-            /// the camera class instead of a string(being the name of the camera).
+            Camera* CreateCamera();
+            /// @brief Creates a camera.
+            /// @param Name The name to be assigned to the created camera.
+            /// @return Returns a pointer to the created camera.
             Camera* CreateCamera(const String& Name);
             /// @brief Gets an already created camera by name.
             /// @return Returns a pointer to the camera of the specified name.
@@ -123,11 +122,8 @@ namespace Mezzanine
             /// @brief Gets the number of cameras created and stored in this manager.
             /// @return Returns the number of cameras this manager is storing.
             Whole GetNumCameras();
-            /// @brief Deletes all cameras except for the first camera.
-            /// @details This will clear the container of cameras.  The default camera is not stored in this container
-            /// however, so it is spared from this wipe.
-            /// @param DefaultAlso Whether or not to also destroy the default camera when deleting all camera's.
-            void DestroyAllCameras(bool DefaultAlso = true);
+            /// @brief Destroy's all stored camera's.
+            void DestroyAllCameras();
 
             /// @brief Gets a camera controller if it exists, otherwise creates it.
             /// @param Controlled The camera that will be controlled by the controller returned.

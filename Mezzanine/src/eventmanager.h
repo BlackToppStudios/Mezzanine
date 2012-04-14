@@ -149,6 +149,12 @@ namespace Mezzanine
             /// @details This creates an empty EventManger
             EventManager();
 
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            EventManager(xml::Node& XMLNode);
+#endif
+
             /// @brief Default Deconstructor
             /// @details This deletes everything still in the event manager and tears it down.
             ~EventManager();

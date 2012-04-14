@@ -60,6 +60,11 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             NetworkManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            NetworkManager(xml::Node& XMLNode);
+#endif
             /// @brief Class destructor.
             virtual ~NetworkManager();
 

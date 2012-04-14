@@ -69,6 +69,11 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             MeshManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            MeshManager(xml::Node& XMLNode);
+#endif
             /// @brief Class destructor.
             virtual ~MeshManager();
 

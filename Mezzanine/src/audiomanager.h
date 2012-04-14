@@ -100,6 +100,11 @@ namespace Mezzanine
             /// manager yourself after it is constructed.
             /// @param DefaultSettings Whether or not to load default settings and initialize the manager immediately.
             AudioManager(bool DefaultSettings=true);
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            AudioManager(xml::Node& XMLNode);
+#endif
             /// @brief Class Destructor
             /// @details The class destructor.
             virtual ~AudioManager();
@@ -235,14 +240,14 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
 
-            /// @brief Initializes the Manager.
-            /// @details This function will initialize the manager using the device and parameters provided.
+            /// @brief Initializes the Device.
+            /// @details This function will initialize the device using the parameters provided.
             /// You need to call this function if you passed false into the sound manager constructor before
             /// you can use the manager.
             /// @param DeviceName The name of the device you wish to have this manager interface with/use.
             /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
             /// @param EAXEffectSlots The number of effects per sound allowed to be applied.
-            virtual void InitializeManager(ConstString &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
+            virtual void InitializeDevice(ConstString &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
             /// @brief Retrieve's the listener for this sound manager.
             /// @details This function will return the listener for this manager which can be used to help create 3D sound.
             /// @return Returns a pointer to the managers Sound Listener.

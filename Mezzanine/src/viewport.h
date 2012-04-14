@@ -70,9 +70,12 @@ namespace Mezzanine
             /// @param ViewportCamera The camera that is to be attached to this veiwport.
             /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
             /// @param ParentWindow The game window this viewport belongs to.
-            Viewport(Camera* ViewportCamera, Whole ZOrder, GameWindow* ParentWindow);
+            Viewport(Camera* ViewportCamera, const Whole& ZOrder, GameWindow* ParentWindow);
             /// @brief Class destructor.
             ~Viewport();
+            /// @brief Sets which camera is bound to this viewport.
+            /// @param ViewportCamera Pointer to the camera to be bount to this viewport, or NULL to simply unbind a camera.
+            void SetCamera(Camera* ViewportCamera);
             /// @brief Gets the game window this viewport belongs to.
             /// @return Returns a pointer to the game window that created this viewport.
             GameWindow* GetParentWindow();
