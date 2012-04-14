@@ -28,12 +28,9 @@ CatchApp::CatchApp()
 
     try
     {
-        PhysicsConstructionInfo Info;
-        Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-        TheWorld = new World( Info, SceneManager::Generic, "plugins.cfg", "Plugins/" );
+        TheWorld = new World( "Data/" );
     }catch( exception x){
-        //could not create world
-        // we need to halt execution right here somehow.
+        throw;
     }
     Loader = new LevelLoader();
     Scorer = new LevelScorer();
@@ -60,6 +57,9 @@ void CatchApp::MakeGUI()
     ColourValue Black(0.0,0.0,0.0,1.0);
     ColourValue TransBlack(0.0,0.0,0.0,0.85);
     ColourValue Gray(0.2,0.2,0.2,1.0);
+
+    GUI->EnableButtonAutoRegister(true);
+    GUI->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
 
     //Make the Main Menu screen and associated layers.
     GUI->LoadMTA("Catch_Menu");
@@ -475,6 +475,7 @@ void CatchApp::CreateLoadingScreen()
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     GUI->LoadMTA("Catch_Loading");
     Viewport* UIViewport = GraphicsMan->GetPrimaryGameWindow()->GetViewport(0);
+    UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera());
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
@@ -711,18 +712,8 @@ int CatchApp::GetCatchin()
     UIMan->SetPreMainLoopItems(&CPreUI);
     UIMan->SetPostMainLoopItems(&CPostUI);
 
-    // Create the window BEFORE we init the graphics manager, so we can set non-default values
-    const GraphicsSettings& DefSet = GraphicsMan->GetDefaultSettings();
-    int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0) | GameWindow::WF_FSAA_4;
-    GraphicsMan->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);
-
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
-
-	UIMan->EnableButtonAutoRegister(true);
-    UIMan->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
-
-    PhysMan->SetSimulationSubstepModifier(2);
 
     ConfigResources();
 	CreateLoadingScreen();
@@ -730,14 +721,6 @@ int CatchApp::GetCatchin()
 
     //Setup the Music
     InitMusic();
-
-    //Set logging frequency
-    TheWorld->CommitLog();
-    TheWorld->SetLoggingFrequency(World::LogNever);
-
-	// Set the Title
-    GraphicsMan->GetPrimaryGameWindow()->SetWindowCaption("Catch!");
-    TheWorld->SetTargetFrameRate(60);
 
     // Create the Timer
     LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
@@ -814,7 +797,7 @@ bool CatchApp::PreInput()
 
 bool CatchApp::PostInput()
 {
-    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetDefaultCamera());
+    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
     if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_A))
         DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
     if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_D))
