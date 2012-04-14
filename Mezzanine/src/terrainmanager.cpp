@@ -55,6 +55,14 @@ namespace Mezzanine
         Priority = 30;
     }
 
+#ifdef MEZZXML
+    TerrainManager::TerrainManager(xml::Node& XMLNode)
+    {
+        Priority = 30;
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     TerrainManager::~TerrainManager()
     {
         DestroyAllTerrains();
@@ -164,6 +172,7 @@ namespace Mezzanine
     // Inherited from Managerbase
     void TerrainManager::Initialize()
     {
+        Initialized = true;
     }
 
     void TerrainManager::DoMainLoopItems()

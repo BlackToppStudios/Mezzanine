@@ -57,12 +57,23 @@ namespace Mezzanine
     template<> CameraManager* Singleton<CameraManager>::SingletonPtr = 0;
 
     CameraManager::CameraManager()
+        : SManager(NULL)
     {
-        this->SManager = SceneManager::GetSingletonPtr();
-        this->DefaultCamera = NULL;
+        if(SceneManager::SingletonValid())
+            this->SManager = SceneManager::GetSingletonPtr();
         this->Priority = 35;
-        this->CreateDefaultCamera();
     }
+
+#ifdef MEZZXML
+    CameraManager::CameraManager(xml::Node& XMLNode)
+        : SManager(NULL)
+    {
+        if(SceneManager::SingletonValid())
+            this->SManager = SceneManager::GetSingletonPtr();
+        this->Priority = 35;
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
 
     CameraManager::~CameraManager()
     {
@@ -82,33 +93,21 @@ namespace Mezzanine
         return NULL;
     }
 
-    Camera* CameraManager::CreateDefaultCamera()
+    Camera* CameraManager::CreateCamera()
     {
-        DestroyDefaultCamera();
-        String Name="DefaultCamera";
-        Ogre::Camera* OgreCam = this->SManager->GetGraphicsWorldPointer()->createCamera(Name);
-        this->DefaultCamera = new Camera(OgreCam, this);
-        return DefaultCamera;
-    }
-
-    Camera* CameraManager::GetDefaultCamera()
-    {
-        return DefaultCamera;
-    }
-
-    void CameraManager::DestroyDefaultCamera()
-    {
-        if(NULL!=DefaultCamera)
-        {
-            delete DefaultCamera;
-            DefaultCamera = NULL;
-        }
+        StringStream CamName;
+        CamName << "Camera" << Cameras.size() + 1;
+        return CreateCamera(CamName.str());
     }
 
     Camera* CameraManager::CreateCamera(const String& Name)
     {
-        Ogre::Camera* OgreCam = this->SManager->GetGraphicsWorldPointer()->createCamera(Name);
-        Camera* tempcam = new Camera(OgreCam, this);
+        if(!SManager)
+        {
+            if(SceneManager::SingletonValid()) SManager = SceneManager::GetSingletonPtr();
+            else GameWorld->LogAndThrow(Exception("Attempting to create a camera before the SceneManager is created.  This is not supported."));
+        }
+        Camera* tempcam = new Camera(Name, this);
         Cameras.push_back(tempcam);
         return tempcam;
     }
@@ -129,10 +128,8 @@ namespace Mezzanine
         return Cameras.size();
     }
 
-    void CameraManager::DestroyAllCameras(bool DefaultAlso)
+    void CameraManager::DestroyAllCameras()
     {
-        if(DefaultAlso)
-            DestroyDefaultCamera();
         Camera* camera = NULL;
         for( std::vector< Camera* >::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
         {
@@ -197,7 +194,18 @@ namespace Mezzanine
 
     // Inherited from ManagerBase
     void CameraManager::Initialize()
-        {}
+    {
+        if(!SManager)
+        {
+            if(SceneManager::SingletonValid())
+            {
+                SManager = SceneManager::GetSingletonPtr();
+            }else{
+                GameWorld->LogAndThrow(Exception("Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager."));
+            }
+        }
+        Initialized = true;
+    }
 
     void CameraManager::DoMainLoopItems()
         {}

@@ -252,13 +252,31 @@ namespace Mezzanine
     EventManager::EventManager()
     {
         this->Priority = 0;
-        this->_Data = new internal::EventManagerInternalData;
 
+        if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+        {
+            GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
+        }
+        this->_Data = new internal::EventManagerInternalData;
         this->DetectJoysticks();
 
-        //Remove GameWorld Pointer From everything
-        this->GameWorld = World::GetWorldPointer();
+        //this->GameWorld = World::GetWorldPointer();
     }
+
+#ifdef MEZZXML
+    EventManager::EventManager(xml::Node& XMLNode)
+    {
+        this->Priority = 0;
+
+        if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+        {
+            GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
+        }
+        this->_Data = new internal::EventManagerInternalData;
+        this->DetectJoysticks();
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
 
     EventManager::~EventManager()
     {
@@ -270,6 +288,7 @@ namespace Mezzanine
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
         delete _Data;
+        SDL_Quit();
     }
 
     void EventManager::DetectJoysticks()
@@ -278,7 +297,7 @@ namespace Mezzanine
         World::GetWorldPointer()->Log( String("Checking for SDL Joysticks:")+SDL_GetError() );
         #endif
 
-        SDL_InitSubSystem(SDL_INIT_JOYSTICK);
+        //SDL_InitSubSystem(SDL_INIT_JOYSTICK);
         for(Whole Count=0; Count<SDL_NumJoysticks(); ++Count)
             { this->_Data->Joysticks.push_back(SDL_JoystickOpen(Count)); }
 
@@ -662,7 +681,7 @@ namespace Mezzanine
 
     //Inherited From ManagerBase
     void EventManager::Initialize()
-        {}
+        { Initialized = true; }
 
     void EventManager::DoMainLoopItems()
     {

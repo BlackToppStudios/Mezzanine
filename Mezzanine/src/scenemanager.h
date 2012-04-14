@@ -140,6 +140,11 @@ namespace Mezzanine
             /// @details Standard class initialization constructor.
             /// @param ManagerType Type of Scene Manager to be created.
             SceneManager(SceneManager::SceneManagerType ManagerType);
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            SceneManager(xml::Node& XMLNode);
+#endif
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~SceneManager();

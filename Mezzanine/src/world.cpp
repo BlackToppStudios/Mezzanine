@@ -74,6 +74,15 @@ namespace Mezzanine
         this->Construct(PhysicsInfo, SceneManager::Generic, "plugins.cfg",".", "Mezzanine.log", temp);
     }
 
+#ifdef MEZZXML
+    World::World(const String& EngineDataPath, const String& InitializerFile)
+    {
+        if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,InitializerFile);
+        //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
+        else throw(Exception("Attempting to initialze Mezzanine from an unsupported file type."));
+    }
+#endif
+
     World::World(   const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
                     const String &PluginsFileName,
@@ -131,7 +140,7 @@ namespace Mezzanine
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
-        this->TargetFrameLength=16;
+        this->TargetFrameLength = 16;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
 
@@ -177,6 +186,323 @@ namespace Mezzanine
         SanityChecks();
     }
 
+#ifdef MEZZXML
+    void World::ConstructFromXML(const String& EngineDataPath, const String& InitializerFile)
+    {
+        //Set some sane Defaults for some values.
+        this->TargetFrameLength = 16;
+        this->FrameTime = 0;
+        this->ManualLoopBreak = false;
+        this->SetLoggingFrequency(LogNever);
+        World::TheRealWorld = this;
+
+        // Create Ogre.
+        Ogre::LogManager* OgreLogs = Ogre::LogManager::getSingletonPtr();
+        if( NULL == OgreLogs ) OgreLogs = new Ogre::LogManager();
+        if( NULL == OgreCore ) OgreCore = new Ogre::Root("","","");
+        else OgreCore = Ogre::Root::getSingletonPtr();
+
+        // Set up the data we'll be populating.
+        xml::Attribute CurrAttrib;
+        String GUIInit, ResourceInit, PluginsInit, LogFileName;
+        String PluginExtension, PluginPath;
+
+        // Create or set the resource manager.
+        if(ResourceManager::SingletonValid()) AddManager(ResourceManager::GetSingletonPtr());
+        else AddManager(new ResourceManager(EngineDataPath));
+
+        // Open and load the initializer doc.
+        ResourceManager* ResourceMan = GetResourceManager();
+        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath,Resource::DataStream::SF_None);
+        xml::Document InitDoc;
+        InitDoc.Load(InitStream);
+
+        // Get the world settings and set them.
+        xml::Node WorldSettings = InitDoc.GetChild("WorldSettings");
+        for( xml::NodeIterator SetIt = WorldSettings.begin() ; SetIt != WorldSettings.end() ; ++SetIt )
+        {
+            String SecName = (*SetIt).Name();
+            if( "FrameSettings" == SecName )
+            {
+                CurrAttrib = (*SetIt).GetAttribute("TargetFrameRate");
+                if(CurrAttrib.Empty())
+                {
+                    CurrAttrib = (*SetIt).GetAttribute("TargetFrameTime");
+                    if(!CurrAttrib.Empty())
+                        SetTargetFrameTime(CurrAttrib.AsWhole());
+                }else{
+                    this->SetTargetFrameRate(CurrAttrib.AsWhole());
+                }
+            }
+            else if( "LoggingSettings" == SecName )
+            {
+                xml::Attribute Frequency = (*SetIt).GetAttribute("Frequency");
+                if(!Frequency.Empty())
+                {
+                    String FrequencyStr = Frequency.AsString();
+                    StringTool::ToLowerCase(FrequencyStr);
+                    if( "perframe" == FrequencyStr )
+                    {
+                        this->SetLoggingFrequency(LogOncePerFrame);
+                    }
+                    else if( "perxframes" == FrequencyStr )
+                    {
+                        CurrAttrib = (*SetIt).GetAttribute("Counter");
+                        this->SetLoggingFrequency(LogOncePerXFrames,CurrAttrib.Empty() ? 5 : CurrAttrib.AsWhole() );
+                    }
+                    else if( "perxseconds" == FrequencyStr )
+                    {
+                        CurrAttrib = (*SetIt).GetAttribute("Counter");
+                        this->SetLoggingFrequency(LogOncePerXSeconds,CurrAttrib.Empty() ? 5 : CurrAttrib.AsWhole() );
+                    }
+                }
+
+                xml::Node LogFile = (*SetIt).GetChild("LogFile");
+                if(!LogFile.Empty())
+                {
+                    CurrAttrib = LogFile.GetAttribute("FileName");
+                    if(!CurrAttrib.Empty())
+                        LogFileName = CurrAttrib.AsString();
+                }
+            }
+        }
+
+        // Setup the log.
+        if(!LogFileName.empty()) OgreLogs->createLog(LogFileName,true,true);
+        else OgreLogs->createLog("Mezzanine.log",true,true);
+
+        // Get the other initializer files we'll be using, since we'll need the plugins initializer.
+        xml::Node InitFiles = InitDoc.GetChild("OtherInitializers");
+        for( xml::NodeIterator InitIt = InitFiles.begin() ; InitIt != InitFiles.end() ; ++InitIt )
+        {
+            String InitFileName = (*InitIt).Name();
+            if( "PluginInit" == InitFileName )
+            {
+                CurrAttrib = (*InitIt).GetAttribute("FileName");
+                if(!CurrAttrib.Empty())
+                    PluginsInit = CurrAttrib.AsString();
+            }
+            else if( "ResourceInit" == InitFileName )
+            {
+                CurrAttrib = (*InitIt).GetAttribute("FileName");
+                if(!CurrAttrib.Empty())
+                    ResourceInit = CurrAttrib.AsString();
+            }
+            else if( "GUIInit" == InitFileName )
+            {
+                CurrAttrib = (*InitIt).GetAttribute("FileName");
+                if(!CurrAttrib.Empty())
+                    GUIInit = CurrAttrib.AsString();
+            }
+        }
+
+        // Load the necessary plugins.
+        if(!PluginsInit.empty())
+        {
+            PluginExtension = ResourceMan->GetPluginExtension();
+            Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath,Resource::DataStream::SF_None);
+            xml::Document PluginDoc;
+            PluginDoc.Load(PluginStream);
+            // Get the plugin path, if it's there.
+            xml::Node PlgPath = PluginDoc.GetChild("PluginPath");
+            if(!PlgPath.Empty())
+            {
+                CurrAttrib = PlgPath.GetAttribute("Path");
+                if(!CurrAttrib.Empty())
+                    PluginPath = CurrAttrib.AsString();
+            }else PluginPath = ".";
+            xml::Node OgrePlugins = PluginDoc.GetChild("OgrePlugins");
+            for( xml::NodeIterator OPlgIt = OgrePlugins.begin() ; OPlgIt != OgrePlugins.end() ; ++OPlgIt )
+            {
+                CurrAttrib = (*OPlgIt).GetAttribute("FileName");
+                if(!CurrAttrib.Empty())
+                    OgreCore->loadPlugin(PluginPath + (CurrAttrib.AsString()) + PluginExtension);
+            }
+            xml::Node Plugins = PluginDoc.GetChild("Plugins");
+            for( xml::NodeIterator PlgIt = Plugins.begin() ; PlgIt != Plugins.end() ; ++PlgIt )
+            {
+                /// @todo This is currently not supported as we have no plugins of our own.  This should be implemented if that changes.
+            }
+        }
+
+        // Create the requested managers and set their necessary values.
+        xml::Node Managers = InitDoc.GetChild("Managers");
+        for( xml::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
+        {
+            ManagerBase::ManagerTypeName CurrType = ManagerBase::GetTypeNameFromString((*ManIt).Name());
+            switch (CurrType)
+            {
+                case ManagerBase::ActorManager:
+                {
+                    if(ActorManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing ActorManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(ActorManager::GetSingletonPtr());
+                    }
+                    else AddManager(new ActorManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::AudioManager:
+                {
+                    if(AudioManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing AudioManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(AudioManager::GetSingletonPtr());
+                    }
+                    else AddManager(new AudioManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::CameraManager:
+                {
+                    if(CameraManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing CameraManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(CameraManager::GetSingletonPtr());
+                    }
+                    else AddManager(new CameraManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::CollisionShapeManager:
+                {
+                    if(CollisionShapeManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing CollisionShapeManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(CollisionShapeManager::GetSingletonPtr());
+                    }
+                    else AddManager(new CollisionShapeManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::EventManager:
+                {
+                    if(EventManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing EventManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(EventManager::GetSingletonPtr());
+                    }
+                    else AddManager(new EventManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::GraphicsManager:
+                {
+                    if(GraphicsManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing GraphicsManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(GraphicsManager::GetSingletonPtr());
+                    }
+                    else AddManager(new GraphicsManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::MeshManager:
+                {
+                    if(MeshManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing MeshManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(MeshManager::GetSingletonPtr());
+                    }
+                    else AddManager(new MeshManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::NetworkManager:
+                {
+                    if(NetworkManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing NetworkManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(NetworkManager::GetSingletonPtr());
+                    }
+                    else AddManager(new NetworkManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::PhysicsManager:
+                {
+                    if(PhysicsManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing PhysicsManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(PhysicsManager::GetSingletonPtr());
+                    }
+                    else AddManager(new PhysicsManager((*ManIt)));
+                    break;
+                }
+                // In this world constructor, this manager would already exist.
+                /*case ManagerBase::ResourceManager:
+                {
+                    if(ResourceManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing ResourceManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(ResourceManager::GetSingletonPtr());
+                    }
+                    else AddManager(new ResourceManager((*ManIt)));
+                    break;
+                }//*/
+                case ManagerBase::SceneManager:
+                {
+                    if(SceneManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing SceneManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(SceneManager::GetSingletonPtr());
+                    }
+                    else AddManager(new SceneManager((*ManIt)));
+                    break;
+                }
+                /// @todo Scripting managers currently have to be initialized manually due to their structure.  May want to change their structure in the project so that that isn't the case.
+                /*case ManagerBase::ScriptingManager:
+                {
+                    if(ScriptingManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing ScriptingManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(ScriptingManager::GetSingletonPtr());
+                    }
+                    else AddManager(new ScriptingManager((*ManIt)));
+                    break;
+                }//*/
+                case ManagerBase::TerrainManager:
+                {
+                    if(TerrainManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing TerrainManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(TerrainManager::GetSingletonPtr());
+                    }
+                    else AddManager(new TerrainManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::TimerManager:
+                {
+                    if(TimerManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing TimerManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(TimerManager::GetSingletonPtr());
+                    }
+                    else AddManager(new TimerManager((*ManIt)));
+                    break;
+                }
+                case ManagerBase::UIManager:
+                {
+                    if(UIManager::SingletonValid())
+                    {
+                        this->Log("WARNING: Already existing UIManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
+                        AddManager(UIManager::GetSingletonPtr());
+                    }
+                    else AddManager(new UIManager((*ManIt)));
+                    break;
+                }
+            }
+        }
+
+        // Load additional resource groups
+        if(!ResourceInit.empty())
+        {
+
+        }
+
+        // Configure the UI
+        if(!GUIInit.empty())
+        {
+            /// @todo This is currently not implemented.
+        }
+
+        SanityChecks();
+    }
+#endif
+
     void World::SanityChecks()
     {
         crossplatform::WaitMilliseconds(1500);
@@ -202,7 +528,35 @@ namespace Mezzanine
 
     void World::OneTimeMainLoopInit()
     {
+        VerifyManagerInitializations();
         GraphicsManager::GetSingletonPtr()->ResetRenderTimer();
+    }
+
+    bool World::VerifyManagerInitializations()
+    {
+        std::vector<String> ManagerNames;
+        for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
+        {
+            if(!(*Iter)->IsInitialized())
+            {
+                ManagerNames.push_back( (*Iter)->GetTypeName() );
+            }
+        }
+
+        if(ManagerNames.empty())
+        {
+            return true;
+        }else{
+            std::stringstream exceptionstream;
+            exceptionstream << "Manager(s): ";
+            for( std::vector<String>::iterator Iter = ManagerNames.begin() ; Iter != ManagerNames.end() ; ++Iter )
+            {
+                exceptionstream << (*Iter) << ", ";
+            }
+            exceptionstream << "are/is not initialized.  All managers need to be initiailzed when entering the main loop.";
+            this->LogAndThrow(Exception(exceptionstream.str()));
+            return false;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -392,15 +746,6 @@ namespace Mezzanine
         this->Log("Entering GameInit()");
         #endif
 
-        #ifdef MEZZDEBUG
-        this->Log("Loaded Graphics Settings");
-        #endif
-
-        //this->CreateRenderWindow();
-        #ifdef MEZZDEBUG
-        this->Log("Created the Render Work");
-        #endif
-
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager" << endl;
@@ -483,8 +828,6 @@ namespace Mezzanine
                     break;
         }//End of main loop
 
-        //Some after loop cleanup
-        //this->DestroyRenderWindow();
         ManualLoopBreak = false;
         delete LoopTimer;
     }
@@ -625,7 +968,7 @@ namespace Mezzanine
             }
         }
         #ifdef MEZZDEBUG
-        this->LogStream << " - Got:Nothing" << endl;
+        //this->LogStream << " - Got:Nothing" << endl;
         #endif
         return 0;
     }

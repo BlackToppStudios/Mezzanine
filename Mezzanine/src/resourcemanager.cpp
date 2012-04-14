@@ -87,6 +87,15 @@ namespace Mezzanine
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
+#ifdef MEZZXML
+    ResourceManager::ResourceManager(xml::Node& XMLNode)
+    {
+        this->Priority = 55;
+        OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     ResourceManager::~ResourceManager()
     {
         for(std::vector<ResourceInputStream*>::iterator Iter = DeleteList.begin(); Iter != DeleteList.end(); Iter++)
@@ -224,6 +233,20 @@ namespace Mezzanine
         this->OgreResource->initialiseResourceGroup(Group);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    String ResourceManager::GetPluginExtension() const
+    {
+#ifdef WINDOWS
+        return ".dll";
+#elif LINUX
+        return ".so";
+#elif MACOS
+        return ".dylib";
+#endif
+    }
+
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
     {
         #ifdef MEZZDEBUG
@@ -238,8 +261,12 @@ namespace Mezzanine
         return Results;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited from ManagerBase
+
     void ResourceManager::Initialize()
     {
+        Initialized = true;
     }
 
     void ResourceManager::DoMainLoopItems()

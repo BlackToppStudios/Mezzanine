@@ -89,6 +89,11 @@ namespace Mezzanine
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
             ResourceManager(const String& EngineDataPath);
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            ResourceManager(xml::Node& XMLNode);
+#endif
             /// @details Class Destructor.
             ~ResourceManager();
 
@@ -151,13 +156,22 @@ namespace Mezzanine
             /// @param Name Name of the resource group.
             void InitResourceGroup(const String& Name);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the dot-and-extention of this platforms plugins.
+            /// @return Returns the platform appropriate extention for plugin files.
+            String GetPluginExtension() const;
+
             /// @brief Get a stream to read from the specified file
             /// @param FileName The name of the File you want to stream data from
             /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
             /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
             ResourceInputStream* GetResourceStream(const String& FileName);
 
-            ////Functions inherited from ManagerBase
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from ManagerBase
+
             /// @brief Empty Initializor
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
             /// in case a derived class wants to override it for some reason.

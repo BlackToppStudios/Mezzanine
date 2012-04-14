@@ -72,6 +72,11 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             TerrainManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            TerrainManager(xml::Node& XMLNode);
+#endif
             /// @brief Class destructor.
             virtual ~TerrainManager();
 
