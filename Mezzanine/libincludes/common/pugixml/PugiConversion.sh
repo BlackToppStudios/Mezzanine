@@ -16,11 +16,12 @@ E_BADARGS=1
 E_MISSINGPUGIXML=3
 
 #Input Files
-PugiCppFile="pugisrc/pugixml.cpp"
+PugiFolder="pugisrc"
+PugiCppFile="$PugiFolder/pugixml.cpp"
 #PugiTempCppFile="PugiSrc/temp.cpp"
-PugiHFile="pugisrc/pugixml.hpp"
-PugiConfigFile="pugisrc/pugiconfig.hpp"
-PugiTempHFile="pugisrc/temp.hpp"
+PugiHFile="$PugiFolder/pugixml.hpp"
+PugiConfigFile="$PugiFolder/pugiconfig.hpp"
+PugiTempHFile="$PugiFolder/temp.hpp"
 MezzxmlifdefFile="ifdef.txt"
 MezzxmlendifFile="endif.txt"
 DoxEnd="DoxEnd.txt"
