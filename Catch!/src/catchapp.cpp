@@ -37,6 +37,8 @@ CatchApp::CatchApp()
     Profiles = new ProfileManager("Profiles/");
     Shop = new ItemShop();
     ThrowableGenerator::ParseThrowables("");
+
+    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
 }
 
 CatchApp::~CatchApp()
@@ -684,18 +686,13 @@ CatchApp* CatchApp::GetCatchAppPointer()
 
 int CatchApp::GetCatchin()
 {
-    //Give the world functions to run before and after input and physics
-    EventManager* EventMan = EventManager::GetSingletonPtr();
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
-    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
-    EventMan->SetPreMainLoopItems(&CPreInput);
-    EventMan->SetPostMainLoopItems(&CPostInput);
-    PhysMan->SetPreMainLoopItems(&CPrePhysics);
-    PhysMan->SetPostMainLoopItems(&CPostPhysics);
-    GraphicsMan->SetPostMainLoopItems(&CPostRender);
-    UIMan->SetPreMainLoopItems(&CPreUI);
-    UIMan->SetPostMainLoopItems(&CPostUI);
+    EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
+    EventManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
+    PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
+    PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
+    GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
+    UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
+    UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
     // Initialize the managers.
 	TheWorld->GameInit(false);
@@ -705,10 +702,6 @@ int CatchApp::GetCatchin()
 
     //Setup the Music
     InitMusic();
-
-    // Create the Timer
-    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
-
     //Generate the UI
     MakeGUI();
 
@@ -721,7 +714,7 @@ int CatchApp::GetCatchin()
     do{
         ChangeState(CatchApp::Catch_Loading);
         PauseGame(false);
-        GraphicsMan->RenderOneFrame();
+        GraphicsManager::GetSingletonPtr()->RenderOneFrame();
         //Actually Load the game stuff
         Loader->LoadLevel();
 
@@ -733,8 +726,8 @@ int CatchApp::GetCatchin()
         LevelTimer->Start();
 
         //if("Ferris"==Loader->GetCurrentLevel())
-        //    UIMan->GetScreen("GameScreen")->Hide();
-        //PhysMan->PauseSimulation(true);
+        //    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->Hide();
+        //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
         //Start the Main Loop
         TheWorld->MainLoop();
         UnloadLevel();

@@ -251,7 +251,13 @@ CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-I.ttf ${FontDir}Ubun
 CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-R.ttf ${FontDir}Ubuntu-R.ttf )
 
 #####################################
-# Fonts
+# Config Files
+CopyFilesDuringBuild( data/common/config-files/Mezzanine.mxi ${CommonDataDir}Mezzanine.mxi )
+CopyFilesDuringBuild( data/common/config-files/Plugins.mxi ${CommonDataDir}Plugins.mxi )
+CopyFilesDuringBuild( data/common/config-files/Resources.mxi ${CommonDataDir}Resources.mxi )
+
+#####################################
+# Licences
 CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}lgpl-3.0.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}Ogre-MITLicense.txt )
