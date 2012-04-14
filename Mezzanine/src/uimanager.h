@@ -96,6 +96,11 @@ namespace Mezzanine
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
             UIManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            UIManager(xml::Node& XMLNode);
+#endif
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~UIManager();

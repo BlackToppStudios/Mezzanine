@@ -46,6 +46,7 @@
 #include "audiosoundset.h"
 #include "audiomusicplayer.h"
 #include "world.h"
+#include "stringtool.h"
 #include <cAudio.h>
 
 namespace Mezzanine
@@ -65,6 +66,86 @@ namespace Mezzanine
         MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 50;
     }
+
+#ifdef MEZZXML
+    AudioManager::AudioManager(xml::Node& XMLNode)
+        : AmbientVolume(1.0),
+          DialogVolume(1.0),
+          EffectVolume(1.0),
+          MusicVolume(1.0),
+          MasterVolume(1.0),
+          MuteStandby(0.0)
+    {
+        MusicPlayer = new Audio::MusicPlayer();
+        this->Priority = 50;
+
+        xml::Attribute CurrAttrib;
+        String DeviceName;
+        int OutFreq, EAXSlots;
+        // Get the device settings and initialize the device and internal manager.
+        xml::Node DeviceNode = XMLNode.GetChild("DeviceSettings");
+        if(!DeviceNode.Empty())
+        {
+            // Get the device name.
+            CurrAttrib = DeviceNode.GetAttribute("DeviceName");
+            if(!CurrAttrib.Empty())
+            {
+                DeviceName = CurrAttrib.AsString();
+            }else{
+                CurrAttrib = DeviceNode.GetAttribute("DeviceIndex");
+                if(!CurrAttrib.Empty())
+                    DeviceName = GetAvailableDeviceNameByIndex(CurrAttrib.AsWhole());
+            }
+            // Get the Output Frequency.
+            CurrAttrib = DeviceNode.GetAttribute("OutputFrequency");
+            if(!CurrAttrib.Empty())
+            {
+                OutFreq = CurrAttrib.AsInt();
+            }
+            // Get the EAXSlots
+            CurrAttrib = DeviceNode.GetAttribute("EAXEffectSlots");
+            if(!CurrAttrib.Empty())
+            {
+                EAXSlots = CurrAttrib.AsInt();
+            }
+            cAudioManager = cAudio::createAudioManager(false);
+            cAudioManager->initialize(DeviceName.c_str(),OutFreq,EAXSlots);
+        }else{
+            cAudioManager = cAudio::createAudioManager(true);
+        }
+        // Get the Volume settings, if any.
+        xml::Node VolumeNode = XMLNode.GetChild("Volume");
+        if(!VolumeNode.Empty())
+        {
+            // Ambient volume
+            CurrAttrib = VolumeNode.GetAttribute("Ambient");
+            if(!CurrAttrib.Empty())
+                SetAmbientVolume(CurrAttrib.AsReal());
+            // Dialog volume
+            CurrAttrib = VolumeNode.GetAttribute("Dialog");
+            if(!CurrAttrib.Empty())
+                SetDialogVolume(CurrAttrib.AsReal());
+            // Effects volume
+            CurrAttrib = VolumeNode.GetAttribute("Effects");
+            if(!CurrAttrib.Empty())
+                SetEffectVolume(CurrAttrib.AsReal());
+            // Music volume
+            CurrAttrib = VolumeNode.GetAttribute("Music");
+            if(!CurrAttrib.Empty())
+                SetMusicVolume(CurrAttrib.AsReal());
+        }
+        // Get the Mute settings, if any.
+        xml::Node MuteNode = XMLNode.GetChild("Mute");
+        if(!MuteNode.Empty())
+        {
+            CurrAttrib = MuteNode.GetAttribute("Muted");
+            if(!CurrAttrib.Empty())
+                Mute(StringTool::ConvertToBool(CurrAttrib.AsString()));
+        }
+
+        Listener = new Audio::Listener(cAudioManager->getListener());
+    }
+#endif
 
     AudioManager::~AudioManager()
     {
@@ -279,7 +360,7 @@ namespace Mezzanine
         //cAudioManager->ClearLogs();
     }
 
-    void AudioManager::InitializeManager(ConstString &DeviceName, int OutputFrequency, int EAXEffectSlots)
+    void AudioManager::InitializeDevice(ConstString &DeviceName, int OutputFrequency, int EAXEffectSlots)
     {
         cAudioManager->initialize(DeviceName.c_str(), OutputFrequency, EAXEffectSlots);
     }
@@ -300,7 +381,7 @@ namespace Mezzanine
     }
 
     void AudioManager::Initialize()
-        {}
+        { Initialized = true; }
 
     void AudioManager::DoMainLoopItems()
         { MusicPlayer->Update(); }

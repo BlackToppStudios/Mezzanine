@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<WorldSettings>
+	<FrameSettings TargetFrameRate="60" />
+	<LoggingSettings Frequency="PerFrame" >
+		<LogFile FileName="Catch.log" />
+	</LoggingSettings>
+</WorldSettings>
+<Managers>
+	<ActorManager>
+	</ActorManager>
+	<AudioManager>
+	</AudioManager>
+	<CameraManager>
+	</CameraManager>
+	<CollisionShapeManager>
+	</CollisionShapeManager>
+	<EventManager>
+	</EventManager>
+	<GraphicsManager>
+		<RenderSystem Name="OpenGL" />
+		<GameWindow Caption="Window" Width="800" Height="600" FSAA="4" ViewportConf="1-FullWindow" />
+	</GraphicsManager>
+	<MeshManager>
+	</MeshManager>
+	<PhysicsManager>
+		<WorldSettings LimitlessWorld="true" SoftRigidWorld="true" />
+		<SubStepModifier Modifier="2" />
+	</PhysicsManager>
+	<ResourceManager>
+	</ResourceManager>
+	<SceneManager>
+	</SceneManager>
+	<ScriptingManager>
+	</ScriptingManager>
+	<TimerManager>
+	</TimerManager>
+	<UIManager>
+	</UIManager>
+</Managers>
+<OtherInitializers>
+	<ResourceInit FileName="Resources.mxi" />
+	<PluginInit FileName="Plugins.mxi" />
+	<!-- <GUIInit FileName="GUI.mxi" /> -->
+</OtherInitializers>

@@ -43,33 +43,58 @@
 #include <iostream>
 #include <fstream>
 
-#include <Ogre.h>
-#include <btBulletWorldImporter.h>
-#include <btBulletDynamicsCommon.h>
-
 #include "resourcemanager.h"
 #include "meshmanager.h"
 #include "actorbase.h"
 #include "internalogredatastreambuf.h.cpp"
 #include "internalbulletfilemanager.h.cpp"
 
+#include <Ogre.h>
+#include <btBulletWorldImporter.h>
+#include <btBulletDynamicsCommon.h>
+
+#include <dirent.h>
+#ifdef WINDOWS
+    #include <Winuser.h>
+    #include <WinBase.h>
+    #include <direct.h> // for _getcwd
+#else
+	#include <unistd.h>//for sleep and getcwd
+	#include <errno.h>
+	#include <sys/stat.h>
+	#include <sys/types.h>
+#endif
+
 #ifdef MEZZDEBUG
 #include "world.h"
+#endif
+
+#ifdef CreateDirectory
+#undef CreateDirectory
 #endif
 
 namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(String _EngineDataPath)
+    ResourceManager::ResourceManager(const String& EngineDataPath)
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-        //internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
-        EngineDataPath = _EngineDataPath;
-        this->AddResourceLocation(_EngineDataPath, "FileSystem", "EngineData", false);
+        internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
+        EngineDataDir = EngineDataPath;
+        this->AddResourceLocation(EngineDataPath, "FileSystem", "EngineData", false);
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
+
+#ifdef MEZZXML
+    ResourceManager::ResourceManager(xml::Node& XMLNode)
+    {
+        this->Priority = 55;
+        OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
 
     ResourceManager::~ResourceManager()
     {
@@ -77,9 +102,82 @@ namespace Mezzanine
             { delete *Iter; }
     }
 
-    String ResourceManager::GetEngineDataDirectory() const
-        { return EngineDataPath; }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Directory Management
 
+    bool ResourceManager::CreateDirectory(const String& DirectoryPath)
+    {
+        #ifdef WINDOWS
+        if(::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0)
+        {
+            std::stringstream exceptionstream;
+            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
+            if(ERROR_ALREADY_EXISTS == ::GetLastError())
+            {
+                exceptionstream << "Requested directory already exists.";
+            }
+            else if(ERROR_PATH_NOT_FOUND == ::GetLastError())
+            {
+                exceptionstream << "Path to requested directory does not exist.";
+            }
+            else
+            {
+                exceptionstream << "Error Unknown. :(";
+            }
+            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        #else
+        if(::mkdir(DirectoryPath.c_str(),0777) < 0)
+        {
+            std::stringstream exceptionstream;
+            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
+            exceptionstream << strerror();
+            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        #endif
+    }
+
+    std::set<String>* ResourceManager::GetDirContents(const String& Dir)
+    {
+        std::set<String>* Results = new std::set<String>;
+        DIR *Directory;
+        struct dirent *DirEntry;
+        if(Directory = opendir(Dir.c_str()))
+        {
+            while(DirEntry = readdir(Directory))
+            {
+                Results->insert(DirEntry->d_name);
+                //DirEntry->d_type Later this can be modified to include the type of file entry it is, like a file, block device, directory, socket etc...
+            }
+
+            closedir(Directory);
+            return Results;
+        }else{
+            delete Results;
+            return NULL;
+        }
+    }
+
+    String ResourceManager::GetWorkingDirectory() const
+    {
+        char cCurrentPath[FILENAME_MAX];
+        //char cCurrentPath[MAXPATHLEN];
+        #ifdef WINDOWS
+        String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
+        #else
+        String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
+        #endif
+        return Results;
+    }
+
+    String ResourceManager::GetEngineDataDirectory() const
+        { return EngineDataDir; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Stream Management
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Resource Management
 
     void ResourceManager::AddResourceGroupName(String Name)
     {
@@ -135,6 +233,20 @@ namespace Mezzanine
         this->OgreResource->initialiseResourceGroup(Group);
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    String ResourceManager::GetPluginExtension() const
+    {
+#ifdef WINDOWS
+        return ".dll";
+#elif LINUX
+        return ".so";
+#elif MACOS
+        return ".dylib";
+#endif
+    }
+
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
     {
         #ifdef MEZZDEBUG
@@ -149,8 +261,12 @@ namespace Mezzanine
         return Results;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited from ManagerBase
+
     void ResourceManager::Initialize()
     {
+        Initialized = true;
     }
 
     void ResourceManager::DoMainLoopItems()

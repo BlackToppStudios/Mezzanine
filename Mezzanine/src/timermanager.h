@@ -74,6 +74,11 @@ namespace Mezzanine
         public:
             /// @brief Standard Constructor.
             TimerManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            TimerManager(xml::Node& XMLNode);
+#endif
             /// @brief Class Destructor.
             virtual ~TimerManager();
             /// @brief Creates a simple timer within this manager.

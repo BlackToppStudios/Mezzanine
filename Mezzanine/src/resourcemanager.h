@@ -82,19 +82,47 @@ namespace Mezzanine
             void AddResourceGroupName(String Name);
 
             /// @brief The location of engine data
-            String EngineDataPath;
+            String EngineDataDir;
 
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
-            ResourceManager(String _EngineDataPath);
+            ResourceManager(const String& EngineDataPath);
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            ResourceManager(xml::Node& XMLNode);
+#endif
             /// @details Class Destructor.
             ~ResourceManager();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Directory Management
+
+            /// @brief Creates a new directory.
+            /// @param DirectoryPath The path for the newly created directory.
+            /// @return Returns true if the directory was created, false if it failed.
+            bool CreateDirectory(const String& DirectoryPath);
+            /// @brief Get a Listing of the files and subdirectories in a directory.
+            /// @details This follows normal command line conventions, "." is the current directory,
+            /// ".." is the parent directory. To access the file system root you will need to use a
+            /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
+            /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
+            /// @param Dir The directory to check.
+            std::set<String>* GetDirContents(const String& Dir = ".");
+            /// @brief Get the working directory as a Mezzanine::String
+            /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
+            String GetWorkingDirectory() const;
             /// @brief Get the pathname where engine data is stored
             /// @return A String that contains the pathname
             String GetEngineDataDirectory() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Stream Management
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Resource Management
 
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and
@@ -128,13 +156,22 @@ namespace Mezzanine
             /// @param Name Name of the resource group.
             void InitResourceGroup(const String& Name);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the dot-and-extention of this platforms plugins.
+            /// @return Returns the platform appropriate extention for plugin files.
+            String GetPluginExtension() const;
+
             /// @brief Get a stream to read from the specified file
             /// @param FileName The name of the File you want to stream data from
             /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
             /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
             ResourceInputStream* GetResourceStream(const String& FileName);
 
-            ////Functions inherited from ManagerBase
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from ManagerBase
+
             /// @brief Empty Initializor
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
             /// in case a derived class wants to override it for some reason.

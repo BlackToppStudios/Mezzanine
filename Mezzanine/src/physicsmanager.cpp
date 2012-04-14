@@ -57,6 +57,7 @@ using namespace std;
 #include "objectreference.h"
 #include "collision.h"
 #include "scenemanager.h"
+#include "stringtool.h"
 
 #include <queue>
 
@@ -395,8 +396,6 @@ namespace Mezzanine
     PhysicsConstructionInfo::PhysicsConstructionInfo()
         : PhysicsFlags(0),
           MaxProxies(0),
-          EventFilterAge(1),
-          EventFilterImpulse(1.0),
           GeographyLowerBounds(Vector3()),
           GeographyUpperBounds(Vector3()),
           Gravity(Vector3())
@@ -411,8 +410,6 @@ namespace Mezzanine
     {
         this->PhysicsFlags = Other.PhysicsFlags;
         this->MaxProxies = Other.MaxProxies;
-        this->EventFilterAge = Other.EventFilterAge;
-        this->EventFilterImpulse = Other.EventFilterImpulse;
         this->GeographyLowerBounds = Other.GeographyLowerBounds;
         this->GeographyUpperBounds = Other.GeographyUpperBounds;
         this->Gravity = Other.Gravity;
@@ -432,6 +429,73 @@ namespace Mezzanine
         Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_SoftRigidWorld | PhysicsConstructionInfo::PCF_LimitlessWorld);
         this->Construct(Info);
     }
+
+#ifdef MEZZXML
+    PhysicsManager::PhysicsManager(xml::Node& XMLNode)
+        : BulletDrawer(NULL),
+          SimulationPaused(false),
+          SubstepModifier(1)
+    {
+        PhysicsConstructionInfo Info;
+        xml::Attribute CurrAttrib;
+
+        xml::Node WorldSettings = XMLNode.GetChild("WorldSettings");
+        if(!WorldSettings.Empty())
+        {
+            CurrAttrib = WorldSettings.GetAttribute("LimitlessWorld");
+            if(!CurrAttrib.Empty())
+            {
+                Info.PhysicsFlags = (Info.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
+            }else{
+                CurrAttrib = WorldSettings.GetAttribute("WorldUpperBounds");
+                if(!CurrAttrib.Empty())
+                    Info.GeographyUpperBounds = StringTool::ConvertToVector3(CurrAttrib.AsString());
+                CurrAttrib = WorldSettings.GetAttribute("WorldLowerBounds");
+                if(!CurrAttrib.Empty())
+                    Info.GeographyLowerBounds = StringTool::ConvertToVector3(CurrAttrib.AsString());
+                CurrAttrib = WorldSettings.GetAttribute("MaxObjects");
+                if(!CurrAttrib.Empty())
+                    Info.MaxProxies = CurrAttrib.AsWhole();
+            }
+            CurrAttrib = WorldSettings.GetAttribute("SoftRigidWorld");
+            if(!CurrAttrib.Empty())
+            {
+                Info.PhysicsFlags = (Info.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+            }
+        }
+
+        this->Construct(Info);
+
+        xml::Node StepModifier = XMLNode.GetChild("SubStepModifier");
+        if(!StepModifier.Empty())
+        {
+            CurrAttrib = WorldSettings.GetAttribute("Modifier");
+            if(!CurrAttrib.Empty())
+            {
+                SetSimulationSubstepModifier(CurrAttrib.AsWhole());
+            }
+        }
+
+        xml::Node DebugRender = XMLNode.GetChild("DebugRendering");
+        if(!DebugRender.Empty())
+        {
+            int RenderMode = 0;
+            Whole WireCount = 2;
+            CurrAttrib = WorldSettings.GetAttribute("RenderingMode");
+            if(!CurrAttrib.Empty())
+                RenderMode = CurrAttrib.AsInt();
+            CurrAttrib = WorldSettings.GetAttribute("WireCount");
+            if(!CurrAttrib.Empty())
+                WireCount = CurrAttrib.AsWhole();
+
+            if(0 != RenderMode)
+            {
+                SetDebugPhysicsRendering(RenderMode);
+                SetDebugPhysicsWireCount(WireCount);
+            }
+        }
+    }
+#endif
 
     PhysicsManager::PhysicsManager(const PhysicsConstructionInfo& Info)
         : BulletDrawer(NULL),
@@ -458,8 +522,6 @@ namespace Mezzanine
     void PhysicsManager::Construct(const PhysicsConstructionInfo& Info)
     {
         this->Priority = 15;
-        this->CollisionAge = Info.EventFilterAge;
-        this->Impulse = Info.EventFilterImpulse;
 
         if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_LimitlessWorld)
         {
@@ -873,22 +935,6 @@ namespace Mezzanine
         return Collisions.end();
     }
 
-    void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
-    {
-        CollisionAge=Age;
-        Impulse=Force;
-    }
-
-    unsigned short int PhysicsManager::GetCollisionAge()
-    {
-        return CollisionAge;
-    }
-
-    Real PhysicsManager::GetImpulse()
-    {
-        return Impulse;
-    }
-
     //Bullet Debug Drawing
     void PhysicsManager::SetDebugPhysicsRendering(int ToBeEnabled)
     {
@@ -1113,7 +1159,7 @@ namespace Mezzanine
     // Inherited from Managerbase
     void PhysicsManager::Initialize()
     {
-        // This came from the Game init function, and may need to go to a game init.
+        Initialized = true;
     }
 
     void PhysicsManager::DoMainLoopItems()

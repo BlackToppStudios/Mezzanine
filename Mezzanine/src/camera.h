@@ -90,6 +90,7 @@ namespace Mezzanine
 {
     class CameraManager;
     class World;
+    class Viewport;
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Camera
@@ -110,9 +111,10 @@ namespace Mezzanine
             };
 
         private:
+#ifdef MEZZXML
             /// @internal
             friend xml::Node& MEZZ_LIB operator >> (xml::Node& OneNode, Camera& Ev);
-
+#endif
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
             /// @param Camera A pointer the graphics subsystem camera
@@ -128,10 +130,15 @@ namespace Mezzanine
 
         protected:
             friend class CameraManager;
+            friend class Viewport;
 
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;
+
+            /// @internal
+            /// @brief This is a pointer to the Viewport this camera is attached to, if any.
+            Viewport* CameraVP;
 
             /// @internal
             /// @brief This is the Camera manager that this camera is attached to.
@@ -141,6 +148,7 @@ namespace Mezzanine
             /// @brief Basic Camera Constructor.
             /// @details This is the basic constructor for the Camera class.
             Camera(const String& Name, CameraManager* Manager);
+            /// @internal
             /// @brief Ogre Cam Constructor.
             /// @details This is for internal use only and shouldn't be called manually.
             Camera(Ogre::Camera* Camera, CameraManager* Manager);
@@ -152,6 +160,9 @@ namespace Mezzanine
             /// @brief Gets the camera's set name.
             /// @return Returns a string containing the camera's name.
             ConstString& GetName() const;
+            /// @brief Gets the Viewport this camera is attached to, if any.
+            /// @return Returns a pointer to the Viewport this camera is rendering to, or NULL if not attached.
+            Viewport* GetViewport() const;
 
             /// @brief Sets the type of projection to be used with this camera.
             /// @details By default, all cameras are enabled with Perspective projection.  This is the standard 3-dimentional

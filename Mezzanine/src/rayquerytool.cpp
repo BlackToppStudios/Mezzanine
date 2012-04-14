@@ -334,9 +334,9 @@ namespace Mezzanine
     Ray* RayQueryTool::GetMouseRay(Real Length)
     {
         VerifyRayQuery();
-        Ray* MouseRay = new Ray( CameraManager::GetSingletonPtr()->GetDefaultCamera()->GetCameraToViewportRay(
-                float(InputQueryTool::GetMouseX()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getRenderWidth() ) ,
-                float(InputQueryTool::GetMouseY()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->getRenderHeight() )
+        Ray* MouseRay = new Ray( CameraManager::GetSingletonPtr()->GetCamera(0)->GetCameraToViewportRay(
+                float(InputQueryTool::GetMouseX()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetRenderWidth() ) ,
+                float(InputQueryTool::GetMouseY()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetRenderHeight() )
             ) );
 
         (*MouseRay) *= Length;

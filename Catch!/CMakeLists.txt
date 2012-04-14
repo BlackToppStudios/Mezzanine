@@ -100,7 +100,11 @@ message ( STATUS "Catch! Plugins Output: ${PluginDir}")
 # Previews
 set (PreviewDir "${GameDir}Previews/")
 message ( STATUS "Catch! Preview Output: ${PreviewDir}")
-# ${GameDir} ${LevelDir} ${CommonDataDir} ${FontDir} ${LicenseDir} ${PluginDir} ${PreviewDir}
+
+# Profiles
+set (ProfileDir "${GameDir}Profiles/")
+message ( STATUS "Catch! Profile Output: ${ProfileDir}")
+# ${GameDir} ${LevelDir} ${CommonDataDir} ${FontDir} ${LicenseDir} ${PluginDir} ${PreviewDir} ${ProfileDir}
 
 # Content Archive Cache
 set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
@@ -159,6 +163,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}leveltriggers.h"
 	"${${PROJECT_NAME}_SRC_DIR}levelzones.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}levelzones.h"
+	"${${PROJECT_NAME}_SRC_DIR}profilemanager.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}profilemanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}throwablegenerator.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
 	"${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.cpp"
@@ -215,6 +221,7 @@ function(CreateDirectoryStructure)
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${LicenseDir}"
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${PluginDir}"
 		COMMAND ${CMAKE_COMMAND} -E make_directory "${PreviewDir}"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${ProfileDir}"
 		VERBATIM
 	)
 endfunction(CreateDirectoryStructure)
@@ -244,7 +251,13 @@ CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-I.ttf ${FontDir}Ubun
 CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-R.ttf ${FontDir}Ubuntu-R.ttf )
 
 #####################################
-# Fonts
+# Config Files
+CopyFilesDuringBuild( data/common/config-files/Mezzanine.mxi ${CommonDataDir}Mezzanine.mxi )
+CopyFilesDuringBuild( data/common/config-files/Plugins.mxi ${CommonDataDir}Plugins.mxi )
+CopyFilesDuringBuild( data/common/config-files/Resources.mxi ${CommonDataDir}Resources.mxi )
+
+#####################################
+# Licences
 CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}lgpl-3.0.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}Ogre-MITLicense.txt )

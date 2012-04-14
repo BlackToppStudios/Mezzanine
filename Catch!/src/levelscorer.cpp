@@ -92,7 +92,7 @@ void LevelScorer::CalculateCurrentScore(Whole& Score)
     Score = NormalScore + BonusScore;
 }
 
-void LevelScorer::CalculateFinalScore()
+Whole LevelScorer::CalculateFinalScore()
 {
     // Init non-saved scores
     CatchApp* App = CatchApp::GetCatchAppPointer();
@@ -178,9 +178,11 @@ void LevelScorer::CalculateFinalScore()
 
     BreakdownList->GenerateGrid();
 
-    TotalDisplay->SetText(StringTool::ConvertToString(NormalScore+BonusScore+ShopScore+TimeScore));
+    Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore;
+    TotalDisplay->SetText(StringTool::ConvertToString(TotalScore));
 
     ReportLayer->Show();
+    return TotalScore;
 }
 
 void LevelScorer::RegisterScoreArea(ScoreArea* Score)

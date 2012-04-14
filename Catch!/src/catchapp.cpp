@@ -28,20 +28,22 @@ CatchApp::CatchApp()
 
     try
     {
-        PhysicsConstructionInfo Info;
-        Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-        TheWorld = new World( Info, SceneManager::Generic, "plugins.cfg", "Plugins/" );
+        TheWorld = new World( "Data/" );
     }catch( exception x){
-        //could not create world
-        // we need to halt execution right here somehow.
+        throw;
     }
     Loader = new LevelLoader();
     Scorer = new LevelScorer();
+    Profiles = new ProfileManager("Profiles/");
     Shop = new ItemShop();
+    ThrowableGenerator::ParseThrowables("");
+
+    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
 }
 
 CatchApp::~CatchApp()
 {
+    delete Profiles;
     delete Loader;
     delete Scorer;
     delete Shop;
@@ -58,6 +60,9 @@ void CatchApp::MakeGUI()
     ColourValue Black(0.0,0.0,0.0,1.0);
     ColourValue TransBlack(0.0,0.0,0.0,0.85);
     ColourValue Gray(0.2,0.2,0.2,1.0);
+
+    GUI->EnableButtonAutoRegister(true);
+    GUI->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
 
     //Make the Main Menu screen and associated layers.
     GUI->LoadMTA("Catch_Menu");
@@ -85,8 +90,6 @@ void CatchApp::MakeGUI()
     MMLevelSelectGrid->GetPageSpinner()->GetIncrement()->SetBackgroundSprite("MMIncrementPage");
     MMLevelSelectGrid->GetPageSpinner()->GetDecrement()->SetBackgroundSprite("MMDecrementPage");
     MMLevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
-    PopulateLevelList(MMLevelSelectGrid);
-    MMLevelSelectGrid->GenerateGrid();
     UI::TextButton* MMLevelStart = MMLevelSelectWin->CreateTextButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),MMStartLineHeight,"Start");
     MMLevelStart->SetButtonCallback(new MSStart(MMLevelSelectGrid));
     MMLevelStart->SetBackgroundSprite("MMLevelStart");
@@ -475,28 +478,13 @@ void CatchApp::CreateLoadingScreen()
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     GUI->LoadMTA("Catch_Loading");
     Viewport* UIViewport = GraphicsMan->GetPrimaryGameWindow()->GetViewport(0);
+    UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera());
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
     Load->SetBackgroundSprite("BTSBanner");
-    //crossplatform::RenderMezzWorld();
     GraphicsMan->RenderOneFrame();
     Load->SetBackgroundSprite("LoadingBackground");
-}
-
-void CatchApp::ConfigResources()
-{
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    String CommonGroup("Common");
-    String datadir = "Data/";
-    ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation(datadir+"UI.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation(datadir+"Music.zip", "Zip", CommonGroup, false);
-    ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
-    ResourceMan->InitResourceGroup(CommonGroup);
-    /// @todo Change this to parse an actual file
-    ThrowableGenerator::ParseThrowables("");
 }
 
 void CatchApp::InitMusic()
@@ -527,53 +515,6 @@ void CatchApp::InitMusic()
     MPlayer->SetEOPRepeat(true);
     MPlayer->SetEOPShuffle(true);
     //MPlayer->SwitchToSong(Track4);
-}
-
-void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
-{
-    ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
-    ResourceMan->AddResourceLocation("/Previews","FileSystem","Previews",false);
-    ResourceMan->InitResourceGroup("Previews");
-    UI::RenderableRect CellRect(Vector2(0.1,0.1),Vector2(0.33,0.11),true);
-    Vector2 CellSpacing(0.06,0.04);
-    Grid->SetFixedCellSize(CellRect.Size);
-    Grid->SetCellSpacing(CellSpacing);
-    UI::Layer* ParentLayer = Grid->GetLayer();
-
-    std::set<String>* Files = crossplatform::GetDirContents("./Levels");
-    if(Files->empty())
-        return;
-    std::set<String>* Previews = crossplatform::GetDirContents("./Previews");
-    for( std::set<String>::iterator it = Files->begin() ; it != Files->end() ; it++ )
-    {
-        const String& FileName = (*it);
-        if(String::npos == FileName.find(".lvl"))
-            continue;
-
-        String LevelName = FileName.substr(0,(*it).size() - 4);
-        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellRect,ParentLayer);
-        CurrCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
-        CurrCell->GetPreviewBorder()->SetBackgroundSprite("MMLevelPreviewBox");
-        CurrCell->GetLevelTitle()->SetText(LevelName);
-        CurrCell->GetLevelTitle()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-        /// @todo Here's where we would get existing scores and put them in the cells.
-        /*String Score;
-        String MaxScore;
-        String EarnedScore;
-        Score+=(EarnedScore+"/"+MaxScore);
-        CurrCell->GetEarnedMaxScore()->SetText(Score);// */
-        CurrCell->GetEarnedMaxScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
-        if(Previews->count(LevelName+".mta"))
-        {
-            UIMan->LoadMTA(LevelName);
-            CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
-        }
-        CurrCell->SetCellCallback(new LevelSelectCB());
-        Grid->AddCell(CurrCell);
-    }
-    delete Files;
-    delete Previews;
 }
 
 void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
@@ -622,7 +563,9 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
         case CatchApp::Catch_ScoreScreen:
         {
             PauseGame(true);
-            Scorer->CalculateFinalScore();
+            Whole LevelScore = Scorer->CalculateFinalScore();
+            if(LevelScore > Profiles->GetActiveProfile()->GetHighestScore(Loader->GetCurrentLevel()))
+                Profiles->GetActiveProfile()->SetNewHighScore(Loader->GetCurrentLevel(),LevelScore);
             break;
         }
     }
@@ -743,59 +686,35 @@ CatchApp* CatchApp::GetCatchAppPointer()
 
 int CatchApp::GetCatchin()
 {
-    //Give the world functions to run before and after input and physics
-    EventManager* EventMan = EventManager::GetSingletonPtr();
-    PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
-    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
-    UIManager* UIMan = UIManager::GetSingletonPtr();
-    EventMan->SetPreMainLoopItems(&CPreInput);
-    EventMan->SetPostMainLoopItems(&CPostInput);
-    PhysMan->SetPreMainLoopItems(&CPrePhysics);
-    PhysMan->SetPostMainLoopItems(&CPostPhysics);
-    GraphicsMan->SetPostMainLoopItems(&CPostRender);
-    UIMan->SetPreMainLoopItems(&CPreUI);
-    UIMan->SetPostMainLoopItems(&CPostUI);
+    EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
+    EventManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
+    PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
+    PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
+    GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
+    UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
+    UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
-    // Create the window BEFORE we init the graphics manager, so we can set non-default values
-    const GraphicsSettings& DefSet = GraphicsMan->GetDefaultSettings();
-    int WindowFlags = (DefSet.Fullscreen?GameWindow::WF_Fullscreen:0) | GameWindow::WF_FSAA_4;
-    GraphicsMan->CreateGameWindow("",DefSet.RenderWidth,DefSet.RenderHeight,WindowFlags);
-
-    //Set the Make the RenderWindow and load system stuff
+    // Initialize the managers.
 	TheWorld->GameInit(false);
 
-	UIMan->EnableButtonAutoRegister(true);
-    UIMan->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
-
-    PhysMan->SetSimulationSubstepModifier(2);
-
-    ConfigResources();
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
 
     //Setup the Music
     InitMusic();
-
-    //Set logging frequency
-    TheWorld->CommitLog();
-    TheWorld->SetLoggingFrequency(World::LogNever);
-
-	// Set the Title
-    GraphicsMan->GetPrimaryGameWindow()->SetWindowCaption("Catch!");
-    TheWorld->SetTargetFrameRate(60);
-
-    // Create the Timer
-    LevelTimer = TimerManager::GetSingletonPtr()->CreateSimpleTimer(Timer::Normal);
-
     //Generate the UI
     MakeGUI();
+
+    //Setup the Profile
+    if(1 == Profiles->GetNumLoadedProfiles())
+        Profiles->SetActiveProfile(Profiles->GetProfile(0));
 
     AudioManager::GetSingletonPtr()->GetMusicPlayer()->Play();
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
         PauseGame(false);
-        GraphicsMan->RenderOneFrame();
+        GraphicsManager::GetSingletonPtr()->RenderOneFrame();
         //Actually Load the game stuff
         Loader->LoadLevel();
 
@@ -807,8 +726,8 @@ int CatchApp::GetCatchin()
         LevelTimer->Start();
 
         //if("Ferris"==Loader->GetCurrentLevel())
-        //    UIMan->GetScreen("GameScreen")->Hide();
-        //PhysMan->PauseSimulation(true);
+        //    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->Hide();
+        //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
         //Start the Main Loop
         TheWorld->MainLoop();
         UnloadLevel();
@@ -855,7 +774,7 @@ bool CatchApp::PreInput()
 
 bool CatchApp::PostInput()
 {
-    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetDefaultCamera());
+    CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
     if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_A))
         DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
     if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_D))

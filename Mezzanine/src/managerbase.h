@@ -44,6 +44,10 @@
 #include "crossplatformexport.h"
 #include "worldgetset.h"
 
+#ifdef MEZZXML
+#include "xml.h"
+#endif
+
 namespace Mezzanine
 {
     class World;
@@ -99,9 +103,13 @@ namespace Mezzanine
             /// Yes we know it is spelled wrong, but are Zs cooler anyway.
             virtual void Initialize() = 0;
 
+            /// @brief Gets whether or not this manager has been initialized.
+            /// @return Returns true if this manager has been initialized, false otherwise.
+            bool IsInitialized();
+
             /// @brief This gets the World that this manager is working with.
             /// @return This returns a Mezzanine::World* that is the same as the one store in this Manager
-            virtual World* GetGameWorld() const;
+            World* GetGameWorld() const;
 
             /// @brief This sets the Mezzanine::World that this Manager works with.
             /// @details It is expected that this won't change very much, and for some managers changing this at the wrong time could
@@ -187,8 +195,19 @@ namespace Mezzanine
             virtual void SetPriority( short int Priority_ );
 
             /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging
-            /// @return This returns a std::string that contains the name.
-            std::string GetTypeName();
+            /// @return This returns a String that contains the name.
+            String GetTypeName();
+
+            /// @brief Gets the string form of the type of manager.
+            /// @return Returns a string containing the name of the requested type of manager.
+            static String GetStringNameFromType(const ManagerTypeName& ManagerType);
+
+            /// @brief Gets the type of manager requested from a string.
+            /// @remarks This function does not try to compare the full string for the sake of speed.  Instead it'll check the first couple letters for a potential match.
+            /// This function is also not case sensative.  Providing the string "ac" will return an ActorManager value, for example.  Additionally if it does not find a
+            /// match it will throw an exception.  So be careful about what you put into this.
+            /// @return Returns a ManagerTypeName cooresponding to the string provided.
+            static ManagerTypeName GetTypeNameFromString(const String& ManagerName);
 
         protected:
             /// @internal
@@ -207,6 +226,10 @@ namespace Mezzanine
             /// @details A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at
             /// priority 0.
             short int Priority;
+
+            /// @internal
+            /// @brief Simple bool indicating whether or not this manager has been initialized.
+            bool Initialized;
     };// /ManagerBase
 
 } // /Mezz

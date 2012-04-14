@@ -122,10 +122,6 @@ namespace Mezzanine
             Whole MaxProxies;
             /// @brief The gravity to set for the world.
             Vector3 Gravity;
-            /// @brief The age a collision contact has to have(number of simulation steps) to generate an event for it.
-            Whole EventFilterAge;
-            /// @brief The amount of force a collision has to have to generate an event for it.
-            Real EventFilterImpulse;
     };
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
@@ -190,6 +186,11 @@ namespace Mezzanine
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
             PhysicsManager();
+#ifdef MEZZXML
+            /// @brief XML constructor.
+            /// @param XMLNode The node of the xml document to construct from.
+            PhysicsManager(xml::Node& XMLNode);
+#endif
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
@@ -346,24 +347,6 @@ namespace Mezzanine
             /// @brief Get a ConstCollisionIterator to one past the last Collision.
             /// @return A ConstCollisionIterator to one past the last Collision.
             ConstCollisionIterator EndCollision() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Collision Event Filtering Management
-
-            /// @brief Sets the Collision Parameters.
-            /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n
-            /// These numbers both default to 1.
-            /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.  Default: 1
-            /// @param Force The amount of force applied in the collision to filter by.  This amount can vary more then the other param based on what you need.  Default: 1.0
-            void SetCollisionParams(const unsigned short int Age, Real Force);
-            /// @brief Gets the Collision Age limit.
-            /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.
-            /// @return This function will return the number of physics ticks the collision has to have existed to be used.
-            unsigned short int GetCollisionAge();
-            /// @brief Gets the Collision Impulse limit.
-            /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.
-            /// @return This function will return the lower limit of the allowed force of the collision to generate an event.
-            Real GetImpulse();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Debug Management

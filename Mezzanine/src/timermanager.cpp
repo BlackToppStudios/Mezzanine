@@ -55,6 +55,15 @@ namespace Mezzanine
         MasterTimer = new Ogre::Timer();
     }
 
+#ifdef MEZZXML
+    TimerManager::TimerManager(xml::Node& XMLNode)
+    {
+        this->Priority = 5;
+        MasterTimer = new Ogre::Timer();
+        /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
+    }
+#endif
+
     TimerManager::~TimerManager()
     {
         for( Whole x = 0 ; x < Timers.size() ; x++ )
@@ -106,6 +115,7 @@ namespace Mezzanine
 
     void TimerManager::Initialize()
     {
+        Initialized = true;
     }
 
     void TimerManager::DoMainLoopItems()
@@ -121,7 +131,7 @@ namespace Mezzanine
     }
 
     ManagerBase::ManagerTypeName TimerManager::GetType() const
-    { return ManagerBase::TimerManager; }
+        { return ManagerBase::TimerManager; }
 }
 
 #endif

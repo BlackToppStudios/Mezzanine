@@ -306,9 +306,6 @@ namespace Mezzanine
         private:
             //friend class PhysicsManager;
 
-            //Used to break the mainloop
-            bool ManualLoopBreak;
-
             //Used by the constructors
             /// @internal
             /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.
@@ -324,14 +321,18 @@ namespace Mezzanine
                             String EngineDataPath,
                             String LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
-
+#ifdef MEZZXML
+            void ConstructFromXML(const String& EngineDataPath, const String& InitializerFile);
+#endif
             void SanityChecks();
             void OneTimeMainLoopInit();
+            bool VerifyManagerInitializations();
 
             //Settings for Engine Functionality
-            String WindowName;
             Whole TargetFrameLength;
             Whole FrameTime;
+            //Used to break the mainloop
+            bool ManualLoopBreak;
 
             /// @internal
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
@@ -359,18 +360,27 @@ namespace Mezzanine
             /// @return true if the world pointer is valid.
             static bool GetWorldPointerValidity();
 
+#ifdef MEZZXML
+            /// @brief Initializer file constructor.
+            /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
+            /// If the file provided is not one of this type this function will throw an exception.
+            /// @param EngineDataPath The directory where engine specific data resides.  This is where it will search for the specified initializer file.
+            /// @param InitializerFile The file that describes how to initialize Mezzanine.
+            World(const String& EngineDataPath, const String& InitializerFile = "Mezzanine.mxi");
+#endif
+
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
-            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
+            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @warning Do not make a new world if one already exists. This can only cause problems
             World(  const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
-                    const String &PluginsFileName,
-                    const String &EngineDataPath,
+                    const String& PluginsFileName,
+                    const String& EngineDataPath,
                     std::string LogFileName="Mezzanine.log" );
 
             /// @brief Descriptive constructor
@@ -386,10 +396,10 @@ namespace Mezzanine
             /// @warning Do not make a new world if one already exists. This can only cause problems.
             World(  const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
-                    const String &PluginsFileName,
-                    const String &EngineDataPath,
-                    const String &LogFileName,
-                    const std::vector <ManagerBase*> &ManagerToBeAdded);
+                    const String& PluginsFileName,
+                    const String& EngineDataPath,
+                    const String& LogFileName,
+                    const std::vector <ManagerBase*>& ManagerToBeAdded);
 
             /// @brief Default constructor
             /// @details This simply performs the same work as the descriptive constructor with some sane, but small, limits. It will give you a world which expands for 100 units from the Origin, and only allows 10 Actors

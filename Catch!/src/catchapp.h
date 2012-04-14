@@ -5,6 +5,7 @@
 #include "levelloader.h"
 #include "levelscorer.h"
 #include "itemshop.h"
+#include "profilemanager.h"
 #include <mezzanine.h>
 
 using namespace Mezzanine;
@@ -27,6 +28,7 @@ class CatchApp
         bool Paused;
 
         World* TheWorld;
+        ProfileManager* Profiles;
         LevelLoader* Loader;
         LevelScorer* Scorer;
         ItemShop* Shop;
@@ -42,10 +44,8 @@ class CatchApp
 
         void MakeGUI();
         void CreateLoadingScreen();
-        void ConfigResources();
         void InitMusic();
 
-        void PopulateLevelList(UI::PagedCellGrid* Grid);
         void ChangeState(const CatchApp::GameState &StateToSet);
 
         bool CheckEndOfLevel();

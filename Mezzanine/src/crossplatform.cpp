@@ -142,40 +142,6 @@ namespace Mezzanine
             ActualHeight = Height;
             #endif
         }
-
-        String GetWorkingDir()
-        {
-            char cCurrentPath[FILENAME_MAX];
-            //char cCurrentPath[MAXPATHLEN];
-            #ifdef WINDOWS
-            String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
-            #else
-            String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
-            #endif
-            return Results;
-        }
-
-        std::set<String>* GetDirContents(const String& Dir)
-        {
-            std::set<String>* Results = new std::set<String>;
-            DIR *Directory;
-            struct dirent *DirEntry;
-            if(Directory = opendir(Dir.c_str()))
-            {
-                while(DirEntry = readdir(Directory))
-                {
-                    Results->insert(DirEntry->d_name);
-                    //DirEntry->d_type Later this can be modified to include the type of file entry it is, like a file, block device, directory, socket etc...
-                }
-
-                closedir(Directory);
-                return Results;
-            }else{
-                delete Results;
-                return NULL;
-            }
-        }
-
     }
 }
 

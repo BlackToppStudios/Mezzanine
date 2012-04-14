@@ -1,0 +1,8 @@
+.mxi - Mezzanine Xml Initializer
+These are xml files used to store configuration information used/need during initialization of Mezzanine or one of it's sub-systems.
+
+Existing uses:
+The engine itself has an xml initializer, default named Mezzanine.mxi.
+Plugins are loaded with an xml initializer, default named Plugins.mxi.
+Resources groups are configured with an xml initializer, default named Resources.mxi.
+GUI screens are defined with an xml initializer, default named GUI.mxi.

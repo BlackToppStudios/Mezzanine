@@ -33,7 +33,7 @@ class LevelScorer
         LevelScorer();
         ~LevelScorer();
         void CalculateCurrentScore(Whole& Score);
-        void CalculateFinalScore();
+        Whole CalculateFinalScore();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Special Conditions

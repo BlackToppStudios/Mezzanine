@@ -59,7 +59,7 @@ namespace Mezzanine
 
     void ScriptingManager::Initialize()
     {
-
+        Initialized = true;
     }
 
     void ScriptingManager::DoMainLoopItems()

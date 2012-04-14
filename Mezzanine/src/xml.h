@@ -86,6 +86,7 @@
 #include "crossplatform.h"
 #include "xmldoc.h"
 #include "exception.h"
+#include "resourcedatastream.h"
 
 #ifndef XML_NO_STL
 namespace std
@@ -317,6 +318,30 @@ namespace Mezzanine
 	private:
 		void* file;
 	};
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class XMLStreamWrapper
+    /// @headerfile resourcedatastream.h
+    /// @brief This represents a simple wrapper that makes data streams compatible with the XML API.
+    /// @details
+    /// @todo Ideally this class shouldn't exist, and the XML system should be made to use the resource system instead of doing it's own IO.
+    ///////////////////////////////////////
+    class MEZZ_LIB XMLStreamWrapper : public Writer
+    {
+        protected:
+            Resource::DataStream* WrappedStream;
+        public:
+            /// @brief Class constructor.
+            /// @param Stream The stream to be wrapped.
+            XMLStreamWrapper(Resource::DataStream* Stream) : WrappedStream(Stream) {};
+            /// @brief Class destructor.
+            virtual ~XMLStreamWrapper() {};
+
+            /// @brief Writes data to the stream.
+            /// @param data The data to be written.
+            /// @param size The number of bytes to be written.
+            void Write(const void* data, size_t size) { WrappedStream->Write(data,size); };
+    };//XMLStreamWrapper
 
 	#ifndef XML_NO_STL
 	// Writer implementation for streams
@@ -1067,6 +1092,13 @@ namespace Mezzanine
 		// Removes all nodes, then copies the entire contents of the specified document
 		void Reset(const Document& proto);
 
+		/// @brief Load a document from a data stream.
+		/// @param stream The stream to load from.
+		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+		/// @return A ParseResult that stores the the outcome of attempting to load the document.
+		ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+
 	#ifndef XML_NO_STL
 		// Load document from stream.
 		ParseResult Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
@@ -1114,6 +1146,13 @@ namespace Mezzanine
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return A ParseResult that stores the the outcome of attempting to load the document.
 		ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+
+		/// @brief Save XML document to a stream.
+		/// @param stream The stream to save this document to.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+		void Save(Resource::DataStream& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 		/// @brief Save XML document to WriterInstance.
 		/// @param WriterInstance The Writer that will be used to output the xml text.
