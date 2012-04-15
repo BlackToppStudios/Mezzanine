@@ -8,47 +8,115 @@
 
 #for reference this took 5 to 15 seconds to run on my i7 and 2+ minutes to my on my p4.
 
-exit
+echo "Checking Input Files ..."
 
 #disable Bash filename expansion
 set -f
 
 #error codes - These match the Header prepending tool
 E_BADARGS=1
-E_MISSINGPUGIXML=3
+E_MISSINGPUGIDIR=3
+E_MISSINGPUGICPP=4
+E_MISSINGPUGIHPP=5
+E_MISSINGPUGICONFIG=6
+E_MISSINGIFDEF=7
+E_MISSINGENDIF=8
+E_MISSINGDOXEND=9
+E_MISSINGDOXRESUME=10
+E_MISSINGOUTPUTDIR=11
+E_MISSINGLICENSE=11
+E_EXTRATEMPFILE=30
 
 #Input Files
-PugiFolder="pugisrc"
+PugiFolder="pugixml-read-only/src"
 PugiCppFile="$PugiFolder/pugixml.cpp"
 PugiHFile="$PugiFolder/pugixml.hpp"
 PugiConfigFile="$PugiFolder/pugiconfig.hpp"
-PugiTempHFile="$PugiFolder/temp.hpp"
+PugiTempHFile="temp.hpp"
 MezzxmlifdefFile="ifdef.txt"
 MezzxmlendifFile="endif.txt"
 DoxEnd="DoxEnd.txt"
 DoxResume="DoxResume.txt"
-echo "asdf"
-if [ -d "$PugiFolder" ]; then
-	echo "Found old copy of src, removing it."
+MezzLicenseFile="../../../../docs/CurrentCopyrightFileHeader.txt"
+
+if [ ! -d "$PugiFolder" ]; then
+	echo "Could not find source folder '$PugiFolder'."
+	exit $E_MISSINGPUGIDIR
 fi
 
-end
+if [ ! -e "$PugiCppFile" ]; then
+	echo "Could not find pugimxl cpp source file '$PugiCppFile'."
+	exit $E_MISSINGPUGICPP
+fi
 
+if [ ! -e "$PugiHFile" ]; then
+	echo "Could not find pugimxl header file '$PugiHFile'."
+	exit $E_MISSINGPUGIHPP
+fi
 
-exit
-echo "Checkout time"
+if [ ! -e "$PugiConfigFile" ]; then
+	echo "Could not find pugimxl config source file '$PugiConfigFile'."
+	exit $E_MISSINGPUGICONFIG
+fi
+
+if [ -e "$PugiTempHFile" ]; then
+	echo "Found another file present where we put our file '$PugiTempHFile'."
+	echo "Even though having this file can be insecure, Assembling source should only be performed on a trusted workstation (removing normal risks associated with this). This is done to make diagnostics easier."
+	exit $E_EXTRATEMPFILE
+fi
+
+if [ ! -e "$MezzxmlifdefFile" ]; then
+	echo "Could not find beginning ifdef data file '$MezzxmlifdefFile'."
+	exit $E_MISSINGIFDEF
+fi
+
+if [ ! -e "$MezzxmlendifFile" ]; then
+	echo "Could not find ending endif data file '$MezzxmlendifFile'."
+	exit $E_MISSINGENDIF
+fi
+
+if [ ! -e "$DoxEnd" ]; then
+	echo "Could not find Doxygen disabling config file '$DoxEnd'."
+	exit $E_MISSINGDOXEND
+fi
+
+if [ ! -e "$DoxResume" ]; then
+	echo "Could not find Doxygen re-enabling config file '$DoxResume'."
+	exit $E_MISSINGDOXRESUME
+fi
+
+if [ ! -e "$MezzLicenseFile" ]; then
+	echo "Could not find Mezzanine License header file '$MezzLicenseFile'."
+	exit $E_MISSINGLICENSE
+fi
+
+echo "Checking Output Files ..."
 
 #Output Files
-OutDir="../../Mezzanine/src"
+OutDir="../../../src"
 NewHFileOnly="xml.h"
 NewCppFileOnly="xml.cpp"
 NewHFile="$OutDir/$NewHFileOnly"
 NewCppFile="$OutDir/$NewCppFileOnly"
 
+if [ ! -d "$OutDir" ]; then
+	echo "Could not find source folder '$OutDir'."
+	exit $E_MISSINGOUTPUTDIR
+fi
+
+if [ -e "$NewHFile" ]; then
+	echo "Output Header already exists '$NewHFile' moving to backup '$NewHFile.bak'. Overwriting Backup if it exists."
+	mv "$NewHFile" "$NewHFile.bak" -f
+fi
+
+if [ -e "$NewCppFile" ]; then
+	echo "Output source file already exists '$NewCppFile' moving to backup '$NewCppFile.bak'. Overwriting Backup if it exists."
+	mv "$NewCppFile" "$NewCppFile.bak" -f
+fi
+
 #Some other variables we will be using
 #Copyright Variables
 Hardstring="This should not be found on any lineasdfasdfasdfasdf"	# this Should not appear in any of the Files, if it does, change it.
-OurLicenseFile="fileheader.txt"
 OurCopyright="\n * Software, Files, Libraries and all other items referenced in this clause refers only\n * to the contents of this file and associated documentation.\n *\n"
 IncompleteCopyright1=" * Copyright (c) 2006-2010 Arseny Kapoulkine"
 CompleteCopyright1="$OurCopyright * Copyright © 2006-2010 Arseny Kapoulkine"
@@ -69,10 +137,11 @@ namespace Mezzanine
 {"
 OurExtraNamespaceClosing="} // \Mezzanine"
 
-
 #Make the Files to begin appending Source code to.
-cat  $OurLicenseFile $DoxEnd > $NewCppFile
-cat  $OurLicenseFile > $PugiTempHFile
+cat  $MezzLicenseFile $DoxEnd > $NewCppFile
+cat  $MezzLicenseFile > $PugiTempHFile
+
+exit
 
 # This lops of the end copyright because we can use the ending from the other file we are merging with
 PugiConfigGrabUntil="#endif"
@@ -522,3 +591,4 @@ FixNames $NewCppFile
 
 #we unset this, so we will set it again, even though on *Most* systems this isn't required
 set +f
+
