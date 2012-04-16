@@ -127,11 +127,12 @@ namespace Mezzanine
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
         #else
-        if(::mkdir(DirectoryPath.c_str(),0777) < 0)
+        /// @todo Look into possibly insecure directory creation here in the resource manager
+        if(::mkdir(DirectoryPath.c_str(),0777) != 0)
         {
             std::stringstream exceptionstream;
             exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
-            exceptionstream << strerror();
+            exceptionstream << strerror(errno);
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
         #endif
