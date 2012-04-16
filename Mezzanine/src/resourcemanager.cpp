@@ -81,7 +81,7 @@ namespace Mezzanine
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-        internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
+        //internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
         this->AddResourceLocation(EngineDataPath, "FileSystem", "EngineData", false);
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
