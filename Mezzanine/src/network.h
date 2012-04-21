@@ -1,5 +1,4 @@
-#ifdef MEZZNETWORK
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -38,6 +37,9 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#include "mezzconfig.h"
+#ifdef MEZZNETWORK
+
 #ifndef _network_h
 #define _network_h
 

@@ -1,4 +1,4 @@
-// � Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,20 +44,21 @@
  *
  * Pugixml parser - version 1.0
  * --------------------------------------------------------
- * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
+ * Copyright Ã© 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
  * Report bugs and download new versions at http://pugixml.org/
  *
  * This library is distributed under the MIT License. See notice at the end
  * of this file.
  *
  * This work is based on the pugxml parser, which is:
- * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
+ * Copyright Ã© 2003, by Kristen Wegner (kristen@tima.net)
  */
 
 // To provide compilation option via cmake
-#ifdef MEZZXML
 
 #include "datatypes.h"
+
+#ifdef MEZZXML
 
 #ifndef _xmldoc_h
 #define _xmldoc_h
@@ -1954,7 +1955,7 @@ namespace Mezzanine
     The documentation was copied with permission per the copyright notice near the bottom of Table of contents and several other pages as follows:
     \n \n
     @verbatim
-    Copyright © 2010 Arseny Kapoulkine
+    Copyright Ã© 2010 Arseny Kapoulkine
     Distributed under the MIT License
     @endverbatim
     */
@@ -3164,7 +3165,7 @@ namespace Mezzanine
  * Software, Files, Libraries and all other items referenced in this clause refers only
  * to the contents of this file and associated documentation.
  *
- * Copyright © 2006-2010 Arseny Kapoulkine
+ * Copyright Ã© 2006-2010 Arseny Kapoulkine
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation

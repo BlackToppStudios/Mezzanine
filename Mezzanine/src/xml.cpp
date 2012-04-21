@@ -40,6 +40,8 @@
 
 /// @cond 0
 
+#include "mezzconfig.h"
+
 #ifdef MEZZXML
 /*
  *
