@@ -110,7 +110,7 @@ message ( STATUS "Catch! Profile Output: ${ProfileDir}")
 set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
 mark_as_advanced(Catch_ArchiveDir)
 if(EXISTS ${Catch_ArchiveDir})
-	set(UseCatchArchices true)
+	set(UseCatchArchives true)
 	#if the user select a file in the content archive folder, pull that filename out, without using FIND, because was introduced as recently as 2.8.5
 	string( LENGTH ${Catch_ArchiveDir} FilePos)
 	math(EXPR FilePos "${FilePos}-1")
@@ -122,17 +122,17 @@ if(EXISTS ${Catch_ArchiveDir})
 		string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
 		if(${FilePos} LESS 2)							#safe exit strategy, in case gibberish is fed in
 			set(OneChar "/")
-			set(UseCatchArchices false)
+			set(UseCatchArchives false)
 		endif(${FilePos} LESS 2)
 	endwhile(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
 else(EXISTS ${Catch_ArchiveDir})
-	set(UseCatchArchices false)
+	set(UseCatchArchives false)
 endif(EXISTS ${Catch_ArchiveDir})
-if(${UseCatchArchices})									#Let user the user know wht is actually happening
+if(${UseCatchArchives})									#Let user the user know wht is actually happening
 	message ( STATUS "Using content archives for Catch! in folder: ${Catch_ArchiveDir}")
-else(${UseCatchArchices})
+else(${UseCatchArchives})
 	message ( STATUS "Not Using content archives for Catch!")
-endif(${UseCatchArchices})
+endif(${UseCatchArchives})
 
 ##############################################################################
 #A complete list of our source files and headers
@@ -270,7 +270,7 @@ CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${License
 
 #####################################
 # Common Data
-if(${UseCatchArchices})
+if(${UseCatchArchives})
 	message( STATUS "Copying Common Content")
 	file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
 	file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
@@ -280,7 +280,7 @@ if(${UseCatchArchices})
 	message( STATUS "Copying Preview Content")
 	file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
 	file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
-endif(${UseCatchArchices})
+endif(${UseCatchArchives})
 
 #Ogre stuff
 CopyFilesDuringBuild( data/${BuildPlatform}/plugins${OgresD}.cfg ${PluginDir}plugins.cfg)
