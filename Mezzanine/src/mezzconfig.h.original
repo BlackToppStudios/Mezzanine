@@ -41,6 +41,26 @@
 #define _config_h
 
 /// @file This File optionally defines a number of values about the inclusion of subsystems in the Mezzanine
+/// @details This values in this file are all converted to preprocessor directives, suitable for use in and
+/// only in #ifdef and #ifndef expressions. This is designed to control which parts of the engine compiles.
+/// In theory this allows you to remove or add all of a given feature by changing just one value here and
+/// recompiling. @n @n
+/// When cmake is run, or this is manually configured each configure variable must be removed. The configure
+/// variables begin with '$' and '{' and end with '}'. After the closing bracket, and before the dollar sign
+/// there must be at least one whitespace character. The contents between the brackets is the variable name
+/// and the first character must be an letter, followed by any amount of alphanumeric or underscore
+/// characters. @n @n
+/// The values the configure variables can replaced with with coincide with the CMake definitions for them.
+/// Specifically this means that each variable can have one of two values has the following indicates: @n
+/// VariableName => "FalseValue" / "TrueValue"
+/// Mezz_Debug_Defined => "MEZZDEBUG_undefined" / "MEZZDEBUG = 1"
+/// Mezz_Lua51_Defined => "MEZZLUA51_undefined" / "MEZZLUA51 = 1"
+/// Mezz_Profile_Defined => "MEZZPROFILE_undefined" / MEZZPROFILE" = 1"
+/// Mezz_Network_Defined => "MEZZNETWORK_undefined" / "MEZZNETWORK = 1"
+/// Mezz_XML_Defined => "MEZZXML_undefined" / "MEZZXML = 1"
+/// Mezz_ThrowOnSingletonFetch_Defined => "THROW_ON_FETCH_FAIL_undefined" / "THROW_ON_FETCH_FAIL = 1" @n @n
+/// Currently all the variables and values follow a noticable pattern, however due to technical constraints
+/// this may not always be possible.
 
     #define ${Mezz_Debug_Defined}
     #define ${Mezz_Lua51_Defined}
