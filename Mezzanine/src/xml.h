@@ -87,6 +87,7 @@
 #include "xmldoc.h"
 #include "exception.h"
 #include "resourcedatastream.h"
+#include "mezzconfig.h"
 
 #ifndef XML_NO_STL
 namespace std

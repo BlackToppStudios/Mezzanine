@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -40,8 +40,10 @@
 #ifndef _ogredatastreambuf_h_cpp
 #define _ogredatastreambuf_h_cpp
 
-// Keeps this file form being documented by doxygen
+// Keeps this file from being documented by doxygen
 /// @cond 0
+
+#include "datatypes.h"
 
 #include <streambuf>
 

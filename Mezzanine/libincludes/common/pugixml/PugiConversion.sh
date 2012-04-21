@@ -146,7 +146,7 @@ OurExtraNamespaceClosing="} // \Mezzanine"
 cat  $MezzLicenseFile $DoxEnd > $NewCppFile
 cat  $MezzLicenseFile > $PugiTempHFile
 
-# This lops of the end copyright because we can use the ending from the other file we are merging with
+# This lops off the end copyright because we can use the ending from the other file we are merging with
 PugiConfigGrabUntil="#endif"
 				# The Copyright notices, and other string to search for in the PugiConfig File
 				#This next line uses grep to get the line number of the token we are searching for and then sends the results to
@@ -159,7 +159,7 @@ PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader
 PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | head -n1 | sed s/:.*//g`
 PugiHeaderTotalLineCount=`grep "$Hardstring" $PugiHFile -vc`
 PugiHeaderTailLineCount=$[PugiHeaderTotalLineCount-PugiHeaderGrabLineCount]
-tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'/'#include "crossplatform.h"\n#include "xmldoc.h"\n#include "exception.h"\n#include "resourcedatastream.h"'/g  >> $PugiTempHFile
+tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'/'#include "crossplatform.h"\n#include "xmldoc.h"\n#include "exception.h"\n#include "resourcedatastream.h"\n#include "mezzconfig.h"'/g  >> $PugiTempHFile
 
 #This Does a number of transformations on the PugiHeader file before placing the complete converted parts onto the new headerfile
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
@@ -254,7 +254,7 @@ function FixNames
 	#Remove the original and grossly incomplete doxygen documentations
 	sed -i -e 's|///|////|g' $1
 
-	echo "	Converting Most Easy  Names"
+        echo "	Converting Most Easy Names"
 	#Adjust the names of two word type to variables to use CamelCase
 	sed -i -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g' $1
 	sed -i -e 's/xml_\(.\)/\U\1/g' $1
@@ -600,9 +600,9 @@ function FixNames
 }
 
 echo "Fixing the Names in the Header File."
-FixNames $NewHFile
+FixNames "$NewHFile"
 echo "Fixing the Names in the Source File."
-FixNames $NewCppFile
+FixNames "$NewCppFile"
 
 #we unset this, so we will set it again, even though on *Most* systems this isn't required
 rm "$PugiTempHFile"

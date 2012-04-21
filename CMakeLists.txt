@@ -50,10 +50,13 @@
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
 #
+# That Every project using the Mezzanine will need to use as an include directory in their cmake files.
+#       ProjectIncludeDir               - This is the place that mezzconfig.h and maybe other important headers
+#
 # That affect/add/remove behavior of the engine
-#	Mezz_Debug	 		- True if The Engine will be compile with Debug Symbols and without compiler optimization, False and it will be optimized and omit debug symbols.
+#	Mezz_Debug	 		- True if The Engine will be forced to compile with symbols, will include more logging messages and libraries will also include debug symbols
 #	Mezz_Lua51			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
-#	Mezz_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking.
+#	Mezz_Profile			- If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #	Mezz_Network			- Enable or disable networking support
 #	Mezz_XML			- True if the engine will be compiled with XML support. This includes support for serialization
 #	Mezz_ThrowOnSingletonFetch	- When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
@@ -67,6 +70,8 @@
 #	OgrePluginCGPM			- The File name of the Ogre CG manager plugin
 #	OgrePluginRenderGL		- The File name of the Ogre OpenGL rendersystem plugin
 #	OgrePluginParticle		- The File name of the Ogre ParticleFX plugin
+#       OgreConfigHeaderIncludeDir      - The Folder where Ogre puts its configured Headers. This is only needed by subprojects if they link directly against Ogre.
+#       OgreHeaderIncludeDir            - The Folder where all the non-configured headers go. This is only needed by subprojects if they link directly against Ogre.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
@@ -84,11 +89,14 @@
 cmake_minimum_required (VERSION 2.8)
 project (MezzanineAndCatch)
 
+message("${PROJECT_NAME} - Starting Configuration")
+
 ###############################################################################
 # Check For the Mezz_Debug option and set values accordingly
 option(Mezz_Debug "Compile with no optimizations and debug symbols" OFF)
 if(${Mezz_Debug})
-	message ("${PROJECT_NAME} - Enabling Mezz_Debug Messages")
+        message ( STATUS "${PROJECT_NAME} - Enabling Mezz_Debug Messages")
+        set(Mezz_Debug_Defined "MEZZDEBUG=1")
 	if(${WIN32})
 		message ( STATUS "${PROJECT_NAME} - Setting Windows Debug Specific Initialiations")
 		set(CommonBuildFlags ${CMAKE_CXX_FLAGS_DEBUG})
@@ -96,17 +104,16 @@ if(${Mezz_Debug})
 		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Debug Initialiations")
 		set(CommonBuildFlags " -fPIC ${CMAKE_CXX_FLAGS_DEBUG}")
 	endif(${WIN32})
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZDEBUG=1")
 else(${Mezz_Debug})
 	message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
+        set(Mezz_Debug_Defined "MEZZDEBUG_undefined")
 	if(${WIN32})
 		message ( STATUS "${PROJECT_NAME} - Setting Windows Specific Initialiations")
-		set(CommonBuildFlags " -O2 -s ")
+                #set(CommonBuildFlags)
 	else(${WIN32})
 		message ( STATUS "${PROJECT_NAME} - Setting Non-Windows Initialiations")
-		set(CommonBuildFlags " -fPIC -O2 -s")
+                set(CommonBuildFlags " -fPIC")
 	endif(${WIN32})
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZDEBUG=0")
 endif(${Mezz_Debug})
 
 #consider adding options -mmmx -msse -msse2 -m3dnow
@@ -118,34 +125,34 @@ endif(${Mezz_Debug})
 # Check For the Mezz_Profile option and set values accordingly
 option(Mezz_Profile "Executables will gather runtime statistics." OFF)
 if(${Mezz_Profile})
-	message ("${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
-	set(CommonBuildFlags "${CommonBuildFlags} -pg")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZPROFILE=1")
+        message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
+        set(Mezz_Profile_Defined "MEZZPROFILE=1")
+        set(CommonBuildFlags "${CommonBuildFlags} -pg") # The pg makes this only work with gcc, clang and imitators
 else(${Mezz_Profile})
-	message ("${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZPROFILE=0")
+        message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
+        set(Mezz_Profile_Defined "MEZZPROFILE_undefined")
 endif(${Mezz_Profile})
 
 ###############################################################################
 # Check For the Mezz_XML option and set values accordingly
 option(Mezz_XML "Enable XML and XML serialization support." ON)
 if(${Mezz_XML})
-	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZXML=1")
+        message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
+        set(Mezz_XML_Defined "MEZZXML=1")
 else(${Mezz_XML})
-	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZXML=0")
+        message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
+        set(Mezz_XML_Defined "MEZZXML_undefined")
 endif(${Mezz_XML})
 
 ###############################################################################
 # Check For the Mezz_Network option and set values accordingly
 option(Mezz_Network "Enable Networking support." ON)
 if(${Mezz_Network})
-	message ("${PROJECT_NAME} - Enabling Network subsystem, and setting MEZZNETWORK")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZNETWORK=1")
+        message ( STATUS "${PROJECT_NAME} - Enabling Network subsystem, and setting MEZZNETWORK")
+        set(Mezz_Network_Defined "MEZZNETWORK=1")
 else(${Mezz_Network})
-	message ("${PROJECT_NAME} - Disabling Network subsystem, and unsetting MEZZNETWORK")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZNETWORK=0")
+        message ( STATUS "${PROJECT_NAME} - Disabling Network subsystem, and unsetting MEZZNETWORK")
+        set(Mezz_Network_Defined "MEZZNETWORK_undefined")
 endif(${Mezz_Network})
 
 ###############################################################################
@@ -154,12 +161,25 @@ option(Mezz_Lua51 "Include Support for Lua 5.1 Scripting Language" ON)
 if(${Mezz_Lua51})
 	set(LuaProject "Lua")
 	set(LuaLinkName "lua")
-	message ("${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting MEZZLUA51")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZLUA51=1")
+        message ( STATUS "${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting MEZZLUA51")
+        set(Mezz_Lua51_Defined "MEZZLUA51=1")
 else(${Mezz_Lua51})
-	message ("${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA51")
-	set(CommonBuildFlags "${CommonBuildFlags} -DMEZZLUA51=0")
+        message ( STATUS "${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA51")
+        set(Mezz_Lua51_Defined "MEZZLUA51_undefined")
 endif(${Mezz_Lua51})
+
+###############################################################################
+# Misc simple defines
+option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
+if(${Mezz_ThrowOnSingletonFetch})
+        message ( STATUS "${PROJECT_NAME} - Enabling exceptions on bad singleton fetches")
+        set(Mezz_ThrowOnSingletonFetch_Defined "THROW_ON_FETCH_FAIL=1")
+else(${Mezz_ThrowOnSingletonFetch})
+        message ( STATUS "${PROJECT_NAME} - Disabling  exceptions on bad singleton fetches")
+        set(Mezz_ThrowOnSingletonFetch_Defined "THROW_ON_FETCH_FAIL_undefined")
+endif(${Mezz_ThrowOnSingletonFetch})
+mark_as_advanced(Mezz_ThrowOnSingletonFetch)
+
 
 ###############################################################################
 # Set Platform Specific Variables
@@ -183,7 +203,18 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 #######################################
 # Mezzanine
+
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR}/)
+Message(STATUS "Using Source From: ${ProjectRootDir}")
+
+set(ProjectBinaryDir ${${PROJECT_NAME}_BINARY_DIR}/)
+Message(STATUS "Putting all major output in: ${ProjectBinaryDir}")
+
+set(ProjectIncludeDir ${ProjectBinaryDir}/include/)
+Message(STATUS "Putting mezzconfig.h in: ${ProjectIncludeDir}")
+
+
+configure_file("${ProjectRootDir}Mezzanine/src/mezzconfig.h.original" "${ProjectIncludeDir}mezzconfig.h")
 set(MezzanineLibFileName ${LibPrefix}Mezzanine${LibSuffix})
 set(MezzanineLinkName "Mezzanine")
 
@@ -240,6 +271,12 @@ set(Mezz_UseOgreVersion 1.8.0 CACHE STRING "The version of the ogre libraries to
 set(OgreLibFileName ${LibPrefix}${OgreLinkName}${LibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})		#This value is gibberish on non-Linux platforms
 
+set(OgreConfigHeaderIncludeDir "${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include/")
+Message(STATUS "Putting Ogre3d config.h in: ${OgreConfigHeaderIncludeDir}")
+
+set(OgreHeaderIncludeDir "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/OgreMain/include")
+Message(STATUS "Putting Ogre3d headers in: ${OgreHeaderIncludeDir}")
+
 # Ogre Plugins
 set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix} )
 set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix} )
@@ -253,26 +290,19 @@ if(${Mezz_Network})
 	endif(${WIN32})
 endif(${Mezz_Network})
 
-###############################################################################
-# Miscellenais simple defines
-option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
-if(${Mezz_ThrowOnSingletonFetch})
-	message ("${PROJECT_NAME} - Enabling exceptions on bad singleton fetches")
-	set(CommonBuildFlags "${CommonBuildFlags} -DTHROW_ON_FETCH_FAIL=1")
-else(${Mezz_Profile})
-	message ("${PROJECT_NAME} - Disabling  exceptions on bad singleton fetches")
-	set(CommonBuildFlags "${CommonBuildFlags} -DTHROW_ON_FETCH_FAIL=0")	
-endif(${Mezz_ThrowOnSingletonFetch})
-mark_as_advanced(Mezz_ThrowOnSingletonFetch)
 
 ###############################################################################
 # Add subprojects
+
+Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
 #add_subdirectory (EngineDemo)
 add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
+Message(STATUS "Finishing Subproject Configuration.")
 
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine
-mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY )
+mark_as_advanced(CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_ICD_CFG NVIDIA_OPENCL_LIBRARIES OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY )
 
+message("${PROJECT_NAME} - Finishing Configuration")

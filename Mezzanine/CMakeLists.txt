@@ -1,4 +1,4 @@
-# Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -66,7 +66,7 @@ message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 set (${PROJECT_NAME}_OUTPUT_DIR "${${PROJECT_NAME}_BINARY_DIR}/")
 message ( STATUS "Putting all the output in: ${${PROJECT_NAME}_OUTPUT_DIR}")
 
-set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
+set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}bin/")
 set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
 set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ( STATUS "Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
@@ -74,6 +74,8 @@ message ( STATUS "Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 #######################################
 # A complete listing of our header files
 set(${PROJECT_NAME}_sources
+        "${ProjectIncludeDir}mezzconfig.h"
+
 	"${${PROJECT_NAME}_SRC_DIR}actorbase.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorcharacter.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorcontainerbase.h"
@@ -444,7 +446,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		${Mezz_OgreBuildDir}/ogre/OgreMain/include/
 		${Mezz_OgreBuildDir}/ogre/include/
 	)
-	message (${Mezz_OgreBuildDir}/ogre/OgreMain/include/)
 
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -462,16 +463,17 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ###############################################################################
 #Common Library Configuration items
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/ogresrc/ogresvnsrc/OgreMain/include"
-	#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"			#only on windows, which doesn't build ogre
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
+        ${OgreConfigHeaderIncludeDir}
 	"${Mezz_SDLBuildDir}/SDL/include/"
-	"${${PROJECT_NAME}_OUTPUT_DIR}/libincludes/common/ogresrc/ogresvnsrc/include"
+        ${OgreHeaderIncludeDir}
+        "${ProjectIncludeDir}"
 )
+
 if(${Mezz_Lua51})
 	include_directories( libincludes/common/lua51/lua5.1/src )
 endif(${Mezz_Lua51})

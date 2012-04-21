@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -39,10 +39,15 @@
 */
 #ifndef _datatypes_h
 #define _datatypes_h
+
 ///////////////////////////////////////////////////////////////////////////////
-//Any Special data types that we need will get declared right here
+// Any Special data types that we need will get declared right here
+/// @file All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well
 ///////////////////////////////////////
+
+#include "mezzconfig.h"
 #include "crossplatformexport.h"
+
 
 // Standard Headers are not included in SWIG preprocessing
 // Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that

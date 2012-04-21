@@ -40,12 +40,13 @@
 #ifndef _serialization_h
 #define _serialization_h
 
-
 /// @file
 /// @brief The interface for serialization
 /// @details If MEZZXML is disabled parts of this file are still included. Primarily the fact
 /// that the classes still exist. That minimizes the need for preprocessor directives in child
 /// class declaration and should still be optimized out of release builds.
+
+#include "mezzconfig.h"
 
 #ifdef MEZZXML
     #include "datatypes.h"

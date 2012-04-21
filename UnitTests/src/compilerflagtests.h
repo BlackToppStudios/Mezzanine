@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//©opyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,24 +52,65 @@ class CompilerFlagTests : public UnitTestGroup
         {
             if (RunInteractiveTests)
             {
+#ifdef MEZZDEBUG
                 TestResult temp;
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZDEBUG set to \"", BoolToString(MEZZDEBUG), "\" when this was configured with CMake(where it is called Mezz_Debug) or other config tool? "));
+                temp = GetTestAnswer( "Was MEZZDEBUG set to True when this was configured with CMake(where it is called Mezz_Debug) or other config tool? ");
                 AddTestResult("CompilerFlag::MEZZDEBUG", temp);
+#else
+                TestResult temp;
+                temp = GetTestAnswer( "Was MEZZDEBUG set to False when this was configured with CMake(where it is called Mezz_Debug) or other config tool? ");
+                AddTestResult("CompilerFlag::MEZZDEBUG", temp);
+#endif
 
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZXML set to \"", BoolToString(MEZZXML), "\" when this was configured with CMake(where it is called Mezz_XML) or other config tool? "));
+#ifdef MEZZXML
+                temp;
+                temp = GetTestAnswer( "Was MEZZXML set to True when this was configured with CMake(where it is called Mezz_XML) or other config tool? ");
                 AddTestResult("CompilerFlag::MEZZXML", temp);
+#else
+                temp;
+                temp = GetTestAnswer( "Was MEZZXML set to False when this was configured with CMake(where it is called Mezz_XML) or other config tool? ");
+                AddTestResult("CompilerFlag::MEZZXML", temp);
+#endif
 
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZPROFILE set to \"", BoolToString(MEZZPROFILE), "\" when this was configured with CMake(where it is called Mezz_Profile) or other config tool? "));
+#ifdef MEZZPROFILE
+                temp;
+                temp = GetTestAnswer( "Was MEZZPROFILE set to True when this was configured with CMake(where it is called Mezz_Profile) or other config tool? ");
                 AddTestResult("CompilerFlag::MEZZPROFILE", temp);
+#else
+                temp;
+                temp = GetTestAnswer( "Was MEZZPROFILE set to False when this was configured with CMake(where it is called Mezz_Debug) or other config tool? ");
+                AddTestResult("CompilerFlag::MEZZPROFILE", temp);
+#endif
 
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZNETWORK set to \"", BoolToString(MEZZNETWORK), "\" when this was configured with CMake(where it is called Mezz_Network) or other config tool? "));
+#ifdef MEZZNETWORK
+                temp;
+                temp = GetTestAnswer( "Was MEZZNETWORK set to True when this was configured with CMake(where it is called Mezz_Network) or other config tool? ");
                 AddTestResult("CompilerFlag::MEZZNETWORK", temp);
+#else
+                temp;
+                temp = GetTestAnswer( "Was MEZZNETWORK set to False when this was configured with CMake(where it is called Mezz_Network) or other config tool? ");
+                AddTestResult("CompilerFlag::MEZZNETWORK", temp);
+#endif
 
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was MEZZLUA51 set to \"", BoolToString(MEZZLUA51), "\" when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? "));
+#ifdef MEZZLUA51
+                temp;
+                temp = GetTestAnswer( "Was MEZZLUA51 set to True when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? ");
                 AddTestResult("CompilerFlag::MEZZLUA51", temp);
+#else
+                temp;
+                temp = GetTestAnswer( "Was MEZZLUA51 set to False when this was configured with CMake(where it is called Mezz_Lua51) or other config tool? ");
+                AddTestResult("CompilerFlag::MEZZLUA51", temp);
+#endif
 
-                temp = GetTestAnswer( Mezzanine::StringTool::StringCat("Was THROW_ON_FETCH_FAIL set to \"", BoolToString(THROW_ON_FETCH_FAIL), "\" when this was configured with CMake(where it is called Mezz_ThrowOnSingletonFetch) or other config tool? "));
+#ifdef THROW_ON_FETCH_FAIL
+                temp;
+                temp = GetTestAnswer( "Was THROW_ON_FETCH_FAIL set to True when this was configured with CMake(where it is called Mezz_ThrowOnSingletonFetch) or other config tool? ");
                 AddTestResult("CompilerFlag::THROW_ON_FETCH_FAIL", temp);
+#else
+                temp;
+                temp = GetTestAnswer( "Was THROW_ON_FETCH_FAIL set to False when this was configured with CMake(where it is called Mezz_ThrowOnSingletonFetch) or other config tool? ");
+                AddTestResult("CompilerFlag::THROW_ON_FETCH_FAIL", temp);
+#endif
             }else{
                 AddTestResult("CompilerFlag::MEZZDEBUG", Skipped);
                 AddTestResult("CompilerFlag::MEZZXML", Skipped);

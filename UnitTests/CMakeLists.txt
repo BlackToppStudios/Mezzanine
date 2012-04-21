@@ -1,4 +1,4 @@
-# Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
+# © Copyright 2010 - 2011 BlackTopp Studios Inc.
 # This file is part of The Mezzanine Engine.
 #
 #    The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,7 +37,6 @@
 #   Joseph Toppi - toppij@gmail.com
 #   John Blackwood - makoenergy02@gmail.com
 
-
 cmake_minimum_required (VERSION 2.8)
 project (UnitTests)
 message ("${PROJECT_NAME} - Begin")
@@ -56,10 +55,10 @@ message ( STATUS "Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
-set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}/Mezzanine/")
+set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}Mezzanine/")
 message ( STATUS "Base for Mezzanine: ${${PROJECT_NAME}_MEZZANINE_DIR}")
 
-set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}/bin/")
+set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}bin/")
 message ( STATUS "Mezzanine Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_SRC "${${PROJECT_NAME}_MEZZANINE_DIR}src/")
@@ -69,7 +68,7 @@ set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ( STATUS "Base Directory for Executable Test binaries and test data output: ${${PROJECT_NAME}_BINARY_DIR}")
 
-set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes)
+set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes/)
 
 ###############################################################################
 #Sources
@@ -149,12 +148,15 @@ endfunction(CreateSymlinkDuringBuild)
 # Accessing correct headers
 
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
-	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
-	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
+        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
+        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+        "${Mezzanine_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
+        ${OgreConfigHeaderIncludeDir}
+        "${Mezz_SDLBuildDir}/SDL/include/"
+        ${OgreHeaderIncludeDir}
+        "${ProjectIncludeDir}"
 )
 
 if(${WIN32})

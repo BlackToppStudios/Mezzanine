@@ -228,7 +228,7 @@ endfunction(CreateDirectoryStructure)
 
 ##############################################################################
 # Define the executable and say it requires Mezzanine
-include_directories( ${${PROJECT_NAME}_SRC_DIR} ${${PROJECT_NAME}_MEZZANINE_BIN_SRC} )
+include_directories( ${${PROJECT_NAME}_SRC_DIR} ${${PROJECT_NAME}_MEZZANINE_BIN_SRC} ${ProjectIncludeDir})
 link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
