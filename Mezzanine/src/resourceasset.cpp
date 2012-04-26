@@ -37,29 +37,25 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _resourceasset_cpp
+#define _resourceasset_cpp
+
+#include "resourceasset.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
     namespace Resource
     {
+        Asset::Asset()
+        {
 
-    }
-}
+        }
 
-#include "resourceenumerations.h"
+        Asset::~Asset()
+        {
 
-#include "resourcearchive.h"
-#include "resourceasset.h"
-#include "resourceassetgroup.h"
-#include "resourceassethandler.h"
-#include "resourcedatastream.h"
-#include "resourceinputstream.h"
-#include "resourcetextsettingsfile.h"
+        }
+    }//Resource
+}//Mezzanine
 
 #endif

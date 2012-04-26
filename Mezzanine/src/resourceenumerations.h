@@ -37,29 +37,27 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _resourceenumerations_h
+#define _resourceenumerations_h
+///////////////////////////////////////////////////////////////////////////////
+//Any global enumerations shared between multiple classes in the Resource namespace is to be declared here.
+///////////////////////////////////////
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
     namespace Resource
     {
-
-    }
-}
-
-#include "resourceenumerations.h"
-
-#include "resourcearchive.h"
-#include "resourceasset.h"
-#include "resourceassetgroup.h"
-#include "resourceassethandler.h"
-#include "resourcedatastream.h"
-#include "resourceinputstream.h"
-#include "resourcetextsettingsfile.h"
+        /// @enum LoadingState
+        /// @brief This enum describes the current state of loading for an asset.
+        enum LoadingState
+        {
+            LS_Uninitialized = 0,
+            LS_Initializing = 1,
+            LS_Initialized = 2,
+            LS_Loading = 3,
+            LS_Loaded = 4
+        };
+    }//Resource
+}//Mezzanine
 
 #endif
