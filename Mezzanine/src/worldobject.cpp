@@ -45,6 +45,7 @@
 #include "audiomanager.h"
 #include "audiosoundset.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "worldnode.h"
 #include "world.h"
 

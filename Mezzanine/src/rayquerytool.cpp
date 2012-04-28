@@ -49,6 +49,7 @@ using namespace std;
 #include "graphicsmanager.h"
 #include "eventmanager.h"
 #include "cameramanager.h"
+#include "scenemanager.h"
 #include "camera.h"
 #include "objectreference.h"
 #include "gamewindow.h"

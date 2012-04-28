@@ -54,6 +54,7 @@
 #include "audiomanager.h"
 #include "audiosoundset.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "world.h"
 #include "xml.h"
 #include "internalmotionstate.h.cpp"

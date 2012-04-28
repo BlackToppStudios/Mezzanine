@@ -47,6 +47,7 @@
 #include "collisionshapemanager.h"
 #include "mesh.h"
 #include "meshmanager.h"
+#include "scenemanager.h"
 #include "objectreference.h"
 #include "internalmeshtools.h.cpp"
 #include "world.h"

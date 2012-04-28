@@ -46,6 +46,7 @@
 #include "world.h"
 #include "meshmanager.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
 #include "collision.h"

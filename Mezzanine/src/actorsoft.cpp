@@ -52,7 +52,9 @@
 #include "objectreference.h"
 #include "world.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "actorsoft.h"
+
 namespace Mezzanine
 {
     ///////////////////////////////////

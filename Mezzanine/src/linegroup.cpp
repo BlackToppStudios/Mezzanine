@@ -41,6 +41,7 @@
 #define _LINEGROUP_cpp
 
 #include "linegroup.h"
+#include "scenemanager.h"
 #include "world.h"
 
 #include <Ogre.h>

@@ -48,6 +48,7 @@
 #include "serialization.h"
 #include "world.h"
 #include "meshmanager.h"
+#include "scenemanager.h"
 #include "stringtool.h"
 
 #include <map>
