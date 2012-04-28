@@ -12,11 +12,11 @@ class LevelSelectCell : public UI::Cell
         UI::Rectangle* PreviewImage;
         UI::Rectangle* PreviewBorder;
         UI::Caption* LevelTitle;
-        UI::Caption* EarnedMaxScore;
+        UI::Caption* EarnedScore;
         Vector2 PreviewImageOffset;
         Vector2 PreviewBorderOffset;
         Vector2 LevelTitleOffset;
-        Vector2 EarnedMaxScoreOffset;
+        Vector2 EarnedScoreOffset;
         virtual void UpdateImpl(bool Force = false);
         virtual void SetVisibleImpl(bool visible);
         virtual bool CheckMouseHoverImpl();
@@ -34,7 +34,7 @@ class LevelSelectCell : public UI::Cell
         virtual UI::Rectangle* GetPreviewImage();
         virtual UI::Rectangle* GetPreviewBorder();
         virtual UI::Caption* GetLevelTitle();
-        virtual UI::Caption* GetEarnedMaxScore();
+        virtual UI::Caption* GetEarnedScore();
 };
 
 class LevelSelectCB : public UI::CellCallback

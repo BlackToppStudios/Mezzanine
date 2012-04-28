@@ -565,7 +565,10 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
             PauseGame(true);
             Whole LevelScore = Scorer->CalculateFinalScore();
             if(LevelScore > Profiles->GetActiveProfile()->GetHighestScore(Loader->GetCurrentLevel()))
+            {
                 Profiles->GetActiveProfile()->SetNewHighScore(Loader->GetCurrentLevel(),LevelScore);
+                (static_cast<LevelSelectCell*>(Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTool::ConvertToString(LevelScore));
+            }
             break;
         }
     }
@@ -1109,6 +1112,11 @@ LevelLoader* CatchApp::GetLevelLoader()
 LevelScorer* CatchApp::GetLevelScorer()
 {
     return Scorer;
+}
+
+ProfileManager* CatchApp::GetProfiles()
+{
+    return Profiles;
 }
 
 ItemShop* CatchApp::GetItemShop()

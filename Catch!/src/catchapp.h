@@ -79,6 +79,7 @@ class CatchApp
         std::vector<ScoreArea*>& GetScoreAreas();
         LevelLoader* GetLevelLoader();
         LevelScorer* GetLevelScorer();
+        ProfileManager* GetProfiles();
         ItemShop* GetItemShop();
         SimpleTimer* GetLevelTimer();
         SimpleTimer* GetEndTimer();
