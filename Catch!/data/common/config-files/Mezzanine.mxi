@@ -6,36 +6,36 @@
 	</LoggingSettings>
 </WorldSettings>
 <Managers>
-	<ActorManager>
-	</ActorManager>
-	<AudioManager>
-	</AudioManager>
-	<CameraManager>
-	</CameraManager>
-	<CollisionShapeManager>
-	</CollisionShapeManager>
-	<EventManager>
-	</EventManager>
-	<GraphicsManager>
+	<DefaultActorManager>
+	</DefaultActorManager>
+	<DefaultAudioManager>
+	</DefaultAudioManager>
+	<DefaultCameraManager>
+	</DefaultCameraManager>
+	<DefaultCollisionShapeManager>
+	</DefaultCollisionShapeManager>
+	<DefaultEventManager>
+	</DefaultEventManager>
+	<DefaultGraphicsManager>
 		<RenderSystem Name="OpenGL" />
 		<GameWindow Caption="Window" Width="800" Height="600" FSAA="4" ViewportConf="1-FullWindow" />
-	</GraphicsManager>
-	<MeshManager>
-	</MeshManager>
-	<PhysicsManager>
+	</DefaultGraphicsManager>
+	<DefaultMeshManager>
+	</DefaultMeshManager>
+	<DefaultPhysicsManager>
 		<WorldSettings LimitlessWorld="true" SoftRigidWorld="true" />
 		<SubStepModifier Modifier="2" />
-	</PhysicsManager>
-	<ResourceManager>
-	</ResourceManager>
-	<SceneManager>
-	</SceneManager>
-	<ScriptingManager>
-	</ScriptingManager>
-	<TimerManager>
-	</TimerManager>
-	<UIManager>
-	</UIManager>
+	</DefaultPhysicsManager>
+	<DefaultResourceManager>
+	</DefaultResourceManager>
+	<DefaultSceneManager>
+	</DefaultSceneManager>
+<!--<DefaultScriptingManager>
+	</DefaultScriptingManager>-->
+	<DefaultTimerManager>
+	</DefaultTimerManager>
+	<DefaultUIManager>
+	</DefaultUIManager>
 </Managers>
 <OtherInitializers>
 	<ResourceInit FileName="Resources.mxi" />

@@ -6,4 +6,6 @@
 	<ResourceLocation GroupPath="Data/Music.zip" GroupType="Zip" GroupName="Common" />
 	<ResourceLocation GroupPath="Previews/" GroupType="FileSystem" GroupName="Common" />
 </ResourceLocations>
-<InitGroups GroupName="Common" />
+<InitGroups>
+	<InitGroup GroupName="Common" />
+</InitGroups>
