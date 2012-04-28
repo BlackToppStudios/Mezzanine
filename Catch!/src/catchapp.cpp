@@ -28,7 +28,7 @@ CatchApp::CatchApp()
 
     try
     {
-        TheWorld = new World( "Data/" );
+        TheWorld = new World( "Data/", "FileSystem" );
     }catch( exception x){
         throw;
     }
@@ -695,7 +695,7 @@ int CatchApp::GetCatchin()
     UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
     // Initialize the managers.
-	TheWorld->GameInit(false);
+	TheWorld->EngineInit(false);
 
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
