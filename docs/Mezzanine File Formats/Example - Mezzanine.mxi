@@ -19,10 +19,10 @@
 	</LoggingSettings>
 </WorldSettings>
 <Managers>
-	<ActorManager>
+	<DefaultActorManager>
 		<!-- Currently the ActorManager has zero additional params to be set. -->
-	</ActorManager>
-	<AudioManager>
+	</DefaultActorManager>
+	<DefaultAudioManager>
 		<!-- DeviceName is a string.  DeviceIndex is an unsigned int.  OutputFrequency and EAXEffectSlots are both ints. -->
 		<!-- DeviceName may be expanded to permit other realistic settings since naming the system specific device isn't practical. -->
 		<!-- DeviceName and DeviceIndex are mutually exclusive.  If both are defined DeviceIndex is ignored. -->
@@ -31,17 +31,17 @@
 		<Mute Muted="false" />
 		<!-- The volume values must be a float from 0.0 to 1.0. -->
 		<Volume Ambient="1.0" Dialog="1.0" Effects="1.0" Music="1.0" />
-	</AudioManager>
-	<CameraManager>
+	</DefaultAudioManager>
+	<DefaultCameraManager>
 		<!-- Currently the CameraManager has zero additional params to be set. -->
-	</CameraManager>
-	<CollisionShapeManager>
+	</DefaultCameraManager>
+	<DefaultCollisionShapeManager>
 		<!-- Currently the CollisionShapeManager has zero additional params to be set. -->
-	</CollisionShapeManager>
-	<EventManager>
+	</DefaultCollisionShapeManager>
+	<DefaultEventManager>
 		<!-- Currently the EventManager has zero additional params to be set. -->
-	</EventManager>
-	<GraphicsManager>
+	</DefaultEventManager>
+	<DefaultGraphicsManager>
 		<!-- The name is a string with the name of the rendersystem to be set.  Currently, it's possible values are: -->
 		<!-- Direct3D9, Direct3D11, OpenGL, OpenGLES1.x, OpenGLES2.x -->
 		<RenderSystem Name="OpenGL" />
@@ -51,14 +51,14 @@
 		<!-- ViewportConf is a string and describes how the viewports of the window should be initialized.  Note that you still have to bind the camera to the viewport if you use this. -->
 		<!-- Options for ViewportConf are: Custom, 1-FullWindow, 2-HorizontalSplit, 2-VerticalSplit, 3-TopLarge, 4-EvenlySplit -->
 		<GameWindow Caption="Window" Width="800" Height="600" Fullscreen="false" Hidden="false" Vsync="false" FSAA="0" Resizeable="false" Maximized="false" Borderless="false" ViewportConf="Custom" />
-	</GraphicsManager>
-	<MeshManager>
+	</DefaultGraphicsManager>
+	<DefaultMeshManager>
 		<!-- Currently the MeshManager has zero additional params to be set. -->
-	</MeshManager>
-	<NetworkManager>
+	</DefaultMeshManager>
+	<DefaultNetworkManager>
 		<!-- Currently the NetworkManager has zero additional params to be set. -->
-	</NetworkManager>
-	<PhysicsManager>
+	</DefaultNetworkManager>
+	<DefaultPhysicsManager>
 		<!-- WorldUpperBounds and WorldLowerBounds are both Vector3's.  MaxObjects is an unsigned int.  LimitlessWorld and SoftRigidWorld are both bools. -->
 		<!-- If LimitlessWorld is true, the Upper/Lower bounds and the MaxObjects are ignored. -->
 		<!-- SoftRigidWorld simply enables SoftBody functionality in the world. -->
@@ -69,12 +69,12 @@
 		<!-- RenderingMode sets the Mode for debug drawing.  0 means disabled, 1 means enabled.  May be more options in the future. -->
 		<!-- WireCount is the number of frames back to keep the wireframe drawing for. -->
 		<DebugRendering RenderingMode="0" WireCount="2" />
-	</PhysicsManager>
-	<ResourceManager>
+	</DefaultPhysicsManager>
+	<DefaultResourceManager>
 		<!-- Currently the ResourceManager has zero additional params to be set. -->
 		<!-- Additional resource configuration is done in the Resource.mxi init file. -->
-	</ResourceManager>
-	<SceneManager>
+	</DefaultResourceManager>
+	<DefaultSceneManager>
 		<!-- TypeName is a string, and describes the type of internal manager to be used with rendering the scene. -->
 		<!-- Currently "Default" is the only option supported here, but can/will change in the future. -->
 		<!-- Options for the future: Octree, PCZ -->
@@ -86,20 +86,20 @@
 		<ShadowSettings Technique="None" ShadowColour="0 0 0 1" ShadowFarDistance="0" />
 		<!-- This section is ignored if shadows are disabled or if stencil shadows are used. --> 
 		<TextureShadowSettings ShadowTextureCount="1" ShadowTextureSize="512" />
-	</SceneManager>
-	<ScriptingManager>
+	</DefaultSceneManager>
+	<DefaultScriptingManager>
 		<!-- Currently the ScriptingManager has zero additional params to be set. -->
-	</ScriptingManager>
-	<TerrainManager>
+	</DefaultScriptingManager>
+	<DefaultTerrainManager>
 		<!-- Currently the TerrainManager has zero additional params to be set. -->
-	</TerrainManager>
-	<TimerManager>
+	</DefaultTerrainManager>
+	<DefaultTimerManager>
 		<!-- Currently the TimerManager has zero additional params to be set. -->
-	</TimerManager>
-	<UIManager>
+	</DefaultTimerManager>
+	<DefaultUIManager>
 		<!-- Currently the UIManager has zero additional params to be set. -->
 		<!-- Additional ui configuration is done in the Resource.mxi init file. -->
-	</UIManager>
+	</DefaultUIManager>
 </Managers>
 <OtherInitializers>
 	<ResourceInit FileName="Resources.mxi" />

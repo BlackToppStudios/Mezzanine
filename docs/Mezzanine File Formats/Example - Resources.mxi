@@ -7,4 +7,7 @@
 	<ResourceLocation GroupPath="." GroupType="FileSystem" GroupName="Group" Recursive="false" />
 </ResourceLocations>
 <!-- This section describes the groups that should be initialized immediately after all the above resource groups have been declared.  Must contain a valid groupname listed above. -->
-<InitGroups GroupName="Group1" GroupName="Group2" />
+<InitGroups>
+	<InitGroup GroupName="Group1" />
+	<InitGroup GroupName="Group2" />
+</InitGroups>
