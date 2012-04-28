@@ -66,7 +66,7 @@ namespace Mezzanine
             /// @details These will be returned by ManagerBase::GetType(), and will allow
             /// code using this to determine what type of Manager class they are working with
             /// and use this information to more safely cast to the correct manager if needed.
-            enum ManagerTypeName
+            enum ManagerType
             {
                 ActorManager    = 1,
                 AudioManager,
@@ -127,8 +127,15 @@ namespace Mezzanine
             /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from
             /// ManagerBase to the correct Manager Type.
             /// @return This returns a ManagerTypeName to identify what this can be safely cast to.
-            virtual ManagerTypeName GetType() const = 0;
+            virtual ManagerType GetInterfaceType() const = 0;
 
+            /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging
+            /// @return This returns a String that contains the name.
+            virtual String GetImplementationTypeName() const = 0;
+
+            /// @brief Gets a string of the interface type of this manager.
+            /// @return Returns a string containing the interface name of this manager.
+            String GetInterfaceTypeAsString() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // MainLoop and CallBack Management
@@ -194,20 +201,16 @@ namespace Mezzanine
             /// @return This returns a short int that represents the priority of the manager. Lower is executed first.
             virtual void SetPriority( short int Priority_ );
 
-            /// @brief This Allows any manager name to be sent to a stream. Primarily used for logging
-            /// @return This returns a String that contains the name.
-            String GetTypeName();
-
             /// @brief Gets the string form of the type of manager.
             /// @return Returns a string containing the name of the requested type of manager.
-            static String GetStringNameFromType(const ManagerTypeName& ManagerType);
+            static String GetTypeNameAsString(const ManagerType& ManagerType);
 
             /// @brief Gets the type of manager requested from a string.
             /// @remarks This function does not try to compare the full string for the sake of speed.  Instead it'll check the first couple letters for a potential match.
             /// This function is also not case sensative.  Providing the string "ac" will return an ActorManager value, for example.  Additionally if it does not find a
             /// match it will throw an exception.  So be careful about what you put into this.
             /// @return Returns a ManagerTypeName cooresponding to the string provided.
-            static ManagerTypeName GetTypeNameFromString(const String& ManagerName);
+            static ManagerType GetTypeNameFromString(const String& ManagerName);
 
         protected:
             /// @internal
@@ -230,8 +233,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Simple bool indicating whether or not this manager has been initialized.
             bool Initialized;
-    };// /ManagerBase
-
-} // /Mezz
+    };//ManagerBase
+}//Mezzanine
 
 #endif

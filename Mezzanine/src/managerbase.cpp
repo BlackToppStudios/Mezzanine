@@ -63,6 +63,9 @@ namespace Mezzanine
         this->Priority = 0;
     }*/
 
+    ManagerBase::~ManagerBase()
+        {}
+
     bool ManagerBase::IsInitialized()
         { return Initialized; }
 
@@ -72,8 +75,10 @@ namespace Mezzanine
     void ManagerBase::SetGameWorld( World* GameWorld_ )
         { this->GameWorld = GameWorld_; }
 
-    ManagerBase::~ManagerBase()
-        {}
+    String ManagerBase::GetInterfaceTypeAsString() const
+    {
+        return ManagerBase::GetTypeNameAsString(GetInterfaceType());
+    }
 
     void ManagerBase::SetPreMainLoopItems( ManagerBase::Callback PreMainCallback )
         { this->PreMainLoop=PreMainCallback; }
@@ -112,12 +117,7 @@ namespace Mezzanine
     void ManagerBase::ErasePostMainLoopItems()
         { this->SetPostMainLoopItems(0); }
 
-    String ManagerBase::GetTypeName()
-    {
-        return ManagerBase::GetStringNameFromType(this->GetType());
-    }// */
-
-    String ManagerBase::GetStringNameFromType(const ManagerBase::ManagerTypeName& ManagerType)
+    String ManagerBase::GetTypeNameAsString(const ManagerBase::ManagerType& ManagerType)
     {
         switch (ManagerType)
         {
@@ -175,7 +175,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase::ManagerTypeName ManagerBase::GetTypeNameFromString(const String& ManagerName)
+    ManagerBase::ManagerType ManagerBase::GetTypeNameFromString(const String& ManagerName)
     {
         String Lower = ManagerName;
         StringTool::ToLowerCase(Lower);
