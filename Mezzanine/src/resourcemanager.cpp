@@ -46,6 +46,7 @@
 #include "resourcemanager.h"
 #include "meshmanager.h"
 #include "actorbase.h"
+#include "stringtool.h"
 #include "internalogredatastreambuf.h.cpp"
 #include "internalbulletfilemanager.h.cpp"
 
@@ -77,13 +78,13 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath)
+    ResourceManager::ResourceManager(const String& EngineDataPath, const String& ArchiveType)
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
-        this->AddResourceLocation(EngineDataPath, "FileSystem", "EngineData", false);
+        this->AddResourceLocation(EngineDataPath, ArchiveType, "EngineData", false);
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
@@ -273,8 +274,70 @@ namespace Mezzanine
     {
     }
 
-    ManagerBase::ManagerTypeName ResourceManager::GetType() const
+    ManagerBase::ManagerType ResourceManager::GetInterfaceType() const
         { return ManagerBase::ResourceManager; }
-}
+
+    String ResourceManager::GetImplementationTypeName() const
+        { return "DefaultResourceManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultResourceManagerFactory Methods
+
+    DefaultResourceManagerFactory::DefaultResourceManagerFactory()
+    {
+    }
+
+    DefaultResourceManagerFactory::~DefaultResourceManagerFactory()
+    {
+    }
+
+    String DefaultResourceManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultResourceManager";
+    }
+
+    ManagerBase* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(ResourceManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return ResourceManager::GetSingletonPtr();
+        }else{
+            if(Params.empty()) return new ResourceManager();
+            else
+            {
+                String EngineDataPath, ArchiveType;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTool::ToLowerCase(Lower);
+                    if( "enginedatapath" == Lower )
+                    {
+                        EngineDataPath = (*ParIt).second;
+                    }
+                    else if( "archivetype" == Lower )
+                    {
+                        ArchiveType = (*ParIt).second;
+                    }
+                }
+                return new ResourceManager(EngineDataPath,ArchiveType);
+            }
+        }
+    }
+
+    ManagerBase* DefaultResourceManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(ResourceManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return ResourceManager::GetSingletonPtr();
+        }else return new ResourceManager(XMLNode);
+    }
+
+    void DefaultResourceManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

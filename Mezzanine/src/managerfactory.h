@@ -37,38 +37,47 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _scriptingmanager_cpp
-#define _scriptingmanager_cpp
+#ifndef _managerfactory_h
+#define _managerfactory_h
 
-#include "scriptingmanager.h"
-
-/// @file
-/// @brief The implementation of the Interface for Scripting Managers.
+#include "datatypes.h"
 
 namespace Mezzanine
 {
-    ScriptingManager::ScriptingManager()
+    class ManagerBase;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ManagerFactory
+    /// @headerfile managerfactory.h
+    /// @brief This is a base class for factories that construct the managers the engine uses.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB ManagerFactory
     {
-        this->Priority = 350;
-    }
+        public:
+            /// @brief Class constructor.
+            ManagerFactory() {};
+            /// @brief Class destructor.
+            virtual ~ManagerFactory() {};
 
-    ScriptingManager::~ScriptingManager()
-    {
-
-    }
-
-    void ScriptingManager::Initialize()
-    {
-        Initialized = true;
-    }
-
-    void ScriptingManager::DoMainLoopItems()
-    {
-
-    }
-
-    ManagerBase::ManagerType ScriptingManager::GetInterfaceType() const
-        { return ManagerBase::ScriptingManager; }
-}
+            ///////////////////////////////////////////////////////////////////////////////
+            // Virtual Methods
+            /// @brief Gets the name of the Manager that is created by this factory.
+            /// @return Returns the typename of the manager created by this factory.
+            virtual String GetManagerTypeName() const = 0;
+            /// @brief Creates a manager of the type represented by this factory.
+            /// @param Params A NameValuePairList containing the params to be applied during construction.
+            /// @return Returns a pointer to the manager created.
+            virtual ManagerBase* CreateManager(NameValuePairList& Params) = 0;
+#ifdef MEZZXML
+            /// @brief Creates a manager from XML.
+            /// @param XMLNode The node of the xml document to construct from.
+            /// @return Returns a pointer to the manager created.
+            virtual ManagerBase* CreateManager(xml::Node& XMLNode) = 0;
+#endif
+            /// @brief Destroys a Manager created by this factory.
+            /// @param ToBeDestroyed A pointer to the manager to be destroyed.
+            virtual void DestroyManager(ManagerBase* ToBeDestroyed) = 0;
+    };//ManagerFactory
+}//Mezzanine
 
 #endif

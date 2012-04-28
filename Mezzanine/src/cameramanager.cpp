@@ -210,7 +210,49 @@ namespace Mezzanine
     void CameraManager::DoMainLoopItems()
         {}
 
-    ManagerBase::ManagerTypeName CameraManager::GetType() const
+    ManagerBase::ManagerType CameraManager::GetInterfaceType() const
         { return ManagerBase::CameraManager; }
+
+    String CameraManager::GetImplementationTypeName() const
+        { return "DefaultCameraManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultCameraManagerFactory Methods
+
+    DefaultCameraManagerFactory::DefaultCameraManagerFactory()
+    {
+    }
+
+    DefaultCameraManagerFactory::~DefaultCameraManagerFactory()
+    {
+    }
+
+    String DefaultCameraManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultCameraManager";
+    }
+
+    ManagerBase* DefaultCameraManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(CameraManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return CameraManager::GetSingletonPtr();
+        }else return new CameraManager();
+    }
+
+    ManagerBase* DefaultCameraManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(CameraManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return CameraManager::GetSingletonPtr();
+        }else return new CameraManager(XMLNode);
+    }
+
+    void DefaultCameraManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
 }//Mezzanine
 #endif

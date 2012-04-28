@@ -252,21 +252,6 @@ namespace Mezzanine
         }
     }
 
-    void UIManager::Initialize()
-    {
-        Initialized = true;
-    }
-
-    void UIManager::DoMainLoopItems()
-    {
-        InputQueryTool::GatherEvents();
-        ViewportUpdateChecks();
-        ClearButtonActivations();
-        HoverChecks();
-        HotKeyAndInputCaptureChecks();
-        WidgetUpdates();
-    }
-
     void UIManager::LoadMTA(const String& Name, const String& Group)
     {
         UI::TextureAtlas* NewAtlas = new UI::TextureAtlas(Name + ".mta",Group);
@@ -553,8 +538,65 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase::ManagerTypeName UIManager::GetType() const
+    void UIManager::Initialize()
+    {
+        Initialized = true;
+    }
+
+    void UIManager::DoMainLoopItems()
+    {
+        InputQueryTool::GatherEvents();
+        ViewportUpdateChecks();
+        ClearButtonActivations();
+        HoverChecks();
+        HotKeyAndInputCaptureChecks();
+        WidgetUpdates();
+    }
+
+    ManagerBase::ManagerType UIManager::GetInterfaceType() const
         { return ManagerBase::UIManager; }
+
+    String UIManager::GetImplementationTypeName() const
+        { return "DefaultUIManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultUIManagerFactory Methods
+
+    DefaultUIManagerFactory::DefaultUIManagerFactory()
+    {
+    }
+
+    DefaultUIManagerFactory::~DefaultUIManagerFactory()
+    {
+    }
+
+    String DefaultUIManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultUIManager";
+    }
+
+    ManagerBase* DefaultUIManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(UIManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return UIManager::GetSingletonPtr();
+        }else return new UIManager();
+    }
+
+    ManagerBase* DefaultUIManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(UIManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return UIManager::GetSingletonPtr();
+        }else return new UIManager(XMLNode);
+    }
+
+    void DefaultUIManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
 }//Mezzanine
 
 #endif

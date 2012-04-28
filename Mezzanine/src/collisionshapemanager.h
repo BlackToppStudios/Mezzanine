@@ -43,6 +43,7 @@
 #include "collisionshape.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 
 class btTriangleMesh;
@@ -242,13 +243,38 @@ namespace Mezzanine
 
             /// @copydoc Mezzanine::ManagerBase::Initialize()
             virtual void Initialize();
-
             /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//CollisionShapeManager
 
-            /// @copydoc Mezzanine::ManagerBase::GetType()
-            virtual ManagerBase::ManagerTypeName GetType() const;
-    };//collisionshapemanager
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultCollisionShapeManagerFactory
+    /// @headerfile collisionshapemanager.h
+    /// @brief A factory responsible for the creation and destruction of the default collisionshapemanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultCollisionShapeManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultCollisionShapeManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultCollisionShapeManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultCollisionShapeManagerFactory
 }//Mezzanine
 
 #endif

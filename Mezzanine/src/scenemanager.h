@@ -42,6 +42,7 @@
 
 #include "colourvalue.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
@@ -86,14 +87,6 @@ namespace Mezzanine
             typedef std::vector< Light* > LightContainer;
             typedef std::vector< ParticleEffect* > ParticleContainer;
             typedef std::vector< Entity* > EntityContainer;
-            /// @brief Needs to be documented.
-            enum SceneManagerType
-            {
-                Generic             = 0,        ///< Documentation Required
-                Exterior            = 1,        ///< Documentation Required
-                ExteriorRealFar     = 2,        ///< Documentation Required
-                Interior            = 3         ///< Documentation Required
-            };
 
             /// @brief needs to be documented
             enum SceneShadowTechnique
@@ -138,8 +131,8 @@ namespace Mezzanine
 
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
-            /// @param ManagerType Type of Scene Manager to be created.
-            SceneManager(SceneManager::SceneManagerType ManagerType);
+            /// @param InternalManagerTypeName The name of the scenemanager type to be constructed.
+            SceneManager(const String& InternalManagerTypeName = "DefaultSceneManager");
 #ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
@@ -451,19 +444,23 @@ namespace Mezzanine
             void _UnRegisterTrackingNode(WorldNode* Tracker);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Basic Functionality
+            //Inherited from ManagerBase
+
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::DoMainLoopItems()
+            virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal/Other
 
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             ConstString& GetName() const;
-            /// @brief Inherited from ManagerBase.
-            void Initialize();
-            /// @brief Inherited from ManagerBase.
-            void DoMainLoopItems();
-            /// @brief Gets the type of manager that this manager is.
-            /// @return Returns an enum value representing the type of manager that this manager is.
-            ManagerBase::ManagerTypeName GetType() const;
-
             /// @internal
             /// @brief Gets the internal Ogre Scene Manager pointer.
             /// @return Returns a pointer to the ogre Scene Manager.
@@ -472,8 +469,32 @@ namespace Mezzanine
             /// @brief Gets the raw internal internal data.
             /// @return Returns a to the raw internal data.
             internal::SceneManagerData* GetRawInternalDataPointer() const;
+    };//SceneManager
 
-    };//scenemanager
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultSceneManagerFactory
+    /// @headerfile scenemanager.h
+    /// @brief A factory responsible for the creation and destruction of the default scenemanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultSceneManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultSceneManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultSceneManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultSceneManagerFactory
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////

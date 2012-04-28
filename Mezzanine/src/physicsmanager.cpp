@@ -1167,8 +1167,88 @@ namespace Mezzanine
         this->DoMainLoopItems(this->GameWorld->GetFrameTime());
     }
 
-    ManagerBase::ManagerTypeName PhysicsManager::GetType() const
+    ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const
         { return ManagerBase::PhysicsManager; }
-}// \Mezz
+
+    String PhysicsManager::GetImplementationTypeName() const
+        { return "DefaultPhysicsManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultPhysicsManagerFactory Methods
+
+    DefaultPhysicsManagerFactory::DefaultPhysicsManagerFactory()
+    {
+    }
+
+    DefaultPhysicsManagerFactory::~DefaultPhysicsManagerFactory()
+    {
+    }
+
+    String DefaultPhysicsManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultPhysicsManager";
+    }
+
+    ManagerBase* DefaultPhysicsManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(PhysicsManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return PhysicsManager::GetSingletonPtr();
+        }else{
+            if(Params.empty()) return new PhysicsManager();
+            else
+            {
+                PhysicsConstructionInfo PhysInfo;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTool::ToLowerCase(Lower);
+                    if( "geographyupperbounds" == Lower )
+                    {
+                        PhysInfo.GeographyUpperBounds = StringTool::ConvertToVector3( (*ParIt).second );
+                    }
+                    else if( "geographylowerbounds" == Lower )
+                    {
+                        PhysInfo.GeographyLowerBounds = StringTool::ConvertToVector3( (*ParIt).second );
+                    }
+                    else if( "maxproxies" == Lower )
+                    {
+                        PhysInfo.MaxProxies = StringTool::ConvertToUInt32( (*ParIt).second );
+                    }
+                    else if( "gravity" == Lower )
+                    {
+                        PhysInfo.Gravity = StringTool::ConvertToVector3( (*ParIt).second );
+                    }
+                    else if( "softrigidworld" == Lower )
+                    {
+                        if(StringTool::ConvertToBool( (*ParIt).second ))
+                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+                    }
+                    else if( "limitlessworld" == Lower )
+                    {
+                        if(StringTool::ConvertToBool( (*ParIt).second ))
+                            PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
+                    }
+                }
+                return new PhysicsManager(PhysInfo);
+            }
+        }
+    }
+
+    ManagerBase* DefaultPhysicsManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(PhysicsManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return PhysicsManager::GetSingletonPtr();
+        }else return new PhysicsManager(XMLNode);
+    }
+
+    void DefaultPhysicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

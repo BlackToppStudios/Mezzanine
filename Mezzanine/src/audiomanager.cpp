@@ -386,8 +386,66 @@ namespace Mezzanine
     void AudioManager::DoMainLoopItems()
         { MusicPlayer->Update(); }
 
-    ManagerBase::ManagerTypeName AudioManager::GetType() const
+    ManagerBase::ManagerType AudioManager::GetInterfaceType() const
         { return ManagerBase::AudioManager; }
+
+    String AudioManager::GetImplementationTypeName() const
+        { return "DefaultAudioManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultAudioManagerFactory Methods
+
+    DefaultAudioManagerFactory::DefaultAudioManagerFactory()
+    {
+    }
+
+    DefaultAudioManagerFactory::~DefaultAudioManagerFactory()
+    {
+    }
+
+    String DefaultAudioManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultAudioManager";
+    }
+
+    ManagerBase* DefaultAudioManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(AudioManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return AudioManager::GetSingletonPtr();
+        }else{
+            if(Params.empty()) return new AudioManager();
+            else
+            {
+                bool DefaultSettings = true;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTool::ToLowerCase(Lower);
+                    if( "defaultsettings" == Lower )
+                    {
+                        DefaultSettings = StringTool::ConvertToBool( (*ParIt).second );
+                    }
+                }
+                return new AudioManager(DefaultSettings);
+            }
+        }
+    }
+
+    ManagerBase* DefaultAudioManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(AudioManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return AudioManager::GetSingletonPtr();
+        }else return new AudioManager(XMLNode);
+    }
+
+    void DefaultAudioManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
 }//Mezzanine
 
 #endif

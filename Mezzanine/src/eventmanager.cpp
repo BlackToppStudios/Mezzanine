@@ -689,10 +689,51 @@ namespace Mezzanine
         InputQueryTool::GatherEvents();
     }
 
-    ManagerBase::ManagerTypeName EventManager::GetType() const
+    ManagerBase::ManagerType EventManager::GetInterfaceType() const
         { return ManagerBase::EventManager; }
 
-} // /Mezz
+    String EventManager::GetImplementationTypeName() const
+        { return "DefaultEventManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultEventManagerFactory Methods
+
+    DefaultEventManagerFactory::DefaultEventManagerFactory()
+    {
+    }
+
+    DefaultEventManagerFactory::~DefaultEventManagerFactory()
+    {
+    }
+
+    String DefaultEventManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultEventManager";
+    }
+
+    ManagerBase* DefaultEventManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(EventManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return EventManager::GetSingletonPtr();
+        }else return new EventManager();
+    }
+
+    ManagerBase* DefaultEventManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(EventManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return EventManager::GetSingletonPtr();
+        }else return new EventManager(XMLNode);
+    }
+
+    void DefaultEventManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 
 ///////////////////////////////////////////////////////////////////////////////

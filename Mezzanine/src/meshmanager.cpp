@@ -649,8 +649,50 @@ namespace Mezzanine
     void MeshManager::DoMainLoopItems()
         {}
 
-    ManagerBase::ManagerTypeName MeshManager::GetType() const
+    ManagerBase::ManagerType MeshManager::GetInterfaceType() const
         { return ManagerBase::MeshManager; }
-}
+
+    String MeshManager::GetImplementationTypeName() const
+        { return "DefaultMeshManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultMeshManagerFactory Methods
+
+    DefaultMeshManagerFactory::DefaultMeshManagerFactory()
+    {
+    }
+
+    DefaultMeshManagerFactory::~DefaultMeshManagerFactory()
+    {
+    }
+
+    String DefaultMeshManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultMeshManager";
+    }
+
+    ManagerBase* DefaultMeshManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(MeshManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return MeshManager::GetSingletonPtr();
+        }else return new MeshManager();
+    }
+
+    ManagerBase* DefaultMeshManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(MeshManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return MeshManager::GetSingletonPtr();
+        }else return new MeshManager(XMLNode);
+    }
+
+    void DefaultMeshManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

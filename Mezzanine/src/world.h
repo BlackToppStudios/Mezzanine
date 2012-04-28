@@ -243,7 +243,7 @@
 #include "exception.h"
 #include "datatypes.h"
 #include "vector3.h"
-#include "scenemanager.h"
+#include "managerbase.h"
 
 namespace Mezzanine
 {
@@ -263,6 +263,8 @@ namespace Mezzanine
     class CollisionShapeManager;
     class PhysicsConstructionInfo;
     class NetworkManager;
+    class SceneManager;
+    class ManagerFactory;
 }
 
 
@@ -303,6 +305,10 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB World
     {
+        public:
+            typedef std::map<String,ManagerFactory*> ManagerFactoryMap;
+            typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
+            typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
         private:
             //friend class PhysicsManager;
 
@@ -316,13 +322,13 @@ namespace Mezzanine
             /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const PhysicsConstructionInfo& PhysicsInfo,
-                            SceneManager::SceneManagerType SceneType,
-                            String PluginsFileName,
-                            String EngineDataPath,
-                            String LogFileName,
+                            const String& SceneType,
+                            const String& PluginsFileName,
+                            const String& EngineDataPath,
+                            const String& LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
 #ifdef MEZZXML
-            void ConstructFromXML(const String& EngineDataPath, const String& InitializerFile);
+            void ConstructFromXML(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile);
 #endif
             void SanityChecks();
             void OneTimeMainLoopInit();
@@ -334,6 +340,9 @@ namespace Mezzanine
             //Used to break the mainloop
             bool ManualLoopBreak;
 
+            /// @internal
+            /// @brief This is a map containing all the registered manager factories.
+            ManagerFactoryMap ManagerFactories;
             /// @internal
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
             std::list< ManagerBase* > ManagerList;
@@ -363,10 +372,22 @@ namespace Mezzanine
 #ifdef MEZZXML
             /// @brief Initializer file constructor.
             /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
-            /// If the file provided is not one of this type this function will throw an exception.
+            /// If the file provided is not one of this type this function will throw an exception. @n @n
+            /// When initializing factories in the XML file this constructor does not initialize any additional manager factories, so if they are called this will throw an exception.
             /// @param EngineDataPath The directory where engine specific data resides.  This is where it will search for the specified initializer file.
+            /// @param ArchiveType The type of archive at the path provided.
             /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            World(const String& EngineDataPath, const String& InitializerFile = "Mezzanine.mxi");
+            World(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile = "Mezzanine.mxi");
+
+            /// @brief Factory and initializer file constructor.
+            /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
+            /// If the file provided is not one of this type this function will throw an exception. @n @n
+            /// Also default factories are already added and thus do not need to be included in the Factory vector.
+            /// @param CustomFactories A vector containing the additional factories to be registered before initializing the engine.
+            /// @param EngineDataPath The directory where engine specific data resides.  This is where it will search for the specified initializer file.
+            /// @param ArchiveType The type of archive at the path provided.
+            /// @param InitializerFile The file that describes how to initialize Mezzanine.
+            World(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile = "Mezzanine.mxi");
 #endif
 
             /// @brief Descriptive constructor With Manager Pointers
@@ -378,10 +399,10 @@ namespace Mezzanine
             /// @param LogFileName This is the place that log messages get sent to.
             /// @warning Do not make a new world if one already exists. This can only cause problems
             World(  const PhysicsConstructionInfo& PhysicsInfo,
-                    SceneManager::SceneManagerType SceneType,
+                    const String& SceneType,
                     const String& PluginsFileName,
                     const String& EngineDataPath,
-                    std::string LogFileName="Mezzanine.log" );
+                    const String& LogFileName = "Mezzanine.log" );
 
             /// @brief Descriptive constructor
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
@@ -395,7 +416,7 @@ namespace Mezzanine
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
             /// @warning Do not make a new world if one already exists. This can only cause problems.
             World(  const PhysicsConstructionInfo& PhysicsInfo,
-                    SceneManager::SceneManagerType SceneType,
+                    const String& SceneType,
                     const String& PluginsFileName,
                     const String& EngineDataPath,
                     const String& LogFileName,
@@ -508,14 +529,14 @@ namespace Mezzanine
             /// set it too high, and system resources could becom completely taxed and power will be wasted.
             /// @param NewTargetTime The new length of time, in milliseconds.
             /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameTime(const Whole &NewTargetTime);
+            void SetTargetFrameTime(const Whole& NewTargetTime);
 
             /// @brief This sets a new Target Frame Rate
             /// @details This sets a new time for each frame. This divides 1000 by the NewFrameRate, drops and floating point amount and uses that amount in an call to
             /// World::SetTargetFrameTime. For example a target frame rate of 40 with cause each frame to take 25 milliseconds, and a Framerate of 70 would take 14 ms
             /// @param NewFrameRate The new desired frame rate.
             /// @warning Setting vary low or very High values could cause unknown errors, This is on our todo list of issues to fix.
-            void SetTargetFrameRate(const Whole &NewFrameRate);
+            void SetTargetFrameRate(const Whole& NewFrameRate);
 
             /// @brief Gets the amount of time since the last time Rendering began.
             /// @details This returns, in milliseconds the amount of time since the frame started (since the last rendering began)
@@ -524,21 +545,21 @@ namespace Mezzanine
 
             /// @internal
             /// @brief Sets the amount of time since the last time Rendering began.
-            /// @param FrameTime_ This is the amount of time in  milliseconds.
+            /// @param FrameTime_ This is the amount of time in milliseconds.
             /// @details This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of
             /// stuff, for the most part this should be by the rendering manager during the rendering process.
-            void SetFrameTime( const Whole &FrameTime_ );
+            void SetFrameTime(const Whole& FrameTime_);
 
         ///////////////////////////////////////////////////////////////////////////////
-        // Main Loop and Initialization
+        // Initialization
         ///////////////////////////////////////
-            /// @brief This creates the game window and starts the game.
-            /// @param CallMainLoop should the main loop be called
-            /// @details Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be
-            /// minimal delay from the time you call this and the game actually begins.
-            /// This will automatically call the Main Loop unless passed false.
-            void GameInit(const bool &CallMainLoop=true );
+            /// @brief This initializes all the managers currently in the world.
+            /// @param CallMainLoop Should the main loop be called.
+            void EngineInit(const bool& CallMainLoop = false);
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Main Loop
+        ///////////////////////////////////////
             /// @brief This Function house the main loop
             /// @details By default this is called from the function World.GameInit() this is were the bulk of the simulation is ran from, see @ref mainloop1
             void MainLoop();
@@ -552,8 +573,60 @@ namespace Mezzanine
             void BreakMainLoop();
 
         ///////////////////////////////////////////////////////////////////////////////
+        // Factory Management
+        ///////////////////////////////////////
+            /// @brief Adds/registers a manager factory with this world, allowing it to be constructed through this API.
+            /// @param ToBeAdded The manager factory to be added.
+            void AddManagerFactory(ManagerFactory* ToBeAdded);
+
+            /// @brief Removes a manager factory from this world.
+            /// @param ToBeRemoved A pointer to the manager factory that is to be removed.
+            void RemoveManagerFactory(ManagerFactory* ToBeRemoved);
+
+            /// @brief Removes a manager factory from this world.
+            /// @param ImplName The name of the manager implementation created by the factory to be removed.
+            void RemoveManagerFactory(const String& ImplName);
+
+            /// @brief Removes and destroys a manager factory in this world.
+            /// @param ToBeRemoved A pointer to the manager factory that is to be removed and destroyed.
+            void DestroyManagerFactory(ManagerFactory* ToBeRemoved);
+
+            /// @brief Removes and destroys a manager factory in this world.
+            /// @param ImplName The name of the manager implementation created by the factory to be removed and destroyed.
+            void DestroyManagerFactory(const String& ImplName);
+
+            /// @brief Destroys all manager factories in this world.
+            /// @warning The destruction of manager factories should only be done after the corresponding managers have been destroyed, otherwise this will cause an exception.
+            void DestroyAllManagerFactories();
+
+            /// @brief Adds all the default manager factories provided by the engine to the world.
+            void AddAllEngineDefaultManagerFactories();
+
+        ///////////////////////////////////////////////////////////////////////////////
         // Upper Management
         ///////////////////////////////////////
+            /// @brief Creates a new manager.
+            /// @param ManagerImplName The name of the manager implementation to create.
+            /// @param Params A list of name-value pairs for the params that are to be used when creating the manager.
+            /// @param AddToWorld Whether or not to add the created manager to the world after creation.
+            /// @return Returns a pointer to the created manager.
+            ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToWorld = true);
+#ifdef MEZZXML
+            /// @brief Creates a new manager.
+            /// @param ManagerImplName The name of the manager implementation to create.
+            /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
+            /// @param AddToWorld Whether or not to add the created manager to the world after creation.
+            /// @return Returns a pointer to the created manager.
+            ManagerBase* CreateManager(const String& ManagerImplName, xml::Node& XMLNode, bool AddToWorld = true);
+#endif
+            /// @brief Destroys a manager.
+            /// @param ToBeDestroyed The manager to be destroyed.
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+
+            /// @brief Destroys all managers currently in the world.
+            /// @warning Do not call this in anything that is run during the main loop.  If you do you will have a bad time.
+            void DestroyAllManagers();
+
             /// @brief This adds a manager, in the correct order, to the list that the world calls on
             /// @details Internally the world had a list of managers that is sorted by the ManagerBase::Priority. Everytime a manager is added,
             /// the list is searched for the sorted point to insert the manager at.
@@ -571,7 +644,7 @@ namespace Mezzanine
             /// this could replaced with more sophisticated algorithm, but for now assume this operates in linear time.
             /// @param ManagersToRemoveType The ManagerBase::ManagerTypeName of the manager to remove.
             /// @param WhichOne If not removing the first/only manager of the given type, which one by count are you erasing.
-            void RemoveManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne);
+            void RemoveManager(const ManagerBase::ManagerType& ManagersToRemoveType, short unsigned int WhichOne);
 
             /// @brief This is will find the manager of a given type
             /// @details Specifically this will iterate from lowest priority to highest priority, and return a pointer to the first Manager
@@ -579,7 +652,7 @@ namespace Mezzanine
             /// @param ManagersToRemoveType
             /// @param WhichOne If not getting the first/only manager of the given type, get one.
             /// @return This returns a pointer to a ManagerBase, or a NULL pointer if no matching manager exists
-            ManagerBase* GetManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne=0);
+            ManagerBase* GetManager(const ManagerBase::ManagerType& ManagersToRemoveType, short unsigned int WhichOne=0);
 
             /// @brief Changes a Manager's time of execution.
             /// @details Searches through the Manager list and removes any previous entries to the changing manager, and add a new entry in the correct location.
@@ -625,12 +698,12 @@ namespace Mezzanine
             /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.
             /// @return This returns a pointer to a MeshManager, or a NULL pointer if no matching manager exists.
             MeshManager* GetMeshManager(const short unsigned int &WhichOne=0);
-            #ifdef MEZZNETWORK
+#ifdef MEZZNETWORK
             /// @brief This gets the NetworkManager from the manager list.
             /// @param WhichOne If you have multiple NetworkManagers this will choose which one to return.
             /// @return This returns a pointer to a NetworkManager, or a NULL pointer if no matching manager exists.
             NetworkManager* GetNetworkManager(const short unsigned int &WhichOne=0);
-            #endif
+#endif
             /// @brief This gets the PhysicsManager from the manager list.
             /// @param WhichOne If you have multiple PhysicsManagers this will choose which one to return.
             /// @return This returns a pointer to a PhysicsManager, or a NULL pointer if no matching manager exists.
