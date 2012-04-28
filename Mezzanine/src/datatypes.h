@@ -160,6 +160,20 @@ namespace Mezzanine
     // Complex Data types
     ///////////////////////////////////////
 
+    /// @typedef NameValuePairList
+    /// @brief This is a datatype mostly used for describing settings or parameters that can't be declared in advance.
+    /// @details This datatype uses the std::list container for it's storage.
+    typedef std::list< std::pair< String, String > > NameValuePairList;
+
+    /// @typedef NameValuePairMap
+    /// @brief This is a datatype mostly used for describing settings or parameters that can't be declared in advance.
+    /// @details This datatype uses the std::map container for it's storage.
+    typedef std::map< String, String > NameValuePairMap;
+
+    /// @typedef StringVector
+    /// @brief This is a simple datatype for a vector container of strings.
+    typedef std::vector< String > StringVector;
+
     /// @internal
     /// @typedef RawEvent
     /// @brief This is an internal datatype use to communicate with the User input Subsystem
