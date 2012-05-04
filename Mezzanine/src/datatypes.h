@@ -174,6 +174,10 @@ namespace Mezzanine
     /// @brief This is a simple datatype for a vector container of strings.
     typedef std::vector< String > StringVector;
 
+    /// @typedef StringSet
+    /// @brief This is a simple datatype for a set container of strings.
+    typedef std::set< String > StringSet;
+
     /// @internal
     /// @typedef RawEvent
     /// @brief This is an internal datatype use to communicate with the User input Subsystem
