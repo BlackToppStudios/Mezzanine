@@ -263,7 +263,7 @@ namespace Mezzanine
                 /// @param Path The path to the file being loaded.
                 /// @param Flags Additional conditions to apply when opening the file.  See DataStream::StreamFlags enum for more information.
                 /// @param Mode The access mode for the stream.
-                FileHandleDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags, const DataStream::AccessMode& Mode = DataStream::DS_Read);
+                FileHandleDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags = DataStream::SF_None, const DataStream::AccessMode& Mode = DataStream::DS_Read);
                 /// @brief Class destructor.
                 virtual ~FileHandleDataStream();
 
@@ -311,7 +311,7 @@ namespace Mezzanine
                 /// @param Path The path to the file being loaded.
                 /// @param Flags Additional conditions to apply when opening the file.  See DataStream::StreamFlags enum for more information.
                 /// @param Mode The access mode for the stream.
-                FileStreamDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags, const DataStream::AccessMode& Mode = DataStream::DS_Read);
+                FileStreamDataStream(const String& Name, const String& Path, const DataStream::StreamFlags& Flags = DataStream::SF_None, const DataStream::AccessMode& Mode = DataStream::DS_Read);
                 /// @brief Class destructor.
                 virtual ~FileStreamDataStream();
 
