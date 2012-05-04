@@ -80,7 +80,7 @@ namespace Mezzanine
             std::vector<ResourceInputStream*> DeleteList;
 
             std::vector<String> ResourceGroups;
-            void AddResourceGroupName(String Name);
+            void AddAssetGroupName(String Name);
 
             /// @brief The location of engine data
             String EngineDataDir;
@@ -112,7 +112,7 @@ namespace Mezzanine
             /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
             /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
             /// @param Dir The directory to check.
-            std::set<String>* GetDirContents(const String& Dir = ".");
+            StringSet* GetDirContents(const String& Dir = ".");
             /// @brief Get the working directory as a Mezzanine::String
             /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
             String GetWorkingDirectory() const;
@@ -124,39 +124,49 @@ namespace Mezzanine
             // Stream Management
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Resource Management
+            // AssetGroup Management
 
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and
-            /// manipulate graphical objects. Once a resource is added it must be initalized using
+            /// manipulate graphical objects. Once an asset is added it must be initalized using
             /// ResourceManager::InitResourceGroup(String Group).
-            /// @param Location The location on the file system the resource can be found.
+            /// @param Location The location on the file system the asset can be found.
             /// @param Type The kind of file system the location can be found in. @n
             /// Options are: filesystem, zip.
             /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
             /// @param recursive Whether or not to search sub-directories.
-            void AddResourceLocation(const String& Location, const String& Type, const String& Group, const bool recursive=false);
-            /// @brief Creates a resource group.
-            /// @param GroupName The name to be given to the created resource group.
-            void CreateResourceGroup(const String& GroupName);
-            /// @brief Destroys a resource group, unloading all of it's resources.
-            /// @param GroupName The name of the resource group to destroy.
-            void DestroyResourceGroup(const String& GroupName);
-            /// @brief Prepares the resource for use.
+            void AddAssetLocation(const String& Location, const String& Type, const String& Group, const bool recursive=false);
+            /// @brief Creates an asset group.
+            /// @param GroupName The name to be given to the created asset group.
+            void CreateAssetGroup(const String& GroupName);
+            /// @brief Destroys an asset group, unloading all of it's resources.
+            /// @param GroupName The name of the asset group to destroy.
+            void DestroyAssetGroup(const String& GroupName);
+            /// @brief Prepares the asset for use.
             /// @details This function can be thought of as a preloader.  This will prepare the defined
-            /// resource located on the disk for use.
-            /// @param Name Name of the file/resource to be 'prepared'.
-            /// @param Type The type of resource that the file is. @n
+            /// asset located on the disk for use.
+            /// @param Name Name of the file/asset to be 'prepared'.
+            /// @param Type The type of asset that the file is. @n
             /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
-            /// @param Group Name of the group the resource belongs to.
-            void DeclareResource(const String& Name, const String& Type, const String& Group);
-            /// @brief Makes a resource group ready to use.
-            /// @details After adding all of your resources and declaring them as nessessary, this function
-            /// is the final step.  After calling this function any and all resources within the defined group
+            /// @param Group Name of the group the asset belongs to.
+            void DeclareAsset(const String& Name, const String& Type, const String& Group);
+            /// @brief Makes a asset group ready to use.
+            /// @details After adding all of your assets and declaring them as nessessary, this function
+            /// is the final step.  After calling this function any and all assets within the defined group
             /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
             /// take up memory and drop performance.
-            /// @param Name Name of the resource group.
-            void InitResourceGroup(const String& Name);
+            /// @param Name Name of the asset group.
+            void InitAssetGroup(const String& Name);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Query
+
+            /// @brief Gets the actual path to an asset.
+            /// @note This function currently only returns the first match, and doesn't check for multiple matches.
+            /// @param FileName The name of the file to search for.
+            /// @param Group The asset group to search in for the file.
+            /// @return Returns a string containing the path to the file.
+            String GetAssetPath(const String& FileName, const String& Group);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility

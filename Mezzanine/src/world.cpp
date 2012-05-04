@@ -224,12 +224,14 @@ namespace Mezzanine
         String PluginExtension, PluginPath;
 
         // Create or set the resource manager.
+        /// @todo This currently forces our default resource manager to be constructed, which isn't in line with our factory/initiailzation design.
+        /// This should be addressed somehow.
         if(ResourceManager::SingletonValid()) AddManager(ResourceManager::GetSingletonPtr());
         else AddManager(new ResourceManager(EngineDataPath,ArchiveType));
 
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();
-        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath,Resource::DataStream::SF_None);
+        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath);
         xml::Document InitDoc;
         InitDoc.Load(InitStream);
 
@@ -316,7 +318,7 @@ namespace Mezzanine
         if(!PluginsInit.empty())
         {
             PluginExtension = ResourceMan->GetPluginExtension();
-            Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath,Resource::DataStream::SF_None);
+            Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath);
             xml::Document PluginDoc;
             PluginDoc.Load(PluginStream);
             // Get the plugin path, if it's there.
@@ -508,7 +510,7 @@ namespace Mezzanine
         // Load additional resource groups
         if(!ResourceInit.empty())
         {
-            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath,Resource::DataStream::SF_None);
+            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
             xml::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
@@ -534,7 +536,7 @@ namespace Mezzanine
                 if(!CurrAttrib.Empty())
                     GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
                 // Finally create the resource location.
-                ResourceMan->AddResourceLocation(GroupPath,GroupType,GroupName,GroupRecursive);
+                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
             }
             // Get what resource groups should be initialized.
             xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
@@ -544,7 +546,7 @@ namespace Mezzanine
                 CurrAttrib = (*InitIt).GetAttribute("GroupName");
                 if(!CurrAttrib.Empty())
                     GroupName = CurrAttrib.AsString();
-                ResourceMan->InitResourceGroup(GroupName);
+                ResourceMan->InitAssetGroup(GroupName);
             }
         }
 

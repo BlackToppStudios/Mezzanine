@@ -84,7 +84,7 @@ namespace Mezzanine
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
-        this->AddResourceLocation(EngineDataPath, ArchiveType, "EngineData", false);
+        this->AddAssetLocation(EngineDataPath, ArchiveType, "EngineData", false);
         //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
@@ -138,9 +138,9 @@ namespace Mezzanine
         #endif
     }
 
-    std::set<String>* ResourceManager::GetDirContents(const String& Dir)
+    StringSet* ResourceManager::GetDirContents(const String& Dir)
     {
-        std::set<String>* Results = new std::set<String>;
+        StringSet* Results = new StringSet;
         DIR *Directory;
         struct dirent *DirEntry;
         if(Directory = opendir(Dir.c_str()))
@@ -178,9 +178,9 @@ namespace Mezzanine
     // Stream Management
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Resource Management
+    // AssetGroup Management
 
-    void ResourceManager::AddResourceGroupName(String Name)
+    void ResourceManager::AddAssetGroupName(String Name)
     {
         for( Whole X = 0 ; X < ResourceGroups.size() ; X++ )
         {
@@ -190,19 +190,19 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddResourceLocation(const String& Location, const String& Type, const String& Group, bool recursive)
+    void ResourceManager::AddAssetLocation(const String& Location, const String& Type, const String& Group, bool recursive)
     {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);
-        AddResourceGroupName(Group);
+        AddAssetGroupName(Group);
     }
 
-    void ResourceManager::CreateResourceGroup(const String& GroupName)
+    void ResourceManager::CreateAssetGroup(const String& GroupName)
     {
         this->OgreResource->createResourceGroup(GroupName);
-        AddResourceGroupName(GroupName);
+        AddAssetGroupName(GroupName);
     }
 
-    void ResourceManager::DestroyResourceGroup(const String& GroupName)
+    void ResourceManager::DestroyAssetGroup(const String& GroupName)
     {
         for( std::vector<String>::iterator it = ResourceGroups.begin() ; it != ResourceGroups.end() ; it++ )
         {
@@ -224,14 +224,30 @@ namespace Mezzanine
         this->OgreResource->destroyResourceGroup(GroupName);
     }
 
-    void ResourceManager::DeclareResource(const String& Name, const String& Type, const String& Group)
+    void ResourceManager::DeclareAsset(const String& Name, const String& Type, const String& Group)
     {
         this->OgreResource->declareResource(Name, Type, Group);
     }
 
-    void ResourceManager::InitResourceGroup(const String& Group)
+    void ResourceManager::InitAssetGroup(const String& Group)
     {
         this->OgreResource->initialiseResourceGroup(Group);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Resource/Asset Query
+
+    String ResourceManager::GetAssetPath(const String& FileName, const String& Group)
+    {
+        Ogre::FileInfoListPtr FileList = this->OgreResource->listResourceFileInfo(Group);
+        for( Whole X = 0 ; X < FileList->size() ; ++X )
+        {
+            if( FileName == FileList->at(X).filename )
+            {
+                return FileList->at(X).path;
+            }
+        }
+        return "";
     }
 
     ///////////////////////////////////////////////////////////////////////////////

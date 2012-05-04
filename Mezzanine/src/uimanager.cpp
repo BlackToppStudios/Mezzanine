@@ -72,7 +72,7 @@ namespace Mezzanine
           LastWidgetSelected(NULL),
           ButtonAutoRegister(false)
     {
-        ResourceManager::GetSingletonPtr()->CreateResourceGroup("UI");
+        ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
         Priority = 10;
     }
 
@@ -86,7 +86,7 @@ namespace Mezzanine
           LastWidgetSelected(NULL),
           ButtonAutoRegister(false)
     {
-        ResourceManager::GetSingletonPtr()->CreateResourceGroup("UI");
+        ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
         Priority = 10;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
