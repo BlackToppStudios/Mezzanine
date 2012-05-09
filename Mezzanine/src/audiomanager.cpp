@@ -53,6 +53,18 @@ namespace Mezzanine
 {
     template<> AudioManager* Singleton<AudioManager>::SingletonPtr = 0;
 
+    class AudioManagerInternalData
+    {
+        public:
+            AudioManagerInternalData(AudioManager* Man) : AudioMan(Man), OutputFrequency(-1), EAXEffectSlots(4) {  }
+            ~AudioManagerInternalData() {  }
+
+            AudioManager* AudioMan;
+            String InitializedDevice;
+            Integer OutputFrequency;
+            Integer EAXEffectSlots;
+    };
+
     AudioManager::AudioManager(bool DefaultSettings)
         : AmbientVolume(1.0),
           DialogVolume(1.0),
@@ -61,8 +73,9 @@ namespace Mezzanine
           MasterVolume(1.0),
           MuteStandby(0.0)
     {
-        cAudioManager = cAudio::createAudioManager(DefaultSettings);
-        Listener = new Audio::Listener(cAudioManager->getListener());
+        AMID = new AudioManagerInternalData(this);
+        cAudioMan = cAudio::createAudioManager(DefaultSettings);
+        Listener = new Audio::Listener(cAudioMan->getListener());
         MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 50;
     }
@@ -76,6 +89,7 @@ namespace Mezzanine
           MasterVolume(1.0),
           MuteStandby(0.0)
     {
+        AMID = new AudioManagerInternalData(this);
         MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 50;
 
@@ -108,10 +122,14 @@ namespace Mezzanine
             {
                 EAXSlots = CurrAttrib.AsInt();
             }
-            cAudioManager = cAudio::createAudioManager(false);
-            cAudioManager->initialize(DeviceName.c_str(),OutFreq,EAXSlots);
+            cAudioMan = cAudio::createAudioManager(false);
+            cAudioMan->initialize(DeviceName.c_str(),OutFreq,EAXSlots);
+            AMID->InitializedDevice = DeviceName;
+            AMID->OutputFrequency = OutFreq;
+            AMID->EAXEffectSlots = EAXSlots;
         }else{
-            cAudioManager = cAudio::createAudioManager(true);
+            cAudioMan = cAudio::createAudioManager(true);
+            AMID->InitializedDevice = GetDefaultDeviceName();
         }
         // Get the Volume settings, if any.
         xml::Node VolumeNode = XMLNode.GetChild("Volume");
@@ -133,6 +151,10 @@ namespace Mezzanine
             CurrAttrib = VolumeNode.GetAttribute("Music");
             if(!CurrAttrib.Empty())
                 SetMusicVolume(CurrAttrib.AsReal());
+            // Master volume
+            CurrAttrib = VolumeNode.GetAttribute("Master");
+            if(!CurrAttrib.Empty())
+                SetMasterVolume(CurrAttrib.AsReal());
         }
         // Get the Mute settings, if any.
         xml::Node MuteNode = XMLNode.GetChild("Mute");
@@ -143,14 +165,120 @@ namespace Mezzanine
                 Mute(StringTool::ConvertToBool(CurrAttrib.AsString()));
         }
 
-        Listener = new Audio::Listener(cAudioManager->getListener());
+        Listener = new Audio::Listener(cAudioMan->getListener());
     }
 #endif
-
     AudioManager::~AudioManager()
     {
         DestroyAllSounds();
-        cAudio::destroyAudioManager(cAudioManager);
+        cAudio::destroyAudioManager(cAudioMan);
+        delete AMID;
+    }
+#ifdef MEZZXML
+    String AudioManager::GetObjectRootNodeName() const
+    {
+        return "DefaultAudioManagerSettings";
+    }
+
+    xml::Node AudioManager::CreateCurrentSettings()
+    {
+        // Create the Group node to be returned
+        xml::Node CurrentSettings;
+        // Create and initialize the device settings
+        xml::Node DeviceSettingsNode = CurrentSettings.AppendChild("DeviceSettings");
+        DeviceSettingsNode.AppendAttribute("DeviceName").SetValue( AMID->InitializedDevice );
+        DeviceSettingsNode.AppendAttribute("OutputFrequency").SetValue( StringTool::ConvertToString(AMID->OutputFrequency) );
+        DeviceSettingsNode.AppendAttribute("EAXEffectSlots").SetValue( StringTool::ConvertToString(AMID->EAXEffectSlots) );
+        // Create and initialize the volume settings
+        xml::Node VolumeSettingsNode = CurrentSettings.AppendChild("Volume");
+        VolumeSettingsNode.AppendAttribute("Ambient").SetValue( StringTool::ConvertToString(this->GetAmbientVolume()) );
+        VolumeSettingsNode.AppendAttribute("Dialog").SetValue( StringTool::ConvertToString(this->GetDialogVolume()) );
+        VolumeSettingsNode.AppendAttribute("Effects").SetValue( StringTool::ConvertToString(this->GetEffectVolume()) );
+        VolumeSettingsNode.AppendAttribute("Music").SetValue( StringTool::ConvertToString(this->GetMusicVolume()) );
+        VolumeSettingsNode.AppendAttribute("Master").SetValue( StringTool::ConvertToString(this->GetMasterVolume()) );
+        // Create and initialize the mute setting
+        xml::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
+        MuteSettingNode.AppendAttribute("Muted").SetValue( StringTool::ConvertToString(this->IsMuted()) );
+        // Return the result
+        return CurrentSettings;
+    }
+#endif
+    void AudioManager::ApplySettingGroupImpl(ObjectSettingSetContainer* Group)
+    {
+        for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )
+        {
+            String CurrSettingValue;
+            if( "DeviceSettings" == (*SubSetIt)->GetName() )
+            {
+                // Setup the data to populate
+                String DeviceName = GetDefaultDeviceName();
+                Integer OutputFreq = -1;
+                Integer EAXSlots = 4;
+                // Get the values
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("DeviceName");
+                if(!CurrSettingValue.empty())
+                    DeviceName = CurrSettingValue;
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("OutputFrequency");
+                if(!CurrSettingValue.empty())
+                    OutputFreq = StringTool::ConvertToInteger(CurrSettingValue);
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("EAXEffectSlots");
+                if(!CurrSettingValue.empty())
+                    EAXSlots = StringTool::ConvertToInteger(CurrSettingValue);
+                // Check if everything is initialized and set the settings appropriately
+                if(!Initialized)
+                {
+                    InitializeDevice(DeviceName,OutputFreq,EAXSlots);
+                }else{
+                    World::GetWorldPointer()->Log("WARNING: Attempting to apply new device settings after AudioManager has been initialized.  "
+                                                  "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
+                    AMID->InitializedDevice = DeviceName;
+                    AMID->OutputFrequency = OutputFreq;
+                    AMID->EAXEffectSlots = EAXSlots;
+                }
+            }
+            else if( "Volume" == (*SubSetIt)->GetName() )
+            {
+                // Setup the data to populate
+                Real AmbientVol = -1.0;
+                Real DialogVol = -1.0;
+                Real EffectVol = -1.0;
+                Real MusicVol = -1.0;
+                Real MasterVol = -1.0;
+                // Get the values
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Ambient");
+                if(!CurrSettingValue.empty())
+                    AmbientVol = StringTool::ConvertToReal(CurrSettingValue);
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Dialog");
+                if(!CurrSettingValue.empty())
+                    DialogVol = StringTool::ConvertToReal(CurrSettingValue);
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Effects");
+                if(!CurrSettingValue.empty())
+                    EffectVol = StringTool::ConvertToReal(CurrSettingValue);
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Music");
+                if(!CurrSettingValue.empty())
+                    MusicVol = StringTool::ConvertToReal(CurrSettingValue);
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Master");
+                if(!CurrSettingValue.empty())
+                    MasterVol = StringTool::ConvertToReal(CurrSettingValue);
+                // Set the values
+                if( 0.0 <= AmbientVol ) SetAmbientVolume(AmbientVol);
+                if( 0.0 <= DialogVol ) SetAmbientVolume(DialogVol);
+                if( 0.0 <= EffectVol ) SetAmbientVolume(EffectVol);
+                if( 0.0 <= MusicVol ) SetAmbientVolume(MusicVol);
+                if( 0.0 <= MasterVol ) SetAmbientVolume(MasterVol);
+            }
+            else if( "Mute" == (*SubSetIt)->GetName() )
+            {
+                // Setup the data to populate
+                bool MuteState = false;
+                // Get the values
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Muted");
+                if(!CurrSettingValue.empty())
+                    MuteState = StringTool::ConvertToBool(CurrSettingValue,false);
+                // Set the values
+                Mute(MuteState);
+            }
+        }
     }
 
     Audio::Sound* AudioManager::CreateAmbientSound(ConstString& SoundName, ConstString& FileName, ConstString& Group)
@@ -212,7 +340,7 @@ namespace Mezzanine
             delete (*It).second;
         }
         Sounds.clear();
-        cAudioManager->releaseAllSources();
+        cAudioMan->releaseAllSources();
     }
 
     Audio::SoundSet* AudioManager::CreateSoundSet(const String& SoundSetName)
@@ -333,21 +461,21 @@ namespace Mezzanine
 
     String AudioManager::GetAvailableDeviceNameByIndex(const Whole& Index) const
     {
-        const char* Name = cAudioManager->getAvailableDeviceName(Index);
+        const char* Name = cAudioMan->getAvailableDeviceName(Index);
         String Device(Name);
         return Device;
     }
 
     String AudioManager::GetDefaultDeviceName() const
     {
-        const char* Name = cAudioManager->getDefaultDeviceName();
+        const char* Name = cAudioMan->getDefaultDeviceName();
         String Device(Name);
         return Device;
     }
 
     Whole AudioManager::GetAvailableDeviceCount() const
     {
-        return cAudioManager->getAvailableDeviceCount();
+        return cAudioMan->getAvailableDeviceCount();
     }
 
     std::stringstream* AudioManager::GetLogs() const
@@ -362,7 +490,11 @@ namespace Mezzanine
 
     void AudioManager::InitializeDevice(ConstString &DeviceName, int OutputFrequency, int EAXEffectSlots)
     {
-        cAudioManager->initialize(DeviceName.c_str(), OutputFrequency, EAXEffectSlots);
+        cAudioMan->initialize(DeviceName.c_str(), OutputFrequency, EAXEffectSlots);
+        AMID->InitializedDevice = DeviceName;
+        AMID->OutputFrequency = OutputFrequency;
+        AMID->EAXEffectSlots = EAXEffectSlots;
+        Initialized = true;
     }
 
     Audio::Listener* AudioManager::GetListener() const
@@ -377,11 +509,15 @@ namespace Mezzanine
 
     cAudio::IAudioManager* AudioManager::GetcAudioManager() const
     {
-        return cAudioManager;
+        return cAudioMan;
     }
 
     void AudioManager::Initialize()
-        { Initialized = true; }
+    {
+        if(!Initialized)
+            InitializeDevice(GetDefaultDeviceName(),-1,4);
+        Initialized = true;
+    }
 
     void AudioManager::DoMainLoopItems()
         { MusicPlayer->Update(); }
