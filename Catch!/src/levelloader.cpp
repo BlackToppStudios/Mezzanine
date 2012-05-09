@@ -32,8 +32,8 @@ void LevelLoader::LoadFerris()
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
     String datadir = "Levels/";
-    ResourceMan->AddResourceLocation(datadir+"Ferris.lvl", "Zip", FerrisGroup, false);
-    ResourceMan->InitResourceGroup(FerrisGroup);
+    ResourceMan->AddAssetLocation(datadir+"Ferris.lvl", "Zip", FerrisGroup, false);
+    ResourceMan->InitAssetGroup(FerrisGroup);
 
     // Scoring and Shop Setup
     LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
@@ -288,8 +288,8 @@ void LevelLoader::LoadBigCurve()
     String CommonGroup("Common");
     String BigCurveGroup("BigCurve");
     String datadir = "Levels/";
-    ResourceMan->AddResourceLocation(datadir+"BigCurve.lvl", "Zip", BigCurveGroup, false);
-    ResourceMan->InitResourceGroup(BigCurveGroup);
+    ResourceMan->AddAssetLocation(datadir+"BigCurve.lvl", "Zip", BigCurveGroup, false);
+    ResourceMan->InitAssetGroup(BigCurveGroup);
 
     // Scoring and Shop Setup
     LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
@@ -407,8 +407,8 @@ void LevelLoader::LoadBlowsNotSucks()
     String CommonGroup("Common");
     String BlowsNotSucksGroup("BlowsNotSucks");
     String datadir = "Levels/";
-    ResourceMan->AddResourceLocation(datadir+"BlowsNotSucks.lvl", "Zip", BlowsNotSucksGroup, false);
-    ResourceMan->InitResourceGroup(BlowsNotSucksGroup);
+    ResourceMan->AddAssetLocation(datadir+"BlowsNotSucks.lvl", "Zip", BlowsNotSucksGroup, false);
+    ResourceMan->InitAssetGroup(BlowsNotSucksGroup);
 
     // Scoring and Shop Setup
     LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
@@ -608,8 +608,8 @@ void LevelLoader::LoadJustice()
     String CommonGroup("Common");
     String JusticeGroup("Justice");
     String datadir = "Levels/";
-    ResourceMan->AddResourceLocation(datadir+"Justice.lvl", "Zip", JusticeGroup, false);
-    ResourceMan->InitResourceGroup(JusticeGroup);
+    ResourceMan->AddAssetLocation(datadir+"Justice.lvl", "Zip", JusticeGroup, false);
+    ResourceMan->InitAssetGroup(JusticeGroup);
 
     // Scoring and Shop Setup
     LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
@@ -820,8 +820,8 @@ void LevelLoader::LoadRollers()
     String CommonGroup("Common");
     String RollersGroup("Rollers");
     String datadir = "Levels/";
-    ResourceMan->AddResourceLocation(datadir+"Rollers.lvl", "Zip", RollersGroup, false);
-    ResourceMan->InitResourceGroup(RollersGroup);
+    ResourceMan->AddAssetLocation(datadir+"Rollers.lvl", "Zip", RollersGroup, false);
+    ResourceMan->InitAssetGroup(RollersGroup);
 
     // Scoring and Shop Setup
     LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();
@@ -955,8 +955,8 @@ void LevelLoader::LoadJustBounce()
     String CommonGroup("Common");
     String JustBounceGroup("JustBounce");
     String datadir = "Levels/";
-    ResourceMan->AddResourceLocation(datadir+"JustBounce.lvl", "Zip", JustBounceGroup, false);
-    ResourceMan->InitResourceGroup(JustBounceGroup);
+    ResourceMan->AddAssetLocation(datadir+"JustBounce.lvl", "Zip", JustBounceGroup, false);
+    ResourceMan->InitAssetGroup(JustBounceGroup);
 
     // Scoring and Shop Setup
     LevelScorer* Scorer = CatchApp::GetCatchAppPointer()->GetLevelScorer();

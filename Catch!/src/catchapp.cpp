@@ -663,7 +663,7 @@ void CatchApp::UnloadLevel()
     ScoreAreas.clear();
     ThrownItems.clear();
 
-    ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
+    ResMan->DestroyAssetGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();
     /// @todo Probably should make a "RemoveAll" for the events as well.
     EventCollision* OneCollision = EventMan->PopNextCollisionEvent();
