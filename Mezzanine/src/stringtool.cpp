@@ -266,15 +266,23 @@ namespace Mezzanine
 
     Real StringTool::ConvertToReal(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         Real Result;
+        converter >> Result;
+        return Result;
+    }
+
+    Integer StringTool::ConvertToInteger(const String& ToConvert)
+    {
+        StringStream converter(ToConvert);
+        Integer Result;
         converter >> Result;
         return Result;
     }
 
     Int8 StringTool::ConvertToInt8(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         Int8 Result;
         converter >> Result;
         return Result;
@@ -282,7 +290,7 @@ namespace Mezzanine
 
     UInt8 StringTool::ConvertToUInt8(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         UInt8 Result;
         converter >> Result;
         return Result;
@@ -290,7 +298,7 @@ namespace Mezzanine
 
     Int16 StringTool::ConvertToInt16(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         Int16 Result;
         converter >> Result;
         return Result;
@@ -298,7 +306,7 @@ namespace Mezzanine
 
     UInt16 StringTool::ConvertToUInt16(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         UInt16 Result;
         converter >> Result;
         return Result;
@@ -306,7 +314,7 @@ namespace Mezzanine
 
     Int32 StringTool::ConvertToInt32(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         Int32 Result;
         converter >> Result;
         return Result;
@@ -314,7 +322,7 @@ namespace Mezzanine
 
     UInt32 StringTool::ConvertToUInt32(const String& ToConvert)
     {
-        std::stringstream converter(ToConvert);
+        StringStream converter(ToConvert);
         UInt32 Result;
         converter >> Result;
         return Result;
@@ -331,49 +339,56 @@ namespace Mezzanine
 
     String StringTool::ConvertToString(const Real& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
+        converter << ToConvert;
+        return converter.str();
+    }
+
+    String StringTool::ConvertToString(const Integer& ToConvert)
+    {
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
 
     String StringTool::ConvertToString(const Int8& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
 
     String StringTool::ConvertToString(const UInt8& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
 
     String StringTool::ConvertToString(const Int16& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
 
     String StringTool::ConvertToString(const UInt16& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
 
     String StringTool::ConvertToString(const Int32& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
 
     String StringTool::ConvertToString(const UInt32& ToConvert)
     {
-        std::stringstream converter;
+        StringStream converter;
         converter << ToConvert;
         return converter.str();
     }
@@ -730,35 +745,35 @@ namespace Mezzanine
 
     String StringTool::StringCat(const String& Front, const String& Back)
     {
-        std::stringstream Adder;
+        StringStream Adder;
         Adder << Front << Back;
         return Adder.str();
     }
 
     String StringTool::StringCat(const String& Front, const String& Middle, const String& Back)
     {
-        std::stringstream Adder;
+        StringStream Adder;
         Adder << Front  << Middle << Back;
         return Adder.str();
     }
 
     String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
     {
-        std::stringstream Adder;
+        StringStream Adder;
         Adder << Front  << Middle1 << Middle2 << Back;
         return Adder.str();
     }
 
     String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
     {
-        std::stringstream Adder;
+        StringStream Adder;
         Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
         return Adder.str();
     }
 
     String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
     {
-        std::stringstream Adder;
+        StringStream Adder;
         Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;
         return Adder.str();
     }
