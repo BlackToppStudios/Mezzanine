@@ -228,13 +228,24 @@ namespace Mezzanine
             void DestroyAllSettingGroups();
 #ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
-            // Setting Path Management
+            // Setting Saving/Path Management
             /// @brief Sets the path to be assumed when saving/loading settings to files.
             /// @param Path The path to be assumed.
             void SetSettingsFilePath(const String& Path);
             /// @brief Gets the currently set settings file path.
             /// @return Returns a string containing the path to use when a save/load path isn't specified.
             const String& GetSettingsFilePath() const;
+            /// @brief Sets whether or not to save the current config as it's own group when saving settings.
+            /// @details Any group labeled "Current" (case sensative) will be used and immediately applied upon loading. @n
+            /// If this is enabled and no group specifiers are used, then the Current settings will automatically be saved any time the groups are saved.
+            /// When using functions with group specifiers, you can include a string "Current" to save the current settings. @n
+            /// It's also important to note that the "Current" settings group, although it'll be present in saved files, is not a group traversible in code.
+            /// It is solely intended to save the existing state at shutdown, and resume with that exact config.
+            /// @param Save Whether or not to have the current settings when other groups are saved.
+            void SetSaveCurrent(bool Save);
+            /// @brief Gets if autosaving the current config is enabled.
+            /// @return Returns true if the current config is auto-saved when saving happens, false otherwise.
+            bool GetSaveCurrent() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Loading Utilities

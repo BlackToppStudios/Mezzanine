@@ -222,6 +222,7 @@ namespace Mezzanine
     // ObjectSettingsHandler Methods
 
     ObjectSettingsHandler::ObjectSettingsHandler()
+        : SaveCurrent(true)
     {
     }
 
@@ -338,6 +339,16 @@ namespace Mezzanine
         return this->SettingsFilePath;
     }
 
+    void ObjectSettingsHandler::SetSaveCurrent(bool Save)
+    {
+        SaveCurrent = Save;
+    }
+
+    bool ObjectSettingsHandler::GetSaveCurrent() const
+    {
+        return SaveCurrent;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Loading Utilities
     void ObjectSettingsHandler::LoadSettings(const String& FileName, const String& Group)
@@ -365,13 +376,19 @@ namespace Mezzanine
 
     void ObjectSettingsHandler::LoadSettings(xml::Node& RootSettings)
     {
+        ObjectSettingSetContainer* SetAfter = NULL;
         for( xml::NodeIterator CurrGroupIt = RootSettings.begin() ; CurrGroupIt != RootSettings.end() ; ++CurrGroupIt )
         {
             xml::Node CurrGroupNode = (*CurrGroupIt);
             String SettingGroupName = CurrGroupNode.Name();
-            ObjectSettingSetContainer* NewGroup = CreateSettingGroup(SettingGroupName);
-            SettingGroups.insert(std::pair<String,ObjectSettingSetContainer*>(SettingGroupName,NewGroup));
-
+            ObjectSettingSetContainer* NewGroup = new ObjectSettingSetContainer(SettingGroupName);
+            if( "Current" != SettingGroupName )
+            {
+                SettingGroups.insert(std::pair<String,ObjectSettingSetContainer*>(SettingGroupName,NewGroup));
+            }else{
+                if(!SetAfter) SetAfter = NewGroup;
+                else World::GetWorldPointer()->LogAndThrow(Exception("Multiple \"Current\" setting groups detected while loading settings.  In ObjectSettingsHandler::LoadSettings."));
+            }
             for( xml::NodeIterator CurrSetIt = CurrGroupNode.begin() ; CurrSetIt != CurrGroupNode.end() ; ++CurrSetIt )
             {
                 xml::Node CurrSetNode = (*CurrSetIt);
@@ -380,6 +397,11 @@ namespace Mezzanine
                 LoadSettingSetFromXML( CurrSetNode, NewSet );
             }
         }
+        if(SetAfter)
+        {
+            ApplySettingGroupImpl(SetAfter);
+            delete SetAfter;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -387,6 +409,7 @@ namespace Mezzanine
     void ObjectSettingsHandler::SaveSettings(const String& FileName, const String& Path)
     {
         StringVector GroupNames;
+        GroupNames.push_back( "Current" );
         for( SettingGroupIterator SetGroupIt = SettingGroups.begin() ; SetGroupIt != SettingGroups.end() ; ++SetGroupIt )
         {
             GroupNames.push_back( (*SetGroupIt).first );
@@ -404,6 +427,7 @@ namespace Mezzanine
         }
 
         StringVector GroupNames;
+        GroupNames.push_back( "Current" );
         for( SettingGroupIterator SetGroupIt = SettingGroups.begin() ; SetGroupIt != SettingGroups.end() ; ++SetGroupIt )
         {
             GroupNames.push_back( (*SetGroupIt).first );
@@ -431,6 +455,7 @@ namespace Mezzanine
     void ObjectSettingsHandler::SaveSettings(xml::Node& RootSettings)
     {
         StringVector GroupNames;
+        GroupNames.push_back( "Current" );
         for( SettingGroupIterator GroupNameIt = SettingGroups.begin() ; GroupNameIt != SettingGroups.end() ; ++GroupNameIt )
         {
             GroupNames.push_back( (*GroupNameIt).first );
@@ -442,19 +467,25 @@ namespace Mezzanine
     {
         for( StringVector::iterator StrIt = GroupNames.begin() ; StrIt != GroupNames.end() ; ++StrIt )
         {
-            SettingGroupIterator GroupIt = SettingGroups.find( (*StrIt) );
-            if( GroupIt == SettingGroups.end() )
+            if( SaveCurrent && "Current" == (*StrIt) )
             {
-                StringStream exceptionstream;
-                exceptionstream << "Attempting to save setting group \"" << (*StrIt) << "\", which does not exist.  In ObjectSettingsHandler::SaveSettings.";
-                World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
-            }
-            ObjectSettingSetContainer* SaveSet = (*GroupIt).second;
-            xml::Node GroupNode = RootSettings.AppendChild( (*GroupIt).first );
-            for( ObjectSettingSetContainer::SubSetIterator SubSetIt = SaveSet->SubSetBegin() ; SubSetIt != SaveSet->SubSetEnd() ; ++SubSetIt )
-            {
-                xml::Node SetNode = GroupNode.AppendChild( (*SubSetIt)->GetName() );
-                SaveSettingSetToXML( SetNode, (*SubSetIt) );
+                xml::Node CurrentNode = CreateCurrentSettings();
+                RootSettings.AppendCopy(CurrentNode);
+            }else{
+                SettingGroupIterator GroupIt = SettingGroups.find( (*StrIt) );
+                if( GroupIt == SettingGroups.end() )
+                {
+                    StringStream exceptionstream;
+                    exceptionstream << "Attempting to save setting group \"" << (*StrIt) << "\", which does not exist.  In ObjectSettingsHandler::SaveSettings.";
+                    World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+                }
+                ObjectSettingSetContainer* SaveSet = (*GroupIt).second;
+                xml::Node GroupNode = RootSettings.AppendChild( (*GroupIt).first );
+                for( ObjectSettingSetContainer::SubSetIterator SubSetIt = SaveSet->SubSetBegin() ; SubSetIt != SaveSet->SubSetEnd() ; ++SubSetIt )
+                {
+                    xml::Node SetNode = GroupNode.AppendChild( (*SubSetIt)->GetName() );
+                    SaveSettingSetToXML( SetNode, (*SubSetIt) );
+                }
             }
         }
     }
