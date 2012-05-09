@@ -53,14 +53,14 @@ namespace cAudio
 		virtual void release(IAudioSource* source) = 0;
 
 		//! Returns the name of an available playback device.
-		/** \param index: Specify which name to retrieve ( Range: 0 to getAvailableDeviceCount()-1 ) 
+		/** \param index: Specify which name to retrieve ( Range: 0 to getAvailableDeviceCount()-1 )
 		\return Name of the selected device. */
 		virtual const char* getAvailableDeviceName(unsigned int index) = 0;
-		
+
 		//! Returns the number of playback devices available for use.
 		/** \return Number of playback devices available. */
 		virtual unsigned int getAvailableDeviceCount() = 0;
-		
+
 		//! Returns the name of the default system playback device.
 		/** \return Name of the default playback device. */
 		virtual const char* getDefaultDeviceName() = 0;
@@ -73,7 +73,7 @@ namespace cAudio
 		\return A pointer to an Audio Source or NULL if creation failed.
 		*/
 		virtual IAudioSource* create(const char* name, const char* filename, bool stream = false) = 0;
-		
+
 		//! Creates an Audio Source from a memory buffer using a specific audio codec.
 		/**
 		\param name: Name of the audio source.
@@ -83,7 +83,7 @@ namespace cAudio
 		\return A pointer to an Audio Source or NULL if creation failed.
 		*/
 		virtual IAudioSource* createFromMemory(const char* name, const char* data, size_t length, const char* extension) = 0;
-		
+
 		//! Creates an Audio Source from raw audio data in a memory buffer.
 		/**
 		\param name: Name of the audio source.
@@ -114,7 +114,7 @@ namespace cAudio
 		virtual bool isAudioDecoderRegistered(const char* extension) = 0;
 
 		//! Returns a registered audio decoder factory.
-		/** 
+		/**
 		\param extension: Extension for the audio decoder to return.
 		\return A pointer to the found factory or NULL if it could not be found. */
 		virtual IAudioDecoderFactory* getAudioDecoderFactory(const char* extension) = 0;
@@ -130,7 +130,7 @@ namespace cAudio
 		\param priority: Determines what order data sources are asked for a file.  The higher the priority, the sooner they are asked.  cAudio stops looking for a file as soon as any data source returns it.
 		\return True on success, False on failure to register. */
 		virtual bool registerDataSource(IDataSourceFactory* factory, const char* name, int priority) = 0;
-		
+
 		//! Removes a previously registered data source.
 		/** Note that sound sources will still continue to use any currently allocated sources, so you may not be able to close an open zip/archive file handle until they are done. Will NOT delete any user added factory instance, you must do that yourself.
 		\param name: Name of the data source to unregister. */
@@ -143,7 +143,7 @@ namespace cAudio
 		virtual bool isDataSourceRegistered(const char* name) = 0;
 
 		//! Returns a previously registered data source factory.
-		/** 
+		/**
 		\param name: Name of the data source to return.
 		\return A pointer to the found factory or NULL if it could not be found. */
 		virtual IDataSourceFactory* getDataSourceFactory(const char* name) = 0;
