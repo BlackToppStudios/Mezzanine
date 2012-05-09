@@ -178,6 +178,10 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Convert-To-String functions
 
+            /// @brief Converts a bool into a string.
+            /// @param ToConvert The bool to be converted.
+            /// @return Returns "true" if true, or "false" if false.
+            static String ConvertToString(const bool ToConvert);
             /// @brief Converts an Int8 into a string.
             /// @param ToConvert The Int8 to be converted.
             /// @return Returns a string containing the converted input.

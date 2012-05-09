@@ -323,6 +323,12 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Convert-To-String functions
 
+    String StringTool::ConvertToString(const bool ToConvert)
+    {
+        if(ToConvert) return "true";
+        else return "false";
+    }
+
     String StringTool::ConvertToString(const Real& ToConvert)
     {
         std::stringstream converter;
