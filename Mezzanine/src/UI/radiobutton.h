@@ -37,55 +37,31 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ui_h
-#define _ui_h
+#ifndef _uiradiobutton_h
+#define _uiradiobutton_h
+
+#include "UI/widget.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::UI
-    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
-    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and layout for it's config files(e.g. .mta files).
     namespace UI
     {
-
-    }
-}
-
-#include "uienumerations.h"
-
-#include "UI/basicrenderable.h"
-#include "UI/button.h"
-#include "UI/caption.h"
-#include "UI/cell.h"
-#include "UI/cellgrid.h"
-#include "UI/checkbox.h"
-#include "UI/dropdownlist.h"
-#include "UI/glyph.h"
-#include "UI/kerning.h"
-#include "UI/layer.h"
-#include "UI/linelist.h"
-#include "UI/listbox.h"
-#include "UI/markuptext.h"
-#include "UI/menu.h"
-#include "UI/menuwindow.h"
-#include "UI/pagedcellgrid.h"
-#include "UI/radiobutton.h"
-#include "UI/rectangle.h"
-#include "UI/renderablecontainerwidget.h"
-#include "UI/renderablerect.h"
-#include "UI/resizinginfo.h"
-#include "UI/screen.h"
-#include "UI/scrollbar.h"
-#include "UI/scrolledcellgrid.h"
-#include "UI/spinner.h"
-#include "UI/sprite.h"
-#include "UI/tabset.h"
-#include "UI/textbutton.h"
-#include "UI/textureatlas.h"
-#include "UI/vertex.h"
-#include "UI/viewportupdatetool.h"
-#include "UI/widget.h"
-#include "UI/window.h"
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class RadioButton
+        /// @headerfile uiradiobutton.h
+        /// @brief This is a simple widget where only one of it's selections can be selected at a time.
+        /// @details
+        ///////////////////////////////////////
+        class RadioButton : public Widget
+        {
+            protected:
+            public:
+                /// @brief Class constructor.
+                RadioButton();
+                /// @brief Class destructor.
+                virtual ~RadioButton();
+        };//radiobutton
+    }//ui
+}//Mezzanine
 
 #endif

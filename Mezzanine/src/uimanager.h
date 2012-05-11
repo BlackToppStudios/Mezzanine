@@ -43,7 +43,7 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
-#include "uirenderablerect.h"
+#include "UI/renderablerect.h"
 #include "metacode.h"
 
 namespace Mezzanine

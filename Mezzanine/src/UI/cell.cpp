@@ -37,55 +37,90 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ui_h
-#define _ui_h
+#ifndef _uicell_cpp
+#define _uicell_cpp
+
+#include "UI/cell.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::UI
-    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
-    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and layout for it's config files(e.g. .mta files).
     namespace UI
     {
+        Cell::Cell(const String& name, Layer* parent)
+            : Widget(name,parent),
+              SortPriority(0),
+              Selected(false),
+              Callback(NULL)
+        {
+            Type = Widget::W_Cell;
+        }
 
-    }
-}
+        Cell::~Cell()
+        {
+            if(Callback)
+                delete Callback;
+        }
 
-#include "uienumerations.h"
+        void Cell::SetPriority(const Whole& Priority)
+        {
+            SortPriority = Priority;
+        }
 
-#include "UI/basicrenderable.h"
-#include "UI/button.h"
-#include "UI/caption.h"
-#include "UI/cell.h"
-#include "UI/cellgrid.h"
-#include "UI/checkbox.h"
-#include "UI/dropdownlist.h"
-#include "UI/glyph.h"
-#include "UI/kerning.h"
-#include "UI/layer.h"
-#include "UI/linelist.h"
-#include "UI/listbox.h"
-#include "UI/markuptext.h"
-#include "UI/menu.h"
-#include "UI/menuwindow.h"
-#include "UI/pagedcellgrid.h"
-#include "UI/radiobutton.h"
-#include "UI/rectangle.h"
-#include "UI/renderablecontainerwidget.h"
-#include "UI/renderablerect.h"
-#include "UI/resizinginfo.h"
-#include "UI/screen.h"
-#include "UI/scrollbar.h"
-#include "UI/scrolledcellgrid.h"
-#include "UI/spinner.h"
-#include "UI/sprite.h"
-#include "UI/tabset.h"
-#include "UI/textbutton.h"
-#include "UI/textureatlas.h"
-#include "UI/vertex.h"
-#include "UI/viewportupdatetool.h"
-#include "UI/widget.h"
-#include "UI/window.h"
+        Whole Cell::GetPriority()
+        {
+            return SortPriority;
+        }
+
+        void Cell::SetSelected(bool Select)
+        {
+            if(Select)
+            {
+                if(Callback)
+                    Callback->DoSelectedItems();
+            }else{
+                if(Callback)
+                    Callback->DoUnselectedItems();
+            }
+            Selected = Select;
+        }
+
+        bool Cell::IsSelected()
+        {
+            return Selected;
+        }
+
+        void Cell::SetCellCallback(CellCallback* CB)
+        {
+            if(Callback != CB && Callback)
+                delete Callback;
+            CB->SetCaller(this);
+            Callback = CB;
+        }
+
+        bool Cell::operator<(Cell* Other)
+        {
+            return SortPriority < Other->GetPriority();
+        }
+
+        bool Cell::operator>(Cell* Other)
+        {
+            return SortPriority > Other->GetPriority();
+        }
+
+        CellCallback::CellCallback()
+            : Caller(NULL)
+        {
+        }
+
+        CellCallback::~CellCallback()
+        {
+        }
+
+        void CellCallback::SetCaller(Cell* Caller)
+        {
+            this->Caller = Caller;
+        }
+    }//ui
+}//Mezzanine
 
 #endif

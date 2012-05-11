@@ -43,7 +43,7 @@
 #include "uimanager.h"
 #include "inputquerytool.h"
 #include "mathtool.h"
-#include "uitextureatlas.h"
+#include "UI/textureatlas.h"
 #include "world.h"
 #include "cameramanager.h"
 #include "graphicsmanager.h"
@@ -51,11 +51,11 @@
 #include "eventuserinput.h"
 #include "resourcemanager.h"
 #include "viewport.h"
-#include "uiscreen.h"
-#include "uibutton.h"
-#include "uilayer.h"
-#include "uiwidget.h"
-#include "uiglyph.h"
+#include "UI/screen.h"
+#include "UI/button.h"
+#include "UI/layer.h"
+#include "UI/widget.h"
+#include "UI/glyph.h"
 
 #include <Ogre.h>
 
