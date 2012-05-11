@@ -88,7 +88,7 @@ namespace cAudio
 	{
     public:
 		typedef size_t      size_type;
-		typedef ptrdiff_t   difference_type;
+        typedef std::ptrdiff_t   difference_type;
 		typedef void*       pointer;
 		typedef const void* const_pointer;
 		typedef void        value_type;

@@ -66,7 +66,7 @@ message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 set (${PROJECT_NAME}_OUTPUT_DIR "${${PROJECT_NAME}_BINARY_DIR}/")
 message ( STATUS "Putting all the output in: ${${PROJECT_NAME}_OUTPUT_DIR}")
 
-set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}bin/")
+set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_OUTPUT_DIR}bin/")
 set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
 set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ( STATUS "Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")

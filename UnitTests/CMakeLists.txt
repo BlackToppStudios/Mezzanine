@@ -56,13 +56,13 @@ set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}Mezzanine/")
-message ( STATUS "Base for Mezzanine: ${${PROJECT_NAME}_MEZZANINE_DIR}")
+message ( STATUS "Base for Mezzanine Unit Tests: ${${PROJECT_NAME}_MEZZANINE_DIR}")
 
-set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}bin/")
-message ( STATUS "Mezzanine Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
+set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}/bin/")
+message ( STATUS "Mezzanine Unit Tests Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_SRC "${${PROJECT_NAME}_MEZZANINE_DIR}src/")
-message ( STATUS "Mezzanine source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
+message ( STATUS "Mezzanine Unit Tests source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
