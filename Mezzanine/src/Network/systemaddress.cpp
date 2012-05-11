@@ -38,94 +38,18 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _networkipaddress_cpp
-#define _networkipaddress_cpp
+#ifndef _networksystemaddress_cpp
+#define _networksystemaddress_cpp
 
-#include "networkipaddress.h"
+#include "Network/systemaddress.h"
 
 namespace Mezzanine
 {
     namespace Network
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        // IPAddress member functions
 
-        IPAddress::IPAddress()
-        {
-        }
-
-        IPAddress::~IPAddress()
-        {
-        }
-
-        void IPAddress::SetAddress(const String& Address)
-        {
-            //if(VerifyAddress(Address))
-            //    this->SocAddress = Address;
-        }
-
-        String IPAddress::GetAddressAsString() const
-        {
-            //return SocAddress;
-        }
-
-        char* IPAddress::GetAddressAsCString() const
-        {
-            //return SocAddress.c_str();
-        }
-
-        const String& IPAddress::GetHostName() const
-        {
-            return HostName;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // IPAddress_4 member functions
-
-        IPAddress_4::IPAddress_4()
-        {
-
-        }
-
-        IPAddress_4::~IPAddress_4()
-        {
-
-        }
-
-        bool IPAddress_4::VerifyAddress(const String& Addr)
-        {
-
-        }
-
-        IPAddress::IPVersion IPAddress_4::GetVersion() const
-        {
-            return IPAddress::IP_v4;
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // IPAddress_6 member functions
-
-        IPAddress_6::IPAddress_6()
-        {
-
-        }
-
-        IPAddress_6::~IPAddress_6()
-        {
-
-        }
-
-        bool IPAddress_6::VerifyAddress(const String& Addr)
-        {
-
-        }
-
-        IPAddress::IPVersion IPAddress_6::GetVersion() const
-        {
-            return IPAddress::IP_v6;
-        }
-    }//Network
-}//Mezzanine
+    }
+}
 
 #endif
 

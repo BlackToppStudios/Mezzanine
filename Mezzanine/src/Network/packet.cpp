@@ -41,7 +41,7 @@
 #ifndef _networkpacket_cpp
 #define _networkpacket_cpp
 
-#include "networkpacket.h"
+#include "Network/packet.h"
 #include <memory>
 #include <cstring>
 

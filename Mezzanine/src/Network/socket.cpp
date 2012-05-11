@@ -38,26 +38,73 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _networksystemaddress_h
-#define _networksystemaddress_h
+#ifndef _networksocket_cpp
+#define _networksocket_cpp
 
-#include "networkipaddress.h"
+#include "Network/socket.h"
+
+#ifdef WINDOWS
+#include <winsock2.h>  //winsock
+#include <basetsd.h>
+#else
+#include <sys/types.h>  //berkely sockets
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+#endif
 
 namespace Mezzanine
 {
     namespace Network
     {
+        #ifdef WINDOWS
+        typedef int AddrLen;
+        typedef UINT_PTR SocketHandle;
+        #else
+        typedef socklen_t AddrLen;
+        typedef int SocketHandle;
+        #endif
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class SystemAddress
-        /// @headerfile networksystemaddress.h
+        /// @struct InternalSocketData
+        /// @headerfile networksocket.cpp
         /// @brief
         /// @details
         ///////////////////////////////////////
-        class SystemAddress
+        struct InternalSocketData
         {
-            protected:
-            public:
-        };//SystemAddress
+            InternalSocketData() : Handle(0) {};
+            SocketHandle Handle;
+        };//internalsocketdata
+
+        Socket::Socket(const SocketType& Type)
+            : SType(Type)
+        {
+
+        }
+
+        Socket::~Socket()
+        {
+
+        }
+
+        Socket::SocketType Socket::GetType() const
+        {
+            return SType;
+        }
+
+        Socket::SocketError Socket::GetError() const
+        {
+            #ifdef WINDOWS
+
+            #else
+
+            #endif
+        }
     }//Network
 }//Mezzanine
 
