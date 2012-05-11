@@ -37,31 +37,60 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _internaldecompinterface_h_cpp
-#define _internaldecompinterface_h_cpp
+#ifndef _internalbulletfilemanager_cpp
+#define _internalbulletfilemanager_cpp
 
-#include "btBulletDynamicsCommon.h"
-#include "ConvexBuilder.h"
-
-// Keeps this file form being documented by doxygen
-/// @cond 0
+#include "Internal/bulletfilemanager.h.cpp"
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
-        class MezzConvexDecomposition : public ConvexDecomposition::ConvexDecompInterface {
-            public:
-                MezzConvexDecomposition();
-                btAlignedObjectArray<btConvexHullShape*> m_convexShapes;
-                btAlignedObjectArray<btVector3> m_convexCentroids;
-                int mBaseCount;
-                int mHullCount;
-                virtual void ConvexDecompResult(ConvexDecomposition::ConvexResult &result);
-        };
-    }// internal
-}// phys
+        template<> BulletFileManager* Ogre::Singleton<BulletFileManager>::ms_Singleton = 0;
 
-/// @endcond
+        BulletFileManager::BulletFileManager()
+        {
+            mResourceType = "BulletFile";
+
+            mLoadOrder = 250.0f;
+
+            Ogre::ResourceGroupManager::getSingleton()._registerResourceManager(mResourceType,this);
+        }
+
+        BulletFileManager::~BulletFileManager()
+        {
+            Ogre::ResourceGroupManager::getSingleton()._unregisterResourceManager(mResourceType);
+        }
+
+        Ogre::Resource* BulletFileManager::createImpl(const Ogre::String& name, Ogre::ResourceHandle handle, const Ogre::String& group, bool isManual,
+                                                      Ogre::ManualResourceLoader* loader, const Ogre::NameValuePairList* createParams)
+        {
+            BulletFile* BFile = new BulletFile(this,name,handle,group,isManual,loader);
+            return BFile;
+        }
+
+        BulletFilePtr BulletFileManager::load(const Ogre::String& name, const Ogre::String& group)
+        {
+            BulletFilePtr BFile = getByName(name);
+
+            if(BFile.isNull())
+                BFile = create(name,group);
+
+            BFile->load();
+            return BFile;
+        }
+
+        BulletFileManager& BulletFileManager::getSingleton()
+        {
+            assert(ms_Singleton);
+            return *ms_Singleton;
+        }
+
+        BulletFileManager* BulletFileManager::getSingletonPtr()
+        {
+            return ms_Singleton;
+        }
+    }//internal
+}//Mezzanine
 
 #endif

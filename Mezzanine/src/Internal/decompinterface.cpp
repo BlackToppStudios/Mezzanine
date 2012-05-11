@@ -40,14 +40,14 @@
 #ifndef _internaldecompinterface_cpp
 #define _internaldecompinterface_cpp
 
-#include "internaldecompinterface.h.cpp"
+#include "Internal/decompinterface.h.cpp"
 
 // Keeps this file form being documented by doxygen
 /// @cond 0
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         MezzConvexDecomposition::MezzConvexDecomposition()
         {

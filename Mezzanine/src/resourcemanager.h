@@ -45,7 +45,7 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
-#include "resourceinputstream.h"
+#include "Resource/inputstream.h"
 
 class btBulletWorldImporter;
 
@@ -119,6 +119,19 @@ namespace Mezzanine
             /// @brief Get the pathname where engine data is stored
             /// @return A String that contains the pathname
             String GetEngineDataDirectory() const;
+
+            /// @brief Gets the path to the directory intended for game and engine config data that is not meant to be shared.
+            /// @return Returns a string containing the path to the Local Application Data Directory.
+            String GetLocalAppDataDir() const;
+            /// @brief Gets the path to the directory intended for game and engine config data that is allowed to be shared.
+            /// @return Returns a string containing the path to the Shareable Application Data Directory.
+            String GetShareableAppDataDir() const;
+            /// @brief Gets the path to the directory intended for game saves and user profile data for the current user.
+            /// @return Returns a string containing the path to the Current User Data Directory.
+            String GetCurrentUserDataDir() const;
+            /// @brief Gets the path to the directory intended for game saves and user profile data for all users.
+            /// @return Returns a string containing the path to the Common User Data Directory.
+            String GetCommonUserDataDir() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Management

@@ -53,7 +53,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal

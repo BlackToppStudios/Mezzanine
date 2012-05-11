@@ -58,7 +58,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         /// @internal
         /// @brief used to store internal data and functions for the ParticleEffect;
@@ -112,7 +112,7 @@ namespace Mezzanine
 
     ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
     {
-        this->Pie = new internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template));
+        this->Pie = new Internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template));
         this->Pie->Template = Template;
 
         UInt16 NumEmitters = Pie->OgreParticle->getNumEmitters();
@@ -132,7 +132,7 @@ namespace Mezzanine
 
     ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager)
     {
-        this->Pie = new internal::ParticleEffectInternalData(manager, System);
+        this->Pie = new Internal::ParticleEffectInternalData(manager, System);
         this->Pie->Template = Template;
 
         UInt16 NumEmitters = Pie->OgreParticle->getNumEmitters();

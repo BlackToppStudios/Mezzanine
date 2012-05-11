@@ -40,7 +40,7 @@
 #ifndef _internalmotionstate_cpp
 #define _internalmotionstate_cpp
 
-#include "internalmotionstate.h.cpp"
+#include "Internal/motionstate.h.cpp"
 
 #include "physicsmanager.h"
 #include "areaeffect.h"
@@ -50,7 +50,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         ///////////////////////////////////////////////////////////////////////////////
         // PhysMotionState methods

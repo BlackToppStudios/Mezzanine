@@ -52,7 +52,7 @@
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
 #include "BulletCollision/Gimpact/btGImpactShape.h"
 #include "ConvexBuilder.h"
-#include "internaldecompinterface.h.cpp"
+#include "Internal/decompinterface.h.cpp"
 #include <btBulletWorldImporter.h>
 
 #include <fstream>
@@ -573,7 +573,7 @@ namespace Mezzanine
         desc.mMaxVertices  = maxv;
         desc.mSkinWidth    = skinWidth;
 
-        internal::MezzConvexDecomposition decomp;
+        Internal::MezzConvexDecomposition decomp;
         desc.mCallback = &decomp;
 
         ConvexBuilder cb(desc.mCallback);

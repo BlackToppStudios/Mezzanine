@@ -61,7 +61,7 @@ namespace Mezzanine
     class CameraController;
     class SceneManager;
     class GraphicsManager;
-    namespace internal
+    namespace Internal
     {
         class SceneManagerData;
     }
@@ -83,7 +83,7 @@ namespace Mezzanine
     class MEZZ_LIB CameraManager : public ManagerBase, public Singleton<CameraManager>
     {
         protected:
-            friend class internal::SceneManagerData;
+            friend class Internal::SceneManagerData;
             friend class GraphicsManager;
             friend class World;
             friend class Camera;

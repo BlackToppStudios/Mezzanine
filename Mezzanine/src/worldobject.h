@@ -71,7 +71,7 @@ namespace Mezzanine
     {
         class SoundSet;
     }
-    namespace internal
+    namespace Internal
     {
         class PhysMotionState;
         struct MeshInfo;

@@ -42,7 +42,7 @@
 
 #include "Resource/inputstream.h"
 
-#include "internalogredatastreambuf.h.cpp"
+#include "Internal/ogredatastreambuf.h.cpp"
 
 #ifdef MEZZDEBUG
     #include "world.h"
@@ -55,7 +55,7 @@ namespace Mezzanine
 		#ifdef MEZZDEBUG
 		World::GetWorldPointer()->Log("Entering ResourceInputStream::Construct()");
 		#endif
-		this->OgreBuffer=static_cast <internal::OgreDataStreamBuf*>(InputBuffer);
+		this->OgreBuffer=static_cast <Internal::OgreDataStreamBuf*>(InputBuffer);
 		this->Manager=ResourceManager_;
 		 #ifdef MEZZDEBUG
 		World::GetWorldPointer()->Log("Exiting ResourceInputStream::Construct()");

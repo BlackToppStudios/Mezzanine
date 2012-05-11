@@ -41,7 +41,7 @@
 #ifndef _ogredatastreambuf_cpp
 #define _ogredatastreambuf_cpp
 
-#include "internalogredatastreambuf.h.cpp"
+#include "Internal/ogredatastreambuf.h.cpp"
 #include "exception.h"
 
 // Keeps this file form being documented by doxygen
@@ -51,7 +51,7 @@ using namespace std;
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
 
         const String FailWriteNoAccess("Failed to write to readonly stream.");

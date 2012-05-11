@@ -40,12 +40,12 @@
 #ifndef _internalbulletfile_cpp
 #define _internalbulletfile_cpp
 
-#include "internalbulletfile.h.cpp"
+#include "Internal/bulletfile.h.cpp"
 #include <btBulletWorldImporter.h>
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         BulletFile::BulletFile(Ogre::ResourceManager* creator, const String& name, Ogre::ResourceHandle handle, const String& group, bool isManual, Ogre::ManualResourceLoader* loader)
             : Ogre::Resource(creator, name, handle, group, isManual, loader),

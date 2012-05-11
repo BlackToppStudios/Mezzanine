@@ -43,15 +43,15 @@
 // Keeps this file form being documented by doxygen
 /// @cond 0
 
-#include "internalmeshtools.h.cpp"
+#include "Internal/meshtools.h.cpp"
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
 #include "BulletCollision/Gimpact/btGImpactShape.h"
 #include "ConvexBuilder.h"
-#include "internaldecompinterface.h.cpp"
+#include "Internal/decompinterface.h.cpp"
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         MeshInfo::MeshInfo()
         {

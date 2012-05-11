@@ -49,7 +49,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         /// @internal
         /// @struct This struct helps stored collected info of a mesh.

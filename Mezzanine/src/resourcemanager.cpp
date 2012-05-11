@@ -47,8 +47,8 @@
 #include "meshmanager.h"
 #include "actorbase.h"
 #include "stringtool.h"
-#include "internalogredatastreambuf.h.cpp"
-#include "internalbulletfilemanager.h.cpp"
+#include "Internal/ogredatastreambuf.h.cpp"
+#include "Internal/bulletfilemanager.h.cpp"
 
 #include <Ogre.h>
 #include <btBulletWorldImporter.h>
@@ -58,7 +58,14 @@
 #ifdef WINDOWS
     #include <Winuser.h>
     #include <WinBase.h>
+    #include <Shlobj.h> // for getting system directories
     #include <direct.h> // for _getcwd
+#elif MACOS
+    #include <CoreServices/CoreServices.h>
+    #include <unistd.h>//for sleep and getcwd
+	#include <errno.h>
+	#include <sys/stat.h>
+	#include <sys/types.h>
 #else
 	#include <unistd.h>//for sleep and getcwd
 	#include <errno.h>
@@ -82,10 +89,10 @@ namespace Mezzanine
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-        internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
+        Internal::BulletFileManager* BulletFileMan = Internal::BulletFileManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
         this->AddAssetLocation(EngineDataPath, ArchiveType, "EngineData", false);
-        //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
+        //Internal::BulletFileManager* BulletFileMan = new Internal::BulletFileManager();
     }
 
 #ifdef MEZZXML
@@ -172,7 +179,73 @@ namespace Mezzanine
     }
 
     String ResourceManager::GetEngineDataDirectory() const
-        { return EngineDataDir; }
+    {
+        return EngineDataDir;
+    }
+
+    String ResourceManager::GetLocalAppDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_local_appdata[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata)))
+        {
+            return path_local_appdata;
+        }
+        #elif LINUX
+        #elif MACOS
+        FSRef ref;
+        OSType folderType = kApplicationSupportFolderType;
+        char path[PATH_MAX];
+        FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
+        FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
+        return path;
+        #endif
+    }
+
+    String ResourceManager::GetShareableAppDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_appdata[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata)))
+        {
+            return path_appdata;
+        }
+        #elif LINUX
+        #elif MACOS
+        FSRef ref;
+        OSType folderType = kApplicationSupportFolderType;
+        char path[PATH_MAX];
+        FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
+        FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
+        return path;
+        #endif
+    }
+
+    String ResourceManager::GetCurrentUserDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_personal[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal)))
+        {
+            return path_personal;
+        }
+        #elif LINUX
+        #elif MACOS
+        #endif
+    }
+
+    String ResourceManager::GetCommonUserDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_common_personal[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal)))
+        {
+            return path_common_personal;
+        }
+        #elif LINUX
+        #elif MACOS
+        #endif
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Stream Management
@@ -269,7 +342,7 @@ namespace Mezzanine
         #ifdef MEZZDEBUG
         World::GetWorldPointer()->Log("Entering ResourceManager::GetResourceStream(const String& FileName)");
         #endif
-        internal::OgreDataStreamBuf *TempBuffer = new internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
+        Internal::OgreDataStreamBuf *TempBuffer = new Internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
         ResourceInputStream *Results =  new ResourceInputStream(TempBuffer, this);
         this->DeleteList.push_back(Results);
         #ifdef MEZZDEBUG

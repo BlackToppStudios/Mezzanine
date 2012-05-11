@@ -43,14 +43,14 @@
 
 #include "datatypes.h"
 
-#include "internalbulletfile.h.cpp"
+#include "Internal/bulletfile.h.cpp"
 
 //#include <Ogre.h>
 //#include <btBulletDynamicsCommon.h>
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @internal

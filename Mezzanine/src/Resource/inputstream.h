@@ -47,7 +47,7 @@
 namespace Mezzanine
 {
 	//Forward Declarations
-	namespace internal
+	namespace Internal
 	{
 		class OgreDataStreamBuf;
 	}
@@ -62,12 +62,12 @@ namespace Mezzanine
 	class MEZZ_LIB ResourceInputStream : public std::istream
 	{
 		private:
-			internal::OgreDataStreamBuf* OgreBuffer;
+			Internal::OgreDataStreamBuf* OgreBuffer;
 			ResourceManager* Manager;
 
 			/// @internal
 			/// @brief Called by the constructors to actually construct this class
-			/// @param InputBuffer A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it.
+			/// @param InputBuffer A pointer to an Internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it.
 			/// @param ResourceManager_ Currently unused, future functionality may tuse this.
 			void Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_);
 
@@ -75,7 +75,7 @@ namespace Mezzanine
 
 		public:
 			/// @brief Descriptive Constructor
-			/// @param InputBuffer A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it.
+			/// @param InputBuffer A pointer to an Internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it.
 			/// @param ResourceManager_ Currently unused, future functionality may tuse this.
 			/// @warning Do not delete the InputBuffer you pass in, this class will assume owner ship and delete it on it's own
 			ResourceInputStream(std::streambuf *InputBuffer, ResourceManager* ResourceManager_) :

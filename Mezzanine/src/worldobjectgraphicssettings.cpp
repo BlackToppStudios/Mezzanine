@@ -59,7 +59,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         /// @internal
         /// @brief Used to store internal data about an world objects.
@@ -97,7 +97,7 @@ namespace Mezzanine
     WorldObjectGraphicsSettings::WorldObjectGraphicsSettings(WorldObject* WO, Ogre::Entity* GraphicsObject)
         : Parent(WO)
     {
-        this->IWOGS = new internal::InternalWorldObjectGraphicsSettings(GraphicsObject);
+        this->IWOGS = new Internal::InternalWorldObjectGraphicsSettings(GraphicsObject);
         if(IWOGS->WorldObjectEnt)
             WorldObjectMesh = MeshManager::GetSingletonPtr()->GetMesh(GraphicsObject->getMesh()->getName());
     }

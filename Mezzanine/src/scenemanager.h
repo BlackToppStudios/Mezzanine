@@ -62,7 +62,7 @@ namespace Mezzanine
     class Entity;
     class WorldNode;
 
-    namespace internal
+    namespace Internal
     {
         class SceneManagerData;
     }
@@ -109,7 +109,7 @@ namespace Mezzanine
                 SkyDome     = 3         ///< A multifaceted hemispherical dome, the most sophisticated sky background.
             };
         private:
-            internal::SceneManagerData* SMD;
+            Internal::SceneManagerData* SMD;
 
         protected:
             /// @brief Vector storing all the nodes in use by this class.
@@ -468,7 +468,7 @@ namespace Mezzanine
             /// @internal
             /// @brief Gets the raw internal internal data.
             /// @return Returns a to the raw internal data.
-            internal::SceneManagerData* GetRawInternalDataPointer() const;
+            Internal::SceneManagerData* GetRawInternalDataPointer() const;
     };//SceneManager
 
     ///////////////////////////////////////////////////////////////////////////////

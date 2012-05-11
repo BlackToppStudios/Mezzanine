@@ -56,11 +56,11 @@ namespace Mezzanine
 {
 
 ///////////////////////////////////////////////////////////////////////////////
-// Mezzanine::internal::Line3D
+// Mezzanine::Internal::Line3D
 ///////////////////////////////////////
 
     //We need to decalare an internal class to make this work.
-    namespace internal
+    namespace Internal
     {
         /// @internal
         /// @brief Does the bulk of the work that that the Mezzanine::LineGroup performs
@@ -304,7 +304,7 @@ namespace Mezzanine
     LineGroup::LineGroup(World *Parent_)
     {
         this->Parent = Parent_;
-        this->LineData = new internal::Line3D();
+        this->LineData = new Internal::Line3D();
     }
 
     LineGroup::~LineGroup(void)

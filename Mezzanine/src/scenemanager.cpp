@@ -57,7 +57,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         /// @brief Stores internal data for the SCeneManager to keep it from cluttering the Header file
         /// @internal
@@ -179,7 +179,7 @@ namespace Mezzanine
 
     SceneManager::SceneManager(const String& InternalManagerTypeName)
     {
-        this->SMD = new internal::SceneManagerData(this);
+        this->SMD = new Internal::SceneManagerData(this);
         this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
         this->Priority = 25;
         //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
@@ -190,7 +190,7 @@ namespace Mezzanine
 #ifdef MEZZXML
     SceneManager::SceneManager(xml::Node& XMLNode)
     {
-        this->SMD = new internal::SceneManagerData(this);
+        this->SMD = new Internal::SceneManagerData(this);
         this->Priority = 25;
 
         xml::Attribute CurrAttrib;
@@ -726,7 +726,7 @@ namespace Mezzanine
     Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
         { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
 
-    internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
+    Internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
         { return this->SMD; }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -816,7 +816,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                 << "<ShadowColour>" << Ev.GetShadowColour() << "</ShadowColour>"
                 << "<AmbientLight>" << Ev.GetAmbientLight() << "</AmbientLight>";
 
-                Mezzanine::internal::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
+                Mezzanine::Internal::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
                 switch (Ev.WhichSky())
                 {
                     case Mezzanine::SceneManager::SkyNone:

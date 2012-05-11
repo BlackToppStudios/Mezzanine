@@ -89,7 +89,7 @@ namespace Mezzanine
     class EventUserInput;
     class EventQuit;
 
-    namespace internal {
+    namespace Internal {
         class EventManagerInternalData;
     }
 
@@ -126,7 +126,7 @@ namespace Mezzanine
         private:
             /// @internal
             /// @brief All the internal data for this EventManager
-            internal::EventManagerInternalData* _Data;
+            Internal::EventManagerInternalData* _Data;
 
             /// @internal
             /// @brief Checks for quit messages and adds them to the queue

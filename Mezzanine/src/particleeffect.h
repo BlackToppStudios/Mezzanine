@@ -56,7 +56,7 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         struct ParticleEffectInternalData;
     }
@@ -76,7 +76,7 @@ namespace Mezzanine
         private:
             /// @internal
             /// @brief The internal data for the particle effect
-            internal::ParticleEffectInternalData* Pie;
+            Internal::ParticleEffectInternalData* Pie;
             /// @internal
             /// @brief Vector of emitters in use by this particle effect.
             std::vector<ParticleEmitter*> Emitters;
