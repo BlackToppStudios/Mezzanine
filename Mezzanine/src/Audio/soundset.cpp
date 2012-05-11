@@ -37,57 +37,40 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _audioplaylist_cpp
-#define _audioplsylist_cpp
+#ifndef _audiosoundset_cpp
+#define _audiosoundset_cpp
 
-#include "audioplaylist.h"
-#include "audiosound.h"
-#include <vector>
-#include <algorithm>
+#include "Audio/soundset.h"
+#include "stringtool.h"
 
 namespace Mezzanine
 {
     namespace Audio
     {
-        Playlist::Playlist()
+        Whole SoundSet::UnnamedInstanceCount = 0;
+
+        // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
+        SoundSet::SoundSet()
+            { Name = StringTool::StringCat("SoundSet",StringTool::ConvertToString(UnnamedInstanceCount++)); }
+
+        SoundSet::SoundSet(const String& _Name)
+            : Name(_Name) {}
+
+        const String& SoundSet::GetName() const
+            { return Name; }
+
+        xml::Node SoundSet::ProtoSerialize() const
         {
+
         }
 
-        Playlist::~Playlist()
+        void SoundSet::ProtoDeSerialize(const xml::Node&)
         {
+
         }
 
-        void Playlist::AddSound(Sound* ToAdd)
-        {
-            this->push_back(ToAdd);
-        }
-
-        void Playlist::ShuffleList()
-        {
-            std::vector< Audio::Sound* > temp( this->begin(), this->end() );
-            std::random_shuffle( temp.begin(), temp.end() );
-            this->assign( temp.begin(), temp.end() );
-        }
-
-        bool Playlist::ContainsSound(Sound* TheSound)
-        {
-            for( std::list< Audio::Sound* >::iterator it = this->begin() ; it != this->end() ; ++it )
-            {
-                if(TheSound == (*it))
-                    return true;
-            }
-            return false;
-        }
-
-        bool Playlist::ContainsSound(const String& SoundName)
-        {
-            for( std::list< Audio::Sound* >::iterator it = this->begin() ; it != this->end() ; ++it )
-            {
-                if(SoundName == (*it)->GetName())
-                    return true;
-            }
-            return false;
-        }
+        String SoundSet::SerializableName()
+            { return String("SoundSet"); }
     }//Audio
 }//Mezzanine
 

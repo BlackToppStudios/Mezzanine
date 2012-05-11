@@ -40,9 +40,9 @@
 #ifndef _audiomusicplayer_cpp
 #define _audiomusicplayer_cpp
 
-#include "audiomusicplayer.h"
-#include "audioplaylist.h"
-#include "audiosound.h"
+#include "Audio/musicplayer.h"
+#include "Audio/playlist.h"
+#include "Audio/sound.h"
 #include "world.h"
 
 namespace Mezzanine

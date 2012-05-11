@@ -40,7 +40,7 @@
 #ifndef _audiolistener_cpp
 #define _audiolistener_cpp
 
-#include "audiolistener.h"
+#include "Audio/listener.h"
 #include <cAudio.h>
 
 namespace Mezzanine

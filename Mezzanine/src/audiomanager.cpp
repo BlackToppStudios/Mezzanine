@@ -41,10 +41,10 @@
 #define _audiomanager_cpp
 
 #include "audiomanager.h"
-#include "audiosound.h"
-#include "audiolistener.h"
-#include "audiosoundset.h"
-#include "audiomusicplayer.h"
+#include "Audio/sound.h"
+#include "Audio/listener.h"
+#include "Audio/soundset.h"
+#include "Audio/musicplayer.h"
 #include "world.h"
 #include "stringtool.h"
 #include <cAudio.h>

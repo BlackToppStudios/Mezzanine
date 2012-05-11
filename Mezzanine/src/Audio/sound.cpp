@@ -40,7 +40,7 @@
 #ifndef _audiosound_cpp
 #define _audiosound_cpp
 
-#include "audiosound.h"
+#include "Audio/sound.h"
 #include "audiomanager.h"
 #include "world.h"
 #include <cAudio.h>

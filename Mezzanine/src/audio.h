@@ -54,10 +54,10 @@ namespace Mezzanine
 
 #include "audioenumerations.h"
 
-#include "audiolistener.h"
-#include "audiomusicplayer.h"
-#include "audioplaylist.h"
-#include "audiosound.h"
-#include "audiosoundset.h"
+#include "Audio/listener.h"
+#include "Audio/musicplayer.h"
+#include "Audio/playlist.h"
+#include "Audio/sound.h"
+#include "Audio/soundset.h"
 
 #endif
