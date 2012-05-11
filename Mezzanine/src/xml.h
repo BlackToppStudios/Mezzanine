@@ -86,7 +86,7 @@
 #include "crossplatform.h"
 #include "xmldoc.h"
 #include "exception.h"
-#include "resourcedatastream.h"
+#include "Resource/datastream.h"
 
 #ifndef XML_NO_STL
 namespace std

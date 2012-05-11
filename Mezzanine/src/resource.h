@@ -54,12 +54,12 @@ namespace Mezzanine
 
 #include "resourceenumerations.h"
 
-#include "resourcearchive.h"
-#include "resourceasset.h"
-#include "resourceassetgroup.h"
-#include "resourceassethandler.h"
-#include "resourcedatastream.h"
-#include "resourceinputstream.h"
-#include "resourcetextsettingsfile.h"
+#include "Resource/archive.h"
+#include "Resource/asset.h"
+#include "Resource/assetgroup.h"
+#include "Resource/assethandler.h"
+#include "Resource/datastream.h"
+#include "Resource/inputstream.h"
+#include "Resource/textsettingsfile.h"
 
 #endif

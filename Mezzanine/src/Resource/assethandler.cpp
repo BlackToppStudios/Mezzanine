@@ -37,21 +37,21 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resourcearchive_cpp
-#define _resourcearchive_cpp
+#ifndef _resourceassethandler_cpp
+#define _resourceassethandler_cpp
 
-#include "resourcearchive.h"
+#include "Resource/assethandler.h"
 
 namespace Mezzanine
 {
     namespace Resource
     {
-        Archive::Archive()
+        AssetHandler::AssetHandler()
         {
 
         }
 
-        Archive::~Archive()
+        AssetHandler::~AssetHandler()
         {
 
         }

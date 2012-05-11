@@ -40,7 +40,7 @@
 #ifndef _resourceinputstream_cpp
 #define _resourceinputstream_cpp
 
-#include "resourceinputstream.h"
+#include "Resource/inputstream.h"
 
 #include "internalogredatastreambuf.h.cpp"
 

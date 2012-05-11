@@ -42,7 +42,7 @@
 
 #include "objectsettings.h"
 #include "resourcemanager.h"
-#include "resourcedatastream.h"
+#include "Resource/datastream.h"
 #include "stringtool.h"
 #include "world.h"
 

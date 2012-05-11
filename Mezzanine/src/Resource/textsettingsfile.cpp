@@ -40,7 +40,7 @@
 #ifndef _resourcetextsettingsfile_cpp
 #define _resourcetextsettingsfile_cpp
 
-#include "resourcetextsettingsfile.h"
+#include "Resource/textsettingsfile.h"
 #include "stringtool.h"
 #include "world.h"
 

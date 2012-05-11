@@ -40,7 +40,7 @@
 #ifndef _resourcedatastream_cpp
 #define _resourcedatastream_cpp
 
-#include "resourcedatastream.h"
+#include "Resource/datastream.h"
 #include "stringtool.h"
 #include "world.h"
 

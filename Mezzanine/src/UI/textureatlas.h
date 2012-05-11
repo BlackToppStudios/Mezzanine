@@ -43,7 +43,7 @@
 #include "vector2.h"
 #include "colourvalue.h"
 #include "uienumerations.h"
-#include "resourcetextsettingsfile.h"
+#include "Resource/textsettingsfile.h"
 
 namespace Ogre
 {
