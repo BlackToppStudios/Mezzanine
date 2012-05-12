@@ -120,6 +120,12 @@ namespace Mezzanine
             /// @return A String that contains the pathname
             String GetEngineDataDirectory() const;
 
+            /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
+            /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.
+            /// The valid variables are as follows: LocalAppData, ShareableAppData, CurrentUserData, and CommonUserData.  These are not case sensative.
+            /// @param PathVar String containing the name of the path variable.
+            /// @return Returns the actual path of the variable provided.
+            String ResolveDataPathFromString(const String& PathVar);
             /// @brief Gets the path to the directory intended for game and engine config data that is not meant to be shared.
             /// @return Returns a string containing the path to the Local Application Data Directory.
             String GetLocalAppDataDir() const;

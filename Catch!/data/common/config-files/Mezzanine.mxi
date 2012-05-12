@@ -9,6 +9,10 @@
 	<DefaultActorManager>
 	</DefaultActorManager>
 	<DefaultAudioManager>
+		<SettingsPath Path="$ShareableAppData$/.Catch/" />
+		<SettingsFiles> 
+			<SettingsFile FileName="AudioSettings.mxs" />
+		</SettingsFiles>
 	</DefaultAudioManager>
 	<DefaultCameraManager>
 	</DefaultCameraManager>

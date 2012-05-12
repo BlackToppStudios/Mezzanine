@@ -343,6 +343,49 @@ namespace Mezzanine
             }
         }
 
+        // Load additional resource groups
+        if(!ResourceInit.empty())
+        {
+            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
+            xml::Document ResourceDoc;
+            ResourceDoc.Load(ResourceStream);
+            // Get an iterator to the first resource group node, and declare them all.
+            xml::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
+            for( xml::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
+            {
+                String GroupName, GroupType, GroupPath;
+                bool GroupRecursive = false;
+                // Get the group path
+                CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
+                if(!CurrAttrib.Empty())
+                    GroupPath = CurrAttrib.AsString();
+                // Get the group type
+                CurrAttrib = (*GroupIt).GetAttribute("GroupType");
+                if(!CurrAttrib.Empty())
+                    GroupType = CurrAttrib.AsString();
+                // Get the group name
+                CurrAttrib = (*GroupIt).GetAttribute("GroupName");
+                if(!CurrAttrib.Empty())
+                    GroupName = CurrAttrib.AsString();
+                // Get whether this is recursive
+                CurrAttrib = (*GroupIt).GetAttribute("Recursive");
+                if(!CurrAttrib.Empty())
+                    GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
+                // Finally create the resource location.
+                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
+            }
+            // Get what resource groups should be initialized.
+            xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
+            for( xml::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
+            {
+                String GroupName;
+                CurrAttrib = (*InitIt).GetAttribute("GroupName");
+                if(!CurrAttrib.Empty())
+                    GroupName = CurrAttrib.AsString();
+                ResourceMan->InitAssetGroup(GroupName);
+            }
+        }
+
         // Create the requested managers and set their necessary values.
         xml::Node Managers = InitDoc.GetChild("Managers");
         for( xml::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )

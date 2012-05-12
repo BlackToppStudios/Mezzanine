@@ -331,7 +331,17 @@ namespace Mezzanine
     // Setting Path Management
     void ObjectSettingsHandler::SetSettingsFilePath(const String& Path)
     {
-        this->SettingsFilePath = Path;
+        size_t FirstDol = Path.find_first_of('$');
+        size_t SecondDol = Path.find_first_of('$',FirstDol+1);
+        if(FirstDol != String::npos && SecondDol != String::npos)
+        {
+            String PathKeyWord = Path.substr(FirstDol+1,(SecondDol-FirstDol)-1);
+            String RestOfPath = Path.substr(SecondDol+1);
+            String ActualPath = ResourceManager::GetSingletonPtr()->ResolveDataPathFromString(PathKeyWord);
+            this->SettingsFilePath = ActualPath+RestOfPath;
+        }else{
+            this->SettingsFilePath = Path;
+        }
     }
 
     const String& ObjectSettingsHandler::GetSettingsFilePath() const
@@ -351,7 +361,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Loading Utilities
-    void ObjectSettingsHandler::LoadSettings(const String& FileName, const String& Group)
+    void ObjectSettingsHandler::LoadSettingsFromGroup(const String& FileName, const String& Group)
     {
         String FilePath = ResourceManager::GetSingletonPtr()->GetAssetPath(FileName,Group);
         if( FilePath.empty() )
@@ -361,6 +371,11 @@ namespace Mezzanine
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
         LoadSettingsFromFile(FileName,FilePath);
+    }
+
+    void ObjectSettingsHandler::LoadSettings(const String& FileName, const String& Path)
+    {
+        LoadSettingsFromFile(FileName,Path);
     }
 
     void ObjectSettingsHandler::LoadSettings(const String& FileName)

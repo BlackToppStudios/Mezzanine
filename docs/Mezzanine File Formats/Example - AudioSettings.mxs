@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!-- This file defines a collection of groups of preset settings that can be applied en-mass. -->
+<!-- And group with the name "Current" will have it's settings applied immediately when loaded. -->
+<DefaultAudioManagerSettings>
+	<Current>
+		<!-- DeviceName is a string.  DeviceIndex is an unsigned int.  OutputFrequency and EAXEffectSlots are both ints. -->
+		<!-- DeviceName may be expanded to permit other realistic settings since naming the system specific device isn't practical. -->
+		<!-- DeviceName and DeviceIndex are mutually exclusive.  If both are defined DeviceIndex is ignored. -->
+		<DeviceSettings DeviceName="Default" DeviceIndex="0" OutputFrequency="-1" EAXEffectSlots="4" />
+		<!-- Muted is a bool. -->
+		<Mute Muted="false" />
+		<!-- The volume values must be a float from 0.0 to 1.0. -->
+		<Volume Ambient="1.0" Dialog="1.0" Effects="1.0" Music="1.0" Master="1.0" />
+	</Current>
+</DefaultAudioManagerSettings>

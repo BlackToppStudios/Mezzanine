@@ -183,6 +183,22 @@ namespace Mezzanine
         return EngineDataDir;
     }
 
+    String ResourceManager::ResolveDataPathFromString(const String& PathVar)
+    {
+        String LowerVar = PathVar;
+        StringTool::ToLowerCase(LowerVar);
+        if(LowerVar == "localappdata") return GetLocalAppDataDir();
+        else if(LowerVar == "shareableappdata") return GetShareableAppDataDir();
+        else if(LowerVar == "currentuserdata") return GetCurrentUserDataDir();
+        else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
+        else
+        {
+            StringStream exceptionstream;
+            exceptionstream << "Attempting to retrieve unknown path variable: \"" << PathVar << "\".";
+            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+        }
+    }
+
     String ResourceManager::GetLocalAppDataDir() const
     {
         #ifdef WINDOWS
@@ -192,6 +208,7 @@ namespace Mezzanine
             return path_local_appdata;
         }
         #elif LINUX
+        /// @todo Implement this.
         #elif MACOS
         FSRef ref;
         OSType folderType = kApplicationSupportFolderType;
@@ -211,6 +228,7 @@ namespace Mezzanine
             return path_appdata;
         }
         #elif LINUX
+        /// @todo Implement this.
         #elif MACOS
         FSRef ref;
         OSType folderType = kApplicationSupportFolderType;
@@ -230,7 +248,9 @@ namespace Mezzanine
             return path_personal;
         }
         #elif LINUX
+        /// @todo Implement this.
         #elif MACOS
+        /// @todo Implement this.
         #endif
     }
 
@@ -243,7 +263,9 @@ namespace Mezzanine
             return path_common_personal;
         }
         #elif LINUX
+        /// @todo Implement this.
         #elif MACOS
+        /// @todo Implement this.
         #endif
     }
 

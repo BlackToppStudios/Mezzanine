@@ -252,7 +252,11 @@ namespace Mezzanine
             /// @brief Loads settings from a settings file.
             /// @param FileName The name of the file to load and parse.
             /// @param Group The asset group where the file can be found.
-            void LoadSettings(const String& FileName, const String& Group);
+            void LoadSettingsFromGroup(const String& FileName, const String& Group);
+            /// @brief Loads settings from a settings file.
+            /// @param FileName The name of the file to load and parse.
+            /// @param Path The filesystem path where the file can be found.
+            void LoadSettings(const String& FileName, const String& Path);
             /// @brief Loads settings from a settings file using the specified settings path.
             /// @note Using this function means it will use the preset settings file path stored in this handler.
             /// The path must be set before calling this.
