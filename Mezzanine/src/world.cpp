@@ -344,7 +344,7 @@ namespace Mezzanine
         }
 
         // Load additional resource groups
-        if(!ResourceInit.empty())
+        /*if(!ResourceInit.empty())
         {
             Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
             xml::Document ResourceDoc;
@@ -384,7 +384,7 @@ namespace Mezzanine
                     GroupName = CurrAttrib.AsString();
                 ResourceMan->InitAssetGroup(GroupName);
             }
-        }
+        }//*/
 
         // Create the requested managers and set their necessary values.
         xml::Node Managers = InitDoc.GetChild("Managers");
