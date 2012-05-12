@@ -107,7 +107,10 @@ namespace Mezzanine
             else if( "GameWindow" == SecName )
             {
                 String WinCaption("Mezzanine Window");
-                Whole WinWidth, WinHeight, WinFlags;
+                Whole WinWidth = 800;
+                Whole WinHeight = 600;
+                Whole WinFlags = 0;
+                //GameWindow::WindowFlags WinFlags;
                 GameWindow::ViewportLayout VPLayout = GameWindow::VL_Custom;
 
                 // Get the caption.
