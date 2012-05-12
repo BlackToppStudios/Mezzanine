@@ -179,8 +179,50 @@ namespace Mezzanine
     {
     }
 
-    ManagerBase::ManagerTypeName TerrainManager::GetType() const
+    ManagerBase::ManagerType TerrainManager::GetInterfaceType() const
         { return ManagerBase::TerrainManager; }
-}
+
+    String TerrainManager::GetImplementationTypeName() const
+        { return "DefaultTerrainManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultTerrainManagerFactory Methods
+
+    DefaultTerrainManagerFactory::DefaultTerrainManagerFactory()
+    {
+    }
+
+    DefaultTerrainManagerFactory::~DefaultTerrainManagerFactory()
+    {
+    }
+
+    String DefaultTerrainManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultTerrainManager";
+    }
+
+    ManagerBase* DefaultTerrainManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(TerrainManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return TerrainManager::GetSingletonPtr();
+        }else return new TerrainManager();
+    }
+
+    ManagerBase* DefaultTerrainManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(TerrainManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return TerrainManager::GetSingletonPtr();
+        }else return new TerrainManager(XMLNode);
+    }
+
+    void DefaultTerrainManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

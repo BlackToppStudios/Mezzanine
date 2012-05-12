@@ -41,6 +41,7 @@
 #define _graphicsmanager_h
 
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 #include "graphicssettings.h"
 #include "enumerations.h"
@@ -95,7 +96,6 @@ namespace Mezzanine
             String ConvertRenderSystem(const Mezzanine::RenderSystem& RS);
 
             void InitOgreRenderSystem();
-            void ShutdownSDL();
 
             Ogre::Timer* RenderTimer;
             GameWindow* PrimaryGameWindow;
@@ -105,9 +105,6 @@ namespace Mezzanine
 
             bool OgreBeenInitialized;
         public:
-            /// @internal
-            /// @brief SDL is used for use input, and must be initialized prior to use.
-            static void InitSDL();
 
             /// @brief Basic constructor
             /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
@@ -212,23 +209,44 @@ namespace Mezzanine
             /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
             virtual void SwapAllBuffers(bool WaitForVsync);
 
-        //Inherited from ManagerBase
-            /// @brief Empty Initializor
-            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
-            /// in case a derived class wants to override it for some reason
+            ///////////////////////////////////////////////////////////////////////////////
+            //Inherited from ManagerBase
+
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
-
-            /// @brief This is where the rendering takes place.
-            /// @details This does the rendering for the game using all the actors in the actormanager.
+            /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::GraphicsManager
-            virtual ManagerTypeName GetType() const;
-
-            /// @brief This is derived from and uses the ManagerBase to perform the the post main loop callbacks
-            /// @return This returns a true or false depending on what the callback returns
+            /// @copydoc ManagerBase::PostMainLoopItems()
             virtual bool PostMainLoopItems();
-    };
-}
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//GraphicsManager
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultGraphicsManagerFactory
+    /// @headerfile graphicsmanager.h
+    /// @brief A factory responsible for the creation and destruction of the default graphicsmanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultGraphicsManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultGraphicsManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultGraphicsManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultGraphicsManagerFactory
+}//Mezzanine
 #endif

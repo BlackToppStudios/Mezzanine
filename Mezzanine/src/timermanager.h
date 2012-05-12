@@ -41,6 +41,7 @@
 #define _timermanager_h
 
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 #include "datatypes.h"
 #include "timer.h"
@@ -99,20 +100,43 @@ namespace Mezzanine
             /// @param ToBeDestroyed A pointer to the timer class to be destroyed.
             virtual void DestroyTimer(Timer* ToBeDestroyed);
 
-            //Inherited From ManagerBase
-            /// @brief Empty Initializor.
-            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
-            /// in case a derived class wants to override it for some reason.
+            ///////////////////////////////////////////////////////////////////////////////
+            //Inherited from ManagerBase
+
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
-
-            /// @brief Items to be done during the mainloop.
-            /// @details Updates all the timers.
+            /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//TimerManager
 
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::TimerManager.
-            virtual ManagerTypeName GetType() const;
-    };
-}
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultTimerManagerFactory
+    /// @headerfile timermanager.h
+    /// @brief A factory responsible for the creation and destruction of the default timermanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultTimerManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultTimerManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultTimerManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultTimerManagerFactory
+}//Mezzanine
 
 #endif

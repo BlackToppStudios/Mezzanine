@@ -130,9 +130,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
 {
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     UIManager* UIMan = UIManager::GetSingletonPtr();
-
-    UI::Menu* MainMenu = static_cast<UI::Menu*>( UIMan->GetLayer("MainMenuLayer")->GetWidget("MS_Menu") );
-    UI::PagedCellGrid* Grid = static_cast<UI::PagedCellGrid*>( MainMenu->GetRootWindow()->GetChildMenuWindow("MS_LevelSelect")->GetWidget("MS_LevelGrid") );
+    UI::PagedCellGrid* Grid = GetLevelGrid();
 
     Grid->DestroyAllCells();
     UI::RenderableRect CellRect(Vector2(0.1,0.1),Vector2(0.33,0.11),true);
@@ -159,9 +157,9 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
         CurrCell->GetLevelTitle()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
 
         /// @todo This need to be changed to a sprite with stars or something to show the progression instead of the number.
-        CurrCell->GetEarnedMaxScore()->SetText( StringTool::ConvertToString(Profile->GetHighestScore(LevelName)) );// */
+        CurrCell->GetEarnedScore()->SetText( StringTool::ConvertToString(Profile->GetHighestScore(LevelName)) );// */
 
-        CurrCell->GetEarnedMaxScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
+        CurrCell->GetEarnedScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
         if(Previews->count(LevelName+".mta"))
         {
             UIMan->LoadMTA(LevelName);
@@ -263,6 +261,13 @@ void ProfileManager::SetActiveProfile(GameProfile* Profile)
 GameProfile* ProfileManager::GetActiveProfile() const
 {
     return ActiveProfile;
+}
+
+UI::PagedCellGrid* ProfileManager::GetLevelGrid() const
+{
+    UI::Menu* MainMenu = static_cast<UI::Menu*>( UIManager::GetSingletonPtr()->GetLayer("MainMenuLayer")->GetWidget("MS_Menu") );
+    UI::PagedCellGrid* Grid = static_cast<UI::PagedCellGrid*>( MainMenu->GetRootWindow()->GetChildMenuWindow("MS_LevelSelect")->GetWidget("MS_LevelGrid") );
+    return Grid;
 }
 
 #endif

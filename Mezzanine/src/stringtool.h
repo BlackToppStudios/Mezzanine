@@ -150,6 +150,10 @@ namespace Mezzanine
             /// @param ToConvert The string to be converted to a Real.
             /// @return Returns a Real with the converted value.
             static Real ConvertToReal(const String& ToConvert);
+            /// @brief Converts a string into an Integer.
+            /// @param ToConvert The string to be converted to an Integer.
+            /// @return Returns an Integer with the converted value.
+            static Integer ConvertToInteger(const String& ToConvert);
             /// @brief Converts a string into an Int8.
             /// @param ToConvert The string to be converted to an Int8.
             /// @return Returns an Int8 with the converted value.
@@ -178,10 +182,18 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Convert-To-String functions
 
-            /// @brief Converts an Int8 into a string.
-            /// @param ToConvert The Int8 to be converted.
+            /// @brief Converts a bool into a string.
+            /// @param ToConvert The bool to be converted.
+            /// @return Returns "true" if true, or "false" if false.
+            static String ConvertToString(const bool ToConvert);
+            /// @brief Converts an Real into a string.
+            /// @param ToConvert The Real to be converted.
             /// @return Returns a string containing the converted input.
             static String ConvertToString(const Real& ToConvert);
+            /// @brief Converts an Integer into a string.
+            /// @param ToConvert The Integer to be converted.
+            /// @return Returns a string containing the converted input.
+            static String ConvertToString(const Integer& ToConvert);
             /// @brief Converts an Int8 into a string.
             /// @param ToConvert The Int8 to be converted.
             /// @return Returns a string containing the converted input.

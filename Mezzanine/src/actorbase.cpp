@@ -52,12 +52,13 @@
 #include "actorphysicssettings.h"
 #include "serialization.h"
 #include "audiomanager.h"
-#include "audiosoundset.h"
+#include "Audio/soundset.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "world.h"
 #include "xml.h"
-#include "internalmotionstate.h.cpp"
-#include "internalmeshtools.h.cpp"
+#include "Internal/motionstate.h.cpp"
+#include "Internal/meshtools.h.cpp"
 
 /// @file
 /// @brief Code used by all actors is implemented here.

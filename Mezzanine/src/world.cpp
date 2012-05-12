@@ -71,23 +71,35 @@ namespace Mezzanine
         PhysicsConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
-        this->Construct(PhysicsInfo, SceneManager::Generic, "plugins.cfg",".", "Mezzanine.log", temp);
+        this->Construct(PhysicsInfo,"DefaultSceneManager","plugins.cfg",".","Mezzanine.log",temp);
     }
 
 #ifdef MEZZXML
-    World::World(const String& EngineDataPath, const String& InitializerFile)
+    World::World(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
     {
-        if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,InitializerFile);
+        if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
+        //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
+        else throw(Exception("Attempting to initialze Mezzanine from an unsupported file type."));
+    }
+
+    World::World(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
+    {
+        for( std::vector<ManagerFactory*>::iterator it = CustomFactories.begin() ; it != CustomFactories.end() ; ++it )
+        {
+            AddManagerFactory( (*it) );
+        }
+
+        if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
         //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
         else throw(Exception("Attempting to initialze Mezzanine from an unsupported file type."));
     }
 #endif
 
     World::World(   const PhysicsConstructionInfo& PhysicsInfo,
-                    SceneManager::SceneManagerType SceneType,
-                    const String &PluginsFileName,
-                    const String &EngineDataPath,
-                    std::string LogFileName)
+                    const String& SceneType,
+                    const String& PluginsFileName,
+                    const String& EngineDataPath,
+                    const String& LogFileName)
     {
         std::vector <ManagerBase*> temp;
         this->Construct(PhysicsInfo,
@@ -99,10 +111,10 @@ namespace Mezzanine
     }
 
     World::World(  const PhysicsConstructionInfo& PhysicsInfo,
-                    SceneManager::SceneManagerType SceneType,
-                    const String &PluginsFileName,
-                    const String &EngineDataPath,
-                    const std::string &LogFileName,
+                    const String& SceneType,
+                    const String& PluginsFileName,
+                    const String& EngineDataPath,
+                    const String& LogFileName,
                     const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
         this->Construct(PhysicsInfo,
@@ -133,12 +145,14 @@ namespace Mezzanine
     }
 
     void World::Construct(  const PhysicsConstructionInfo& PhysicsInfo,
-                                SceneManager::SceneManagerType SceneType,
-                                String PluginsFileName,
-                                String EngineDataPath,
-                                String LogFileName,
+                                const String& SceneType,
+                                const String& PluginsFileName,
+                                const String& EngineDataPath,
+                                const String& LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
+        //Add default manager factories
+        AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values
         this->TargetFrameLength = 16;
         this->FrameTime = 0;
@@ -187,8 +201,10 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    void World::ConstructFromXML(const String& EngineDataPath, const String& InitializerFile)
+    void World::ConstructFromXML(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
     {
+        //Add default manager factories
+        AddAllEngineDefaultManagerFactories();
         //Set some sane Defaults for some values.
         this->TargetFrameLength = 16;
         this->FrameTime = 0;
@@ -208,12 +224,14 @@ namespace Mezzanine
         String PluginExtension, PluginPath;
 
         // Create or set the resource manager.
+        /// @todo This currently forces our default resource manager to be constructed, which isn't in line with our factory/initiailzation design.
+        /// This should be addressed somehow.
         if(ResourceManager::SingletonValid()) AddManager(ResourceManager::GetSingletonPtr());
-        else AddManager(new ResourceManager(EngineDataPath));
+        else AddManager(new ResourceManager(EngineDataPath,ArchiveType));
 
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();
-        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath,Resource::DataStream::SF_None);
+        Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath);
         xml::Document InitDoc;
         InitDoc.Load(InitStream);
 
@@ -300,7 +318,7 @@ namespace Mezzanine
         if(!PluginsInit.empty())
         {
             PluginExtension = ResourceMan->GetPluginExtension();
-            Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath,Resource::DataStream::SF_None);
+            Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath);
             xml::Document PluginDoc;
             PluginDoc.Load(PluginStream);
             // Get the plugin path, if it's there.
@@ -325,11 +343,56 @@ namespace Mezzanine
             }
         }
 
+        // Load additional resource groups
+        /*if(!ResourceInit.empty())
+        {
+            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
+            xml::Document ResourceDoc;
+            ResourceDoc.Load(ResourceStream);
+            // Get an iterator to the first resource group node, and declare them all.
+            xml::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
+            for( xml::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
+            {
+                String GroupName, GroupType, GroupPath;
+                bool GroupRecursive = false;
+                // Get the group path
+                CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
+                if(!CurrAttrib.Empty())
+                    GroupPath = CurrAttrib.AsString();
+                // Get the group type
+                CurrAttrib = (*GroupIt).GetAttribute("GroupType");
+                if(!CurrAttrib.Empty())
+                    GroupType = CurrAttrib.AsString();
+                // Get the group name
+                CurrAttrib = (*GroupIt).GetAttribute("GroupName");
+                if(!CurrAttrib.Empty())
+                    GroupName = CurrAttrib.AsString();
+                // Get whether this is recursive
+                CurrAttrib = (*GroupIt).GetAttribute("Recursive");
+                if(!CurrAttrib.Empty())
+                    GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
+                // Finally create the resource location.
+                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
+            }
+            // Get what resource groups should be initialized.
+            xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
+            for( xml::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
+            {
+                String GroupName;
+                CurrAttrib = (*InitIt).GetAttribute("GroupName");
+                if(!CurrAttrib.Empty())
+                    GroupName = CurrAttrib.AsString();
+                ResourceMan->InitAssetGroup(GroupName);
+            }
+        }//*/
+
         // Create the requested managers and set their necessary values.
         xml::Node Managers = InitDoc.GetChild("Managers");
         for( xml::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
         {
-            ManagerBase::ManagerTypeName CurrType = ManagerBase::GetTypeNameFromString((*ManIt).Name());
+            CreateManager( (*ManIt).Name(), (*ManIt) );
+
+            /*ManagerBase::ManagerType CurrType = ManagerBase::GetTypeNameFromString((*ManIt).Name());
             switch (CurrType)
             {
                 case ManagerBase::ActorManager:
@@ -432,7 +495,7 @@ namespace Mezzanine
                     }
                     else AddManager(new ResourceManager((*ManIt)));
                     break;
-                }//*/
+                }// /
                 case ManagerBase::SceneManager:
                 {
                     if(SceneManager::SingletonValid())
@@ -453,7 +516,7 @@ namespace Mezzanine
                     }
                     else AddManager(new ScriptingManager((*ManIt)));
                     break;
-                }//*/
+                }// /
                 case ManagerBase::TerrainManager:
                 {
                     if(TerrainManager::SingletonValid())
@@ -484,13 +547,13 @@ namespace Mezzanine
                     else AddManager(new UIManager((*ManIt)));
                     break;
                 }
-            }
+            }//*/
         }
 
         // Load additional resource groups
         if(!ResourceInit.empty())
         {
-            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath,Resource::DataStream::SF_None);
+            Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
             xml::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
@@ -516,14 +579,17 @@ namespace Mezzanine
                 if(!CurrAttrib.Empty())
                     GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
                 // Finally create the resource location.
-                ResourceMan->AddResourceLocation(GroupPath,GroupType,GroupName,GroupRecursive);
+                ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
             }
             // Get what resource groups should be initialized.
             xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
-            for( xml::AttributeIterator AttribIt = InitGroups.attributes_begin() ; AttribIt != InitGroups.attributes_end() ; ++AttribIt )
+            for( xml::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
             {
-                String GroupName = (*AttribIt).AsString();
-                ResourceMan->InitResourceGroup(GroupName);
+                String GroupName;
+                CurrAttrib = (*InitIt).GetAttribute("GroupName");
+                if(!CurrAttrib.Empty())
+                    GroupName = CurrAttrib.AsString();
+                ResourceMan->InitAssetGroup(GroupName);
             }
         }
 
@@ -573,7 +639,7 @@ namespace Mezzanine
         {
             if(!(*Iter)->IsInitialized())
             {
-                ManagerNames.push_back( (*Iter)->GetTypeName() );
+                ManagerNames.push_back( (*Iter)->GetInterfaceTypeAsString() );
             }
         }
 
@@ -604,22 +670,8 @@ namespace Mezzanine
     //tears the world down
     World::~World()
     {
-        ManagerBase* Current;
-        #ifdef MEZZDEBUG
-        String TypeName;
-        #endif
-        //for( std::list<ManagerBase*>::iterator iter = --this->ManagerList.end(); !ManagerList.empty(); iter = --this->ManagerList.end() ) //Backward
-        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
-        {
-            #ifdef MEZZDEBUG
-            //Be careful using this. Because the UImanager is deleted during scenemanager deconstruction, it may not be obvious when that memory is freed.
-            TypeName = (*iter)->GetTypeName();
-            std::cout << "Deleting " << TypeName << std::endl;
-            #endif
-            Current = (*iter);
-            RemoveManager(Current);
-            delete Current;
-        }
+        DestroyAllManagers();
+        DestroyAllManagerFactories();
 
         SDL_Quit();
 
@@ -779,18 +831,19 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Start the Game already
-    void World::GameInit( const bool &CallMainLoop )
+    // Initialization
+    ///////////////////////////////////////
+
+    void World::EngineInit( const bool &CallMainLoop )
     {
-        //#define MEZZDEBUG
         #ifdef MEZZDEBUG
-        this->Log("Entering GameInit()");
+        this->Log("Entering EngineInit()");
         #endif
 
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
-            this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager" << endl;
-            if((*Iter)->GetType() != ManagerBase::GraphicsManager)
+            this->LogStream << "Initializing " << (*Iter)->GetInterfaceTypeAsString() << " Manager" << endl;
+            if((*Iter)->GetInterfaceType() != ManagerBase::GraphicsManager)
             {
                 (*Iter)->Initialize();
             }
@@ -809,6 +862,10 @@ namespace Mezzanine
             #endif
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // MainLoop
+    ///////////////////////////////////////
 
     void World::MainLoop()
     {
@@ -841,7 +898,7 @@ namespace Mezzanine
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
                 #ifdef MEZZDEBUG
-                this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " - Priority: " << (*Iter)->GetPriority();
+                this->LogStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
                 //this->DoMainLoopLogging();
                 #endif
 
@@ -859,7 +916,7 @@ namespace Mezzanine
                     { DoNotBreak=false; }
 
                 #ifdef MEZZPROFILE
-                this->LogStream << (*Iter)->GetTypeName() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
+                this->LogStream << (*Iter)->GetInterfaceTypeAsString() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
                 this->Log();
                 #endif
 
@@ -896,12 +953,12 @@ namespace Mezzanine
         return this->TargetFrameLength;
     }
 
-    void World::SetTargetFrameTime(const Whole &NewTargetTime)
+    void World::SetTargetFrameTime(const Whole& NewTargetTime)
     {
         this->TargetFrameLength = NewTargetTime;
     }
 
-    void World::SetTargetFrameRate(const Whole &NewFrameRate)
+    void World::SetTargetFrameRate(const Whole& NewFrameRate)
     {
         this->SetTargetFrameTime( 1000/NewFrameRate );
     }
@@ -911,14 +968,157 @@ namespace Mezzanine
         return this->FrameTime;
     }
 
-    void World::SetFrameTime( const Whole &FrameTime_ )
+    void World::SetFrameTime( const Whole& FrameTime_ )
     {
         this->FrameTime = FrameTime_;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Factory Management
+    ///////////////////////////////////////
+    void World::AddManagerFactory(ManagerFactory* ToBeAdded)
+    {
+        ManagerFactories.insert(std::pair<String,ManagerFactory*>(ToBeAdded->GetManagerTypeName(),ToBeAdded));
+    }
+
+    void World::RemoveManagerFactory(ManagerFactory* ToBeRemoved)
+    {
+        RemoveManagerFactory(ToBeRemoved->GetManagerTypeName());
+    }
+
+    void World::RemoveManagerFactory(const String& ImplName)
+    {
+        ManagerFactoryIterator ManIt = ManagerFactories.find(ImplName);
+        if( ManIt != ManagerFactories.end() )
+        {
+            ManagerFactories.erase(ManIt);
+        }
+    }
+
+    void World::DestroyManagerFactory(ManagerFactory* ToBeRemoved)
+    {
+        DestroyManagerFactory(ToBeRemoved->GetManagerTypeName());
+    }
+
+    void World::DestroyManagerFactory(const String& ImplName)
+    {
+        ManagerFactoryIterator ManIt = ManagerFactories.find(ImplName);
+    }
+
+    void World::DestroyAllManagerFactories()
+    {
+        for( ManagerFactoryIterator ManIt = ManagerFactories.begin() ; ManIt != ManagerFactories.end() ; ++ManIt )
+        {
+            delete (*ManIt).second;
+        }
+        ManagerFactories.clear();
+    }
+
+    void World::AddAllEngineDefaultManagerFactories()
+    {
+        ManagerFactoryIterator ManIt;
+        //DefaultActorManager
+        ManIt = ManagerFactories.find("DefaultActorManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultActorManagerFactory());
+        //DefaultAudioManager
+        ManIt = ManagerFactories.find("DefaultAudioManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultAudioManagerFactory());
+        //DefaultCameraManager
+        ManIt = ManagerFactories.find("DefaultCameraManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultCameraManagerFactory());
+        //DefaultCollisionShapeManager
+        ManIt = ManagerFactories.find("DefaultCollisionShapeManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultCollisionShapeManagerFactory());
+        //DefaultEventManager
+        ManIt = ManagerFactories.find("DefaultEventManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultEventManagerFactory());
+        //DefaultGraphicsManager
+        ManIt = ManagerFactories.find("DefaultGraphicsManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultGraphicsManagerFactory());
+        //DefaultMeshManager
+        ManIt = ManagerFactories.find("DefaultMeshManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultMeshManagerFactory());
+        //DefaultNetworkManager
+        ManIt = ManagerFactories.find("DefaultNetworkManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultNetworkManagerFactory());
+        //DefaultPhysicsManager
+        ManIt = ManagerFactories.find("DefaultPhysicsManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultPhysicsManagerFactory());
+        //DefaultResourceManager
+        ManIt = ManagerFactories.find("DefaultResourceManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultResourceManagerFactory());
+        //DefaultSceneManager
+        ManIt = ManagerFactories.find("DefaultSceneManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultSceneManagerFactory());
+        //DefaultTerrainManager
+        ManIt = ManagerFactories.find("DefaultTerrainManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultTerrainManagerFactory());
+        //DefaultTimerManager
+        ManIt = ManagerFactories.find("DefaultTimerManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultTimerManagerFactory());
+        //DefaultUIManager
+        ManIt = ManagerFactories.find("DefaultUIManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultUIManagerFactory());
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Upper Management
     ///////////////////////////////////////
+    ManagerBase* World::CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToWorld)
+    {
+        ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
+        if( ManIt == ManagerFactories.end() )
+        {
+            StringStream exceptionstream;
+            exceptionstream << "Attempting to create manager of type \"" << ManagerImplName << "\", which has no factory registered.";
+            this->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        ManagerBase* NewMan = (*ManIt).second->CreateManager(Params);
+        if(AddToWorld)
+            AddManager(NewMan);
+    }
+#ifdef MEZZXML
+    ManagerBase* World::CreateManager(const String& ManagerImplName, xml::Node& XMLNode, bool AddToWorld)
+    {
+        ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
+        if( ManIt == ManagerFactories.end() )
+        {
+            StringStream exceptionstream;
+            exceptionstream << "Attempting to create manager of type \"" << ManagerImplName << "\", which has no factory registered.";
+            this->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        ManagerBase* NewMan = (*ManIt).second->CreateManager(XMLNode);
+        if(AddToWorld)
+            AddManager(NewMan);
+    }
+#endif
+    void World::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        ManagerFactoryIterator ManIt = ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
+        if( ManIt == ManagerFactories.end() )
+        {
+            StringStream exceptionstream;
+            exceptionstream << "Attempting to destroy manager of type \"" << ToBeDestroyed->GetImplementationTypeName() << "\", which has no factory registered.";
+            this->LogAndThrow(Exception(exceptionstream.str()));
+        }
+        RemoveManager(ToBeDestroyed);
+        (*ManIt).second->DestroyManager(ToBeDestroyed);
+    }
+
+    void World::DestroyAllManagers()
+    {
+        ManagerBase* Current;
+        //for( std::list<ManagerBase*>::iterator iter = --this->ManagerList.end(); !ManagerList.empty(); iter = --this->ManagerList.end() ) //Backward
+        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
+        {
+            Current = (*iter);
+            #ifdef MEZZDEBUG
+            std::cout << "Deleting " << Current->GetInterfaceTypeAsString() << std::endl;
+            #endif
+            DestroyManager(Current);
+        }
+    }
+
     void World::AddManager(ManagerBase* ManagerToAdd)
     {
         #ifdef MEZZDEBUG
@@ -928,7 +1128,10 @@ namespace Mezzanine
         {
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->GetPriority() > ManagerToAdd->GetPriority())
+                // Early escape in case we try to double add a manager to the list.
+                if( (*ManIter) == ManagerToAdd )
+                    return;
+                if( (*ManIter)->GetPriority() > ManagerToAdd->GetPriority() )
                 {
                     this->ManagerList.insert(ManIter, ManagerToAdd);
                     #ifdef MEZZDEBUG
@@ -961,7 +1164,7 @@ namespace Mezzanine
         }
     }
 
-    void World::RemoveManager(const ManagerBase::ManagerTypeName &ManagersToRemoveType, short unsigned int WhichOne)
+    void World::RemoveManager(const ManagerBase::ManagerType& ManagersToRemoveType, short unsigned int WhichOne)
     {
         if(this->ManagerList.empty())
         {
@@ -969,7 +1172,7 @@ namespace Mezzanine
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->GetType() == ManagersToRemoveType )
+                if( (*ManIter)->GetInterfaceType() == ManagersToRemoveType )
                 {
                     if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                     {
@@ -982,7 +1185,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToGet, short unsigned int WhichOne)
+    ManagerBase* World::GetManager(const ManagerBase::ManagerType& ManagersToGet, short unsigned int WhichOne)
     {
         #ifdef MEZZDEBUG
         //this->LogStream << "Calling World::GetManager(Type:"<<ManagersToGet<<") searching through "<<this->ManagerList.size()<<" Items.";
@@ -993,7 +1196,7 @@ namespace Mezzanine
         }else{
             for(std::list< ManagerBase* >::iterator ManIter = this->ManagerList.begin(); ManIter!=this->ManagerList.end(); ++ManIter )
             {
-                if( (*ManIter)->GetType() == ManagersToGet )
+                if( (*ManIter)->GetInterfaceType() == ManagersToGet )
                 {
                     if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                     {

@@ -170,7 +170,9 @@ namespace Mezzanine
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
     //Inherited From ManagerBase
+
     void ActorManager::Initialize()
     {
         Initialized = true;
@@ -181,8 +183,50 @@ namespace Mezzanine
         UpdateAllActors();
     }
 
-    ManagerBase::ManagerTypeName ActorManager::GetType() const
+    ManagerBase::ManagerType ActorManager::GetInterfaceType() const
         { return ManagerBase::ActorManager; }
-}
+
+    String ActorManager::GetImplementationTypeName() const
+        { return "DefaultActorManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultActorManagerFactory Methods
+
+    DefaultActorManagerFactory::DefaultActorManagerFactory()
+    {
+    }
+
+    DefaultActorManagerFactory::~DefaultActorManagerFactory()
+    {
+    }
+
+    String DefaultActorManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultActorManager";
+    }
+
+    ManagerBase* DefaultActorManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(ActorManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return ActorManager::GetSingletonPtr();
+        }else return new ActorManager();
+    }
+
+    ManagerBase* DefaultActorManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(ActorManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return ActorManager::GetSingletonPtr();
+        }else return new ActorManager(XMLNode);
+    }
+
+    void DefaultActorManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

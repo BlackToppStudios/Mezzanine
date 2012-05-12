@@ -57,10 +57,10 @@ namespace Mezzanine
 
 //#include "networkenumerations.h"
 
-#include "networkipaddress.h"
-#include "networkpacket.h"
-#include "networksocket.h"
-#include "networksystemaddress.h"
+#include "Network/ipaddress.h"
+#include "Network/packet.h"
+#include "Network/socket.h"
+#include "Network/systemaddress.h"
 
 #endif
 

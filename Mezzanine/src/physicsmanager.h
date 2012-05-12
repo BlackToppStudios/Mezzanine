@@ -61,6 +61,7 @@ typedef float btScalar;
 #include "constraint.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 #include "objectpair.h"
 
@@ -408,9 +409,36 @@ namespace Mezzanine
             virtual void Initialize();
             /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-            /// @copydoc Mezzanine::ManagerBase::GetType()
-            virtual ManagerBase::ManagerTypeName GetType() const;
-    };//physics manager
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//PhysicsManager
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultPhysicsManagerFactory
+    /// @headerfile physicsmanager.h
+    /// @brief A factory responsible for the creation and destruction of the default physicsmanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultPhysicsManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultPhysicsManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultPhysicsManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultPhysicsManagerFactory
 }//Mezzanine
 
 #endif

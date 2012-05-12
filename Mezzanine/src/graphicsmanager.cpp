@@ -107,7 +107,10 @@ namespace Mezzanine
             else if( "GameWindow" == SecName )
             {
                 String WinCaption("Mezzanine Window");
-                Whole WinWidth, WinHeight, WinFlags;
+                Whole WinWidth = 800;
+                Whole WinHeight = 600;
+                Whole WinFlags = 0;
+                //GameWindow::WindowFlags WinFlags;
                 GameWindow::ViewportLayout VPLayout = GameWindow::VL_Custom;
 
                 // Get the caption.
@@ -218,7 +221,6 @@ namespace Mezzanine
         DefaultSettings.RenderHeight = Height;
         DefaultSettings.RenderWidth = Width;
 
-        InitSDL();
         SDL_DisplayMode DeskMode;
         SDL_GetDesktopDisplayMode(0,&DeskMode);
         DesktopSettings.RenderWidth = DeskMode.w;
@@ -253,31 +255,6 @@ namespace Mezzanine
             OgreCore->initialise(false,"");
             OgreBeenInitialized = true;
         }
-    }
-
-    void GraphicsManager::InitSDL()
-    {
-        /*#ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log( String("Initializing SDL: ") );
-        #endif
-
-        if(!SDL_WasInit(SDL_INIT_VIDEO))
-        {
-            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
-            {
-                GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
-            }
-            //atexit(SDL_Quit);
-        }
-
-        #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log( String("Initialized SDL :")+SDL_GetError() );
-        #endif//*/
-    }
-
-    void GraphicsManager::ShutdownSDL()
-    {
-        //SDL_Quit();
     }
 
     GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf)
@@ -467,14 +444,82 @@ namespace Mezzanine
         crossplatform::WaitMilliseconds( FrameDelay );
     }
 
-    ManagerBase::ManagerTypeName GraphicsManager::GetType() const
-        { return ManagerBase::GraphicsManager; }
-
     bool GraphicsManager::PostMainLoopItems()
     {
         EventManager::GetSingletonPtr()->AddEvent(new EventRenderTime(this->GameWorld->GetFrameTime()));
         return ManagerBase::PostMainLoopItems();
     }
-}
+
+    ManagerBase::ManagerType GraphicsManager::GetInterfaceType() const
+        { return ManagerBase::GraphicsManager; }
+
+    String GraphicsManager::GetImplementationTypeName() const
+        { return "DefaultGraphicsManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultGraphicsManagerFactory Methods
+
+    DefaultGraphicsManagerFactory::DefaultGraphicsManagerFactory()
+    {
+    }
+
+    DefaultGraphicsManagerFactory::~DefaultGraphicsManagerFactory()
+    {
+    }
+
+    String DefaultGraphicsManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultGraphicsManager";
+    }
+
+    ManagerBase* DefaultGraphicsManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(GraphicsManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return GraphicsManager::GetSingletonPtr();
+        }else{
+            if(Params.empty()) return new GraphicsManager();
+            else
+            {
+                Whole Width = 800;
+                Whole Height = 600;
+                bool FullScreen = false;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTool::ToLowerCase(Lower);
+                    if( "width" == Lower )
+                    {
+                        Width = StringTool::ConvertToUInt32( (*ParIt).second );
+                    }
+                    else if( "height" == Lower )
+                    {
+                        Height = StringTool::ConvertToUInt32( (*ParIt).second );
+                    }
+                    else if( "fullscreen" == Lower )
+                    {
+                        FullScreen = StringTool::ConvertToBool( (*ParIt).second );
+                    }
+                }
+                return new GraphicsManager(Width,Height,FullScreen);
+            }
+        }
+    }
+
+    ManagerBase* DefaultGraphicsManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(GraphicsManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return GraphicsManager::GetSingletonPtr();
+        }else return new GraphicsManager(XMLNode);
+    }
+
+    void DefaultGraphicsManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

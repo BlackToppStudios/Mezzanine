@@ -54,7 +54,7 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         class InternalWorldObjectGraphicsSettings;
     }
@@ -73,7 +73,7 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief Stores all the data to go with the
-            internal::InternalWorldObjectGraphicsSettings* IWOGS;
+            Internal::InternalWorldObjectGraphicsSettings* IWOGS;
 
             /// @internal
             /// @brief The World Object this belongs to.

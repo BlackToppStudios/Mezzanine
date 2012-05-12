@@ -47,7 +47,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @class EntityInternalData
@@ -90,7 +90,7 @@ namespace Mezzanine
 
     Entity::Entity(const String& Name, const String& MeshName, const String& Group, SceneManager* manager)
     {
-        EID = new internal::EntityInternalData(Name,MeshName,Group,manager);
+        EID = new Internal::EntityInternalData(Name,MeshName,Group,manager);
     }
 
     Entity::~Entity()

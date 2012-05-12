@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 #include "quaternion.h"
 #include "ray.h"
@@ -60,7 +61,7 @@ namespace Mezzanine
     class CameraController;
     class SceneManager;
     class GraphicsManager;
-    namespace internal
+    namespace Internal
     {
         class SceneManagerData;
     }
@@ -82,7 +83,7 @@ namespace Mezzanine
     class MEZZ_LIB CameraManager : public ManagerBase, public Singleton<CameraManager>
     {
         protected:
-            friend class internal::SceneManagerData;
+            friend class Internal::SceneManagerData;
             friend class GraphicsManager;
             friend class World;
             friend class Camera;
@@ -138,19 +139,42 @@ namespace Mezzanine
             /// @brief Destroys all camera controllers being stored in this manager.
             void DestroyAllCameraControllers();
 
-            //Inherited From ManagerBase
-            /// @brief Empty Initializor.
-            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
-            /// in case a derived class wants to override it for some reason.
+            ///////////////////////////////////////////////////////////////////////////////
+            //Inherited from ManagerBase
+
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
-
-            /// @brief Empty MainLoopItems.
-            /// @details This class implements this for the sake of extension and compatibility.  This function does nothing.
+            /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//CameraManager
 
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::CameraManager.
-            virtual ManagerTypeName GetType() const;
-    };
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultCameraManagerFactory
+    /// @headerfile cameramanager.h
+    /// @brief A factory responsible for the creation and destruction of the default cameramanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultCameraManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultCameraManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultCameraManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultCameraManagerFactory
 }//Mezzanine
 #endif

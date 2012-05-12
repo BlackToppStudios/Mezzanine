@@ -62,6 +62,8 @@ class ProfileManager
         void SetActiveProfile(const String& Name);
         void SetActiveProfile(GameProfile* Profile);
         GameProfile* GetActiveProfile() const;
+
+        UI::PagedCellGrid* GetLevelGrid() const;
 };//ProfileManager
 
 #endif

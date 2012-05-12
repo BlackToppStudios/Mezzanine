@@ -63,7 +63,7 @@ namespace Ogre
 // Actual code
 namespace Mezzanine
 {
-    namespace internal{
+    namespace Internal{
         struct MeshInfo;
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -86,11 +86,11 @@ namespace Mezzanine
             /// @details Creates a soft object to be placed in the physics world later. @n
             /// This is automatically called by the Constructor and shouldn't be called manually.
             /// @param mass The desired total mass of the soft object.
-            void CreateSoftObject (Real mass);
+            void CreateSoftObject(Real mass);
             /// @brief Creates and configures a manual object for rendering.
             /// @details This function will create and configure an Ogre manual object based on the mesh provided, that will be updateable each frame.
             /// @param TheMesh The struct with all the appropriate mesh information to base the manual object on.
-            void CreateManualMesh (internal::MeshInfo &TheMesh);
+            void CreateManualMesh(Internal::MeshInfo &TheMesh);
             /// @brief Makes the actor visable.
             /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
             /// This is automaticly called by the Worlds AddActor function and shouldn't ever need to be called manually.
@@ -103,7 +103,7 @@ namespace Mezzanine
             /// @details This will take a Vector3 and set the location of the actor within the physics world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
             /// @param Location The Vector3 representing the location.
-            virtual void SetBulletLocation (Vector3 Location);
+            virtual void SetBulletLocation(Vector3 Location);
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
             /// @return A Vector3 with the location in the physics system.
@@ -112,7 +112,7 @@ namespace Mezzanine
             /// @details This will take a Quaternion and set the orientation of the actor within the physics world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
-            virtual void SetBulletOrientation (Quaternion Rotation);
+            virtual void SetBulletOrientation(Quaternion Rotation);
 
         public:
             /// @brief Constructor

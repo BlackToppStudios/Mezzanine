@@ -44,7 +44,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         class EntityInternalData;
     }
@@ -58,7 +58,7 @@ namespace Mezzanine
     class MEZZ_LIB Entity : public AttachableChild
     {
         protected:
-            internal::EntityInternalData* EID;
+            Internal::EntityInternalData* EID;
         public:
             /// @brief Class Constructor.
             /// @param Name The name of this entity.

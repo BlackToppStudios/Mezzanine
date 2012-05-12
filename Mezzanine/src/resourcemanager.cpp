@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -46,8 +46,9 @@
 #include "resourcemanager.h"
 #include "meshmanager.h"
 #include "actorbase.h"
-#include "internalogredatastreambuf.h.cpp"
-#include "internalbulletfilemanager.h.cpp"
+#include "stringtool.h"
+#include "Internal/ogredatastreambuf.h.cpp"
+#include "Internal/bulletfilemanager.h.cpp"
 
 #include <Ogre.h>
 #include <btBulletWorldImporter.h>
@@ -57,7 +58,14 @@
 #ifdef WINDOWS
     #include <Winuser.h>
     #include <WinBase.h>
+    #include <Shlobj.h> // for getting system directories
     #include <direct.h> // for _getcwd
+#elif MACOS
+    #include <CoreServices/CoreServices.h>
+    #include <unistd.h>//for sleep and getcwd
+	#include <errno.h>
+	#include <sys/stat.h>
+	#include <sys/types.h>
 #else
 	#include <unistd.h>//for sleep and getcwd
 	#include <errno.h>
@@ -77,14 +85,12 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath)
+    ResourceManager::ResourceManager(const String& EngineDataPath, const String& ArchiveType)
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-        //internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
-        this->AddResourceLocation(EngineDataPath, "FileSystem", "EngineData", false);
-        //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
+        this->AddAssetLocation(EngineDataPath, ArchiveType, "EngineData", false);
     }
 
 #ifdef MEZZXML
@@ -127,20 +133,19 @@ namespace Mezzanine
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
         #else
-        /// @todo Look into possibly insecure directory creation here in the resource manager
-        if(::mkdir(DirectoryPath.c_str(),0777) != 0)
+        if(::mkdir(DirectoryPath.c_str(),0777) < 0)
         {
             std::stringstream exceptionstream;
             exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
-            exceptionstream << strerror(errno);
+            exceptionstream << strerror();
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
         #endif
     }
 
-    std::set<String>* ResourceManager::GetDirContents(const String& Dir)
+    StringSet* ResourceManager::GetDirContents(const String& Dir)
     {
-        std::set<String>* Results = new std::set<String>;
+        StringSet* Results = new StringSet;
         DIR *Directory;
         struct dirent *DirEntry;
         if(Directory = opendir(Dir.c_str()))
@@ -172,15 +177,103 @@ namespace Mezzanine
     }
 
     String ResourceManager::GetEngineDataDirectory() const
-        { return EngineDataDir; }
+    {
+        return EngineDataDir;
+    }
+
+    String ResourceManager::ResolveDataPathFromString(const String& PathVar)
+    {
+        String LowerVar = PathVar;
+        StringTool::ToLowerCase(LowerVar);
+        if(LowerVar == "localappdata") return GetLocalAppDataDir();
+        else if(LowerVar == "shareableappdata") return GetShareableAppDataDir();
+        else if(LowerVar == "currentuserdata") return GetCurrentUserDataDir();
+        else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
+        else
+        {
+            StringStream exceptionstream;
+            exceptionstream << "Attempting to retrieve unknown path variable: \"" << PathVar << "\".";
+            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+        }
+    }
+
+    String ResourceManager::GetLocalAppDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_local_appdata[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_local_appdata)))
+        {
+            return path_local_appdata;
+        }
+        #elif LINUX
+        /// @todo Implement this.
+        #elif MACOS
+        FSRef ref;
+        OSType folderType = kApplicationSupportFolderType;
+        char path[PATH_MAX];
+        FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
+        FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
+        return path;
+        #endif
+    }
+
+    String ResourceManager::GetShareableAppDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_appdata[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_APPDATA|CSIDL_FLAG_CREATE, NULL, 0, path_appdata)))
+        {
+            return path_appdata;
+        }
+        #elif LINUX
+        /// @todo Implement this.
+        #elif MACOS
+        FSRef ref;
+        OSType folderType = kApplicationSupportFolderType;
+        char path[PATH_MAX];
+        FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
+        FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
+        return path;
+        #endif
+    }
+
+    String ResourceManager::GetCurrentUserDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_personal[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL|CSIDL_FLAG_CREATE, NULL, 0, path_personal)))
+        {
+            return path_personal;
+        }
+        #elif LINUX
+        /// @todo Implement this.
+        #elif MACOS
+        /// @todo Implement this.
+        #endif
+    }
+
+    String ResourceManager::GetCommonUserDataDir() const
+    {
+        #ifdef WINDOWS
+        TCHAR path_common_personal[MAX_PATH];
+        if(SUCCEEDED(SHGetFolderPath(NULL, CSIDL_COMMON_DOCUMENTS|CSIDL_FLAG_CREATE, NULL, 0, path_common_personal)))
+        {
+            return path_common_personal;
+        }
+        #elif LINUX
+        /// @todo Implement this.
+        #elif MACOS
+        /// @todo Implement this.
+        #endif
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Stream Management
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Resource Management
+    // AssetGroup Management
 
-    void ResourceManager::AddResourceGroupName(String Name)
+    void ResourceManager::AddAssetGroupName(String Name)
     {
         for( Whole X = 0 ; X < ResourceGroups.size() ; X++ )
         {
@@ -190,19 +283,19 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddResourceLocation(const String& Location, const String& Type, const String& Group, bool recursive)
+    void ResourceManager::AddAssetLocation(const String& Location, const String& Type, const String& Group, bool recursive)
     {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);
-        AddResourceGroupName(Group);
+        AddAssetGroupName(Group);
     }
 
-    void ResourceManager::CreateResourceGroup(const String& GroupName)
+    void ResourceManager::CreateAssetGroup(const String& GroupName)
     {
         this->OgreResource->createResourceGroup(GroupName);
-        AddResourceGroupName(GroupName);
+        AddAssetGroupName(GroupName);
     }
 
-    void ResourceManager::DestroyResourceGroup(const String& GroupName)
+    void ResourceManager::DestroyAssetGroup(const String& GroupName)
     {
         for( std::vector<String>::iterator it = ResourceGroups.begin() ; it != ResourceGroups.end() ; it++ )
         {
@@ -224,14 +317,30 @@ namespace Mezzanine
         this->OgreResource->destroyResourceGroup(GroupName);
     }
 
-    void ResourceManager::DeclareResource(const String& Name, const String& Type, const String& Group)
+    void ResourceManager::DeclareAsset(const String& Name, const String& Type, const String& Group)
     {
         this->OgreResource->declareResource(Name, Type, Group);
     }
 
-    void ResourceManager::InitResourceGroup(const String& Group)
+    void ResourceManager::InitAssetGroup(const String& Group)
     {
         this->OgreResource->initialiseResourceGroup(Group);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Resource/Asset Query
+
+    String ResourceManager::GetAssetPath(const String& FileName, const String& Group)
+    {
+        Ogre::FileInfoListPtr FileList = this->OgreResource->listResourceFileInfo(Group);
+        for( Whole X = 0 ; X < FileList->size() ; ++X )
+        {
+            if( FileName == FileList->at(X).filename )
+            {
+                return FileList->at(X).path;
+            }
+        }
+        return "";
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -253,7 +362,7 @@ namespace Mezzanine
         #ifdef MEZZDEBUG
         World::GetWorldPointer()->Log("Entering ResourceManager::GetResourceStream(const String& FileName)");
         #endif
-        internal::OgreDataStreamBuf *TempBuffer = new internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
+        Internal::OgreDataStreamBuf *TempBuffer = new Internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
         ResourceInputStream *Results =  new ResourceInputStream(TempBuffer, this);
         this->DeleteList.push_back(Results);
         #ifdef MEZZDEBUG
@@ -274,8 +383,70 @@ namespace Mezzanine
     {
     }
 
-    ManagerBase::ManagerTypeName ResourceManager::GetType() const
+    ManagerBase::ManagerType ResourceManager::GetInterfaceType() const
         { return ManagerBase::ResourceManager; }
-}
+
+    String ResourceManager::GetImplementationTypeName() const
+        { return "DefaultResourceManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultResourceManagerFactory Methods
+
+    DefaultResourceManagerFactory::DefaultResourceManagerFactory()
+    {
+    }
+
+    DefaultResourceManagerFactory::~DefaultResourceManagerFactory()
+    {
+    }
+
+    String DefaultResourceManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultResourceManager";
+    }
+
+    ManagerBase* DefaultResourceManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(ResourceManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return ResourceManager::GetSingletonPtr();
+        }else{
+            if(Params.empty()) return new ResourceManager();
+            else
+            {
+                String EngineDataPath, ArchiveType;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTool::ToLowerCase(Lower);
+                    if( "enginedatapath" == Lower )
+                    {
+                        EngineDataPath = (*ParIt).second;
+                    }
+                    else if( "archivetype" == Lower )
+                    {
+                        ArchiveType = (*ParIt).second;
+                    }
+                }
+                return new ResourceManager(EngineDataPath,ArchiveType);
+            }
+        }
+    }
+
+    ManagerBase* DefaultResourceManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(ResourceManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return ResourceManager::GetSingletonPtr();
+        }else return new ResourceManager(XMLNode);
+    }
+
+    void DefaultResourceManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

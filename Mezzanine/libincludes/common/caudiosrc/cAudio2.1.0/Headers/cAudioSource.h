@@ -20,7 +20,6 @@
 
 namespace cAudio
 {
-
     class cAudioSource : public IAudioSource, public cMemoryOverride
     {
     public:
@@ -43,8 +42,8 @@ namespace cAudio
 		virtual bool play();
 		virtual bool play2d(const bool& toLoop = false);
 		virtual bool play3d(const cVector3& position, const float& soundstr = 1.0 , const bool& toLoop = false);
-		
-		virtual void pause();    
+
+		virtual void pause();
 		virtual void stop();
 		virtual void loop(const bool& toLoop);
 		virtual bool seek(const float& seconds, bool relative = false);
@@ -65,7 +64,7 @@ namespace cAudio
 		virtual const bool isPaused() const;
 		virtual const bool isStopped() const;
 		virtual const bool isLooping() const;
-      
+
 		virtual void setPosition(const cVector3& position);
 		virtual void setVelocity(const cVector3& velocity);
 		virtual void setDirection(const cVector3& direction);
@@ -84,7 +83,7 @@ namespace cAudio
 		virtual void setOuterConeAngle(const float& outerAngle);
 		virtual void setOuterConeVolume(const float& outerVolume);
 
-		virtual void setDopplerStrength(const float& dstrength); 
+		virtual void setDopplerStrength(const float& dstrength);
 		virtual void setDopplerVelocity(const cVector3& dvelocity);
 
 		virtual void move(const cVector3& position);
@@ -142,9 +141,9 @@ namespace cAudio
 		ALCcontext* Context;
 
 		//! Internal audio buffers
-		ALuint Buffers[CAUDIO_SOURCE_NUM_BUFFERS]; 
+		ALuint Buffers[CAUDIO_SOURCE_NUM_BUFFERS];
 		//! OpenAL source
-		ALuint Source; 
+		ALuint Source;
 
 		ALenum oldState;
 		//! cAudio decoder being used to stream data

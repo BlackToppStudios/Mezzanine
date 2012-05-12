@@ -48,7 +48,7 @@ namespace Mezzanine
 {
     // Just a few forward declarations to make wrapping some functionality to engine internals easier.
     class World;
-    namespace internal
+    namespace Internal
     {
             class Line3D;
     }
@@ -123,7 +123,7 @@ namespace Mezzanine
             World *Parent;
 
             /// @brief A Pointer to the internal class that actually does the work.
-            internal::Line3D *LineData;
+            Internal::Line3D *LineData;
     };
 }
 

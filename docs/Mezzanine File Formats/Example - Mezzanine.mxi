@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!-- This is an example initialization file for the Mezzanine engine. -->
+<!-- It lists all available options as of the time of writing. -->
+<!-- Every value in here is optional.  Most options will initialize to sane defaults if not mentioned. -->
+<!-- The one exception to the above rule is with Managers.  If not listed in this file, the manager will simply not be created/initialized. -->
+<!-- Note about bool values: Bools can be expressed as true/false/1/0/yes/no, and are not case sensative. -->
+<!-- Note about Vector3 values: Vector3s are expressed in (X Y Z) format.  Each number is a float, must have a space between the values, and must have 3 values.
+<!-- Note about ColourValue values: ColourValues are expressed in (R G B A) format.  Each number is a float, must have a space between the values, and must have 4 values.
+<!-- Note about all the example values mentioned here: As of the time of the writing, all example values listed are the defaults that will be used if nothing is provided. -->
+<WorldSettings>
+	<!-- Sets the framerate cap explicitly or based on how much time should elapse for each frame.  If both are defined, TargetFrameTime is ignored.  Both values are unsigned ints. -->
+	<FrameSettings TargetFrameTime="16" TargetFrameRate="60" />
+	<!-- Frequency is a string and describes how often logging is to be committed to the log file.  Counter is an unsigned int used for some Frequency settings. -->
+	<!-- Possible values for Frequency are: None, PerFrame, PerXFrames, PerXSeconds.  Counter is ignored if set to "None" or "PerFrame". -->
+	<LoggingSettings Frequency="PerFrame" Counter="0">
+		<!-- FileName is the name of the log output file. -->
+		<!-- Currently only one logfile is supported, but this will change in future versions. -->
+		<LogFile FileName="Mezzanine.log" />
+	</LoggingSettings>
+</WorldSettings>
+<!-- Certain Managers can have settings files and settings paths applied to them.  In the case of the settings path this is the one path to always search when a path isn't explicitly provided. -->
+<!-- There are preset paths available that will get paths to system locations that are write safe.  Currently the options for these paths are: -->
+<!-- $LocalAppData$, $ShareableAppData$, $CurrentUserData$, and $CommonUserData$.  The $ are mandatory, but the letters within aren't case sensative. -->
+<Managers>
+	<DefaultActorManager>
+		<!-- Currently the ActorManager has zero additional params to be set. -->
+	</DefaultActorManager>
+	<DefaultAudioManager>
+		<!-- Sets the path for saving and loading settings related to this manager when a path isn't explicitly provided. -->
+		<SettingsPath Path="$ShareableAppData$/Blacktopp/Game/" />
+		<!-- Defines the settings files that are to be loaded.  If a "Current" group is detected then those settings will automatically be applied. -->
+		<!-- The path parameter here is entirely optional, but will cause issues if both this and settings path above are not set.  If both are defined then this will override the set SettingsPath. -->
+		<!-- An alternative to the path param is the Group param.  If the path param is used this is ignored.  This loads the settings file from the named group as defined in your resources file. -->
+		<SettingsFiles> 
+			<SettingsFile FileName="AudioSettings.mxs" Path="." Group="Group" />
+		</SettingsFiles>
+	</DefaultAudioManager>
+	<DefaultCameraManager>
+		<!-- Currently the CameraManager has zero additional params to be set. -->
+	</DefaultCameraManager>
+	<DefaultCollisionShapeManager>
+		<!-- Currently the CollisionShapeManager has zero additional params to be set. -->
+	</DefaultCollisionShapeManager>
+	<DefaultEventManager>
+		<!-- Currently the EventManager has zero additional params to be set. -->
+	</DefaultEventManager>
+	<DefaultGraphicsManager>
+		<!-- The name is a string with the name of the rendersystem to be set.  Currently, it's possible values are: -->
+		<!-- Direct3D9, Direct3D11, OpenGL, OpenGLES1.x, OpenGLES2.x -->
+		<RenderSystem Name="OpenGL" />
+		<!-- Caption is a string.  Width and Height are both unsigned ints.  Fullscreen, Hidden, Resizeable, Maximized, and Borderless are bools. -->
+		<!-- FSAA is Full Screen Anti-Aliasing and has 5 possible values: 0, 2, 4, 8, and 16.  0 means FSAA is disabled. -->
+		<!-- Multiple windows can be defined here.  The first one defined will become the primary window. -->
+		<!-- ViewportConf is a string and describes how the viewports of the window should be initialized.  Note that you still have to bind the camera to the viewport if you use this. -->
+		<!-- Options for ViewportConf are: Custom, 1-FullWindow, 2-HorizontalSplit, 2-VerticalSplit, 3-TopLarge, 4-EvenlySplit -->
+		<GameWindow Caption="Window" Width="800" Height="600" Fullscreen="false" Hidden="false" Vsync="false" FSAA="0" Resizeable="false" Maximized="false" Borderless="false" ViewportConf="Custom" />
+	</DefaultGraphicsManager>
+	<DefaultMeshManager>
+		<!-- Currently the MeshManager has zero additional params to be set. -->
+	</DefaultMeshManager>
+	<DefaultNetworkManager>
+		<!-- Currently the NetworkManager has zero additional params to be set. -->
+	</DefaultNetworkManager>
+	<DefaultPhysicsManager>
+		<!-- WorldUpperBounds and WorldLowerBounds are both Vector3's.  MaxObjects is an unsigned int.  LimitlessWorld and SoftRigidWorld are both bools. -->
+		<!-- If LimitlessWorld is true, the Upper/Lower bounds and the MaxObjects are ignored. -->
+		<!-- SoftRigidWorld simply enables SoftBody functionality in the world. -->
+		<WorldSettings WorldUpperBounds="0 0 0" WorldLowerBounds="0 0 0" MaxObjects="0" LimitlessWorld="true" SoftRigidWorld="true" />
+		<!-- Modifier is an unsigned int. This sets the number of substeps the physics simulation is to take each frame. -->
+		<SubStepModifier Modifier="1" />
+		<!-- RenderingMode is an int.  WireCount is an unsigned int. -->
+		<!-- RenderingMode sets the Mode for debug drawing.  0 means disabled, 1 means enabled.  May be more options in the future. -->
+		<!-- WireCount is the number of frames back to keep the wireframe drawing for. -->
+		<DebugRendering RenderingMode="0" WireCount="2" />
+	</DefaultPhysicsManager>
+	<DefaultResourceManager>
+		<!-- Currently the ResourceManager has zero additional params to be set. -->
+		<!-- Additional resource configuration is done in the Resource.mxi init file. -->
+	</DefaultResourceManager>
+	<DefaultSceneManager>
+		<!-- TypeName is a string, and describes the type of internal manager to be used with rendering the scene. -->
+		<!-- Currently "Default" is the only option supported here, but can/will change in the future. -->
+		<!-- Options for the future: Octree, PCZ -->
+		<ManagerType TypeName="Default" />
+		<!-- Sets the technique, colour, and renderdistance for rendering shadows in the scene.  Available options for the technique are: -->
+		<!-- None, StencilModulative, StencilAdditive, TextureModulative, TextureAdditive, TextureAdditiveIntegrated, and TextureModulativeIntegrated -->
+		<!-- ShadowColour is a ColourValue and shadow far distance is a float. -->
+		<!-- ShadowColour and ShadowFarDistance are ignored if technique is set to None. -->
+		<ShadowSettings Technique="None" ShadowColour="0 0 0 1" ShadowFarDistance="0" />
+		<!-- This section is ignored if shadows are disabled or if stencil shadows are used. --> 
+		<TextureShadowSettings ShadowTextureCount="1" ShadowTextureSize="512" />
+	</DefaultSceneManager>
+	<DefaultScriptingManager>
+		<!-- Currently the ScriptingManager has zero additional params to be set. -->
+	</DefaultScriptingManager>
+	<DefaultTerrainManager>
+		<!-- Currently the TerrainManager has zero additional params to be set. -->
+	</DefaultTerrainManager>
+	<DefaultTimerManager>
+		<!-- Currently the TimerManager has zero additional params to be set. -->
+	</DefaultTimerManager>
+	<DefaultUIManager>
+		<!-- Currently the UIManager has zero additional params to be set. -->
+		<!-- Additional ui configuration is done in the Resource.mxi init file. -->
+	</DefaultUIManager>
+</Managers>
+<OtherInitializers>
+	<ResourceInit FileName="Resources.mxi" />
+	<PluginInit FileName="Plugins.mxi" />
+	<GUIInit FileName="GUI.mxi" />
+</OtherInitializers>

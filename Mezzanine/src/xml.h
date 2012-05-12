@@ -88,7 +88,7 @@
 #include "crossplatform.h"
 #include "xmldoc.h"
 #include "exception.h"
-#include "resourcedatastream.h"
+#include "Resource/datastream.h"
 #include "mezzconfig.h"
 
 #ifndef XML_NO_STL

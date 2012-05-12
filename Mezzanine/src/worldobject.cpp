@@ -43,8 +43,9 @@
 #include "worldobject.h"
 #include "serialization.h"
 #include "audiomanager.h"
-#include "audiosoundset.h"
+#include "Audio/soundset.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "worldnode.h"
 #include "world.h"
 

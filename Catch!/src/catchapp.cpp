@@ -28,7 +28,7 @@ CatchApp::CatchApp()
 
     try
     {
-        TheWorld = new World( "Data/" );
+        TheWorld = new World( "Data/", "FileSystem" );
     }catch( exception x){
         throw;
     }
@@ -565,7 +565,10 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
             PauseGame(true);
             Whole LevelScore = Scorer->CalculateFinalScore();
             if(LevelScore > Profiles->GetActiveProfile()->GetHighestScore(Loader->GetCurrentLevel()))
+            {
                 Profiles->GetActiveProfile()->SetNewHighScore(Loader->GetCurrentLevel(),LevelScore);
+                (static_cast<LevelSelectCell*>(Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTool::ConvertToString(LevelScore));
+            }
             break;
         }
     }
@@ -660,7 +663,7 @@ void CatchApp::UnloadLevel()
     ScoreAreas.clear();
     ThrownItems.clear();
 
-    ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
+    ResMan->DestroyAssetGroup(Loader->GetCurrentLevel());
     PhysMan->ClearPhysicsMetaData();
     /// @todo Probably should make a "RemoveAll" for the events as well.
     EventCollision* OneCollision = EventMan->PopNextCollisionEvent();
@@ -695,7 +698,7 @@ int CatchApp::GetCatchin()
     UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
     // Initialize the managers.
-	TheWorld->GameInit(false);
+	TheWorld->EngineInit(false);
 
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
@@ -1109,6 +1112,11 @@ LevelLoader* CatchApp::GetLevelLoader()
 LevelScorer* CatchApp::GetLevelScorer()
 {
     return Scorer;
+}
+
+ProfileManager* CatchApp::GetProfiles()
+{
+    return Profiles;
 }
 
 ItemShop* CatchApp::GetItemShop()

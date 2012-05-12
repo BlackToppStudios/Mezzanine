@@ -57,7 +57,7 @@
 
 namespace Mezzanine
 {
-    namespace internal
+    namespace Internal
     {
         /// @brief Stores internal data for the SCeneManager to keep it from cluttering the Header file
         /// @internal
@@ -177,28 +177,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     /// Construction
 
-    SceneManager::SceneManager(SceneManager::SceneManagerType ManagerType)
+    SceneManager::SceneManager(const String& InternalManagerTypeName)
     {
-        this->SMD = new internal::SceneManagerData(this);
-        Ogre::SceneType Type;
-        switch (ManagerType)
-        {
-            case Generic:
-                Type = Ogre::ST_GENERIC;
-                break;
-            case Exterior:
-                Type = Ogre::ST_EXTERIOR_FAR;
-                break;
-            case ExteriorRealFar:
-                Type = Ogre::ST_EXTERIOR_REAL_FAR;
-                break;
-            case Interior:
-                Type = Ogre::ST_INTERIOR;
-                break;
-            default:
-                Type = Ogre::ST_GENERIC;
-        }
-        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
+        this->SMD = new Internal::SceneManagerData(this);
+        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
         this->Priority = 25;
         //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
@@ -208,7 +190,7 @@ namespace Mezzanine
 #ifdef MEZZXML
     SceneManager::SceneManager(xml::Node& XMLNode)
     {
-        this->SMD = new internal::SceneManagerData(this);
+        this->SMD = new Internal::SceneManagerData(this);
         this->Priority = 25;
 
         xml::Attribute CurrAttrib;
@@ -741,21 +723,82 @@ namespace Mezzanine
     ConstString& SceneManager::GetName() const
         { return this->SMD->OgreManager->getName(); }
 
+    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
+        { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
+
+    Internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
+        { return this->SMD; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited From ManagerBase
+
     void SceneManager::Initialize()
         { this->Initialized = true; }
 
     void SceneManager::DoMainLoopItems()
         { UpdateTrackingNodes(); }
 
-    ManagerBase::ManagerTypeName SceneManager::GetType() const
+    ManagerBase::ManagerType SceneManager::GetInterfaceType() const
         { return ManagerBase::SceneManager; }
 
-    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
-        { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
+    String SceneManager::GetImplementationTypeName() const
+        { return "DefaultSceneManager"; }
 
-    internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
-        { return this->SMD; }
-}
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultSceneManagerFactory Methods
+
+    DefaultSceneManagerFactory::DefaultSceneManagerFactory()
+    {
+    }
+
+    DefaultSceneManagerFactory::~DefaultSceneManagerFactory()
+    {
+    }
+
+    String DefaultSceneManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultSceneManager";
+    }
+
+    ManagerBase* DefaultSceneManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(SceneManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return SceneManager::GetSingletonPtr();
+        }else{
+            if(Params.empty()) return new SceneManager();
+            else
+            {
+                String InternalManagerTypeName;
+                for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
+                {
+                    String Lower = (*ParIt).first;
+                    StringTool::ToLowerCase(Lower);
+                    if( "internalmanagertypename" == Lower )
+                    {
+                        InternalManagerTypeName = (*ParIt).second;
+                    }
+                }
+                return new SceneManager(InternalManagerTypeName);
+            }
+        }
+    }
+
+    ManagerBase* DefaultSceneManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(SceneManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return SceneManager::GetSingletonPtr();
+        }else return new SceneManager(XMLNode);
+    }
+
+    void DefaultSceneManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
@@ -773,7 +816,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
                 << "<ShadowColour>" << Ev.GetShadowColour() << "</ShadowColour>"
                 << "<AmbientLight>" << Ev.GetAmbientLight() << "</AmbientLight>";
 
-                Mezzanine::internal::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
+                Mezzanine::Internal::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
                 switch (Ev.WhichSky())
                 {
                     case Mezzanine::SceneManager::SkyNone:

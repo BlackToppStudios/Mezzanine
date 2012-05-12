@@ -71,7 +71,7 @@ namespace Mezzanine
     /// @namespace Mezzanine::internal
     /// @brief This namespace is used for internal helper classes, and in general it should be ignored by game developers
     /// @details This whole internal namespace is a home for dirty hacks and internal dependant code. This is where code goes that must implement classes or functions for the various subsytems the Mezzanine engine draws on.
-    namespace internal
+    namespace Internal
     {
         /// @internal
         /// @brief SDL uses this to filter events it presents to applications
@@ -156,7 +156,7 @@ namespace Mezzanine
             {
                 this->AddInputCodeToManualCheck(
                         static_cast<Mezzanine::MetaCode::InputCode>(OneCode),
-                        static_cast<Mezzanine::internal::EventManagerInternalData::PollingType>(_PollingCheck)
+                        static_cast<Mezzanine::Internal::EventManagerInternalData::PollingType>(_PollingCheck)
                 );
             }
 
@@ -257,7 +257,7 @@ namespace Mezzanine
         {
             GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
         }
-        this->_Data = new internal::EventManagerInternalData;
+        this->_Data = new Internal::EventManagerInternalData;
         this->DetectJoysticks();
 
         //this->GameWorld = World::GetWorldPointer();
@@ -272,7 +272,7 @@ namespace Mezzanine
         {
             GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
         }
-        this->_Data = new internal::EventManagerInternalData;
+        this->_Data = new Internal::EventManagerInternalData;
         this->DetectJoysticks();
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
@@ -357,9 +357,9 @@ namespace Mezzanine
         bool ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
 
         // Here we iterate through manual check to insert any requested polling checks and perpetuate button and key down events
-        for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
+        for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
-            if(internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
+            if(Internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
                 { FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, Iter->first); }
             else
                 { FromSDLEvent->AddCode(MetaCode::BUTTON_UP, Iter->first); }    //It must be just a polling check
@@ -417,17 +417,17 @@ namespace Mezzanine
         //Events and User input sorted by estimate frequency
                 case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:{
                     MetaCode ResultCode(FromSDLRaw);
-                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), internal::EventManagerInternalData::Keypress);
+                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress);
                     break;}
 
                 case SDL_KEYDOWN: {
                     MetaCode ResultCode(FromSDLRaw);
                     if ( !(_Data->ManualCheck[ResultCode.GetCode()]) )              //This checks for operating system level key repititions and skips adding them
-                        { _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), internal::EventManagerInternalData::Keypress); }
+                        { _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress); }
                     break; }
 
                 case SDL_MOUSEBUTTONDOWN:   case SDL_JOYBUTTONDOWN:
-                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(FromSDLRaw), internal::EventManagerInternalData::Keypress);
+                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(FromSDLRaw), Internal::EventManagerInternalData::Keypress);
                     break;
 
                 case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION: // What is a joyball, like the bowling games maybe, or the ORBit controller
@@ -488,9 +488,9 @@ namespace Mezzanine
 //        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
         if(SDL_FALSE == SDL_GetEventFilter(0, 0))
         {
-            SDL_SetEventFilter( internal::MezzSDLFilter, 0);
+            SDL_SetEventFilter( Internal::MezzSDLFilter, 0);
         }else{
-            if(4==internal::MezzSDLFilter(0,0))                   //Pass it a null pointer to get it to "Not Callback Mode"
+            if(4==Internal::MezzSDLFilter(0,0))                   //Pass it a null pointer to get it to "Not Callback Mode"
             {
                 this->AddEvent(new EventQuit());                //We need to make a quit event
             }else{
@@ -649,7 +649,7 @@ namespace Mezzanine
     {
         if(InputToTryPolling.IsPollable())
         {
-            this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), internal::EventManagerInternalData::Polling);
+            this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), Internal::EventManagerInternalData::Polling);
         }else{
             World::GetWorldPointer()->LogAndThrow("Unsupported Polling Check on this Platform");
         }
@@ -657,7 +657,7 @@ namespace Mezzanine
 
     void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
     {
-        this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), internal::EventManagerInternalData::Polling);
+        this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), Internal::EventManagerInternalData::Polling);
     }
 
 /*    void EventManager::StartRelativeMouseMode()
@@ -689,10 +689,51 @@ namespace Mezzanine
         InputQueryTool::GatherEvents();
     }
 
-    ManagerBase::ManagerTypeName EventManager::GetType() const
+    ManagerBase::ManagerType EventManager::GetInterfaceType() const
         { return ManagerBase::EventManager; }
 
-} // /Mezz
+    String EventManager::GetImplementationTypeName() const
+        { return "DefaultEventManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultEventManagerFactory Methods
+
+    DefaultEventManagerFactory::DefaultEventManagerFactory()
+    {
+    }
+
+    DefaultEventManagerFactory::~DefaultEventManagerFactory()
+    {
+    }
+
+    String DefaultEventManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultEventManager";
+    }
+
+    ManagerBase* DefaultEventManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(EventManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return EventManager::GetSingletonPtr();
+        }else return new EventManager();
+    }
+
+    ManagerBase* DefaultEventManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(EventManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return EventManager::GetSingletonPtr();
+        }else return new EventManager(XMLNode);
+    }
+
+    void DefaultEventManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -703,7 +744,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventManager& 
     stream << "<EventManager Version=\"1\">";
     for(std::list<Mezzanine::EventBase*>::iterator Iter = Mgr._Data->EventQ.begin(); Iter!=Mgr._Data->EventQ.end(); ++Iter)
         { stream << **Iter; }
-    for(Mezzanine::internal::EventManagerInternalData::ManualCheckIterator Iter=Mgr._Data->ManualCheck.begin(); Iter!=Mgr._Data->ManualCheck.end(); ++Iter)
+    for(Mezzanine::Internal::EventManagerInternalData::ManualCheckIterator Iter=Mgr._Data->ManualCheck.begin(); Iter!=Mgr._Data->ManualCheck.end(); ++Iter)
         { stream << "<ManualCheck Version=\"1\" PollingType=\"" << Iter->second << "\" InputCode=\"" << Iter->first << "\" />"; }
     stream << "</EventManager>";
 

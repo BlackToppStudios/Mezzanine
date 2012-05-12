@@ -73,8 +73,50 @@ namespace Mezzanine
     void NetworkManager::DoMainLoopItems()
         {}
 
-    ManagerBase::ManagerTypeName NetworkManager::GetType() const
+    ManagerBase::ManagerType NetworkManager::GetInterfaceType() const
         { return ManagerBase::NetworkManager; }
+
+    String NetworkManager::GetImplementationTypeName() const
+        { return "DefaultNetworkManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultNetworkManagerFactory Methods
+
+    DefaultNetworkManagerFactory::DefaultNetworkManagerFactory()
+    {
+    }
+
+    DefaultNetworkManagerFactory::~DefaultNetworkManagerFactory()
+    {
+    }
+
+    String DefaultNetworkManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultNetworkManager";
+    }
+
+    ManagerBase* DefaultNetworkManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(NetworkManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return NetworkManager::GetSingletonPtr();
+        }else return new NetworkManager();
+    }
+
+    ManagerBase* DefaultNetworkManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(NetworkManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return NetworkManager::GetSingletonPtr();
+        }else return new NetworkManager(XMLNode);
+    }
+
+    void DefaultNetworkManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
 }//Mezzanine
 
 #endif

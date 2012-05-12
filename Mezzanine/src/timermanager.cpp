@@ -130,8 +130,50 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase::ManagerTypeName TimerManager::GetType() const
+    ManagerBase::ManagerType TimerManager::GetInterfaceType() const
         { return ManagerBase::TimerManager; }
-}
+
+    String TimerManager::GetImplementationTypeName() const
+        { return "DefaultTimerManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultTimerManagerFactory Methods
+
+    DefaultTimerManagerFactory::DefaultTimerManagerFactory()
+    {
+    }
+
+    DefaultTimerManagerFactory::~DefaultTimerManagerFactory()
+    {
+    }
+
+    String DefaultTimerManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultTimerManager";
+    }
+
+    ManagerBase* DefaultTimerManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(TimerManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return TimerManager::GetSingletonPtr();
+        }else return new TimerManager();
+    }
+
+    ManagerBase* DefaultTimerManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(TimerManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return TimerManager::GetSingletonPtr();
+        }else return new TimerManager(XMLNode);
+    }
+
+    void DefaultTimerManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
+}//Mezzanine
 
 #endif

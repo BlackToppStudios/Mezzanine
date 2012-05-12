@@ -48,11 +48,13 @@
 //#include "BulletCollision/CollisionShapes/btShapeHull.h"
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
-#include "internalmeshtools.h.cpp"
+#include "Internal/meshtools.h.cpp"
 #include "objectreference.h"
 #include "world.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "actorsoft.h"
+
 namespace Mezzanine
 {
     ///////////////////////////////////
@@ -75,12 +77,12 @@ namespace Mezzanine
     void ActorSoft::CreateSoftObject (Real mass)
     {
         //this->GraphicsObject->getMesh()->getSubMesh(0)->useSharedVertices = false;
-        internal::MeshInfo CurMesh;
-        internal::MeshTools::GetMeshVerticies(GraphicsObject,CurMesh);
-        internal::MeshTools::GetMeshIndicies(GraphicsObject,CurMesh);
-        internal::MeshTools::GetMeshNormals(GraphicsObject,CurMesh);
-        internal::MeshTools::GetMeshTextures(GraphicsObject,CurMesh);
-        internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
+        Internal::MeshInfo CurMesh;
+        Internal::MeshTools::GetMeshVerticies(GraphicsObject,CurMesh);
+        Internal::MeshTools::GetMeshIndicies(GraphicsObject,CurMesh);
+        Internal::MeshTools::GetMeshNormals(GraphicsObject,CurMesh);
+        Internal::MeshTools::GetMeshTextures(GraphicsObject,CurMesh);
+        Internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
 
         this->PhysicsSoftBody = btSoftBodyHelpers::CreateFromTriMesh(PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         PhysicsObject=PhysicsSoftBody;
@@ -103,7 +105,7 @@ namespace Mezzanine
         this->PhysicsSoftBody->m_clusters[0]->m_collide = true;
     }
 
-    void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
+    void ActorSoft::CreateManualMesh (Internal::MeshInfo &TheMesh)
     {
         Ogre::ManualObject* ManualEntity = new Ogre::ManualObject(TheMesh.Name);
         ManualEntity->setDynamic(true);

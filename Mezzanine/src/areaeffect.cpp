@@ -47,8 +47,9 @@
 #include "collisionshapemanager.h"
 #include "mesh.h"
 #include "meshmanager.h"
+#include "scenemanager.h"
 #include "objectreference.h"
-#include "internalmeshtools.h.cpp"
+#include "Internal/meshtools.h.cpp"
 #include "world.h"
 
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>

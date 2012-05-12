@@ -41,8 +41,9 @@
 #define _uimanager_h
 
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
-#include "uirenderablerect.h"
+#include "UI/renderablerect.h"
 #include "metacode.h"
 
 namespace Mezzanine
@@ -104,10 +105,6 @@ namespace Mezzanine
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~UIManager();
-            /// @brief Inherited from ManagerBase.
-            void Initialize();
-            /// @brief Inherited from ManagerBase.
-            void DoMainLoopItems();
             /// @brief Loads a Mezzanine Texture Atlas file for use with UI::Screen's.
             /// @param Name The name of the file to be loaded, not including the extension.
             /// @param Group The resource group where the MTA file can be found.
@@ -215,10 +212,44 @@ namespace Mezzanine
             /// @param Atlas The altas to search.
             /// @return Returns a std::pair, First is a whole for the Glyph index and second is a Real for the scaling that should be provided to it.
             std::pair<Whole,Real> SuggestGlyphIndex(const Whole& Height, const String& Atlas);
-            /// @brief Gets the type of manager that this manager is.
-            /// @return Returns an enum value representing the type of manager that this manager is.
-            ManagerBase::ManagerTypeName GetType() const;
-    };//uimanager
+
+            ///////////////////////////////////////////////////////////////////////////////
+            //Inherited from ManagerBase
+
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::DoMainLoopItems()
+            virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//UIManager
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultUIManagerFactory
+    /// @headerfile uimanager.h
+    /// @brief A factory responsible for the creation and destruction of the default uimanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultUIManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultUIManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultUIManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultUIManagerFactory
 }//Mezzanine
 
 #endif

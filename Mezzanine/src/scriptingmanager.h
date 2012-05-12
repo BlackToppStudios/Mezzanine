@@ -80,14 +80,13 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase
+
             /// @copydoc Mezzanine::ManagerBase::Initialize()
             virtual void Initialize();
-
             /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-
-            /// @copydoc Mezzanine::ManagerBase::GetType()
-            virtual ManagerBase::ManagerTypeName GetType() const;
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
     }; //ScriptingManager
 }//Mezzanine
 

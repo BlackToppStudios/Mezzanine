@@ -46,12 +46,13 @@
 #include "world.h"
 #include "meshmanager.h"
 #include "physicsmanager.h"
+#include "scenemanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
 #include "collision.h"
 #include "constraint.h"
-#include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
-#include "internalmeshtools.h.cpp"
+#include "Internal/motionstate.h.cpp" // This is required for the internal physmotionstate :(
+#include "Internal/meshtools.h.cpp"
 #include "serialization.h"
 #include "mathtool.h"
 
@@ -68,7 +69,7 @@ namespace Mezzanine
         MeshManager::GetSingletonPtr()->LoadMesh(file,group);
 
         this->GraphicsObject = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer()->createEntity(name, file, group);
-        this->MotionState = new internal::AttachableMotionState(this);
+        this->MotionState = new Internal::AttachableMotionState(this);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new WorldObjectGraphicsSettings(this,GraphicsObject);
         this->PhysicsSettings = new ActorRigidPhysicsSettings(this,PhysicsRigidBody);

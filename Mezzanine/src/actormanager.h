@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 
 namespace Mezzanine
@@ -157,16 +158,43 @@ namespace Mezzanine
             /// @brief Calls to update every actor currently stored in the manager.
             virtual void UpdateAllActors();
 
+            ///////////////////////////////////////////////////////////////////////////////
             //Inherited from ManagerBase
-            /// @brief Empty initializer that has been implemented from ManagerBase.
+
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
-            /// @brief Physics stepping during the main loop
-            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.
+            /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::PhysicsManager
-            virtual ManagerTypeName GetType() const;
-    };//actormanager
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//ActorManager
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultActorManagerFactory
+    /// @headerfile actormanager.h
+    /// @brief A factory responsible for the creation and destruction of the default actormanager.
+    ///////////////////////////////////////
+    class DefaultActorManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultActorManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultActorManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultActorManagerFactory
 }//Mezzanine
 
 #endif

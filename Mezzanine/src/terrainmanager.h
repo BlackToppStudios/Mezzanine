@@ -44,6 +44,7 @@
 #include "datatypes.h"
 #include "vector3.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
 
 namespace Mezzanine
@@ -142,9 +143,36 @@ namespace Mezzanine
             virtual void Initialize();
             /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
-            /// @copydoc Mezzanine::ManagerBase::GetType()
-            virtual ManagerTypeName GetType() const;
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
     };//TerrainManager
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultTerrainManagerFactory
+    /// @headerfile terrainmanager.h
+    /// @brief A factory responsible for the creation and destruction of the default terrainmanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultTerrainManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultTerrainManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultTerrainManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultTerrainManagerFactory
 }//Mezzanine
 
 #endif // _terrainmanager_h

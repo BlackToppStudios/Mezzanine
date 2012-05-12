@@ -67,8 +67,8 @@ namespace Mezzanine
 
     }
 
-    ManagerBase::ManagerTypeName ScriptingManager::GetType() const
-    { return ManagerBase::ScriptingManager; }
+    ManagerBase::ManagerType ScriptingManager::GetInterfaceType() const
+        { return ManagerBase::ScriptingManager; }
 }
 
 #endif

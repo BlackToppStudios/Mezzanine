@@ -43,8 +43,9 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
-#include "resourceinputstream.h"
+#include "Resource/inputstream.h"
 
 class btBulletWorldImporter;
 
@@ -55,7 +56,7 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class ActorBase;
+    class ResourceGroup;
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
     #ifdef SWIG
@@ -79,7 +80,7 @@ namespace Mezzanine
             std::vector<ResourceInputStream*> DeleteList;
 
             std::vector<String> ResourceGroups;
-            void AddResourceGroupName(String Name);
+            void AddAssetGroupName(String Name);
 
             /// @brief The location of engine data
             String EngineDataDir;
@@ -88,7 +89,8 @@ namespace Mezzanine
             /// @brief Class constructor.
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
-            ResourceManager(const String& EngineDataPath);
+            /// @param ArchiveType The name of the type of archive at this path.
+            ResourceManager(const String& EngineDataPath = ".", const String& ArchiveType = "FileSystem");
 #ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
@@ -110,7 +112,7 @@ namespace Mezzanine
             /// leading "c:/", "c:\\", or "/" as appropriate for the operating system the software will run on.
             /// @return This will return a pointer to a set of Strings the caller is responsible for deleting or a null pointer on an error.
             /// @param Dir The directory to check.
-            std::set<String>* GetDirContents(const String& Dir = ".");
+            StringSet* GetDirContents(const String& Dir = ".");
             /// @brief Get the working directory as a Mezzanine::String
             /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a Mezzanine::String
             String GetWorkingDirectory() const;
@@ -118,43 +120,72 @@ namespace Mezzanine
             /// @return A String that contains the pathname
             String GetEngineDataDirectory() const;
 
+            /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
+            /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.
+            /// The valid variables are as follows: LocalAppData, ShareableAppData, CurrentUserData, and CommonUserData.  These are not case sensative.
+            /// @param PathVar String containing the name of the path variable.
+            /// @return Returns the actual path of the variable provided.
+            String ResolveDataPathFromString(const String& PathVar);
+            /// @brief Gets the path to the directory intended for game and engine config data that is not meant to be shared.
+            /// @return Returns a string containing the path to the Local Application Data Directory.
+            String GetLocalAppDataDir() const;
+            /// @brief Gets the path to the directory intended for game and engine config data that is allowed to be shared.
+            /// @return Returns a string containing the path to the Shareable Application Data Directory.
+            String GetShareableAppDataDir() const;
+            /// @brief Gets the path to the directory intended for game saves and user profile data for the current user.
+            /// @return Returns a string containing the path to the Current User Data Directory.
+            String GetCurrentUserDataDir() const;
+            /// @brief Gets the path to the directory intended for game saves and user profile data for all users.
+            /// @return Returns a string containing the path to the Common User Data Directory.
+            String GetCommonUserDataDir() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Stream Management
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Resource Management
+            // AssetGroup Management
 
             /// @brief Adds a location for graphical resources.
             /// @details This function will add a location on the disk to find files needed to create and
-            /// manipulate graphical objects. Once a resource is added it must be initalized using
+            /// manipulate graphical objects. Once an asset is added it must be initalized using
             /// ResourceManager::InitResourceGroup(String Group).
-            /// @param Location The location on the file system the resource can be found.
+            /// @param Location The location on the file system the asset can be found.
             /// @param Type The kind of file system the location can be found in. @n
             /// Options are: filesystem, zip.
             /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
             /// @param recursive Whether or not to search sub-directories.
-            void AddResourceLocation(const String& Location, const String& Type, const String& Group, const bool recursive=false);
-            /// @brief Creates a resource group.
-            /// @param GroupName The name to be given to the created resource group.
-            void CreateResourceGroup(const String& GroupName);
-            /// @brief Destroys a resource group, unloading all of it's resources.
-            /// @param GroupName The name of the resource group to destroy.
-            void DestroyResourceGroup(const String& GroupName);
-            /// @brief Prepares the resource for use.
+            void AddAssetLocation(const String& Location, const String& Type, const String& Group, const bool recursive=false);
+            /// @brief Creates an asset group.
+            /// @param GroupName The name to be given to the created asset group.
+            void CreateAssetGroup(const String& GroupName);
+            /// @brief Destroys an asset group, unloading all of it's resources.
+            /// @param GroupName The name of the asset group to destroy.
+            void DestroyAssetGroup(const String& GroupName);
+            /// @brief Prepares the asset for use.
             /// @details This function can be thought of as a preloader.  This will prepare the defined
-            /// resource located on the disk for use.
-            /// @param Name Name of the file/resource to be 'prepared'.
-            /// @param Type The type of resource that the file is. @n
+            /// asset located on the disk for use.
+            /// @param Name Name of the file/asset to be 'prepared'.
+            /// @param Type The type of asset that the file is. @n
             /// Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture.
-            /// @param Group Name of the group the resource belongs to.
-            void DeclareResource(const String& Name, const String& Type, const String& Group);
-            /// @brief Makes a resource group ready to use.
-            /// @details After adding all of your resources and declaring them as nessessary, this function
-            /// is the final step.  After calling this function any and all resources within the defined group
+            /// @param Group Name of the group the asset belongs to.
+            void DeclareAsset(const String& Name, const String& Type, const String& Group);
+            /// @brief Makes a asset group ready to use.
+            /// @details After adding all of your assets and declaring them as nessessary, this function
+            /// is the final step.  After calling this function any and all assets within the defined group
             /// will be ready to use.  Do not initialize any more groups then you need to however, as that will
             /// take up memory and drop performance.
-            /// @param Name Name of the resource group.
-            void InitResourceGroup(const String& Name);
+            /// @param Name Name of the asset group.
+            void InitAssetGroup(const String& Name);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Asset Query
+
+            /// @brief Gets the actual path to an asset.
+            /// @note This function currently only returns the first match, and doesn't check for multiple matches.
+            /// @param FileName The name of the file to search for.
+            /// @param Group The asset group to search in for the file.
+            /// @return Returns a string containing the path to the file.
+            String GetAssetPath(const String& FileName, const String& Group);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility
@@ -170,20 +201,42 @@ namespace Mezzanine
             ResourceInputStream* GetResourceStream(const String& FileName);
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from ManagerBase
+            //Inherited from ManagerBase
 
-            /// @brief Empty Initializor
-            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
-            /// in case a derived class wants to override it for some reason.
-            void Initialize();
-            /// @brief Empty MainLoopItems
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring,
-            /// and this will get all the functionality that currently should be here, but is in the world.
-            void DoMainLoopItems();
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::ResourceManager
-            ManagerBase::ManagerTypeName GetType() const;
-    };
-}
+            /// @copydoc ManagerBase::Initialize()
+            virtual void Initialize();
+            /// @copydoc ManagerBase::DoMainLoopItems()
+            virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//ResourceManager
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultResourceManagerFactory
+    /// @headerfile resourcemanager.h
+    /// @brief A factory responsible for the creation and destruction of the default resourcemanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultResourceManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultResourceManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultResourceManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultResourceManagerFactory
+}//Mezzanine
 
 #endif

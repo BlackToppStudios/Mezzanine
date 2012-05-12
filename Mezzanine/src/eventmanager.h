@@ -45,6 +45,7 @@
 ///////////////////////////////////////
 
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "metacode.h"
 #include "eventbase.h"
 #include "singleton.h"
@@ -88,7 +89,7 @@ namespace Mezzanine
     class EventUserInput;
     class EventQuit;
 
-    namespace internal {
+    namespace Internal {
         class EventManagerInternalData;
     }
 
@@ -125,7 +126,7 @@ namespace Mezzanine
         private:
             /// @internal
             /// @brief All the internal data for this EventManager
-            internal::EventManagerInternalData* _Data;
+            Internal::EventManagerInternalData* _Data;
 
             /// @internal
             /// @brief Checks for quit messages and adds them to the queue
@@ -433,23 +434,43 @@ namespace Mezzanine
             /// @brief unhide the cursor and report mouse movements normally
             void EndRelativeMouseMode();*/
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Inherited From ManagerBase
-        ///////////////////////////////////////
-            /// @brief Empty Initializer
-            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
-            /// in case a derived class wants to override it for some reason
+            ///////////////////////////////////////////////////////////////////////////////
+            //Inherited from ManagerBase
+
+            /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();
-
-            /// @brief Empty MainLoopItems
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing. This is just empty during this round of refactoring,
-            /// and this will get all the functionality that currently should be here, but is in the world
+            /// @copydoc ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//EventManager
 
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::EventManager
-            virtual ManagerTypeName GetType() const;
-    };
-}
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultEventManagerFactory
+    /// @headerfile eventmanager.h
+    /// @brief A factory responsible for the creation and destruction of the default eventmanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultEventManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultEventManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultEventManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultEventManagerFactory
+}//Mezzanine
 
 #endif

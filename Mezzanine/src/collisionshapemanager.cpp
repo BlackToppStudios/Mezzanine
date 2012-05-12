@@ -52,7 +52,7 @@
 #include "BulletCollision/CollisionShapes/btShapeHull.h"
 #include "BulletCollision/Gimpact/btGImpactShape.h"
 #include "ConvexBuilder.h"
-#include "internaldecompinterface.h.cpp"
+#include "Internal/decompinterface.h.cpp"
 #include <btBulletWorldImporter.h>
 
 #include <fstream>
@@ -573,7 +573,7 @@ namespace Mezzanine
         desc.mMaxVertices  = maxv;
         desc.mSkinWidth    = skinWidth;
 
-        internal::MezzConvexDecomposition decomp;
+        Internal::MezzConvexDecomposition decomp;
         desc.mCallback = &decomp;
 
         ConvexBuilder cb(desc.mCallback);
@@ -703,8 +703,50 @@ namespace Mezzanine
     void CollisionShapeManager::DoMainLoopItems()
         {}
 
-    ManagerBase::ManagerTypeName CollisionShapeManager::GetType() const
+    ManagerBase::ManagerType CollisionShapeManager::GetInterfaceType() const
         { return ManagerBase::CollisionShapeManager; }
+
+    String CollisionShapeManager::GetImplementationTypeName() const
+        { return "DefaultCollisionShapeManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // DefaultCollisionShapeManagerFactory Methods
+
+    DefaultCollisionShapeManagerFactory::DefaultCollisionShapeManagerFactory()
+    {
+    }
+
+    DefaultCollisionShapeManagerFactory::~DefaultCollisionShapeManagerFactory()
+    {
+    }
+
+    String DefaultCollisionShapeManagerFactory::GetManagerTypeName() const
+    {
+        return "DefaultCollisionShapeManager";
+    }
+
+    ManagerBase* DefaultCollisionShapeManagerFactory::CreateManager(NameValuePairList& Params)
+    {
+        if(CollisionShapeManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return CollisionShapeManager::GetSingletonPtr();
+        }else return new CollisionShapeManager();
+    }
+
+    ManagerBase* DefaultCollisionShapeManagerFactory::CreateManager(xml::Node& XMLNode)
+    {
+        if(CollisionShapeManager::SingletonValid())
+        {
+            /// @todo Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.
+            return CollisionShapeManager::GetSingletonPtr();
+        }else return new CollisionShapeManager(XMLNode);
+    }
+
+    void DefaultCollisionShapeManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
+    {
+        delete ToBeDestroyed;
+    }
 }//Mezzanine
 
 #endif

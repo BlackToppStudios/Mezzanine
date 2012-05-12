@@ -43,7 +43,9 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
+#include "managerfactory.h"
 #include "singleton.h"
+#include "objectsettings.h"
 
 namespace cAudio
 {
@@ -67,6 +69,7 @@ namespace Mezzanine
     %template(SingletonAudioManager) Singleton<AudioManager>;
     #endif
 
+    class AudioManagerInternalData;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class AudioManager
     /// @headerfile audiomanager.h
@@ -74,10 +77,11 @@ namespace Mezzanine
     /// @details This is a place for loading, storing, and running sound files as
     /// necessary in a given game.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB AudioManager : public ManagerBase, public Singleton<AudioManager>
+    class MEZZ_LIB AudioManager : public ManagerBase, public ObjectSettingsHandler, public Singleton<AudioManager>
     {
         protected:
-            cAudio::IAudioManager* cAudioManager;
+            cAudio::IAudioManager* cAudioMan;
+            AudioManagerInternalData* AMID;
             std::map< String, Audio::SoundSet* > SoundSets;
             std::map< String, Audio::Sound* > Sounds;
             std::vector< Audio::Sound* > AmbientSounds;
@@ -93,6 +97,11 @@ namespace Mezzanine
             bool Muted;
             Audio::Listener* Listener;
             Audio::MusicPlayer* MusicPlayer;
+#ifdef MEZZXML
+            virtual String GetObjectRootNodeName() const;
+            virtual xml::Node CreateCurrentSettings();
+#endif
+            virtual void ApplySettingGroupImpl(ObjectSettingSetContainer* Group);
         public:
             /// @brief Class Constructor
             /// @details This is the class constructor.  It gives you the option to start up the manager
@@ -247,7 +256,7 @@ namespace Mezzanine
             /// @param DeviceName The name of the device you wish to have this manager interface with/use.
             /// @param OutputFrequency Frequency of the output audio, -1 for the devices default.
             /// @param EAXEffectSlots The number of effects per sound allowed to be applied.
-            virtual void InitializeDevice(ConstString &DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
+            virtual void InitializeDevice(ConstString& DeviceName, int OutputFrequency=-1, int EAXEffectSlots=4);
             /// @brief Retrieve's the listener for this sound manager.
             /// @details This function will return the listener for this manager which can be used to help create 3D sound.
             /// @return Returns a pointer to the managers Sound Listener.
@@ -264,13 +273,38 @@ namespace Mezzanine
 
             /// @copydoc Mezzanine::ManagerBase::Initialize()
             virtual void Initialize();
-
             /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
             virtual void DoMainLoopItems();
+            /// @copydoc ManagerBase::GetInterfaceType()
+            virtual ManagerType GetInterfaceType() const;
+            /// @copydoc ManagerBase::GetImplementationTypeName()
+            virtual String GetImplementationTypeName() const;
+    };//AudioManager
 
-            /// @copydoc Mezzanine::ManagerBase::GetType()
-            virtual ManagerBase::ManagerTypeName GetType() const;
-    };// audio manager
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class DefaultAudioManagerFactory
+    /// @headerfile audiomanager.h
+    /// @brief A factory responsible for the creation and destruction of the default audiomanager.
+    ///////////////////////////////////////
+    class MEZZ_LIB DefaultAudioManagerFactory : public ManagerFactory
+    {
+        public:
+            /// @brief Class constructor.
+            DefaultAudioManagerFactory();
+            /// @brief Class destructor.
+            virtual ~DefaultAudioManagerFactory();
+
+            /// @copydoc ManagerFactory::GetManagerTypeName()
+            String GetManagerTypeName() const;
+            /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
+            ManagerBase* CreateManager(NameValuePairList& Params);
+#ifdef MEZZXML
+            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
+            ManagerBase* CreateManager(xml::Node& XMLNode);
+#endif
+            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
+            void DestroyManager(ManagerBase* ToBeDestroyed);
+    };//DefaultAudioManagerFactory
 }//Mezzanine
 
 #endif
