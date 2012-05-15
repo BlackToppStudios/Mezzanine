@@ -10,7 +10,7 @@
 	</DefaultActorManager>
 	<DefaultAudioManager>
 		<SettingsPath Path="$ShareableAppData$/.Catch/" />
-		<SettingsFiles> 
+		<SettingsFiles>
 			<SettingsFile FileName="AudioSettings.mxs" />
 		</SettingsFiles>
 	</DefaultAudioManager>
