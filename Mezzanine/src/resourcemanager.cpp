@@ -118,13 +118,13 @@ namespace Mezzanine
         #ifdef WINDOWS
         if(::CreateDirectoryA(DirectoryPath.c_str(),NULL) < 0)
         {
-            std::stringstream exceptionstream;
-            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
             if(ERROR_ALREADY_EXISTS == ::GetLastError())
             {
-                exceptionstream << "Requested directory already exists.";
+                return false;
             }
-            else if(ERROR_PATH_NOT_FOUND == ::GetLastError())
+            std::stringstream exceptionstream;
+            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
+            if(ERROR_PATH_NOT_FOUND == ::GetLastError())
             {
                 exceptionstream << "Path to requested directory does not exist.";
             }
@@ -134,15 +134,52 @@ namespace Mezzanine
             }
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
+        return true;
         #else
         if(::mkdir(DirectoryPath.c_str(),0777) < 0)
         {
+            if( EEXIST == errno )
+            {
+                return false;
+            }
             std::stringstream exceptionstream;
             exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
-            exceptionstream << strerror();
+            exceptionstream << strerror(errno);
             World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
         }
+        return true;
         #endif
+    }
+
+    bool ResourceManager::CreateDirectoryPath(const String& DirectoryPath)
+    {
+        bool Result = true;
+        StringVector FolderNames;
+        CountedPtr<StringVector> FolderVec = StringTool::Split(DirectoryPath,"/\\");
+        size_t StartIndex = 0;
+        // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
+        if(FolderVec->at(0).find(':'))
+            StartIndex++;
+        // Now on with creation of folders, from the bottom up, ensuring they are all there.
+        for( size_t CurrIndex = StartIndex ; CurrIndex < FolderVec->size() ; ++CurrIndex )
+        {
+            String PathAttempt;
+            #ifndef WINDOWS
+            PathAttempt.append("/");
+            #endif
+            for( size_t VecIndex = 0 ; VecIndex < CurrIndex ; ++VecIndex )
+            {
+                PathAttempt.append( FolderVec->at(VecIndex) );
+                #ifdef WINDOWS
+                PathAttempt.append("\\");
+                #else
+                PathAttempt.append("/");
+                #endif
+            }
+            Result = CreateDirectory(PathAttempt);
+            PathAttempt.clear();
+        }
+        return Result;
     }
 
     StringSet* ResourceManager::GetDirContents(const String& Dir)
