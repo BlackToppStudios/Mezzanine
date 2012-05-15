@@ -188,7 +188,7 @@ namespace Mezzanine
             String Name, Data;
             Resource::TextSettingsFile::SettingsIterator It;
 
-            std::vector<String> StrValues;
+            CountedPtr<StringVector> StrValues;
             Vector2 Offset;
             for(It = Config->begin() ; It != Config->end() ; ++It)
             {
@@ -265,19 +265,19 @@ namespace Mezzanine
 
                 StrValues = StringTool::Split((*It).second," ",5);
 
-                if(StrValues.size() < 4)
+                if(StrValues->size() < 4)
                 {
                     continue;
                 }
 
-                NewGlyph->UVLeft    = Offset.X + StringTool::ConvertToReal( StrValues[0] );
-                NewGlyph->UVTop     = Offset.Y + StringTool::ConvertToReal( StrValues[1] );
-                NewGlyph->UVWidth   = StringTool::ConvertToReal( StrValues[2] );
-                NewGlyph->UVHeight  = StringTool::ConvertToReal( StrValues[3] );
+                NewGlyph->UVLeft    = Offset.X + StringTool::ConvertToReal( StrValues->at(0) );
+                NewGlyph->UVTop     = Offset.Y + StringTool::ConvertToReal( StrValues->at(1) );
+                NewGlyph->UVWidth   = StringTool::ConvertToReal( StrValues->at(2) );
+                NewGlyph->UVHeight  = StringTool::ConvertToReal( StrValues->at(3) );
                 NewGlyph->UVRight   = NewGlyph->UVLeft + NewGlyph->UVWidth;
                 NewGlyph->UVBottom  = NewGlyph->UVTop + NewGlyph->UVHeight;
 
-                if(StrValues.size() == 5) NewGlyph->GlyphAdvance = StringTool::ConvertToReal( StrValues[4] );
+                if(StrValues->size() == 5) NewGlyph->GlyphAdvance = StringTool::ConvertToReal( StrValues->at(4) );
                 else NewGlyph->GlyphAdvance = NewGlyph->UVWidth;
 
                 NewGlyph->GlyphChar = (GlyphD->Glyphs.size() - 1) + GlyphD->RangeBegin;
@@ -291,7 +291,7 @@ namespace Mezzanine
             UInt32 LeftGlyphID;
             UInt32 RightGlyphID;
             Real Kern;
-            std::vector<String> StrValues;
+            CountedPtr<StringVector> StrValues;
 
             for(It = Config->begin(); It != Config->end(); ++It)
             {
@@ -310,13 +310,13 @@ namespace Mezzanine
                 LeftGlyphID = StringTool::ConvertToUInt32(LeftName);
                 StrValues = StringTool::Split(Data," ",2);
 
-                if(StrValues.size() != 2)
+                if(StrValues->size() != 2)
                 {
                     continue;
                 }
 
-                RightGlyphID = StringTool::ConvertToUInt32(StrValues[0]);
-                Kern = StringTool::ConvertToReal(StrValues[1]);
+                RightGlyphID = StringTool::ConvertToUInt32(StrValues->at(0));
+                Kern = StringTool::ConvertToReal(StrValues->at(1));
                 GlyphD->Glyphs[RightGlyphID - GlyphD->RangeBegin]->Kernings.push_back(KerningInfo(LeftGlyphID,Kern));
             }
         }
@@ -353,7 +353,7 @@ namespace Mezzanine
             String SpriteName, Data;
             Resource::TextSettingsFile::SettingsIterator It;
 
-            std::vector<String> StrValues;
+            CountedPtr<StringVector> StrValues;
             for(It = Config->begin() ; It != Config->end() ; ++It)
             {
                 SpriteName = It->first;
@@ -365,15 +365,15 @@ namespace Mezzanine
 
                 StrValues = StringTool::Split(Data," ",4);
 
-                if(StrValues.size() != 4)
+                if(StrValues->size() != 4)
                     continue;
 
                 Sprite* NewSprite = new Sprite();
 
-                NewSprite->UVLeft = StringTool::ConvertToUInt32(StrValues[0]);
-                NewSprite->UVTop = StringTool::ConvertToUInt32(StrValues[1]);
-                NewSprite->SpriteSize.X = StringTool::ConvertToUInt32(StrValues[2]);
-                NewSprite->SpriteSize.Y = StringTool::ConvertToUInt32(StrValues[3]);
+                NewSprite->UVLeft = StringTool::ConvertToUInt32(StrValues->at(0));
+                NewSprite->UVTop = StringTool::ConvertToUInt32(StrValues->at(1));
+                NewSprite->SpriteSize.X = StringTool::ConvertToUInt32(StrValues->at(2));
+                NewSprite->SpriteSize.Y = StringTool::ConvertToUInt32(StrValues->at(3));
                 NewSprite->Atlas = Atlas;
                 Sprites[SpriteName] = NewSprite;
             }

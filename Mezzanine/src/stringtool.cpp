@@ -69,10 +69,10 @@ namespace Mezzanine
             Source.erase(0,Source.find_first_not_of(Delims));
     }
 
-    std::vector<String> StringTool::Split(const String& Source, const String& Delims, const Whole& MaxSplits)
+    CountedPtr<StringVector> StringTool::Split(const String& Source, const String& Delims, const Whole& MaxSplits)
     {
-        std::vector<String> Ret;
-        Ret.reserve( MaxSplits ? MaxSplits+1 : 10 );
+        CountedPtr<StringVector> Ret(new StringVector);
+        Ret->reserve( MaxSplits ? MaxSplits+1 : 10 );
         Whole Splits = 0;
 
         size_t Start = 0;
@@ -87,12 +87,12 @@ namespace Mezzanine
             }
             else if(Pos == String::npos || (MaxSplits && Splits == MaxSplits))
             {
-                Ret.push_back(Source.substr(Start));
+                Ret->push_back(Source.substr(Start));
                 break;
             }
             else
             {
-                Ret.push_back(Source.substr(Start,Pos - Start));
+                Ret->push_back(Source.substr(Start,Pos - Start));
                 Start = Pos + 1;
             }
             Start = Source.find_first_not_of(Delims,Start);
@@ -170,10 +170,10 @@ namespace Mezzanine
 
     Vector2 StringTool::ConvertToVector2(const String& ToConvert)
     {
-        std::vector<String> Digits = Split(ToConvert);
-        if(2 == Digits.size())
+        CountedPtr<StringVector> Digits = Split(ToConvert);
+        if(2 == Digits->size())
         {
-            return Vector2(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]));
+            return Vector2(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)));
         }else{
             std::stringstream logstream;
             logstream << "String does not contain 2 digits when attempting to convert in StringTool::ConvertToVector2.";
@@ -190,10 +190,10 @@ namespace Mezzanine
 
     Vector3 StringTool::ConvertToVector3(const String& ToConvert)
     {
-        std::vector<String> Digits = Split(ToConvert);
-        if(3 == Digits.size())
+        CountedPtr<StringVector> Digits = Split(ToConvert);
+        if(3 == Digits->size())
         {
-            return Vector3(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]),ConvertToReal(Digits[2]));
+            return Vector3(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)));
         }else{
             std::stringstream logstream;
             logstream << "String does not contain 3 digits when attempting to convert in StringTool::ConvertToVector3.";
@@ -210,10 +210,10 @@ namespace Mezzanine
 
     Quaternion StringTool::ConvertToQuaternion(const String& ToConvert)
     {
-        std::vector<String> Digits = Split(ToConvert);
-        if(4 == Digits.size())
+        CountedPtr<StringVector> Digits = Split(ToConvert);
+        if(4 == Digits->size())
         {
-            return Quaternion(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]),ConvertToReal(Digits[2]),ConvertToReal(Digits[3]));
+            return Quaternion(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
             std::stringstream logstream;
             logstream << "String does not contain 4 digits when attempting to convert in StringTool::ConvertToQuaternion.";
@@ -230,10 +230,10 @@ namespace Mezzanine
 
     ColourValue StringTool::ConvertToColourValue(const String& ToConvert)
     {
-        std::vector<String> Digits = Split(ToConvert);
-        if(4 == Digits.size())
+        CountedPtr<StringVector> Digits = Split(ToConvert);
+        if(4 == Digits->size())
         {
-            return ColourValue(ConvertToReal(Digits[0]),ConvertToReal(Digits[1]),ConvertToReal(Digits[2]),ConvertToReal(Digits[3]));
+            return ColourValue(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
             std::stringstream logstream;
             logstream << "String does not contain 4 digits when attempting to convert in StringTool::ConvertToColourValue.";
