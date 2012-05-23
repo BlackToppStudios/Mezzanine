@@ -130,18 +130,6 @@ CompleteCopyright2="$OurCopyright * Pugixml parser - version 1.0"
 CopyrightAccidentalDoxyTags='\/\*\*'
 CopyrightCleantags='\/\*'
 
-#Namespace Variables
-PugiUsingNamespace="using namespace pugi"
-PugiNamespace="namespace pugi"
-OurUsingNamespace="using namespace Mezzanine::xml"
-#OurUsingNamespace="using namespace Mezzanine"
-#OurUsingNamespace="using namespace xml"
-OurNamespace="namespace xml"
-OurExtraNamespace="
-namespace Mezzanine
-{"
-OurExtraNamespaceClosing="} // \Mezzanine"
-
 #Make the Files to begin appending Source code to.
 cat  $MezzLicenseFile $DoxEnd > $NewCppFile
 cat  $MezzLicenseFile > $PugiTempHFile
@@ -159,7 +147,7 @@ PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader
 PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | head -n1 | sed s/:.*//g`
 PugiHeaderTotalLineCount=`grep "$Hardstring" $PugiHFile -vc`
 PugiHeaderTailLineCount=$[PugiHeaderTotalLineCount-PugiHeaderGrabLineCount]
-tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'/'#include "crossplatform.h"\n#include "xmldoc.h"\n#include "exception.h"\n#include "resourcedatastream.h"'/g  >> $PugiTempHFile
+tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s='#include "pugiconfig.hpp"'='#include "crossplatform.h"\n#include "xmldoc.h"\n#include "exception.h"\n#include "Resource/datastream.h"'=g  >> $PugiTempHFile
 
 #This Does a number of transformations on the PugiHeader file before placing the complete converted parts onto the new headerfile
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
@@ -173,72 +161,7 @@ tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"
 cat $MezzxmlifdefFile $PugiTempHFile $MezzxmlendifFile| sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
 
 # This does mostly the same thing that the header transfortmation does, a bunch of cleanup and putting the code where it belongs
-cat $MezzxmlifdefFile $PugiCppFile $MezzxmlendifFile $DoxResume | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
-
-# This will look in file $1 for the bracket that should end the statement that starts with $2 and ends the statement with $4
-# while doing this, old instances of $2 and replace them with $3
-# In other words
-# $1 is the filename
-# $2 is Old namespace
-# $3 is the new double namespace
-# $4 is the item to end the namespace, use "}" if you don't wantanything fancy.
-function FixNamespaces
-{
-	TempFileName="$1.tmp"
-	echo -n "" > $TempFileName
-	LB="{"						#The character that begins a codeblock
-	RB="}"						#The character that ends a codeblock
-	LookingForEndBracket=-1	#if this is set to -1 then we are looking for the line of code to start search for our bracket at.
-								#if this is set to a positive number, then it is the amount of unclosed left brackets we have found.
-
-	LineCount=0
-	OIFS="$IFS"
-	IFS=$'\n'
-	FileContent=`cat $1`
-
-	#echo -E "$FileContent" > $1.txt.cpp
-	FileContent=`echo -E "$FileContent" | sed -e 's/\(.*$\)/\1 /'`
-	#echo -E "$FileContent" > $1.txt2.cpp
-
-	for fn in $FileContent; do
-		#LineCount=$[LineCount+1]
-		#echo $LineCount #: $fn
-		if [ $LookingForEndBracket -eq -1 ]; then
-			#looking for Namespace
-			if [ "$fn" = "${fn/$2/asdf}" ]; then
-				#Line has no match in it, so we send it to temp file
-				echo -E "$fn" >> $TempFileName
-			else
-				#This line does match, send to replacement to tempfile and start counting
-				LookingForEndBracket=0
-				echo -E "$3" >> $TempFileName
-			fi
-		else
-			echo -E "$fn" >> $TempFileName
-			#We are looking for a Brackets now
-			if [ "$fn" != "${fn/$LB/asdf}" ]; then
-				#We found a left bracket we are going deeper
-				LookingForEndBracket=$[1+LookingForEndBracket]
-			fi
-			if [ "$fn" != "${fn/$RB/asdf}" ]; then
-				#We found a right bracket we are coming out
-				LookingForEndBracket=$[LookingForEndBracket-1]
-				if [ $LookingForEndBracket == 0 ]; then
-					LookingForEndBracket=-1
-					echo -E "$4" >> $TempFileName
-				fi
-			fi
-		fi
-	done
-
-	mv $TempFileName $1
-	IFS="$OIFS"
-}
-
-echo "Fixing the Namespaces in the Header File."
-FixNamespaces $NewHFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
-echo "Fixing the Namespaces in the Source File."
-FixNamespaces $NewCppFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$OurExtraNamespaceClosing"
+cat $MezzxmlifdefFile $PugiCppFile $MezzxmlendifFile $DoxResume | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	>> $NewCppFile
 
 #This will replace all the old PugiXML names in the file providesd in $1 with the new BTS Mezzanine::xml names
 function FixNames
@@ -249,6 +172,13 @@ function FixNames
 
 	#######################################################################
 	#This is the list of items to find/replace to convert the Pugi API into Mezzanine API
+	echo "	Change Namespaces"
+	sed -i -e 's|// Character interface macros|namespace Mezzanine {\n// Character interface macros\n|g' $1
+	sed -i -e 's|// Memory allocation$|namespace Mezzanine {\n// Memory allocation\n|g' $1
+	sed -i -e 's|deallocation_function PUGIXML_FUNCTION get_memory_deallocation_function();|deallocation_function PUGIXML_FUNCTION get_memory_deallocation_function(); \n}// Mezzanine namespace|g' $1
+	sed -i -e 's|#undef PUGI__CHECK_ERROR|#undef PUGI__CHECK_ERROR \n} // Mezzanine namespace|g' $1
+	sed -i -e 's|namespace pugi { namespace impl {|namespace xml { namespace internal {|g' $1
+	sed -i -e 's|namespace pugi$|namespace xml|g' $1
 
 	echo "	Removing Old Doxygen Docs"
 	#Remove the original and grossly incomplete doxygen documentations
@@ -302,6 +232,7 @@ function FixNames
 
 	echo "	Integrating Char and String"
 	#More tightly integrating Character into the XML parser
+	sed -i -e 's|#	define XML_CHAR char|#	define XML_CHAR char\n\ttypedef Character char_t;|g' $1
 	sed -i -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g' $1
 	sed -i -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> >;|//typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g' $1
 	sed -i -e 's|string_t|String|g' $1
@@ -356,8 +287,8 @@ function FixNames
 	sed -i -e 's|NextAttribute|GetNextAttribute|g' $1
 	sed -i -e 's|PreviousAttribute|GetPreviousAttribute|g' $1
 
-	sed -i -e 's|float AsFloat() const;|float AsFloat() const;\n		Real AsReal() const;\n		Whole AsWhole() const;\n		Integer AsInteger() const;\n		String AsString() const;|g' $1
-	sed -i -e 's|float Attribute::AsFloat() const|Whole Attribute::AsWhole() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToWhole(_attr->Value);\n	}\n\n	Integer Attribute::AsInteger() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToInteger(_attr->Value);\n	}\n\n	String Attribute::AsString() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToString(_attr->Value);\n	}\n\n	Real Attribute::AsReal() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToReal(_attr->Value);\n	}\n\n	float Attribute::AsFloat() const|g' $1
+	sed -i -e 's|float AsFloat(float def = 0) const;|float AsFloat(float def = 0) const;\n		Real AsReal(float def = 0) const;\n		Whole AsWhole() const;\n		Integer AsInteger() const;|g' $1
+	sed -i -e 's|float Attribute::AsFloat() const|Whole Attribute::AsWhole() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToWhole(_attr->Value);\n	}\n\n	Integer Attribute::AsInteger() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToInteger(_attr->Value);\n	}\n\n	}\n\n	Real Attribute::AsReal() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToReal(_attr->Value);\n	}\n\n	float Attribute::AsFloat() const|g' $1
 
 	echo "	Converting Node Class Members"
 	#The Node Class
