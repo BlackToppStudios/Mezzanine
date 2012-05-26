@@ -42,33 +42,67 @@
 #define _exception_cpp
 
 #include "exception.h"
+#include "world.h"
 
 namespace Mezzanine
 {
-    Exception::Exception(const String &Message, bool Logged_):ErrorMessage(Message),Logged(Logged_)
+    Exception::Exception(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+        : ExceptionTypeName(TypeName),
+          ErrorMessage(Message),
+          Function(SrcFunction),
+          File(SrcFile),
+          Line(FileLine)
     {
-
-    }
-
-    bool Exception::HasBeenLogged()
-    {
-        return this->Logged;
-    }
-
-    String Exception::what() throw()
-    {
-        return this->ErrorMessage;
+        if(World::GetWorldPointerValidity())
+        {
+            World::GetWorldPointer()->Log(GetCompleteMessage());
+        }else{
+            std::cout << GetCompleteMessage();
+        }
     }
 
     Exception::~Exception() throw()
     {
-
     }
 
-    void Exception::SetLogged()
+    ///////////////////////////////////////////////////////////////////////////////
+    // Error Information
+    ConstString& Exception::GetExceptionTypeName() const throw()
     {
-        this->Logged=true;
+        return ExceptionTypeName;
     }
-} // \Mezz
+
+    ConstString& Exception::GetFunction() const throw()
+    {
+        return Function;
+    }
+
+    ConstString& Exception::GetFile() const throw()
+    {
+        return File;
+    }
+
+    const Whole& Exception::GetLine() const throw()
+    {
+        return Line;
+    }
+
+    String Exception::GetCompleteMessage() const throw()
+    {
+        StringStream ErrorStream;
+        ErrorStream << "MEZZANINE EXCEPTION(" << TypeName << "): "
+                    << ErrorMessage << " in " << Function << ".  "
+                    << "At line " << Line?Line:"Unknown" << " of "
+                    << File << ".";
+        return ErrorStream.str();
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Error Checking
+    String Exception::what() throw()
+    {
+        return GetCompleteMessage();
+    }
+}//Mezzanine
 
 #endif // \exception_cpp
