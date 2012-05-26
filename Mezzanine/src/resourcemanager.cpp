@@ -157,9 +157,11 @@ namespace Mezzanine
         StringVector FolderNames;
         CountedPtr<StringVector> FolderVec = StringTool::Split(DirectoryPath,"/\\");
         size_t StartIndex = 0;
+        #ifdef WINDOWS
         // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
         if(FolderVec->at(0).find(':'))
             StartIndex++;
+        #endif
         // Now on with creation of folders, from the bottom up, ensuring they are all there.
         for( size_t CurrIndex = StartIndex ; CurrIndex < FolderVec->size() ; ++CurrIndex )
         {
