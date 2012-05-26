@@ -287,19 +287,19 @@ namespace Mezzanine
             // TypedConstraint Serialization
 #ifdef MEZZXML
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
             /// @details This stores each Actor's name and every constraint parameter on each if it has been set.
             /// This should allow for looking up the required actors in the Actor Manager. This should also prevent
             /// any interference with different values and minimize the size of the serialized version
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
+            /// @param OneNode and XML::Node containing the data.
             /// @details This should only be run once all the actors have finishes being deserialized. This will fail
             /// if the actors it expects are not present.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "TypedConstraint"
@@ -377,15 +377,15 @@ namespace Mezzanine
         // DualTransformConstraint Serialization
 #ifdef MEZZXML
         // Serializable
-        /// @brief Convert this class to an xml::Node ready for serialization
+        /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
         /// @details This stores each Actor's Transform
-        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+        virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
         // DeSerializable
         /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-        /// @param OneNode and xml::Node containing the data.
-        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+        /// @param OneNode and XML::Node containing the data.
+        virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "DualTransformConstraint"
@@ -784,15 +784,15 @@ namespace Mezzanine
             // Generic6DofConstraint Serialization
 #ifdef MEZZXML
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
+            /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Generic6DofConstraint"
@@ -943,15 +943,15 @@ namespace Mezzanine
             // Generic6DofSpringConstraint Serialization
 #ifdef MEZZXML
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
+            /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Generic6DofConstraint"
@@ -1155,14 +1155,14 @@ namespace Mezzanine
             ////////////////////////////////////////////////////////////////////////////////
             // HingeConstraint Serialization
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
+            /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "HingeConstraint"
             static String SerializableName();
@@ -1272,15 +1272,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
+            /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Point2PointConstraint"
@@ -1425,42 +1425,42 @@ namespace Mezzanine
     /// @brief Converts an XML Node into a functional in memory construct.
     /// @param OneNode The xml node that contains the deserialize class instance.
     /// @param x The class instance to overwrite witht the proto serialized version in the node.
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x);
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const Mezzanine::TypedConstraint& x)
     std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::DualTransformConstraint& x);
     /// @copydoc operator >> (std::istream& stream, Mezzanine::TypedConstraint& x)
     std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::DualTransformConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x)
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::DualTransformConstraint& x);
+    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::DualTransformConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const Mezzanine::TypedConstraint& x)
     std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Generic6DofConstraint& x);
     /// @copydoc operator >> (std::istream& stream, Mezzanine::TypedConstraint& x)
     std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Generic6DofConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x)
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Generic6DofConstraint& x);
+    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Generic6DofConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const Mezzanine::TypedConstraint& x)
     std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Generic6DofSpringConstraint& x);
     /// @copydoc operator >> (std::istream& stream, Mezzanine::TypedConstraint& x)
     std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Generic6DofSpringConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x)
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Generic6DofSpringConstraint& x);
+    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Generic6DofSpringConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const Mezzanine::TypedConstraint& x)
     std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::HingeConstraint& x);
     /// @copydoc operator >> (std::istream& stream, Mezzanine::TypedConstraint& x)
     std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::HingeConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x)
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::HingeConstraint& x);
+    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::HingeConstraint& x);
 
     /// @copydoc operator << (std::ostream& stream, const Mezzanine::TypedConstraint& x)
     std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Point2PointConstraint& x);
     /// @copydoc operator >> (std::istream& stream, Mezzanine::TypedConstraint& x)
     std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Point2PointConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x)
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Point2PointConstraint& x);
+    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Point2PointConstraint& x);
 
 
 #endif // \MEZZXML

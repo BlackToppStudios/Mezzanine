@@ -140,15 +140,15 @@ namespace Mezzanine
             virtual String PhysicsSettingsSerializableName() const;
 
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
+            /// @param OneNode and XML::Node containing the data.
             /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorRigid"
             static String SerializableName();
@@ -173,7 +173,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigid&
 /// @brief Converts an XML Node into a functional in memory construct.
 /// @param OneNode The xml node that contains the deserialize class instance.
 /// @param x The class instance to overwrite witht the proto serialized version in the node.
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigid& x);
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x);
 #endif  // \mezzxml
 
 #endif

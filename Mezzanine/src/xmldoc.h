@@ -143,7 +143,7 @@ namespace Mezzanine
     ///
     /// @subsection XMLIntroduction Introduction
     /// Mezzanine::xml is a light-weight C++ XML processing library. It consists of a DOM-like interface with rich traversal/modification capabilities, an
-    /// extremely fast XML parser which constructs the DOM tree from an XML file/buffer, and an @ref Mezzanine::xml::XPathQuery "XPath 1.0 implementation"
+    /// extremely fast XML parser which constructs the DOM tree from an XML file/buffer, and an @ref Mezzanine::XML::XPathQuery "XPath 1.0 implementation"
     /// for complex data-driven tree queries. Full Unicode support is also available, with @ref XMLUnicode "two Unicode interface variants" and
     /// conversions between different Unicode encodings (which happen automatically during parsing/saving).
     /// \n \n
@@ -207,55 +207,55 @@ namespace Mezzanine
     ///         - @ref XMLMemoryInternals
     ///
     /// @subsection XMLTreeStructure Tree structure
-    /// The XML document is represented with a tree data structure. The root of the tree is the document itself, which corresponds to C++ type Mezzanine::xml::Document.
-    /// A Document has one or more child nodes, which correspond to C++ type Mezzanine::xml::Node. Nodes have different types; depending on a type, a node can have a
-    /// collection of child nodes, a collection of attributes, which correspond to C++ type Mezzanine::xml::Attribute, and some additional data (i.e. Name).
+    /// The XML document is represented with a tree data structure. The root of the tree is the document itself, which corresponds to C++ type Mezzanine::XML::Document.
+    /// A Document has one or more child nodes, which correspond to C++ type Mezzanine::XML::Node. Nodes have different types; depending on a type, a node can have a
+    /// collection of child nodes, a collection of attributes, which correspond to C++ type Mezzanine::XML::Attribute, and some additional data (i.e. Name).
     /// \n \n
-    /// The tree nodes can be of one of the following types (which together form the enumeration Mezzanine::xml::NodeType):
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeDocument Document node" - This is the root of the tree, which consists of several child nodes. This node corresponds
-    ///     to Mezzanine::xml::Document class; note that Mezzanine::xml::Document is a sub-class of Mezzanine::xml::Node, so the entire node interface is also available. However,
+    /// The tree nodes can be of one of the following types (which together form the enumeration Mezzanine::XML::NodeType):
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeDocument Document node" - This is the root of the tree, which consists of several child nodes. This node corresponds
+    ///     to Mezzanine::XML::Document class; note that Mezzanine::XML::Document is a sub-class of Mezzanine::XML::Node, so the entire node interface is also available. However,
     ///     document nodes are special in several ways, which are covered below. There can be only one document node in the tree; document node does not have any XML
     ///     representation. \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeElement Element/tag node" - This is the most common type of node, which represents XML elements. Element nodes
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeElement Element/tag node" - This is the most common type of node, which represents XML elements. Element nodes
     ///     have a name, a collection of attributes and a collection of child nodes (both of which may be empty). The attribute is a simple name/value pair. The example
     ///     XML representation of element nodes is as follows:
     ///     @code <node attr="value"><child/></node> @endcode
     ///     There are two element nodes here: one has name "node", single attribute "attr" and the single child "child" which has the name "child" and does not have
     ///     any attributes or child nodes. \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodePcdata Plain character data node" - Represent plain text in XML. PCDATA nodes have a value, but do not have a name
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodePcdata Plain character data node" - Represent plain text in XML. PCDATA nodes have a value, but do not have a name
     ///     or children/attributes. Note that plain character data is not a part of the element node but instead has its own node; for example, an element node can have
     ///     several child PCDATA nodes. The example XML representation of text nodes is as follows:
     ///     @code <node> text1 <child/> text2 </node> @endcode
     ///     Here "node" element has three children, two of which are PCDATA nodes with values "text1" and "text2". \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeCdata Character data nodes" - These represent text in XML that is quoted in a special way. CDATA nodes do not differ
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeCdata Character data nodes" - These represent text in XML that is quoted in a special way. CDATA nodes do not differ
     ///     from PCDATA nodes except in XML representation - the above text example looks like this with CDATA:
     ///     @code <node> <![CDATA[[text1]]> <child/> <![CDATA[[text2]]> </node> @endcode
     ///     CDATA nodes make it easy to include non-escaped \<, \& and \> characters in plain text. CDATA value can not contain the character sequence ]]\>, since it is
     ///     used to determine the end of node contents. \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeComment Comment nodes" - represent comments in XML. Comment nodes have a value, but do not have a name or
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeComment Comment nodes" - represent comments in XML. Comment nodes have a value, but do not have a name or
     ///     children/attributes. The example XML representation of a comment node is as follows:
     ///     @code <!-- comment text --> @endcode
     ///     Here the comment node has value "comment text". By default comment nodes are treated as non-essential part of XML markup and are not loaded during XML parsing.
-    ///     You can override this behavior with Mezzanine::xml::ParseComments flag. \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodePi Processing instruction node" - Represent Processing Instructions (PI) in XML. PI nodes have a name and an optional
+    ///     You can override this behavior with Mezzanine::XML::ParseComments flag. \n
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodePi Processing instruction node" - Represent Processing Instructions (PI) in XML. PI nodes have a name and an optional
     ///     value, but do not have children/attributes. The example XML representation of a PI node is as follows:
     ///     @code <?name value?> @endcode
     ///     Here the name (also called PI target) is "name", and the value is "value". By default PI nodes are treated as non-essential part of XML markup and are not
-    ///     loaded during XML parsing. You can override this behavior with Mezzanine::xml::ParsePi flag. \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeDeclaration Declaration node" - Represents document declarations in XML. Declaration nodes have a name ("xml") and an
+    ///     loaded during XML parsing. You can override this behavior with Mezzanine::XML::ParsePi flag. \n
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeDeclaration Declaration node" - Represents document declarations in XML. Declaration nodes have a name ("xml") and an
     ///     optional collection of attributes, but do not have value or children. There can be only one declaration node in a document; moreover, it should be the topmost
     ///     node (its parent should be the document). The example XML representation of a declaration node is as follows:
     ///     @code <?xml version="1.0"?> @endcode
     ///     Here the node has name "xml" and a single attribute with name "version" and value "1.0". By default declaration nodes are treated as non-essential part of XML
-    ///     markup and are not loaded during XML parsing. You can override this behavior with Mezzanine::xml::ParseDeclaration flag. Also, by default a dummy declaration is
-    ///     output when XML document is saved unless there is already a declaration in the document; you can disable this with Mezzanine::xml::FormatNoDeclaration flag. \n
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeDocType Document type declaration node" - Represents document type declarations in XML. Document type declaration nodes
+    ///     markup and are not loaded during XML parsing. You can override this behavior with Mezzanine::XML::ParseDeclaration flag. Also, by default a dummy declaration is
+    ///     output when XML document is saved unless there is already a declaration in the document; you can disable this with Mezzanine::XML::FormatNoDeclaration flag. \n
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeDocType Document type declaration node" - Represents document type declarations in XML. Document type declaration nodes
     ///     have a value, which corresponds to the entire document type contents; no additional nodes are created for inner elements like \<!ENTITY\>. There can be only one
     ///     document type declaration node in a document; moreover, it should be the topmost node (its parent should be the document). The example XML representation of a
     ///     document type declaration node is as follows:
     ///     @code <!DOCTYPE greeting [ <!ELEMENT greeting (#PCDATA)> ]> @endcode
     ///     Here the node has value "greeting [ <!ELEMENT greeting (#PCDATA)> ]". By default document type declaration nodes are treated as non-essential part of XML markup
-    ///     and are not loaded during XML parsing. You can override this behavior with Mezzanine::xml::ParseDocType flag. \n
+    ///     and are not loaded during XML parsing. You can override this behavior with Mezzanine::XML::ParseDocType flag. \n
     /// \n \n
     /// Finally, here is a complete example of XML document and the corresponding tree representation:
     /// @code
@@ -276,55 +276,55 @@ namespace Mezzanine
     /// @image latex SampleTree.jpg "Complete Tree Representation of the Sample"
     /// @image rtf SampleTree.jpg "Complete Tree Representation of the Sample"
     /// @subsection XMLInterface C++ interface
-    /// Despite the fact that there are several node types, there are only three C++ classes representing the tree (Mezzanine::xml::Document, Mezzanine::xml::Node, Mezzanine::xml::Attribute);
-    /// some operations on Mezzanine::xml::Node are only valid for certain node types. The classes are described below.
+    /// Despite the fact that there are several node types, there are only three C++ classes representing the tree (Mezzanine::XML::Document, Mezzanine::XML::Node, Mezzanine::XML::Attribute);
+    /// some operations on Mezzanine::XML::Node are only valid for certain node types. The classes are described below.
     /// \n \n
-    /// Mezzanine::xml::Document is the owner of the entire document structure; it is a non-copyable class. The interface of Mezzanine::xml::Document consists of loading functions
-    /// ( see @ref XMLLoading ), saving functions ( see @ref XMLSaving ) and the entire interface of Mezzanine::xml::Node, which allows for document inspection and/or modification.
-    /// Note that while Mezzanine::xml::Document is a sub-class of Mezzanine::xml::Node, Mezzanine::xml::Node is not a polymorphic type; the inheritance is present only to simplify usage.
-    /// Alternatively you can use the Mezzanine::xml::Document::DocumentElement function to get the element node that's the immediate child of the document.
+    /// Mezzanine::XML::Document is the owner of the entire document structure; it is a non-copyable class. The interface of Mezzanine::XML::Document consists of loading functions
+    /// ( see @ref XMLLoading ), saving functions ( see @ref XMLSaving ) and the entire interface of Mezzanine::XML::Node, which allows for document inspection and/or modification.
+    /// Note that while Mezzanine::XML::Document is a sub-class of Mezzanine::XML::Node, Mezzanine::XML::Node is not a polymorphic type; the inheritance is present only to simplify usage.
+    /// Alternatively you can use the Mezzanine::XML::Document::DocumentElement function to get the element node that's the immediate child of the document.
     /// \n \n
-    /// Default constructor of Mezzanine::xml::Document initializes the document to the tree with only a root node ( Mezzanine::xml::Document node). You can then populate it with data
+    /// Default constructor of Mezzanine::XML::Document initializes the document to the tree with only a root node ( Mezzanine::XML::Document node). You can then populate it with data
     /// using either tree modification functions or loading functions; all loading functions destroy the previous tree with all occupied memory, which puts existing
-    /// node/attribute handles for this document to invalid state. If you want to destroy the previous tree, you can use the Mezzanine::xml::Document::Reset function; it destroys
-    /// the tree and replaces it with either an empty one or a copy of the specified document. Destructor of Mezzanine::xml::Document also destroys the tree, thus the lifetime of
+    /// node/attribute handles for this document to invalid state. If you want to destroy the previous tree, you can use the Mezzanine::XML::Document::Reset function; it destroys
+    /// the tree and replaces it with either an empty one or a copy of the specified document. Destructor of Mezzanine::XML::Document also destroys the tree, thus the lifetime of
     /// the document object should exceed the lifetimes of any node/attribute handles that point to the tree.
     /// @warning While technically node/attribute handles can be alive when the tree they're referring to is destroyed, calling any member function for these handles results
     /// in undefined behavior. Thus it is recommended to make sure that the document is destroyed only after all references to its nodes/attributes are destroyed.
     ///
-    /// Mezzanine::xml::Node is the handle to a document node; it can point to any node in the document, including the document node itself. There is a common interface for nodes
-    /// of all types; the actual node type can be queried via the Mezzanine::xml::Node::Type() method. Note that Mezzanine::xml::Node is only a handle to the actual node, not the node
-    /// itself - you can have several Mezzanine::xml::node handles pointing to the same underlying object. Destroying Mezzanine::xml::Node handle does not destroy the node and does not
-    /// remove it from the tree. The size of Mezzanine::xml::Node is equal to that of a pointer, so it is nothing more than a lightweight wrapper around a pointer; you can safely
+    /// Mezzanine::XML::Node is the handle to a document node; it can point to any node in the document, including the document node itself. There is a common interface for nodes
+    /// of all types; the actual node type can be queried via the Mezzanine::XML::Node::Type() method. Note that Mezzanine::XML::Node is only a handle to the actual node, not the node
+    /// itself - you can have several Mezzanine::XML::node handles pointing to the same underlying object. Destroying Mezzanine::XML::Node handle does not destroy the node and does not
+    /// remove it from the tree. The size of Mezzanine::XML::Node is equal to that of a pointer, so it is nothing more than a lightweight wrapper around a pointer; you can safely
     /// pass or return Mezzanine::xml:Node objects by value without additional overhead.
     /// \n \n
-    /// There is a special value of Mezzanine::xml::Node type, known as null node or empty node (such nodes have type NodeNull). It does not correspond to any node in any document,
+    /// There is a special value of Mezzanine::XML::Node type, known as null node or empty node (such nodes have type NodeNull). It does not correspond to any node in any document,
     /// and thus resembles null pointer. However, all operations are defined on empty nodes; generally the operations don't do anything and return empty nodes/attributes or
     /// empty strings as their result (see documentation for specific functions for more detailed information). This is useful for chaining calls; i.e. you can get the
     /// grandparent of a node like so: node.GetParent().GetParent(); if a node is a null node or it does not have a parent, the first Node::GetParent() call returns null node;
     /// the second GetParent() call then also returns null node, which can make error handling easier.
     /// \n \n
-    /// Mezzanine::xml::Attribute is a handle to an XML attribute; it has the same semantics as Mezzanine::xml::Node, i.e. there can be several Mezzanine::xml::Attribute handles pointing to
+    /// Mezzanine::XML::Attribute is a handle to an XML attribute; it has the same semantics as Mezzanine::XML::Node, i.e. there can be several Mezzanine::XML::Attribute handles pointing to
     /// the same underlying object and there is a special null attribute value, which propagates to function results.
     /// \n \n
-    /// Both Mezzanine::xml::Node and Mezzanine::xml::Attribute have the default constructor which initializes them to null objects.
+    /// Both Mezzanine::XML::Node and Mezzanine::XML::Attribute have the default constructor which initializes them to null objects.
     /// \n \n
-    /// Mezzanine::xml::Node and Mezzanine::xml::Attribute try to behave like pointers, that is, they can be compared with other objects of the same type, making it possible to use them
+    /// Mezzanine::XML::Node and Mezzanine::XML::Attribute try to behave like pointers, that is, they can be compared with other objects of the same type, making it possible to use them
     /// as keys in associative containers. All handles to the same underlying object are equal, and any two handles to different underlying objects are not equal. Null handles
     /// only compare as equal to themselves. The result of relational comparison can not be reliably determined from the order of nodes in file or in any other way. Do not use
     /// relational comparison operators except for search optimization (i.e. associative container keys).
     /// \n \n
-    /// If you want to use Mezzanine::xml::Node or Mezzanine::xml::Attribute objects as keys in hash-based associative containers, you can use the Mezzanine::xml::Node::HashValue or
-    /// Mezzanine::xml::Attribute::HashValue member functions. They return the hash values that are guaranteed to be the same for all handles to the same underlying object. The hash
+    /// If you want to use Mezzanine::XML::Node or Mezzanine::XML::Attribute objects as keys in hash-based associative containers, you can use the Mezzanine::XML::Node::HashValue or
+    /// Mezzanine::XML::Attribute::HashValue member functions. They return the hash values that are guaranteed to be the same for all handles to the same underlying object. The hash
     /// value for null handles is 0.
     /// \n \n
     /// Finally handles can be implicitly cast to boolean-like objects, so that you can test if the node/attribute is empty with the following code: if (node) { ... } or if
-    /// (!node) { ... } else { ... }. Alternatively you can check if a given Node/Attribute handle is null by calling the Mezzanine::xml::Attribute::Empty or the
-    /// Mezzanine::xml::Node::Empty Methods.
+    /// (!node) { ... } else { ... }. Alternatively you can check if a given Node/Attribute handle is null by calling the Mezzanine::XML::Attribute::Empty or the
+    /// Mezzanine::XML::Node::Empty Methods.
     /// \n \n
     /// Nodes and attributes do not exist without a document tree, so you can't create them without adding them to some document. Once underlying node/attribute objects are
     /// destroyed, the handles to those objects become invalid. While this means that destruction of the entire tree invalidates all node/attribute handles, it also means that
-    /// destroying a subtree ( by calling Mezzanine::xml::Node::RemoveChild ) or removing an attribute invalidates the corresponding handles. There is no way to check handle
+    /// destroying a subtree ( by calling Mezzanine::XML::Node::RemoveChild ) or removing an attribute invalidates the corresponding handles. There is no way to check handle
     /// validity; you have to ensure correctness through external mechanisms.
     /// \n \n
     /// @subsection XMLUnicode Unicode Interface
@@ -340,23 +340,23 @@ namespace Mezzanine
     /// All tree functions that work with strings work with either C-style null terminated strings or STL strings of the selected character type. For example, node name
     /// accessors look like this in char mode:
     /// @code
-    /// const char* Mezzanine::xml::Node::Name() const;
-    /// bool Mezzanine::xml::Node::SetName(const char* value);
-    /// bool Mezzanine::xml::Node::SetName(const String& value);
+    /// const char* Mezzanine::XML::Node::Name() const;
+    /// bool Mezzanine::XML::Node::SetName(const char* value);
+    /// bool Mezzanine::XML::Node::SetName(const String& value);
     /// @endcode
     /// and like this in wchar_t mode:
     /// @code
-    /// const wchar_t* Mezzanine::xml::Node::Name() const;
-    /// bool Mezzanine::xml::Node::SetName(const wchar_t* value);
+    /// const wchar_t* Mezzanine::XML::Node::Name() const;
+    /// bool Mezzanine::XML::Node::SetName(const wchar_t* value);
     /// @endcode
-    /// There is a special type, Mezzanine::xml::char_t, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation
-    /// hereafter. There is also a type Mezzanine::xml::string_t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to
+    /// There is a special type, Mezzanine::XML::char_t, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation
+    /// hereafter. There is also a type Mezzanine::XML::string_t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to
     /// std::wstring in wchar_t mode.
     /// \n \n
     /// The version of this function that accepts a String simply converts it to a c-style string and calls the other SetName function.
     /// \n \n
-    /// In addition to the interface, the internal implementation changes to store XML data as Mezzanine::xml::char_t; this means that these two modes have different memory usage
-    /// characteristics. The conversion to Mezzanine::xml::char_t upon document loading and from Mezzanine::xml::char_t upon document saving happen automatically, which also carries
+    /// In addition to the interface, the internal implementation changes to store XML data as Mezzanine::XML::char_t; this means that these two modes have different memory usage
+    /// characteristics. The conversion to Mezzanine::XML::char_t upon document loading and from Mezzanine::XML::char_t upon document saving happen automatically, which also carries
     /// minor performance penalty. The general advice however is to select the character mode based on usage scenario, i.e. if UTF-8 is inconvenient to process and most of
     /// your XML data is non-ASCII, wchar_t mode is probably a better choice (if this is the case any patches, notifications or bugfixes that could be sent our way would
     /// help.)
@@ -377,11 +377,11 @@ namespace Mezzanine
     /// Most examples in this documentation assume char interface and therefore will not compile with XML_WCHAR_MODE. This is done to simplify the documentation; usually the
     /// only changes you'll have to make is to pass wchar_t string literals, i.e. instead of
     /// \n \n
-    /// @code Mezzanine::xml::Node node = doc.GetChild("bookstore").FindChildbyAttribute("book", "id", "12345"); @endcode
+    /// @code Mezzanine::XML::Node node = doc.GetChild("bookstore").FindChildbyAttribute("book", "id", "12345"); @endcode
     /// \n \n
     /// you'll have to do
     /// \n \n
-    /// @code Mezzanine::xml::Node node = doc.GetChild(L"bookstore").FindChildbyAttribute(L"book", L"id", L"12345"); @endcode
+    /// @code Mezzanine::XML::Node node = doc.GetChild(L"bookstore").FindChildbyAttribute(L"book", L"id", L"12345"); @endcode
     /// \n \n
     /// @subsection XMLThreadSafety Thread-safety guarantees
     ///Almost all functions in Mezzanine::xml have the following thread-safety guarantees:
@@ -392,17 +392,17 @@ namespace Mezzanine
     /// Concurrent modification and traversing of a single tree requires synchronization, for example via reader-writer lock. Modification includes altering document structure
     /// and altering individual node/attribute data, i.e. changing names/values.
     /// \n \n
-    /// The only exception is Mezzanine::xml::SetMemory_management_functions; it modifies global variables and as such is not thread-safe. Its usage policy has more restrictions, see
+    /// The only exception is Mezzanine::XML::SetMemory_management_functions; it modifies global variables and as such is not thread-safe. Its usage policy has more restrictions, see
     /// @ref XMLCustomAlloc .
     /// \n \n
     /// @subsection XMLExceptionSafety Exception guarantees
     /// With the exception of XPath, Mezzanine::xml itself does not throw any exceptions. Additionally, most Mezzanine::xml functions have a no-throw exception guarantee.
     /// \n \n
     /// This is not applicable to functions that operate on STL strings or IOstreams; such functions have either strong guarantee (functions that operate on strings) or basic
-    /// guarantee (functions that operate on streams). Also functions that call user-defined callbacks (i.e. Mezzanine::xml::Node::Traverse or Mezzanine::xml::Node::FindNode) do not
+    /// guarantee (functions that operate on streams). Also functions that call user-defined callbacks (i.e. Mezzanine::XML::Node::Traverse or Mezzanine::XML::Node::FindNode) do not
     /// provide any exception guarantees beyond the ones provided by the callback.
     /// \n \n
-    /// If exception handling is not disabled with XML_NO_EXCEPTIONS define, XPath functions may throw Mezzanine::xml::XPathException on parsing errors; also, XPath functions may
+    /// If exception handling is not disabled with XML_NO_EXCEPTIONS define, XPath functions may throw Mezzanine::XML::XPathException on parsing errors; also, XPath functions may
     /// throw std::bad_alloc in low memory conditions. Still, XPath functions provide strong exception guarantee.
     /// \n \n
     /// @subsection XMLMemory Memory management
@@ -415,14 +415,14 @@ namespace Mezzanine
     /// \n \n
     /// @subsubsection XMLCustomAlloc Custom memory allocation/deallocation functions
     /// All memory for tree structure, tree data and XPath objects is allocated via globally specified functions, which default to malloc/free. You can set your own allocation
-    /// functions with Mezzanine::xml::SetMemory_management_functions function. The function interfaces are the same as that of malloc/free:
+    /// functions with Mezzanine::XML::SetMemory_management_functions function. The function interfaces are the same as that of malloc/free:
     /// @code
     /// typedef void* (*AllocationFunction)(size_t size);
     /// typedef void (*deAllocationFunction)(void* ptr);
     /// @endcode
     /// You can use the following accessor functions to change or get current memory management functions:
     /// @code
-    /// void Mezzanine::xml::SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate);
+    /// void Mezzanine::XML::SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate);
     /// AllocationFunction GetMemoryAllocationFunctionn();
     /// deAllocationFunction GetMemoryDeallocationFunction();
     /// @endcode
@@ -437,11 +437,11 @@ namespace Mezzanine
     /// deallocation function will be called with the memory obtained by the old allocation function, resulting in undefined behavior.
     /// \n \n
     /// @subsubsection XMLMemoryInternals Document memory management internals
-    /// Constructing a document object using the default constructor does not result in any allocations; document node is stored inside the Mezzanine::xml::Document object
+    /// Constructing a document object using the default constructor does not result in any allocations; document node is stored inside the Mezzanine::XML::Document object
     /// \n \n
     /// When the document is loaded from file/buffer, unless an inplace loading function is used ( see @ref XMLLoadingFromMemory ), a complete copy of character stream is made; all
     /// names/values of nodes and attributes are allocated in this buffer. This buffer is allocated via a single large allocation and is only freed when document memory is reclaimed
-    /// (i.e. if the Mezzanine::xml::Document object is destroyed or if another document is loaded in the same object). Also when loading from file or stream, an additional large allocation
+    /// (i.e. if the Mezzanine::XML::Document object is destroyed or if another document is loaded in the same object). Also when loading from file or stream, an additional large allocation
     /// may be performed if encoding conversion is required; a temporary buffer is allocated, and it is freed before load function returns.
     /// \n \n
     /// All additional memory, such as memory for document structure (node/attribute objects) and memory for node/attribute names/values is allocated in pages on the order of 32
@@ -474,8 +474,8 @@ namespace Mezzanine
     /// @subsection XMLLoadingFiles Loading Document from a File
     /// The most common source of XML data is files; Mezzanine::xml provides dedicated functions for loading an XML document from file:
     /// @code
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::LoadFile(const char* path, unsigned int options = ParseDefault, Mezzanine::xml::Encoding DocumentEncoding = EncodingAuto);
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::LoadFile(const wchar_t* path, unsigned int options = ParseDefault, Mezzanine::xml::Encoding DocumentEncoding = EncodingAuto);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::LoadFile(const char* path, unsigned int options = ParseDefault, Mezzanine::XML::Encoding DocumentEncoding = EncodingAuto);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::LoadFile(const wchar_t* path, unsigned int options = ParseDefault, Mezzanine::XML::Encoding DocumentEncoding = EncodingAuto);
     /// @endcode
     /// These functions accept the file path as its first argument, and also two optional arguments, which specify parsing options (see Parsing options) and input data encoding ( see
     /// @ref XMLLoadingEncodings ). The path has the target operating system format, so it can be a relative or absolute one, it should have the delimiters of the target system, it
@@ -485,13 +485,13 @@ namespace Mezzanine
     /// opening function if it is provided by the runtime library or converts the path to UTF-8 and uses the system file opening function.
     /// \n \n
     /// Document::LoadFile destroys the existing document tree and then tries to load the new tree from the specified file. The result of the operation is returned in an
-    /// Mezzanine::xml::ParseResult object; this object contains the operation status and the related information (i.e. last successfully parsed position in the input file, if parsing
+    /// Mezzanine::XML::ParseResult object; this object contains the operation status and the related information (i.e. last successfully parsed position in the input file, if parsing
     /// fails). See @ref XMLLoadingErrors for error handling details.
     /// \n \n
     /// This is an example of loading XML document from file:
     /// @code
-    /// Mezzanine::xml::Document Doc;
-    /// Mezzanine::xml::ParseResult Result = Doc.LoadFile("tree.xml");
+    /// Mezzanine::XML::Document Doc;
+    /// Mezzanine::XML::ParseResult Result = Doc.LoadFile("tree.xml");
     /// std::cout << "Load result: " << Result.Description() << std::endl;
     /// @endcode
     /// @subsection XMLLoadingFromMemory Loading document from memory
@@ -500,30 +500,30 @@ namespace Mezzanine
     /// memory block with all XML data; then you have to invoke one of buffer loading functions. These functions will handle the necessary encoding conversions, if any, and then will
     /// parse the data into the corresponding XML tree. There are several buffer loading functions, which differ in the behavior and thus in performance/memory usage:
     /// @code
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::LoadBuffer (const void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::LoadBufferInplace (void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::LoadBufferInplaceOwn (void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::LoadBuffer (const void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::LoadBufferInplace (void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::LoadBufferInplaceOwn (void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)
     /// @endcode
     /// All functions accept the buffer which is represented by a pointer to XML data, contents, and data size in bytes. Also there are two optional arguments, which specify parsing
     /// options ( see @ref XMLLoadingParsingOptions ) and input data encoding ( see @ref XMLLoadingEncodings ). The buffer does not have to be zero-terminated.
     /// \n \n
-    /// Mezzanine::xml::Document::LoadBuffer function works with immutable buffer - it does not ever modify the buffer. Because of this restriction it has to create a private buffer and
+    /// Mezzanine::XML::Document::LoadBuffer function works with immutable buffer - it does not ever modify the buffer. Because of this restriction it has to create a private buffer and
     /// copy XML data to it before parsing (applying encoding conversions if necessary). This copy operation carries a performance penalty, so inplace functions are provided -
-    /// Mezzanine::xml::Document::LoadBufferInplace and Mezzanine::xml::Document::LoadBufferInplaceOwn store the document data in the buffer, modifying it in the process. In order for the
+    /// Mezzanine::XML::Document::LoadBufferInplace and Mezzanine::XML::Document::LoadBufferInplaceOwn store the document data in the buffer, modifying it in the process. In order for the
     /// document to stay valid, you have to make sure that the buffer's lifetime exceeds that of the tree if you're using inplace functions. In addition to that,
-    /// Mezzanine::xml::Document::LoadBufferInplace does not assume ownership of the buffer, so you'll have to destroy it yourself; Mezzanine::xml::Document::LoadBufferInplaceOwn assumes
-    /// ownership of the buffer and destroys it once it is not needed. This means that if you're using Mezzanine::xml::Document::LoadBufferInplaceOwn, you have to allocate memory with
+    /// Mezzanine::XML::Document::LoadBufferInplace does not assume ownership of the buffer, so you'll have to destroy it yourself; Mezzanine::XML::Document::LoadBufferInplaceOwn assumes
+    /// ownership of the buffer and destroys it once it is not needed. This means that if you're using Mezzanine::XML::Document::LoadBufferInplaceOwn, you have to allocate memory with
     /// Mezzanine::xml allocation function ( Not recomended, the Allocation API may be getting updates in the near future ).
     /// \n \n
-    /// The best way from the performance/memory point of view is to load document using Mezzanine::xml::Document::LoadBufferInplaceOwn; this function has maximum control of the buffer
+    /// The best way from the performance/memory point of view is to load document using Mezzanine::XML::Document::LoadBufferInplaceOwn; this function has maximum control of the buffer
     /// with XML data so it is able to avoid redundant copies and reduce peak memory usage while parsing. However, this is not recommendeded unless you have to load the document
     /// from memory and performance is critical. Once the memory portion of the API has stabilized this will become the ideal
     /// \n \n
     /// There is also a simple helper function for cases when you want to load the XML document from null-terminated character string:
     /// @code
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::Load(const char_t *contents, unsigned int options=ParseDefault);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::Load(const char_t *contents, unsigned int options=ParseDefault);
     /// @endcode
-    /// It is equivalent to calling Mezzanine::xml::Document::LoadBuffer with size being either strlen(contents) or wcslen(contents) * sizeof(wchar_t), depending on the character type.
+    /// It is equivalent to calling Mezzanine::XML::Document::LoadBuffer with size being either strlen(contents) or wcslen(contents) * sizeof(wchar_t), depending on the character type.
     /// This function assumes native encoding for input data, so it does not do any encoding conversion. In general, this function is fine for loading small documents from string
     /// literals, but has more overhead and less functionality than the buffer loading functions.
     /// \n \n
@@ -533,7 +533,7 @@ namespace Mezzanine
     /// size_t Size = sizeof(Source);
     ///
     /// // You can use LoadBuffer to load the document from an immutable memory block:
-    /// Mezzanine::xml::ParseResult Result = doc.LoadBuffer(Source, Size);
+    /// Mezzanine::XML::ParseResult Result = doc.LoadBuffer(Source, Size);
     /// @endcode
     /// This is an example of loading XML document from memory using LoadBufferInplace:
     /// @code
@@ -546,7 +546,7 @@ namespace Mezzanine
     /// memcpy(Buffer, Source, Size);
     ///
     /// // The block can be allocated by any method; the block is modified during parsing
-    /// Mezzanine::xml::ParseResult Result = doc.LoadBufferInplace(Buffer, Size);
+    /// Mezzanine::XML::ParseResult Result = doc.LoadBufferInplace(Buffer, Size);
     ///
     /// // You have to destroy the block yourself after the document is no longer used
     /// delete[] Buffer;
@@ -554,60 +554,60 @@ namespace Mezzanine
     /// This is an example of loading XML document from memory using Load and a string literal:
     /// @code
     /// // You can use Load to load document from null-terminated strings, for example literals:
-    /// Mezzanine::xml::ParseResult Result = doc.Load("<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>");
+    /// Mezzanine::XML::ParseResult Result = doc.Load("<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>");
     /// @endcode
     /// @subsection XMLLoadingStreams Loading document from C++ IOstreams
     /// To enhance interoperability, Mezzanine::xml provides functions for loading document from any object which implements C++ std::istream interface. This allows you to load documents
     /// from any standard C++ stream (i.e. file stream) or any third-party compliant implementation (i.e. Boost Iostreams). There are two functions, one works with narrow character
     /// streams, another handles wide character ones:
     /// @code
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::Load (std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
-    /// Mezzanine::xml::ParseResult Mezzanine::xml::Document::Load (std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=ParseDefault);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::Load (std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto);
+    /// Mezzanine::XML::ParseResult Mezzanine::XML::Document::Load (std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=ParseDefault);
     /// @endcode
-    /// Mezzanine::xml::Document::Load with std::istream argument loads the document from stream from the current read position to the end, treating the stream contents as a byte stream
-    /// of the specified encoding (with encoding autodetection as necessary). Thus calling Mezzanine::xml::Document::Load on an opened std::ifstream object is equivalent to calling
-    /// Mezzanine::xml::Document::LoadFile.
+    /// Mezzanine::XML::Document::Load with std::istream argument loads the document from stream from the current read position to the end, treating the stream contents as a byte stream
+    /// of the specified encoding (with encoding autodetection as necessary). Thus calling Mezzanine::XML::Document::Load on an opened std::ifstream object is equivalent to calling
+    /// Mezzanine::XML::Document::LoadFile.
     /// \n \n
-    /// Mezzanine::xml::Document::Load with std::wstream argument treats the stream contents as a wide character stream ( encoding is always @ref Mezzanine::xml::Encoding "Encoding::Encodingwchar_t" ).
-    /// Because of this, using Mezzanine::xml::Document::LoadFile with wide character streams requires careful (usually platform-specific) stream setup (i.e. using the imbue function).
+    /// Mezzanine::XML::Document::Load with std::wstream argument treats the stream contents as a wide character stream ( encoding is always @ref Mezzanine::XML::Encoding "Encoding::Encodingwchar_t" ).
+    /// Because of this, using Mezzanine::XML::Document::LoadFile with wide character streams requires careful (usually platform-specific) stream setup (i.e. using the imbue function).
     /// Generally use of wide streams is discouraged, however it provides you the ability to load documents from non-Unicode encodings, i.e. you can load Shift-JIS encoded data if
     /// you set the correct locale.
     /// \n \n
     /// This is a simple example of loading XML document from a file using streams read:
     /// @code
     /// std::ifstream Stream("weekly-utf-8.xml");
-    /// Mezzanine::xml::ParseResult Result = Doc.Load(Stream);
+    /// Mezzanine::XML::ParseResult Result = Doc.Load(Stream);
     /// @endcode
     /// Stream loading requires working seek/tell functions and therefore may fail when used with some stream implementations like gzstream.
     /// \n \n
     /// @subsection XMLLoadingErrors Handling Parsing Errors
-    /// All document loading functions return the parsing result via Mezzanine::xml::ParseResult object. It contains parsing status, the offset of last successfully parsed character from
+    /// All document loading functions return the parsing result via Mezzanine::XML::ParseResult object. It contains parsing status, the offset of last successfully parsed character from
     /// the beginning of the source stream, and the encoding of the source stream.
     /// \n \n
-    /// Parsing status is represented as the Mezzanine::xml::ParseStatus enumeration and can be one of the following:
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusOk" means that no error was encountered during parsing; the source stream represents the valid XML document which was
+    /// Parsing status is represented as the Mezzanine::XML::ParseStatus enumeration and can be one of the following:
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusOk" means that no error was encountered during parsing; the source stream represents the valid XML document which was
     ///     fully parsed and converted to a tree.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusFileNotFound" is only returned by Document::LoadFile function and means that file could not be opened.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusIOError" is returned by Document::LoadFile function and by load functions with std::istream/std::wstream arguments; it
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusFileNotFound" is only returned by Document::LoadFile function and means that file could not be opened.
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusIOError" is returned by Document::LoadFile function and by load functions with std::istream/std::wstream arguments; it
     ///     means that some I/O error has occurred during reading the file/stream.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusOutOfMemory" means that there was not enough memory during some allocation; any allocation failure during parsing results
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusOutOfMemory" means that there was not enough memory during some allocation; any allocation failure during parsing results
     ///     in this error.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusInternalError" means that something went horribly wrong; currently this error does not occur.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusUnrecognizedTag" means that parsing stopped due to a tag with either an empty name or a name which starts with incorrect
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusInternalError" means that something went horribly wrong; currently this error does not occur.
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusUnrecognizedTag" means that parsing stopped due to a tag with either an empty name or a name which starts with incorrect
     ///     character, such as #.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusBadPi" means that parsing stopped due to incorrect document declaration/processing instruction.
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusBadComment, StatusBadCdata, StatusBadDocType and StatusBadPcdata" mean that parsing stopped due to the invalid construct
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusBadPi" means that parsing stopped due to incorrect document declaration/processing instruction.
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusBadComment, StatusBadCdata, StatusBadDocType and StatusBadPcdata" mean that parsing stopped due to the invalid construct
     ///     of the respective type
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusBadStartElement" means that parsing stopped because starting tag either had no closing \> symbol or contained some incorrect
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusBadStartElement" means that parsing stopped because starting tag either had no closing \> symbol or contained some incorrect
     ///     symbol
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusBadAttribute" means that parsing stopped because there was an incorrect attribute, such as an attribute without value or
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusBadAttribute" means that parsing stopped because there was an incorrect attribute, such as an attribute without value or
     ///     with value that is not quoted (note that \<node attr=1\> is incorrect in XML)
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusBadEndElement" means that parsing stopped because ending tag had incorrect syntax (i.e. extra non-whitespace symbols between
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusBadEndElement" means that parsing stopped because ending tag had incorrect syntax (i.e. extra non-whitespace symbols between
     ///     tag name and \>)
-    ///     - @ref Mezzanine::xml::ParseStatus "ParseStatus::StatusEndElementMismatch" means that parsing stopped because the closing tag did not match the opening one (i.e. \<node\>\</nedo\>)
+    ///     - @ref Mezzanine::XML::ParseStatus "ParseStatus::StatusEndElementMismatch" means that parsing stopped because the closing tag did not match the opening one (i.e. \<node\>\</nedo\>)
     ///     or because some tag was not closed at all.
     ///
-    /// Mezzanine::xml::ParseResult::Description member function can be used to convert parsing status to a string; the returned message is always in English, so you'll have to write your own
+    /// Mezzanine::XML::ParseResult::Description member function can be used to convert parsing status to a string; the returned message is always in English, so you'll have to write your own
     /// function if you need a localized string. However please note that the exact messages returned by the Description() function may change from version to version, so any complex
     /// status handling should be based on the Status value.
     /// \n \n
@@ -615,23 +615,23 @@ namespace Mezzanine
     /// tree that was successfully parsed. Obviously, the last element may have an unexpected name/value; for example, if the attribute value does not end with the necessary quotation
     /// mark, like in <node attr="value>some data</node> example, the value of attribute attr will contain the string "value\>some data\</node\>".
     /// \n \n
-    /// In addition to the Status code, Mezzanine::xml::ParseResult has an Offset member, which contains the offset of last successfully parsed character if parsing failed because of an error
-    /// in source data; otherwise offset is 0. For parsing efficiency reasons, Mezzanine::xml does not track the current line during parsing; this offset is in units of Mezzanine::xml::char_t
+    /// In addition to the Status code, Mezzanine::XML::ParseResult has an Offset member, which contains the offset of last successfully parsed character if parsing failed because of an error
+    /// in source data; otherwise offset is 0. For parsing efficiency reasons, Mezzanine::xml does not track the current line during parsing; this offset is in units of Mezzanine::XML::char_t
     /// (bytes for character mode, wide characters for wide character mode). Many text editors support 'Go To Position' feature - you can use it to locate the exact error position.
     /// Alternatively, if you're loading the document from memory, you can display the error chunk along with the error description.
     /// @warning Offset is calculated in the XML buffer in native encoding; if encoding conversion is performed during parsing, offset can not be used to reliably track the error position.
     ///
-    /// Mezzanine::xml::ParseResult also has a DocumentEncoding member, which can be used to check that the source data encoding was correctly guessed. It is equal to the exact encoding used
+    /// Mezzanine::XML::ParseResult also has a DocumentEncoding member, which can be used to check that the source data encoding was correctly guessed. It is equal to the exact encoding used
     /// during parsing (i.e. with the exact endianness); see @ref XMLLoadingEncodings for more information.
     /// \n \n
-    /// A Mezzanine::xml::ParseResult object can be implicitly converted to bool; if you do not want to handle parsing errors thoroughly, you can just check the return value of load functions
+    /// A Mezzanine::XML::ParseResult object can be implicitly converted to bool; if you do not want to handle parsing errors thoroughly, you can just check the return value of load functions
     /// as if it was a bool: if (doc.load_file("file.xml")) { //on Successful parse } else { //on failed parse }. A True is returned if parsing was successful.
     /// \n \n
     /// This is an example of handling loading errors:
     /// @code
     /// const char Source[] = "<mesh name='sphere'><bounds>0 0 1 1</bounds></mesh>";
-    /// Mezzanine::xml::Document Doc;
-    /// Mezzanine::xml::ParseResult Result = Doc.Load(Source);
+    /// Mezzanine::XML::Document Doc;
+    /// Mezzanine::XML::ParseResult Result = Doc.Load(Source);
     ///
     /// if (Result)
     ///     std::cout << "XML [" << Source << "] parsed without errors\n\n";
@@ -650,49 +650,49 @@ namespace Mezzanine
     /// @note You should use the usual bitwise arithmetic to manipulate the bitmask: to enable a flag, use mask | flag; to disable a flag, use mask & ~flag.
     ///
     /// These flags control the resulting tree contents:
-    ///     - @ref Mezzanine::xml::ParseDeclaration determines if XML document declaration (node with type @ref Mezzanine::xml::NodeType "NodeDeclaration" ) is to be put in DOM tree. If this flag
+    ///     - @ref Mezzanine::XML::ParseDeclaration determines if XML document declaration (node with type @ref Mezzanine::XML::NodeType "NodeDeclaration" ) is to be put in DOM tree. If this flag
     ///     is off, it is not put in the tree, but is still parsed and checked for correctness. This flag is off by default.
-    ///     - @ref Mezzanine::xml::ParseDocType determines if XML document type declaration (node with type @ref Mezzanine::xml::NodeType "NodeDocType" ) is to be put in DOM tree. If this flag is
+    ///     - @ref Mezzanine::XML::ParseDocType determines if XML document type declaration (node with type @ref Mezzanine::XML::NodeType "NodeDocType" ) is to be put in DOM tree. If this flag is
     ///     off, it is not put in the tree, but is still parsed and checked for correctness. This flag is off by default.
-    ///     - @ref Mezzanine::xml::ParsePi determines if processing instructions (nodes with type @ref Mezzanine::xml::NodeType "NodePi" ) are to be put in DOM tree. If this flag is off, they are
+    ///     - @ref Mezzanine::XML::ParsePi determines if processing instructions (nodes with type @ref Mezzanine::XML::NodeType "NodePi" ) are to be put in DOM tree. If this flag is off, they are
     ///     not put in the tree, but are still parsed and checked for correctness. Note that "<?xml ...?>" (document declaration) is not considered to be a PI. This flag is off by default.
-    ///     - @ref Mezzanine::xml::ParseComments determines if comments (nodes with type @ref Mezzanine::xml::NodeType "NodeComment" ) are to be put in DOM tree. If this flag is off, they are not
+    ///     - @ref Mezzanine::XML::ParseComments determines if comments (nodes with type @ref Mezzanine::XML::NodeType "NodeComment" ) are to be put in DOM tree. If this flag is off, they are not
     ///     put in the tree, but are still parsed and checked for correctness. This flag is off by default.
-    ///     - @ref Mezzanine::xml::ParseCdata determines if CDATA sections (nodes with type @ref Mezzanine::xml::NodeType "NodeCdata" ) are to be put in DOM tree. If this flag is off, they are not
+    ///     - @ref Mezzanine::XML::ParseCdata determines if CDATA sections (nodes with type @ref Mezzanine::XML::NodeType "NodeCdata" ) are to be put in DOM tree. If this flag is off, they are not
     ///     put in the tree, but are still parsed and checked for correctness. This flag is on by default.
-    ///     - @ref Mezzanine::xml::ParseWsPcdata determines if PCDATA nodes (nodes with type @ref Mezzanine::xml::NodeType "NodePcdata" ) that consist only of whitespace characters are to be put
+    ///     - @ref Mezzanine::XML::ParseWsPcdata determines if PCDATA nodes (nodes with type @ref Mezzanine::XML::NodeType "NodePcdata" ) that consist only of whitespace characters are to be put
     ///     in DOM tree. Often whitespace-only data is not significant for the application, and the cost of allocating and storing such nodes (both memory and speed-wise) can be
-    ///     significant. For example, after parsing XML string "<node> <a/> </node>, <node>" element will have three children when Mezzanine::xml::ParseWsPcdata is set (child with type
-    ///     @ref Mezzanine::xml::NodeType "NodePcdata" and value " ", child with type @ref Mezzanine::xml::NodeType "NodeElement" and name "a", and another child with type
-    ///     @ref Mezzanine::xml::NodeType "NodePcdata" and value " "), and only one child when Mezzanine::xml::ParseWsPcdata is not set. This flag is off by default.
+    ///     significant. For example, after parsing XML string "<node> <a/> </node>, <node>" element will have three children when Mezzanine::XML::ParseWsPcdata is set (child with type
+    ///     @ref Mezzanine::XML::NodeType "NodePcdata" and value " ", child with type @ref Mezzanine::XML::NodeType "NodeElement" and name "a", and another child with type
+    ///     @ref Mezzanine::XML::NodeType "NodePcdata" and value " "), and only one child when Mezzanine::XML::ParseWsPcdata is not set. This flag is off by default.
     ///
     /// These flags control the transformation of tree element contents:
-    ///     - @ref Mezzanine::xml::ParseEscapes determines if character and entity references are to be expanded during the parsing process. Character references have the form \&#...; or
+    ///     - @ref Mezzanine::XML::ParseEscapes determines if character and entity references are to be expanded during the parsing process. Character references have the form \&#...; or
     ///     \&#x...; (... is Unicode numeric representation of character in either decimal ( \&#...; ) or hexadecimal ( \&#x...; ) form), entity references are \&lt;, \&gt;, \&amp;,
     ///     \&apos; and \&quot; (note that as Mezzanine::xml does not handle DTD, the only allowed entities are predefined ones). If character/entity reference can not be expanded, it is
     ///     left as is, so you can do additional processing later. Reference expansion is performed on attribute values and PCDATA content. This flag is on by default.
-    ///     - @ref Mezzanine::xml::ParseEol determines if EOL handling (that is, replacing sequences 0x0d 0x0a by a single 0x0a character, and replacing all standalone 0x0d characters by
+    ///     - @ref Mezzanine::XML::ParseEol determines if EOL handling (that is, replacing sequences 0x0d 0x0a by a single 0x0a character, and replacing all standalone 0x0d characters by
     ///     0x0a) is to be performed on input data (that is, comments contents, PCDATA/CDATA contents and attribute values). If this is set all \\r \\n will replaced with \\n.
     ///     This flag is on by default.
-    ///     - @ref Mezzanine::xml::ParseWconvAttribute determines if attribute value normalization should be performed for all attributes. This means, that whitespace characters (new line,
-    ///     tab and space) are replaced with space (' '). New line characters are always treated as if Mezzanine::xml::ParseEol is set, i.e. \\r \\n is converted to a single space. This
+    ///     - @ref Mezzanine::XML::ParseWconvAttribute determines if attribute value normalization should be performed for all attributes. This means, that whitespace characters (new line,
+    ///     tab and space) are replaced with space (' '). New line characters are always treated as if Mezzanine::XML::ParseEol is set, i.e. \\r \\n is converted to a single space. This
     ///     flag is on by default.
-    ///     - @ref Mezzanine::xml::ParseWnormAttribute determines if extended attribute value normalization should be performed for all attributes. This means, that after attribute values
-    ///     are normalized as if Mezzanine::xml::ParseWconvAttribute was set, leading and trailing space characters are removed, and all sequences of space characters are replaced by a
-    ///     single space character. The value of Mezzanine::xml::ParseWconvAttribute was set has no effect if this flag is on. This flag is off by default.
+    ///     - @ref Mezzanine::XML::ParseWnormAttribute determines if extended attribute value normalization should be performed for all attributes. This means, that after attribute values
+    ///     are normalized as if Mezzanine::XML::ParseWconvAttribute was set, leading and trailing space characters are removed, and all sequences of space characters are replaced by a
+    ///     single space character. The value of Mezzanine::XML::ParseWconvAttribute was set has no effect if this flag is on. This flag is off by default.
     ///
-    /// @note Mezzanine::xml::ParseWconvAttribute option performs transformations that are required by W3C specification for attributes that are declared as CDATA; ParseWnormAttribute performs
+    /// @note Mezzanine::XML::ParseWconvAttribute option performs transformations that are required by W3C specification for attributes that are declared as CDATA; ParseWnormAttribute performs
     /// transformations required for NMTOKENS attributes. In the absence of document type declaration all attributes should behave as if they are declared as CDATA, thus
-    /// Mezzanine::xml::ParseWconvAttribute is the default option.
+    /// Mezzanine::XML::ParseWconvAttribute is the default option.
     ///
     /// Additionally there are three predefined option masks:
-    ///     - Mezzanine::xml::ParseMinimal has all options turned off. This option mask means that Mezzanine::xml does not add declaration nodes, document type declaration nodes, PI nodes,
+    ///     - Mezzanine::XML::ParseMinimal has all options turned off. This option mask means that Mezzanine::xml does not add declaration nodes, document type declaration nodes, PI nodes,
     ///     CDATA sections and comments to the resulting tree and does not perform any conversion for input data, so theoretically it is the fastest mode. However, as mentioned above,
-    ///     in practice Mezzanine::xml::ParseDefault is usually equally fast.
-    ///     - Mezzanine::xml::ParseDefault is the default set of flags, i.e. it has all options set to their default values. It includes parsing CDATA sections (comments/PIs are not parsed),
+    ///     in practice Mezzanine::XML::ParseDefault is usually equally fast.
+    ///     - Mezzanine::XML::ParseDefault is the default set of flags, i.e. it has all options set to their default values. It includes parsing CDATA sections (comments/PIs are not parsed),
     ///     performing character and entity reference expansion, replacing whitespace characters with spaces in attribute values and performing EOL handling. Note, that PCDATA sections
     ///     consisting only of whitespace characters are not parsed (by default) for performance reasons.
-    ///     - Mezzanine::xml::ParseFull is the set of flags which adds nodes of all types to the resulting tree and performs default conversions for input data. It includes parsing CDATA
+    ///     - Mezzanine::XML::ParseFull is the set of flags which adds nodes of all types to the resulting tree and performs default conversions for input data. It includes parsing CDATA
     ///     sections, comments, PI nodes, document declaration node and document type declaration node, performing character and entity reference expansion, replacing whitespace
     ///     characters with spaces in attribute values and performing EOL handling. Note, that PCDATA sections consisting only of whitespace characters are not parsed in this mode.
     ///
@@ -705,22 +705,22 @@ namespace Mezzanine
     /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
     ///
     /// // Parsing with additional value option; comment node is now added to the tree
-    /// Doc.Load(Source, Mezzanine::xml::ParseDefault | Mezzanine::xml::ParseComments);
+    /// Doc.Load(Source, Mezzanine::XML::ParseDefault | Mezzanine::XML::ParseComments);
     /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
     ///
     /// // Parsing with additional value option and without the (default) parse_escapes option; &lt; is not expanded
-    /// Doc.Load(Source, (Mezzanine::xml::ParseDefault | Mezzanine::xml::ParseComments) & ~Mezzanine::xml::ParseEscapes);
+    /// Doc.Load(Source, (Mezzanine::XML::ParseDefault | Mezzanine::XML::ParseComments) & ~Mezzanine::XML::ParseEscapes);
     /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
     ///
     /// // Parsing with minimal option mask; comment node is not added to the tree, and &lt; is not expanded
-    /// Doc.Load(Source, Mezzanine::xml::ParseMinimal);
+    /// Doc.Load(Source, Mezzanine::XML::ParseMinimal);
     /// std::cout << "First node value: [" << Doc.GetFirstChild().Value() << "], node child value: [" << Doc.ChildValue("node") << "]\n";
     /// @endcode
     /// @subsection XMLLoadingEncodings Encodings
     /// Mezzanine::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little endian), UTF-32 (big and little endian); UCS-2 is naturally supported since it's a strict subset
-    /// of UTF-16) and handles all encoding conversions. Most loading functions accept the optional parameter encoding. This is a value of enumeration type Mezzanine::xml::Encoding, that
+    /// of UTF-16) and handles all encoding conversions. Most loading functions accept the optional parameter encoding. This is a value of enumeration type Mezzanine::XML::Encoding, that
     /// can have the following values:
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingAuto" means that pugixml will try to guess the encoding based on source XML data. The algorithm is a modified version of the
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingAuto" means that pugixml will try to guess the encoding based on source XML data. The algorithm is a modified version of the
     ///     one presented in Appendix F.1 of XML recommendation; it tries to match the first few bytes of input data with the following patterns in strict order:
     ///             - If first four bytes match UTF-32 BOM (Byte Order Mark), encoding is assumed to be UTF-32 with the endianness equal to that of BOM;
     ///             - If first two bytes match UTF-16 BOM, encoding is assumed to be UTF-16 with the endianness equal to that of BOM;
@@ -730,20 +730,20 @@ namespace Mezzanine
     ///             - If first two bytes match UTF-16 representation of \<, encoding is assumed to be UTF-16 with the corresponding endianness (this guess may yield incorrect result,
     ///             but it's better than UTF-8);
     ///             - Otherwise encoding is assumed to be UTF-8.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF8" corresponds to UTF-8 encoding as defined in the Unicode standard; UTF-8 sequences with length equal to 5 or 6 are not
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF8" corresponds to UTF-8 encoding as defined in the Unicode standard; UTF-8 sequences with length equal to 5 or 6 are not
     ///     standard and are rejected.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF16LE" corresponds to little-endian UTF-16 encoding as defined in the Unicode standard; surrogate pairs are supported.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF16BE" corresponds to big-endian UTF-16 encoding as defined in the Unicode standard; surrogate pairs are supported.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF16" corresponds to UTF-16 encoding as defined in the Unicode standard; the endianness is assumed to be that of the target
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF16LE" corresponds to little-endian UTF-16 encoding as defined in the Unicode standard; surrogate pairs are supported.
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF16BE" corresponds to big-endian UTF-16 encoding as defined in the Unicode standard; surrogate pairs are supported.
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF16" corresponds to UTF-16 encoding as defined in the Unicode standard; the endianness is assumed to be that of the target
     ///     platform.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF32LE" corresponds to little-endian UTF-32 encoding as defined in the Unicode standard.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF32BE" corresponds to big-endian UTF-32 encoding as defined in the Unicode standard.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::EncodingUTF32" corresponds to UTF-32 encoding as defined in the Unicode standard; the endianness is assumed to be that of the target
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF32LE" corresponds to little-endian UTF-32 encoding as defined in the Unicode standard.
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF32BE" corresponds to big-endian UTF-32 encoding as defined in the Unicode standard.
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::EncodingUTF32" corresponds to UTF-32 encoding as defined in the Unicode standard; the endianness is assumed to be that of the target
     ///     platform.
-    ///     - @ref Mezzanine::xml::Encoding "Encoding::Encodingwchar_t " corresponds to the encoding of Mezzanine::xml::wchar_t type; it has the same meaning as either
-    ///     @ref Mezzanine::xml::Encoding "EncodingUTF16" or @ref Mezzanine::xml::Encoding "EncodingUTF32", depending on Mezzanine::xml::wchar_t size.
+    ///     - @ref Mezzanine::XML::Encoding "Encoding::Encodingwchar_t " corresponds to the encoding of Mezzanine::XML::wchar_t type; it has the same meaning as either
+    ///     @ref Mezzanine::XML::Encoding "EncodingUTF16" or @ref Mezzanine::XML::Encoding "EncodingUTF32", depending on Mezzanine::XML::wchar_t size.
     ///
-    /// The algorithm used for @ref Mezzanine::xml::Encoding "EncodingAuto" correctly detects any supported Unicode encoding for all well-formed XML documents (since they start with document
+    /// The algorithm used for @ref Mezzanine::XML::Encoding "EncodingAuto" correctly detects any supported Unicode encoding for all well-formed XML documents (since they start with document
     /// declaration) and for all other XML documents that start with \<; if your XML document does not start with \< and has encoding that is different from UTF-8, use the specific encoding.
     /// @note The current behavior for Unicode conversion is to skip all invalid UTF sequences during conversion. This behavior should not be relied upon; moreover, in case no encoding
     /// conversion is performed, the invalid sequences are not removed, so you'll get them as is in node/attribute contents.
@@ -775,7 +775,7 @@ namespace Mezzanine
     ///
     /// Mezzanine::xml features an extensive interface for getting various types of data from the document and for traversing the document. This section provides documentation for all such
     /// functions that do not modify the tree except for XPath-related functions; see @ref XMLXPath for XPath reference. As discussed in @ref XMLInterface, there are two types of handles
-    /// to tree data - Mezzanine::xml::Node and Mezzanine::xml::Attribute. The handles have special null (empty) values which propagate through various functions and thus are useful for writing
+    /// to tree data - Mezzanine::XML::Node and Mezzanine::XML::Attribute. The handles have special null (empty) values which propagate through various functions and thus are useful for writing
     /// more concise code; see @ref XMLInterface for details. The documentation in this section will explicitly state the results of all function in case of null inputs.
     /// @subsection XMLAccessingBasics Basic traversal functions
     /// The internal representation of the document is a tree, where each node has a list of child nodes (the order of children corresponds to their order in the XML representation),
@@ -783,16 +783,16 @@ namespace Mezzanine
     /// functions roughly correspond to the internal representation, and thus are usually building blocks for other methods of traversing (i.e. XPath traversals are based on these
     /// functions).
     /// @code
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetParent() const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetFirstChild() const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetLastChild() const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetNextSibling() const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetPreviousSibling() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetParent() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetFirstChild() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetLastChild() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetNextSibling() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetPreviousSibling() const;
     ///
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::GetFirstAttribute() const;
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::GetLastAttribute() const;
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Attribute::GetNextAttribute() const;
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Attribute::GetPreviousAttribute() const;
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::GetFirstAttribute() const;
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::GetLastAttribute() const;
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Attribute::GetNextAttribute() const;
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Attribute::GetPreviousAttribute() const;
     /// @endcode
     /// The GetParent function returns the node's parent; all non-null nodes except the document have non-null parent. GetFirstChild and GetLastChild return the first and last child of the
     /// node, respectively; note that only document nodes and element nodes can have non-empty child node list. If node has no children, both functions return null nodes. GetNextSibling
@@ -800,18 +800,18 @@ namespace Mezzanine
     /// for a handle that points to \<b/> results in a handle pointing to \<c/>, and calling GetPreviousSibling results in handle pointing to \<a/>. If node does not have next/previous sibling
     /// (this happens if it is the last/first node in the list, respectively), the functions return null nodes. GetFirstAttribute, GetLastAttribute, GetNextAttribute and GetPreviousAttribute
     /// functions behave similarly to the corresponding child node functions and allow to iterate through attribute list in the same way.
-    /// @note Because of memory consumption reasons, attributes do not have a link to their parent nodes. Thus there is no Mezzanine::xml::attribute::parent() function.
+    /// @note Because of memory consumption reasons, attributes do not have a link to their parent nodes. Thus there is no Mezzanine::XML::attribute::parent() function.
     ///
     /// Calling any of the functions above on the null handle results in a null handle - i.e. node.GetFirstChild().GetNextSibling() returns the second child of node, and null handle if node
     /// is null, has no children at all or if it has only one child node.
     /// \n \n
     /// With these functions, you can iterate through all child nodes and display all attributes like this:
     /// @code
-    /// for (Mezzanine::xml::Node tool = tools.GetFirstChild(); tool; tool = tool.GetNextSibling())
+    /// for (Mezzanine::XML::Node tool = tools.GetFirstChild(); tool; tool = tool.GetNextSibling())
     /// {
     ///     std::cout << "Tool:";
     ///
-    ///     for (Mezzanine::xml::Attribute attr = tool.GetFirstAttribute(); attr; attr = attr.GetNextAttribute())
+    ///     for (Mezzanine::XML::Attribute attr = tool.GetFirstAttribute(); attr; attr = attr.GetNextAttribute())
     ///     {
     ///         std::cout << " " << attr.Name() << "=" << attr.Value();
     ///     }
@@ -821,24 +821,24 @@ namespace Mezzanine
     /// @endcode
     /// @subsection XMLAccessingNodeData Getting Node Data
     /// Apart from structural information (parent, child nodes, attributes), nodes can have name and value, both of which are strings. Depending on node type, name or value may be absent.
-    /// @ref Mezzanine::xml::NodeType "NodeDocument" nodes do not have a name or value, @ref Mezzanine::xml::NodeType "NodeElement" and @ref Mezzanine::xml::NodeType "NodeType::NodeDeclaration" nodes
-    /// always have a name but never have a value, @ref Mezzanine::xml::NodeType "NodeType::NodePcdata", @ref Mezzanine::xml::NodeType "NodeType::NodeCdata",
-    /// @ref Mezzanine::xml::NodeType "NodeType::NodeComment" and @ref Mezzanine::xml::NodeType "NodeType::NodeDocType" nodes never have a name but always have a value (it may be empty though),
-    /// @ref Mezzanine::xml::NodeType "NodeType::NodePi" nodes always have a name and a value (again, value may be empty). In order to get node's name or value, you can use the following
+    /// @ref Mezzanine::XML::NodeType "NodeDocument" nodes do not have a name or value, @ref Mezzanine::XML::NodeType "NodeElement" and @ref Mezzanine::XML::NodeType "NodeType::NodeDeclaration" nodes
+    /// always have a name but never have a value, @ref Mezzanine::XML::NodeType "NodeType::NodePcdata", @ref Mezzanine::XML::NodeType "NodeType::NodeCdata",
+    /// @ref Mezzanine::XML::NodeType "NodeType::NodeComment" and @ref Mezzanine::XML::NodeType "NodeType::NodeDocType" nodes never have a name but always have a value (it may be empty though),
+    /// @ref Mezzanine::XML::NodeType "NodeType::NodePi" nodes always have a name and a value (again, value may be empty). In order to get node's name or value, you can use the following
     /// functions:
     /// @code
-    /// const char_t* Mezzanine::xml::Node::Name() const;
-    /// const char_t* Mezzanine::xml::Node::Value() const;
+    /// const char_t* Mezzanine::XML::Node::Name() const;
+    /// const char_t* Mezzanine::XML::Node::Value() const;
     /// @endcode
     /// In case node does not have a name or value or if the node handle is null, both functions return empty strings - they never return null pointers.
     /// \n \n
     /// It is common to store data as text contents of some node - i.e. \<node> \<description> This is a node \</description> \</node>. In this case, \<description> node does not have
-    /// a value, but instead has a child of type @ref Mezzanine::xml::NodeType "NodeType::NodePcdata" with value "This is a node". Mezzanine::xml provides two helper functions to parse such data:
+    /// a value, but instead has a child of type @ref Mezzanine::XML::NodeType "NodeType::NodePcdata" with value "This is a node". Mezzanine::xml provides two helper functions to parse such data:
     /// @code
-    /// const char_t* Mezzanine::xml::Node::ChildValue() const;
-    /// const char_t* Mezzanine::xml::Node::ChildValue(const char_t* name) const;
+    /// const char_t* Mezzanine::XML::Node::ChildValue() const;
+    /// const char_t* Mezzanine::XML::Node::ChildValue(const char_t* name) const;
     /// @endcode
-    /// ChildValue() returns the value of the first child with type @ref Mezzanine::xml::NodeType "NodeType::NodePcdata" or @ref Mezzanine::xml::NodeType "NodeType::NodeCdata";
+    /// ChildValue() returns the value of the first child with type @ref Mezzanine::XML::NodeType "NodeType::NodePcdata" or @ref Mezzanine::XML::NodeType "NodeType::NodeCdata";
     /// ChildValue(Name) is a simple wrapper for Child(Name).ChildValue(). For the above example, calling node.ChildValue("description") and description.ChildValue() will both produce
     /// string "This is a node". If there is no child with relevant type, or if the handle is null, ChildValue functions return empty string.
     /// \n \n
@@ -846,8 +846,8 @@ namespace Mezzanine
     /// @subsection XMLAccessingAttributeData Getting attribute data
     /// All attributes have name and value, both of which are strings (value may be empty). There are two corresponding accessors:
     /// @code
-    /// const char_t* Mezzanine::xml::Attribute::Name() const;
-    /// const char_t* Mezzanine::xml::Attribute::Value() const;
+    /// const char_t* Mezzanine::XML::Attribute::Name() const;
+    /// const char_t* Mezzanine::XML::Attribute::Value() const;
     /// @endcode
     /// In case the attribute handle is null, both functions return empty strings - they never return null pointers.
     /// \n \n
@@ -855,16 +855,16 @@ namespace Mezzanine
     /// represented as strings in XML. Mezzanine::xml provides several accessors that convert attribute value to some other type:
     /// @code
     /// // Native C++ types
-    /// bool Mezzanine::xml::Attribute::AsBool() const;
-    /// double Mezzanine::xml::Attribute::AsDouble() const;
-    /// float Mezzanine::xml::Attribute::AsFloat() const;
-    /// int Mezzanine::xml::Attribute::AsInt() const;
-    /// unsigned int Mezzanine::xml::Attribute::AsUint() const;
+    /// bool Mezzanine::XML::Attribute::AsBool() const;
+    /// double Mezzanine::XML::Attribute::AsDouble() const;
+    /// float Mezzanine::XML::Attribute::AsFloat() const;
+    /// int Mezzanine::XML::Attribute::AsInt() const;
+    /// unsigned int Mezzanine::XML::Attribute::AsUint() const;
     ///
     /// //Mezzanine abstracted types
-    /// Real Mezzanine::xml::Attribute::AsReal() const;
-    /// String Mezzanine::xml::Attribute::AsString() const;
-    /// Whole Mezzanine::xml::Attribute::AsWhole() const;
+    /// Real Mezzanine::XML::Attribute::AsReal() const;
+    /// String Mezzanine::XML::Attribute::AsString() const;
+    /// Whole Mezzanine::XML::Attribute::AsWhole() const;
     /// @endcode
     /// AsDouble, AsFloat, AsInt, AsUint, AsReal and AsWhole convert attribute values to numbers. If attribute handle is null or attribute value is empty, 0 is returned. Otherwise, all
     /// leading whitespace characters are truncated, and the remaining string is parsed as a decimal number (AsInt, AsUint or AsWhole) or as a floating point number in either decimal
@@ -881,7 +881,7 @@ namespace Mezzanine
     ///
     /// This is an example of using these functions, along with node data retrieval ones:
     /// @code
-    /// for (Mezzanine::xml::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
+    /// for (Mezzanine::XML::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
     /// {
     ///     std::cout << "Tool " << tool.GetAttribute("Filename").Value();
     ///     std::cout << ": AllowRemote " << tool.GetAttribute("AllowRemote").AsBool();
@@ -892,24 +892,24 @@ namespace Mezzanine
     /// @subsection XMLAccessingContentBased Content Based Traversal Functions
     /// Since a lot of document traversal consists of finding the node/attribute with the correct name, there are special functions for that purpose:
     /// @code
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetChild(const char_t* name) const;
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::GetAttribute(const char_t* name) const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetNextSibling(const char_t* name) const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetPreviousSibling(const char_t* name) const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetChild(const char_t* name) const;
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::GetAttribute(const char_t* name) const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetNextSibling(const char_t* name) const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetPreviousSibling(const char_t* name) const;
     /// @endcode
     /// GetChild and GetAttribute return the first child/attribute with the specified name; GetNextSibling and GetPreviousSibling return the first sibling in the corresponding direction
     /// with the specified name. All string comparisons are case-sensitive. In case the node handle is null or there is no node/attribute with the specified name, null handle is returned.
     /// \n \n
     /// GetChild and GetNextSibling functions can be used together to loop through all child nodes with the desired name like this:
     /// @code
-    /// for (Mezzanine::xml::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
+    /// for (Mezzanine::XML::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
     ///     {}
     /// @endcode
     /// Occasionally the needed node is specified not by the unique name but instead by the value of some attribute; for example, it is common to have node collections with each node
     /// having a unique id: \<group> \<item id="1"/> \<item id="2"/> \</group>. There are two functions for finding child nodes based on the attribute values:
     /// @code
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::FindChildbyAttribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::FindChildbyAttribute(const char_t* attr_name, const char_t* attr_value) const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::FindChildbyAttribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::FindChildbyAttribute(const char_t* attr_name, const char_t* attr_value) const;
     /// @endcode
     /// The three-argument function returns the first child node with the specified name which has an attribute with the specified name/value; the two-argument function skips the name
     /// test for the node, which can be useful for searching in heterogeneous collections. If the node handle is null or if no node is found, null handle is returned. All string
@@ -921,7 +921,7 @@ namespace Mezzanine
     /// @code
     /// std::cout << "Tool for *.dae generation: " << tools.FindChildbyAttribute("Tool", "OutputFileMasks", "*.dae").GetAttribute("Filename").Value() << "\n";
     ///
-    /// for (Mezzanine::xml::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
+    /// for (Mezzanine::XML::Node tool = tools.GetChild("Tool"); tool; tool = tool.GetNextSibling("Tool"))
     /// {
     ///     std::cout << "Tool " << tool.GetAttribute("Filename").Value() << "\n";
     /// }
@@ -930,22 +930,22 @@ namespace Mezzanine
     /// Child node lists and attribute lists are simply double-linked lists; while you can use GetPreviousSibling/GetNextSibling and other such functions for iteration, Mezzanine::xml
     /// additionally provides node and attribute iterators, so that you can treat nodes as containers of other nodes or attributes:
     /// @code
-    /// class Mezzanine::xml::NodeIterator;
-    /// class Mezzanine::xml::AttributeIterator;
+    /// class Mezzanine::XML::NodeIterator;
+    /// class Mezzanine::XML::AttributeIterator;
     ///
-    /// typedef Mezzanine::xml::NodeIterator Mezzanine::xml::Node::iterator;
-    /// iterator Mezzanine::xml::Node::begin() const;
-    /// iterator Mezzanine::xml::Node::end() const;
+    /// typedef Mezzanine::XML::NodeIterator Mezzanine::XML::Node::iterator;
+    /// iterator Mezzanine::XML::Node::begin() const;
+    /// iterator Mezzanine::XML::Node::end() const;
     ///
-    /// typedef Mezzanine::xml::AttributeIterator Mezzanine::xml::Node::attribute_iterator;
-    /// attribute_iterator Mezzanine::xml::Node::attributes_begin() const;
-    /// attribute_iterator Mezzanine::xml::Node::attributes_end() const;
+    /// typedef Mezzanine::XML::AttributeIterator Mezzanine::XML::Node::attribute_iterator;
+    /// attribute_iterator Mezzanine::XML::Node::attributes_begin() const;
+    /// attribute_iterator Mezzanine::XML::Node::attributes_end() const;
     /// @endcode
     /// begin and attributes_begin return iterators that point to the first node/attribute, respectively; end and attributes_end return past-the-end iterator for node/attribute list,
     /// respectively - this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing
     /// past-the-end iterator results in undefined behavior). Past-the-end iterator is commonly used as a termination value for iteration loops (see sample below). If you want to get an
-    /// iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: Mezzanine::xml::NodeIterator(node). For
-    /// Mezzanine::xml::AttributeIterator, you'll have to provide both an attribute and its parent node.
+    /// iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: Mezzanine::XML::NodeIterator(node). For
+    /// Mezzanine::XML::AttributeIterator, you'll have to provide both an attribute and its parent node.
     /// \n \n
     /// begin and end return equal iterators if called on null node; such iterators can't be dereferenced. attributes_begin and attributes_end behave the same way. For correct iterator
     /// usage this means that child node/attribute collections of null nodes appear to be empty.
@@ -958,11 +958,11 @@ namespace Mezzanine
     /// \n \n
     /// Here is an example of using iterators for document traversal:
     /// @code
-    /// for (Mezzanine::xml::NodeIterator it = tools.begin(); it != tools.end(); ++it)
+    /// for (Mezzanine::XML::NodeIterator it = tools.begin(); it != tools.end(); ++it)
     /// {
     ///     std::cout << "Tool:";
     ///
-    ///     for (Mezzanine::xml::AttributeIterator ait = it->attributes_begin(); ait != it->attributes_end(); ++ait)
+    ///     for (Mezzanine::XML::AttributeIterator ait = it->attributes_begin(); ait != it->attributes_end(); ++ait)
     ///     {
     ///         std::cout << " " << ait->Name() << "=" << ait->Value();
     ///     }
@@ -974,12 +974,12 @@ namespace Mezzanine
     /// so that you can use it for tree modification operations, modifying this reference by assignment - i.e. passing iterators to a function like std::sort - will not give expected results,
     /// as assignment modifies local handle that's stored in the iterator.
     ///
-    /// @subsection XMLAccessingWalker Recursive traversal with Mezzanine::xml::TreeWalker
+    /// @subsection XMLAccessingWalker Recursive traversal with Mezzanine::XML::TreeWalker
     /// The methods described above allow traversal of immediate children of some node; if you want to do a deep tree traversal, you'll have to do it via a recursive function or some
-    /// equivalent method. However, pugixml provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement the Mezzanine::xml::TreeWalker interface and to
-    /// call the Mezzanine::xml::Node::Traverse function.
+    /// equivalent method. However, pugixml provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement the Mezzanine::XML::TreeWalker interface and to
+    /// call the Mezzanine::XML::Node::Traverse function.
     /// @code
-    /// bool Mezzanine::xml::Node::Traverse(Mezzanine::xml::TreeWalker& walker);
+    /// bool Mezzanine::XML::Node::Traverse(Mezzanine::XML::TreeWalker& walker);
     /// @endcode
     /// The traversal is launched by calling traverse function on traversal root and proceeds as follows:
     ///     - First, TreeWalker::begin function is called with traversal root as its argument.
@@ -994,11 +994,11 @@ namespace Mezzanine
     /// You can get the node's depth relative to the traversal root at any point by calling TreeWalker::Depth function. It returns -1 if called from begin/end, and returns 0-based depth if
     /// called from TreeWalker::for_each - depth is 0 for all children of the traversal root, 1 for all grandchildren and so on.
     /// \n \n
-    /// This is an example of traversing tree hierarchy with Mezzanine::xml::TreeWalker:
+    /// This is an example of traversing tree hierarchy with Mezzanine::XML::TreeWalker:
     /// @code
-    /// struct SimpleWalker: Mezzanine::xml::TreeWalker
+    /// struct SimpleWalker: Mezzanine::XML::TreeWalker
     /// {
-    ///     virtual bool for_each(Mezzanine::xml::Node& node)
+    ///     virtual bool for_each(Mezzanine::XML::Node& node)
     ///     {
     ///         for (int i = 0; i < Depth(); ++i) std::cout << "  "; // indentation
     ///
@@ -1016,37 +1016,37 @@ namespace Mezzanine
     /// While there are existing functions for getting a node/attribute with known contents, they are often not sufficient for simple queries. As an alternative for manual iteration
     /// through nodes/attributes until the needed one is found, you can make a predicate and call one of Find functions:
     /// @code
-    /// template <typename Predicate> Mezzanine::xml::Attribute Mezzanine::xml::Node::FindAttribute(Predicate pred) const;
-    /// template <typename Predicate> Mezzanine::xml::Node Mezzanine::xml::Node::FindChild(Predicate pred) const;
-    /// template <typename Predicate> Mezzanine::xml::Node Mezzanine::xml::Node::FindNode(Predicate pred) const;
+    /// template <typename Predicate> Mezzanine::XML::Attribute Mezzanine::XML::Node::FindAttribute(Predicate pred) const;
+    /// template <typename Predicate> Mezzanine::XML::Node Mezzanine::XML::Node::FindChild(Predicate pred) const;
+    /// template <typename Predicate> Mezzanine::XML::Node Mezzanine::XML::Node::FindNode(Predicate pred) const;
     /// @endcode
-    /// The predicate should be either a plain function or a function object which accepts one argument of type Mezzanine::xml::Attribute (for FindAttribute) or Mezzanine::xml::Node (for FindChild
+    /// The predicate should be either a plain function or a function object which accepts one argument of type Mezzanine::XML::Attribute (for FindAttribute) or Mezzanine::XML::Node (for FindChild
     /// and FindNode), and returns bool. The predicate is never called with null handle as an argument.
     /// \n \n
-    /// Mezzanine::xml::Node::FindAttribute function iterates through all attributes of the specified node, and returns the first attribute for which the predicate returned true. If the
+    /// Mezzanine::XML::Node::FindAttribute function iterates through all attributes of the specified node, and returns the first attribute for which the predicate returned true. If the
     /// predicate returned false for all attributes or if there were no attributes (including the case where the node is null), null attribute is returned.
     /// \n \n
-    /// Mezzanine::xml::Node::FindChild function iterates through all child nodes of the specified node, and returns the first node for which the predicate returned true. If the predicate
+    /// Mezzanine::XML::Node::FindChild function iterates through all child nodes of the specified node, and returns the first node for which the predicate returned true. If the predicate
     /// returned false for all nodes or if there were no child nodes (including the case where the node is null), null node is returned.
     /// \n \n
-    /// Mezzanine::xml::Node::FindNode function performs a depth-first traversal through the subtree of the specified node (excluding the node itself), and returns the first node for which
+    /// Mezzanine::XML::Node::FindNode function performs a depth-first traversal through the subtree of the specified node (excluding the node itself), and returns the first node for which
     /// the predicate returned true. If the predicate returned false for all nodes or if subtree was empty, null node is returned.
     /// \n \n
     /// Here are some sample predicates:
     /// @code
-    /// bool SmallTimeout(Mezzanine::xml::Node node)
+    /// bool SmallTimeout(Mezzanine::XML::Node node)
     /// {
     ///     return node.GetAttribute("Timeout").AsInt() < 20;
     /// }
     ///
     /// struct AllowRemotePredicate
     /// {
-    ///     bool operator()(Mezzanine::xml::Attribute attr) const
+    ///     bool operator()(Mezzanine::XML::Attribute attr) const
     ///     {
     ///         return strcmp(attr.Name(), "AllowRemote") == 0;
     ///     }
     ///
-    ///     bool operator()(Mezzanine::xml::Node node) const
+    ///     bool operator()(Mezzanine::XML::Node node) const
     ///     {
     ///         return node.GetAttribute("AllowRemote").AsBool();
     ///     }
@@ -1069,16 +1069,16 @@ namespace Mezzanine
     /// @subsection XMLAccessingMisc Miscellaneous functions
     /// If you need to get the document root of some node, you can use the following function:
     /// @code
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::GetRoot() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::GetRoot() const;
     /// @endcode
-    /// This function returns the node with type @ref Mezzanine::xml::NodeType "NodeDocument", which is the root node of the document the node belongs to (unless the node is null, in which
+    /// This function returns the node with type @ref Mezzanine::XML::NodeType "NodeDocument", which is the root node of the document the node belongs to (unless the node is null, in which
     /// case null node is returned).
     /// \n \n
     /// While Mezzanine::xml supports complex XPath expressions, sometimes a simple path handling facility is needed. There are two functions, for getting node path and for converting path
     /// to a node:
     /// @code
-    /// Mezzanine::String Mezzanine::xml::Node::Path(char_t delimiter = '/') const;
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
+    /// Mezzanine::String Mezzanine::XML::Node::Path(char_t delimiter = '/') const;
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
     /// @endcode
     /// Node paths consist of node names, separated with a delimiter (which is / by default); also paths can contain self (.) and parent (..) pseudo-names, so that this is a valid path:
     /// "../../foo/./bar". path returns the path to the node from the document root, FirstElementByPath looks for a node represented by a given path; a path can be an absolute one
@@ -1095,10 +1095,10 @@ namespace Mezzanine
     /// name/value are not changed, and the node itself is the original one, i.e. it was not deleted from the tree and re-added later), it is possible to get the offset from the
     /// beginning of XML buffer:
     /// @code
-    /// ptrdiff_t Mezzanine::xml::node::OffSetDebug() const;
+    /// ptrdiff_t Mezzanine::XML::node::OffSetDebug() const;
     /// @endcode
     /// If the offset is not available (this happens if the node is null, was not originally parsed from a stream, or has changed in a significant way), the function returns -1. Otherwise
-    /// it returns the offset to node's data from the beginning of XML buffer in Mezzanine::xml::char_t units. For more information on parsing offsets, see parsing error handling documentation.
+    /// it returns the offset to node's data from the beginning of XML buffer in Mezzanine::XML::char_t units. For more information on parsing offsets, see parsing error handling documentation.
     /// \n \n
     /// @section XMLModifying Modifiying Documents
     ///     - @ref XMLModifyingNodeData
@@ -1114,21 +1114,21 @@ namespace Mezzanine
     /// error-prone manual text writing and without too much overhead.
     /// \n \n
     /// All member functions that change node/attribute data or structure are non-constant and thus can not be called on constant handles. However, you can easily convert constant handle
-    /// to non-constant one by simple assignment: void foo(const Mezzanine::xml::Node& n) { Mezzanine::xml::Node nc = n; }, so const-correctness here mainly provides additional documentation.
+    /// to non-constant one by simple assignment: void foo(const Mezzanine::XML::Node& n) { Mezzanine::XML::Node nc = n; }, so const-correctness here mainly provides additional documentation.
     /// \n \n
     /// @subsection XMLModifyingNodeData Setting Node Data
-    ///As discussed before, nodes can have name and value, both of which are c-strings. Depending on node type, name or value may be absent. @ref Mezzanine::xml::NodeType "NodeDocument" nodes
-    /// do not have a name or value, @ref Mezzanine::xml::NodeType "NodeElement" and @ref Mezzanine::xml::NodeType "NodeDeclaration" nodes always have a name but never have a value,
-    /// @ref Mezzanine::xml::NodeType "NodePcdata", @ref Mezzanine::xml::NodeType "NodeCdata", @ref Mezzanine::xml::NodeType "NodeComment" and @ref Mezzanine::xml::NodeType "NodeDocType" nodes never have a
-    /// name but always have a value (it may be empty though), @ref Mezzanine::xml::NodeType "NodePi" nodes always have a name and a value (again, value may be empty). In order to set node's
+    ///As discussed before, nodes can have name and value, both of which are c-strings. Depending on node type, name or value may be absent. @ref Mezzanine::XML::NodeType "NodeDocument" nodes
+    /// do not have a name or value, @ref Mezzanine::XML::NodeType "NodeElement" and @ref Mezzanine::XML::NodeType "NodeDeclaration" nodes always have a name but never have a value,
+    /// @ref Mezzanine::XML::NodeType "NodePcdata", @ref Mezzanine::XML::NodeType "NodeCdata", @ref Mezzanine::XML::NodeType "NodeComment" and @ref Mezzanine::XML::NodeType "NodeDocType" nodes never have a
+    /// name but always have a value (it may be empty though), @ref Mezzanine::XML::NodeType "NodePi" nodes always have a name and a value (again, value may be empty). In order to set node's
     /// name or value, you can use the following functions:
     /// @code
-    /// bool Mezzanine::xml::Node::SetName(const char_t* rhs);
-    /// bool Mezzanine::xml::Node::SetName(const String& rhs);
-    /// bool Mezzanine::xml::Node::SetValue(const char_t* rhs);
+    /// bool Mezzanine::XML::Node::SetName(const char_t* rhs);
+    /// bool Mezzanine::XML::Node::SetName(const String& rhs);
+    /// bool Mezzanine::XML::Node::SetValue(const char_t* rhs);
     /// @endcode
     /// Both functions try to set the name/value to the specified string, and return the operation result. The operation fails if the node can not have name or value (for instance, when
-    /// trying to call SetName on a @ref Mezzanine::xml::NodeType "NodePcdata" node), if the node handle is null, or if there is insufficient memory to handle the request. The provided string
+    /// trying to call SetName on a @ref Mezzanine::XML::NodeType "NodePcdata" node), if the node handle is null, or if there is insufficient memory to handle the request. The provided string
     /// is copied into document managed memory and can be destroyed after the function returns (for example, you can safely pass stack-allocated buffers to these functions). The name/value
     /// content is not verified, so take care to use only valid XML names, or the document may become malformed.
     /// \n \n
@@ -1136,7 +1136,7 @@ namespace Mezzanine
     /// \n \n
     /// This is an example of setting node name and value:
     /// @code
-    /// Mezzanine::xml::Node node = doc.GetChild("node");
+    /// Mezzanine::XML::Node node = doc.GetChild("node");
     ///
     /// // change node name
     /// std::cout << node.SetName("notnode");
@@ -1152,8 +1152,8 @@ namespace Mezzanine
     /// @subsection XMLModifyingAttributeData Setting Attribute Data
     /// All attributes have name and value, both of which are strings (value may be empty). You can set them with the following functions:
     /// @code
-    /// bool Mezzanine::xml::Attribute::SetName(const char_t* rhs);
-    /// bool Mezzanine::xml::Attribute::SetValue(const char_t* rhs);
+    /// bool Mezzanine::XML::Attribute::SetName(const char_t* rhs);
+    /// bool Mezzanine::XML::Attribute::SetValue(const char_t* rhs);
     /// @endcode
     /// Both functions try to set the name/value to the specified string, and return the operation result. The operation fails if the attribute handle is null, or if there is insufficient
     /// memory to handle the request. The provided string is copied into document managed memory and can be destroyed after the function returns (for example, you can safely pass
@@ -1161,10 +1161,10 @@ namespace Mezzanine
     /// \n \n
     /// In addition to string functions, several functions are provided for handling attributes with numbers and booleans as values:
     /// @code
-    /// bool Mezzanine::xml::Attribute::SetValue(int rhs);
-    /// bool Mezzanine::xml::Attribute::SetValue(unsigned int rhs);
-    /// bool Mezzanine::xml::Attribute::SetValue(double rhs);
-    /// bool Mezzanine::xml::Attribute::SetValue(bool rhs);
+    /// bool Mezzanine::XML::Attribute::SetValue(int rhs);
+    /// bool Mezzanine::XML::Attribute::SetValue(unsigned int rhs);
+    /// bool Mezzanine::XML::Attribute::SetValue(double rhs);
+    /// bool Mezzanine::XML::Attribute::SetValue(bool rhs);
     /// @endcode
     /// The above functions convert the argument to string and then call the base SetValue function. Integers are converted to a decimal form, floating-point numbers are converted to either
     /// decimal or scientific form, depending on the number magnitude, boolean values are converted to either "true" or "false".
@@ -1174,17 +1174,17 @@ namespace Mezzanine
     ///
     /// For convenience, all set_value functions have the corresponding assignment operators:
     /// @code
-    /// Mezzanine::xml::Attribute& Mezzanine::xml::Attribute::operator=(const char_t* rhs);
-    /// Mezzanine::xml::Attribute& Mezzanine::xml::Attribute::operator=(int rhs);
-    /// Mezzanine::xml::Attribute& Mezzanine::xml::Attribute::operator=(unsigned int rhs);
-    /// Mezzanine::xml::Attribute& Mezzanine::xml::Attribute::operator=(double rhs);
-    /// Mezzanine::xml::Attribute& Mezzanine::xml::Attribute::operator=(bool rhs);
+    /// Mezzanine::XML::Attribute& Mezzanine::XML::Attribute::operator=(const char_t* rhs);
+    /// Mezzanine::XML::Attribute& Mezzanine::XML::Attribute::operator=(int rhs);
+    /// Mezzanine::XML::Attribute& Mezzanine::XML::Attribute::operator=(unsigned int rhs);
+    /// Mezzanine::XML::Attribute& Mezzanine::XML::Attribute::operator=(double rhs);
+    /// Mezzanine::XML::Attribute& Mezzanine::XML::Attribute::operator=(bool rhs);
     /// @endcode
     /// These operators simply call the right SetValue function and return the attribute they're called on; the return value of SetValue is ignored, so errors are ignored.
     /// \n \n
     /// This is an example of setting attribute name and value:
     /// @code
-    /// Mezzanine::xml::Attribute attr = node.GetAttribute("id");
+    /// Mezzanine::XML::Attribute attr = node.GetAttribute("id");
     ///
     /// // change attribute name/value
     /// std::cout << attr.SetName("key") << ", " << attr.SetValue("345");
@@ -1202,23 +1202,23 @@ namespace Mezzanine
     /// Nodes and attributes do not exist without a document tree, so you can't create them without adding them to some document. A node or attribute can be created at the end of
     /// node/attribute list or before/after some other node:
     /// @code
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::AppendAttribute(const char_t* Name);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::AppendAttribute(const String& Name);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::PrependAttribute(const char_t* Name);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::InsertAttributeAfter(const char_t* Name, const Mezzanine::xml::Attribute& attr);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::InsertAttributeBefore(const char_t* Name, const Mezzanine::xml::Attribute& attr);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::AppendAttribute(const char_t* Name);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::AppendAttribute(const String& Name);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::PrependAttribute(const char_t* Name);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::InsertAttributeAfter(const char_t* Name, const Mezzanine::XML::Attribute& attr);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::InsertAttributeBefore(const char_t* Name, const Mezzanine::XML::Attribute& attr);
     ///
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::AppendChild(Mezzanine::xml::NodeType type = NodeElement);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::PrependChild(Mezzanine::xml::NodeType type = NodeElement);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::InsertChildAfter(Mezzanine::xml::NodeType type, const Mezzanine::xml::Node& node);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::InsertChildBefore(Mezzanine::xml::NodeType type, const Mezzanine::xml::Node& node);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::AppendChild(Mezzanine::XML::NodeType type = NodeElement);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::PrependChild(Mezzanine::XML::NodeType type = NodeElement);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::InsertChildAfter(Mezzanine::XML::NodeType type, const Mezzanine::XML::Node& node);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::InsertChildBefore(Mezzanine::XML::NodeType type, const Mezzanine::XML::Node& node);
     ///
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::AppendChild(const char_t* Name);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::AppendChild(const String& Name);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::PrependChild(const char_t* Name);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::PrependChild(const String& Name);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::InsertChildAfter(const char_t* Name, const Mezzanine::xml::Node& node);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::InsertChildBefore(const char_t* Name, const Mezzanine::xml::Node& node);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::AppendChild(const char_t* Name);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::AppendChild(const String& Name);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::PrependChild(const char_t* Name);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::PrependChild(const String& Name);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::InsertChildAfter(const char_t* Name, const Mezzanine::XML::Node& node);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::InsertChildBefore(const char_t* Name, const Mezzanine::XML::Node& node);
     /// @endcode
     /// AppendAttribute and AppendChild create a new node/attribute at the end of the corresponding list of the node the method is called on; PrependAttribute and PrependChild create a new
     /// node/attribute at the beginning of the list; InsertAttributeAfter, InsertAttributeBefore, InsertChildAfter and InsertAttributeBefore add the node/attribute before or after the
@@ -1232,12 +1232,12 @@ namespace Mezzanine
     /// \n \n
     /// All functions return the handle to the created object on success, and null handle on failure. There are several reasons for failure:
     ///     - Adding fails if the target node is null;
-    ///     - Only @ref Mezzanine::xml::NodeType "NodeType::NodeElement" nodes can contain attributes, so attribute adding fails if node is not an element;
-    ///     - Only @ref Mezzanine::xml::NodeType "NodeType::NodeDocument" and @ref Mezzanine::xml::NodeType "NodeType::NodeElement" nodes can contain children, so child node adding fails if the
+    ///     - Only @ref Mezzanine::XML::NodeType "NodeType::NodeElement" nodes can contain attributes, so attribute adding fails if node is not an element;
+    ///     - Only @ref Mezzanine::XML::NodeType "NodeType::NodeDocument" and @ref Mezzanine::XML::NodeType "NodeType::NodeElement" nodes can contain children, so child node adding fails if the
     ///     target node is not an element or a document;
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeDocument" and @ref Mezzanine::xml::NodeType "NodeType::NodeNull" nodes can not be inserted as children, so passing
-    ///     @ref Mezzanine::xml::NodeType "NodeType::NodeDocument" or @ref Mezzanine::xml::NodeType "NodeType::NodeNull value as type results in operation failure;
-    ///     - @ref Mezzanine::xml::NodeType "NodeType::NodeDeclaration" nodes can only be added as children of the document node; attempt to insert declaration node as a child of an element node fails;
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeDocument" and @ref Mezzanine::XML::NodeType "NodeType::NodeNull" nodes can not be inserted as children, so passing
+    ///     @ref Mezzanine::XML::NodeType "NodeType::NodeDocument" or @ref Mezzanine::XML::NodeType "NodeType::NodeNull value as type results in operation failure;
+    ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeDeclaration" nodes can only be added as children of the document node; attempt to insert declaration node as a child of an element node fails;
     ///     - Adding node/attribute results in memory allocation, which may fail;
     ///     - Insertion functions fail if the specified node or attribute is null or is not in the target node's children/attribute list.
     ///
@@ -1248,14 +1248,14 @@ namespace Mezzanine
     /// This is an example of adding new attributes/nodes to the document:
     /// @code
     /// // add node with some name
-    /// Mezzanine::xml::Node node = doc.AppendChild("node");
+    /// Mezzanine::XML::Node node = doc.AppendChild("node");
     ///
     /// // add description node with text child
-    /// Mezzanine::xml::Node descr = node.AppendChild("description");
-    /// descr.AppendChild(Mezzanine::xml::NodePcdata).SetValue("Simple node");
+    /// Mezzanine::XML::Node descr = node.AppendChild("description");
+    /// descr.AppendChild(Mezzanine::XML::NodePcdata).SetValue("Simple node");
     ///
     /// // add param node before the description
-    /// Mezzanine::xml::Node param = node.InsertChildBefore("param", descr);
+    /// Mezzanine::XML::Node param = node.InsertChildBefore("param", descr);
     ///
     /// // add attributes to param node
     /// param.AppendAttribute("name") = "version";
@@ -1265,8 +1265,8 @@ namespace Mezzanine
     /// @subsection XMLModifyingRemoving Removing Nodes/Attributes
     /// If you do not want your document to contain some node or attribute, you can remove it with one of the following functions:
     /// @code
-    /// bool Mezzanine::xml::Node::RemoveAttribute(const Mezzanine::xml::Attribute& a);
-    /// bool Mezzanine::xml::Node::RemoveChild(const Mezzanine::xml::Node& n);
+    /// bool Mezzanine::XML::Node::RemoveAttribute(const Mezzanine::XML::Attribute& a);
+    /// bool Mezzanine::XML::Node::RemoveChild(const Mezzanine::XML::Node& n);
     /// @endcode
     /// RemoveAttribute removes the attribute from the attribute list of the node, and returns the operation result. RemoveChild removes the child node with the entire subtree (including
     /// all descendant nodes and attributes) from the document, and returns the operation result. Removing fails if one of the following is true:
@@ -1280,8 +1280,8 @@ namespace Mezzanine
     /// \n \n
     /// If you want to remove the attribute or child node by its name, two additional helper functions are available:
     /// @code
-    /// bool Mezzanine::xml::Node::RemoveAttribute(const char_t* Name);
-    /// bool Mezzanine::xml::Node::RemoveChild(const char_t* Name);
+    /// bool Mezzanine::XML::Node::RemoveAttribute(const char_t* Name);
+    /// bool Mezzanine::XML::Node::RemoveChild(const char_t* Name);
     /// @endcode
     /// These functions look for the first attribute or child with the specified name, and then remove it, returning the result. If there is no attribute or child with such name, the
     /// function returns false; if there are two nodes with the given name, only the first node is deleted. If you want to delete all nodes with the specified name, you can use code
@@ -1290,15 +1290,15 @@ namespace Mezzanine
     /// This is an example of removing attributes/nodes from the document:
     /// @code
     /// // remove description node with the whole subtree
-    /// Mezzanine::xml::Node node = doc.GetChild("node");
+    /// Mezzanine::XML::Node node = doc.GetChild("node");
     /// node.RemoveChild("description");
     ///
     /// // remove id attribute
-    /// Mezzanine::xml::Node param = node.GetChild("param");
+    /// Mezzanine::XML::Node param = node.GetChild("param");
     /// param.RemoveAttribute("value");
     ///
     /// // we can also remove nodes/attributes by handles
-    /// Mezzanine::xml::Attribute id = param.GetAttribute("name");
+    /// Mezzanine::XML::Attribute id = param.GetAttribute("name");
     /// param.RemoveAttribute(id);
     /// @endcode
     /// @subsection XMLModifyingCloning Cloning Nodes/Attributes
@@ -1306,15 +1306,15 @@ namespace Mezzanine
     /// needed operation, Mezzanine::xml provides built-in node/attribute cloning facilities. Since nodes and attributes do not exist without a document tree, you can't create a standalone copy
     /// - you have to immediately insert it somewhere in the tree. For this, you can use one of the following functions:
     /// @code
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::AppendCopy(const Mezzanine::xml::Attribute& proto);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::PrependCopy(const Mezzanine::xml::Attribute& proto);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::InsertCopyAfter(const Mezzanine::xml::Attribute& proto, const Mezzanine::xml::Attribute& attr);
-    /// Mezzanine::xml::Attribute Mezzanine::xml::Node::InsertCopyAfter(const Mezzanine::xml::Attribute& proto, const Mezzanine::xml::Attribute& attr);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::AppendCopy(const Mezzanine::XML::Attribute& proto);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::PrependCopy(const Mezzanine::XML::Attribute& proto);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::InsertCopyAfter(const Mezzanine::XML::Attribute& proto, const Mezzanine::XML::Attribute& attr);
+    /// Mezzanine::XML::Attribute Mezzanine::XML::Node::InsertCopyAfter(const Mezzanine::XML::Attribute& proto, const Mezzanine::XML::Attribute& attr);
     ///
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::AppendCopy(const Mezzanine::xml::Node& proto);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::PrependCopy(const Mezzanine::xml::Node& proto);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::InsertCopyAfter(const Mezzanine::xml::Node& proto, const Mezzanine::xml::Node& node);
-    /// Mezzanine::xml::Node Mezzanine::xml::Node::InsertCopyAfter(const Mezzanine::xml::Node& proto, const Mezzanine::xml::Node& node);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::AppendCopy(const Mezzanine::XML::Node& proto);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::PrependCopy(const Mezzanine::XML::Node& proto);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::InsertCopyAfter(const Mezzanine::XML::Node& proto, const Mezzanine::XML::Node& node);
+    /// Mezzanine::XML::Node Mezzanine::XML::Node::InsertCopyAfter(const Mezzanine::XML::Node& proto, const Mezzanine::XML::Node& node);
     /// @endcode
     ///
     /// These functions mirror the structure of AppendChild, PrependChild, InsertChildBefore and related functions - they take the handle to the prototype object, which is to be cloned,
@@ -1328,33 +1328,33 @@ namespace Mezzanine
     /// specific to cloning functions:
     ///     - Cloning null handles results in operation failure;
     ///     - Node cloning starts with insertion of the node of the same type as that of the prototype; for this reason, cloning functions can not be directly used to clone entire
-    ///     documents, since @ref Mezzanine::xml::NodeType "NodeType::NodeDocument" is not a valid insertion type. The example below provides a workaround.
+    ///     documents, since @ref Mezzanine::XML::NodeType "NodeType::NodeDocument" is not a valid insertion type. The example below provides a workaround.
     ///     - It is possible to copy a subtree as a child of some node inside this subtree, i.e. node.AppendCopy(node.GetParent().GetParent());. This is a valid operation, and it results
     ///     in a clone of the subtree in the state before cloning started, i.e. no infinite recursion takes place.
     ///
     /// This is an example with one possible implementation of include tags in XML. It illustrates node cloning and usage of other document modification functions:
     /// @code
-    /// bool LoadPreprocess(Mezzanine::xml::Document& doc, const char* path);
+    /// bool LoadPreprocess(Mezzanine::XML::Document& doc, const char* path);
     ///
-    /// bool PreProcess(Mezzanine::xml::Node node)
+    /// bool PreProcess(Mezzanine::XML::Node node)
     /// {
-    ///     for (Mezzanine::xml::Node child = node.GetFirstChild(); child; )
+    ///     for (Mezzanine::XML::Node child = node.GetFirstChild(); child; )
     ///     {
-    ///         if (child.Type() == Mezzanine::xml::NodePi && strcmp(child.Name(), "include") == 0)
+    ///         if (child.Type() == Mezzanine::XML::NodePi && strcmp(child.Name(), "include") == 0)
     ///         {
-    ///             Mezzanine::xml::Node include = child;
+    ///             Mezzanine::XML::Node include = child;
     ///
     ///             // load new preprocessed document (note: ideally this should handle relative paths)
     ///             const char* path = include.Value();
     ///
-    ///             Mezzanine::xml::Document doc;
+    ///             Mezzanine::XML::Document doc;
     ///             if (!LoadPreprocess(doc, path)) return false;
     ///
     ///             // insert the comment marker above include directive
     ///             node.InsertChildBefore(pugi::NodeComment, include).SetValue(path);
     ///
     ///             // copy the document above the include directive (this retains the original order!)
-    ///             for (Mezzanine::xml::Node ic = doc.FirstChild(); ic; ic = ic.NextSibling())
+    ///             for (Mezzanine::XML::Node ic = doc.FirstChild(); ic; ic = ic.NextSibling())
     ///             {
     ///                 node.InsertCopyAfter(ic, include);
     ///             }
@@ -1375,9 +1375,9 @@ namespace Mezzanine
     ///     return true;
     /// }
     ///
-    /// bool LoadPreprocess(Mezzanine::xml::Document& doc, const char* path)
+    /// bool LoadPreprocess(Mezzanine::XML::Document& doc, const char* path)
     /// {
-    ///     Mezzanine::xml::ParseResult result = doc.LoadFile(path, Mezzanine::xml::ParseDefault | Mezzanine::xml::ParsePi); // for <?include?>
+    ///     Mezzanine::XML::ParseResult result = doc.LoadFile(path, Mezzanine::XML::ParseDefault | Mezzanine::XML::ParsePi); // for <?include?>
     ///
     ///     return result ? PreProcess(doc) : false;
     /// }
@@ -1404,8 +1404,8 @@ namespace Mezzanine
     /// @subsection XMLSavingFile Saving Documents to Files
     /// If you want to save the whole document to a file, you can use one of the following functions:
     /// @code
-    /// bool Mezzanine::xml::Document::SaveFile(const char* Path, const Mezzanine::xml::char_t* indent = "\t", unsigned int flags = Mezzanine::xml::FormatDefault, Mezzanine::xml::Encoding encoding = EncodingAuto) const;
-    /// bool Mezzanine::xml::Document::SaveFile(const wchar_t* Path, const Mezzanine::xml::char_t* indent = "\t", unsigned int flags = Mezzanine::xml::FormatDefault, Mezzanine::xml::Encoding encoding = EncodingAuto) const;
+    /// bool Mezzanine::XML::Document::SaveFile(const char* Path, const Mezzanine::XML::char_t* indent = "\t", unsigned int flags = Mezzanine::XML::FormatDefault, Mezzanine::XML::Encoding encoding = EncodingAuto) const;
+    /// bool Mezzanine::XML::Document::SaveFile(const wchar_t* Path, const Mezzanine::XML::char_t* indent = "\t", unsigned int flags = Mezzanine::XML::FormatDefault, Mezzanine::XML::Encoding encoding = EncodingAuto) const;
     /// @endcode
     /// These functions accept file path as its first argument, and also three optional arguments, which specify indentation and other output options (see Output options) and output data
     /// encoding ( see @ ref XMLSavingEncodings ). The Path has the target operating system format, so it can be a relative or absolute one, it should have the delimiters of the target
@@ -1415,7 +1415,7 @@ namespace Mezzanine
     /// function if it is provided by the runtime library or converts the path to UTF-8 and uses the system file opening function.
     /// \n \n
     /// SaveFile opens the target file for writing, outputs the requested header (by default a document declaration is output, unless the document already has one), and then saves the
-    /// document contents. If the file could not be opened, the function returns false. Calling SaveFile is equivalent to creating an Mezzanine::xml::WriterFile object with FILE* handle as the
+    /// document contents. If the file could not be opened, the function returns false. Calling SaveFile is equivalent to creating an Mezzanine::XML::WriterFile object with FILE* handle as the
     /// only constructor argument and then calling save; see @ref XMLSavingWriter for writer interface details.
     /// \n \n
     /// This is a simple example of saving XML document to a file :
@@ -1428,15 +1428,15 @@ namespace Mezzanine
     /// standard C++ stream (i.e. file stream) or any third-party compliant implementation (i.e. Boost Iostreams). Most notably, this allows for easy debug output, since you can use
     /// std::cout stream as saving target. There are two functions, one works with narrow character streams, another handles wide character ones:
     /// @code
-    /// void Mezzanine::xml::Document::Save(std::ostream& stream, const char_t* indent = "\t", unsigned int flags = Mezzanine::xml::FormatDefault, Mezzanine::xml::Encoding encoding = EncodingAuto) const;
-    /// void Mezzanine::xml::Document::Save(std::wostream& stream, const char_t* indent = "\t", unsigned int flags = Mezzanine::xml::FormatDefault) const;
+    /// void Mezzanine::XML::Document::Save(std::ostream& stream, const char_t* indent = "\t", unsigned int flags = Mezzanine::XML::FormatDefault, Mezzanine::XML::Encoding encoding = EncodingAuto) const;
+    /// void Mezzanine::XML::Document::Save(std::wostream& stream, const char_t* indent = "\t", unsigned int flags = Mezzanine::XML::FormatDefault) const;
     /// @endcode
     /// Calling Save with an std::ostream argument saves the document to the stream in the same way as SaveFile (i.e. with requested header and with encoding conversions). On the other
-    /// hand, save with std::wstream argument saves the document to the wide stream with @ref Mezzanine::xml::Encoding "Encoding::Encodingwchar_t" encoding. Because of this, using save with wide
+    /// hand, save with std::wstream argument saves the document to the wide stream with @ref Mezzanine::XML::Encoding "Encoding::Encodingwchar_t" encoding. Because of this, using save with wide
     /// character streams requires careful (usually platform-specific) stream setup (i.e. using the imbue function). Generally use of wide streams is discouraged, however it provides you
     /// with the ability to save documents to non-Unicode encodings, i.e. you can save Shift-JIS encoded data if you set the correct locale.
     /// \n \n
-    /// Calling Save with stream target is equivalent to creating an Mezzanine::xml::WriterStream object with stream as the only constructor argument and then calling save; see
+    /// Calling Save with stream target is equivalent to creating an Mezzanine::XML::WriterStream object with stream as the only constructor argument and then calling save; see
     /// @ref XMLSavingWriter for writer interface details.
     /// \n \n
     /// This is a simple example of saving XML document to standard output:
@@ -1446,7 +1446,7 @@ namespace Mezzanine
     /// doc.Save(std::cout);
     /// @endcode
     /// @subsection XMLSavingWriter Saving Document via Writer Interface
-    /// All of the above saving functions are implemented in terms of the Mezzanine::xml::Writer interface. This is a simple interface with a single function, which is called several times
+    /// All of the above saving functions are implemented in terms of the Mezzanine::XML::Writer interface. This is a simple interface with a single function, which is called several times
     /// during output process with chunks of document data as input.
     /// @code
     /// class Writer
@@ -1455,19 +1455,19 @@ namespace Mezzanine
     ///     virtual void Write(const void* data, size_t size) = 0;
     /// };
     ///
-    /// void Mezzanine::xml::Document::Save (Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const;
+    /// void Mezzanine::XML::Document::Save (Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const;
     /// @endcode
-    /// In order to output the document via some custom transport, for example sockets, you should create an object which implements Mezzanine::xml::Writer interface and pass it to save function.
-    /// Mezzanine::xml::Writer::Write function is called with a buffer as an input, where data points to buffer start, and size is equal to the buffer size in bytes. The Write implementation must
+    /// In order to output the document via some custom transport, for example sockets, you should create an object which implements Mezzanine::XML::Writer interface and pass it to save function.
+    /// Mezzanine::XML::Writer::Write function is called with a buffer as an input, where data points to buffer start, and size is equal to the buffer size in bytes. The Write implementation must
     /// write the buffer to the transport; it can not save the passed buffer pointer, as the buffer contents will change after write returns. The buffer contains the chunk of document data
     /// in the desired encoding.
     /// \n \n
-    /// The Write function is called with relatively large blocks (size is usually several kilobytes, except for the first block with BOM, which is output only if Mezzanine::xml::FormatWriteBom
+    /// The Write function is called with relatively large blocks (size is usually several kilobytes, except for the first block with BOM, which is output only if Mezzanine::XML::FormatWriteBom
     /// is set, and last block, which may be small), so there is often no need for additional buffering in the implementation.
     /// \n \n
     /// This is a simple example of custom writer for saving document data to STL string:
     /// @code
-    /// struct StringWriter: Mezzanine::xml::Writer
+    /// struct StringWriter: Mezzanine::XML::Writer
     /// {
     ///     std::string Result;
     ///
@@ -1480,31 +1480,31 @@ namespace Mezzanine
     /// @subsection XMLSavingSubtree Saving a Single Subtree
     /// While the previously described functions save the whole document to the destination, it is easy to save a single subtree. The following functions are provided:
     /// @code
-    /// void Mezzanine::xml::Node::Print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const ;
-    /// void Mezzanine::xml::Node::Print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, unsigned int Depth=0) const ) const;
-    /// void Mezzanine::xml::Node::Print(Mezzanine::xml::Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const;
+    /// void Mezzanine::XML::Node::Print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const ;
+    /// void Mezzanine::XML::Node::Print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, unsigned int Depth=0) const ) const;
+    /// void Mezzanine::XML::Node::Print(Mezzanine::XML::Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const;
     /// @endcode
-    /// These functions have the same arguments with the same meaning as the corresponding Mezzanine::xml::Document::Save functions, and allow you to save the subtree to either a C++ IOstream
-    /// or to any object that implements Mezzanine::xml::Writer interface.
+    /// These functions have the same arguments with the same meaning as the corresponding Mezzanine::XML::Document::Save functions, and allow you to save the subtree to either a C++ IOstream
+    /// or to any object that implements Mezzanine::XML::Writer interface.
     /// \n \n
-    /// Saving a subtree differs from saving the whole document: the process behaves as if Mezzanine::xml::FormatWriteBom is off, and Mezzanine::xml::FormatNoDeclaration is on, even if actual values
+    /// Saving a subtree differs from saving the whole document: the process behaves as if Mezzanine::XML::FormatWriteBom is off, and Mezzanine::XML::FormatNoDeclaration is on, even if actual values
     /// of the flags are different. This means that BOM is not written to the destination, and document declaration is only written if it is the node itself or is one of node's children.
     /// Note that this also holds if you're saving a document; this example illustrates the difference:
     /// @code
     /// // get a test document
-    /// Mezzanine::xml::Document doc;
+    /// Mezzanine::XML::Document doc;
     /// doc.Load("<foo bar='baz'><call>hey</call></foo>");
     ///
     /// // print document to standard output (prints <?xml version="1.0"?><foo bar="baz"><call>hey</call></foo>)
-    /// doc.Save(std::cout, "", Mezzanine::xml::FormatRaw);
+    /// doc.Save(std::cout, "", Mezzanine::XML::FormatRaw);
     /// std::cout << std::endl;
     ///
     /// // print document to standard output as a regular node (prints <foo bar="baz"><call>hey</call></foo>)
-    /// doc.Print(std::cout, "", Mezzanine::xml::FormatRaw);
+    /// doc.Print(std::cout, "", Mezzanine::XML::FormatRaw);
     /// std::cout << std::endl;
     ///
     /// // print a subtree to standard output (prints <call>hey</call>)
-    /// doc.GetChild("foo").GetChild("call").Print(std::cout, "", Mezzanine::xml::FormatRaw);
+    /// doc.GetChild("foo").GetChild("call").Print(std::cout, "", Mezzanine::XML::FormatRaw);
     /// std::cout << std::endl;
     /// @endcode
     /// @subsection XMLSavingOptions Output Options
@@ -1513,24 +1513,24 @@ namespace Mezzanine
     /// @note You should use the usual bitwise arithmetics to manipulate the bitmask: to enable a flag, use mask | flag; to disable a flag, use mask & ~flag.
     ///
     /// These flags control the resulting tree contents:
-    ///     - Mezzanine::xml::FormatIndent determines if all nodes should be indented with the indentation string (this is an additional parameter for all saving functions, and is "\t" by - default).
+    ///     - Mezzanine::XML::FormatIndent determines if all nodes should be indented with the indentation string (this is an additional parameter for all saving functions, and is "\t" by - default).
     ///     If this flag is on, before every node the indentation string is output several times, where the amount of indentation depends on the node's depth relative to the
-    ///     output subtree. This flag has no effect if Mezzanine::xml::FormatRaw is enabled. This flag is off by default.
-    ///     - Mezzanine::xml::FormatRaw switches between formatted and raw output. If this flag is on, the nodes are not indented in any way, and also no newlines that are not part of
+    ///     output subtree. This flag has no effect if Mezzanine::XML::FormatRaw is enabled. This flag is off by default.
+    ///     - Mezzanine::XML::FormatRaw switches between formatted and raw output. If this flag is on, the nodes are not indented in any way, and also no newlines that are not part of
     ///     document text are printed. Raw mode can be used for serialization where the result is not intended to be read by humans; also it can be useful if the document was parsed
-    ///     with Mezzanine::xml::ParseWsPcdata flag, to preserve the original document formatting as much as possible. This flag is on by default.
+    ///     with Mezzanine::XML::ParseWsPcdata flag, to preserve the original document formatting as much as possible. This flag is on by default.
     ///
     ///These flags control the additional output information:
-    ///     - Mezzanine::xml::FormatNoDeclaration disables default node declaration output. By default, if the document is saved via save or SaveFile function, and it does not have any
+    ///     - Mezzanine::XML::FormatNoDeclaration disables default node declaration output. By default, if the document is saved via save or SaveFile function, and it does not have any
     ///     document declaration, a default declaration is output before the document contents. Enabling this flag disables this declaration. This flag has no effect in
-    ///     Mezzanine::xml::Node::Print functions: they never output the default declaration. This flag is off by default.
-    ///     - Mezzanine::xml::FormatWriteBom enables Byte Order Mark (BOM) output. By default, no BOM is output, so in case of non UTF-8 encodings the resulting document's encoding may not
+    ///     Mezzanine::XML::Node::Print functions: they never output the default declaration. This flag is off by default.
+    ///     - Mezzanine::XML::FormatWriteBom enables Byte Order Mark (BOM) output. By default, no BOM is output, so in case of non UTF-8 encodings the resulting document's encoding may not
     ///     be recognized by some parsers and text editors, if they do not implement sophisticated encoding detection. Enabling this flag adds an encoding-specific BOM to the output. This
-    ///     flag has no effect in Mezzanine::xml::Node::Print functions: they never output the BOM. This flag is off by default.
+    ///     flag has no effect in Mezzanine::XML::Node::Print functions: they never output the BOM. This flag is off by default.
     ///
     /// Additionally, there is one predefined option mask:
-    ///     - Mezzanine::xml::FormatDefault is the default set of flags, i.e. it has all options set to their default values. This differs from the default pugixml settings and only sets
-    ///     Mezzanine::xml::FormatRaw . This is to minimize output size, and optimize for computer consumption of xml.
+    ///     - Mezzanine::XML::FormatDefault is the default set of flags, i.e. it has all options set to their default values. This differs from the default pugixml settings and only sets
+    ///     Mezzanine::XML::FormatRaw . This is to minimize output size, and optimize for computer consumption of xml.
     ///
     /// @subsection XMLSavingEncodings Encodings
     /// Mezzanine::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little endian), UTF-32 (big and little endian); UCS-2 is naturally supported since it's a strict subset
@@ -1538,10 +1538,10 @@ namespace Mezzanine
     /// possible values for the encoding are documented in Encodings; the only flag that has a different meaning is EncodingAuto.
     /// \n \n
     /// While all other flags set the exact encoding, EncodingAuto is meant for automatic encoding detection. The automatic detection does not make sense for output encoding, since there
-    /// is usually nothing to infer the actual encoding from, so here @ref Mezzanine::xml::Encoding "EncodingAuto" means UTF-8 encoding, which is the most popular encoding for XML data storage. This is also the default
+    /// is usually nothing to infer the actual encoding from, so here @ref Mezzanine::XML::Encoding "EncodingAuto" means UTF-8 encoding, which is the most popular encoding for XML data storage. This is also the default
     /// value of output encoding; specify another value if you do not want UTF-8 encoded output.
     /// \n \n
-    /// Also note that wide stream saving functions do not have encoding argument and always assume @ref Mezzanine::xml::Encoding "Encodingwchar_t" encoding.
+    /// Also note that wide stream saving functions do not have encoding argument and always assume @ref Mezzanine::XML::Encoding "Encodingwchar_t" encoding.
     /// @note The current behavior for Unicode conversion is to skip all invalid UTF sequences during conversion. This behavior should not be relied upon; if your node/attribute names do
     /// not contain any valid UTF sequences, they may be output as if they are empty, which will result in malformed XML document.
     /// @section XMLXPath XPath
@@ -1561,50 +1561,50 @@ namespace Mezzanine
     /// \n \n
     /// @subsection XMLXPathTypes XPath Types
     /// Each XPath expression can have one of the following types: boolean, number, string or node set. Boolean type corresponds to bool type, number type corresponds to double type, string
-    /// type corresponds to either std::string or std::wstring, depending on whether wide character interface is enabled, and node set corresponds to Mezzanine::xml::XPathNodeSet type. There is
-    /// an enumeration, Mezzanine::xml::XPathValueType, which can take the values @ref Mezzanine::xml::XPathValueType "XPathTypeBoolean", @ref Mezzanine::xml::XPathValueType "XPathTypeNumber",
-    /// @ref Mezzanine::xml::XPathValueType XPathTypeString or @ref Mezzanine::xml::XPathValueType XPathTypeNodeSet, accordingly.
+    /// type corresponds to either std::string or std::wstring, depending on whether wide character interface is enabled, and node set corresponds to Mezzanine::XML::XPathNodeSet type. There is
+    /// an enumeration, Mezzanine::XML::XPathValueType, which can take the values @ref Mezzanine::XML::XPathValueType "XPathTypeBoolean", @ref Mezzanine::XML::XPathValueType "XPathTypeNumber",
+    /// @ref Mezzanine::XML::XPathValueType XPathTypeString or @ref Mezzanine::XML::XPathValueType XPathTypeNodeSet, accordingly.
     /// \n \n
-    /// Because an XPath node can be either a node or an attribute, there is a special type, Mezzanine::xml::XPathNode, which is a discriminated union of these types. A value of this type
-    /// contains two node handles, one of Mezzanine::xml::Node type, and another one of Mezzanine::xml::Attribute type; at most one of them can be non-null. The accessors to get these handles are
+    /// Because an XPath node can be either a node or an attribute, there is a special type, Mezzanine::XML::XPathNode, which is a discriminated union of these types. A value of this type
+    /// contains two node handles, one of Mezzanine::XML::Node type, and another one of Mezzanine::XML::Attribute type; at most one of them can be non-null. The accessors to get these handles are
     /// available:
     /// @code
-    /// Mezzanine::xml::Node Mezzanine::xml::XPathNode::GetNode() const;
-    /// Mezzanine::xml::Attribute Mezzanine::xml::XPathNode::GetAttribute() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::XPathNode::GetNode() const;
+    /// Mezzanine::XML::Attribute Mezzanine::XML::XPathNode::GetAttribute() const;
     /// @endcode
     /// XPath nodes can be null, in which case both accessors return null handles.
     /// \n \n
     /// Note that as per XPath specification, each XPath node has a parent, which can be retrieved via this function:
     /// @code
-    /// Mezzanine::xml::Node Mezzanine::xml::XPathNode::GetParent() const;
+    /// Mezzanine::XML::Node Mezzanine::XML::XPathNode::GetParent() const;
     /// @endcode
-    /// The GetParent function returns the node's parent if the XPath node corresponds to Mezzanine::xml::Node handle (equivalent to GetNode().GetParent()), or the node to which the attribute
-    /// belongs to, if the XPath node corresponds to Mezzanine::xml::Attribute handle. For null nodes, parent returns null handle.
+    /// The GetParent function returns the node's parent if the XPath node corresponds to Mezzanine::XML::Node handle (equivalent to GetNode().GetParent()), or the node to which the attribute
+    /// belongs to, if the XPath node corresponds to Mezzanine::XML::Attribute handle. For null nodes, parent returns null handle.
     /// \n \n
     /// Like node and attribute handles, XPath node handles can be implicitly cast to boolean-like object to check if it is a null node, and also can be compared for equality with
     /// each other.
     /// \n \n
     /// You can also create XPath nodes with one of the three constructors: the default constructor, the constructor that takes node argument, and the constructor that takes an attribute
-    /// and a node argument (in which case the attribute must belong to the attribute list of the node). The constructor from Mezzanine::xml::Node is implicit, so you can usually pass
-    /// Mezzanine::xml::Node to functions that expect Mezzanine::xml::XPathNode. Apart from that you usually don't need to create your own XPath node objects, since they are returned to you via
+    /// and a node argument (in which case the attribute must belong to the attribute list of the node). The constructor from Mezzanine::XML::Node is implicit, so you can usually pass
+    /// Mezzanine::XML::Node to functions that expect Mezzanine::XML::XPathNode. Apart from that you usually don't need to create your own XPath node objects, since they are returned to you via
     /// selection functions.
     /// \n \n
     /// XPath expressions operate not on single nodes, but instead on node sets. A node set is a collection of nodes, which can be optionally ordered in either a forward document order
     /// or a reverse one. Document order is defined in XPath specification; an XPath node is before another node in document order if it appears before it in XML representation of the
     /// corresponding document.
     /// \n \n
-    /// Node sets are represented by Mezzanine::xml::XPathNodeSet object, which has an interface that resembles one of sequential random-access containers. It has an iterator type along with
+    /// Node sets are represented by Mezzanine::XML::XPathNodeSet object, which has an interface that resembles one of sequential random-access containers. It has an iterator type along with
     /// usual begin/past-the-end iterator accessors:
     /// @code
-    /// typedef const Mezzanine::xml::XPathNode* Mezzanine::xml::XPathNodeSet::const_iterator;
-    /// const_iterator Mezzanine::xml::XPathNodeSet::begin() const;
-    /// const_iterator Mezzanine::xml::XPathNodeSet::end() const;
+    /// typedef const Mezzanine::XML::XPathNode* Mezzanine::XML::XPathNodeSet::const_iterator;
+    /// const_iterator Mezzanine::XML::XPathNodeSet::begin() const;
+    /// const_iterator Mezzanine::XML::XPathNodeSet::end() const;
     /// @endcode
     /// And it also can be iterated via indices, just like std::vector:
     /// @code
-    /// const Mezzanine::xml::XPathNode& Mezzanine::xml::XPathNodeSet::operator[](size_t index) const;
-    /// size_t Mezzanine::xml::XPathNodeSet::size() const;
-    /// bool Mezzanine::xml::XPathNodeSet::empty() const;
+    /// const Mezzanine::XML::XPathNode& Mezzanine::XML::XPathNodeSet::operator[](size_t index) const;
+    /// size_t Mezzanine::XML::XPathNodeSet::size() const;
+    /// bool Mezzanine::XML::XPathNodeSet::empty() const;
     /// @endcode
     /// All of the above operations have the same semantics as that of std::vector: the iterators are random-access, all of the above operations are constant time, and accessing the element
     /// at index that is greater or equal than the set size results in undefined behavior. You can use both iterator-based and index-based access for iteration, however the iterator-based
@@ -1612,28 +1612,28 @@ namespace Mezzanine
     /// \n \n
     /// The order of iteration depends on the order of nodes inside the set; the order can be queried via the following function:
     /// @code
-    /// enum Mezzanine::xml::XPathNodeSet::CollectionType { TypeUnsorted, TypeSorted, TypeSortedReverse };
-    /// CollectionType Mezzanine::xml::XPathNodeSet::Type() const;
+    /// enum Mezzanine::XML::XPathNodeSet::CollectionType { TypeUnsorted, TypeSorted, TypeSortedReverse };
+    /// CollectionType Mezzanine::XML::XPathNodeSet::Type() const;
     /// @endcode
     /// The Type function returns the current order of nodes; TypeSorted means that the nodes are in forward document order, TypeSortedReverse means that the nodes are in reverse document
     /// order, and TypeUnsorted means that neither order is guaranteed (nodes can accidentally be in a sorted order even if Type() returns TypeUnsorted). If you require a specific order of
     /// iteration, you can change it via sort function:
-    /// void Mezzanine::xml::XPathNodeSet::sort(bool reverse = false);
+    /// void Mezzanine::XML::XPathNodeSet::sort(bool reverse = false);
     /// @warning When converted from the pugixml naming scheme, changes were made to this class conservatively. Once it is determine what the new names should be. this could be changed.
     ///
     /// Calling sort sorts the nodes in either forward or reverse document order, depending on the argument; after this call Type() will return TypeSorted or TypeSortedReverse.
     /// \n \n
     /// Often the actual iteration is not needed; instead, only the first element in document order is required. For this, a special accessor is provided:
     /// @code
-    /// Mezzanine::xml::XPathNode Mezzanine::xml::XPathNodeSet::first() const;
+    /// Mezzanine::XML::XPathNode Mezzanine::XML::XPathNodeSet::first() const;
     /// @endcode
     /// This function returns the first node in forward document order from the set, or null node if the set is empty. Note that while the result of the node does not depend on the order of
     /// nodes in the set (i.e. on the result of Type()), the complexity does - if the set is sorted, the complexity is constant, otherwise it is linear in the number of elements or worse.
     /// \n \n
     /// While in the majority of cases the node set is returned by XPath functions, sometimes there is a need to manually construct a node set. For such cases, a constructor is provided
-    /// which takes an iterator range (const_iterator is a typedef for const Mezzanine::xml::XPathNode*), and an optional type:
+    /// which takes an iterator range (const_iterator is a typedef for const Mezzanine::XML::XPathNode*), and an optional type:
     /// @code
-    /// Mezzanine::xml::XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type=TypeUnsorted);
+    /// Mezzanine::XML::XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type=TypeUnsorted);
     /// @endcode
     /// The constructor copies the specified range and sets the specified type. The objects in the range are not checked in any way; you'll have to ensure that the range contains no
     /// duplicates, and that the objects are sorted according to the type parameter. Otherwise XPath operations with this set may produce unexpected results.
@@ -1641,38 +1641,38 @@ namespace Mezzanine
     /// @subsection XMLXPathSelecting Selecting Nodes via XPath Expression
     /// If you want to select nodes that match some XPath expression, you can do it with the following functions:
     /// @code
-    /// Mezzanine::xml::XPathNode Mezzanine::xml::Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
-    /// Mezzanine::xml::XPathNodeSet Mezzanine::xml::Node::FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// Mezzanine::XML::XPathNode Mezzanine::XML::Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// Mezzanine::XML::XPathNodeSet Mezzanine::XML::Node::FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
     /// @endcode
     /// The FindNodes function compiles the expression and then executes it with the node as a context node, and returns the resulting node set. FindSingleNode returns only the first node
     /// in document order from the result, and is equivalent to calling FindNodes(query).first(). If the XPath expression does not match anything, or the node handle is null, FindNodes
     /// returns an empty set, and FindSingleNode returns null XPath node.
     /// \n \n
-    /// If exception handling is not disabled, both functions throw Mezzanine::xml::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
+    /// If exception handling is not disabled, both functions throw Mezzanine::XML::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
     /// Error handling for details.
     /// \n \n
     /// While compiling expressions is fast, the compilation time can introduce a significant overhead if the same expression is used many times on small subtrees. If you're doing many
     /// similar queries, consider compiling them into query objects (see @ref XMLXPathQuery for further reference). Once you get a compiled query object, you can pass it to Find functions
     /// instead of an expression string:
     /// @code
-    /// Mezzanine::xml::XPathNode Mezzanine::xml::Node::FindSingleNode(const Mezzanine::xml::XPathQuery& query) const;
-    /// Mezzanine::xml::XPathNodeSet Mezzanine::xml::Node::FindNodes(const Mezzanine::xml::XPathQuery& query) const;
+    /// Mezzanine::XML::XPathNode Mezzanine::XML::Node::FindSingleNode(const Mezzanine::XML::XPathQuery& query) const;
+    /// Mezzanine::XML::XPathNodeSet Mezzanine::XML::Node::FindNodes(const Mezzanine::XML::XPathQuery& query) const;
     /// @endcode
-    /// If exception handling is not disabled, both functions throw Mezzanine::xml::XPathException if the query returns a value with type other than node set.
+    /// If exception handling is not disabled, both functions throw Mezzanine::XML::XPathException if the query returns a value with type other than node set.
     /// \n \n
     /// This is an example of selecting nodes using XPath expressions:
     /// @code
-    /// Mezzanine::xml::XPathNodeSet tools = doc.FindNodes("/Profile/Tools/Tool[@AllowRemote='true' and @DeriveCaptionFrom='lastparam']");
+    /// Mezzanine::XML::XPathNodeSet tools = doc.FindNodes("/Profile/Tools/Tool[@AllowRemote='true' and @DeriveCaptionFrom='lastparam']");
     ///
     /// std::cout << "Tools:";
     ///
-    /// for (Mezzanine::xml::XPathNodeSet::const_iterator it = tools.begin(); it != tools.end(); ++it)
+    /// for (Mezzanine::XML::XPathNodeSet::const_iterator it = tools.begin(); it != tools.end(); ++it)
     /// {
-    ///     Mezzanine::xml::XPathNode node = *it;
+    ///     Mezzanine::XML::XPathNode node = *it;
     ///     std::cout << " " << node.GetNode().GetAttribute("Filename").Value();
     /// }
     ///
-    /// Mezzanine::xml::XPathNode BuildTool = doc.FindSingleNode("//Tool[contains(Description, 'build system')]");
+    /// Mezzanine::XML::XPathNode BuildTool = doc.FindSingleNode("//Tool[contains(Description, 'build system')]");
     ///
     /// std::cout << "\nBuild tool: " << BuildTool.GetNode().GetAttribute("Filename").Value() << "\n";
     /// @endcode
@@ -1683,34 +1683,34 @@ namespace Mezzanine
     ///     - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings;
     ///     - You can get the type of expression value via query object.
     ///
-    /// Query objects correspond to Mezzanine::xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to
-    /// put query objects in a container, allocate them on heap via new operator and store pointers to Mezzanine::xml::XPathQuery in the container.
+    /// Query objects correspond to Mezzanine::XML::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to
+    /// put query objects in a container, allocate them on heap via new operator and store pointers to Mezzanine::XML::XPathQuery in the container.
     /// \n \n
     /// You can create a query object with the constructor that takes XPath expression as an argument:
     /// @code
-    /// explicit Mezzanine::xml::XPathQuery::XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
+    /// explicit Mezzanine::XML::XPathQuery::XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
     /// @endcode
     /// The expression is compiled and the compiled representation is stored in the new query object. If compilation fails, XPathException is thrown if exception handling is not disabled
     /// (see @ref XMLXPathError for details). After the query is created, you can query the type of the evaluation result using the following function:
     /// @code
-    /// Mezzanine::xml::XPathValueType Mezzanine::xml::XPathQuery::ReturnType() const;
+    /// Mezzanine::XML::XPathValueType Mezzanine::XML::XPathQuery::ReturnType() const;
     /// @endcode
     /// You can evaluate the query using one of the following functions:
     /// @code
-    /// bool Mezzanine::xml::XPathQuery::EvaluateBoolean(const Mezzanine::xml::XPathNode& n) const;
-    /// double Mezzanine::xml::XPathQuery::EvaluateNumber(const Mezzanine::xml::XPathNode& n) const;
-    /// Mezzanine::String Mezzanine::xml::XPathQuery::EvaluateString(const Mezzanine::xml::XPathNode& n) const;
-    /// Mezzanine::xml::XPathNodeSet Mezzanine::xml::XPathQuery::EvaluateNodeSet(const Mezzanine::xml::XPathNode& n) const;
+    /// bool Mezzanine::XML::XPathQuery::EvaluateBoolean(const Mezzanine::XML::XPathNode& n) const;
+    /// double Mezzanine::XML::XPathQuery::EvaluateNumber(const Mezzanine::XML::XPathNode& n) const;
+    /// Mezzanine::String Mezzanine::XML::XPathQuery::EvaluateString(const Mezzanine::XML::XPathNode& n) const;
+    /// Mezzanine::XML::XPathNodeSet Mezzanine::XML::XPathQuery::EvaluateNodeSet(const Mezzanine::XML::XPathNode& n) const;
     /// @endcode
     /// All functions take the context node as an argument, compute the expression and return the result, converted to the requested type. According to XPath specification, value of any
     /// type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, EvaluateBoolean, EvaluateNumber and
     /// EvaluateString always return a result, but EvaluateNodeSet results in an error if the return type is not node set ( see @ref XMLXPathError ).
-    /// @note Calling node.FindNodes("query") is equivalent to calling Mezzanine::xml::XPathQuery("query").EvaluateNodeSet(node).
+    /// @note Calling node.FindNodes("query") is equivalent to calling Mezzanine::XML::XPathQuery("query").EvaluateNodeSet(node).
     ///
     /// Note that EvaluateString function returns the STL string; as such, it's not available in XML_NO_STL mode and also usually allocates memory. There is another string evaluation
     /// function:
     /// @code
-    /// size_t Mezzanine::xml::XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const Mezzanine::xml::XPathNode& n) const;
+    /// size_t Mezzanine::XML::XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const Mezzanine::XML::XPathNode& n) const;
     /// @endcode
     /// This function evaluates the string, and then writes the result to buffer (but at most capacity characters); then it returns the full size of the result in characters, including
     /// the terminating zero. If capacity is not 0, the resulting buffer is always zero-terminated. You can use this function as follows:
@@ -1722,21 +1722,21 @@ namespace Mezzanine
     /// This is an example of using query objects:
     /// @code
     /// // Select nodes via compiled query
-    /// Mezzanine::xml::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote='true']");
+    /// Mezzanine::XML::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote='true']");
     ///
-    /// Mezzanine::xml::XPathNodeSet tools = QueryRemoteTools.EvaluateNodeSet(doc);
+    /// Mezzanine::XML::XPathNodeSet tools = QueryRemoteTools.EvaluateNodeSet(doc);
     /// std::cout << "Remote tool: ";
     /// tools[2].node().print(std::cout);
     ///
     /// // Evaluate numbers via compiled query
-    /// Mezzanine::xml::XPathQuery QueryTimeouts("sum(//Tool/@Timeout)");
+    /// Mezzanine::XML::XPathQuery QueryTimeouts("sum(//Tool/@Timeout)");
     /// std::cout << QueryTimeouts.EvaluateNumber(doc) << std::endl;
     ///
     /// // Evaluate strings via compiled query for different context nodes
-    /// Mezzanine::xml::XPathQuery QueryNameValid("string-length(substring-before(@Filename, '_')) > 0 and @OutputFileMasks");
-    /// Mezzanine::xml::XPathQuery QueryName("concat(substring-before(@Filename, '_'), ' produces ', @OutputFileMasks)");
+    /// Mezzanine::XML::XPathQuery QueryNameValid("string-length(substring-before(@Filename, '_')) > 0 and @OutputFileMasks");
+    /// Mezzanine::XML::XPathQuery QueryName("concat(substring-before(@Filename, '_'), ' produces ', @OutputFileMasks)");
     ///
-    /// for (Mezzanine::xml::Node tool = doc.FirstElementByPath("Profile/Tools/Tool"); tool; tool = tool.NextSibling())
+    /// for (Mezzanine::XML::Node tool = doc.FirstElementByPath("Profile/Tools/Tool"); tool; tool = tool.NextSibling())
     /// {
     ///     std::string s = QueryName.EvaluateString(tool);
     ///
@@ -1748,10 +1748,10 @@ namespace Mezzanine
     /// string, or if you want to reuse the same query object for similar queries.
     /// \n \n
     /// Variable references have the form $name; in order to use them, you have to provide a variable set, which includes all variables present in the query with correct types. This set
-    /// is passed to Mezzanine::xml::XPathQuery constructor or to FindNodes/FindNode functions:
+    /// is passed to Mezzanine::XML::XPathQuery constructor or to FindNodes/FindNode functions:
     /// @code
-    /// explicit Mezzanine::xml::XPathQuery::Mezzanine::xml::XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
-    /// Mezzanine::xml::XPathNode xml_node::FindNode(const char_t* query, XPathVariableSet* variables = 0) const;
+    /// explicit Mezzanine::XML::XPathQuery::Mezzanine::XML::XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
+    /// Mezzanine::XML::XPathNode xml_node::FindNode(const char_t* query, XPathVariableSet* variables = 0) const;
     /// XPathNodeSet xml_node::FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
     /// @endcode
     /// If you're using query objects, you can change the variable values before evaluate/select calls to change the query behavior.
@@ -1761,7 +1761,7 @@ namespace Mezzanine
     /// \n \n
     /// You can add new variables with the following function:
     /// @code
-    /// Mezzanine::xml::XPathVariable* Mezzanine::xml::XPathVariableSet::Add(const char_t* Name, Mezzanine::xml::XPathValueType type);
+    /// Mezzanine::XML::XPathVariable* Mezzanine::XML::XPathVariableSet::Add(const char_t* Name, Mezzanine::XML::XPathValueType type);
     /// @endcode
     /// The function tries to add a new variable with the specified name and type; if the variable with such name does not exist in the set, the function adds a new variable and returns
     /// the variable handle; if there is already a variable with the specified name, the function returns the variable handle if variable has the specified type. Otherwise the function
@@ -1792,17 +1792,17 @@ namespace Mezzanine
     /// \n \n
     /// In order to get variable information, you can use one of the following functions:
     /// @code
-    /// const char_t* Mezzanine::xml::XPathVariable::Name() const;
-    /// Mezzanine::xml::XPathValueType Mezzanine::xml::XPathVariable::Type() const;
+    /// const char_t* Mezzanine::XML::XPathVariable::Name() const;
+    /// Mezzanine::XML::XPathValueType Mezzanine::XML::XPathVariable::Type() const;
     /// @endcode
     /// Note that each variable has a distinct type which is specified upon variable creation and can not be changed later.
     /// \n \n
     /// In order to get variable value, you should use one of the following functions, depending on the variable type:
     /// @code
-    /// bool Mezzanine::xml::XPathVariable::GetBoolean() const;
-    /// double Mezzanine::xml::XPathVariable::GetNumber() const;
-    /// const char_t* Mezzanine::xml::XPathVariable::GetString() const;
-    /// const Mezzanine::xml::XPathNodeSet& Mezzanine::xml::XPathVariable::GetNodeSet() const;
+    /// bool Mezzanine::XML::XPathVariable::GetBoolean() const;
+    /// double Mezzanine::XML::XPathVariable::GetNumber() const;
+    /// const char_t* Mezzanine::XML::XPathVariable::GetString() const;
+    /// const Mezzanine::XML::XPathNodeSet& Mezzanine::XML::XPathVariable::GetNodeSet() const;
     /// @endcode
     /// These functions return the value of the variable. Note that no type conversions are performed; if the type mismatch occurs, a dummy value is returned (false for booleans, NaN for
     /// numbers, empty string for strings and empty set for node sets).
@@ -1820,16 +1820,16 @@ namespace Mezzanine
     /// This is an example of using variables in XPath queries:
     /// @code
     /// // Select nodes via compiled query
-    /// Mezzanine::xml::XPathVariableSet vars;
-    /// vars.Add("remote", Mezzanine::xml::XPathTypeBoolean);
+    /// Mezzanine::XML::XPathVariableSet vars;
+    /// vars.Add("remote", Mezzanine::XML::XPathTypeBoolean);
     ///
-    /// Mezzanine::xml::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
+    /// Mezzanine::XML::XPathQuery QueryRemoteTools("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
     ///
     /// vars.Set("remote", true);
     /// XPathNodeSet ToolsRemote = QueryRemoteTools.EvaluateNodeSet(doc);
     ///
     /// vars.Set("remote", false);
-    /// Mezzanine::xml::XPathNodeSet ToolsLocal = QueryRemoteTools.EvaluateNodeSet(doc);
+    /// Mezzanine::XML::XPathNodeSet ToolsLocal = QueryRemoteTools.EvaluateNodeSet(doc);
     ///
     /// std::cout << "Remote tool: ";
     /// ToolsRemote[2].GetNode().Print(std::cout);
@@ -1838,7 +1838,7 @@ namespace Mezzanine
     /// ToolsLocal[0].GetNode().Print(std::cout);
     ///
     /// // You can pass the context directly to FindNodes/FindNode
-    /// Mezzanine::xml::XPathNodeSet ToolsLocalImm = doc.FindNodes("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
+    /// Mezzanine::XML::XPathNodeSet ToolsLocalImm = doc.FindNodes("/Profile/Tools/Tool[@AllowRemote = string($remote)]", &vars);
     ///
     /// std::cout << "Local tool imm: ";
     /// ToolsLocalImm[0].GetNode().Print(std::cout);
@@ -1847,12 +1847,12 @@ namespace Mezzanine
     /// There are two different mechanisms for error handling in XPath implementation; the mechanism used depends on whether exception support is disabled (this is controlled with
     /// XML_NO_EXCEPTIONS define).
     /// \n \n
-    /// By default, XPath functions throw Mezzanine::xml::XPathException object in case of errors; additionally, in the event any memory allocation fails, an std::bad_alloc exception is thrown. Also
-    /// Mezzanine::xml::XPathException is thrown if the query is evaluated to a node set, but the return type is not node set. If the query constructor succeeds (i.e. no exception is thrown), the query
+    /// By default, XPath functions throw Mezzanine::XML::XPathException object in case of errors; additionally, in the event any memory allocation fails, an std::bad_alloc exception is thrown. Also
+    /// Mezzanine::XML::XPathException is thrown if the query is evaluated to a node set, but the return type is not node set. If the query constructor succeeds (i.e. no exception is thrown), the query
     /// object is valid. Otherwise you can get the error details via one of the following functions:
     /// @code
-    /// virtual const char* Mezzanine::xml::XPathException::what() const throw();
-    /// const Mezzanine::xml::XPathParseResult& Mezzanine::xml::XPathException::Result() const;
+    /// virtual const char* Mezzanine::XML::XPathException::what() const throw();
+    /// const Mezzanine::XML::XPathParseResult& Mezzanine::XML::XPathException::Result() const;
     /// @endcode
     /// If exceptions are disabled, then in the event of parsing failure the query is initialized to invalid state; you can test if the query object is valid by using it in a boolean
     /// expression: if (query) { ... }. Additionally, you can get parsing result via the Result() accessor:
@@ -1862,14 +1862,14 @@ namespace Mezzanine
     /// Without exceptions, evaluating invalid query results in false, empty string, NaN or an empty node set, depending on the type; evaluating a query as a node set results in an empty
     /// node set if the return type is not node set.
     /// \n \n
-    /// The information about parsing result is returned via Mezzanine::xml::XPathParseResult object. It contains parsing status and the offset of last successfully parsed character from the
+    /// The information about parsing result is returned via Mezzanine::XML::XPathParseResult object. It contains parsing status and the offset of last successfully parsed character from the
     /// beginning of the source stream.
     /// \n \n
     /// Parsing result is represented as the error message; it is either a null pointer, in case there is no error, or the error message in the form of ASCII zero-terminated string.
     /// \n \n
     /// The Description() member function can be used to get the error message; it never returns the null pointer, so you can safely use Description() even if query parsing succeeded.
     /// \n \n
-    /// In addition to the error message, parsing result has an OffSet member, which contains the offset of last successfully parsed character. This offset is in units of Mezzanine::xml::char_t
+    /// In addition to the error message, parsing result has an OffSet member, which contains the offset of last successfully parsed character. This offset is in units of Mezzanine::XML::char_t
     /// (bytes for character mode, wide characters for wide character mode).
     /// \n \n
     /// Parsing result object can be implicitly converted to bool like this: if (result) { ... } else { ... }.
@@ -1881,7 +1881,7 @@ namespace Mezzanine
     /// {
     ///     doc.FindNodes("//nodes[#true()]");
     /// }
-    /// catch (const Mezzanine::xml::XPathException& e)
+    /// catch (const Mezzanine::XML::XPathException& e)
     /// {
     ///     std::cout << "Select failed: " << e.what() << std::endl;
     /// }
@@ -1891,7 +1891,7 @@ namespace Mezzanine
     /// {
     /// doc.FindNodes("(123)/next");
     /// }
-    /// catch (const Mezzanine::xml::XPathException& e)
+    /// catch (const Mezzanine::XML::XPathException& e)
     /// {
     ///     std::cout << "Select failed: " << e.what() << std::endl;
     /// }
@@ -1901,7 +1901,7 @@ namespace Mezzanine
     /// {
     ///     doc.FindNodes("123");
     /// }
-    /// catch (const Mezzanine::xml::XPathException& e)
+    /// catch (const Mezzanine::XML::XPathException& e)
     /// {
     ///     std::cout << "Select failed: " << e.what() << std::endl;
     /// }
@@ -1961,7 +1961,7 @@ namespace Mezzanine
     */
 
     ///////////////////////////////////////
-    namespace xml
+    namespace XML
     {
 
         class Document;
@@ -2096,7 +2096,7 @@ namespace Mezzanine
         /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @var Mezzanine::xml::ParseMinimal
+        /// @var Mezzanine::XML::ParseMinimal
         /// @brief Minimal parsing mode (equivalent to turning all other flags off).
         /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
 
@@ -2567,7 +2567,7 @@ namespace Mezzanine
         /// @param AttrName The name of the matching Attribute.
         /// @param AttrValue The value of the matching Attribute.
         /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
-        /// @return The First matching xml::Node
+        /// @return The First matching XML::Node
 
         /// @fn Node::Path(char_t delimiter = '/') const;
         /// @brief Get the absolute path to this Node
@@ -2583,9 +2583,9 @@ namespace Mezzanine
 
         /// @fn Node::Traverse(TreeWalker& walker);
         /// @brief Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree.
-        /// @param walker Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located.
+        /// @param walker Any class that fully implement XML::Treewalker. This is where the algorithm to be run is located.
         /// @return True if every descendant Node of this Node was iterated through, false if it didn't go through every Node.
-        /// @see xml::TreeWalker
+        /// @see XML::TreeWalker
 
         /// @fn Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
         /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
@@ -2713,7 +2713,7 @@ namespace Mezzanine
         //////////////////////////////////////////////////////////////////////////////
         /// @class AttributeIterator
         /// @brief Attribute iterator (a bidirectional iterator over a collection of Attribute).
-        /// @see This behaves very similar to xml::NodeIterator
+        /// @see This behaves very similar to XML::NodeIterator
 
 		/// @typedef AttributeIterator::difference_type;
 		/// @brief An Iterator trait
@@ -2777,7 +2777,7 @@ namespace Mezzanine
         /// @brief Used to call a function for_each member of the subtree of nodes descended from a specific node.
         /// @details If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some
         /// equivalent method or use a TreeWalker. This provides a helper for depth-first traversal of a subtree. In order
-        /// to use it, you have to implement xml::TreeWalker interface and call xml::Node::Traverse() function. \n\n
+        /// to use it, you have to implement XML::TreeWalker interface and call XML::Node::Traverse() function. \n\n
         ///  * First, TreeWalker::begin() is called with traversal root as its argument.\n
         ///  * Then, TreeWalker::for_each() function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each Node is passed as an argument.\n
         ///  * Finally, TreeWalker::end() function is called with traversal root as its argument.\n\n
@@ -2950,7 +2950,7 @@ namespace Mezzanine
         /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n
         /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n
         /// - You can get the type of expression value via query object. \n \n
-        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to xml::XPathQuery in the container. \n \n
+        /// Query objects correspond to XML::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to XML::XPathQuery in the container. \n \n
         /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, XPathQuery::EvaluateBoolean(), XPathQuery::EvaluateNumber() and XPathQuery::EvaluateString() always return a result, but EvaluateNodeSet results in an error if the return type is not node set.
 
         /// @fn XPathQuery::ReturnType() const;
@@ -2985,28 +2985,28 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNode
-        /// @brief An XPath node which can store handles to a xml::Node or an xml::Attribute.
-        /// @details Because an XPath node can be either a xml::Node or an xml::Attribute, there is a special type, XPathNode,
-        /// which is a discriminated union of these types. A value of this type contains two node handles, one of xml::Node type,
-        /// and another one of xml::Attribute type; at most one of them can be non-null. The accessors to get these handles are
+        /// @brief An XPath node which can store handles to a XML::Node or an XML::Attribute.
+        /// @details Because an XPath node can be either a XML::Node or an XML::Attribute, there is a special type, XPathNode,
+        /// which is a discriminated union of these types. A value of this type contains two node handles, one of XML::Node type,
+        /// and another one of XML::Attribute type; at most one of them can be non-null. The accessors to get these handles are
         /// available: XPathNode::GetNode() an XPathNode::GetAttribute() . \n \n
         /// XPath nodes can be null, in which case both accessors return null handles.
 
         /// @fn XPathNode::XPathNode(const Node& node);
-        /// @brief Construct From a xml::Node.
-        /// @param node The xml::Node this handle should reference.
+        /// @brief Construct From a XML::Node.
+        /// @param node The XML::Node this handle should reference.
 
 		/// @fn XPathNode::GetNode() const;
-		/// @brief Get the xml::Node this is referencing
-		/// @return A valid xml::Node, or a null node if this doesn't reference a an xml::Node.
+		/// @brief Get the XML::Node this is referencing
+		/// @return A valid XML::Node, or a null node if this doesn't reference a an XML::Node.
 
 		/// @fn XPathNode::GetAttribute() const;
-		/// @brief Get the xml::Attribute this is referencing
-        /// @return A valid xml::Attribute, or a null node if this doesn't reference a an xml::Attribute.
+		/// @brief Get the XML::Attribute this is referencing
+        /// @return A valid XML::Attribute, or a null node if this doesn't reference a an XML::Attribute.
 
 		/// @fn XPathNode::GetParent() const;
-		/// @brief Get the parent of the xml::Node or xml::Attribute this refers to.
-        /// @return A valid xml::Node, or a null node if this doesn't reference a an xml::Node.
+		/// @brief Get the parent of the XML::Node or XML::Attribute this refers to.
+        /// @return A valid XML::Node, or a null node if this doesn't reference a an XML::Node.
 
         /// @fn XPathNode::operator!() const;
         /// @brief Logical not operator, used a workaround for borland compiler.
@@ -3135,7 +3135,7 @@ namespace Mezzanine
         /// @param NameSpace Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example "Mezzanine::"
         /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
         /// @param OneTag One XML tag/elements worth of text to deserialize.
-        /// @return A pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @return A pointer to XML::Document that you are now the owner of and must delete, that has the data parse and ready to access.
         /// @throw This can throw a Mezzanine::exception in the event that the xml cannot be parsed.
         Document* MEZZ_LIB PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag);
 
@@ -3143,12 +3143,12 @@ namespace Mezzanine
         /// @brief Calls PreParseClassFromSingleTag passing a "" as the Namespace
         /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
         /// @param OneTag One XML tag/elements worth of text to deserialize.
-        /// @return A pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @return A pointer to XML::Document that you are now the owner of and must delete, that has the data parse and ready to access.
         /// @throw This can throw a Mezzanine::exception in the event that the xml cannot be parsed.
         Document* MEZZ_LIB PreParseClassFromSingleTag(const String& ClassName, const String& OneTag);
 
         /// @brief Convert \< \> \& and " in text to \&lt;, \&gt;, \&amp; and \&quote so text can safely be stored in XML
-        /// @details Usually this is not required. Entering text into an xml::Attribute or and xml::Node will correctly escape it.
+        /// @details Usually this is not required. Entering text into an XML::Attribute or and XML::Node will correctly escape it.
         /// Use this when you will be creating raw xml want to safely escape these characters.
         /// @param XMLText The Text to convert to xml safe text
         /// @return a String containing the escaped version of XMLText

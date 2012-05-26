@@ -268,15 +268,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventUserInput
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventUserInput& Ev)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventUserInput", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventUserInput", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
     return stream;
 }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventUserInput& Ev)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventUserInput") )
     {
@@ -284,7 +284,7 @@ void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventUserInput
         {            Ev.clear();
 
             //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
-            Mezzanine::xml::Node Child = OneNode.GetFirstChild();
+            Mezzanine::XML::Node Child = OneNode.GetFirstChild();
             Mezzanine::MetaCode ACode;
             while(Child)
             {

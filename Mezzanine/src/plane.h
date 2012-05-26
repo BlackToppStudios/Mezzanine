@@ -127,12 +127,12 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Plane
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Plane& x);
 
 /// @brief Converts an XML node into a Mezzanine::Plane
-/// @details TThis will convert an xml::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
-/// @param OneNode This is the xml::Node we get our data from. It should contain a serialized Mezzanine::Plane.
+/// @details TThis will convert an XML::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
+/// @param OneNode This is the XML::Node we get our data from. It should contain a serialized Mezzanine::Plane.
 /// @param x The Mezzanine::Plane to store the deserialized Plane in.
-/// @return This returns an xml::Node refernce to allow operator chaining.
+/// @return This returns an XML::Node refernce to allow operator chaining.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Plane& x);
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Plane& x);
 #endif // \MEZZXML
 
 

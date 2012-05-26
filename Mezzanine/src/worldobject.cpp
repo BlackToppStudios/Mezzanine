@@ -199,32 +199,32 @@ namespace Mezzanine
     void WorldObject::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
-    void WorldObject::ProtoSerialize(xml::Node& CurrentRoot) const
+    void WorldObject::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node WorldObjectNode = CurrentRoot.AppendChild("WorldObject");
+        XML::Node WorldObjectNode = CurrentRoot.AppendChild("WorldObject");
         if (!WorldObjectNode) { ThrowSerialError("create WorldObjectNode");}
 
-        xml::Node LocationNode = WorldObjectNode.AppendChild("Location");
+        XML::Node LocationNode = WorldObjectNode.AppendChild("Location");
         if (!LocationNode) { ThrowSerialError("create LocationNode"); }
         this->GetLocation().ProtoSerialize(LocationNode);
 
-        xml::Node ScalingNode = WorldObjectNode.AppendChild("Scaling");
+        XML::Node ScalingNode = WorldObjectNode.AppendChild("Scaling");
         if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
         this->GetScaling().ProtoSerialize(ScalingNode);
 
         this->GetGraphicsSettings()->ProtoSerialize(WorldObjectNode);
         this->GetPhysicsSettings()->ProtoSerialize(WorldObjectNode);
 
-        xml::Attribute WorldObjectName = WorldObjectNode.AppendAttribute("Name");
+        XML::Attribute WorldObjectName = WorldObjectNode.AppendAttribute("Name");
             WorldObjectName.SetValue(this->GetName());
-        xml::Attribute WorldObjectVersion = WorldObjectNode.AppendAttribute("Version");
+        XML::Attribute WorldObjectVersion = WorldObjectNode.AppendAttribute("Version");
             WorldObjectVersion.SetValue(1);
-        xml::Attribute WorldObjectIsInWorld = WorldObjectNode.AppendAttribute("IsInWorld");
+        XML::Attribute WorldObjectIsInWorld = WorldObjectNode.AppendAttribute("IsInWorld");
             WorldObjectIsInWorld.SetValue(this->IsInWorld());
         if ( !(WorldObjectName && WorldObjectVersion && WorldObjectIsInWorld) )
             { ThrowSerialError("create WorldObjectNode Attributes"); }
 
-        xml::Attribute WorldObjectSoundSetName = WorldObjectNode.AppendAttribute("SoundSet");
+        XML::Attribute WorldObjectSoundSetName = WorldObjectNode.AppendAttribute("SoundSet");
         if(this->GetSounds())
         {
             WorldObjectSoundSetName.SetValue(this->GetSounds()->GetName());
@@ -233,30 +233,30 @@ namespace Mezzanine
         }
     }
 
-    void WorldObject::ProtoDeSerialize(const xml::Node& OneNode)
+    void WorldObject::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->WorldObject::SerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
                 Vector3 TempVec;
-                xml::Node LocationNode = OneNode.GetChild("Location").GetFirstChild();
+                XML::Node LocationNode = OneNode.GetChild("Location").GetFirstChild();
                 if(!LocationNode)
                     { DeSerializeError("locate Location node",SerializableName()); }
                 TempVec.ProtoDeSerialize(LocationNode);
                 this->SetLocation(TempVec);
 
-                xml::Node GraphicsSettingsNode = OneNode.GetChild(this->GraphicsSettingsSerializableName());
+                XML::Node GraphicsSettingsNode = OneNode.GetChild(this->GraphicsSettingsSerializableName());
                 if(!GraphicsSettingsNode)
                     { DeSerializeError("locate Graphics Settings node",SerializableName()); }
                 this->GetGraphicsSettings()->ProtoDeSerialize(GraphicsSettingsNode);
 
-                xml::Node PhysicsSettingsNode = OneNode.GetChild(this->PhysicsSettingsSerializableName());
+                XML::Node PhysicsSettingsNode = OneNode.GetChild(this->PhysicsSettingsSerializableName());
                 if(!PhysicsSettingsNode)
                     { DeSerializeError(String("locate Physics Settings node, ")+this->PhysicsSettingsSerializableName()+", ",SerializableName()); }
                 this->GetPhysicsSettings()->ProtoDeSerialize(PhysicsSettingsNode);
 
-                xml::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
+                XML::Node ScalingNode = OneNode.GetChild("Scaling").GetFirstChild();
                 if(!ScalingNode)
                     { DeSerializeError("locate Scaling node",SerializableName()); }
                 TempVec.ProtoDeSerialize(ScalingNode);
@@ -357,15 +357,15 @@ namespace Mezzanine
     void NonStaticWorldObject::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
-    void NonStaticWorldObject::ProtoSerialize(xml::Node& CurrentRoot) const
+    void NonStaticWorldObject::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node NonStaticWorldObjectNode = CurrentRoot.AppendChild("NonStaticWorldObject");
+        XML::Node NonStaticWorldObjectNode = CurrentRoot.AppendChild("NonStaticWorldObject");
         if (!NonStaticWorldObjectNode) { ThrowSerialError("create NonStaticWorldObjectNode");}
 
-        xml::Attribute Version = NonStaticWorldObjectNode.AppendAttribute("Version");
+        XML::Attribute Version = NonStaticWorldObjectNode.AppendAttribute("Version");
         Version.SetValue(1);
 
-        xml::Node OrientationNode = NonStaticWorldObjectNode.AppendChild("Orientation");
+        XML::Node OrientationNode = NonStaticWorldObjectNode.AppendChild("Orientation");
         if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
 
         this->GetOrientation().ProtoSerialize(OrientationNode);
@@ -373,7 +373,7 @@ namespace Mezzanine
         // if actor node is in scenemanager just save a name
         /*if( SceneManager::GetSingletonPtr()->GetNode( this->ObjectWorldNode->GetName() ) )
         {
-            xml::Attribute NonStaticWorldObjectNodeAttrib = NonStaticWorldObjectNode.AppendAttribute("WorldNode");
+            XML::Attribute NonStaticWorldObjectNodeAttrib = NonStaticWorldObjectNode.AppendAttribute("WorldNode");
             if(!NonStaticWorldObjectNodeAttrib.SetValue(this->ObjectWorldNode->GetName()))
                 {ThrowSerialError("store WorldNode Name");}
         }else{
@@ -383,7 +383,7 @@ namespace Mezzanine
         WorldObject::ProtoSerialize(NonStaticWorldObjectNode);
     }
 
-    void NonStaticWorldObject::ProtoDeSerialize(const xml::Node& OneNode)
+    void NonStaticWorldObject::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->NonStaticWorldObject::SerializableName() )
         {
@@ -392,7 +392,7 @@ namespace Mezzanine
                 this->WorldObject::ProtoDeSerialize(OneNode.GetChild(this->WorldObject::SerializableName()));
 
                 Quaternion TempQuat;
-                xml::Node OrientationNode = OneNode.GetChild("Orientation").GetFirstChild();
+                XML::Node OrientationNode = OneNode.GetChild("Orientation").GetFirstChild();
                 if(!OrientationNode)
                     { DeSerializeError("locate Orientation node",SerializableName()); }
                 TempQuat.ProtoDeSerialize(OrientationNode);
@@ -401,7 +401,7 @@ namespace Mezzanine
                 /*if(0==OneNode.GetAttribute("WorldNode"))         // Are we dealing with a WorldNode Node or WorldNode Attribute.
                 {
                     //Since the Attribute didn't exist we must have a node
-                    xml::Node ObjectWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
+                    XML::Node ObjectWorldNode = OneNode.GetChild("WorldNode");                               // Assumption made base on old style serialization
                     if(!ObjectWorldNode)
                         { DeSerializeError("locate ObjectWorldNode node",SerializableName()); }
                     if (0!=this->ObjectWorldNode && !SceneManager::GetSingletonPtr()->GetNode(this->ObjectWorldNode->GetName()) )    //If the current worldnode is not null and it is not in the manager, then delete it

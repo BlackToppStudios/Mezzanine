@@ -68,15 +68,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventQuit& Ev)
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventQuit& Ev)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventQuit", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventQuit", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
     return stream;
 }
 
-Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventQuit& Ev)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventQuit& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventQuit") )
     {

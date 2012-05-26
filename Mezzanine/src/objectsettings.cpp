@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+// Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -234,10 +234,10 @@ namespace Mezzanine
     {
         // Open the stream and load the document
         Resource::FileStreamDataStream SettingsStream(FileName,Path);
-        xml::Document SettingsDoc;
-        SettingsDoc.Load(SettingsStream);
+        XML::Document SettingsDoc;
+        //SettingsDoc.Load(SettingsStream);
         // Load and parse the settings
-        xml::Node RootNode = SettingsDoc.GetChild(GetObjectRootNodeName());
+        XML::Node RootNode = SettingsDoc.GetChild(GetObjectRootNodeName());
         if(!RootNode.Empty()) LoadSettings(RootNode);
         else
         {
@@ -249,8 +249,8 @@ namespace Mezzanine
 
     void ObjectSettingsHandler::SaveSettingsToFile(StringVector& GroupNames, const String& FileName, const String& Path)
     {
-        xml::Document SettingsDoc;
-        xml::Node RootNode = SettingsDoc.AppendChild(GetObjectRootNodeName());
+        XML::Document SettingsDoc;
+        XML::Node RootNode = SettingsDoc.AppendChild(GetObjectRootNodeName());
         if(!GroupNames.empty()) SaveSettings(GroupNames,RootNode);
         else SaveSettings(RootNode);
         // Open a stream to the saving file
@@ -258,32 +258,32 @@ namespace Mezzanine
         SettingsDoc.Save(SettingsStream);
     }
 
-    void ObjectSettingsHandler::LoadSettingSetFromXML(xml::Node& XMLNode, ObjectSettingSet* Set)
+    void ObjectSettingsHandler::LoadSettingSetFromXML(XML::Node& XMLNode, ObjectSettingSet* Set)
     {
-        for( xml::AttributeIterator SettingIt = XMLNode.attributes_begin() ; SettingIt != XMLNode.attributes_end() ; ++SettingIt )
+        for( XML::AttributeIterator SettingIt = XMLNode.attributes_begin() ; SettingIt != XMLNode.attributes_end() ; ++SettingIt )
         {
-            xml::Attribute CurrAttrib = (*SettingIt);
+            XML::Attribute CurrAttrib = (*SettingIt);
             if(!CurrAttrib.Empty())
                 Set->SetSettingValue(CurrAttrib.Name(),CurrAttrib.AsString());
         }
-        for( xml::NodeIterator SubSetIt = XMLNode.begin() ; SubSetIt != XMLNode.end() ; ++SubSetIt )
+        for( XML::NodeIterator SubSetIt = XMLNode.begin() ; SubSetIt != XMLNode.end() ; ++SubSetIt )
         {
-            xml::Node SubSetNode = (*SubSetIt);
+            XML::Node SubSetNode = (*SubSetIt);
             ObjectSettingSet* NewSubSet = Set->CreateChildObjectSettingSet( SubSetNode.Name() );
             LoadSettingSetFromXML( SubSetNode, NewSubSet );
         }
     }
 
-    void ObjectSettingsHandler::SaveSettingSetToXML(xml::Node& XMLNode, ObjectSettingSet* Set)
+    void ObjectSettingsHandler::SaveSettingSetToXML(XML::Node& XMLNode, ObjectSettingSet* Set)
     {
         for( ObjectSettingSet::SettingsIterator SetIt = Set->SettingsBegin() ; SetIt != Set->SettingsEnd() ; ++SetIt )
         {
-            xml::Attribute CurrAttrib = XMLNode.AppendAttribute( (*SetIt).first );
+            XML::Attribute CurrAttrib = XMLNode.AppendAttribute( (*SetIt).first );
             CurrAttrib.SetValue( (*SetIt).second );
         }
         for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Set->SubSetBegin() ; SubSetIt != Set->SubSetEnd() ; ++SubSetIt )
         {
-            xml::Node SubSetNode = XMLNode.AppendChild( (*SubSetIt)->GetName() );
+            XML::Node SubSetNode = XMLNode.AppendChild( (*SubSetIt)->GetName() );
             SaveSettingSetToXML( SubSetNode, (*SubSetIt) );
         }
     }
@@ -389,12 +389,12 @@ namespace Mezzanine
         LoadSettingsFromFile(FileName,SettingsFilePath);
     }
 
-    void ObjectSettingsHandler::LoadSettings(xml::Node& RootSettings)
+    void ObjectSettingsHandler::LoadSettings(XML::Node& RootSettings)
     {
         ObjectSettingSetContainer* SetAfter = NULL;
-        for( xml::NodeIterator CurrGroupIt = RootSettings.begin() ; CurrGroupIt != RootSettings.end() ; ++CurrGroupIt )
+        for( XML::NodeIterator CurrGroupIt = RootSettings.begin() ; CurrGroupIt != RootSettings.end() ; ++CurrGroupIt )
         {
-            xml::Node CurrGroupNode = (*CurrGroupIt);
+            XML::Node CurrGroupNode = (*CurrGroupIt);
             String SettingGroupName = CurrGroupNode.Name();
             ObjectSettingSetContainer* NewGroup = new ObjectSettingSetContainer(SettingGroupName);
             if( "Current" != SettingGroupName )
@@ -404,9 +404,9 @@ namespace Mezzanine
                 if(!SetAfter) SetAfter = NewGroup;
                 else World::GetWorldPointer()->LogAndThrow(Exception("Multiple \"Current\" setting groups detected while loading settings.  In ObjectSettingsHandler::LoadSettings."));
             }
-            for( xml::NodeIterator CurrSetIt = CurrGroupNode.begin() ; CurrSetIt != CurrGroupNode.end() ; ++CurrSetIt )
+            for( XML::NodeIterator CurrSetIt = CurrGroupNode.begin() ; CurrSetIt != CurrGroupNode.end() ; ++CurrSetIt )
             {
-                xml::Node CurrSetNode = (*CurrSetIt);
+                XML::Node CurrSetNode = (*CurrSetIt);
                 String SettingSetName = CurrSetNode.Name();
                 ObjectSettingSet* NewSet = NewGroup->CreateChildObjectSettingSet(SettingSetName);
                 LoadSettingSetFromXML( CurrSetNode, NewSet );
@@ -467,7 +467,7 @@ namespace Mezzanine
         SaveSettingsToFile(GroupNames,FileName,SettingsFilePath);
     }
 
-    void ObjectSettingsHandler::SaveSettings(xml::Node& RootSettings)
+    void ObjectSettingsHandler::SaveSettings(XML::Node& RootSettings)
     {
         StringVector GroupNames;
         GroupNames.push_back( "Current" );
@@ -478,13 +478,13 @@ namespace Mezzanine
         SaveSettings(GroupNames,RootSettings);
     }
 
-    void ObjectSettingsHandler::SaveSettings(StringVector& GroupNames, xml::Node& RootSettings)
+    void ObjectSettingsHandler::SaveSettings(StringVector& GroupNames, XML::Node& RootSettings)
     {
         for( StringVector::iterator StrIt = GroupNames.begin() ; StrIt != GroupNames.end() ; ++StrIt )
         {
             if( SaveCurrent && "Current" == (*StrIt) )
             {
-                xml::Node CurrentNode = CreateCurrentSettings();
+                XML::Node CurrentNode = CreateCurrentSettings();
                 RootSettings.AppendCopy(CurrentNode);
             }else{
                 SettingGroupIterator GroupIt = SettingGroups.find( (*StrIt) );
@@ -495,10 +495,10 @@ namespace Mezzanine
                     World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
                 }
                 ObjectSettingSetContainer* SaveSet = (*GroupIt).second;
-                xml::Node GroupNode = RootSettings.AppendChild( (*GroupIt).first );
+                XML::Node GroupNode = RootSettings.AppendChild( (*GroupIt).first );
                 for( ObjectSettingSetContainer::SubSetIterator SubSetIt = SaveSet->SubSetBegin() ; SubSetIt != SaveSet->SubSetEnd() ; ++SubSetIt )
                 {
-                    xml::Node SetNode = GroupNode.AppendChild( (*SubSetIt)->GetName() );
+                    XML::Node SetNode = GroupNode.AppendChild( (*SubSetIt)->GetName() );
                     SaveSettingSetToXML( SetNode, (*SubSetIt) );
                 }
             }

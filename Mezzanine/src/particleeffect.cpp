@@ -336,15 +336,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::ParticleEffect
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ParticleEffect& Ev)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "ParticleEffect", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "ParticleEffect", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
     return stream;
 }
 
-Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ParticleEffect& Ev)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ParticleEffect& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("ParticleEffect") )
     {
@@ -364,7 +364,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
             Mezzanine::Quaternion TempQuat(0,0,0,0);
             Mezzanine::Vector3 TempVec(0,0,0);
 
-            for(Mezzanine::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            for(Mezzanine::XML::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 Mezzanine::String Name(Child.Name());
                 switch(Name[0])

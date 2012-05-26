@@ -55,7 +55,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    NetworkManager::NetworkManager(xml::Node& XMLNode)
+    NetworkManager::NetworkManager(XML::Node& XMLNode)
     {
         this->Priority = 60;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -104,7 +104,7 @@ namespace Mezzanine
         }else return new NetworkManager();
     }
 
-    ManagerBase* DefaultNetworkManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultNetworkManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(NetworkManager::SingletonValid())
         {

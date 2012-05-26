@@ -77,7 +77,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    UIManager::UIManager(xml::Node& XMLNode)
+    UIManager::UIManager(XML::Node& XMLNode)
         : HoveredButton(NULL),
           HoveredWidgetButton(NULL),
           HoveredWidget(NULL),
@@ -584,7 +584,7 @@ namespace Mezzanine
         }else return new UIManager();
     }
 
-    ManagerBase* DefaultUIManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultUIManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(UIManager::SingletonValid())
         {

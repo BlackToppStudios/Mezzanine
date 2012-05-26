@@ -206,14 +206,14 @@ namespace Mezzanine
     // Serialization
 #ifdef MEZZXML
     // Serializable
-    void Vector2::ProtoSerialize(xml::Node& CurrentRoot) const
+    void Vector2::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
         VecNode.SetName(SerializableName());
 
-        Mezzanine::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-        Mezzanine::xml::Attribute XAttr = VecNode.AppendAttribute("X");
-        Mezzanine::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
+        Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+        Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
         if( VersionAttr && XAttr && YAttr )
         {
             if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) )
@@ -228,7 +228,7 @@ namespace Mezzanine
     }
 
     // DeSerializable
-    void Vector2::ProtoDeSerialize(const xml::Node& OneNode)
+    void Vector2::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
         {
@@ -268,7 +268,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector2& x)
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector2& Vec)
     { return DeSerialize(stream, Vec); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Vector2& Vec)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector2& Vec)
     { Vec.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
 

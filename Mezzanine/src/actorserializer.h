@@ -75,11 +75,11 @@ namespace Mezzanine
                     : Target(DeSerializeTarget)
             {}
 
-            /// @brief Accepts one xml::Node with an actor in it and create a new ActorRigid
+            /// @brief Accepts one XML::Node with an actor in it and create a new ActorRigid
             /// @details In addition to returning the created actor it's pointer is also added to the Target ActorManager
             /// @param OneNode The node that should have an ActorRigid in it
             /// @return A pointer to the freshly created actor
-            virtual ActorRigid* ProtoDeSerialize(const xml::Node& OneNode);
+            virtual ActorRigid* ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml text).
             /// @warning If The ActorManager Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth.

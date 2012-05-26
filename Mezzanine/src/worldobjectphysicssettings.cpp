@@ -151,54 +151,54 @@ namespace Mezzanine
 #ifdef MEZZXML
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
-    void WorldObjectPhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+    void WorldObjectPhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node BaseNode = CurrentRoot.AppendChild(this->WorldObjectPhysicsSettings::SerializableName());
+        XML::Node BaseNode = CurrentRoot.AppendChild(this->WorldObjectPhysicsSettings::SerializableName());
             if (!BaseNode)
                 { SerializeError("Create BaseNode", SerializableName()); }
 
-            Mezzanine::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+            Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
             if (!Version)
                 { SerializeError("Create Version Attribute", SerializableName()); }
             Version.SetValue(1);
 
-            Mezzanine::xml::Attribute CollisionShape = BaseNode.AppendAttribute("CollisionShape");
+            Mezzanine::XML::Attribute CollisionShape = BaseNode.AppendAttribute("CollisionShape");
             if (!CollisionShape)
                 { SerializeError("Create CollisionShape Attribute", SerializableName()); }
             CollisionShape.SetValue(this->GetCollisionShape()->GetName());
 
-            Mezzanine::xml::Attribute Kinematic = BaseNode.AppendAttribute("Kinematic");
+            Mezzanine::XML::Attribute Kinematic = BaseNode.AppendAttribute("Kinematic");
             if (!Kinematic)
                 { SerializeError("Create Kinematic Attribute", SerializableName()); }
             Kinematic.SetValue(this->IsKinematic());
 
-            Mezzanine::xml::Attribute Static = BaseNode.AppendAttribute("Static");
+            Mezzanine::XML::Attribute Static = BaseNode.AppendAttribute("Static");
             if (!Static)
                 { SerializeError("Create Static Attribute", SerializableName()); }
             Static.SetValue(this->IsStatic());
 
-            Mezzanine::xml::Attribute CollisionResponse = BaseNode.AppendAttribute("CollisionResponse");
+            Mezzanine::XML::Attribute CollisionResponse = BaseNode.AppendAttribute("CollisionResponse");
             if (!CollisionResponse)
                 { SerializeError("Create CollisionResponse Attribute", SerializableName()); }
             CollisionResponse.SetValue(this->GetCollisionResponse());
 
-            Mezzanine::xml::Attribute CollisionGroup = BaseNode.AppendAttribute("CollisionGroup");
+            Mezzanine::XML::Attribute CollisionGroup = BaseNode.AppendAttribute("CollisionGroup");
             if (!CollisionGroup)
                 { SerializeError("Create CollisionGroup Attribute", SerializableName()); }
             CollisionGroup.SetValue(this->GetCollisionGroup());
 
-            Mezzanine::xml::Attribute CollisionMask = BaseNode.AppendAttribute("CollisionMask");
+            Mezzanine::XML::Attribute CollisionMask = BaseNode.AppendAttribute("CollisionMask");
             if (!CollisionMask)
                 { SerializeError("Create CollisionMask Attribute", SerializableName()); }
             CollisionMask.SetValue(this->GetCollisionMask());
 
-            Mezzanine::xml::Attribute ActivationState = BaseNode.AppendAttribute("ActivationState");
+            Mezzanine::XML::Attribute ActivationState = BaseNode.AppendAttribute("ActivationState");
             if (!ActivationState)
                 { SerializeError("Create ActivationState Attribute", SerializableName()); }
             ActivationState.SetValue(this->GetActivationState());
     }
 
-    void WorldObjectPhysicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+    void WorldObjectPhysicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->WorldObjectPhysicsSettings::SerializableName() )
             {
@@ -282,23 +282,23 @@ namespace Mezzanine
 
 #ifdef MEZZXML
         // Serializable
-        void NonTriggerPhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+        void NonTriggerPhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            xml::Node BaseNode = CurrentRoot.AppendChild(this->NonTriggerPhysicsSettings::SerializableName());
+            XML::Node BaseNode = CurrentRoot.AppendChild(this->NonTriggerPhysicsSettings::SerializableName());
             if (!BaseNode)
                 { SerializeError("Create BaseNode", SerializableName()); }
 
-            Mezzanine::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+            Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
             if (!Version)
                 { SerializeError("Create Version Attribute", SerializableName()); }
             Version.SetValue(1);
 
-            Mezzanine::xml::Attribute Friction = BaseNode.AppendAttribute("Friction");
+            Mezzanine::XML::Attribute Friction = BaseNode.AppendAttribute("Friction");
             if (!Friction)
                 { SerializeError("Create Friction Attribute", SerializableName()); }
             Friction.SetValue(this->GetFriction());
 
-            Mezzanine::xml::Attribute Restitution = BaseNode.AppendAttribute("Restitution");
+            Mezzanine::XML::Attribute Restitution = BaseNode.AppendAttribute("Restitution");
             if (!Restitution)
                 { SerializeError("Create Restitution Attribute", SerializableName()); }
             Restitution.SetValue(this->GetRestitution());
@@ -307,7 +307,7 @@ namespace Mezzanine
         }
 
         // DeSerializable
-        void NonTriggerPhysicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+        void NonTriggerPhysicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==this->NonTriggerPhysicsSettings::SerializableName() )
             {

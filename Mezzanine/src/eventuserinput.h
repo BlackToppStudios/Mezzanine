@@ -241,8 +241,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventUserIn
 /// @brief Set all values of a Mezzanine::EventUserInput from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventUserInput.
 /// @param Ev the Mezzanine::EventUserInput to be reset.
-/// @return This returns thexml::Node that was passed in.
-void MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventUserInput& Ev);
+/// @return This returns theXML::Node that was passed in.
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput& Ev);
 
 #endif // \MEZZXML
 

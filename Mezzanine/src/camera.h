@@ -79,10 +79,10 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Camera& Ev)
 /// @brief Set all values of a Mezzanine::Camera from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Camera.
 /// @param Ev the Mezzanine::Camera to be reset.
-/// @return This returns thexml::Node that was passed in.
+/// @return This returns theXML::Node that was passed in.
 /// @warning This does not attempt to de-serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera.
 /// @warning This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Camera& Ev);
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Camera& Ev);
 
 #endif // \MEZZXML
 
@@ -113,7 +113,7 @@ namespace Mezzanine
         private:
 #ifdef MEZZXML
             /// @internal
-            friend xml::Node& MEZZ_LIB operator >> (xml::Node& OneNode, Camera& Ev);
+            friend XML::Node& MEZZ_LIB operator >> (XML::Node& OneNode, Camera& Ev);
 #endif
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.

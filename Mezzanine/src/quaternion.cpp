@@ -451,16 +451,16 @@ namespace Mezzanine
 
 #ifdef MEZZXML
         // Serializable
-        void Quaternion::ProtoSerialize(xml::Node& CurrentRoot) const
+        void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            Mezzanine::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+            Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
             VecNode.SetName(SerializableName());
 
-            Mezzanine::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-            Mezzanine::xml::Attribute XAttr = VecNode.AppendAttribute("X");
-            Mezzanine::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
-            Mezzanine::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
-            Mezzanine::xml::Attribute WAttr = VecNode.AppendAttribute("W");
+            Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+            Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+            Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
+            Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
+            Mezzanine::XML::Attribute WAttr = VecNode.AppendAttribute("W");
             if( VersionAttr && XAttr && YAttr && ZAttr && WAttr)
             {
                 if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z) && WAttr.SetValue(this->W))
@@ -475,7 +475,7 @@ namespace Mezzanine
         }
 
         // DeSerializable
-        void Quaternion::ProtoDeSerialize(const xml::Node& OneNode)
+        void Quaternion::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
             {
@@ -573,7 +573,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Quaternion& x)
 std::istream& operator >> (std::istream& stream, Mezzanine::Quaternion& Ev)
     { return DeSerialize(stream,Ev); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Quaternion& Ev)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Quaternion& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
 

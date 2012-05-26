@@ -228,10 +228,10 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ParticleEff
 /// @brief Set all values of a Mezzanine::ParticleEffect from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::ParticleEffect.
 /// @param Ev the Mezzanine::ParticleEffect to be reset.
-/// @return This returns thexml::Node that was passed in.
+/// @return This returns theXML::Node that was passed in.
 /// @warning This does not attempt to de-serialize the name or template of the ParticleEffect. These is not currently changeable after the creation of a ParticleEffect. However, the ParticleEffectmanager will correctly create name ParticleEffect upon creation then deserialize the rest of the ParticleEffect.
 /// @warning This does not throw an exception if the ParticleEffect could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ParticleEffect& Ev);
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ParticleEffect& Ev);
 
 #endif
 

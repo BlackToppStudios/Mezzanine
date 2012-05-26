@@ -152,7 +152,7 @@ namespace Mezzanine {
 	typedef Character char_t;
 #endif
 
-namespace xml
+namespace XML
 {
 	/// @brief Used to represent a UTF8 code point, char, or wchar_t depending on how compiled.
 		/// @details compatibility with Mezzanine::Character is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .
@@ -168,7 +168,7 @@ namespace xml
 }
 
 // The PugiXML namespace
-namespace xml
+namespace XML
 {
 	// Tree node Types
 	enum NodeType
@@ -430,9 +430,9 @@ namespace xml
 		unsigned int AsUint(unsigned int def = 0) const;
 		double AsDouble(double def = 0) const;
 		float AsFloat(float def = 0) const;
-		Real AsReal(float def = 0) const;
-		Whole AsWhole() const;
-		Integer AsInteger() const;
+		Real AsReal(Real def = 0) const;
+		Whole AsWhole(Whole def = 0) const;
+		Integer AsInteger(Integer def = 0) const;
 
 		// Get GetAttribute Value as bool (returns true if first character is in '1tTyY' set), or the default Value if GetAttribute is empty
 		bool AsBool(bool def = false) const;
@@ -819,7 +819,7 @@ namespace xml
 		/// @param AttrName The name of the matching Attribute.
 		/// @param AttrValue The value of the matching Attribute.
 		/// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
-		/// @return The First matching xml::Node
+		/// @return The First matching XML::Node
 		Node FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const;
 
 	#ifndef XML_NO_STL
@@ -858,8 +858,8 @@ namespace xml
 		/// @brief Output the XML document using a Writer.
 		/// @param WriterInstance The Writer that will be used to output the xml text.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
-		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
+		/// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
 		void Print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
@@ -870,8 +870,8 @@ namespace xml
 		/// @brief Output the XML document using a Output Stream.
 		/// @param os An output stream to send xml text to.
 		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault
-		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault
+		/// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
 		void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
@@ -879,7 +879,7 @@ namespace xml
 		/// @brief Output the XML document using a Output Stream.
 		/// @param os An output stream to send xml text to.
 		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
 		void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const;
@@ -957,9 +957,9 @@ namespace xml
 		unsigned int AsUint(unsigned int def = 0) const;
 		double AsDouble(double def = 0) const;
 		float AsFloat(float def = 0) const;
-		Real AsReal(float def = 0) const;
-		Whole AsWhole() const;
-		Integer AsInteger() const;
+		Real AsReal(Real def = 0) const;
+		Whole AsWhole(Whole def = 0) const;
+		Integer AsInteger(Integer def = 0) const;
 
 		// Get text as bool (returns true if first character is in '1tTyY' set), or the default Value if object is empty
 		bool AsBool(bool def = false) const;
@@ -1216,7 +1216,7 @@ namespace xml
 		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
 		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-		ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+        //ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
 	#ifndef XML_NO_STL
 		// Load document from stream.
@@ -1248,7 +1248,7 @@ namespace xml
 		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
 		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
 		/// @details You should ensure that buffer data will persist throughout the documents lifetime, and free the buffer memory manually once document is destroyed.
-		/// @param contents A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the xml::Document.
+		/// @param contents A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the XML::Document.
 		/// @param size The size of the buffer.
 		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
@@ -1258,7 +1258,7 @@ namespace xml
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore).
 		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		/// @details You should allocate the buffer with pugixml allocation function; xml::Document will free the buffer when it is no longer needed (you can not use it anymore).
+		/// @details You should allocate the buffer with pugixml allocation function; XML::Document will free the buffer when it is no longer needed (you can not use it anymore).
 		/// @param contents A pointer to buffer containing the xml document to be parsed.
 		/// @param size The size of the buffer.
 		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
@@ -1269,7 +1269,7 @@ namespace xml
 		/// @brief Save XML document to a stream.
 		/// @param stream The stream to save this document to.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		void Save(Resource::DataStream& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
@@ -1278,7 +1278,7 @@ namespace xml
 		/// @brief Save XML document to WriterInstance.
 		/// @param WriterInstance The Writer that will be used to output the xml text.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		void Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
@@ -1288,28 +1288,28 @@ namespace xml
 		/// @brief Save XML document to a stream of wide characters.
 		/// @param stream The output stream of wide characters to send the XML document to.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const;
 	#endif
 
 		/// @brief Save XML to file.
 		/// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return False if the target file could not be opened for writing
 		bool SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 		/// @brief Save XML to file.
 		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return False if the target file could not be opened for writing
 		bool SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 		// Get document element
 		/// @brief Get document element
-		/// @return An xml::Node that is the root element of the xml Document
+		/// @return An XML::Node that is the root element of the xml Document
 		Node DocumentElement() const;
 	};
 
@@ -1566,9 +1566,9 @@ namespace xml
 
 		// Construct XPath node from XML node/attribute
 		XPathNode(const Node& node);
-		/// @brief Construct From a xml::Attribute.
-		/// @param GetAttribute The xml::Attribute this handle should reference.
-		/// @param GetParent The xml::Node the xml::Attribute is on.
+		/// @brief Construct From a XML::Attribute.
+		/// @param GetAttribute The XML::Attribute this handle should reference.
+		/// @param GetParent The XML::Node the XML::Attribute is on.
 		XPathNode(const Attribute& GetAttribute, const Node& GetParent);
 
 		// Get node/GetAttribute, if any
@@ -1587,13 +1587,13 @@ namespace xml
 
 		// Comparison operators
 		/// @brief Called when comparing two XPathNode instances for equality.
-		/// @param n The other xml::XPathNode to compare this Node against for equality.
-		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		/// @param n The other XML::XPathNode to compare this Node against for equality.
+		/// @return True if this and the other XML::XPathNode are referencing the same item, false otherwise;
 		bool operator==(const XPathNode& n) const;
 
 		/// @brief Called when comparing two XPathNode instances for inequality.
-		/// @param n The other xml::XPathNode to compare this Node against for inequality.
-		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		/// @param n The other XML::XPathNode to compare this Node against for inequality.
+		/// @return True if this and the other XML::XPathNode are referencing the same item, false otherwise;
 		bool operator!=(const XPathNode& n) const;
 	};
 
@@ -1690,14 +1690,16 @@ namespace xml
 	AllocationFunction MEZZ_LIB GetMemoryAllocationFunction();
 	deAllocationFunction MEZZ_LIB GetMemoryDeallocationFunction();
 }
+//Name spaces end here
+}
 
 #if !defined(XML_NO_STL) && (defined(_MSC_VER) || defined(__ICC))
 namespace std
 {
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
-	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::xml::NodeIterator&);
-	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::xml::AttributeIterator&);
-	std::forward_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::xml::NamedNode_iterator&);
+	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::NodeIterator&);
+	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::AttributeIterator&);
+	std::forward_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::NamedNode_iterator&);
 }
 #endif
 
@@ -1705,9 +1707,9 @@ namespace std
 namespace std
 {
 	// Workarounds for (non-standard) iterator category detection
-	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::xml::NodeIterator&);
-	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::xml::AttributeIterator&);
-	std::forward_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::xml::NamedNode_iterator&);
+	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::NodeIterator&);
+	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::AttributeIterator&);
+	std::forward_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::NamedNode_iterator&);
 }
 #endif
 
@@ -1737,5 +1739,4 @@ namespace std
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-//}// namespace Mezzanine
 #endif // \MEZZXML

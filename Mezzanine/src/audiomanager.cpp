@@ -82,7 +82,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    AudioManager::AudioManager(xml::Node& XMLNode)
+    AudioManager::AudioManager(XML::Node& XMLNode)
         : AmbientVolume(1.0),
           DialogVolume(1.0),
           EffectVolume(1.0),
@@ -95,10 +95,10 @@ namespace Mezzanine
         MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 50;
 
-        xml::Attribute CurrAttrib;
+        XML::Attribute CurrAttrib;
         String PathPreset;
         // Get preset path to default to if a path is not provided.
-        xml::Node PathNode = XMLNode.GetChild("SettingsPath");
+        XML::Node PathNode = XMLNode.GetChild("SettingsPath");
         if(!PathNode.Empty())
         {
             CurrAttrib = PathNode.GetAttribute("Path");
@@ -109,10 +109,10 @@ namespace Mezzanine
                 SetSettingsFilePath(PathPreset);
         }
         // Get the files to be loaded, and load them.
-        xml::Node FilesNode = XMLNode.GetChild("SettingsFiles");
+        XML::Node FilesNode = XMLNode.GetChild("SettingsFiles");
         if(!FilesNode.Empty())
         {
-            for( xml::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
+            for( XML::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
             {
                 String FileName, FilePath, FileGroup;
                 // Get the filename to load
@@ -156,24 +156,24 @@ namespace Mezzanine
         return "DefaultAudioManagerSettings";
     }
 
-    xml::Node AudioManager::CreateCurrentSettings()
+    XML::Node AudioManager::CreateCurrentSettings()
     {
         // Create the Group node to be returned
-        xml::Node CurrentSettings;
+        XML::Node CurrentSettings;
         // Create and initialize the device settings
-        xml::Node DeviceSettingsNode = CurrentSettings.AppendChild("DeviceSettings");
+        XML::Node DeviceSettingsNode = CurrentSettings.AppendChild("DeviceSettings");
         DeviceSettingsNode.AppendAttribute("DeviceName").SetValue( AMID->InitializedDevice );
         DeviceSettingsNode.AppendAttribute("OutputFrequency").SetValue( StringTool::ConvertToString(AMID->OutputFrequency) );
         DeviceSettingsNode.AppendAttribute("EAXEffectSlots").SetValue( StringTool::ConvertToString(AMID->EAXEffectSlots) );
         // Create and initialize the volume settings
-        xml::Node VolumeSettingsNode = CurrentSettings.AppendChild("Volume");
+        XML::Node VolumeSettingsNode = CurrentSettings.AppendChild("Volume");
         VolumeSettingsNode.AppendAttribute("Ambient").SetValue( StringTool::ConvertToString(this->GetAmbientVolume()) );
         VolumeSettingsNode.AppendAttribute("Dialog").SetValue( StringTool::ConvertToString(this->GetDialogVolume()) );
         VolumeSettingsNode.AppendAttribute("Effects").SetValue( StringTool::ConvertToString(this->GetEffectVolume()) );
         VolumeSettingsNode.AppendAttribute("Music").SetValue( StringTool::ConvertToString(this->GetMusicVolume()) );
         VolumeSettingsNode.AppendAttribute("Master").SetValue( StringTool::ConvertToString(this->GetMasterVolume()) );
         // Create and initialize the mute setting
-        xml::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
+        XML::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
         MuteSettingNode.AppendAttribute("Muted").SetValue( StringTool::ConvertToString(this->IsMuted()) );
         // Return the result
         return CurrentSettings;
@@ -548,7 +548,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* DefaultAudioManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultAudioManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(AudioManager::SingletonValid())
         {

@@ -332,18 +332,18 @@ namespace Mezzanine
     String AreaEffect::PhysicsSettingsSerializableName() const
         { return String("WorldObjectBasePhysicsSettings"); }
 
-    void AreaEffect::ProtoSerialize(xml::Node& CurrentRoot) const
+    void AreaEffect::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node AreaEffectNode = CurrentRoot.AppendChild("AreaEffect");
+        XML::Node AreaEffectNode = CurrentRoot.AppendChild("AreaEffect");
         if (!AreaEffectNode) { ThrowSerialError("create AreaEffectNode");}
 
-        xml::Attribute AreaEffectVersion = AreaEffectNode.AppendAttribute("Version");
+        XML::Attribute AreaEffectVersion = AreaEffectNode.AppendAttribute("Version");
         AreaEffectVersion.SetValue(1);
 
         NonStaticWorldObject::ProtoSerialize(AreaEffectNode);
     }
 
-    void AreaEffect::ProtoDeSerialize(const xml::Node& OneNode)
+    void AreaEffect::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->AreaEffect::SerializableName() )
         {

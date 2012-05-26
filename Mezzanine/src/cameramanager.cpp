@@ -65,7 +65,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    CameraManager::CameraManager(xml::Node& XMLNode)
+    CameraManager::CameraManager(XML::Node& XMLNode)
         : SManager(NULL)
     {
         if(SceneManager::SingletonValid())
@@ -241,7 +241,7 @@ namespace Mezzanine
         }else return new CameraManager();
     }
 
-    ManagerBase* DefaultCameraManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultCameraManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(CameraManager::SingletonValid())
         {

@@ -100,13 +100,13 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    void Transform::ProtoSerialize(xml::Node& CurrentRoot) const
+    void Transform::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node TransformNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        XML::Node TransformNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
         if (!TransformNode)
             { SerializeError("Create TransformNode", SerializableName()); }
 
-        Mezzanine::xml::Attribute Version = TransformNode.AppendAttribute("Version");                            // Version
+        Mezzanine::XML::Attribute Version = TransformNode.AppendAttribute("Version");                            // Version
         if (!Version)
             { SerializeError("Create Version", SerializableName()); }
         Version.SetValue(1);
@@ -115,7 +115,7 @@ namespace Mezzanine
         this->Rotation.ProtoSerialize(TransformNode);
     }
 
-    void Transform::ProtoDeSerialize(const xml::Node& OneNode)
+    void Transform::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
         {

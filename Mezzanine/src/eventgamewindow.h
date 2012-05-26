@@ -188,8 +188,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWi
 /// @brief Set all values of a Mezzanine::EventGameWindow from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventGameWindow.
 /// @param Ev the Mezzanine::EventGameWindow to be reset.
-/// @return This returns thexml::Node that was passed in.
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventGameWindow& Ev);
+/// @return This returns theXML::Node that was passed in.
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
 
 #endif // \MEZZXML
 

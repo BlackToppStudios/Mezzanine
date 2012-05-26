@@ -136,7 +136,7 @@ namespace Mezzanine
 #ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            SceneManager(xml::Node& XMLNode);
+            SceneManager(XML::Node& XMLNode);
 #endif
             /// @brief Class Destructor.
             /// @details The class destructor.
@@ -489,8 +489,8 @@ namespace Mezzanine
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
 #ifdef MEZZXML
-            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
-            ManagerBase* CreateManager(xml::Node& XMLNode);
+            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+            ManagerBase* CreateManager(XML::Node& XMLNode);
 #endif
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
@@ -516,8 +516,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::SceneManage
 /// @brief Set all values of a Mezzanine::SceneManager from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::SceneManager.
 /// @param Ev the Mezzanine::SceneManager to be reset.
-/// @return This returns thexml::Node that was passed in.
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::SceneManager& Ev);
+/// @return This returns theXML::Node that was passed in.
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::SceneManager& Ev);
 
 #endif // \MEZZXML
 

@@ -53,7 +53,7 @@
 namespace Mezzanine
 {
 
-    namespace xml
+    namespace XML
     {
         ///////////////////////////////////////////////////////////////////////////////
         /// @file xmldoc.cpp

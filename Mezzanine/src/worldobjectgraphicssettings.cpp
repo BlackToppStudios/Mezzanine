@@ -238,13 +238,13 @@ namespace Mezzanine
 
 #ifdef MEZZXML
         // Serializable
-        void WorldObjectGraphicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+        void WorldObjectGraphicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            xml::Node BaseNode = CurrentRoot.AppendChild(this->WorldObjectGraphicsSettings::SerializableName());
+            XML::Node BaseNode = CurrentRoot.AppendChild(this->WorldObjectGraphicsSettings::SerializableName());
             if (!BaseNode)
                 { SerializeError("Create BaseNode", SerializableName()); }
 
-            Mezzanine::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+            Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
             if (!Version)
                 { SerializeError("Create Version Attribute", SerializableName()); }
             Version.SetValue(1);
@@ -253,11 +253,11 @@ namespace Mezzanine
             {
                 if(this->GetMaterialAmbient(Counter)!=Mezzanine::ColourValue())
                 {
-                    xml::Node AmbientMaterial = BaseNode.AppendChild("AmbientMaterial");
+                    XML::Node AmbientMaterial = BaseNode.AppendChild("AmbientMaterial");
                     if (!AmbientMaterial)
                         { SerializeError("Create AmbientMaterial Node", SerializableName()); }
                     this->GetMaterialAmbient(Counter).ProtoSerialize(AmbientMaterial);
-                    Mezzanine::xml::Attribute AmbientMaterialSubMesh = AmbientMaterial.AppendAttribute("Submesh");
+                    Mezzanine::XML::Attribute AmbientMaterialSubMesh = AmbientMaterial.AppendAttribute("Submesh");
                     if (!AmbientMaterialSubMesh)
                         { SerializeError("Create AmbientMaterialSubMesh Attribute", SerializableName()); }
                     AmbientMaterialSubMesh.SetValue(Counter);
@@ -265,11 +265,11 @@ namespace Mezzanine
 
                 if(this->GetMaterialSpecular(Counter)!=Mezzanine::ColourValue())
                 {
-                    xml::Node SpecularMaterial = BaseNode.AppendChild("SpecularMaterial");
+                    XML::Node SpecularMaterial = BaseNode.AppendChild("SpecularMaterial");
                     if (!SpecularMaterial)
                         { SerializeError("Create SpecularMaterial Node", SerializableName()); }
                     this->GetMaterialSpecular(Counter).ProtoSerialize(SpecularMaterial);
-                    Mezzanine::xml::Attribute SpecularMaterialSubMesh = SpecularMaterial.AppendAttribute("Submesh");
+                    Mezzanine::XML::Attribute SpecularMaterialSubMesh = SpecularMaterial.AppendAttribute("Submesh");
                     if (!SpecularMaterialSubMesh)
                         { SerializeError("Create SpecularMaterialSubMesh Attribute", SerializableName()); }
                     SpecularMaterialSubMesh.SetValue(Counter);
@@ -277,11 +277,11 @@ namespace Mezzanine
 
                 if(this->GetMaterialDiffuse(Counter)!=Mezzanine::ColourValue())
                 {
-                    xml::Node DiffuseMaterial = BaseNode.AppendChild("DiffuseMaterial");
+                    XML::Node DiffuseMaterial = BaseNode.AppendChild("DiffuseMaterial");
                     if (!DiffuseMaterial)
                         { SerializeError("Create DiffuseMaterial Node", SerializableName()); }
                     this->GetMaterialDiffuse(Counter).ProtoSerialize(DiffuseMaterial);
-                    Mezzanine::xml::Attribute DiffuseMaterialSubMesh = DiffuseMaterial.AppendAttribute("Submesh");
+                    Mezzanine::XML::Attribute DiffuseMaterialSubMesh = DiffuseMaterial.AppendAttribute("Submesh");
                     if (!DiffuseMaterialSubMesh)
                         { SerializeError("Create DiffuseMaterialSubMesh Attribute", SerializableName()); }
                     DiffuseMaterialSubMesh.SetValue(Counter);
@@ -300,7 +300,7 @@ namespace Mezzanine
         }
 
         // DeSerializable
-        void WorldObjectGraphicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+        void WorldObjectGraphicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==this->WorldObjectGraphicsSettings::SerializableName() )
             {
@@ -315,7 +315,7 @@ namespace Mezzanine
                         this->SetMaterialDiffuse(TempColour, Counter);
                     }
 
-                    for(Mezzanine::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+                    for(Mezzanine::XML::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
                     {
                         Mezzanine::String Name(Child.Name());
                         switch(Name[0])
@@ -373,7 +373,7 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::World
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldObjectGraphicsSettings& Ev)
     { return DeSerialize(stream,Ev); }
 
-Mezzanine::xml::Node& MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::WorldObjectGraphicsSettings& Ev)
+Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::WorldObjectGraphicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 
 

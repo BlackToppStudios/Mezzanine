@@ -81,12 +81,12 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    GraphicsManager::GraphicsManager(xml::Node& XMLNode)
+    GraphicsManager::GraphicsManager(XML::Node& XMLNode)
     {
         Construct( 800, 600, false );
 
-        xml::Attribute CurrAttrib;
-        for( xml::NodeIterator SecIt = XMLNode.begin() ; SecIt != XMLNode.end() ; ++SecIt )
+        XML::Attribute CurrAttrib;
+        for( XML::NodeIterator SecIt = XMLNode.begin() ; SecIt != XMLNode.end() ; ++SecIt )
         {
             String SecName = (*SecIt).Name();
             if( "RenderSystem" == SecName && !OgreBeenInitialized )
@@ -507,7 +507,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* DefaultGraphicsManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultGraphicsManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(GraphicsManager::SingletonValid())
         {

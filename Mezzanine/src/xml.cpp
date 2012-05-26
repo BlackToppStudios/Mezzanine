@@ -148,16 +148,16 @@ using std::memmove;
 #endif
 
 #ifdef XML_HEADER_ONLY
-#	define PUGI__NS_BEGIN namespace xml { namespace internal {
+#	define PUGI__NS_BEGIN namespace XML { namespace internal {
 #	define PUGI__NS_END } }
 #	define PUGI__FN inline
 #	define PUGI__FN_NO_INLINE inline
 #else
 #	if defined(_MSC_VER) && _MSC_VER < 1300 // MSVC6 seems to have an amusing bug with anonymous namespaces inside namespaces
-#		define PUGI__NS_BEGIN namespace xml { namespace internal {
+#		define PUGI__NS_BEGIN namespace XML { namespace internal {
 #		define PUGI__NS_END } }
 #	else
-#		define PUGI__NS_BEGIN namespace xml { namespace internal { namespace {
+#		define PUGI__NS_BEGIN namespace XML { namespace internal { namespace {
 #		define PUGI__NS_END } } }
 #	endif
 #	define PUGI__FN
@@ -505,13 +505,13 @@ PUGI__NS_BEGIN
 	}
 PUGI__NS_END
 
-namespace xml
+namespace XML
 {
 	//// A 'Name=Value' XML GetAttribute structure.
 	struct AttributeStruct
 	{
 		//// Default ctor
-		AttributeStruct(impl::MemoryPage* page): header(reinterpret_cast<uintptr_t>(page)), Name(0), Value(0), prev_attribute_c(0), GetNextAttribute(0)
+		AttributeStruct(internal::MemoryPage* page): header(reinterpret_cast<uintptr_t>(page)), Name(0), Value(0), prev_attribute_c(0), GetNextAttribute(0)
 		{
 		}
 
@@ -529,7 +529,7 @@ namespace xml
 	{
 		//// Default ctor
 		//// \param Type - node type
-		NodeStruct(impl::MemoryPage* page, NodeType Type): header(reinterpret_cast<uintptr_t>(page) | (Type - 1)), GetParent(0), Name(0), Value(0), GetFirstChild(0), prev_sibling_c(0), GetNextSibling(0), GetFirstAttribute(0)
+		NodeStruct(internal::MemoryPage* page, NodeType Type): header(reinterpret_cast<uintptr_t>(page) | (Type - 1)), GetParent(0), Name(0), Value(0), GetFirstChild(0), prev_sibling_c(0), GetNextSibling(0), GetFirstAttribute(0)
 		{
 		}
 
@@ -589,8 +589,8 @@ PUGI__NS_BEGIN
 	{
 		uintptr_t header = a->header;
 
-		if (header & impl::MemoryPage_Name_allocated_mask) alloc.deallocate_string(a->Name);
-		if (header & impl::MemoryPage_Value_allocated_mask) alloc.deallocate_string(a->Value);
+		if (header & internal::MemoryPage_Name_allocated_mask) alloc.deallocate_string(a->Name);
+		if (header & internal::MemoryPage_Value_allocated_mask) alloc.deallocate_string(a->Value);
 
 		alloc.deallocate_memory(a, sizeof(AttributeStruct), reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask));
 	}
@@ -599,8 +599,8 @@ PUGI__NS_BEGIN
 	{
 		uintptr_t header = n->header;
 
-		if (header & impl::MemoryPage_Name_allocated_mask) alloc.deallocate_string(n->Name);
-		if (header & impl::MemoryPage_Value_allocated_mask) alloc.deallocate_string(n->Value);
+		if (header & internal::MemoryPage_Name_allocated_mask) alloc.deallocate_string(n->Name);
+		if (header & internal::MemoryPage_Value_allocated_mask) alloc.deallocate_string(n->Value);
 
 		for (AttributeStruct* attr = n->GetFirstAttribute; attr; )
 		{
@@ -3329,7 +3329,7 @@ PUGI__NS_BEGIN
 
 	inline bool is_text_node(NodeStruct* node)
 	{
-		NodeType Type = static_cast<NodeType>((node->header & impl::MemoryPage_type_mask) + 1);
+		NodeType Type = static_cast<NodeType>((node->header & internal::MemoryPage_type_mask) + 1);
 
 		return Type == NodePcdata || Type == NodeCdata;
 	}
@@ -3395,7 +3395,7 @@ PUGI__NS_BEGIN
 	{
 	#ifdef XML_WCHAR_MODE
 		char_t wbuf[128];
-		impl::widen_ascii(wbuf, buf);
+		internal::widen_ascii(wbuf, buf);
 
 		return strcpy_insitu(dest, header, header_mask, wbuf);
 	#else
@@ -3473,7 +3473,7 @@ PUGI__NS_BEGIN
 	}
 
 	PUGI__FN 
-	ParseResult LoadDataStreamImpl(Document& doc, Mezzanine::Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
+	/*ParseResult LoadDataStreamImpl(Document& doc, Mezzanine::Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 	    // Copying mostly from the function below, a lot of what they try to do is not applicable with data streams since they already do it to some extent.
 	    size_t pos = stream.Tell();
@@ -3490,7 +3490,7 @@ PUGI__NS_BEGIN
 		return doc.LoadBufferInplaceOwn(buffer.release(), actual_length, options, DocumentEncoding);
     }
 
-	ParseResult LoadFileImpl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding)
+ PUGI__FN  */	ParseResult LoadFileImpl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding)
 	{
 		if (!file) return make_ParseResult(StatusFileNotFound);
 
@@ -3717,7 +3717,7 @@ PUGI__NS_BEGIN
 	}
 PUGI__NS_END
 
-namespace xml
+namespace XML
 {
 	PUGI__FN WriterFile::WriterFile(void* file_): file(file_)
 	{
@@ -3847,27 +3847,36 @@ namespace xml
 
 	PUGI__FN int Attribute::AsInt(int def) const
 	{
-		return impl::GetValue_int(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_int(_attr ? _attr->Value : 0, def);
 	}
 
 	PUGI__FN unsigned int Attribute::AsUint(unsigned int def) const
 	{
-		return impl::GetValue_uint(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_uint(_attr ? _attr->Value : 0, def);
 	}
 
 	PUGI__FN double Attribute::AsDouble(double def) const
 	{
-		return impl::GetValue_double(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_double(_attr ? _attr->Value : 0, def);
 	}
+
+	PUGI__FN Whole Attribute::AsWhole(Whole def) const
+		{ return (_attr ? ToWhole(_attr->Value) : def); }
+
+	PUGI__FN Integer Attribute::AsInteger(Integer def) const
+		{ return (_attr ? ToInteger(_attr->Value) : def); }
+
+	PUGI__FN  Real Attribute::AsReal(Real def) const
+		{ return (_attr ? ToReal(_attr->Value) : def); }
 
 	PUGI__FN float Attribute::AsFloat(float def) const
 	{
-		return impl::GetValue_float(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_float(_attr ? _attr->Value : 0, def);
 	}
 
 	PUGI__FN bool Attribute::AsBool(bool def) const
 	{
-		return impl::GetValue_bool(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_bool(_attr ? _attr->Value : 0, def);
 	}
 
 	PUGI__FN bool Attribute::Empty() const
@@ -3929,42 +3938,42 @@ namespace xml
 	{
 		if (!_attr) return false;
 
-		return impl::strcpy_insitu(_attr->Name, _attr->header, impl::MemoryPage_Name_allocated_mask, rhs);
+		return internal::strcpy_insitu(_attr->Name, _attr->header, internal::MemoryPage_Name_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(const char_t* rhs)
 	{
 		if (!_attr) return false;
 
-		return impl::strcpy_insitu(_attr->Value, _attr->header, impl::MemoryPage_Value_allocated_mask, rhs);
+		return internal::strcpy_insitu(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(int rhs)
 	{
 		if (!_attr) return false;
 
-		return impl::SetValue_convert(_attr->Value, _attr->header, impl::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(unsigned int rhs)
 	{
 		if (!_attr) return false;
 
-		return impl::SetValue_convert(_attr->Value, _attr->header, impl::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(double rhs)
 	{
 		if (!_attr) return false;
 
-		return impl::SetValue_convert(_attr->Value, _attr->header, impl::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(bool rhs)
 	{
 		if (!_attr) return false;
 
-		return impl::SetValue_convert(_attr->Value, _attr->header, impl::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 #ifdef __BORLANDC__
@@ -4078,7 +4087,7 @@ namespace xml
 
 	PUGI__FN NodeType Node::Type() const
 	{
-		return _GetRoot ? static_cast<NodeType>((_GetRoot->header & impl::MemoryPage_type_mask) + 1) : NodeNull;
+		return _GetRoot ? static_cast<NodeType>((_GetRoot->header & internal::MemoryPage_type_mask) + 1) : NodeNull;
 	}
 
 	PUGI__FN const char_t* Node::Value() const
@@ -4091,7 +4100,7 @@ namespace xml
 		if (!_GetRoot) return Node();
 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
-			if (i->Name && impl::strequal(Name_, i->Name)) return Node(i);
+			if (i->Name && internal::strequal(Name_, i->Name)) return Node(i);
 
 		return Node();
 	}
@@ -4101,7 +4110,7 @@ namespace xml
 		if (!_GetRoot) return Attribute();
 
 		for (AttributeStruct* i = _GetRoot->GetFirstAttribute; i; i = i->GetNextAttribute)
-			if (i->Name && impl::strequal(Name_, i->Name))
+			if (i->Name && internal::strequal(Name_, i->Name))
 				return Attribute(i);
 
 		return Attribute();
@@ -4112,7 +4121,7 @@ namespace xml
 		if (!_GetRoot) return Node();
 
 		for (NodeStruct* i = _GetRoot->GetNextSibling; i; i = i->GetNextSibling)
-			if (i->Name && impl::strequal(Name_, i->Name)) return Node(i);
+			if (i->Name && internal::strequal(Name_, i->Name)) return Node(i);
 
 		return Node();
 	}
@@ -4130,7 +4139,7 @@ namespace xml
 		if (!_GetRoot) return Node();
 
 		for (NodeStruct* i = _GetRoot->prev_sibling_c; i->GetNextSibling; i = i->prev_sibling_c)
-			if (i->Name && impl::strequal(Name_, i->Name)) return Node(i);
+			if (i->Name && internal::strequal(Name_, i->Name)) return Node(i);
 
 		return Node();
 	}
@@ -4152,9 +4161,9 @@ namespace xml
 	{
 		if (!_GetRoot) return Node();
 
-		impl::MemoryPage* page = reinterpret_cast<impl::MemoryPage*>(_GetRoot->header & impl::MemoryPage_pointer_mask);
+		internal::MemoryPage* page = reinterpret_cast<internal::MemoryPage*>(_GetRoot->header & internal::MemoryPage_pointer_mask);
 
-		return Node(static_cast<impl::DocumentStruct*>(page->allocator));
+		return Node(static_cast<internal::DocumentStruct*>(page->allocator));
 	}
 
 	PUGI__FN Text Node::text() const
@@ -4167,7 +4176,7 @@ namespace xml
 		if (!_GetRoot) return XML_TEXT("");
 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
-			if (i->Value && impl::is_text_node(i))
+			if (i->Value && internal::is_text_node(i))
 				return i->Value;
 
 		return XML_TEXT("");
@@ -4205,7 +4214,7 @@ namespace xml
 		case NodePi:
 		case NodeDeclaration:
 		case NodeElement:
-			return impl::strcpy_insitu(_GetRoot->Name, _GetRoot->header, impl::MemoryPage_Name_allocated_mask, rhs);
+			return internal::strcpy_insitu(_GetRoot->Name, _GetRoot->header, internal::MemoryPage_Name_allocated_mask, rhs);
 
 		default:
 			return false;
@@ -4221,7 +4230,7 @@ namespace xml
 		case NodePcdata:
 		case NodeComment:
 		case NodeDocType:
-			return impl::strcpy_insitu(_GetRoot->Value, _GetRoot->header, impl::MemoryPage_Value_allocated_mask, rhs);
+			return internal::strcpy_insitu(_GetRoot->Value, _GetRoot->header, internal::MemoryPage_Value_allocated_mask, rhs);
 
 		default:
 			return false;
@@ -4232,7 +4241,7 @@ namespace xml
 	{
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute();
 
-		Attribute a(impl::AppendAttribute_ll(_GetRoot, impl::GetAllocator(_GetRoot)));
+		Attribute a(internal::AppendAttribute_ll(_GetRoot, internal::GetAllocator(_GetRoot)));
 		a.SetName(Name_);
 
 		return a;
@@ -4242,7 +4251,7 @@ namespace xml
 	{
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute();
 
-		Attribute a(impl::allocate_attribute(impl::GetAllocator(_GetRoot)));
+		Attribute a(internal::allocate_attribute(internal::GetAllocator(_GetRoot)));
 		if (!a) return Attribute();
 
 		a.SetName(Name_);
@@ -4274,7 +4283,7 @@ namespace xml
 
 		if (cur != _GetRoot->GetFirstAttribute) return Attribute();
 
-		Attribute a(impl::allocate_attribute(impl::GetAllocator(_GetRoot)));
+		Attribute a(internal::allocate_attribute(internal::GetAllocator(_GetRoot)));
 		if (!a) return Attribute();
 
 		a.SetName(Name_);
@@ -4302,7 +4311,7 @@ namespace xml
 
 		if (cur != _GetRoot->GetFirstAttribute) return Attribute();
 
-		Attribute a(impl::allocate_attribute(impl::GetAllocator(_GetRoot)));
+		Attribute a(internal::allocate_attribute(internal::GetAllocator(_GetRoot)));
 		if (!a) return Attribute();
 
 		a.SetName(Name_);
@@ -4361,9 +4370,9 @@ namespace xml
 
 	PUGI__FN Node Node::AppendChild(NodeType Type_)
 	{
-		if (!impl::allow_InsertChild(this->Type(), Type_)) return Node();
+		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
 
-		Node n(impl::AppendNode(_GetRoot, impl::GetAllocator(_GetRoot), Type_));
+		Node n(internal::AppendNode(_GetRoot, internal::GetAllocator(_GetRoot), Type_));
 
 		if (Type_ == NodeDeclaration) n.SetName(XML_TEXT("xml"));
 
@@ -4372,9 +4381,9 @@ namespace xml
 
 	PUGI__FN Node Node::PrependChild(NodeType Type_)
 	{
-		if (!impl::allow_InsertChild(this->Type(), Type_)) return Node();
+		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
 
-		Node n(impl::allocate_node(impl::GetAllocator(_GetRoot), Type_));
+		Node n(internal::allocate_node(internal::GetAllocator(_GetRoot), Type_));
 		if (!n) return Node();
 
 		n._GetRoot->GetParent = _GetRoot;
@@ -4399,10 +4408,10 @@ namespace xml
 
 	PUGI__FN Node Node::InsertChildBefore(NodeType Type_, const Node& node)
 	{
-		if (!impl::allow_InsertChild(this->Type(), Type_)) return Node();
+		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
 		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node();
 
-		Node n(impl::allocate_node(impl::GetAllocator(_GetRoot), Type_));
+		Node n(internal::allocate_node(internal::GetAllocator(_GetRoot), Type_));
 		if (!n) return Node();
 
 		n._GetRoot->GetParent = _GetRoot;
@@ -4423,10 +4432,10 @@ namespace xml
 
 	PUGI__FN Node Node::InsertChildAfter(NodeType Type_, const Node& node)
 	{
-		if (!impl::allow_InsertChild(this->Type(), Type_)) return Node();
+		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
 		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node();
 
-		Node n(impl::allocate_node(impl::GetAllocator(_GetRoot), Type_));
+		Node n(internal::allocate_node(internal::GetAllocator(_GetRoot), Type_));
 		if (!n) return Node();
 
 		n._GetRoot->GetParent = _GetRoot;
@@ -4485,7 +4494,7 @@ namespace xml
 	{
 		Node Result = AppendChild(proto.Type());
 
-		if (Result) impl::recursive_copy_skip(Result, proto, Result);
+		if (Result) internal::recursive_copy_skip(Result, proto, Result);
 
 		return Result;
 	}
@@ -4494,7 +4503,7 @@ namespace xml
 	{
 		Node Result = PrependChild(proto.Type());
 
-		if (Result) impl::recursive_copy_skip(Result, proto, Result);
+		if (Result) internal::recursive_copy_skip(Result, proto, Result);
 
 		return Result;
 	}
@@ -4503,7 +4512,7 @@ namespace xml
 	{
 		Node Result = InsertChildAfter(proto.Type(), node);
 
-		if (Result) impl::recursive_copy_skip(Result, proto, Result);
+		if (Result) internal::recursive_copy_skip(Result, proto, Result);
 
 		return Result;
 	}
@@ -4512,7 +4521,7 @@ namespace xml
 	{
 		Node Result = InsertChildBefore(proto.Type(), node);
 
-		if (Result) impl::recursive_copy_skip(Result, proto, Result);
+		if (Result) internal::recursive_copy_skip(Result, proto, Result);
 
 		return Result;
 	}
@@ -4539,7 +4548,7 @@ namespace xml
 		if (a._attr->prev_attribute_c->GetNextAttribute) a._attr->prev_attribute_c->GetNextAttribute = a._attr->GetNextAttribute;
 		else _GetRoot->GetFirstAttribute = a._attr->GetNextAttribute;
 
-		impl::destroy_attribute(a._attr, impl::GetAllocator(_GetRoot));
+		internal::destroy_attribute(a._attr, internal::GetAllocator(_GetRoot));
 
 		return true;
 	}
@@ -4559,7 +4568,7 @@ namespace xml
 		if (n._GetRoot->prev_sibling_c->GetNextSibling) n._GetRoot->prev_sibling_c->GetNextSibling = n._GetRoot->GetNextSibling;
 		else _GetRoot->GetFirstChild = n._GetRoot->GetNextSibling;
 
-		impl::destroy_node(n._GetRoot, impl::GetAllocator(_GetRoot));
+		internal::destroy_node(n._GetRoot, internal::GetAllocator(_GetRoot));
 
 		return true;
 	}
@@ -4569,10 +4578,10 @@ namespace xml
 		if (!_GetRoot) return Node();
 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
-			if (i->Name && impl::strequal(Name_, i->Name))
+			if (i->Name && internal::strequal(Name_, i->Name))
 			{
 				for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute)
-					if (impl::strequal(AttrName, a->Name) && impl::strequal(AttrValue, a->Value))
+					if (internal::strequal(AttrName, a->Name) && internal::strequal(AttrValue, a->Value))
 						return Node(i);
 			}
 
@@ -4585,7 +4594,7 @@ namespace xml
 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
 			for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute)
-				if (impl::strequal(AttrName, a->Name) && impl::strequal(AttrValue, a->Value))
+				if (internal::strequal(AttrName, a->Name) && internal::strequal(AttrValue, a->Value))
 					return Node(i);
 
 		return Node();
@@ -4647,7 +4656,7 @@ namespace xml
 		{
 			for (NodeStruct* j = found._GetRoot->GetFirstChild; j; j = j->GetNextSibling)
 			{
-				if (j->Name && impl::strequalrange(j->Name, Path_segment, static_cast<size_t>(Path_segment_end - Path_segment)))
+				if (j->Name && internal::strequalrange(j->Name, Path_segment, static_cast<size_t>(Path_segment_end - Path_segment)))
 				{
 					Node subsearch = Node(j).FirstElementByPath(NextSegment, delimiter);
 
@@ -4721,9 +4730,9 @@ namespace xml
 	{
 		if (!_GetRoot) return;
 
-		impl::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
+		internal::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
 
-		impl::NodeOutput(buffered_WriterInstance, *this, indent, flags, Depth);
+		internal::NodeOutput(buffered_WriterInstance, *this, indent, flags, Depth);
 	}
 
 #ifndef XML_NO_STL
@@ -4748,7 +4757,7 @@ namespace xml
 
 		if (!r) return -1;
 
-		const char_t* buffer = static_cast<impl::DocumentStruct*>(r)->buffer;
+		const char_t* buffer = static_cast<internal::DocumentStruct*>(r)->buffer;
 
 		if (!buffer) return -1;
 
@@ -4760,13 +4769,13 @@ namespace xml
 		case NodeElement:
 		case NodeDeclaration:
 		case NodePi:
-			return (_GetRoot->header & impl::MemoryPage_Name_allocated_mask) ? -1 : _GetRoot->Name - buffer;
+			return (_GetRoot->header & internal::MemoryPage_Name_allocated_mask) ? -1 : _GetRoot->Name - buffer;
 
 		case NodePcdata:
 		case NodeCdata:
 		case NodeComment:
 		case NodeDocType:
-			return (_GetRoot->header & impl::MemoryPage_Value_allocated_mask) ? -1 : _GetRoot->Value - buffer;
+			return (_GetRoot->header & internal::MemoryPage_Value_allocated_mask) ? -1 : _GetRoot->Value - buffer;
 
 		default:
 			return -1;
@@ -4791,10 +4800,10 @@ namespace xml
 
 	PUGI__FN NodeStruct* Text::_data() const
 	{
-		if (!_GetRoot || impl::is_text_node(_GetRoot)) return _GetRoot;
+		if (!_GetRoot || internal::is_text_node(_GetRoot)) return _GetRoot;
 
 		for (NodeStruct* node = _GetRoot->GetFirstChild; node; node = node->GetNextSibling)
-			if (impl::is_text_node(node))
+			if (internal::is_text_node(node))
 				return node;
 
 		return 0;
@@ -4849,70 +4858,70 @@ namespace xml
 	{
 		NodeStruct* d = _data();
 
-		return impl::GetValue_int(d ? d->Value : 0, def);
+		return internal::GetValue_int(d ? d->Value : 0, def);
 	}
 
 	PUGI__FN unsigned int Text::AsUint(unsigned int def) const
 	{
 		NodeStruct* d = _data();
 
-		return impl::GetValue_uint(d ? d->Value : 0, def);
+		return internal::GetValue_uint(d ? d->Value : 0, def);
 	}
 
 	PUGI__FN double Text::AsDouble(double def) const
 	{
 		NodeStruct* d = _data();
 
-		return impl::GetValue_double(d ? d->Value : 0, def);
+		return internal::GetValue_double(d ? d->Value : 0, def);
 	}
 
 	PUGI__FN float Text::AsFloat(float def) const
 	{
 		NodeStruct* d = _data();
 
-		return impl::GetValue_float(d ? d->Value : 0, def);
+		return internal::GetValue_float(d ? d->Value : 0, def);
 	}
 
 	PUGI__FN bool Text::AsBool(bool def) const
 	{
 		NodeStruct* d = _data();
 
-		return impl::GetValue_bool(d ? d->Value : 0, def);
+		return internal::GetValue_bool(d ? d->Value : 0, def);
 	}
 
 	PUGI__FN bool Text::Set(const char_t* rhs)
 	{
 		NodeStruct* dn = _data_new();
 
-		return dn ? impl::strcpy_insitu(dn->Value, dn->header, impl::MemoryPage_Value_allocated_mask, rhs) : false;
+		return dn ? internal::strcpy_insitu(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
 	PUGI__FN bool Text::Set(int rhs)
 	{
 		NodeStruct* dn = _data_new();
 
-		return dn ? impl::SetValue_convert(dn->Value, dn->header, impl::MemoryPage_Value_allocated_mask, rhs) : false;
+		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
 	PUGI__FN bool Text::Set(unsigned int rhs)
 	{
 		NodeStruct* dn = _data_new();
 
-		return dn ? impl::SetValue_convert(dn->Value, dn->header, impl::MemoryPage_Value_allocated_mask, rhs) : false;
+		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
 	PUGI__FN bool Text::Set(double rhs)
 	{
 		NodeStruct* dn = _data_new();
 
-		return dn ? impl::SetValue_convert(dn->Value, dn->header, impl::MemoryPage_Value_allocated_mask, rhs) : false;
+		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
 	PUGI__FN bool Text::Set(bool rhs)
 	{
 		NodeStruct* dn = _data_new();
 
-		return dn ? impl::SetValue_convert(dn->Value, dn->header, impl::MemoryPage_Value_allocated_mask, rhs) : false;
+		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
 	PUGI__FN Text& Text::operator=(const char_t* rhs)
@@ -5088,7 +5097,7 @@ namespace xml
 	{
 	}
 
-	PUGI__FN NamedNode_iterator::NamedNode_iterator(const Node& node, const char_t* Name): _node(node), _Name(name)
+	PUGI__FN NamedNode_iterator::NamedNode_iterator(const Node& node, const char_t* Name): _node(node), _Name(Name)
 	{
 	}
 
@@ -5191,29 +5200,29 @@ namespace xml
 	PUGI__FN void Document::create()
 	{
 		// initialize sentinel page
-		PUGI__STATIC_ASSERT(offsetof(impl::MemoryPage, data) + sizeof(impl::DocumentStruct) + impl::MemoryPage_alignment <= sizeof(_memory));
+		PUGI__STATIC_ASSERT(offsetof(internal::MemoryPage, data) + sizeof(internal::DocumentStruct) + internal::MemoryPage_alignment <= sizeof(_memory));
 
 		// align upwards to page boundary
-		void* page_memory = reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(_memory) + (impl::MemoryPage_alignment - 1)) & ~(impl::MemoryPage_alignment - 1));
+		void* page_memory = reinterpret_cast<void*>((reinterpret_cast<uintptr_t>(_memory) + (internal::MemoryPage_alignment - 1)) & ~(internal::MemoryPage_alignment - 1));
 
 		// prepare page structure
-		impl::MemoryPage* page = impl::MemoryPage::construct(page_memory);
+		internal::MemoryPage* page = internal::MemoryPage::construct(page_memory);
 
-		page->busy_size = impl::MemoryPage_size;
+		page->busy_size = internal::MemoryPage_size;
 
 		// allocate new GetRoot
-		_GetRoot = new (page->data) impl::DocumentStruct(page);
+		_GetRoot = new (page->data) internal::DocumentStruct(page);
 		_GetRoot->prev_sibling_c = _GetRoot;
 
 		// setup sentinel page
-		page->allocator = static_cast<impl::DocumentStruct*>(_GetRoot);
+		page->allocator = static_cast<internal::DocumentStruct*>(_GetRoot);
 	}
 
-	PUGI__FN ParseResult Document::Load(Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
+	PUGI__FN /*ParseResult Document::Load(Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 	    Reset();
 	    return LoadDataStreamImpl(*this, stream, options, DocumentEncoding);
-	}
+	}*/
 
 	void Document::Save(Resource::DataStream& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
@@ -5226,22 +5235,22 @@ namespace xml
 		// destroy static storage
 		if (_buffer)
 		{
-			impl::Memory::deallocate(_buffer);
+			internal::Memory::deallocate(_buffer);
 			_buffer = 0;
 		}
 
 		// destroy dynamic storage, leave sentinel page (it's in static memory)
 		if (_GetRoot)
 		{
-			impl::MemoryPage* GetRoot_page = reinterpret_cast<impl::MemoryPage*>(_GetRoot->header & impl::MemoryPage_pointer_mask);
+			internal::MemoryPage* GetRoot_page = reinterpret_cast<internal::MemoryPage*>(_GetRoot->header & internal::MemoryPage_pointer_mask);
 			assert(GetRoot_page && !GetRoot_page->prev && !GetRoot_page->memory);
 
 			// destroy all pages
-			for (impl::MemoryPage* page = GetRoot_page->next; page; )
+			for (internal::MemoryPage* page = GetRoot_page->next; page; )
 			{
-				impl::MemoryPage* next = page->next;
+				internal::MemoryPage* next = page->next;
 
-				impl::Allocator::deallocate_page(page);
+				internal::Allocator::deallocate_page(page);
 
 				page = next;
 			}
@@ -5260,14 +5269,14 @@ namespace xml
 	{
 		Reset();
 
-		return impl::LoadStreamImpl(*this, stream, options, DocumentEncoding);
+		return internal::LoadStreamImpl(*this, stream, options, DocumentEncoding);
 	}
 
 	PUGI__FN ParseResult Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options)
 	{
 		Reset();
 
-		return impl::LoadStreamImpl(*this, stream, options, Encodingwchar_t);
+		return internal::LoadStreamImpl(*this, stream, options, Encodingwchar_t);
 	}
 #endif
 
@@ -5280,7 +5289,7 @@ namespace xml
 		Encoding DocumentEncoding = EncodingUTF8;
 	#endif
 
-		return LoadBuffer(contents, impl::strlength(contents) * sizeof(char_t), options, DocumentEncoding);
+		return LoadBuffer(contents, internal::strlength(contents) * sizeof(char_t), options, DocumentEncoding);
 	}
 
 	PUGI__FN ParseResult Document::LoadFile(const char* Path_, unsigned int options, Encoding DocumentEncoding)
@@ -5289,16 +5298,16 @@ namespace xml
 
 		FILE* file = fopen(Path_, "rb");
 
-		return impl::LoadFileImpl(*this, file, options, DocumentEncoding);
+		return internal::LoadFileImpl(*this, file, options, DocumentEncoding);
 	}
 
 	PUGI__FN ParseResult Document::LoadFile(const wchar_t* Path_, unsigned int options, Encoding DocumentEncoding)
 	{
 		Reset();
 
-		FILE* file = impl::open_file_wide(Path_, L"rb");
+		FILE* file = internal::open_file_wide(Path_, L"rb");
 
-		return impl::LoadFileImpl(*this, file, options, DocumentEncoding);
+		return internal::LoadFileImpl(*this, file, options, DocumentEncoding);
 	}
 
 	PUGI__FN ParseResult Document::LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own)
@@ -5309,19 +5318,19 @@ namespace xml
 		assert(contents || size == 0);
 
 		// get actual DocumentEncoding
-		Encoding buffer_DocumentEncoding = impl::GetBuffer_DocumentEncoding(DocumentEncoding, contents, size);
+		Encoding buffer_DocumentEncoding = internal::GetBuffer_DocumentEncoding(DocumentEncoding, contents, size);
 
 		// get private buffer
 		char_t* buffer = 0;
 		size_t length = 0;
 
-		if (!impl::convert_buffer(buffer, length, buffer_DocumentEncoding, contents, size, is_mutable)) return impl::make_ParseResult(StatusOutOfMemory);
+		if (!internal::convert_buffer(buffer, length, buffer_DocumentEncoding, contents, size, is_mutable)) return internal::make_ParseResult(StatusOutOfMemory);
 
 		// delete original buffer if we performed a conversion
-		if (own && buffer != contents && contents) impl::Memory::deallocate(contents);
+		if (own && buffer != contents && contents) internal::Memory::deallocate(contents);
 
 		// parse
-		ParseResult res = impl::Parser::parse(buffer, length, _GetRoot, options);
+		ParseResult res = internal::Parser::parse(buffer, length, _GetRoot, options);
 
 		// remember DocumentEncoding
 		res.DocumentEncoding = buffer_DocumentEncoding;
@@ -5349,7 +5358,7 @@ namespace xml
 
 	PUGI__FN void Document::Save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
-		impl::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
+		internal::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
 
 		if ((flags & FormatWriteBom) && DocumentEncoding != DocumentEncoding_latin1)
 		{
@@ -5362,7 +5371,7 @@ namespace xml
 		#endif
 		}
 
-		if (!(flags & FormatNoDeclaration) && !impl::hAsDeclaration(*this))
+		if (!(flags & FormatNoDeclaration) && !internal::hAsDeclaration(*this))
 		{
 			buffered_WriterInstance.Write(XML_TEXT("<?xml version=\"1.0\""));
 			if (DocumentEncoding == DocumentEncoding_latin1) buffered_WriterInstance.Write(XML_TEXT(" DocumentEncoding=\"ISO-8859-1\""));
@@ -5370,7 +5379,7 @@ namespace xml
 			if (!(flags & FormatRaw)) buffered_WriterInstance.Write('\n');
 		}
 
-		impl::NodeOutput(buffered_WriterInstance, *this, indent, flags, 0);
+		internal::NodeOutput(buffered_WriterInstance, *this, indent, flags, 0);
 	}
 
 #ifndef XML_NO_STL
@@ -5392,19 +5401,19 @@ namespace xml
 	PUGI__FN bool Document::SaveFile(const char* Path_, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		FILE* file = fopen(Path_, (flags & FormatSaveFileText) ? "w" : "wb");
-		return impl::SaveFileImpl(*this, file, indent, flags, DocumentEncoding);
+		return internal::SaveFileImpl(*this, file, indent, flags, DocumentEncoding);
 	}
 
 	PUGI__FN bool Document::SaveFile(const wchar_t* Path_, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
-		FILE* file = impl::open_file_wide(Path_, (flags & FormatSaveFileText) ? L"w" : L"wb");
-		return impl::SaveFileImpl(*this, file, indent, flags, DocumentEncoding);
+		FILE* file = internal::open_file_wide(Path_, (flags & FormatSaveFileText) ? L"w" : L"wb");
+		return internal::SaveFileImpl(*this, file, indent, flags, DocumentEncoding);
 	}
 
 	PUGI__FN Node Document::DocumentElement() const
 	{
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
-			if ((i->header & impl::MemoryPage_type_mask) + 1 == NodeElement)
+			if ((i->header & internal::MemoryPage_type_mask) + 1 == NodeElement)
 				return Node(i);
 
 		return Node();
@@ -5415,41 +5424,41 @@ namespace xml
 	{
 		assert(str);
 
-		return impl::AsUtf8_impl(str, wcslen(str));
+		return internal::AsUtf8_impl(str, wcslen(str));
 	}
 
 	PUGI__FN std::string MEZZ_LIB AsUtf8(const std::basic_string<wchar_t>& str)
 	{
-		return impl::AsUtf8_impl(str.c_str(), str.size());
+		return internal::AsUtf8_impl(str.c_str(), str.size());
 	}
 
 	PUGI__FN std::basic_string<wchar_t> MEZZ_LIB AsWide(const char* str)
 	{
 		assert(str);
 
-		return impl::AsWide_impl(str, strlen(str));
+		return internal::AsWide_impl(str, strlen(str));
 	}
 
 	PUGI__FN std::basic_string<wchar_t> MEZZ_LIB AsWide(const std::string& str)
 	{
-		return impl::AsWide_impl(str.c_str(), str.size());
+		return internal::AsWide_impl(str.c_str(), str.size());
 	}
 #endif
 
 	PUGI__FN void MEZZ_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate)
 	{
-		impl::Memory::allocate = allocate;
-		impl::Memory::deallocate = deallocate;
+		internal::Memory::allocate = allocate;
+		internal::Memory::deallocate = deallocate;
 	}
 
 	PUGI__FN AllocationFunction MEZZ_LIB GetMemoryAllocationFunction()
 	{
-		return impl::Memory::allocate;
+		return internal::Memory::allocate;
 	}
 
 	PUGI__FN deAllocationFunction MEZZ_LIB GetMemoryDeallocationFunction()
 	{
-		return impl::Memory::deallocate;
+		return internal::Memory::deallocate;
 	}
 }
 
@@ -5457,17 +5466,17 @@ namespace xml
 namespace std
 {
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
-	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::xml::NodeIterator&)
+	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::XML::NodeIterator&)
 	{
 		return std::bidirectional_iterator_tag();
 	}
 
-	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::xml::AttributeIterator&)
+	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::XML::AttributeIterator&)
 	{
 		return std::bidirectional_iterator_tag();
 	}
 
-	PUGI__FN std::forward_iterator_tag _Iter_cat(const Mezzanine::xml::NamedNode_iterator&)
+	PUGI__FN std::forward_iterator_tag _Iter_cat(const Mezzanine::XML::NamedNode_iterator&)
 	{
 		return std::forward_iterator_tag();
 	}
@@ -5478,17 +5487,17 @@ namespace std
 namespace std
 {
 	// Workarounds for (non-standard) iterator category detection
-	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::xml::NodeIterator&)
+	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::XML::NodeIterator&)
 	{
 		return std::bidirectional_iterator_tag();
 	}
 
-	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::xml::AttributeIterator&)
+	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::XML::AttributeIterator&)
 	{
 		return std::bidirectional_iterator_tag();
 	}
 
-	PUGI__FN std::forward_iterator_tag __iterator_category(const Mezzanine::xml::NamedNode_iterator&)
+	PUGI__FN std::forward_iterator_tag __iterator_category(const Mezzanine::XML::NamedNode_iterator&)
 	{
 		return std::forward_iterator_tag();
 	}
@@ -9699,7 +9708,7 @@ PUGI__NS_BEGIN
 	}
 PUGI__NS_END
 
-namespace xml
+namespace XML
 {
 #ifndef XML_NO_EXCEPTIONS
 	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): _Result(Result_)
@@ -9790,7 +9799,7 @@ namespace xml
 		if (size_ <= 1)
 		{
 			// deallocate old buffer
-			if (_begin != &_storage) impl::Memory::deallocate(_begin);
+			if (_begin != &_storage) internal::Memory::deallocate(_begin);
 
 			// use internal buffer
 			if (begin_ != end_) _storage = *begin_;
@@ -9801,7 +9810,7 @@ namespace xml
 		else
 		{
 			// make heap copy
-			XPathNode* storage = static_cast<XPathNode*>(impl::Memory::allocate(size_ * sizeof(XPathNode)));
+			XPathNode* storage = static_cast<XPathNode*>(internal::Memory::allocate(size_ * sizeof(XPathNode)));
 
 			if (!storage)
 			{
@@ -9815,7 +9824,7 @@ namespace xml
 			memcpy(storage, begin_, size_ * sizeof(XPathNode));
 
 			// deallocate old buffer
-			if (_begin != &_storage) impl::Memory::deallocate(_begin);
+			if (_begin != &_storage) internal::Memory::deallocate(_begin);
 
 			// finalize
 			_begin = storage;
@@ -9834,7 +9843,7 @@ namespace xml
 
 	PUGI__FN XPathNodeSet::~XPathNodeSet()
 	{
-		if (_begin != &_storage) impl::Memory::deallocate(_begin);
+		if (_begin != &_storage) internal::Memory::deallocate(_begin);
 	}
 
 	PUGI__FN XPathNodeSet::XPathNodeSet(const XPathNodeSet& ns): _type(ns._type), _begin(&_storage), _end(&_storage)
@@ -9885,12 +9894,12 @@ namespace xml
 
 	PUGI__FN void XPathNodeSet::sort(bool reverse)
 	{
-		_type = impl::XPathSort(_begin, _end, _type, reverse);
+		_type = internal::XPathSort(_begin, _end, _type, reverse);
 	}
 
 	PUGI__FN XPathNode XPathNodeSet::first() const
 	{
-		return impl::XPathFirst(_begin, _end, _type);
+		return internal::XPathFirst(_begin, _end, _type);
 	}
 
 	PUGI__FN XPathParseResult::XPathParseResult(): error("Internal error"), Offset(0)
@@ -9916,16 +9925,16 @@ namespace xml
 		switch (_type)
 		{
 		case XPathTypeNodeSet:
-			return static_cast<const impl::XPathVariableNodeSet*>(this)->Name;
+			return static_cast<const internal::XPathVariableNodeSet*>(this)->Name;
 
 		case XPathTypeNumber:
-			return static_cast<const impl::XPathVariableNumber*>(this)->Name;
+			return static_cast<const internal::XPathVariableNumber*>(this)->Name;
 
 		case XPathTypeString:
-			return static_cast<const impl::XPathVariableString*>(this)->Name;
+			return static_cast<const internal::XPathVariableString*>(this)->Name;
 
 		case XPathTypeBoolean:
-			return static_cast<const impl::XPathVariableBoolean*>(this)->Name;
+			return static_cast<const internal::XPathVariableBoolean*>(this)->Name;
 
 		default:
 			assert(!"Invalid variable Type");
@@ -9940,30 +9949,30 @@ namespace xml
 
 	PUGI__FN bool XPathVariable::GetBoolean() const
 	{
-		return (_type == XPathTypeBoolean) ? static_cast<const impl::XPathVariableBoolean*>(this)->Value : false;
+		return (_type == XPathTypeBoolean) ? static_cast<const internal::XPathVariableBoolean*>(this)->Value : false;
 	}
 
 	PUGI__FN double XPathVariable::GetNumber() const
 	{
-		return (_type == XPathTypeNumber) ? static_cast<const impl::XPathVariableNumber*>(this)->Value : impl::gen_nan();
+		return (_type == XPathTypeNumber) ? static_cast<const internal::XPathVariableNumber*>(this)->Value : internal::gen_nan();
 	}
 
 	PUGI__FN const char_t* XPathVariable::GetString() const
 	{
-		const char_t* Value = (_type == XPathTypeString) ? static_cast<const impl::XPathVariableString*>(this)->Value : 0;
+		const char_t* Value = (_type == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
 		return Value ? Value : XML_TEXT("");
 	}
 
 	PUGI__FN const XPathNodeSet& XPathVariable::GetNodeSet() const
 	{
-		return (_type == XPathTypeNodeSet) ? static_cast<const impl::XPathVariableNodeSet*>(this)->Value : impl::dummy_NodeSet;
+		return (_type == XPathTypeNodeSet) ? static_cast<const internal::XPathVariableNodeSet*>(this)->Value : internal::dummy_NodeSet;
 	}
 
 	PUGI__FN bool XPathVariable::Set(bool Value)
 	{
 		if (_type != XPathTypeBoolean) return false;
 
-		static_cast<impl::XPathVariableBoolean*>(this)->Value = Value;
+		static_cast<internal::XPathVariableBoolean*>(this)->Value = Value;
 		return true;
 	}
 
@@ -9971,7 +9980,7 @@ namespace xml
 	{
 		if (_type != XPathTypeNumber) return false;
 
-		static_cast<impl::XPathVariableNumber*>(this)->Value = Value;
+		static_cast<internal::XPathVariableNumber*>(this)->Value = Value;
 		return true;
 	}
 
@@ -9979,18 +9988,18 @@ namespace xml
 	{
 		if (_type != XPathTypeString) return false;
 
-		impl::XPathVariableString* var = static_cast<impl::XPathVariableString*>(this);
+		internal::XPathVariableString* var = static_cast<internal::XPathVariableString*>(this);
 
 		// duplicate string
-		size_t size = (impl::strlength(Value) + 1) * sizeof(char_t);
+		size_t size = (internal::strlength(Value) + 1) * sizeof(char_t);
 
-		char_t* copy = static_cast<char_t*>(impl::Memory::allocate(size));
+		char_t* copy = static_cast<char_t*>(internal::Memory::allocate(size));
 		if (!copy) return false;
 
 		memcpy(copy, Value, size);
 
 		// replace old string
-		if (var->Value) impl::Memory::deallocate(var->Value);
+		if (var->Value) internal::Memory::deallocate(var->Value);
 		var->Value = copy;
 
 		return true;
@@ -10000,7 +10009,7 @@ namespace xml
 	{
 		if (_type != XPathTypeNodeSet) return false;
 
-		static_cast<impl::XPathVariableNodeSet*>(this)->Value = Value;
+		static_cast<internal::XPathVariableNodeSet*>(this)->Value = Value;
 		return true;
 	}
 
@@ -10019,7 +10028,7 @@ namespace xml
 			{
 				XPathVariable* next = var->_next;
 
-				impl::delete_XPathVariable(var->_type, var);
+				internal::delete_XPathVariable(var->_type, var);
 
 				var = next;
 			}
@@ -10029,11 +10038,11 @@ namespace xml
 	PUGI__FN XPathVariable* XPathVariableSet::find(const char_t* Name) const
 	{
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]);
-		size_t hash = impl::hash_string(Name) % hash_size;
+		size_t hash = internal::hash_string(Name) % hash_size;
 
 		// look for existing variable
 		for (XPathVariable* var = _data[hash]; var; var = var->_next)
-			if (impl::strequal(var->Name(), Name))
+			if (internal::strequal(var->Name(), Name))
 				return var;
 
 		return 0;
@@ -10042,15 +10051,15 @@ namespace xml
 	PUGI__FN XPathVariable* XPathVariableSet::Add(const char_t* Name, XPathValueType Type)
 	{
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]);
-		size_t hash = impl::hash_string(Name) % hash_size;
+		size_t hash = internal::hash_string(Name) % hash_size;
 
 		// look for existing variable
 		for (XPathVariable* var = _data[hash]; var; var = var->_next)
-			if (impl::strequal(var->Name(), Name))
+			if (internal::strequal(var->Name(), Name))
 				return var->Type() == Type ? var : 0;
 
 		// add new variable
-		XPathVariable* Result = impl::new_XPathVariable(Type, Name);
+		XPathVariable* Result = internal::new_XPathVariable(Type, Name);
 
 		if (Result)
 		{
@@ -10099,7 +10108,7 @@ namespace xml
 
 	PUGI__FN XPathQuery::XPathQuery(const char_t* query, XPathVariableSet* variables): _impl(0)
 	{
-		impl::XPathQueryImpl* qimpl = impl::XPathQueryImpl::create();
+		internal::XPathQueryImpl* qimpl = internal::XPathQueryImpl::create();
 
 		if (!qimpl)
 		{
@@ -10111,13 +10120,13 @@ namespace xml
 		}
 		else
 		{
-			impl::buffer_holder impl_holder(qimpl, impl::XPathQueryImpl::destroy);
+			internal::buffer_holder impl_holder(qimpl, internal::XPathQueryImpl::destroy);
 
-			qimpl->GetRoot = impl::XPathParser::parse(query, variables, &qimpl->alloc, &_Result);
+			qimpl->GetRoot = internal::XPathParser::parse(query, variables, &qimpl->alloc, &_Result);
 
 			if (qimpl->GetRoot)
 			{
-				_impl = static_cast<impl::XPathQueryImpl*>(impl_holder.release());
+				_impl = static_cast<internal::XPathQueryImpl*>(impl_holder.release());
 				_Result.error = 0;
 			}
 		}
@@ -10125,58 +10134,58 @@ namespace xml
 
 	PUGI__FN XPathQuery::~XPathQuery()
 	{
-		impl::XPathQueryImpl::destroy(_impl);
+		internal::XPathQueryImpl::destroy(_impl);
 	}
 
 	PUGI__FN XPathValueType XPathQuery::ReturnType() const
 	{
 		if (!_impl) return XPathTypeNone;
 
-		return static_cast<impl::XPathQueryImpl*>(_impl)->GetRoot->retType();
+		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->retType();
 	}
 
 	PUGI__FN bool XPathQuery::EvaluateBoolean(const XPathNode& n) const
 	{
 		if (!_impl) return false;
 
-		impl::XPathContext c(n, 1, 1);
-		impl::XPathStackData sd;
+		internal::XPathContext c(n, 1, 1);
+		internal::XPathStackData sd;
 
 	#ifdef XML_NO_EXCEPTIONS
 		if (setjmp(sd.error_handler)) return false;
 	#endif
 
-		return static_cast<impl::XPathQueryImpl*>(_impl)->GetRoot->eval_boolean(c, sd.stack);
+		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_boolean(c, sd.stack);
 	}
 
 	PUGI__FN double XPathQuery::EvaluateNumber(const XPathNode& n) const
 	{
-		if (!_impl) return impl::gen_nan();
+		if (!_impl) return internal::gen_nan();
 
-		impl::XPathContext c(n, 1, 1);
-		impl::XPathStackData sd;
+		internal::XPathContext c(n, 1, 1);
+		internal::XPathStackData sd;
 
 	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return impl::gen_nan();
+		if (setjmp(sd.error_handler)) return internal::gen_nan();
 	#endif
 
-		return static_cast<impl::XPathQueryImpl*>(_impl)->GetRoot->eval_number(c, sd.stack);
+		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_number(c, sd.stack);
 	}
 
 #ifndef XML_NO_STL
 	PUGI__FN String XPathQuery::EvaluateString(const XPathNode& n) const
 	{
-		impl::XPathStackData sd;
+		internal::XPathStackData sd;
 
-		return impl::EvaluateString_impl(static_cast<impl::XPathQueryImpl*>(_impl), n, sd).c_str();
+		return internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(_impl), n, sd).c_str();
 	}
 #endif
 
 	PUGI__FN size_t XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const
 	{
-		impl::XPathStackData sd;
+		internal::XPathStackData sd;
 
-		impl::XPathString r = impl::EvaluateString_impl(static_cast<impl::XPathQueryImpl*>(_impl), n, sd);
+		internal::XPathString r = internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(_impl), n, sd);
 
 		size_t full_size = r.length() + 1;
 
@@ -10196,7 +10205,7 @@ namespace xml
 	{
 		if (!_impl) return XPathNodeSet();
 
-		impl::XPathAstNode* GetRoot = static_cast<impl::XPathQueryImpl*>(_impl)->GetRoot;
+		internal::XPathAstNode* GetRoot = static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot;
 
 		if (GetRoot->retType() != XPathTypeNodeSet)
 		{
@@ -10210,14 +10219,14 @@ namespace xml
 		#endif
 		}
 
-		impl::XPathContext c(n, 1, 1);
-		impl::XPathStackData sd;
+		internal::XPathContext c(n, 1, 1);
+		internal::XPathStackData sd;
 
 	#ifdef XML_NO_EXCEPTIONS
 		if (setjmp(sd.error_handler)) return XPathNodeSet();
 	#endif
 
-		impl::XPathNodeSet_raw r = GetRoot->eval_NodeSet(c, sd.stack);
+		internal::XPathNodeSet_raw r = GetRoot->eval_NodeSet(c, sd.stack);
 
 		return XPathNodeSet(r.begin(), r.end(), r.Type());
 	}
@@ -10326,7 +10335,6 @@ namespace xml
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-//}// namespace Mezzanine
 #endif // \MEZZXML
 
 /// @endcond

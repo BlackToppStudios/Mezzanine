@@ -76,7 +76,7 @@ namespace Mezzanine
 #ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            TerrainManager(xml::Node& XMLNode);
+            TerrainManager(XML::Node& XMLNode);
 #endif
             /// @brief Class destructor.
             virtual ~TerrainManager();
@@ -167,8 +167,8 @@ namespace Mezzanine
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
 #ifdef MEZZXML
-            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
-            ManagerBase* CreateManager(xml::Node& XMLNode);
+            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+            ManagerBase* CreateManager(XML::Node& XMLNode);
 #endif
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);

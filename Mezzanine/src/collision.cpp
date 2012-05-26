@@ -247,8 +247,8 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Collision& Col
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Collision& Col)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventCollision", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventCollision", OneTag) );
 
     Doc->GetFirstChild() >> Col;
 
@@ -257,7 +257,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Collision& 
 
 /// @todo This whole thing needs to be updated, and have a serializer added.
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Collision& Col)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Collision& Col)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventCollision"))
     {

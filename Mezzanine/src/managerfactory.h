@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+// Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -72,7 +72,7 @@ namespace Mezzanine
             /// @brief Creates a manager from XML.
             /// @param XMLNode The node of the xml document to construct from.
             /// @return Returns a pointer to the manager created.
-            virtual ManagerBase* CreateManager(xml::Node& XMLNode) = 0;
+            virtual ManagerBase* CreateManager(XML::Node& XMLNode) = 0;
 #endif
             /// @brief Destroys a Manager created by this factory.
             /// @param ToBeDestroyed A pointer to the manager to be destroyed.

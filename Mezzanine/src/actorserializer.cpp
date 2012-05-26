@@ -44,7 +44,7 @@
 
 namespace Mezzanine
 {
-    ActorRigid* ActorRigidDeSerializer::ProtoDeSerialize(const xml::Node& OneNode)
+    ActorRigid* ActorRigidDeSerializer::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==ActorRigid::SerializableName() )
         {
@@ -81,7 +81,7 @@ namespace Mezzanine
                 Vector3 tempvec;
                 //[rename, /RigidActors[1]/ActorRigid[1]/ActorBase[1]/NonStaticWorldObject[1]/WorldObject[1]/ActorRigidPhysicsSettings[1]/IndividualGravity[1]/Vector3[1]/@X, LogilabXmldiffTmpAttrZ]
 
-                xml::Node GravityNode = OneNode.GetChild(ActorBase::SerializableName()).GetChild("NonStaticWorldObject").GetChild("WorldObject").GetChild("ActorRigidPhysicsSettings").GetChild("IndividualGravity").GetFirstChild();
+                XML::Node GravityNode = OneNode.GetChild(ActorBase::SerializableName()).GetChild("NonStaticWorldObject").GetChild("WorldObject").GetChild("ActorRigidPhysicsSettings").GetChild("IndividualGravity").GetFirstChild();
                 if(!GravityNode)
                     { DeSerializeError("find gravity node", "ActorRigidDeSerializer"); }
                 tempvec.ProtoDeSerialize(GravityNode);

@@ -59,12 +59,12 @@ namespace Mezzanine
         const String& SoundSet::GetName() const
             { return Name; }
 
-        xml::Node SoundSet::ProtoSerialize() const
+        XML::Node SoundSet::ProtoSerialize() const
         {
 
         }
 
-        void SoundSet::ProtoDeSerialize(const xml::Node&)
+        void SoundSet::ProtoDeSerialize(const XML::Node&)
         {
 
         }

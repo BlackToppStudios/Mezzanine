@@ -56,7 +56,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    MeshManager::MeshManager(xml::Node& XMLNode)
+    MeshManager::MeshManager(XML::Node& XMLNode)
     {
         this->Priority = 45;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -680,7 +680,7 @@ namespace Mezzanine
         }else return new MeshManager();
     }
 
-    ManagerBase* DefaultMeshManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultMeshManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(MeshManager::SingletonValid())
         {

@@ -89,7 +89,7 @@ namespace Mezzanine
     ///     - @ref XMLModifyingNodeData
     ///     - @ref XMLModifyingAttributeData
     ///
-    /// The central object that will carry information during this process is the Mezzanine::xml::Node. The Mezzanine::xml::Node is an excellent
+    /// The central object that will carry information during this process is the Mezzanine::XML::Node. The Mezzanine::XML::Node is an excellent
     /// tool for converting and storing data in a single unified heirarchy.
     /// \n \n
     /// C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally
@@ -134,9 +134,9 @@ namespace Mezzanine
     /// Creating a class that be serialized is easy. There is just one function that it must implement. If a class implements this,
     /// it is said to be Serializable:
     /// @code
-    /// void SerializableClass::ProtoSerialize(xml::Node&) const;
+    /// void SerializableClass::ProtoSerialize(XML::Node&) const;
     /// @endcode
-    /// The member ProtoSerialize(xml::Node&) is expected to accept a Mezzanine::xml::Node and attach exactly one Node to it. This new Serialized
+    /// The member ProtoSerialize(XML::Node&) is expected to accept a Mezzanine::XML::Node and attach exactly one Node to it. This new Serialized
     /// node should contain all the data stored in the current state of the object being serialized. Storing data outside of this
     /// one node could cause undefined behavior.
     /// \n \n
@@ -148,15 +148,15 @@ namespace Mezzanine
     /// Integrating with the DeSerialization code is pretty easy too. There are two functions you are expected to implement to
     /// create a DeSerializable:
     /// @code
-    /// void DeSerializableClass::ProtoDeSerialize(const xml::Node&);
+    /// void DeSerializableClass::ProtoDeSerialize(const XML::Node&);
     /// static String DeSerializableClass::SerializableName();
     /// @endcode
     /// The SerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example
     /// A Mezzanine::Vector3 returns "Vector3", and a Mezzanine::ActorRigid return "ActorRigid". If a class is both DeSerializable and
     /// serializable it makes sense to call this function when assigning the name to the Serialized Node it creates.
     /// \n \n
-    /// ProtoDeSerialize(const xml::Node&), accepts a Mezzanine::xml::Node. The Node passed to it would correspond to the Serialized
-    /// Node created by the ProtoSerialize(xml::Node&) function listed above. If xml is created by something then this is calling
+    /// ProtoDeSerialize(const XML::Node&), accepts a Mezzanine::XML::Node. The Node passed to it would correspond to the Serialized
+    /// Node created by the ProtoSerialize(XML::Node&) function listed above. If xml is created by something then this is calling
     /// code is expecting this function to be the correct deserialization function. It is advisable but not required to verify the
     /// name of the xml node matches what is expected and that
     /// the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the
@@ -169,11 +169,11 @@ namespace Mezzanine
     /// template <class T> std::istream& DeSerialize(std::istream& Stream, T& Converted);
     /// @endcode
     /// The functions make calls on the Mezzanine::xml system and expect a fairly basic set of conditions to be met before they are used.
-    /// Serialize accepts an output stream and the class instance to be Serialized. It will create an xml::Document and populate it
+    /// Serialize accepts an output stream and the class instance to be Serialized. It will create an XML::Document and populate it
     /// data from the class provided and then emit that into the stream. DeSerialize accepts an inputstream and the object to be
     /// populated. It expects the next xml element in the stream to be a serialized version of the passed object and will then
     /// overwrite as many of the values of the passed object as possible with the serialized values. For small items DeSerialize
-    /// is fine, where possible it is better to have the xml::Document open the file or stream itself as to prevent the second
+    /// is fine, where possible it is better to have the XML::Document open the file or stream itself as to prevent the second
     /// pass through to find exactly one xml element.
     /// \n \n
     /// @subsubsection serializationserializers Working with Serializers and Deserializers
@@ -188,14 +188,14 @@ namespace Mezzanine
     /// @code
     /// template <class Serializable> class Serializer
     /// {
-    ///     virtual void Serializer::ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
+    ///     virtual void Serializer::ProtoSerializeAll(XML::Node& CurrentRoot) const = 0;
     ///     virtual std::ostream& Serializer::SerializeAll(std::ostream& Stream) const;
-    ///     virtual void Serializer::ProtoSerialize(const Serializable& Target, xml::Node& CurrentRoot) = 0;
+    ///     virtual void Serializer::ProtoSerialize(const Serializable& Target, XML::Node& CurrentRoot) = 0;
     ///     virtual std::ostream& Serializer::Serialize(std::ostream& Stream, const Serializable& Target)
     /// };
     /// @endcode
     /// Serializer::ProtoSerialize() when implement should take the required steps to attach a Serialized Node to the
-    /// Passed xml::Node that represent the Serialization target. It is expected to get the extra information that the target
+    /// Passed XML::Node that represent the Serialization target. It is expected to get the extra information that the target
     /// cannot provide from somewhere else. Ideally the the Serializer can be, or be associated with, a manager or container
     /// of some kind. There is not default implementation of this.
     /// \n \n
@@ -218,9 +218,9 @@ namespace Mezzanine
     /// @code
     /// template <class DeSerializable> class DeSerializer
     /// {
-    ///     virtual void DeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode) = 0;
+    ///     virtual void DeSerializer::ProtoDeSerializeAll(const XML::Node& OneNode) = 0;
     ///     virtual std::istream& DeSerializer::DeSerializeAll(std::istream& Stream)
-    ///     virtual DeSerializable* DeSerializer::ProtoDeSerialize(const xml::Node& OneNode) = 0;
+    ///     virtual DeSerializable* DeSerializer::ProtoDeSerialize(const XML::Node& OneNode) = 0;
     ///     virtual std::istream& DeSerializer::DeSerialize(std::istream& Stream)
     ///     virtual String ContainerName() const = 0;
     /// };
@@ -237,7 +237,7 @@ namespace Mezzanine
     /// system. Sometimes it may be too costly or not possible to modify the code to integrate it. For these the following
     /// function exists:
     /// @code
-    /// template <class T> void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
+    /// template <class T> void SloppyProtoSerialize(const T& Converted, XML::Node& CurrentRoot)
     /// @endcode
     /// This function will make a call on the the stream insertion operator of the class passed in. If one doesn't exist
     /// it is easy to add one in your code without chaning the original source. If one does exist than you should probably
@@ -263,7 +263,7 @@ namespace Mezzanine
     /// std::istream& operator >> (std::istream& stream, Mezzanine::ActorRigid& x)
     ///     { return DeSerialize(stream, x); }
     ///
-    /// void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigid& x)
+    /// void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x)
     ///     { x.ProtoDeSerialize(OneNode); }
     ///
     /// #endif  // \Mezzxml
@@ -310,7 +310,7 @@ namespace Mezzanine
         public:
         /// @brief Get all of the data from the serializable class instance
         /// @details This is to be implemented in individual serializer with logic
-        /// specific to the required tasks. It is expected to produce an xml::Node
+        /// specific to the required tasks. It is expected to produce an XML::Node
         /// containing the entirety of the data required to reconstitute the serialized
         /// class. \n \n
         /// This is expected to gets it's knowledge about what to serialize some other than
@@ -319,25 +319,25 @@ namespace Mezzanine
         /// \n \n
         /// This is not implemented by default.
         /// @param CurrentRoot The point in the XML hierarchy that all the items deserialized should be appended to.
-        virtual void ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
+        virtual void ProtoSerializeAll(XML::Node& CurrentRoot) const = 0;
         /// @brief Output the complete serialized data to a stream.
         /// @param Stream The std::ostream to send the data into.
         /// @details By default this is implemented in using ProtoSerializeAll().
         /// @return The populated ostream.
         virtual std::ostream& SerializeAll(std::ostream& Stream) const
         {
-            Mezzanine::xml::Document Doc;
+            Mezzanine::XML::Document Doc;
             Doc.Load("");
             ProtoSerializeAll(Doc);
             Doc.Print(Stream);
             return Stream;
         }
 
-        /// @brief Get all the serialized data about one class instance in an xml::Node
+        /// @brief Get all the serialized data about one class instance in an XML::Node
         /// @param Target A reference to class instance to be deserialized.
         /// @details This is not implemented by default.
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
-        virtual void ProtoSerialize(const Serializable& Target, xml::Node& CurrentRoot) = 0;
+        virtual void ProtoSerialize(const Serializable& Target, XML::Node& CurrentRoot) = 0;
         /// @brief Output the specified member to a stream
         /// @param Target A reference to class instance to be deserialized.
         /// @param Stream The std::ostream to send the data into.
@@ -345,7 +345,7 @@ namespace Mezzanine
         /// @return The std::ostream that was passed in.
         virtual std::ostream& Serialize(std::ostream& Stream, const Serializable& Target)
         {
-            Mezzanine::xml::Document Doc;
+            Mezzanine::XML::Document Doc;
             Doc.Load("");
             ProtoSerialize(Target,Doc);
             Doc.Print(Stream);
@@ -360,7 +360,7 @@ namespace Mezzanine
     /// @details Some classes Must have certain values available at the time of construction. This make deserializing them by overwriting an existing
     /// class instance impractical. \n \n
     /// This is expected to work with classes that have implemented the required DeSerializable functions. Specifically This makes use of
-    /// "static String SerializableName()", and it is expected that functions that must be implemented would call on "void ProtoDeSerialize(const xml::Node&)".
+    /// "static String SerializableName()", and it is expected that functions that must be implemented would call on "void ProtoDeSerialize(const XML::Node&)".
     /// The type of this template is expected to match what this is deserializing.
     /// \n \n
     /// This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be
@@ -376,10 +376,10 @@ namespace Mezzanine
         /// @details This is expected to put the deserialized items somewhere they can be accessed by the calling,
         /// but provides no facility for working them itself. \n \n
         /// Not implemented in default DeSerializer.
-        virtual void ProtoDeSerializeAll(const xml::Node& OneNode)
+        virtual void ProtoDeSerializeAll(const XML::Node& OneNode)
         {
             // no checking occurs here, because this should be DeSerializeAll(istream&)
-            xml::Node SingleItemNode = OneNode.GetFirstChild();
+            XML::Node SingleItemNode = OneNode.GetFirstChild();
             while(SingleItemNode)
             {
                 ProtoDeSerialize(SingleItemNode);
@@ -388,13 +388,13 @@ namespace Mezzanine
         }
         /// @brief Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them
         /// @param Stream The std::istream to get the data from.
-        /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node&) to accept11
+        /// @details The default implementation of this uses ProtoDeSerializeAll(XML::Node&) to accept11
         /// The complete XML to serialise and assemble it in memory.
         /// @return This returns the input stream after the xml document has been extracted from it.
         virtual std::istream& DeSerializeAll(std::istream& Stream)
         {
-            Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(Stream) );
-            std::auto_ptr<Mezzanine::xml::Document> Doc(Mezzanine::xml::PreParseClassFromSingleTag(this->ContainerName(), OneTag) );
+            Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
+            std::auto_ptr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(this->ContainerName(), OneTag) );
             ProtoDeSerializeAll(Doc->GetFirstChild());
             return Stream;
         }
@@ -403,16 +403,16 @@ namespace Mezzanine
         /// @param OneNode A reference to the XML node to reconstitute into a live class instance.
         /// @details Not implemented in default serializer.
         /// @return A pointer to the freshly deserialized class instance.
-        virtual DeSerializable* ProtoDeSerialize(const xml::Node& OneNode) = 0;
+        virtual DeSerializable* ProtoDeSerialize(const XML::Node& OneNode) = 0;
         /// @brief Get the serialized version of all the live data from the stream.
         /// @param Stream The std::istream to get the data from.
-        /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node*) to accept
+        /// @details The default implementation of this uses ProtoDeSerializeAll(XML::Node*) to accept
         /// The complete XML to serialise and assemble it in memory.
         /// @return This returns the input stream after the xml document has been extracted from it.
         virtual std::istream& DeSerialize(std::istream& Stream)
         {
-            Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(Stream) );
-            std::auto_ptr<Mezzanine::xml::Document> Doc(Mezzanine::xml::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
+            Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
+            std::auto_ptr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
             ProtoDeSerialize(Doc->GetFirstChild());
             return Stream;
         }
@@ -425,15 +425,15 @@ namespace Mezzanine
 
     #ifdef MEZZXML
     /// @brief Convert any class that supports serialization or has a serializer to a string of chars in a stream
-    /// @details Any Class will work with this template as long as it implements the method "xml::Node ProtoSerialize(xml::Document&) const"
+    /// @details Any Class will work with this template as long as it implements the method "XML::Node ProtoSerialize(XML::Document&) const"
     /// @param Stream The ostream to put the serializable into.
-    /// @param Converted The item to be serialized, which must have a "xml::Node ProtoSerialize(xml::Node& CurrentRoot) const" method.
+    /// @param Converted The item to be serialized, which must have a "XML::Node ProtoSerialize(XML::Node& CurrentRoot) const" method.
     /// @param Indent Defaults to nothing but can be set to "\t" to get normal
     /// @return A the stream that was passed and now contains the serialized object.
     template <class T>
     std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") )
     {
-        Mezzanine::xml::Document Doc;
+        Mezzanine::XML::Document Doc;
         Doc.Load("");           // This sets the encoding to UTF8 ?!
         Converted.ProtoSerialize(Doc);
         Doc.Print(Stream, Indent.c_str());
@@ -441,7 +441,7 @@ namespace Mezzanine
     }
 
     /// @brief Deserialize the next xml tag in the stream into a specific in memory class instance.
-    /// @details "void ProtoDeSerialize(const xml::Node&)" and "static String SerializableName() const" must be implemented on
+    /// @details "void ProtoDeSerialize(const XML::Node&)" and "static String SerializableName() const" must be implemented on
     /// the class instance that is passed in for this to work
     /// @param Stream The istream to extract the required data from
     /// @param Converted The Class member that is deserialized.
@@ -449,8 +449,8 @@ namespace Mezzanine
     template <class T>
     std::istream& DeSerialize(std::istream& Stream, T& Converted)
     {
-        Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(Stream) );
-        std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", Converted.SerializableName(), OneTag) );
+        Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
+        std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", Converted.SerializableName(), OneTag) );
 
         Converted.ProtoDeSerialize(Doc->GetFirstChild());
 
@@ -459,19 +459,19 @@ namespace Mezzanine
 
     /// @internal
     /// @brief Used to interface with a previous version of the serialization code.
-    /// @details The older serialization was implemented entirely in streaming operators. This uses those, however inneficient to get the xml::Node that
+    /// @details The older serialization was implemented entirely in streaming operators. This uses those, however inneficient to get the XML::Node that
     /// the current serialization solution is centered around.
     /// @param Converted The class implementing older serialization code.
     /// @param CurrentRoot The place in the xml hiearchy to append the items to be sloppily ProtoSerialized.
     template <class T>
-    void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
+    void SloppyProtoSerialize(const T& Converted, XML::Node& CurrentRoot)
     {
         std::stringstream Depot;         //Make a place to store serialized XML
-        xml::Document Staging;      //Make a place to convert from XML to an xml node
+        XML::Document Staging;      //Make a place to convert from XML to an xml node
         Depot << Converted;         //Use old conversion tools to convert to serialized XML as if writing to a file
         Staging.Load(Depot);        //Load To the staging area as if loading XML form a file or whatever.
 
-        CurrentRoot.AppendCopy(Staging.DocumentElement()); //Append our work as an xml::node to the desired place in the xml Hierarchy.
+        CurrentRoot.AppendCopy(Staging.DocumentElement()); //Append our work as an XML::node to the desired place in the xml Hierarchy.
     }
 
     /// @brief Simply does some string concatenation, then throws an Exception
@@ -495,12 +495,12 @@ namespace Mezzanine
 } // /Namespace Mezzanine
 
 /*
-/// @brief This will call convert an xml::Node into Text in a stream
+/// @brief This will call convert an XML::Node into Text in a stream
 /// @param Stream The std::ostream that the serializable will be stuffed into.
 /// @param OneNode The xml to be converted
 /// @return This returns Stream that is passed in, with the additional data of the serialized object.
 //template <>
-std::ostream& MEZZ_LIB operator<< <Mezzanine::xml::Node> (std::ostream& Stream, const Mezzanine::xml::Node& OneNode)
+std::ostream& MEZZ_LIB operator<< <Mezzanine::XML::Node> (std::ostream& Stream, const Mezzanine::XML::Node& OneNode)
 {
     OneNode.Print(Stream);
     return Stream;

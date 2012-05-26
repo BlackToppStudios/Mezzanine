@@ -534,16 +534,16 @@ namespace Mezzanine
 
 #ifdef MEZZXML
     // Serializable
-    void ColourValue::ProtoSerialize(xml::Node& CurrentRoot) const
+    void ColourValue::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::xml::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::SerializableName());
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(this->ColourValue::SerializableName());
         VecNode.SetName(this->ColourValue::SerializableName());
 
-        Mezzanine::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-        Mezzanine::xml::Attribute RAttr = VecNode.AppendAttribute("Red");
-        Mezzanine::xml::Attribute GAttr = VecNode.AppendAttribute("Green");
-        Mezzanine::xml::Attribute BAttr = VecNode.AppendAttribute("Blue");
-        Mezzanine::xml::Attribute AAttr = VecNode.AppendAttribute("Alpha");
+        Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        Mezzanine::XML::Attribute RAttr = VecNode.AppendAttribute("Red");
+        Mezzanine::XML::Attribute GAttr = VecNode.AppendAttribute("Green");
+        Mezzanine::XML::Attribute BAttr = VecNode.AppendAttribute("Blue");
+        Mezzanine::XML::Attribute AAttr = VecNode.AppendAttribute("Alpha");
         if( VersionAttr && RAttr && BAttr && GAttr && AAttr)
         {
             if( VersionAttr.SetValue("1") && RAttr.SetValue(this->R) && BAttr.SetValue(this->B) && GAttr.SetValue(this->G) && AAttr.SetValue(this->A))
@@ -558,7 +558,7 @@ namespace Mezzanine
     }
 
     // DeSerializable
-    void ColourValue::ProtoDeSerialize(const xml::Node& OneNode)
+    void ColourValue::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->ColourValue::SerializableName() )
         {
@@ -595,7 +595,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::ColourValue& E
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ColourValue& Ev)
     { return DeSerialize(stream, Ev); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ColourValue& Ev)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ColourValue& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
 

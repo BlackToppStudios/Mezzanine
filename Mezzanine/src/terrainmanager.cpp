@@ -56,7 +56,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    TerrainManager::TerrainManager(xml::Node& XMLNode)
+    TerrainManager::TerrainManager(XML::Node& XMLNode)
     {
         Priority = 30;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -210,7 +210,7 @@ namespace Mezzanine
         }else return new TerrainManager();
     }
 
-    ManagerBase* DefaultTerrainManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultTerrainManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(TerrainManager::SingletonValid())
         {

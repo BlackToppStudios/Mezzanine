@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+// Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -196,10 +196,10 @@ namespace Mezzanine
             bool SaveCurrent;
             void LoadSettingsFromFile(const String& FileName, const String& Path);
             void SaveSettingsToFile(StringVector& GroupNames, const String& FileName, const String& Path);
-            void LoadSettingSetFromXML(xml::Node& XMLNode, ObjectSettingSet* Set);
-            void SaveSettingSetToXML(xml::Node& XMLNode, ObjectSettingSet* Set);
+            void LoadSettingSetFromXML(XML::Node& XMLNode, ObjectSettingSet* Set);
+            void SaveSettingSetToXML(XML::Node& XMLNode, ObjectSettingSet* Set);
             virtual String GetObjectRootNodeName() const = 0;
-            virtual xml::Node CreateCurrentSettings() = 0;
+            virtual XML::Node CreateCurrentSettings() = 0;
 #endif
             virtual void ApplySettingGroupImpl(ObjectSettingSetContainer* Group) = 0;
         public:
@@ -264,7 +264,7 @@ namespace Mezzanine
             void LoadSettings(const String& FileName);
             /// @brief Loads settings from an xml node.
             /// @param RootSettings The node that reprsents the root of the settings group or groups.
-            void LoadSettings(xml::Node& RootSettings);
+            void LoadSettings(XML::Node& RootSettings);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Saving Utilities
@@ -290,11 +290,11 @@ namespace Mezzanine
             void SaveSettings(StringVector& GroupNames, const String& FileName);
             /// @brief Saves all the current settings groups as children of the provided XML node.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
-            void SaveSettings(xml::Node& RootSettings);
+            void SaveSettings(XML::Node& RootSettings);
             /// @brief Saves the named settings groups as children of the provided XML node.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
-            void SaveSettings(StringVector& GroupNames, xml::Node& RootSettings);
+            void SaveSettings(StringVector& GroupNames, XML::Node& RootSettings);
 #endif
     };//ObjectSettingsHandler
 }//Mezzanine

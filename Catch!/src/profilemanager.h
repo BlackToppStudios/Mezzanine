@@ -15,13 +15,13 @@ class CatchProfile
         LevelScoreMap LevelScores;
         String ProfileName;
 
-        void SerializeProfileName(xml::Document& ProfileDoc);
-        void SerializeLevelScores(xml::Document& ProfileDoc);
-        void DeSerializeProfileName(xml::Document& ProfileDoc);
-        void DeSerializeLevelScores(xml::Document& ProfileDoc);
+        void SerializeProfileName(XML::Document& ProfileDoc);
+        void SerializeLevelScores(XML::Document& ProfileDoc);
+        void DeSerializeProfileName(XML::Document& ProfileDoc);
+        void DeSerializeLevelScores(XML::Document& ProfileDoc);
     public:
         CatchProfile(const String& Name);
-        CatchProfile(xml::Document& ProfileDoc);
+        CatchProfile(XML::Document& ProfileDoc);
         ~CatchProfile();
 
         void Save(const String& ProfilesDir);
@@ -52,7 +52,7 @@ class ProfileManager
 
         GameProfile* CreateNewProfile(const String& Name);
         GameProfile* LoadProfile(const String& FileName);
-        GameProfile* LoadProfile(xml::Document& ProfileDoc);
+        GameProfile* LoadProfile(XML::Document& ProfileDoc);
         GameProfile* GetProfile(const String& Name) const;
         GameProfile* GetProfile(const Whole& Index) const;
         Whole GetNumLoadedProfiles() const;

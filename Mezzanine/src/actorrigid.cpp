@@ -272,38 +272,38 @@ namespace Mezzanine
     String ActorRigid::PhysicsSettingsSerializableName() const
         { return "ActorRigidPhysicsSettings"; }
 
-    void ActorRigid::ProtoSerialize(xml::Node& CurrentRoot) const
+    void ActorRigid::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node ActorNode = CurrentRoot.AppendChild("ActorRigid");
+        XML::Node ActorNode = CurrentRoot.AppendChild("ActorRigid");
         if (!ActorNode) { ThrowSerialError("create ActorRigidNode");}
 
-        xml::Attribute Version = ActorNode.AppendAttribute("Version");
+        XML::Attribute Version = ActorNode.AppendAttribute("Version");
         if (Version)
             { Version.SetValue(1); }
         else
             { SerializeError("Create set Version on ActorRigid node", SerializableName()); }
 
-        xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
+        XML::Attribute ActorName = ActorNode.AppendAttribute("Name");
             ActorName.SetValue(this->GetName());
-        xml::Attribute ActorFile = ActorNode.AppendAttribute("File");
+        XML::Attribute ActorFile = ActorNode.AppendAttribute("File");
             ActorFile.SetValue(this->GraphicsObject->getMesh()->getName());
-        xml::Attribute ActorGroup = ActorNode.AppendAttribute("Group");
+        XML::Attribute ActorGroup = ActorNode.AppendAttribute("Group");
             ActorGroup.SetValue(this->GraphicsObject->getMesh()->getGroup());
         if( !(ActorName && ActorFile && ActorGroup) )
             { ThrowSerialError("creating ActorRigid Attributes");}
 
-        xml::Node LinearMovementFactor = ActorNode.AppendChild("LinearMovementFactor");
+        XML::Node LinearMovementFactor = ActorNode.AppendChild("LinearMovementFactor");
         if (!LinearMovementFactor) { ThrowSerialError("create LinearMovementFactor Node"); }
         this->GetLinearMovementFactor().ProtoSerialize(LinearMovementFactor);
 
-        xml::Node AngularMovementFactor = ActorNode.AppendChild("AngularMovementFactor");
+        XML::Node AngularMovementFactor = ActorNode.AppendChild("AngularMovementFactor");
         if (!AngularMovementFactor) { ThrowSerialError("create AngularMovementFactor Node"); }
         this->GetAngularMovementFactor().ProtoSerialize(AngularMovementFactor);
 
         ActorBase::ProtoSerialize(ActorNode);
     }
 
-    void ActorRigid::ProtoDeSerialize(const xml::Node& OneNode)
+    void ActorRigid::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->ActorRigid::SerializableName() )
         {
@@ -312,13 +312,13 @@ namespace Mezzanine
                 this->ActorBase::ProtoDeSerialize(OneNode.GetChild(this->ActorBase::SerializableName()));
 
                 Vector3 TempVec;
-                xml::Node LinearMovementFactor = OneNode.GetChild("LinearMovementFactor").GetFirstChild();
+                XML::Node LinearMovementFactor = OneNode.GetChild("LinearMovementFactor").GetFirstChild();
                 if(!LinearMovementFactor)
                     { DeSerializeError("locate LinearMovementFactor node",SerializableName()); }
                 TempVec.ProtoDeSerialize(LinearMovementFactor);
                 this->SetLinearMovementFactor(TempVec);
 
-                xml::Node AngularMovementFactor = OneNode.GetChild("AngularMovementFactor").GetFirstChild();
+                XML::Node AngularMovementFactor = OneNode.GetChild("AngularMovementFactor").GetFirstChild();
                 if(!AngularMovementFactor)
                     { DeSerializeError("locate AngularMovementFactor node",SerializableName()); }
                 TempVec.ProtoDeSerialize(AngularMovementFactor);
@@ -348,7 +348,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigid& Ac
 std::istream& operator >> (std::istream& stream, Mezzanine::ActorRigid& x)
     { return DeSerialize(stream, x); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigid& x)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x)
     { x.ProtoDeSerialize(OneNode); }
 
 

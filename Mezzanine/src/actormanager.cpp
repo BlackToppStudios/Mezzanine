@@ -55,7 +55,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    ActorManager::ActorManager(xml::Node& XMLNode)
+    ActorManager::ActorManager(XML::Node& XMLNode)
     {
         Priority = 20;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -214,7 +214,7 @@ namespace Mezzanine
         }else return new ActorManager();
     }
 
-    ManagerBase* DefaultActorManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultActorManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(ActorManager::SingletonValid())
         {

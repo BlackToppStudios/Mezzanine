@@ -219,7 +219,7 @@ namespace Mezzanine
         else OgreCore = Ogre::Root::getSingletonPtr();
 
         // Set up the data we'll be populating.
-        xml::Attribute CurrAttrib;
+        XML::Attribute CurrAttrib;
         String GUIInit, ResourceInit, PluginsInit, LogFileName;
         String PluginExtension, PluginPath;
 
@@ -232,12 +232,12 @@ namespace Mezzanine
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();
         Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath);
-        xml::Document InitDoc;
-        InitDoc.Load(InitStream);
+        XML::Document InitDoc;
+        //InitDoc.Load(InitStream);
 
         // Get the world settings and set them.
-        xml::Node WorldSettings = InitDoc.GetChild("WorldSettings");
-        for( xml::NodeIterator SetIt = WorldSettings.begin() ; SetIt != WorldSettings.end() ; ++SetIt )
+        XML::Node WorldSettings = InitDoc.GetChild("WorldSettings");
+        for( XML::NodeIterator SetIt = WorldSettings.begin() ; SetIt != WorldSettings.end() ; ++SetIt )
         {
             String SecName = (*SetIt).Name();
             if( "FrameSettings" == SecName )
@@ -254,7 +254,7 @@ namespace Mezzanine
             }
             else if( "LoggingSettings" == SecName )
             {
-                xml::Attribute Frequency = (*SetIt).GetAttribute("Frequency");
+                XML::Attribute Frequency = (*SetIt).GetAttribute("Frequency");
                 if(!Frequency.Empty())
                 {
                     String FrequencyStr = Frequency.AsString();
@@ -275,7 +275,7 @@ namespace Mezzanine
                     }
                 }
 
-                xml::Node LogFile = (*SetIt).GetChild("LogFile");
+                XML::Node LogFile = (*SetIt).GetChild("LogFile");
                 if(!LogFile.Empty())
                 {
                     CurrAttrib = LogFile.GetAttribute("FileName");
@@ -290,8 +290,8 @@ namespace Mezzanine
         else OgreLogs->createLog("Mezzanine.log",true,true);
 
         // Get the other initializer files we'll be using, since we'll need the plugins initializer.
-        xml::Node InitFiles = InitDoc.GetChild("OtherInitializers");
-        for( xml::NodeIterator InitIt = InitFiles.begin() ; InitIt != InitFiles.end() ; ++InitIt )
+        XML::Node InitFiles = InitDoc.GetChild("OtherInitializers");
+        for( XML::NodeIterator InitIt = InitFiles.begin() ; InitIt != InitFiles.end() ; ++InitIt )
         {
             String InitFileName = (*InitIt).Name();
             if( "PluginInit" == InitFileName )
@@ -319,25 +319,25 @@ namespace Mezzanine
         {
             PluginExtension = ResourceMan->GetPluginExtension();
             Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath);
-            xml::Document PluginDoc;
-            PluginDoc.Load(PluginStream);
+            XML::Document PluginDoc;
+            //PluginDoc.Load(PluginStream);
             // Get the plugin path, if it's there.
-            xml::Node PlgPath = PluginDoc.GetChild("PluginPath");
+            XML::Node PlgPath = PluginDoc.GetChild("PluginPath");
             if(!PlgPath.Empty())
             {
                 CurrAttrib = PlgPath.GetAttribute("Path");
                 if(!CurrAttrib.Empty())
                     PluginPath = CurrAttrib.AsString();
             }else PluginPath = ".";
-            xml::Node OgrePlugins = PluginDoc.GetChild("OgrePlugins");
-            for( xml::NodeIterator OPlgIt = OgrePlugins.begin() ; OPlgIt != OgrePlugins.end() ; ++OPlgIt )
+            XML::Node OgrePlugins = PluginDoc.GetChild("OgrePlugins");
+            for( XML::NodeIterator OPlgIt = OgrePlugins.begin() ; OPlgIt != OgrePlugins.end() ; ++OPlgIt )
             {
                 CurrAttrib = (*OPlgIt).GetAttribute("FileName");
                 if(!CurrAttrib.Empty())
                     OgreCore->loadPlugin(PluginPath + (CurrAttrib.AsString()) + PluginExtension);
             }
-            xml::Node Plugins = PluginDoc.GetChild("Plugins");
-            for( xml::NodeIterator PlgIt = Plugins.begin() ; PlgIt != Plugins.end() ; ++PlgIt )
+            XML::Node Plugins = PluginDoc.GetChild("Plugins");
+            for( XML::NodeIterator PlgIt = Plugins.begin() ; PlgIt != Plugins.end() ; ++PlgIt )
             {
                 /// @todo This is currently not supported as we have no plugins of our own.  This should be implemented if that changes.
             }
@@ -347,11 +347,11 @@ namespace Mezzanine
         /*if(!ResourceInit.empty())
         {
             Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
-            xml::Document ResourceDoc;
+            XML::Document ResourceDoc;
             ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
-            xml::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
-            for( xml::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
+            XML::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
+            for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
                 String GroupName, GroupType, GroupPath;
                 bool GroupRecursive = false;
@@ -375,8 +375,8 @@ namespace Mezzanine
                 ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
             }
             // Get what resource groups should be initialized.
-            xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
-            for( xml::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
+            XML::Node InitGroups = ResourceDoc.GetChild("InitGroups");
+            for( XML::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
             {
                 String GroupName;
                 CurrAttrib = (*InitIt).GetAttribute("GroupName");
@@ -387,8 +387,8 @@ namespace Mezzanine
         }//*/
 
         // Create the requested managers and set their necessary values.
-        xml::Node Managers = InitDoc.GetChild("Managers");
-        for( xml::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
+        XML::Node Managers = InitDoc.GetChild("Managers");
+        for( XML::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
         {
             CreateManager( (*ManIt).Name(), (*ManIt) );
 
@@ -554,11 +554,11 @@ namespace Mezzanine
         if(!ResourceInit.empty())
         {
             Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
-            xml::Document ResourceDoc;
-            ResourceDoc.Load(ResourceStream);
+            XML::Document ResourceDoc;
+            //ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
-            xml::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
-            for( xml::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
+            XML::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
+            for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
                 String GroupName, GroupType, GroupPath;
                 bool GroupRecursive = false;
@@ -582,8 +582,8 @@ namespace Mezzanine
                 ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
             }
             // Get what resource groups should be initialized.
-            xml::Node InitGroups = ResourceDoc.GetChild("InitGroups");
-            for( xml::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
+            XML::Node InitGroups = ResourceDoc.GetChild("InitGroups");
+            for( XML::NodeIterator InitIt = InitGroups.begin() ; InitIt != InitGroups.end() ; ++InitIt )
             {
                 String GroupName;
                 CurrAttrib = (*InitIt).GetAttribute("GroupName");
@@ -1078,7 +1078,7 @@ namespace Mezzanine
             AddManager(NewMan);
     }
 #ifdef MEZZXML
-    ManagerBase* World::CreateManager(const String& ManagerImplName, xml::Node& XMLNode, bool AddToWorld)
+    ManagerBase* World::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld)
     {
         ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
         if( ManIt == ManagerFactories.end() )

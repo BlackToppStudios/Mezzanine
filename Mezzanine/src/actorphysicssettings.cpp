@@ -122,23 +122,23 @@ namespace Mezzanine
 
 #ifdef MEZZXML
         // Serializable
-        void ActorBasePhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+        void ActorBasePhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            xml::Node BaseNode = CurrentRoot.AppendChild(this->ActorBasePhysicsSettings::SerializableName());
+            XML::Node BaseNode = CurrentRoot.AppendChild(this->ActorBasePhysicsSettings::SerializableName());
             if (!BaseNode)
                 { SerializeError("Create BaseNode", SerializableName()); }
 
-            Mezzanine::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+            Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
             if (!Version)
                 { SerializeError("Create Version Attribute", SerializableName()); }
             Version.SetValue(1);
 
-            Mezzanine::xml::Attribute CCDMotionThreshold = BaseNode.AppendAttribute("CCDMotionThreshold");
+            Mezzanine::XML::Attribute CCDMotionThreshold = BaseNode.AppendAttribute("CCDMotionThreshold");
             if (!CCDMotionThreshold)
                 { SerializeError("Create CCDMotionThreshold Attribute", SerializableName()); }
             CCDMotionThreshold.SetValue(this->GetCCDMotionThreshold());
 
-            Mezzanine::xml::Attribute CCDSphereRadius = BaseNode.AppendAttribute("CCDSphereRadius");
+            Mezzanine::XML::Attribute CCDSphereRadius = BaseNode.AppendAttribute("CCDSphereRadius");
             if (!CCDSphereRadius)
                 { SerializeError("Create CCDSphereRadius Attribute", SerializableName()); }
             CCDSphereRadius.SetValue(this->GetCCDSphereRadius());
@@ -147,7 +147,7 @@ namespace Mezzanine
         }
 
         // DeSerializable
-        void ActorBasePhysicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+        void ActorBasePhysicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==this->ActorBasePhysicsSettings::SerializableName() )
             {
@@ -299,58 +299,58 @@ namespace Mezzanine
 
 #ifdef MEZZXML
         // Serializable
-    void ActorRigidPhysicsSettings::ProtoSerialize(xml::Node& CurrentRoot) const
+    void ActorRigidPhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node BaseNode = CurrentRoot.AppendChild(this->ActorRigidPhysicsSettings::SerializableName());
+        XML::Node BaseNode = CurrentRoot.AppendChild(this->ActorRigidPhysicsSettings::SerializableName());
         if (!BaseNode)
             { SerializeError("Create BaseNode", SerializableName()); }
 
-        Mezzanine::xml::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+        Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
         if (!Version)
             { SerializeError("Create Version Attribute", SerializableName()); }
         Version.SetValue(1);
 
-        Mezzanine::xml::Attribute Mass = BaseNode.AppendAttribute("Mass");
+        Mezzanine::XML::Attribute Mass = BaseNode.AppendAttribute("Mass");
         if (!Mass)
             { SerializeError("Create Mass Attribute", SerializableName()); }
         Mass.SetValue(this->GetMass());
 
-        Mezzanine::xml::Attribute AngularDamping = BaseNode.AppendAttribute("AngularDamping");
+        Mezzanine::XML::Attribute AngularDamping = BaseNode.AppendAttribute("AngularDamping");
         if (!AngularDamping)
             { SerializeError("Create AngularDamping Attribute", SerializableName()); }
         AngularDamping.SetValue(this->GetAngularDamping());
 
-        Mezzanine::xml::Attribute LinearDamping = BaseNode.AppendAttribute("LinearDamping");
+        Mezzanine::XML::Attribute LinearDamping = BaseNode.AppendAttribute("LinearDamping");
         if (!LinearDamping)
             { SerializeError("Create LinearDamping Attribute", SerializableName()); }
         LinearDamping.SetValue(this->GetLinearDamping());
 
-        xml::Node AngularVelocity = BaseNode.AppendChild("AngularVelocity");
+        XML::Node AngularVelocity = BaseNode.AppendChild("AngularVelocity");
         if (!AngularVelocity)
             { SerializeError("Create AngularVelocity Node", SerializableName()); }
         this->GetAngularVelocity().ProtoSerialize(AngularVelocity);
 
-        xml::Node LinearVelocity = BaseNode.AppendChild("LinearVelocity");
+        XML::Node LinearVelocity = BaseNode.AppendChild("LinearVelocity");
         if (!LinearVelocity)
             { SerializeError("Create LinearVelocity Node", SerializableName()); }
         this->GetLinearVelocity().ProtoSerialize(LinearVelocity);
 
-        xml::Node IndividualGravity = BaseNode.AppendChild("IndividualGravity");
+        XML::Node IndividualGravity = BaseNode.AppendChild("IndividualGravity");
         if (!IndividualGravity)
             { SerializeError("Create IndividualGravity Node", SerializableName()); }
         this->GetIndividualGravity().ProtoSerialize(IndividualGravity);
 
-        xml::Node TotalTorque = BaseNode.AppendChild("TotalTorque");
+        XML::Node TotalTorque = BaseNode.AppendChild("TotalTorque");
         if (!TotalTorque)
             { SerializeError("Create TotalTorque Node", SerializableName()); }
         this->GetTorque().ProtoSerialize(TotalTorque);
 
-        xml::Node TotalForce = BaseNode.AppendChild("TotalForce");
+        XML::Node TotalForce = BaseNode.AppendChild("TotalForce");
         if (!TotalForce)
             { SerializeError("Create TotalForce Node", SerializableName()); }
         this->GetForce().ProtoSerialize(TotalForce);
 
-        xml::Node Inertia = BaseNode.AppendChild("LocalInertia");
+        XML::Node Inertia = BaseNode.AppendChild("LocalInertia");
         if (!Inertia)
             { SerializeError("Create Inertia Node", SerializableName()); }
         this->GetLocalInertia().ProtoSerialize(Inertia);
@@ -359,7 +359,7 @@ namespace Mezzanine
     }
 
     // DeSerializable
-    void ActorRigidPhysicsSettings::ProtoDeSerialize(const xml::Node& OneNode)
+    void ActorRigidPhysicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->ActorRigidPhysicsSettings::SerializableName() )
         {
@@ -369,7 +369,7 @@ namespace Mezzanine
 
                 Mezzanine::Vector3 TempVec;
 
-                for(Mezzanine::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+                for(Mezzanine::XML::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
                 {
                     Mezzanine::String Name(Child.Name());
                     switch(Name[5])
@@ -485,7 +485,7 @@ std::ostream& operator<< (std::ostream& stream, const Mezzanine::ActorBasePhysic
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorBasePhysicsSettings& Ev)
     { return DeSerialize(stream,Ev); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorBasePhysicsSettings& Ev)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorBasePhysicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigidPhysicsSettings& Ev)
@@ -494,7 +494,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigidPhys
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigidPhysicsSettings& Ev)
     { return DeSerialize(stream,Ev); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
 

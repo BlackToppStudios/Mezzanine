@@ -12,7 +12,7 @@ CatchProfile::CatchProfile(const String& Name)
 {
 }
 
-CatchProfile::CatchProfile(xml::Document& ProfileDoc)
+CatchProfile::CatchProfile(XML::Document& ProfileDoc)
 {
     DeSerializeProfileName(ProfileDoc);
     DeSerializeLevelScores(ProfileDoc);
@@ -22,35 +22,35 @@ CatchProfile::~CatchProfile()
 {
 }
 
-void CatchProfile::SerializeProfileName(xml::Document& ProfileDoc)
+void CatchProfile::SerializeProfileName(XML::Document& ProfileDoc)
 {
-    xml::Node NameNode = ProfileDoc.AppendChild("ProfileName");
-    xml::Attribute NameAttrib = NameNode.AppendAttribute("Name");
+    XML::Node NameNode = ProfileDoc.AppendChild("ProfileName");
+    XML::Attribute NameAttrib = NameNode.AppendAttribute("Name");
     NameAttrib.SetValue(ProfileName);
 }
 
-void CatchProfile::SerializeLevelScores(xml::Document& ProfileDoc)
+void CatchProfile::SerializeLevelScores(XML::Document& ProfileDoc)
 {
-    xml::Node LevelsNode = ProfileDoc.AppendChild("LevelScores");
+    XML::Node LevelsNode = ProfileDoc.AppendChild("LevelScores");
     for( LevelScoreMapIterator SecIt = LevelScores.begin() ; SecIt != LevelScores.end() ; ++SecIt )
     {
-        xml::Node LevelElement = LevelsNode.AppendChild( (*SecIt).first );
-        xml::Attribute LevelHighScore = LevelElement.AppendAttribute("HighestScore");
+        XML::Node LevelElement = LevelsNode.AppendChild( (*SecIt).first );
+        XML::Attribute LevelHighScore = LevelElement.AppendAttribute("HighestScore");
         LevelHighScore.SetValue( (*SecIt).second );
     }
 }
 
-void CatchProfile::DeSerializeProfileName(xml::Document& ProfileDoc)
+void CatchProfile::DeSerializeProfileName(XML::Document& ProfileDoc)
 {
-    xml::Node NameNode = ProfileDoc.GetChild("ProfileName");
-    xml::Attribute NameAttrib = NameNode.GetAttribute("Name");
+    XML::Node NameNode = ProfileDoc.GetChild("ProfileName");
+    XML::Attribute NameAttrib = NameNode.GetAttribute("Name");
     ProfileName = NameAttrib.AsString();
 }
 
-void CatchProfile::DeSerializeLevelScores(xml::Document& ProfileDoc)
+void CatchProfile::DeSerializeLevelScores(XML::Document& ProfileDoc)
 {
-    xml::Node LevelsNode = ProfileDoc.GetChild("LevelScores");
-    for( xml::NodeIterator NodeIt = LevelsNode.begin() ; NodeIt != LevelsNode.end() ; ++NodeIt )
+    XML::Node LevelsNode = ProfileDoc.GetChild("LevelScores");
+    for( XML::NodeIterator NodeIt = LevelsNode.begin() ; NodeIt != LevelsNode.end() ; ++NodeIt )
     {
         std::pair<String,Whole> LevelPair;
         LevelPair.first = (*NodeIt).Name();
@@ -61,10 +61,10 @@ void CatchProfile::DeSerializeLevelScores(xml::Document& ProfileDoc)
 
 void CatchProfile::Save(const String& ProfilesDir)
 {
-    xml::Document ProfileDoc;
-    xml::Node DocDecl = ProfileDoc.AppendChild(xml::NodeDeclaration);
+    XML::Document ProfileDoc;
+    XML::Node DocDecl = ProfileDoc.AppendChild(XML::NodeDeclaration);
     DocDecl.SetName("xml");
-    xml::Attribute Version = DocDecl.AppendAttribute("version");
+    XML::Attribute Version = DocDecl.AppendAttribute("version");
     Version.SetValue("1.0");
 
     SerializeProfileName(ProfileDoc);
@@ -72,7 +72,7 @@ void CatchProfile::Save(const String& ProfilesDir)
 
     /// @todo Possibly in the future instead of constructing the datastream direct, call on the resource manager to create it(future plans)
     Resource::FileStreamDataStream SaveStream(ProfileName+".xml",ProfilesDir+"/",Resource::DataStream::SF_Truncate,Resource::DataStream::DS_Write);
-    ProfileDoc.Save(SaveStream,"\t",xml::FormatIndent);
+    ProfileDoc.Save(SaveStream,"\t",XML::FormatIndent);
 }
 
 ConstString& CatchProfile::GetName() const
@@ -99,7 +99,7 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
     : ProfilesDirectory(ProfilesDir)
 {
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
-    xml::Document ProfileDoc;
+    XML::Document ProfileDoc;
     std::set<String>* ProfileSet = ResourceMan->GetDirContents("./Profiles");
     for( std::set<String>::iterator it = ProfileSet->begin() ; it != ProfileSet->end() ; it++ )
     {
@@ -110,7 +110,7 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
         ProfileDoc.Reset();
 
         Resource::FileStreamDataStream LoadStream(FileName,ProfilesDir,Resource::DataStream::SF_None);
-        ProfileDoc.Load(LoadStream);
+        //ProfileDoc.Load(LoadStream);
         LoadProfile(ProfileDoc);
     }
     delete ProfileSet;
@@ -182,12 +182,12 @@ GameProfile* ProfileManager::CreateNewProfile(const String& Name)
 
 GameProfile* ProfileManager::LoadProfile(const String& FileName)
 {
-    xml::Document ProfileDoc;
+    XML::Document ProfileDoc;
 
     return LoadProfile(ProfileDoc);
 }
 
-GameProfile* ProfileManager::LoadProfile(xml::Document& ProfileDoc)
+GameProfile* ProfileManager::LoadProfile(XML::Document& ProfileDoc)
 {
     GameProfile* Profile = NULL;
     try{

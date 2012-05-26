@@ -274,14 +274,14 @@ namespace Mezzanine
     // Mike's portion of adding serializable to the metacode starts here
     #ifdef MEZZXML
     // Serializable
-    void MetaCode::ProtoSerialize(xml::Node& CurrentRoot) const
+    void MetaCode::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        Mezzanine::xml::Node MetaNode = CurrentRoot.AppendChild(SerializableName());
+        Mezzanine::XML::Node MetaNode = CurrentRoot.AppendChild(SerializableName());
         MetaNode.SetName(SerializableName());
 
-        Mezzanine::xml::Attribute VersionAttr = MetaNode.AppendAttribute("Version");
-        Mezzanine::xml::Attribute MetaValue_ = MetaNode.AppendAttribute("MetaValue");
-        Mezzanine::xml::Attribute Code_ = MetaNode.AppendAttribute("Code");
+        Mezzanine::XML::Attribute VersionAttr = MetaNode.AppendAttribute("Version");
+        Mezzanine::XML::Attribute MetaValue_ = MetaNode.AppendAttribute("MetaValue");
+        Mezzanine::XML::Attribute Code_ = MetaNode.AppendAttribute("Code");
 
         if( VersionAttr && MetaValue_ && Code_ )
         {
@@ -297,7 +297,7 @@ namespace Mezzanine
     }
 
     // DeSerializable
-    void MetaCode::ProtoDeSerialize(const xml::Node& OneNode)
+    void MetaCode::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
         {
@@ -329,8 +329,8 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::MetaCode& x)
 #ifdef MEZZXML
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::MetaCode& x)
 /*{
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "MetaCode", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "MetaCode", OneTag) );
 
     Doc->GetFirstChild() >> x;
 
@@ -338,7 +338,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::MetaCode& x
 }*/
 { return DeSerialize(stream, x); }
 
-Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::MetaCode& x)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::MetaCode& x)
 /*{
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("MetaCode") )
     {

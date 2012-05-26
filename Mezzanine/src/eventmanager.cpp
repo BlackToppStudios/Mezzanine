@@ -264,7 +264,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    EventManager::EventManager(xml::Node& XMLNode)
+    EventManager::EventManager(XML::Node& XMLNode)
     {
         this->Priority = 0;
 
@@ -720,7 +720,7 @@ namespace Mezzanine
         }else return new EventManager();
     }
 
-    ManagerBase* DefaultEventManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultEventManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(EventManager::SingletonValid())
         {
@@ -753,21 +753,21 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventManager& 
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventManager& Mgr)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventManager", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventManager", OneTag) );
 
     Doc->GetFirstChild() >> Mgr;
 
     return stream;
 }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventManager& Mgr)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr)
 {
     if(Mezzanine::String(OneNode.Name()) == Mezzanine::String("EventManager"))
     {
         if (OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            Mezzanine::xml::Node Child = OneNode.GetFirstChild();
+            Mezzanine::XML::Node Child = OneNode.GetFirstChild();
             while(Child)
             {
                 Mezzanine::String TagName(Child.Name());

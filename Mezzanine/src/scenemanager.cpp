@@ -188,15 +188,15 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    SceneManager::SceneManager(xml::Node& XMLNode)
+    SceneManager::SceneManager(XML::Node& XMLNode)
     {
         this->SMD = new Internal::SceneManagerData(this);
         this->Priority = 25;
 
-        xml::Attribute CurrAttrib;
+        XML::Attribute CurrAttrib;
         // Get the name of the manager to construct.
         String ManagerName;
-        xml::Node ManagerType = XMLNode.GetChild("ManagerType");
+        XML::Node ManagerType = XMLNode.GetChild("ManagerType");
         if(!ManagerType.Empty())
         {
             CurrAttrib = ManagerType.GetAttribute("TypeName");
@@ -209,7 +209,7 @@ namespace Mezzanine
 
         // Setup the shadow configuration
         bool TextureShadows = false;
-        xml::Node ShadowSettings = XMLNode.GetChild("ShadowSettings");
+        XML::Node ShadowSettings = XMLNode.GetChild("ShadowSettings");
         if(!ShadowSettings.Empty())
         {
             String TechniqueName;
@@ -247,7 +247,7 @@ namespace Mezzanine
         }
 
         // Setup texture shadow settings if any are set.
-        xml::Node TextureShadowSettings = XMLNode.GetChild("TextureShadowSettings");
+        XML::Node TextureShadowSettings = XMLNode.GetChild("TextureShadowSettings");
         if(!TextureShadowSettings.Empty() && TextureShadows)
         {
             CurrAttrib = TextureShadowSettings.GetAttribute("ShadowTextureCount");
@@ -785,7 +785,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* DefaultSceneManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultSceneManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(SceneManager::SingletonValid())
         {
@@ -910,15 +910,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& 
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::SceneManager& Ev)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "SceneManager", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "SceneManager", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
     return stream;
 }
 
-Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::SceneManager& Ev)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::SceneManager& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("SceneManager") )
     {
@@ -931,7 +931,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
             Ev.SetShadowFarDistance(OneNode.GetAttribute("ShadowFarDistance").AsReal());
             Mezzanine::SceneManager::SkyMethod DoubleCheck = (Mezzanine::SceneManager::SkyMethod)(OneNode.GetAttribute("SkyMethod").AsInt());
 
-            for(Mezzanine::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            for(Mezzanine::XML::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 Mezzanine::String Name(Child.Name());
                 switch(Name[0])

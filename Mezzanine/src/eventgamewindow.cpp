@@ -236,15 +236,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventGameWindo
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWindow& Ev)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "EventGameWindow", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventGameWindow", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
     return stream;
 }
 
-Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventGameWindow& Ev)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("EventGameWindow") )
     {

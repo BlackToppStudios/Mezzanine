@@ -134,7 +134,7 @@ namespace Mezzanine
         { *this = Vec; }
 
 #ifdef MEZZXML
-    Vector3::Vector3(xml::Node OneNode)
+    Vector3::Vector3(XML::Node OneNode)
         { this->ProtoDeSerialize(OneNode); }
 #endif
 
@@ -520,15 +520,15 @@ namespace Mezzanine
 
 #ifdef MEZZXML
         // Serializable
-        void Vector3::ProtoSerialize(xml::Node& CurrentRoot) const
+        void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
         {
-            Mezzanine::xml::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+            Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
             VecNode.SetName(SerializableName());
 
-            Mezzanine::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-            Mezzanine::xml::Attribute XAttr = VecNode.AppendAttribute("X");
-            Mezzanine::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
-            Mezzanine::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
+            Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+            Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+            Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
+            Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
             if( VersionAttr && XAttr && YAttr && ZAttr )
             {
                 if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
@@ -543,7 +543,7 @@ namespace Mezzanine
         }
 
         // DeSerializable
-        void Vector3::ProtoDeSerialize(const xml::Node& OneNode)
+        void Vector3::ProtoDeSerialize(const XML::Node& OneNode)
         {
             if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
             {
@@ -610,7 +610,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3& x)
 std::istream& operator >> (std::istream& stream, Mezzanine::Vector3& Vec)
     { return DeSerialize(stream, Vec); }
 
-void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Vector3& Vec)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec)
     { Vec.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
 

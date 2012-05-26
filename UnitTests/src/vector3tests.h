@@ -120,7 +120,7 @@ class Vector3Tests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("Vector3::Vector3(Vector3)", temp);                       //test
 #ifdef MEZZXML
-		//Vector3(xml::Node OneNode);
+		//Vector3(XML::Node OneNode);
 #endif
 
                 if(Vector3::Unit_X().X==1.0 && Vector3::Unit_X().Y==0.0 && Vector3::Unit_X().Z==0.0)
@@ -770,7 +770,7 @@ class Vector3Tests : public UnitTestGroup
                 try
                 {
                     Vector3 Vec5;
-                    xml::Document XMLdoc;
+                    XML::Document XMLdoc;
                     XMLdoc.Load("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\"/>");
                     XMLdoc.GetFirstChild()>>Vec5;
                     if(Vec5==Vec)
@@ -778,11 +778,11 @@ class Vector3Tests : public UnitTestGroup
                     else
                         { temp=Failed; }
                 }catch (Mezzanine::Exception e){
-                    std::cerr << "Failure in: Vector3::operator>>(xml::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
+                    std::cerr << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
-                AddTestResult("Vector3::operator>>(xml::Node,Vector3)", temp);          //test
+                AddTestResult("Vector3::operator>>(XML::Node,Vector3)", temp);          //test
 
                 {
                     Ogre::Vector3 Vec0(0.0, 0.0, 0.0);
@@ -975,7 +975,7 @@ class Vector3Tests : public UnitTestGroup
                 #ifdef MEZZXML
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(istream,Vector3)", Skipped);
-                AddTestResult("Vector3::operator>>(xml::Node,Vector3)", Skipped);
+                AddTestResult("Vector3::operator>>(XML::Node,Vector3)", Skipped);
                 #endif
                 AddTestResult("Vector3::operator<<(cAudio::cVector3,Ogre::Vector3)", Skipped);
                 AddTestResult("Vector3::operator<<(cAudio::cVector3,Vector3)", Skipped);

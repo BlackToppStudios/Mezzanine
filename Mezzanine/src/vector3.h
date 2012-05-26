@@ -157,7 +157,7 @@ namespace Mezzanine
 #ifdef MEZZXML
         /// @brief Deserializing constructor
         /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
-        explicit Vector3(xml::Node OneNode);
+        explicit Vector3(XML::Node OneNode);
 #endif
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -490,14 +490,14 @@ namespace Mezzanine
         // Serialization
 #ifdef MEZZXML
         // Serializable
-        /// @brief Convert this class to an xml::Node ready for serialization
+        /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
-        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+        virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
         // DeSerializable
         /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-        /// @param OneNode and xml::Node containing the data.
-        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+        /// @param OneNode and XML::Node containing the data.
+        virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector3"
@@ -614,12 +614,12 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vecto
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector3& Vec);
 
 /// @brief Converts an XML node into a Mezzanine::Vector3
-/// @details If MEZZXML is enabled, this will convert an xml::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
+/// @details If MEZZXML is enabled, this will convert an XML::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
 /// @param OneNode An XML Node containing the the text of a Vector3
 /// @param Vec the Mezzanine::Vector3 to store the deserialized Vector3
-/// @return This returns a reference to the xml::Node for operator chaining or whatever.
+/// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
-void MEZZ_LIB  operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Vector3& Vec);
+void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec);
 #endif // \MEZZXML
 
 /// @brief Conversion Assignment Operator to Ogre::Vector3.

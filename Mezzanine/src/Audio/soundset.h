@@ -78,13 +78,13 @@ namespace Mezzanine
                 /// @return The Name of this SoundSet
                 const String& GetName() const;
 
-                /// @brief Create an xml::Node describing this
-                /// @return An xml::Node
-                xml::Node ProtoSerialize() const;
+                /// @brief Create an XML::Node describing this
+                /// @return An XML::Node
+                XML::Node ProtoSerialize() const;
 
-                /// @brief Create an xml::Node describing this
-                /// @return An xml::Node
-                void ProtoDeSerialize(const xml::Node&);
+                /// @brief Create an XML::Node describing this
+                /// @return An XML::Node
+                void ProtoDeSerialize(const XML::Node&);
 
                 static String SerializableName();
 

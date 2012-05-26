@@ -75,7 +75,7 @@ namespace Mezzanine
                 Other
             };
             // If you add an eventtype do not forget to add the appropriate functions tot he event manager and update these functions
-            //void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventManager& Mgr);
+            //void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
             //std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::EventBase& Ev);
 
 

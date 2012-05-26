@@ -352,15 +352,15 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::WorldNode& Ev)
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldNode& Ev)
 {
-    Mezzanine::String OneTag( Mezzanine::xml::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::xml::Document> Doc( Mezzanine::xml::PreParseClassFromSingleTag("Mezzanine::", "WorldNode", OneTag) );
+    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
+    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "WorldNode", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 
     return stream;
 }
 
-Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::WorldNode& Ev)
+Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::WorldNode& Ev)
 {
     if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("WorldNode") )
     {
@@ -372,7 +372,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
 
             Mezzanine::Vector3 TempVec(0,0,0);
             Mezzanine::Quaternion TempQuat(0,0,0,0);
-            for(Mezzanine::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            for(Mezzanine::XML::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 Mezzanine::String Name(Child.Name());
                 switch(Name[0])

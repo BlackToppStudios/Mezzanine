@@ -135,18 +135,18 @@ namespace Mezzanine
     void ActorBase::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
-    void ActorBase::ProtoSerialize(xml::Node& CurrentRoot) const
+    void ActorBase::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node ActorBaseNode = CurrentRoot.AppendChild("ActorBase");
+        XML::Node ActorBaseNode = CurrentRoot.AppendChild("ActorBase");
         if (!ActorBaseNode) { ThrowSerialError("create ActorBaseNode");}
 
-        xml::Attribute ActorVersion = ActorBaseNode.AppendAttribute("Version");
+        XML::Attribute ActorVersion = ActorBaseNode.AppendAttribute("Version");
         ActorVersion.SetValue(1);
 
         NonStaticWorldObject::ProtoSerialize(ActorBaseNode);
     }
 
-    void ActorBase::ProtoDeSerialize(const xml::Node& OneNode)
+    void ActorBase::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->ActorBase::SerializableName() )
         {

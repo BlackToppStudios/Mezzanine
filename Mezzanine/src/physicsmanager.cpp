@@ -431,15 +431,15 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    PhysicsManager::PhysicsManager(xml::Node& XMLNode)
+    PhysicsManager::PhysicsManager(XML::Node& XMLNode)
         : BulletDrawer(NULL),
           SimulationPaused(false),
           SubstepModifier(1)
     {
         PhysicsConstructionInfo Info;
-        xml::Attribute CurrAttrib;
+        XML::Attribute CurrAttrib;
 
-        xml::Node WorldSettings = XMLNode.GetChild("WorldSettings");
+        XML::Node WorldSettings = XMLNode.GetChild("WorldSettings");
         if(!WorldSettings.Empty())
         {
             CurrAttrib = WorldSettings.GetAttribute("LimitlessWorld");
@@ -466,7 +466,7 @@ namespace Mezzanine
 
         this->Construct(Info);
 
-        xml::Node StepModifier = XMLNode.GetChild("SubStepModifier");
+        XML::Node StepModifier = XMLNode.GetChild("SubStepModifier");
         if(!StepModifier.Empty())
         {
             CurrAttrib = WorldSettings.GetAttribute("Modifier");
@@ -476,7 +476,7 @@ namespace Mezzanine
             }
         }
 
-        xml::Node DebugRender = XMLNode.GetChild("DebugRendering");
+        XML::Node DebugRender = XMLNode.GetChild("DebugRendering");
         if(!DebugRender.Empty())
         {
             int RenderMode = 0;
@@ -1236,7 +1236,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* DefaultPhysicsManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultPhysicsManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(PhysicsManager::SingletonValid())
         {

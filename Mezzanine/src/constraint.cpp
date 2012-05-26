@@ -160,15 +160,15 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // TypedConstraint Serialization
     // Serializable
-    void TypedConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    void TypedConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node TypedConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        XML::Node TypedConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
         if (!TypedConstraintNode)
             { SerializeError("Create TypedConstraintNode", SerializableName()); }
 
-        xml::Attribute Version = TypedConstraintNode.AppendAttribute("Version");
-        xml::Attribute ActorNameA = TypedConstraintNode.AppendAttribute("ActorNameA");
-        xml::Attribute ActorNameB = TypedConstraintNode.AppendAttribute("ActorNameB");
+        XML::Attribute Version = TypedConstraintNode.AppendAttribute("Version");
+        XML::Attribute ActorNameA = TypedConstraintNode.AppendAttribute("ActorNameA");
+        XML::Attribute ActorNameB = TypedConstraintNode.AppendAttribute("ActorNameB");
 
         if (Version && ActorNameA && ActorNameB)
         {
@@ -183,7 +183,7 @@ namespace Mezzanine
         AxisList AllAxis = this->ValidAxis();
         for(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)
         {
-            xml::Node OneAxisNode;
+            XML::Node OneAxisNode;
             CurrentAxisName = String(StringTool::StringCat("Axis",ToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
             ParamList AxisParams = ValidParamOnAxis(*AxisIter);
             for(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)
@@ -197,7 +197,7 @@ namespace Mezzanine
                             { SerializeError( StringTool::StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
                     }
 
-                    xml::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
+                    XML::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
                     if (!CurrenParamAttribute)
                         { SerializeError( StringTool::StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
                     CurrenParamAttribute.SetValue( this->GetParam(*ParamIter,*AxisIter));
@@ -228,7 +228,7 @@ namespace Mezzanine
     }
 
     // DeSerializable
-    void TypedConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    void TypedConstraint::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->TypedConstraint::SerializableName() )
         {
@@ -255,7 +255,7 @@ namespace Mezzanine
                     DeSerializeError("retrieve ActorNameA",SerializableName());
                 }
 
-                xml::Node TheAxis = OneNode.GetFirstChild();
+                XML::Node TheAxis = OneNode.GetFirstChild();
                 while(TheAxis)
                 {
                     String EnemyName(TheAxis.Name());                            //WWII country are we dealing with.
@@ -265,7 +265,7 @@ namespace Mezzanine
 
                     AxisValue=char4ToAxis(EnemyName[4]);
 
-                    xml::Attribute AxisAttribute = TheAxis.GetFirstAttribute();
+                    XML::Attribute AxisAttribute = TheAxis.GetFirstAttribute();
                     while(AxisAttribute)
                     {
                         this->SetParam(StringAsConstraintParam(AxisAttribute.Name()),AxisAttribute.AsReal(),AxisValue);
@@ -291,13 +291,13 @@ namespace Mezzanine
     // DualTransformConstraint Serialization
 
     // Serializable
-    void DualTransformConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    void DualTransformConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node DualTransformConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        XML::Node DualTransformConstraintNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
         if (!DualTransformConstraintNode)
             { SerializeError("Create DualTransformConstraintNode", SerializableName()); }
 
-        xml::Attribute Version = DualTransformConstraintNode.AppendAttribute("Version");
+        XML::Attribute Version = DualTransformConstraintNode.AppendAttribute("Version");
         if (Version)
         {
             Version.SetValue(1);
@@ -305,12 +305,12 @@ namespace Mezzanine
             SerializeError("Create Attributes on DualTransformConstraintNode", SerializableName());
         }
 
-        xml::Node ActorANode = DualTransformConstraintNode.AppendChild("ActorA");                     // Get everything we need about ActorA
+        XML::Node ActorANode = DualTransformConstraintNode.AppendChild("ActorA");                     // Get everything we need about ActorA
         if (!ActorANode)
             { SerializeError("Create ActorANode", SerializableName()); }
         this->GetPivotATransform().ProtoSerialize(ActorANode);
 
-        xml::Node ActorBNode = DualTransformConstraintNode.AppendChild("ActorB");                     // Get everything we need about ActorB
+        XML::Node ActorBNode = DualTransformConstraintNode.AppendChild("ActorB");                     // Get everything we need about ActorB
         if (!ActorBNode)
             { SerializeError("Create ActorBNode", SerializableName()); }
         this->GetPivotBTransform().ProtoSerialize(ActorBNode);
@@ -319,25 +319,25 @@ namespace Mezzanine
     }
 
     // DeSerializable
-    void DualTransformConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    void DualTransformConstraint::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->DualTransformConstraint::SerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                xml::Node TypedConstraintNode = OneNode.GetChild("TypedConstraint");
+                XML::Node TypedConstraintNode = OneNode.GetChild("TypedConstraint");
                 if(!TypedConstraintNode)
                     { DeSerializeError("locate TypedConstraint node",SerializableName()); }
                 this->TypedConstraint::ProtoDeSerialize(TypedConstraintNode);
 
-                xml::Node TransformA = OneNode.GetChild("ActorA").GetFirstChild();
+                XML::Node TransformA = OneNode.GetChild("ActorA").GetFirstChild();
                 if (!TransformA)
                     { DeSerializeError("locate transform for ActorA",SerializableName()); }
                 Transform temp;
                 temp.ProtoDeSerialize(TransformA);
                 this->SetPivotATransform(temp);
 
-                xml::Node TransformB = OneNode.GetChild("ActorB").GetFirstChild();
+                XML::Node TransformB = OneNode.GetChild("ActorB").GetFirstChild();
                 if (!TransformB)
                     { DeSerializeError("locate transform for ActorB",SerializableName()); }
                 temp.ProtoDeSerialize(TransformB);
@@ -748,97 +748,97 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Generic6DofConstraint Serialization
 #ifdef MEZZXML
-    void Generic6DofConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    void Generic6DofConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
     {
 
-        xml::Node G6dofNode = CurrentRoot.AppendChild(this->Generic6DofConstraint::SerializableName());                     // The base node all the base constraint stuff will go in
+        XML::Node G6dofNode = CurrentRoot.AppendChild(this->Generic6DofConstraint::SerializableName());                     // The base node all the base constraint stuff will go in
         if (!G6dofNode)
             { SerializeError("Create G6dofNode", SerializableName()); }
 
 
-        xml::Node LinLimUpp = G6dofNode.AppendChild("LinearLimitUpper");                    // Basic Limit Stuff
+        XML::Node LinLimUpp = G6dofNode.AppendChild("LinearLimitUpper");                    // Basic Limit Stuff
         if (!LinLimUpp)
             { SerializeError("Create LinLimUpp", SerializableName()); }
         this->GetLinearLimitUpper().ProtoSerialize(LinLimUpp);
 
-        xml::Node LinLimLow = G6dofNode.AppendChild("LinearLimitLower");
+        XML::Node LinLimLow = G6dofNode.AppendChild("LinearLimitLower");
         if (!LinLimLow)
             { SerializeError("Create LinLimLow", SerializableName()); }
         this->GetLinearLimitLower().ProtoSerialize(LinLimLow);
 
-        xml::Node AngLimUpp = G6dofNode.AppendChild("AngularLimitUpper");
+        XML::Node AngLimUpp = G6dofNode.AppendChild("AngularLimitUpper");
         if (!AngLimUpp)
             { SerializeError("Create AngLimUpp", SerializableName()); }
         this->GetAngularLimitUpper().ProtoSerialize(AngLimUpp);
 
-        xml::Node AngLimLow = G6dofNode.AppendChild("AngularLimitLower");
+        XML::Node AngLimLow = G6dofNode.AppendChild("AngularLimitLower");
         if (!AngLimLow)
             { SerializeError("Create AngLimLow", SerializableName()); }
         this->GetAngularLimitLower().ProtoSerialize(AngLimLow);
 
 
-        xml::Node AngularLimitMaxForce = G6dofNode.AppendChild("AngularLimitMaxForce");                   // Angular Limit and Motor Details
+        XML::Node AngularLimitMaxForce = G6dofNode.AppendChild("AngularLimitMaxForce");                   // Angular Limit and Motor Details
         if (!AngularLimitMaxForce)
             { SerializeError("Create AngularLimitMaxForce", SerializableName()); }
         this->GetAngularLimitMaxForce().ProtoSerialize(AngularLimitMaxForce);
 
-        xml::Node AngularMotorTargetVelocity = G6dofNode.AppendChild("AngularMotorTargetVelocity");
+        XML::Node AngularMotorTargetVelocity = G6dofNode.AppendChild("AngularMotorTargetVelocity");
         if (!AngularMotorTargetVelocity)
             { SerializeError("Create AngularMotorTargetVelocity", SerializableName()); }
         this->GetAngularMotorTargetVelocity().ProtoSerialize(AngularMotorTargetVelocity);
 
-        xml::Node AngularMotorMaxForce = G6dofNode.AppendChild("AngularMotorMaxForce");
+        XML::Node AngularMotorMaxForce = G6dofNode.AppendChild("AngularMotorMaxForce");
         if (!AngularMotorMaxForce)
             { SerializeError("Create AngularMotorMaxForce", SerializableName()); }
         this->GetAngularMotorMaxForce().ProtoSerialize(AngularMotorMaxForce);
 
-        xml::Node AngularMotorDamping = G6dofNode.AppendChild("AngularMotorDamping");
+        XML::Node AngularMotorDamping = G6dofNode.AppendChild("AngularMotorDamping");
         if (!AngularMotorDamping)
             { SerializeError("Create AngularMotorDamping", SerializableName()); }
         this->GetAngularMotorDamping().ProtoSerialize(AngularMotorDamping);
 
-        xml::Node AngularMotorRestitution = G6dofNode.AppendChild("AngularMotorRestitution");
+        XML::Node AngularMotorRestitution = G6dofNode.AppendChild("AngularMotorRestitution");
         if (!AngularMotorRestitution)
             { SerializeError("Create AngularMotorRestitution", SerializableName()); }
         this->GetAngularMotorRestitution().ProtoSerialize(AngularMotorRestitution);
 
-        xml::Node AngularMotorEnabled = G6dofNode.AppendChild("AngularMotorEnabled");
+        XML::Node AngularMotorEnabled = G6dofNode.AppendChild("AngularMotorEnabled");
         if (!AngularMotorEnabled)
             { SerializeError("Create AngularMotorEnabled", SerializableName()); }
         this->GetAngularMotorEnabled().ProtoSerialize(AngularMotorEnabled);
 
 
-        xml::Node LinearMotorMaxForce = G6dofNode.AppendChild("LinearMotorMaxForce");                   // Linear limit and motor details
+        XML::Node LinearMotorMaxForce = G6dofNode.AppendChild("LinearMotorMaxForce");                   // Linear limit and motor details
         if (!LinearMotorMaxForce)
             { SerializeError("Create LinearMotorMaxForce", SerializableName()); }
         this->GetLinearMotorMaxForce().ProtoSerialize(LinearMotorMaxForce);
 
-        xml::Node LinearMotorTargetVelocity = G6dofNode.AppendChild("LinearMotorTargetVelocity");
+        XML::Node LinearMotorTargetVelocity = G6dofNode.AppendChild("LinearMotorTargetVelocity");
         if (!LinearMotorTargetVelocity)
             { SerializeError("Create LinearMotorTargetVelocity", SerializableName()); }
         this->GetLinearMotorTargetVelocity().ProtoSerialize(LinearMotorTargetVelocity);
 
-        xml::Node LinearMotorEnabled = G6dofNode.AppendChild("LinearMotorEnabled");
+        XML::Node LinearMotorEnabled = G6dofNode.AppendChild("LinearMotorEnabled");
         if (!LinearMotorEnabled)
             { SerializeError("Create LinearMotorEnabled", SerializableName()); }
         this->GetLinearMotorEnabled().ProtoSerialize(LinearMotorEnabled);
 
-        Mezzanine::xml::Attribute Version = G6dofNode.AppendAttribute("Version");                            // Version
+        Mezzanine::XML::Attribute Version = G6dofNode.AppendAttribute("Version");                            // Version
         if (!Version)
             { SerializeError("Create Version", SerializableName()); }
         Version.SetValue(1);
 
-        Mezzanine::xml::Attribute LinearLimitSoftness = G6dofNode.AppendAttribute("LinearLimitSoftness");    // Linear Attributes.
+        Mezzanine::XML::Attribute LinearLimitSoftness = G6dofNode.AppendAttribute("LinearLimitSoftness");    // Linear Attributes.
         if (!LinearLimitSoftness)
             { SerializeError("Create LinearLimitSoftness", SerializableName()); }
         LinearLimitSoftness.SetValue(this->GetLinearLimitSoftness());
 
-        Mezzanine::xml::Attribute LinearLimitDamping = G6dofNode.AppendAttribute("LinearLimitDamping");
+        Mezzanine::XML::Attribute LinearLimitDamping = G6dofNode.AppendAttribute("LinearLimitDamping");
         if (!LinearLimitDamping)
             { SerializeError("Create LinearLimitDamping", SerializableName()); }
         LinearLimitDamping.SetValue(this->GetLinearLimitDamping());
 
-        Mezzanine::xml::Attribute LinearLimitRestitution = G6dofNode.AppendAttribute("LinearLimitRestitution");
+        Mezzanine::XML::Attribute LinearLimitRestitution = G6dofNode.AppendAttribute("LinearLimitRestitution");
         if (!LinearLimitRestitution)
             { SerializeError("Create LinearLimitRestitution", SerializableName()); }
         LinearLimitRestitution.SetValue(this->GetLinearLimitRestitution());
@@ -846,13 +846,13 @@ namespace Mezzanine
         this->DualTransformConstraint::ProtoSerialize(G6dofNode);
     }
 
-    void Generic6DofConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    void Generic6DofConstraint::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->Generic6DofConstraint::SerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                XML::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
                 if(!DualTranny)
                     { DeSerializeError("locate DualTransforn node",SerializableName()); }
                 this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
@@ -863,79 +863,79 @@ namespace Mezzanine
 
                 Vector3 vec;
 
-                xml::Node LinearLimitUpper = OneNode.GetChild("LinearLimitUpper");
+                XML::Node LinearLimitUpper = OneNode.GetChild("LinearLimitUpper");
                 if(!LinearLimitUpper || !LinearLimitUpper.GetFirstChild())
                     { DeSerializeError("locate LinearLimitUpper node",SerializableName()); }
                 vec.ProtoDeSerialize(LinearLimitUpper.GetFirstChild());
                 this->SetLinearLimitUpper(vec);
 
-                xml::Node LinearLimitLower = OneNode.GetChild("LinearLimitLower");
+                XML::Node LinearLimitLower = OneNode.GetChild("LinearLimitLower");
                 if(!LinearLimitLower || !LinearLimitLower.GetFirstChild())
                     { DeSerializeError("locate LinearLimitLower node",SerializableName()); }
                 vec.ProtoDeSerialize(LinearLimitLower.GetFirstChild());
                 this->SetLinearLimitLower(vec);
 
-                xml::Node AngularLimitUpper = OneNode.GetChild("AngularLimitUpper");
+                XML::Node AngularLimitUpper = OneNode.GetChild("AngularLimitUpper");
                 if(!AngularLimitUpper || !AngularLimitUpper.GetFirstChild())
                     { DeSerializeError("locate AngularLimitUpper node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularLimitUpper.GetFirstChild());
                 this->SetAngularLimitUpper(vec);
 
-                xml::Node AngularLimitLower = OneNode.GetChild("AngularLimitLower");
+                XML::Node AngularLimitLower = OneNode.GetChild("AngularLimitLower");
                 if(!AngularLimitLower || !AngularLimitLower.GetFirstChild())
                     { DeSerializeError("locate AngularLimitLower node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularLimitLower.GetFirstChild());
                 this->SetAngularLimitLower(vec);
 
-                xml::Node AngularLimitMaxForce = OneNode.GetChild("AngularLimitMaxForce");
+                XML::Node AngularLimitMaxForce = OneNode.GetChild("AngularLimitMaxForce");
                 if(!AngularLimitMaxForce || !AngularLimitMaxForce.GetFirstChild())
                     { DeSerializeError("locate AngularLimitMaxForce node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularLimitMaxForce.GetFirstChild());
                 this->SetAngularLimitMaxForce(vec);
 
-                xml::Node AngularMotorTargetVelocity = OneNode.GetChild("AngularMotorTargetVelocity");
+                XML::Node AngularMotorTargetVelocity = OneNode.GetChild("AngularMotorTargetVelocity");
                 if(!AngularMotorTargetVelocity || !AngularMotorTargetVelocity.GetFirstChild())
                     { DeSerializeError("locate AngularMotorTargetVelocity node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularMotorTargetVelocity.GetFirstChild());
                 this->SetAngularMotorTargetVelocity(vec);
 
-                xml::Node AngularMotorMaxForce = OneNode.GetChild("AngularMotorMaxForce");
+                XML::Node AngularMotorMaxForce = OneNode.GetChild("AngularMotorMaxForce");
                 if(!AngularMotorMaxForce || !AngularMotorMaxForce.GetFirstChild())
                     { DeSerializeError("locate AngularMotorMaxForce node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularMotorMaxForce.GetFirstChild());
                 this->SetAngularMotorMaxForce(vec);
 
-                xml::Node AngularMotorDamping = OneNode.GetChild("AngularMotorDamping");
+                XML::Node AngularMotorDamping = OneNode.GetChild("AngularMotorDamping");
                 if(!AngularMotorDamping || !AngularMotorDamping.GetFirstChild())
                     { DeSerializeError("locate AngularMotorDamping node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularMotorDamping.GetFirstChild());
                 this->SetAngularMotorDamping(vec);
 
-                xml::Node AngularMotorRestitution = OneNode.GetChild("AngularMotorRestitution");
+                XML::Node AngularMotorRestitution = OneNode.GetChild("AngularMotorRestitution");
                 if(!AngularMotorRestitution || !AngularMotorRestitution.GetFirstChild())
                     { DeSerializeError("locate AngularMotorRestitution node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularMotorRestitution.GetFirstChild());
                 this->SetAngularMotorRestitution(vec);
 
-                xml::Node AngularMotorEnabled = OneNode.GetChild("AngularMotorEnabled");
+                XML::Node AngularMotorEnabled = OneNode.GetChild("AngularMotorEnabled");
                 if(!AngularMotorEnabled || !AngularMotorEnabled.GetFirstChild())
                     { DeSerializeError("locate AngularMotorEnabled node",SerializableName()); }
                 vec.ProtoDeSerialize(AngularMotorEnabled.GetFirstChild());
                 this->SetAngularMotorEnabled(vec);
 
-                xml::Node LinearMotorMaxForce = OneNode.GetChild("LinearMotorMaxForce");
+                XML::Node LinearMotorMaxForce = OneNode.GetChild("LinearMotorMaxForce");
                 if(!LinearMotorMaxForce || !LinearMotorMaxForce.GetFirstChild())
                     { DeSerializeError("locate LinearMotorMaxForce node",SerializableName()); }
                 vec.ProtoDeSerialize(LinearMotorMaxForce.GetFirstChild());
                 this->SetLinearMotorMaxForce(vec);
 
-                xml::Node LinearMotorTargetVelocity = OneNode.GetChild("LinearMotorTargetVelocity");
+                XML::Node LinearMotorTargetVelocity = OneNode.GetChild("LinearMotorTargetVelocity");
                 if(!LinearMotorTargetVelocity || !LinearMotorTargetVelocity.GetFirstChild())
                     { DeSerializeError("locate LinearMotorTargetVelocity node",SerializableName()); }
                 vec.ProtoDeSerialize(LinearMotorTargetVelocity.GetFirstChild());
                 this->SetLinearMotorTargetVelocity(vec);
 
-                xml::Node LinearMotorEnabled = OneNode.GetChild("LinearMotorEnabled");
+                XML::Node LinearMotorEnabled = OneNode.GetChild("LinearMotorEnabled");
                 if(!LinearMotorEnabled || !LinearMotorEnabled.GetFirstChild())
                     { DeSerializeError("locate LinearMotorEnabled node",SerializableName()); }
                 vec.ProtoDeSerialize(LinearMotorEnabled.GetFirstChild());
@@ -1071,26 +1071,26 @@ namespace Mezzanine
     ////////////////////////////////////////////////////////////////////////////////
     // Generic6DofSpringConstraint Serialization
 #ifdef MEZZXML
-    void Generic6DofSpringConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    void Generic6DofSpringConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node G6dofSpringNode = CurrentRoot.AppendChild(SerializableName());                        // The base node all the base constraint stuff will go in
+        XML::Node G6dofSpringNode = CurrentRoot.AppendChild(SerializableName());                        // The base node all the base constraint stuff will go in
         if (!G6dofSpringNode)
             { SerializeError("Create G6dofSpringNode", SerializableName()); }
 
-        Mezzanine::xml::Attribute Version = G6dofSpringNode.AppendAttribute("Version");                      // Version
+        Mezzanine::XML::Attribute Version = G6dofSpringNode.AppendAttribute("Version");                      // Version
         if (!Version)
             { SerializeError("Create Version", SerializableName()); }
         Version.SetValue(1);
 
         this->Generic6DofConstraint::ProtoSerialize(G6dofSpringNode);                                   // Serialize the 6dof, dualtransform and the typedconstraint
 
-        xml::Node SpringStiffness = G6dofSpringNode.AppendChild("SpringStiffness");
+        XML::Node SpringStiffness = G6dofSpringNode.AppendChild("SpringStiffness");
         if (!SpringStiffness)
             { SerializeError("Create SpringStiffness", SerializableName()); }
-        xml::Node SpringDamping = G6dofSpringNode.AppendChild("SpringDamping");
+        XML::Node SpringDamping = G6dofSpringNode.AppendChild("SpringDamping");
         if (!SpringDamping)
             { SerializeError("Create SpringDamping", SerializableName()); }
-        xml::Node SpringEnabled = G6dofSpringNode.AppendChild("SpringEnabled");
+        XML::Node SpringEnabled = G6dofSpringNode.AppendChild("SpringEnabled");
         if (!SpringEnabled)
             { SerializeError("Create SpringEnabled", SerializableName()); }
 
@@ -1099,45 +1099,45 @@ namespace Mezzanine
         {
             String AttrName("Axis"+ToString(c));
 
-            Mezzanine::xml::Attribute AxisStiffness = SpringStiffness.AppendAttribute(AttrName);
+            Mezzanine::XML::Attribute AxisStiffness = SpringStiffness.AppendAttribute(AttrName);
             if (!AxisStiffness)
                 { SerializeError("Create AxisStiffness-"+AttrName, SerializableName()); }
             AxisStiffness.SetValue(this->GetSpringStiffness(c));
 
-            Mezzanine::xml::Attribute AxisDamping = SpringDamping.AppendAttribute(AttrName);
+            Mezzanine::XML::Attribute AxisDamping = SpringDamping.AppendAttribute(AttrName);
             if (!AxisDamping)
                 { SerializeError("Create AxisDamping-"+AttrName, SerializableName()); }
             AxisDamping.SetValue(this->GetSpringDamping(c));
 
-            Mezzanine::xml::Attribute AxisEnabled = SpringEnabled.AppendAttribute(AttrName);
+            Mezzanine::XML::Attribute AxisEnabled = SpringEnabled.AppendAttribute(AttrName);
             if (!AxisEnabled)
                 { SerializeError("Create AxisEnabled-"+AttrName, SerializableName()); }
             AxisEnabled.SetValue(this->GetSpringEnabled(c));
         }
     }
 
-    void Generic6DofSpringConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    void Generic6DofSpringConstraint::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->Generic6DofSpringConstraint::SerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                xml::Node g6dof = OneNode.GetChild("Generic6DofConstraint");
+                XML::Node g6dof = OneNode.GetChild("Generic6DofConstraint");
                 if(!g6dof)
                     { DeSerializeError("locate Generic6DofConstraint node",SerializableName()); }
                 this->Generic6DofConstraint::ProtoDeSerialize(g6dof);
 
-                xml::Node SpringStiffness = OneNode.GetChild("SpringStiffness");
+                XML::Node SpringStiffness = OneNode.GetChild("SpringStiffness");
                 if (!SpringStiffness)
                     { DeSerializeError("Find SpringStiffness Node", SerializableName()); }
-                xml::Node SpringDamping = OneNode.GetChild("SpringDamping");
+                XML::Node SpringDamping = OneNode.GetChild("SpringDamping");
                 if (!SpringDamping)
                     { DeSerializeError("Find SpringDamping Node", SerializableName()); }
-                xml::Node SpringEnabled = OneNode.GetChild("SpringEnabled");
+                XML::Node SpringEnabled = OneNode.GetChild("SpringEnabled");
                 if (!SpringEnabled)
                     { DeSerializeError("Find SpringEnabled Node", SerializableName()); }
 
-                xml::Attribute SpringStiffnessAttr = SpringStiffness.GetFirstAttribute();
+                XML::Attribute SpringStiffnessAttr = SpringStiffness.GetFirstAttribute();
                 while(SpringStiffnessAttr)
                 {
                     String CurrentName(SpringStiffnessAttr.Name());
@@ -1147,7 +1147,7 @@ namespace Mezzanine
                     SpringStiffnessAttr = SpringStiffnessAttr.GetNextAttribute();
                 }
 
-                xml::Attribute SpringDampingAttr = SpringDamping.GetFirstAttribute();
+                XML::Attribute SpringDampingAttr = SpringDamping.GetFirstAttribute();
                 while(SpringDampingAttr)
                 {
                     String CurrentName(SpringDampingAttr.Name());
@@ -1157,7 +1157,7 @@ namespace Mezzanine
                     SpringDampingAttr = SpringDampingAttr.GetNextAttribute();
                 }
 
-                xml::Attribute SpringEnabledAttr = SpringEnabled.GetFirstAttribute();
+                XML::Attribute SpringEnabledAttr = SpringEnabled.GetFirstAttribute();
                 while(SpringEnabledAttr)
                 {
                     String CurrentName(SpringEnabledAttr.Name());
@@ -1379,15 +1379,15 @@ namespace Mezzanine
 #ifdef MEZZXML
     ////////////////////////////////////////////////////////////////////////////////
     // HingeConstraint Serialization
-    void HingeConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    void HingeConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in
+        XML::Node HingeNode = CurrentRoot.AppendChild(SerializableName());          // The base node all the base constraint stuff will go in
         if (!HingeNode)
             { SerializeError("Create HingeNode", SerializableName()); }
 
-        xml::Attribute VerAttr = HingeNode.AppendAttribute("Version");              // Base Attributes
-        xml::Attribute RefA = HingeNode.AppendAttribute("ReferenceInA");
-        xml::Attribute FrameOff = HingeNode.AppendAttribute("UseFrameOffset");
+        XML::Attribute VerAttr = HingeNode.AppendAttribute("Version");              // Base Attributes
+        XML::Attribute RefA = HingeNode.AppendAttribute("ReferenceInA");
+        XML::Attribute FrameOff = HingeNode.AppendAttribute("UseFrameOffset");
         if( VerAttr && RefA && FrameOff )
         {
             VerAttr.SetValue(1);
@@ -1397,13 +1397,13 @@ namespace Mezzanine
             SerializeError("Create HingeNode Attributes", SerializableName());
         }
 
-        xml::Node MotorNode = HingeNode.AppendChild("Motor");                       // Motor Node
+        XML::Node MotorNode = HingeNode.AppendChild("Motor");                       // Motor Node
         if (!MotorNode)
             { SerializeError("Create MotorNode", SerializableName()); }
 
-        xml::Attribute MotEnabled = MotorNode.AppendAttribute("Enabled");           // Motor Attributes
-        xml::Attribute MotImpulse = MotorNode.AppendAttribute("MaxImpulse");
-        xml::Attribute MotTarget = MotorNode.AppendAttribute("TargetVelocity");
+        XML::Attribute MotEnabled = MotorNode.AppendAttribute("Enabled");           // Motor Attributes
+        XML::Attribute MotImpulse = MotorNode.AppendAttribute("MaxImpulse");
+        XML::Attribute MotTarget = MotorNode.AppendAttribute("TargetVelocity");
         if( MotEnabled && MotImpulse && MotTarget )
         {
             MotEnabled.SetValue(this->GetMotorEnabled());
@@ -1413,15 +1413,15 @@ namespace Mezzanine
             SerializeError("Create MotorNode Attributes", SerializableName());
         }
 
-        xml::Node LimitNode =  HingeNode.AppendChild("Limits");                      // Limits Node
+        XML::Node LimitNode =  HingeNode.AppendChild("Limits");                      // Limits Node
         if (!LimitNode)
             { SerializeError("Create LimitNode", SerializableName()); }
 
-        xml::Attribute LimLow = LimitNode.AppendAttribute("Low");                   // Limits Attributes
-        xml::Attribute LimHigh = LimitNode.AppendAttribute("High");
-        xml::Attribute LimSoft = LimitNode.AppendAttribute("Softness");
-        xml::Attribute LimBias = LimitNode.AppendAttribute("BiasFactor");
-        xml::Attribute LimRelax = LimitNode.AppendAttribute("RelaxationFactor");
+        XML::Attribute LimLow = LimitNode.AppendAttribute("Low");                   // Limits Attributes
+        XML::Attribute LimHigh = LimitNode.AppendAttribute("High");
+        XML::Attribute LimSoft = LimitNode.AppendAttribute("Softness");
+        XML::Attribute LimBias = LimitNode.AppendAttribute("BiasFactor");
+        XML::Attribute LimRelax = LimitNode.AppendAttribute("RelaxationFactor");
         if( LimLow && LimHigh && LimSoft && LimBias && LimRelax )
         {
             LimLow.SetValue(this->GetLimitLow());
@@ -1436,22 +1436,22 @@ namespace Mezzanine
         DualTransformConstraint::ProtoSerialize(HingeNode);
     }
 
-    void HingeConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    void HingeConstraint::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->HingeConstraint::SerializableName() )
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                xml::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
+                XML::Node DualTranny = OneNode.GetChild("DualTransformConstraint");
                 if(!DualTranny)
                     { DeSerializeError("locate DualTransforn node",SerializableName()); }
                 this->DualTransformConstraint::ProtoDeSerialize(DualTranny);
 
-                xml::Node MotorNode = OneNode.GetChild("Motor");
+                XML::Node MotorNode = OneNode.GetChild("Motor");
                 if(!MotorNode)
                     { DeSerializeError("locate Motor node",SerializableName()); }
 
-                xml::Node LimitNode = OneNode.GetChild("Limits");
+                XML::Node LimitNode = OneNode.GetChild("Limits");
                 if(!LimitNode)
                     { DeSerializeError("locate Limits node",SerializableName()); }
 
@@ -1604,16 +1604,16 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    void Point2PointConstraint::ProtoSerialize(xml::Node& CurrentRoot) const
+    void Point2PointConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
     {
-        xml::Node P2PNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
+        XML::Node P2PNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
         if (!P2PNode)
             { SerializeError("Create P2PNode", SerializableName()); }
 
-        xml::Attribute VerAttr = P2PNode.AppendAttribute("Version");
-        xml::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
-        xml::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
-        xml::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
+        XML::Attribute VerAttr = P2PNode.AppendAttribute("Version");
+        XML::Attribute TauAttr = P2PNode.AppendAttribute("Tau");
+        XML::Attribute ClaAttr = P2PNode.AppendAttribute("ImpulseClamping");
+        XML::Attribute DamAttr = P2PNode.AppendAttribute("Damping");
 
         if( VerAttr && TauAttr && ClaAttr && DamAttr )
         {
@@ -1625,12 +1625,12 @@ namespace Mezzanine
             SerializeError("Create P2PNode Attributes", SerializableName());
         }
 
-        xml::Node ActorANode = P2PNode.AppendChild("ActorA");
+        XML::Node ActorANode = P2PNode.AppendChild("ActorA");
         if (!ActorANode)
             { SerializeError("Create ActorANode", SerializableName()); }
         this->GetPivotALocation().ProtoSerialize(ActorANode);
 
-        xml::Node ActorBNode = P2PNode.AppendChild("ActorB");
+        XML::Node ActorBNode = P2PNode.AppendChild("ActorB");
         if (!ActorBNode)
             { SerializeError("Create ActorBNode", SerializableName()); }
         this->GetPivotBLocation().ProtoSerialize(ActorBNode);
@@ -1638,7 +1638,7 @@ namespace Mezzanine
         this->TypedConstraint::ProtoSerialize(P2PNode);
     }
 
-    void Point2PointConstraint::ProtoDeSerialize(const xml::Node& OneNode)
+    void Point2PointConstraint::ProtoDeSerialize(const XML::Node& OneNode)
     {
         if ( Mezzanine::String(OneNode.Name())==this->Point2PointConstraint::SerializableName() )
         {
@@ -1650,11 +1650,11 @@ namespace Mezzanine
                 this->SetImpulseClamping(OneNode.GetAttribute("ImpulseClamping").AsReal());
                 this->SetDamping(OneNode.GetAttribute("Damping").AsReal());
 
-                xml::Node ActorANode = OneNode.GetChild("ActorA");
+                XML::Node ActorANode = OneNode.GetChild("ActorA");
                 if(!ActorANode)
                     { DeSerializeError("Could not find ActorA position",SerializableName()); }
 
-                xml::Node ActorBNode = OneNode.GetChild("ActorB");
+                XML::Node ActorBNode = OneNode.GetChild("ActorB");
                 if(!ActorBNode)
                     { DeSerializeError("Could not find ActorB position",SerializableName()); }
 
@@ -2000,7 +2000,7 @@ namespace Mezzanine
     std::istream& operator >> (std::istream& stream, Mezzanine::TypedConstraint& x)
         { return DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::TypedConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::TypedConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 
 
@@ -2013,7 +2013,7 @@ namespace Mezzanine
     std::istream& operator >> (std::istream& stream, Mezzanine::DualTransformConstraint& x)
         { return DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::DualTransformConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::DualTransformConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 
 
@@ -2026,7 +2026,7 @@ namespace Mezzanine
     std::istream& operator >> (std::istream& stream, Mezzanine::Generic6DofConstraint& x)
         { return DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Generic6DofConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Generic6DofConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 
 
@@ -2039,7 +2039,7 @@ namespace Mezzanine
     std::istream& operator >> (std::istream& stream, Mezzanine::Generic6DofSpringConstraint& x)
         { return DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Generic6DofSpringConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Generic6DofSpringConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 
 
@@ -2053,7 +2053,7 @@ namespace Mezzanine
     std::istream& operator >> (std::istream& stream, Mezzanine::HingeConstraint& x)
         { return DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::HingeConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::HingeConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 
 
@@ -2068,7 +2068,7 @@ namespace Mezzanine
     std::istream& operator >> (std::istream& stream, Mezzanine::Point2PointConstraint& x)
         { return DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Point2PointConstraint& x)
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Point2PointConstraint& x)
         { x.ProtoDeSerialize(OneNode); }
 #endif // \MEZZXML
 

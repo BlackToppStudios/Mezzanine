@@ -67,7 +67,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    CollisionShapeManager::CollisionShapeManager(xml::Node& XMLNode)
+    CollisionShapeManager::CollisionShapeManager(XML::Node& XMLNode)
     {
         this->Priority = 40;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -734,7 +734,7 @@ namespace Mezzanine
         }else return new CollisionShapeManager();
     }
 
-    ManagerBase* DefaultCollisionShapeManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultCollisionShapeManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(CollisionShapeManager::SingletonValid())
         {

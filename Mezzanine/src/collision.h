@@ -202,8 +202,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Collision& 
 /// @brief Set all values of a Mezzanine::Collision from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::Collision.
 /// @param Col the Mezzanine::Collision to be reset.
-/// @return This returns the xml::Node that was passed in.
-void MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::Collision& Col);
+/// @return This returns the XML::Node that was passed in.
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Collision& Col);
 
 #endif // \MEZZXML
 

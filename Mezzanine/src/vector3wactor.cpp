@@ -64,7 +64,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3WActor&
     if (x.Actor != NULL)
     {
         //Creating a Document here is a sloppy mess used only to integrate old and new code
-        Mezzanine::xml::Document Doc;
+        Mezzanine::XML::Document Doc;
         Doc.Load("");
         x.Actor->ProtoSerialize(Doc);
         stream << "( Actor:" << Doc << " Vector:" << x.Vector << ")";

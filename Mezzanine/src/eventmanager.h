@@ -75,8 +75,8 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventManage
 /// @brief Set all values of a Mezzanine::EventManager from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::EventManager.
 /// @param Mgr the Mezzanine::EventManager to be reset.
-/// @return This returns thexml::Node that was passed in.
-void MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventManager& Mgr);
+/// @return This returns theXML::Node that was passed in.
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
 
 #endif // \MEZZXML
 
@@ -142,7 +142,7 @@ namespace Mezzanine
             #ifdef MEZZXML
             friend std::ostream& MEZZ_LIB ::operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
             friend std::istream& MEZZ_LIB ::operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
-            friend void MEZZ_LIB ::operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::EventManager& Mgr);
+            friend void MEZZ_LIB ::operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
             #endif // \MEZZXML
 
         public:
@@ -153,7 +153,7 @@ namespace Mezzanine
 #ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
-            EventManager(xml::Node& XMLNode);
+            EventManager(XML::Node& XMLNode);
 #endif
 
             /// @brief Default Deconstructor
@@ -465,8 +465,8 @@ namespace Mezzanine
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
 #ifdef MEZZXML
-            /// @copydoc ManagerFactory::CreateManager(xml::Node&)
-            ManagerBase* CreateManager(xml::Node& XMLNode);
+            /// @copydoc ManagerFactory::CreateManager(XML::Node&)
+            ManagerBase* CreateManager(XML::Node& XMLNode);
 #endif
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);

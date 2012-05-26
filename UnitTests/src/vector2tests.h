@@ -199,7 +199,7 @@ class Vector2Tests : public UnitTestGroup
                 try
                 {
                     Vector2 Vec5;
-                    xml::Document XMLdoc;
+                    XML::Document XMLdoc;
                     XMLdoc.Load("<Vector2 Version=\"1\" X=\"3\" Y=\"4\" />");
                     XMLdoc.GetFirstChild()>>Vec5;
                     if(Vec5==Vec)
@@ -207,11 +207,11 @@ class Vector2Tests : public UnitTestGroup
                     else
                         { temp=Failed; }
                 }catch (Mezzanine::Exception e){
-                    std::cerr << "Failure in: Vector2::operator>>(xml::Node,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
+                    std::cerr << "Failure in: Vector2::operator>>(XML::Node,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
                     temp=Failed;
                 }
                 #endif
-                AddTestResult("Vector2::operator>>(xml::Node,Vector2)", temp);          //test
+                AddTestResult("Vector2::operator>>(XML::Node,Vector2)", temp);          //test
 
             }else{
                 AddTestResult("Vector2::Vector2()", Skipped);
@@ -233,7 +233,7 @@ class Vector2Tests : public UnitTestGroup
                 #ifdef MEZZXML
                 AddTestResult("Vector2::operator<<(ostream,Vector2)", Skipped);
                 AddTestResult("Vector2::operator>>(istream,Vector2)", Skipped);
-                AddTestResult("Vector2::operator>>(xml::Node,Vector2)", Skipped);
+                AddTestResult("Vector2::operator>>(XML::Node,Vector2)", Skipped);
                 #endif
             }
 

@@ -56,7 +56,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    TimerManager::TimerManager(xml::Node& XMLNode)
+    TimerManager::TimerManager(XML::Node& XMLNode)
     {
         this->Priority = 5;
         MasterTimer = new Ogre::Timer();
@@ -161,7 +161,7 @@ namespace Mezzanine
         }else return new TimerManager();
     }
 
-    ManagerBase* DefaultTimerManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultTimerManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(TimerManager::SingletonValid())
         {

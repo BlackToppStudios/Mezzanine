@@ -617,7 +617,7 @@ namespace Mezzanine
             /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
             /// @param AddToWorld Whether or not to add the created manager to the world after creation.
             /// @return Returns a pointer to the created manager.
-            ManagerBase* CreateManager(const String& ManagerImplName, xml::Node& XMLNode, bool AddToWorld = true);
+            ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld = true);
 #endif
             /// @brief Destroys a manager.
             /// @param ToBeDestroyed The manager to be destroyed.

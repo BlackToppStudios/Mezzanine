@@ -94,7 +94,7 @@ namespace Mezzanine
     }
 
 #ifdef MEZZXML
-    ResourceManager::ResourceManager(xml::Node& XMLNode)
+    ResourceManager::ResourceManager(XML::Node& XMLNode)
     {
         this->Priority = 55;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
@@ -434,7 +434,7 @@ namespace Mezzanine
         }
     }
 
-    ManagerBase* DefaultResourceManagerFactory::CreateManager(xml::Node& XMLNode)
+    ManagerBase* DefaultResourceManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(ResourceManager::SingletonValid())
         {

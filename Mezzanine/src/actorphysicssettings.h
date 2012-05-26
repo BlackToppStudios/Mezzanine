@@ -153,14 +153,14 @@ namespace Mezzanine
             // Serialization
 
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @param OneNode and XML::Node containing the data.
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorBasePhysicsSettings"
@@ -277,14 +277,14 @@ namespace Mezzanine
             // Serialization
 
             // Serializable
-            /// @brief Convert this class to an xml::Node ready for serialization
+            /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.
-            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+            virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
 
             // DeSerializable
             /// @brief Take the data stored in an XML and overwrite this instance of this object with it
-            /// @param OneNode and xml::Node containing the data.
-            virtual void ProtoDeSerialize(const xml::Node& OneNode);
+            /// @param OneNode and XML::Node containing the data.
+            virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorRigidPhysicsSettings"
@@ -339,7 +339,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorBasePh
 /// @brief Set all values of a Mezzanine::ActorBasePhysicsSettings from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::ActorBasePhysicsSettings.
 /// @param Ev the Mezzanine::ActorBasePhysicsSettings to be reset.
-void MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorBasePhysicsSettings& Ev);
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorBasePhysicsSettings& Ev);
 
 /// @brief Serializes the passed Mezzanine::ActorRigidPhysicsSettings to XML
 /// @param stream The ostream to send the xml to.
@@ -356,7 +356,7 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigidP
 /// @brief Set all values of a Mezzanine::ActorRigidPhysicsSettings from parsed xml.
 /// @param OneNode The istream to get the xml from to (re)make the Mezzanine::ActorRigidPhysicsSettings.
 /// @param Ev the Mezzanine::ActorRigidPhysicsSettings to be reset.
-void MEZZ_LIB operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev);
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev);
 
 #endif // \MEZZXML
 
