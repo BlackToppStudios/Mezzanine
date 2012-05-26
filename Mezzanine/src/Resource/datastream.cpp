@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -238,7 +238,7 @@ namespace Mezzanine
             BufferEnd = BufferStart + BufferSize;
 
             if(BufferEnd < BufferStart)
-                World::GetWorldPointer()->LogAndThrow(Exception("Using a zero or negative size buffer in MemoryDataStream::MemoryDataStream."));
+                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
         MemoryDataStream::MemoryDataStream(const String& Name, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
@@ -251,7 +251,7 @@ namespace Mezzanine
             BufferEnd = BufferStart + BufferSize;
 
             if(BufferEnd < BufferStart)
-                World::GetWorldPointer()->LogAndThrow(Exception("Using a zero or negative size buffer in MemoryDataStream::MemoryDataStream."));
+                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
         MemoryDataStream::MemoryDataStream(void* Buffer, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
@@ -263,7 +263,7 @@ namespace Mezzanine
             BufferEnd = BufferStart + BufferSize;
 
             if(BufferEnd < BufferStart)
-                World::GetWorldPointer()->LogAndThrow(Exception("Using a zero or negative size buffer in MemoryDataStream::MemoryDataStream."));
+                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
         MemoryDataStream::MemoryDataStream(const String& Name, void* Buffer, const size_t& BufferSize, bool FreeOnClose, bool ReadOnly)
@@ -275,7 +275,7 @@ namespace Mezzanine
             BufferEnd = BufferStart + BufferSize;
 
             if(BufferEnd < BufferStart)
-                World::GetWorldPointer()->LogAndThrow(Exception("Using a zero or negative size buffer in MemoryDataStream::MemoryDataStream."));
+                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Using a zero or negative size buffer");
         }
 
         MemoryDataStream::~MemoryDataStream()
@@ -359,7 +359,7 @@ namespace Mezzanine
                 return 0;
 
             //if(RetCount > Count);
-            //    World::GetWorldPointer()->LogAndThrow(Exception("Cannot read passed end of stream in MemoryDataStream::Read."));
+            //    MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Cannot read passed end of stream");
 
             std::memcpy(Buffer,BufferPos,RetCount);
             BufferPos += RetCount;
@@ -395,7 +395,7 @@ namespace Mezzanine
         void MemoryDataStream::Seek(const size_t& Position)
         {
             if( BufferStart + Position > BufferEnd )
-                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to set position of stream to area outside the bounds of the buffer in MemoryDataStream::Seek"));
+                MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to set position of stream to area outside the bounds of the buffer");
 
             BufferPos = BufferStart + Position;
         }
@@ -467,10 +467,7 @@ namespace Mezzanine
 
             if(!FileHandle)
             {
-                /// @todo We should probably add something to fetch/interpret the error and add it to the exception.
-                std::stringstream exceptionstream;
-                exceptionstream << "Unable to create or locate file \"" << Name << "\" in path \"" << Path << "\".  In FileHandleDataStream::FileHandleDataStream.";
-                World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+Name+"\"");
             }
 
             fseek(FileHandle,0,SEEK_END);
@@ -577,10 +574,7 @@ namespace Mezzanine
 
             if(!FileStream->is_open())
             {
-                /// @todo We should probably add something to fetch/interpret the error and add it to the exception.
-                std::stringstream exceptionstream;
-                exceptionstream << "Unable to create or locate file \"" << Name << "\" in path \"" << Path << "\".  In FileStreamDataStream::FileStreamDataStream";
-                World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+Name+"\"");
             }
 
             FileStream->seekg(0,std::ios_base::end);
