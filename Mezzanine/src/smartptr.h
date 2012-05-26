@@ -53,11 +53,13 @@
 
 namespace Mezzanine
 {
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief This exists once per object managed by a group of shared pointer to track items in memory.
     /// @details This exists to track the pointer to the managed object, and stores the single
     /// counter of existing references. Only one of these should be created for each group of
     /// pointers managing the same object.
     /// @note It should be extremely rare to need to create one of these outside of pointer implemenation.
+    ///////////////////////////////////////////////////////////////////////////////
     template <class TypePointedTo> struct ReferenceCounter
     {
         /// @brief Constructor
@@ -74,6 +76,7 @@ namespace Mezzanine
         Whole Count;
     };
 
+    ///////////////////////////////////////////////////////////////////////////////
     /// @brief A single threaded referencing counting pointer.
     /// @details This is a pointer that automatically deallocates the object it manages when
     /// all counted_ptr intances managing it are destroyed or fall out of scope. This is a
@@ -82,6 +85,7 @@ namespace Mezzanine
     /// @note The basis of this class originated externally, please see the counted pointer
     /// from http://ootips.org/yonat/4dev/smart-pointers.htm0 which came with written permission
     /// for use stated as "Feel free to use my own smart pointers in your code" on that page.
+    ///////////////////////////////////////////////////////////////////////////////
     template <class TypePointedTo> class CountedPtr
     {
         private:
@@ -173,7 +177,7 @@ namespace Mezzanine
 
             /// @brief Copy constructor
             /// @param Original The pointer being copied. This fresh pointer will use the same ReferenceCounter as the original.
-            CountedPtr(const CountedPtr& Original)
+            CountedPtr(const CountedPtr& Original) : itsCounter(NULL)
                 {Acquire(Original.itsCounter);}
 
             /// @brief Get the current count of references.
