@@ -1950,6 +1950,7 @@ data/RenderSystems/GL/src/OgreGLRenderSystem.cpp.i
 data/SDK/OSX/Xcode Templates/Xcode4/File Templates/Generic Ogre Script.xctemplate/TemplateInfo.plist.i
 data/Docs/manual/manual_9.html.i
 data/Samples/Media/thumbnails/thumb_skybox.png.i
+data/SDK/Win32/mingwsdk.bat.i
 data/OgreMain/include/OgreScriptLoader.h.i
 data/Samples/Media/RTShaderLib/SGXLib_TextureAtlas.hlsl.i
 data/Tools/MaterialEditor/bin/lexers/oms/keywords.i
@@ -2378,6 +2379,7 @@ data/Samples/Media/materials/scripts/SSAO/SSAOPost.material.i
 data/SDK/OSX/Xcode Templates/Xcode/Project Templates/Ogre/Mac OS X/Resources/media/gui/TaharezLook.imageset.i
 data/Samples/Shadows/scripts/Demo_Shadows_vc8.vcproj.user.i
 data/Samples/Media/thumbnails/thumb_grass.png.i
+data/Samples/Media/thumbnails/thumb_facial.png.i
 data/Components/RTShaderSystem/include/OgreShaderFFPRenderStateBuilder.h.i
 data/Docs/src/vbos.inc.i
 data/Tools/MaterialEditor/MaterialEditor/xpm/close.xpm.i
@@ -3347,7 +3349,7 @@ data/SDK/OSX/Xcode Templates/Xcode4/Project Templates/Ogre/iOS Application.xctem
 data/RenderSystems/GLES2/src/EGL/OgreEGLSupport.cpp.i
 data/SDK/OSX/Xcode Templates/Xcode/Project Templates/Ogre/iPhone OS/Resources/media/materials/scripts/Examples-Advanced.material.i
 data/PlugIns/OctreeSceneManager/include/OgreHeightmapTerrainPageSource.h.i
-data/Samples/Media/thumbnails/thumb_facial.png.i
+data/Other/ogre_logo.svg.i
 data/Samples/Media/materials/programs/DualQuaternion.glsl.i
 data/Samples/Media/materials/programs/TilingFP.glsles.i
 data/Components/Property/include/OgrePropertyPrerequisites.h.i
@@ -4073,7 +4075,7 @@ data/Samples/Media/DeferredShadingMedia/DeferredShading/material/hlsl/notex_ps.h
 data/Samples/Media/materials/scripts/DepthShadowmap.material.i
 data/OgreMain/src/OgreOverlayElement.cpp.i
 data/Samples/Media/packs/ogretestmap.zip.d
-data/Samples/Media/materials/programs/DepthShadowmapReceiverVp.glsl.i
+data/Other/ogre_head.svg.i
 data/OgreMain/src/OgrePrefabFactory.cpp.i
 data/Mac/Ogre/nib/config.nib/keyedobjects.nib.i
 data/Docs/vbo-update/vbo-update_14.html.i
@@ -4671,6 +4673,7 @@ data/Samples/SkyBox/CMakeLists.txt.i
 data/Samples/DeferredShading/src/GBufferSchemeHandler.cpp.i
 data/RenderSystems/GL/src/nvparse/Makefile.reyacc.i
 data/Samples/Smoke/scripts/Demo_Smoke.cbp.i
+data/Samples/Media/materials/programs/DepthShadowmapReceiverVp.glsl.i
 data/Tools/MilkshapeExport/include/msPlugIn.h.i
 data/RenderSystems/Direct3D10/src/OgreD3D10RenderToVertexBuffer.cpp.i
 data/OgreMain/include/OgreRenderQueueInvocation.h.i

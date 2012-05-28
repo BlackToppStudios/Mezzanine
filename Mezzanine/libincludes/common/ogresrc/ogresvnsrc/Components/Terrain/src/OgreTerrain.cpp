@@ -4351,8 +4351,13 @@ namespace Ogre
 
 			Image::scale(src, dst, Image::FILTER_BILINEAR);
 
-			freeCPUResources();
+            if (!mTerrainNormalMap.isNull())
+            {
+                TextureManager::getSingletonPtr()->remove(mTerrainNormalMap->getHandle());
+                mTerrainNormalMap.setNull();
+            }
 
+            freeCPUResources();
 			mSize = newSize;
 
 			determineLodLevels();
@@ -4470,7 +4475,7 @@ namespace Ogre
 	}
 	//---------------------------------------------------------------------
 	void Terrain::DefaultGpuBufferAllocator::warmStart(size_t numInstances, uint16 terrainSize, uint16 maxBatchSize, 
-		uint16 mMinBatchSize)
+		uint16 minBatchSize)
 	{
 		// TODO
 

@@ -32,6 +32,15 @@ if(WIN32)
   set(CMAKE_SUPPRESS_REGENERATION true)
 endif()
 
+if (APPLE)
+  include(CMakeForceCompiler)
+  CMAKE_FORCE_C_COMPILER(clang GNU)
+  CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
+  SET(CMAKE_SIZEOF_VOID_P 4)
+  set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
+endif ()
+
+
 project(OGRE)
 
 # Added by BTS for merging
@@ -54,14 +63,6 @@ include(PreprocessorUtils)
 set(OGRE_TEMPLATES_DIR "${OGRE_SOURCE_DIR}/CMake/Templates")
 set(OGRE_WORK_DIR ${OGRE_BINARY_DIR})
 
-
-if (APPLE)
-  include(CMakeForceCompiler)
-  CMAKE_FORCE_C_COMPILER(clang GNU)
-  CMAKE_FORCE_CXX_COMPILER(clang++ GNU)
-  SET(CMAKE_SIZEOF_VOID_P 4)
-  set(CMAKE_XCODE_ATTRIBUTE_GCC_VERSION "com.apple.compilers.llvm.clang.1_0")
-endif ()
 
 #####################################################################
 # Set up the basic build environment
@@ -95,17 +96,17 @@ if (NOT APPLE)
 endif ()
 
 # Set compiler specific build flags
-if (CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX)
   check_cxx_compiler_flag(-msse OGRE_GCC_HAS_SSE)
   if (OGRE_GCC_HAS_SSE)
-    #add_definitions(-msse)
-    if(MINGW)
-      set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
-    endif(MINGW)
+    add_definitions(-msse)
   endif ()
   # This is a set of sensible warnings that provide meaningful output
-  add_definitions(-Wno-deprecated -Wall -Wctor-dtor-privacy -Winit-self -Wno-overloaded-virtual -Wcast-qual -Wwrite-strings -Wextra -Wno-unused-parameter -pedantic -Wshadow -Wno-unused-but-set-parameter -Wno-missing-field-initializers -Wno-long-long)
+  set(OGRE_WARNING_FLAGS "-Wno-deprecated -Wall -Wctor-dtor-privacy -Winit-self -Wno-overloaded-virtual -Wcast-qual -Wwrite-strings -Wextra -Wno-unused-parameter -pedantic -Wshadow -Wno-missing-field-initializers -Wno-long-long")
+  if (NOT APPLE)
+      set(OGRE_WARNING_FLAGS "${OGRE_WARNING_FLAGS} -Wno-unused-but-set-parameter")
+  endif ()
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OGRE_WARNING_FLAGS}")
 endif ()
 if (MSVC)
   if (CMAKE_BUILD_TOOL STREQUAL "nmake")
@@ -128,9 +129,14 @@ if (MSVC)
 endif ()
 if (MINGW)
   add_definitions(-D_WIN32_WINNT=0x0500)
+  # set architecture to i686, since otherwise some versions of MinGW can't link 
+  # the atomic primitives
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=i686")
+  # disable this optimisation because it breaks release builds (reason unknown)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-tree-slp-vectorize")
 endif ()
 
-if ((CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") AND NOT MINGW)
+if ((CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX) AND NOT MINGW)
   # Test for GCC visibility
   include(CheckCXXCompilerFlag)
   check_cxx_compiler_flag(-fvisibility=hidden OGRE_GCC_VISIBILITY)
@@ -157,7 +163,7 @@ if ((CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") AND
   if(OGRE_PLATFORM_X64 AND NOT APPLE)
     add_definitions(-fPIC)
   endif()  
-endif ((CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang") AND NOT MINGW)
+endif ((CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX) AND NOT MINGW)
 
 # determine system endianess
 if (MSVC)
@@ -165,12 +171,8 @@ if (MSVC)
   # MSVC only builds for intel anyway
   set(OGRE_TEST_BIG_ENDIAN FALSE)
 else()
-  if(OGRE_PLATFORM_X64) #Sparc is the only little endian 64bit chip and it has no good GPUs at the time of this writing.
-    set(OGRE_TEST_BIG_ENDIAN FALSE)
-  else(OGRE_PLATFORM_X64)  #eventually an arm8 chip check will be required here.
-    include(TestBigEndian)
-    test_big_endian(OGRE_TEST_BIG_ENDIAN)
-  endif(OGRE_PLATFORM_X64)
+  include(TestBigEndian)
+  test_big_endian(OGRE_TEST_BIG_ENDIAN)
 endif()
 
 # Add OgreMain include path
@@ -233,9 +235,9 @@ if (OGRE_BUILD_PLATFORM_APPLE_IOS)
   set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for iOS" FORCE)
   set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.\${PRODUCT_NAME:rfc1034identifier}")
 
-  set(CMAKE_OSX_ARCHITECTURES $(ARCHS_STANDARD_32_BIT))
+  set(CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT})
   # armv7 only
-  #set(CMAKE_OSX_ARCHITECTURES $(ARCHS_UNIVERSAL_IPHONE_OS))
+  #set(CMAKE_OSX_ARCHITECTURES ${ARCHS_UNIVERSAL_IPHONE_OS})
 
   remove_definitions(-msse)
 elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
@@ -246,7 +248,7 @@ elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
   set(CMAKE_OSX_DEPLOYMENT_TARGET 10.5)
 
   if (NOT CMAKE_OSX_ARCHITECTURES)
-    set(CMAKE_OSX_ARCHITECTURES $(ARCHS_STANDARD_32_64_BIT))
+    set(CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_64_BIT})
   endif()
 
   # Make sure that the OpenGL render system is selected for non-iOS Apple builds
@@ -427,10 +429,6 @@ include(ConfigureBuild)
 
 # install resource files
 include(InstallResources)
-
-# Added by BTS
-# Setup the dependancies for ogre
-#add_subdirectory(Dependencies)
 
 # Setup OgreMain project
 add_subdirectory(OgreMain)

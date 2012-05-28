@@ -163,6 +163,9 @@ namespace Ogre {
     {
 		mGLSupport->start();
 
+        // Create the texture manager        
+		mTextureManager = OGRE_NEW GLES2TextureManager(*mGLSupport); 
+
         RenderWindow *autoWindow = mGLSupport->createWindow(autoCreateWindow,
                                                             this, windowTitle);
         RenderSystem::_initialise(autoCreateWindow, windowTitle);
@@ -375,8 +378,6 @@ namespace Ogre {
 		{
 			caps->log(defaultLog);
 		}
-
-        mTextureManager = OGRE_NEW GLES2TextureManager(*mGLSupport);
 
         GL_CHECK_ERROR;
         mGLInitialised = true;
@@ -1359,7 +1360,7 @@ namespace Ogre {
                         return GL_LINEAR_MIPMAP_LINEAR;
                     case FO_POINT:
                         // linear min, point mip
-//                        return GL_LINEAR_MIPMAP_NEAREST;
+                        return GL_LINEAR_MIPMAP_NEAREST;
                     case FO_NONE:
                         // linear min, no mip
                         return GL_LINEAR;

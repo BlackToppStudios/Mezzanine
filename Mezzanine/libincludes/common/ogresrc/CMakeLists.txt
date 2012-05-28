@@ -26,9 +26,6 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # In ogresvnsrc\CMake\PrepareThreadingOptions.cmake:
 # Only thing here is have to comment out line 19, where it sets boost as the threading option if/when it finds boost.
 #
-# In ogresvnsrc\Dependancies\cmake\FindDirectX.cmake:
-# At line 79 they mark a bunch of options and paths as advanced, but missed the variable "DirectX_DINPUT8_LIBRARY".  Add it to the list of things being marked as advanced.
-#
 # In ogresvnsrc\CMake\Dependencies.cmake:
 # Need to comment out lines 56 to 72 that try to find the 4 core ogre dependencies: Zlip, Zziplib, FreeImage, and Freetype.
 # Next, comment out lines 169 and 170 where it tries to find OIS.
@@ -36,14 +33,11 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # In ogresvnsrc\CMake\InstallDependencies.cmake:
 # On line 23, mark the options OGRE_INSTALL_DEPENDENCIES and OGRE_COPY_DEPENDENCIES as advanced.
 #
-# in ogresrc/ogresvnsrc/Dependencies/src/Cg/CMakeLists.txt
-# surround the bulk of the file, after the "project(Cg)" if(MINGW) and endif(MINGW)
-#
 # In ogresvnsrc\cmakelists.txt:
 # Comment out the "if" statement regarding the cmake build type from lines 69 to 73.
-# At around line 101, comment out the line that adds definitions and add these two lines below it (wrapped in an if to target just mingw):
-#   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
-#   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
+## At around line 101, comment out the line that adds definitions and add these two lines below it (wrapped in an if to target just mingw):
+##   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse -march=i686")
+##   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse -march=i686")
 # Lines 346 and 349 were changed from "cmake_dependant_option" to "option", and removed the extra conditions to change the default.  
 # Have to comment out the line under "# Dependancies" at around line 180 that includes the Dependancies package. this entry is responsible for
 #  finding OpenGL, it a proxy for it must exist. I left this one and remarked out the one on line 421 
@@ -64,6 +58,9 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # Add a section to define the output directory similar to the one at the top of this file.  Put it in the same dir listed above plus "deps".
 #  I commented out the section mentioned above and instead moved it to this file, so that it could be used in the other dependencies setup.
 #
+# In ogresvnsrc\Dependancies\cmake\FindDirectX.cmake:
+# At line 79 they mark a bunch of options and paths as advanced, but missed the variable "DirectX_DINPUT8_LIBRARY".  Add it to the list of things being marked as advanced.
+#
 # In ogresvnsrc\Dependencies\src\CMakeLists.txt:
 # At the top of the file all the options to build the various dependancies must be set to true with the exception of OIS, which must be set to false.
 # Next, "OGREDEPS_LIB_DIRECTORY" needs to be set to the OGREDEPS_BINARY_DIR.
@@ -75,20 +72,23 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # At the top of the file, around line 4 just after the option "Cg_INCLUDE_DIR", need to add a line marking it as advanced.
 # Also, at line 43, you must mark the options "Cg_LIBRARY_REL" and "Cg_LIBRARY_DBG" as advanced.
 #
+# in ogresvnsrc/Dependencies/src/Cg/CMakeLists.txt
+# surround the bulk of the file, after the "project(Cg)" if(MINGW OR MSVC) and endif(MINGW OR MSVC)
+#
 # In ogresvnsrc\Dependencies\src\zziplib\CMakeLists.txt:
 # At line 38, remove the "zzip/" portion of the filename.  Also move the actual file to it's parent folder to properly account for the other change.
 # The above change also necessitates removal of the "zzip/" portion of the includes in each file of the zziplib that needs it.  The files that need it are below:
 # 1. lib.h
 # 2. plugin.h
 #
+# ogresvnsrc/Dependencies/src/FreeImage/Source/LibMNG/libmng_conf.h
+# remark out line 80 to disable the definition of MNG_OPTIMIZE_CHUNKREADER to allow compilation
+#
 # In ogresvnsrc\OgreMain\CMakeLists.txt:
 # At around line 707, add include directories for all the dependancies of OgreMain.  Separately in an "if" statement put the Cg include directory.
 # Also, just after the include directories, add a line to declare the link directory.
 # After the ogremain target is created at around line 733, add a line to define the dependancies of OgreMain, with an "if" statement to exclude Cg on iOS.
 # Next, in the same if statement above, add lines for declaring the link libraries for the ogre dependancies.
-#
-# ogresvnsrc/Dependencies/src/FreeImage/Source/LibMNG/libmng_conf.h
-# remark out line 80 to disable the definition of MNG_OPTIMIZE_CHUNKREADER to allow compilation
 
 
 add_subdirectory ( ogresvnsrc )
