@@ -8223,7 +8223,7 @@ namespace
 		#ifdef XML_NO_EXCEPTIONS
 			longjmp(_error_handler, 1);
 		#else
-			throw XPathException(*_Result);
+			//throw XPathException(*_Result);
 		#endif
 		}
 
@@ -9104,7 +9104,7 @@ namespace Mezzanine
 { namespace xml
 {
 #ifndef XML_NO_EXCEPTIONS
-	XPathException::XPathException(const XPathParseResult& Result): _Result(Result)
+	XPathException::XPathException(const XPathParseResult& Result): Exception("","","","",0), _Result(Result)
 	{
 		assert(Result.error);
 	}
@@ -9603,7 +9603,7 @@ namespace Mezzanine
 			XPathParseResult Result;
 			Result.error = "Expression does not evaluate to node set";
 
-			throw XPathException(Result);
+			//throw XPathException(Result);
 		#endif
 		}
 
