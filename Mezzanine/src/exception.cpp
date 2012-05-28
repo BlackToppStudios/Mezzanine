@@ -42,6 +42,7 @@
 #define _exception_cpp
 
 #include "exception.h"
+#include "stringtool.h"
 #include "world.h"
 
 namespace Mezzanine
@@ -90,9 +91,9 @@ namespace Mezzanine
     String Exception::GetCompleteMessage() const throw()
     {
         StringStream ErrorStream;
-        ErrorStream << "MEZZANINE EXCEPTION(" << TypeName << "): "
-                    << ErrorMessage << " in " << Function << ".  "
-                    << "At line " << Line?Line:"Unknown" << " of "
+        ErrorStream << "MEZZANINE EXCEPTION(" << ExceptionTypeName << "): "
+                    << ErrorMessage << "  In " << Function << ".  " << "At line "
+                    << (Line?StringTool::ConvertToString(Line):"Unknown") << " of "
                     << File << ".";
         return ErrorStream.str();
     }

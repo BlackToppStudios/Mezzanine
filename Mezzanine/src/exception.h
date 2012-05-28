@@ -63,29 +63,31 @@ namespace Mezzanine
             enum ExceptionCodes
             {
                 // Input/Output exceptions
-                IO_UNKNOWN_EXCEPTION = 0x01,              // 1
-                IO_READ_EXCEPTION = 0x01A01,              // 2
-                IO_WRITE_EXCEPTION = 0x01A02,             // 3
-                IO_FILE_NOT_FOUND_EXCEPTION = 0x01A03,    // 4
+                IO_UNKNOWN_EXCEPTION = 0x01,               // 1
+                IO_READ_EXCEPTION = 0x01A01,               // 2
+                IO_WRITE_EXCEPTION = 0x01A02,              // 3
+                IO_FILE_NOT_FOUND_EXCEPTION = 0x01A03,     // 4
+                IO_DIRECTORY_NOT_FOUND_EXCEPTION = 0x01A04,// 5
                 // Instance Identity exceptions
-                II_UNKNOWN_EXCEPTION = 0x02,              // 5
-                II_IDENTITY_INVALID_EXCEPTION = 0x02A01,  // 6
-                II_IDENTITY_NOT_FOUND_EXCEPTION = 0x02A02,// 7
-                II_DUPLICATE_IDENTITY_EXCEPTION = 0x02A03,// 8
+                II_UNKNOWN_EXCEPTION = 0x02,               // 6
+                II_IDENTITY_INVALID_EXCEPTION = 0x02A01,   // 7
+                II_IDENTITY_NOT_FOUND_EXCEPTION = 0x02A02, // 8
+                II_DUPLICATE_IDENTITY_EXCEPTION = 0x02A03, // 9
                 // Memory Management exceptions
-                MM_UNKNOWN_EXCEPTION = 0x03,              // 9
-                MM_OUT_OF_MEMORY_EXCEPTION = 0x03A01,     // 10
-                MM_OUT_OF_BOUNDS_EXCEPTION = 0x03A02,     // 11
+                MM_UNKNOWN_EXCEPTION = 0x03,               // 10
+                MM_OUT_OF_MEMORY_EXCEPTION = 0x03A01,      // 11
+                MM_OUT_OF_BOUNDS_EXCEPTION = 0x03A02,      // 12
                 // Syntax exceptions
-                UNKNOWN_SYNTAX_EXCEPTION = 0x04,          // 12
+                UNKNOWN_SYNTAX_EXCEPTION = 0x04,           // 13
                 // Other exceptions
-                ARITHMETIC_EXCEPTION = 0xA01,             // 13
-                INVALID_PARAMETERS_EXCEPTION = 0xA02,     // 14
-                INVALID_STATE_EXCEPTION = 0xA03,          // 15
-                RENDERINGAPI_EXCEPTION = 0xA04,           // 16
-                RT_ASSERTION_EXCEPTION = 0xA05,           // 17
-                INTERNAL_EXCEPTION = 0xA06,               // 18
-                NOT_IMPLEMENTED_EXCEPTION = 0xA07         // 19
+                ARITHMETIC_EXCEPTION = 0xA01,              // 14
+                INVALID_PARAMETERS_EXCEPTION = 0xA02,      // 15
+                INVALID_VERSION_EXCEPTION = 0xA03,         // 16
+                INVALID_STATE_EXCEPTION = 0xA04,           // 17
+                RENDERINGAPI_EXCEPTION = 0xA05,            // 18
+                RT_ASSERTION_EXCEPTION = 0xA06,            // 19
+                INTERNAL_EXCEPTION = 0xA07,                // 20
+                NOT_IMPLEMENTED_EXCEPTION = 0xA08          // 21
             };
         private:
             /// @internal
@@ -386,6 +388,37 @@ namespace Mezzanine
         { typedef InvalidParametersException Type; };
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @class InvalidVersionException
+    /// @headerfile exception.h
+    /// @brief An exception for when version mismatches occur.
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB InvalidVersionException : public Exception
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::INVALID_VERSION_EXCEPTION;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            InvalidVersionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : Exception("InvalidVersionException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~InvalidVersionException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            virtual Whole GetExceptionCode() const throw()
+                { return InvalidVersionException::ExceptionCode; }
+    };//InvalidVersionException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InvalidVersionException::ExceptionCode>
+        { typedef InvalidVersionException Type; };
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @class InvalidStateException
     /// @headerfile exception.h
     /// @brief An exception for errors that occur when the render system is configured improperly.
@@ -640,6 +673,37 @@ namespace Mezzanine
         { typedef FileNotFoundException Type; };
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @class DirectoryNotFoundException
+    /// @headerfile exception.h
+    /// @brief An exception for the event of not finding a requested directory or path.
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB DirectoryNotFoundException : public IOException
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            DirectoryNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : IOException("DirectoryNotFoundException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~DirectoryNotFoundException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            Whole GetExceptionCode() const throw()
+                { return DirectoryNotFoundException::ExceptionCode; }
+    };//DirectoryNotFoundException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<DirectoryNotFoundException::ExceptionCode>
+        { typedef DirectoryNotFoundException Type; };
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @class IdentityInvalidException
     /// @headerfile exception.h
     /// @brief An exception for the event of encountering an invalid identity.
@@ -795,7 +859,7 @@ namespace Mezzanine
         { typedef OutOfBoundsException Type; };
 
     #ifndef MEZZ_EXCEPTION
-    #define MEZZ_EXCEPTION(num, desc) throw ExceptionFactory<num>::Type(desc, __func__, __FILE__, __LINE__ );
+    #define MEZZ_EXCEPTION(num, desc) throw Mezzanine::ExceptionFactory<num>::Type(desc, __func__, __FILE__, __LINE__ );
     #endif
 }//Mezzanine
 
