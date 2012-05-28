@@ -42,7 +42,6 @@
 
 #include "Resource/textsettingsfile.h"
 #include "stringtool.h"
-#include "world.h"
 
 #include <OgreResourceGroupManager.h>
 
@@ -123,16 +122,12 @@ namespace Mezzanine
             TextSettingsFile::SectionIterator SecIt = Sections.find(Section);
             if(SecIt == Sections.end())
             {
-                std::stringstream logstream;
-                logstream << "Attempting to access section \"" << Section << "\" in file \"" << FileName << "\" which does not exist.";
-                World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
             }else{
                 TextSettingsFile::SettingsIterator SetIt = (*SecIt).second->find(Key);
                 if(SetIt == (*SecIt).second->end())
                 {
-                    std::stringstream logstream;
-                    logstream << "Attempting to access setting \"" << Key << " in section \"" << Section << "\" in file \"" << FileName << "\" which does not exist.";
-                    World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+                    MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access setting \"" + Key + " in section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
                 }else{
                     return (*SetIt).second;
                 }
@@ -171,9 +166,7 @@ namespace Mezzanine
             TextSettingsFile::SectionIterator SecIt = Sections.find(Section);
             if(SecIt == Sections.end())
             {
-                std::stringstream logstream;
-                logstream << "Attempting to access section \"" << Section << "\" in file \"" << FileName << "\" which does not exist.";
-                World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
             }else{
                 return (*SecIt).second->begin();
             }
@@ -184,9 +177,7 @@ namespace Mezzanine
             TextSettingsFile::SectionIterator SecIt = Sections.find(Section);
             if(SecIt == Sections.end())
             {
-                std::stringstream logstream;
-                logstream << "Attempting to access section \"" << Section << "\" in file \"" << FileName << "\" which does not exist.";
-                World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access section \"" + Section + "\" in file \"" + FileName + "\" which does not exist.");
             }else{
                 return (*SecIt).second->end();
             }

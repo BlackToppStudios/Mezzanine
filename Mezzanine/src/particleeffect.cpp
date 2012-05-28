@@ -43,7 +43,6 @@
 #include "particleeffect.h"
 #include "scenemanager.h"
 #include "stringtool.h"
-#include "world.h"
 #include "worldnode.h"
 
 #include "particleaffector.h"
@@ -375,7 +374,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempQuat;
                             Ev.SetOrientation(TempQuat);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldNode: Includes unknown Element D-\"" + Name + "\".");
                         }
                         break;
                     case 'L':   //Location
@@ -384,20 +383,20 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for ParticleEffect: Includes unknown Element L-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ParticleEffect: Includes unknown Element L-\"" + Name + "\".");
                         }
                         break;
                     default:
-                        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for ParticleEffect: Includes unknown Element default-\"",Name,"\"")) );
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ParticleEffect: Includes unknown Element default-\"" + Name + "\"."); }
                         break;
                 }
             }
 
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for ParticleEffect: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ParticleEffect: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a ParticleEffect, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a ParticleEffect, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 #endif // \MEZZXML

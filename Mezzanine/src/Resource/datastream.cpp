@@ -42,7 +42,6 @@
 
 #include "Resource/datastream.h"
 #include "stringtool.h"
-#include "world.h"
 
 #include <cstring>
 #include <cstdio>

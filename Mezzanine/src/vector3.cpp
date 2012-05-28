@@ -46,7 +46,6 @@
 #include "serialization.h"
 #include "stringtool.h"
 #include "mathtool.h"
-#include "world.h"          // Needed for Error logging in streaming
 #include "xml.h"            // Needed for streaming to xml
 
 #include <Ogre.h>
@@ -77,7 +76,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: throw(Exception("Cannot retrieve invalid StandardAxis in Vector3::GetAxisValue"));
+            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -91,7 +90,7 @@ namespace Mezzanine
             case 0: return this->X;
             case 1: return this->Y;
             case 2: return this->Z;
-            default: throw(Exception("Cannot retrieve invalid StandardAxis in Vector3::GetAxisValue"));
+            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot retrieve invalid StandardAxis."); }
         }
     }
 
@@ -166,7 +165,7 @@ namespace Mezzanine
             case 0: return Vector3::Unit_X();
             case 1: return Vector3::Unit_Y();
             case 2: return Vector3::Unit_Z();
-            default: throw(Exception("Cannot convert invalid StandardAxis in Vector3::UnitOnAxis"));
+            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert invalid StandardAxis."); }
         }
     }
 
@@ -183,7 +182,7 @@ namespace Mezzanine
                 return Axis_Y;
             }
         }
-        throw(Exception("Cannot convert Vector3 to StandardAxis in Vector3::IsStandardUnitAxis, Vector3 may not be Axis Aligned or may not be Unit Length."));
+        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
     }
 
 
@@ -352,7 +351,7 @@ namespace Mezzanine
         {
              (*this) /= TempLength;
         }else{
-            throw (Mezzanine::Exception ("Cannot Normalize Vector3(0,0,0)"));
+            MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Normalize Vector3(0,0,0).");
         }
         return *this;
     }
@@ -364,7 +363,7 @@ namespace Mezzanine
         {
             return (*this) / TempLength;
         }else{
-            throw (Mezzanine::Exception ("Cannot Get the Normal of Vector3(0,0,0)"));
+            MEZZ_EXCEPTION(Exception::ARITHMETIC_EXCEPTION,"Cannot Get the Normal of Vector3(0,0,0).");
         }
     }
 
@@ -553,10 +552,10 @@ namespace Mezzanine
                     this->Y=OneNode.GetAttribute("Y").AsReal();
                     this->Z=OneNode.GetAttribute("Z").AsReal();
                 }else{
-                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                 }
             }else{
-                throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
             }
         }
 

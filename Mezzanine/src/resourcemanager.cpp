@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -122,17 +122,17 @@ namespace Mezzanine
             {
                 return false;
             }
-            std::stringstream exceptionstream;
-            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
             if(ERROR_PATH_NOT_FOUND == ::GetLastError())
             {
-                exceptionstream << "Path to requested directory does not exist.";
+                ExceptionStream << "Path to requested directory does not exist.";
             }
             else
             {
-                exceptionstream << "Error Unknown. :(";
+                ExceptionStream << "Error Unknown. :(";
             }
-            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
         }
         return true;
         #else
@@ -142,10 +142,10 @@ namespace Mezzanine
             {
                 return false;
             }
-            std::stringstream exceptionstream;
-            exceptionstream << "Unable to create directory.  Error follows:" << std::endl;
-            exceptionstream << strerror(errno);
-            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+            StringStream ExceptionStream;
+            ExceptionStream << "Unable to create directory.  Error follows:" << std::endl;
+            ExceptionStream << strerror(errno);
+            MEZZ_EXCEPTION(Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION,ExceptionStream.str());
         }
         return true;
         #endif
@@ -232,9 +232,7 @@ namespace Mezzanine
         else if(LowerVar == "commonuserdata") return GetCommonUserDataDir();
         else
         {
-            StringStream exceptionstream;
-            exceptionstream << "Attempting to retrieve unknown path variable: \"" << PathVar << "\".";
-            World::GetWorldPointer()->LogAndThrow(Exception(exceptionstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to retrieve unknown path variable: \"" + PathVar + "\".");
         }
     }
 

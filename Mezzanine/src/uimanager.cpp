@@ -44,7 +44,6 @@
 #include "inputquerytool.h"
 #include "mathtool.h"
 #include "UI/textureatlas.h"
-#include "world.h"
 #include "cameramanager.h"
 #include "graphicsmanager.h"
 #include "eventmanager.h"
@@ -489,9 +488,7 @@ namespace Mezzanine
         if(It != Atlases.end()) TheAtlas = (*It).second;
         else
         {
-            std::stringstream logstream;
-            logstream << "Attempting to access TextureAtlas \"" << Atlas << "\", which does not exist or is not loaded, in UIManager::SuggestGlyphIndex.";
-            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to access TextureAtlas \"" + Atlas + "\", which does not exist or is not loaded.");
         }
         std::map<UInt32,UI::GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
         Whole LargerMatch = 0;

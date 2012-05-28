@@ -42,7 +42,6 @@
 
 #include "attachable.h"
 #include "worldnode.h"
-#include "world.h"
 
 #include <Ogre.h>
 
@@ -118,7 +117,7 @@ namespace Mezzanine
         if(Target->Parent)
         {
             if(Target->Parent == this) return;
-            else World::GetWorldPointer()->LogAndThrow(Exception("Cannot attach object to multiple AttachableParent instances."));
+            else MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot attach object to multiple AttachableParent instances.");
         }
 
         Attached.push_back(Target);

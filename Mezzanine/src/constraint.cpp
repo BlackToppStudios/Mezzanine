@@ -45,7 +45,6 @@
 #include "actorrigid.h"
 #include "stringtool.h"
 #include "serialization.h"
-#include "world.h"
 
 
 #include <btBulletDynamicsCommon.h>
@@ -66,14 +65,14 @@ namespace Mezzanine
             case Con_Stop_ERP:      return String("Con_Stop_ERP");
             case Con_CFM:           return String("Con_CFM");
             case Con_Stop_CFM:      return String("Con_Stop_CFM");
-            default: throw(Mezzanine::Exception("Attempted to convert invalid Constraint Paramater to a String."));
+            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid Constraint Paramater to a String."); }
         }
     }
 
     ConstraintParam StringAsConstraintParam(String Param)
     {
         if(5>Param.size())
-            { throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Too Short")); }
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Too Short."); }
 
         switch(Param.at(4))
         {
@@ -81,12 +80,12 @@ namespace Mezzanine
                 if(ConstraintParamAsString(Con_ERP)==Param)
                     { return Con_ERP; }
                 else
-                    { throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_ERP but isn't")); }
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Appears to be Con_ERP but isn't."); }
             case 'C':
                 if(ConstraintParamAsString(Con_CFM)==Param)
                     { return Con_CFM; }
                 else
-                    { throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_CFM but isn't")); }
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Appears to be Con_CFM but isn't."); }
             case 'S':
                 switch(Param.at(9))
                 {
@@ -94,19 +93,19 @@ namespace Mezzanine
                         if(ConstraintParamAsString(Con_Stop_ERP)==Param)
                             { return Con_Stop_ERP; }
                         else
-                            { throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_ERP but isn't")); }
+                            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_ERP but isn't."); }
                     case 'C':
                         if(ConstraintParamAsString(Con_Stop_CFM)==Param)
                             { return Con_Stop_CFM; }
                         else
-                            { throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_CFM but isn't")); }
+                            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Appears to be Con_Stop_CFM but isn't."); }
                     case 'S':
 
                     default:
-                        throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Appeared to be Con_Stop_Something, but wasn't"));
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Appeared to be Con_Stop_Something, but wasn't."); }
                 }
             default:
-                throw(Mezzanine::Exception("Attempted to convert invalid String to Constraint Paramater: Invalid Name"));
+                { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempted to convert invalid String to Constraint Paramater: Invalid Name."); }
         }
     }
 
@@ -222,7 +221,7 @@ namespace Mezzanine
                 case '3': return 3;          break;
                 case '4': return 4;          break;
                 case '5': return 5;          break;
-                default: { throw Exception("Cannot convert invalid axis name"); }
+                default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert invalid axis name."); }
             }
         }
     }

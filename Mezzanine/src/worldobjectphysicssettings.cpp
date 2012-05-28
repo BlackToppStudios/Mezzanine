@@ -47,7 +47,6 @@
 #include "collision.h"
 #include "physicsmanager.h"
 #include "serialization.h"
-#include "world.h"
 #include "stringtool.h"
 #include "xml.h"
 
@@ -221,10 +220,10 @@ namespace Mezzanine
                     this->SetCollisionGroupAndMask(OneNode.GetAttribute("CollisionGroup").AsWhole(),OneNode.GetAttribute("CollisionMask").AsWhole());
                     this->SetActivationState((Mezzanine::WorldObjectActivationState)OneNode.GetAttribute("ActivationState").AsInt());
                 }else{
-                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->WorldObjectPhysicsSettings::SerializableName() + ": Not Version 1"));
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for" + WorldObjectPhysicsSettings::SerializableName() + ": Not Version 1.");
                 }
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->WorldObjectPhysicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + WorldObjectPhysicsSettings::SerializableName() + ", found a " + String(OneNode.Name()) + ".");
             }
     }
 
@@ -318,10 +317,10 @@ namespace Mezzanine
                     this->SetFriction(OneNode.GetAttribute("Friction").AsReal());
                     this->SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
                 }else{
-                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->NonTriggerPhysicsSettings::SerializableName() + ": Not Version 1"));
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for" + NonTriggerPhysicsSettings::SerializableName() + ": Not Version 1.");
                 }
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->NonTriggerPhysicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + NonTriggerPhysicsSettings::SerializableName() + ", found a " + String(OneNode.Name()) + ".");
             }
         }
 

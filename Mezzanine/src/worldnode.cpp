@@ -49,7 +49,6 @@
 #include "particleeffect.h"
 #include "actorbase.h"
 #include "stringtool.h"
-#include "world.h"
 
 #include <Ogre.h>
 
@@ -390,12 +389,12 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                                 {
                                     Ev.AttachObject(AttachPtr);
                                 }else{
-                                    throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName(),"\" needs to be attached, but is already attached to ",AttachPtr->GetParent()->GetName() )) );
+                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_STATE_EXCEPTION,"Cannot reconcile WorldNode with the current state of the world: Attachable \"" + AttachPtr->GetName() + "\" needs to be attached, but is already attached to " + AttachPtr->GetParent()->GetName() + ".");
                                 }
                             }
 
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldNode: Includes unknown Element D-\"" + Name + "\".");
                         }
                         break;
                     case 'O':   //Orientation
@@ -404,7 +403,7 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempQuat;
                             Ev.SetOrientation(TempQuat);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldNode: Includes unknown Element D-\"" + Name + "\".");
                         }
                         break;
                     case 'L':   //Location
@@ -413,19 +412,19 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element L-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldNode: Includes unknown Element L-\"" + Name + "\".");
                         }
                         break;
                     default:
-                        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element default-\"",Name,"\"")) );
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldNode: Includes unknown Element default-\"" + Name + "\"."); }
                         break;
                 }
             }
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for WorldNode: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldNode: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a WorldNode, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a WorldNode, found a " + Mezzanine::String(OneNode.Name()) + ".");
     }
 
 }

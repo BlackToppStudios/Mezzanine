@@ -254,10 +254,10 @@ Mezzanine::xml::Node& operator >> (const Mezzanine::xml::Node& OneNode, Mezzanin
                                     OneNode.GetAttribute("First").AsInt(),
                                     OneNode.GetAttribute("Second").AsInt() );
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for EventGameWindow: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventGameWindow: Not Version 1");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a EventGameWindow, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventGameWindow, found a " + Mezzanine::String(OneNode.Name()));
     }
 
 }

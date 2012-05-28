@@ -41,7 +41,6 @@
 #define _stringtool_cpp
 
 #include "stringtool.h"
-#include "world.h"
 #include <sstream>
 #include <algorithm>
 #include <cctype>
@@ -175,9 +174,7 @@ namespace Mezzanine
         {
             return Vector2(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)));
         }else{
-            std::stringstream logstream;
-            logstream << "String does not contain 2 digits when attempting to convert in StringTool::ConvertToVector2.";
-            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 2 digits when attempting to convert.");
         }
     }
 
@@ -195,9 +192,7 @@ namespace Mezzanine
         {
             return Vector3(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)));
         }else{
-            std::stringstream logstream;
-            logstream << "String does not contain 3 digits when attempting to convert in StringTool::ConvertToVector3.";
-            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 3 digits when attempting to convert.");
         }
     }
 
@@ -215,9 +210,7 @@ namespace Mezzanine
         {
             return Quaternion(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
-            std::stringstream logstream;
-            logstream << "String does not contain 4 digits when attempting to convert in StringTool::ConvertToQuaternion.";
-            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
     }
 
@@ -235,9 +228,7 @@ namespace Mezzanine
         {
             return ColourValue(ConvertToReal(Digits->at(0)),ConvertToReal(Digits->at(1)),ConvertToReal(Digits->at(2)),ConvertToReal(Digits->at(3)));
         }else{
-            std::stringstream logstream;
-            logstream << "String does not contain 4 digits when attempting to convert in StringTool::ConvertToColourValue.";
-            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"String does not contain 4 digits when attempting to convert.");
         }
     }
 
