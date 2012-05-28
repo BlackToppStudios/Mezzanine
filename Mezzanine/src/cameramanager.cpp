@@ -45,7 +45,6 @@
 #include "graphicsmanager.h"
 #include "camera.h"
 #include "cameracontroller.h"
-#include "world.h"
 
 #include <Ogre.h>
 
@@ -105,7 +104,7 @@ namespace Mezzanine
         if(!SManager)
         {
             if(SceneManager::SingletonValid()) SManager = SceneManager::GetSingletonPtr();
-            else GameWorld->LogAndThrow(Exception("Attempting to create a camera before the SceneManager is created.  This is not supported."));
+            else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a camera before the SceneManager is created.  This is not supported."); }
         }
         Camera* tempcam = new Camera(Name, this);
         Cameras.push_back(tempcam);
@@ -201,7 +200,7 @@ namespace Mezzanine
             {
                 SManager = SceneManager::GetSingletonPtr();
             }else{
-                GameWorld->LogAndThrow(Exception("Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager."));
+                MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager.");
             }
         }
         Initialized = true;

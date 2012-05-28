@@ -26,6 +26,8 @@
 		<!-- Currently the ActorManager has zero additional params to be set. -->
 	</DefaultActorManager>
 	<DefaultAudioManager>
+		<!-- This will auto-generate the provided path and settings file if not present.  Engine/game default settings are used in the absence of the file. -->
+		<AutoCreateSettings Auto="true" />
 		<!-- Sets the path for saving and loading settings related to this manager when a path isn't explicitly provided. -->
 		<SettingsPath Path="$ShareableAppData$/Blacktopp/Game/" />
 		<!-- Defines the settings files that are to be loaded.  If a "Current" group is detected then those settings will automatically be applied. -->

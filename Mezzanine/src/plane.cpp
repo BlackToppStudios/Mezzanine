@@ -46,7 +46,6 @@
 #include "exception.h"
 #include "plane.h"
 #include "stringtool.h"
-#include "world.h"
 #include "xml.h"
 
 #include "Ogre.h"
@@ -118,13 +117,13 @@ Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode,
             {
                 OneNode.GetFirstChild() >> x.Normal;
             }else{
-                throw(Mezzanine::Exception("Normal not found while parsing Mezzanine::Plane"));
+                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Normal not found while parsing Mezzanine::Plane.");
             }
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for Plane: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Plane: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a Plane, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Plane, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 

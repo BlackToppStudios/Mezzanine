@@ -45,7 +45,6 @@
 #include "actormanager.h"
 #include "collision.h"
 #include "stringtool.h"
-#include "world.h"
 
 #include <btBulletDynamicsCommon.h>
 #include <memory>
@@ -103,7 +102,7 @@ namespace Mezzanine
     btManifoldPoint& Collision::GetManifoldPoint(const Whole& Index)
     {
         if(Index >= InternalData->Manifolds.size())
-            World::GetWorldPointer()->LogAndThrow(Exception("Attempting to access invalid index in Collision."));
+            MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to access invalid index in Collision.");
 
         if(Index > 3)
         {
@@ -276,10 +275,10 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Collision& Col
             //}
 
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for Collision: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Collision: Not Version 1");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a Collision, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Collision, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 #endif // \MEZZXML

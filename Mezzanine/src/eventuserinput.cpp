@@ -52,7 +52,6 @@
 #include "eventuserinput.h"
 //#include "eventbase.h"
 #include "stringtool.h"
-#include "world.h"
 
 #include <memory>
 #include <vector>
@@ -160,7 +159,7 @@ namespace Mezzanine
                 break;}
 
             default:
-                World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted");
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unknown SDL Event Inserted");
                 break;
         }
 
@@ -213,7 +212,7 @@ namespace Mezzanine
             HatVert = MetaCode::JOYSTICKHAT_3_VERTICAL;
             HatHor = MetaCode::JOYSTICKHAT_3_HORIZONTAL;
         }else{
-            World::GetWorldPointer()->LogAndThrow("Unsupported Joystick Hat Event");
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Joystick Hat Event");
         }
 
         if (RawEvent_.jhat.value & SDL_HAT_UP)
@@ -294,10 +293,10 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput
             }
 
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for EventUserInput: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventUserInput: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a EventUserInput, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventUserInput, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 #endif // \MEZZXML

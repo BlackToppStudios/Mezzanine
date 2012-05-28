@@ -46,7 +46,6 @@
 #include "objectreference.h"
 #include "mesh.h"
 #include "serialization.h"
-#include "world.h"
 #include "meshmanager.h"
 #include "scenemanager.h"
 #include "stringtool.h"
@@ -326,7 +325,7 @@ namespace Mezzanine
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
+                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element A-\"" + Name + "\".");
                                 }
                                 break;
                             case 'S':   //fDiffuseColour
@@ -335,7 +334,7 @@ namespace Mezzanine
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
+                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element S-\"" + Name + "\".");
                                 }
                                 break;
                             case 'D':   //fDiffuseColour
@@ -344,19 +343,19 @@ namespace Mezzanine
                                     Child.GetFirstChild() >> TempColour;
                                     this->SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
                                 }else{
-                                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
+                                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element D-\"" + Name + "\".");
                                 }
                                 break;
                             default:
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
+                                { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for WorldObjectGraphicsSettings: Includes unknown Element default-\"" + Name + "\"."); }
                                 break;
                         }
                     }
                 }else{
-                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->WorldObjectGraphicsSettings::SerializableName() + ": Not Version 1"));
+                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for" + WorldObjectGraphicsSettings::SerializableName() + ": Not Version 1.");
                 }
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->WorldObjectGraphicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + WorldObjectGraphicsSettings::SerializableName() + ", found a " + Mezzanine::String(OneNode.Name()) + ".");
             }
         }
 

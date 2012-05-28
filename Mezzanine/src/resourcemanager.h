@@ -102,10 +102,15 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Directory Management
 
-            /// @brief Creates a new directory.
+            /// @brief Creates a single new directory.
+            /// @remarks This function will only create the directory specified at the end of the path.
             /// @param DirectoryPath The path for the newly created directory.
-            /// @return Returns true if the directory was created, false if it failed.
+            /// @return Returns true if the directory was created, false in the case of a non-critical error.
             bool CreateDirectory(const String& DirectoryPath);
+            /// @brief Creates all directories that do not exist in the provided path.
+            /// @param DirectoryPath The path for the newly created directory or directories.
+            /// @return Returns true if all directories were created, false in the case of a non-critical error.
+            bool CreateDirectoryPath(const String& DirectoryPath);
             /// @brief Get a Listing of the files and subdirectories in a directory.
             /// @details This follows normal command line conventions, "." is the current directory,
             /// ".." is the parent directory. To access the file system root you will need to use a

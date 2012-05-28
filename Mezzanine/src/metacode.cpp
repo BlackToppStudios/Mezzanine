@@ -212,7 +212,7 @@ namespace Mezzanine
     {
         MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::MOUSEBUTTON);
         if ( MetaCode::MOUSEBUTTON_FIRST > Answer && MetaCode::MOUSEBUTTON_LAST < Answer)
-            { throw (Exception("Unsupported mouse Button.")); }
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported mouse Button."); }
         return Answer;
     }
 
@@ -220,7 +220,7 @@ namespace Mezzanine
     {
         MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::JOYSTICKBUTTON);
         if ( MetaCode::JOYSTICKBUTTON_FIRST > Answer && MetaCode::JOYSTICKBUTTON_LAST < Answer)
-            { throw (Exception("Unsupported Joystick Button.")); }
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Joystick Button."); }
         return Answer;
     }
 
@@ -228,7 +228,7 @@ namespace Mezzanine
     {
         MetaCode::InputCode Answer = (MetaCode::InputCode)(AxisNumber + (int)MetaCode::JOYSTICKAXIS);
         if ( MetaCode::JOYSTICKAXIS_FIRST > Answer && MetaCode::JOYSTICKAXIS_LAST < Answer)
-            { throw (Exception("Unsupported Joystick AXIS.")); }
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Joystick AXIS."); }
         return Answer;
     }
 
@@ -306,10 +306,10 @@ namespace Mezzanine
                 SetCode(OneNode.GetAttribute("Code").AsInt());
                 MetaValue=OneNode.GetAttribute("MetaValue").AsInt();
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
             }
         }else{
-            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + String(OneNode.Name()) + ".");
         }
     }
 

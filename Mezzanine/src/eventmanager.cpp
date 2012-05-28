@@ -54,7 +54,6 @@
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "metacode.h"
-#include "world.h"
 #include "inputquerytool.h"
 
 #include <map>
@@ -806,24 +805,23 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
                             Child >> *temp;
                             Mgr.AddEvent(temp); }
                             break;
-                        case 'O':
-                            throw Mezzanine::Exception ("Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize.");
-                            //throw Exception ("How did you instantiate an abstract base class?! Attemping to serialize a Mezzanine::EventBase");
+                        case 'O':{
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event::Other... not sure what you are trying to serialize."); }
                             break;
-                        default:
-                            throw Mezzanine::Exception ("Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize.");
+                        default:{
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attemping to serialize a Mezzanine::Event... not sure what you are trying to serialize."); }
                             break;
                     }
                 }else{
-                    throw Mezzanine::Exception ("Invalid event, name is not long enough to identify event.");
+                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid event, name is not long enough to identify event.");
                 } // end if name length
                 Child = Child.GetNextSibling();
             } // end while
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for EventManager: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventManager: Not Version 1");
         } // if version
     }else{
-        throw( Mezzanine::Exception("Attempting to deserialize an EventManager, event mananger not found.") );
+        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
     }// if event
 }
 #endif // \MEZZXML

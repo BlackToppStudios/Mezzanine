@@ -73,7 +73,7 @@ namespace Mezzanine
             Singleton()
             {
                 if(SingletonPtr)
-                    throw(Exception("Singleton class already exists. Cannot make multiple singletons."));
+                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Singleton class already exists. Cannot make multiple singletons");
                 #if defined( _MSC_VER ) && _MSC_VER < 1200
                 int offset = (int)(Type*)1 - (int)(Singleton <Type>*)(Type*)1;
                 SingletonPtr = (Type*)((int)this + offset);
@@ -92,7 +92,7 @@ namespace Mezzanine
             {
                 #ifdef THROW_ON_FETCH_FAIL
                 if(!SingletonPtr)
-                    throw(Exception("Attempting to fetch invalid Singleton pointer."));
+                    MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to fetch invalid Singleton pointer");
                 #endif
                 return SingletonPtr;
             };

@@ -84,10 +84,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
         {
             Ev = Mezzanine::EventQuit();
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for EventQuit: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventQuit: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a EventQuit, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventQuit, found a " + Mezzanine::String(OneNode.Name()));
     }
 
 }

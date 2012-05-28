@@ -8823,7 +8823,7 @@ PUGI__NS_BEGIN
 		#ifdef XML_NO_EXCEPTIONS
 			longjmp(_error_handler, 1);
 		#else
-			throw XPathException(*_Result);
+			//throw XPathException(*_Result);
 		#endif
 		}
 
@@ -9711,7 +9711,7 @@ PUGI__NS_END
 namespace XML
 {
 #ifndef XML_NO_EXCEPTIONS
-	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): _Result(Result_)
+	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): Exception("","","","",0), _Result(Result_)
 	{
 		assert(_Result.error);
 	}
@@ -10215,7 +10215,7 @@ namespace XML
 			XPathParseResult res;
 			res.error = "Expression does not evaluate to node set";
 
-			throw XPathException(res);
+			//throw XPathException(res);
 		#endif
 		}
 

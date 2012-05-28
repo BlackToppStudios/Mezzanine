@@ -43,7 +43,6 @@
 #include "Audio/musicplayer.h"
 #include "Audio/playlist.h"
 #include "Audio/sound.h"
-#include "world.h"
 
 namespace Mezzanine
 {
@@ -84,7 +83,7 @@ namespace Mezzanine
             Playing = true;
             if(!CurrSong)
             {
-                if(MusicPlaylist->empty()) World::GetWorldPointer()->LogAndThrow(Exception("Attempting to play a song in MusicPlayer with an empty playlist."));
+                if(MusicPlaylist->empty()) { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to play a song in MusicPlayer with an empty playlist"); }
                 else CurrSong = *(MusicPlaylist->begin());
             }
             CurrSong->Play2d();
@@ -132,7 +131,7 @@ namespace Mezzanine
                     return;
                 }
             }
-            World::GetWorldPointer()->LogAndThrow(Exception("Attempting to switch to song not contained within the current Playlist."));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to switch to song not contained within the current Playlist.");
         }
 
         void MusicPlayer::SwitchToSong(const String& SongName)
@@ -147,7 +146,7 @@ namespace Mezzanine
                     return;
                 }
             }
-            World::GetWorldPointer()->LogAndThrow(Exception("Attempting to switch to song not contained within the current Playlist."));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to switch to song not contained within the current Playlist.");
         }
 
         bool MusicPlayer::IsPlaying() const

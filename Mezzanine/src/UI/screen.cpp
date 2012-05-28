@@ -47,7 +47,6 @@
 #include "UI/viewportupdatetool.h"
 #include "UI/textureatlas.h"
 #include "viewport.h"
-#include "world.h"
 #include "scenemanager.h"
 #include "mathtool.h"
 
@@ -110,7 +109,7 @@ namespace Mezzanine
             else if( Index < LowVertices.size() + MediumVertices.size() + HighVertices.size() )
                 return HighVertices[Index - (LowVertices.size() + MediumVertices.size())];
             else
-                World::GetWorldPointer()->LogAndThrow(Exception("Out of bounds index requested in ScreenVertexData::operator[]."));
+                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Out of bounds index requested in ScreenVertexData"); }
         }
 
         Screen::Screen(const String& name, const String& Atlas, Viewport* WindowViewport)
@@ -623,7 +622,7 @@ namespace Mezzanine
                 {
                     if( CurrIndexData->Vertices[I].Atlas.empty() )
                     {
-                        World::GetWorldPointer()->LogAndThrow(Exception("Null or Empty String Atlas found when rendering UI."));
+                        MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Null or Empty String Atlas found when rendering UI.");
                     }
                     if( CurrIndexData->Vertices[I].Atlas != CurrentName )
                     {

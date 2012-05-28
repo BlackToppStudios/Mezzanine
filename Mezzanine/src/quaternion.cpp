@@ -46,7 +46,6 @@
 #include "serialization.h"
 #include "vector3.h"
 #include "matrix3x3.h"
-#include "world.h"
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -258,7 +257,7 @@ namespace Mezzanine
             case 2: return Z;
             case 3: return W;
             default:
-                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to get invalid index in Quaternion::operator[]."));
+                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
         }
     }
 
@@ -271,7 +270,7 @@ namespace Mezzanine
             case 2: return Z;
             case 3: return W;
             default:
-                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to get invalid index in Quaternion::operator[]."));
+                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Attempting to get invalid index."); }
         }
     }
 
@@ -486,10 +485,10 @@ namespace Mezzanine
                     this->Z=OneNode.GetAttribute("Z").AsReal();
                     this->W=OneNode.GetAttribute("W").AsReal();
                 }else{
-                    throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ",SerializableName(),": Not Version 1")) );
+                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
                 }
             }else{
-                throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a ",SerializableName(),", found a ", OneNode.Name())));
+                MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
             }
         }
 

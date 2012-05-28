@@ -45,6 +45,7 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "colourvalue.h"
+#include "smartptr.h"
 
 #ifdef MEZZXML
 #include "xml.h"
@@ -53,6 +54,7 @@
 namespace Mezzanine
 {
     class ObjectSettingSet;
+    class ObjectSettingFile;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ObjectSettingSetContainer
     /// @headerfile objectsettings.h
@@ -178,30 +180,118 @@ namespace Mezzanine
     };//ObjectSettingSet
 
     ///////////////////////////////////////////////////////////////////////////////
+    /// @class ObjectSettingGroup
+    /// @headerfile objectsettings.h
+    /// @brief A class that store's a collection of SettingSets that can be applied together.
+    /// @details
+    ///////////////////////////////////////
+    class MEZZ_LIB ObjectSettingGroup : public ObjectSettingSetContainer
+    {
+        protected:
+            friend class ObjectSettingFile;
+            String OptionalFileName;
+            /// @brief Sets the name of the file this group will be saved to.
+            /// @param FileName The name of the file this group should be saved to when saving the configuration.
+            void SetOptionalFileName(const String& FileName);
+        public:
+            /// @brief Class constructor.
+            /// @param Name The name to be given to this group.
+            ObjectSettingGroup(const String& Name);
+            /// @brief Class destructor.
+            virtual ~ObjectSettingGroup();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Optional File config
+            /// @brief Gets the file name this group will be saved to.
+            /// @return Returns a const reference to the currently set file name.  String will be empty if this is not set.
+            const String& GetOptionalFileName() const;
+    };//ObjectSettingGroup
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ObjectSettingFile
+    /// @headerfile objectsettings.h
+    /// @brief This class represents a file to be saved containing one or more OhjectSettingGroup's.
+    /// @details
+    ///////////////////////////////////////
+    class ObjectSettingFile
+    {
+        public:
+            typedef std::vector< ObjectSettingGroup* > SaveGroupsContainer;
+            typedef SaveGroupsContainer::iterator SaveGroupsIterator;
+            typedef SaveGroupsContainer::const_iterator ConstSaveGroupsIterator;
+        protected:
+            SaveGroupsContainer SaveGroups;
+            String File;
+        public:
+            /// @brief Class constructor.
+            /// @param FileName The name of the file the groups in this class will be saved to.
+            ObjectSettingFile(const String& FileName);
+            /// @brief Class destructor.
+            ~ObjectSettingFile();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // File and Group Management
+            /// @brief Gets the name of the file.
+            /// @return Returns a const reference to the name of this file.
+            const String& GetFileName() const;
+            /// @brief Adds a group to be saved to this file.
+            /// @param Group The group to be added to this file.
+            void AddGroup(ObjectSettingGroup* Group);
+            /// @brief Gets a group being saved to this file.
+            /// @param Name The name of the group to get.
+            /// @return Returns a pointer to the named group in this file, or NULL if it does not exist in this file.
+            ObjectSettingGroup* GetGroup(const String& Name) const;
+            /// @brief Removes a group from this file.
+            /// @param Group The group to be removed.
+            void RemoveGroup(ObjectSettingGroup* Group);
+            /// @brief Gets the container with the groups to be saved to this file.
+            /// @return Returns a reference to the container containing all the groups that are to be saved to this file.
+            SaveGroupsContainer& GetGroups();
+
+            /// @brief Gets an iterator to the first group in this file.
+            SaveGroupsIterator SaveGroupsBegin();
+            /// @brief Gets a const iterator to the first group in this file.
+            ConstSaveGroupsIterator SaveGroupsBegin() const;
+            /// @brief Gets an iterator to one-passed the last group in this file.
+            SaveGroupsIterator SaveGroupsEnd();
+            /// @brief Gets a const iterator to one-passed the last group in this file.
+            ConstSaveGroupsIterator SaveGroupsEnd() const;
+    };//ObjectSettingsFile
+
+    ///////////////////////////////////////////////////////////////////////////////
     /// @class ObjectSettingsHandler
     /// @headerfile objectsettings.h
-    /// @brief
+    /// @brief An abstract class for other classes that manage groups of settings.
     /// @details
     ///////////////////////////////////////
     class ObjectSettingsHandler
     {
         public:
-            typedef std::map<String,ObjectSettingSetContainer*> SettingGroupContainer;
+            typedef std::map<String,ObjectSettingGroup*> SettingGroupContainer;
             typedef SettingGroupContainer::iterator SettingGroupIterator;
             typedef SettingGroupContainer::const_iterator ConstSettingGroupIterator;
+            typedef std::map<String,ObjectSettingFile*> SettingFilesContainer;
+            typedef SettingFilesContainer::iterator SettingFilesIterator;
+            typedef SettingFilesContainer::const_iterator ConstSettingFilesIterator;
+            /// @typedef SettingGroupVector
+            /// @brief Simple typedef for Load method returns.
+            typedef std::vector<ObjectSettingGroup*> SettingGroupVector;
         protected:
             SettingGroupContainer SettingGroups;
+            SettingFilesContainer SettingFiles;
+            bool AutoGenPath;
+            bool AutoGenFiles;
 #ifdef MEZZXML
             String SettingsFilePath;
             bool SaveCurrent;
-            void LoadSettingsFromFile(const String& FileName, const String& Path);
+            CountedPtr<SettingGroupVector> LoadSettingsFromFile(const String& FileName, const String& Path);
             void SaveSettingsToFile(StringVector& GroupNames, const String& FileName, const String& Path);
             void LoadSettingSetFromXML(XML::Node& XMLNode, ObjectSettingSet* Set);
             void SaveSettingSetToXML(XML::Node& XMLNode, ObjectSettingSet* Set);
             virtual String GetObjectRootNodeName() const = 0;
             virtual XML::Node CreateCurrentSettings() = 0;
 #endif
-            virtual void ApplySettingGroupImpl(ObjectSettingSetContainer* Group) = 0;
+            virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group) = 0;
         public:
             /// @brief Class constructor.
             ObjectSettingsHandler();
@@ -209,26 +299,59 @@ namespace Mezzanine
             virtual ~ObjectSettingsHandler();
 
             ///////////////////////////////////////////////////////////////////////////////
-            // Setting Group Management
+            // Setting Group Handling
             /// @brief Applies all the settings (and their values) defined in a setting group.
             /// @param GroupName The name of the setting group to apply.
             void ApplySettingGroup(const String& GroupName);
             /// @brief Creates a new blank setting group that can have it's settings populated.
             /// @param Name The name to be given to the new settings group.
             /// @return Returns a pointer to the newly created setting group.
-            ObjectSettingSetContainer* CreateSettingGroup(const String& Name);
+            ObjectSettingGroup* CreateSettingGroup(const String& Name);
             /// @brief Gets a setting group by name.
             /// @param Name The name of the setting group to get.
             /// @return Returns a pointer to the named setting group.
-            ObjectSettingSetContainer* GetSettingGroup(const String& Name) const;
+            ObjectSettingGroup* GetSettingGroup(const String& Name) const;
             /// @brief Destroys a setting group by name.
             /// @param Name The name of the setting group to destroy.
             void DestroySettingGroup(const String& Name);
+            /// @brief Destroys a setting group.
+            /// @param ToBeDestroyed A pointer to the group that will be destroyed.
+            void DestroySettingGroup(ObjectSettingGroup* ToBeDestroyed);
             /// @brief Destroys all setting groups stored in this handler.
             void DestroyAllSettingGroups();
 #ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
-            // Setting Saving/Path Management
+            // Setting File Handling
+            /// @brief Creates a new Setting file that will track which groups are a part of it.
+            /// @param FileName The name of the file this instance cooresponds to.
+            /// @return Returns a pointer to the created ObjectSettingFile.
+            ObjectSettingFile* CreateSettingFile(const String& FileName);
+            /// @brief Gets a Setting file by name.
+            /// @param FileName The name of the setting file to get.
+            /// @return Returns a pointer to the named setting file.
+            ObjectSettingFile* GetSettingFile(const String& FileName);
+            /// @brief Destroys a Setting file by name.
+            /// @note This does not destroy any saved files on disk, only the helper class(es) that have been allocated in memory.
+            /// @param FileName The name of the setting file to be destroyed.
+            void DestroySettingFile(const String& FileName);
+            /// @brief Destroys a Setting file.
+            /// @note This does not destroy any saved files on disk, only the helper class(es) that have been allocated in memory.
+            /// @param ToBeDestroyed The setting file to be destroyed.
+            void DestroySettingFile(ObjectSettingFile* ToBeDestroyed);
+            /// @brief Destroys all Setting files in this handler.
+            /// @note This does not destroy any saved files on disk, only the helper class(es) that have been allocated in memory.
+            void DestroyAllSettingFiles();
+            /// @brief Assigns a SettingGroup to a file name that will be used when settings are saved.
+            /// @param Group The setting group getting it's optional file name updated.
+            /// @param FileName The name of the file the provided group will be added to.
+            void AddGroupToFile(ObjectSettingGroup* Group, const String& FileName);
+            /// @brief Removes a previously assigned group from a save file name.
+            /// @param Group The setting group getting removed from it's current optional file name.
+            /// @param FileName The name of the file the provided group will be removed from.
+            void RemoveGroupFromFile(ObjectSettingGroup* Group, const String& FileName);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Setting Saving/Path Handling
             /// @brief Sets the path to be assumed when saving/loading settings to files.
             /// @param Path The path to be assumed.
             void SetSettingsFilePath(const String& Path);
@@ -252,49 +375,55 @@ namespace Mezzanine
             /// @brief Loads settings from a settings file.
             /// @param FileName The name of the file to load and parse.
             /// @param Group The asset group where the file can be found.
-            void LoadSettingsFromGroup(const String& FileName, const String& Group);
+            /// @return Returns a vector containing all the setting groups that were created while loading settings.
+            CountedPtr<SettingGroupVector> LoadSettingsFromGroup(const String& FileName, const String& Group);
             /// @brief Loads settings from a settings file.
             /// @param FileName The name of the file to load and parse.
             /// @param Path The filesystem path where the file can be found.
-            void LoadSettings(const String& FileName, const String& Path);
+            /// @return Returns a vector containing all the setting groups that were created while loading settings.
+            CountedPtr<SettingGroupVector> LoadSettings(const String& FileName, const String& Path);
             /// @brief Loads settings from a settings file using the specified settings path.
             /// @note Using this function means it will use the preset settings file path stored in this handler.
             /// The path must be set before calling this.
             /// @param FileName The name of the file to load and parse.
-            void LoadSettings(const String& FileName);
+            /// @return Returns a vector containing all the setting groups that were created while loading settings.
+            CountedPtr<SettingGroupVector> LoadSettings(const String& FileName);
             /// @brief Loads settings from an xml node.
             /// @param RootSettings The node that reprsents the root of the settings group or groups.
-            void LoadSettings(XML::Node& RootSettings);
+            /// @return Returns a vector containing all the setting groups that were created while loading settings.
+            CountedPtr<SettingGroupVector> LoadSettingsFromXML(XML::Node& RootSettings);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Saving Utilities
-            /// @brief Saves all settings to a settings file.
-            /// @param Filename The name of the file to save the current settings to.
+            /// @brief Saves all settings with their optional file names specified to their specified files.
+            void SaveAllSettings();
+            /// @brief Saves all settings that have their optional filename set to the specified file.
+            /// @param Filename The optional filename that will be used to determine which groups will be saved, and to what file.
             /// @param Path The path to place the file being saved.
-            void SaveSettings(const String& FileName, const String& Path);
-            /// @brief Saves all settings to a settings file using the specified settings path.
+            void SaveSettingsByFile(const String& FileName, const String& Path);
+            /// @brief Saves all settings that have their optional filename set to the specified file.
             /// @note Using this function means it will use the preset settings file path stored in this handler.
             /// The path must be set before calling this.
-            /// @param Filename The name of the file to save the current settings to.
-            void SaveSettings(const String& FileName);
+            /// @param Filename The optional filename that will be used to determine which groups will be saved, and to what file.
+            void SaveSettingsByFile(const String& FileName);
             /// @brief Saves all settings to a settings file.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param Filename The name of the file to save the current settings to.
             /// @param Path The path to place the file being saved.
-            void SaveSettings(StringVector& GroupNames, const String& FileName, const String& Path);
+            void SaveSettingGroups(StringVector& GroupNames, const String& FileName, const String& Path);
             /// @brief Saves all settings to a settings file using the specified settings path.
             /// @note Using this function means it will use the preset settings file path stored in this handler.
             /// The path must be set before calling this.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param Filename The name of the file to save the current settings to.
-            void SaveSettings(StringVector& GroupNames, const String& FileName);
-            /// @brief Saves all the current settings groups as children of the provided XML node.
+            void SaveSettingGroups(StringVector& GroupNames, const String& FileName);
+            /// @brief Saves all the current setting groups as children of the provided XML node.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
-            void SaveSettings(XML::Node& RootSettings);
+            void SaveSettingsToXML(XML::Node& RootSettings);
             /// @brief Saves the named settings groups as children of the provided XML node.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
-            void SaveSettings(StringVector& GroupNames, XML::Node& RootSettings);
+            void SaveSettingsToXML(StringVector& GroupNames, XML::Node& RootSettings);
 #endif
     };//ObjectSettingsHandler
 }//Mezzanine

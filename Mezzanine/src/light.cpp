@@ -43,7 +43,6 @@
 #include "light.h"
 #include "scenemanager.h"
 #include "stringtool.h"
-#include "world.h"
 #include "worldnode.h"
 
 #include <Ogre.h>
@@ -323,7 +322,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempColour;
                             Ev.SetDiffuseColour(TempColour);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element f-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Includes unknown Element f-\"" + Name + "\".");
                         }
                         break;
                     case 'S':   //SpecularColour
@@ -332,7 +331,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempColour;
                             Ev.SetSpecularColour(TempColour);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element S-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Includes unknown Element S-\"" + Name + "\".");
                         }
                         break;
                     case 'D':   //Direction
@@ -341,7 +340,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetDirection(TempVec);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element D-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Includes unknown Element D-\"" + Name + "\".");
                         }
                         break;
                     case 'L':   //Location
@@ -350,20 +349,20 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element L-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Includes unknown Element L-\"" + Name + "\".");
                         }
                         break;
                     default:
-                        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
+                        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Includes unknown Element default-\"" + Name + "\"."); }
                         break;
                 }
             }
 
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for Light: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a Light, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Light, found a " + Mezzanine::String(OneNode.Name()) + ".");
     }
 }
 #endif // \MEZZXML

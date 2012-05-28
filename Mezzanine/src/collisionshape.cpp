@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@
 #include "collisionshapemanager.h"
 #include "stringtool.h"
 #include "serialization.h"
-#include "world.h"
 
 #include "btBulletDynamicsCommon.h"
 #include "BulletCollision/Gimpact/btGImpactShape.h"
@@ -515,7 +514,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
             this->Name=OneName.AsString();
 
             /*XML::Node HalfExtentsNode = OneNode.GetChild("HalfExtents").GetFirstChild();
@@ -632,7 +631,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
             String Name_(OneName.AsString());
 
             XML::Attribute Axis = OneNode.GetAttribute("Axis");
@@ -759,7 +758,7 @@ namespace Mezzanine
         if(Axis_Y == UpAxis) ConeShape = new btConeShape(Radius,Height);
         else if(Axis_X == UpAxis) ConeShape = new btConeShapeX(Radius,Height);
         else if(Axis_Z == UpAxis) ConeShape = new btConeShapeZ(Radius,Height);
-        else World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up StandardAxis passed into ConeCollisionShape constructor."));
+        else { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up StandardAxis passed into ConeCollisionShape constructor."); }
         SetPointers(ConeShape);
         this->GetBulletConeShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
     }
@@ -785,7 +784,7 @@ namespace Mezzanine
                     Results[2] = 1;
                 break;
             default:
-                World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up StandardAxis passed into ConeCollisionShape::GetAxisMathBS()."));
+                { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up StandardAxis passed into ConeCollisionShape::GetAxisMathBS()."); }
         }
 
         return Results;
@@ -803,7 +802,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
             String Name_(OneName.AsString());
 
             XML::Attribute Radius = OneNode.GetAttribute("Radius");                                                                             // Find Attributes
@@ -967,7 +966,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
             this->Name = OneName.AsString();
 
@@ -1095,7 +1094,7 @@ namespace Mezzanine
             case Axis_Z:
                 CylinderShape = new btCylinderShapeZ(HalfExtents.GetBulletVector3());
                 break;
-            default: World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CylinderCollisionShape constructor."));
+            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CylinderCollisionShape constructor."); }
         }
         Construct(Name, CylinderShape);
     }
@@ -1128,7 +1127,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
             /*XML::Node HalfExtentsNode = OneNode.GetChild("HalfExtents").GetFirstChild();
             if (!HalfExtentsNode) { DeSerializeError("find HalfExtentsNode",CylinderCollisionShape::SerializableName()); }
@@ -1159,7 +1158,7 @@ namespace Mezzanine
             case Axis_Y: return Vector3(Radius,Height,Radius);
             case Axis_X: return Vector3(Height,Radius,Radius);
             case Axis_Z: return Vector3(Radius,Radius,Height);
-            default: World::GetWorldPointer()->LogAndThrow(Exception("Non-supported up Axis passed into CylinderCollisionShape::CreateHalfExtents ."));
+            default: { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CylinderCollisionShape::CreateHalfExtents."); }
         }
     }
 
@@ -1243,7 +1242,7 @@ namespace Mezzanine
     void MultiSphereCollisionShape::Construct(const String& Name, const std::vector<Vector3>& Locations, const std::vector<Real>& Radii)
     {
         if(Locations.size() != Radii.size())
-            World::GetWorldPointer()->LogAndThrow(Exception("Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."));
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Vector size mismatch between Locations and Radii in MultiSphereCollisionShape constructor."); }
         Whole Spheres = Locations.size();
         btVector3* BulletLocs = new btVector3[Spheres];
         btScalar* BulletRadii = new btScalar[Spheres];
@@ -1284,7 +1283,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization"); }
 
             XML::Node Spheres = OneNode.GetChild("Spheres");
             if(!Spheres)
@@ -1415,7 +1414,7 @@ namespace Mezzanine
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
             XML::Attribute OneName = OneNode.GetChild("PrimitiveCollisionShape").GetChild("CollisionShape").GetAttribute("Name");               // get name
-            if(!OneName) { throw( Exception("Could not find Name Attribute on CollsionShape Node during preparation for deserialization")); }
+            if(!OneName) { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not find Name Attribute on CollsionShape Node during preparation for deserialization."); }
 
             this->Name = Name;
             SetPointers(new btSphereShape(0));

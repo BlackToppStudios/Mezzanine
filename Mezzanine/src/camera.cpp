@@ -47,7 +47,6 @@
 #include "exception.h"
 #include "scenemanager.h"
 #include "viewport.h"
-#include "world.h"
 #include "xml.h"
 
 #include <Ogre.h>
@@ -105,7 +104,7 @@ namespace Mezzanine
         {
             this->Cam->setProjectionType(Ogre::PT_PERSPECTIVE);
         }else{
-            throw(Mezzanine::Exception("Unknown ProjectionType when attempting to set Camera Type."));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unknown ProjectionType when attempting to set Camera Type.");
         }
     }
 
@@ -120,7 +119,7 @@ namespace Mezzanine
         {
             return Camera::Perspective;
         }else{
-            throw(Mezzanine::Exception("Unknown ProjectionType when attempting to get Camera Type."));
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unknown ProjectionType when attempting to get Camera Type.");
         }
     }
 
@@ -343,7 +342,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempQuat;
                             Ev.SetOrientation(TempQuat);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element O-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Camera: Includes unknown Element O-\""+Name+"\"");
                         }
                         break;
                     case 'L':   //Location
@@ -352,7 +351,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLocation(TempVec);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element L-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Camera: Includes unknown Element L-\""+Name+"\"");
                         }
                         break;
                     case 'F':   //FixedYawAxis
@@ -363,20 +362,20 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
                         }else if(Name==Mezzanine::String("FixedYawAxis")){
                             Ev.SetFixedYawAxis(false);
                         }else{
-                            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element F-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Camera: Includes unknown Element F-\""+Name+"\"");
                         }
                         break;
                     default:
-                        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Incompatible XML Version for Camera: Includes unknown Element default-\"",Name,"\"")) );
+                        MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Camera: Includes unknown Element default-\""+Name+"\"");
                         break;
                 }
             }
 
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for Camera: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Camera: Not Version 1");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a Camera, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Camera, found a "+Mezzanine::String(OneNode.Name()));
     }
 }
 #endif // \MEZZXML

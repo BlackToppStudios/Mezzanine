@@ -1,4 +1,4 @@
-//Â© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -190,7 +190,7 @@
   source and header file in the engine:
   \n \n
   @verbatim
-  Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
+  © Copyright 2010 - 2011 BlackTopp Studios Inc.
    This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -489,16 +489,6 @@ namespace Mezzanine
             /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs
             /// and gameworld recreations.
             std::stringstream LogStream;
-
-            /// @brief This is the preferred way to throw an exception.
-            /// @param Err A Mezzanine::Exception to be logged and thrown
-            void LogAndThrow(Exception Err)
-            {
-                this->Log(Err.what());
-                CommitLog();
-                Err.SetLogged();
-                throw(Err);
-            }
 
             /// @brief This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log.
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data

@@ -569,10 +569,10 @@ namespace Mezzanine
                 this->B=OneNode.GetAttribute("Blue").AsReal();
                 this->A=OneNode.GetAttribute("Alpha").AsReal();
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ",this->ColourValue::SerializableName(),": Not Version 1")) );
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + (this->ColourValue::SerializableName()) + ": Not Version 1");
             }
         }else{
-            throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a ",this->ColourValue::SerializableName(),", found a ", OneNode.Name())));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ColourValue::SerializableName()) + ", found a " + OneNode.Name());
         }
     }
 

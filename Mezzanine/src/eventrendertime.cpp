@@ -101,10 +101,10 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
         {
             Ev = Mezzanine::EventRenderTime( OneNode.GetAttribute("Rendertime").AsInt() );
         }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for EventRenderTime: Not Version 1"));
+            MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for EventRenderTime: Not Version 1.");
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringTool::StringCat("Attempting to deserialize a EventRenderTime, found a ", OneNode.Name())));
+        MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventRenderTime, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
 #endif // \MEZZXML

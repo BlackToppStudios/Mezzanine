@@ -79,7 +79,7 @@ namespace Mezzanine
     {
         if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
         //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
-        else throw(Exception("Attempting to initialze Mezzanine from an unsupported file type."));
+        else { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
     World::World(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
@@ -91,7 +91,7 @@ namespace Mezzanine
 
         if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
         //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
-        else throw(Exception("Attempting to initialze Mezzanine from an unsupported file type."));
+        else { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 #endif
 
@@ -647,21 +647,21 @@ namespace Mezzanine
         {
             return true;
         }else{
-            std::stringstream exceptionstream;
+            StringStream ExceptionStream;
             if(1 == ManagerNames.size())
             {
-                exceptionstream << "Manager: ";
-                exceptionstream << ManagerNames.at(0);
-                exceptionstream << "is not initialized.  All managers need to be initiailzed when entering the main loop.";
+                ExceptionStream << "Manager: ";
+                ExceptionStream << ManagerNames.at(0);
+                ExceptionStream << "is not initialized.  All managers need to be initiailzed when entering the main loop.";
             }else{
-                exceptionstream << "Managers: ";
+                ExceptionStream << "Managers: ";
                 for( std::vector<String>::iterator Iter = ManagerNames.begin() ; Iter != ManagerNames.end() ; ++Iter )
                 {
-                    exceptionstream << (*Iter) << ", ";
+                    ExceptionStream << (*Iter) << ", ";
                 }
-                exceptionstream << "are not initialized.  All managers need to be initiailzed when entering the main loop.";
+                ExceptionStream << "are not initialized.  All managers need to be initiailzed when entering the main loop.";
             }
-            this->LogAndThrow(Exception(exceptionstream.str()));
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,ExceptionStream.str());
             return false;
         }
     }
@@ -1069,9 +1069,7 @@ namespace Mezzanine
         ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
         if( ManIt == ManagerFactories.end() )
         {
-            StringStream exceptionstream;
-            exceptionstream << "Attempting to create manager of type \"" << ManagerImplName << "\", which has no factory registered.";
-            this->LogAndThrow(Exception(exceptionstream.str()));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         ManagerBase* NewMan = (*ManIt).second->CreateManager(Params);
         if(AddToWorld)
@@ -1083,9 +1081,7 @@ namespace Mezzanine
         ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
         if( ManIt == ManagerFactories.end() )
         {
-            StringStream exceptionstream;
-            exceptionstream << "Attempting to create manager of type \"" << ManagerImplName << "\", which has no factory registered.";
-            this->LogAndThrow(Exception(exceptionstream.str()));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to create manager of type \"" + ManagerImplName + "\", which has no factory registered.");
         }
         ManagerBase* NewMan = (*ManIt).second->CreateManager(XMLNode);
         if(AddToWorld)
@@ -1097,9 +1093,7 @@ namespace Mezzanine
         ManagerFactoryIterator ManIt = ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());
         if( ManIt == ManagerFactories.end() )
         {
-            StringStream exceptionstream;
-            exceptionstream << "Attempting to destroy manager of type \"" << ToBeDestroyed->GetImplementationTypeName() << "\", which has no factory registered.";
-            this->LogAndThrow(Exception(exceptionstream.str()));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_NOT_FOUND_EXCEPTION,"Attempting to destroy manager of type \"" + ToBeDestroyed->GetImplementationTypeName() + "\", which has no factory registered.");
         }
         RemoveManager(ToBeDestroyed);
         (*ManIt).second->DestroyManager(ToBeDestroyed);

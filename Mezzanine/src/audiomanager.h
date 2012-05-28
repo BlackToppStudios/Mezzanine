@@ -101,7 +101,7 @@ namespace Mezzanine
             virtual String GetObjectRootNodeName() const;
             virtual XML::Node CreateCurrentSettings();
 #endif
-            virtual void ApplySettingGroupImpl(ObjectSettingSetContainer* Group);
+            virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:
             /// @brief Class Constructor
             /// @details This is the class constructor.  It gives you the option to start up the manager

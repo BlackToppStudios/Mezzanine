@@ -40,7 +40,6 @@
 #ifndef _graphicsmanager_cpp
 #define _graphicsmanager_cpp
 
-#include "world.h"
 #include "eventmanager.h"
 #include "eventrendertime.h"
 #include "actorcontainervector.h"
@@ -336,7 +335,7 @@ namespace Mezzanine
     void GraphicsManager::SetRenderSystem(const Mezzanine::RenderSystem& RenderSys, bool InitializeRenderSystem)
     {
         if(!OgreBeenInitialized) CurrRenderSys = RenderSys;
-        else GameWorld->LogAndThrow(Exception("Attempting to set RenderSystem after graphics has been initialized.  This is not supported."));
+        else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to set RenderSystem after graphics has been initialized.  This is not supported."); }
 
         if(InitializeRenderSystem)
             InitOgreRenderSystem();

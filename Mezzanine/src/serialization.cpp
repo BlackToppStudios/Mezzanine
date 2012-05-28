@@ -46,7 +46,8 @@
 namespace Mezzanine
 {
     void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
-        { throw(Exception(StringTool::StringCat("Could not ", FailedTo, " during ", ClassName, SOrD? " ":" De","Serialization."))); }
+        /// @todo This may not be an appropriate type of exception to throw here, should evaluate if a new exception is needed at some point.
+        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not " + FailedTo + " during " + ClassName + (SOrD? " ":" De") + "Serialization."); }
 
     void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
         { SerializeError(FailedTo, ClassName, SOrD); }

@@ -192,8 +192,8 @@ GameProfile* ProfileManager::LoadProfile(XML::Document& ProfileDoc)
     GameProfile* Profile = NULL;
     try{
         Profile = new GameProfile(ProfileDoc);
-    }catch(std::exception x){
-        World::GetWorldPointer()->LogAndThrow(Exception("Attempting to Parse improperly formatted XML file."));
+    }catch(IOException Ex){
+        //Handle somehow?
     }
     LoadedProfiles.push_back(Profile);
     return Profile;

@@ -49,7 +49,6 @@
 #include "constraint.h"
 #include "physicsmanager.h"
 #include "serialization.h"
-#include "world.h"
 #include "stringtool.h"
 
 #ifdef MEZZXML
@@ -157,10 +156,10 @@ namespace Mezzanine
 
                     this->SetCCDParams(OneNode.GetAttribute("CCDMotionThreshold").AsReal(),OneNode.GetAttribute("CCDSphereRadius").AsReal());
                 }else{
-                    throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->ActorBasePhysicsSettings::SerializableName() + ": Not Version 1"));
+                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for"+ (this->ActorBasePhysicsSettings::SerializableName()) + ": Not Version 1");
                 }
             }else{
-                throw( Mezzanine::Exception(StringTool::StringCat("Attempting to deserialize a ", this->ActorBasePhysicsSettings::SerializableName(),", found a ", OneNode.Name())));
+                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a "+ (this->ActorBasePhysicsSettings::SerializableName()) +", found a "+ OneNode.Name());
             }
         }
 
@@ -379,7 +378,7 @@ namespace Mezzanine
                             {
                                 this->ActorBasePhysicsSettings::ProtoDeSerialize(Child);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element B-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element B-\""+Name+"\"");
                             }
                             break;
                         case 'a':   //AngularVelocity
@@ -388,7 +387,7 @@ namespace Mezzanine
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetAngularVelocity(TempVec);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element a-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element a-\""+Name+"\"");
                             }
                             break;
                         case 'r':   //LinearVelocity
@@ -397,7 +396,7 @@ namespace Mezzanine
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetLinearVelocity(TempVec);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element r-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element r-\""+Name+"\"");
                             }
                             break;
                         case 'i':   //IndividualGravity
@@ -406,7 +405,7 @@ namespace Mezzanine
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetIndividualGravity(TempVec);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element i-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element i-\""+Name+"\"");
                             }
                             break;
                         case 'T':   //TotalTorque
@@ -415,7 +414,7 @@ namespace Mezzanine
                                 Child.GetFirstChild() >> TempVec;
                                 this->ApplyTorque(TempVec);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element T-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element T-\""+Name+"\"");
                             }
                             break;
                         case 'F':   //TotalForce
@@ -424,7 +423,7 @@ namespace Mezzanine
                                 Child.GetFirstChild() >> TempVec;
                                 this->ApplyForce(TempVec);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element F-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element F-\""+Name+"\"");
                             }
                             break;
                         case 'I':   //Inertia
@@ -433,20 +432,20 @@ namespace Mezzanine
                                 Child.GetFirstChild() >> TempVec;
                                 this->SetMass(OneNode.GetAttribute("Mass").AsReal(), TempVec);
                             }else{
-                                throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element I-\"",Name,"\"")) );
+                                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element I-\""+Name+"\"");
                             }
                             break;
                         default:
-                            throw( Mezzanine::Exception(StringTool::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
+                            MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for Light: Includes unknown Element default-\""+Name+"\"");
                             break;
                     }
                 }
 
             }else{
-                throw( Mezzanine::Exception(String("Incompatible XML Version for")+ this->ActorRigidPhysicsSettings::SerializableName() + ": Not Version 1"));
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for" + (this->ActorRigidPhysicsSettings::SerializableName()) + ": Not Version 1");
             }
         }else{
-            throw( Mezzanine::Exception(String("Attempting to deserialize a ") + this->ActorRigidPhysicsSettings::SerializableName() + ", found a ", OneNode.Name()));
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + (this->ActorRigidPhysicsSettings::SerializableName()) + ", found a " + OneNode.Name());
         }
     }
 

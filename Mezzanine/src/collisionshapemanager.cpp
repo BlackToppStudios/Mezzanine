@@ -42,9 +42,11 @@
 
 #include "collisionshapemanager.h"
 #include "collisionshape.h"
-#include "world.h"
 #include "mesh.h"
 #include "meshmanager.h"
+
+// For logging
+#include "world.h"
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -295,7 +297,7 @@ namespace Mezzanine
             }
             default:
             {
-                World::GetWorldPointer()->LogAndThrow(Exception("Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile."));
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to load an unsupported/unwrapped Collision Shape in CompoundShapeManager::LoadAllShapesFromFile.");
             }//default
         }
     }
@@ -307,7 +309,7 @@ namespace Mezzanine
         {
             if((*CS).second != Shape)
             {
-                World::GetWorldPointer()->LogAndThrow(Exception("Name of Collision Shape already exists on another object.  Names should be Unique."));
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Name of Collision Shape already exists on another object.  Names should be Unique.");
             }
         }else{
             CollisionShapes[Shape->GetName()] = Shape;
@@ -607,10 +609,7 @@ namespace Mezzanine
         Stream->read((void*)buffer, Stream->size());
         if(!Importer.loadFileFromMemory(buffer, Stream->size()))
         {
-            std::stringstream logstream;
-            logstream << "Failed to load file: " << FileName << " , in CollisionShapeManager::LoadAllShapesFromFile";
-            World::GetWorldPointer()->LogAndThrow(Exception(logstream.str()));
-            return;
+            MEZZ_EXCEPTION(Exception::IO_UNKNOWN_EXCEPTION,"Failed to load file: " + FileName + ".")
         }
         delete[] buffer;
         for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X )
@@ -692,7 +691,7 @@ namespace Mezzanine
             return;
         CollisionShapeManager::iterator NaIt = CollisionShapes.find(NewName);
         if(NaIt != CollisionShapes.end())
-            World::GetWorldPointer()->LogAndThrow(Exception("Attempting to assign non-unique name to an unnamed Collision Shape."));
+            { MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Attempting to assign non-unique name to an unnamed Collision Shape."); }
         Shape->Name = NewName;
         CollisionShapes[NewName] = Shape;
     }
