@@ -97,6 +97,14 @@ namespace Mezzanine
 
         xml::Attribute CurrAttrib;
         String PathPreset;
+        // Get whether or not to autogen the directory path and settings file.
+        xml::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
+        if(!AutoGenNode.Empty())
+        {
+            CurrAttrib = AutoGenNode.GetAttribute("Auto");
+            if(!CurrAttrib.Empty())
+                AutoGenPath = AutoGenFiles = StringTool::ConvertToBool( CurrAttrib.AsString() );
+        }
         // Get preset path to default to if a path is not provided.
         xml::Node PathNode = XMLNode.GetChild("SettingsPath");
         if(!PathNode.Empty())
@@ -179,7 +187,7 @@ namespace Mezzanine
         return CurrentSettings;
     }
 #endif
-    void AudioManager::ApplySettingGroupImpl(ObjectSettingSetContainer* Group)
+    void AudioManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
     {
         for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )
         {
@@ -495,6 +503,8 @@ namespace Mezzanine
     {
         if(!Initialized)
             InitializeDevice(GetDefaultDeviceName(),-1,4);
+        if(AutoGenFiles)
+            SaveAllSettings();
         Initialized = true;
     }
 
