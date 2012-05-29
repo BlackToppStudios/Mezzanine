@@ -252,7 +252,8 @@ namespace Mezzanine
         if(!OgreBeenInitialized)
         {
             Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
-            OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(ConvertRenderSystem(CurrRenderSys)));
+            String RenderSysName = ConvertRenderSystem(CurrRenderSys);
+            OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(RenderSysName));
             OgreCore->initialise(false,"");
             OgreBeenInitialized = true;
         }

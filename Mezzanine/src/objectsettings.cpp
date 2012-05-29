@@ -365,11 +365,16 @@ namespace Mezzanine
     void ObjectSettingsHandler::SaveSettingsToFile(StringVector& GroupNames, const String& FileName, const String& Path)
     {
         XML::Document SettingsDoc;
+        XML::Node DocDecl = SettingsDoc.AppendChild(XML::NodeDeclaration);
+        DocDecl.SetName("xml");
+        XML::Attribute Version = DocDecl.AppendAttribute("version");
+        Version.SetValue("1.0");
         XML::Node RootNode = SettingsDoc.AppendChild(GetObjectRootNodeName());
+
         if(!GroupNames.empty()) SaveSettingsToXML(GroupNames,RootNode);
         else SaveSettingsToXML(RootNode);
         // Open a stream to the saving file
-        Resource::FileStreamDataStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate);
+        Resource::FileStreamDataStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate,Resource::DataStream::DS_Write);
         SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
     }
 

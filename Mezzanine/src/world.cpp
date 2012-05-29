@@ -320,7 +320,7 @@ namespace Mezzanine
             PluginExtension = ResourceMan->GetPluginExtension();
             Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath);
             XML::Document PluginDoc;
-            //PluginDoc.Load(PluginStream);
+            PluginDoc.Load(PluginStream);
             // Get the plugin path, if it's there.
             XML::Node PlgPath = PluginDoc.GetChild("PluginPath");
             if(!PlgPath.Empty())
@@ -391,163 +391,6 @@ namespace Mezzanine
         for( XML::NodeIterator ManIt = Managers.begin() ; ManIt != Managers.end() ; ++ManIt )
         {
             CreateManager( (*ManIt).Name(), (*ManIt) );
-
-            /*ManagerBase::ManagerType CurrType = ManagerBase::GetTypeNameFromString((*ManIt).Name());
-            switch (CurrType)
-            {
-                case ManagerBase::ActorManager:
-                {
-                    if(ActorManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing ActorManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(ActorManager::GetSingletonPtr());
-                    }
-                    else AddManager(new ActorManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::AudioManager:
-                {
-                    if(AudioManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing AudioManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(AudioManager::GetSingletonPtr());
-                    }
-                    else AddManager(new AudioManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::CameraManager:
-                {
-                    if(CameraManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing CameraManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(CameraManager::GetSingletonPtr());
-                    }
-                    else AddManager(new CameraManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::CollisionShapeManager:
-                {
-                    if(CollisionShapeManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing CollisionShapeManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(CollisionShapeManager::GetSingletonPtr());
-                    }
-                    else AddManager(new CollisionShapeManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::EventManager:
-                {
-                    if(EventManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing EventManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(EventManager::GetSingletonPtr());
-                    }
-                    else AddManager(new EventManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::GraphicsManager:
-                {
-                    if(GraphicsManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing GraphicsManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(GraphicsManager::GetSingletonPtr());
-                    }
-                    else AddManager(new GraphicsManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::MeshManager:
-                {
-                    if(MeshManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing MeshManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(MeshManager::GetSingletonPtr());
-                    }
-                    else AddManager(new MeshManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::NetworkManager:
-                {
-                    if(NetworkManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing NetworkManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(NetworkManager::GetSingletonPtr());
-                    }
-                    else AddManager(new NetworkManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::PhysicsManager:
-                {
-                    if(PhysicsManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing PhysicsManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(PhysicsManager::GetSingletonPtr());
-                    }
-                    else AddManager(new PhysicsManager((*ManIt)));
-                    break;
-                }
-                // In this world constructor, this manager would already exist.
-                /*case ManagerBase::ResourceManager:
-                {
-                    if(ResourceManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing ResourceManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(ResourceManager::GetSingletonPtr());
-                    }
-                    else AddManager(new ResourceManager((*ManIt)));
-                    break;
-                }// /
-                case ManagerBase::SceneManager:
-                {
-                    if(SceneManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing SceneManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(SceneManager::GetSingletonPtr());
-                    }
-                    else AddManager(new SceneManager((*ManIt)));
-                    break;
-                }
-                /// @todo Scripting managers currently have to be initialized manually due to their structure.  May want to change their structure in the project so that that isn't the case.
-                /*case ManagerBase::ScriptingManager:
-                {
-                    if(ScriptingManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing ScriptingManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(ScriptingManager::GetSingletonPtr());
-                    }
-                    else AddManager(new ScriptingManager((*ManIt)));
-                    break;
-                }// /
-                case ManagerBase::TerrainManager:
-                {
-                    if(TerrainManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing TerrainManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(TerrainManager::GetSingletonPtr());
-                    }
-                    else AddManager(new TerrainManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::TimerManager:
-                {
-                    if(TimerManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing TimerManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(TimerManager::GetSingletonPtr());
-                    }
-                    else AddManager(new TimerManager((*ManIt)));
-                    break;
-                }
-                case ManagerBase::UIManager:
-                {
-                    if(UIManager::SingletonValid())
-                    {
-                        this->Log("WARNING: Already existing UIManager has been detected while constructing the world.  This may or may not cause problems depending on your configuration.");
-                        AddManager(UIManager::GetSingletonPtr());
-                    }
-                    else AddManager(new UIManager((*ManIt)));
-                    break;
-                }
-            }//*/
         }
 
         // Load additional resource groups
@@ -555,7 +398,7 @@ namespace Mezzanine
         {
             Resource::FileStreamDataStream ResourceStream(ResourceInit,EngineDataPath);
             XML::Document ResourceDoc;
-            //ResourceDoc.Load(ResourceStream);
+            ResourceDoc.Load(ResourceStream);
             // Get an iterator to the first resource group node, and declare them all.
             XML::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
             for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
