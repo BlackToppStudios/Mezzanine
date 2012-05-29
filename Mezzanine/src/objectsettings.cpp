@@ -370,7 +370,7 @@ namespace Mezzanine
         else SaveSettingsToXML(RootNode);
         // Open a stream to the saving file
         Resource::FileStreamDataStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate);
-        SettingsDoc.Save(SettingsStream,"\t",xml::FormatIndent);
+        SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
     }
 
     void ObjectSettingsHandler::LoadSettingSetFromXML(XML::Node& XMLNode, ObjectSettingSet* Set)

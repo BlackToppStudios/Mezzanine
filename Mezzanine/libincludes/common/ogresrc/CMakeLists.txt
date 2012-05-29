@@ -89,7 +89,9 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}")
 # Also, just after the include directories, add a line to declare the link directory.
 # After the ogremain target is created at around line 733, add a line to define the dependancies of OgreMain, with an "if" statement to exclude Cg on iOS.
 # Next, in the same if statement above, add lines for declaring the link libraries for the ogre dependancies.
-
+#
+# In ogresvnsrc\OgreMain\Src\OgreZip.cpp:
+# At around line 37 change the include '#include <zzip/zzip.h>' to '#include <zzip.h>'
 
 add_subdirectory ( ogresvnsrc )
 

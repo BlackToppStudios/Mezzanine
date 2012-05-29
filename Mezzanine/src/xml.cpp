@@ -3472,8 +3472,8 @@ PUGI__NS_BEGIN
 		return StatusOk;
 	}
 
-	PUGI__FN 
-	/*ParseResult LoadDataStreamImpl(Document& doc, Mezzanine::Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
+	PUGI__FN
+	ParseResult LoadDataStreamImpl(Document& doc, Mezzanine::Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 	    // Copying mostly from the function below, a lot of what they try to do is not applicable with data streams since they already do it to some extent.
 	    size_t pos = stream.Tell();
@@ -3481,7 +3481,7 @@ PUGI__NS_BEGIN
 
 	    if (pos < 0) return make_ParseResult(StatusIOError);
 
-	    buffer_holder buffer(global_allocate(stream.GetSize() > 0 ? length : 1), global_deallocate);
+	    buffer_holder buffer(Memory::allocate(stream.GetSize() > 0 ? length : 1), Memory::deallocate);
 		if (!buffer.data) return make_ParseResult(StatusOutOfMemory);
 
 		size_t actual_length = stream.Read(buffer.data, length);
@@ -3490,7 +3490,7 @@ PUGI__NS_BEGIN
 		return doc.LoadBufferInplaceOwn(buffer.release(), actual_length, options, DocumentEncoding);
     }
 
- PUGI__FN  */	ParseResult LoadFileImpl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding)
+ PUGI__FN  	ParseResult LoadFileImpl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding)
 	{
 		if (!file) return make_ParseResult(StatusFileNotFound);
 
@@ -5218,19 +5218,19 @@ namespace XML
 		page->allocator = static_cast<internal::DocumentStruct*>(_GetRoot);
 	}
 
-	PUGI__FN /*ParseResult Document::Load(Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
+	PUGI__FN ParseResult Document::Load(Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 	    Reset();
-	    return LoadDataStreamImpl(*this, stream, options, DocumentEncoding);
-	}*/
+	    return internal::LoadDataStreamImpl(*this, stream, options, DocumentEncoding);
+	}
 
-	void Document::Save(Resource::DataStream& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+	PUGI__FN void Document::Save(Resource::DataStream& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
         	XMLStreamWrapper WriterInstance(&stream);
         	Save(WriterInstance, indent, flags, DocumentEncoding);
 	}
 
-	void Document::destroy()
+	PUGI__FN void Document::destroy()
 	{
 		// destroy static storage
 		if (_buffer)

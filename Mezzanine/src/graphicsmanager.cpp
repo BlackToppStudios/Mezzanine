@@ -81,6 +81,8 @@ namespace Mezzanine
 
 #ifdef MEZZXML
     GraphicsManager::GraphicsManager(XML::Node& XMLNode)
+        : OgreBeenInitialized(false),
+          CurrRenderSys(Mezzanine::RS_OpenGL2)
     {
         Construct( 800, 600, false );
 

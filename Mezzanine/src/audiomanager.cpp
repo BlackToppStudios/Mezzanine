@@ -98,7 +98,7 @@ namespace Mezzanine
         XML::Attribute CurrAttrib;
         String PathPreset;
         // Get whether or not to autogen the directory path and settings file.
-        xml::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
+        XML::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
         if(!AutoGenNode.Empty())
         {
             CurrAttrib = AutoGenNode.GetAttribute("Auto");

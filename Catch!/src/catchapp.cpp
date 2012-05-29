@@ -29,7 +29,7 @@ CatchApp::CatchApp()
     try
     {
         TheWorld = new World( "Data/", "FileSystem" );
-    }catch( exception x){
+    }catch(...){
         throw;
     }
     Loader = new LevelLoader();

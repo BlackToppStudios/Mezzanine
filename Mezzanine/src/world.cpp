@@ -233,7 +233,7 @@ namespace Mezzanine
         ResourceManager* ResourceMan = GetResourceManager();
         Resource::FileStreamDataStream InitStream(InitializerFile,EngineDataPath);
         XML::Document InitDoc;
-        //InitDoc.Load(InitStream);
+        InitDoc.Load(InitStream);
 
         // Get the world settings and set them.
         XML::Node WorldSettings = InitDoc.GetChild("WorldSettings");

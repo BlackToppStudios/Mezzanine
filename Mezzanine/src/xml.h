@@ -357,7 +357,7 @@ namespace XML
 	};
 	#endif
 
-	
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class XMLStreamWrapper
     /// @headerfile resourcedatastream.h
@@ -1216,7 +1216,7 @@ namespace XML
 		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
 		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-        //ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+        ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
 	#ifndef XML_NO_STL
 		// Load document from stream.

@@ -731,13 +731,13 @@ else()
 endif()
 
 # Added by BTS to integrate dependancy sources.
-if(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-	add_dependencies(OgreMain Cg FreeImage freetype zlib zziplib)
-	target_link_libraries(OgreMain Cg FreeImage freetype zlib zziplib)
-else()
+#if(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+#	add_dependencies(OgreMain Cg FreeImage freetype zlib zziplib)
+#	target_link_libraries(OgreMain Cg FreeImage freetype zlib zziplib)
+#else()
 	add_dependencies(OgreMain FreeImage freetype zlib zziplib)
 	target_link_libraries(OgreMain FreeImage freetype zlib zziplib)
-endif(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+#endif(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
 
 if (APPLE)
   if (OGRE_BUILD_PLATFORM_APPLE_IOS)
