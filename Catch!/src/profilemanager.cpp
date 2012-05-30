@@ -110,7 +110,7 @@ ProfileManager::ProfileManager(const String& ProfilesDir)
         ProfileDoc.Reset();
 
         Resource::FileStreamDataStream LoadStream(FileName,ProfilesDir,Resource::DataStream::SF_None);
-        //ProfileDoc.Load(LoadStream);
+        ProfileDoc.Load(LoadStream);
         LoadProfile(ProfileDoc);
     }
     delete ProfileSet;
