@@ -356,9 +356,7 @@ namespace Mezzanine
                 NewSetFile->AddGroup( (*It) );
             return RetVec;
         }else{
-            StringStream exceptionstream;
-            exceptionstream << "Attempting to parse XML which does not contain valid ObjectRootNodeName.  Searching for \"" << GetObjectRootNodeName() << "\", not found.  In ObjectSettingsHandler::LoadSettingsFromFile.";
-            World::GetWorldPointer()->LogAndThrow(exceptionstream.str());
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to parse XML which does not contain valid ObjectRootNodeName.  Searching for \"" + GetObjectRootNodeName() + "\", not found.");
         }
     }
 
@@ -371,8 +369,8 @@ namespace Mezzanine
         Version.SetValue("1.0");
         XML::Node RootNode = SettingsDoc.AppendChild(GetObjectRootNodeName());
 
-        if(!GroupNames.empty()) SaveSettingsToXML(GroupNames,RootNode);
-        else SaveSettingsToXML(RootNode);
+        if(GroupNames.empty()) SaveSettingsToXML(RootNode);
+        else SaveSettingsToXML(GroupNames,RootNode);
         // Open a stream to the saving file
         Resource::FileStreamDataStream SettingsStream(FileName,Path,Resource::DataStream::SF_Truncate,Resource::DataStream::DS_Write);
         SettingsDoc.Save(SettingsStream,"\t",XML::FormatIndent);
@@ -632,12 +630,12 @@ namespace Mezzanine
 
         for( SettingFilesIterator SettingFileIt = SettingFiles.begin() ; SettingFileIt != SettingFiles.end() ; ++SettingFileIt )
         {
-            GroupNames.clear();
             for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = (*SettingFileIt).second->SaveGroupsBegin() ; SetGroupIt != (*SettingFileIt).second->SaveGroupsEnd() ; ++SetGroupIt )
             {
                 GroupNames.push_back( (*SetGroupIt)->GetName() );
             }
             SaveSettingsToFile(GroupNames,(*SettingFileIt).second->GetFileName(),SettingsFilePath);
+            GroupNames.clear();
         }
     }
 
@@ -712,10 +710,9 @@ namespace Mezzanine
     {
         for( StringVector::iterator StrIt = GroupNames.begin() ; StrIt != GroupNames.end() ; ++StrIt )
         {
-            if( SaveCurrent && "Current" == (*StrIt) )
+            if( SaveCurrent && ("Current" == (*StrIt)) )
             {
-                XML::Node CurrentNode = CreateCurrentSettings();
-                RootSettings.AppendCopy(CurrentNode);
+                AppendCurrentSettings(RootSettings);
             }else{
                 SettingGroupIterator GroupIt = SettingGroups.find( (*StrIt) );
                 if( GroupIt == SettingGroups.end() )

@@ -289,7 +289,7 @@ namespace Mezzanine
             void LoadSettingSetFromXML(XML::Node& XMLNode, ObjectSettingSet* Set);
             void SaveSettingSetToXML(XML::Node& XMLNode, ObjectSettingSet* Set);
             virtual String GetObjectRootNodeName() const = 0;
-            virtual XML::Node CreateCurrentSettings() = 0;
+            virtual void AppendCurrentSettings(XML::Node& CurrentNode) = 0;
 #endif
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group) = 0;
         public:

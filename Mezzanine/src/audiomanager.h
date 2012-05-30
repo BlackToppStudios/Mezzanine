@@ -99,7 +99,7 @@ namespace Mezzanine
             Audio::MusicPlayer* MusicPlayer;
 #ifdef MEZZXML
             virtual String GetObjectRootNodeName() const;
-            virtual XML::Node CreateCurrentSettings();
+            virtual void AppendCurrentSettings(XML::Node& SettingsRootNode);
 #endif
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:

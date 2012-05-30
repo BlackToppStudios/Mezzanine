@@ -72,7 +72,8 @@ namespace Mezzanine
           EffectVolume(1.0),
           MusicVolume(1.0),
           MasterVolume(1.0),
-          MuteStandby(0.0)
+          MuteStandby(0.0),
+          Muted(false)
     {
         AMID = new AudioManagerInternalData(this);
         cAudioMan = cAudio::createAudioManager(DefaultSettings);
@@ -88,7 +89,8 @@ namespace Mezzanine
           EffectVolume(1.0),
           MusicVolume(1.0),
           MasterVolume(1.0),
-          MuteStandby(0.0)
+          MuteStandby(0.0),
+          Muted(false)
     {
         AMID = new AudioManagerInternalData(this);
         cAudioMan = cAudio::createAudioManager(false);
@@ -164,10 +166,10 @@ namespace Mezzanine
         return "DefaultAudioManagerSettings";
     }
 
-    XML::Node AudioManager::CreateCurrentSettings()
+    void AudioManager::AppendCurrentSettings(XML::Node& SettingsRootNode)
     {
         // Create the Group node to be returned
-        XML::Node CurrentSettings;
+        XML::Node CurrentSettings = SettingsRootNode.AppendChild("Current");
         // Create and initialize the device settings
         XML::Node DeviceSettingsNode = CurrentSettings.AppendChild("DeviceSettings");
         DeviceSettingsNode.AppendAttribute("DeviceName").SetValue( AMID->InitializedDevice );
@@ -183,8 +185,6 @@ namespace Mezzanine
         // Create and initialize the mute setting
         XML::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
         MuteSettingNode.AppendAttribute("Muted").SetValue( StringTool::ConvertToString(this->IsMuted()) );
-        // Return the result
-        return CurrentSettings;
     }
 #endif
     void AudioManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
