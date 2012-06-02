@@ -195,7 +195,7 @@ namespace Mezzanine
             if( "DeviceSettings" == (*SubSetIt)->GetName() )
             {
                 // Setup the data to populate
-                String DeviceName = GetDefaultDeviceName();
+                String DeviceName("Default");
                 Integer OutputFreq = -1;
                 Integer EAXSlots = 4;
                 // Get the values
@@ -209,8 +209,12 @@ namespace Mezzanine
                 if(!CurrSettingValue.empty())
                     EAXSlots = StringTool::ConvertToInteger(CurrSettingValue);
 
-                if( "Default" == DeviceName )
-                    DeviceName = GetDefaultDeviceName();
+                if( "Default" == DeviceName ) DeviceName = GetDefaultDeviceName();
+                else
+                {
+                    if( !DeviceNameValid(DeviceName) )
+                        DeviceName = GetDefaultDeviceName();
+                }
                 // Check if everything is initialized and set the settings appropriately
                 if(!Initialized)
                 {
@@ -448,21 +452,29 @@ namespace Mezzanine
 
     String AudioManager::GetAvailableDeviceNameByIndex(const Whole& Index) const
     {
-        const char* Name = cAudioMan->getAvailableDeviceName(Index);
-        String Device(Name);
+        String Device(cAudioMan->getAvailableDeviceName(Index));
         return Device;
     }
 
     String AudioManager::GetDefaultDeviceName() const
     {
-        const char* Name = cAudioMan->getDefaultDeviceName();
-        String Device(Name);
+        String Device(cAudioMan->getDefaultDeviceName());
         return Device;
     }
 
     Whole AudioManager::GetAvailableDeviceCount() const
     {
         return cAudioMan->getAvailableDeviceCount();
+    }
+
+    bool AudioManager::DeviceNameValid(const String& DeviceName) const
+    {
+        for( Whole Dev = 0 ; Dev < GetAvailableDeviceCount() ; Dev++ )
+        {
+            if( DeviceName == GetAvailableDeviceNameByIndex(Dev) )
+                return true;
+        }
+        return false;
     }
 
     std::stringstream* AudioManager::GetLogs() const

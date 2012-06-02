@@ -231,6 +231,10 @@ namespace Mezzanine
             /// @details This function will return the total number of available devices, including the default.
             /// @return Returns the number of available devices.
             virtual Whole GetAvailableDeviceCount() const;
+            /// @brief Checks to see if the named device is available.
+            /// @param DeviceName The name of the device to check for.
+            /// @return Returns true if the device is available on this system, false otherwise.
+            virtual bool DeviceNameValid(const String& DeviceName) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Logging
