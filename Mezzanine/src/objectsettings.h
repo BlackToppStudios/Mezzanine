@@ -55,6 +55,7 @@ namespace Mezzanine
 {
     class ObjectSettingSet;
     class ObjectSettingFile;
+    class ObjectSettingGroup;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ObjectSettingSetContainer
     /// @headerfile objectsettings.h
@@ -98,11 +99,14 @@ namespace Mezzanine
             /// @brief Gets a Sub-Set of this container by name.
             /// @param Name The name of the desired Sub-Set.
             /// @return Returns a pointer to the named Sub-Set, or NULL if it doesn't exist.
-            ObjectSettingSet* GetChildObjectSettingSet(const String& Name);
+            ObjectSettingSet* GetChildObjectSettingSet(const String& Name) const;
             /// @brief Gets a Sub-Set of this container by index.
             /// @param Index The index of the Sub-Set to get.
             /// @return Returns a pointer to the Sub-Set at the specified index.
-            ObjectSettingSet* GetChildObjectSettingSet(const Whole& Index);
+            ObjectSettingSet* GetChildObjectSettingSet(const Whole& Index) const;
+            /// @brief Removes a Sub-Set of this container.
+            /// @param ToBeRemoved The Sub-Set to be removed.
+            virtual void RemoveChildObjectSettingSet(ObjectSettingSet* ToBeRemoved);
             /// @brief Destroys a Sub-Set of this container.
             /// @param Name The name of the Sub-Set to be destroyed.
             void DestroyChildObjectSettingSet(const String& Name);
@@ -119,6 +123,12 @@ namespace Mezzanine
             SubSetIterator SubSetEnd();
             /// @brief Gets a const iterator to one passed the last subset of settings in this set.
             ConstSubSetIterator SubSetEnd() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+            /// @internal
+            /// @brief Marks this container and relevant parent containers as updated.
+            virtual void _MarkUpdated() = 0;
     };//ObjectSettingSetContainer
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -134,8 +144,9 @@ namespace Mezzanine
             typedef SettingsMap::iterator SettingsIterator;
             typedef SettingsMap::const_iterator ConstSettingsIterator;
         protected:
+            friend class ObjectSettingSetContainer;
             SettingsMap Settings;
-            ObjectSettingSet* ParentSet;
+            ObjectSettingSetContainer* ParentSetOrGroup;
         public:
             /// @brief Class constructor.
             /// @param Name The name of this set.
@@ -147,14 +158,7 @@ namespace Mezzanine
             // Utility
             /// @brief Gets the Parent SettingsSet to this set.
             /// @return Returns a pointer to this object's parent, or NULL if it doesn't have one.
-            ObjectSettingSet* GetParentSet() const;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // Sub-Set Methods
-            /// @copydoc ObjectSettingSetContainer::CreateChildObjectSettingSet(String&)
-            ObjectSettingSet* CreateChildObjectSettingSet(const String& Name);
-            /// @copydoc ObjectSettingSetContainer::AddChildObjectSettingSet(ObjectSettingSet*)
-            void AddChildObjectSettingSet(ObjectSettingSet* ToBeAdded);
+            ObjectSettingSetContainer* GetParentSetOrGroup() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Setting Methods
@@ -177,6 +181,11 @@ namespace Mezzanine
             SettingsIterator SettingsEnd();
             /// @brief Gets a const iterator to one passed the last setting in this set.
             ConstSettingsIterator SettingsEnd() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+            /// @copydoc ObjectSettingSetContainer::_MarkUpdated()
+            void _MarkUpdated();
     };//ObjectSettingSet
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -189,10 +198,10 @@ namespace Mezzanine
     {
         protected:
             friend class ObjectSettingFile;
-            String OptionalFileName;
-            /// @brief Sets the name of the file this group will be saved to.
-            /// @param FileName The name of the file this group should be saved to when saving the configuration.
-            void SetOptionalFileName(const String& FileName);
+            ObjectSettingFile* OptionalFile;
+            /// @brief Sets the file this group will be saved to.
+            /// @param File The file this group should be saved to when saving the configuration.
+            void SetOptionalFile(ObjectSettingFile* File);
         public:
             /// @brief Class constructor.
             /// @param Name The name to be given to this group.
@@ -202,9 +211,17 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Optional File config
+            /// @brief Gets the Setting file instance this group will be saved to.
+            /// @return Returns a pointer to the setting file this group belongs to.
+            ObjectSettingFile* GetOptionalFile() const;
             /// @brief Gets the file name this group will be saved to.
             /// @return Returns a const reference to the currently set file name.  String will be empty if this is not set.
             const String& GetOptionalFileName() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+            /// @copydoc ObjectSettingSetContainer::_MarkUpdated()
+            void _MarkUpdated();
     };//ObjectSettingGroup
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -222,6 +239,7 @@ namespace Mezzanine
         protected:
             SaveGroupsContainer SaveGroups;
             String File;
+            bool NeedsSave;
         public:
             /// @brief Class constructor.
             /// @param FileName The name of the file the groups in this class will be saved to.
@@ -234,6 +252,13 @@ namespace Mezzanine
             /// @brief Gets the name of the file.
             /// @return Returns a const reference to the name of this file.
             const String& GetFileName() const;
+            /// @brief Sets whether or not this file needs saving.
+            /// @param Save Whetehr or not this file has been updated and needs to be saved.
+            void SetNeedsSave(bool Save);
+            /// @brief Gets whether or not this file has been updated and needs to be saved.
+            /// @return Returns true if this file needs to be saved, false otherwise.
+            bool GetNeedsSave() const;
+
             /// @brief Adds a group to be saved to this file.
             /// @param Group The group to be added to this file.
             void AddGroup(ObjectSettingGroup* Group);
@@ -283,7 +308,7 @@ namespace Mezzanine
             bool AutoGenFiles;
 #ifdef MEZZXML
             String SettingsFilePath;
-            bool SaveCurrent;
+            String CurrentSettingsSaveFile;
             CountedPtr<SettingGroupVector> LoadSettingsFromFile(const String& FileName, const String& Path);
             void SaveSettingsToFile(StringVector& GroupNames, const String& FileName, const String& Path);
             void LoadSettingSetFromXML(XML::Node& XMLNode, ObjectSettingSet* Set);
@@ -358,17 +383,17 @@ namespace Mezzanine
             /// @brief Gets the currently set settings file path.
             /// @return Returns a string containing the path to use when a save/load path isn't specified.
             const String& GetSettingsFilePath() const;
-            /// @brief Sets whether or not to save the current config as it's own group when saving settings.
+            /// @brief Sets the name of the file that will have this object's "current" settings saved to.
             /// @details Any group labeled "Current" (case sensative) will be used and immediately applied upon loading. @n
             /// If this is enabled and no group specifiers are used, then the Current settings will automatically be saved any time the groups are saved.
             /// When using functions with group specifiers, you can include a string "Current" to save the current settings. @n
             /// It's also important to note that the "Current" settings group, although it'll be present in saved files, is not a group traversible in code.
             /// It is solely intended to save the existing state at shutdown, and resume with that exact config.
-            /// @param Save Whether or not to have the current settings when other groups are saved.
-            void SetSaveCurrent(bool Save);
-            /// @brief Gets if autosaving the current config is enabled.
-            /// @return Returns true if the current config is auto-saved when saving happens, false otherwise.
-            bool GetSaveCurrent() const;
+            /// @param FileName Name of the file to save the current settings to.
+            void SetCurrentSettingsSaveFile(const String& FileName);
+            /// @brief Gets the name of the file the "Current" setting group is saved to.
+            /// @return Returns string ref to the name of the file current settings are being saved to, or an empty string if one is not set.
+            ConstString& GetCurrentSettingsSaveFile() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Loading Utilities
@@ -395,7 +420,10 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Saving Utilities
-            /// @brief Saves all settings with their optional file names specified to their specified files.
+            /// @brief Saves all settings that need saving.
+            /// @remarks This function does a few things.  First it will only save the setting groups which have their optional setting
+            /// files specified, which is automatically set if they are loaded from a file.  Second, it will only save the files(and
+            /// their collection of Setting Groups) that are marked as needing saving to prevent unnessessary IO.
             void SaveAllSettings();
             /// @brief Saves all settings that have their optional filename set to the specified file.
             /// @param Filename The optional filename that will be used to determine which groups will be saved, and to what file.
@@ -407,19 +435,28 @@ namespace Mezzanine
             /// @param Filename The optional filename that will be used to determine which groups will be saved, and to what file.
             void SaveSettingsByFile(const String& FileName);
             /// @brief Saves all settings to a settings file.
+            /// @remarks This function bypasses the file utilities offered by this class and just writes the specified groups to the named
+            /// file.  It will not make a coresponding file class and this file will not be auto saved at any point later.  This is just an
+            /// explicit utility function for writing groups to the disk should you need it.  In general it is better to create a file class
+            /// and populate it with groups yourself.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param Filename The name of the file to save the current settings to.
             /// @param Path The path to place the file being saved.
             void SaveSettingGroups(StringVector& GroupNames, const String& FileName, const String& Path);
             /// @brief Saves all settings to a settings file using the specified settings path.
             /// @note Using this function means it will use the preset settings file path stored in this handler.
-            /// The path must be set before calling this.
+            /// The path must be set before calling this otherwise an exception will be thrown.
+            /// @remarks This function bypasses the file utilities offered by this class and just writes the specified groups to the named
+            /// file.  It will not make a coresponding file class and this file will not be auto saved at any point later.  This is just an
+            /// explicit utility function for writing groups to the disk should you need it.  In general it is better to create a file class
+            /// and populate it with groups yourself.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param Filename The name of the file to save the current settings to.
             void SaveSettingGroups(StringVector& GroupNames, const String& FileName);
             /// @brief Saves all the current setting groups as children of the provided XML node.
+            /// @param SaveCurrent Whether or not to also save the current settings to XML.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
-            void SaveSettingsToXML(XML::Node& RootSettings);
+            void SaveSettingsToXML(XML::Node& RootSettings, bool SaveCurrent = true);
             /// @brief Saves the named settings groups as children of the provided XML node.
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
