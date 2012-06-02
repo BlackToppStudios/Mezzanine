@@ -26,8 +26,7 @@ CatchApp::CatchApp()
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
 
-    try
-    {
+    try{
         TheWorld = new World( "Data/", "FileSystem" );
     }catch(...){
         throw;
