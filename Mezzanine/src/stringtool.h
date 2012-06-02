@@ -57,6 +57,8 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB StringTool
     {
+        public:
+            static const String Blank;
         protected:
         public:
             /// @brief Class constructor.

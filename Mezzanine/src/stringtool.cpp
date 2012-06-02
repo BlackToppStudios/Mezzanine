@@ -48,6 +48,8 @@
 
 namespace Mezzanine
 {
+    const String StringTool::Blank = "";
+
     StringTool::StringTool()
     {
     }
