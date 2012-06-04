@@ -37,29 +37,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _universalconstraint_h
+#define _universalconstraint_h
+
+#include "Physics/generic6dofconstraint.h"
+
+class btUniversalConstraint;
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Physics
     {
-
-    }
-}
-
-#include "Resource/resourceenumerations.h"
-
-#include "Resource/archive.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/datastream.h"
-#include "Resource/inputstream.h"
-#include "Resource/textsettingsfile.h"
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @internal
+        /// @class UniversalConstraint
+        /// @headerfile constraint.h
+        /// @brief
+        /// @details This class is currently incomplete and is marked as internal until its completion
+        class MEZZ_LIB UniversalConstraint : public Generic6DofConstraint
+        {
+            protected:
+                /// @brief Bullet constraint that this class encapsulates.
+                btUniversalConstraint* Universal;
+            public:
+                UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+                /// @brief Class destructor.
+                /// @details The class destructor.
+                virtual ~UniversalConstraint();
+                virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
+                virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
+        };//UniversalConstraint
+    }//Physics
+}//Mezzanine
 
 #endif

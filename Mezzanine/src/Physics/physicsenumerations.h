@@ -37,29 +37,47 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _physicsenumerations_h
+#define _physicsenumerations_h
+///////////////////////////////////////////////////////////////////////////////
+//Any global enumerations shared between multiple classes in the Physics namespace is to be declared here.
+///////////////////////////////////////
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Physics
     {
+        /// @enum CollisionFilter
+        /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.
+        /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with
+        /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.
+        enum CollisionFilter
+        {
+            // Standard base filters
+            CF_GenericFilter = 1,
+            CF_StaticFilter = 2,
+            CF_KinematicFilter = 4,
+            CF_DebrisFilter = 8,
+            CF_SensorFilter = 16,
+            CF_CharacterFilter = 32,
+            CF_AllFilter = -1,
 
-    }
-}
+            // Non-Standard Filters
+            CF_UserFilter1 = 64,
+            CF_UserFilter2 = 128
+        };
 
-#include "Resource/resourceenumerations.h"
-
-#include "Resource/archive.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/datastream.h"
-#include "Resource/inputstream.h"
-#include "Resource/textsettingsfile.h"
+        /// @enum WorldObjectActivationState
+        /// @brief This is used by all the world objects to monitor and set their physics activation.
+        enum WorldObjectActivationState
+        {
+            WOAS_Active = 1,
+            WOAS_Island_Sleeping = 2,
+            WOAS_Wants_Deactivation = 3,
+            WOAS_DisableDeactivation = 4,
+            WOAS_DisableSimulation = 5
+        };
+    }//physics
+}//Mezzanine
 
 #endif

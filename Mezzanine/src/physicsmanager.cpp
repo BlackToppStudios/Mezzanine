@@ -720,13 +720,13 @@ namespace Mezzanine
         }
     }
 
-    void PhysicsManager::AddConstraint(TypedConstraint* Constraint, bool DisableCollisions)
+    void PhysicsManager::AddConstraint(Physics::Constraint* Con, bool DisableCollisions)
     {
-        this->BulletDynamicsWorld->addConstraint(Constraint->GetConstraintBase(), DisableCollisions);
-        Constraints.push_back(Constraint);
+        this->BulletDynamicsWorld->addConstraint(Con->GetConstraintBase(), DisableCollisions);
+        Constraints.push_back(Con);
     }
 
-    TypedConstraint* PhysicsManager::GetConstraint(const Whole& Index)
+    Physics::Constraint* PhysicsManager::GetConstraint(const Whole& Index)
     {
         return Constraints[Index];
     }
@@ -736,14 +736,14 @@ namespace Mezzanine
         return Constraints.size();
     }
 
-    void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
+    void PhysicsManager::RemoveConstraint(Physics::Constraint* Con)
     {
-        this->BulletDynamicsWorld->removeConstraint(Constraint->GetConstraintBase());
-        for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con < Constraints.end() ; Con++ )
+        this->BulletDynamicsWorld->removeConstraint(Con->GetConstraintBase());
+        for( std::vector<Physics::Constraint*>::iterator ConIt = Constraints.begin() ; ConIt < Constraints.end() ; ConIt++ )
         {
-            if( (*Con) == Constraint )
+            if( (*ConIt) == Con )
             {
-                Constraints.erase(Con);
+                Constraints.erase(ConIt);
                 return;
             }
         }
@@ -751,7 +751,7 @@ namespace Mezzanine
 
     void PhysicsManager::DestroyAllConstraints()
     {
-        for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con != Constraints.end() ; Con++ )
+        for( std::vector<Physics::Constraint*>::iterator Con = Constraints.begin() ; Con != Constraints.end() ; Con++ )
         {
             this->BulletDynamicsWorld->removeConstraint((*Con)->GetConstraintBase());
             delete (*Con);

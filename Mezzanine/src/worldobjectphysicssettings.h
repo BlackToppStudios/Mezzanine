@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "enumerations.h"
+#include "Physics/physicsenumerations.h"
 #include "xml.h"
 
 class btCollisionObject;
@@ -136,11 +137,11 @@ namespace Mezzanine
             /// @brief Sets the activation state of the actor.
             /// @param State The activation state to set for the actor.  See the ActorActivationState enum for more info.
             /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the actor if this is set to false.
-            virtual void SetActivationState(const WorldObjectActivationState& State, bool Force = false);
+            virtual void SetActivationState(const Physics::WorldObjectActivationState& State, bool Force = false);
 
             /// @brief How activated or deactivated is the object.
             /// @return A Mezzanine::ActorActivationState that describes whether the actor is part of the calculated simulation or not.
-            virtual WorldObjectActivationState GetActivationState() const;
+            virtual Physics::WorldObjectActivationState GetActivationState() const;
 
 #ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////

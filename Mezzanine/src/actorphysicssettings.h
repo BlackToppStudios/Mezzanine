@@ -61,10 +61,13 @@ namespace Mezzanine
     class ActorTerrain;
     class Collision;
     class CollisionShape;
-    class Generic6DofConstraint;
-    class SliderConstraint;
+    namespace Physics
+    {
+        class Generic6DofConstraint;
+        class SliderConstraint;
+    }
 
-    typedef Generic6DofConstraint StickyConstraint;
+    typedef Physics::Generic6DofConstraint StickyConstraint;
     /// @struct StickyConstraintConstructionInfo
     /// @headerfile actorphysicssettings.h
     /// @brief Simple struct for holding information on how sticky constraints should be constructed.

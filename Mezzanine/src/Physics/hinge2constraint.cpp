@@ -37,29 +37,49 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _hinge2constraint_cpp
+#define _hinge2constraint_cpp
+
+#include "hinge2constraint.h"
+#include "stringtool.h"
+#include "serialization.h"
+
+#include <btBulletDynamicsCommon.h>
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Physics
     {
+        /////////////////////////////////////////
+        // Hinge2 Constraint Functions
+        Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            SetBodies(ActorA,ActorB);
 
-    }
-}
+            btVector3 temp1(Anchor.GetBulletVector3());
+            btVector3 temp2(Axis1.GetBulletVector3());
+            btVector3 temp3(Axis2.GetBulletVector3());
+            Hinge2 = new btHinge2Constraint(*BodyA, *BodyB, temp1, temp2, temp3);
+            Generic6dof = Hinge2;
+        }
 
-#include "Resource/resourceenumerations.h"
+        Hinge2Constraint::~Hinge2Constraint()
+        {
+            delete Hinge2;
+            Hinge2 = NULL;
+            Generic6dof = NULL;
+        }
 
-#include "Resource/archive.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/datastream.h"
-#include "Resource/inputstream.h"
-#include "Resource/textsettingsfile.h"
+        void Hinge2Constraint::SetUpperLimit(Real Ang1Max)
+        {
+            this->Hinge2->setUpperLimit(Ang1Max);
+        }
+
+        void Hinge2Constraint::SetLowerLimit(Real Ang1Min)
+        {
+            this->Hinge2->setLowerLimit(Ang1Min);
+        }
+    }//Physics
+}//Mezzanine
 
 #endif

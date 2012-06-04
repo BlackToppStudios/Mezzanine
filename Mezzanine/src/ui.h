@@ -52,7 +52,7 @@ namespace Mezzanine
     }
 }
 
-#include "uienumerations.h"
+#include "UI/uienumerations.h"
 
 #include "UI/basicrenderable.h"
 #include "UI/button.h"

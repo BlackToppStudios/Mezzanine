@@ -46,7 +46,7 @@
 #include "actorsoft.h"
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
-#include "constraint.h"
+#include "Physics/generic6dofconstraint.h"
 #include "physicsmanager.h"
 #include "serialization.h"
 #include "stringtool.h"
@@ -177,8 +177,8 @@ namespace Mezzanine
           StickyContacts(NULL)
     {
         bool Dynamic = !IsStaticOrKinematic();
-        CollisionGroup = Dynamic ? Mezzanine::CF_GenericFilter : Mezzanine::CF_StaticFilter;
-        CollisionMask = Dynamic ? Mezzanine::CF_AllFilter : Mezzanine::CF_AllFilter ^ Mezzanine::CF_StaticFilter;
+        CollisionGroup = Dynamic ? Mezzanine::Physics::CF_GenericFilter : Mezzanine::Physics::CF_StaticFilter;
+        CollisionMask = Dynamic ? Mezzanine::Physics::CF_AllFilter : Mezzanine::Physics::CF_AllFilter ^ Mezzanine::Physics::CF_StaticFilter;
 
         StickyContacts = new StickyData();
     }
@@ -462,8 +462,8 @@ namespace Mezzanine
           SoftParent(Actor),
           ActorSB(PhysicsObject)
     {
-        CollisionGroup = Mezzanine::CF_GenericFilter;
-        CollisionMask = Mezzanine::CF_AllFilter;
+        CollisionGroup = Mezzanine::Physics::CF_GenericFilter;
+        CollisionMask = Mezzanine::Physics::CF_AllFilter;
     }
 
     ActorSoftPhysicsSettings::~ActorSoftPhysicsSettings()

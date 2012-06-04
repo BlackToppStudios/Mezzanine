@@ -37,29 +37,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _hinge2constraint_h
+#define _hinge2constraint_h
+
+#include "Physics/generic6dofspringconstraint.h"
+
+class btHinge2Constraint;
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Physics
     {
-
-    }
-}
-
-#include "Resource/resourceenumerations.h"
-
-#include "Resource/archive.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/datastream.h"
-#include "Resource/inputstream.h"
-#include "Resource/textsettingsfile.h"
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Hinge2Constraint
+        /// @headerfile constraint.h
+        /// @brief
+        /// @details This class is incomplete
+        ///////////////////////////////////////
+        class MEZZ_LIB Hinge2Constraint : public Generic6DofSpringConstraint
+        {
+            protected:
+                /// @brief Bullet constraint that this class encapsulates.
+                btHinge2Constraint* Hinge2;
+            public:
+                Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
+                /// @brief Class destructor.
+                /// @details The class destructor.
+                virtual ~Hinge2Constraint();
+                virtual void SetUpperLimit(Real Ang1Max);
+                virtual void SetLowerLimit(Real Ang1Min);
+        };//Hinge2Constraint
+    }//Physics
+}//Mezzanine
 
 #endif

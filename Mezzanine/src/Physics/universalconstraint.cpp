@@ -37,29 +37,50 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _universalconstraint_cpp
+#define _universalconstraint_cpp
+
+#include "universalconstraint.h"
+#include "stringtool.h"
+#include "serialization.h"
+
+#include <btBulletDynamicsCommon.h>
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    namespace Physics
     {
+        /////////////////////////////////////////
+        // UniversalConstraint Constraint Functions
 
-    }
-}
+        UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
+        {
+            SetBodies(ActorA,ActorB);
 
-#include "Resource/resourceenumerations.h"
+            btVector3 temp1(Anchor.GetBulletVector3());
+            btVector3 temp2(Axis1.GetBulletVector3());
+            btVector3 temp3(Axis2.GetBulletVector3());
+            Universal = new btUniversalConstraint(*BodyA, *BodyB, temp1, temp2, temp3);
+            Generic6dof = Universal;
+        }
 
-#include "Resource/archive.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/datastream.h"
-#include "Resource/inputstream.h"
-#include "Resource/textsettingsfile.h"
+        UniversalConstraint::~UniversalConstraint()
+        {
+            delete Universal;
+            Universal = NULL;
+            Generic6dof = NULL;
+        }
+
+        void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)
+        {
+            this->Universal->setUpperLimit(Ang1Max, Ang2Max);
+        }
+
+        void UniversalConstraint::SetLowerLimit(Real Ang1Min, Real Ang2Min)
+        {
+            this->Universal->setLowerLimit(Ang1Min, Ang2Min);
+        }
+    }//Physics
+}//Mezzanine
 
 #endif

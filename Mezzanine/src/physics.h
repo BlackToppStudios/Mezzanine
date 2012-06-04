@@ -37,29 +37,32 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _resource_h
-#define _resource_h
+#ifndef _physics_h
+#define _physics_h
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Resource
-    /// @brief This namespace is for all the classes belonging to the non-network I/O Subsystem.
-    /// @details The resource system is primarily responsible for the loading, reading, and writing of files
-    /// as well as filesystem management.
-    namespace Resource
+    /// @namespace Mezzanine::Physics
+    /// @brief This namespace is for all the classes belonging to the Physics Subsystem.
+    /// @details By default, this sub-system utilizies Bullet for it's physics acceleration.
+    namespace Physics
     {
 
     }
 }
 
-#include "Resource/resourceenumerations.h"
+#include "Physics/physicsenumerations.h"
 
-#include "Resource/archive.h"
-#include "Resource/asset.h"
-#include "Resource/assetgroup.h"
-#include "Resource/assethandler.h"
-#include "Resource/datastream.h"
-#include "Resource/inputstream.h"
-#include "Resource/textsettingsfile.h"
+#include "Physics/conetwistconstraint.h"
+#include "Physics/constraint.h"
+#include "Physics/dualtransformconstraint.h"
+#include "Physics/generic6dofconstraint.h"
+#include "Physics/generic6dofspringconstraint.h"
+#include "Physics/hinge2constraint.h"
+#include "Physics/hingeconstraint.h"
+#include "Physics/point2pointconstraint.h"
+#include "Physics/proxy.h"
+#include "Physics/sliderconstraint.h"
+#include "Physics/universalconstraint.h"
 
 #endif

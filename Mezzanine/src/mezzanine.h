@@ -78,7 +78,6 @@
 #include "collisionshape.h"
 #include "collisionshapemanager.h"
 #include "colourvalue.h"                // done
-#include "constraint.h"
 #include "crossplatform.h"              // nothing to do
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
@@ -112,6 +111,7 @@
 #include "particleaffector.h"
 #include "particleeffect.h"             // done
 #include "particleemitter.h"
+#include "physics.h"
 #include "physicsmanager.h"
 #include "plane.h"                      // done
 #include "quaternion.h"                 // done

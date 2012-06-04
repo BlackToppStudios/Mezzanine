@@ -58,7 +58,7 @@ typedef float btScalar;
 #include <map>
 #include <vector>
 
-#include "constraint.h"
+#include "Physics/constraint.h"
 #include "datatypes.h"
 #include "managerbase.h"
 #include "managerfactory.h"
@@ -149,7 +149,7 @@ namespace Mezzanine
             Real Impulse;
             bool SimulationPaused;
             Whole SubstepModifier;
-            std::vector< TypedConstraint* > Constraints;
+            std::vector< Physics::Constraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
             std::map< ObjectPair,Collision* > Collisions;
@@ -242,20 +242,20 @@ namespace Mezzanine
 
             /// @brief Adds a constraint to the world.
             /// @details Adds the constraint to the world so that it can/will take effect.
-            /// @param Constraint The constraint to be added.
+            /// @param Con The constraint to be added.
             /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.
-            void AddConstraint(TypedConstraint* Constraint, bool DisableCollisions = false);
+            void AddConstraint(Physics::Constraint* Con, bool DisableCollisions = false);
             /// @brief Gets a constraint by index.
             /// @param Index The index of the constraint you want.
             /// @return Returns a pointer to the specified constraint.
-            TypedConstraint* GetConstraint(const Whole& Index);
+            Physics::Constraint* GetConstraint(const Whole& Index);
             /// @brief Gets the number of constraints currently in the world.
             /// @return Returns a whole representing the number of constraints in the world.
             Whole GetNumConstraints();
             /// @brief Removes a constraint from the world.
             /// @details Removes a constraint from the world so that it will have no effect.
-            /// @param Constraint The constraint to be removed.
-            void RemoveConstraint(TypedConstraint* Constraint);
+            /// @param Con The constraint to be removed.
+            void RemoveConstraint(Physics::Constraint* Con);
             /// @brief Destroys all constraints currently in the manager.
             /// @details In practice it is cleaner to remove constraints from the world before removing any constrained actors.
             void DestroyAllConstraints();

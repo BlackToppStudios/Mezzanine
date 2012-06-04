@@ -52,7 +52,7 @@ namespace Mezzanine
     }
 }
 
-#include "audioenumerations.h"
+#include "Audio/audioenumerations.h"
 
 #include "Audio/listener.h"
 #include "Audio/musicplayer.h"

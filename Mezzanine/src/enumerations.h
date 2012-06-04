@@ -76,26 +76,6 @@ namespace Mezzanine
         Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
     };
 
-    /// @enum CollisionFilter
-    /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.
-    /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with
-    /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.
-    enum CollisionFilter
-    {
-        // Standard base filters
-        CF_GenericFilter = 1,
-        CF_StaticFilter = 2,
-        CF_KinematicFilter = 4,
-        CF_DebrisFilter = 8,
-        CF_SensorFilter = 16,
-        CF_CharacterFilter = 32,
-        CF_AllFilter = -1,
-
-        // Non-Standard Filters
-        CF_UserFilter1 = 64,
-        CF_UserFilter2 = 128
-    };
-
     /// @enum OrientationMode
     /// @brief Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.
     /// @details This enum is used by the UI and graphics sub-systems for when a change in orientation is detected.  Under normal circumstances
@@ -144,17 +124,6 @@ namespace Mezzanine
         TS_Local  = 0,    ///< Local space, aka the object in questions world position is used as origin.
         TS_Parent = 1,    ///< Mostly reserved for rotations, means a rotation to occur around the parent instead of self.
         TS_World  = 2     ///< World space
-    };
-
-    /// @enum WorldObjectActivationState
-    /// @brief This is used by all the world objects to monitor and set their physics activation.
-    enum WorldObjectActivationState
-    {
-        WOAS_Active = 1,
-        WOAS_Island_Sleeping = 2,
-        WOAS_Wants_Deactivation = 3,
-        WOAS_DisableDeactivation = 4,
-        WOAS_DisableSimulation = 5
     };
 
     /// @enum WorldAndSceneObjectType

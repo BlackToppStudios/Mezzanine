@@ -50,7 +50,7 @@
 #include "actorrigid.h"
 #include "objectreference.h"
 #include "collision.h"
-#include "constraint.h"
+#include "Physics/generic6dofconstraint.h"
 #include "Internal/motionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "Internal/meshtools.h.cpp"
 #include "serialization.h"

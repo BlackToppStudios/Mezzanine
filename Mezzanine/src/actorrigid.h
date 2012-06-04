@@ -47,6 +47,10 @@
 // Actual code
 namespace Mezzanine
 {
+    namespace Physics
+    {
+        class Constraint;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorRigid
     /// @headerfile actorrigid.h
@@ -59,7 +63,7 @@ namespace Mezzanine
     class MEZZ_LIB ActorRigid : public ActorBase
     {
         protected:
-            friend class TypedConstraint;
+            friend class Physics::Constraint;
             /// @brief Used to simulate the behavior of a btRigidBody
             btRigidBody* PhysicsRigidBody;
 
