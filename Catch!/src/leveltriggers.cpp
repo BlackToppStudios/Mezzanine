@@ -3,7 +3,7 @@
 
 #include "leveltriggers.h"
 
-BNS_Fan::BNS_Fan(const String& name, HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, ParticleEffect* WindClutter)
+BNS_Fan::BNS_Fan(const String& name, Physics::HingeConstraint* Motor, ActorRigid* Button, ActorRigid* Fan, FieldOfForce* Wind, ParticleEffect* WindClutter)
     : WorldTrigger(name)
 {
     this->Button = Button;
@@ -46,19 +46,19 @@ void BNS_Fan::ApplyTrigger()
     World::GetWorldPointer()->DoMainLoopLogging();// */
 }
 
-Roll_Roll::Roll_Roll(const String& name, std::vector<HingeConstraint*>& TheRollers)
+Roll_Roll::Roll_Roll(const String& name, std::vector<Physics::HingeConstraint*>& TheRollers)
     : WorldTrigger(name)
 {
     Rollers.swap(TheRollers);
     for( Whole X = 0 ; X < Rollers.size() ; ++X )
-        Rollers[X]->GetActorA()->GetPhysicsSettings()->SetActivationState(Mezzanine::WOAS_DisableDeactivation);
+        Rollers[X]->GetActorA()->GetPhysicsSettings()->SetActivationState(Mezzanine::Physics::WOAS_DisableDeactivation);
 }
 
 Roll_Roll::~Roll_Roll()
 {
 }
 
-void Roll_Roll::Rotate(HingeConstraint* RollerMotor)
+void Roll_Roll::Rotate(Physics::HingeConstraint* RollerMotor)
 {
     Real DeltaTime = World::GetWorldPointer()->GetFrameTime();
     Real DeltaAngle = 1.25 * DeltaTime;
