@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _constraint_cpp
-#define _constraint_cpp
+#ifndef _physicsconstraint_cpp
+#define _physicsconstraint_cpp
 
 #include "constraint.h"
 #include "actormanager.h"

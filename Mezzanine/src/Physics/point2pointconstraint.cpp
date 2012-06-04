@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _point2pointconstraint_cpp
-#define _point2pointconstraint_cpp
+#ifndef _physicspoint2pointconstraint_cpp
+#define _physicspoint2pointconstraint_cpp
 
 #include "point2pointconstraint.h"
 #include "stringtool.h"

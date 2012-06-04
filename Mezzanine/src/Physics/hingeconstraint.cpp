@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _hingeconstraint_cpp
-#define _hingeconstraint_cpp
+#ifndef _physicshingeconstraint_cpp
+#define _physicshingeconstraint_cpp
 
 #include "hingeconstraint.h"
 #include "stringtool.h"

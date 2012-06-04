@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _conetwistconstraint_cpp
-#define _conetwistconstraint_cpp
+#ifndef _physicsconetwistconstraint_cpp
+#define _physicsconetwistconstraint_cpp
 
 #include "conetwistconstraint.h"
 #include "stringtool.h"

@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _generic6dofspringconstraint_cpp
-#define _generic6dofspringconstraint_cpp
+#ifndef _physicsgeneric6dofspringconstraint_cpp
+#define _physicsgeneric6dofspringconstraint_cpp
 
 #include "generic6dofspringconstraint.h"
 #include "stringtool.h"

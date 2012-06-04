@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _dualtransformconstraint_h
-#define _dualtransformconstraint_h
+#ifndef _physicsdualtransformconstraint_h
+#define _physicsdualtransformconstraint_h
 
 #include "Physics/constraint.h"
 

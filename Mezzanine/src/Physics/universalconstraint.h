@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _universalconstraint_h
-#define _universalconstraint_h
+#ifndef _physicsuniversalconstraint_h
+#define _physicsuniversalconstraint_h
 
 #include "Physics/generic6dofconstraint.h"
 

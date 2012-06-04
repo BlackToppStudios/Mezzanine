@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _constraint_h
-#define _constraint_h
+#ifndef _physicsconstraint_h
+#define _physicsconstraint_h
 
 #include "crossplatformexport.h"
 #include "datatypes.h"

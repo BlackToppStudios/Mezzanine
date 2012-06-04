@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _generic6dofspringconstraint_h
-#define _generic6dofspringconstraint_h
+#ifndef _physicsgeneric6dofspringconstraint_h
+#define _physicsgeneric6dofspringconstraint_h
 
 #include "Physics/generic6dofconstraint.h"
 

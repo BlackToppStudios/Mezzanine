@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _universalconstraint_cpp
-#define _universalconstraint_cpp
+#ifndef _physicsuniversalconstraint_cpp
+#define _physicsuniversalconstraint_cpp
 
 #include "universalconstraint.h"
 #include "stringtool.h"

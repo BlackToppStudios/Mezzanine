@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _sliderconstraint_cpp
-#define _sliderconstraint_cpp
+#ifndef _physicssliderconstraint_cpp
+#define _physicssliderconstraint_cpp
 
 #include "sliderconstraint.h"
 #include "stringtool.h"

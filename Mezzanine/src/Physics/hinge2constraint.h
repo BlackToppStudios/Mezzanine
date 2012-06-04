@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _hinge2constraint_h
-#define _hinge2constraint_h
+#ifndef _physicshinge2constraint_h
+#define _physicshinge2constraint_h
 
 #include "Physics/generic6dofspringconstraint.h"
 
