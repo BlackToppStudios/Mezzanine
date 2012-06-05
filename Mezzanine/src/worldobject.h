@@ -44,7 +44,7 @@
 #include "vector3.h"
 #include "quaternion.h"
 #include "attachable.h"
-#include "collision.h"
+#include "Physics/collision.h"
 #include "worldobjectgraphicssettings.h"
 #include "worldobjectphysicssettings.h"
 
@@ -115,7 +115,7 @@ namespace Mezzanine
             String Name;
 
             /// @brief This member stores all existing collision events referencing this actor.
-            std::set<Collision*> CurrentCollisions;
+            std::set<Physics::Collision*> CurrentCollisions;
 
             /// @brief Makes the terrain visible.
             virtual void AttachToGraphics();
@@ -214,7 +214,7 @@ namespace Mezzanine
             /// @brief Notifies this World Object of a collision that is occuring with it.
             /// @param Col A pointer to the collision pertaining to this World Object.
             /// @param State The state of the collision pertaining to this World Object.
-            virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
+            virtual void _NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State);
 
             /// @internal
             /// @brief Gets the internal physics object this World Object is based on.

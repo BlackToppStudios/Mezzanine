@@ -165,15 +165,15 @@ namespace Mezzanine
     ///////////////////////////////////
     // Internal Object Access functions
 
-    void WorldObject::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
+    void WorldObject::_NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State)
     {
-        if(Collision::Col_Begin == State)
+        if(Physics::Collision::Col_Begin == State)
         {
             CurrentCollisions.insert(Col);
         }
-        else if(Collision::Col_End == State)
+        else if(Physics::Collision::Col_End == State)
         {
-            std::set<Collision*>::iterator ColIt = CurrentCollisions.find(Col);
+            std::set<Physics::Collision*>::iterator ColIt = CurrentCollisions.find(Col);
             if( ColIt != CurrentCollisions.end() ) CurrentCollisions.erase(ColIt);
         }
     }

@@ -56,6 +56,7 @@ namespace Mezzanine
 #include "Physics/actorsoftcollisionshape.h"
 #include "Physics/boxcollisionshape.h"
 #include "Physics/capsulecollisionshape.h"
+#include "Physics/collision.h"
 #include "Physics/collisionshape.h"
 #include "Physics/compoundcollisionshape.h"
 #include "Physics/conecollisionshape.h"

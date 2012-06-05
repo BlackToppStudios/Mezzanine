@@ -42,7 +42,7 @@
 
 #include "worldnode.h"
 #include "worldobject.h"
-#include "collision.h"
+#include "Physics/collision.h"
 
 /// @file
 /// @brief The base class for all Actors is defined here

@@ -73,11 +73,14 @@ namespace Mezzanine
     class Vector3WActor;
     class AreaEffect;
     class WorldTrigger;
-    class Collision;
     class CollisionDispatcher;
     class BroadphaseCache;
     namespace debug {
         class InternalDebugDrawer;
+    }
+    namespace Physics
+    {
+        class Collision;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -145,14 +148,12 @@ namespace Mezzanine
             friend class CollisionDispatcher;
             //Some Data Items
             PhysicsConstructionInfo WorldConstructionInfo;
-            unsigned short int CollisionAge;
-            Real Impulse;
             bool SimulationPaused;
             Whole SubstepModifier;
             std::vector< Physics::Constraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
             std::vector< WorldTrigger* > Triggers;
-            std::map< ObjectPair,Collision* > Collisions;
+            std::map< ObjectPair,Physics::Collision* > Collisions;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -316,7 +317,7 @@ namespace Mezzanine
             /// @brief Gets a Collision by object pair.
             /// @param Pair A pair of objects.
             /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.
-            Collision* GetCollision(ObjectPair* Pair);
+            Physics::Collision* GetCollision(ObjectPair* Pair);
             /// @brief Gets the number of Collisions currently in the world.
             /// @return Returns a whole representing the number of Collisions in the world.
             Whole GetNumCollisions();
@@ -325,7 +326,7 @@ namespace Mezzanine
             /// Mostly this function exists to facilitate removal of objects from the world before the simulation ends.
             /// In such cases you have to clean up traces of the collision.
             /// @param Col The collision to be removed.
-            void RemoveCollision(Collision* Col);
+            void RemoveCollision(Physics::Collision* Col);
             /// @brief Removes all stored collisions that involve the specified Object.
             /// @param Object The Object which will have all of it's collisions removed.
             void RemoveCollisionsContainingObject(WorldObject* Object);
@@ -333,9 +334,9 @@ namespace Mezzanine
             void DestroyAllCollisions();
 
             /// @brief Used to make working with the Collisions easier.
-            typedef std::map< ObjectPair,Collision* >::iterator CollisionIterator;
+            typedef std::map< ObjectPair,Physics::Collision* >::iterator CollisionIterator;
             /// @brief Used to make working with the Collisions easier, and avoid the risk of accidentally changing them.
-            typedef std::map< ObjectPair,Collision* >::const_iterator ConstCollisionIterator;
+            typedef std::map< ObjectPair,Physics::Collision* >::const_iterator ConstCollisionIterator;
             /// @brief Get an CollisionIterator to the first Collision.
             /// @return An CollisionIterator to the first Collision.
             CollisionIterator BeginCollision();

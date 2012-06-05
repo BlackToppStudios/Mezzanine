@@ -119,8 +119,8 @@ namespace Mezzanine
             virtual void RemoveFromWorld();
             /// @copydoc WorldObject::_Update()
             virtual void _Update();
-            /// @copydoc WorldObject::_NotifyCollisionState(Collision* Col)
-            virtual void _NotifyCollisionState(Collision* Col, const Collision::CollisionState& State);
+            /// @copydoc WorldObject::_NotifyCollisionState(Physics::Collision* Col)
+            virtual void _NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State);
 
             /// @internal
             /// @brief Get the Physics data raw from the physic subsystem

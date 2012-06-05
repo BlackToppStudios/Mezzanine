@@ -44,7 +44,7 @@
 #include "worldobject.h"
 #include "Physics/collisionshape.h"
 #include "collisionshapemanager.h"
-#include "collision.h"
+#include "Physics/collision.h"
 #include "physicsmanager.h"
 #include "serialization.h"
 #include "stringtool.h"

@@ -49,7 +49,7 @@
 #include "scenemanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
-#include "collision.h"
+#include "Physics/collision.h"
 #include "Physics/generic6dofconstraint.h"
 #include "Internal/motionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "Internal/meshtools.h.cpp"
@@ -174,14 +174,14 @@ namespace Mezzanine
         StickyD->CreationQueue.clear();
     }
 
-    void ActorRigid::_NotifyCollisionState(Collision* Col, const Collision::CollisionState& State)
+    void ActorRigid::_NotifyCollisionState(Physics::Collision* Col, const Physics::Collision::CollisionState& State)
     {
         WorldObject::_NotifyCollisionState(Col,State);
         StickyData* StickyD = GetPhysicsSettings()->GetStickyData();
         bool UseA = Col->GetObjectA() != this;
         // We don't care if sticky behavior isn't set or if the collision has ended.
         // If it's ended, then we've probably already done our logic.
-        if(0 == StickyD->MaxNumContacts || Collision::Col_End == State)
+        if(0 == StickyD->MaxNumContacts || Physics::Collision::Col_End == State)
             return;
         // Constraints only work well with other rigid bodies, so for now just other actorrigids.
         /// @todo Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies.

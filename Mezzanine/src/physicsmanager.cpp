@@ -55,7 +55,7 @@ using namespace std;
 #include "eventcollision.h"
 #include "worldtrigger.h"
 #include "objectreference.h"
-#include "collision.h"
+#include "Physics/collision.h"
 #include "scenemanager.h"
 #include "stringtool.h"
 
@@ -663,10 +663,10 @@ namespace Mezzanine
             PhysicsManager::CollisionIterator ColIt = Collisions.find(NewPair);
             if(ColIt == Collisions.end())
             {
-                Collision* NewCol = new Collision(ObjectA->GetObject(),ObjectB->GetObject(),NewAlgo);
-                //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
-                //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Collision::Col_Begin);
-                Collisions.insert(std::pair<ObjectPair,Collision*>(NewPair,NewCol));
+                Physics::Collision* NewCol = new Physics::Collision(ObjectA->GetObject(),ObjectB->GetObject(),NewAlgo);
+                //NewCol->GetActorA()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                //NewCol->GetActorB()->_NotifyCollisionState(NewCol,Physics::Collision::Col_Begin);
+                Collisions.insert(std::pair<ObjectPair,Physics::Collision*>(NewPair,NewCol));
             }
             AlgoQueue.pop_front();
             if(AlgoQueue.size() > 0) NewAlgo = AlgoQueue.front();
@@ -856,7 +856,7 @@ namespace Mezzanine
         Triggers.clear();
     }
 
-    Collision* PhysicsManager::GetCollision(ObjectPair* Pair)
+    Physics::Collision* PhysicsManager::GetCollision(ObjectPair* Pair)
     {
         PhysicsManager::CollisionIterator ColIt = Collisions.find(*Pair);
         if(ColIt != Collisions.end()) return (*ColIt).second;
@@ -868,7 +868,7 @@ namespace Mezzanine
         return Collisions.size();
     }
 
-    void PhysicsManager::RemoveCollision(Collision* Col)
+    void PhysicsManager::RemoveCollision(Physics::Collision* Col)
     {
         //((CollisionDispatcher*)BulletDispatcher)->releaseManifoldManual(Col->Manifold);
         btBroadphasePair* btPair = BulletBroadphase->getOverlappingPairCache()->findPair(
@@ -892,7 +892,7 @@ namespace Mezzanine
         PhysicsManager::CollisionIterator ColIt = Collisions.begin();
         while( ColIt != Collisions.end() )
         {
-            Collision* ToBeDestroyed = (*ColIt).second;
+            Physics::Collision* ToBeDestroyed = (*ColIt).second;
             if( Object == (*ColIt).second->ObjectA || Object == (*ColIt).second->ObjectB )
             {
                 PhysicsManager::CollisionIterator Delete = ColIt;
@@ -909,7 +909,7 @@ namespace Mezzanine
     {
         for( PhysicsManager::CollisionIterator ColIt = Collisions.begin() ; ColIt != Collisions.end() ; ++ColIt )
         {
-            Collision* ToBeDestroyed = (*ColIt).second;
+            Physics::Collision* ToBeDestroyed = (*ColIt).second;
             //BulletDispatcher->releaseManifold(ToBeDestroyed->Manifold);
         }
         Collisions.clear();
