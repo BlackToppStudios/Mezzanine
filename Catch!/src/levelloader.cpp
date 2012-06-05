@@ -166,10 +166,10 @@ void LevelLoader::LoadFerris()
     ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
     ThrowableData* PyriteData = ThrowableGenerator::GetThrowableData("Pyrite");
-    CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
-    CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
-    CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
-    CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
+    Physics::CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
+    Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
+    Physics::CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
+    Physics::CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     //Uranium1->GetPhysicsSettings()->SetStickyData(1);
@@ -221,7 +221,7 @@ void LevelLoader::LoadFerris()
 
     Vector3 StartSize(50,130,25);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,0,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
@@ -236,13 +236,13 @@ void LevelLoader::LoadFerris()
 
     Vector3 ScoreSize(100,100,30);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(100,0,0));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
+    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
 
     Vector3 BonusScoreSize(18,18,30);
-    CollisionShape* BonusScoreShape = new BoxCollisionShape("BonusAreaShape",BonusScoreSize);
+    Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
     Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
     ScoreArea* BonusZone1 = new ScoreArea("BonusArea1",Vector3(169.6,14.3,0));
     BonusZone1->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
@@ -336,8 +336,8 @@ void LevelLoader::LoadBigCurve()
     // Create some throwable objects
     ThrowableData* PyriteData = ThrowableGenerator::GetThrowableData("Pyrite");
     ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
-    CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
-    CollisionShape* RubberCS = CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
+    Physics::CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
+    Physics::CollisionShape* RubberCS = CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
     ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
     Pyrite1->SetLocation(-155,-20,0);
@@ -372,7 +372,7 @@ void LevelLoader::LoadBigCurve()
     // Create the zones
     Vector3 StartSize(50,80,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-180,-60,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
@@ -387,7 +387,7 @@ void LevelLoader::LoadBigCurve()
 
     Vector3 ScoreSize(50,40,50);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(120,-20,-10));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
+    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
@@ -498,7 +498,7 @@ void LevelLoader::LoadBlowsNotSucks()
     Vector3 FanWindSize(60,115,60);
     Quaternion FanWindOrientation(MathTool::GetHalfPi() * 0.5,Vector3(0,0,1));
     FieldOfForce* FanWind = new FieldOfForce("FanWind",Vector3(5,40,7.5));
-    FanWind->GetPhysicsSettings()->SetCollisionShape(new CylinderCollisionShape("FanWindShape",60,115,Vector3::Unit_Y()));
+    FanWind->GetPhysicsSettings()->SetCollisionShape(new Physics::CylinderCollisionShape("FanWindShape",60,115,Vector3::Unit_Y()));
     //FanWind->GetGraphicsSettings()->SetMesh(MeshMan->CreateCylinderMesh("FanWindMesh",ColourValue(0.8,0.1,0.1,0.2),FanWindSize,Vector3::Unit_Y()));
     FanWind->SetOrientation(FanWindOrientation);
     FanWind->SetDirectionOfForce(Vector3(-1,1,0));
@@ -527,8 +527,8 @@ void LevelLoader::LoadBlowsNotSucks()
     // Create some throwable objects
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
     ThrowableData* StyrofoamData = ThrowableGenerator::GetThrowableData("Styrofoam");
-    CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
-    CollisionShape* StyrofoamCS = CShapeMan->GenerateConvexHull("StyrofoamCS",StyrofoamData->MeshName,CommonGroup);
+    Physics::CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
+    Physics::CollisionShape* StyrofoamCS = CShapeMan->GenerateConvexHull("StyrofoamCS",StyrofoamData->MeshName,CommonGroup);
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,-20,0);
@@ -563,7 +563,7 @@ void LevelLoader::LoadBlowsNotSucks()
     // Create the zones
     Vector3 StartSize(50,70,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,-70,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
@@ -577,7 +577,7 @@ void LevelLoader::LoadBlowsNotSucks()
     StartParticle->AddToWorld();// */
 
     Vector3 Score1Size(25,21,25);
-    CollisionShape* ScoreArea1Shape = new BoxCollisionShape("ScoreArea1Shape",Score1Size);
+    Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
     Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-10.5,-100.0,0.0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreArea1Shape);
@@ -585,7 +585,7 @@ void LevelLoader::LoadBlowsNotSucks()
     PhysMan->AddAreaEffect(ScoreZone1);
     GameApp->RegisterScoreArea(ScoreZone1);
     Vector3 Score2Size(55,48,15);
-    CollisionShape* ScoreArea2Shape = new BoxCollisionShape("ScoreArea2Shape",Score2Size);
+    Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
     Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
     ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
     ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreArea2Shape);
@@ -746,9 +746,9 @@ void LevelLoader::LoadJustice()
     ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
     ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
-    //CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
-    //CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
-    CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
+    //Physics::CollisionShape* ClayCS = CShapeMan->GenerateConvexHull("ClayCS",ClayData->MeshName,CommonGroup);
+    //Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LeadCS",LeadData->MeshName,CommonGroup);
+    Physics::CollisionShape* UraniumCS = CShapeMan->GenerateConvexHull("UraniumCS",UraniumData->MeshName,CommonGroup);
     ActorRigid* Uranium1 = ThrowableGenerator::CreateThrowable("Uranium");
     Uranium1->GetPhysicsSettings()->SetCollisionShape(UraniumCS);
     Uranium1->SetLocation(-155,110,0);
@@ -762,7 +762,7 @@ void LevelLoader::LoadJustice()
 
     // Create the zones
     Vector3 StartSize(60,30,20);
-    CollisionShape* StartAreaShape = new BoxCollisionShape("StartArea1Shape",StartSize);
+    Physics::CollisionShape* StartAreaShape = new Physics::BoxCollisionShape("StartArea1Shape",StartSize);
     Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
     StartArea* StartZone1 = new StartArea("StartArea1",Vector3(-160,120,0));
     StartZone1->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
@@ -792,7 +792,7 @@ void LevelLoader::LoadJustice()
     StartParticle2->AddToWorld();// */
 
     Vector3 ScoreSize(52,25,18);
-    CollisionShape* ScoreAreaShape = new BoxCollisionShape("ScoreAreaShape",ScoreSize);
+    Physics::CollisionShape* ScoreAreaShape = new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize);
     Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-113,-40,0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
@@ -867,7 +867,7 @@ void LevelLoader::LoadRollers()
     // Create the individual Rollers and their constraints
     std::vector<Physics::HingeConstraint*> TheRollers;
     Real XStride = 14.5;
-    CollisionShape* RollerShape = new CylinderCollisionShape("RollerShape",6.51,3.36,Vector3::Unit_Z());
+    Physics::CollisionShape* RollerShape = new Physics::CylinderCollisionShape("RollerShape",6.51,3.36,Vector3::Unit_Z());
     for( Whole X = 0 ; X < 7 ; ++X )
     {
         Vector3 Location(112.4+(XStride*X),-20,0);
@@ -894,8 +894,8 @@ void LevelLoader::LoadRollers()
     // Create some throwable objects
     ThrowableData* PyriteData = ThrowableGenerator::GetThrowableData("Pyrite");
     ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
-    CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
-    CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LesdCS",LeadData->MeshName,CommonGroup);
+    Physics::CollisionShape* PyriteCS = CShapeMan->GenerateConvexHull("PyriteCS",PyriteData->MeshName,CommonGroup);
+    Physics::CollisionShape* LeadCS = CShapeMan->GenerateConvexHull("LesdCS",LeadData->MeshName,CommonGroup);
     ActorRigid* Pyrite1 = ThrowableGenerator::CreateThrowable("Pyrite");
     Pyrite1->GetPhysicsSettings()->SetCollisionShape(PyriteCS);
     Pyrite1->SetLocation(-160,80,0);
@@ -920,7 +920,7 @@ void LevelLoader::LoadRollers()
     // Create the zones
     Vector3 StartSize(50,50,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-140,60,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
@@ -935,7 +935,7 @@ void LevelLoader::LoadRollers()
 
     Vector3 ScoreSize(70,40,20);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(140,20,0));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
+    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
@@ -1037,8 +1037,8 @@ void LevelLoader::LoadJustBounce()
     // Create some throwable objects
     ThrowableData* RubberData = ThrowableGenerator::GetThrowableData("Rubber");
     ThrowableData* WoodData = ThrowableGenerator::GetThrowableData("Wood");
-    CollisionShape* RubberCS = new SphereCollisionShape("RubberCS",11.4);//CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
-    CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
+    Physics::CollisionShape* RubberCS = new Physics::SphereCollisionShape("RubberCS",11.4);//CShapeMan->GenerateConvexHull("RubberCS",RubberData->MeshName,CommonGroup);
+    Physics::CollisionShape* WoodCS = CShapeMan->GenerateConvexHull("WoodCS",WoodData->MeshName,CommonGroup);// */
     ActorRigid* Rubber1 = ThrowableGenerator::CreateThrowable("Rubber");
     Rubber1->GetPhysicsSettings()->SetCollisionShape(RubberCS);
     Rubber1->SetLocation(-185,110,0);
@@ -1064,7 +1064,7 @@ void LevelLoader::LoadJustBounce()
     // Create the zones
     Vector3 StartSize(50,50,20);
     StartArea* StartZone = new StartArea("StartArea",Vector3(-170,90,0));
-    StartZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("StartAreaShape",StartSize));
+    StartZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("StartAreaShape",StartSize));
     StartZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
@@ -1079,7 +1079,7 @@ void LevelLoader::LoadJustBounce()
 
     Vector3 ScoreSize(42,50,35);
     ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(158,-25,0));
-    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new BoxCollisionShape("ScoreAreaShape",ScoreSize));
+    ScoreZone->GetPhysicsSettings()->SetCollisionShape(new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize));
     ScoreZone->GetGraphicsSettings()->SetMesh(MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0));
     PhysMan->AddAreaEffect(ScoreZone);
     GameApp->RegisterScoreArea(ScoreZone);// */
