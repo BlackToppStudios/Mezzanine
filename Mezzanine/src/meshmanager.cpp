@@ -621,7 +621,7 @@ namespace Mezzanine
         return CreateBoxCornerMesh(MeshName,MatName,HalfExtents,BoxThickness);
     }
 
-    Mesh* MeshManager::CreateMeshFromShape(const String& MeshName, const String& MaterialName, CollisionShape* Shape)
+    Mesh* MeshManager::CreateMeshFromShape(const String& MeshName, const String& MaterialName, Physics::CollisionShape* Shape)
     {
         return NULL;
     }

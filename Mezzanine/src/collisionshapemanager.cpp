@@ -41,9 +41,23 @@
 #define _collisionshapemanager_cpp
 
 #include "collisionshapemanager.h"
-#include "collisionshape.h"
 #include "mesh.h"
 #include "meshmanager.h"
+
+#include "Physics/collisionshape.h"
+#include "Physics/boxcollisionshape.h"
+#include "Physics/capsulecollisionshape.h"
+#include "Physics/conecollisionshape.h"
+#include "Physics/convexhullcollisionshape.h"
+#include "Physics/cylindercollisionshape.h"
+#include "Physics/multispherecollisionshape.h"
+#include "Physics/spherecollisionshape.h"
+#include "Physics/dynamicmeshcollisionshape.h"
+#include "Physics/heightfieldcollisionshape.h"
+#include "Physics/planecollisionshape.h"
+#include "Physics/actorsoftcollisionshape.h"
+#include "Physics/staticmeshcollisionshape.h"
+#include "Physics/compoundcollisionshape.h"
 
 // For logging
 #include "world.h"
@@ -213,85 +227,85 @@ namespace Mezzanine
         return trimesh;
     }
 
-    CollisionShape* CollisionShapeManager::WrapShape(const String& Name, btCollisionShape* InternalShape)
+    Physics::CollisionShape* CollisionShapeManager::WrapShape(const String& Name, btCollisionShape* InternalShape)
     {
         switch(InternalShape->getShapeType())
         {
             case BOX_SHAPE_PROXYTYPE:
             {
-                BoxCollisionShape* BoxShape = new BoxCollisionShape(Name,(btBoxShape*)InternalShape);
+                Physics::BoxCollisionShape* BoxShape = new Physics::BoxCollisionShape(Name,(btBoxShape*)InternalShape);
                 return BoxShape;
                 break;
             }
             case CAPSULE_SHAPE_PROXYTYPE:
             {
-                CapsuleCollisionShape* CapsuleShape = new CapsuleCollisionShape(Name,(btCapsuleShape*)InternalShape);
+                Physics::CapsuleCollisionShape* CapsuleShape = new Physics::CapsuleCollisionShape(Name,(btCapsuleShape*)InternalShape);
                 return CapsuleShape;
                 break;
             }
             case CONE_SHAPE_PROXYTYPE:
             {
-                ConeCollisionShape* ConeShape = new ConeCollisionShape(Name,(btConeShape*)InternalShape);
+                Physics::ConeCollisionShape* ConeShape = new Physics::ConeCollisionShape(Name,(btConeShape*)InternalShape);
                 return ConeShape;
                 break;
             }
             case CONVEX_HULL_SHAPE_PROXYTYPE:
             {
-                ConvexHullCollisionShape* ConvexHullShape = new ConvexHullCollisionShape(Name,(btConvexHullShape*)InternalShape);
+                Physics::ConvexHullCollisionShape* ConvexHullShape = new Physics::ConvexHullCollisionShape(Name,(btConvexHullShape*)InternalShape);
                 return ConvexHullShape;
                 break;
             }
             case CYLINDER_SHAPE_PROXYTYPE:
             {
-                CylinderCollisionShape* CylinderShape = new CylinderCollisionShape(Name,(btCylinderShape*)InternalShape);
+                Physics::CylinderCollisionShape* CylinderShape = new Physics::CylinderCollisionShape(Name,(btCylinderShape*)InternalShape);
                 return CylinderShape;
                 break;
             }
             case MULTI_SPHERE_SHAPE_PROXYTYPE:
             {
-                MultiSphereCollisionShape* MultiSphereShape = new MultiSphereCollisionShape(Name,(btMultiSphereShape*)InternalShape);
+                Physics::MultiSphereCollisionShape* MultiSphereShape = new Physics::MultiSphereCollisionShape(Name,(btMultiSphereShape*)InternalShape);
                 return MultiSphereShape;
                 break;
             }
             case SPHERE_SHAPE_PROXYTYPE:
             {
-                SphereCollisionShape* SphereShape = new SphereCollisionShape(Name,(btSphereShape*)InternalShape);
+                Physics::SphereCollisionShape* SphereShape = new Physics::SphereCollisionShape(Name,(btSphereShape*)InternalShape);
                 return SphereShape;
                 break;
             }
             case GIMPACT_SHAPE_PROXYTYPE:
             {
-                DynamicMeshCollisionShape* GImpactShape = new DynamicMeshCollisionShape(Name,(btGImpactMeshShape*)InternalShape);
+                Physics::DynamicMeshCollisionShape* GImpactShape = new Physics::DynamicMeshCollisionShape(Name,(btGImpactMeshShape*)InternalShape);
                 return GImpactShape;
                 break;
             }
             case TERRAIN_SHAPE_PROXYTYPE:
             {
-                HeightfieldCollisionShape* HeightFieldShape = new HeightfieldCollisionShape(Name,(btHeightfieldTerrainShape*)InternalShape);
+                Physics::HeightfieldCollisionShape* HeightFieldShape = new Physics::HeightfieldCollisionShape(Name,(btHeightfieldTerrainShape*)InternalShape);
                 return HeightFieldShape;
                 break;
             }
             case STATIC_PLANE_PROXYTYPE:
             {
-                PlaneCollisionShape* PlaneShape = new PlaneCollisionShape(Name,(btStaticPlaneShape*)InternalShape);
+                Physics::PlaneCollisionShape* PlaneShape = new Physics::PlaneCollisionShape(Name,(btStaticPlaneShape*)InternalShape);
                 return PlaneShape;
                 break;
             }
             case SOFTBODY_SHAPE_PROXYTYPE:
             {
-                ActorSoftCollisionShape* SoftBodyShape = new ActorSoftCollisionShape(Name,(btSoftBodyCollisionShape*)InternalShape);
+                Physics::ActorSoftCollisionShape* SoftBodyShape = new Physics::ActorSoftCollisionShape(Name,(btSoftBodyCollisionShape*)InternalShape);
                 return SoftBodyShape;
                 break;
             }
             case TRIANGLE_MESH_SHAPE_PROXYTYPE:
             {
-                StaticMeshCollisionShape* BvhShape = new StaticMeshCollisionShape(Name,(btBvhTriangleMeshShape*)InternalShape);
+                Physics::StaticMeshCollisionShape* BvhShape = new Physics::StaticMeshCollisionShape(Name,(btBvhTriangleMeshShape*)InternalShape);
                 return BvhShape;
                 break;
             }
             case COMPOUND_SHAPE_PROXYTYPE:
             {
-                CompoundCollisionShape* Compound = new CompoundCollisionShape(Name,(btCompoundShape*)InternalShape);
+                Physics::CompoundCollisionShape* Compound = new Physics::CompoundCollisionShape(Name,(btCompoundShape*)InternalShape);
                 return Compound;
                 break;
             }
@@ -302,9 +316,9 @@ namespace Mezzanine
         }
     }
 
-    void CollisionShapeManager::StoreShape(CollisionShape* Shape)
+    void CollisionShapeManager::StoreShape(Physics::CollisionShape* Shape)
     {
-        std::map<String,CollisionShape*>::iterator CS = CollisionShapes.find(Shape->GetName());
+        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Shape->GetName());
         if(CS != CollisionShapes.end())
         {
             if((*CS).second != Shape)
@@ -316,9 +330,9 @@ namespace Mezzanine
         }
     }
 
-    CollisionShape* CollisionShapeManager::GetShape(const String& Name)
+    Physics::CollisionShape* CollisionShapeManager::GetShape(const String& Name)
     {
-        std::map<String,CollisionShape*>::iterator CS = CollisionShapes.find(Name);
+        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Name);
         if(CS == CollisionShapes.end()) return NULL;
         else return (*CS).second;
     }
@@ -328,14 +342,14 @@ namespace Mezzanine
         return CollisionShapes.size();
     }
 
-    void CollisionShapeManager::RemoveShape(CollisionShape* Shape)
+    void CollisionShapeManager::RemoveShape(Physics::CollisionShape* Shape)
     {
         this->RemoveShape(Shape->GetName());
     }
 
     void CollisionShapeManager::RemoveShape(const String& Name)
     {
-        std::map<String,CollisionShape*>::iterator CS = CollisionShapes.find(Name);
+        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Name);
         if(CS == CollisionShapes.end())
             return;
         CollisionShapes.erase(CS);
@@ -346,14 +360,14 @@ namespace Mezzanine
         CollisionShapes.clear();
     }
 
-    void CollisionShapeManager::DestroyShape(CollisionShape* Shape)
+    void CollisionShapeManager::DestroyShape(Physics::CollisionShape* Shape)
     {
         this->DestroyShape(Shape->GetName());
     }
 
     void CollisionShapeManager::DestroyShape(const String& Name)
     {
-        std::map<String,CollisionShape*>::iterator CS = CollisionShapes.find(Name);
+        std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.find(Name);
         if(CS == CollisionShapes.end())
             return;
         delete (*CS).second;
@@ -362,15 +376,15 @@ namespace Mezzanine
 
     void CollisionShapeManager::DestroyAllShapes()
     {
-        for( std::map<String,CollisionShape*>::iterator CS = CollisionShapes.begin() ; CS != CollisionShapes.end() ; CS++ )
+        for( std::map<String,Physics::CollisionShape*>::iterator CS = CollisionShapes.begin() ; CS != CollisionShapes.end() ; CS++ )
         {
-            CollisionShape* CurrShape = (*CS).second;
+            Physics::CollisionShape* CurrShape = (*CS).second;
             delete CurrShape;
         }
         CollisionShapes.clear();
     }
 
-    ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
+    Physics::ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
         btConvexShape *tmpshape = new btConvexTriangleMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes));
         btShapeHull *hull = new btShapeHull(tmpshape);
@@ -384,40 +398,40 @@ namespace Mezzanine
         }
         delete tmpshape;
         delete hull;
-        return new ConvexHullCollisionShape(Name,convexShape);
+        return new Physics::ConvexHullCollisionShape(Name,convexShape);
     }
 
-    ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+    Physics::ConvexHullCollisionShape* CollisionShapeManager::GenerateConvexHull(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
     {
         Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->GenerateConvexHull(Name,ObjectMesh,UseAllSubmeshes);
     }
 
-    DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
+    Physics::DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
         btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes));
-        return new DynamicMeshCollisionShape(Name,gimpact);
+        return new Physics::DynamicMeshCollisionShape(Name,gimpact);
     }
 
-    DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+    Physics::DynamicMeshCollisionShape* CollisionShapeManager::GenerateDynamicTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
     {
         Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->GenerateDynamicTriMesh(Name,ObjectMesh,UseAllSubmeshes);
     }
 
-    StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
+    Physics::StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
         btBvhTriangleMeshShape* tmpshape = new btBvhTriangleMeshShape(this->CreateBulletTrimesh(ObjectMesh,UseAllSubmeshes),true);
-        return new StaticMeshCollisionShape(Name,tmpshape);
+        return new Physics::StaticMeshCollisionShape(Name,tmpshape);
     }
 
-    StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
+    Physics::StaticMeshCollisionShape* CollisionShapeManager::GenerateStaticTriMesh(const String& Name, const String& MeshName, const String& Group, bool UseAllSubmeshes)
     {
         Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->GenerateStaticTriMesh(Name,ObjectMesh,UseAllSubmeshes);
     }
 
-    CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
+    Physics::CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
     {
         //new submesh friendly code
         Ogre::MeshPtr myMesh = ObjectMesh->GetOgreMesh();
@@ -581,7 +595,7 @@ namespace Mezzanine
         ConvexBuilder cb(desc.mCallback);
         cb.process(desc);
 
-        CompoundCollisionShape* compound = new CompoundCollisionShape(Name);
+        Physics::CompoundCollisionShape* compound = new Physics::CompoundCollisionShape(Name);
         btTransform trans;
         trans.setIdentity();
         for (int i=0;i<decomp.m_convexShapes.size();i++)
@@ -589,13 +603,13 @@ namespace Mezzanine
             std::stringstream namestream;
             namestream << Name << "Child" << i;
             Vector3 centroid(decomp.m_convexCentroids[i]);
-            ConvexHullCollisionShape* convexShape = new ConvexHullCollisionShape(namestream.str(),decomp.m_convexShapes[i]);
+            Physics::ConvexHullCollisionShape* convexShape = new Physics::ConvexHullCollisionShape(namestream.str(),decomp.m_convexShapes[i]);
             compound->AddChildShape(convexShape,centroid);
         }
         return compound;
     }
 
-    CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
+    Physics::CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, const String& MeshName, const String& Group, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
     {
         Mesh* ObjectMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         return this->PerformConvexDecomposition(Name,ObjectMesh,Depth,CPercent,PPercent,UseAllSubmeshes);
@@ -623,13 +637,13 @@ namespace Mezzanine
                 CollisionShapeManager::iterator it = CollisionShapes.find(Name);
                 if(it == CollisionShapes.end())
                 {
-                    CollisionShape* NewShape = WrapShape(Name,Shape);
-                    CollisionShapes.insert(std::pair<String,CollisionShape*>(Name,NewShape));
+                    Physics::CollisionShape* NewShape = WrapShape(Name,Shape);
+                    CollisionShapes.insert(std::pair<String,Physics::CollisionShape*>(Name,NewShape));
                 }
             }else{
                 static Whole NameCount = 0;
                 Name = String("Unnamed")+=ToString(NameCount++);
-                CollisionShape* NewShape = WrapShape(Name,Shape);
+                Physics::CollisionShape* NewShape = WrapShape(Name,Shape);
                 UnnamedShapes.insert(NewShape);
             }
         }
@@ -639,9 +653,9 @@ namespace Mezzanine
     {
         btDefaultSerializer* BulletSerializer = new btDefaultSerializer(1024*1024*5);
         BulletSerializer->startSerialization();
-        for( std::map<String,CollisionShape*>::iterator it = CollisionShapes.begin() ; it != CollisionShapes.end() ; it++ )
+        for( std::map<String,Physics::CollisionShape*>::iterator it = CollisionShapes.begin() ; it != CollisionShapes.end() ; it++ )
         {
-            CollisionShape* Shape = (*it).second;
+            Physics::CollisionShape* Shape = (*it).second;
 
             std::stringstream logstream;
             logstream << "Serializing Shape: " << Shape->GetName();
@@ -660,13 +674,13 @@ namespace Mezzanine
         fclose(f2);
     }
 
-    void CollisionShapeManager::SaveShapesToFile(const String& FileName, std::vector<CollisionShape*>& ShapesToSave)
+    void CollisionShapeManager::SaveShapesToFile(const String& FileName, std::vector<Physics::CollisionShape*>& ShapesToSave)
     {
         btDefaultSerializer* BulletSerializer = new btDefaultSerializer(1024*1024*5);
         BulletSerializer->startSerialization();
-        for( std::vector<CollisionShape*>::iterator it = ShapesToSave.begin() ; it != ShapesToSave.end() ; it++ )
+        for( std::vector<Physics::CollisionShape*>::iterator it = ShapesToSave.begin() ; it != ShapesToSave.end() ; it++ )
         {
-            CollisionShape* Shape = (*it);
+            Physics::CollisionShape* Shape = (*it);
             BulletSerializer->registerNameForPointer((void*)Shape->GetBulletShape(),(*it)->GetName().c_str());
             int len = Shape->GetBulletShape()->calculateSerializeBufferSize();
             btChunk* chunk = BulletSerializer->allocate(len,1);
@@ -679,14 +693,14 @@ namespace Mezzanine
         fclose(f2);
     }
 
-    std::set<CollisionShape*>& CollisionShapeManager::GetUnnamedShapes()
+    std::set<Physics::CollisionShape*>& CollisionShapeManager::GetUnnamedShapes()
     {
         return UnnamedShapes;
     }
 
-    void CollisionShapeManager::SetNameForUnnamedShape(const String& NewName, CollisionShape* Shape)
+    void CollisionShapeManager::SetNameForUnnamedShape(const String& NewName, Physics::CollisionShape* Shape)
     {
-        std::set<CollisionShape*>::iterator UnIt = UnnamedShapes.find(Shape);
+        std::set<Physics::CollisionShape*>::iterator UnIt = UnnamedShapes.find(Shape);
         if(UnIt == UnnamedShapes.end())
             return;
         CollisionShapeManager::iterator NaIt = CollisionShapes.find(NewName);

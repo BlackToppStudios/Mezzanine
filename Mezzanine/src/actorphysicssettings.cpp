@@ -44,8 +44,8 @@
 #include "actorbase.h"
 #include "actorrigid.h"
 #include "actorsoft.h"
-#include "collisionshape.h"
 #include "collisionshapemanager.h"
+#include "Physics/collisionshape.h"
 #include "Physics/generic6dofconstraint.h"
 #include "physicsmanager.h"
 #include "serialization.h"
@@ -191,10 +191,10 @@ namespace Mezzanine
         /// on Linux it is  a SIGSEGV.
     }
 
-    void ActorRigidPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
+    void ActorRigidPhysicsSettings::SetCollisionShape(Physics::CollisionShape* Shape)
     {
         AssignShape(Shape);
-        if(CollisionShape::ST_StaticTriMesh != Shape->GetType())
+        if(Physics::CollisionShape::ST_StaticTriMesh != Shape->GetType())
         {
             btScalar mass = this->ActorRB->getInvMass();
             if(0 != mass)

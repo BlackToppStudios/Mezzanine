@@ -43,7 +43,7 @@
 #include "areaeffect.h"
 #include "actorrigid.h"
 #include "physicsmanager.h"
-#include "collisionshape.h"
+#include "Physics/collisionshape.h"
 #include "collisionshapemanager.h"
 #include "mesh.h"
 #include "meshmanager.h"

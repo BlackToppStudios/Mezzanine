@@ -200,7 +200,7 @@ namespace Mezzanine
 
             /// @brief Sets the collision shape to be used.
             /// @param Shape The shape to be applied.
-            virtual void SetCollisionShape(CollisionShape* Shape);
+            virtual void SetCollisionShape(Physics::CollisionShape* Shape);
 
             /// @brief Sets the basic parameters for enabling sticky behavior with this actor.
             /// @param MaxNumContacts The maximum number of object this object can stick to or have stuck to it.

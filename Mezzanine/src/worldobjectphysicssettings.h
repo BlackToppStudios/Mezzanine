@@ -52,7 +52,10 @@ class btSoftBody;
 namespace Mezzanine
 {
     class WorldObject;
-    class CollisionShape;
+    namespace Physics
+    {
+        class CollisionShape;
+    }
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldObjectPhysicsSettings
     /// @headerfile worldobjectphysicssettings.h
@@ -72,7 +75,7 @@ namespace Mezzanine
             WorldObject* Parent;
             /// @internal
             /// @brief The physics shape of the World Object.
-            CollisionShape* WorldObjectShape;
+            Physics::CollisionShape* WorldObjectShape;
             /// @internal
             /// @brief A number of World Objects will use this in conjuction with the physics system
             Whole CollisionGroup;
@@ -81,7 +84,7 @@ namespace Mezzanine
             Whole CollisionMask;
             /// @internal
             /// @brief Assigns a shape to the appropriate objects.
-            void AssignShape(CollisionShape* Shape);
+            void AssignShape(Physics::CollisionShape* Shape);
         public:
             /// @brief Standard Constructor.
             /// @param WO The World Object this settings class configures.
@@ -93,11 +96,11 @@ namespace Mezzanine
 
             /// @brief Sets the collision shape to be used.
             /// @param Shape The shape to be applied.
-            virtual void SetCollisionShape(CollisionShape* Shape);
+            virtual void SetCollisionShape(Physics::CollisionShape* Shape);
 
             /// @brief Gets the collision shape currently in use by this actor.
             /// @return Returns a pointer to the collision shape being used.
-            virtual CollisionShape* GetCollisionShape() const;
+            virtual Physics::CollisionShape* GetCollisionShape() const;
 
             /// @brief Set the collision group and mask for the actor to determine what it should collide with.
             /// @details These values are automatically calculated for you with some sane default values.  Only edit these if you know what you are doing.

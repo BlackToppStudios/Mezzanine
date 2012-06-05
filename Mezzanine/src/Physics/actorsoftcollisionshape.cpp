@@ -37,49 +37,51 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _physics_h
-#define _physics_h
+#ifndef _actorsoftcollisionshape_cpp
+#define _actorsoftcollisionshape_cpp
+
+#include "Physics/actorsoftcollisionshape.h"
+#include "collisionshapemanager.h"
+#include "stringtool.h"
+
+#include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftBodyInternals.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::Physics
-    /// @brief This namespace is for all the classes belonging to the Physics Subsystem.
-    /// @details By default, this sub-system utilizies Bullet for it's physics acceleration.
     namespace Physics
     {
+        /////////////////////////////////////////
+        // ActorSoftCollisionShape Functions
 
-    }
-}
+        ActorSoftCollisionShape::ActorSoftCollisionShape(const String& Name, btSoftBodyCollisionShape* BulletShape)
+        {
+            this->Name = Name;
+            ActorSoftShape = BulletShape;
+            SetPointers(ActorSoftShape);
+        }
 
-#include "Physics/physicsenumerations.h"
+        ActorSoftCollisionShape::~ActorSoftCollisionShape()
+        {
+            delete ActorSoftShape;
+        }
 
-#include "Physics/actorsoftcollisionshape.h"
-#include "Physics/boxcollisionshape.h"
-#include "Physics/capsulecollisionshape.h"
-#include "Physics/collisionshape.h"
-#include "Physics/compoundcollisionshape.h"
-#include "Physics/conecollisionshape.h"
-#include "Physics/conetwistconstraint.h"
-#include "Physics/constraint.h"
-#include "Physics/convexhullcollisionshape.h"
-#include "Physics/cylindercollisionshape.h"
-#include "Physics/dualtransformconstraint.h"
-#include "Physics/dynamicmeshcollisionshape.h"
-#include "Physics/fieldcollisionshape.h"
-#include "Physics/generic6dofconstraint.h"
-#include "Physics/generic6dofspringconstraint.h"
-#include "Physics/heightfieldcollisionshape.h"
-#include "Physics/hinge2constraint.h"
-#include "Physics/hingeconstraint.h"
-#include "Physics/meshcollisionshape.h"
-#include "Physics/multispherecollisionshape.h"
-#include "Physics/planecollisionshape.h"
-#include "Physics/point2pointconstraint.h"
-#include "Physics/primitivecollisionshape.h"
-#include "Physics/proxy.h"
-#include "Physics/sliderconstraint.h"
-#include "Physics/spherecollisionshape.h"
-#include "Physics/staticmeshcollisionshape.h"
-#include "Physics/universalconstraint.h"
+        CollisionShape::ShapeType ActorSoftCollisionShape::GetType() const
+        {
+            return CollisionShape::ST_ActorSoft;
+        }
+    }//Physics
+}//Mezzanine
+
+#ifdef MEZZXML
+    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::ActorSoftCollisionShape& ShapeToSerialize)
+        { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
+
+    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::ActorSoftCollisionShape& x)
+        { return Mezzanine::DeSerialize(stream, x); }
+
+    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::ActorSoftCollisionShape& x)
+        { x.ProtoDeSerialize(OneNode); }
+#endif
 
 #endif

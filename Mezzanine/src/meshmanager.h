@@ -49,7 +49,10 @@
 namespace Mezzanine
 {
     class Mesh;
-    class CollisionShape;
+    namespace Physics
+    {
+        class CollisionShape;
+    }
 
     // Used by the scripting language binder to help create bindgings for this class. SWIG does know to creation template instances
     #ifdef SWIG
@@ -193,7 +196,7 @@ namespace Mezzanine
             /// @param MeshName The name that will be given to the generated mesh.
             /// @param MaterialName The name of the material to use with this mesh.
             /// @param Shape The shape to base the mesh on.
-            virtual Mesh* CreateMeshFromShape(const String& MeshName, const String& MaterialName, CollisionShape* Shape);
+            virtual Mesh* CreateMeshFromShape(const String& MeshName, const String& MaterialName, Physics::CollisionShape* Shape);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Utilities - Until we can get a Material Manager

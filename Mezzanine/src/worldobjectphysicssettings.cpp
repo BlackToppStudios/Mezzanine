@@ -42,7 +42,7 @@
 
 #include "worldobjectphysicssettings.h"
 #include "worldobject.h"
-#include "collisionshape.h"
+#include "Physics/collisionshape.h"
 #include "collisionshapemanager.h"
 #include "collision.h"
 #include "physicsmanager.h"
@@ -71,19 +71,19 @@ namespace Mezzanine
 
     }
 
-    void WorldObjectPhysicsSettings::AssignShape(CollisionShape* Shape)
+    void WorldObjectPhysicsSettings::AssignShape(Physics::CollisionShape* Shape)
     {
         this->WorldObjectShape = Shape;
         Parent->PhysicsShape = Shape->GetBulletShape();
     }
 
-    void WorldObjectPhysicsSettings::SetCollisionShape(CollisionShape* Shape)
+    void WorldObjectPhysicsSettings::SetCollisionShape(Physics::CollisionShape* Shape)
     {
         AssignShape(Shape);
         WorldObjectCO->setCollisionShape(Shape->GetBulletShape());
     }
 
-    CollisionShape* WorldObjectPhysicsSettings::GetCollisionShape() const
+    Physics::CollisionShape* WorldObjectPhysicsSettings::GetCollisionShape() const
     {
         return WorldObjectShape;
     }
@@ -203,7 +203,7 @@ namespace Mezzanine
             {
                 if(OneNode.GetAttribute("Version").AsInt() == 1)
                 {
-                    CollisionShape* Shapeptr = Mezzanine::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
+                    Physics::CollisionShape* Shapeptr = Mezzanine::CollisionShapeManager::GetSingletonPtr()->GetShape(  OneNode.GetAttribute("CollisionShape").AsString());
                     if(!Shapeptr)
                         { DeSerializeError("Find the correct Collision Shape",this->WorldObjectPhysicsSettings::SerializableName()); }
                     this->SetCollisionShape( Shapeptr );

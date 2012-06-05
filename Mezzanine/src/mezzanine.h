@@ -75,7 +75,6 @@
 #include "cameracontroller.h"
 #include "cameramanager.h"
 #include "collision.h"
-#include "collisionshape.h"
 #include "collisionshapemanager.h"
 #include "colourvalue.h"                // done
 #include "crossplatform.h"              // nothing to do
