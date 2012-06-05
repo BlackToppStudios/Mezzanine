@@ -456,14 +456,14 @@ namespace Mezzanine
         Log(sizeof(int));
         if(sizeof(MetaCode::InputCode) != sizeof(SDL_Scancode))
         {
-            LogAndThrow("User input subsystem Event Sizes Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
         }else{
             Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
 
         if(sizeof(MetaCode::InputCode) != sizeof(int))
         {
-            LogAndThrow("Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
         }else{
             Log("Internal User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }

@@ -254,7 +254,7 @@ namespace Mezzanine
 
         if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
         {
-            GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
+            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
         }
         this->_Data = new Internal::EventManagerInternalData;
         this->DetectJoysticks();
@@ -269,7 +269,7 @@ namespace Mezzanine
 
         if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
         {
-            GameWorld->LogAndThrow( String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError() );
+            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
         }
         this->_Data = new Internal::EventManagerInternalData;
         this->DetectJoysticks();
@@ -446,11 +446,11 @@ namespace Mezzanine
 
         // Error conditions
                 case SDL_FIRSTEVENT:  //capture and ignore or throw error
-                    World::GetWorldPointer()->LogAndThrow("Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted."); }
                     break;
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
-                    World::GetWorldPointer()->LogAndThrow("Unexpected Quit event in event manager.");
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unexpected Quit event in event manager."); }
                     break;
 
                 default:                //Never thrown by SDL, but could be added by a user
@@ -650,7 +650,7 @@ namespace Mezzanine
         {
             this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), Internal::EventManagerInternalData::Polling);
         }else{
-            World::GetWorldPointer()->LogAndThrow("Unsupported Polling Check on this Platform");
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Unsupported Polling Check on this Platform");
         }
     }
 

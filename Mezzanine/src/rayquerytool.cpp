@@ -95,7 +95,7 @@ namespace Mezzanine
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            World::GetWorldPointer()->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery");
         }
 
         // at this point we have raycast to a series of different objects bounding boxes.
@@ -164,9 +164,8 @@ namespace Mezzanine
                         }
 
                     } // \if WSO_ActorRigid
-                }catch(std::exception e){
-                    World::GetWorldPointer()->Log("Failed during cast in actor raycast.");
-                    World::GetWorldPointer()->LogAndThrow(e.what());
+                }catch(...){
+                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed during cast in actor raycast.");
                 }
             } // \if entity
         } // \if qr_idx
@@ -194,7 +193,7 @@ namespace Mezzanine
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            World::GetWorldPointer()->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to run a query on Null RaySceneQuery.");
         }
 
         Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();

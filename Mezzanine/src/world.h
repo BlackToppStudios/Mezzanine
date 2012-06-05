@@ -490,16 +490,6 @@ namespace Mezzanine
             /// and gameworld recreations.
             std::stringstream LogStream;
 
-            /// @brief This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log.
-            /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
-            /// types that overload the stream insertion operator ( << )
-            /// @param Message This will be streamed to the log, then used in a thrown exception.
-            template <class T> void LogAndThrow(const T& Message)
-            {
-                this->Log(Message);
-                throw(Message);
-            }
-
             /// @brief Log String directly with no conversion
             /// @param message The string to log
             void LogString(const String& message);

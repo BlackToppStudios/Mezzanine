@@ -93,7 +93,7 @@ namespace Mezzanine
                     (*misc)["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
                     //(*misc)["externalGLControl"] = Ogre::String("True");
                 }else{
-                    World::GetWorldPointer()->LogAndThrow("Failed to create SDL Binder.");
+                    MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed to create SDL Binder.");
                 }
             #endif
             #ifdef LINUX

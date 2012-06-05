@@ -194,10 +194,10 @@ namespace Mezzanine
                     case CollisionShape::ST_Compound: // holy recursive batman
                         return new CompoundCollisionShape(Name_,(btCompoundShape*)ShapeToModel);
                     default:
-                        World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance.");
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
                 }
             }else{
-                World::GetWorldPointer()->LogAndThrow("Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
             }
         }
 #ifdef MEZZXML
@@ -225,21 +225,21 @@ namespace Mezzanine
                     return new SphereCollisionShape(OneNode);
                 case CollisionShape::ST_DynamicTriMesh:     /// @todo Complete CreateShape function once DynamicMeshCollisionShape can be deserialized
                     //return new DynamicMeshCollisionShape(Name_,(btGImpactMeshShape*)ShapeToModel);
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a DynamicMeshCollisionShape.");
+                    { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a DynamicMeshCollisionShape."); }
                 case CollisionShape::ST_Heightfield:
                     return new HeightfieldCollisionShape(Name_);
                 case CollisionShape::ST_Plane:
                     return new PlaneCollisionShape(Name_);
                 case CollisionShape::ST_ActorSoft:          /// @todo Complete CreateShape function once ActorSoftCollisionShape can be deserialized
                     //return new ActorSoftCollisionShape(Name_,(btSoftBodyCollisionShape*)ShapeToModel);
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a ActorSoftCollisionShape.");
+                    { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a ActorSoftCollisionShape."); }
                 case CollisionShape::ST_StaticTriMesh:      /// @todo Complete CreateShape function once StaticMeshCollisionShape can be deserialized
                     //return new StaticMeshCollisionShape(Name_,(btBvhTriangleMeshShape*)ShapeToModel);
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a ActorSoftCollisionShape.");
+                    { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance, specifically a StaticMeshShape."); }
                 case CollisionShape::ST_Compound: // holy recursive batman
                     return new CompoundCollisionShape(Name_);
                 default:
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance.");
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
             }
         }
 #endif
@@ -261,7 +261,7 @@ namespace Mezzanine
                 case TRIANGLE_MESH_SHAPE_PROXYTYPE: return CollisionShape::ST_StaticTriMesh;
                 case COMPOUND_SHAPE_PROXYTYPE:      return CollisionShape::ST_Compound;
                 default:
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Bullet Collision Shape type into a Mezzanine::CollisionShapeShapeType.");
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Bullet Collision Shape type into a Physics::CollisionShapeShapeType."); }
             }
         }
 
@@ -283,77 +283,77 @@ namespace Mezzanine
                 case CollisionShape::ST_StaticTriMesh:  return String("StaticMeshCollisionShape");
                 case CollisionShape::ST_Compound:       return String("CompoundCollisionShape");
                 default:
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an unsupported/unwrapped Collision Shape type into a String.");
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a String."); }
             }
         }
 
         CollisionShape::ShapeType StringToShapeType(const String& TypeName)
         {
             if(TypeName.size()<5)
-                { World::GetWorldPointer()->LogAndThrow("Attempting to convert a CollisionShape::ShapeType String into a CollisionShape::ShapeType which is too short to be valid."); }
+                { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert a CollisionShape::ShapeType String into a CollisionShape::ShapeType which is too short to be valid."); }
             switch(TypeName.at(3))
             {
                 case 'C':
                     if (String("BoxCollisionShape")==TypeName)
                         { return CollisionShape::ST_Box; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'C'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'C'."); }
                 case 's':
                     if (String("CapsuleCollisionShape")==TypeName)
                         { return CollisionShape::ST_Capsule; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 's'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 's'."); }
                 case 'e':
                     if (String("SphereCollisionShape")==TypeName)
                         { return CollisionShape::ST_Sphere; }
                     else if (String("ConeCollisionShape")==TypeName)
                         { return CollisionShape::ST_Cone; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'e'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'e'."); }
                 case 'v':
                     if (String("ConvexHullCollisionShape")==TypeName)
                         { return CollisionShape::ST_ConvexHull; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'v'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'v'."); }
                 case 'i':
                     if (String("CylinderCollisionShape")==TypeName)
                         { return CollisionShape::ST_Cylinder; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'i'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'i'."); }
                 case 't':
                     if (String("StaticMeshCollisionShape")==TypeName)
                         { return CollisionShape::ST_StaticTriMesh; }
                     else if (String("MultiSphereCollisionShape")==TypeName)
                         { return CollisionShape::ST_MultiSphere; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 't'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 't'."); }
                 case 'a':
                     if (String("DynamicMeshCollisionShape")==TypeName)
                         { return CollisionShape::ST_DynamicTriMesh; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'a'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'a'."); }
                 case 'g':
                     if (String("HeightfieldCollisionShapeString")==TypeName)
                         { return CollisionShape::ST_Heightfield; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'g'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'g'."); }
                 case 'n':
                     if (String("PlaneCollisionShape")==TypeName)
                         { return CollisionShape::ST_Plane; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'n'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'n'."); }
                 case 'o':
                     if (String("ActorSoftCollisionShape")==TypeName)
                         { return CollisionShape::ST_ActorSoft; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'o'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'o'."); }
                 case 'p':
                     if (String("CompoundCollisionShape")==TypeName)
                         { return CollisionShape::ST_Compound; }
                     else
-                        { World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'p'."); }
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType 'p'."); }
                 default:
-                    World::GetWorldPointer()->LogAndThrow("Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType.");
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType."); }
             }
         }
 #ifdef MEZZXML
@@ -366,7 +366,7 @@ namespace Mezzanine
             if(!Doc->Load(OneTag.c_str()))
             {
                 delete Doc;
-                World::GetWorldPointer()->LogAndThrow(StringTool::StringCat("Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: ", OneTag) );
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Could not Deserialize XML Stream which should contain a Collision Shape, XML looked Like: " + OneTag + ".");
             }
 
             CollisionShape* Results = ProtoDeSerialize(Doc->GetFirstChild());

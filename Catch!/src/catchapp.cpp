@@ -1016,7 +1016,7 @@ bool CatchApp::CheckForStuff()
     while(0 != OneInput)
     {
         if(OneInput->GetType()!=EventBase::UserInput)
-            { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
         /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
@@ -1034,12 +1034,11 @@ bool CatchApp::CheckForStuff()
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
-            { TheWorld->LogAndThrow("Trying to process a non-EventGameWindow as an EventGameWindow."); }
+            { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
         if(!OneWindowEvent->IsEventIDValid())
         {
-            TheWorld->Log("Invalid EventID on GameWindow Event");
-            TheWorld->LogAndThrow(OneWindowEvent->GetEventID());
+            MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
         }
 
         TheWorld->Log(*OneWindowEvent);

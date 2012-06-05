@@ -60,7 +60,7 @@ namespace Mezzanine
             if(Axis_Y == UpAxis) CapsuleShape = new btCapsuleShape(Radius,Height);
             else if(Axis_X == UpAxis) CapsuleShape = new btCapsuleShapeX(Radius,Height);
             else if(Axis_Z == UpAxis) CapsuleShape = new btCapsuleShapeZ(Radius,Height);
-            else World::GetWorldPointer()->LogAndThrow("Non-supported up Axis passed into CapsuleCollisionShape constructor.");
+            else { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Non-supported up Axis passed into CapsuleCollisionShape constructor."); }
             SetPointers(CapsuleShape);
         }
 
