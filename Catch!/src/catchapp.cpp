@@ -516,6 +516,24 @@ void CatchApp::InitMusic()
     //MPlayer->SwitchToSong(Track4);
 }
 
+void CatchApp::VerifySettings()
+{
+    // Verify the Audio Settings
+    AudioManager* AudioMan = AudioManager::GetSingletonPtr();
+    // Ensure file exists
+    String AudioSaveFileName("AudioSettings.mxs");
+    ObjectSettingFile* AudioSettingFile = AudioMan->GetSettingFile(AudioSaveFileName);
+    if(!AudioSettingFile)
+    {
+        AudioSettingFile = AudioMan->CreateSettingFile(AudioSaveFileName);
+        // This is where you would set any addition settings as game specific defaults that are the same as engine defaults,
+        // but Catch is simple and doesn't need that.  However since nothing is being altered, we have to set the save flag manually.
+        AudioSettingFile->SetNeedsSave(true);
+        // Make sure the file saves the "Current" setting group.
+        AudioMan->SetCurrentSettingsSaveFile(AudioSaveFileName);
+    }
+}
+
 void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
 {
     if(CurrentState == StateToSet)
@@ -696,16 +714,19 @@ int CatchApp::GetCatchin()
     UIManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreUI);
     UIManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostUI);
 
+    // Verify all the settings are there, and generate defaults if they aren't.
+    this->VerifySettings();
+
     // Initialize the managers.
 	TheWorld->EngineInit(false);
 
-	CreateLoadingScreen();
-	ChangeState(CatchApp::Catch_Loading);
+	this->CreateLoadingScreen();
+	this->ChangeState(CatchApp::Catch_Loading);
 
     //Setup the Music
-    InitMusic();
+    this->InitMusic();
     //Generate the UI
-    MakeGUI();
+    this->MakeGUI();
 
     //Setup the Profile
     if(1 == Profiles->GetNumLoadedProfiles())
@@ -721,9 +742,9 @@ int CatchApp::GetCatchin()
         Loader->LoadLevel();
 
         if("MainMenu"==Loader->GetCurrentLevel())
-            ChangeState(CatchApp::Catch_MenuScreen);
+            this->ChangeState(CatchApp::Catch_MenuScreen);
         else
-            ChangeState(CatchApp::Catch_GameScreen);
+            this->ChangeState(CatchApp::Catch_GameScreen);
         LevelTimer->Reset();
         LevelTimer->Start();
 
@@ -732,7 +753,7 @@ int CatchApp::GetCatchin()
         //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
         //Start the Main Loop
         TheWorld->MainLoop();
-        UnloadLevel();
+        this->UnloadLevel();
         LevelTimer->Stop();
     } while(Loader->HasALevelToLoad());
 
