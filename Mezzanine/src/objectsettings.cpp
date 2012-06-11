@@ -392,8 +392,7 @@ namespace Mezzanine
             // Store the settings for a moment, since we have some extra stuff to do with them.
             RetVec = LoadSettingsFromXML(RootNode);
 
-            ObjectSettingFile* NewSetFile = new ObjectSettingFile(FileName);
-            SettingFiles.insert( std::pair<String,ObjectSettingFile*>(FileName,NewSetFile) );
+            ObjectSettingFile* NewSetFile = CreateSettingFile(FileName);
             for( SettingGroupVector::iterator It = RetVec->begin() ; It != RetVec->end() ; ++It )
                 NewSetFile->AddGroup( (*It) );
             return RetVec;
@@ -670,18 +669,20 @@ namespace Mezzanine
         StringVector GroupNames;
         for( SettingFilesIterator SettingFileIt = SettingFiles.begin() ; SettingFileIt != SettingFiles.end() ; ++SettingFileIt )
         {
-            if( !(*SettingFileIt).second->GetNeedsSave() )
-                continue;
-            if( CurrentSettingsSaveFile == (*SettingFileIt).second->GetFileName() )
-                GroupNames.push_back( "Current" );
-            for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = (*SettingFileIt).second->SaveGroupsBegin() ; SetGroupIt != (*SettingFileIt).second->SaveGroupsEnd() ; ++SetGroupIt )
+            ObjectSettingFile* CurrFile = (*SettingFileIt).second;
+            if( CurrFile->GetNeedsSave() )
             {
-                GroupNames.push_back( (*SetGroupIt)->GetName() );
-            }
-            SaveSettingsToFile(GroupNames,(*SettingFileIt).second->GetFileName(),SettingsFilePath);
+                if( CurrentSettingsSaveFile == CurrFile->GetFileName() )
+                    GroupNames.push_back( "Current" );
+                for( ObjectSettingFile::SaveGroupsIterator SetGroupIt = CurrFile->SaveGroupsBegin() ; SetGroupIt != CurrFile->SaveGroupsEnd() ; ++SetGroupIt )
+                {
+                    GroupNames.push_back( (*SetGroupIt)->GetName() );
+                }
+                SaveSettingsToFile(GroupNames,(*SettingFileIt).second->GetFileName(),SettingsFilePath);
 
-            (*SettingFileIt).second->SetNeedsSave(false);
-            GroupNames.clear();
+                CurrFile->SetNeedsSave(false);
+                GroupNames.clear();
+            }
         }
     }
 

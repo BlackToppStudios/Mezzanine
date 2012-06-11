@@ -230,7 +230,7 @@ namespace Mezzanine
     /// @brief This class represents a file to be saved containing one or more OhjectSettingGroup's.
     /// @details
     ///////////////////////////////////////
-    class ObjectSettingFile
+    class MEZZ_LIB ObjectSettingFile
     {
         public:
             typedef std::vector< ObjectSettingGroup* > SaveGroupsContainer;
@@ -289,7 +289,7 @@ namespace Mezzanine
     /// @brief An abstract class for other classes that manage groups of settings.
     /// @details
     ///////////////////////////////////////
-    class ObjectSettingsHandler
+    class MEZZ_LIB ObjectSettingsHandler
     {
         public:
             typedef std::map<String,ObjectSettingGroup*> SettingGroupContainer;
