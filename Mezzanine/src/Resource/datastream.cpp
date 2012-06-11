@@ -454,7 +454,17 @@ namespace Mezzanine
                 Options.append("b");
             }
 
-            String FullPath = Path+Name;
+            String FullPath;
+            char Check = Path.at(Path.size() - 1);
+            #ifdef WINDOWS
+            char SysSlash = '\\';
+            #else
+            char SysSlash = '/';
+            #endif
+            if( SysSlash != Check )
+                FullPath = Path+SysSlash+Name;
+            else
+                FullPath = Path+Name;
             FileHandle = fopen(FullPath.c_str(),Options.c_str());
 
             if(!FileHandle && (Flags & DataStream::SF_CreateOnFail))
@@ -562,7 +572,17 @@ namespace Mezzanine
                 Options = (Options | std::ios_base::trunc);
             }
 
-            String FullPath = Path+Name;
+            String FullPath;
+            char Check = Path.at(Path.size() - 1);
+            #ifdef WINDOWS
+            char SysSlash = '\\';
+            #else
+            char SysSlash = '/';
+            #endif
+            if( SysSlash != Check )
+                FullPath = Path+SysSlash+Name;
+            else
+                FullPath = Path+Name;
             FileStream->open(FullPath.c_str(),Options);
 
             if(!FileStream->is_open() && (Flags & DataStream::SF_CreateOnFail))
@@ -573,7 +593,7 @@ namespace Mezzanine
 
             if(!FileStream->is_open())
             {
-                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+Name+"\"");
+                MEZZ_EXCEPTION(Exception::IO_FILE_NOT_FOUND_EXCEPTION,"Unable to create or locate file \""+Name+"\".");
             }
 
             FileStream->seekg(0,std::ios_base::end);
