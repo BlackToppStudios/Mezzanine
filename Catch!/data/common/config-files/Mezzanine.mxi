@@ -9,7 +9,7 @@
 	<DefaultActorManager>
 	</DefaultActorManager>
 	<DefaultAudioManager>
-		<SettingsPath Path="$ShareableAppData$/.Catch/" />
+		<SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
 		<SettingsFiles>
 			<SettingsFile FileName="AudioSettings.mxs" />
 		</SettingsFiles>
@@ -22,7 +22,7 @@
 	</DefaultEventManager>
 	<DefaultGraphicsManager>
 		<RenderSystem Name="OpenGL" />
-		<GameWindow Caption="Window" Width="800" Height="600" FSAA="4" ViewportConf="1-FullWindow" />
+		<GameWindow Caption="Catch!" Width="800" Height="600" FSAA="4" ViewportConf="1-FullWindow" />
 	</DefaultGraphicsManager>
 	<DefaultMeshManager>
 	</DefaultMeshManager>
