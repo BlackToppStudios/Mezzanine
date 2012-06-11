@@ -57,6 +57,7 @@ namespace Mezzanine
         if(World::GetWorldPointerValidity())
         {
             World::GetWorldPointer()->Log(GetCompleteMessage());
+            World::GetWorldPointer()->DoMainLoopLogging();
         }else{
             std::cout << GetCompleteMessage();
         }
