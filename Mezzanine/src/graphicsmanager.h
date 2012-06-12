@@ -46,6 +46,7 @@
 #include "graphicssettings.h"
 #include "enumerations.h"
 #include "gamewindow.h"
+#include "objectsettings.h"
 
 namespace Ogre
 {
@@ -73,37 +74,29 @@ namespace Mezzanine
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
     ///////////////////////////////////////
-    class MEZZ_LIB GraphicsManager: public ManagerBase, public Singleton<GraphicsManager>
+    class MEZZ_LIB GraphicsManager: public ManagerBase, public ObjectSettingsHandler, public Singleton<GraphicsManager>
     {
         private:
-            GraphicsSettings PrimarySettings;
-            GraphicsSettings DefaultSettings;
+            Ogre::Timer* RenderTimer;
+            GameWindow* PrimaryGameWindow;
+            bool OgreBeenInitialized;
+            Whole FrameDelay;
+            Mezzanine::RenderSystem CurrRenderSys;
             GraphicsSettings DesktopSettings;
 
             std::vector< GameWindow* > GameWindows;
-
             std::vector< String > SupportedResolutions;
             std::vector< String > SupportedDevices;
 
-            /// @brief Adjust all Settings
-            /// @param Width The desired width.
-            /// @param Height The desired height.
-            /// @param FullScreen True if fullscreen, false if not.
-            /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
-            /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
-            /// do not support arbitrary resolutions in fullscreen mode.
-            void Construct( const Whole& Width, const Whole& Height, const bool& FullScreen);
+            /// @brief Construct the manager and set sane defaults.
+            void Construct();
             String ConvertRenderSystem(const Mezzanine::RenderSystem& RS);
-
             void InitOgreRenderSystem();
-
-            Ogre::Timer* RenderTimer;
-            GameWindow* PrimaryGameWindow;
-
-            Whole FrameDelay;
-            Mezzanine::RenderSystem CurrRenderSys;
-
-            bool OgreBeenInitialized;
+#ifdef MEZZXML
+            virtual String GetObjectRootNodeName() const;
+            virtual void AppendCurrentSettings(XML::Node& SettingsRootNode);
+#endif
+            virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:
 
             /// @brief Basic constructor
@@ -114,16 +107,6 @@ namespace Mezzanine
             /// @param XMLNode The node of the xml document to construct from.
             GraphicsManager(XML::Node& XMLNode);
 #endif
-            /// @brief Versatile Constructor
-            /// @param Width The desired width.
-            /// @param Height The desired height.
-            /// @param FullScreen True if fullscreen, false if not.
-            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it that will be used
-            /// when creating the primary window if one isn't already created when this manager in initialized. Be careful that the
-            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
-            /// arbitrary resolutions in fullscreen mode.
-            GraphicsManager(const Whole &Width, const Whole &Height, const bool &FullScreen);
-
             /// @brief Class Destructor.
             ~GraphicsManager();
 
@@ -158,10 +141,6 @@ namespace Mezzanine
             /// @brief Gets the desktop display settings.
             /// @param Returns a GraphicsSettings struct with the desktop display settings.
             const GraphicsSettings& GetDesktopSettings();
-
-            /// @brief Gets the default settings for windows this manager initialized with.
-            /// @param Returns a GraphicsSettings struct with the default display settings.
-            const GraphicsSettings& GetDefaultSettings();
 
             /// @brief Gets whether or not SDL has been started.
             /// @return Returns a bool indicating whether or not SDL has been initialized yet.

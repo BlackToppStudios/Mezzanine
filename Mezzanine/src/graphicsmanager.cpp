@@ -69,22 +69,14 @@ namespace Mezzanine
         : OgreBeenInitialized(false),
           CurrRenderSys(Mezzanine::RS_OpenGL2)
     {
-        Construct( 800, 600, false );
+        Construct();
     }
-
-    GraphicsManager::GraphicsManager( const Whole &Width, const Whole &Height, const bool &FullScreen )
-        : OgreBeenInitialized(false),
-          CurrRenderSys(Mezzanine::RS_OpenGL2)
-    {
-        Construct( Width, Height, FullScreen );
-    }
-
 #ifdef MEZZXML
     GraphicsManager::GraphicsManager(XML::Node& XMLNode)
         : OgreBeenInitialized(false),
           CurrRenderSys(Mezzanine::RS_OpenGL2)
     {
-        Construct( 800, 600, false );
+        Construct();
 
         XML::Attribute CurrAttrib;
         for( XML::NodeIterator SecIt = XMLNode.begin() ; SecIt != XMLNode.end() ; ++SecIt )
@@ -216,12 +208,8 @@ namespace Mezzanine
         DestroyAllGameWindows(false);
     }
 
-    void GraphicsManager::Construct(const Whole& Width, const Whole& Height, const bool& FullScreen )
+    void GraphicsManager::Construct()
     {
-        DefaultSettings.Fullscreen = FullScreen;
-        DefaultSettings.RenderHeight = Height;
-        DefaultSettings.RenderWidth = Width;
-
         SDL_DisplayMode DeskMode;
         SDL_GetDesktopDisplayMode(0,&DeskMode);
         DesktopSettings.RenderWidth = DeskMode.w;
@@ -256,7 +244,25 @@ namespace Mezzanine
             OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(RenderSysName));
             OgreCore->initialise(false,"");
             OgreBeenInitialized = true;
+
+            PrimaryGameWindow = CreateGameWindow("Primary",1,1,GameWindow::WF_Hidden);
         }
+    }
+
+#ifdef MEZZXML
+    String GraphicsManager::GetObjectRootNodeName() const
+    {
+        return "DefaultGraphicsManagerSettings";
+    }
+
+    void GraphicsManager::AppendCurrentSettings(XML::Node& SettingsRootNode)
+    {
+
+    }
+#endif
+    void GraphicsManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
+    {
+
     }
 
     GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf)
@@ -264,12 +270,6 @@ namespace Mezzanine
         if(!OgreBeenInitialized) InitOgreRenderSystem();
 
         GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags,ViewportConf);
-
-        if(GameWindows.empty())
-        {
-            PrimaryGameWindow = NewWindow;
-            PrimarySettings = NewWindow->GetSettings();
-        }
         GameWindows.push_back(NewWindow);
         return NewWindow;
     }
@@ -318,11 +318,6 @@ namespace Mezzanine
     const GraphicsSettings& GraphicsManager::GetDesktopSettings()
     {
         return DesktopSettings;
-    }
-
-    const GraphicsSettings& GraphicsManager::GetDefaultSettings()
-    {
-        return DefaultSettings;
     }
 
     bool GraphicsManager::HasSDLBeenInitialized()
@@ -395,8 +390,8 @@ namespace Mezzanine
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
     {
-        if(GameWindows.empty())
-            CreateGameWindow("",DefaultSettings.RenderWidth,DefaultSettings.RenderHeight,DefaultSettings.Fullscreen?GameWindow::WF_Fullscreen:0,GameWindow::VL_1_FullWindow);
+        if(!OgreBeenInitialized)
+            InitOgreRenderSystem();
         this->RenderTimer = new Ogre::Timer();
 
         Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
@@ -504,7 +499,7 @@ namespace Mezzanine
                         FullScreen = StringTool::ConvertToBool( (*ParIt).second );
                     }
                 }
-                return new GraphicsManager(Width,Height,FullScreen);
+                return new GraphicsManager();
             }
         }
     }
