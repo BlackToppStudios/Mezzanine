@@ -140,17 +140,20 @@ namespace Mezzanine
         //#endif
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);//*/
 
-        #ifdef WINDOWS
-        HWND Data = 0;
-        #endif
-        #ifdef LINUX
-        Window Data = 0;
-        #endif
-        #ifdef MACOS
-        NSWindow* Data = 0;
-        #endif
-        OgreWindow->getCustomAttribute("WINDOW",&Data);
-        SDLWindow = SDL_CreateWindowFrom((void*)Data);
+        if( !(WF_Hidden & Flags) )
+        {
+            #ifdef WINDOWS
+            HWND Data = 0;
+            #endif
+            #ifdef LINUX
+            Window Data = 0;
+            #endif
+            #ifdef MACOS
+            NSWindow* Data = 0;
+            #endif
+            OgreWindow->getCustomAttribute("WINDOW",&Data);
+            SDLWindow = SDL_CreateWindowFrom((void*)Data);
+        }
 
         if(VL_Custom != ViewLayout)
         {
