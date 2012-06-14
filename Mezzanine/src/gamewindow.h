@@ -54,6 +54,7 @@ namespace Mezzanine
     class Viewport;
     class Camera;
     class GraphicsManager;
+    class GameWindowInternalData;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class GameWindow
     /// @headerfile gamewindow.h
@@ -63,6 +64,9 @@ namespace Mezzanine
     class MEZZ_LIB GameWindow
     {
         public:
+            typedef std::vector<Viewport*> ViewportContainer;
+            typedef ViewportContainer::iterator ViewportIterator;
+            typedef ViewportContainer::const_iterator ConstViewportIterator;
             /// @enum WindowFlags
             /// @brief A listing of potential options for configuring a game window during construction.
             enum WindowFlags
@@ -90,16 +94,12 @@ namespace Mezzanine
                 VL_4_EvenlySpaced     ///< Create four viewports.  Each viewport will take an equal amount of the screen in each corner.
             };
         protected:
+            GraphicsManager* Manager;
             Ogre::RenderWindow* OgreWindow;
             SDL_Window* SDLWindow;
+            GameWindowInternalData* GWID;
             GraphicsSettings Settings;
-            ViewportLayout ViewLayout;
-
-            std::vector< Viewport* > Viewports;
-
-            GraphicsManager* Manager;
-
-            //void* RenderContext;
+            ViewportContainer Viewports;
 
             void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf);
             void UpdateViewportsAndCameras();
@@ -112,120 +112,136 @@ namespace Mezzanine
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
             /// @param ViewportConf The configuration/layout of the viewports on this window.
             GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf = VL_Custom);
-
             /// @brief Class destructor.
             ~GameWindow();
 
-            /// @brief This can set the the Text in the titlebar.
-            /// @param NewName This is the new text to be used in the titlebar.
-            void SetWindowCaption(const String &NewCaption);
+            ///////////////////////////////////////////////////////////////////////////////
+            // Viewport Management
 
             /// @brief Creates an additional Viewport within a created render window.
             /// @param VeiwportCamera The camera that is to be attached to this Viewport.
             /// @param ZOrder The render order of this viewport relative to other viewports in this window.
             /// 0 means it'll use the current viewport count to determine the ZOrder.
             Viewport* CreateViewport(Camera* ViewportCamera, const Whole& ZOrder = 0);
-
             /// @brief Gets a viewport by index.
             /// @return Returns a pointer to the viewport requested.
-            Viewport* GetViewport(const Whole& Index);
-
+            Viewport* GetViewport(const Whole& Index) const;
             /// @brief Gets the number of viewports within this window.
             /// @return Returns a Whole representing the number of viewports within this window.
-            Whole GetNumViewports();
-
+            Whole GetNumViewports() const;
             /// @brief Destroys a viewport within this window.
             /// @param ToBeDestroyed The viewport that will be destroyed.
             void DestroyViewport(Viewport* ToBeDestroyed);
+            /// @brief Gets the current layout of the viewports in this window.
+            /// @return Returns a ViewportLayour enum value describing the configuration of viewports in this window, or VL_Custom if it cannot be described.
+            ViewportLayout GetViewportLayout() const;
+            /// @brief Gets the name of the specified viewport layout.
+            /// @return Returns a string containing the name of the layout provided.
+            String GetViewportLayoutName(const ViewportLayout& Layout) const;
 
-            /// @brief Gets the current window settings.
-            /// @param Returns a GraphicsSettings struct with the current window settings.
-            const GraphicsSettings& GetSettings();
-
-            /// @brief Set the Fullscreen Setting
-            /// @details Set the Fullscreen Setting
-            /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
-            void SetFullscreen(const bool &Fullscreen);
-
-            /// @brief Gets the Fullscreen Setting
-            /// @details Gets the Fullscreen Setting
-            /// @return This returns a bool, true if fullscreen is set, false otherwise
-            bool GetFullscreen() const;
-
-            /// @brief Sets the Height.
-            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Height This accepts a Whole.
-            void SetRenderHeight(const Whole &Height);
-
-            /// @brief Gets the Height of the Rendering Area
-            /// @details Gets the Height of the Rendering Area
-            /// @return This returns the Height of the Rendering Area
-            Whole GetRenderHeight() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            // Window Metrics Management
 
             /// @brief Sets the Width.
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
             /// @param Width This accepts a Whole.
             void SetRenderWidth(const Whole &Width);
-
             /// @brief Gets the Width of the Rendering Area
             /// @details Gets the Width of the Rendering Area
             /// @return This returns the Width of the Rendering Area
             Whole GetRenderWidth() const;
-
+            /// @brief Sets the Height.
+            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
+            /// @param Height This accepts a Whole.
+            void SetRenderHeight(const Whole &Height);
+            /// @brief Gets the Height of the Rendering Area
+            /// @details Gets the Height of the Rendering Area
+            /// @return This returns the Height of the Rendering Area
+            Whole GetRenderHeight() const;
             /// @brief Changes the X and Y Resolution at the same time
             /// @details This should be useful in situations where it is not possible to update the width and height separately.
             /// @param Width The new desired Width for the rendering area as a whole number
             /// @param Height The new desired Width for the rendering area as a whole number
             void SetRenderResolution(const Whole &Width, const Whole &Height);
-
+             /// @brief Set the Fullscreen Setting
+            /// @details Set the Fullscreen Setting
+            /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
+            void SetFullscreen(const bool &Fullscreen);
+            /// @brief Gets the Fullscreen Setting
+            /// @details Gets the Fullscreen Setting
+            /// @return This returns a bool, true if fullscreen is set, false otherwise
+            bool GetFullscreen() const;
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.
             void SetRenderOptions(const GraphicsSettings& NewSettings);
+            /// @brief Gets the current window settings.
+            /// @param Returns a GraphicsSettings struct with the current window settings.
+            const GraphicsSettings& GetSettings();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Window Settings Methods
+
+            /// @brief Gets the the text in the titlebar.
+            /// @return Returns a const string ref of the text in the titlebar.
+            const String& GetWindowCaption();
             /// @brief Gets the current level of Anti-Aliasing enabled on this Window.
             /// @return Returns a Whole indicating which level of AA is enabled on this window, or 0 if AA is disabled.
             Whole GetFSAALevel() const;
+            /// @brief Enables (or disables) vsync on this window.
+            /// @param Enable Whether or not to enable vsync.
+            void EnableVsync(bool Enable);
+            /// @brief Gets whether or not vsync is currently enabled on this window.
+            /// @return Returns true if vsync is currently enabled, false otherwise.
+            bool VsyncEnabled() const;
+            /// @brief Hides (shows) the window.
+            /// @param Hidden Whether or not to hide the window.
+            void SetHidden(bool Hidden);
+            /// @brief Gets whether this window is hidden.
+            /// @return Returns true if this window is being hidden, false otherwise.
+            bool IsHidden() const;
+            /// @brief Gets whether or not this window has a resizeable border.
+            /// @return Returns true if this window has a border when not fullscreen and it can be resized, false otherwise.
+            bool BorderIsResizeable() const;
+            /// @brief Gets whether this window is borderless.
+            /// @return Returns true if this window has no border, false otherwise.
+            bool IsBorderless() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Window Stats Methods
 
             /// @brief Gets the FPS based on the last frame rendered.
             /// @details This essentially determines how many frames could be rendered if all
             /// frames within a second rendered at the same speed.
             /// @return Returns a Real representing the framerate.
-            Real GetLastFPS();
-
+            Real GetLastFPS() const;
             /// @brief Gets the Average FPS.
             /// @return Returns a Real representing the average framerate.
-            Real GetAverageFPS();
-
+            Real GetAverageFPS() const;
             /// @brief Gets the Best FPS.
             /// @return Returns a Real representing the best framerate.
-            Real GetBestFPS();
-
+            Real GetBestFPS() const;
             /// @brief Gets the Worst FPS.
             /// @return Returns a Real representing the worst framerate.
-            Real GetWorstFPS();
-
+            Real GetWorstFPS() const;
             /// @brief Gets the shortest amount of time it's taken to render a frame.
             /// @return Returns a Real representing the best time for rendering a frame.
-            Real GetBestFrameTime();
-
+            Real GetBestFrameTime() const;
             /// @brief Gets the longest amount of time it's taken to render a frame.
             /// @return Returns a Real representing the worst time for rendering a frame.
-            Real GetWorstFrameTime();
+            Real GetWorstFrameTime() const;
 
-            /// @brief Gets the render context being used by this window.
-            /// @return Returns a size_t that identifies the render context being used by this window.
-            void* GetRenderContext();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
 
             /// @internal
             /// @brief This will get a pointer to the Ogre RenderWindow.
             /// @return Returns a pointer to the Ogre RenderWindow class in use.
-            Ogre::RenderWindow* GetOgreWindowPointer();
-
+            Ogre::RenderWindow* _GetOgreWindowPointer();
             /// @internal
             /// @brief This will get a pointer to the SDL Window.
             /// @return Returns a pointer to the SDL Window class in use.
-            SDL_Window* GetSDLWindowPointer();
-    };//gamewindow
+            SDL_Window* _GetSDLWindowPointer();
+    };//GameWindow
 }//Mezzanine
 
 #endif
