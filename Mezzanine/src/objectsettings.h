@@ -97,9 +97,13 @@ namespace Mezzanine
             /// @param ToBeAdded Pointer to the SettingSet to be added.
             virtual void AddChildObjectSettingSet(ObjectSettingSet* ToBeAdded);
             /// @brief Gets a Sub-Set of this container by name.
+            /// @remarks This class does not enforce unique names for child sets.  Only settings are forced
+            /// to have unique names.  So when searching for an object by name there can be multiples.  Which
+            /// one you get is determined by the Which parameter.
             /// @param Name The name of the desired Sub-Set.
+            /// @param Which Which named SettingSet to get.  0 for the first, 1 for the second, and so on.
             /// @return Returns a pointer to the named Sub-Set, or NULL if it doesn't exist.
-            ObjectSettingSet* GetChildObjectSettingSet(const String& Name) const;
+            ObjectSettingSet* GetChildObjectSettingSet(const String& Name, UInt16 Which = 0) const;
             /// @brief Gets a Sub-Set of this container by index.
             /// @param Index The index of the Sub-Set to get.
             /// @return Returns a pointer to the Sub-Set at the specified index.

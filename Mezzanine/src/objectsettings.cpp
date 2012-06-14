@@ -89,13 +89,14 @@ namespace Mezzanine
         SubSets.push_back(ToBeAdded);
     }
 
-    ObjectSettingSet* ObjectSettingSetContainer::GetChildObjectSettingSet(const String& Name) const
+    ObjectSettingSet* ObjectSettingSetContainer::GetChildObjectSettingSet(const String& Name, UInt16 Which) const
     {
         for( ConstSubSetIterator it = SubSets.begin() ; it != SubSets.end() ; ++it )
         {
             if( Name == (*it)->GetName() )
             {
-                return (*it);
+                if(0 == Which) return (*it);
+                else --Which;
             }
         }
     }
