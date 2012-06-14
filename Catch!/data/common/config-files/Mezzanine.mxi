@@ -21,8 +21,10 @@
 	<DefaultEventManager>
 	</DefaultEventManager>
 	<DefaultGraphicsManager>
-		<RenderSystem Name="OpenGL" />
-		<GameWindow Caption="Catch!" Width="800" Height="600" FSAA="4" ViewportConf="1-FullWindow" />
+		<SettingsPath Path="$ShareableAppData$/.Catch/Settings/" />
+		<SettingsFiles>
+			<SettingsFile FileName="GraphicsSettings.mxs" />
+		</SettingsFiles>
 	</DefaultGraphicsManager>
 	<DefaultMeshManager>
 	</DefaultMeshManager>
