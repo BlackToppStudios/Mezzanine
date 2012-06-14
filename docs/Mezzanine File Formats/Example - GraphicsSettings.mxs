@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!-- This file defines a collection of groups of preset settings that can be applied en-mass. -->
+<!-- And group with the name "Current" will have it's settings applied immediately when loaded. -->
+<DefaultGraphicsManagerSettings>
+	<Current>
+		<!-- The name is a string with the name of the rendersystem to be set.  Currently, it's possible values are: -->
+		<!-- Direct3D9, Direct3D11, OpenGL, OpenGLES1.x, OpenGLES2.x -->
+		<RenderSystem Name="OpenGL" />
+		<!-- Caption is a string.  Width and Height are both unsigned ints.  Fullscreen, Hidden, Resizeable, Maximized, and Borderless are bools. -->
+		<!-- FSAA is Full Screen Anti-Aliasing and has 5 possible values: 0, 2, 4, 8, and 16.  0 means FSAA is disabled. -->
+		<!-- Multiple windows can be defined here.  The first one defined will become the primary window. -->
+		<!-- ViewportConf is a string and describes how the viewports of the window should be initialized.  Note that you still have to bind the camera to the viewport if you use this. -->
+		<!-- Options for ViewportConf are: Custom, 1-FullWindow, 2-HorizontalSplit, 2-VerticalSplit, 3-TopLarge, 4-EvenlySplit -->
+		<GameWindow Caption="Mezzanine Window" Width="800" Height="600" Fullscreen="false" Hidden="false" Vsync="false" Resizeable="false" Borderless="false" FSAA="0" ViewportConf="Custom" />
+	</Current>
+</DefaultGraphicsManagerSettings>
