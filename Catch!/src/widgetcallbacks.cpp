@@ -133,8 +133,8 @@ void OptsVideoRes::SetCaller(UI::Widget* Caller)
     UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
     std::stringstream ResStream;
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
-    GameWindow* PriWin = GraphicsMan->GetPrimaryGameWindow();
-    ResStream << PriWin->GetRenderWidth() << " x " << PriWin->GetRenderHeight();
+    GameWindow* Win = GraphicsMan->GetGameWindow(0);
+    ResStream << Win->GetRenderWidth() << " x " << Win->GetRenderHeight();
     String CurrentRes(ResStream.str());
     const std::vector<String>* Resolutions = GraphicsMan->GetSupportedResolutions();
     for( Whole X = 0 ; X < Resolutions->size() ; ++X )
@@ -164,9 +164,9 @@ void OptsVideoRes::DoVisibilityChangeItems()
     if(Caller->IsVisible())
     {
         UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
-        GameWindow* PriWin = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow();
+        GameWindow* Win = GraphicsManager::GetSingletonPtr()->GetGameWindow(0);
         std::stringstream ResStream;
-        ResStream << PriWin->GetRenderWidth() << " x " << PriWin->GetRenderHeight();
+        ResStream << Win->GetRenderWidth() << " x " << Win->GetRenderHeight();
         ResList->SetSelection(ResStream.str());
     }
 }
@@ -182,7 +182,7 @@ void OptsVideoFullscreen::SetCaller(UI::Widget* Caller)
     UI::WidgetCallback::SetCaller(Caller);
     /// @todo This code should eventually be replaced with something that reads from a settings file.
     /// @todo Temp code to verify fullscreen setting is set properly.
-    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetFullscreen();
+    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetFullscreen();
     UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(FullScreen != FSCheck->IsChecked())
         FSCheck->ManualCheck(FullScreen);
@@ -202,7 +202,7 @@ void OptsVideoFullscreen::DoPostUpdateItems()
 
 void OptsVideoFullscreen::DoVisibilityChangeItems()
 {
-    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetFullscreen();
+    bool FullScreen = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetFullscreen();
     UI::CheckBox* FSCheck = static_cast<UI::CheckBox*>(this->Caller);
     if(FullScreen != FSCheck->IsChecked())
         FSCheck->ManualCheck(FullScreen);
@@ -251,7 +251,7 @@ void OptsVideoFSAA::DoVisibilityChangeItems()
     if(Caller->IsVisible())
     {
         UI::DropDownList* FSAAList = static_cast<UI::DropDownList*>(this->Caller);
-        Whole CurrFSAA = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetFSAALevel();
+        Whole CurrFSAA = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetFSAALevel();
         std::stringstream AAstream;
         AAstream << "x" << CurrFSAA << " AA";
         FSAAList->SetSelection(CurrFSAA ? AAstream.str() : "No AA");

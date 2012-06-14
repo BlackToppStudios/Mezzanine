@@ -53,7 +53,7 @@ CatchApp::~CatchApp()
 void CatchApp::MakeGUI()
 {
     UIManager* GUI = UIManager::GetSingletonPtr();
-    Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0);
+    Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
@@ -476,7 +476,7 @@ void CatchApp::CreateLoadingScreen()
     UIManager* GUI = UIManager::GetSingletonPtr();
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     GUI->LoadMTA("Catch_Loading");
-    Viewport* UIViewport = GraphicsMan->GetPrimaryGameWindow()->GetViewport(0);
+    Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
     UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera());
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
@@ -531,6 +531,21 @@ void CatchApp::VerifySettings()
         AudioSettingFile->SetNeedsSave(true);
         // Make sure the file saves the "Current" setting group.
         AudioMan->SetCurrentSettingsSaveFile(AudioSaveFileName);
+    }
+    // Verify the Audio Settings
+    GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
+    // Ensure file exists
+    String GraphicsSaveFileName("GraphicsSettings.mxs");
+    ObjectSettingFile* GraphicsSettingFile = GraphicsMan->GetSettingFile(GraphicsSaveFileName);
+    if(!GraphicsSettingFile)
+    {
+        GraphicsSettingFile = GraphicsMan->CreateSettingFile(GraphicsSaveFileName);
+        // Create the window
+        GraphicsMan->CreateGameWindow("Catch!",800,600,GameWindow::WF_FSAA_4,GameWindow::VL_1_FullWindow);
+        // Set the file to save.
+        GraphicsSettingFile->SetNeedsSave(true);
+        // Make sure the file saves the "Current" setting group.
+        GraphicsMan->SetCurrentSettingsSaveFile(GraphicsSaveFileName);
     }
 }
 
@@ -1012,8 +1027,8 @@ bool CatchApp::PostRender()
     // Update Stat information
     UI::Caption* CurFPS = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("CurFPS");
     UI::Caption* AvFPS = UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
-    CurFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetLastFPS()));
-    AvFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetAverageFPS()));
+    CurFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetLastFPS()));
+    AvFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetAverageFPS()));
 
     //See if the level is over
     if(CurrentState != CatchApp::Catch_ScoreScreen)
