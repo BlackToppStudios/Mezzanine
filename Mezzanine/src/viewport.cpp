@@ -53,12 +53,12 @@ namespace Mezzanine
           ViewportCam(ViewportCamera)
     {
         Ogre::Camera* ViewCam = ViewportCamera ? ViewportCamera->GetOgreCamera() : NULL;
-        OgreViewport = Parent->GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
+        OgreViewport = Parent->_GetOgreWindowPointer()->addViewport(ViewCam,ZOrder);
     }
 
     Viewport::~Viewport()
     {
-        Parent->GetOgreWindowPointer()->removeViewport(OgreViewport->getZOrder());
+        Parent->_GetOgreWindowPointer()->removeViewport(OgreViewport->getZOrder());
     }
 
     void Viewport::SetCamera(Camera* ViewportCamera)
@@ -93,42 +93,42 @@ namespace Mezzanine
         OgreViewport->setDimensions(Left,Top,Width,Height);
     }
 
-    Real Viewport::GetLeft()
+    Real Viewport::GetLeft() const
     {
         return OgreViewport->getLeft();
     }
 
-    Real Viewport::GetTop()
+    Real Viewport::GetTop() const
     {
         return OgreViewport->getTop();
     }
 
-    Real Viewport::GetWidth()
+    Real Viewport::GetWidth() const
     {
         return OgreViewport->getWidth();
     }
 
-    Real Viewport::GetHeight()
+    Real Viewport::GetHeight() const
     {
         return OgreViewport->getHeight();
     }
 
-    Whole Viewport::GetActualLeft()
+    Whole Viewport::GetActualLeft() const
     {
         return OgreViewport->getActualLeft();
     }
 
-    Whole Viewport::GetActualTop()
+    Whole Viewport::GetActualTop() const
     {
         return OgreViewport->getActualTop();
     }
 
-    Whole Viewport::GetActualWidth()
+    Whole Viewport::GetActualWidth() const
     {
         return OgreViewport->getActualWidth();
     }
 
-    Whole Viewport::GetActualHeight()
+    Whole Viewport::GetActualHeight() const
     {
         return OgreViewport->getActualHeight();
     }

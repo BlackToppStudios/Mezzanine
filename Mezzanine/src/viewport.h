@@ -96,28 +96,28 @@ namespace Mezzanine
             void SetDimensions(const Real& Left, const Real& Top, const Real& Width, const Real& Height);
             /// @brief Gets the relative left position of the viewport.
             /// @return Returns a real representing the relative left position of this veiwport.
-            Real GetLeft();
+            Real GetLeft() const;
             /// @brief Gets the relative top position of the viewport.
             /// @return Returns a real representing the relative top position of this veiwport.
-            Real GetTop();
+            Real GetTop() const;
             /// @brief Gets the relative width of the viewport.
             /// @return Returns a real representing the relative width of this veiwport.
-            Real GetWidth();
+            Real GetWidth() const;
             /// @brief Gets the relative height of the viewport.
             /// @return Returns a real representing the relative height of this veiwport.
-            Real GetHeight();
+            Real GetHeight() const;
             /// @brief Gets the left position of the viewport in pixels.
             /// @return Returns a whole representing the left position of this veiwport in pixels.
-            Whole GetActualLeft();
+            Whole GetActualLeft() const;
             /// @brief Gets the top position of the viewport in pixels.
             /// @return Returns a whole representing the top position of this veiwport in pixels.
-            Whole GetActualTop();
+            Whole GetActualTop() const;
             /// @brief Gets the width of the viewport in pixels.
             /// @return Returns a whole representing the width of this veiwport in pixels.
-            Whole GetActualWidth();
+            Whole GetActualWidth() const;
             /// @brief Gets the height of the viewport in pixels.
             /// @return Returns a whole representing the height of this veiwport in pixels.
-            Whole GetActualHeight();
+            Whole GetActualHeight() const;
             /// @internal
             /// @brief Gets the internal Ogre Viewport.
             /// @return Returns a pointer to the Ogre Viewport this class is based on.
