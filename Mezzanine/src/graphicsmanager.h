@@ -76,6 +76,10 @@ namespace Mezzanine
     ///////////////////////////////////////
     class MEZZ_LIB GraphicsManager: public ManagerBase, public ObjectSettingsHandler, public Singleton<GraphicsManager>
     {
+        public:
+            typedef std::vector<GameWindow*> GameWindowContainer;
+            typedef GameWindowContainer::iterator GameWindowIterator;
+            typedef GameWindowContainer::const_iterator ConstGameWindowIterator;
         private:
             Ogre::Timer* RenderTimer;
             GameWindow* PrimaryGameWindow;
@@ -84,13 +88,12 @@ namespace Mezzanine
             Mezzanine::RenderSystem CurrRenderSys;
             GraphicsSettings DesktopSettings;
 
-            std::vector< GameWindow* > GameWindows;
-            std::vector< String > SupportedResolutions;
-            std::vector< String > SupportedDevices;
+            GameWindowContainer GameWindows;
+            StringVector SupportedResolutions;
+            StringVector SupportedDevices;
 
             /// @brief Construct the manager and set sane defaults.
             void Construct();
-            String ConvertRenderSystem(const Mezzanine::RenderSystem& RS);
             void InitOgreRenderSystem();
 #ifdef MEZZXML
             virtual String GetObjectRootNodeName() const;
@@ -110,6 +113,9 @@ namespace Mezzanine
             /// @brief Class Destructor.
             ~GraphicsManager();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Window Management
+
             /// @brief Creates a new game window to be rendered to.
             /// @param WindowCaption The caption to be set in the window titlebar.
             /// @param Width The desired width in pixels.
@@ -117,38 +123,24 @@ namespace Mezzanine
             /// @param Flags Additional misc parameters, see GameWindow class for more info.
             /// @param ViewportConf The configuration/layout of the viewports on this window.
             GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf = GameWindow::VL_Custom);
-
             /// @brief Gets a game window by index.
             /// @return Returns a pointer to the game window requested.
             GameWindow* GetGameWindow(const Whole& Index);
-
             /// @brief Gets the number of game windows within this manager.
             /// @return Returns a Whole representing the number of game windows within this manager.
             Whole GetNumGameWindows();
-
             /// @brief Destroys a created game window by index.
             /// @param WindowIndex The index of the window to be destroyed.
             void DestroyGameWindow(GameWindow* ToBeDestroyed);
-
             /// @brief Destroys every game window created.
             /// @param ExcludePrimary Whether or not you want to spare the primary window created.
             void DestroyAllGameWindows(bool ExcludePrimary = true);
-
             /// @brief Gets the primary(first) game window.
             /// @return Returns a pointer to the primary game window.
             GameWindow* GetPrimaryGameWindow();
 
-            /// @brief Gets the desktop display settings.
-            /// @param Returns a GraphicsSettings struct with the desktop display settings.
-            const GraphicsSettings& GetDesktopSettings();
-
-            /// @brief Gets whether or not SDL has been started.
-            /// @return Returns a bool indicating whether or not SDL has been initialized yet.
-            bool HasSDLBeenInitialized();
-
-            /// @brief Gets whether or not Ogre has been started.
-            /// @return Returns a bool indicating whether or not Ogre has been initialized yet.
-            bool HasOgreBeenInitialized();
+            ///////////////////////////////////////////////////////////////////////////////
+            // RenderSystem Management
 
             /// @brief Sets the render system to be used.
             /// @remarks This will only work prior to a window being created/graphics manager being initialized.  The internal structures to be built need
@@ -156,40 +148,59 @@ namespace Mezzanine
             /// @param RenderSys The Render system to be used.
             /// @param InitializeRenderSystem Whether to immediately initialize the rendersystem afterwords.
             void SetRenderSystem(const Mezzanine::RenderSystem& RenderSys, bool InitializeRenderSystem = false);
-
             /// @brief Gets the current rendersystem being used.
             /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.
             /// @return Returns an enum value coresponding to the render system being used.
             Mezzanine::RenderSystem GetCurrRenderSystem();
+            /// @brief Gets the name of the provided render system.
+            /// @param RenderSys The rendersystem to get the name of.
+            /// @return Returns a string containing the name of the provided render system.
+            String GetRenderSystemName(const Mezzanine::RenderSystem& RenderSys);
+            /// @brief Gets a short hand name of the provided render system.
+            /// @param RenderSys The rendersystem to get the name of.
+            /// @return Returns a string containing the shortened name of the provided render system.
+            String GetShortenedRenderSystemName(const Mezzanine::RenderSystem& RenderSys);
 
-            /// @brief Gets the name of the render system in current use.
-            /// @return Returns a string containing the name of the current render system.
-            String GetRenderSystemName();
+            ///////////////////////////////////////////////////////////////////////////////
+            // Query Methods
 
             /// @brief Gets a vector containing all the resolutions supported by this render system on the current hardware.
             /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
             /// @return Returns a Const Pointer to the vector storing all the supported resolutions.
-            const std::vector<String>* GetSupportedResolutions();
-
+            const StringVector* GetSupportedResolutions();
             /// @brief Gets a vector containing all the devices supported by this render system on the current hardware.
             /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
             /// @return Returns a Const Pointer to the vector storing all the supported devices.
-            const std::vector<String>* GetSupportedDevices();
+            const StringVector* GetSupportedDevices();
+            /// @brief Gets the desktop display settings.
+            /// @param Returns a GraphicsSettings struct with the desktop display settings.
+            const GraphicsSettings& GetDesktopSettings();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility Methods
 
             /// @brief Resets the Render timer.
             /// @details This function should not be called unless you know exactly what you are doing.
             /// This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop.
             virtual void ResetRenderTimer();
-
             /// @brief Renders one frame of the scene.
             virtual void RenderOneFrame();
-
             /// @brief Swaps all the buffers of all GameWindows.
             /// @param WaitForVsync Whether or not the buffer should swap after the vsync interval is completed.
             virtual void SwapAllBuffers(bool WaitForVsync);
 
             ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
+            // SubSystem Initialization
+
+            /// @brief Gets whether or not SDL has been started.
+            /// @return Returns a bool indicating whether or not SDL has been initialized yet.
+            bool HasSDLBeenInitialized();
+            /// @brief Gets whether or not Ogre has been started.
+            /// @return Returns a bool indicating whether or not Ogre has been initialized yet.
+            bool HasOgreBeenInitialized();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Inherited from ManagerBase
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();

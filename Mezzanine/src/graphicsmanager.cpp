@@ -52,6 +52,7 @@
 #include "crossplatform.h"
 #include "viewport.h"
 #include "stringtool.h"
+#include "world.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -79,127 +80,60 @@ namespace Mezzanine
         Construct();
 
         XML::Attribute CurrAttrib;
-        for( XML::NodeIterator SecIt = XMLNode.begin() ; SecIt != XMLNode.end() ; ++SecIt )
+        String PathPreset;
+        // Get whether or not to autogen the directory path and settings file.
+        XML::Node AutoGenNode = XMLNode.GetChild("AutoCreateSettings");
+        if(!AutoGenNode.Empty())
         {
-            String SecName = (*SecIt).Name();
-            if( "RenderSystem" == SecName && !OgreBeenInitialized )
-            {
-                CurrAttrib = (*SecIt).GetAttribute("Name");
-                String RenderSystemName = CurrAttrib.AsString();
-                if( "Direct3D9" == RenderSystemName )
-                    SetRenderSystem(Mezzanine::RS_DirectX9,true);
-                else if( "Direct3D11" == RenderSystemName )
-                    SetRenderSystem(Mezzanine::RS_DirectX11,true);
-                else if( "OpenGL" == RenderSystemName )
-                    SetRenderSystem(Mezzanine::RS_OpenGL2,true);
-                else if( "OpenGLES1.x" == RenderSystemName )
-                    SetRenderSystem(Mezzanine::RS_OpenGLES1,true);
-                else if( "OpenGLES2.x" == RenderSystemName )
-                    SetRenderSystem(Mezzanine::RS_OpenGLES2,true);
-            }
-            else if( "GameWindow" == SecName )
-            {
-                String WinCaption("Mezzanine Window");
-                Whole WinWidth = 800;
-                Whole WinHeight = 600;
-                Whole WinFlags = 0;
-                //GameWindow::WindowFlags WinFlags;
-                GameWindow::ViewportLayout VPLayout = GameWindow::VL_Custom;
+            CurrAttrib = AutoGenNode.GetAttribute("Auto");
+            if(!CurrAttrib.Empty())
+                AutoGenPath = AutoGenFiles = StringTool::ConvertToBool( CurrAttrib.AsString() );
+        }
+        // Get preset path to default to if a path is not provided.
+        XML::Node PathNode = XMLNode.GetChild("SettingsPath");
+        if(!PathNode.Empty())
+        {
+            CurrAttrib = PathNode.GetAttribute("Path");
+            if(!CurrAttrib.Empty())
+                PathPreset = CurrAttrib.AsString();
 
-                // Get the caption.
-                CurrAttrib = (*SecIt).GetAttribute("Caption");
+            if(!PathPreset.empty())
+                SetSettingsFilePath(PathPreset);
+        }
+        // Get the files to be loaded, and load them.
+        XML::Node FilesNode = XMLNode.GetChild("SettingsFiles");
+        if(!FilesNode.Empty())
+        {
+            for( XML::NodeIterator SetFileIt = FilesNode.begin() ; SetFileIt != FilesNode.end() ; ++SetFileIt )
+            {
+                String FileName, FilePath, FileGroup;
+                // Get the filename to load
+                CurrAttrib = (*SetFileIt).GetAttribute("FileName");
                 if(!CurrAttrib.Empty())
-                    WinCaption = CurrAttrib.AsString();
-                // Get the width.
-                CurrAttrib = (*SecIt).GetAttribute("Width");
+                    FileName = CurrAttrib.AsString();
+                // Get the path
+                CurrAttrib = (*SetFileIt).GetAttribute("Path");
                 if(!CurrAttrib.Empty())
-                    WinWidth = CurrAttrib.AsWhole();
-                // Get the height.
-                CurrAttrib = (*SecIt).GetAttribute("Height");
-                if(!CurrAttrib.Empty())
-                    WinHeight = CurrAttrib.AsWhole();
-                // Get fullscreen.
-                CurrAttrib = (*SecIt).GetAttribute("Fullscreen");
-                if(!CurrAttrib.Empty())
+                    FilePath = CurrAttrib.AsString();
+                else
                 {
-                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
-                        WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
+                    CurrAttrib = (*SetFileIt).GetAttribute("Group");
+                    if(!CurrAttrib.Empty())
+                        FileGroup = CurrAttrib.AsString();
                 }
-                // Get hidden.
-                CurrAttrib = (*SecIt).GetAttribute("Hidden");
-                if(!CurrAttrib.Empty())
+
+                if(FilePath.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
-                        WinFlags = (WinFlags | GameWindow::WF_Hidden);
+                    if(FileGroup.empty()) LoadSettings(FileName);
+                    else LoadSettingsFromGroup(FileName,FileGroup);
                 }
-                // Get vsync.
-                CurrAttrib = (*SecIt).GetAttribute("Vsync");
-                if(!CurrAttrib.Empty())
-                {
-                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
-                        WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
-                }
-                // Get resizable.
-                CurrAttrib = (*SecIt).GetAttribute("Resizeable");
-                if(!CurrAttrib.Empty())
-                {
-                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
-                        WinFlags = (WinFlags | GameWindow::WF_Resizeable);
-                }
-                // Get maximized.
-                CurrAttrib = (*SecIt).GetAttribute("Maximized");
-                if(!CurrAttrib.Empty())
-                {
-                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
-                        WinFlags = (WinFlags | GameWindow::WF_Maximized);
-                }
-                // Get borderless.
-                CurrAttrib = (*SecIt).GetAttribute("Borderless");
-                if(!CurrAttrib.Empty())
-                {
-                    if(StringTool::ConvertToBool(CurrAttrib.AsString()))
-                        WinFlags = (WinFlags | GameWindow::WF_Borderless);
-                }
-                // Get the FSAA level
-                CurrAttrib = (*SecIt).GetAttribute("FSAA");
-                if(!CurrAttrib.Empty())
-                {
-                    switch (CurrAttrib.AsWhole())
-                    {
-                        case 2:
-                            WinFlags = (WinFlags | GameWindow::WF_FSAA_2);
-                            break;
-                        case 4:
-                            WinFlags = (WinFlags | GameWindow::WF_FSAA_4);
-                            break;
-                        case 8:
-                            WinFlags = (WinFlags | GameWindow::WF_FSAA_8);
-                            break;
-                        case 16:
-                            WinFlags = (WinFlags | GameWindow::WF_FSAA_16);
-                            break;
-                    }
-                }
-                // Get the viewport layout
-                CurrAttrib = (*SecIt).GetAttribute("ViewportConf");
-                if(!CurrAttrib.Empty())
-                {
-                    String VPConf = CurrAttrib.AsString();
-                    if( "1-FullWindow" == VPConf )
-                        VPLayout = GameWindow::VL_1_FullWindow;
-                    else if( "2-HorizontalSplit" == VPConf )
-                        VPLayout = GameWindow::VL_2_HorizontalSplit;
-                    else if( "2-VerticalSplit" == VPConf )
-                        VPLayout = GameWindow::VL_2_VerticalSplit;
-                    else if( "3-TopLarge" == VPConf )
-                        VPLayout = GameWindow::VL_3_TopLarge;
-                    else if( "4-EvenlySplit" == VPConf )
-                        VPLayout = GameWindow::VL_4_EvenlySpaced;
-                }
-                // Finally, construct the window.
-                CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags,VPLayout);
+                else LoadSettings(FileName,FilePath);
             }
         }
+        /// @todo This is currently necessary because a render window of some kind needs to exist for the loading
+        /// of resources that occurs later in world construction (when this is constructed by the world, which this
+        /// assumes.  If possible this should be removed, to keep construction more flexible.
+        InitOgreRenderSystem();
     }
 #endif
 
@@ -220,32 +154,17 @@ namespace Mezzanine
         this->FrameDelay = 0;
     }
 
-    String GraphicsManager::ConvertRenderSystem(const Mezzanine::RenderSystem& RS)
-    {
-        switch(RS)
-        {
-            case Mezzanine::RS_DirectX9: return "Direct3D9 Rendering Subsystem"; break;
-            case Mezzanine::RS_DirectX11: return "Direct3D11 Rendering Subsystem"; break;
-            case Mezzanine::RS_OpenGL2: return "OpenGL Rendering Subsystem"; break;  /// @todo This will likely have to change when other OGL systems are implemented
-            //case Mezzanine::RS_OpenGL3: return ""; break;  Not yet implemented
-            //case Mezzanine::RS_OpenGL4: return ""; break;  Not yet implemented
-            case Mezzanine::RS_OpenGLES1: return "OpenGL ES 1.x Rendering Subsystem"; break;
-            case Mezzanine::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;
-        }
-        return "";
-    }
-
     void GraphicsManager::InitOgreRenderSystem()
     {
         if(!OgreBeenInitialized)
         {
             Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
-            String RenderSysName = ConvertRenderSystem(CurrRenderSys);
+            String RenderSysName = GetRenderSystemName(CurrRenderSys);
             OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(RenderSysName));
             OgreCore->initialise(false,"");
             OgreBeenInitialized = true;
 
-            PrimaryGameWindow = CreateGameWindow("Primary",1,1,GameWindow::WF_Hidden);
+            PrimaryGameWindow = new GameWindow("Primary",1,1,GameWindow::WF_Hidden);
         }
     }
 
@@ -257,13 +176,166 @@ namespace Mezzanine
 
     void GraphicsManager::AppendCurrentSettings(XML::Node& SettingsRootNode)
     {
-
+        // Create the Group node to be returned
+        XML::Node CurrentSettings = SettingsRootNode.AppendChild("Current");
+        // Create and initialize the rendersystem settings
+        XML::Node RenderSystemNode = CurrentSettings.AppendChild("RenderSystem");
+        RenderSystemNode.AppendAttribute("Name").SetValue( GetShortenedRenderSystemName(CurrRenderSys) );
+        // Create and initialize the window configuration
+        for( GameWindowIterator WinIt = GameWindows.begin() ; WinIt != GameWindows.end() ; ++WinIt )
+        {
+            XML::Node WindowConfigNode = CurrentSettings.AppendChild("GameWindow");
+            WindowConfigNode.AppendAttribute("Caption").SetValue( (*WinIt)->GetWindowCaption() );
+            WindowConfigNode.AppendAttribute("Width").SetValue( StringTool::ConvertToString( (*WinIt)->GetRenderWidth() ) );
+            WindowConfigNode.AppendAttribute("Height").SetValue( StringTool::ConvertToString( (*WinIt)->GetRenderHeight() ) );
+            WindowConfigNode.AppendAttribute("Fullscreen").SetValue( StringTool::ConvertToString( (*WinIt)->GetFullscreen() ) );
+            WindowConfigNode.AppendAttribute("Hidden").SetValue( StringTool::ConvertToString( (*WinIt)->IsHidden() ) );
+            WindowConfigNode.AppendAttribute("Vsync").SetValue( StringTool::ConvertToString( (*WinIt)->VsyncEnabled() ) );
+            WindowConfigNode.AppendAttribute("Resizeable").SetValue( StringTool::ConvertToString( (*WinIt)->BorderIsResizeable() ) );
+            WindowConfigNode.AppendAttribute("Borderless").SetValue( StringTool::ConvertToString( (*WinIt)->IsBorderless() ) );
+            WindowConfigNode.AppendAttribute("FSAA").SetValue( StringTool::ConvertToString( (*WinIt)->GetFSAALevel() ) );
+            WindowConfigNode.AppendAttribute("ViewportConf").SetValue( (*WinIt)->GetViewportLayoutName( (*WinIt)->GetViewportLayout() ) );
+            /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
+            //WindowConfigNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//
+        }
     }
 #endif
     void GraphicsManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
     {
+        for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )
+        {
+            String CurrSettingValue;
+            if( "RenderSystem" == (*SubSetIt)->GetName() )
+            {
+                Mezzanine::RenderSystem RenderSys = Mezzanine::RS_OpenGL2;
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Name");
+                if( "Direct3D9" == CurrSettingValue )
+                    RenderSys = Mezzanine::RS_DirectX9;
+                else if( "Direct3D11" == CurrSettingValue )
+                    RenderSys = Mezzanine::RS_DirectX11;
+                else if( "OpenGL" == CurrSettingValue )
+                    RenderSys = Mezzanine::RS_OpenGL2;
+                else if( "OpenGLES1.x" == CurrSettingValue )
+                    RenderSys = Mezzanine::RS_OpenGLES1;
+                else if( "OpenGLES2.x" == CurrSettingValue )
+                    RenderSys = Mezzanine::RS_OpenGLES2;
 
+                if(!OgreBeenInitialized)
+                {
+                    SetRenderSystem(CurrRenderSys,true);
+                }else{
+                    /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
+                    World::GetWorldPointer()->Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
+                                                  "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
+                    CurrRenderSys = RenderSys;
+                }
+            }
+            else if( "GameWindow" == (*SubSetIt)->GetName() )
+            {
+                String WinCaption("Mezzanine Window");
+                Whole WinWidth = 800;
+                Whole WinHeight = 600;
+                Whole WinFlags = 0;
+                //GameWindow::WindowFlags WinFlags;
+                GameWindow::ViewportLayout VPLayout = GameWindow::VL_Custom;
+
+                // Get the caption.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Caption");
+                if(!CurrSettingValue.empty())
+                    WinCaption = CurrSettingValue;
+                // Get the width.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Width");
+                if(!CurrSettingValue.empty())
+                    WinWidth = StringTool::ConvertToUInt32(CurrSettingValue);
+                // Get the height.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Height");
+                if(!CurrSettingValue.empty())
+                    WinHeight = StringTool::ConvertToUInt32(CurrSettingValue);
+                // Get fullscreen.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Fullscreen");
+                if(!CurrSettingValue.empty())
+                {
+                    if(StringTool::ConvertToBool(CurrSettingValue))
+                        WinFlags = (WinFlags | GameWindow::WF_Fullscreen);
+                }
+                // Get hidden.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Hidden");
+                if(!CurrSettingValue.empty())
+                {
+                    if(StringTool::ConvertToBool(CurrSettingValue))
+                        WinFlags = (WinFlags | GameWindow::WF_Hidden);
+                }
+                // Get vsync.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Vsync");
+                if(!CurrSettingValue.empty())
+                {
+                    if(StringTool::ConvertToBool(CurrSettingValue))
+                        WinFlags = (WinFlags | GameWindow::WF_VsyncEnabled);
+                }
+                // Get resizable.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Resizeable");
+                if(!CurrSettingValue.empty())
+                {
+                    if(StringTool::ConvertToBool(CurrSettingValue))
+                        WinFlags = (WinFlags | GameWindow::WF_Resizeable);
+                }
+                // Get maximized.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Maximized");
+                if(!CurrSettingValue.empty())
+                {
+                    if(StringTool::ConvertToBool(CurrSettingValue))
+                        WinFlags = (WinFlags | GameWindow::WF_Maximized);
+                }
+                // Get borderless.
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("Borderless");
+                if(!CurrSettingValue.empty())
+                {
+                    if(StringTool::ConvertToBool(CurrSettingValue))
+                        WinFlags = (WinFlags | GameWindow::WF_Borderless);
+                }
+                // Get the FSAA level
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("FSAA");
+                if(!CurrSettingValue.empty())
+                {
+                    switch (StringTool::ConvertToUInt32(CurrSettingValue))
+                    {
+                        case 2:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_2);
+                            break;
+                        case 4:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_4);
+                            break;
+                        case 8:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_8);
+                            break;
+                        case 16:
+                            WinFlags = (WinFlags | GameWindow::WF_FSAA_16);
+                            break;
+                    }
+                }
+                // Get the viewport layout
+                CurrSettingValue = (*SubSetIt)->GetSettingValue("ViewportConf");
+                if(!CurrSettingValue.empty())
+                {
+                    if( "1-FullWindow" == CurrSettingValue )
+                        VPLayout = GameWindow::VL_1_FullWindow;
+                    else if( "2-HorizontalSplit" == CurrSettingValue )
+                        VPLayout = GameWindow::VL_2_HorizontalSplit;
+                    else if( "2-VerticalSplit" == CurrSettingValue )
+                        VPLayout = GameWindow::VL_2_VerticalSplit;
+                    else if( "3-TopLarge" == CurrSettingValue )
+                        VPLayout = GameWindow::VL_3_TopLarge;
+                    else if( "4-EvenlySplit" == CurrSettingValue )
+                        VPLayout = GameWindow::VL_4_EvenlySpaced;
+                }
+                // Finally, construct the window.
+                CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags,VPLayout);
+            }
+        }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Window Management
 
     GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf)
     {
@@ -276,7 +348,7 @@ namespace Mezzanine
 
     GameWindow* GraphicsManager::GetGameWindow(const Whole& Index)
     {
-        return GameWindows[Index];
+        return GameWindows.at(Index);
     }
 
     Whole GraphicsManager::GetNumGameWindows()
@@ -315,20 +387,8 @@ namespace Mezzanine
         return PrimaryGameWindow;
     }
 
-    const GraphicsSettings& GraphicsManager::GetDesktopSettings()
-    {
-        return DesktopSettings;
-    }
-
-    bool GraphicsManager::HasSDLBeenInitialized()
-    {
-        return SDL_WasInit(SDL_INIT_VIDEO);
-    }
-
-    bool GraphicsManager::HasOgreBeenInitialized()
-    {
-        return OgreBeenInitialized;
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // RenderSystem Management
 
     void GraphicsManager::SetRenderSystem(const Mezzanine::RenderSystem& RenderSys, bool InitializeRenderSystem)
     {
@@ -344,23 +404,56 @@ namespace Mezzanine
         return CurrRenderSys;
     }
 
-    String GraphicsManager::GetRenderSystemName()
+    String GraphicsManager::GetRenderSystemName(const Mezzanine::RenderSystem& RenderSys)
     {
-        String Renderer = Ogre::Root::getSingleton().getRenderSystem()->getName();
-        Whole EditPos = Renderer.find("Rendering");
-        Renderer.erase(EditPos - 1);
-        return Renderer;
+        switch(RenderSys)
+        {
+            case Mezzanine::RS_DirectX9: return "Direct3D9 Rendering Subsystem"; break;
+            case Mezzanine::RS_DirectX11: return "Direct3D11 Rendering Subsystem"; break;
+            case Mezzanine::RS_OpenGL2: return "OpenGL Rendering Subsystem"; break;  /// @todo This will likely have to change when other OGL systems are implemented
+            //case Mezzanine::RS_OpenGL3: return ""; break;  Not yet implemented
+            //case Mezzanine::RS_OpenGL4: return ""; break;  Not yet implemented
+            case Mezzanine::RS_OpenGLES1: return "OpenGL ES 1.x Rendering Subsystem"; break;
+            case Mezzanine::RS_OpenGLES2: return "OpenGL ES 2.x Rendering Subsystem"; break;
+        }
+        return "";
     }
 
-    const std::vector<String>* GraphicsManager::GetSupportedResolutions()
+    String GraphicsManager::GetShortenedRenderSystemName(const Mezzanine::RenderSystem& RenderSys)
+    {
+        switch(RenderSys)
+        {
+            case Mezzanine::RS_DirectX9: return "Direct3D9"; break;
+            case Mezzanine::RS_DirectX11: return "Direct3D11"; break;
+            case Mezzanine::RS_OpenGL2: return "OpenGL"; break;  /// @todo This will likely have to change when other OGL systems are implemented
+            //case Mezzanine::RS_OpenGL3: return ""; break;  Not yet implemented
+            //case Mezzanine::RS_OpenGL4: return ""; break;  Not yet implemented
+            case Mezzanine::RS_OpenGLES1: return "OpenGLES1.x"; break;
+            case Mezzanine::RS_OpenGLES2: return "OpenGLES2.x"; break;
+        }
+        return "";
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Query Methods
+
+    const StringVector* GraphicsManager::GetSupportedResolutions()
     {
         return &SupportedResolutions;
     }
 
-    const std::vector<String>* GraphicsManager::GetSupportedDevices()
+    const StringVector* GraphicsManager::GetSupportedDevices()
     {
         return &SupportedDevices;
     }
+
+    const GraphicsSettings& GraphicsManager::GetDesktopSettings()
+    {
+        return DesktopSettings;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility Methods
 
     void GraphicsManager::ResetRenderTimer()
     {
@@ -374,7 +467,7 @@ namespace Mezzanine
         TheWorld->Log("Rendering the World.");
         #endif
         Ogre::Root::getSingleton().renderOneFrame();
-        if( !GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
+        if( !GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() )
             Ogre::Root::getSingleton().clearEventTimes();
         #ifdef MEZZDEBUG
         TheWorld->Log("Finished Rendering");
@@ -384,10 +477,25 @@ namespace Mezzanine
     void GraphicsManager::SwapAllBuffers(bool WaitForVsync)
     {
         for( Whole X = 0 ; X < GetNumGameWindows() ; X++ )
-            GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
+            GetGameWindow(X)->_GetOgreWindowPointer()->swapBuffers(false);
     }
 
-    //Inherited From ManagerBase
+    ///////////////////////////////////////////////////////////////////////////////
+    // SubSystem Initialization
+
+    bool GraphicsManager::HasSDLBeenInitialized()
+    {
+        return SDL_WasInit(SDL_INIT_VIDEO);
+    }
+
+    bool GraphicsManager::HasOgreBeenInitialized()
+    {
+        return OgreBeenInitialized;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited from ManagerBase
+
     void GraphicsManager::Initialize()
     {
         if(!OgreBeenInitialized)
@@ -416,6 +524,9 @@ namespace Mezzanine
                 continue;
             }
         }
+
+        if(AutoGenFiles)
+            SaveAllSettings();
 
         Initialized = true;
     }
