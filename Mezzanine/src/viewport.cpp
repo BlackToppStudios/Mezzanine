@@ -41,6 +41,7 @@
 #define _viewport_cpp
 
 #include "viewport.h"
+#include "cameramanager.h"
 #include "camera.h"
 #include "gamewindow.h"
 
@@ -48,7 +49,7 @@
 
 namespace Mezzanine
 {
-    Viewport::Viewport(Camera* ViewportCamera, const Whole& ZOrder, GameWindow* ParentWindow)
+    Viewport::Viewport(Camera* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow)
         : Parent(ParentWindow),
           ViewportCam(ViewportCamera)
     {
@@ -60,6 +61,9 @@ namespace Mezzanine
     {
         Parent->_GetOgreWindowPointer()->removeViewport(OgreViewport->getZOrder());
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Camera and parent Management
 
     void Viewport::SetCamera(Camera* ViewportCamera)
     {
@@ -73,14 +77,22 @@ namespace Mezzanine
             ViewportCam->CameraVP = this;
     }
 
+    Camera* Viewport::GetViewportCamera()
+    {
+        return ViewportCam;
+    }
+
     GameWindow* Viewport::GetParentWindow()
     {
         return Parent;
     }
 
-    Camera* Viewport::GetViewportCamera()
+    ///////////////////////////////////////////////////////////////////////////////
+    // Viewport Metrics Management
+
+    Integer Viewport::GetZOrder() const
     {
-        return ViewportCam;
+        return OgreViewport->getZOrder();
     }
 
     void Viewport::SetDimensions(const Vector2& Position, const Vector2& Size)
@@ -132,6 +144,9 @@ namespace Mezzanine
     {
         return OgreViewport->getActualHeight();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
 
     Ogre::Viewport* Viewport::GetOgreViewport() const
     {

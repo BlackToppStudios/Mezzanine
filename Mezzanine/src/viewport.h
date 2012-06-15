@@ -70,18 +70,29 @@ namespace Mezzanine
             /// @param ViewportCamera The camera that is to be attached to this veiwport.
             /// @param ZOrder The render order of this viewport relative to other viewports in the game window.
             /// @param ParentWindow The game window this viewport belongs to.
-            Viewport(Camera* ViewportCamera, const Whole& ZOrder, GameWindow* ParentWindow);
+            Viewport(Camera* ViewportCamera, const Integer& ZOrder, GameWindow* ParentWindow);
             /// @brief Class destructor.
             ~Viewport();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Camera and parent Management
+
             /// @brief Sets which camera is bound to this viewport.
             /// @param ViewportCamera Pointer to the camera to be bount to this viewport, or NULL to simply unbind a camera.
             void SetCamera(Camera* ViewportCamera);
-            /// @brief Gets the game window this viewport belongs to.
-            /// @return Returns a pointer to the game window that created this viewport.
-            GameWindow* GetParentWindow();
             /// @brief Gets the camera associated with this viewport.
             /// @return Returns a pointer to the camera using this viewport.
             Camera* GetViewportCamera();
+            /// @brief Gets the game window this viewport belongs to.
+            /// @return Returns a pointer to the game window that created this viewport.
+            GameWindow* GetParentWindow();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Viewport Metrics Management
+
+            /// @brief Gets the Zorder assigned to this viewport.
+            /// @return Returns an integer that represents this viewports rendering order in it's parent GameWindow.
+            Integer GetZOrder() const;
             /// @brief Sets the position and size of this viewport within the game window.
             /// @param Position Vector2 of relative values(range: 0-1) representing the top left corner of the viewport.
             /// Values are relative to the game window this viewport belongs to.
@@ -118,6 +129,10 @@ namespace Mezzanine
             /// @brief Gets the height of the viewport in pixels.
             /// @return Returns a whole representing the height of this veiwport in pixels.
             Whole GetActualHeight() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Internal Methods
+
             /// @internal
             /// @brief Gets the internal Ogre Viewport.
             /// @return Returns a pointer to the Ogre Viewport this class is based on.
