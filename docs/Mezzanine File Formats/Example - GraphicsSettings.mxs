@@ -9,8 +9,10 @@
 		<!-- Caption is a string.  Width and Height are both unsigned ints.  Fullscreen, Hidden, Resizeable, Maximized, and Borderless are bools. -->
 		<!-- FSAA is Full Screen Anti-Aliasing and has 5 possible values: 0, 2, 4, 8, and 16.  0 means FSAA is disabled. -->
 		<!-- Multiple windows can be defined here.  The first one defined will become the primary window. -->
-		<!-- ViewportConf is a string and describes how the viewports of the window should be initialized.  Note that you still have to bind the camera to the viewport if you use this. -->
-		<!-- Options for ViewportConf are: Custom, 1-FullWindow, 2-HorizontalSplit, 2-VerticalSplit, 3-TopLarge, 4-EvenlySplit -->
-		<GameWindow Caption="Mezzanine Window" Width="800" Height="600" Fullscreen="false" Hidden="false" Vsync="false" Resizeable="false" Borderless="false" FSAA="0" ViewportConf="Custom" />
+		<GameWindow Caption="Mezzanine Window" Width="800" Height="600" Fullscreen="false" Hidden="false" Vsync="false" Resizeable="false" Borderless="false" FSAA="0" />
+			<!-- Zorder is a Whole.  If not specified it choses the number of Viewports already in the window. -->
+			<!-- Position is the relative position on the window that the topleft of the viewport will be placed.  Values must be between 0 and 1. -->
+			<!-- Size is the size the viewport will have relative to the window.  Values must be between 0 and 1. -->
+			<Viewport Zorder="0" Position="0 0" Size="1 1" />
 	</Current>
 </DefaultGraphicsManagerSettings>
