@@ -182,7 +182,7 @@ namespace Mezzanine
         XML::Node RenderSystemNode = CurrentSettings.AppendChild("RenderSystem");
         RenderSystemNode.AppendAttribute("Name").SetValue( GetShortenedRenderSystemName(CurrRenderSys) );
         // Create and initialize the window configuration
-        for( GameWindowIterator WinIt = GameWindows.begin() ; WinIt != GameWindows.end() ; ++WinIt )
+        for( GameWindowIterator WinIt = BeginGameWindow() ; WinIt != EndGameWindow() ; ++WinIt )
         {
             XML::Node WindowConfigNode = CurrentSettings.AppendChild("GameWindow");
             WindowConfigNode.AppendAttribute("Caption").SetValue( (*WinIt)->GetWindowCaption() );
@@ -194,9 +194,15 @@ namespace Mezzanine
             WindowConfigNode.AppendAttribute("Resizeable").SetValue( StringTool::ConvertToString( (*WinIt)->BorderIsResizeable() ) );
             WindowConfigNode.AppendAttribute("Borderless").SetValue( StringTool::ConvertToString( (*WinIt)->IsBorderless() ) );
             WindowConfigNode.AppendAttribute("FSAA").SetValue( StringTool::ConvertToString( (*WinIt)->GetFSAALevel() ) );
-            WindowConfigNode.AppendAttribute("ViewportConf").SetValue( (*WinIt)->GetViewportLayoutName( (*WinIt)->GetViewportLayout() ) );
             /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
             //WindowConfigNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//
+            for( GameWindow::ViewportIterator VPIt = (*WinIt)->BeginViewport() ; VPIt != (*WinIt)->EndViewport() ; ++VPIt )
+            {
+                XML::Node ViewportConfigNode = WindowConfigNode.AppendChild("Viewport");
+                ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt)->GetZOrder() );
+                ViewportConfigNode.AppendAttribute("Position").SetValue( StringTool::ConvertToString( Vector2((*VPIt)->GetLeft(),(*VPIt)->GetTop()) ) );
+                ViewportConfigNode.AppendAttribute("Size").SetValue( StringTool::ConvertToString( Vector2((*VPIt)->GetWidth(),(*VPIt)->GetHeight()) ) );
+            }
         }
     }
 #endif
@@ -236,8 +242,6 @@ namespace Mezzanine
                 Whole WinWidth = 800;
                 Whole WinHeight = 600;
                 Whole WinFlags = 0;
-                //GameWindow::WindowFlags WinFlags;
-                GameWindow::ViewportLayout VPLayout = GameWindow::VL_Custom;
 
                 // Get the caption.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Caption");
@@ -313,35 +317,43 @@ namespace Mezzanine
                             break;
                     }
                 }
-                // Get the viewport layout
-                CurrSettingValue = (*SubSetIt)->GetSettingValue("ViewportConf");
-                if(!CurrSettingValue.empty())
-                {
-                    if( "1-FullWindow" == CurrSettingValue )
-                        VPLayout = GameWindow::VL_1_FullWindow;
-                    else if( "2-HorizontalSplit" == CurrSettingValue )
-                        VPLayout = GameWindow::VL_2_HorizontalSplit;
-                    else if( "2-VerticalSplit" == CurrSettingValue )
-                        VPLayout = GameWindow::VL_2_VerticalSplit;
-                    else if( "3-TopLarge" == CurrSettingValue )
-                        VPLayout = GameWindow::VL_3_TopLarge;
-                    else if( "4-EvenlySplit" == CurrSettingValue )
-                        VPLayout = GameWindow::VL_4_EvenlySpaced;
-                }
                 // Finally, construct the window.
-                CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags,VPLayout);
-            }
-        }
+                GameWindow* CurrWindow = CreateGameWindow(WinCaption,WinWidth,WinHeight,WinFlags);
+                // Set up the viewports
+                for( ObjectSettingSetContainer::SubSetIterator VPIt = (*SubSetIt)->SubSetBegin() ; VPIt != (*SubSetIt)->SubSetEnd() ; ++VPIt )
+                {
+                    if( "Viewport" == (*VPIt)->GetName() )
+                    {
+                        Integer ZO = 0;
+                        Vector2 Position(1,1);
+                        Vector2 Size(0,0);
+
+                        CurrSettingValue = (*VPIt)->GetSettingValue("ZOrder");
+                        if(!CurrSettingValue.empty())
+                            ZO = StringTool::ConvertToInteger( CurrSettingValue );
+                        CurrSettingValue = (*VPIt)->GetSettingValue("Position");
+                        if(!CurrSettingValue.empty())
+                            Position = StringTool::ConvertToVector2( CurrSettingValue );
+                        CurrSettingValue = (*VPIt)->GetSettingValue("Size");
+                        if(!CurrSettingValue.empty())
+                            Size = StringTool::ConvertToVector2( CurrSettingValue );
+
+                        Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
+                        CurrViewport->SetDimensions(Position.X,Position.Y,Size.X,Size.Y);
+                    }// if - Viewport
+                }// for - Viewports
+            }// if - RS || GameWindow
+        }// for - SubSets
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Window Management
 
-    GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf)
+    GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
         if(!OgreBeenInitialized) InitOgreRenderSystem();
 
-        GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags,ViewportConf);
+        GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
         GameWindows.push_back(NewWindow);
         return NewWindow;
     }
@@ -385,6 +397,26 @@ namespace Mezzanine
     GameWindow* GraphicsManager::GetPrimaryGameWindow()
     {
         return PrimaryGameWindow;
+    }
+
+    GraphicsManager::GameWindowIterator GraphicsManager::BeginGameWindow()
+    {
+        return GameWindows.begin();
+    }
+
+    GraphicsManager::GameWindowIterator GraphicsManager::EndGameWindow()
+    {
+        return GameWindows.end();
+    }
+
+    GraphicsManager::ConstGameWindowIterator GraphicsManager::BeginGameWindow() const
+    {
+        return GameWindows.begin();
+    }
+
+    GraphicsManager::ConstGameWindowIterator GraphicsManager::EndGameWindow() const
+    {
+        return GameWindows.end();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

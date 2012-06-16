@@ -121,8 +121,7 @@ namespace Mezzanine
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see GameWindow class for more info.
-            /// @param ViewportConf The configuration/layout of the viewports on this window.
-            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const GameWindow::ViewportLayout& ViewportConf = GameWindow::VL_Custom);
+            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             /// @brief Gets a game window by index.
             /// @return Returns a pointer to the game window requested.
             GameWindow* GetGameWindow(const Whole& Index);
@@ -138,6 +137,15 @@ namespace Mezzanine
             /// @brief Gets the primary(first) game window.
             /// @return Returns a pointer to the primary game window.
             GameWindow* GetPrimaryGameWindow();
+
+            /// @brief Gets an iterator to the first GameWindow stored in this manager.
+            GameWindowIterator BeginGameWindow();
+            /// @brief Gets an iterator to one passed the last GameWindow stored in this manager.
+            GameWindowIterator EndGameWindow();
+            /// @brief Gets a const iterator to the first GameWindow stored in this manager.
+            ConstGameWindowIterator BeginGameWindow() const;
+            /// @brief Gets a const iterator to one passed the last GameWindow stored in this manager.
+            ConstGameWindowIterator EndGameWindow() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // RenderSystem Management
