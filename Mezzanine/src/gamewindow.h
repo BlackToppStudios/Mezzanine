@@ -82,17 +82,6 @@ namespace Mezzanine
                 WF_Maximized = 256,   ///< Maximizes the window immediately after construction.
                 WF_Borderless = 512,  ///< Removes all window decorations from the window(titlebar, borders, etc.).
             };
-            /// @enum ViewportLayout
-            /// @brief This enum describes a quick configuration a viewport or viewports could have in a window.
-            enum ViewportLayout
-            {
-                VL_Custom,            ///< Do not attempt to set the viewport configuration, user defined.
-                VL_1_FullWindow,      ///< Create only one viewport taking up the full window.
-                VL_2_HorizontalSplit, ///< Create two viewports each taking half of the screen split horizontally.  One viewport for the top half, other for the bottom half.
-                VL_2_VerticalSplit,   ///< Create two viewports each taking half of the screen split vertically.  One viewport for the left half, other for the right half.
-                VL_3_TopLarge,        ///< Create three viewports.  Top viewport will take half of the screen.  Two additional viewports taking a quarter of the screen to fill the bottom half.
-                VL_4_EvenlySpaced     ///< Create four viewports.  Each viewport will take an equal amount of the screen in each corner.
-            };
         protected:
             GraphicsManager* Manager;
             Ogre::RenderWindow* OgreWindow;
@@ -101,7 +90,7 @@ namespace Mezzanine
             GraphicsSettings Settings;
             ViewportContainer Viewports;
 
-            void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf);
+            void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             void UpdateViewportsAndCameras();
             int IsLargerThenDesktop(const Whole& Width, const Whole& Height);
         public:
@@ -110,8 +99,7 @@ namespace Mezzanine
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
             /// @param Flags Additional misc parameters, see WindowFlags enum for more info.
-            /// @param ViewportConf The configuration/layout of the viewports on this window.
-            GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf = VL_Custom);
+            GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             /// @brief Class destructor.
             ~GameWindow();
 
@@ -132,12 +120,15 @@ namespace Mezzanine
             /// @brief Destroys a viewport within this window.
             /// @param ToBeDestroyed The viewport that will be destroyed.
             void DestroyViewport(Viewport* ToBeDestroyed);
-            /// @brief Gets the current layout of the viewports in this window.
-            /// @return Returns a ViewportLayour enum value describing the configuration of viewports in this window, or VL_Custom if it cannot be described.
-            ViewportLayout GetViewportLayout() const;
-            /// @brief Gets the name of the specified viewport layout.
-            /// @return Returns a string containing the name of the layout provided.
-            String GetViewportLayoutName(const ViewportLayout& Layout) const;
+
+            /// @brief Gets an iterator to the first viewport in this window.
+            ViewportIterator BeginViewport();
+            /// @brief Gets an iterator to one passed the last viewport in this window.
+            ViewportIterator EndViewport();
+            /// @brief Gets a const iterator to the first viewport in this window.
+            ConstViewportIterator BeginViewport() const;
+            /// @brief Gets a const iterator to one passed the last viewport in this window.
+            ConstViewportIterator EndViewport() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Window Metrics Management

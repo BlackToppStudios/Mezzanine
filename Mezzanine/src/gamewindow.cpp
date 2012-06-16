@@ -70,12 +70,12 @@ namespace Mezzanine
             GameWindowInternalData() : Borderless(false), Resizeable(false) {};
     };
 
-    GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf)
+    GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
         : OgreWindow(NULL),
           SDLWindow(NULL)
     {
         GWID = new GameWindowInternalData();
-        CreateGameWindow(WindowCaption,Width,Height,Flags,ViewportConf);
+        CreateGameWindow(WindowCaption,Width,Height,Flags);
     }
 
     GameWindow::~GameWindow()
@@ -85,7 +85,7 @@ namespace Mezzanine
         delete GWID;
     }
 
-    void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags, const ViewportLayout& ViewportConf)
+    void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
         Manager = GraphicsManager::GetSingletonPtr();
         Settings.RenderWidth = Width;
@@ -158,98 +158,10 @@ namespace Mezzanine
             OgreWindow->getCustomAttribute("WINDOW",&Data);
             SDLWindow = SDL_CreateWindowFrom((void*)Data);
         }
-
-        if(VL_Custom != ViewportConf)
-        {
-            Vector2 ViewportSize, ViewportPosition;
-            switch (ViewportConf)
-            {
-                case VL_1_FullWindow:
-                {
-                    Viewport* Viewport1 = CreateViewport(NULL,0);
-                    Viewport1->SetDimensions(0,0,1,1);
-                    break;
-                }
-                case VL_2_HorizontalSplit:
-                {
-                    Viewport* Viewport1 = CreateViewport(NULL,0);
-                    Viewport1->SetDimensions(0,0,1,0.5);
-                    Viewport* Viewport2 = CreateViewport(NULL,1);
-                    Viewport2->SetDimensions(0,0.5,1,0.5);
-                    break;
-                }
-                case VL_2_VerticalSplit:
-                {
-                    Viewport* Viewport1 = CreateViewport(NULL,0);
-                    Viewport1->SetDimensions(0,0,0.5,1);
-                    Viewport* Viewport2 = CreateViewport(NULL,1);
-                    Viewport2->SetDimensions(0.5,0,0.5,1);
-                    break;
-                }
-                case VL_3_TopLarge:
-                {
-                    Viewport* Viewport1 = CreateViewport(NULL,0);
-                    Viewport1->SetDimensions(0,0,1,0.5);
-                    Viewport* Viewport2 = CreateViewport(NULL,1);
-                    Viewport2->SetDimensions(0,0.5,0.5,0.5);
-                    Viewport* Viewport3 = CreateViewport(NULL,2);
-                    Viewport3->SetDimensions(0.5,0.5,0.5,0.5);
-                    break;
-                }
-                case VL_4_EvenlySpaced:
-                {
-                    Viewport* Viewport1 = CreateViewport(NULL,0);
-                    Viewport1->SetDimensions(0,0,0.5,0.5);
-                    Viewport* Viewport2 = CreateViewport(NULL,1);
-                    Viewport2->SetDimensions(0.5,0,0.5,0.5);
-                    Viewport* Viewport3 = CreateViewport(NULL,2);
-                    Viewport3->SetDimensions(0,0.5,0.5,0.5);
-                    Viewport* Viewport4 = CreateViewport(NULL,3);
-                    Viewport4->SetDimensions(0.5,0.5,0.5,0.5);
-                    break;
-                }
-            }
-        }
     }
 
     void GameWindow::UpdateViewportsAndCameras()
     {
-        /// @todo Is this commented code actually necessary?
-        /*switch (ViewLayout)
-        {
-            case VL_1_FullWindow:
-            {
-                GetViewport(0)->SetDimensions(0,0,1,1);
-                break;
-            }
-            case VL_2_HorizontalSplit:
-            {
-                GetViewport(0)->SetDimensions(0,0,1,0.5);
-                GetViewport(1)->SetDimensions(0,0.5,1,0.5);
-                break;
-            }
-            case VL_2_VerticalSplit:
-            {
-                GetViewport(0)->SetDimensions(0,0,0.5,1);
-                GetViewport(1)->SetDimensions(0.5,0,0.5,1);
-                break;
-            }
-            case VL_3_TopLarge:
-            {
-                GetViewport(0)->SetDimensions(0,0,1,0.5);
-                GetViewport(1)->SetDimensions(0,0.5,0.5,0.5);
-                GetViewport(2)->SetDimensions(0.5,0.5,0.5,0.5);
-                break;
-            }
-            case VL_4_EvenlySpaced:
-            {
-                GetViewport(0)->SetDimensions(0,0,0.5,0.5);
-                GetViewport(1)->SetDimensions(0.5,0,0.5,0.5);
-                GetViewport(2)->SetDimensions(0,0.5,0.5,0.5);
-                GetViewport(3)->SetDimensions(0.5,0.5,0.5,0.5);
-                break;
-            }
-        }// */
         for( std::vector<Viewport*>::iterator ViewIt = Viewports.begin() ; ViewIt != Viewports.end() ; ++ViewIt )
         {
             Camera* Cam = (*ViewIt)->GetViewportCamera();
@@ -304,128 +216,24 @@ namespace Mezzanine
         }
     }
 
-    GameWindow::ViewportLayout GameWindow::GetViewportLayout() const
+    GameWindow::ViewportIterator GameWindow::BeginViewport()
     {
-        Viewport* CurrViewport = NULL;
-        switch (GetNumViewports())
-        {
-            case 1:
-            {
-                CurrViewport = GetViewport(0);
-                if( 0 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 1 == CurrViewport->GetWidth() && 1 == CurrViewport->GetHeight() )
-                    return GameWindow::VL_1_FullWindow;
-                else return GameWindow::VL_Custom;
-                break;
-            }
-            case 2:
-            {
-                CurrViewport = GetViewport(0);
-                if( 0 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 1 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                {
-                    CurrViewport = GetViewport(1);
-                    if( 0 == CurrViewport->GetLeft() && 0.5 == CurrViewport->GetTop() && 1 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                        return GameWindow::VL_2_HorizontalSplit;
-                    else return GameWindow::VL_Custom;
-                }
-                else if( 0 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 1 == CurrViewport->GetHeight() )
-                {
-                    CurrViewport = GetViewport(1);
-                    if( 0.5 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 1 == CurrViewport->GetHeight() )
-                        return GameWindow::VL_2_VerticalSplit;
-                    else return GameWindow::VL_Custom;
-                }
-                else return GameWindow::VL_Custom;
-                break;
-            }
-            case 3:
-            {
-                CurrViewport = GetViewport(0);
-                if( 0 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 1 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                {
-                    CurrViewport = GetViewport(1);
-                    if( 0 == CurrViewport->GetLeft() && 0.5 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                    {
-                        CurrViewport = GetViewport(2);
-                        if( 0.5 == CurrViewport->GetLeft() && 0.5 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                            return GameWindow::VL_3_TopLarge;
-                        else return GameWindow::VL_Custom;
-                    }
-                    else return GameWindow::VL_Custom;
-                }
-                else return GameWindow::VL_Custom;
-                break;
-            }
-            case 4:
-            {
-                CurrViewport = GetViewport(0);
-                if( 0 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                {
-                    CurrViewport = GetViewport(1);
-                    if( 0.5 == CurrViewport->GetLeft() && 0 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                    {
-                        CurrViewport = GetViewport(2);
-                        if( 0 == CurrViewport->GetLeft() && 0.5 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                        {
-                            CurrViewport = GetViewport(3);
-                            if( 0.5 == CurrViewport->GetLeft() && 0.5 == CurrViewport->GetTop() && 0.5 == CurrViewport->GetWidth() && 0.5 == CurrViewport->GetHeight() )
-                                return GameWindow::VL_4_EvenlySpaced;
-                            else return GameWindow::VL_Custom;
-                        }
-                        else return GameWindow::VL_Custom;
-                    }
-                    else return GameWindow::VL_Custom;
-                }
-                else return GameWindow::VL_Custom;
-                break;
-            }
-            default:
-            {
-                return GameWindow::VL_Custom;
-                break;
-            }
-        }
+        return Viewports.begin();
     }
 
-    String GameWindow::GetViewportLayoutName(const GameWindow::ViewportLayout& Layout) const
+    GameWindow::ViewportIterator GameWindow::EndViewport()
     {
-        switch (Layout)
-        {
-            case GameWindow::VL_Custom:
-            {
-                return "Custom";
-                break;
-            }
-            case GameWindow::VL_1_FullWindow:
-            {
-                return "1-FullWindow";
-                break;
-            }
-            case GameWindow::VL_2_HorizontalSplit:
-            {
-                return "2-HorizontalSplit";
-                break;
-            }
-            case GameWindow::VL_2_VerticalSplit:
-            {
-                return "2-VerticalSplit";
-                break;
-            }
-            case GameWindow::VL_3_TopLarge:
-            {
-                return "3-TopLarge";
-                break;
-            }
-            case GameWindow::VL_4_EvenlySpaced:
-            {
-                return "4-EvenlySplit";
-                break;
-            }
-            default:
-            {
-                return "";
-                break;
-            }
-        }
+        return Viewports.end();
+    }
+
+    GameWindow::ConstViewportIterator GameWindow::BeginViewport() const
+    {
+        return Viewports.begin();
+    }
+
+    GameWindow::ConstViewportIterator GameWindow::EndViewport() const
+    {
+        return Viewports.end();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
