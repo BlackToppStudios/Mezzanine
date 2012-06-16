@@ -106,6 +106,9 @@ namespace Mezzanine
             /// @brief Class Destructor.
             virtual ~CameraManager();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Camera Management
+
             /// @brief Creates a camera.
             /// @remarks This function will autogenerate the name for the camera.
             /// @return Returns a pointer to the created camera.
@@ -126,6 +129,9 @@ namespace Mezzanine
             /// @brief Destroy's all stored camera's.
             void DestroyAllCameras();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Camera Controller Management
+
             /// @brief Gets a camera controller if it exists, otherwise creates it.
             /// @param Controlled The camera that will be controlled by the controller returned.
             /// @return Returns a pointer to the created or retrieved camera controller for the camera.
@@ -140,7 +146,7 @@ namespace Mezzanine
             void DestroyAllCameraControllers();
 
             ///////////////////////////////////////////////////////////////////////////////
-            //Inherited from ManagerBase
+            // Inherited from ManagerBase
 
             /// @copydoc ManagerBase::Initialize()
             virtual void Initialize();

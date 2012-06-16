@@ -92,6 +92,9 @@ namespace Mezzanine
         return NULL;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Camera Management
+
     Camera* CameraManager::CreateCamera()
     {
         StringStream CamName;
@@ -138,6 +141,9 @@ namespace Mezzanine
         Cameras.clear();
         return;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Camera Controller Management
 
     CameraController* CameraManager::GetOrCreateCameraController(Camera* Controlled)
     {
