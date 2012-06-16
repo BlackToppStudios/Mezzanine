@@ -477,7 +477,7 @@ void CatchApp::CreateLoadingScreen()
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
     GUI->LoadMTA("Catch_Loading");
     Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
-    UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera());
+    UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera("Main"));
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(-0.16667,0), Vector2(1.33334,1), true));
@@ -541,7 +541,8 @@ void CatchApp::VerifySettings()
     {
         GraphicsSettingFile = GraphicsMan->CreateSettingFile(GraphicsSaveFileName);
         // Create the window
-        GraphicsMan->CreateGameWindow("Catch!",800,600,GameWindow::WF_FSAA_4,GameWindow::VL_1_FullWindow);
+        GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",800,600,GameWindow::WF_FSAA_4);
+        Viewport* MainWinView = MainWin->CreateViewport(NULL,0);
         // Set the file to save.
         GraphicsSettingFile->SetNeedsSave(true);
         // Make sure the file saves the "Current" setting group.
