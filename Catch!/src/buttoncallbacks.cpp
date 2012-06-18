@@ -219,7 +219,7 @@ void OptsVideoApply::DoActivateItems()
     NewSettings.RenderWidth = Width;
     NewSettings.RenderHeight = Height;
     // Apply the resolution and fullscreen settings
-    GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetRenderOptions(NewSettings);
+    GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->SetRenderOptions(NewSettings);
     // Apply other settings
     UIManager::GetSingletonPtr()->GetLayer("StatsLayer")->SetVisible(FPSStatsBox->IsChecked());
 }
