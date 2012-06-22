@@ -102,7 +102,6 @@ namespace Mezzanine
               HoveredSubWidget(NULL),
               SubWidgetFocus(NULL),
               CaptureData(NULL),
-              Callback(NULL),
               Visible(true),
               Hovered(false),
               Dirty(true),
@@ -117,16 +116,34 @@ namespace Mezzanine
         Widget::~Widget()
         {
             SubRenderables.clear();
+            if(!Listeners.empty())
+            {
+                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+                    delete (*It);
+            }
+            Listeners.clear();
         }
 
         void Widget::Update(bool Force)
         {
-            if(Callback)
-                Callback->DoPreUpdateItems();
+            if(!Listeners.empty())
+            {
+                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+                {
+                    (*It)->DoPreUpdateItems();
+                }
+            }
+
             SubWidgetUpdate(Force);
             UpdateImpl(Force);
-            if(Callback)
-                Callback->DoPostUpdateItems();
+
+            if(!Listeners.empty())
+            {
+                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+                {
+                    (*It)->DoPostUpdateItems();
+                }
+            }
         }
 
         void Widget::SubWidgetUpdate(bool Force)
@@ -177,8 +194,13 @@ namespace Mezzanine
                 return;
             this->Visible = visible;
             SetVisibleImpl(visible);
-            if(Callback)
-                Callback->DoVisibilityChangeItems();
+            if(!Listeners.empty())
+            {
+                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+                {
+                    (*It)->DoVisibilityChangeItems();
+                }
+            }
         }
 
         bool Widget::GetVisible() const
@@ -221,12 +243,30 @@ namespace Mezzanine
             return Name;
         }
 
-        void Widget::SetWidgetCallback(WidgetCallback* CB)
+        void Widget::AddWidgetListener(WidgetListener* Listener)
         {
-            if(Callback != CB && Callback)
-                delete Callback;
-            CB->SetCaller(this);
-            Callback = CB;
+            for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+            {
+                if( (*It) == Listener )
+                {
+                    MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Listener being added to widget is already registered with widget \"" + Name + "\".");
+                }
+            }
+            Listeners.push_back(Listener);
+            Listener->SetCaller(this);
+        }
+
+        void Widget::RemoveWidgetListener(WidgetListener* Listener)
+        {
+            for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+            {
+                if( (*It) == Listener )
+                {
+                    Listeners.erase(It);
+                    Listener->SetCaller(NULL);
+                    return;
+                }
+            }
         }
 
         bool Widget::CheckMouseHover()
@@ -247,8 +287,13 @@ namespace Mezzanine
                 HoveredButton = NULL;
                 Hovered = false;
             }
-            if(Callback)
-                Callback->DoHoverItems();
+            if(!Listeners.empty())
+            {
+                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+                {
+                    (*It)->DoHoverItems();
+                }
+            }
             return Hovered;
         }
 
@@ -369,16 +414,16 @@ namespace Mezzanine
 
         //-----------------------------------------------------
 
-        WidgetCallback::WidgetCallback()
+        WidgetListener::WidgetListener()
             : Caller(NULL)
         {
         }
 
-        WidgetCallback::~WidgetCallback()
+        WidgetListener::~WidgetListener()
         {
         }
 
-        void WidgetCallback::SetCaller(Widget* Caller)
+        void WidgetListener::SetCaller(Widget* Caller)
         {
             this->Caller = Caller;
         }

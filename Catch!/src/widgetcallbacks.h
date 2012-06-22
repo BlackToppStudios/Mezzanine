@@ -5,7 +5,7 @@
 
 using namespace Mezzanine;
 
-class OptsVolume : public UI::WidgetCallback
+class OptsVolume : public UI::WidgetListener
 {
     protected:
         virtual void SetVolume(const Real& Volume) = 0;
@@ -47,7 +47,7 @@ class OptsMusicVol : public OptsVolume
         Real GetVolume() const;
 };
 
-class OptsAudioMute : public UI::WidgetCallback
+class OptsAudioMute : public UI::WidgetListener
 {
     protected:
     public:
@@ -59,7 +59,7 @@ class OptsAudioMute : public UI::WidgetCallback
         virtual void DoVisibilityChangeItems();
 };
 
-class OptsVideoRes : public UI::WidgetCallback
+class OptsVideoRes : public UI::WidgetListener
 {
     protected:
     public:
@@ -71,7 +71,7 @@ class OptsVideoRes : public UI::WidgetCallback
         virtual void DoVisibilityChangeItems();
 };
 
-class OptsVideoFullscreen : public UI::WidgetCallback
+class OptsVideoFullscreen : public UI::WidgetListener
 {
     protected:
     public:
@@ -83,7 +83,7 @@ class OptsVideoFullscreen : public UI::WidgetCallback
         virtual void DoVisibilityChangeItems();
 };
 
-class OptsVideoFSAA : public UI::WidgetCallback
+class OptsVideoFSAA : public UI::WidgetListener
 {
     protected:
     public:
@@ -95,7 +95,7 @@ class OptsVideoFSAA : public UI::WidgetCallback
         virtual void DoVisibilityChangeItems();
 };
 
-class OptsVideoStats : public UI::WidgetCallback
+class OptsVideoStats : public UI::WidgetListener
 {
     protected:
     public:

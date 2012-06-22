@@ -122,12 +122,12 @@ void CatchApp::MakeGUI()
     MMResolutionList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
     MMResolutionList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
     MMResolutionList->GetSelectionList()->SetMaxDisplayedSelections(4);
-    MMResolutionList->SetWidgetCallback(new OptsVideoRes());
+    MMResolutionList->AddWidgetListener(new OptsVideoRes());
     UI::CheckBox* MMFullscreenBox = MMVideoSet->Collection->CreateCheckBox("MS_FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
     MMFullscreenBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
     MMFullscreenBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     MMFullscreenBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
-    MMFullscreenBox->SetWidgetCallback(new OptsVideoFullscreen());
+    MMFullscreenBox->AddWidgetListener(new OptsVideoFullscreen());
     UI::Caption* MMFSAALabel = MMVideoSet->Collection->CreateCaption("MS_FSAALabel",UI::RenderableRect(Vector2(0.28, 0.46),Vector2(0.24, 0.05),true),MMTextLineHeight,"Anti-Aliasing");
     MMFSAALabel->SetBackgroundSprite("MMButton");
     UI::DropDownList* MMFSAAList = MMVideoSet->Collection->CreateDropDownList("MS_FSAAList",UI::RenderableRect(Vector2(0.25, 0.51),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
@@ -145,12 +145,12 @@ void CatchApp::MakeGUI()
     MMFSAAList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
     MMFSAAList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
     MMFSAAList->GetSelectionList()->SetMaxDisplayedSelections(4);
-    MMFSAAList->SetWidgetCallback(new OptsVideoFSAA());
+    MMFSAAList->AddWidgetListener(new OptsVideoFSAA());
     UI::CheckBox* MMStatsBox = MMVideoSet->Collection->CreateCheckBox("MS_StatsBox",UI::RenderableRect(Vector2(0.59, 0.51),Vector2(0.16, 0.05),true),MMTextLineHeight,"Show FPS");
     MMStatsBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
     MMStatsBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     MMStatsBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
-    MMStatsBox->SetWidgetCallback(new OptsVideoStats());
+    MMStatsBox->AddWidgetListener(new OptsVideoStats());
     UI::TextButton* MMVideoOptsApply = MMVideoSet->Collection->CreateTextButton("MS_VideoOptsApply",UI::RenderableRect(Vector2(0.68, 0.64), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
     MMVideoOptsApply->SetBackgroundSprite("MMOptionsApplyButton");
     MMVideoOptsApply->SetHoveredSprite("MMOptionsApplyHoveredButton");
@@ -173,7 +173,7 @@ void CatchApp::MakeGUI()
     MMMusicVol->GetDownRightButton()->SetHoveredSprite("MMHoveredScrollRight");
     MMMusicVol->GetUpLeftButton()->SetBackgroundSprite("MMScrollLeft");
     MMMusicVol->GetUpLeftButton()->SetHoveredSprite("MMHoveredScrollLeft");
-    MMMusicVol->SetWidgetCallback(new OptsMusicVol());
+    MMMusicVol->AddWidgetListener(new OptsMusicVol());
     UI::Caption* MMEffectsVolLabel = MMAudioSet->Collection->CreateCaption("MS_EffectsVolLabel",UI::RenderableRect(Vector2(0.38, 0.42),Vector2(0.24, 0.05),true),MMTextLineHeight,"Effects Volume");
     MMEffectsVolLabel->SetBackgroundSprite("MMButton");
     UI::Scrollbar* MMEffectsVol = MMAudioSet->Collection->CreateScrollbar("MS_EffectsVolume",UI::RenderableRect(Vector2(0.30, 0.47),Vector2(0.40, 0.04),true),UI::SB_Separate);
@@ -186,7 +186,7 @@ void CatchApp::MakeGUI()
     MMEffectsVol->GetDownRightButton()->SetHoveredSprite("MMHoveredScrollRight");
     MMEffectsVol->GetUpLeftButton()->SetBackgroundSprite("MMScrollLeft");
     MMEffectsVol->GetUpLeftButton()->SetHoveredSprite("MMHoveredScrollLeft");
-    MMEffectsVol->SetWidgetCallback(new OptsEffectVol());
+    MMEffectsVol->AddWidgetListener(new OptsEffectVol());
     UI::Caption* MMDeviceLabel = MMAudioSet->Collection->CreateCaption("MS_DeviceLabel",UI::RenderableRect(Vector2(0.30, 0.55),Vector2(0.24, 0.05),true),MMTextLineHeight,"Audio Device");
     MMDeviceLabel->SetBackgroundSprite("MMButton");
     UI::DropDownList* MMDeviceList = MMAudioSet->Collection->CreateDropDownList("MS_AudioDeviceList",UI::RenderableRect(Vector2(0.27, 0.60),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
@@ -204,7 +204,7 @@ void CatchApp::MakeGUI()
     MMMuteBox->GetLabel()->SetBackgroundSprite("MMAppExitButton");
     MMMuteBox->SetCheckedSprite("MMCheckboxChecked","MMHoveredCheckboxChecked");
     MMMuteBox->SetUncheckedSprite("MMCheckboxUnchecked","MMHoveredCheckboxUnchecked");
-    MMMuteBox->SetWidgetCallback(new OptsAudioMute());
+    MMMuteBox->AddWidgetListener(new OptsAudioMute());
 
     UI::TextButton* MMOptsBack = MMOptionsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.70), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
     MMOptsBack->SetBackgroundSprite("MMOptionsApplyButton");
@@ -333,12 +333,12 @@ void CatchApp::MakeGUI()
     GSResolutionList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
     GSResolutionList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
     GSResolutionList->GetSelectionList()->SetMaxDisplayedSelections(4);
-    GSResolutionList->SetWidgetCallback(new OptsVideoRes());
+    GSResolutionList->AddWidgetListener(new OptsVideoRes());
     UI::CheckBox* GSFullscreenBox = GSVideoSet->Collection->CreateCheckBox("GS_FullscreenBox",UI::RenderableRect(Vector2(0.59, 0.36),Vector2(0.16, 0.05),true),MMTextLineHeight,"Fullscreen");
     GSFullscreenBox->GetLabel()->SetBackgroundSprite("GSAppExitButton");
     GSFullscreenBox->SetCheckedSprite("GSCheckboxChecked","GSHoveredCheckboxChecked");
     GSFullscreenBox->SetUncheckedSprite("GSCheckboxUnchecked","GSHoveredCheckboxUnchecked");
-    GSFullscreenBox->SetWidgetCallback(new OptsVideoFullscreen());
+    GSFullscreenBox->AddWidgetListener(new OptsVideoFullscreen());
     UI::Caption* GSFSAALabel = GSVideoSet->Collection->CreateCaption("GS_FSAALabel",UI::RenderableRect(Vector2(0.28, 0.46),Vector2(0.24, 0.05),true),MMTextLineHeight,"Anti-Aliasing");
     GSFSAALabel->SetBackgroundSprite("GSButton");
     UI::DropDownList* GSFSAAList = GSVideoSet->Collection->CreateDropDownList("GS_FSAAList",UI::RenderableRect(Vector2(0.25, 0.51),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
@@ -356,12 +356,12 @@ void CatchApp::MakeGUI()
     GSFSAAList->GetSelectionList()->SetTemplateBackgroundColour(ColourValue(1.0,1.0,1.0,0.2));
     GSFSAAList->GetSelectionList()->SetTemplateTextColour(ColourValue::White());
     GSFSAAList->GetSelectionList()->SetMaxDisplayedSelections(4);
-    GSFSAAList->SetWidgetCallback(new OptsVideoFSAA());
+    GSFSAAList->AddWidgetListener(new OptsVideoFSAA());
     UI::CheckBox* GSStatsBox = GSVideoSet->Collection->CreateCheckBox("GS_StatsBox",UI::RenderableRect(Vector2(0.59, 0.51),Vector2(0.16, 0.05),true),MMTextLineHeight,"Show FPS");
     GSStatsBox->GetLabel()->SetBackgroundSprite("GSAppExitButton");
     GSStatsBox->SetCheckedSprite("GSCheckboxChecked","GSHoveredCheckboxChecked");
     GSStatsBox->SetUncheckedSprite("GSCheckboxUnchecked","GSHoveredCheckboxUnchecked");
-    GSStatsBox->SetWidgetCallback(new OptsVideoStats());
+    GSStatsBox->AddWidgetListener(new OptsVideoStats());
     UI::TextButton* GSVideoOptsApply = GSVideoSet->Collection->CreateTextButton("GS_VideoOptsApply",UI::RenderableRect(Vector2(0.68, 0.64), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
     GSVideoOptsApply->SetBackgroundSprite("GSOptionsApplyButton");
     GSVideoOptsApply->SetHoveredSprite("GSOptionsApplyHoveredButton");
@@ -384,7 +384,7 @@ void CatchApp::MakeGUI()
     GSMusicVol->GetDownRightButton()->SetHoveredSprite("GSHoveredScrollRight");
     GSMusicVol->GetUpLeftButton()->SetBackgroundSprite("GSScrollLeft");
     GSMusicVol->GetUpLeftButton()->SetHoveredSprite("GSHoveredScrollLeft");
-    GSMusicVol->SetWidgetCallback(new OptsMusicVol());
+    GSMusicVol->AddWidgetListener(new OptsMusicVol());
     UI::Caption* GSEffectsVolLabel = GSAudioSet->Collection->CreateCaption("GS_EffectsVolLabel",UI::RenderableRect(Vector2(0.38, 0.42),Vector2(0.24, 0.05),true),MMTextLineHeight,"Effects Volume");
     GSEffectsVolLabel->SetBackgroundSprite("GSButton");
     UI::Scrollbar* GSEffectsVol = GSAudioSet->Collection->CreateScrollbar("GS_EffectsVolume",UI::RenderableRect(Vector2(0.30, 0.47),Vector2(0.40, 0.04),true),UI::SB_Separate);
@@ -397,7 +397,7 @@ void CatchApp::MakeGUI()
     GSEffectsVol->GetDownRightButton()->SetHoveredSprite("GSHoveredScrollRight");
     GSEffectsVol->GetUpLeftButton()->SetBackgroundSprite("GSScrollLeft");
     GSEffectsVol->GetUpLeftButton()->SetHoveredSprite("GSHoveredScrollLeft");
-    GSEffectsVol->SetWidgetCallback(new OptsEffectVol());
+    GSEffectsVol->AddWidgetListener(new OptsEffectVol());
     UI::Caption* GSDeviceLabel = GSAudioSet->Collection->CreateCaption("GS_DeviceLabel",UI::RenderableRect(Vector2(0.30, 0.55),Vector2(0.24, 0.05),true),MMTextLineHeight,"Audio Device");
     GSDeviceLabel->SetBackgroundSprite("GSButton");
     UI::DropDownList* GSDeviceList = GSAudioSet->Collection->CreateDropDownList("GS_AudioDeviceList",UI::RenderableRect(Vector2(0.27, 0.60),Vector2(0.30, 0.05),true),MMTextLineHeight,UI::SB_Separate);
@@ -415,7 +415,7 @@ void CatchApp::MakeGUI()
     GSMuteBox->GetLabel()->SetBackgroundSprite("GSAppExitButton");
     GSMuteBox->SetCheckedSprite("GSCheckboxChecked","GSHoveredCheckboxChecked");
     GSMuteBox->SetUncheckedSprite("GSCheckboxUnchecked","GSHoveredCheckboxUnchecked");
-    GSMuteBox->SetWidgetCallback(new OptsAudioMute());
+    GSMuteBox->AddWidgetListener(new OptsAudioMute());
 
     UI::TextButton* GSOptsBack = GSOptionsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.70), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
     GSOptsBack->SetBackgroundSprite("GSOptionsApplyButton");

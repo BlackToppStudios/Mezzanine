@@ -52,7 +52,7 @@ namespace Mezzanine
     {
         class Button;
         class Layer;
-        class WidgetCallback;
+        class WidgetListener;
         class BasicRenderable;
         class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
@@ -100,8 +100,15 @@ namespace Mezzanine
         class MEZZ_LIB Widget
         {
             public:
+                // Vertex data types
+                typedef std::vector<VertexData> VertexContainer;
+                // Renderable data types
                 typedef std::pair<BasicRenderable*,Widget*> RenderablePair;
                 typedef std::map<Whole,RenderablePair> RenderableMap;
+                // Listener data types
+                typedef std::vector<WidgetListener*> ListenerContainer;
+                typedef ListenerContainer::iterator ListenerIterator;
+                typedef ListenerContainer::const_iterator ConstListenerIterator;
                 enum WidgetType
                 {
                     W_ButtonListBox,
@@ -131,7 +138,6 @@ namespace Mezzanine
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
                 UI::Widget* SubWidgetFocus;
-                UI::WidgetCallback* Callback;
                 bool Visible;
                 bool Hovered;
                 bool Dirty;
@@ -140,7 +146,8 @@ namespace Mezzanine
                 Vector2 RelSize;
                 WidgetType Type;
                 String Name;
-                std::vector<VertexData> Vertices;
+                VertexContainer Vertices;
+                ListenerContainer Listeners;
                 RenderableMap SubRenderables;
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false);
@@ -193,10 +200,12 @@ namespace Mezzanine
                 /// @brief Gets the name of this widget.
                 /// @return Returns a String containing the name of this widget.
                 virtual ConstString& GetName() const;
-                /// @brief Sets the callback to be used by this widget.
-                /// @remarks You can pass in a NULL pointer to clear the existing callback.
-                /// @param CB The callback to be set for this widget.
-                virtual void SetWidgetCallback(WidgetCallback* CB);
+                /// @brief Sets the listener to be used by this widget.
+                /// @param Listener The listener to be set for this widget.
+                virtual void AddWidgetListener(WidgetListener* Listener);
+                /// @brief Removes a listener currently being used by this widget.
+                /// @param Listener The listener to be removed from this widget.
+                virtual void RemoveWidgetListener(WidgetListener* Listener);
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();
@@ -272,30 +281,30 @@ namespace Mezzanine
                 virtual void _AppendVertices(ScreenVertexData& Vertices);
         };//widget
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class WidgetCallback
+        /// @class WidgetListener
         /// @headerfile uiwidget.h
-        /// @brief This is a callback class for widgets.
+        /// @brief This is a listener class for widgets.
         ///////////////////////////////////////
-        class MEZZ_LIB WidgetCallback
+        class MEZZ_LIB WidgetListener
         {
             protected:
                 Widget* Caller;
             public:
                 /// @brief Class constructor.
-                WidgetCallback();
+                WidgetListener();
                 /// @brief Class destructor.
-                virtual ~WidgetCallback();
-                /// @brief Sets the Widget this callback belongs to.
+                virtual ~WidgetListener();
+                /// @brief Sets the Widget this listener belongs to.
                 virtual void SetCaller(Widget* Caller);
-                /// @brief Performs callback items immediately after hover checks complete.
+                /// @brief Performs listener items immediately after hover checks complete.
                 virtual void DoHoverItems() = 0;
-                /// @brief Performs callback items just before widget updates start.
+                /// @brief Performs listener items just before widget updates start.
                 virtual void DoPreUpdateItems() = 0;
-                /// @brief Performs callback items immediately after updates complete.
+                /// @brief Performs listener items immediately after updates complete.
                 virtual void DoPostUpdateItems() = 0;
-                /// @brief Performs callback items immediately after widget visibility changes.
+                /// @brief Performs listener items immediately after widget visibility changes.
                 virtual void DoVisibilityChangeItems() = 0;
-        };//WidgetCallback
+        };//WidgetListener
     }//UI
 }//Mezzanine
 
