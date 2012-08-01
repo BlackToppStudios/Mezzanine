@@ -57,13 +57,12 @@ namespace Mezzanine
         Y = 0;
     }
 
-    Vector2::Vector2(Real x, Real y)
+    Vector2::Vector2(const Real& x, const Real& y)
     {
-        X = x;
-        Y = y;
+        SetValues(x,y);
     }
 
-    Vector2::Vector2(Ogre::Vector2 Vec)
+    Vector2::Vector2(const Ogre::Vector2& Vec)
     {
         ExtractOgreVector2(Vec);
     }
@@ -76,10 +75,16 @@ namespace Mezzanine
         return Theirs;
     }
 
-    void Vector2::ExtractOgreVector2(Ogre::Vector2 Ours)
+    void Vector2::ExtractOgreVector2(const Ogre::Vector2& Ours)
     {
         this->X=Ours.x;
         this->Y=Ours.y;
+    }
+
+    void Vector2::SetValues(const Real& x, const Real& y)
+    {
+        this->X = x;
+        this->Y = y;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

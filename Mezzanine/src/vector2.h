@@ -73,11 +73,12 @@ namespace Mezzanine
             /// @details Constructor that sets both vectors.
             /// @param x Coordinate on the X vector.
             /// @param y Coordinate on the Y vector.
-            Vector2(Real x, Real y);
+            Vector2(const Real& x, const Real& y);
             /// @brief Ogre Value Constructor.
             /// @details Constructor that sets all values to match the Ogre vector.
             /// @param Vec The vector to be copied to make this vector.
-            Vector2(Ogre::Vector2 Vec);
+            Vector2(const Ogre::Vector2& Vec);
+
             /// @brief Gets a Ogre vector2.
             /// @details Creates a Ogre vector2 with values equal to this class and returns it.
             Ogre::Vector2 GetOgreVector2() const;
@@ -85,7 +86,12 @@ namespace Mezzanine
             /// @details This function will copy the values stored in an existing Ogre vector2
             /// and set the values of this class to be the same.
             /// @param Ours The vector2 to be extracted.
-            void ExtractOgreVector2(Ogre::Vector2 Ours);
+            void ExtractOgreVector2(const Ogre::Vector2& Ours);
+
+            /// @brief Sets the X and Y values of this vector2.
+            /// @param x The real that will have this vector's X member set to.
+            /// @param y The real that will have this vector's Y member set to.
+            void SetValues(const Real& x, const Real& y);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Equality Comparison operators
