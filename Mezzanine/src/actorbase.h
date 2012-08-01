@@ -37,6 +37,7 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+
 #ifndef _actorbase_h
 #define _actorbase_h
 
@@ -197,6 +198,5 @@ namespace Mezzanine
     };
 
 } // /phys
-
 
 #endif
