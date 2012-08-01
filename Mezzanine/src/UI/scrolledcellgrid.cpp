@@ -42,7 +42,6 @@
 
 #include "UI/scrolledcellgrid.h"
 #include "UI/cell.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/scrollbar.h"
 
@@ -50,7 +49,7 @@ namespace Mezzanine
 {
     namespace UI
     {
-        ScrolledCellGrid::ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent)
+        ScrolledCellGrid::ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Screen* parent)
             : CellGrid(name,Rect,parent),
               HScrollVal(0.0),
               VScrollVal(0.0),
@@ -61,7 +60,7 @@ namespace Mezzanine
             RenderableRect VertRect;
             if(Rect.Relative)
             {
-                const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+                const Vector2& WinDim = ParentScreen->GetViewportDimensions();
                 Real ActThick = Thickness * WinDim.X;
 
                 HoriRect.Position = Vector2(RelPosition.X,(RelPosition.Y + RelSize.Y) - ActThick / WinDim.Y);
@@ -79,14 +78,14 @@ namespace Mezzanine
                 VertRect.Relative = Rect.Relative;
             }
 
-            HorizontalScroll = new UI::Scrollbar(Name+"HoriScr",HoriRect,Style,ParentLayer);
-            VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertRect,Style,ParentLayer);
+            HorizontalScroll = new UI::Scrollbar(Name+"HoriScr",HoriRect,Style,ParentScreen);
+            VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertRect,Style,ParentScreen);
             HorizontalScroll->Hide();
             VerticalScroll->Hide();
 
             CellsAdded = 2;
-            AddSubRenderable(1,RenderablePair(NULL,HorizontalScroll));
-            AddSubRenderable(2,RenderablePair(NULL,VerticalScroll));
+            AddSubRenderable(1,HorizontalScroll);
+            AddSubRenderable(2,VerticalScroll);
         }
 
         ScrolledCellGrid::~ScrolledCellGrid()
@@ -127,7 +126,7 @@ namespace Mezzanine
 
         void ScrolledCellGrid::DrawGrid()
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             DrawGrid(WinDim);
         }
 
@@ -261,13 +260,11 @@ namespace Mezzanine
             if(HorizontalScroll->CheckMouseHover())
             {
                 HoveredSubWidget = HorizontalScroll;
-                HoveredButton = HorizontalScroll->GetHoveredButton();
                 return true;
             }
             if(VerticalScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VerticalScroll;
-                HoveredButton = VerticalScroll->GetHoveredButton();
                 return true;
             }
             return false;
@@ -337,7 +334,7 @@ namespace Mezzanine
 
         void ScrolledCellGrid::UpdateDimensions()
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             CellGrid::UpdateDimensions();
             HorizontalScroll->UpdateDimensions();
             VerticalScroll->UpdateDimensions();

@@ -79,8 +79,6 @@ namespace Mezzanine
             std::vector< MetaCode::InputCode > AutoRegisterCodes;
             std::map< String, UI::TextureAtlas* > Atlases;
             std::multimap< MetaCode::InputCode, UI::Button* > HotKeys;
-            UI::Button* HoveredButton;
-            UI::Button* HoveredWidgetButton;
             UI::Widget* HoveredWidget;
             UI::Widget* WidgetFocus;
             UI::Widget* InputCapture;
@@ -147,14 +145,6 @@ namespace Mezzanine
             /// @brief Gets the list of codes that will be auto-registered with each UI button.
             /// @return Returns a pointer to the vector containing all the codes to be auto-registered with every UI button.
             std::vector<MetaCode::InputCode>* GetAutoRegisteredCodes();
-            /// @brief Gets the button the mouse is hovering over.
-            /// @details This function will report only standalone buttons, not widget buttons.
-            /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
-            UI::Button* GetHoveredButton();
-            /// @brief Gets the button the mouse is hovering over, if the button is inside a widget.
-            /// @details This function will report only widget buttons, not standalone buttons.
-            /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
-            UI::Button* GetHoveredWidgetButton();
             /// @brief Gets the Widget the mouse is hovering over.
             /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
             /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.
@@ -190,14 +180,6 @@ namespace Mezzanine
             void DestroyScreen(UI::Screen* Screen);
             /// @brief Deletes all screens stored in this manager.
             void DestroyAllScreens();
-            /// @brief Searches all screens and gets the named Layer.
-            /// @return Returns the named layer if found, NULL if not.
-            UI::Layer* GetLayer(const String& Name);
-            /// @brief Searches all visible screens and layers to see if a button was clicked.
-            /// @details This is called automatically once every frame.  Should only be called on manually if
-            /// you need more then one check per frame.
-            /// @return Returns the button clicked if there is one, NULL if not.
-            UI::Button* CheckButtonMouseIsOver();
             /// @brief Searches all visable screens and layers to see if a widget was clicked.
             /// @details This is called automatically once every frame.  Should only be called on manually if
             /// you need more then one check per frame.

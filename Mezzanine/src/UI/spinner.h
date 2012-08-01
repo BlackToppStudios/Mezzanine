@@ -110,8 +110,8 @@ namespace Mezzanine
                 /// @param Rect The Rect representing the position and size of the widget.
                 /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
                 /// @param GlyphHeight The desired relative height of the text you want.
-                /// @param parent The parent layer that created this widget.
-                Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
+                /// @param parent The parent screen that created this widget.
+                Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~Spinner();
                 /// @brief Sets the current value of this widget.

@@ -111,8 +111,8 @@ namespace Mezzanine
                 /// The actual size of this widget will be a result of how many selections are currently being displayed.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
-                /// @param Layer The parent layer this List Box belongs to.
-                ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
+                /// @param PScreen The parent screen this List Box belongs to.
+                ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~ListBox();
                 /// @brief Sets the size to be applied to all created Selections.
@@ -178,9 +178,6 @@ namespace Mezzanine
                 /// @brief Destroys a selectable caption.
                 /// @param ToBeDestroyed A pointer to the caption you want destroyed and removed from this list.
                 virtual void DestroySelection(Caption* ToBeDestroyed);
-                /// @brief Destroys a selectable caption.
-                /// @param ToBeDestroyed A string naming the caption you want destroyed and removed from this list.
-                virtual void DestroySelection(String& ToBeDestroyed);
                 /// @brief Sets the selection within this list to be "selected".
                 /// @param ToBeSelected A pointer to the caption to be set as "selected".
                 virtual void SetSelected(Caption* ToBeSelected);

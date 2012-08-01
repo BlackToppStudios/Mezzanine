@@ -42,7 +42,6 @@
 
 #include "UI/linelist.h"
 #include "uimanager.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/vertex.h"
 #include "uienumerations.h"
@@ -53,8 +52,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        LineList::LineList(const String& name, Layer* PLayer)
-            : BasicRenderable(name,PLayer)
+        LineList::LineList(const String& name, Screen* PScreen)
+            : BasicRenderable(name,PScreen)
         {
         }
 
@@ -77,7 +76,7 @@ namespace Mezzanine
 
         void LineList::AddPoint(const Vector2& Position)
         {
-            Positions.push_back(Position * ParentLayer->GetParent()->GetViewportDimensions());
+            Positions.push_back(Position * ParentScreen->GetViewportDimensions());
         }
 
         void LineList::AddActualPoint(const Real& X, const Real& Y)
@@ -122,7 +121,7 @@ namespace Mezzanine
 
             VertexData Temp;
             Real HalfThickness = Thickness * 0.5;
-            Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = Parent->GetSolidUV(PriAtlas);
+            Vector2 PerpNorm, LastLeft, LastRight, ThisLeft, ThisRight, UV = ParentScreen->GetSolidUV(PriAtlas);
             size_t Index = 1;
             for(  ; Index < Positions.size() ; Index++ )
             {

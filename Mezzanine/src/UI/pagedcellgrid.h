@@ -83,8 +83,8 @@ namespace Mezzanine
                 /// @param SpnRect The Rect representing the position and size of the spinner to be created alonhside this widget.
                 /// @param SStyle The style of spinner to create.
                 /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
-                /// @param parent The parent layer this widget belongs to.
-                PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
+                /// @param parent The parent screen this widget belongs to.
+                PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~PagedCellGrid();
                 /// @brief Sets the fixed size cells in this grid are to have.

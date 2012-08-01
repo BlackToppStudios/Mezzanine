@@ -40,12 +40,29 @@
 #ifndef _uiscreen_cpp
 #define _uiscreen_cpp
 
-#include "UI/screen.h"
 #include "uimanager.h"
-#include "UI/layer.h"
-#include "UI/button.h"
+#include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
 #include "UI/textureatlas.h"
+#include "UI/widget.h"
+#include "UI/button.h"
+#include "UI/rectangle.h"
+#include "UI/caption.h"
+#include "UI/widget.h"
+#include "UI/checkbox.h"
+#include "UI/markuptext.h"
+#include "UI/listbox.h"
+#include "UI/screen.h"
+#include "UI/scrollbar.h"
+#include "UI/linelist.h"
+#include "UI/window.h"
+#include "UI/menu.h"
+#include "UI/spinner.h"
+#include "UI/scrolledcellgrid.h"
+#include "UI/pagedcellgrid.h"
+#include "UI/dropdownlist.h"
+#include "UI/tabset.h"
+#include "UI/renderablecontainerwidget.h"
 #include "viewport.h"
 #include "scenemanager.h"
 #include "mathtool.h"
@@ -76,7 +93,7 @@ namespace Mezzanine
             {
                 if( RenderSys->_getViewport() != ParentScreen->GetViewport()->GetOgreViewport() || queueGroupId != Ogre::RENDER_QUEUE_OVERLAY )
                     return;
-                if( ParentScreen->IsVisible() && ParentScreen->GetNumLayers() )
+                if( ParentScreen->IsVisible() )
                     ParentScreen->_RenderScreen();
             }
         };
@@ -126,7 +143,6 @@ namespace Mezzanine
               ViewportSizeChanged(false),
               Orientation(Mezzanine::OM_Degree_0)
         {
-            Manager = UIManager::GetSingletonPtr();
             SceneMan = SceneManager::GetSingletonPtr();
 
             KnownViewportSize.X = (Real)GameViewport->GetActualWidth();
@@ -146,6 +162,11 @@ namespace Mezzanine
 
         Screen::~Screen()
         {
+        }
+
+        Screen* Screen::GetScreen()
+        {
+            return this;
         }
 
         void Screen::PrepareRenderSystem()
@@ -218,6 +239,9 @@ namespace Mezzanine
             }
         }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility and Visibility Methods
+
         String& Screen::GetName()
         {
             return Name;
@@ -243,142 +267,9 @@ namespace Mezzanine
             this->Visible = false;
         }
 
-        Layer* Screen::CreateLayer(const String& Name, const Whole& Zorder)
-        {
-            Layer* NewLayer = new Layer(Name, Zorder, this);
-            IndexData* NewIndexData = new IndexData();
-            NewIndexData->IndexLayer = NewLayer;
-            NewIndexData->RedrawNeeded = true;
-            std::pair<std::map<Whole,IndexData*>::iterator,bool> TestPair = Indexes.insert(std::pair<Whole,IndexData*>(Zorder,NewIndexData));
-            Layers.push_back(NewLayer);
-            if(TestPair.second)
-            {
-                return NewLayer;
-            }else{
-                /// @todo add an exception here or maybe log entry, some notification it failed.
-                return 0;
-            }
-            IndexRedrawNeeded = true;
-        }
-
-        Layer* Screen::GetLayer(const String& Name)
-        {
-            for ( std::vector<Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
-            {
-                if ( Name == (*it)->GetName() )
-                {
-                    Layer* Ret = (*it);
-                    return Ret;
-                }
-            }
-            return 0;
-        }
-
-        Layer* Screen::GetLayer(const Whole& Index)
-        {
-            return Layers.at(Index);
-            /*std::vector<Layer*>::iterator it = Layers.begin();
-            while(0 < Index)
-            {
-                it++;
-                Index--;
-            }
-            if(it != Layers.end())
-                return (*it).second;
-            return 0;//*/
-        }
-
-        Layer* Screen::GetLayerbyZorder(const Whole& Zorder)
-        {
-            std::map<Whole,IndexData*>::iterator it = Indexes.find(Zorder);
-            if(it != Indexes.end())
-                return (*it).second->IndexLayer;
-            return 0;
-        }
-
-        Whole Screen::GetNumLayers()
-        {
-            return Layers.size();
-        }
-
-        void Screen::DestroyLayer(Layer* ToBeDestroyed)
-        {
-            if(Layers.empty())
-                return;
-            for( std::vector<Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; ++it )
-            {
-                if( ToBeDestroyed == (*it) )
-                {
-                    Layers.erase(it);
-                    break;
-                }
-            }
-            for( std::map<Whole,IndexData*>::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
-            {
-                if( ToBeDestroyed == (*it).second->IndexLayer )
-                {
-                    delete (*it).second->IndexLayer;
-                    Indexes.erase(it);
-                    break;
-                }
-            }
-        }
-
         const Vector2& Screen::GetViewportDimensions()
         {
             return KnownViewportSize;
-        }
-
-        Button* Screen::CheckButtonMouseIsOver()
-        {
-            for( std::map<Whole,IndexData*>::reverse_iterator it = Indexes.rbegin() ; it != Indexes.rend() ; it++ )
-            {
-                if( (*it).second->IndexLayer->IsVisible() )
-                {
-                    Button* button = (*it).second->IndexLayer->CheckButtonMouseIsOver();
-                    if(button)
-                    {
-                        return button;
-                    }
-                }
-            }
-            return 0;
-        }
-
-        Real Screen::GetTexelOffsetX() const
-        {
-            return this->SID->RenderSys->getHorizontalTexelOffset();
-        }
-
-        Real Screen::GetTexelOffsetY() const
-        {
-            return this->SID->RenderSys->getVerticalTexelOffset();
-        }
-
-        Widget* Screen::CheckWidgetMouseIsOver()
-        {
-            for( std::map<Whole,IndexData*>::reverse_iterator it = Indexes.rbegin() ; it != Indexes.rend() ; it++ )
-            {
-                if( (*it).second->IndexLayer->IsVisible() )
-                {
-                    Widget* widget = (*it).second->IndexLayer->CheckWidgetMouseIsOver();
-                    if(widget)
-                    {
-                        return widget;
-                    }
-                }
-            }
-            return 0;
-        }
-
-        void Screen::SetPrimaryAtlas(const String& Atlas)
-        {
-            PrimaryAtlas = Atlas;
-        }
-
-        String Screen::GetPrimaryAtlas()
-        {
-            return PrimaryAtlas;
         }
 
         void Screen::CheckViewportSize()
@@ -393,9 +284,9 @@ namespace Mezzanine
             InverseViewportSize.X = 1.0 / KnownViewportSize.X;
             InverseViewportSize.Y = 1.0 / KnownViewportSize.Y;
 
-            for( std::vector<Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+            for( IndexIterator it = WidgetsRoot.begin() ; it != WidgetsRoot.end() ; it++ )
             {
-                (*it)->ViewportUpdate();
+                (*it).second->IndexWidget->UpdateDimensions();
             }
             IndexRedrawAll = true;
             ViewportSizeChanged = true;
@@ -405,6 +296,282 @@ namespace Mezzanine
         {
             return GameViewport;
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Hover Checks
+
+        Widget* Screen::CheckWidgetMouseIsOver()
+        {
+            for( ReverseIndexIterator it = WidgetsRoot.rbegin() ; it != WidgetsRoot.rend() ; ++it )
+            {
+                if( (*it).second->IndexWidget->IsVisible() )
+                {
+                    if( (*it).second->IndexWidget->CheckMouseHover() )
+                    {
+                        return (*it).second->IndexWidget;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Creating Widgets
+
+        Button* Screen::CreateButton(ConstString& Name, const RenderableRect& Rect)
+        {
+            Button* widget = RenderableFactory::CreateButton(Name,Rect);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        Button* Screen::CreateButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text)
+        {
+            Button* widget = RenderableFactory::CreateButton(Name,Rect,Glyph,Text);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        Button* Screen::CreateButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text)
+        {
+            Button* widget = RenderableFactory::CreateButton(Name,Rect,LineHeight,Text);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        Scrollbar* Screen::CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style)
+        {
+            Scrollbar* widget = RenderableFactory::CreateScrollbar(Name,Rect,Style);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        CheckBox* Screen::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& LabelText)
+        {
+            CheckBox* widget = RenderableFactory::CreateCheckBox(Name,Rect,LineHeight,LabelText);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        ListBox* Screen::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle)
+        {
+            ListBox* widget = RenderableFactory::CreateListBox(Name,Rect,ScrollStyle);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        Spinner* Screen::CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        {
+            Spinner* widget = RenderableFactory::CreateSpinner(Name,Rect,SStyle,GlyphHeight);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        {
+            ScrolledCellGrid* widget = RenderableFactory::CreateScrolledCellGrid(Name,Rect,Thickness,Style);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        PagedCellGrid* Screen::CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        {
+            PagedCellGrid* widget = RenderableFactory::CreatePagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        DropDownList* Screen::CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle)
+        {
+            DropDownList* widget = RenderableFactory::CreateDropDownList(Name,Rect,LineHeight,ScrollStyle);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        TabSet* Screen::CreateTabSet(ConstString& Name, const RenderableRect& SetRect)
+        {
+            TabSet* widget = RenderableFactory::CreateTabSet(Name,SetRect);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        Window* Screen::CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect)
+        {
+            Window* widget = ExtendedRenderableFactory::CreateWidgetWindow(Name,Rect);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        Menu* Screen::CreateMenu(ConstString& Name, const RenderableRect& Rect)
+        {
+            Menu* widget = ExtendedRenderableFactory::CreateMenu(Name,Rect);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        OpenRenderableContainerWidget* Screen::CreateOpenRenderableContainerWidget(ConstString& Name)
+        {
+            OpenRenderableContainerWidget* widget = ExtendedRenderableFactory::CreateOpenRenderableContainerWidget(Name);
+            WidgetIterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[Name] = widget;
+            return widget;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Working with all Widgets
+
+        void Screen::AddRootWidget(const Whole& ZOrder, Widget* ToAdd)
+        {
+            IndexData* NewIndex = new IndexData();
+            NewIndex->IndexWidget = ToAdd;
+            WidgetsRoot.insert(std::pair<Whole,IndexData*>(ZOrder,NewIndex));
+            ToAdd->_SetZOrder(ZOrder);
+            IndexRedrawNeeded = true;
+        }
+
+        Widget* Screen::GetWidget(ConstString& Name)
+        {
+            std::map<String,Widget*>::iterator WidIt = Widgets.find(Name);
+            if( WidIt != Widgets.end() ) return (*WidIt).second;
+            else return NULL;
+        }
+
+        Widget* Screen::GetWidget(const Whole& ZOrder)
+        {
+            IndexIterator WidIt = WidgetsRoot.find(ZOrder);
+            if( WidIt != WidgetsRoot.end() ) return (*WidIt).second->IndexWidget;
+            else return NULL;
+        }
+
+        Whole Screen::GetNumWidgets()
+        {
+            return Widgets.size();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Atlas Query
+
+        void Screen::SetPrimaryAtlas(const String& Atlas)
+        {
+            PrimaryAtlas = Atlas;
+        }
+
+        String Screen::GetPrimaryAtlas()
+        {
+            return PrimaryAtlas;
+        }
+
+        Vector2 Screen::GetSolidUV(const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetWhitePixel();
+        }
+
+        Sprite* Screen::GetSprite(const String& SpriteName,const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetSprite(SpriteName);
+        }
+
+        GlyphData* Screen::GetGlyphData(const Whole& ID,const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetGlyphData(ID);
+        }
+
+        Vector2 Screen::GetTextureSize(const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetTextureSize();
+        }
+
+        TextureAtlas* Screen::GetAtlas(const String& Atlas) const
+        {
+            return Manager->GetAtlas(Atlas);
+        }
+
+        ColourValue Screen::GetMarkupColour(const Whole& Index,const String& Atlas) const
+        {
+            return GetAtlas(Atlas)->GetMarkupColour(Index);
+        }
+
+        Real Screen::GetTexelOffsetX() const
+        {
+            return this->SID->RenderSys->getHorizontalTexelOffset();
+        }
+
+        Real Screen::GetTexelOffsetY() const
+        {
+            return this->SID->RenderSys->getVerticalTexelOffset();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Functions
 
         void Screen::_RenderScreen()
         {
@@ -488,7 +655,7 @@ namespace Mezzanine
 #endif
         }
 
-        void Screen::_Transform(std::vector<VertexData>& Vertices, const Whole& Begin, const Whole& End)
+        void Screen::_Transform(ScreenVertexData& Vertices, const Whole& Begin, const Whole& End)
         {
             static const Matrix4x4 Iden;
             Whole X;
@@ -507,89 +674,50 @@ namespace Mezzanine
             }
         }
 
-        void Screen::_RecalculateIndexes()
+        void Screen::_RedrawIndex(const UInt32& Index)
         {
-            std::map<UInt32,IndexData*>::iterator IndIt;
-            for( IndIt = Indexes.begin() ; IndIt != Indexes.end() ; IndIt++ )
-            {
-                (*IndIt).second->Vertices.Clear();
-                (*IndIt).second->IndexLayer = NULL;
-                (*IndIt).second->RedrawNeeded = false;
-            }
-            for( std::vector<Layer*>::iterator LayerIt = Layers.begin() ; LayerIt != Layers.end() ; LayerIt++ )
-            {
-                IndIt = Indexes.find( (*LayerIt)->GetIndex() );
-                if (IndIt == Indexes.end())
-                {
-                    Indexes[(*LayerIt)->GetIndex()] = new IndexData();
-                    IndIt = Indexes.find( (*LayerIt)->GetIndex() );
-                }
-
-                (*IndIt).second->IndexLayer = (*LayerIt);
-            }
-            bool Deleted = false;
-
-            for(;;)
-            {
-                Deleted = false;
-                for( IndIt = Indexes.begin() ; IndIt != Indexes.end() ; IndIt++ )
-                {
-                    if( (*IndIt).second->IndexLayer == NULL )
-                    {
-                        delete (*IndIt).second;
-                        Indexes.erase(IndIt);
-                        Deleted = true;
-                        break;
-                    }
-                }
-                if( IndIt == Indexes.end() )
-                    break;
-                if(!Deleted)
-                    break;
-            }
-            IndexRedrawAll = true;
-        }
-
-        void Screen::_RedrawIndex(const UInt32& Index, bool Force)
-        {
-            std::map<UInt32,IndexData*>::iterator it = Indexes.find( Index );
-            if (it == Indexes.end())
+            IndexIterator it = WidgetsRoot.find( Index );
+            if (it == WidgetsRoot.end())
                 return;
 
             IndexData* CurrIndexData = (*it).second;
-
             CurrIndexData->Vertices.Clear();
-            CurrIndexData->RedrawNeeded = false;
 
-            if( CurrIndexData->IndexLayer->IsVisible() )
-                CurrIndexData->IndexLayer->_Render( CurrIndexData->Vertices, Force );
+            if( CurrIndexData->IndexWidget->IsVisible() )
+            {
+                CurrIndexData->IndexWidget->_AppendVertices( CurrIndexData->Vertices );
+                _Transform( CurrIndexData->Vertices, 0, CurrIndexData->Vertices.Size() );
+            }
         }
 
         void Screen::_RedrawAllIndexes(bool Force)
         {
             IndexRedrawNeeded = false;
             IndexRedrawAll = false;
-            for( std::map<UInt32,IndexData*>::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
+            for( IndexIterator it = WidgetsRoot.begin() ; it != WidgetsRoot.end() ; it++ )
             {
                 IndexData* CurrIndexData = (*it).second;
-                if( CurrIndexData->RedrawNeeded || Force )
+                if( CurrIndexData->IndexWidget->Dirty || Force )
                 {
                     CurrIndexData->Vertices.Clear();
-                    CurrIndexData->RedrawNeeded = false;
 
-                    if( CurrIndexData->IndexLayer->IsVisible() )
-                        CurrIndexData->IndexLayer->_Render( CurrIndexData->Vertices, Force );
+                    if( CurrIndexData->IndexWidget->IsVisible() )
+                    {
+                        if( CurrIndexData->IndexWidget->Dirty )
+                            CurrIndexData->IndexWidget->_Redraw();
+                        CurrIndexData->IndexWidget->_AppendVertices( CurrIndexData->Vertices );
+                        _Transform( CurrIndexData->Vertices, 0, CurrIndexData->Vertices.Size() );
+                    }
                 }
             }
         }
 
-        void Screen::_RequestIndexRedraw(const UInt32& Index)
+        void Screen::_RequestIndexRedraw(const UInt16& Index)
         {
-            std::map<UInt32,IndexData*>::iterator it = Indexes.find( Index );
-            if (it == Indexes.end())
+            IndexIterator it = WidgetsRoot.find( Index );
+            if (it == WidgetsRoot.end())
                 return;
 
-            (*it).second->RedrawNeeded = true;
             IndexRedrawNeeded = true;
         }
 
@@ -603,7 +731,7 @@ namespace Mezzanine
 
             Whole KnownVertexCount = 0;
 
-            for(std::map<UInt32,IndexData*>::iterator it = Indexes.begin(); it != Indexes.end();it++)
+            for(IndexIterator it = WidgetsRoot.begin(); it != WidgetsRoot.end();it++)
                 KnownVertexCount += (*it).second->Vertices.Size();
 
             ResizeVertexBuffer(KnownVertexCount);
@@ -615,7 +743,7 @@ namespace Mezzanine
             AtlasAndPosition MyObject;
             MyObject.RenderStart = 0;
             MyObject.Atlas = PrimaryAtlas;
-            for( std::map<UInt32,IndexData*>::iterator it = Indexes.begin() ; it != Indexes.end() ; it++ )
+            for( IndexIterator it = WidgetsRoot.begin() ; it != WidgetsRoot.end() ; it++ )
             {
                 CurrIndexData = (*it).second;
                 for( Whole I = 0 ; I < CurrIndexData->Vertices.Size() ; I++ )

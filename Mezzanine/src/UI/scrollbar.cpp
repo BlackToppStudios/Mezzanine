@@ -41,7 +41,6 @@
 #define _uiscrollbar_cpp
 
 #include "UI/scrollbar.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "uimanager.h"
 #include "UI/button.h"
@@ -53,7 +52,7 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Scrollbar::Scrollbar(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Layer* parent)
+        Scrollbar::Scrollbar(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Screen* parent)
             : Widget(name, parent),
               UpLeftButton(NULL),
               DownRightButton(NULL),
@@ -74,13 +73,13 @@ namespace Mezzanine
 
                 if(Rect.Size.Y > Rect.Size.X * 2)
                 {
-                    Vector2 ASize = Rect.Size * ParentLayer->GetParent()->GetViewportDimensions();
+                    Vector2 ASize = Rect.Size * ParentScreen->GetViewportDimensions();
                     CalculateOffsets(ASize);
                     CreateVerticalScrollbar(Rect);
                 }
                 else if(Rect.Size.X > Rect.Size.Y * 2)
                 {
-                    Vector2 ASize = Rect.Size * ParentLayer->GetParent()->GetViewportDimensions();
+                    Vector2 ASize = Rect.Size * ParentScreen->GetViewportDimensions();
                     CalculateOffsets(ASize);
                     CreateHorizontalScrollbar(Rect);
                 }
@@ -89,8 +88,8 @@ namespace Mezzanine
                     MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Scrollbar dimensions incompatible with this widget.");
                 }
             }else{
-                RelPosition = Rect.Position / ParentLayer->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / ParentLayer->GetParent()->GetViewportDimensions();
+                RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
+                RelSize = Rect.Size / ParentScreen->GetViewportDimensions();
 
                 if(Rect.Size.Y > Rect.Size.X * 2)
                 {
@@ -111,10 +110,10 @@ namespace Mezzanine
 
         Scrollbar::~Scrollbar()
         {
-            delete Scroller;
-            delete ScrollBack;
-            delete UpLeftButton;
-            delete DownRightButton;
+            ParentScreen->DestroyWidget(Scroller);
+            ParentScreen->DestroyBasicRenderable(ScrollBack);
+            ParentScreen->DestroyWidget(UpLeftButton);
+            ParentScreen->DestroyWidget(DownRightButton);
         }
 
         void Scrollbar::CreateHorizontalScrollbar(const RenderableRect& Rect)
@@ -131,7 +130,7 @@ namespace Mezzanine
             }else{
                 if(Rect.Relative)
                 {
-                    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+                    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
                     Vector2 ARectSize(Rect.Size * WinDim);
 
                     ScrollBackRect.Size.X = Rect.Size.X - ((ARectSize.Y * 2) / WinDim.X);
@@ -179,20 +178,20 @@ namespace Mezzanine
                 ScrollBackRect.Position = Rect.Position;
             }
             //Now create the objects, since we have all the position and size data we need
-            ScrollBack = new Rectangle(ScrollBackRect,ParentLayer);
-            Scroller = new Button(Name+"SC",ScrollBackRect,ParentLayer);
+            ScrollBack = ParentScreen->CreateRectangle(ScrollBackRect);
+            Scroller = ParentScreen->CreateButton(Name+"SC",ScrollBackRect);
             if(LeftButtonRect.Size.X > 0 && LeftButtonRect.Size.Y > 0)
             {
-                UpLeftButton = new Button(Name+"LB",LeftButtonRect,ParentLayer);
+                UpLeftButton = ParentScreen->CreateButton(Name+"LB",LeftButtonRect);
             }
             if(RightButtonRect.Size.X > 0 && RightButtonRect.Size.Y > 0)
             {
-                DownRightButton = new Button(Name+"RB",RightButtonRect,ParentLayer);
+                DownRightButton = ParentScreen->CreateButton(Name+"RB",RightButtonRect);
             }
-            AddSubRenderable(0,RenderablePair(ScrollBack,NULL));
-            AddSubRenderable(1,RenderablePair(Scroller,NULL));
-            AddSubRenderable(2,RenderablePair(UpLeftButton,NULL));
-            AddSubRenderable(3,RenderablePair(DownRightButton,NULL));
+            AddSubRenderable(0,ScrollBack);
+            AddSubRenderable(1,Scroller);
+            AddSubRenderable(2,UpLeftButton);
+            AddSubRenderable(3,DownRightButton);
             CalculateScrollLimits();
         }
 
@@ -210,7 +209,7 @@ namespace Mezzanine
             }else{
                 if(Rect.Relative)
                 {
-                    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+                    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
                     Vector2 ARectSize(Rect.Size * WinDim);
 
                     ScrollBackRect.Size.X = Rect.Size.X;
@@ -258,20 +257,20 @@ namespace Mezzanine
                 ScrollBackRect.Position = Rect.Position;
             }
             //Now create the objects, since we have all the position and size data we need
-            ScrollBack = new Rectangle(ScrollBackRect,ParentLayer);
-            Scroller = new Button(Name+"SC",ScrollBackRect,ParentLayer);
+            ScrollBack = ParentScreen->CreateRectangle(ScrollBackRect);
+            Scroller = ParentScreen->CreateButton(Name+"SC",ScrollBackRect);
             if(UpButtonRect.Size.X > 0 && UpButtonRect.Size.Y > 0)
             {
-                UpLeftButton = new Button(Name+"UB",UpButtonRect,ParentLayer);
+                UpLeftButton = ParentScreen->CreateButton(Name+"UB",UpButtonRect);
             }
             if(DownButtonRect.Size.X > 0 && DownButtonRect.Size.Y > 0)
             {
-                DownRightButton = new Button(Name+"DB",DownButtonRect,ParentLayer);
+                DownRightButton = ParentScreen->CreateButton(Name+"DB",DownButtonRect);
             }
-            AddSubRenderable(0,RenderablePair(ScrollBack,NULL));
-            AddSubRenderable(1,RenderablePair(Scroller,NULL));
-            AddSubRenderable(2,RenderablePair(UpLeftButton,NULL));
-            AddSubRenderable(3,RenderablePair(DownRightButton,NULL));
+            AddSubRenderable(0,ScrollBack);
+            AddSubRenderable(1,Scroller);
+            AddSubRenderable(2,UpLeftButton);
+            AddSubRenderable(3,DownRightButton);
             CalculateScrollLimits();
         }
 
@@ -434,7 +433,7 @@ namespace Mezzanine
 
         void Scrollbar::ButtonScroll(bool UpLeft)
         {
-            if((!UpLeftLock && HoveredButton == UpLeftButton) || (!DownRightLock && HoveredButton == DownRightButton))
+            if((!UpLeftLock && HoveredSubWidget == UpLeftButton) || (!DownRightLock && HoveredSubWidget == DownRightButton))
             {
                 Vector2 Loc = Scroller->GetActualPosition();
                 Real Scroll = ScrollBack->GetActualSize().X * IncrementDistance;
@@ -510,11 +509,11 @@ namespace Mezzanine
         void Scrollbar::UpdateImpl(bool Force)
         {
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
-            if(HoveredButton)
+            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
                 {
-                    if(HoveredButton == Scroller)
+                    if(HoveredSubWidget == Scroller)
                     {
                         if(MetaCode::BUTTON_PRESSING == State)
                         {
@@ -526,7 +525,7 @@ namespace Mezzanine
                             MouseScroll(Offset);
                         }
                     }
-                    else if(HoveredButton == UpLeftButton)
+                    else if(HoveredSubWidget == UpLeftButton)
                     {
                         if(MetaCode::BUTTON_PRESSING == State)
                         {
@@ -537,7 +536,7 @@ namespace Mezzanine
                             ButtonScroll(true);
                         }
                     }
-                    else if(HoveredButton == DownRightButton)
+                    else if(HoveredSubWidget == DownRightButton)
                     {
                         if(MetaCode::BUTTON_PRESSING == State)
                         {
@@ -597,25 +596,25 @@ namespace Mezzanine
         {
             if(Scroller->CheckMouseHover())
             {
-                HoveredButton = Scroller;
+                HoveredSubWidget = Scroller;
                 HoveredBack = NULL;
                 return true;
             }
             else if(UpLeftButton->CheckMouseHover())
             {
-                HoveredButton = UpLeftButton;
+                HoveredSubWidget = UpLeftButton;
                 HoveredBack = NULL;
                 return true;
             }
             else if(DownRightButton->CheckMouseHover())
             {
-                HoveredButton = DownRightButton;
+                HoveredSubWidget = DownRightButton;
                 HoveredBack = NULL;
                 return true;
             }
             else if(ScrollBack->CheckMouseHover())
             {
-                HoveredButton = NULL;
+                HoveredSubWidget = NULL;
                 HoveredBack = ScrollBack;
                 return true;
             }
@@ -678,13 +677,13 @@ namespace Mezzanine
         void Scrollbar::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            Vector2 Adjusted = Position * ParentLayer->GetParent()->GetViewportDimensions();
+            Vector2 Adjusted = Position * ParentScreen->GetViewportDimensions();
             SetLocation(Adjusted);
         }
 
         void Scrollbar::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentScreen->GetViewportDimensions();
             SetLocation(Position);
         }
 
@@ -693,13 +692,13 @@ namespace Mezzanine
             if(!IsValidDimensions(Size))
                 return;
             RelSize = Size;
-            Vector2 Adjusted = Size * ParentLayer->GetParent()->GetViewportDimensions();
+            Vector2 Adjusted = Size * ParentScreen->GetViewportDimensions();
             SetHorizontal(Adjusted);
             if(ScrollStyle==SB_NoButtons)
             {
                 ScrollBack->SetActualSize(Adjusted);
             }else{
-                Vector2 Loc = RelPosition * ParentLayer->GetParent()->GetViewportDimensions();
+                Vector2 Loc = RelPosition * ParentScreen->GetViewportDimensions();
                 CalculateOffsets(Adjusted);
                 SetArea(Adjusted);
                 SetLocation(Loc);
@@ -710,13 +709,13 @@ namespace Mezzanine
         {
             if(!IsValidDimensions(Size))
                 return;
-            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentScreen->GetViewportDimensions();
             SetHorizontal(Size);
             if(ScrollStyle==SB_NoButtons)
             {
                 ScrollBack->SetActualSize(Size);
             }else{
-                Vector2 Loc = RelPosition * ParentLayer->GetParent()->GetViewportDimensions();
+                Vector2 Loc = RelPosition * ParentScreen->GetViewportDimensions();
                 CalculateOffsets(Size);
                 SetArea(Size);
                 SetLocation(Loc);
@@ -734,7 +733,7 @@ namespace Mezzanine
                UpLeftButton->UpdateDimensions();
             if(DownRightButton)
                 DownRightButton->UpdateDimensions();
-            CalculateOffsets(RelSize * ParentLayer->GetParent()->GetViewportDimensions());
+            CalculateOffsets(RelSize * ParentScreen->GetViewportDimensions());
             SetPosition(RelPosition);
         }
 

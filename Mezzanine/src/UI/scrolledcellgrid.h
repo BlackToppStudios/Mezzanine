@@ -84,8 +84,8 @@ namespace Mezzanine
                 /// to determine the height of the horizontal scrollbar.
                 /// If the Rect passed in is relative, this will expect Thickness to be relative as well.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
-                /// @param parent The parent layer this widget belongs to.
-                ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent);
+                /// @param parent The parent screen this widget belongs to.
+                ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~ScrolledCellGrid();
                 /// @brief Sets whether or not the scrollbars should auto-hide, or always be visible.

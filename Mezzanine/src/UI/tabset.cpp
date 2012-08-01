@@ -41,24 +41,24 @@
 #define _uitabset_cpp
 
 #include "UI/tabset.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "uimanager.h"
-#include "UI/textbutton.h"
+#include "UI/button.h"
+#include "UI/caption.h"
 #include "inputquerytool.h"
 
 namespace Mezzanine
 {
     namespace UI
     {
-        TabSet::TabSet(const String& name, const RenderableRect& SetRect, Layer* parent)
+        TabSet::TabSet(const String& name, const RenderableRect& SetRect, Screen* parent)
             : Widget(name,parent),
               SetsAdded(0),
               VisibleSet(NULL)
         {
             Type = Widget::W_TabSet;
             TemplateSetRect.Relative = false;
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             if(SetRect.Relative)
             {
                 RelPosition = SetRect.Position;
@@ -80,14 +80,14 @@ namespace Mezzanine
         void TabSet::UpdateImpl(bool Force)
         {
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
-            if(HoveredButton)
+            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
                     RenderableSetData* ClickedSet = NULL;
                     for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
                     {
-                        if(HoveredButton == (*it)->Accessor)
+                        if(HoveredSubWidget == (*it)->Accessor)
                             ClickedSet = (*it);
                     }
                     if(!ClickedSet)
@@ -114,15 +114,13 @@ namespace Mezzanine
             {
                 if((*it)->Accessor->CheckMouseHover())
                 {
-                    HoveredSubWidget = NULL;
-                    HoveredButton = (*it)->Accessor;
+                    HoveredSubWidget = (*it)->Accessor;
                     return true;
                 }
             }
             if(VisibleSet->Collection->CheckMouseHover())
             {
                 HoveredSubWidget = VisibleSet->Collection;
-                HoveredButton = HoveredSubWidget->GetHoveredButton();
                 return true;
             }
             return false;
@@ -149,24 +147,24 @@ namespace Mezzanine
         void TabSet::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            SetLocation(Position * ParentLayer->GetParent()->GetViewportDimensions());
+            SetLocation(Position * ParentScreen->GetViewportDimensions());
         }
 
         void TabSet::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentScreen->GetViewportDimensions();
             SetLocation(Position);
         }
 
         void TabSet::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            SetArea(Size * ParentLayer->GetParent()->GetViewportDimensions());
+            SetArea(Size * ParentScreen->GetViewportDimensions());
         }
 
         void TabSet::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentScreen->GetViewportDimensions();
             SetArea(Size);
         }
 
@@ -181,23 +179,23 @@ namespace Mezzanine
 
         RenderableSetData* TabSet::CreateRenderableSet(const String& Name, const RenderableRect& AccessorRect, const Real& GlyphHeight, const String& Text)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
 
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentLayer->GetParent()->GetPrimaryAtlas());
-            TextButton* NewAccessor = new TextButton(Name+"Access",AccessorRect,GlyphInfo.first,Text,ParentLayer);
+            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
+            Button* NewAccessor = ParentScreen->CreateButton(Name+"Access",AccessorRect,GlyphInfo.first,Text);
             if(1 != GlyphInfo.second)
-                NewAccessor->SetTextScale(GlyphInfo.second);
+                NewAccessor->GetClickable()->SetTextScale(GlyphInfo.second);
             NewAccessor->SetVisible(Visible);
-            RenderableCollection* NewCollection = new RenderableCollection(Name+"Set",TemplateSetRect,ParentLayer);
+            RenderableCollection* NewCollection = new RenderableCollection(Name+"Set",TemplateSetRect,ParentScreen);
             NewCollection->SetVisible(Visible);
 
             RenderableSetData* NewSetData = new RenderableSetData(Name,NewAccessor,NewCollection);
             if(0 == Sets.size()) VisibleSet = NewSetData;
             else NewSetData->Collection->Hide();
             Sets.push_back(NewSetData);
-            AddSubRenderable(SetsAdded,RenderablePair(NULL,NewSetData->Collection));
-            AddSubRenderable(SetsAdded+1,RenderablePair(NewSetData->Accessor,NULL));
+            AddSubRenderable(SetsAdded,NewSetData->Collection);
+            AddSubRenderable(SetsAdded+1,NewSetData->Accessor);
             SetsAdded+=2;
             return NewSetData;
         }
@@ -229,7 +227,7 @@ namespace Mezzanine
             else return NULL;
         }
 
-        RenderableCollection* TabSet::GetRenderableCollection(TextButton* Accessor)
+        RenderableCollection* TabSet::GetRenderableCollection(Button* Accessor)
         {
             for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
             {
@@ -239,19 +237,19 @@ namespace Mezzanine
             return NULL;
         }
 
-        TextButton* TabSet::GetAccessor(const Whole& Index)
+        Button* TabSet::GetAccessor(const Whole& Index)
         {
             return Sets.at(Index)->Accessor;
         }
 
-        TextButton* TabSet::GetAccessor(const String& SetDataName)
+        Button* TabSet::GetAccessor(const String& SetDataName)
         {
             RenderableSetData* SetData = GetRenderableSetData(SetDataName);
             if(SetData) return SetData->Accessor;
             else return NULL;
         }
 
-        TextButton* TabSet::GetAccessor(RenderableCollection* Collection)
+        Button* TabSet::GetAccessor(RenderableCollection* Collection)
         {
             for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
             {
@@ -278,9 +276,9 @@ namespace Mezzanine
                     break;
                 }
             }
-            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
             {
-                if(ToBeDestroyed->Collection == (*it).second.second)
+                if(ToBeDestroyed->Collection == (*it))
                 {
                     SubRenderables.erase(it);
                     break;
@@ -294,12 +292,11 @@ namespace Mezzanine
             for( std::vector<RenderableSetData*>::iterator it = Sets.begin() ; it != Sets.end() ; it++ )
             {
                 RenderableSetData* CurrSet = (*it);
-                delete CurrSet->Accessor;
+                ParentScreen->DestroyWidget(CurrSet->Accessor);
                 delete CurrSet->Collection;
                 delete CurrSet;
             }
             Sets.clear();
-            HoveredButton = NULL;
             HoveredSubWidget = NULL;
             VisibleSet = NULL;
             SubRenderables.clear();

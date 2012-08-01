@@ -52,9 +52,10 @@ namespace Mezzanine
         /// @brief This is a container widget capable of holding any other widget.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Window : public RenderableContainerWidget
+        class MEZZ_LIB Window : public EnclosedRenderableContainerWidget
         {
             protected:
+                friend class ExtendedRenderableFactory;
                 /// @internal
                 /// @enum ResizeMode
                 /// @brief Internal enum for handling a resizing via mouse.
@@ -86,8 +87,8 @@ namespace Mezzanine
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
                 /// @param Rect The Rect representing the position and size of the window.
-                /// @param PLayer The parent layer this window belongs to.
-                Window(ConstString& name, const RenderableRect& Rect, Layer* PLayer);
+                /// @param PScreen The parent screen this window belongs to.
+                Window(ConstString& name, const RenderableRect& Rect, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~Window();
                 /// @brief Sets the relative position of this window.

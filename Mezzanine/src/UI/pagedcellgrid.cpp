@@ -43,7 +43,6 @@
 #include "UI/pagedcellgrid.h"
 #include "UI/spinner.h"
 #include "UI/cell.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
 
@@ -53,18 +52,18 @@ namespace Mezzanine
 {
     namespace UI
     {
-        PagedCellGrid::PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
+        PagedCellGrid::PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent)
             : CellGrid(name,Rect,parent),
               CurrentPage(1),
               XCellsPerPage(1),
               YCellsPerPage(1),
               MaxPages(1)
         {
-            PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,ParentLayer);
+            PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,ParentScreen);
             PageSpinner->SetSpinnerValue((int)CurrentPage);
             PageSpinner->SetValueLimits(1,1);
             CellsAdded = 1;
-            AddSubRenderable(1,RenderablePair(NULL,PageSpinner));
+            AddSubRenderable(1,PageSpinner);
         }
 
         PagedCellGrid::~PagedCellGrid()
@@ -156,7 +155,7 @@ namespace Mezzanine
 
         void PagedCellGrid::DrawGrid()
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             DrawGrid(WinDim);
         }
 
@@ -285,7 +284,6 @@ namespace Mezzanine
             if(PageSpinner->CheckMouseHover())
             {
                 HoveredSubWidget = PageSpinner;
-                HoveredButton = PageSpinner->GetHoveredButton();
                 return true;
             }
             if(CellGrid::CheckMouseHoverImpl())
@@ -319,7 +317,7 @@ namespace Mezzanine
 
         void PagedCellGrid::UpdateDimensions()
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             CellGrid::UpdateDimensions();
             PageSpinner->UpdateDimensions();
             GridDirty = true;

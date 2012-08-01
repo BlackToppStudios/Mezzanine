@@ -121,8 +121,8 @@ namespace Mezzanine
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
                 /// @param Rect The Rect representing the position and size of the widget.
-                /// @param parent The parent layer this widget belongs to.
-                CellGrid(const String& name, const RenderableRect& Rect, Layer* parent);
+                /// @param parent The parent screen this widget belongs to.
+                CellGrid(const String& name, const RenderableRect& Rect, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~CellGrid();
                 /// @brief Sets the fixed size cells in this grid are to have.

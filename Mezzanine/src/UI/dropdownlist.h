@@ -78,16 +78,16 @@ namespace Mezzanine
                 /// @param Rect The renderable rect representing the position and size of this widget.
                 /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar class for more information.
-                /// @param parent The parent layer that created this widget.
-                DropDownList(const String& name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Layer* parent);
+                /// @param parent The parent screen that created this widget.
+                DropDownList(const String& name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
                 /// @param Rect The renderable rect representing the position and size of ths widget.
                 /// @param Glyph The Glyph index to be applied to all text in this widget.  Must be valid.
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
-                /// @param parent The parent layer that created this widget.
-                DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Layer* parent);
+                /// @param parent The parent screen that created this widget.
+                DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~DropDownList();
                 /// @brief Manually sets a selection in the list as "selected".

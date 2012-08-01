@@ -44,8 +44,8 @@
 #include "UI/menuwindow.h"
 
 #include "uimanager.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
+#include "UI/button.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -54,8 +54,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, const RenderableRect& Rect, Layer* PLayer)
-            : Widget(name,PLayer)
+        Menu::Menu(ConstString name, const RenderableRect& Rect, Screen* PScreen)
+            : Widget(name,PScreen)
         {
             Type = Widget::W_Menu;
             RelPosition.X = -1;
@@ -64,9 +64,9 @@ namespace Mezzanine
             RelSize.Y = -1;
 
             ConstString NewName = name+"root";
-            RootWindow = new UI::MenuWindow(NewName,Rect,this,ParentLayer);
+            RootWindow = new UI::MenuWindow(NewName,Rect,this,ParentScreen);
             MenuStack.push_back(RootWindow);
-            AddSubRenderable(0,RenderablePair(NULL,RootWindow));
+            AddSubRenderable(0,RootWindow);
         }
 
         Menu::~Menu()
@@ -80,7 +80,10 @@ namespace Mezzanine
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredSubWidget)
             {
-                Button* button = HoveredSubWidget->GetHoveredButton();
+                Button* button = NULL;
+                Widget* SubSubWidget = HoveredSubWidget->GetHoveredSubWidget();
+                if( SubSubWidget && (Widget::W_Button == SubSubWidget->GetType()) )
+                    button = static_cast<Button*>(SubSubWidget);
                 if(button && State == MetaCode::BUTTON_LIFTING)
                 {
                     UI::MenuWindow* MenWin = static_cast<UI::MenuWindow*>(HoveredSubWidget);
@@ -92,7 +95,7 @@ namespace Mezzanine
                             if(MenuStack.back()->GetAutoHide())
                                 MenuStack.back()->Hide();
                             MenuStack.push_back(ChildMenWin);
-                            AddSubRenderable(SubRenderables.size(),RenderablePair(NULL,ChildMenWin));
+                            AddSubRenderable(SubRenderables.size(),ChildMenWin);
                             ChildMenWin->Show();
                             return;
                         }else{
@@ -103,7 +106,7 @@ namespace Mezzanine
                     {
                         MenWin->Hide();
                         MenuStack.pop_back();
-                        SubRenderables.erase(SubRenderables.size() - 1);
+                        SubRenderables.pop_back();
                         if(!MenuStack.back()->IsVisible())
                             MenuStack.back()->Show();
                         return;
@@ -118,11 +121,16 @@ namespace Mezzanine
             {
                 if(visible)
                 {
-                    if(!(*it)->GetAutoHide())
+                    if( !(*it)->GetAutoHide() )
                         (*it)->SetVisible(visible);
                 }else{
                     (*it)->SetVisible(visible);
                 }
+            }
+            if(visible)
+            {
+                if(!MenuStack.back()->GetVisible())
+                    MenuStack.back()->Show();
             }
         }
 
@@ -136,7 +144,6 @@ namespace Mezzanine
                     if((*it)->CheckMouseHover())
                     {
                         HoveredSubWidget = (*it);
-                        HoveredButton = HoveredSubWidget->GetHoveredButton();
                         HoverRet = true;
                     }
                 }
@@ -156,7 +163,7 @@ namespace Mezzanine
                 {
                     (*rit)->Hide();
                     MenuStack.pop_back();
-                    SubRenderables.erase(SubRenderables.size() - 1);
+                    SubRenderables.pop_back();
                 }else{
                     break;
                 }

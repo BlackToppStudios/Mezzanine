@@ -60,6 +60,7 @@ namespace Mezzanine
         class MEZZ_LIB Menu : public Widget
         {
             protected:
+                friend class ExtendedRenderableFactory;
                 UI::MenuWindow* RootWindow;
                 std::vector<UI::MenuWindow*> MenuStack;
                 /// @brief Child specific update method.
@@ -72,8 +73,8 @@ namespace Mezzanine
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
                 /// @param Rect The Rect representing the position and size of the window.
-                /// @param Layer The parent layer this window belongs to.
-                Menu(ConstString name, const RenderableRect& Rect, Layer* PLayer);
+                /// @param Screen The parent screen this window belongs to.
+                Menu(ConstString name, const RenderableRect& Rect, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~Menu();
                 /// @brief Hides and removes from the stack all windows from the top until it reaches the specified window, or root window.

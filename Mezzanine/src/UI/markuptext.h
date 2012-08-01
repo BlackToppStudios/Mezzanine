@@ -51,7 +51,7 @@ namespace Mezzanine
     class UIManager;
     namespace UI
     {
-        class Layer;
+        class Screen;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Character
         /// @headerfile uimarkuptext.h
@@ -113,7 +113,7 @@ namespace Mezzanine
         class MEZZ_LIB MarkupText : public Rectangle
         {
             protected:
-                friend class Layer;
+                friend class Screen;
                 GlyphData* DefaultGlyphSet;
                 bool AutoScaleText;
                 bool TextDirty;
@@ -131,16 +131,16 @@ namespace Mezzanine
                 /// @param Rect The Rect representing the position and size of the markup text.
                 /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
-                /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
+                /// @param PScreen Pointer to the layer that created this markup text.
+                MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Screen* PScreen);
                 /// @brief Internal constructor.
                 /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
                 /// @param name The name of this markup text.
                 /// @param Rect The Rect representing the position and size of the markup text.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the markup text.
-                /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
+                /// @param PScreen Pointer to the layer that created this markup text.
+                MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
 

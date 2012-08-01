@@ -46,7 +46,7 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Cell::Cell(const String& name, Layer* parent)
+        Cell::Cell(const String& name, Screen* parent)
             : Widget(name,parent),
               SortPriority(0),
               Selected(false),

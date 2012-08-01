@@ -43,7 +43,6 @@
 #include "UI/spinner.h"
 #include "UI/button.h"
 #include "UI/caption.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "uimanager.h"
 #include "UI/viewportupdatetool.h"
@@ -57,7 +56,7 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Spinner::Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
+        Spinner::Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent)
             : Widget(name,parent),
               IncrementOffset(Vector2(0,0)),
               DecrementOffset(Vector2(0,0)),
@@ -80,8 +79,8 @@ namespace Mezzanine
                 RelPosition = Rect.Position;
                 RelSize = Rect.Size;
             }else{
-                RelPosition = Rect.Position / ParentLayer->GetParent()->GetViewportDimensions();
-                RelSize = Rect.Size / ParentLayer->GetParent()->GetViewportDimensions();
+                RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
+                RelSize = Rect.Size / ParentScreen->GetViewportDimensions();
             }
 
             if(UI::Spn_Separate == SpinLayout)
@@ -90,7 +89,7 @@ namespace Mezzanine
                 {
                     if(Rect.Relative)
                     {
-                        const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+                        const Vector2& WinDim = ParentScreen->GetViewportDimensions();
                         Vector2 APos = Rect.Position * WinDim;
                         Vector2 ASize = Rect.Size * WinDim;
                         CalculateOffsets(ASize);
@@ -104,7 +103,7 @@ namespace Mezzanine
                 {
                     if(Rect.Relative)
                     {
-                        const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+                        const Vector2& WinDim = ParentScreen->GetViewportDimensions();
                         Vector2 APos = Rect.Position * WinDim;
                         Vector2 ASize = Rect.Size * WinDim;
                         CalculateOffsets(ASize);
@@ -123,7 +122,7 @@ namespace Mezzanine
             {
                 if(Rect.Relative)
                 {
-                    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+                    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
                     Vector2 APos = Rect.Position * WinDim;
                     Vector2 ASize = Rect.Size * WinDim;
                     CalculateOffsets(ASize);
@@ -143,62 +142,62 @@ namespace Mezzanine
 
         Spinner::~Spinner()
         {
-            delete Increment;
-            delete Decrement;
-            delete ValueDisplay;
+            ParentScreen->DestroyWidget(Increment);
+            ParentScreen->DestroyWidget(Decrement);
+            ParentScreen->DestroyBasicRenderable(ValueDisplay);
             delete CaptureData;
         }
 
         void Spinner::CreateHorizontalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentLayer->GetParent()->GetPrimaryAtlas());
+            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y,Size.Y),false),ParentLayer);
-            Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y,Size.Y),false),ParentLayer);
-            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText(),ParentLayer);
-            AddSubRenderable(0,RenderablePair(Increment,NULL));
-            AddSubRenderable(1,RenderablePair(Decrement,NULL));
-            AddSubRenderable(2,RenderablePair(ValueDisplay,NULL));
+            Increment = ParentScreen->CreateButton(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y,Size.Y),false));
+            Decrement = ParentScreen->CreateButton(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y,Size.Y),false));
+            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 2),Size.Y),false),GlyphInfo.first,GetValueAsText());
+            AddSubRenderable(0,Increment);
+            AddSubRenderable(1,Decrement);
+            AddSubRenderable(2,ValueDisplay);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
 
         void Spinner::CreateVerticalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentLayer->GetParent()->GetPrimaryAtlas());
+            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.X,Size.X),false),ParentLayer);
-            Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.X,Size.X),false),ParentLayer);
-            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText(),ParentLayer);
-            AddSubRenderable(0,RenderablePair(Increment,NULL));
-            AddSubRenderable(1,RenderablePair(Decrement,NULL));
-            AddSubRenderable(2,RenderablePair(ValueDisplay,NULL));
+            Increment = ParentScreen->CreateButton(Name+"Inc",RenderableRect(IncPos,Vector2(Size.X,Size.X),false));
+            Decrement = ParentScreen->CreateButton(Name+"Dec",RenderableRect(DecPos,Vector2(Size.X,Size.X),false));
+            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X,Size.Y - (Size.X * 2)),false),GlyphInfo.first,GetValueAsText());
+            AddSubRenderable(0,Increment);
+            AddSubRenderable(1,Decrement);
+            AddSubRenderable(2,ValueDisplay);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
 
         void Spinner::CreateBoxSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
-            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentLayer->GetParent()->GetPrimaryAtlas());
+            std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,ParentScreen->GetPrimaryAtlas());
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false),ParentLayer);
-            Decrement = new Button(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false),ParentLayer);
-            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText(),ParentLayer);
-            AddSubRenderable(0,RenderablePair(Increment,NULL));
-            AddSubRenderable(1,RenderablePair(Decrement,NULL));
-            AddSubRenderable(2,RenderablePair(ValueDisplay,NULL));
+            Increment = ParentScreen->CreateButton(Name+"Inc",RenderableRect(IncPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
+            Decrement = ParentScreen->CreateButton(Name+"Dec",RenderableRect(DecPos,Vector2(Size.Y * 0.5,Size.Y * 0.5),false));
+            ValueDisplay = ParentScreen->CreateCaption(Name+"Dis",RenderableRect(ValPos,Vector2(Size.X - (Size.Y * 0.5),Size.Y),false),GlyphInfo.first,GetValueAsText());
+            AddSubRenderable(0,Increment);
+            AddSubRenderable(1,Decrement);
+            AddSubRenderable(2,ValueDisplay);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -305,26 +304,26 @@ namespace Mezzanine
         void Spinner::UpdateImpl(bool Force)
         {
             ProcessCapturedInputs();
-            if(HoveredButton)
+            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
-                    if(HoveredButton==Increment)
+                    if(HoveredSubWidget==Increment)
                         IncrementLock = false;
-                    else if(HoveredButton==Decrement)
+                    else if(HoveredSubWidget==Decrement)
                         DecrementLock = false;
                 }
                 else if(MetaCode::BUTTON_LIFTING && (!IncrementLock || !DecrementLock))
                 {
-                    if(HoveredButton==Increment && !IncrementLock)
+                    if(HoveredSubWidget==Increment && !IncrementLock)
                     {
                         Value++;
                         CheckValueLimits();
                         ValueDisplay->SetText(GetValueAsText());
                         IncrementLock = true;
                     }
-                    else if(HoveredButton==Decrement && !DecrementLock)
+                    else if(HoveredSubWidget==Decrement && !DecrementLock)
                     {
                         Value--;
                         CheckValueLimits();
@@ -346,17 +345,17 @@ namespace Mezzanine
         {
             if(Increment->CheckMouseHover())
             {
-                HoveredButton = Increment;
+                HoveredSubWidget = Increment;
                 return true;
             }
             if(Decrement->CheckMouseHover())
             {
-                HoveredButton = Decrement;
+                HoveredSubWidget = Decrement;
                 return true;
             }
             if(ValueDisplay->CheckMouseHover())
             {
-                HoveredButton = NULL;
+                HoveredSubWidget = NULL;
                 return true;
             }
             return false;
@@ -431,20 +430,20 @@ namespace Mezzanine
         void Spinner::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            Vector2 Adjusted = Position * ParentLayer->GetParent()->GetViewportDimensions();
+            Vector2 Adjusted = Position * ParentScreen->GetViewportDimensions();
             SetLocation(Adjusted);
         }
 
         void Spinner::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentScreen->GetViewportDimensions();
             SetLocation(Position);
         }
 
         void Spinner::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Vector2 Adjusted = Size * ParentLayer->GetParent()->GetViewportDimensions();
+            Vector2 Adjusted = Size * ParentScreen->GetViewportDimensions();
             CalculateOffsets(Adjusted);
             SetArea(Adjusted);
             SetLocation(GetActualPosition());
@@ -452,7 +451,7 @@ namespace Mezzanine
 
         void Spinner::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentScreen->GetViewportDimensions();
             CalculateOffsets(Size);
             SetArea(Size);
             SetLocation(GetActualPosition());

@@ -42,7 +42,6 @@
 
 #include "UI/window.h"
 #include "uimanager.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/rectangle.h"
 #include "inputquerytool.h"
@@ -53,8 +52,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Window::Window(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
-            : RenderableContainerWidget(name,Rect,PLayer),
+        Window::Window(ConstString& name, const RenderableRect& Rect, Screen* PScreen)
+            : EnclosedRenderableContainerWidget(name,Rect,PScreen),
               BorderWidth(0),
               CurrentRM(RM_None)
         {
@@ -87,42 +86,42 @@ namespace Mezzanine
 
         void Window::UpdateImpl(bool Force)
         {
-            RenderableContainerWidget::UpdateImpl(Force);
+            EnclosedRenderableContainerWidget::UpdateImpl(Force);
         }
 
         void Window::SetVisibleImpl(bool visible)
         {
-            RenderableContainerWidget::SetVisibleImpl(visible);
+            EnclosedRenderableContainerWidget::SetVisibleImpl(visible);
         }
 
         bool Window::CheckMouseHoverImpl()
         {
-            return RenderableContainerWidget::CheckMouseHoverImpl();
+            return EnclosedRenderableContainerWidget::CheckMouseHoverImpl();
         }
 
         void Window::SetPosition(const Vector2& Position)
         {
-            RenderableContainerWidget::SetPosition(Position);
+            EnclosedRenderableContainerWidget::SetPosition(Position);
         }
 
         void Window::SetActualPosition(const Vector2& Position)
         {
-            RenderableContainerWidget::SetActualPosition(Position);
+            EnclosedRenderableContainerWidget::SetActualPosition(Position);
         }
 
         void Window::SetSize(const Vector2& Size)
         {
-            RenderableContainerWidget::SetSize(Size);
+            EnclosedRenderableContainerWidget::SetSize(Size);
         }
 
         void Window::SetActualSize(const Vector2& Size)
         {
-            RenderableContainerWidget::SetActualSize(Size);
+            EnclosedRenderableContainerWidget::SetActualSize(Size);
         }
 
         void Window::UpdateDimensions()
         {
-            RenderableContainerWidget::UpdateDimensions();
+            EnclosedRenderableContainerWidget::UpdateDimensions();
         }
 
         Rectangle* Window::GetWindowBack()

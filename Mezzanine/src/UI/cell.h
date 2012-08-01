@@ -68,7 +68,7 @@ namespace Mezzanine
                 virtual bool CheckMouseHoverImpl() = 0;
             public:
                 /// @brief Class constructor.
-                Cell(const String& name, Layer* parent);
+                Cell(const String& name, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~Cell();
                 /// @brief Sets the priority of this cell for use in sorting on the cell grid.

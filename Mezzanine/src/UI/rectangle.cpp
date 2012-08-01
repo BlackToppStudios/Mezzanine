@@ -43,7 +43,6 @@
 #include "inputquerytool.h"
 #include "UI/rectangle.h"
 #include "uimanager.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
 #include "world.h"
@@ -54,9 +53,10 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Rectangle::Rectangle(const RenderableRect& Rect, Layer* PLayer)
-            : BasicRenderable("Rectangle",PLayer),
-              MouseHover(false),
+        Rectangle::Rectangle(const RenderableRect& Rect, Screen* PScreen)
+            : AreaRenderable("Rectangle",PScreen),
+              NormalSprite(NULL),
+              HoveredSprite(NULL),
               CustomCenter(false),
               BorderWidth(0.0),
               RotAngle(0.0)
@@ -64,9 +64,10 @@ namespace Mezzanine
             ConstructRectangle(Rect);
         }
 
-        Rectangle::Rectangle(const String& name, const RenderableRect& Rect, Layer* PLayer)
-            : BasicRenderable(name,PLayer),
-              MouseHover(false),
+        Rectangle::Rectangle(const String& name, const RenderableRect& Rect, Screen* PScreen)
+            : AreaRenderable(name,PScreen),
+              NormalSprite(NULL),
+              HoveredSprite(NULL),
               CustomCenter(false),
               BorderWidth(0.0),
               RotAngle(0.0)
@@ -80,7 +81,7 @@ namespace Mezzanine
 
         void Rectangle::ConstructRectangle(const UI::RenderableRect& Rect)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -103,7 +104,7 @@ namespace Mezzanine
             BorderColours[1] = ColourValue::Black();
             BorderColours[2] = ColourValue::Black();
             BorderColours[3] = ColourValue::Black();
-            UVs[0] = UVs[1] = UVs[2] = UVs[3] = ParentLayer->GetSolidUV(PriAtlas);
+            UVs[0] = UVs[1] = UVs[2] = UVs[3] = ParentScreen->GetSolidUV(PriAtlas);
             RotCenter.X = 0.0;
             RotCenter.Y = 0.0;
         }
@@ -112,7 +113,7 @@ namespace Mezzanine
                                    const Vector2& OuterTopLeft, const Vector2& OuterTopRight, const Vector2& OuterBottomLeft, const Vector2& OuterBottomRight)
         {
             VertexData Temp;
-            Vector2 UV = ParentLayer->GetSolidUV(PriAtlas);
+            Vector2 UV = ParentScreen->GetSolidUV(PriAtlas);
 
             // North
             PushTriangle(RenderVertices, Temp, TopLeft, OuterTopRight, OuterTopLeft, UV, BorderColours[UI::Border_North],PriAtlas);
@@ -200,24 +201,19 @@ namespace Mezzanine
             }
         }
 
-        void Rectangle::SetHovered(bool Hovered)
-        {
-            MouseHover = Hovered;
-        }
-
         void Rectangle::SetSprite(Sprite* PSprite)
         {
             if(PSprite == NULL)
             {
-                PriAtlas = ParentLayer->GetParent()->GetPrimaryAtlas();
-                UVs[0] = UVs[1] = UVs[2] = UVs[3] = ParentLayer->GetSolidUV(PriAtlas);
+                PriAtlas = ParentScreen->GetPrimaryAtlas();
+                UVs[0] = UVs[1] = UVs[2] = UVs[3] = ParentScreen->GetSolidUV(PriAtlas);
                 _MarkDirty();
             }else{
                 PriAtlas = PSprite->Atlas;
-                Real TexelOffsetX = ParentLayer->GetTexelX();
-                Real TexelOffsetY = ParentLayer->GetTexelY();
-                TexelOffsetX /= ParentLayer->GetTextureSize(PSprite->Atlas).X;
-                TexelOffsetY /= ParentLayer->GetTextureSize(PSprite->Atlas).Y;
+                Real TexelOffsetX = ParentScreen->GetTexelOffsetX();
+                Real TexelOffsetY = ParentScreen->GetTexelOffsetY();
+                TexelOffsetX /= ParentScreen->GetTextureSize(PSprite->Atlas).X;
+                TexelOffsetY /= ParentScreen->GetTextureSize(PSprite->Atlas).Y;
                 UVs[0].X = UVs[3].X = PSprite->UVLeft - TexelOffsetX;
                 UVs[0].Y = UVs[1].Y = PSprite->UVTop - TexelOffsetY;
                 UVs[1].X = UVs[2].X = PSprite->UVRight + TexelOffsetX;
@@ -225,6 +221,23 @@ namespace Mezzanine
                 _MarkDirty();
             }
         }
+
+        void Rectangle::SetHovered(bool Hovered)
+        {
+            if(Hovered == MouseHover)
+                return;
+            if(HoveredSprite)
+            {
+                if(Hovered && !MouseHover)
+                    SetSprite(HoveredSprite);
+                else if(!Hovered && MouseHover)
+                    SetSprite(NormalSprite);
+            }
+            MouseHover = Hovered;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Hover Methods
 
         bool Rectangle::CheckMouseHover()
         {
@@ -238,10 +251,20 @@ namespace Mezzanine
             return MouseHover;
         }
 
-        bool Rectangle::GetMouseHover()
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility Methods
+
+        bool Rectangle::IsVisible() const
         {
-            return MouseHover;
+            return BasicRenderable::IsVisible() &&
+                ( BackgroundColours[0] != 0 &&
+                  BackgroundColours[1] != 0 &&
+                  BackgroundColours[2] != 0 &&
+                  BackgroundColours[3] != 0 );
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Background Methods
 
         void Rectangle::SetBackgroundColour(const ColourValue& Colour)
         {
@@ -260,19 +283,43 @@ namespace Mezzanine
 
         void Rectangle::SetBackgroundSprite(Sprite* PSprite)
         {
+            NormalSprite = PSprite;
+            if( MouseHover && HoveredSprite )
+                return;
             SetSprite(PSprite);
         }
 
         void Rectangle::SetBackgroundSprite(const String& SpriteName)
         {
-            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
+            Sprite* PSprite = ParentScreen->GetSprite(SpriteName,PriAtlas);
             SetBackgroundSprite(PSprite);
         }
 
         void Rectangle::SetBackgroundSprite(const String& SpriteName, const String& Atlas)
         {
-            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
+            Sprite* PSprite = ParentScreen->GetSprite(SpriteName,Atlas);
             SetBackgroundSprite(PSprite);
+        }
+
+        void Rectangle::SetHoveredSprite(Sprite* PSprite)
+        {
+            HoveredSprite = PSprite;
+            if(MouseHover)
+            {
+                SetSprite(PSprite);
+            }
+        }
+
+        void Rectangle::SetHoveredSprite(const String& SpriteName)
+        {
+            Sprite* PSprite = ParentScreen->GetSprite(SpriteName,PriAtlas);
+            SetHoveredSprite(PSprite);
+        }
+
+        void Rectangle::SetHoveredSprite(const String& SpriteName, const String& Atlas)
+        {
+            Sprite* PSprite = ParentScreen->GetSprite(SpriteName,Atlas);
+            SetHoveredSprite(PSprite);
         }
 
         void Rectangle::SetBackgroundGradient(const UI::Gradient& Grad, const ColourValue& ColourA, const ColourValue& ColourB)
@@ -411,60 +458,40 @@ namespace Mezzanine
 
         void Rectangle::SetPosition(const Vector2& Position)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             RelPosition = Position;
             ActPosition = Position * WinDim;
             _MarkDirty();
         }
 
-        Vector2 Rectangle::GetPosition() const
-        {
-            return RelPosition;
-        }
-
         void Rectangle::SetActualPosition(const Vector2& Position)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             RelPosition = Position / WinDim;
             ActPosition = Position;
             _MarkDirty();
         }
 
-        Vector2 Rectangle::GetActualPosition() const
-        {
-            return ActPosition;
-        }
-
         void Rectangle::SetSize(const Vector2& Size)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             RelSize = Size;
             ActSize = Size * WinDim;
             _MarkDirty();
         }
 
-        Vector2 Rectangle::GetSize() const
-        {
-            return RelSize;
-        }
-
         void Rectangle::SetActualSize(const Vector2& Size)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             RelSize = Size / WinDim;
             ActSize = Size;
             _MarkDirty();
         }
 
-        Vector2 Rectangle::GetActualSize() const
-        {
-            return ActSize;
-        }
-
         void Rectangle::UpdateDimensions()
         {
-            //this->SetActualPosition(RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
-            //this->SetActualSize(RelSize * ParentLayer->GetParent()->GetViewportDimensions());
+            //this->SetActualPosition(RelPosition * ParentScreen->GetViewportDimensions());
+            //this->SetActualSize(RelSize * ParentScreen->GetViewportDimensions());
             ViewportUpdateTool::UpdateRectangleRenderable(this);
         }
 
@@ -479,8 +506,8 @@ namespace Mezzanine
                 return;
             }
 
-            Real TexelOffsetX = ParentLayer->GetTexelX();
-            Real TexelOffsetY = ParentLayer->GetTexelY();
+            Real TexelOffsetX = ParentScreen->GetTexelOffsetX();
+            Real TexelOffsetY = ParentScreen->GetTexelOffsetY();
             Vector2 TopLeft, TopRight, BottomLeft, BottomRight;
             TopLeft.X = ActPosition.X + TexelOffsetX;                   TopLeft.Y = ActPosition.Y + TexelOffsetY;
             TopRight.X = (ActPosition.X + ActSize.X) + TexelOffsetX;    TopRight.Y = ActPosition.Y + TexelOffsetY;
@@ -542,7 +569,7 @@ namespace Mezzanine
                 OuterBottomRight.Y = L2.X * RotSin + L2.Y * RotCos;
 
                 Vertex Temp;
-                Vector2 UV = Parent->GetSolidUV(PriAtlas);
+                Vector2 UV = ParentScreen->GetSolidUV(PriAtlas);
 
                 // North
                 PushTriangle(RenderVertices, Temp, TopLeft, OuterTopRight, OuterTopLeft, UV, BorderColours[UI::Border_North],PriAtlas);

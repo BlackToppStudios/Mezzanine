@@ -41,8 +41,8 @@
 #define _uiwidget_cpp
 
 #include "UI/widget.h"
+#include "UI/basicrenderable.h"
 #include "UI/button.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "uimanager.h"
 #include "inputquerytool.h"
@@ -95,22 +95,13 @@ namespace Mezzanine
 
         //-----------------------------------------------------
 
-        Widget::Widget(const String& name, Layer* Parent)
-            : ParentLayer(Parent),
-              ParentWidget(NULL),
-              HoveredButton(NULL),
+        Widget::Widget(const String& name, Screen* Parent)
+            : Renderable(name,Parent),
               HoveredSubWidget(NULL),
               SubWidgetFocus(NULL),
               CaptureData(NULL),
-              Visible(true),
-              Hovered(false),
-              Dirty(true),
-              Priority(UI::RP_Medium),
-              RelPosition(Vector2(0,0)),
-              RelSize(Vector2(0,0)),
-              Name(name)
+              Hovered(false)
         {
-            Manager = UIManager::GetSingletonPtr();
         }
 
         Widget::~Widget()
@@ -177,16 +168,74 @@ namespace Mezzanine
                 SubWidgetFocus->Update(Force);
         }
 
-        void Widget::AddSubRenderable(const Whole& Zorder, const RenderablePair& ToAdd)
+        void Widget::AddSubRenderable(const UInt16& Zorder, Renderable* ToAdd)
         {
-            if( ToAdd.first ) ToAdd.first->ParentWidget = this;
-            else ToAdd.second->ParentWidget = this;
-            SubRenderables[Zorder] = ToAdd;
+            for( RenderableIterator RendIt = SubRenderables.begin() ; RendIt != SubRenderables.end() ; ++RendIt )
+            {
+                if( (*RendIt)->GetZOrder() > Zorder )
+                {
+                    SubRenderables.insert(RendIt,ToAdd);
+                    ToAdd->ParentWidget = this;
+                    ToAdd->_SetZOrder(Zorder);
+                    return;
+                }
+            }
+            SubRenderables.push_back(ToAdd);
+            ToAdd->ParentWidget = this;
+            ToAdd->_SetZOrder(Zorder);
+            return;
         }
 
         void Widget::ProcessCapturedInputs()
         {
         }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        Widget::WidgetType Widget::GetType() const
+        {
+            return Type;
+        }
+
+        bool Widget::IsInputCaptureWidget() const
+        {
+            return NULL != CaptureData;
+        }
+
+        bool Widget::IsHovered() const
+        {
+            return Hovered;
+        }
+
+        bool Widget::CheckMouseHover()
+        {
+            if(!IsVisible())
+            {
+                HoveredSubWidget = NULL;
+                Hovered = false;
+            }
+            else if(CheckMouseHoverImpl())
+            {
+                Hovered = true;
+            }
+            else
+            {
+                HoveredSubWidget = NULL;
+                Hovered = false;
+            }
+            if(!Listeners.empty())
+            {
+                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
+                {
+                    (*It)->DoHoverItems();
+                }
+            }
+            return Hovered;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility Methods
 
         void Widget::SetVisible(bool visible)
         {
@@ -210,7 +259,7 @@ namespace Mezzanine
 
         bool Widget::IsVisible() const
         {
-            return Visible && ParentLayer->IsVisible() && ParentLayer->GetParent()->IsVisible();
+            return Visible && ParentScreen->IsVisible();
         }
 
         void Widget::Show()
@@ -223,25 +272,61 @@ namespace Mezzanine
             SetVisible(false);
         }
 
-        Widget::WidgetType Widget::GetType() const
+        ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        void Widget::SetRect(const RenderableRect& Rect)
         {
-            return Type;
+            if(Rect.Relative)
+            {
+                SetSize(Rect.Size);
+                SetPosition(Rect.Position);
+            }else{
+                SetActualSize(Rect.Size);
+                SetActualPosition(Rect.Position);
+            }
         }
 
-        bool Widget::IsInputCaptureWidget() const
+        RenderableRect Widget::GetRect(bool Relative) const
         {
-            return NULL != CaptureData;
+            if(Relative) return RenderableRect(GetPosition(),GetSize(),Relative);
+            else return RenderableRect(GetActualPosition(),GetActualSize(),Relative);
         }
 
-        bool Widget::IsHovered() const
+        Vector2 Widget::GetPosition() const
         {
-            return Hovered;
+            return RelPosition;
         }
 
-        ConstString& Widget::GetName() const
+        Vector2 Widget::GetActualPosition() const
         {
-            return Name;
+            return RelPosition * ParentScreen->GetViewportDimensions();
         }
+
+        Vector2 Widget::GetSize() const
+        {
+            return RelSize;
+        }
+
+        Vector2 Widget::GetActualSize() const
+        {
+            return RelSize * ParentScreen->GetViewportDimensions();
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Render Priority Methods
+
+        void Widget::SetRenderPriority(const UI::RenderPriority& Priority)
+        {
+            Renderable::SetRenderPriority(Priority);
+            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            {
+                (*it)->SetRenderPriority(this->Priority);
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Listener Methods
 
         void Widget::AddWidgetListener(WidgetListener* Listener)
         {
@@ -269,100 +354,29 @@ namespace Mezzanine
             }
         }
 
-        bool Widget::CheckMouseHover()
-        {
-            if(!IsVisible())
-            {
-                HoveredSubWidget = NULL;
-                HoveredButton = NULL;
-                Hovered = false;
-            }
-            else if(CheckMouseHoverImpl())
-            {
-                Hovered = true;
-            }
-            else
-            {
-                HoveredSubWidget = NULL;
-                HoveredButton = NULL;
-                Hovered = false;
-            }
-            if(!Listeners.empty())
-            {
-                for( ListenerIterator It = Listeners.begin() ; It != Listeners.end() ; ++It )
-                {
-                    (*It)->DoHoverItems();
-                }
-            }
-            return Hovered;
-        }
-
-        void Widget::SetRect(const RenderableRect& Rect)
-        {
-            if(Rect.Relative)
-            {
-                SetSize(Rect.Size);
-                SetPosition(Rect.Position);
-            }else{
-                SetActualSize(Rect.Size);
-                SetActualPosition(Rect.Position);
-            }
-        }
-
-        RenderableRect Widget::GetRect(bool Relative) const
-        {
-            if(Relative) return RenderableRect(GetPosition(),GetSize(),Relative);
-            else return RenderableRect(GetActualPosition(),GetActualSize(),Relative);
-        }
-
-        Vector2 Widget::GetPosition() const
-        {
-            return RelPosition;
-        }
-
-        Vector2 Widget::GetActualPosition() const
-        {
-            return RelPosition * ParentLayer->GetParent()->GetViewportDimensions();
-        }
-
-        Vector2 Widget::GetSize() const
-        {
-            return RelSize;
-        }
-
-        Vector2 Widget::GetActualSize() const
-        {
-            return RelSize * ParentLayer->GetParent()->GetViewportDimensions();
-        }
-
-        void Widget::SetRenderPriority(const UI::RenderPriority& Priority)
-        {
-            this->Priority = Priority;
-            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
-            {
-                if( (*it).second.first ) (*it).second.first->SetRenderPriority(this->Priority);
-                else (*it).second.second->SetRenderPriority(this->Priority);
-            }
-        }
-
-        UI::RenderPriority Widget::GetRenderPriority() const
-        {
-            return Priority;
-        }
-
-        Button* Widget::GetHoveredButton() const
-        {
-            return HoveredButton;
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Fetch Methods
 
         Widget* Widget::GetHoveredSubWidget() const
         {
             return HoveredSubWidget;
         }
 
-        Layer* Widget::GetLayer() const
+        Widget* Widget::GetBottomMostHoveredWidget()
         {
-            return ParentLayer;
+            if(HoveredSubWidget) return HoveredSubWidget->GetBottomMostHoveredWidget();
+            else return this;
+        }
+
+        Widget* Widget::GetTopMostWidget()
+        {
+            if(ParentWidget) return GetTopMostWidget();
+            else return this;
+        }
+
+        Screen* Widget::GetParent() const
+        {
+            return ParentScreen;
         }
 
         InputCaptureData* Widget::GetInputCaptureData() const
@@ -370,45 +384,53 @@ namespace Mezzanine
             return CaptureData;
         }
 
+        Widget::RenderableIterator Widget::BeginRenderable()
+        {
+            return SubRenderables.begin();
+        }
+
+        Widget::RenderableIterator Widget::EndRenderable()
+        {
+            return SubRenderables.end();
+        }
+
+        Widget::ConstRenderableIterator Widget::BeginRenderable() const
+        {
+            return SubRenderables.begin();
+        }
+
+        Widget::ConstRenderableIterator Widget::EndRenderable() const
+        {
+            return SubRenderables.end();
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
-        // Internal Functions
-        ///////////////////////////////////////
+        // Internal Methods
 
         void Widget::_MarkDirty()
         {
             Dirty = true;
-            ParentLayer->_MarkDirty();
             if(ParentWidget)
                 ParentWidget->_MarkDirty();
+            else
+                ParentScreen->_RequestIndexRedraw(ZOrder);
         }
 
         void Widget::_Redraw()
         {
-            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
             {
-                if( (*it).second.first )
-                {
-                    if( (*it).second.first->Dirty )
-                        (*it).second.first->_Redraw();
-                }else{
-                    if( (*it).second.second->Dirty )
-                        (*it).second.second->_Redraw();
-                }
+                if( (*it)->Dirty )
+                    (*it)->_Redraw();
             }
         }
 
         void Widget::_AppendVertices(ScreenVertexData& Vertices)
         {
-            for( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            for( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
             {
-                if( (*it).second.first )
-                {
-                    if( (*it).second.first->IsVisible() )
-                        (*it).second.first->_AppendVertices(Vertices);
-                }else{
-                    if( (*it).second.second->IsVisible() )
-                        (*it).second.second->_AppendVertices(Vertices);
-                }
+                if( (*it)->IsVisible() )
+                    (*it)->_AppendVertices(Vertices);
             }
         }
 

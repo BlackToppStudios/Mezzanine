@@ -52,7 +52,6 @@
 #include "viewport.h"
 #include "UI/screen.h"
 #include "UI/button.h"
-#include "UI/layer.h"
 #include "UI/widget.h"
 #include "UI/glyph.h"
 
@@ -63,9 +62,7 @@ namespace Mezzanine
     template<> UIManager* Singleton<UIManager>::SingletonPtr = 0;
 
     UIManager::UIManager()
-        : HoveredButton(NULL),
-          HoveredWidgetButton(NULL),
-          HoveredWidget(NULL),
+        : HoveredWidget(NULL),
           WidgetFocus(NULL),
           InputCapture(NULL),
           LastWidgetSelected(NULL),
@@ -77,9 +74,7 @@ namespace Mezzanine
 
 #ifdef MEZZXML
     UIManager::UIManager(XML::Node& XMLNode)
-        : HoveredButton(NULL),
-          HoveredWidgetButton(NULL),
-          HoveredWidget(NULL),
+        : HoveredWidget(NULL),
           WidgetFocus(NULL),
           InputCapture(NULL),
           LastWidgetSelected(NULL),
@@ -98,50 +93,24 @@ namespace Mezzanine
 
     void UIManager::HoverChecks()
     {
-        if(HoveredButton)
+        /*if(HoveredWidget)
         {
-            if(HoveredButton->CheckMouseHover())
+            if(HoveredWidget->CheckMouseHover())
             {
-                HoveredWidget = NULL;
-                HoveredWidgetButton = NULL;
-                MouseActivationCheck(HoveredButton);
+                if(UI::Widget::W_Button == HoveredWidget->GetType())
+                {
+                    MouseActivationCheck(static_cast<UI::Button*>(HoveredWidget));
+                }
                 return;
             }
-        }
+        }//*/
+        HoveredWidget = CheckWidgetMouseIsOver();
         if(HoveredWidget)
         {
-            if(HoveredWidgetButton)
+            UI::Widget* BottomMost = HoveredWidget->GetBottomMostHoveredWidget();
+            if(UI::Widget::W_Button == BottomMost->GetType())
             {
-                if(HoveredWidgetButton->CheckMouseHover())
-                {
-                    HoveredButton = NULL;
-                    MouseActivationCheck(HoveredWidgetButton);
-                    return;
-                }
-            }
-            else if(HoveredWidget->CheckMouseHover())
-            {
-                HoveredButton = NULL;
-                HoveredWidgetButton = HoveredWidget->GetHoveredButton();
-                if(HoveredWidgetButton)
-                    MouseActivationCheck(HoveredWidgetButton);
-                return;
-            }
-        }
-        HoveredButton = CheckButtonMouseIsOver();
-        if(HoveredButton)
-        {
-            MouseActivationCheck(HoveredButton);
-            HoveredWidget = NULL;
-            HoveredWidgetButton = NULL;
-        }else{
-            HoveredWidget = CheckWidgetMouseIsOver();
-            if(HoveredWidget)
-            {
-                HoveredButton = NULL;
-                HoveredWidgetButton = HoveredWidget->GetHoveredButton();
-                if(HoveredWidgetButton)
-                    MouseActivationCheck(HoveredWidgetButton);
+                MouseActivationCheck(static_cast<UI::Button*>(BottomMost));
             }
         }
     }
@@ -208,7 +177,7 @@ namespace Mezzanine
         if(ActivatedButtons.empty())
             return;
         for(std::vector<UI::Button*>::iterator It = ActivatedButtons.begin() ; It != ActivatedButtons.end() ; It++ )
-            (*It)->SetActivation(false);
+            (*It)->_SetActivation(false);
         ActivatedButtons.clear();
     }
 
@@ -230,7 +199,7 @@ namespace Mezzanine
             Code = MouseCodes->at(X);
             if((Condition == UI::AC_OnLift ? MetaCode::BUTTON_LIFTING : MetaCode::BUTTON_PRESSING) == InputQueryTool::GetMouseButtonState(Code))
             {
-                ToCheck->SetActivation(true);
+                ToCheck->_SetActivation(true);
                 ActivatedButtons.push_back(ToCheck);
             }
         }
@@ -246,7 +215,7 @@ namespace Mezzanine
             for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
             {
                 if((*It).second->IsVisible())
-                    (*It).second->SetActivation(true);
+                    (*It).second->_SetActivation(true);
             }
         }
     }
@@ -345,16 +314,6 @@ namespace Mezzanine
         return &AutoRegisterCodes;
     }
 
-    UI::Button* UIManager::GetHoveredButton()
-    {
-        return HoveredButton;
-    }
-
-    UI::Button* UIManager::GetHoveredWidgetButton()
-    {
-        return HoveredWidgetButton;
-    }
-
     UI::Widget* UIManager::GetHoveredWidget()
     {
         return HoveredWidget;
@@ -428,33 +387,6 @@ namespace Mezzanine
         return;
     }
 
-    UI::Layer* UIManager::GetLayer(const String& Name)
-    {
-        for( Whole x=0 ; x < Screens.size() ; x++ )
-        {
-            UI::Layer* Layer = Screens[x]->GetLayer(Name);
-            if(NULL!=Layer)
-                return Layer;
-        }
-        return 0;
-    }
-
-    UI::Button* UIManager::CheckButtonMouseIsOver()
-    {
-        for( Whole x=0 ; x < Screens.size() ; x++ )
-        {
-            if( Screens[x]->IsVisible() )
-            {
-                UI::Button* button = Screens[x]->CheckButtonMouseIsOver();
-                if(button)
-                {
-                    return button;
-                }
-            }
-        }
-        return 0;
-    }
-
     UI::Widget* UIManager::CheckWidgetMouseIsOver()
     {
         for( Whole x=0 ; x < Screens.size() ; x++ )
@@ -473,7 +405,7 @@ namespace Mezzanine
 
     bool UIManager::MouseIsInUISystem()
     {
-        if(HoveredButton || HoveredWidget || WidgetFocus)
+        if(HoveredWidget || WidgetFocus)
         {
             return true;
         }else{

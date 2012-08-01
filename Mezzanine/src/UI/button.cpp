@@ -42,7 +42,7 @@
 
 #include "uimanager.h"
 #include "UI/button.h"
-#include "UI/layer.h"
+#include "UI/caption.h"
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
 #include "eventmanager.h"
@@ -53,255 +53,114 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Button::Button(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
-            : Rectangle(name,Rect,PLayer),
-              NormalSprite(NULL),
-              HoveredSprite(NULL),
-              UserSprite(NULL),
-              Callback(NULL),
-              Activated(false),
-              UserSpriteEnabled(false),
-              MultipleActivations(false),
-              ActCond(UI::AC_OnLift)
+        Button::Button(ConstString& name, const RenderableRect& Rect, Screen* PScreen)
+            : Activatable(name,PScreen)
         {
+            Type = Widget::W_Button;
+            Real LineHeight = 0.0;
+            if(Rect.Relative)
+            {
+                LineHeight = Rect.Size.Y * 0.8;
+            }else{
+                LineHeight = (Rect.Size.Y / ParentScreen->GetViewportDimensions().Y) * 0.8;
+            }
+            Clickable = ParentScreen->CreateCaption(Name+"Cl",Rect,LineHeight,"");
+            AddSubRenderable(0,Clickable);
+        }
+
+        Button::Button(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Screen* PScreen)
+            : Activatable(name,PScreen)
+        {
+            Type = Widget::W_Button;
+            Clickable = ParentScreen->CreateCaption(Name+"Cl",Rect,Glyph,Text);
+            AddSubRenderable(0,Clickable);
+        }
+
+        Button::Button(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Screen* PScreen)
+            : Activatable(name,PScreen)
+        {
+            Type = Widget::W_Button;
+
+            Clickable = ParentScreen->CreateCaption(Name+"Cl",Rect,LineHeight,Text);
+            AddSubRenderable(0,Clickable);
         }
 
         Button::~Button()
         {
-            if(Callback)
-                delete Callback;
+            ParentScreen->DestroyBasicRenderable(Clickable);
         }
 
-        void Button::SetHovered(bool Hovered)
-        {
-            if(Hovered == MouseHover)
-                return;
-            if(Hovered && Callback)
-                Callback->DoHoverItems();
-            if(HoveredSprite)
-            {
-                if(Hovered && !MouseHover)
-                    SetSprite(HoveredSprite);
-                else if(!Hovered && MouseHover)
-                {
-                    if(UserSpriteEnabled) SetSprite(UserSprite);
-                    else SetSprite(NormalSprite);
-                }
-            }
-            MouseHover = Hovered;
-        }
-
-        bool Button::IsTextButton()
-        {
-            return false;
-        }
-
-        void Button::SetButtonCallback(ButtonCallback* CB)
-        {
-            if(Callback != CB && Callback)
-                delete Callback;
-            CB->SetCaller(this);
-            Callback = CB;
-        }
-
-        void Button::BindActivationKeyOrButton(const MetaCode::InputCode& Code)
-        {
-            if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
-            {
-                for( std::vector<MetaCode::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
-                {
-                    if((*It)==Code)
-                        return;
-                }
-                KeyboardActivationKeys.push_back(Code);
-
-            }else if(MetaCode::MOUSE_FIRST < Code && MetaCode::MOUSE_LAST > Code)
-            {
-                for( std::vector<MetaCode::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
-                {
-                    if((*It)==Code)
-                        return;
-                }
-                MouseActivationButtons.push_back(Code);
-            }else{
-                /// @todo Throw an error?
-            }
-        }
-
-        void Button::UnbindActivationKeyOrButton(const MetaCode::InputCode& Code)
-        {
-            if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
-            {
-                for( std::vector<MetaCode::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
-                {
-                    if((*It)==Code)
-                    {
-                        KeyboardActivationKeys.erase(It);
-                        return;
-                    }
-                }
-
-            }else if(MetaCode::MOUSE_FIRST < Code && MetaCode::MOUSE_LAST > Code)
-            {
-                for( std::vector<MetaCode::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
-                {
-                    if((*It)==Code)
-                    {
-                        MouseActivationButtons.erase(It);
-                        return;
-                    }
-                }
-            }
-        }
-
-        void Button::UnbindAllKeyboardActivationKeys()
-        {
-            KeyboardActivationKeys.clear();
-        }
-
-        void Button::UnbindAllMouseActivationButtons()
-        {
-            MouseActivationButtons.clear();
-        }
-
-        void Button::UnbindAllActivationKeysAndButtons()
-        {
-            UnbindAllKeyboardActivationKeys();
-            UnbindAllMouseActivationButtons();
-        }
-
-        void Button::SetActivationCondition(const UI::ActivationCondition& Condition)
-        {
-            ActCond = Condition;
-        }
-
-        UI::ActivationCondition Button::GetActivationCondition()
-        {
-            return ActCond;
-        }
-
-        void Button::SetActivation(bool Activate)
-        {
-            if(Activate && Activated && !MultipleActivations)
-                return;
-            if(Activate && Callback)
-                Callback->DoActivateItems();
-            Activated = Activate;
-        }
-
-        bool Button::IsActivated()
-        {
-            return Activated;
-        }
-
-        void Button::EnableMultipleActivations(bool Enable)
-        {
-            MultipleActivations = Enable;
-        }
-
-        bool Button::IsMultipleActivationsEnabled()
-        {
-            return MultipleActivations;
-        }
-
-        void Button::SetBackgroundSprite(Sprite* PSprite)
-        {
-            NormalSprite = PSprite;
-            if(!MouseHover && !UserSpriteEnabled)
-            {
-                SetSprite(PSprite);
-            }
-        }
-
-        void Button::SetBackgroundSprite(const String& SpriteName)
-        {
-            Rectangle::SetBackgroundSprite(SpriteName);
-        }
-
-        void Button::SetBackgroundSprite(const String& SpriteName, const String& Atlas)
-        {
-            Rectangle::SetBackgroundSprite(SpriteName,Atlas);
-        }
-
-        void Button::SetHoveredSprite(Sprite* PSprite)
-        {
-            HoveredSprite = PSprite;
-            if(MouseHover)
-            {
-                SetSprite(PSprite);
-            }
-        }
-
-        void Button::SetHoveredSprite(const String& SpriteName)
-        {
-            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
-            SetHoveredSprite(PSprite);
-        }
-
-        void Button::SetHoveredSprite(const String& SpriteName, const String& Atlas)
-        {
-            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
-            SetHoveredSprite(PSprite);
-        }
-
-        void Button::SetUserSprite(Sprite* PSprite)
-        {
-            UserSprite = PSprite;
-            if(!MouseHover && UserSpriteEnabled)
-            {
-                SetSprite(PSprite);
-            }
-        }
-
-        void Button::SetUserSprite(const String& SpriteName)
-        {
-            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,PriAtlas);
-            SetUserSprite(PSprite);
-        }
-
-        void Button::SetUserSprite(const String& SpriteName, const String& Atlas)
-        {
-            Sprite* PSprite = ParentLayer->GetSprite(SpriteName,Atlas);
-            SetUserSprite(PSprite);
-        }
-
-        void Button::EnableUserSprite(bool Enable)
-        {
-            if(UserSpriteEnabled == Enable)
-                return;
-            if(Enable && !MouseHover)
-            {
-                SetSprite(UserSprite);
-            }
-            else if(!Enable && !MouseHover)
-            {
-                SetSprite(NormalSprite);
-            }
-            UserSpriteEnabled = Enable;
-        }
-
-        std::vector<MetaCode::InputCode>* Button::GetKeyboardActivationKeys()
-        {
-            return &KeyboardActivationKeys;
-        }
-
-        std::vector<MetaCode::InputCode>* Button::GetMouseActivationButtons()
-        {
-            return &MouseActivationButtons;
-        }
-
-        ButtonCallback::ButtonCallback()
-            : Caller(NULL)
+        void Button::UpdateImpl(bool Force)
         {
         }
 
-        ButtonCallback::~ButtonCallback()
+        void Button::SetVisibleImpl(bool visible)
         {
+            Clickable->SetVisible(visible);
         }
 
-        void ButtonCallback::SetCaller(Button* Caller)
+        bool Button::CheckMouseHoverImpl()
         {
-            this->Caller = Caller;
+            return Clickable->CheckMouseHover();
+        }
+
+        void Button::SetLocation(const Vector2& Location)
+        {
+            Clickable->SetActualPosition(Location);
+        }
+
+        void Button::SetArea(const Vector2& Area)
+        {
+            Clickable->SetActualSize(Area);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        void Button::UpdateDimensions()
+        {
+            WidgetResult Result = ViewportUpdateTool::UpdateWidget(this);
+            RelPosition = Result.first / ViewportUpdateTool::GetNewSize();
+            RelSize = Result.second / ViewportUpdateTool::GetNewSize();
+            Clickable->UpdateDimensions();
+            SetPosition(RelPosition);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Transform Methods
+
+        void Button::SetPosition(const Vector2& Position)
+        {
+            RelPosition = Position;
+            Vector2 ActPos = Position * ParentScreen->GetViewportDimensions();
+            SetLocation(ActPos);
+        }
+
+        void Button::SetActualPosition(const Vector2& Position)
+        {
+            RelPosition = Position / ParentScreen->GetViewportDimensions();
+            SetLocation(Position);
+        }
+
+        void Button::SetSize(const Vector2& Size)
+        {
+            RelSize = Size;
+            Vector2 ActSize = Size * ParentScreen->GetViewportDimensions();
+            SetArea(ActSize);
+        }
+
+        void Button::SetActualSize(const Vector2& Size)
+        {
+            RelSize = Size / ParentScreen->GetViewportDimensions();
+            SetArea(Size);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Fetch Methods
+
+        Caption* Button::GetClickable() const
+        {
+            return Clickable;
         }
     }//UI
 }//Mezzanine

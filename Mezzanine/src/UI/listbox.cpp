@@ -42,7 +42,6 @@
 
 #include "UI/listbox.h"
 #include "uimanager.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/caption.h"
 #include "UI/rectangle.h"
@@ -58,8 +57,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
-            : Widget(name,PLayer),
+        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen)
+            : Widget(name,PScreen),
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
@@ -83,7 +82,7 @@ namespace Mezzanine
             SelectionTemplate.Priority = UI::RP_Medium;
 
             RenderableRect ScrollRect, BoxRect;
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
@@ -109,22 +108,22 @@ namespace Mezzanine
             BoxRect.Size.Y = Rect.Size.Y * MaxDisplay;
             BoxRect.Relative = Rect.Relative;
 
-            BoxBack = new Rectangle(BoxRect,ParentLayer);
-            VertScroll = new Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,ParentLayer);
+            BoxBack = ParentScreen->CreateRectangle(BoxRect);
+            VertScroll = ParentScreen->CreateScrollbar(Name+"Scr",ScrollRect,ScrollStyle);
             VertScroll->Hide();
 
-            AddSubRenderable(0,RenderablePair(BoxBack,NULL));
-            AddSubRenderable(1,RenderablePair(NULL,VertScroll));
+            AddSubRenderable(0,BoxBack);
+            AddSubRenderable(1,VertScroll);
         }
 
         ListBox::~ListBox()
         {
-            delete BoxBack;
+            ParentScreen->DestroyBasicRenderable(BoxBack);
             if(!Selections.empty())
             {
                 for( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
                 {
-                    delete (*it);
+                    ParentScreen->DestroyBasicRenderable( *it );
                 }
                 Selections.clear();
             }
@@ -157,7 +156,7 @@ namespace Mezzanine
 
         void ListBox::SelectionSizeCheck(UI::Caption* Selection)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             Vector2 CurrSize = Selection->GetActualSize();
             Vector2 TargetSize;
             if(VertScroll->IsVisible())
@@ -172,7 +171,7 @@ namespace Mezzanine
 
         void ListBox::SetArea(const Vector2& Area)
         {
-            RelSize = Area / ParentLayer->GetParent()->GetViewportDimensions();
+            RelSize = Area / ParentScreen->GetViewportDimensions();
             BoxBack->SetActualSize(Area);
             Vector2 ScrollP((GetActualPosition().X + Area.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
             Vector2 ScrollS(VertScroll->GetActualSize().X,Area.Y);
@@ -251,7 +250,6 @@ namespace Mezzanine
                 if((*it)->CheckMouseHover())
                 {
                     HoveredSubWidget = NULL;
-                    HoveredButton = NULL;
                     HoveredCaption = (*it);
                     return true;
                 }
@@ -259,14 +257,12 @@ namespace Mezzanine
             if(VertScroll->CheckMouseHover())
             {
                 HoveredSubWidget = VertScroll;
-                HoveredButton = VertScroll->GetHoveredButton();
                 HoveredCaption = NULL;
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
-                HoveredButton = NULL;
                 HoveredCaption = NULL;
                 return true;
             }
@@ -276,7 +272,7 @@ namespace Mezzanine
 
         ListBox& ListBox::SetTemplateSize(const Vector2& Size, bool Relative)
         {
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             if(Relative)
             {
                 this->SelectionTemplate.Size = Size * WinDim;
@@ -346,8 +342,8 @@ namespace Mezzanine
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
             SelectionsAdded++;
-            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / ParentLayer->GetParent()->GetViewportDimensions(),true);
-            Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,ParentLayer);
+            RenderableRect SelectionRect(RelPosition,SelectionTemplate.Size / ParentScreen->GetViewportDimensions(),true);
+            Caption* Select = ParentScreen->CreateCaption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
             if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))
@@ -362,7 +358,7 @@ namespace Mezzanine
             Select->SetRenderPriority(SelectionTemplate.Priority);
             Select->Hide();
             Selections.push_back(Select);
-            AddSubRenderable(SelectionsAdded,RenderablePair(Select,NULL));
+            AddSubRenderable(SelectionsAdded,Select);
             ScrollerSizeCheck();
             DrawList();
             return Select;
@@ -391,28 +387,15 @@ namespace Mezzanine
                     break;
                 }
             }
-            for ( RenderableMap::iterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
+            for ( RenderableIterator it = SubRenderables.begin() ; it != SubRenderables.end() ; ++it )
             {
-                if( (*it).second.first == ToBeDestroyed )
+                if( (*it) == ToBeDestroyed )
                 {
                     SubRenderables.erase(it);
                     break;
                 }
             }
-            delete ToBeDestroyed;
-        }
-
-        void ListBox::DestroySelection(String& ToBeDestroyed)
-        {
-            for ( std::vector<Caption*>::iterator it = Selections.begin() ; it != Selections.end() ; it++ )
-            {
-                if ( ToBeDestroyed == (*it)->GetName() )
-                {
-                    delete (*it);
-                    Selections.erase(it);
-                    return;
-                }
-            }
+            ParentScreen->DestroyBasicRenderable(ToBeDestroyed);
         }
 
         void ListBox::SetSelected(Caption* ToBeSelected)
@@ -447,8 +430,8 @@ namespace Mezzanine
 
         void ListBox::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
-            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
+            RelPosition = Position / ParentScreen->GetViewportDimensions();
+            Vector2 ScrollOffset = VertScroll->GetActualPosition() - (RelPosition * ParentScreen->GetViewportDimensions());
             BoxBack->SetActualPosition(Position);
             VertScroll->SetActualPosition(Position + ScrollOffset);
             DrawList();

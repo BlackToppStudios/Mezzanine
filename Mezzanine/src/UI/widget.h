@@ -40,21 +40,17 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
-#include "uienumerations.h"
+#include "UI/renderable.h"
 #include "UI/renderablerect.h"
-#include "UI/vertex.h"
 #include "metacode.h"
 
 namespace Mezzanine
 {
-    class UIManager;
     namespace UI
     {
         class Button;
-        class Layer;
         class WidgetListener;
         class BasicRenderable;
-        class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class InputCaptureData
         /// @headerfile uiwidget.h
@@ -97,20 +93,22 @@ namespace Mezzanine
         /// @brief This class is the base class for all widgets.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Widget
+        class MEZZ_LIB Widget : public Renderable
         {
             public:
                 // Vertex data types
                 typedef std::vector<VertexData> VertexContainer;
                 // Renderable data types
-                typedef std::pair<BasicRenderable*,Widget*> RenderablePair;
-                typedef std::map<Whole,RenderablePair> RenderableMap;
+                typedef std::list<Renderable*> RenderableList;
+                typedef RenderableList::iterator RenderableIterator;
+                typedef RenderableList::const_iterator ConstRenderableIterator;
                 // Listener data types
                 typedef std::vector<WidgetListener*> ListenerContainer;
                 typedef ListenerContainer::iterator ListenerIterator;
                 typedef ListenerContainer::const_iterator ConstListenerIterator;
                 enum WidgetType
                 {
+                    W_Button,
                     W_ButtonListBox,
                     W_Cell,
                     W_CellGrid,
@@ -130,25 +128,15 @@ namespace Mezzanine
                 };
             protected:
                 friend class Mezzanine::UIManager;
-                friend class Layer;
-                UIManager* Manager;
+                friend class Screen;
                 InputCaptureData* CaptureData;
-                Layer* ParentLayer;
-                UI::Widget* ParentWidget;
-                UI::Button* HoveredButton;
-                UI::Widget* HoveredSubWidget;
-                UI::Widget* SubWidgetFocus;
-                bool Visible;
+                Widget* HoveredSubWidget;
+                Widget* SubWidgetFocus;
                 bool Hovered;
-                bool Dirty;
-                UI::RenderPriority Priority;
-                Vector2 RelPosition;
-                Vector2 RelSize;
                 WidgetType Type;
-                String Name;
-                VertexContainer Vertices;
+
                 ListenerContainer Listeners;
-                RenderableMap SubRenderables;
+                RenderableList SubRenderables;
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false);
                 /// @brief Child specific update method.
@@ -162,32 +150,20 @@ namespace Mezzanine
                 /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
                 virtual void SubWidgetFocusUpdate(bool Force = false);
                 /// @brief Adds a renderable as a subrenderable to this widget.
-                virtual void AddSubRenderable(const Whole& Zorder, const RenderablePair& ToAdd);
+                virtual void AddSubRenderable(const UInt16& Zorder, Renderable* ToAdd);
                 /// @brief Processes the captured inputs.  This is an empty function and should be overridden if making an input capturing widget.
                 virtual void ProcessCapturedInputs();
             public:
                 /// @brief Standard initialization constructor.
-                /// @param Parent The parent layer that created this widget.
+                /// @param Parent The parent Screen that created this widget.
                 /// @param name The Name for the Widget.
-                Widget(const String& name, Layer* Parent);
+                Widget(const String& name, Screen* Parent);
                 /// @brief Standard destructor.
                 virtual ~Widget();
-                /// @brief Sets the visibility of this widget.
-                /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible);
-                /// @brief Gets the visibility setting of this widget.
-                /// @return Returns a bool that is the current visibility setting of this widget.
-                virtual bool GetVisible() const;
-                /// @brief Gets whether or not this widget is being drawn.
-                /// @details This function will check the visibility of all parent objects to see if it is being
-                /// drawn.  This will not tell you whether or not this widget has it's own visibility setting
-                /// enabled.  For that see: GetVisible().
-                /// @return Returns a bool representing the visibility of this widget.
-                virtual bool IsVisible() const;
-                /// @brief Forces this widget to be shown.
-                virtual void Show();
-                /// @brief Forces this widget to hide.
-                virtual void Hide();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility Methods
+
                 /// @brief Gets the type of widget this is.
                 /// @return Returns an enum value representing the type of widget this is.
                 virtual WidgetType GetType() const;
@@ -197,18 +173,27 @@ namespace Mezzanine
                 /// @brief Gets the result of the last mouse hover check.
                 /// @return Returns whether or not the mouse was hovering over this widget during the last check.
                 virtual bool IsHovered() const;
-                /// @brief Gets the name of this widget.
-                /// @return Returns a String containing the name of this widget.
-                virtual ConstString& GetName() const;
-                /// @brief Sets the listener to be used by this widget.
-                /// @param Listener The listener to be set for this widget.
-                virtual void AddWidgetListener(WidgetListener* Listener);
-                /// @brief Removes a listener currently being used by this widget.
-                /// @param Listener The listener to be removed from this widget.
-                virtual void RemoveWidgetListener(WidgetListener* Listener);
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Visibility Methods
+
+                /// @copydoc Renderable::SetVisible(bool visible)
+                virtual void SetVisible(bool visible);
+                /// @copydoc Renderable::GetVisible()
+                virtual bool GetVisible() const;
+                /// @copydoc Renderable::IsVisible()
+                virtual bool IsVisible() const;
+                /// @copydoc Renderable::Show()
+                virtual void Show();
+                /// @copydoc Renderable::Hide()
+                virtual void Hide();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Transform Methods
+
                 /// @brief Sets the Rect(Position and Size) of this Widget.
                 /// @param Rect The Rect to set.
                 virtual void SetRect(const RenderableRect& Rect);
@@ -244,42 +229,62 @@ namespace Mezzanine
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize() const;
-                /// @brief Sets the priority this widget should be rendered with.
-                /// @details The default value for this is Medium.
-                /// @param Priority The priority level to be used when rendering this widget.
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Listener Methods
+
+                /// @brief Sets the listener to be used by this widget.
+                /// @param Listener The listener to be set for this widget.
+                virtual void AddWidgetListener(WidgetListener* Listener);
+                /// @brief Removes a listener currently being used by this widget.
+                /// @param Listener The listener to be removed from this widget.
+                virtual void RemoveWidgetListener(WidgetListener* Listener);
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Render Priority Methods
+
+                /// @copydoc Renderable::SetRenderPriority(const UI::RenderPriority& Priority)
                 virtual void SetRenderPriority(const UI::RenderPriority& Priority);
-                /// @brief Gets the priority this widget should be rendered with.
-                /// @return Returns an enum value representing this widget's priority level.
-                virtual UI::RenderPriority GetRenderPriority() const;
-                /// @brief Updates the dimensions of this widget to match those of the new screen size.
-                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
-                virtual void UpdateDimensions() = 0;
-                /// @brief Gets the hovered button within this widget, if any.
-                /// @return Returns a pointer to the button within this widget the mouse is hovering over, or NULL if none.
-                virtual Button* GetHoveredButton() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Fetch Methods
+
                 /// @brief Gets the hovered sub-widget within this widget, if any.
                 /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
-                virtual Widget* GetHoveredSubWidget() const;
-                /// @brief Gets the layer this widget belongs to.
-                /// @return Returns a pointer to the layer this eidget belongs to.
-                virtual Layer* GetLayer() const;
+                Widget* GetHoveredSubWidget() const;
+                /// @brief Gets a pointer to the Widget at the bottom of the hovered SubWidget chain.
+                /// @return Returns a pointer to the hovered sub-widget of the hovered sub-widget, etc., until you reach the end of the chain.
+                Widget* GetBottomMostHoveredWidget();
+                /// @brief Gets a pointer to the root widget in this chain of widgets.
+                /// @return Returns a pointer to the parent of the parent, etc., until you reach the root widget on the screen.
+                Widget* GetTopMostWidget();
+                /// @brief Gets the screen this widget belongs to.
+                /// @return Returns a pointer to the screen this eidget belongs to.
+                Screen* GetParent() const;
                 /// @brief Gets the data determining what input should be captured.
                 /// @return Returns a pointer to the InputCaptureData, or NULL if this widget doesn't capture data.
-                virtual InputCaptureData* GetInputCaptureData() const;
+                InputCaptureData* GetInputCaptureData() const;
+
+                /// @brief Gets an iterator to the first renderable pair in this widget.
+                RenderableIterator BeginRenderable();
+                /// @brief Gets an iterator to one passed the last renderable pair in this widget.
+                RenderableIterator EndRenderable();
+                /// @brief Gets a const iterator to the first renderable pair in this widget.
+                ConstRenderableIterator BeginRenderable() const;
+                /// @brief Gets a const iterator to one passed the last renderable pair in this widget.
+                ConstRenderableIterator EndRenderable() const;
+
                 ///////////////////////////////////////////////////////////////////////////////
-                // Internal Functions
-                ///////////////////////////////////////
-                /// @internal
-                /// @brief Marks this renderable as well as all parent objects as dirty.
+                // Internal Methods
+
+                /// @copydoc Renderable::_MarkDirty()
                 virtual void _MarkDirty();
-                /// @internal
-                /// @brief Regenerates the verticies in this renderable.
+                /// @copydoc Renderable::_Redraw()
                 virtual void _Redraw();
-                /// @internal
-                /// @brief Appends the vertices of this renderable to another vector.
-                /// @param Vertices The vector of vertex's to append to.
+                /// @copydoc Renderable::_AppendVertices(ScreenVertexData& Vertices)
                 virtual void _AppendVertices(ScreenVertexData& Vertices);
         };//widget
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WidgetListener
         /// @headerfile uiwidget.h

@@ -37,53 +37,68 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _ui_h
-#define _ui_h
+#ifndef _uirenderable_cpp
+#define _uirenderable_cpp
+
+#include "UI/renderable.h"
+#include "uimanager.h"
 
 namespace Mezzanine
 {
-    /// @namespace Mezzanine::UI
-    /// @brief This namespace is for all the classes belonging to the Graphical User Interface Subsystem.
-    /// @details Our GUI subsystem is based on a heavily modified/forked version of Gorilla, and as such uses
-    /// a similiar structure of classes and layout for it's config files(e.g. .mta files).
     namespace UI
     {
+        Renderable::Renderable(const String& name, Screen* Parent)
+            : ParentScreen(Parent),
+              ParentWidget(NULL),
+              Dirty(true),
+              Visible(true),
+              ZOrder(0),
+              Priority(UI::RP_Medium),
+              Name(name)
+        {
+            Manager = UIManager::GetSingletonPtr();
+            RelPosition.SetValues(0,0);
+            RelSize.SetValues(0,0);
+        }
 
-    }
-}
+        Renderable::~Renderable()
+        {
+        }
 
-#include "UI/uienumerations.h"
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
 
-#include "UI/basicrenderable.h"
-#include "UI/button.h"
-#include "UI/caption.h"
-#include "UI/cell.h"
-#include "UI/cellgrid.h"
-#include "UI/checkbox.h"
-#include "UI/dropdownlist.h"
-#include "UI/glyph.h"
-#include "UI/kerning.h"
-#include "UI/linelist.h"
-#include "UI/listbox.h"
-#include "UI/markuptext.h"
-#include "UI/menu.h"
-#include "UI/menuwindow.h"
-#include "UI/pagedcellgrid.h"
-#include "UI/radiobutton.h"
-#include "UI/rectangle.h"
-#include "UI/renderablecontainerwidget.h"
-#include "UI/renderablerect.h"
-#include "UI/resizinginfo.h"
-#include "UI/screen.h"
-#include "UI/scrollbar.h"
-#include "UI/scrolledcellgrid.h"
-#include "UI/spinner.h"
-#include "UI/sprite.h"
-#include "UI/tabset.h"
-#include "UI/textureatlas.h"
-#include "UI/vertex.h"
-#include "UI/viewportupdatetool.h"
-#include "UI/widget.h"
-#include "UI/window.h"
+        ConstString& Renderable::GetName() const
+        {
+            return Name;
+        }
+
+        const UInt16& Renderable::GetZOrder() const
+        {
+            return ZOrder;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Render Priority Methods
+
+        void Renderable::SetRenderPriority(const UI::RenderPriority& Priority)
+        {
+            this->Priority = Priority;
+        }
+
+        UI::RenderPriority Renderable::GetRenderPriority() const
+        {
+            return Priority;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
+
+        void Renderable::_SetZOrder(const UInt16& Zorder)
+        {
+            this->ZOrder = Zorder;
+        }
+    }//UI
+}//Mezzanine
 
 #endif

@@ -52,7 +52,6 @@ namespace Mezzanine
     {
         class Button;
         class Rectangle;
-        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Scrollbar
         /// @headerfile uiscrollbar.h
@@ -140,8 +139,8 @@ namespace Mezzanine
                 /// @param Name The name of this scrollbar.
                 /// @param Rect The Rect representing the position and size of the scrollbar.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
-                /// @param parent The Layer that created this scrollbar.
-                Scrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Layer* parent);
+                /// @param parent The Screen that created this scrollbar.
+                Scrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Screen* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the value of this scrollbar and warps the scroller to that respective position.

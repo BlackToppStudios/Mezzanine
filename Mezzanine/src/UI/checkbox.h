@@ -82,15 +82,15 @@ namespace Mezzanine
                 /// @param Rect The Rect representing the position and size of the checkbox and label.  The checkbox itself will always be as wide as it is tall, with remaining space going to the label.
                 /// @param LineHeight The lineheight you want the text to have. If the Rect passed in is relative, this will expect LineHeight to be relative as well.
                 /// @param LabelText The text to put into the label.
-                /// @param PLayer Pointer to the Layer that created this checkbox.
-                CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Layer* PLayer);
+                /// @param PScreen Pointer to the Screen that created this checkbox.
+                CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Screen* PScreen);
                 /// @brief Class constructor
                 /// @param name The name of the checkbox.
                 /// @param Rect The Rect representing the position and size of the checkbox.
                 /// @param Glyph The glyph index to use for the text in the label.
                 /// @param LabelText The text to put into the label.
-                /// @param PLayer Pointer to the Layer that created this checkbox.
-                CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Layer* PLayer);
+                /// @param PScreen Pointer to the Screen that created this checkbox.
+                CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
                 /// @brief Gets whether this checkbox is checked or not.

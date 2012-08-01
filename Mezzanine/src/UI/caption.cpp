@@ -43,7 +43,6 @@
 #include "inputquerytool.h"
 #include "uimanager.h"
 #include "UI/caption.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
 #include "eventmanager.h"
@@ -54,8 +53,8 @@ namespace Mezzanine
 {
     namespace UI
     {
-        Caption::Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
-            : Rectangle(name,Rect,PLayer),
+        Caption::Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Screen* PScreen)
+            : Rectangle(name,Rect,PScreen),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
               CharScaling(1.0),
@@ -65,14 +64,14 @@ namespace Mezzanine
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            GlyphSet = ParentLayer->GetGlyphData(Glyph,PriAtlas);
+            GlyphSet = ParentScreen->GetGlyphData(Glyph,PriAtlas);
             this->Text = Text;
             TextColour = ColourValue::White();
             GlyphAtlas = PriAtlas;
         }
 
-        Caption::Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
-            : Rectangle(name,Rect,PLayer),
+        Caption::Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Screen* PScreen)
+            : Rectangle(name,Rect,PScreen),
               HoriAlign(UI::Txt_Middle),
               VertAlign(UI::Txt_Center),
               CharScaling(1.0),
@@ -82,8 +81,8 @@ namespace Mezzanine
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
-            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y),PriAtlas);
-            GlyphSet = ParentLayer->GetGlyphData(Result.first,PriAtlas);
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * ParentScreen->GetViewportDimensions().Y),PriAtlas);
+            GlyphSet = ParentScreen->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
             this->Text = Text;
             TextColour = ColourValue::White();
@@ -172,7 +171,7 @@ namespace Mezzanine
 
         void Caption::SetGlyphIndex(const Whole& GlyphIndex)
         {
-            GlyphData* NewData = ParentLayer->GetGlyphData(GlyphIndex,PriAtlas);
+            GlyphData* NewData = ParentScreen->GetGlyphData(GlyphIndex,PriAtlas);
             if(NewData)
             {
                 GlyphSet = NewData;
@@ -184,7 +183,7 @@ namespace Mezzanine
 
         void Caption::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
         {
-            GlyphData* NewData = ParentLayer->GetGlyphData(GlyphIndex,PriAtlas);
+            GlyphData* NewData = ParentScreen->GetGlyphData(GlyphIndex,PriAtlas);
             if(NewData)
             {
                 GlyphSet = NewData;
@@ -240,11 +239,11 @@ namespace Mezzanine
         void Caption::UpdateDimensions()
         {
             ViewportUpdateTool::UpdateRectangleRenderable(this);
-            //this->SetActualPosition(RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
-            //this->SetActualSize(RelSize * ParentLayer->GetParent()->GetViewportDimensions());
+            //this->SetActualPosition(RelPosition * ParentScreen->GetViewportDimensions());
+            //this->SetActualSize(RelSize * ParentScreen->GetViewportDimensions());
             if(AutoScaleText)
             {
-                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
+                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * ParentScreen->GetViewportDimensions().Y,GetPrimaryAtlas());
                 SetGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
@@ -262,8 +261,8 @@ namespace Mezzanine
             }
 
             Real Left = 0, Top = 0, Right = 0, Bottom = 0, CursorX = 0, CursorY = 0, Kerning = 0;
-            Real TexelOffsetX = ParentLayer->GetTexelX();
-            Real TexelOffsetY = ParentLayer->GetTexelY();
+            Real TexelOffsetX = ParentScreen->GetTexelOffsetX();
+            Real TexelOffsetY = ParentScreen->GetTexelOffsetY();
             Vector2 KnownSize;
             Glyph* CurrGlyph = 0;
 

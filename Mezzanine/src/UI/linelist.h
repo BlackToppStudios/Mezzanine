@@ -49,7 +49,6 @@ namespace Mezzanine
     class UIManager;
     namespace UI
     {
-        class Layer;
         class VertexData;
         class ScreenVertexData;
         ///////////////////////////////////////////////////////////////////////////////
@@ -63,21 +62,20 @@ namespace Mezzanine
         class MEZZ_LIB LineList : public BasicRenderable
         {
             protected:
-                friend class Layer;
-                Layer* Parent;
+                friend class ExtendedRenderableFactory;
                 UIManager* Manager;
                 bool IsClosed;
                 Real Thickness;
                 ColourValue Colour;
                 std::vector<Vector2> Positions;
-            public:
+            //public:
                 /// @brief Class constructor.
                 /// @param name The name to give to this Linelist.
-                /// @param Layer Pointer to the parent Layer that created this rectangle.
-                LineList(const String& name, Layer* PLayer);
+                /// @param PScreen Pointer to the parent Screen that created this linelist.
+                LineList(const String& name, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~LineList();
-
+            public:
                 /// @brief Starts a new line list.
                 /// @details If this function is called while lines have already been defined, it will
                 /// clear the current list of lines and start a new list.

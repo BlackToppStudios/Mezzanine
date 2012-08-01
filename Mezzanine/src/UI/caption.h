@@ -50,7 +50,7 @@ namespace Mezzanine
     class UIManager;
     namespace UI
     {
-        class Layer;
+        class Screen;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Caption
         /// @headerfile uicaption.h
@@ -66,6 +66,7 @@ namespace Mezzanine
         class MEZZ_LIB Caption : public Rectangle
         {
             protected:
+                friend class RenderableFactory;
                 GlyphData* GlyphSet;
                 bool AutoScaleText;
                 UI::TextHorizontalAlign HoriAlign;
@@ -79,24 +80,24 @@ namespace Mezzanine
                 String Text;
                 String GlyphAtlas;
                 void CalculateDrawSize(Vector2& Size);
-            public:
+            //public:
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
                 /// @param Rect The Rect representing the position and size of the caption.
                 /// @param Glyph One of the glyphs specified in your mta file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
-                /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
+                /// @param PScreen Pointer to the screen that created this caption.
+                Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Screen* PScreen);
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
                 /// @param Rect The Rect representing the position and size of the caption.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the caption.
-                /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
+                /// @param PScreen Pointer to the screen that created this caption.
+                Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~Caption();
-
+            public:
                 /// @brief Sets the text displayed within the caption.
                 /// @param Text The text to be displayed.
                 virtual void SetText(ConstString& Text);

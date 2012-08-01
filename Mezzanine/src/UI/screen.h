@@ -41,7 +41,9 @@
 #define _uiscreen_h
 
 #include "matrix4x4.h"
+#include "UI/glyph.h"
 #include "UI/vertex.h"
+#include "UI/renderablecontainer.h"
 
 namespace Mezzanine
 {
@@ -52,7 +54,8 @@ namespace Mezzanine
     {
         class Button;
         class Widget;
-        class Layer;
+        class Sprite;
+        class TextureAtlas;
         struct ScreenInternalData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class AtlasAndPosition
@@ -90,15 +93,14 @@ namespace Mezzanine
         /// @class IndexData
         /// @headerfile uiscreen.h
         /// @brief This is a basic class for storing data relating to a specific zorder in the UI.
-        /// @details This class caches the Layer, it's verticies, and whether it needs to be redrawn.
+        /// @details This class caches a root widget, it's verticies, and whether it needs to be redrawn.
         ///////////////////////////////////////
         struct IndexData
         {
-            Layer* IndexLayer;
-            bool RedrawNeeded;
+            Widget* IndexWidget;
             ScreenVertexData Vertices;
 
-            IndexData() : IndexLayer(NULL), RedrawNeeded(true) {};
+            IndexData() : IndexWidget(NULL) {};
         };
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Screen
@@ -108,10 +110,18 @@ namespace Mezzanine
         /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
         /// for rendering, so keeping the amount of screens to a minimum will improve performance.
         ///////////////////////////////////////
-        class MEZZ_LIB Screen
+        class MEZZ_LIB Screen : public ExtendedRenderableFactory
         {
+            public:
+                typedef std::map<UInt16,IndexData*>      IndexMap;
+                typedef IndexMap::iterator               IndexIterator;
+                typedef IndexMap::reverse_iterator       ReverseIndexIterator;
+                typedef IndexMap::const_iterator         ConstIndexIterator;
+                typedef IndexMap::const_reverse_iterator ConstReverseIndexIterator;
+                typedef std::map<String,Widget*>         WidgetContainer;
+                typedef WidgetContainer::iterator        WidgetIterator;
+                typedef WidgetContainer::const_iterator  ConstWidgetIterator;
             protected:
-                UIManager* Manager;
                 SceneManager* SceneMan;
                 Viewport* GameViewport;
                 ScreenInternalData* SID;
@@ -130,9 +140,11 @@ namespace Mezzanine
                 String Name;
                 String PrimaryAtlas;
                 std::vector<AtlasAndPosition> TextureByVertex;
-                std::vector<Layer*> Layers;
-                std::map<Whole,IndexData*> Indexes;
 
+                IndexMap WidgetsRoot;
+                WidgetContainer Widgets;
+
+                virtual Screen* GetScreen();
                 virtual void PrepareRenderSystem();
                 virtual void CreateVertexBuffer(const Whole& InitialSize = 32);
                 virtual void DestroyVertexBuffer();
@@ -146,6 +158,10 @@ namespace Mezzanine
                 Screen(const String& name, const String& Atlas, Viewport* WindowViewport);
                 /// @brief Class destructor.
                 virtual ~Screen();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Utility and Visibility Methods
+
                 /// @brief Gets the name of this screen.
                 /// @return Returns a string containing the name of this screen.
                 virtual String& GetName();
@@ -159,58 +175,119 @@ namespace Mezzanine
                 virtual void Show();
                 /// @brief Forces the screen to hide.
                 virtual void Hide();
-                /// @brief Creates a layer in the GUI screen to place GUI objects in.
-                /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI
-                /// layers per screen.  The Zorder of the layer determines it's visability if there are multiple
-                /// layers.  If the Zorder of one layer is higher then another in the same space, then the Zorder
-                /// with the higher Zorder will be rendered...giving it the appearance of being on top of the other
-                /// GUI object or objects.
-                /// @param Name The name to be given to the layer.
-                /// @param Zorder The layers Zorder, as explained above.
-                virtual Layer* CreateLayer(const String& Name, const Whole& Zorder);
-                /// @brief Gets an already created layer by name.
-                /// @return Returns a pointer to the layer of the specified name.
-                virtual Layer* GetLayer(const String& Name);
-                /// @brief Gets an already created layer by it's index.
-                /// @return Returns a pointer to the layer at the specified index.
-                virtual Layer* GetLayer(const Whole& Index);
-                /// @brief Gets an already created layer by it's Zorder.
-                /// @return Returns a pointer to the layer with the specified Zorder.
-                virtual Layer* GetLayerbyZorder(const Whole& Zorder);
-                /// @brief Gets the number of layers created and stored in this class.
-                /// @return Returns the number of layers this class is storing.
-                virtual Whole GetNumLayers();
-                /// @brief Destroy's a previously created layer.
-                /// @param ToBeDestroyed The layer to be destroyed.
-                virtual void DestroyLayer(Layer* ToBeDestroyed);
                 /// @brief Gets the current viewport dimensions.
                 /// @return Returns a Vector2 representing the current viewport dimensions.
                 virtual const Vector2& GetViewportDimensions();
-                /// @brief Gets the X axis Texel Offset for the current rendersystem.
-                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.
-                virtual Real GetTexelOffsetX() const;
-                /// @brief Gets the Y axis Texel Offset for the current rendersystem.
-                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.
-                virtual Real GetTexelOffsetY() const;
-                /// @brief Gets the button the mouse is over if any.
-                /// @details This function searches only the visable layers contained in this screen.
-                /// @return Returns the button the mouse is over, or NULL if there are none.
-                virtual Button* CheckButtonMouseIsOver();
+                /// @brief Checks to see if the viewport has changed in size.  If so it updates all the UI elements on the screen.
+                virtual void CheckViewportSize();
+                /// @brief Gets the Viewport this screen is currently rendering to.
+                /// @return Returns a pointer to the Viewport this screen is applied to.
+                virtual Viewport* GetViewport();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Hover Checks
+
                 /// @brief Gets the widget the mouse is over if any.
                 /// @details This function searches only the visable layers contained in this screen.
                 /// @return Returns the widget the mouse is over, or NULL if there are none.
                 virtual Widget* CheckWidgetMouseIsOver();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Creating Widgets
+
+                /// @copydoc RenderableFactory::CreateButton(ConstString& Name, const RenderableRect& Rect)
+                virtual Button* CreateButton(ConstString& Name, const RenderableRect& Rect);
+                /// @copydoc RenderableFactory::CreateButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text)
+                virtual Button* CreateButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text);
+                /// @copydoc RenderableFactory::CreateButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text)
+                virtual Button* CreateButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text);
+                /// @copydoc RenderableFactory::CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style)
+                virtual Scrollbar* CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style);
+                /// @copydoc RenderableFactory::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String &LabelText)
+                virtual CheckBox* CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& LabelText);
+                /// @copydoc RenderableFactory::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollbarStyle)
+                virtual ListBox* CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle);
+                /// @copydoc RenderableFactory::CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+                virtual Spinner* CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                /// @copydoc RenderableFactory::CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style)
+                virtual ScrolledCellGrid* CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style);
+                /// @copydoc RenderableFactory::CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+                virtual PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                /// @copydoc RenderableFactory::CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle)
+                virtual DropDownList* CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle);
+                /// @copydoc RenderableFactory::CreateTabSet(ConstString& Name, const RenderableRect& SetRect)
+                virtual TabSet* CreateTabSet(ConstString& Name, const RenderableRect& SetRect);
+                /// @copydoc ExtendedRenderableFactory::CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect)
+                virtual Window* CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect);
+                /// @copydoc ExtendedRenderableFactory::CreateMenu(ConstString& Name, const RenderableRect& Rect)
+                virtual Menu* CreateMenu(ConstString& Name, const RenderableRect& Rect);
+                /// @copydoc ExtendedRenderableFactory::CreateOpenRenderableContainerWidget(ConstString& Name)
+                virtual OpenRenderableContainerWidget* CreateOpenRenderableContainerWidget(ConstString& Name);
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Working with all Widgets
+
+                /// @brief Adds a widget to the root of this screen for rendering.
+                /// @param ZOrder The ZOrder the widget will be rendered at on this screen relative to other root widgets.
+                /// @param ToAdd The widget to be added.
+                virtual void AddRootWidget(const Whole& ZOrder, Widget* ToAdd);
+                /// @brief Gets a widget in this screen by name.
+                /// @param Name The name of the widget to get.
+                /// @return Returns a pointer to the widget of the specified name.
+                virtual Widget* GetWidget(ConstString& Name);
+                /// @brief Gets a widget by it's ZOrder among the root widgets on this screen.
+                /// @param ZOrder The ZOrder of the widget to get.
+                /// @return Returns a pointer to the widget with the specified ZOrder.
+                virtual Widget* GetWidget(const Whole& ZOrder);
+                /// @brief Gets the number of widgets being used in this screen.
+                /// @return Returns the number of widgets this screen is storing.
+                virtual Whole GetNumWidgets();
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Atlas Query
+
                 /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
                 /// @param Atlas The name of the atlas to be used.
                 virtual void SetPrimaryAtlas(const String& Atlas);
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set.
                 virtual String GetPrimaryAtlas();
-                /// @brief Checks to see if the viewport has changed in size.  If so it updates all the UI elements on the screen.
-                virtual void CheckViewportSize();
-                /// @brief Gets the Viewport this screen is currently rendering to.
-                /// @return Returns a pointer to the Viewport this screen is applied to.
-                virtual Viewport* GetViewport();
+                /// @brief Gets the solid UV position from an Atlas.
+                /// @param Atlas The name of the Atlas to get the Solid UV from.
+                /// @return Returns a Vector2 with the location of Solid UV on the Atlas.
+                Vector2 GetSolidUV(const String& Atlas) const;
+                /// @brief Gets a sprite from an Atlas.
+                /// @param SpriteName The name of the sprite to retrieve.
+                /// @param Atlas The name of the Atlas to get the sprite from.
+                /// @return Returns a pointer to the requested Sprite.
+                Sprite* GetSprite(const String& SpriteName, const String& Atlas) const;
+                /// @brief Gets the specified GlyphData from an Atlas.
+                /// @param ID The identification number associated with the loaded GlyphData.
+                /// @param Atlas The name of the atlas to check the specified GlyphData ID for.
+                /// @return Returns a pointer to the requested GlyphData.
+                GlyphData* GetGlyphData(const Whole& ID, const String& Atlas) const;
+                /// @brief Gets the texture size of the specified Atlas.
+                /// @param Atlas The name of the atlas to get the texture size of.
+                /// @return Returns a Vector2 containing the size of the requested Atlas.
+                Vector2 GetTextureSize(const String& Atlas) const;
+                /// @brief Gets an atlas that has been loaded.
+                /// @param Atlas The name of the Atlas to retrieve, usually stored as a filename.
+                /// @return Returns a pointer to the requested Texture Atlas.
+                TextureAtlas* GetAtlas(const String& Atlas) const;
+                /// @brief Gets the ColourValue set at the specified index.
+                /// @param Index The index of the Markup colour to get.
+                /// @param Atlas The Atlas to check the markup colours of.
+                /// @return Returns a ColourValue with the colour at the provided index, or White if the Index is invalid(or if that is the colour set, which would be silly).
+                ColourValue GetMarkupColour(const Whole& Index, const String& Atlas) const;
+                /// @brief Gets the X axis Texel Offset for the current rendersystem.
+                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.
+                virtual Real GetTexelOffsetX() const;
+                /// @brief Gets the Y axis Texel Offset for the current rendersystem.
+                /// @return Retruns a real containing the texel offset to be applied to renderables on this screen.
+                virtual Real GetTexelOffsetY() const;
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Internal Functions
 
                 /// @internal
                 /// @brief Manually calls the UI system to render this screen.
@@ -224,23 +301,19 @@ namespace Mezzanine
                 /// @param Vertices Vector of the vertices to be transformed.
                 /// @param Begin The first Vertex to transform in the range.
                 /// @param End The last Vertex to transform in the range.
-                virtual void _Transform(std::vector<VertexData>& Vertices, const Whole& Begin, const Whole& End);
+                virtual void _Transform(ScreenVertexData& Vertices, const Whole& Begin, const Whole& End);
                 /// @internal
-                /// @brief Clears the layer and index data and rebuilds in from the existing layers.
-                virtual void _RecalculateIndexes();
+                /// @brief Clears the existing verticies and regenerates them for a specific index(widget).
+                /// @param Index The Index corresponding to the widget you want regenerated.
+                virtual void _RedrawIndex(const UInt32& Index);
                 /// @internal
-                /// @brief Clears the existing verticies and regenerates them for a specific index(layer).
-                /// @param Index The Index corresponding to the layer you want regenerated.
-                /// @param Force Whether or not to force a redraw even if the layer doesn't need it.
-                virtual void _RedrawIndex(const UInt32& Index, bool Force);
-                /// @internal
-                /// @brief Clears all verticies for every layer and regenerates them for rendering.
+                /// @brief Clears all verticies for every widget and regenerates them for rendering.
                 /// @param Force Whether or not to force a redraw on all layers regardless of if they need it.
                 virtual void _RedrawAllIndexes(bool Force = false);
                 /// @internal
-                /// @brief Flags a layer for redraw before the next render.
-                /// @param Index The ID or Index of the layer to be flagged for redraw.
-                virtual void _RequestIndexRedraw(const UInt32& Index);
+                /// @brief Flags a widget for redraw before the next render.
+                /// @param Index The ID or Index of the widget to be flagged for redraw.
+                virtual void _RequestIndexRedraw(const UInt16& Index);
                 /// @internal
                 /// @brief Prepares all vertices for rendering to the screen.
                 /// @param Force Whether or not to force preparation regardless of if they need it.

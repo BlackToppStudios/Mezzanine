@@ -41,7 +41,6 @@
 #define _uimarkuptext_cpp
 
 #include "UI/markuptext.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "uimanager.h"
 #include "UI/viewportupdatetool.h"
@@ -52,26 +51,26 @@ namespace Mezzanine
 {
     namespace UI
     {
-        MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
-            : Rectangle(name,Rect,PLayer),
+        MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Screen* PScreen)
+            : Rectangle(name,Rect,PScreen),
               TextDirty(true),
               CharScaling(0.0)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            DefaultGlyphSet = ParentLayer->GetGlyphData(Glyph,PriAtlas);
+            DefaultGlyphSet = ParentScreen->GetGlyphData(Glyph,PriAtlas);
             this->Text = Text;
             GlyphAtlas = PriAtlas;
         }
 
-        MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
-            : Rectangle(name,Rect,PLayer),
+        MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Screen* PScreen)
+            : Rectangle(name,Rect,PScreen),
               CharScaling(0.0)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;
-            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y,ParentLayer->GetParent()->GetPrimaryAtlas());
-            DefaultGlyphSet = ParentLayer->GetGlyphData(Result.first,PriAtlas);
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * ParentScreen->GetViewportDimensions().Y,ParentScreen->GetPrimaryAtlas());
+            DefaultGlyphSet = ParentScreen->GetGlyphData(Result.first,PriAtlas);
             SetTextScale(Result.second);
             this->Text = Text;
             GlyphAtlas = PriAtlas;
@@ -107,7 +106,7 @@ namespace Mezzanine
 
         void MarkupText::SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex)
         {
-            GlyphData* NewData = ParentLayer->GetGlyphData(DefaultGlyphIndex,PriAtlas);
+            GlyphData* NewData = ParentScreen->GetGlyphData(DefaultGlyphIndex,PriAtlas);
             if(NewData)
             {
                 DefaultGlyphSet = NewData;
@@ -120,7 +119,7 @@ namespace Mezzanine
 
         void MarkupText::SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex, const String& Atlas)
         {
-            GlyphData* NewData = ParentLayer->GetGlyphData(DefaultGlyphIndex,Atlas);
+            GlyphData* NewData = ParentScreen->GetGlyphData(DefaultGlyphIndex,Atlas);
             if(NewData)
             {
                 DefaultGlyphSet = NewData;
@@ -151,11 +150,11 @@ namespace Mezzanine
         {
             ViewportUpdateTool::UpdateRectangleRenderable(this);
             TextDirty = true;
-            //this->SetActualPosition(RelPosition * ParentLayer->GetParent()->GetViewportDimensions());
-            //this->SetActualSize(RelSize * ParentLayer->GetParent()->GetViewportDimensions());
+            //this->SetActualPosition(RelPosition * ParentScreen->GetViewportDimensions());
+            //this->SetActualSize(RelSize * ParentScreen->GetViewportDimensions());
             if(AutoScaleText)
             {
-                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * ParentLayer->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
+                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * ParentScreen->GetViewportDimensions().Y,GetPrimaryAtlas());
                 SetDefaultGlyphIndex(Result.first);
                 SetTextScale(Result.second);
             }
@@ -203,7 +202,7 @@ namespace Mezzanine
             bool FixedWidth = false;
             Glyph* CurrGlyph = NULL;
             GlyphData* CurrGlyphData = DefaultGlyphSet;
-            ColourValue Colour = ParentLayer->GetMarkupColour(0,PriAtlas);
+            ColourValue Colour = ParentScreen->GetMarkupColour(0,PriAtlas);
             Real LineHeight = CurrGlyphData->LineHeight;
             Real Kerning = 0;
             unsigned int ThisChar = 0, LastChar = 0;
@@ -261,12 +260,12 @@ namespace Mezzanine
                         // Check if the user wants a different colour to use for all further glyphs.
                         if(ThisChar >= '0' && ThisChar <= '9')
                         {
-                            Colour = ParentLayer->GetMarkupColour(ThisChar - 48,PriAtlas);
+                            Colour = ParentScreen->GetMarkupColour(ThisChar - 48,PriAtlas);
                         }
                         // Check if the user wants to revert the current selected colour back to default.
                         else if(ThisChar == 'R' || ThisChar == 'r')
                         {
-                            Colour = ParentLayer->GetMarkupColour(0,PriAtlas);
+                            Colour = ParentScreen->GetMarkupColour(0,PriAtlas);
                         }
                         // Fixed Width?  Like Notepad?
                         else if(ThisChar == 'M' || ThisChar == 'm')
@@ -293,7 +292,7 @@ namespace Mezzanine
                                 return;
 
                             UInt32 ID = StringTool::ConvertToUInt32(Text.substr(Begin+1, Index - Begin - 1));
-                            CurrGlyphData = ParentLayer->GetGlyphData(ID,PriAtlas);
+                            CurrGlyphData = ParentScreen->GetGlyphData(ID,PriAtlas);
                             if( CurrGlyphData == 0 )
                                 return;
                             continue;
@@ -324,7 +323,7 @@ namespace Mezzanine
 
                             String SpriteName = Text.substr(Begin+1, Middle - Begin - 1);
                             String SpriteAtlas = Text.substr(Middle+1, Index - Middle - 1);
-                            Sprite* NewSprite = ParentLayer->GetSprite(SpriteName,SpriteAtlas);
+                            Sprite* NewSprite = ParentScreen->GetSprite(SpriteName,SpriteAtlas);
                             if( NewSprite == 0 )
                                 continue;
 
@@ -383,7 +382,7 @@ namespace Mezzanine
                 return;
 
             Real CursorX = ActPosition.X, CursorY = 0;
-            Real TexelX = ParentLayer->GetTexelX(), TexelY = ParentLayer->GetTexelY();
+            Real TexelX = ParentScreen->GetTexelOffsetX(), TexelY = ParentScreen->GetTexelOffsetY();
             Real Kerning = 0, Top = 0, Left = 0, Bottom = 0, Right = 0;
 
             std::vector<Real> Lineheights;

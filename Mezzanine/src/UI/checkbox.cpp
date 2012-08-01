@@ -42,7 +42,6 @@
 
 #include "uimanager.h"
 #include "UI/checkbox.h"
-#include "UI/layer.h"
 #include "UI/screen.h"
 #include "UI/caption.h"
 #include "UI/button.h"
@@ -55,13 +54,13 @@ namespace Mezzanine
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Layer* PLayer)
-            : Widget(name,PLayer),
+        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, ConstString& LabelText, Screen* PScreen)
+            : Widget(name,PScreen),
               Checked(false),
               CheckLock(true)
         {
             Type = Widget::W_CheckBox;
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             RenderableRect BoxRect, LabelRect;
             if(Rect.Relative)
             {
@@ -87,20 +86,20 @@ namespace Mezzanine
             LabelRect.Size.Y = Rect.Size.Y;
             LabelRect.Relative = Rect.Relative;
 
-            Box = new Button(Name+"CB",BoxRect,ParentLayer);
-            Label = new Caption(Name+"CM",LabelRect,LineHeight,LabelText,ParentLayer);
-            SubRenderables[0] = RenderablePair(Box,NULL);
-            SubRenderables[1] = RenderablePair(Label,NULL);
+            Box = ParentScreen->CreateButton(Name+"CB",BoxRect);
+            Label = ParentScreen->CreateCaption(Name+"CM",LabelRect,LineHeight,LabelText);
+            AddSubRenderable(0,Box);
+            AddSubRenderable(1,Label);
         }
 
-        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Layer* PLayer)
-            : Widget(name,PLayer),
+        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Screen* PScreen)
+            : Widget(name,PScreen),
               GlyphIndex(Glyph),
               Checked(false),
               CheckLock(true)
         {
             Type = Widget::W_CheckBox;
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             RenderableRect BoxRect, LabelRect;
             if(Rect.Relative)
             {
@@ -126,42 +125,28 @@ namespace Mezzanine
             LabelRect.Size.Y = Rect.Size.Y;
             LabelRect.Relative = Rect.Relative;
 
-            Box = new Button(Name+"CB",BoxRect,ParentLayer);
-            Label = new Caption(Name+"CM",LabelRect,Glyph,LabelText,ParentLayer);
-            AddSubRenderable(0,RenderablePair(Box,NULL));
-            AddSubRenderable(1,RenderablePair(Label,NULL));
+            Box = ParentScreen->CreateButton(Name+"CB",BoxRect);
+            Label = ParentScreen->CreateCaption(Name+"CM",LabelRect,Glyph,LabelText);
+            AddSubRenderable(0,Box);
+            AddSubRenderable(1,Label);
         }
 
         CheckBox::~CheckBox()
         {
-            delete Box;
-            delete Label;
+            ParentScreen->DestroyWidget(Box);
+            ParentScreen->DestroyBasicRenderable(Label);
         }
 
         void CheckBox::SetSpriteSet(std::pair<std::string,std::string>& SpriteSet)
         {
-            Box->SetBackgroundSprite(SpriteSet.first);
+            Box->GetClickable()->SetBackgroundSprite(SpriteSet.first);
             if(!SpriteSet.second.empty())
-                Box->SetHoveredSprite(SpriteSet.second);
+                Box->GetClickable()->SetHoveredSprite(SpriteSet.second);
         }
-
-        /*void CheckBox::SetUncheckedSprites()
-        {
-            Box->SetBackgroundSprite(UncheckedNorm);
-            if(!UncheckedHovered.empty())
-                Box->SetHoveredSprite(UncheckedHovered);
-        }
-
-        void CheckBox::SetCheckedSprites()
-        {
-            Box->SetBackgroundSprite(CheckedNorm);
-            if(!CheckedHovered.empty())
-                Box->SetHoveredSprite(CheckedHovered);
-        }*/
 
         void CheckBox::UpdateImpl(bool Force)
         {
-            if(HoveredButton)
+            if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
                 MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
                 if(MetaCode::BUTTON_PRESSING == State)
@@ -192,7 +177,7 @@ namespace Mezzanine
         {
             if(Box->CheckMouseHover())
             {
-                HoveredButton = Box;
+                HoveredSubWidget = Box;
                 return true;
             }
             return false;
@@ -230,8 +215,6 @@ namespace Mezzanine
         {
             UncheckedSet.first = Unchecked;
             UncheckedSet.second = Hovered;
-            //UncheckedNorm = Unchecked;
-            //UncheckedHovered = Hovered;
             SetSpriteSet(UncheckedSet);
         }
 
@@ -239,8 +222,6 @@ namespace Mezzanine
         {
             CheckedSet.first = Checked;
             CheckedSet.second = Hovered;
-            //CheckedNorm = Checked;
-            //CheckedHovered = Hovered;
         }
 
         void CheckBox::SetPosition(const Vector2& Position)
@@ -255,7 +236,7 @@ namespace Mezzanine
 
         void CheckBox::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
+            RelPosition = Position / ParentScreen->GetViewportDimensions();
             Box->SetActualPosition(Position);
 
             Vector2 Adjusted = Position;
@@ -266,7 +247,7 @@ namespace Mezzanine
         void CheckBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = ParentScreen->GetViewportDimensions();
             Box->SetSize(Vector2((Size.Y * WinDim.Y) / WinDim.X,Size.Y));
             Label->SetSize(Vector2(Size.X - ((Size.Y * WinDim.Y) / WinDim.X),Size.Y));
             this->SetPosition(GetPosition());
@@ -274,7 +255,7 @@ namespace Mezzanine
 
         void CheckBox::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
+            RelSize = Size / ParentScreen->GetViewportDimensions();
             Box->SetActualSize(Vector2(Size.Y,Size.Y));
             Label->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
             this->SetActualPosition(GetActualPosition());

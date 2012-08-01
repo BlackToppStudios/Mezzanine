@@ -42,7 +42,7 @@
 
 #include "uimanager.h"
 #include "UI/basicrenderable.h"
-#include "UI/layer.h"
+#include "UI/renderablecontainer.h"
 #include "UI/screen.h"
 #include "UI/widget.h"
 #include "world.h"
@@ -51,16 +51,10 @@ namespace Mezzanine
 {
     namespace UI
     {
-        BasicRenderable::BasicRenderable(const String& name, Layer* Parent)
-            : Name(name),
-              ParentLayer(Parent),
-              ParentWidget(NULL),
-              Visible(true),
-              Dirty(true),
-              Priority(UI::RP_Medium)
+        BasicRenderable::BasicRenderable(const String& name, Screen* Parent)
+            : Renderable(name,Parent)
         {
-            Manager = UIManager::GetSingletonPtr();
-            PriAtlas = ParentLayer->GetParent()->GetPrimaryAtlas();
+            PriAtlas = ParentScreen->GetPrimaryAtlas();
         }
 
         BasicRenderable::~BasicRenderable()
@@ -107,6 +101,23 @@ namespace Mezzanine
             PushVertex(VertVec,Vert,Positions[1].X,Positions[1].Y,UVs[1],Colour,Atlas);
         }
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Utility Methods
+
+        void BasicRenderable::SetPrimaryAtlas(const String& Atlas)
+        {
+            this->PriAtlas = Atlas;
+            _MarkDirty();
+        }
+
+        String BasicRenderable::GetPrimaryAtlas() const
+        {
+            return PriAtlas;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Visibility Methods
+
         void BasicRenderable::SetVisible(bool Visible)
         {
             if(this->Visible == Visible)
@@ -117,7 +128,7 @@ namespace Mezzanine
 
         bool BasicRenderable::IsVisible() const
         {
-            return Visible && ParentLayer->IsVisible();
+            return Visible && ParentScreen->IsVisible();
         }
 
         bool BasicRenderable::GetVisible() const
@@ -135,37 +146,21 @@ namespace Mezzanine
             SetVisible(false);
         }
 
-        ConstString& BasicRenderable::GetName() const
-        {
-            return Name;
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // RenderPriority Methods
 
         void BasicRenderable::SetRenderPriority(const UI::RenderPriority& Priority)
         {
-            this->Priority = Priority;
+            Renderable::SetRenderPriority(Priority);
             _MarkDirty();
         }
 
-        UI::RenderPriority BasicRenderable::GetRenderPriority() const
-        {
-            return Priority;
-        }
-
-        void BasicRenderable::SetPrimaryAtlas(const String& Atlas)
-        {
-            this->PriAtlas = Atlas;
-            _MarkDirty();
-        }
-
-        String BasicRenderable::GetPrimaryAtlas() const
-        {
-            return PriAtlas;
-        }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Internal Methods
 
         void BasicRenderable::_MarkDirty()
         {
             Dirty = true;
-            ParentLayer->_MarkDirty();
             if(ParentWidget)
                 ParentWidget->_MarkDirty();
         }
