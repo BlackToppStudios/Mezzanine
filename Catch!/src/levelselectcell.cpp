@@ -3,14 +3,14 @@
 
 #include "levelselectcell.h"
 
-LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent)
+LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent)
     : UI::Cell(name,parent)
       //PreviewImageOffset(Vector2(-0.005,-0.005)),
       //PreviewBorderOffset(Vector2(-0.01,-0.01)),
       //LevelTitleOffset(Vector2(0.115,0.01)),
       //EarnedScoreOffset(Vector2(0.18,0.05))
 {
-    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
     UI::RenderableRect PIRect, PBRect, LTRect, ESRect;
     if(Rect.Relative)
     {
@@ -51,25 +51,25 @@ LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& R
         ESRect.Relative = Rect.Relative;
     }
 
-    CellBack = new UI::Rectangle(Rect,ParentLayer);
-    PreviewImage = new UI::Rectangle(PIRect,ParentLayer);
-    PreviewBorder = new UI::Rectangle(PBRect,ParentLayer);
-    LevelTitle = new UI::Caption(Name+"LT",LTRect,Real(Rect.Size.Y * 0.36),Name,ParentLayer);
-    EarnedScore = new UI::Caption(Name+"ES",ESRect,Real(Rect.Size.Y * 0.36),"0/0",ParentLayer);
-    AddSubRenderable(0,RenderablePair(CellBack,NULL));
-    AddSubRenderable(1,RenderablePair(PreviewImage,NULL));
-    AddSubRenderable(2,RenderablePair(PreviewBorder,NULL));
-    AddSubRenderable(3,RenderablePair(LevelTitle,NULL));
-    AddSubRenderable(4,RenderablePair(EarnedScore,NULL));
+    CellBack = ParentScreen->CreateRectangle(Rect);
+    PreviewImage = ParentScreen->CreateRectangle(PIRect);
+    PreviewBorder = ParentScreen->CreateRectangle(PBRect);
+    LevelTitle = ParentScreen->CreateCaption(Name+"LT",LTRect,Real(Rect.Size.Y * 0.36),Name);
+    EarnedScore = ParentScreen->CreateCaption(Name+"ES",ESRect,Real(Rect.Size.Y * 0.36),"0/0");
+    AddSubRenderable(0,CellBack);
+    AddSubRenderable(1,PreviewImage);
+    AddSubRenderable(2,PreviewBorder);
+    AddSubRenderable(3,LevelTitle);
+    AddSubRenderable(4,EarnedScore);
 }
 
 LevelSelectCell::~LevelSelectCell()
 {
-    delete CellBack;
-    delete PreviewImage;
-    delete PreviewBorder;
-    delete LevelTitle;
-    delete EarnedScore;
+    ParentScreen->DestroyBasicRenderable(CellBack);
+    ParentScreen->DestroyBasicRenderable(PreviewImage);
+    ParentScreen->DestroyBasicRenderable(PreviewBorder);
+    ParentScreen->DestroyBasicRenderable(LevelTitle);
+    ParentScreen->DestroyBasicRenderable(EarnedScore);
 }
 
 void LevelSelectCell::UpdateImpl(bool Force)
@@ -104,12 +104,12 @@ void LevelSelectCell::CalculateOffsets(const Vector2& Size)
 
 void LevelSelectCell::SetPosition(const Vector2& Position)
 {
-    SetActualPosition(Position * ParentLayer->GetParent()->GetViewportDimensions());
+    SetActualPosition(Position * ParentScreen->GetViewportDimensions());
 }
 
 void LevelSelectCell::SetActualPosition(const Vector2& Position)
 {
-    RelPosition = Position / ParentLayer->GetParent()->GetViewportDimensions();
+    RelPosition = Position / ParentScreen->GetViewportDimensions();
     CellBack->SetActualPosition(Position);
     PreviewImage->SetActualPosition(Position + PreviewImageOffset);
     PreviewBorder->SetActualPosition(Position + PreviewBorderOffset);
@@ -125,13 +125,13 @@ void LevelSelectCell::SetSize(const Vector2& Size)
     PreviewBorder->SetSize(Vector2(Size.Y * 1.40,Size.Y * 1.15));
     LevelTitle->SetSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
     EarnedScore->SetSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
-    //CalculateOffsets(Size * ParentLayer->GetParent()->GetViewportDimensions());
+    //CalculateOffsets(Size * ParentScreen->GetViewportDimensions());
     SetPosition(RelPosition);
 }
 
 void LevelSelectCell::SetActualSize(const Vector2& Size)
 {
-    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
     RelSize = Size / WinDim;
     CellBack->SetActualSize(Size);
     PreviewImage->SetActualSize(Vector2(Size.Y * 1.30,Size.Y * 1.05));
@@ -198,7 +198,7 @@ LevelSelectCB::~LevelSelectCB()
 void LevelSelectCB::SetCaller(UI::Cell* Caller)
 {
     this->Caller = Caller;
-    this->LevelCell = dynamic_cast<LevelSelectCell*>(Caller);
+    this->LevelCell = static_cast<LevelSelectCell*>(Caller);
 }
 
 void LevelSelectCB::DoSelectedItems()

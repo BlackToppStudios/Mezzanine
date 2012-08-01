@@ -3,17 +3,17 @@
 
 #include "itemshopcell.h"
 
-ItemShopCell::ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Layer* parent)
+ItemShopCell::ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Screen* parent)
     : UI::Cell(name,parent)
 {
-    Real LineHeight = Rect.Relative ? Rect.Size.Y * 0.25 : (Rect.Size.Y / ParentLayer->GetParent()->GetViewportDimensions().Y) * 0.25;
-    ItemCaption = new UI::Caption(name,Rect,LineHeight,ItemName,parent);
-    SubRenderables[0] = RenderablePair(ItemCaption,NULL);
+    Real LineHeight = Rect.Relative ? Rect.Size.Y * 0.25 : (Rect.Size.Y / ParentScreen->GetViewportDimensions().Y) * 0.25;
+    ItemCaption = ParentScreen->CreateCaption(name,Rect,LineHeight,ItemName);
+    AddSubRenderable(0,ItemCaption);
 }
 
 ItemShopCell::~ItemShopCell()
 {
-    delete ItemCaption;
+    ParentScreen->DestroyBasicRenderable(ItemCaption);
 }
 
 void ItemShopCell::UpdateImpl(bool Force)
@@ -40,7 +40,7 @@ void ItemShopCell::SetPosition(const Vector2& Position)
 
 void ItemShopCell::SetActualPosition(const Vector2& Position)
 {
-    RelSize = Position / ParentLayer->GetParent()->GetViewportDimensions();
+    RelSize = Position / ParentScreen->GetViewportDimensions();
     ItemCaption->SetActualPosition(Position);
 }
 
@@ -52,7 +52,7 @@ void ItemShopCell::SetSize(const Vector2& Size)
 
 void ItemShopCell::SetActualSize(const Vector2& Size)
 {
-    RelSize = Size / ParentLayer->GetParent()->GetViewportDimensions();
+    RelSize = Size / ParentScreen->GetViewportDimensions();
     ItemCaption->SetActualSize(Size);
 }
 

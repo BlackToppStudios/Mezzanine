@@ -22,7 +22,7 @@ class LevelSelectCell : public UI::Cell
         virtual bool CheckMouseHoverImpl();
         virtual void CalculateOffsets(const Vector2& Size);
     public:
-        LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent);
+        LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent);
         virtual ~LevelSelectCell();
         virtual void SetPosition(const Vector2& Position);
         virtual void SetActualPosition(const Vector2& Position);

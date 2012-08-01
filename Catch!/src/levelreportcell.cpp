@@ -3,10 +3,10 @@
 
 #include "levelreportcell.h"
 
-LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent)
+LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent)
     : UI::Cell(name,parent)
 {
-    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
     UI::RenderableRect DescRect, ScoreRect;
     if(Rect.Relative)
     {
@@ -35,8 +35,8 @@ LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& R
         ScoreRect.Relative = Rect.Relative;
     }
 
-    Description = new UI::Caption(Name+"Desc",DescRect,Rect.Size.Y,"",ParentLayer);
-    Score = new UI::Caption(Name+"Score",ScoreRect,Rect.Size.Y,"",ParentLayer);
+    Description = ParentScreen->CreateCaption(Name+"Desc",DescRect,Rect.Size.Y,"");
+    Score = ParentScreen->CreateCaption(Name+"Score",ScoreRect,Rect.Size.Y,"");
 
     Description->HorizontallyAlign(Mezzanine::UI::Txt_Right);
     Score->HorizontallyAlign(Mezzanine::UI::Txt_Left);
@@ -46,14 +46,14 @@ LevelReportCell::LevelReportCell(const String& name, const UI::RenderableRect& R
     //Description->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.2));
     //Score->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.2));
 
-    AddSubRenderable(0,RenderablePair(Description,NULL));
-    AddSubRenderable(1,RenderablePair(Score,NULL));
+    AddSubRenderable(0,Description);
+    AddSubRenderable(1,Score);
 }
 
 LevelReportCell::~LevelReportCell()
 {
-    delete Description;
-    delete Score;
+    ParentScreen->DestroyBasicRenderable(Description);
+    ParentScreen->DestroyBasicRenderable(Score);
 }
 
 void LevelReportCell::CalculateOffsets(const Vector2& Size)
@@ -81,7 +81,7 @@ bool LevelReportCell::CheckMouseHoverImpl()
 
 void LevelReportCell::SetPosition(const Vector2& Position)
 {
-    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
     RelPosition = Position;
     Description->SetPosition(Position);
     Score->SetPosition(Position+(Vector2(ScoreOffset.X / WinDim.X,0)));
@@ -89,7 +89,7 @@ void LevelReportCell::SetPosition(const Vector2& Position)
 
 void LevelReportCell::SetActualPosition(const Vector2& Position)
 {
-    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
     RelPosition = Position / WinDim;
     Description->SetActualPosition(Position);
     Score->SetActualPosition(Position+ScoreOffset);
@@ -101,13 +101,13 @@ void LevelReportCell::SetSize(const Vector2& Size)
     Vector2 CapSize(Size.X * 0.49,Size.Y);
     Description->SetSize(CapSize);
     Score->SetSize(CapSize);
-    CalculateOffsets(Size * ParentLayer->GetParent()->GetViewportDimensions());
+    CalculateOffsets(Size * ParentScreen->GetViewportDimensions());
     SetPosition(RelPosition);
 }
 
 void LevelReportCell::SetActualSize(const Vector2& Size)
 {
-    const Vector2& WinDim = ParentLayer->GetParent()->GetViewportDimensions();
+    const Vector2& WinDim = ParentScreen->GetViewportDimensions();
     RelSize = Size / WinDim;
     Vector2 CapSize(Size.X * 0.49,Size.Y);
     Description->SetActualSize(CapSize);

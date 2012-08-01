@@ -13,7 +13,7 @@ class ItemShopCell : public UI::Cell
         virtual void SetVisibleImpl(bool visible);
         virtual bool CheckMouseHoverImpl();
     public:
-        ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Layer* parent);
+        ItemShopCell(const String& name, const UI::RenderableRect& Rect, const String& ItemName, UI::Screen* parent);
         virtual ~ItemShopCell();
         virtual void SetPosition(const Vector2& Position);
         virtual void SetActualPosition(const Vector2& Position);

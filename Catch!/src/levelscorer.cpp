@@ -138,29 +138,30 @@ Whole LevelScorer::CalculateFinalScore()
     }
 
     // Update the UI to reflect the calculated scores
-    UI::Layer* ReportLayer = UIManager::GetSingletonPtr()->GetLayer("ReportLayer");
-    UI::Window* ReportWin = static_cast<UI::Window*>(ReportLayer->GetWidget("GS_LevelReport"));
-    UI::Caption* TotalDisplay = ReportWin->GetCaption("GS_ScoreDisplay");
+    UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
+
+    UI::Caption* TotalDisplay = static_cast<UI::Caption*>(ReportWin->GetAreaRenderable("GS_ScoreDisplay"));
     UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
     Vector2 BreakDownPosition(0.1,0.1);
     Vector2 BreakDownSize = BreakdownList->GetFixedCellSize();
 
-    LevelReportCell* NormalScoreCell = new LevelReportCell("GS_NormalCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    LevelReportCell* NormalScoreCell = new LevelReportCell("GS_NormalCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     NormalScoreCell->GetDescription()->SetText("Normal Area Score:");
     NormalScoreCell->GetScore()->SetText(StringTool::ConvertToString(NormalScore));
     BreakdownList->AddCell(NormalScoreCell);
 
-    LevelReportCell* BonusScoreCell = new LevelReportCell("GS_BonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    LevelReportCell* BonusScoreCell = new LevelReportCell("GS_BonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     BonusScoreCell->GetDescription()->SetText("Bonus Area Score:");
     BonusScoreCell->GetScore()->SetText(StringTool::ConvertToString(BonusScore));
     BreakdownList->AddCell(BonusScoreCell);
 
-    LevelReportCell* RemainingCashBonusCell = new LevelReportCell("GS_RemainingCashBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    LevelReportCell* RemainingCashBonusCell = new LevelReportCell("GS_RemainingCashBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     RemainingCashBonusCell->GetDescription()->SetText("Shop Cash Score:");
     RemainingCashBonusCell->GetScore()->SetText(StringTool::ConvertToString(ShopScore));
     BreakdownList->AddCell(RemainingCashBonusCell);
 
-    LevelReportCell* TimeBonusCell = new LevelReportCell("GS_TimeBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),ReportLayer);
+    LevelReportCell* TimeBonusCell = new LevelReportCell("GS_TimeBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     TimeBonusCell->GetDescription()->SetText("Time Score:");
     TimeBonusCell->GetScore()->SetText(StringTool::ConvertToString(TimeScore));
     BreakdownList->AddCell(TimeBonusCell);
@@ -169,7 +170,7 @@ Whole LevelScorer::CalculateFinalScore()
     {
         std::stringstream namestream;
         namestream << "Condition" << ;
-        LevelReportCell* SpecialConditionCell = new LevelReportCell(namestream.str(),,ReportLayer);
+        LevelReportCell* SpecialConditionCell = new LevelReportCell(namestream.str(),,GameScreen);
         SpecialConditionCell->GetDescription()->SetText("");
         SpecialConditionCell->GetScore()->SetText("");
         BreakdownList->AddCell(SpecialConditionCell);
@@ -181,7 +182,7 @@ Whole LevelScorer::CalculateFinalScore()
     Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore;
     TotalDisplay->SetText(StringTool::ConvertToString(TotalScore));
 
-    ReportLayer->Show();
+    ReportWin->Show();
     return TotalScore;
 }
 
@@ -204,8 +205,8 @@ void LevelScorer::SetLevelTargetTime(const Whole& TargetTime)
 
 void LevelScorer::ResetLevelData()
 {
-    UI::Layer* ReportLayer = UIManager::GetSingletonPtr()->GetLayer("ReportLayer");
-    UI::Window* ReportWin = static_cast<UI::Window*>(ReportLayer->GetWidget("GS_LevelReport"));
+    UI::Screen* GameScreen = UIManager::GetSingletonPtr()->GetScreen("GameScreen");
+    UI::Window* ReportWin = static_cast<UI::Window*>(GameScreen->GetWidget("GS_LevelReport"));
     UI::ScrolledCellGrid* BreakdownList = static_cast<UI::ScrolledCellGrid*>(ReportWin->GetWidget("GS_ScoreBreakdown"));
 
     ScoreAreas.clear();

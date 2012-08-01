@@ -20,11 +20,24 @@ void GSStore::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
-    UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
+    UI::Screen* screen = UIMan->GetScreen("GameScreen");
+    UI::Widget* itemshop = screen->GetWidget("GS_ItemShop");
 
-    bool ToSet = !layer->IsVisible();
-    layer->SetVisible(ToSet);
+    bool ToSet = !itemshop->IsVisible();
+    itemshop->SetVisible(ToSet);
     App->PauseGame(ToSet);
+}
+
+void GSStore::DoPreUpdateItems()
+{
+}
+
+void GSStore::DoPostUpdateItems()
+{
+}
+
+void GSStore::DoVisibilityChangeItems()
+{
 }
 
 //--------------------------------------------------------------
@@ -45,11 +58,24 @@ void GSMenu::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
-    UI::Layer* layer = UIMan->GetLayer("MenuLayer");
+    UI::Screen* screen = UIMan->GetScreen("GameScreen");
+    UI::Widget* gamemenu = screen->GetWidget("GS_GameMenu");
 
-    bool ToSet = !layer->IsVisible();
-    layer->SetVisible(ToSet);
+    bool ToSet = !gamemenu->IsVisible();
+    gamemenu->SetVisible(ToSet);
     App->PauseGame(ToSet);
+}
+
+void GSMenu::DoPreUpdateItems()
+{
+}
+
+void GSMenu::DoPostUpdateItems()
+{
+}
+
+void GSMenu::DoVisibilityChangeItems()
+{
 }
 
 //--------------------------------------------------------------
@@ -70,9 +96,22 @@ void GSReturn::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
-    UI::Layer* layer = UIMan->GetLayer("MenuLayer");
-    layer->Hide();
+    UI::Screen* screen = UIMan->GetScreen("GameScreen");
+    UI::Widget* gamemenu = screen->GetWidget("GS_GameMenu");
+    gamemenu->Hide();
     App->PauseGame(false);
+}
+
+void GSReturn::DoPreUpdateItems()
+{
+}
+
+void GSReturn::DoPostUpdateItems()
+{
+}
+
+void GSReturn::DoVisibilityChangeItems()
+{
 }
 
 //--------------------------------------------------------------
@@ -93,9 +132,22 @@ void GSISReturn::DoActivateItems()
 {
     CatchApp* App = CatchApp::GetCatchAppPointer();
     UIManager* UIMan = UIManager::GetSingletonPtr();
-    UI::Layer* layer = UIMan->GetLayer("ItemShopLayer");
-    layer->Hide();
+    UI::Screen* screen = UIMan->GetScreen("GameScreen");
+    UI::Widget* itemshop = screen->GetWidget("GS_ItemShop");
+    itemshop->Hide();
     App->PauseGame(false);
+}
+
+void GSISReturn::DoPreUpdateItems()
+{
+}
+
+void GSISReturn::DoPostUpdateItems()
+{
+}
+
+void GSISReturn::DoVisibilityChangeItems()
+{
 }
 
 //--------------------------------------------------------------
@@ -118,6 +170,18 @@ void GSMMReturn::DoActivateItems()
     World::GetWorldPointer()->BreakMainLoop();
 }
 
+void GSMMReturn::DoPreUpdateItems()
+{
+}
+
+void GSMMReturn::DoPostUpdateItems()
+{
+}
+
+void GSMMReturn::DoVisibilityChangeItems()
+{
+}
+
 //--------------------------------------------------------------
 
 GSRestart::GSRestart()
@@ -137,6 +201,18 @@ void GSRestart::DoActivateItems()
     LevelLoader* Loader = CatchApp::GetCatchAppPointer()->GetLevelLoader();
     Loader->SetNextLevel(Loader->GetCurrentLevel());
     World::GetWorldPointer()->BreakMainLoop();
+}
+
+void GSRestart::DoPreUpdateItems()
+{
+}
+
+void GSRestart::DoPostUpdateItems()
+{
+}
+
+void GSRestart::DoVisibilityChangeItems()
+{
 }
 
 //--------------------------------------------------------------
@@ -163,6 +239,18 @@ void MSStart::DoActivateItems()
     World::GetWorldPointer()->BreakMainLoop();
 }
 
+void MSStart::DoPreUpdateItems()
+{
+}
+
+void MSStart::DoPostUpdateItems()
+{
+}
+
+void MSStart::DoVisibilityChangeItems()
+{
+}
+
 //--------------------------------------------------------------
 
 AllAppExit::AllAppExit()
@@ -181,6 +269,18 @@ void AllAppExit::DoActivateItems()
 {
     CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel("");
     World::GetWorldPointer()->BreakMainLoop();
+}
+
+void AllAppExit::DoPreUpdateItems()
+{
+}
+
+void AllAppExit::DoPostUpdateItems()
+{
+}
+
+void AllAppExit::DoVisibilityChangeItems()
+{
 }
 
 //--------------------------------------------------------------
@@ -221,7 +321,19 @@ void OptsVideoApply::DoActivateItems()
     // Apply the resolution and fullscreen settings
     GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->SetRenderOptions(NewSettings);
     // Apply other settings
-    UIManager::GetSingletonPtr()->GetLayer("StatsLayer")->SetVisible(FPSStatsBox->IsChecked());
+    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->GetWidget("GS_Stats")->SetVisible(FPSStatsBox->IsChecked());
+}
+
+void OptsVideoApply::DoPreUpdateItems()
+{
+}
+
+void OptsVideoApply::DoPostUpdateItems()
+{
+}
+
+void OptsVideoApply::DoVisibilityChangeItems()
+{
 }
 
 #endif

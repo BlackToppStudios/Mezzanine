@@ -137,7 +137,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
     Vector2 CellSpacing(0.06,0.04);
     Grid->SetFixedCellSize(CellRect.Size);
     Grid->SetCellSpacing(CellSpacing);
-    UI::Layer* ParentLayer = Grid->GetLayer();
+    UI::Screen* ParentScreen = Grid->GetParent();
 
     std::set<String>* Files = ResourceMan->GetDirContents("./Levels");
     if(Files->empty())
@@ -150,7 +150,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
             continue;
 
         String LevelName = FileName.substr(0,(*it).size() - 4);
-        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellRect,ParentLayer);
+        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellRect,ParentScreen);
         CurrCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
         CurrCell->GetPreviewBorder()->SetBackgroundSprite("MMLevelPreviewBox");
         CurrCell->GetLevelTitle()->SetText(LevelName);
@@ -265,7 +265,7 @@ GameProfile* ProfileManager::GetActiveProfile() const
 
 UI::PagedCellGrid* ProfileManager::GetLevelGrid() const
 {
-    UI::Menu* MainMenu = static_cast<UI::Menu*>( UIManager::GetSingletonPtr()->GetLayer("MainMenuLayer")->GetWidget("MS_Menu") );
+    UI::Menu* MainMenu = static_cast<UI::Menu*>( UIManager::GetSingletonPtr()->GetScreen("MainMenuScreen")->GetWidget("MS_Menu") );
     UI::PagedCellGrid* Grid = static_cast<UI::PagedCellGrid*>( MainMenu->GetRootWindow()->GetChildMenuWindow("MS_LevelSelect")->GetWidget("MS_LevelGrid") );
     return Grid;
 }

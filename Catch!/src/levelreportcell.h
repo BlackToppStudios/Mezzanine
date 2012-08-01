@@ -16,7 +16,7 @@ class LevelReportCell : public UI::Cell
         virtual void SetVisibleImpl(bool visible);
         virtual bool CheckMouseHoverImpl();
     public:
-        LevelReportCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent);
+        LevelReportCell(const String& name, const UI::RenderableRect& Rect, UI::Screen* parent);
         virtual ~LevelReportCell();
         virtual void SetPosition(const Vector2& Position);
         virtual void SetActualPosition(const Vector2& Position);
