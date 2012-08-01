@@ -95,10 +95,10 @@ namespace Mezzanine
         return OgreColour;
     }
 
-    bool ColourValue::operator== (const ColourValue &Colour)
+    bool ColourValue::operator== (const ColourValue &Colour) const
         { return ( Colour.R == this->R && Colour.G == this->G && Colour.B == this->B && Colour.A == this->A ); }
 
-    bool ColourValue::operator!= (const ColourValue &Colour)
+    bool ColourValue::operator!= (const ColourValue &Colour) const
         { return ( Colour.R != this->R || Colour.G != this->G || Colour.B != this->B || Colour.A != this->A ); }
 
     void ColourValue::operator= (const ColourValue &OtherColour)

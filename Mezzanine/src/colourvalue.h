@@ -104,11 +104,11 @@ namespace Mezzanine
             /// @brief Equality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
             /// @return True if the colors match perfectly, false otherwise
-            bool operator== (const ColourValue &Colour);
+            bool operator== (const ColourValue &Colour) const;
             /// @brief Inequality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
             /// @return False if the colors match perfectly, True otherwise
-            bool operator!= (const ColourValue &Colour);
+            bool operator!= (const ColourValue &Colour) const;
             /// @brief Assignment operator.
             /// @param OtherColour The colour values you want to overwrite this colour's values with.
             void operator= (const ColourValue &OtherColour);
