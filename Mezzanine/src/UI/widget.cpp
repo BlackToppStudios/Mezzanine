@@ -370,7 +370,7 @@ namespace Mezzanine
 
         Widget* Widget::GetTopMostWidget()
         {
-            if(ParentWidget) return GetTopMostWidget();
+            if(ParentWidget) return ParentWidget->GetTopMostWidget();
             else return this;
         }
 

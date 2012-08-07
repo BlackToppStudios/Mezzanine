@@ -212,8 +212,8 @@ namespace Mezzanine
                 PriAtlas = PSprite->Atlas;
                 Real TexelOffsetX = ParentScreen->GetTexelOffsetX();
                 Real TexelOffsetY = ParentScreen->GetTexelOffsetY();
-                TexelOffsetX /= ParentScreen->GetTextureSize(PSprite->Atlas).X;
-                TexelOffsetY /= ParentScreen->GetTextureSize(PSprite->Atlas).Y;
+                if(TexelOffsetX) TexelOffsetX /= ParentScreen->GetTextureSize(PSprite->Atlas).X;
+                if(TexelOffsetY) TexelOffsetY /= ParentScreen->GetTextureSize(PSprite->Atlas).Y;
                 UVs[0].X = UVs[3].X = PSprite->UVLeft - TexelOffsetX;
                 UVs[0].Y = UVs[1].Y = PSprite->UVTop - TexelOffsetY;
                 UVs[1].X = UVs[2].X = PSprite->UVRight + TexelOffsetX;

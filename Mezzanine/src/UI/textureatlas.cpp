@@ -45,6 +45,8 @@
 #include "UI/sprite.h"
 #include "stringtool.h"
 
+#include "world.h"
+
 #include <OgreTexture.h>
 #include <OgreMaterial.h>
 #include <OgrePass.h>
@@ -553,7 +555,10 @@ namespace Mezzanine
         {
             std::map<String, Sprite*>::const_iterator it = Sprites.find(Name);
             if (it == Sprites.end())
+            {
+                World::GetWorldPointer()->Log("Cannot find Sprite named \"" + Name + "\".");
                 return 0;
+            }
             return (*it).second;
         }
 
