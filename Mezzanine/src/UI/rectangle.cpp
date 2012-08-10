@@ -530,64 +530,6 @@ namespace Mezzanine
                 DrawBorder(TopLeft,TopRight,BottomLeft,BottomRight,
                            OuterTopLeft,OuterTopRight,OuterBottomLeft,OuterBottomRight);
             }
-            /*if(BorderWidth != 0.0)
-            {
-                OuterTopLeft.X -= BorderWidth;     OuterTopLeft.Y -= BorderWidth;
-                OuterTopRight.X += BorderWidth;    OuterTopRight.Y -= BorderWidth;
-                OuterBottomLeft.X -= BorderWidth;  OuterBottomLeft.Y += BorderWidth;
-                OuterBottomRight.X += BorderWidth; OuterBottomRight.Y += BorderWidth;
-
-                if(!CustomCenter)
-                {
-                    RotCenter.X = 1 / ( TopLeft.X + (TopRight.X - TopLeft.X) / 2);
-                    RotCenter.Y = 1 / ( TopLeft.Y + (TopRight.Y - TopLeft.Y) / 2);
-                }
-
-                OuterTopLeft.X -= RotCenter.X;
-                OuterTopLeft.Y -= RotCenter.Y;
-
-                OuterTopRight.X -= RotCenter.X;
-                OuterTopRight.Y -= RotCenter.Y;
-
-                OuterBottomLeft.X -= RotCenter.X;
-                OuterBottomLeft.Y -= RotCenter.Y;
-
-                OuterBottomRight.X -= RotCenter.X;
-                OuterBottomRight.Y -= RotCenter.Y;
-
-                Vector2 I2 = OuterTopLeft, J2 = OuterTopRight, K2 = OuterBottomLeft, L2 = OuterBottomRight;
-                OuterTopLeft.X = I2.X * RotCos - I2.Y * RotSin;
-                OuterTopLeft.Y = I2.X * RotSin + I2.Y * RotCos;
-
-                OuterTopRight.X = J2.X * RotCos - J2.Y * RotSin;
-                OuterTopRight.Y = J2.X * RotSin + J2.Y * RotCos;
-
-                OuterBottomLeft.X = K2.X * RotCos - K2.Y * RotSin;
-                OuterBottomLeft.Y = K2.X * RotSin + K2.Y * RotCos;
-
-                OuterBottomRight.X = L2.X * RotCos - L2.Y * RotSin;
-                OuterBottomRight.Y = L2.X * RotSin + L2.Y * RotCos;
-
-                Vertex Temp;
-                Vector2 UV = ParentScreen->GetSolidUV(PriAtlas);
-
-                // North
-                PushTriangle(RenderVertices, Temp, TopLeft, OuterTopRight, OuterTopLeft, UV, BorderColours[UI::Border_North],PriAtlas);
-                PushTriangle(RenderVertices, Temp, TopLeft, TopRight, OuterTopRight, UV, BorderColours[UI::Border_North],PriAtlas);
-
-                // East
-                PushTriangle(RenderVertices, Temp, BottomRight, OuterTopRight, TopRight, UV, BorderColours[UI::Border_East],PriAtlas);
-                PushTriangle(RenderVertices, Temp, BottomRight, OuterBottomRight, OuterTopRight, UV, BorderColours[UI::Border_East],PriAtlas);
-
-                // South
-                PushTriangle(RenderVertices, Temp, OuterBottomLeft, BottomRight, BottomLeft, UV, BorderColours[UI::Border_South],PriAtlas);
-                PushTriangle(RenderVertices, Temp, OuterBottomLeft, OuterBottomRight, BottomRight, UV, BorderColours[UI::Border_South],PriAtlas);
-
-                // West
-                PushTriangle(RenderVertices, Temp, OuterBottomLeft, TopLeft, OuterTopLeft, UV, BorderColours[UI::Border_West],PriAtlas);
-                PushTriangle(RenderVertices, Temp, OuterBottomLeft, BottomLeft, TopLeft, UV, BorderColours[UI::Border_West],PriAtlas);
-            }//*/
-
             // Fill
             DrawFill(TopLeft,TopRight,BottomLeft,BottomRight);
 
