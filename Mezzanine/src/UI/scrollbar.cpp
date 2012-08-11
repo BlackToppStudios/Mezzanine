@@ -59,6 +59,8 @@ namespace Mezzanine
               ScrollerValue(0),
               ScrollerRelSize(1.0),
               IncrementDistance(0.1),
+              ScrollerUpperLimit(0.0),
+              ScrollerLowerLimit(0.0),
               ScrollerLock(true),
               ScrollBackLock(true),
               UpLeftLock(true),
@@ -635,16 +637,6 @@ namespace Mezzanine
             }
             Scroller->SetActualPosition(NewPos);
             CalculateScrollValue();
-
-            /*Vector2 ScrollbackSize = ScrollBack->GetActualSize();
-            Vector2 ScrollbackPos = ScrollBack->GetActualPosition();
-            Vector2 ScrollerSize = Scroller->GetActualSize();
-            Vector2 ScrollerPos = Scroller->GetActualPosition();
-            Vector2 NewPos;
-            if(Horizontal) NewPos = Vector2(ScrollbackPos.X+((ScrollbackSize.X - ScrollerSize.X) * Value),ScrollerPos.Y);
-            else NewPos = Vector2(ScrollerPos.X,ScrollbackPos.Y+((ScrollbackSize.Y - ScrollerSize.Y) * Value));
-            Scroller->SetActualPosition(NewPos);
-            ScrollerValue = Value;*/
         }
 
         Real Scrollbar::GetScrollerValue()
@@ -661,17 +653,13 @@ namespace Mezzanine
         {
             if(Size > 1 || Size < 0)
                 return;
-            ScrollerRelSize = Size;
+            Vector2 NewSize;
             Vector2 SB = ScrollBack->GetActualSize();
             Vector2 Sc = Scroller->GetActualSize();
-            if(Horizontal)
-            {
-                Vector2 NewSize(SB.X * Size,Sc.Y);
-                Scroller->SetActualSize(NewSize);
-            }else{
-                Vector2 NewSize(Sc.X,SB.Y * Size);
-                Scroller->SetActualSize(NewSize);
-            }
+            if(Horizontal) NewSize.SetValues(SB.X * Size,Sc.Y);
+            else NewSize.SetValues(Sc.X,SB.Y * Size);
+            Scroller->SetActualSize(NewSize);
+            ScrollerRelSize = Size;
         }
 
         void Scrollbar::SetPosition(const Vector2& Position)

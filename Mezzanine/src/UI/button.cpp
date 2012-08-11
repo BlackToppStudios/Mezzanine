@@ -60,8 +60,12 @@ namespace Mezzanine
             Real LineHeight = 0.0;
             if(Rect.Relative)
             {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
                 LineHeight = Rect.Size.Y * 0.8;
             }else{
+                RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
+                RelSize = Rect.Size / ParentScreen->GetViewportDimensions();
                 LineHeight = (Rect.Size.Y / ParentScreen->GetViewportDimensions().Y) * 0.8;
             }
             Clickable = ParentScreen->CreateCaption(Name+"Cl",Rect,LineHeight,"");
@@ -72,6 +76,14 @@ namespace Mezzanine
             : Activatable(name,PScreen)
         {
             Type = Widget::W_Button;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+            }else{
+                RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
+                RelSize = Rect.Size / ParentScreen->GetViewportDimensions();
+            }
             Clickable = ParentScreen->CreateCaption(Name+"Cl",Rect,Glyph,Text);
             AddSubRenderable(0,Clickable);
         }
@@ -80,7 +92,14 @@ namespace Mezzanine
             : Activatable(name,PScreen)
         {
             Type = Widget::W_Button;
-
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+            }else{
+                RelPosition = Rect.Position / ParentScreen->GetViewportDimensions();
+                RelSize = Rect.Size / ParentScreen->GetViewportDimensions();
+            }
             Clickable = ParentScreen->CreateCaption(Name+"Cl",Rect,LineHeight,Text);
             AddSubRenderable(0,Clickable);
         }
