@@ -12,7 +12,6 @@ void OptsVolume::SetCaller(UI::Widget* Caller)
     if(UI::Widget::W_Scrollbar != Caller->GetType())
         { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Volume Widget callback was attempted to be applied to a non-scrollbar widget."); }
     UI::WidgetListener::SetCaller(Caller);
-    /// @todo This code should eventually be replaced with something that reads from a settings file.
     UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*>(this->Caller);
     Scroll->SetScrollerValue(GetVolume());
 }
