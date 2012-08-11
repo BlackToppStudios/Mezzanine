@@ -58,6 +58,7 @@ namespace Mezzanine
         class MEZZ_LIB CheckBox : public Widget
         {
             protected:
+                friend class RenderableFactory;
                 friend class UIManager;
                 Button* Box;
                 Caption* Label;
@@ -76,7 +77,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Class constructor
                 /// @param name The name of the checkbox.
                 /// @param Rect The Rect representing the position and size of the checkbox and label.  The checkbox itself will always be as wide as it is tall, with remaining space going to the label.
@@ -93,6 +94,7 @@ namespace Mezzanine
                 CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString& LabelText, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
+            public:
                 /// @brief Gets whether this checkbox is checked or not.
                 /// @return Returns a bool representing whether or not this checkbox is checked.
                 virtual bool IsChecked();

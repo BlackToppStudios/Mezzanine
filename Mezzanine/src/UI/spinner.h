@@ -64,6 +64,7 @@ namespace Mezzanine
         class MEZZ_LIB Spinner : public Widget
         {
             protected:
+                friend class RenderableFactory;
                 Button* Increment;
                 Button* Decrement;
                 Caption* ValueDisplay;
@@ -104,7 +105,7 @@ namespace Mezzanine
                 virtual bool CheckMouseHoverImpl();
                 /// @brief Processes the captured inputs.
                 virtual void ProcessCapturedInputs();
-            public:
+            //public:
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
                 /// @param Rect The Rect representing the position and size of the widget.
@@ -114,6 +115,7 @@ namespace Mezzanine
                 Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~Spinner();
+            public:
                 /// @brief Sets the current value of this widget.
                 /// @param ValueToSet The value to be set.
                 virtual void SetSpinnerValue(const int& ValueToSet);

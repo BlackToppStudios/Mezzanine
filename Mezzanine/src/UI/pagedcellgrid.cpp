@@ -59,7 +59,7 @@ namespace Mezzanine
               YCellsPerPage(1),
               MaxPages(1)
         {
-            PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,ParentScreen);
+            PageSpinner = ParentScreen->CreateSpinner(Name+"Spn",SpnRect,SStyle,GlyphHeight);
             PageSpinner->SetSpinnerValue((int)CurrentPage);
             PageSpinner->SetValueLimits(1,1);
             CellsAdded = 1;
@@ -68,7 +68,7 @@ namespace Mezzanine
 
         PagedCellGrid::~PagedCellGrid()
         {
-            delete PageSpinner;
+            ParentScreen->DestroyWidget(PageSpinner);
         }
 
         void PagedCellGrid::CalculateCellsPerPage()

@@ -57,6 +57,7 @@ namespace Mezzanine
         class MEZZ_LIB ScrolledCellGrid : public CellGrid
         {
             protected:
+                friend class RenderableFactory;
                 Real HScrollVal;
                 Real VScrollVal;
                 bool AutoHide;
@@ -76,7 +77,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
                 /// @param Rect The Rect representing the position and size of the widget.
@@ -88,6 +89,7 @@ namespace Mezzanine
                 ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~ScrolledCellGrid();
+            public:
                 /// @brief Sets whether or not the scrollbars should auto-hide, or always be visible.
                 /// @param Auto Whether or not the scrollbars should auto-hide.
                 virtual void SetAutoHide(bool Auto);

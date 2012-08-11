@@ -65,6 +65,16 @@ namespace Mezzanine
                 friend class UIManager;
                 friend class RenderableFactory;
                 Caption* Clickable;
+                /// @copydoc UpdateImpl(bool Force)
+                virtual void UpdateImpl(bool Force = false);
+                /// @copydoc SetVisibleImpl(bool visible)
+                virtual void SetVisibleImpl(bool visible);
+                /// @copydoc CheckMouseHoverImpl()
+                virtual bool CheckMouseHoverImpl();
+                /// @brief Sets the actual location of this widget.
+                virtual void SetLocation(const Vector2& Location);
+                /// @brief Sets the actual size of this widget.
+                virtual void SetArea(const Vector2& Area);
             //public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
@@ -87,16 +97,6 @@ namespace Mezzanine
                 Button(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Screen* PScreen);
                 /// @brief Class destructor.
                 virtual ~Button();
-                /// @copydoc UpdateImpl(bool Force)
-                virtual void UpdateImpl(bool Force = false);
-                /// @copydoc SetVisibleImpl(bool visible)
-                virtual void SetVisibleImpl(bool visible);
-                /// @copydoc CheckMouseHoverImpl()
-                virtual bool CheckMouseHoverImpl();
-                /// @brief Sets the actual location of this widget.
-                virtual void SetLocation(const Vector2& Location);
-                /// @brief Sets the actual size of this widget.
-                virtual void SetArea(const Vector2& Area);
             public:
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility Methods

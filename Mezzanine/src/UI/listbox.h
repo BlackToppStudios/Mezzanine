@@ -74,8 +74,9 @@ namespace Mezzanine
         class MEZZ_LIB ListBox : public Widget
         {
             public:
-               TemplateParams Params;
+                TemplateParams Params;
             protected:
+                friend class RenderableFactory;
                 Rectangle* BoxBack;
                 Scrollbar* VertScroll;
                 Caption* Selected;
@@ -103,7 +104,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the List Box.
                 /// @param Rect The Rect representing the position and size of the List Box.
@@ -115,6 +116,7 @@ namespace Mezzanine
                 ListBox(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~ListBox();
+            public:
                 /// @brief Sets the size to be applied to all created Selections.
                 /// @param Size The size of the caption to make.  Applied to all captions created by this class.
                 /// @param Relative Whether or not the size provided is in relative units(rather then pixels).

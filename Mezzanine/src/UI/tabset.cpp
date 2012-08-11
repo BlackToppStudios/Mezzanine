@@ -187,7 +187,7 @@ namespace Mezzanine
             if(1 != GlyphInfo.second)
                 NewAccessor->GetClickable()->SetTextScale(GlyphInfo.second);
             NewAccessor->SetVisible(Visible);
-            RenderableCollection* NewCollection = new RenderableCollection(Name+"Set",TemplateSetRect,ParentScreen);
+            RenderableCollection* NewCollection = ParentScreen->CreateEnclosedRenderableContainerWidget(Name+"Set",TemplateSetRect);
             NewCollection->SetVisible(Visible);
 
             RenderableSetData* NewSetData = new RenderableSetData(Name,NewAccessor,NewCollection);
@@ -293,7 +293,7 @@ namespace Mezzanine
             {
                 RenderableSetData* CurrSet = (*it);
                 ParentScreen->DestroyWidget(CurrSet->Accessor);
-                delete CurrSet->Collection;
+                ParentScreen->DestroyWidget(CurrSet->Collection);
                 delete CurrSet;
             }
             Sets.clear();

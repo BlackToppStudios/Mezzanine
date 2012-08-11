@@ -55,6 +55,7 @@ namespace Mezzanine
         class RadioButton : public Widget
         {
             protected:
+                friend class RenderableFactory;
             public:
                 /// @brief Class constructor.
                 RadioButton();

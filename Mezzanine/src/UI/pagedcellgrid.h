@@ -57,6 +57,7 @@ namespace Mezzanine
         class MEZZ_LIB PagedCellGrid : public CellGrid
         {
             protected:
+                friend class RenderableFactory;
                 Whole CurrentPage;
                 Whole XCellsPerPage;
                 Whole YCellsPerPage;
@@ -76,7 +77,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
                 /// @param Rect The Rect representing the position and size of the widget.
@@ -87,6 +88,7 @@ namespace Mezzanine
                 PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~PagedCellGrid();
+            public:
                 /// @brief Sets the fixed size cells in this grid are to have.
                 /// @param FixedSize The fixed size to apply to cells.
                 virtual void SetFixedCellSize(const Vector2& FixedSize);

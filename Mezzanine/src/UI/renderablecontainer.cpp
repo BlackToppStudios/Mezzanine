@@ -187,6 +187,11 @@ namespace Mezzanine
             return new TabSet(Name,SetRect,GetScreen());
         }
 
+        EnclosedRenderableContainerWidget* RenderableFactory::CreateEnclosedRenderableContainerWidget(ConstString& Name, const RenderableRect& Rect)
+        {
+            return new EnclosedRenderableContainerWidget(Name,Rect,GetScreen());
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Destroying Widgets
 
@@ -415,6 +420,13 @@ namespace Mezzanine
             TabSet* TS = RenderableFactory::CreateTabSet(Name,SetRect);
             Widgets.push_back(TS);
             return TS;
+        }
+
+        EnclosedRenderableContainerWidget* RenderableContainer::CreateEnclosedRenderableContainerWidget(ConstString& Name, const RenderableRect& Rect)
+        {
+            EnclosedRenderableContainerWidget* ERCW = RenderableFactory::CreateEnclosedRenderableContainerWidget(Name,Rect);
+            Widgets.push_back(ERCW);
+            return ERCW;
         }
 
         Window* RenderableContainer::CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect)

@@ -76,6 +76,7 @@ namespace Mezzanine
                     CG_Vertical_Horizontal_Decending  ///<--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order.
                 };
             protected:
+                friend class RenderableFactory;
                 typedef std::list<UI::Cell*> CellList;
                 typedef std::vector<UI::Cell*> CellVector;
                 Rectangle* GridBack;
@@ -117,7 +118,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
                 /// @param Rect The Rect representing the position and size of the widget.
@@ -125,6 +126,7 @@ namespace Mezzanine
                 CellGrid(const String& name, const RenderableRect& Rect, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~CellGrid();
+            public:
                 /// @brief Sets the fixed size cells in this grid are to have.
                 /// @param FixedSize The fixed size to apply to cells.
                 /// @param Relative Whether or not the vector 2 being passed in is in relative units.

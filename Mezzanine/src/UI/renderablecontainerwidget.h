@@ -390,7 +390,7 @@ namespace Mezzanine
                 typedef WidgetInfoContainer::iterator                WidgetInfoIterator;
                 typedef WidgetInfoContainer::const_iterator          ConstWidgetInfoIterator;
             protected:
-                friend class TabSet;
+                friend class RenderableFactory;
                 Rectangle* WidgetBack;
                 AreaRenderableInfoContainer AreaRenderables;
                 WidgetInfoContainer Widgets;

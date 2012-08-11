@@ -83,7 +83,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
                 /// @param Rect The Rect representing the position and size of the window.
@@ -91,6 +91,7 @@ namespace Mezzanine
                 Window(ConstString& name, const RenderableRect& Rect, Screen* PScreen);
                 /// @brief Standard destructor.
                 virtual ~Window();
+            public:
                 /// @brief Sets the relative position of this window.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this window.

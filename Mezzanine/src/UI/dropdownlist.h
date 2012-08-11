@@ -60,6 +60,7 @@ namespace Mezzanine
         class MEZZ_LIB DropDownList : public Widget
         {
             protected:
+                friend class RenderableFactory;
                 Caption* Selection;
                 Button* ListToggle;
                 UI::ListBox* SelectionList;
@@ -72,7 +73,7 @@ namespace Mezzanine
                 virtual void SetVisibleImpl(bool visible);
                 /// @brief Child specific mouse hover method.
                 virtual bool CheckMouseHoverImpl();
-            public:
+            //public:
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
                 /// @param Rect The renderable rect representing the position and size of this widget.
@@ -90,6 +91,7 @@ namespace Mezzanine
                 DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Screen* parent);
                 /// @brief Class destructor.
                 virtual ~DropDownList();
+            public:
                 /// @brief Manually sets a selection in the list as "selected".
                 /// @param ToBeSelected A pointer to the selection to set as "selected".
                 virtual void SetSelection(Caption* ToBeSelected);

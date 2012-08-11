@@ -67,6 +67,7 @@ namespace Mezzanine
         class MEZZ_LIB Scrollbar : public Widget
         {
             protected:
+                friend class RenderableFactory;
                 UI::Button* Scroller;
                 UI::Rectangle* ScrollBack;
                 UI::Button* UpLeftButton;

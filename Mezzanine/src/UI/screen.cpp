@@ -169,6 +169,18 @@ namespace Mezzanine
             return this;
         }
 
+        Widget* Screen::CheckAndInsert(Widget* ToInsert)
+        {
+            String WidgetName = ToInsert->GetName();
+            WidgetIterator WidIt = Widgets.find(WidgetName);
+            if( WidIt != Widgets.end() )
+            {
+                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
+            }
+            Widgets[WidgetName] = ToInsert;
+            return ToInsert;
+        }
+
         void Screen::PrepareRenderSystem()
         {
             this->SID->RenderSys->_setWorldMatrix( Ogre::Matrix4::IDENTITY );
@@ -320,170 +332,77 @@ namespace Mezzanine
 
         Button* Screen::CreateButton(ConstString& Name, const RenderableRect& Rect)
         {
-            Button* widget = RenderableFactory::CreateButton(Name,Rect);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Button*>( CheckAndInsert( RenderableFactory::CreateButton(Name,Rect) ) );
         }
 
         Button* Screen::CreateButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text)
         {
-            Button* widget = RenderableFactory::CreateButton(Name,Rect,Glyph,Text);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Button*>( CheckAndInsert( RenderableFactory::CreateButton(Name,Rect,Glyph,Text) ) );
         }
 
         Button* Screen::CreateButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text)
         {
-            Button* widget = RenderableFactory::CreateButton(Name,Rect,LineHeight,Text);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Button*>( CheckAndInsert( RenderableFactory::CreateButton(Name,Rect,LineHeight,Text) ) );
         }
 
         Scrollbar* Screen::CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style)
         {
-            Scrollbar* widget = RenderableFactory::CreateScrollbar(Name,Rect,Style);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Scrollbar*>( CheckAndInsert( RenderableFactory::CreateScrollbar(Name,Rect,Style) ) );
         }
 
         CheckBox* Screen::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& LabelText)
         {
-            CheckBox* widget = RenderableFactory::CreateCheckBox(Name,Rect,LineHeight,LabelText);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<CheckBox*>( CheckAndInsert( RenderableFactory::CreateCheckBox(Name,Rect,LineHeight,LabelText) ) );
         }
 
         ListBox* Screen::CreateListBox(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& ScrollStyle)
         {
-            ListBox* widget = RenderableFactory::CreateListBox(Name,Rect,ScrollStyle);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<ListBox*>( CheckAndInsert( RenderableFactory::CreateListBox(Name,Rect,ScrollStyle) ) );
         }
 
         Spinner* Screen::CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            Spinner* widget = RenderableFactory::CreateSpinner(Name,Rect,SStyle,GlyphHeight);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Spinner*>( CheckAndInsert( RenderableFactory::CreateSpinner(Name,Rect,SStyle,GlyphHeight) ) );
         }
 
         ScrolledCellGrid* Screen::CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
-            ScrolledCellGrid* widget = RenderableFactory::CreateScrolledCellGrid(Name,Rect,Thickness,Style);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<ScrolledCellGrid*>( CheckAndInsert( RenderableFactory::CreateScrolledCellGrid(Name,Rect,Thickness,Style) ) );
         }
 
         PagedCellGrid* Screen::CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            PagedCellGrid* widget = RenderableFactory::CreatePagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<PagedCellGrid*>( CheckAndInsert( RenderableFactory::CreatePagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight) ) );
         }
 
         DropDownList* Screen::CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle)
         {
-            DropDownList* widget = RenderableFactory::CreateDropDownList(Name,Rect,LineHeight,ScrollStyle);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<DropDownList*>( CheckAndInsert( RenderableFactory::CreateDropDownList(Name,Rect,LineHeight,ScrollStyle) ) );
         }
 
         TabSet* Screen::CreateTabSet(ConstString& Name, const RenderableRect& SetRect)
         {
-            TabSet* widget = RenderableFactory::CreateTabSet(Name,SetRect);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<TabSet*>( CheckAndInsert( RenderableFactory::CreateTabSet(Name,SetRect) ) );
+        }
+
+        EnclosedRenderableContainerWidget* Screen::CreateEnclosedRenderableContainerWidget(ConstString& Name, const RenderableRect& Rect)
+        {
+            return static_cast<EnclosedRenderableContainerWidget*>( CheckAndInsert( RenderableFactory::CreateEnclosedRenderableContainerWidget(Name,Rect) ) );
         }
 
         Window* Screen::CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect)
         {
-            Window* widget = ExtendedRenderableFactory::CreateWidgetWindow(Name,Rect);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Window*>( CheckAndInsert( ExtendedRenderableFactory::CreateWidgetWindow(Name,Rect) ) );
         }
 
         Menu* Screen::CreateMenu(ConstString& Name, const RenderableRect& Rect)
         {
-            Menu* widget = ExtendedRenderableFactory::CreateMenu(Name,Rect);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<Menu*>( CheckAndInsert( ExtendedRenderableFactory::CreateMenu(Name,Rect) ) );
         }
 
         OpenRenderableContainerWidget* Screen::CreateOpenRenderableContainerWidget(ConstString& Name)
         {
-            OpenRenderableContainerWidget* widget = ExtendedRenderableFactory::CreateOpenRenderableContainerWidget(Name);
-            WidgetIterator WidIt = Widgets.find(Name);
-            if( WidIt != Widgets.end() )
-            {
-                MEZZ_EXCEPTION(Exception::II_DUPLICATE_IDENTITY_EXCEPTION,"Widget with name \"" + Name + "\" already exists.")
-            }
-            Widgets[Name] = widget;
-            return widget;
+            return static_cast<OpenRenderableContainerWidget*>( CheckAndInsert( ExtendedRenderableFactory::CreateOpenRenderableContainerWidget(Name) ) );
         }
 
         ///////////////////////////////////////////////////////////////////////////////

@@ -145,6 +145,7 @@ namespace Mezzanine
                 WidgetContainer Widgets;
 
                 virtual Screen* GetScreen();
+                virtual Widget* CheckAndInsert(Widget* ToInsert);
                 virtual void PrepareRenderSystem();
                 virtual void CreateVertexBuffer(const Whole& InitialSize = 32);
                 virtual void DestroyVertexBuffer();
@@ -217,6 +218,8 @@ namespace Mezzanine
                 virtual DropDownList* CreateDropDownList(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle);
                 /// @copydoc RenderableFactory::CreateTabSet(ConstString& Name, const RenderableRect& SetRect)
                 virtual TabSet* CreateTabSet(ConstString& Name, const RenderableRect& SetRect);
+                /// @copydoc RenderableFactory::CreateEnclosedRenderableContainerWidget(ConstString& Name, const RenderableRect& Rect)
+                virtual EnclosedRenderableContainerWidget* CreateEnclosedRenderableContainerWidget(ConstString& Name, const RenderableRect& Rect);
                 /// @copydoc ExtendedRenderableFactory::CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect)
                 virtual Window* CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect);
                 /// @copydoc ExtendedRenderableFactory::CreateMenu(ConstString& Name, const RenderableRect& Rect)
