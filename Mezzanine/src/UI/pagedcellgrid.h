@@ -104,6 +104,8 @@ namespace Mezzanine
                 /// @details Default 0.01,0.01.
                 /// @param Spacing The minimum amount of space (in relative units) from each cell a given cell should be.
                 virtual void SetCellSpacing(const Vector2& Spacing);
+                /// @copydoc CellGrid::DestroyAllCells()
+                virtual void DestroyAllCells();
                 /// @brief Updates the dimensions of this widget to match those of the new screen size.
                 /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
                 virtual void UpdateDimensions();

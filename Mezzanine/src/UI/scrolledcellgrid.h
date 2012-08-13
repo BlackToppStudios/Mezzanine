@@ -96,6 +96,8 @@ namespace Mezzanine
                 /// @brief Gets whether or not the scrollbars are auto-hiding.
                 /// @return Returns a bool indicating whether or not scrollbar auto-hide is enabled.
                 virtual bool GetAutoHide();
+                /// @copydoc CellGrid::DestroyAllCells()
+                virtual void DestroyAllCells();
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.

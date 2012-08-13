@@ -315,6 +315,12 @@ namespace Mezzanine
             CalculateCellsPerPage();
         }
 
+        void PagedCellGrid::DestroyAllCells()
+        {
+            CellGrid::DestroyAllCells();
+            AddSubRenderable(1,PageSpinner);
+        }
+
         void PagedCellGrid::UpdateDimensions()
         {
             const Vector2& WinDim = ParentScreen->GetViewportDimensions();

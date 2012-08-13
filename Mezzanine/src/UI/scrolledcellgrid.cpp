@@ -280,6 +280,13 @@ namespace Mezzanine
             return AutoHide;
         }
 
+        void ScrolledCellGrid::DestroyAllCells()
+        {
+            CellGrid::DestroyAllCells();
+            AddSubRenderable(1,HorizontalScroll);
+            AddSubRenderable(2,VerticalScroll);
+        }
+
         void ScrolledCellGrid::SetPosition(const Vector2& Position)
         {
             Vector2 HScrollOffset = VerticalScroll->GetPosition() - Position;
