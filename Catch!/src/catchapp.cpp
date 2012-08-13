@@ -83,7 +83,7 @@ void CatchApp::MakeGUI()
     UI::Button* MMLevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     MMLevelSelectAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMLevelSelectAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMLevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", UI::RenderableRect(Vector2(0.05,0.02), Vector2(0.90,0.84), true), MMLevelSelectAccess);
+    UI::MenuWindow* MMLevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelectWin", UI::RenderableRect(Vector2(0.05,0.02), Vector2(0.90,0.84), true), MMLevelSelectAccess);
     MMLevelSelectWin->GetWindowBack()->SetBackgroundSprite("MMLSBackground");
     UI::PagedCellGrid* MMLevelSelectGrid = MMLevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", UI::RenderableRect(Vector2(0.14,0.14), Vector2(0.72,0.66), true), UI::RenderableRect(Vector2(0.60,0.85), Vector2(0.24,0.06), true), UI::Spn_Separate, 0.05);
     MMLevelSelectGrid->GetGridBack()->SetBackgroundColour(Transparent);
@@ -98,7 +98,7 @@ void CatchApp::MakeGUI()
     UI::Button* MMOptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", UI::RenderableRect(Vector2(0.28, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Options" );
     MMOptionsAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMOptionsAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMOptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), MMOptionsAccess);
+    UI::MenuWindow* MMOptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_OptionsWin", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), MMOptionsAccess);
     MMOptionsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
     UI::TabSet* MMOptionsTabSet = MMOptionsWin->CreateTabSet("MS_OptionsTS", UI::RenderableRect(Vector2(0.20, 0.31), Vector2(0.60, 0.39), true));
     //video options
@@ -214,12 +214,12 @@ void CatchApp::MakeGUI()
     UI::Button* MMCreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", UI::RenderableRect(Vector2(0.51, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Credits" );
     MMCreditsAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMCreditsAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMCreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Credits", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
+    UI::MenuWindow* MMCreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_CreditsWin", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), MMCreditsAccess);
 
     UI::Button* MMAppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", UI::RenderableRect(Vector2(0.74, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Exit Game" );
     MMAppExitAccess->GetClickable()->SetBackgroundSprite("MMButton");
     MMAppExitAccess->GetClickable()->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* MMAppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), MMAppExitAccess);
+    UI::MenuWindow* MMAppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExitWin", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), MMAppExitAccess);
     MMAppExitWin->GetWindowBack()->SetBackgroundSprite("MMAppExitBackground");
     UI::Caption* MMAppExitWarn = MMAppExitWin->CreateCaption("MS_AppExitWarn", UI::RenderableRect(Vector2(0.32, 0.35), Vector2(0.36, 0.07), true), Real(0.04), "Are you sure you want to exit?");
     MMAppExitWarn->SetBackgroundSprite("MMAppExitText");
