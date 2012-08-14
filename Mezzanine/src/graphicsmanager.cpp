@@ -71,6 +71,7 @@ namespace Mezzanine
           CurrRenderSys(Mezzanine::RS_OpenGL2)
     {
         Construct();
+        this->AutoGenFiles = false;
     }
 #ifdef MEZZXML
     GraphicsManager::GraphicsManager(XML::Node& XMLNode)

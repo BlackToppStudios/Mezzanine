@@ -195,6 +195,8 @@ namespace Mezzanine
             { this->AddManager(new MeshManager()); }
         if(this->GetCollisionShapeManager()==0)
             { this->AddManager(new CollisionShapeManager()); }
+        if(this->GetCameraManager()==0)
+            { this->AddManager(new CameraManager()); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();

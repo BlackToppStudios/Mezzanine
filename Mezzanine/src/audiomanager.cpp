@@ -80,6 +80,7 @@ namespace Mezzanine
         Listener = new Audio::Listener(cAudioMan->getListener());
         MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 50;
+        this->AutoGenFiles = false;
     }
 
 #ifdef MEZZXML
