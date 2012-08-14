@@ -296,7 +296,7 @@ endif(${Mezz_Network})
 
 Message(STATUS "Starting Subproject Configuration.")
 add_subdirectory (Mezzanine)
-#add_subdirectory (EngineDemo)
+add_subdirectory (EngineDemo)
 add_subdirectory (Catch!)
 add_subdirectory (UnitTests)
 Message(STATUS "Finishing Subproject Configuration.")

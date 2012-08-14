@@ -14,5 +14,6 @@ bool PostUI();
 bool CheckForStuff();
 void LoadContent();
 void MakeGUI();
+void TestsToSave();
 
 #endif

@@ -78,12 +78,13 @@ endfunction(CreateSymlinkDuringBuild)
 
 ##############################################################################
 #define the executable and say it requires Mezzanine
-include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_MEZZANINE_BIN_SRC} )
+include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_MEZZANINE_BIN_SRC} ${ProjectIncludeDir} )
 link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
-target_link_libraries( ${PROJECT_NAME} Mezzanine )
+target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 
 ##############################################################################
 # File copies during all builds
@@ -98,7 +99,7 @@ CopyFilesDuringBuild( common/Plane.mesh data/common/Plane.mesh )
 CopyFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
 CopyFilesDuringBuild( common/Sphere_Metal.mesh data/common/Sphere_Metal.mesh )
 CopyFilesDuringBuild( common/Sphere_Wood.mesh data/common/Sphere_Wood.mesh )
-CopyFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
+CopyFilesDuringBuild( common/dejavu.mta data/common/dejavu.mta )
 CopyFilesDuringBuild( common/robot.skeleton data/common/robot.skeleton )
 CopyFilesDuringBuild( common/Sphere_Wood.material data/common/Sphere_Wood.material )
 CopyFilesDuringBuild( common/Examples.material data/common/Examples.material )
@@ -112,10 +113,10 @@ CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioThem
 CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
 CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
 
-CopyFilesFromMezzanineDuringBuild( data/common/Ogre-lgpl-3.0.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
 
-CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName}
+CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} )
 
 ##############################################################################
 #Copy System Dependant files during build time
@@ -129,11 +130,8 @@ if(${WIN32})
 	CopyFilesFromMezzanineDuringBuild( data/windows/ogre/Plugin_CgProgramManager${OgresD}.dll )
 	CopyFilesFromMezzanineDuringBuild( data/windows/ogre/cg${OgresD}.dll )
 	CopyFilesFromMezzanineDuringBuild( data/windows/plugins.cfg )
-#	CopyFilesFromMezzanineDuringBuild( data/windows/settings.cfg )
-	 )
 	CopyFilesFromMezzanineDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesFromMezzanineDuringBuild( OpenAL32.dll )
-	CopyFilesFromMezzanineDuringBuild( SDL.dll )
 	CopyFilesFromMezzanineDuringBuild( wrap_oal.dll )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
@@ -143,7 +141,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
 	CopyFilesFromMezzanineDuringBuild( ${OgreLinuxSoName} )
 	CreateSymlinkDuringBuild( ${OgreLinuxSoName} ${OgreLibFileName} )
-#	CopyFilesFromMezzanineDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromMezzanineDuringBuild( data/linux/ogre/RenderSystem_GL${OgresD}.so )
 	CopyFilesFromMezzanineDuringBuild( data/linux/ogre/Plugin_ParticleFX${OgresD}.so )
 	CopyFilesFromMezzanineDuringBuild( data/linux/ogre/Plugin_CgProgramManager${OgresD}.so )
@@ -155,8 +152,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Mac File Copy Specific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( data/common/Ogre-lgpl-3.0.txt )
-	CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
 	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib )
 	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
 	#CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
