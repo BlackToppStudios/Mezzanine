@@ -88,6 +88,8 @@ namespace Mezzanine
             /// @param Ours The vector2 to be extracted.
             void ExtractOgreVector2(const Ogre::Vector2& Ours);
 
+            /// @brief Sets the values of this vector2 to identity values(0,0).
+            void SetIdentity();
             /// @brief Sets the X and Y values of this vector2.
             /// @param x The real that will have this vector's X member set to.
             /// @param y The real that will have this vector's Y member set to.

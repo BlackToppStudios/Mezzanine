@@ -81,6 +81,12 @@ namespace Mezzanine
         this->Y=Ours.y;
     }
 
+    void Vector2::SetIdentity()
+    {
+        this->X = 0;
+        this->Y = 0;
+    }
+
     void Vector2::SetValues(const Real& x, const Real& y)
     {
         this->X = x;
