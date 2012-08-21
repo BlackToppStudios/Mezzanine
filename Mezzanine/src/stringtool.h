@@ -40,7 +40,7 @@
 #ifndef _stringtool_h
 #define _stringtool_h
 
-#include "metacode.h"
+#include "Input/metacode.h"
 #include "vector2.h"
 #include "vector3.h"
 #include "quaternion.h"
@@ -221,11 +221,11 @@ namespace Mezzanine
             /// @param ToConvert The UInt32 to be converted.
             /// @return Returns a string containing the converted input.
             static String ConvertToString(const UInt32& ToConvert);
-            /// @brief Converts a MetaCode::InputCode into a string.
+            /// @brief Converts a Input::InputCode into a string.
             /// @param Code The input code to be converted.
             /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
             /// @return Returns a string(usually with only one character) containing the converted input code.
-            static String ConvertToString(const MetaCode::InputCode& Code, bool ShiftPressed);
+            static String ConvertToString(const Input::InputCode& Code, bool ShiftPressed);
 
             ///////////////////////////////////////////////////////////////////////////////
             // String Catenate functions

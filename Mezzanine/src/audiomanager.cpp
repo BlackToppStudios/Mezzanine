@@ -79,7 +79,7 @@ namespace Mezzanine
         cAudioMan = cAudio::createAudioManager(DefaultSettings);
         Listener = new Audio::Listener(cAudioMan->getListener());
         MusicPlayer = new Audio::MusicPlayer();
-        this->Priority = 50;
+        this->Priority = 55;
         this->AutoGenFiles = false;
     }
 
@@ -96,7 +96,7 @@ namespace Mezzanine
         AMID = new AudioManagerInternalData(this);
         cAudioMan = cAudio::createAudioManager(false);
         MusicPlayer = new Audio::MusicPlayer();
-        this->Priority = 50;
+        this->Priority = 55;
 
         XML::Attribute CurrAttrib;
         String PathPreset;

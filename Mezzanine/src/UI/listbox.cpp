@@ -47,8 +47,9 @@
 #include "UI/rectangle.h"
 #include "UI/scrollbar.h"
 #include "UI/viewportupdatetool.h"
-#include "inputquerytool.h"
-#include "metacode.h"
+#include "inputmanager.h"
+#include "Input/metacode.h"
+#include "Input/mouse.h"
 #include "world.h"
 
 #include <cmath>
@@ -222,10 +223,10 @@ namespace Mezzanine
 
         void ListBox::UpdateImpl(bool Force)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredCaption)
             {
-                if(MetaCode::BUTTON_PRESSING == State)
+                if(Input::BUTTON_PRESSING == State)
                 {
                     SetSelected(HoveredCaption);
                 }

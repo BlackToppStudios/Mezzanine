@@ -46,7 +46,7 @@
 
 #include "managerbase.h"
 #include "managerfactory.h"
-#include "metacode.h"
+#include "Input/metacode.h"
 #include "eventbase.h"
 #include "singleton.h"
 #include "vector2.h"
@@ -425,14 +425,6 @@ namespace Mezzanine
             /// @details This will remove any check for polling that share the same inputcode and ID. This
             /// @exception "Polling check not present" Is thrown
             void RemovePollingCheck(const MetaCode &InputToStopPolling);
-
-            /*/// @brief Should Hide The mouse Cursor and report on relative movements
-            /// @details useful for games that will use the mouse to directly control a camera
-            /// @warning Simply crashes.
-            void StartRelativeMouseMode();
-
-            /// @brief unhide the cursor and report mouse movements normally
-            void EndRelativeMouseMode();*/
 
             ///////////////////////////////////////////////////////////////////////////////
             //Inherited from ManagerBase

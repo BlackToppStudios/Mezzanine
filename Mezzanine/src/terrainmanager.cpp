@@ -52,13 +52,13 @@ namespace Mezzanine
 
     TerrainManager::TerrainManager()
     {
-        Priority = 30;
+        Priority = 35;
     }
 
 #ifdef MEZZXML
     TerrainManager::TerrainManager(XML::Node& XMLNode)
     {
-        Priority = 30;
+        Priority = 35;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif

@@ -42,7 +42,7 @@
 
 #include "UI/renderable.h"
 #include "UI/renderablerect.h"
-#include "metacode.h"
+#include "Input/inputenumerations.h"
 
 namespace Mezzanine
 {
@@ -57,10 +57,10 @@ namespace Mezzanine
         /// @brief This class contains all the utilities necessary for capturing input.
         /// @details This is commonly used for Text-based widgets, such as TextBox's, Spinners, and InputBox's.
         ///////////////////////////////////////
-        class MEZZ_LIB InputCaptureData : public std::set<MetaCode::InputCode>
+        class MEZZ_LIB InputCaptureData : public std::set<Input::InputCode>
         {
             protected:
-                std::vector<MetaCode::InputCode> CapturedCodes;
+                std::vector<Input::InputCode> CapturedCodes;
             public:
                 /// @brief Class constructor.
                 InputCaptureData();
@@ -68,24 +68,24 @@ namespace Mezzanine
                 ~InputCaptureData();
                 /// @brief Adds a single input code to the list of codes to be captured.
                 /// @param Code The code to be captured.
-                void AddInput(const MetaCode::InputCode& Code);
+                void AddInput(const Input::InputCode& Code);
                 /// @brief Adds a range of input codes to the list of codes to be captured.
                 /// @details This function will fail silently if the lower code is higher then the upper code.
                 /// @param Lower The first input code in the range to be entered.
                 /// @param Upper The last input code in the range to be entered.
-                void AddInputRange(const MetaCode::InputCode& Lower, const MetaCode::InputCode& Upper);
+                void AddInputRange(const Input::InputCode& Lower, const Input::InputCode& Upper);
                 /// @brief Gets the number of input codes this class is currently set to capture.
                 /// @return Returns a Whole representing the number of input codes set to be captured.
                 Whole GetNumCapturedInputs();
                 /// @brief Gets a vector of inputs that have been captured this frame.
                 /// @return Returns a pointer to the vector containing all the input codes captured this frame.
-                std::vector<MetaCode::InputCode>* GetCapturedInputs();
+                std::vector<Input::InputCode>* GetCapturedInputs();
                 /// @brief Checks this class to see if the provided code is set to be captured.
                 /// @param Code The input code to check for.
-                bool IsInputToBeCaptured(const MetaCode::InputCode& Code);
+                bool IsInputToBeCaptured(const Input::InputCode& Code);
                 /// @brief Updates the list of captured inputs for the frame.
                 /// @param InputCodes Vector of input codes to update the widget with.
-                void UpdateCapturedInputs(std::vector<MetaCode::InputCode>& InputCodes);
+                void UpdateCapturedInputs(std::vector<Input::InputCode>& InputCodes);
         };//inputcapturedata
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Widget

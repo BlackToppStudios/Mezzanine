@@ -81,7 +81,7 @@ namespace Mezzanine
         {
             if(Manager->ButtonAutoRegisterEnabled())
             {
-                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                std::vector<Input::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
                     ToSet->BindActivationKeyOrButton(Codes->at(X));
             }

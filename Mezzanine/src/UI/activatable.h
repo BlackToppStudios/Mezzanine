@@ -40,7 +40,7 @@
 #ifndef _uiactivatable_h
 #define _uiactivatable_h
 
-#include "metacode.h"
+#include "Input/metacode.h"
 #include "UI/widget.h"
 
 namespace Mezzanine
@@ -65,8 +65,8 @@ namespace Mezzanine
                 bool MultipleActivations;
                 UI::ActivationCondition ActCond;
                 ListenerContainer Listeners;
-                std::vector<MetaCode::InputCode> KeyboardActivationKeys;
-                std::vector<MetaCode::InputCode> MouseActivationButtons;
+                std::vector<Input::InputCode> KeyboardActivationKeys;
+                std::vector<Input::InputCode> MouseActivationButtons;
             //public:
                 /// @brief Class constructor.
                 /// @param Parent The parent Screen that created this widget.
@@ -107,10 +107,10 @@ namespace Mezzanine
                 /// @brief Registers a keyboard key or mouse activatable that can activate this activatable.
                 /// @details In the case of a mouse activatable, the hover check has to return true to activate the activatable.
                 /// @param Code The input code to register that will trigger activation.
-                virtual void BindActivationKeyOrButton(const MetaCode::InputCode& Code);
+                virtual void BindActivationKeyOrButton(const Input::InputCode& Code);
                 /// @brief Removes a previously registered activation key or activatable.
                 /// @param Code The input code to remove.
-                virtual void UnbindActivationKeyOrButton(const MetaCode::InputCode& Code);
+                virtual void UnbindActivationKeyOrButton(const Input::InputCode& Code);
                 /// @brief Clears all keyboard input codes from the list of activation codes.
                 virtual void UnbindAllKeyboardActivationKeys();
                 /// @brief Clears all mouse input codes from the list of activation codes.
@@ -133,10 +133,10 @@ namespace Mezzanine
 
                 /// @brief Gets a vector with all the keyboard input codes used to activate this activatable.
                 /// @return Returns a pointer to an std::vector containing all the keyboard keys that will activate this activatable.
-                virtual std::vector<MetaCode::InputCode>* GetKeyboardActivationKeys();
+                virtual std::vector<Input::InputCode>* GetKeyboardActivationKeys();
                 /// @brief Gets a vector with all the mouse input codes used to activate this activatable.
                 /// @return Returns a pointer to an std::vector containing all the mouse buttons that will activate this activatable.
-                virtual std::vector<MetaCode::InputCode>* GetMouseActivationButtons();
+                virtual std::vector<Input::InputCode>* GetMouseActivationButtons();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

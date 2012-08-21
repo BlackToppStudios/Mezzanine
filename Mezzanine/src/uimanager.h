@@ -44,7 +44,7 @@
 #include "managerfactory.h"
 #include "singleton.h"
 #include "UI/renderablerect.h"
-#include "metacode.h"
+#include "Input/metacode.h"
 
 namespace Mezzanine
 {
@@ -76,9 +76,9 @@ namespace Mezzanine
         protected:
             std::vector< UI::Screen* > Screens;
             std::vector< UI::Button* > ActivatedButtons;
-            std::vector< MetaCode::InputCode > AutoRegisterCodes;
+            std::vector< Input::InputCode > AutoRegisterCodes;
             std::map< String, UI::TextureAtlas* > Atlases;
-            std::multimap< MetaCode::InputCode, UI::Button* > HotKeys;
+            std::multimap< Input::InputCode, UI::Button* > HotKeys;
             UI::Widget* HoveredWidget;
             UI::Widget* WidgetFocus;
             UI::Widget* InputCapture;
@@ -90,7 +90,7 @@ namespace Mezzanine
             void ClearButtonActivations();
             void ViewportUpdateChecks();
             void MouseActivationCheck(UI::Button* ToCheck);
-            void HotKeyActivationCheck(const MetaCode::InputCode& Code);
+            void HotKeyActivationCheck(const Input::InputCode& Code);
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -118,11 +118,11 @@ namespace Mezzanine
             /// @details This function allows buttons to behave like they are pressed without mouse input.
             /// @param HotKey The key or button (on the input device) to activate the button.
             /// @param BoundButton The button being bound to the hotkey.
-            void BindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
+            void BindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton);
             /// @brief Removes a previously set hotkey binding.
             /// @param HotKey The key or button (on the input device) to activate the button.
             /// @param BoundButton The button currently bound to the hotkey.
-            void UnbindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
+            void UnbindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton);
             /// @brief Clears all registered hotkeys.
             void RemoveAllHotKeys();
             /// @brief Enables whether or not to automatically set the activation key or button for UI buttons.
@@ -136,15 +136,15 @@ namespace Mezzanine
             bool ButtonAutoRegisterEnabled();
             /// @brief Adds a key or button that will be auto-registered with every created UI button.
             /// @param Code The input code for the keyboard key or mouse button to be added to the list of codes to be auto-registered.
-            void AddAutoRegisterCode(MetaCode::InputCode Code);
+            void AddAutoRegisterCode(Input::InputCode Code);
             /// @brief Removes a previously set auto-registering input code.
             /// @param Code The input code to be removed from the list of auto-registering codes.
-            void RemoveAutoRegisterCode(MetaCode::InputCode Code);
+            void RemoveAutoRegisterCode(Input::InputCode Code);
             /// @brief Removes all auto-registering input codes.
             void RemoveAllAutoRegisterCodes();
             /// @brief Gets the list of codes that will be auto-registered with each UI button.
             /// @return Returns a pointer to the vector containing all the codes to be auto-registered with every UI button.
-            std::vector<MetaCode::InputCode>* GetAutoRegisteredCodes();
+            std::vector<Input::InputCode>* GetAutoRegisteredCodes();
             /// @brief Gets the Widget the mouse is hovering over.
             /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
             /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.

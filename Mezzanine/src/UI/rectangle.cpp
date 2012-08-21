@@ -40,7 +40,6 @@
 #ifndef _uirectangle_cpp
 #define _uirectangle_cpp
 
-#include "inputquerytool.h"
 #include "UI/rectangle.h"
 #include "uimanager.h"
 #include "UI/screen.h"
@@ -48,6 +47,8 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "mathtool.h"
+#include "inputmanager.h"
+#include "Input/mouse.h"
 
 namespace Mezzanine
 {
@@ -246,7 +247,7 @@ namespace Mezzanine
                 SetHovered(false);
                 return MouseHover;
             }
-            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
+            Vector2 MouseLoc = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
             SetHovered((MouseLoc.X >= ActPosition.X && MouseLoc.X <= ActPosition.X + ActSize.X) && (MouseLoc.Y >= ActPosition.Y && MouseLoc.Y <= ActPosition.Y + ActSize.Y));
             return MouseHover;
         }

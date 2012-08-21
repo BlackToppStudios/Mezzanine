@@ -51,13 +51,13 @@ namespace Mezzanine
 
     ActorManager::ActorManager()
     {
-        Priority = 20;
+        Priority = 25;
     }
 
 #ifdef MEZZXML
     ActorManager::ActorManager(XML::Node& XMLNode)
     {
-        Priority = 20;
+        Priority = 25;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif

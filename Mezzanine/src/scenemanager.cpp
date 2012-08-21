@@ -180,7 +180,7 @@ namespace Mezzanine
     {
         this->SMD = new Internal::SceneManagerData(this);
         this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(InternalManagerTypeName);
-        this->Priority = 25;
+        this->Priority = 30;
         //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
         //OgreManager->setShadowCameraSetup(ShadowCam);
@@ -190,7 +190,7 @@ namespace Mezzanine
     SceneManager::SceneManager(XML::Node& XMLNode)
     {
         this->SMD = new Internal::SceneManagerData(this);
-        this->Priority = 25;
+        this->Priority = 30;
 
         XML::Attribute CurrAttrib;
         // Get the name of the manager to construct.

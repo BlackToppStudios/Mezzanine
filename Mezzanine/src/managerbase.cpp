@@ -138,6 +138,9 @@ namespace Mezzanine
             case ManagerBase::GraphicsManager:
                 return "GraphicsManager";
                 break;
+            case ManagerBase::InputManager:
+                return "InputManager";
+                break;
             case ManagerBase::MeshManager:
                 return "MeshManager";
                 break;

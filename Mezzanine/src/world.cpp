@@ -183,6 +183,8 @@ namespace Mezzanine
             { this->AddManager(new AudioManager()); }
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
+        if(this->GetInputManager()==0)
+            { this->AddManager(new InputManager()); }
         if(this->GetPhysicsManager()==0)
             { this->AddManager(new PhysicsManager(PhysicsInfo)); }
         if(this->GetSceneManager()==0)
@@ -453,17 +455,17 @@ namespace Mezzanine
         crossplatform::WaitMilliseconds(1500);
         //Perform a Test that only needs to be done once for the SDL/userinputevent system.`
         Log("Verifying size of userinput events:");
-        Log(sizeof(MetaCode::InputCode));
+        Log(sizeof(Input::InputCode));
         Log(sizeof(SDL_Scancode));
         Log(sizeof(int));
-        if(sizeof(MetaCode::InputCode) != sizeof(SDL_Scancode))
+        if(sizeof(Input::InputCode) != sizeof(SDL_Scancode))
         {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
         }else{
             Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
 
-        if(sizeof(MetaCode::InputCode) != sizeof(int))
+        if(sizeof(Input::InputCode) != sizeof(int))
         {
             MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Internal User input subsystem Event Sizes Don't match, userinput subsystem cannot function.");
         }else{
@@ -744,7 +746,7 @@ namespace Mezzanine
             {
                 #ifdef MEZZDEBUG
                 this->LogStream << "Current Manager: " << (*Iter)->GetInterfaceTypeAsString() << " - Priority: " << (*Iter)->GetPriority();
-                //this->DoMainLoopLogging();
+                this->DoMainLoopLogging();
                 #endif
 
                 #ifdef MEZZPROFILE
@@ -762,7 +764,7 @@ namespace Mezzanine
 
                 #ifdef MEZZPROFILE
                 this->LogStream << (*Iter)->GetInterfaceTypeAsString() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
-                this->Log();
+                this->DoMainLoopLogging();
                 #endif
 
                 LogCommitFunc();
@@ -880,6 +882,9 @@ namespace Mezzanine
         //DefaultGraphicsManager
         ManIt = ManagerFactories.find("DefaultGraphicsManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultGraphicsManagerFactory());
+        //DefaultInputManager
+        ManIt = ManagerFactories.find("DefaultInputManager");
+        if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultInputManagerFactory());
         //DefaultMeshManager
         ManIt = ManagerFactories.find("DefaultMeshManager");
         if( ManIt == ManagerFactories.end() ) AddManagerFactory(new DefaultMeshManagerFactory());
@@ -1119,6 +1124,11 @@ namespace Mezzanine
     GraphicsManager* World::GetGraphicsManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<GraphicsManager*> (this->GetManager(ManagerBase::GraphicsManager, WhichOne));
+    }
+
+    InputManager* World::GetInputManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<InputManager*> (this->GetManager(ManagerBase::InputManager, WhichOne));
     }
 
     MeshManager* World::GetMeshManager(const short unsigned int &WhichOne)

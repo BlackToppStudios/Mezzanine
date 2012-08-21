@@ -97,20 +97,20 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Binding Methods
 
-        void Activatable::BindActivationKeyOrButton(const MetaCode::InputCode& Code)
+        void Activatable::BindActivationKeyOrButton(const Input::InputCode& Code)
         {
-            if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
+            if(Input::KEY_FIRST < Code && Input::KEY_LAST > Code)
             {
-                for( std::vector<MetaCode::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
+                for( std::vector<Input::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
                 {
                     if((*It)==Code)
                         return;
                 }
                 KeyboardActivationKeys.push_back(Code);
 
-            }else if(MetaCode::MOUSE_FIRST < Code && MetaCode::MOUSE_LAST > Code)
+            }else if(Input::MOUSE_FIRST < Code && Input::MOUSE_LAST > Code)
             {
-                for( std::vector<MetaCode::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
+                for( std::vector<Input::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
                 {
                     if((*It)==Code)
                         return;
@@ -121,11 +121,11 @@ namespace Mezzanine
             }
         }
 
-        void Activatable::UnbindActivationKeyOrButton(const MetaCode::InputCode& Code)
+        void Activatable::UnbindActivationKeyOrButton(const Input::InputCode& Code)
         {
-            if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
+            if(Input::KEY_FIRST < Code && Input::KEY_LAST > Code)
             {
-                for( std::vector<MetaCode::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
+                for( std::vector<Input::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
                 {
                     if((*It)==Code)
                     {
@@ -134,9 +134,9 @@ namespace Mezzanine
                     }
                 }
 
-            }else if(MetaCode::MOUSE_FIRST < Code && MetaCode::MOUSE_LAST > Code)
+            }else if(Input::MOUSE_FIRST < Code && Input::MOUSE_LAST > Code)
             {
-                for( std::vector<MetaCode::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
+                for( std::vector<Input::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
                 {
                     if((*It)==Code)
                     {
@@ -195,12 +195,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Fetch Methods
 
-        std::vector<MetaCode::InputCode>* Activatable::GetKeyboardActivationKeys()
+        std::vector<Input::InputCode>* Activatable::GetKeyboardActivationKeys()
         {
             return &KeyboardActivationKeys;
         }
 
-        std::vector<MetaCode::InputCode>* Activatable::GetMouseActivationButtons()
+        std::vector<Input::InputCode>* Activatable::GetMouseActivationButtons()
         {
             return &MouseActivationButtons;
         }

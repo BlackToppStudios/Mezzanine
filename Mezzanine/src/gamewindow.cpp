@@ -48,6 +48,7 @@
 #include "world.h"
 
 #include <SDL.h>
+#include "../src/video/SDL_sysvideo.h"
 #include <Ogre.h>
 
 #ifdef WINDOWS
@@ -157,6 +158,10 @@ namespace Mezzanine
             #endif
             OgreWindow->getCustomAttribute("WINDOW",&Data);
             SDLWindow = SDL_CreateWindowFrom((void*)Data);
+            SDLWindow->data = new SDL_WindowUserData();
+            SDLWindow->data->name = NULL;
+            SDLWindow->data->data = this;
+            SDLWindow->data->next = NULL;
         }
     }
 

@@ -46,7 +46,8 @@
 #include "UI/button.h"
 #include "UI/rectangle.h"
 #include "UI/viewportupdatetool.h"
-#include "inputquerytool.h"
+#include "inputmanager.h"
+#include "Input/mouse.h"
 
 namespace Mezzanine
 {
@@ -478,7 +479,7 @@ namespace Mezzanine
         {
             if(!ScrollBackLock)
             {
-                Vector2 MousePos = InputQueryTool::GetMouseCoordinates();
+                Vector2 MousePos = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
                 Vector2 ScPos = Scroller->GetActualPosition();
                 Vector2 ScSize = Scroller->GetActualSize();
                 if(Horizontal)
@@ -510,41 +511,41 @@ namespace Mezzanine
 
         void Scrollbar::UpdateImpl(bool Force)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
-                if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
+                if(Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State)
                 {
                     if(HoveredSubWidget == Scroller)
                     {
-                        if(MetaCode::BUTTON_PRESSING == State)
+                        if(Input::BUTTON_PRESSING == State)
                         {
                             ScrollerLock = false;
                         }
-                        else if(MetaCode::BUTTON_DOWN == State)
+                        else if(Input::BUTTON_DOWN == State)
                         {
-                            Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
+                            Vector2 Offset = InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
                             MouseScroll(Offset);
                         }
                     }
                     else if(HoveredSubWidget == UpLeftButton)
                     {
-                        if(MetaCode::BUTTON_PRESSING == State)
+                        if(Input::BUTTON_PRESSING == State)
                         {
                             UpLeftLock = false;
                         }
-                        else if(MetaCode::BUTTON_DOWN == State)
+                        else if(Input::BUTTON_DOWN == State)
                         {
                             ButtonScroll(true);
                         }
                     }
                     else if(HoveredSubWidget == DownRightButton)
                     {
-                        if(MetaCode::BUTTON_PRESSING == State)
+                        if(Input::BUTTON_PRESSING == State)
                         {
                             DownRightLock = false;
                         }
-                        else if(MetaCode::BUTTON_DOWN == State)
+                        else if(Input::BUTTON_DOWN == State)
                         {
                             ButtonScroll(false);
                         }
@@ -553,28 +554,28 @@ namespace Mezzanine
             }
             else if(HoveredBack)
             {
-                if(MetaCode::BUTTON_PRESSING == State)
+                if(Input::BUTTON_PRESSING == State)
                 {
                     ScrollBackLock = false;
                     ScrollBackScroll();
                 }
-                else if(MetaCode::BUTTON_DOWN == State)
+                else if(Input::BUTTON_DOWN == State)
                 {
                     if(ScrollBackLock && !ScrollerLock)
                     {
-                        Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
+                        Vector2 Offset = InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
                         MouseScroll(Offset);
                     }else{
                         ScrollBackScroll();
                     }
                 }
             }
-            else if(Force && MetaCode::BUTTON_DOWN == State)
+            else if(Force && Input::BUTTON_DOWN == State)
             {
-                Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
+                Vector2 Offset = InputManager::GetSingletonPtr()->GetSystemMouse()->GetMouseDelta();
                 MouseScroll(Offset);
             }
-            else if(MetaCode::BUTTON_LIFTING == State)
+            else if(Input::BUTTON_LIFTING == State)
             {
                 ScrollerLock = true;
                 ScrollBackLock = true;

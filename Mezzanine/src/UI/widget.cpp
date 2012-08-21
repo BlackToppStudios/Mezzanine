@@ -45,8 +45,9 @@
 #include "UI/button.h"
 #include "UI/screen.h"
 #include "uimanager.h"
-#include "inputquerytool.h"
 #include "world.h"
+#include "inputmanager.h"
+#include "Input/mouse.h"
 
 namespace Mezzanine
 {
@@ -60,14 +61,14 @@ namespace Mezzanine
         {
         }
 
-        void InputCaptureData::AddInput(const MetaCode::InputCode& Code)
+        void InputCaptureData::AddInput(const Input::InputCode& Code)
         {
             this->insert(Code);
         }
 
-        void InputCaptureData::AddInputRange(const MetaCode::InputCode& Lower, const MetaCode::InputCode& Upper)
+        void InputCaptureData::AddInputRange(const Input::InputCode& Lower, const Input::InputCode& Upper)
         {
-            for( MetaCode::InputCode Code = Lower ; Code > Upper ; Code + 1 )
+            for( Input::InputCode Code = Lower ; Code > Upper ; Code + 1 )
                 this->insert(Code);
         }
 
@@ -76,18 +77,18 @@ namespace Mezzanine
             return this->size();
         }
 
-        std::vector<MetaCode::InputCode>* InputCaptureData::GetCapturedInputs()
+        std::vector<Input::InputCode>* InputCaptureData::GetCapturedInputs()
         {
             return &CapturedCodes;
         }
 
-        bool InputCaptureData::IsInputToBeCaptured(const MetaCode::InputCode& Code)
+        bool InputCaptureData::IsInputToBeCaptured(const Input::InputCode& Code)
         {
-            std::set<MetaCode::InputCode>::iterator it = this->find(Code);
+            std::set<Input::InputCode>::iterator it = this->find(Code);
             return it != this->end();
         }
 
-        void InputCaptureData::UpdateCapturedInputs(std::vector<MetaCode::InputCode>& InputCodes)
+        void InputCaptureData::UpdateCapturedInputs(std::vector<Input::InputCode>& InputCodes)
         {
             CapturedCodes.clear();
             CapturedCodes.swap(InputCodes);
@@ -139,11 +140,11 @@ namespace Mezzanine
 
         void Widget::SubWidgetUpdate(bool Force)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
                 HoveredSubWidget->Update(Force);
-                if(MetaCode::BUTTON_PRESSING == State)
+                if(Input::BUTTON_PRESSING == State)
                 {
                     SubWidgetFocus = HoveredSubWidget;
                 }
@@ -152,11 +153,11 @@ namespace Mezzanine
             {
                 SubWidgetFocusUpdate(true);
             }
-            else if(MetaCode::BUTTON_DOWN == State && Force)
+            else if(Input::BUTTON_DOWN == State && Force)
             {
                 SubWidgetFocusUpdate(Force);
             }
-            if(MetaCode::BUTTON_LIFTING == State)
+            if(Input::BUTTON_LIFTING == State)
             {
                 SubWidgetFocus = NULL;
             }

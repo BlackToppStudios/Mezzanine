@@ -44,8 +44,6 @@
 #include "uimanager.h"
 #include "UI/screen.h"
 #include "UI/rectangle.h"
-#include "inputquerytool.h"
-#include "metacode.h"
 #include "world.h"
 
 namespace Mezzanine

@@ -256,6 +256,7 @@ namespace Mezzanine
     class PhysicsManager;
     class GameWindow;
     class GraphicsManager;
+    class InputManager;
     class ResourceManager;
     class TimerManager;
     class UIManager;
@@ -673,6 +674,11 @@ namespace Mezzanine
             /// @param WhichOne If you have multiple GraphicsManagers this will choose which one to return.
             /// @return This returns a pointer to a GraphicsManager, or a NULL pointer if no matching manager exists.
             GraphicsManager* GetGraphicsManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the InputManager from the manager list.
+            /// @param WhichOne If you have multiple InputManagers this will choose which one to return.
+            /// @return This returns a pointer to a InputManager, or a NULL pointer if no matching manager exists.
+            InputManager* GetInputManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the MeshManager from the manager list.
             /// @param WhichOne If you have multiple MeshManagers this will choose which one to return.

@@ -51,13 +51,13 @@ namespace Mezzanine
 
     NetworkManager::NetworkManager()
     {
-        this->Priority = 60;
+        this->Priority = 65;
     }
 
 #ifdef MEZZXML
     NetworkManager::NetworkManager(XML::Node& XMLNode)
     {
-        this->Priority = 60;
+        this->Priority = 65;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif

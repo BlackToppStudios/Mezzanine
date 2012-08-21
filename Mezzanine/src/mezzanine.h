@@ -93,7 +93,8 @@
 #include "gamewindow.h"
 #include "graphicsmanager.h"
 #include "graphicssettings.h"
-#include "inputquerytool.h"
+#include "input.h"
+#include "inputmanager.h"
 #include "light.h"                      // done
 #include "linegroup.h"
 #include "managerbase.h"
@@ -101,7 +102,6 @@
 #include "mesh.h"
 #include "meshmanager.h"
 #include "meshterrain.h"
-#include "metacode.h"                   // done
 #include "network.h"
 #include "networkmanager.h"
 #include "objectpair.h"

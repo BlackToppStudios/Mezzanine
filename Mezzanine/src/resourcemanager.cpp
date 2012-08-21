@@ -87,7 +87,7 @@ namespace Mezzanine
 
     ResourceManager::ResourceManager(const String& EngineDataPath, const String& ArchiveType)
     {
-        this->Priority = 55;
+        this->Priority = 60;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
         this->AddAssetLocation(EngineDataPath, ArchiveType, "EngineData", false);
@@ -96,7 +96,7 @@ namespace Mezzanine
 #ifdef MEZZXML
     ResourceManager::ResourceManager(XML::Node& XMLNode)
     {
-        this->Priority = 55;
+        this->Priority = 60;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }

@@ -40,7 +40,6 @@
 #ifndef _uicaption_cpp
 #define _uicaption_cpp
 
-#include "inputquerytool.h"
 #include "uimanager.h"
 #include "UI/caption.h"
 #include "UI/screen.h"

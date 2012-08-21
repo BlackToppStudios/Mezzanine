@@ -57,8 +57,7 @@
 #include "UI/dropdownlist.h"
 #include "UI/tabset.h"
 #include "UI/viewportupdatetool.h"
-#include "inputquerytool.h"
-#include "metacode.h"
+#include "Input/metacode.h"
 #include "world.h"
 
 namespace Mezzanine

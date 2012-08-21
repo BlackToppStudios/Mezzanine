@@ -41,7 +41,6 @@
 #define _uimanager_cpp
 
 #include "uimanager.h"
-#include "inputquerytool.h"
 #include "mathtool.h"
 #include "UI/textureatlas.h"
 #include "cameramanager.h"
@@ -54,6 +53,8 @@
 #include "UI/button.h"
 #include "UI/widget.h"
 #include "UI/glyph.h"
+#include "inputmanager.h"
+#include "Input/mouse.h"
 
 #include <Ogre.h>
 
@@ -69,7 +70,7 @@ namespace Mezzanine
           ButtonAutoRegister(false)
     {
         ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
-        Priority = 10;
+        Priority = 15;
     }
 
 #ifdef MEZZXML
@@ -81,7 +82,7 @@ namespace Mezzanine
           ButtonAutoRegister(false)
     {
         ResourceManager::GetSingletonPtr()->CreateAssetGroup("UI");
-        Priority = 10;
+        Priority = 15;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif
@@ -119,9 +120,9 @@ namespace Mezzanine
     {
         if(HotKeys.empty())
             return;
-        std::vector<MetaCode::InputCode> CapturedCodes;
+        std::vector<Input::InputCode> CapturedCodes;
         std::list<EventUserInput*>* InputList = EventManager::GetSingletonPtr()->GetAllUserInputEvents();
-        MetaCode::InputCode CurrCode;
+        Input::InputCode CurrCode;
         for( std::list<EventUserInput*>::iterator Ilit = InputList->begin() ; Ilit != InputList->end() ; Ilit++ )
         {
             for( Whole X = 0 ; X < (*Ilit)->size() ; X++ )
@@ -145,17 +146,17 @@ namespace Mezzanine
             HoveredWidget->Update();
         if(HoveredWidget || WidgetFocus)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
-            if(MetaCode::BUTTON_PRESSING == State)
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            if(Input::BUTTON_PRESSING == State)
             {
                 WidgetFocus = HoveredWidget;
             }
-            else if(MetaCode::BUTTON_DOWN == State)
+            else if(Input::BUTTON_DOWN == State)
             {
                 if(HoveredWidget != WidgetFocus && WidgetFocus)
                     WidgetFocus->Update(true);
             }
-            else if(MetaCode::BUTTON_LIFTING == State)
+            else if(Input::BUTTON_LIFTING == State)
             {
                 if(HoveredWidget != WidgetFocus && WidgetFocus)
                     WidgetFocus->Update(true);
@@ -166,8 +167,8 @@ namespace Mezzanine
         }
         else if(!HoveredWidget && !WidgetFocus)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
-            if(LastWidgetSelected && MetaCode::BUTTON_LIFTING == State)
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+            if(LastWidgetSelected && Input::BUTTON_LIFTING == State)
                 LastWidgetSelected = NULL;
         }
     }
@@ -191,13 +192,13 @@ namespace Mezzanine
     {
         if(!ToCheck)
             return;
-        std::vector<MetaCode::InputCode>* MouseCodes = ToCheck->GetMouseActivationButtons();
+        std::vector<Input::InputCode>* MouseCodes = ToCheck->GetMouseActivationButtons();
         UI::ActivationCondition Condition = ToCheck->GetActivationCondition();
-        MetaCode::InputCode Code;
+        Input::InputCode Code;
         for( Whole X = 0 ; X < MouseCodes->size() ; X++ )
         {
             Code = MouseCodes->at(X);
-            if((Condition == UI::AC_OnLift ? MetaCode::BUTTON_LIFTING : MetaCode::BUTTON_PRESSING) == InputQueryTool::GetMouseButtonState(Code))
+            if((Condition == UI::AC_OnLift ? Input::BUTTON_LIFTING : Input::BUTTON_PRESSING) == InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(Code));
             {
                 ToCheck->_SetActivation(true);
                 ActivatedButtons.push_back(ToCheck);
@@ -205,14 +206,14 @@ namespace Mezzanine
         }
     }
 
-    void UIManager::HotKeyActivationCheck(const MetaCode::InputCode& Code)
+    void UIManager::HotKeyActivationCheck(const Input::InputCode& Code)
     {
-        if( MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code )
+        if( Input::KEY_FIRST < Code && Input::KEY_LAST > Code )
         {
-            std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(Code);
+            std::pair<const std::multimap<Input::InputCode,UI::Button*>::iterator,const std::multimap<Input::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(Code);
             if( (*Result.first).first != Code )
                 return;
-            for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+            for( std::multimap<Input::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
             {
                 if((*It).second->IsVisible())
                     (*It).second->_SetActivation(true);
@@ -248,16 +249,16 @@ namespace Mezzanine
         }
     }
 
-    void UIManager::BindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
+    void UIManager::BindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton)
     {
-        if( MetaCode::KEY_FIRST < HotKey && MetaCode::KEY_LAST > HotKey )
-            HotKeys.insert(std::pair<MetaCode::InputCode,UI::Button*>(HotKey,BoundButton));
+        if( Input::KEY_FIRST < HotKey && Input::KEY_LAST > HotKey )
+            HotKeys.insert(std::pair<Input::InputCode,UI::Button*>(HotKey,BoundButton));
     }
 
-    void UIManager::UnbindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
+    void UIManager::UnbindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton)
     {
-        std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(HotKey);
-        for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+        std::pair<const std::multimap<Input::InputCode,UI::Button*>::iterator,const std::multimap<Input::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(HotKey);
+        for( std::multimap<Input::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
         {
             if(BoundButton == (*It).second)
             {
@@ -282,9 +283,9 @@ namespace Mezzanine
         return ButtonAutoRegister;
     }
 
-    void UIManager::AddAutoRegisterCode(MetaCode::InputCode Code)
+    void UIManager::AddAutoRegisterCode(Input::InputCode Code)
     {
-        for( std::vector<MetaCode::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+        for( std::vector<Input::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
         {
             if((*It)==Code)
                 return;
@@ -292,9 +293,9 @@ namespace Mezzanine
         AutoRegisterCodes.push_back(Code);
     }
 
-    void UIManager::RemoveAutoRegisterCode(MetaCode::InputCode Code)
+    void UIManager::RemoveAutoRegisterCode(Input::InputCode Code)
     {
-        for( std::vector<MetaCode::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+        for( std::vector<Input::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
         {
             if((*It)==Code)
             {
@@ -309,7 +310,7 @@ namespace Mezzanine
         AutoRegisterCodes.clear();
     }
 
-    std::vector<MetaCode::InputCode>* UIManager::GetAutoRegisteredCodes()
+    std::vector<Input::InputCode>* UIManager::GetAutoRegisteredCodes()
     {
         return &AutoRegisterCodes;
     }
@@ -474,7 +475,6 @@ namespace Mezzanine
 
     void UIManager::DoMainLoopItems()
     {
-        InputQueryTool::GatherEvents();
         ViewportUpdateChecks();
         ClearButtonActivations();
         HoverChecks();

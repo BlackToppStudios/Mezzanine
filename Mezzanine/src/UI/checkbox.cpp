@@ -46,8 +46,9 @@
 #include "UI/caption.h"
 #include "UI/button.h"
 #include "UI/viewportupdatetool.h"
-#include "inputquerytool.h"
-#include "metacode.h"
+#include "inputmanager.h"
+#include "Input/metacode.h"
+#include "Input/mouse.h"
 #include "world.h"
 
 namespace Mezzanine
@@ -148,12 +149,12 @@ namespace Mezzanine
         {
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
-                MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
-                if(MetaCode::BUTTON_PRESSING == State)
+                Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+                if(Input::BUTTON_PRESSING == State)
                 {
                     CheckLock = false;
                 }
-                else if(MetaCode::BUTTON_LIFTING && !CheckLock)
+                else if(Input::BUTTON_LIFTING && !CheckLock)
                 {
                     Checked = !Checked;
                     if(Checked)

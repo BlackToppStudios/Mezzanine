@@ -47,7 +47,8 @@
 #include "uimanager.h"
 #include "UI/viewportupdatetool.h"
 
-#include "inputquerytool.h"
+#include "inputmanager.h"
+#include "Input/mouse.h"
 #include "stringtool.h"
 #include "world.h"
 #include <sstream>
@@ -133,11 +134,11 @@ namespace Mezzanine
                 }
             }
             CaptureData = new InputCaptureData();
-            CaptureData->AddInputRange(MetaCode::KEY_1,MetaCode::KEY_0);
-            CaptureData->AddInputRange(MetaCode::KEY_KP_1,MetaCode::KEY_KP_PERIOD);
-            CaptureData->AddInput(MetaCode::KEY_PERIOD);
-            CaptureData->AddInput(MetaCode::KEY_RETURN);
-            CaptureData->AddInput(MetaCode::KEY_KP_ENTER);
+            CaptureData->AddInputRange(Input::KEY_1,Input::KEY_0);
+            CaptureData->AddInputRange(Input::KEY_KP_1,Input::KEY_KP_PERIOD);
+            CaptureData->AddInput(Input::KEY_PERIOD);
+            CaptureData->AddInput(Input::KEY_RETURN);
+            CaptureData->AddInput(Input::KEY_KP_ENTER);
         }
 
         Spinner::~Spinner()
@@ -306,15 +307,15 @@ namespace Mezzanine
             ProcessCapturedInputs();
             if( HoveredSubWidget && (Widget::W_Button == HoveredSubWidget->GetType()) )
             {
-                MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
-                if(MetaCode::BUTTON_PRESSING == State)
+                Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
+                if(Input::BUTTON_PRESSING == State)
                 {
                     if(HoveredSubWidget==Increment)
                         IncrementLock = false;
                     else if(HoveredSubWidget==Decrement)
                         DecrementLock = false;
                 }
-                else if(MetaCode::BUTTON_LIFTING && (!IncrementLock || !DecrementLock))
+                else if(Input::BUTTON_LIFTING && (!IncrementLock || !DecrementLock))
                 {
                     if(HoveredSubWidget==Increment && !IncrementLock)
                     {
@@ -367,12 +368,12 @@ namespace Mezzanine
                 return;
             if(0 == CaptureData->GetNumCapturedInputs())
                 return;
-            std::vector<MetaCode::InputCode>* CCodes = CaptureData->GetCapturedInputs();
+            std::vector<Input::InputCode>* CCodes = CaptureData->GetCapturedInputs();
             bool EnterPressed = false;
             for( Whole X = 0 ; X < CCodes->size() ; X++ )
             {
-                MetaCode::InputCode Current = CCodes->at(X);
-                if(MetaCode::KEY_RETURN == Current || MetaCode::KEY_KP_ENTER == Current)
+                Input::InputCode Current = CCodes->at(X);
+                if(Input::KEY_RETURN == Current || Input::KEY_KP_ENTER == Current)
                 {
                     EnterPressed = true;
                     continue;

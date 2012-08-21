@@ -46,8 +46,9 @@
 #include "uimanager.h"
 #include "UI/screen.h"
 #include "UI/button.h"
-#include "inputquerytool.h"
-#include "metacode.h"
+#include "inputmanager.h"
+#include "Input/mouse.h"
+#include "Input/metacode.h"
 #include "world.h"
 
 namespace Mezzanine
@@ -77,14 +78,14 @@ namespace Mezzanine
 
         void Menu::UpdateImpl(bool Force)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
                 Button* button = NULL;
                 Widget* SubSubWidget = HoveredSubWidget->GetHoveredSubWidget();
                 if( SubSubWidget && (Widget::W_Button == SubSubWidget->GetType()) )
                     button = static_cast<Button*>(SubSubWidget);
-                if(button && State == MetaCode::BUTTON_LIFTING)
+                if(button && State == Input::BUTTON_LIFTING)
                 {
                     UI::MenuWindow* MenWin = static_cast<UI::MenuWindow*>(HoveredSubWidget);
                     UI::MenuWindow* ChildMenWin = MenWin->GetWindowOfAccessButton(button);

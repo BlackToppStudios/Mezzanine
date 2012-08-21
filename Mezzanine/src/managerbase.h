@@ -74,6 +74,7 @@ namespace Mezzanine
                 CollisionShapeManager,
                 EventManager,
                 GraphicsManager,
+                InputManager,
                 MeshManager,
                 NetworkManager,
                 PhysicsManager,

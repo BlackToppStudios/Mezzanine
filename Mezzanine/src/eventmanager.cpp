@@ -53,8 +53,7 @@
 #include "eventquit.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"
-#include "metacode.h"
-#include "inputquerytool.h"
+#include "Input/metacode.h"
 
 #include <map>
 #include <memory>
@@ -126,17 +125,17 @@ namespace Mezzanine
             /// @internal
             /// @brief A unified polling and event repeater
             /// the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check.
-            std::map<MetaCode::InputCode, PollingType> ManualCheck;
+            std::map<Input::InputCode, PollingType> ManualCheck;
 
             /// @internal
             /// @brief an Iterator suitable for use with internal structures that correlate polling type and metacodes
-            typedef std::map<MetaCode::InputCode, PollingType>::iterator ManualCheckIterator;
+            typedef std::map<Input::InputCode, PollingType>::iterator ManualCheckIterator;
 
             /// @internal
             /// @brief Adds one type of polling check
             /// @param OneCode The code that will be check for each frame, under the new condition
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
-            void AddInputCodeToManualCheck(MetaCode::InputCode OneCode, PollingType _PollingCheck)
+            void AddInputCodeToManualCheck(Input::InputCode OneCode, PollingType _PollingCheck)
             {
                 ManualCheckIterator Which = ManualCheck.find(OneCode);
                 if(ManualCheck.end() == Which )
@@ -154,7 +153,7 @@ namespace Mezzanine
             void AddInputCodesToManualCheck(int OneCode, int _PollingCheck)
             {
                 this->AddInputCodeToManualCheck(
-                        static_cast<Mezzanine::MetaCode::InputCode>(OneCode),
+                        static_cast<Mezzanine::Input::InputCode>(OneCode),
                         static_cast<Mezzanine::Internal::EventManagerInternalData::PollingType>(_PollingCheck)
                 );
             }
@@ -174,7 +173,7 @@ namespace Mezzanine
             {
                 for ( std::vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
-                    MetaCode::InputCode temp = Iter->GetCode();
+                    Input::InputCode temp = Iter->GetCode();
                     AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
                 }
             }
@@ -198,7 +197,7 @@ namespace Mezzanine
             /// @brief Removes one type of polling check
             /// @param OneCode The code that will no longer be checked each frame, under the given condition
             /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
-            void RemoveInputCodeToManualCheck(const MetaCode::InputCode& OneCode, PollingType _PollingCheck)
+            void RemoveInputCodeToManualCheck(const Input::InputCode& OneCode, PollingType _PollingCheck)
             {
                 ManualCheckIterator Which = ManualCheck.find(OneCode);
                 RemovePollingCheck( Which, _PollingCheck );
@@ -230,10 +229,6 @@ namespace Mezzanine
             }
 
             /// @internal
-            /// @brief This will identify the Joysticks
-            std::vector<SDL_Joystick*> Joysticks;
-
-            /// @internal
             /// @brief Constructor, it only inits pointers to 0
             EventManagerInternalData()
             {
@@ -252,12 +247,14 @@ namespace Mezzanine
     {
         this->Priority = 0;
 
-        if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+        if( !SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) )
         {
-            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
+            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+            {
+                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
+            }
         }
         this->_Data = new Internal::EventManagerInternalData;
-        this->DetectJoysticks();
 
         //this->GameWorld = World::GetWorldPointer();
     }
@@ -267,12 +264,14 @@ namespace Mezzanine
     {
         this->Priority = 0;
 
-        if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+        if( !SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) )
         {
-            MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
+            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+            {
+                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
+            }
         }
         this->_Data = new Internal::EventManagerInternalData;
-        this->DetectJoysticks();
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif
@@ -281,28 +280,10 @@ namespace Mezzanine
     {
         //EndRelativeMouseMode();
 
-        for(Whole Count=0; Count<SDL_NumJoysticks(); ++Count)
-            { SDL_JoystickClose(this->_Data->Joysticks.at(Count)); }
-
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
         delete _Data;
         SDL_Quit();
-    }
-
-    void EventManager::DetectJoysticks()
-    {
-        #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log( String("Checking for SDL Joysticks:")+SDL_GetError() );
-        #endif
-
-        //SDL_InitSubSystem(SDL_INIT_JOYSTICK);
-        for(Whole Count=0; Count<SDL_NumJoysticks(); ++Count)
-            { this->_Data->Joysticks.push_back(SDL_JoystickOpen(Count)); }
-
-        #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log( String("Found ") + ToString(SDL_NumJoysticks()) + " SDL Joysticks:" + SDL_GetError() );
-        #endif
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -359,9 +340,9 @@ namespace Mezzanine
         for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
             if(Internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
-                { FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, Iter->first); }
+                { FromSDLEvent->AddCode(Input::BUTTON_DOWN, Iter->first); }
             else
-                { FromSDLEvent->AddCode(MetaCode::BUTTON_UP, Iter->first); }    //It must be just a polling check
+                { FromSDLEvent->AddCode(Input::BUTTON_UP, Iter->first); }    //It must be just a polling check
         }
 
         /* Here is a list of SDL event which aren't coded yet.
@@ -471,6 +452,7 @@ namespace Mezzanine
             World::GetWorldPointer()->Log(*LIter);
         }
         World::GetWorldPointer()->Log("End Of User Input entered this Frame");
+        World::GetWorldPointer()->DoMainLoopLogging();
         #endif
 
         //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
@@ -535,7 +517,10 @@ namespace Mezzanine
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
         {
             if((*Iter)->GetType()==SpecificType)
-                { _Data->EventQ.erase(Iter); }
+            {
+                _Data->EventQ.erase(Iter);
+                return;
+            }
         }
     }
 
@@ -555,12 +540,14 @@ namespace Mezzanine
 
     void EventManager::RemoveAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
+        for( std::list<EventBase*>::iterator Iter = _Data->EventQ.begin() ; Iter!=_Data->EventQ.end() ; )
         {
             if((*Iter)->GetType()==SpecificType)
             {
-                this->_Data->EventQ.remove(*Iter);
+                std::list<EventBase*>::iterator prev = Iter++;
+                this->_Data->EventQ.erase(prev);
             }
+            else ++Iter;
         }
     }
 
@@ -659,25 +646,6 @@ namespace Mezzanine
         this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), Internal::EventManagerInternalData::Polling);
     }
 
-/*    void EventManager::StartRelativeMouseMode()
-    {
-        if(SDL_SetRelativeMouseMode (SDL_TRUE))
-        {
-            //it failed
-//            World::GetWorldPointer()->LogAndThrow("Failed to Grab Mouse");
-        }
-    }
-
-    void EventManager::EndRelativeMouseMode()
-    {
-        if(SDL_SetRelativeMouseMode (SDL_FALSE))
-        {
-            //it failed
-            World::GetWorldPointer()->LogAndThrow("Failed to Release Mouse");
-        }
-    }
-*/
-
     //Inherited From ManagerBase
     void EventManager::Initialize()
         { Initialized = true; }
@@ -685,7 +653,6 @@ namespace Mezzanine
     void EventManager::DoMainLoopItems()
     {
         this->UpdateEvents();
-        InputQueryTool::GatherEvents();
     }
 
     ManagerBase::ManagerType EventManager::GetInterfaceType() const

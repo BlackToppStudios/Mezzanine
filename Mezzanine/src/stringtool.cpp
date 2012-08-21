@@ -386,343 +386,343 @@ namespace Mezzanine
         return converter.str();
     }
 
-    String StringTool::ConvertToString(const MetaCode::InputCode& Code, bool ShiftPressed)
+    String StringTool::ConvertToString(const Input::InputCode& Code, bool ShiftPressed)
     {
         switch(Code)
         {
-            case MetaCode::KEY_A:
+            case Input::KEY_A:
             {
                 if(ShiftPressed) return "A";
                 else return "a";
                 break;
             }
-            case MetaCode::KEY_B:
+            case Input::KEY_B:
             {
                 if(ShiftPressed) return "B";
                 else return "b";
                 break;
             }
-            case MetaCode::KEY_C:
+            case Input::KEY_C:
             {
                 if(ShiftPressed) return "C";
                 else return "c";
                 break;
             }
-            case MetaCode::KEY_D:
+            case Input::KEY_D:
             {
                 if(ShiftPressed) return "D";
                 else return "d";
                 break;
             }
-            case MetaCode::KEY_E:
+            case Input::KEY_E:
             {
                 if(ShiftPressed) return "E";
                 else return "e";
                 break;
             }
-            case MetaCode::KEY_F:
+            case Input::KEY_F:
             {
                 if(ShiftPressed) return "F";
                 else return "f";
                 break;
             }
-            case MetaCode::KEY_G:
+            case Input::KEY_G:
             {
                 if(ShiftPressed) return "G";
                 else return "g";
                 break;
             }
-            case MetaCode::KEY_H:
+            case Input::KEY_H:
             {
                 if(ShiftPressed) return "H";
                 else return "h";
                 break;
             }
-            case MetaCode::KEY_I:
+            case Input::KEY_I:
             {
                 if(ShiftPressed) return "I";
                 else return "i";
                 break;
             }
-            case MetaCode::KEY_J:
+            case Input::KEY_J:
             {
                 if(ShiftPressed) return "J";
                 else return "j";
                 break;
             }
-            case MetaCode::KEY_K:
+            case Input::KEY_K:
             {
                 if(ShiftPressed) return "K";
                 else return "k";
                 break;
             }
-            case MetaCode::KEY_L:
+            case Input::KEY_L:
             {
                 if(ShiftPressed) return "L";
                 else return "l";
                 break;
             }
-            case MetaCode::KEY_M:
+            case Input::KEY_M:
             {
                 if(ShiftPressed) return "M";
                 else return "m";
                 break;
             }
-            case MetaCode::KEY_N:
+            case Input::KEY_N:
             {
                 if(ShiftPressed) return "N";
                 else return "n";
                 break;
             }
-            case MetaCode::KEY_O:
+            case Input::KEY_O:
             {
                 if(ShiftPressed) return "O";
                 else return "o";
                 break;
             }
-            case MetaCode::KEY_P:
+            case Input::KEY_P:
             {
                 if(ShiftPressed) return "P";
                 else return "p";
                 break;
             }
-            case MetaCode::KEY_Q:
+            case Input::KEY_Q:
             {
                 if(ShiftPressed) return "Q";
                 else return "q";
                 break;
             }
-            case MetaCode::KEY_R:
+            case Input::KEY_R:
             {
                 if(ShiftPressed) return "R";
                 else return "r";
                 break;
             }
-            case MetaCode::KEY_S:
+            case Input::KEY_S:
             {
                 if(ShiftPressed) return "S";
                 else return "s";
                 break;
             }
-            case MetaCode::KEY_T:
+            case Input::KEY_T:
             {
                 if(ShiftPressed) return "T";
                 else return "t";
                 break;
             }
-            case MetaCode::KEY_U:
+            case Input::KEY_U:
             {
                 if(ShiftPressed) return "U";
                 else return "u";
                 break;
             }
-            case MetaCode::KEY_V:
+            case Input::KEY_V:
             {
                 if(ShiftPressed) return "V";
                 else return "v";
                 break;
             }
-            case MetaCode::KEY_W:
+            case Input::KEY_W:
             {
                 if(ShiftPressed) return "W";
                 else return "w";
                 break;
             }
-            case MetaCode::KEY_X:
+            case Input::KEY_X:
             {
                 if(ShiftPressed) return "X";
                 else return "x";
                 break;
             }
-            case MetaCode::KEY_Y:
+            case Input::KEY_Y:
             {
                 if(ShiftPressed) return "Y";
                 else return "y";
                 break;
             }
-            case MetaCode::KEY_Z:
+            case Input::KEY_Z:
             {
                 if(ShiftPressed) return "Z";
                 else return "z";
                 break;
             }
-            case MetaCode::KEY_1:
+            case Input::KEY_1:
             {
                 if(ShiftPressed) return "!";
                 else return "1";
                 break;
             }
-            case MetaCode::KEY_2:
+            case Input::KEY_2:
             {
                 if(ShiftPressed) return "@";
                 else return "2";
                 break;
             }
-            case MetaCode::KEY_3:
+            case Input::KEY_3:
             {
                 if(ShiftPressed) return "#";
                 else return "3";
                 break;
             }
-            case MetaCode::KEY_4:
+            case Input::KEY_4:
             {
                 if(ShiftPressed) return "$";
                 else return "4";
                 break;
             }
-            case MetaCode::KEY_5:
+            case Input::KEY_5:
             {
                 if(ShiftPressed) return "%";
                 else return "5";
                 break;
             }
-            case MetaCode::KEY_6:
+            case Input::KEY_6:
             {
                 if(ShiftPressed) return "^";
                 else return "6";
                 break;
             }
-            case MetaCode::KEY_7:
+            case Input::KEY_7:
             {
                 if(ShiftPressed) return "&";
                 else return "7";
                 break;
             }
-            case MetaCode::KEY_8:
+            case Input::KEY_8:
             {
                 if(ShiftPressed) return "*";
                 else return "8";
                 break;
             }
-            case MetaCode::KEY_9:
+            case Input::KEY_9:
             {
                 if(ShiftPressed) return "(";
                 else return "9";
                 break;
             }
-            case MetaCode::KEY_0:
+            case Input::KEY_0:
             {
                 if(ShiftPressed) return ")";
                 else return "0";
                 break;
             }
-            case MetaCode::KEY_MINUS:
+            case Input::KEY_MINUS:
             {
                 if(ShiftPressed) return "_";
                 else return "-";
                 break;
             }
-            case MetaCode::KEY_EQUALS:
+            case Input::KEY_EQUALS:
             {
                 if(ShiftPressed) return "+";
                 else return "=";
                 break;
             }
-            case MetaCode::KEY_LEFTBRACKET:
+            case Input::KEY_LEFTBRACKET:
             {
                 if(ShiftPressed) return "{";
                 else return "[";
                 break;
             }
-            case MetaCode::KEY_RIGHTBRACKET:
+            case Input::KEY_RIGHTBRACKET:
             {
                 if(ShiftPressed) return "}";
                 else return "]";
                 break;
             }
-            case MetaCode::KEY_BACKSLASH:
+            case Input::KEY_BACKSLASH:
             {
                 if(ShiftPressed) return "\\";
                 else return "|";
                 break;
             }
-            case MetaCode::KEY_SEMICOLON:
+            case Input::KEY_SEMICOLON:
             {
                 if(ShiftPressed) return ":";
                 else return ";";
                 break;
             }
-            case MetaCode::KEY_APOSTROPHE:
+            case Input::KEY_APOSTROPHE:
             {
                 if(ShiftPressed) return "\"";
                 else return "'";
                 break;
             }
-            case MetaCode::KEY_GRAVE:
+            case Input::KEY_GRAVE:
             {
                 if(ShiftPressed) return "~";
                 else return "`";
                 break;
             }
-            case MetaCode::KEY_COMMA:
+            case Input::KEY_COMMA:
             {
                 if(ShiftPressed) return "<";
                 else return ",";
                 break;
             }
-            case MetaCode::KEY_PERIOD:
+            case Input::KEY_PERIOD:
             {
                 if(ShiftPressed) return ">";
                 else return ".";
                 break;
             }
-            case MetaCode::KEY_SLASH:
+            case Input::KEY_SLASH:
             {
                 if(ShiftPressed) return "?";
                 else return "/";
                 break;
             }
-            case MetaCode::KEY_KP_1:
+            case Input::KEY_KP_1:
             {
                 return "1";
                 break;
             }
-            case MetaCode::KEY_KP_2:
+            case Input::KEY_KP_2:
             {
                 return "2";
                 break;
             }
-            case MetaCode::KEY_KP_3:
+            case Input::KEY_KP_3:
             {
                 return "3";
                 break;
             }
-            case MetaCode::KEY_KP_4:
+            case Input::KEY_KP_4:
             {
                 return "4";
                 break;
             }
-            case MetaCode::KEY_KP_5:
+            case Input::KEY_KP_5:
             {
                 return "5";
                 break;
             }
-            case MetaCode::KEY_KP_6:
+            case Input::KEY_KP_6:
             {
                 return "6";
                 break;
             }
-            case MetaCode::KEY_KP_7:
+            case Input::KEY_KP_7:
             {
                 return "7";
                 break;
             }
-            case MetaCode::KEY_KP_8:
+            case Input::KEY_KP_8:
             {
                 return "8";
                 break;
             }
-            case MetaCode::KEY_KP_9:
+            case Input::KEY_KP_9:
             {
                 return "9";
                 break;
             }
-            case MetaCode::KEY_KP_0:
+            case Input::KEY_KP_0:
             {
                 return "0";
                 break;
             }
-            case MetaCode::KEY_KP_PERIOD:
+            case Input::KEY_KP_PERIOD:
             {
                 return ".";
                 break;

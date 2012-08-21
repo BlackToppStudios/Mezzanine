@@ -96,9 +96,15 @@ namespace Mezzanine
         return this->AddCode(CurrentMetaCode);
     }
 
-    MetaCode EventUserInput::AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
+    MetaCode EventUserInput::AddCode(const int &MetaValue_, const Input::InputCode &Code_)
     {
         MetaCode CurrentMetaCode( MetaValue_, Code_ );
+        return this->AddCode(CurrentMetaCode);
+    }
+
+    MetaCode EventUserInput::AddCode(const int &MetaValue_, const Input::InputCode &Code_, const UInt16& DeviceIndex_)
+    {
+        MetaCode CurrentMetaCode( MetaValue_, Code_, DeviceIndex_ );
         return this->AddCode(CurrentMetaCode);
     }
 
@@ -170,80 +176,62 @@ namespace Mezzanine
     // EventUserInput Private Methods
     ///////////////////////////////////////
 
-    vector<MetaCode> EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent& RawEvent_)
     {
         vector<MetaCode> Results;
 
-        Results.push_back(this->AddCode(RawEvent_.motion.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));
-        Results.push_back(this->AddCode(RawEvent_.motion.y, MetaCode::MOUSEABSOLUTEVERTICAL));
+        Results.push_back(this->AddCode(RawEvent_.motion.x, Input::MOUSEABSOLUTEHORIZONTAL));
+        Results.push_back(this->AddCode(RawEvent_.motion.y, Input::MOUSEABSOLUTEVERTICAL));
 
         if(0 != RawEvent_.motion.xrel)
-            { Results.push_back(this->AddCode(RawEvent_.motion.xrel, MetaCode::MOUSEHORIZONTAL));}
+            { Results.push_back(this->AddCode(RawEvent_.motion.xrel, Input::MOUSEHORIZONTAL));}
 
         if(0 != RawEvent_.motion.yrel)
-            { Results.push_back(this->AddCode(RawEvent_.motion.yrel, MetaCode::MOUSEVERTICAL));}
+            { Results.push_back(this->AddCode(RawEvent_.motion.yrel, Input::MOUSEVERTICAL));}
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodesFromSDLJoyStickMotion(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodesFromSDLJoyStickMotion(const RawEvent& RawEvent_)
     {
         vector<MetaCode> Results;
 
-        Results.push_back(this->AddCode(RawEvent_.jaxis.value, MetaCode::GetJoystickAxisCode(RawEvent_.jaxis.axis+1)));
+        Results.push_back(this->AddCode(RawEvent_.jaxis.value, MetaCode::GetJoystickAxisCode(RawEvent_.jaxis.axis+1), RawEvent_.jaxis.which));
 
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickHat(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickHat(const RawEvent& RawEvent_)
     {
         vector<MetaCode> Results;
+        Input::InputCode Hat = (Input::InputCode)(RawEvent_.jhat.hat + Input::CONTROLLERHAT_FIRST);
 
-        MetaCode::InputCode HatVert;
-        MetaCode::InputCode HatHor;
-
-        if (RawEvent_.jhat.hat == 0)           // at some point this should be broken out into its own function like the axis and mousebutton int to code functions
+        if( Input::CONTROLLERHAT_FIRST > Hat || Input::CONTROLLERHAT_LAST < Hat )
         {
-            HatVert = MetaCode::JOYSTICKHAT_1_VERTICAL;
-            HatHor = MetaCode::JOYSTICKHAT_1_HORIZONTAL;
-        }else if (RawEvent_.jhat.hat == 1){
-            HatVert = MetaCode::JOYSTICKHAT_2_VERTICAL;
-            HatHor = MetaCode::JOYSTICKHAT_2_HORIZONTAL;
-        }else if (RawEvent_.jhat.hat == 2){
-            HatVert = MetaCode::JOYSTICKHAT_3_VERTICAL;
-            HatHor = MetaCode::JOYSTICKHAT_3_HORIZONTAL;
-        }else{
             MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Unsupported Joystick Hat Event");
         }
 
-        if (RawEvent_.jhat.value & SDL_HAT_UP)
-        {
-            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UPLEFT, HatVert));
-        }else if(RawEvent_.jhat.value & SDL_HAT_DOWN){
-            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, HatVert));
-        }else{
-            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UNCHANGED, HatVert));
-        }
-
-        if (RawEvent_.jhat.value & SDL_HAT_LEFT)
-        {
-            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UPLEFT, HatHor));
-        }else if(RawEvent_.jhat.value & SDL_HAT_RIGHT){
-            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, HatHor));
-        }else{
-            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UNCHANGED, HatHor));
-        }
-
+        Results.push_back(this->AddCode( RawEvent_.jhat.value, Hat, RawEvent_.jhat.which ));
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickBall(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickBall(const RawEvent& RawEvent_)
     {
         vector<MetaCode> Results;
 
-        if( RawEvent_.jball.yrel != 0 )
-            { Results.push_back(this->AddCode(RawEvent_.jball.yrel, MetaCode::JOYSTICKBALL_VERTICAL)); }
-        if( RawEvent_.jball.xrel != 0 )
-            { Results.push_back(this->AddCode(RawEvent_.jball.xrel, MetaCode::JOYSTICKBALL_HORIZONTAL)); }
+        if( 0 == RawEvent_.jball.ball )
+        {
+            if( RawEvent_.jball.yrel != 0 )
+                { Results.push_back(this->AddCode(RawEvent_.jball.yrel, Input::CONTROLLERBALL_1_VERTICAL, RawEvent_.jball.which)); }
+            if( RawEvent_.jball.xrel != 0 )
+                { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::CONTROLLERBALL_1_HORIZONTAL, RawEvent_.jball.which)); }
+        }else if( 1 == RawEvent_.jball.ball ){
+            if( RawEvent_.jball.yrel != 0 )
+                { Results.push_back(this->AddCode(RawEvent_.jball.yrel, Input::CONTROLLERBALL_2_VERTICAL, RawEvent_.jball.which)); }
+            if( RawEvent_.jball.xrel != 0 )
+                { Results.push_back(this->AddCode(RawEvent_.jball.xrel, Input::CONTROLLERBALL_2_HORIZONTAL, RawEvent_.jball.which)); }
+        }else{
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"More then 2 trackballs is currently not supported.  Perhaps we should expand our enum.");
+        }
 
         return Results;
     }

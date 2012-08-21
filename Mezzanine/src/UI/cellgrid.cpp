@@ -47,8 +47,9 @@
 #include "UI/scrollbar.h"
 #include "UI/viewportupdatetool.h"
 
-#include "metacode.h"
-#include "inputquerytool.h"
+#include "inputmanager.h"
+#include "Input/metacode.h"
+#include "Input/mouse.h"
 
 namespace Mezzanine
 {
@@ -284,10 +285,10 @@ namespace Mezzanine
 
         void CellGrid::UpdateImpl(bool Force)
         {
-            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            Input::ButtonState State = InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(1);
             if(HoveredSubWidget)
             {
-                if(MetaCode::BUTTON_LIFTING == State)
+                if(Input::BUTTON_LIFTING == State)
                 {
                     if(Widget::W_Cell == HoveredSubWidget->GetType() && HoveredSubWidget != Selected)
                     {

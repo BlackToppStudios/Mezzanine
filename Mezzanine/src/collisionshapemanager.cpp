@@ -79,13 +79,13 @@ namespace Mezzanine
 
     CollisionShapeManager::CollisionShapeManager()
     {
-        this->Priority = 40;
+        this->Priority = 45;
     }
 
 #ifdef MEZZXML
     CollisionShapeManager::CollisionShapeManager(XML::Node& XMLNode)
     {
-        this->Priority = 40;
+        this->Priority = 45;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif

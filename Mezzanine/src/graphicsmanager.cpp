@@ -151,7 +151,7 @@ namespace Mezzanine
         DesktopSettings.RenderHeight = DeskMode.h;
         DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
-        this->Priority = 65;
+        this->Priority = 70;
         this->FrameDelay = 0;
     }
 

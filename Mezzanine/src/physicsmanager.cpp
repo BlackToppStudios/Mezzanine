@@ -521,7 +521,7 @@ namespace Mezzanine
 
     void PhysicsManager::Construct(const PhysicsConstructionInfo& Info)
     {
-        this->Priority = 15;
+        this->Priority = 20;
 
         if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_LimitlessWorld)
         {

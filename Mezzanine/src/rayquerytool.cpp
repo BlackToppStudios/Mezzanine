@@ -50,13 +50,15 @@ using namespace std;
 #include "eventmanager.h"
 #include "cameramanager.h"
 #include "scenemanager.h"
+#include "inputmanager.h"
 #include "camera.h"
 #include "objectreference.h"
 #include "gamewindow.h"
+#include "viewport.h"
 #include "plane.h"
 #include "ray.h"
 #include "vector3wactor.h"
-#include "inputquerytool.h"
+#include "Input/mouse.h"
 
 #include <Ogre.h>
 
@@ -334,12 +336,16 @@ namespace Mezzanine
     Ray* RayQueryTool::GetMouseRay(Real Length)
     {
         VerifyRayQuery();
-        Ray* MouseRay = new Ray( CameraManager::GetSingletonPtr()->GetCamera(0)->GetCameraToViewportRay(
-                float(InputQueryTool::GetMouseX()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetRenderWidth() ) ,
-                float(InputQueryTool::GetMouseY()) / float( GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetRenderHeight() )
-            ) );
-
-        (*MouseRay) *= Length;
+        Viewport* HoveredViewport = InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
+        Vector2 MousePos = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
+        Ray* MouseRay = NULL;
+        if(HoveredViewport)
+        {
+            MouseRay = new Ray( HoveredViewport->GetViewportCamera()->GetCameraToViewportRay(
+                                MousePos.X / (Real)(HoveredViewport->GetActualWidth()),
+                                MousePos.Y / (Real)(HoveredViewport->GetActualHeight()) ) );
+            (*MouseRay) *= Length;
+        }
         return MouseRay;
     }
 

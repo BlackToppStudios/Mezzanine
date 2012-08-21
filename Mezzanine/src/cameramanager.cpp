@@ -60,7 +60,7 @@ namespace Mezzanine
     {
         if(SceneManager::SingletonValid())
             this->SManager = SceneManager::GetSingletonPtr();
-        this->Priority = 35;
+        this->Priority = 40;
     }
 
 #ifdef MEZZXML
@@ -69,7 +69,7 @@ namespace Mezzanine
     {
         if(SceneManager::SingletonValid())
             this->SManager = SceneManager::GetSingletonPtr();
-        this->Priority = 35;
+        this->Priority = 40;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
 #endif
