@@ -249,7 +249,8 @@ namespace Mezzanine
                 GameWindow* Win = static_cast<GameWindow*>(Focus->data->data);
                 for( GameWindow::ViewportIterator ViewIt = Win->BeginViewport() ; ViewIt != Win->EndViewport() ; ++ViewIt )
                 {
-                    if( (Position.X >= (*ViewIt)->GetLeft() && Position.X <= (*ViewIt)->GetLeft() + (*ViewIt)->GetWidth()) && (Position.Y >= (*ViewIt)->GetTop() && Position.Y <= (*ViewIt)->GetTop() + (*ViewIt)->GetHeight() ) )
+                    if( (Position.X >= (Real)((*ViewIt)->GetActualLeft()) && Position.X <= (Real)((*ViewIt)->GetActualLeft() + (*ViewIt)->GetActualWidth())) &&
+                        (Position.Y >= (Real)((*ViewIt)->GetActualTop()) && Position.Y <= (Real)((*ViewIt)->GetActualTop() + (*ViewIt)->GetActualHeight()) ) )
                     {
                         CurrentViewport = (*ViewIt);
                         break;
