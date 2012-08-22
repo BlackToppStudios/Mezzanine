@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",800,600,0);
     Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
     Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
-    FirstCam->SetLocation( Vector3(0,50,200) );
+    FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
     GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
@@ -74,11 +74,8 @@ int main(int argc, char **argv)
     TheWorld->GetSceneManager()->SetShadowFarDistance(3000);
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_Q) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_1) );
-    TheWorld->GetEventManager()->RemovePollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
-    //TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );   //Not supported
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, Input::KEY_Q) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, Input::MOUSEBUTTON_1) );
 
     //Actually Load the game stuff
     LoadContent();
@@ -171,6 +168,7 @@ bool PostRender()
 
     }
 
+    Input::Mouse* SysMouse = InputManager::GetSingletonPtr()->GetSystemMouse();
     // Update Stat information
     UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
     UI::Caption* CurFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_CurFPS"));
@@ -186,7 +184,7 @@ bool PostRender()
     // Update mouse positions
     UI::Caption* IMPos = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_IMPos"));
     std::stringstream IMPosstream;
-    IMPosstream << InputQueryTool::GetMouseCoordinates().X << "," << InputQueryTool::GetMouseCoordinates().Y;
+    IMPosstream << SysMouse->GetWindowX() << "," << SysMouse->GetWindowY();
     String IMPosTex = IMPosstream.str();
     IMPos->SetText(IMPosTex);
 
@@ -245,73 +243,47 @@ bool PostInput()
 {
     //User Input through a WorldQueryTool
     static RayQueryTool* RayQueryer = new RayQueryTool();
-    static InputQueryTool* InputQueryer = new InputQueryTool();
+    InputManager* InputMan = InputManager::GetSingletonPtr();
+    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+    Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
+    Input::Controller* Controller1 = InputMan->GetController(0);
 
-    //Queryer.GatherEvents();
-    #ifdef MEZZDEBUG
-    TheWorld->Log("Mouse location From WorldQueryTool X/Y: ");
-    TheWorld->LogStream << InputQueryer->GetMouseX() << ", " << InputQueryer->GetMouseY() << std::endl
-                        << InputQueryer->GetRawMetaValue(MetaCode::MOUSEABSOLUTEHORIZONTAL) << ", " << InputQueryer->GetRawMetaValue(MetaCode::MOUSEABSOLUTEVERTICAL) << std::endl
-                        << InputQueryer->GetMouseCoordinates() << std::endl;
-    TheWorld->Log("Relative Mouse location From WorldQueryTool X/Y: ");
-    TheWorld->LogStream << InputQueryer->GetRawMetaValue(MetaCode::MOUSEHORIZONTAL) << ", " << InputQueryer->GetRawMetaValue(MetaCode::MOUSEVERTICAL) << std::endl
-                        << InputQueryer->GetMousePrevFrameOffset() << std::endl;
-
-    TheWorld->LogStream << "Default Camera:" << std::endl << *(TheWorld->GetCameraManager()->GetCamera(0)) << std::endl;
-    Camera TempCam("TempCam",TheWorld->GetCameraManager());
-    std::stringstream CamXML;
-    CamXML << *(TheWorld->GetCameraManager()->GetCamera(0));
-    CamXML >> TempCam;
-    TheWorld->LogStream << "Default serial-deserialized, the finally reserialized Camera" << std::endl << TempCam << std::endl; // */
-    #endif
-
-//    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
-//        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
-
-//    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
-//        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
     CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetCamera(0));
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, false))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
     {
-        //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01);
         DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
     {
-        //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01);
         DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_UP) || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, true))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
     {
-        //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 );
         DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, true))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
     {
-        //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 );
         DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
     static bool MouseCam=false;
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
+    if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
     {
         MouseCam=true;
-//        TheWorld->GetEventManager()->StartRelativeMouseMode();
     }
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_END))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_END))
     {
         MouseCam=false;
-//        TheWorld->GetEventManager()->EndRelativeMouseMode();
     }
 
-    Vector2 Offset = InputQueryer->GetMousePrevFrameOffset();
+    Vector2 Offset = SysMouse->GetMouseDelta();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_M) || InputQueryer->IsJoystickButtonPushed(1) )
+    if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
     {
         Audio::Sound* Theme = TheWorld->GetAudioManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
@@ -320,7 +292,7 @@ bool PostInput()
         }
     }
 
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_N) || InputQueryer->IsJoystickButtonPushed(2) )
+    if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
     {
         Audio::Sound* Theme = TheWorld->GetAudioManager()->GetSoundByName("Theme2");
         if(Theme->IsPlaying())
@@ -332,7 +304,7 @@ bool PostInput()
     // Make a declaration for a static constrain so it survives the function lifetime
     static Physics::Point2PointConstraint* Dragger=NULL;
 
-    if( InputQueryer->IsMouseButtonPushed(1) )
+    if( SysMouse->IsButtonPressed(1) )
     {
         UIManager* UIMan = UIManager::GetSingletonPtr();
         if(UIMan->MouseIsInUISystem())
@@ -340,26 +312,24 @@ bool PostInput()
             UI::Screen* DScreen = UIMan->GetScreen("DefaultScreen");
             UI::Widget* Hover = UIMan->GetHoveredWidget();
             if(Hover)
+            {
                 Hover = Hover->GetBottomMostHoveredWidget();
-            if("D_MenuAccess" == Hover->GetName())
-            {
-                DScreen->GetWidget("D_Menu")->Show();
-            }
-            if("D_Return" == Hover->GetName())
-            {
-                DScreen->GetWidget("D_Menu")->Hide();
-            }
-            if("D_Exit" == Hover->GetName())
-            {
-                return false;
+                if("D_MenuAccess" == Hover->GetName())
+                {
+                    DScreen->GetWidget("D_Menu")->Show();
+                }
+                if("D_Return" == Hover->GetName())
+                {
+                    DScreen->GetWidget("D_Menu")->Hide();
+                }
+                if("D_Exit" == Hover->GetName())
+                {
+                    return false;
+                }
             }
         }else{
-            Ray *MouseRay = RayQueryer->GetMouseRay(5000);
-            // *MouseRay *= 1000;
-            //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
-
+            Ray* MouseRay = RayQueryer->GetMouseRay(5000);
             Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
-            //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
             if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
@@ -451,7 +421,7 @@ bool CheckForStuff()
     while(0 != OneInput)
     {
         #ifdef MEZZDEBUG
-        TheWorld->LogStream << "Input Events Processed (Escape is " << MetaCode::KEY_ESCAPE << ") : " << std::endl;
+        TheWorld->LogStream << "Input Events Processed (Escape is " << Input::KEY_ESCAPE << ") : " << std::endl;
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
@@ -470,7 +440,7 @@ bool CheckForStuff()
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             //Is the key we just pushed ESCAPE
-            if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
+            if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
         }
 
