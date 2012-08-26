@@ -26,6 +26,8 @@
 			<SettingsFile FileName="GraphicsSettings.mxs" />
 		</SettingsFiles>
 	</DefaultGraphicsManager>
+	<DefaultInputManager>
+	</DefaultInputManager>
 	<DefaultMeshManager>
 	</DefaultMeshManager>
 	<DefaultPhysicsManager>

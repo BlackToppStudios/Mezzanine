@@ -61,7 +61,7 @@ void CatchApp::MakeGUI()
     ColourValue Gray(0.2,0.2,0.2,1.0);
 
     GUI->EnableButtonAutoRegister(true);
-    GUI->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
+    GUI->AddAutoRegisterCode(Input::MOUSEBUTTON_1);
 
     //Make the Main Menu screen and associated layers.
     GUI->LoadMTA("Catch_Menu");
@@ -831,25 +831,28 @@ bool CatchApp::PreInput()
 
 bool CatchApp::PostInput()
 {
+    InputManager* InputMan = InputManager::GetSingletonPtr();
+    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
+    Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
-    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_A))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A))
         DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
-    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_D))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D))
         DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
-    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_UP) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_W))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W))
         DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
-    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_S))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S))
         DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
     static bool MouseCam=false;
-    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
+    if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
         MouseCam=true;
-    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_END))
+    if( SysKeyboard->IsButtonPressed(Input::KEY_END))
         MouseCam=false;
-    Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
+    Vector2 Offset = SysMouse->GetMouseDelta();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
-    if( MetaCode::BUTTON_PRESSING == InputQueryTool::GetKeyboardButtonState(MetaCode::KEY_C) )
+    if( Input::BUTTON_PRESSING == SysKeyboard->GetButtonState(Input::KEY_C) )
     {
         PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
         if(PhysMan->GetDebugPhysicsRendering())
@@ -872,20 +875,23 @@ bool CatchApp::PreUI()
 
 bool CatchApp::PostUI()
 {
-    //User Input through a WorldQueryTool
+    InputManager* InputMan = InputManager::GetSingletonPtr();
+    Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     static RayQueryTool* RayQueryer = new RayQueryTool();
-    static InputQueryTool* InputQueryer = new InputQueryTool();
 
     //Queryer.GatherEvents();
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
-    TheWorld->Log(InputQueryer->GetMouseX());
-    TheWorld->Log(InputQueryer->GetMouseY());
+    TheWorld->Log(SysMouse->GetWindowX());
+    TheWorld->Log(SysMouse->GetWindowY());
+    StringStream ButtonStream;
+    ButtonStream << "Button State: " << SysMouse->GetButtonState(1);
+    TheWorld->Log(ButtonStream.str());
 
     static Physics::Point2PointConstraint* Dragger=NULL;
 
-    if( InputQueryer->IsMouseButtonPushed(1) )
+    if( SysMouse->IsButtonPressed(1) )
     {
-        if(!UIManager::GetSingletonPtr()->MouseIsInUISystem())
+        if( !UIManager::GetSingletonPtr()->MouseIsInUISystem() )
         {
             Ray *MouseRay = RayQueryer->GetMouseRay(5000);
 
@@ -1098,24 +1104,6 @@ bool CatchApp::CheckForStuff()
         {
             MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Invalid EventID on GameWindow Event: " + OneWindowEvent->GetEventID());
         }
-
-        TheWorld->Log(*OneWindowEvent);
-        TheWorld->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
-        stringstream eventxml;
-        eventxml << *OneWindowEvent;    // Test XML conversion and reconstruction
-        EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
-        eventxml >> AnotherWindowEvent;
-        TheWorld->Log(AnotherWindowEvent);
-
-        /*if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
-        {
-            Audio::Sound* Welcome = NULL;
-            Welcome = AudioManager::GetSingletonPtr()->GetSoundByName("Welcome");
-            if(Welcome)
-            {
-                Welcome->Play2d(false);
-            }
-        }// */
 
         delete OneWindowEvent;
         OneWindowEvent = EventMan->PopNextGameWindowEvent();
