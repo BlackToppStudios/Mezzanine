@@ -74,12 +74,22 @@ namespace Mezzanine
             ActCond = Condition;
         }
 
-        UI::ActivationCondition Activatable::GetActivationCondition()
+        const UI::ActivationCondition& Activatable::GetActivationCondition() const
         {
             return ActCond;
         }
 
-        bool Activatable::IsActivated()
+        bool Activatable::IsPressActivation() const
+        {
+            return UI::AC_OnPress == ActCond;
+        }
+
+        bool Activatable::IsLiftActivation() const
+        {
+            return UI::AC_OnLift == ActCond;
+        }
+
+        bool Activatable::IsActivated() const
         {
             return Activated;
         }
@@ -89,7 +99,7 @@ namespace Mezzanine
             MultipleActivations = Enable;
         }
 
-        bool Activatable::IsMultipleActivationsEnabled()
+        bool Activatable::IsMultipleActivationsEnabled() const
         {
             return MultipleActivations;
         }
@@ -195,14 +205,14 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Fetch Methods
 
-        std::vector<Input::InputCode>* Activatable::GetKeyboardActivationKeys()
+        const std::vector<Input::InputCode>& Activatable::GetKeyboardActivationKeys() const
         {
-            return &KeyboardActivationKeys;
+            return KeyboardActivationKeys;
         }
 
-        std::vector<Input::InputCode>* Activatable::GetMouseActivationButtons()
+        const std::vector<Input::InputCode>& Activatable::GetMouseActivationButtons() const
         {
-            return &MouseActivationButtons;
+            return MouseActivationButtons;
         }
 
         ///////////////////////////////////////////////////////////////////////////////

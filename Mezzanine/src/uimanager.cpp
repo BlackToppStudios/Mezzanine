@@ -192,13 +192,15 @@ namespace Mezzanine
     {
         if(!ToCheck)
             return;
-        std::vector<Input::InputCode>* MouseCodes = ToCheck->GetMouseActivationButtons();
-        UI::ActivationCondition Condition = ToCheck->GetActivationCondition();
-        Input::InputCode Code;
-        for( Whole X = 0 ; X < MouseCodes->size() ; X++ )
+
+        Input::Mouse* SysMouse = InputManager::GetSingletonPtr()->GetSystemMouse();
+        const std::vector<Input::InputCode>& MouseCodes = ToCheck->GetMouseActivationButtons();
+        Input::ButtonState State = ToCheck->IsLiftActivation() ? Input::BUTTON_LIFTING : Input::BUTTON_PRESSING;
+
+        for( Whole X = 0 ; X < MouseCodes.size() ; X++ )
         {
-            Code = MouseCodes->at(X);
-            if((Condition == UI::AC_OnLift ? Input::BUTTON_LIFTING : Input::BUTTON_PRESSING) == InputManager::GetSingletonPtr()->GetSystemMouse()->GetButtonState(Code));
+            Input::InputCode Code = MouseCodes.at(X);
+            if( SysMouse->CheckButtonState(Code,State) )
             {
                 ToCheck->_SetActivation(true);
                 ActivatedButtons.push_back(ToCheck);

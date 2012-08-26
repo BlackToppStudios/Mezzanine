@@ -66,6 +66,69 @@ namespace Mezzanine
         {
         }
 
+        void Mouse::UpdateImpl(std::vector<MetaCode>& Codes)
+        {
+            /// @todo Setting 0's shouldn't be necessary.  Reliance on polling or zero'ing out arrays can be replaced by a system that reports state change in events
+            /// and then during these updates replaces the change events(Pressing, Lifting) to their next natural progression(Down, Up).
+            // First do some setup.  Get the window and zero out button presses(Key::Up isn't reported).
+            SDL_Window* Focus = SDL_GetMouseFocus();
+            // Now do the actual updating.
+            for( Whole X = 0 ; X < Codes.size() ; ++X )
+            {
+                MetaCode& CurrCode = Codes[X];
+                if( CurrCode.GetCode() >= Input::MOUSEBUTTON_FIRST && CurrCode.GetCode() <= Input::MOUSEBUTTON_LAST )
+                {
+                    TransitioningIndexes.push_back( CurrCode.GetCode() - Input::MOUSEBUTTON_FIRST );
+                    Buttons.at( CurrCode.GetCode() - Input::MOUSEBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
+                }
+                else if( Input::MOUSEWHEELVERTICAL == CurrCode.GetCode() )
+                {
+                    VerticalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
+                }
+                else if( Input::MOUSEWHEELHORIZONTAL == CurrCode.GetCode() )
+                {
+                    HorizontalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
+                }
+                // Only if we're on a window
+                if( Focus )
+                {
+                    if( Input::MOUSEABSOLUTEVERTICAL == CurrCode.GetCode() )
+                    {
+                        Position.Y = (Real)(CurrCode.GetMetaValue());
+                    }
+                    else if( Input::MOUSEABSOLUTEHORIZONTAL == CurrCode.GetCode() )
+                    {
+                        Position.X = (Real)(CurrCode.GetMetaValue());
+                    }
+                    else if( Input::MOUSEVERTICAL == CurrCode.GetCode() )
+                    {
+                        Delta.Y = (Real)(CurrCode.GetMetaValue());
+                    }
+                    else if( Input::MOUSEHORIZONTAL == CurrCode.GetCode() )
+                    {
+                        Delta.X = (Real)(CurrCode.GetMetaValue());
+                    }
+                }
+            }
+            if( NULL != Focus )
+            {
+                GameWindow* Win = static_cast<GameWindow*>(Focus->data->data);
+                for( GameWindow::ViewportIterator ViewIt = Win->BeginViewport() ; ViewIt != Win->EndViewport() ; ++ViewIt )
+                {
+                    if( (Position.X >= (Real)((*ViewIt)->GetActualLeft()) && Position.X <= (Real)((*ViewIt)->GetActualLeft() + (*ViewIt)->GetActualWidth())) &&
+                        (Position.Y >= (Real)((*ViewIt)->GetActualTop()) && Position.Y <= (Real)((*ViewIt)->GetActualTop() + (*ViewIt)->GetActualHeight()) ) )
+                    {
+                        CurrentViewport = (*ViewIt);
+                        break;
+                    }
+                }
+            }else{
+                CurrentViewport = NULL;
+                Position.SetIdentity();
+                Delta.SetIdentity();
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
@@ -124,18 +187,6 @@ namespace Mezzanine
         Real Mouse::GetDeltaY() const
         {
             return Delta.Y;
-        }
-
-        bool Mouse::IsButtonPressed(const UInt16 Button) const
-        {
-            Input::ButtonState State = GetButtonState(Button);
-            return ( Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State );
-        }
-
-        bool Mouse::IsButtonPressed(const Input::InputCode& Button) const
-        {
-            Input::ButtonState State = GetButtonState(Button);
-            return ( Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State );
         }
 
         const Input::ButtonState& Mouse::GetButtonState(const UInt16 Button) const
@@ -200,67 +251,6 @@ namespace Mezzanine
         {
             if(Win)
                 SDL_WarpMouseInWindow(Win->_GetSDLWindowPointer(),(int)Position.X,(int)Position.Y);
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        void Mouse::_Update(std::vector<MetaCode>& Codes)
-        {
-            SDL_Window* Focus = SDL_GetMouseFocus();
-            for( Whole X = 0 ; X < Codes.size() ; ++X )
-            {
-                MetaCode& CurrCode = Codes[X];
-                if( CurrCode.GetCode() >= Input::MOUSEBUTTON_FIRST && CurrCode.GetCode() <= Input::MOUSEBUTTON_LAST )
-                {
-                    Buttons.at( CurrCode.GetCode() - Input::MOUSEBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
-                }
-                else if( Input::MOUSEWHEELVERTICAL == CurrCode.GetCode() )
-                {
-                    VerticalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
-                }
-                else if( Input::MOUSEWHEELHORIZONTAL == CurrCode.GetCode() )
-                {
-                    HorizontalWheelState = static_cast<Input::DirectionalMotionState>(CurrCode.GetMetaValue());
-                }
-                // Only if we're on a window
-                if( Focus )
-                {
-                    if( Input::MOUSEABSOLUTEVERTICAL == CurrCode.GetCode() )
-                    {
-                        Position.Y = (Real)(CurrCode.GetMetaValue());
-                    }
-                    else if( Input::MOUSEABSOLUTEHORIZONTAL == CurrCode.GetCode() )
-                    {
-                        Position.X = (Real)(CurrCode.GetMetaValue());
-                    }
-                    else if( Input::MOUSEVERTICAL == CurrCode.GetCode() )
-                    {
-                        Delta.Y = (Real)(CurrCode.GetMetaValue());
-                    }
-                    else if( Input::MOUSEHORIZONTAL == CurrCode.GetCode() )
-                    {
-                        Delta.X = (Real)(CurrCode.GetMetaValue());
-                    }
-                }
-            }
-            if( NULL != Focus )
-            {
-                GameWindow* Win = static_cast<GameWindow*>(Focus->data->data);
-                for( GameWindow::ViewportIterator ViewIt = Win->BeginViewport() ; ViewIt != Win->EndViewport() ; ++ViewIt )
-                {
-                    if( (Position.X >= (Real)((*ViewIt)->GetActualLeft()) && Position.X <= (Real)((*ViewIt)->GetActualLeft() + (*ViewIt)->GetActualWidth())) &&
-                        (Position.Y >= (Real)((*ViewIt)->GetActualTop()) && Position.Y <= (Real)((*ViewIt)->GetActualTop() + (*ViewIt)->GetActualHeight()) ) )
-                    {
-                        CurrentViewport = (*ViewIt);
-                        break;
-                    }
-                }
-            }else{
-                CurrentViewport = NULL;
-                Position.SetIdentity();
-                Delta.SetIdentity();
-            }
         }
     }//Input
 }//Mezzanine

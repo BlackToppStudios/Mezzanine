@@ -85,11 +85,17 @@ namespace Mezzanine
                 /// @brief Gets the condition for activation for this activatable.
                 /// @details See the ActivationCondition enum for more details.
                 /// @return Returns an enum value indicating the condition for activation for this activatable.
-                virtual UI::ActivationCondition GetActivationCondition();
+                virtual const UI::ActivationCondition& GetActivationCondition() const;
+                /// @brief Gets whether or not this activatable activates on press.
+                /// @return Returns true if this activates on press, false otherwise.
+                virtual bool IsPressActivation() const;
+                /// @brief Gets whether or not this activatable activates on lift.
+                /// @return Returns true if this activates on lift, false otherwise.
+                virtual bool IsLiftActivation() const;
                 /// @brief Gets whether or not this activatable is currently activated.
                 /// @details Button activations are cleared every frame by the UI manager.
                 /// @return Returns whether or not this activatable has been activated.
-                virtual bool IsActivated();
+                virtual bool IsActivated() const;
                 /// @brief Enables or disables whether or not the activatable should be allowed to activate multiple times per frame.
                 /// @details In most cases a activatable will only activate multiple times when using hotkeys, either when there are multiple
                 /// keys hotkeyed to the same activatable, or when the mouse activatable is pressed over a UI activatable while a hotkey for it is activated
@@ -99,7 +105,7 @@ namespace Mezzanine
                 virtual void EnableMultipleActivations(bool Enable);
                 /// @brief Gets whether or not multiple activations per frame are enabled for this activatable.
                 /// @return Returns a bool indicating whether or not multiple activations are allowed for this activatable.
-                virtual bool IsMultipleActivationsEnabled();
+                virtual bool IsMultipleActivationsEnabled() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Binding Methods
@@ -133,10 +139,10 @@ namespace Mezzanine
 
                 /// @brief Gets a vector with all the keyboard input codes used to activate this activatable.
                 /// @return Returns a pointer to an std::vector containing all the keyboard keys that will activate this activatable.
-                virtual std::vector<Input::InputCode>* GetKeyboardActivationKeys();
+                virtual const std::vector<Input::InputCode>& GetKeyboardActivationKeys() const;
                 /// @brief Gets a vector with all the mouse input codes used to activate this activatable.
                 /// @return Returns a pointer to an std::vector containing all the mouse buttons that will activate this activatable.
-                virtual std::vector<Input::InputCode>* GetMouseActivationButtons();
+                virtual const std::vector<Input::InputCode>& GetMouseActivationButtons() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods

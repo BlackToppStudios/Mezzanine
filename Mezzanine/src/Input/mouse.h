@@ -42,7 +42,7 @@
 
 #include "vector2.h"
 #include "Input/inputenumerations.h"
-#include "Input/metacode.h"
+#include "Input/device.h"
 
 namespace Mezzanine
 {
@@ -56,7 +56,7 @@ namespace Mezzanine
         /// @brief This class represents the mouse input device.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Mouse
+        class MEZZ_LIB Mouse : public Device
         {
             protected:
                 Viewport* CurrentViewport;
@@ -64,12 +64,13 @@ namespace Mezzanine
                 Input::DirectionalMotionState HorizontalWheelState;
                 Vector2 Position;
                 Vector2 Delta;
-                std::vector<Input::ButtonState> Buttons;
+                /// @copydoc Device::InputImpl(std::vector<MetaCode>& Codes)
+                virtual void UpdateImpl(std::vector<MetaCode>& Codes);
             public:
                 /// @brief Class constructor.
                 Mouse();
                 /// @brief Class destructor.
-                ~Mouse();
+                virtual ~Mouse();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Query Methods
@@ -107,20 +108,10 @@ namespace Mezzanine
                 /// @brief Gets the Y delta of the mouse position from the last update.
                 /// @return Returns a real with the offset from the previous update on the Y axis.
                 Real GetDeltaY() const;
-                /// @brief Gets whether or not a mouse button is being pressed.
-                /// @remarks This function accepts a button number, and as such expects a number from 1 to 20.
-                /// @return Returns whether or not the requested button was pressed.
-                bool IsButtonPressed(const UInt16 Button) const;
-                /// @brief Gets whether or not a mouse button is being pressed.
-                /// @return Returns whether or not the requested button was pressed.
-                bool IsButtonPressed(const Input::InputCode& Button) const;
-                /// @brief Gets the state of the requested button.
-                /// @remarks This function accepts a button number, and as such expects a number from 1 to 20.
-                /// @return Returns the actual state of the requested button.
-                const Input::ButtonState& GetButtonState(const UInt16 Button) const;
-                /// @brief Gets the state of the requested button.
-                /// @return Returns the actual state of the requested button.
-                const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
+                /// @copydoc Device::GetButtonState(const UInt16 Button) const
+                virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const;
+                /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
+                virtual const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
                 /// @brief Gets the current state of the vertical mouse wheel.
                 /// @remarks If a mouse doesn't have a mouse wheel this will always report "DIRECTIONALMOTION_UNCHANGED".
                 /// @return Returns a directional motion update of the mouse wheel.
@@ -160,14 +151,6 @@ namespace Mezzanine
                 /// @param Win The window to warp the cursor to.
                 /// @param Position The position on the specified window to warp the cursor to.
                 void WarpCursorToPosition(GameWindow* Win, const Vector2& Position);
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @internal
-                /// @brief Updates this mouse with the newest data.
-                /// @param Codes A vector of the codes to process and update this mouse with.
-                void _Update(std::vector<MetaCode>& Codes);
         };//Mouse
     }//Input
 }//Mezzanine

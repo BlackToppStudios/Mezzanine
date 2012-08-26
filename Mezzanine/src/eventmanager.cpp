@@ -334,16 +334,16 @@ namespace Mezzanine
 
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
         EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
-        bool ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
+        //bool ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
 
         // Here we iterate through manual check to insert any requested polling checks and perpetuate button and key down events
-        for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
+        /*for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
             if(Internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
                 { FromSDLEvent->AddCode(Input::BUTTON_DOWN, Iter->first); }
             else
                 { FromSDLEvent->AddCode(Input::BUTTON_UP, Iter->first); }    //It must be just a polling check
-        }
+        }//*/
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
@@ -395,29 +395,29 @@ namespace Mezzanine
             switch(FromSDLRaw.type)
             {
         //Events and User input sorted by estimate frequency
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:{
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:/*{
                     MetaCode ResultCode(FromSDLRaw);
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress);
-                    break;}
+                    break;}//*/
 
-                case SDL_KEYDOWN: {
+                case SDL_KEYDOWN: /*{
                     MetaCode ResultCode(FromSDLRaw);
                     if ( !(_Data->ManualCheck[ResultCode.GetCode()]) )              //This checks for operating system level key repititions and skips adding them
                         { _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), Internal::EventManagerInternalData::Keypress); }
-                    break; }
+                    break; }//*/
 
                 case SDL_MOUSEBUTTONDOWN:   case SDL_JOYBUTTONDOWN:
-                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(FromSDLRaw), Internal::EventManagerInternalData::Keypress);
-                    break;
+                    /*_Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(FromSDLRaw), Internal::EventManagerInternalData::Keypress);
+                    break;//*/
 
-                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION: // What is a joyball, like the bowling games maybe, or the ORBit controller
+                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
 
                 case SDL_WINDOWEVENT: {
                     EventGameWindow* React = new EventGameWindow(FromSDLRaw);
-                    if(EventGameWindow::GAME_WINDOW_FOCUS_LOST==React->GetEventID())        //we dropp all keypresses when windows are switched
-                        { ClearKeyPresses = true; }
+                    /*if(EventGameWindow::GAME_WINDOW_FOCUS_LOST==React->GetEventID())        //we dropp all keypresses when windows are switched
+                        { ClearKeyPresses = true; }//*/
                     this->AddEvent(React);
                     break; }
 
@@ -442,8 +442,8 @@ namespace Mezzanine
             //free(FromSDLRaw); //Does this need to Happen?
         }
 
-        if(ClearKeyPresses)
-            { this->_Data->DropAllKeyPresses(); }
+        /*if(ClearKeyPresses)
+            { this->_Data->DropAllKeyPresses(); }//*/
 
         #ifdef MEZZDEBUG
         World::GetWorldPointer()->Log("User Input entered this Frame");

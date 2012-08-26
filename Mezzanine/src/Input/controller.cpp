@@ -68,6 +68,39 @@ namespace Mezzanine
         {
         }
 
+        void Controller::UpdateImpl(std::vector<MetaCode>& Codes)
+        {
+            for( Whole X = 0 ; X < Codes.size() ; ++X )
+            {
+                MetaCode& CurrCode = Codes[X];
+                if(CurrCode.GetCode() >= Input::CONTROLLERAXIS_FIRST && CurrCode.GetCode() <= Input::CONTROLLERAXIS_LAST)
+                {
+                    Axes.at( CurrCode.GetCode() - Input::CONTROLLERAXIS_FIRST ) = CurrCode.GetMetaValue();
+                }
+                else if(CurrCode.GetCode() >= Input::CONTROLLERBALL_FIRST && CurrCode.GetCode() <= Input::CONTROLLERBALL_LAST)
+                {
+                    if( Input::CONTROLLERBALL_1_HORIZONTAL == CurrCode.GetCode() ){
+                        Trackballs.at(0).X = CurrCode.GetMetaValue();
+                    }else if( Input::CONTROLLERBALL_1_VERTICAL == CurrCode.GetCode() ){
+                        Trackballs.at(0).Y = CurrCode.GetMetaValue();
+                    }else if( Input::CONTROLLERBALL_2_HORIZONTAL == CurrCode.GetCode() ){
+                        Trackballs.at(1).X = CurrCode.GetMetaValue();
+                    }else if( Input::CONTROLLERBALL_2_VERTICAL == CurrCode.GetCode() ){
+                        Trackballs.at(1).Y = CurrCode.GetMetaValue();
+                    }
+                }
+                else if(CurrCode.GetCode() >= Input::CONTROLLERBUTTON_FIRST && CurrCode.GetCode() <= Input::CONTROLLERBUTTON_LAST)
+                {
+                    TransitioningIndexes.push_back( CurrCode.GetCode() - Input::CONTROLLERBUTTON_FIRST );
+                    Buttons.at( CurrCode.GetCode() - Input::CONTROLLERBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
+                }
+                else if(CurrCode.GetCode() >= Input::CONTROLLERHAT_FIRST && CurrCode.GetCode() <= Input::CONTROLLERHAT_LAST)
+                {
+                    Hats.at( CurrCode.GetCode() - Input::CONTROLLERHAT_FIRST ) = static_cast<Input::HatState>(CurrCode.GetMetaValue());
+                }
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
@@ -91,70 +124,48 @@ namespace Mezzanine
             return Trackballs.size();
         }
 
-        UInt16 Controller::GetNumButtons() const
-        {
-            return Buttons.size();
-        }
-
         UInt16 Controller::GetNumHats() const
         {
             return Hats.size();
         }
 
-        bool Controller::IsButtonPressed(const UInt16 Button)
-        {
-            Input::ButtonState State = GetButtonState( Button );
-            return (Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State);
-        }
-
-        bool Controller::IsButtonPressed(const Input::InputCode& Button)
-        {
-            Input::ButtonState State = GetButtonState( Button );
-            return (Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State);
-        }
-
-        bool Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay)
+        bool Controller::IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const
         {
             Input::HatState State = GetHatState(Hat);
             return State == WhichWay;
         }
 
-        Int16 Controller::GetAxis(const UInt16 Axis)
+        Int16 Controller::GetAxis(const UInt16 Axis) const
         {
             return Axes.at( Axis - 1 );
         }
 
-        Vector2 Controller::GetTrackballDelta(const UInt16 Trackball)
+        Vector2 Controller::GetTrackballDelta(const UInt16 Trackball) const
         {
             return Trackballs.at( Trackball - 1 );
         }
 
-        Real Controller::GetTrackballDeltaX(const UInt16 Trackball)
+        Real Controller::GetTrackballDeltaX(const UInt16 Trackball) const
         {
             return GetTrackballDelta(Trackball).X;
         }
 
-        Real Controller::GetTrackballDeltaY(const UInt16 Trackball)
+        Real Controller::GetTrackballDeltaY(const UInt16 Trackball) const
         {
             return GetTrackballDelta(Trackball).Y;
         }
 
-        Input::ButtonState Controller::GetButtonState(const UInt16 Button)
-        {
-            return Buttons.at( Button - 1 );
-        }
-
-        Input::HatState Controller::GetHatState(const UInt16 Hat)
+        const Input::HatState& Controller::GetHatState(const UInt16 Hat) const
         {
             return Hats.at( Hat - 1 );
         }
 
-        Int16 Controller::GetAxis(const Input::InputCode& Axis)
+        Int16 Controller::GetAxis(const Input::InputCode& Axis) const
         {
             return Axes.at( Axis - Input::CONTROLLERAXIS_FIRST );
         }
 
-        Real Controller::GetTrackballDelta(const Input::InputCode& Trackball)
+        Real Controller::GetTrackballDelta(const Input::InputCode& Trackball) const
         {
             if( Input::CONTROLLERBALL_1_HORIZONTAL == Trackball ){
                 return Trackballs.at(0).X;
@@ -169,12 +180,17 @@ namespace Mezzanine
             }
         }
 
-        Input::ButtonState Controller::GetButtonState(const Input::InputCode& Button)
+        const Input::ButtonState& Controller::GetButtonState(const UInt16 Button) const
+        {
+            return Buttons.at( Button - 1 );
+        }
+
+        const Input::ButtonState& Controller::GetButtonState(const Input::InputCode& Button) const
         {
             return Buttons.at( Button - Input::CONTROLLERBUTTON_FIRST );
         }
 
-        Input::HatState Controller::GetHatState(const Input::InputCode& Hat)
+        const Input::HatState& Controller::GetHatState(const Input::InputCode& Hat) const
         {
             return Hats.at( Hat - Input::CONTROLLERHAT_FIRST );
         }
@@ -184,41 +200,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        void Controller::_Update(std::vector<MetaCode>& Codes)
-        {
-            for( Whole X = 0 ; X < Codes.size() ; ++X )
-            {
-                MetaCode& CurrCode = Codes[X];
-                if(CurrCode.GetCode() >= Input::CONTROLLERAXIS_FIRST && CurrCode.GetCode() <= Input::CONTROLLERAXIS_LAST)
-                {
-                    Axes.at( CurrCode.GetCode() - Input::CONTROLLERAXIS_FIRST ) = CurrCode.GetMetaValue();
-                }
-                else if(CurrCode.GetCode() >= Input::CONTROLLERBALL_FIRST && CurrCode.GetCode() <= Input::CONTROLLERBALL_LAST)
-                {
-                    if( Input::CONTROLLERBALL_1_HORIZONTAL == CurrCode.GetCode() ){
-                        Trackballs.at(0).X = CurrCode.GetMetaValue();
-                    }else if( Input::CONTROLLERBALL_1_VERTICAL == CurrCode.GetCode() ){
-                        Trackballs.at(0).Y = CurrCode.GetMetaValue();
-                    }else if( Input::CONTROLLERBALL_2_HORIZONTAL == CurrCode.GetCode() ){
-                        Trackballs.at(1).X = CurrCode.GetMetaValue();
-                    }else if( Input::CONTROLLERBALL_2_VERTICAL == CurrCode.GetCode() ){
-                        Trackballs.at(1).Y = CurrCode.GetMetaValue();
-                    }
-                }
-                else if(CurrCode.GetCode() >= Input::CONTROLLERBUTTON_FIRST && CurrCode.GetCode() <= Input::CONTROLLERBUTTON_LAST)
-                {
-                    Buttons.at( CurrCode.GetCode() - Input::CONTROLLERBUTTON_FIRST ) = static_cast<Input::ButtonState>(CurrCode.GetMetaValue());
-                }
-                else if(CurrCode.GetCode() >= Input::CONTROLLERHAT_FIRST && CurrCode.GetCode() <= Input::CONTROLLERHAT_LAST)
-                {
-                    Hats.at( CurrCode.GetCode() - Input::CONTROLLERHAT_FIRST ) = static_cast<Input::HatState>(CurrCode.GetMetaValue());
-                }
-            }
-        }
     }//Input
 }//Mezzanine
 

@@ -53,8 +53,8 @@ namespace Mezzanine
         /// is pressed or lifted.
         enum ActivationCondition
         {
-            AC_OnPress = 0,
-            AC_OnLift  = 1
+            AC_OnPress = 1,
+            AC_OnLift  = 2
         };
         /// @enum Border
         /// @brief Used by various basic renderables for border effects.

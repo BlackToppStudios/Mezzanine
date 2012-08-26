@@ -138,11 +138,11 @@ namespace Mezzanine
         vector<MetaCode> Results;
         switch(RawEvent_.type)
         {
-/*            case SDL_KEYUP:         case SDL_KEYDOWN:   //Only contains one metacode
+            case SDL_KEYUP:         case SDL_KEYDOWN:
             case SDL_MOUSEBUTTONUP: case SDL_MOUSEBUTTONDOWN:
             case SDL_JOYBUTTONDOWN: case SDL_JOYBUTTONUP:
                 Results.push_back(this->AddCode(RawEvent_));
-                break;*/
+                break;
 
             case SDL_MOUSEMOTION:{       //Can contain Multiple Metacodes
                 std::vector<MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));

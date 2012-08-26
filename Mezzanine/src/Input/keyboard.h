@@ -42,7 +42,7 @@
 
 #include "datatypes.h"
 #include "Input/inputenumerations.h"
-#include "Input/metacode.h"
+#include "Input/device.h"
 
 namespace Mezzanine
 {
@@ -55,10 +55,11 @@ namespace Mezzanine
         /// @details
         ///////////////////////////////////////
         /// @todo SDL mentions a ModState for keys.  May want to implement that.
-        class MEZZ_LIB Keyboard
+        class MEZZ_LIB Keyboard : public Device
         {
             protected:
-                std::vector<Input::ButtonState> Buttons;
+                /// @copydoc Device::InputImpl(std::vector<MetaCode>& Codes)
+                virtual void UpdateImpl(std::vector<MetaCode>& Codes);
             public:
                 /// @brief Class constructor.
                 Keyboard();
@@ -68,30 +69,16 @@ namespace Mezzanine
                 ///////////////////////////////////////////////////////////////////////////////
                 // Query Methods
 
-                /// @brief Returns whether a specific Keyboard button is pushed
-                /// @details This runs in constant time and returns a true is the requested keyboard button is pressed. Buttons that are being pressed
-                /// are considered pressed, and buttons that are being lifted are considered unpressed.
-                /// @param Button This is the button that is being checked.
-                /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-                bool IsButtonPressed(const Input::InputCode& Button);
-                /// @brief Gets the button state of the provided keyboard button ID.
-                /// @param Button The Input code for the keyboard button you wish to query.
-                /// @return Returns a button state enum representing the button state.
-                Input::ButtonState GetButtonState(const Input::InputCode& Button);
+                /// @copydoc Device::GetButtonState(const UInt16 Button) const
+                virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const;
+                /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
+                virtual const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration Methods
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility Methods
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @internal
-                /// @brief Updates this keyboard with the newest data.
-                /// @param Codes A vector of the codes to process and update this keyboard with.
-                void _Update(std::vector<MetaCode>& Codes);
         };//Keyboard
     }//Input
 }//Mezzanine

@@ -42,7 +42,7 @@
 
 #include "vector2.h"
 #include "Input/inputenumerations.h"
-#include "Input/metacode.h"
+#include "Input/device.h"
 
 namespace Mezzanine
 {
@@ -54,15 +54,16 @@ namespace Mezzanine
         /// @brief This class represents a controller input device, such as a gamepad or joystick.
         /// @details
         ///////////////////////////////////////
-        class MEZZ_LIB Controller
+        class MEZZ_LIB Controller : public Device
         {
             protected:
                 UInt16 Index;
                 String DeviceName;
                 std::vector<Int16> Axes;
                 std::vector<Vector2> Trackballs;
-                std::vector<Input::ButtonState> Buttons;
                 std::vector<Input::HatState> Hats;
+                /// @copydoc Device::InputImpl(std::vector<MetaCode>& Codes)
+                virtual void UpdateImpl(std::vector<MetaCode>& Codes);
             public:
                 /// @brief Class constructor.
                 /// @param InternalControl A pointer to the internal struct of this controller.
@@ -87,78 +88,55 @@ namespace Mezzanine
                 /// @brief Gets the number of Trackballs on this device.
                 /// @return Returns a UInt16 representing the number of Trackballs present on this controller.
                 UInt16 GetNumTrackballs() const;
-                /// @brief Gets the number of Buttons on this device.
-                /// @return Returns a UInt16 representing the number of Buttons present on this controller.
-                UInt16 GetNumButtons() const;
                 /// @brief Gets the number of Hats on this device.
                 /// @return Returns a UInt16 representing the number of Hats present on this controller.
                 UInt16 GetNumHats() const;
-                /// @brief Gets whether a specific Controller button is pushed.
-                /// @param JoystickButton This is the Controller button that is being checked.  This value is expected to be 1-20.
-                /// @return This returns a bool which is set to true if the requested button is pressed or pressing, and false otherwise.
-                bool IsButtonPressed(const UInt16 Button);
-                /// @brief Gets whether a specific Controller button is pushed.
-                /// @param JoystickButton This is the Controller button that is being checked.
-                /// @return This returns a bool which is set to true if the requested button is pressed or pressing, and false otherwise.
-                bool IsButtonPressed(const Input::InputCode& Button);
                 /// @brief Gets whether a specific hat is pressed in a specific direction.
                 /// @param WhichWay The hat direction to check for.  This value is expected to be 1-6.
                 /// @return Returns true if the specified hat is pressed in the requested direction.
-                bool IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay);
+                bool IsHatPushedInDirection(const UInt16 Hat, const Input::HatState& WhichWay) const;
                 /// @brief This Gets the value of the given joystick axis.
                 /// @param Axis The axis that you want.  This value is expected to be 1-20.
                 /// @return An integer with the Value of the joystick axis.
-                Int16 GetAxis(const UInt16 Axis);
+                Int16 GetAxis(const UInt16 Axis) const;
                 /// @brief Gets the delta movement on the requested trackball.
                 /// @param Trackball The trackball to query.  This value is expected to be at least 1.
                 /// @return Returns a vector2 representing the delta movement for the specified trackball.
-                Vector2 GetTrackballDelta(const UInt16 Trackball);
+                Vector2 GetTrackballDelta(const UInt16 Trackball) const;
                 /// @brief Gets the delta movement on the X axis on the requested trackball.
                 /// @param Trackball The trackball to query.  This value is expected to be at least 1.
                 /// @return Returns a Real representing the delta movement on the X axis for the specified trackball.
-                Real GetTrackballDeltaX(const UInt16 Trackball);
+                Real GetTrackballDeltaX(const UInt16 Trackball) const;
                 /// @brief Gets the delta movement on the Y axis on the requested trackball.
                 /// @param Trackball The trackball to query.  This value is expected to be at least 1.
                 /// @return Returns a Real representing the delta movement on the Y axis for the specified trackball.
-                Real GetTrackballDeltaY(const UInt16 Trackball);
-                /// @brief Gets the current state of the requested button.
-                /// @param Button The button to query.  This value is expected to be 1-20.
-                /// @return Returns a ButtonState representing the current state of the specified button.
-                Input::ButtonState GetButtonState(const UInt16 Button);
+                Real GetTrackballDeltaY(const UInt16 Trackball) const;
                 /// @brief Gets the current state of the requested hat.
                 /// @param Hat The hat to query.  This value is expected to be 1-6.
                 /// @return Returns a HatState representing the current state of the specified hat.
-                Input::HatState GetHatState(const UInt16 Hat);
+                const Input::HatState& GetHatState(const UInt16 Hat) const;
                 /// @brief This Gets the value of the given joystick axis.
                 /// @param Axis An InputCode representing the axis that you want.
                 /// @return An integer with the Value of the joystick axis.
-                Int16 GetAxis(const Input::InputCode& Axis);
+                Int16 GetAxis(const Input::InputCode& Axis) const;
                 /// @brief Gets the delta movement on the requested trackball.
                 /// @param Trackball An InputCode representing the trackball to query.
                 /// @return Returns a vector2 representing the delta movement for the specified trackball.
-                Real GetTrackballDelta(const Input::InputCode& Trackball);
-                /// @brief Gets the current state of the requested button.
-                /// @param Button An InputCode representing the button to query.
-                /// @return Returns a ButtonState representing the current state of the specified button.
-                Input::ButtonState GetButtonState(const Input::InputCode& Button);
+                Real GetTrackballDelta(const Input::InputCode& Trackball) const;
+                /// @copydoc Device::GetButtonState(const UInt16 Button) const
+                virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const;
+                /// @copydoc Device::GetButtonState(const Input::InputCode& Button) const
+                virtual const Input::ButtonState& GetButtonState(const Input::InputCode& Button) const;
                 /// @brief Gets the current state of the requested hat.
                 /// @param Hat An InputCode representing the hat to query.
                 /// @return Returns a HatState representing the current state of the specified hat.
-                Input::HatState GetHatState(const Input::InputCode& Hat);
+                const Input::HatState& GetHatState(const Input::InputCode& Hat) const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Configuration Methods
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility Methods
-
-                ///////////////////////////////////////////////////////////////////////////////
-                // Internal Methods
-
-                /// @internal
-                /// @brief Updates this joystick with the newest data.
-                /// @param Codes A vector of the codes to process and update this joystick with.
-                void _Update(std::vector<MetaCode>& Codes);
         };//Controller
     }//Input
 }//Mezzanine

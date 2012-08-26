@@ -58,16 +58,24 @@ namespace Mezzanine
         {
         }
 
+        void Keyboard::UpdateImpl(std::vector<MetaCode>& Codes)
+        {
+            for( Whole X = 0 ; X < Codes.size() ; ++X )
+            {
+                TransitioningIndexes.push_back( Codes[X].GetCode() );
+                Buttons.at( Codes[X].GetCode() ) = static_cast<Input::ButtonState>(Codes[X].GetMetaValue());
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
-        bool Keyboard::IsButtonPressed(const Input::InputCode& Button)
+        const Input::ButtonState& Keyboard::GetButtonState(const UInt16 Button) const
         {
-            Input::ButtonState State = GetButtonState(Button);
-            return ( Input::BUTTON_PRESSING == State || Input::BUTTON_DOWN == State );
+            return Buttons.at( Button - 1 );
         }
 
-        Input::ButtonState Keyboard::GetButtonState(const Input::InputCode& Button)
+        const Input::ButtonState& Keyboard::GetButtonState(const Input::InputCode& Button) const
         {
             return Buttons.at(Button);
         }
@@ -77,17 +85,6 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Internal Methods
-
-        void Keyboard::_Update(std::vector<MetaCode>& Codes)
-        {
-            for( Whole X = 0 ; X < Codes.size() ; ++X )
-            {
-                Buttons.at( Codes[X].GetCode() ) = static_cast<Input::ButtonState>(Codes[X].GetMetaValue());
-            }
-        }
     }//Input
 }//Mezzanine
 

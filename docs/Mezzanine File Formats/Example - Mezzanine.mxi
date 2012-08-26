@@ -57,6 +57,9 @@
 		<!-- Options for ViewportConf are: Custom, 1-FullWindow, 2-HorizontalSplit, 2-VerticalSplit, 3-TopLarge, 4-EvenlySplit -->
 		<GameWindow Caption="Window" Width="800" Height="600" Fullscreen="false" Hidden="false" Vsync="false" FSAA="0" Resizeable="false" Maximized="false" Borderless="false" ViewportConf="Custom" />
 	</DefaultGraphicsManager>
+	<DefaultInputManager>
+		<!-- Currently the InputManager has zero additional params to be set. -->
+	</DefaultInputManager>
 	<DefaultMeshManager>
 		<!-- Currently the MeshManager has zero additional params to be set. -->
 	</DefaultMeshManager>
