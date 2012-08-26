@@ -73,9 +73,8 @@ int main(int argc, char **argv)
     TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
     TheWorld->GetSceneManager()->SetShadowFarDistance(3000);
 
-    //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
+    //Set up polling for the letter Q
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, Input::KEY_Q) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, Input::MOUSEBUTTON_1) );
 
     //Actually Load the game stuff
     LoadContent();
