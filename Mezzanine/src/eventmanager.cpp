@@ -337,7 +337,7 @@ namespace Mezzanine
         //bool ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
 
         // Here we iterate through manual check to insert any requested polling checks and perpetuate button and key down events
-        /*for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
+        for(Internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
             if(Internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
                 { FromSDLEvent->AddCode(Input::BUTTON_DOWN, Iter->first); }
