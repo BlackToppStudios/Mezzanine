@@ -101,57 +101,57 @@ namespace Mezzanine
             /// @throw Nothing This member function does not throw exceptions.
             void Acquire(ReferenceCounter<TypePointedTo>* CounterToAcquire) throw()
             {
-                #ifdef MEZZDEBUG
+                /*#ifdef MEZZDEBUG
                 std::ostream *Log;
                 if (World::GetWorldPointerValidity())
                     { Log = & (World::GetWorldPointer()->LogStream); }
                 else
                     { Log = & std::cout; }
                 *Log << "Acquiring ReferenceCounter, previous counter " << (!itsCounter?"did not exist.":("had "+ToString(itsCounter->Count)+" references.")) << std::endl;
-                #endif
+                #endif//*/
 
                 itsCounter = CounterToAcquire;
 
-                #ifdef MEZZDEBUG
+                /*#ifdef MEZZDEBUG
                 *Log << "ReferenceCounter assigned, reference count is now " << (!itsCounter?"invalid.":(ToString(itsCounter->Count)+".")) << std::endl;
-                #endif
+                #endif//*/
 
                 if (CounterToAcquire) ++CounterToAcquire->Count; // I am concerned that some platform somewhere will try to increment the struct pointer, then dereference it.
 
-                #ifdef MEZZDEBUG
+                /*#ifdef MEZZDEBUG
                 *Log << "ReferenceCounter incremented, reference count is now " << (!itsCounter?"invalid.":(ToString(itsCounter->Count)+".")) << std::endl;
-                #endif
+                #endif//*/
             }
 
             /// @brief This decrements the reference count and deletes the managed items if there are no remaining reference
             void Release()
             {
-                #ifdef MEZZDEBUG
+                /*#ifdef MEZZDEBUG
                 std::ostream *Log;
                 if (World::GetWorldPointerValidity())
                     { Log = & (World::GetWorldPointer()->LogStream); }
                 else
                     { Log = & std::cout; }
                 *Log << "Releasing ReferenceCounter, counter " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+".")) << std::endl;
-                #endif
+                #endif//*/
 
                 if (itsCounter) {
                     if (--itsCounter->Count == 0) {
-                        #ifdef MEZZDEBUG
+                        /*#ifdef MEZZDEBUG
                         *Log << "ReferenceCounter deleted and " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+" after decrementing.")) << std::endl;
-                        #endif
+                        #endif//*/
                         delete itsCounter->ptr;
                         delete itsCounter;
                     }
-                    #ifdef MEZZDEBUG
+                    /*#ifdef MEZZDEBUG
                     else { *Log << "ReferenceCounter removed and " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+".")) << std::endl; }
-                    #endif
+                    #endif//*/
 
                     itsCounter = 0;
                 }
-                #ifdef MEZZDEBUG
+                /*#ifdef MEZZDEBUG
                 else { *Log << "ReferenceCounter not deleted or removed and " << (!itsCounter?"did not exist.":("had "+ToString(itsCounter->Count)+"references.")) << std::endl; }
-                #endif
+                #endif//*/
 
 
             }
