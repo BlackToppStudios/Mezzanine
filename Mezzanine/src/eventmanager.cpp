@@ -54,6 +54,7 @@
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "Input/metacode.h"
+#include "inputmanager.h"
 
 #include <map>
 #include <memory>
@@ -247,7 +248,7 @@ namespace Mezzanine
     {
         this->Priority = 0;
 
-        if( !SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) )
+        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
         {
             if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
             {
@@ -264,7 +265,7 @@ namespace Mezzanine
     {
         this->Priority = 0;
 
-        if( !SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) )
+        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
         {
             if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
             {
@@ -283,6 +284,10 @@ namespace Mezzanine
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
         delete _Data;
+
+        if( InputManager::SingletonValid() )
+            InputManager::GetSingletonPtr()->ReleaseAllControllers();
+
         SDL_Quit();
     }
 

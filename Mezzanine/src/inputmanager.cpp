@@ -58,7 +58,7 @@ namespace Mezzanine
 
     InputManager::InputManager()
     {
-        if( !SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) )
+        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
         {
             if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
             {
@@ -74,7 +74,7 @@ namespace Mezzanine
 #ifdef MEZZXML
     InputManager::InputManager(XML::Node& XMLNode)
     {
-        if( !SDL_WasInit(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) )
+        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
         {
             if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
             {
@@ -136,6 +136,9 @@ namespace Mezzanine
 
     void InputManager::ReleaseAllControllers()
     {
+        if( Controllers.empty() )
+            return;
+
         for( ControllerIterator ContIt = Controllers.begin() ; ContIt != Controllers.end() ; ++ContIt )
         {
             delete (*ContIt);
