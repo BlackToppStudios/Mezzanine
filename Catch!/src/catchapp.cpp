@@ -740,7 +740,7 @@ CatchApp* CatchApp::GetCatchAppPointer()
 int CatchApp::GetCatchin()
 {
     EventManager::GetSingletonPtr()->SetPreMainLoopItems(&CPreInput);
-    EventManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
+    InputManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostInput);
     PhysicsManager::GetSingletonPtr()->SetPreMainLoopItems(&CPrePhysics);
     PhysicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostPhysics);
     GraphicsManager::GetSingletonPtr()->SetPostMainLoopItems(&CPostRender);
