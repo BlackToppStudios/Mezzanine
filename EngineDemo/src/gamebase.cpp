@@ -17,8 +17,8 @@
 
 using namespace Mezzanine;
 
-//Create the World.... Globally! and set it to hold some actors
-World *TheWorld;
+//Create the Entresol.... Globally! and set it to hold some actors
+Entresol* TheEntresol;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
 
@@ -33,25 +33,25 @@ int main(int argc, char **argv)
         Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
         Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
         Info.MaxProxies = 60;
-        TheWorld = new World( Info, "DefaultSceneManager", "plugins.cfg", "data/common/");
+        TheEntresol = new Entresol( Info, "DefaultSceneManager", "plugins.cfg", "data/common/");
     }catch(...){
         return 1;
         //could not create the perfect worldending program
     }
-    TheWorld->SetTargetFrameRate(60);
+    TheEntresol->SetTargetFrameRate(60);
 
-    //TheWorld->SetLoggingFrequency(World::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
-    //TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
-    //TheWorld->SetLoggingFrequency(World::LogNever);
+    //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
+    //TheEntresol->SetLoggingFrequency(Entresol::LogOncePerXSeconds,5);
+    //TheEntresol->SetLoggingFrequency(Entresol::LogNever);
 
-    GraphicsManager* GraphMan = TheWorld->GetGraphicsManager();
+    GraphicsManager* GraphMan = TheEntresol->GetGraphicsManager();
 
     //Give the world functions to run before and after input and physics
-    TheWorld->GetEventManager()->SetPreMainLoopItems(&PreInput);
-    TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInput);
-    TheWorld->GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
-    TheWorld->GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
-    TheWorld->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
+    TheEntresol->GetEventManager()->SetPreMainLoopItems(&PreInput);
+    TheEntresol->GetEventManager()->SetPostMainLoopItems(&PostInput);
+    TheEntresol->GetPhysicsManager()->SetPreMainLoopItems(&PrePhysics);
+    TheEntresol->GetPhysicsManager()->SetPostMainLoopItems(&PostPhysics);
+    TheEntresol->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
 
     //Create the windows!
     GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",800,600,0);
@@ -67,14 +67,14 @@ int main(int argc, char **argv)
     SecondCam->LookAt( Vector3(0,0,0) );
 
     //Init
-	TheWorld->EngineInit(false);
+	TheEntresol->EngineInit(false);
 
     // Configure Shadows
-    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
-    TheWorld->GetSceneManager()->SetShadowFarDistance(3000);
+    TheEntresol->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
+    TheEntresol->GetSceneManager()->SetShadowFarDistance(3000);
 
     //Set up polling for the letter Q
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, Input::KEY_Q) );
+    TheEntresol->GetEventManager()->AddPollingCheck( MetaCode(0, Input::KEY_Q) );
 
     //Actually Load the game stuff
     LoadContent();
@@ -83,17 +83,17 @@ int main(int argc, char **argv)
     MakeGUI();
 
     //Configure the wireframe Drawer
-    //TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
-    //TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
+    //TheEntresol->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
+    //TheEntresol->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    //WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
-    //CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
-    TheWorld->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,150.0));
-    CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetCamera(0));
+    //WorldNode* CameraNode = TheEntresol->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
+    //CameraNode->AttachElement(TheEntresol->GetCameraManager()->GetDefaultCamera());
+    TheEntresol->GetCameraManager()->GetCamera(0)->SetLocation(Vector3(0.0,200.0,150.0));
+    CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     DefaultControl->SetMovementMode(CameraController::CCM_Walk);
     DefaultControl->SetHoverHeight(75);
-    Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
+    Light *Headlight = TheEntresol->GetSceneManager()->CreateLight("Headlight");
     Headlight->SetLightType(Light::Directional);
     Vector3 LightLoc(200,300,0);
     Headlight->SetLocation(LightLoc);
@@ -108,9 +108,9 @@ int main(int argc, char **argv)
     //CameraNode->AttachObject(Headlight);
 
 	//Start the Main Loop
-	TheWorld->MainLoop();
+	TheEntresol->MainLoop();
 
-    //delete TheWorld;
+    delete TheEntresol;
 	return 0;
 }
 
@@ -119,11 +119,11 @@ bool PostRender()
 	//Lets set a variable for the time
 	static Whole gametime = 0;
 
-	TheWorld->Log(String("---------- Starting PosterRender CallBack -------------"));
-    TheWorld->Log(String("Current Game Time "));
+	TheEntresol->Log(String("---------- Starting PosterRender CallBack -------------"));
+    TheEntresol->Log(String("Current Game Time "));
 
 	//getting a message from the event manager)
-	EventRenderTime* CurrentTime = TheWorld->GetEventManager()->PopNextRenderTimeEvent();
+	EventRenderTime* CurrentTime = TheEntresol->GetEventManager()->PopNextRenderTimeEvent();
     Whole LastFrame = 0;
 
     // Is CurrentTime a valid event?
@@ -131,15 +131,15 @@ bool PostRender()
     {
         LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
 
-        TheWorld->Log(gametime);
+        TheEntresol->Log(gametime);
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
         delete CurrentTime;
-        CurrentTime = TheWorld->GetEventManager()->GetNextRenderTimeEvent();
+        CurrentTime = TheEntresol->GetEventManager()->GetNextRenderTimeEvent();
     }
 
-    ActorBase* Act1 = TheWorld->GetActorManager()->GetActor("RobotWayUpFrontLeft");
-    ActorBase* Act2 = TheWorld->GetActorManager()->GetActor("RobotWayUpFrontRight");
+    ActorBase* Act1 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontLeft");
+    ActorBase* Act2 = TheEntresol->GetActorManager()->GetActor("RobotWayUpFrontRight");
     if (Act1->IsAnimated())
     {
         Act1->AdvanceAnimation((Real)0.001 * LastFrame);
@@ -156,26 +156,26 @@ bool PostRender()
     {
         notplayed=false;
         Audio::Sound* Welcome = NULL;
-        Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
+        Welcome = TheEntresol->GetAudioManager()->GetSoundByName("Welcome");
         if(Welcome)
         {
             Welcome->Play2d(false);
         }
         #ifdef MEZZDEBUG
-        TheWorld->Log("Played Welcome Fun:");
+        TheEntresol->Log("Played Welcome Fun:");
         #endif
 
     }
 
     Input::Mouse* SysMouse = InputManager::GetSingletonPtr()->GetSystemMouse();
     // Update Stat information
-    UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
+    UI::OpenRenderableContainerWidget* HUD = static_cast<UI::OpenRenderableContainerWidget*>(TheEntresol->GetUIManager()->GetScreen("DefaultScreen")->GetWidget("D_HUD"));
     UI::Caption* CurFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_CurFPS"));
     UI::Caption* AvFPS = static_cast<UI::Caption*>(HUD->GetAreaRenderable("D_AvFPS"));
     std::stringstream CFPSstream;
     std::stringstream AFPSstream;
-    CFPSstream << TheWorld->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
-    AFPSstream << TheWorld->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
+    CFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetLastFPS();
+    AFPSstream << TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetAverageFPS();
     String CFPS = CFPSstream.str();
     String AFPS = AFPSstream.str();
     CurFPS->SetText(CFPS);
@@ -189,10 +189,10 @@ bool PostRender()
 
     // Turn on the Wireframe
     if (30000<gametime)
-        { /*TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1);*/ }
+        { /*TheEntresol->GetPhysicsManager()->SetDebugPhysicsRendering(1);*/ }
 
     //IF the game has gone on for 150 or more seconds close it.
-	if (150000<gametime || (TheWorld->GetEventManager()->GetNextQuitEvent()!=0) )
+	if (150000<gametime || (TheEntresol->GetEventManager()->GetNextQuitEvent()!=0) )
         { return false; }
 
     return true;
@@ -200,23 +200,23 @@ bool PostRender()
 
 bool PrePhysics()
 {
-    TheWorld->Log("Object Locations");
+    TheEntresol->Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
-    TheWorld->Log(TheWorld->GetActorManager()->GetActor("MetalSphere2")->GetLocation());
+    TheEntresol->Log(TheEntresol->GetActorManager()->GetActor("MetalSphere2")->GetLocation());
     return true;
 }
 
 bool PostPhysics()
 {
     //// Updating functions to be used when a suitable mesh is found/created.
-    /*ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld->GetActorManager()->FindActor("spheresoft"));
+    /*ActorSoft* ActS = static_cast< ActorSoft* > (TheEntresol->GetActorManager()->FindActor("spheresoft"));
     ActS->UpdateSoftBody();
-    TheWorld->Log("Soft Locations");
-    TheWorld->Log(TheWorld->GetActorManager()->FindActor("spheresoft")->GetLocation());
+    TheEntresol->Log("Soft Locations");
+    TheEntresol->Log(TheEntresol->GetActorManager()->FindActor("spheresoft")->GetLocation());
     if(ActS->IsInWorld())
-        TheWorld->Log("Softbody is in World");
+        TheEntresol->Log("Softbody is in World");
     else
-        TheWorld->Log("Softbody is not in World");// */
+        TheEntresol->Log("Softbody is not in World");// */
     return true;
 }
 
@@ -247,25 +247,25 @@ bool PostInput()
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     Input::Controller* Controller1 = InputMan->GetController(0);
 
-    CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetCamera(0));
+    CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
     {
-        DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTime() * 0.001));
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_RIGHT) : false) )
     {
-        DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTime() * 0.001));
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_UP) : false) )
     {
-        DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTime() * 0.001));
     }
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_DOWN) : false) )
     {
-        DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTime() * 0.001));
     }
 
     static bool MouseCam=false;
@@ -284,7 +284,7 @@ bool PostInput()
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_M) || (Controller1 ? Controller1->IsButtonPressed(1) : false) )
     {
-        Audio::Sound* Theme = TheWorld->GetAudioManager()->GetSoundByName("Theme2");
+        Audio::Sound* Theme = TheEntresol->GetAudioManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
         {
             Theme->Play2d(false);
@@ -293,7 +293,7 @@ bool PostInput()
 
     if( SysKeyboard->IsButtonPressed(Input::KEY_N) || (Controller1 ? Controller1->IsButtonPressed(2) : false) )
     {
-        Audio::Sound* Theme = TheWorld->GetAudioManager()->GetSoundByName("Theme2");
+        Audio::Sound* Theme = TheEntresol->GetAudioManager()->GetSoundByName("Theme2");
         if(Theme->IsPlaying())
         {
             Theme->Stop();
@@ -334,14 +334,14 @@ bool PostInput()
             if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
                 #ifdef MEZZDEBUG
-                TheWorld->Log("No Actor Clicked on");
+                TheEntresol->Log("No Actor Clicked on");
                 #endif
             }else{
                 #ifdef MEZZDEBUG
-                TheWorld->Log("Actor Clicked on"); TheWorld->Log(*ClickOnActor);
-                TheWorld->Log("MouseRay"); TheWorld->Log(*MouseRay);
-                TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
-                TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
+                TheEntresol->Log("Actor Clicked on"); TheEntresol->Log(*ClickOnActor);
+                TheEntresol->Log("MouseRay"); TheEntresol->Log(*MouseRay);
+                TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
+                TheEntresol->Log("ClickOnActor"); TheEntresol->Log(*ClickOnActor);
                 #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
                 {
@@ -355,19 +355,19 @@ bool PostInput()
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
-                            TheWorld->GetPhysicsManager()->AddConstraint(Dragger);
+                            TheEntresol->GetPhysicsManager()->AddConstraint(Dragger);
                             Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2);
                             Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2);
                             firstframe=true;
                         }else{  // since we don't
                             #ifdef MEZZDEBUG
-                            TheWorld->Log("Actor is not an ActorRigid.  Aborting.");
+                            TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
                             #endif
                         }
                     }
                 }else{
                     #ifdef MEZZDEBUG
-                    TheWorld->Log("Actor is Static/Kinematic.  Aborting.");
+                    TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
                     #endif
                 }
             }
@@ -377,14 +377,14 @@ bool PostInput()
             if (0 == DragTo)
             {
                 #ifdef MEZZDEBUG
-                TheWorld->Log("PlaneOfPlay Not Clicked on");
+                TheEntresol->Log("PlaneOfPlay Not Clicked on");
                 #endif
             }else{
                 if(Dragger && !firstframe)
                 {
                     #ifdef MEZZDEBUG
-                    TheWorld->Log("Dragged To");
-                    TheWorld->Log(*DragTo);
+                    TheEntresol->Log("Dragged To");
+                    TheEntresol->Log(*DragTo);
                     #endif
                     //Dragger->SetOffsetALocation(*DragTo);
                     Dragger->SetPivotBLocation(*DragTo);
@@ -400,7 +400,7 @@ bool PostInput()
         if(Dragger)
         {
             ActorRigid* Act = Dragger->GetActorA();
-            TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
+            TheEntresol->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
             Act->GetPhysicsSettings()->SetActivationState(Physics::WOAS_Active);
@@ -414,25 +414,25 @@ bool PostInput()
 bool CheckForStuff()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
-    EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+    EventUserInput* OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
 
     //We check each Event
     while(0 != OneInput)
     {
         #ifdef MEZZDEBUG
-        TheWorld->LogStream << "Input Events Processed (Escape is " << Input::KEY_ESCAPE << ") : " << std::endl;
+        TheEntresol->LogStream << "Input Events Processed (Escape is " << Input::KEY_ESCAPE << ") : " << std::endl;
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
             { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventUserInput as an EventUserInput."); }
 
         #ifdef MEZZDEBUG
-        TheWorld->Log(*OneInput);
+        TheEntresol->Log(*OneInput);
         EventUserInput ASecondInput;
         StringStream UserInputXML;
         UserInputXML << *OneInput;
         UserInputXML >> ASecondInput;
-        TheWorld->Log(ASecondInput);
+        TheEntresol->Log(ASecondInput);
         #endif
 
         //we check each MetaCode in each Event
@@ -444,13 +444,13 @@ bool CheckForStuff()
         }
 
         delete OneInput;
-        OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+        OneInput = TheEntresol->GetEventManager()->PopNextUserInputEvent();
     }
 
     #ifdef MEZZDEBUG
-    TheWorld->Log("All Game Window Changes This Frame");
+    TheEntresol->Log("All Game Window Changes This Frame");
     #endif
-    EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    EventGameWindow* OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
     while(0 != OneWindowEvent)
     {
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
@@ -463,18 +463,18 @@ bool CheckForStuff()
             MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,ExceptionStream.str());
         }
 
-        TheWorld->Log(*OneWindowEvent);
-        TheWorld->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
+        TheEntresol->Log(*OneWindowEvent);
+        TheEntresol->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
         StringStream eventXML;
         eventXML << *OneWindowEvent;    // Test XML conversion and reconstruction
         EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
         eventXML >> AnotherWindowEvent;
-        TheWorld->Log(AnotherWindowEvent);
+        TheEntresol->Log(AnotherWindowEvent);
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
         {
             Audio::Sound* Welcome = NULL;
-            Welcome = TheWorld->GetAudioManager()->GetSoundByName("Welcome");
+            Welcome = TheEntresol->GetAudioManager()->GetSoundByName("Welcome");
             if(Welcome)
             {
                 Welcome->Play2d(false);
@@ -482,19 +482,19 @@ bool CheckForStuff()
         }
 
         delete OneWindowEvent;
-        OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+        OneWindowEvent = TheEntresol->GetEventManager()->PopNextGameWindowEvent();
     }
 
     #ifdef MEZZDEBUG
-    TheWorld->Log("All Collisions This Frame");
+    TheEntresol->Log("All Collisions This Frame");
     #endif
-    EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    EventCollision* OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
     while(0 != OneCollision)
     {
         if(OneCollision->GetType() != EventBase::Collision)
             { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Trying to process a non-EventCollision as an EventCollision."); }
         delete OneCollision;
-        OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+        OneCollision = TheEntresol->GetEventManager()->PopNextCollisionEvent();
     }
 
     return true;
@@ -502,7 +502,7 @@ bool CheckForStuff()
 
 void LoadContent()
 {
-    TheWorld->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
+    TheEntresol->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
 
     ActorRigid *object1, *object2, *object3, *object4;
     ActorRigid *object5, *object6;
@@ -513,17 +513,17 @@ void LoadContent()
     String robotprefix ("Robot");
 
     Real mass=15.0;
-    TheWorld->GetResourceManager()->AddAssetLocation("data/common", "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->AddAssetLocation("data/common/Music", "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->AddAssetLocation("data/common/Sounds", "FileSystem", groupname, false);
-    //TheWorld->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    TheWorld->GetResourceManager()->AddAssetLocation("", "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->InitAssetGroup(groupname);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", "FileSystem", groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Music", "FileSystem", groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Sounds", "FileSystem", groupname, false);
+    //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("", "FileSystem", groupname, false);
+    TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
 
-    ParticleEffect *GreenPart = TheWorld->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
+    ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
     GreenPart->SetLocation(Vector3(-70,70,-100));
 
-    CollisionShapeManager* CSMan = World::GetWorldPointer()->GetCollisionShapeManager();
+    CollisionShapeManager* CSMan = Entresol::GetSingletonPtr()->GetCollisionShapeManager();
     Physics::CollisionShape* RobitCH = CSMan->GenerateConvexHull("RobitConvexHull",filerobot,groupname);
     Physics::CollisionShape* RobitCD = CSMan->PerformConvexDecomposition("RobitConvexDecomp",filerobot,groupname,5.0,5.0,10.0);
     Physics::CollisionShape* PlaneStatic = CSMan->GenerateStaticTriMesh("PlaneShape","Plane.mesh",groupname);
@@ -540,9 +540,9 @@ void LoadContent()
         namestream << robotprefix << c;
         ActRig = new ActorRigid(mass,namestream.str(),filerobot,groupname);
         ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCD);
-        //TheWorld->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
+        //TheEntresol->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
         ActRig->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
-        TheWorld->GetActorManager()->AddActor( ActRig );
+        TheEntresol->GetActorManager()->AddActor( ActRig );
     }
 
     for(unsigned int c=0; c<3; c++)     //the row with three pins
@@ -551,11 +551,11 @@ void LoadContent()
         namestream << robotprefix << (c+4);
         ActRig = new ActorRigid(mass,namestream.str(),filerobot,groupname);
         ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCD);
-        //TheWorld->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
+        //TheEntresol->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
         ActRig->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
-        TheWorld->GetActorManager()->AddActor( ActRig );
+        TheEntresol->GetActorManager()->AddActor( ActRig );
     }
-    //TheWorld->Resources->ImportShapeData(ActRig, "RobotDecomp3.bullet");
+    //TheEntresol->Resources->ImportShapeData(ActRig, "RobotDecomp3.bullet");
 
     for(unsigned int c=0; c<2; c++)     //the row with 2 pins
     {
@@ -564,7 +564,7 @@ void LoadContent()
         ActRig = new ActorRigid(mass,namestream.str(),filerobot,groupname);
         ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
         ActRig->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
-        TheWorld->GetActorManager()->AddActor( ActRig );
+        TheEntresol->GetActorManager()->AddActor( ActRig );
         if (c+7==7)
             {Robot7=ActRig;}
         if (c+7==8)
@@ -576,7 +576,7 @@ void LoadContent()
     ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
     ActRig->GetPhysicsSettings()->SetCollisionShape(RobitCH);
     ActRig->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
-    TheWorld->GetActorManager()->AddActor( ActRig );
+    TheEntresol->GetActorManager()->AddActor( ActRig );
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     /*MeshGenerator::CreateSphereMesh("SoftTest","SphereWood",70);
@@ -628,19 +628,19 @@ void LoadContent()
     grav.Y=-400.0;
     grav.Z=0.0;
 
-    TheWorld->GetActorManager()->AddActor(object1);
-    TheWorld->GetActorManager()->AddActor(object2);
-    TheWorld->GetActorManager()->AddActor(object3);
-    TheWorld->GetActorManager()->AddActor(object4);
-    TheWorld->GetActorManager()->AddActor(object5);
-    TheWorld->GetActorManager()->AddActor(object6);
-    TheWorld->GetActorManager()->AddActor(object7);
-    //TheWorld->GetActorManager()->AddActor(Act9);
+    TheEntresol->GetActorManager()->AddActor(object1);
+    TheEntresol->GetActorManager()->AddActor(object2);
+    TheEntresol->GetActorManager()->AddActor(object3);
+    TheEntresol->GetActorManager()->AddActor(object4);
+    TheEntresol->GetActorManager()->AddActor(object5);
+    TheEntresol->GetActorManager()->AddActor(object6);
+    TheEntresol->GetActorManager()->AddActor(object7);
+    //TheEntresol->GetActorManager()->AddActor(Act9);
 
     /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
     Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
+    TheEntresol->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
     BlackHole->CreateSphereShape(750.0);
@@ -648,10 +648,10 @@ void LoadContent()
     BlackHole->SetFieldStrength(100000.0);
     BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
     BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
+    TheEntresol->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
     Audio::Sound *sound1, *music1, *music2;
-    AudioManager* AudioMan = TheWorld->GetAudioManager();
+    AudioManager* AudioMan = TheEntresol->GetAudioManager();
     AudioMan->CreateSoundSet("Announcer");
     sound1 = AudioMan->CreateDialogSound("Welcome", "welcomefun-1.ogg", groupname);
     AudioMan->AddSoundToSoundSet("Announcer", sound1);
@@ -662,18 +662,18 @@ void LoadContent()
     music2 = AudioMan->CreateMusicSound("Theme2", "cAudioTheme2.ogg", groupname);
     AudioMan->AddSoundToSoundSet("SoundTrack", music2);
 
-    TheWorld->Log("Actor Count");
-    TheWorld->Log( TheWorld->GetActorManager()->GetNumActors() );
+    TheEntresol->Log("Actor Count");
+    TheEntresol->Log( TheEntresol->GetActorManager()->GetNumActors() );
 
-    TheWorld->GetPhysicsManager()->SetGravity(grav);
-    TheWorld->GetPhysicsManager()->SetSoftGravity(grav);
+    TheEntresol->GetPhysicsManager()->SetGravity(grav);
+    TheEntresol->GetPhysicsManager()->SetSoftGravity(grav);
 }
 
 void MakeGUI()
 {
     String DefaultScreen = "DefaultScreen";
-    UIManager* GUI = TheWorld->GetUIManager();
-    Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
+    UIManager* GUI = TheEntresol->GetUIManager();
+    Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
     GUI->LoadMTA("dejavu");
     UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);
 
@@ -728,60 +728,60 @@ void TestsToSave()
     ResourceManager* ResourceMan = ResourceManager::GetSingletonPtr();
     //testing the directory listing feature
     //please don;t delete this, this should be turned into a unit test.
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of data directory:" << "data/common" << std::endl;
+    Entresol::GetSingletonPtr()->LogStream << std::endl << "Checking content of data directory:" << "data/common" << std::endl;
     std::set<String>* Listing = ResourceMan->GetDirContents("data/common");
     for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
     {
-        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+        Entresol::GetSingletonPtr()->LogStream << *Iter << std::endl;
     }
     delete Listing;
 
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of working directory:" << ResourceMan->GetWorkingDirectory() << std::endl;
+    Entresol::GetSingletonPtr()->LogStream << std::endl << "Checking content of working directory:" << ResourceMan->GetWorkingDirectory() << std::endl;
     Listing = ResourceMan->GetDirContents(ResourceMan->GetWorkingDirectory());
     for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
     {
-        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+        Entresol::GetSingletonPtr()->LogStream << *Iter << std::endl;
     }
     delete Listing;
 
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of current directory:" << "." << std::endl;
+    Entresol::GetSingletonPtr()->LogStream << std::endl << "Checking content of current directory:" << "." << std::endl;
     Listing = ResourceMan->GetDirContents(".");
     for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
     {
-        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+        Entresol::GetSingletonPtr()->LogStream << *Iter << std::endl;
     }
     delete Listing;
 
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of parent directory:" << ".." << std::endl;
+    Entresol::GetSingletonPtr()->LogStream << std::endl << "Checking content of parent directory:" << ".." << std::endl;
     Listing = ResourceMan->GetDirContents("..");
     for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
     {
-        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+        Entresol::GetSingletonPtr()->LogStream << *Iter << std::endl;
     }
     delete Listing;
 
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of '/'" << std::endl;
+    Entresol::GetSingletonPtr()->LogStream << std::endl << "Checking content of '/'" << std::endl;
     Listing = ResourceMan->GetDirContents("/");
     if (NULL == Listing)
     {
-        World::GetWorldPointer()->LogStream << "/ not a valid directory" << std::endl;
+        Entresol::GetSingletonPtr()->LogStream << "/ not a valid directory" << std::endl;
     }else{
         for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
         {
-            World::GetWorldPointer()->LogStream << *Iter << std::endl;
+            Entresol::GetSingletonPtr()->LogStream << *Iter << std::endl;
         }
         delete Listing;
     }
 
-    World::GetWorldPointer()->LogStream << std::endl << "Checking content of 'c:/'" << std::endl;
+    Entresol::GetSingletonPtr()->LogStream << std::endl << "Checking content of 'c:/'" << std::endl;
     Listing = ResourceMan->GetDirContents("c:/");
     if (NULL == Listing)
     {
-        World::GetWorldPointer()->LogStream << "c:/ not a valid directory" << std::endl;
+        Entresol::GetSingletonPtr()->LogStream << "c:/ not a valid directory" << std::endl;
     }else{
         for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
         {
-            World::GetWorldPointer()->LogStream << *Iter << std::endl;
+            Entresol::GetSingletonPtr()->LogStream << *Iter << std::endl;
         }
         delete Listing;
     }
@@ -815,19 +815,19 @@ void TestsToSave()
         TestFile >> StreamExtractionTest;
 
         #ifdef MEZZDEBUG
-        TheWorld->LogStream << "ShouldHaveXML: " << std::endl << ShouldHaveXML << std::endl
+        TheEntresol->LogStream << "ShouldHaveXML: " << std::endl << ShouldHaveXML << std::endl
                             << "ZippedFileContents: " << std::endl << ZippedFileContents << std::endl
                             << "File read from fstream: " << std::endl << TestFileString << std::endl ;
         #endif
 
         //if the above stuff was logged this should just work
         if( !Zippedptr->good() )
-            { TheWorld->Log("Zippedptr corrupted/broken by read call"); }
+            { TheEntresol->Log("Zippedptr corrupted/broken by read call"); }
 
         //this should just work
         Zippedptr->unget();
         if( !Zippedptr->good() )
-            { TheWorld->Log("Zippedptr corrupted/broken by unget() call"); }
+            { TheEntresol->Log("Zippedptr corrupted/broken by unget() call"); }
         else
         {
             Whole howfew = 500;
@@ -837,10 +837,10 @@ void TestsToSave()
             for (Whole c=0; c<howfew-1; c++)      //we already did one above -(1), we do not want to pad anything with a \0 (no +1), and we want exactly this many (< instead of <=)
                 { Zippedptr->unget(); }
             Zippedptr->read(temp, howfew);
-            TheWorld->LogStream << howfew << " ungets and " << howfew << " characters :" << temp;
+            TheEntresol->LogStream << howfew << " ungets and " << howfew << " characters :" << temp;
         }
 
-        TheWorld->LogStream << std::endl << "End first streaming test" << std::endl;
+        TheEntresol->LogStream << std::endl << "End first streaming test" << std::endl;
 
         try
             { XMLptr->putback('X'); }// as in :X
@@ -853,28 +853,28 @@ void TestsToSave()
 
     {
         #ifdef MEZZDEBUG
-        TheWorld->Log("Testing streaming on test.XML and zipped test.txt, Making fresh set of stream pointers");
+        TheEntresol->Log("Testing streaming on test.XML and zipped test.txt, Making fresh set of stream pointers");
         #endif
 
-        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.XML");
-        ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");
+        ResourceInputStream* XMLptr = TheEntresol->GetResourceManager()->GetResourceStream("test.XML");
+        ResourceInputStream* Zippedptr = TheEntresol->GetResourceManager()->GetResourceStream("test.txt");
 
         String Content("");
         (*XMLptr) >> Content;
-        TheWorld->LogStream << "Extracted: " << Content << std::endl;
+        TheEntresol->LogStream << "Extracted: " << Content << std::endl;
 
         if( !XMLptr->good() )
-            { TheWorld->Log("XMLptr corrupted/broken by >> call"); }
+            { TheEntresol->Log("XMLptr corrupted/broken by >> call"); }
         else
         {
-            TheWorld->Log("XMLptr fine after >> call");
-            TheWorld->Log("Getting some words with >> from Zippedptr:");
+            TheEntresol->Log("XMLptr fine after >> call");
+            TheEntresol->Log("Getting some words with >> from Zippedptr:");
             for (Whole c=0; c<=5; c++)
             {
                 String ZippedContent;
                 (*Zippedptr) >> ZippedContent;
-                TheWorld->LogStream << "Word " << c << ": " << ZippedContent;
-                TheWorld->Log();
+                TheEntresol->LogStream << "Word " << c << ": " << ZippedContent;
+                TheEntresol->Log();
             }
         }
 
@@ -882,20 +882,20 @@ void TestsToSave()
         delete Zippedptr;
 
         #ifdef MEZZDEBUG
-        TheWorld->Log("End streaming test2");
+        TheEntresol->Log("End streaming test2");
         #endif
     }
 
     {
         #ifdef MEZZDEBUG
-        TheWorld->Log("Testing streaming on test.XML with Mezzanine::XML::Document");
+        TheEntresol->Log("Testing streaming on test.XML with Mezzanine::XML::Document");
         #endif
 
-        ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.XML");
+        ResourceInputStream* XMLptr = TheEntresol->GetResourceManager()->GetResourceStream("test.XML");
         XML::Document TestDoc;
         XML::ParseResult ParsedXML = TestDoc.Load( *XMLptr );
 
-        TheWorld->LogStream << "XML::StatusOk :" << XML::StatusOk << std::endl
+        TheEntresol->LogStream << "XML::StatusOk :" << XML::StatusOk << std::endl
                             << "XML::StatusFileNotFound :" << XML::StatusFileNotFound << std::endl
                             << "XML::StatusIOError :" << XML::StatusIOError << std::endl
                             << "XML::StatusOutOfMemory :" << XML::StatusOutOfMemory << std::endl
@@ -916,98 +916,98 @@ void TestsToSave()
 
         if(ParsedXML.Status)
         {
-            TheWorld->Log("Successfully loaded and parsed test.XML");
+            TheEntresol->Log("Successfully loaded and parsed test.XML");
         }else{
-            TheWorld->LogStream << "Failed to load and parse test.XML. With Status :" << ParsedXML.Status;
+            TheEntresol->LogStream << "Failed to load and parse test.XML. With Status :" << ParsedXML.Status;
         }
 
-        TheWorld->Log("XML Streaming Test");
+        TheEntresol->Log("XML Streaming Test");
 
         Vector2 ASinglePoint(1,2);
-        TheWorld->Log("ASinglePoint:");
-        TheWorld->Log(ASinglePoint);
+        TheEntresol->Log("ASinglePoint:");
+        TheEntresol->Log(ASinglePoint);
 
-        TheWorld->Log("Streaming ASinglePoint to String Stream:");
+        TheEntresol->Log("Streaming ASinglePoint to String Stream:");
         StringStream XMLStringStream;
         XMLStringStream << ASinglePoint;
-        TheWorld->Log(XMLStringStream.str());
+        TheEntresol->Log(XMLStringStream.str());
 
         Vector2 ASecondPoint(0,0);
-        TheWorld->Log("ASecondPoint:");
-        TheWorld->Log(ASecondPoint);
+        TheEntresol->Log("ASecondPoint:");
+        TheEntresol->Log(ASecondPoint);
 
-        TheWorld->Log("ReStreaming ASinglePoint from stringStream, to ASecondPoint:");
+        TheEntresol->Log("ReStreaming ASinglePoint from stringStream, to ASecondPoint:");
         XMLStringStream >> ASecondPoint;
-        TheWorld->Log(ASecondPoint);
+        TheEntresol->Log(ASecondPoint);
 
         Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
-        TheWorld->Log("ASinglePlane:");
-        TheWorld->Log(ASinglePlane);
+        TheEntresol->Log("ASinglePlane:");
+        TheEntresol->Log(ASinglePlane);
 
-        TheWorld->Log("Streaming ASinglePlane to String Stream:");
+        TheEntresol->Log("Streaming ASinglePlane to String Stream:");
         StringStream XMLStringStream2;
         XMLStringStream2 << ASinglePlane;
-        TheWorld->Log(XMLStringStream2.str());
+        TheEntresol->Log(XMLStringStream2.str());
 
         Plane ASecondPlane(Vector3(0,0,0),0);
-        TheWorld->Log("ASecondPlane:");
-        TheWorld->Log(ASecondPlane);
+        TheEntresol->Log("ASecondPlane:");
+        TheEntresol->Log(ASecondPlane);
 
-        TheWorld->Log("ReStreaming ASinglePlane from stringStream, to ASecondPlane:");
+        TheEntresol->Log("ReStreaming ASinglePlane from stringStream, to ASecondPlane:");
         XMLStringStream2 >> ASecondPlane;
-        TheWorld->Log(ASecondPlane);
+        TheEntresol->Log(ASecondPlane);
 
         MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
-        TheWorld->Log("ASingleCode:");
-        TheWorld->Log(ASingleCode);
+        TheEntresol->Log("ASingleCode:");
+        TheEntresol->Log(ASingleCode);
 
-        TheWorld->Log("Streaming ASingleCode to String Stream:");
+        TheEntresol->Log("Streaming ASingleCode to String Stream:");
         StringStream XMLStringStream3;
         XMLStringStream3 << ASingleCode;
-        TheWorld->Log(XMLStringStream3.str());
+        TheEntresol->Log(XMLStringStream3.str());
 
         MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
-        TheWorld->Log("ASecondCode:");
-        TheWorld->Log(ASecondCode);
+        TheEntresol->Log("ASecondCode:");
+        TheEntresol->Log(ASecondCode);
 
         EventQuit AndOneEventToRuleThemAll;
-        TheWorld->Log("An EventQuit AndOneEventToRuleThemAll:");
-        TheWorld->Log(AndOneEventToRuleThemAll);
+        TheEntresol->Log("An EventQuit AndOneEventToRuleThemAll:");
+        TheEntresol->Log(AndOneEventToRuleThemAll);
         StringStream XMLStringStream4;
         XMLStringStream4 << AndOneEventToRuleThemAll;
         XMLStringStream4 >> AndOneEventToRuleThemAll;
 
         EventRenderTime TimingEvent(55);
         EventRenderTime TimingEvent2(0);
-        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2:");
-        TheWorld->Log(TimingEvent);
-        TheWorld->Log(TimingEvent2);
+        TheEntresol->Log("EventRenderTime TimingEvent and TimingEvent2:");
+        TheEntresol->Log(TimingEvent);
+        TheEntresol->Log(TimingEvent2);
         StringStream XMLStringStream5;
         XMLStringStream5 << TimingEvent;
         XMLStringStream5 >> TimingEvent2;
-        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2 After streaming:");
-        TheWorld->Log(TimingEvent);
-        TheWorld->Log(TimingEvent2);
+        TheEntresol->Log("EventRenderTime TimingEvent and TimingEvent2 After streaming:");
+        TheEntresol->Log(TimingEvent);
+        TheEntresol->Log(TimingEvent2);
 
-        TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
+        TheEntresol->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;
-        TheWorld->Log(ASecondCode);
+        TheEntresol->Log(ASecondCode);
 
         ColourValue AColour(1.0,1.0,1.0,1.0);
         ColourValue AnotherColour(0.5,0.5,0.5,0.5);
-        TheWorld->Log("A colour:");
-        TheWorld->Log(AColour);
-        TheWorld->Log("Another colour:");
-        TheWorld->Log(AnotherColour);
+        TheEntresol->Log("A colour:");
+        TheEntresol->Log(AColour);
+        TheEntresol->Log("Another colour:");
+        TheEntresol->Log(AnotherColour);
         StringStream XMLStringStream7;
         XMLStringStream7 << AColour;
         XMLStringStream7 >> AnotherColour;
-        TheWorld->Log("Another colour after streaming A colour to it:");
-        TheWorld->Log(AColour);
+        TheEntresol->Log("Another colour after streaming A colour to it:");
+        TheEntresol->Log(AColour);
 
 
         #ifdef MEZZDEBUG
-        TheWorld->Log("End of testing XML and Streaming test 3");
+        TheEntresol->Log("End of testing XML and Streaming test 3");
         #endif
     }
     //*/
