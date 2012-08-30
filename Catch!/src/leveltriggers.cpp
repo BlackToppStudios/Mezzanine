@@ -42,8 +42,8 @@ void BNS_Fan::ApplyTrigger()
 
     /*std::stringstream stream;
     stream << ;
-    World::GetWorldPointer()->LogString(stream.str());
-    World::GetWorldPointer()->DoMainLoopLogging();// */
+    Entresol::GetSingletonPtr()->LogString(stream.str());
+    Entresol::GetSingletonPtr()->DoMainLoopLogging();// */
 }
 
 Roll_Roll::Roll_Roll(const String& name, std::vector<Physics::HingeConstraint*>& TheRollers)
@@ -60,7 +60,7 @@ Roll_Roll::~Roll_Roll()
 
 void Roll_Roll::Rotate(Physics::HingeConstraint* RollerMotor)
 {
-    Real DeltaTime = World::GetWorldPointer()->GetFrameTime();
+    Real DeltaTime = Entresol::GetSingletonPtr()->GetFrameTime();
     Real DeltaAngle = 1.25 * DeltaTime;
     Real CurrentAngle = RollerMotor->GetHingeAngle();
     Real ActualAngle = DeltaAngle + ( CurrentAngle>0 ? CurrentAngle : -CurrentAngle );

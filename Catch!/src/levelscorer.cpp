@@ -10,7 +10,7 @@ LevelScorer::LevelScorer()
       NormalScore(0),
       LevelTargetTime(0)
 {
-    TheWorld = World::GetWorldPointer();
+    TheEntresol = Entresol::GetSingletonPtr();
     GameApp = CatchApp::GetCatchAppPointer();
 }
 

@@ -10,7 +10,7 @@
 LevelLoader::LevelLoader()
     : LevelToLoad("")
 {
-    TheWorld = World::GetWorldPointer();
+    TheEntresol = Entresol::GetSingletonPtr();
     GameApp = CatchApp::GetCatchAppPointer();
 }
 

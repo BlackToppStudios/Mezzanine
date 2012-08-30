@@ -167,7 +167,7 @@ void GSMMReturn::DoHoverItems()
 void GSMMReturn::DoActivateItems()
 {
     CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel("MainMenu");
-    World::GetWorldPointer()->BreakMainLoop();
+    Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
 void GSMMReturn::DoPreUpdateItems()
@@ -200,7 +200,7 @@ void GSRestart::DoActivateItems()
 {
     LevelLoader* Loader = CatchApp::GetCatchAppPointer()->GetLevelLoader();
     Loader->SetNextLevel(Loader->GetCurrentLevel());
-    World::GetWorldPointer()->BreakMainLoop();
+    Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
 void GSRestart::DoPreUpdateItems()
@@ -236,7 +236,7 @@ void MSStart::DoActivateItems()
         return;
     CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel(Select->GetName());
     TheGrid->ClearSelected();
-    World::GetWorldPointer()->BreakMainLoop();
+    Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
 void MSStart::DoPreUpdateItems()
@@ -268,7 +268,7 @@ void AllAppExit::DoHoverItems()
 void AllAppExit::DoActivateItems()
 {
     CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel("");
-    World::GetWorldPointer()->BreakMainLoop();
+    Entresol::GetSingletonPtr()->BreakMainLoop();
 }
 
 void AllAppExit::DoPreUpdateItems()

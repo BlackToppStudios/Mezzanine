@@ -27,7 +27,7 @@ CatchApp::CatchApp()
     CatchApp::TheRealCatchApp = this;
 
     try{
-        TheWorld = new World( "Data/", "FileSystem" );
+        TheEntresol = new Entresol( "Data/", "FileSystem" );
     }catch(...){
         throw;
     }
@@ -46,7 +46,7 @@ CatchApp::~CatchApp()
     delete Loader;
     delete Scorer;
     delete Shop;
-    delete TheWorld;
+    delete TheEntresol;
     CatchApp::TheRealCatchApp = NULL;
 }
 
@@ -751,7 +751,7 @@ int CatchApp::GetCatchin()
     this->VerifySettings();
 
     // Initialize the managers.
-	TheWorld->EngineInit(false);
+	TheEntresol->EngineInit(false);
 
 	this->CreateLoadingScreen();
 	this->ChangeState(CatchApp::Catch_Loading);
@@ -785,7 +785,7 @@ int CatchApp::GetCatchin()
         //    UIManager::GetSingletonPtr()->GetScreen("GameScreen")->Hide();
         //PhysicsManager::GetSingletonPtr()->PauseSimulation(true);
         //Start the Main Loop
-        TheWorld->MainLoop();
+        TheEntresol->MainLoop();
         this->UnloadLevel();
         LevelTimer->Stop();
     } while(Loader->HasALevelToLoad());
@@ -802,7 +802,7 @@ void CatchApp::PauseGame(bool Pause)
         return;
     if( !Pause && (GameScreen->GetWidget("GS_GameMenu")->IsVisible() || GameScreen->GetWidget("GS_ItemShop")->IsVisible()) )
         return;
-    TheWorld->PauseWorld(Pause);
+    TheEntresol->PauseWorld(Pause);
     if(Pause) LevelTimer->Stop();
     else LevelTimer->Start();
     if(EndTimer)
@@ -836,13 +836,13 @@ bool CatchApp::PostInput()
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
     CameraController* DefaultControl = CameraManager::GetSingletonPtr()->GetOrCreateCameraController(CameraManager::GetSingletonPtr()->GetCamera(0));
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || SysKeyboard->IsButtonPressed(Input::KEY_A))
-        DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->StrafeLeft(300 * (TheEntresol->GetFrameTime() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_RIGHT) || SysKeyboard->IsButtonPressed(Input::KEY_D))
-        DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->StrafeRight(300 * (TheEntresol->GetFrameTime() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_UP) || SysKeyboard->IsButtonPressed(Input::KEY_W))
-        DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->MoveForward(300 * (TheEntresol->GetFrameTime() * 0.001));
     if( SysKeyboard->IsButtonPressed(Input::KEY_DOWN)  || SysKeyboard->IsButtonPressed(Input::KEY_S))
-        DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->MoveBackward(300 * (TheEntresol->GetFrameTime() * 0.001));
     static bool MouseCam=false;
     if( SysKeyboard->IsButtonPressed(Input::KEY_HOME) )
         MouseCam=true;
@@ -880,12 +880,12 @@ bool CatchApp::PostUI()
     static RayQueryTool* RayQueryer = new RayQueryTool();
 
     //Queryer.GatherEvents();
-    TheWorld->Log("Mouse location From WorldQueryTool X/Y");
-    TheWorld->Log(SysMouse->GetWindowX());
-    TheWorld->Log(SysMouse->GetWindowY());
+    TheEntresol->Log("Mouse location X/Y");
+    TheEntresol->Log(SysMouse->GetWindowX());
+    TheEntresol->Log(SysMouse->GetWindowY());
     StringStream ButtonStream;
     ButtonStream << "Button State: " << SysMouse->GetButtonState(1);
-    TheWorld->Log(ButtonStream.str());
+    TheEntresol->Log(ButtonStream.str());
 
     static Physics::Point2PointConstraint* Dragger=NULL;
 
@@ -897,8 +897,8 @@ bool CatchApp::PostUI()
 
             Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,Mezzanine::WSO_ActorRigid);
             #ifdef MEZZDEBUG
-            TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
-            TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
+            TheEntresol->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
+            TheEntresol->Log("PlaneOfPlay"); TheEntresol->Log(PlaneOfPlay);
             #endif
 
             //ActorBase *temp = ClickOnActor->Actor;
@@ -907,16 +907,16 @@ bool CatchApp::PostUI()
             if(0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
                 #ifdef MEZZDEBUG
-                TheWorld->Log("No Actor Clicked on");
+                TheEntresol->Log("No Actor Clicked on");
                 #endif
             }else if(!IsInsideAnyStartZone(ClickOnActor->Actor)){
                 #ifdef MEZZDEBUG
-                TheWorld->Log("Actor is not in any starting zone");
+                TheEntresol->Log("Actor is not in any starting zone");
                 #endif
             }else{
                 #ifdef MEZZDEBUG
-                TheWorld->Log("Actor Clicked on");
-                TheWorld->Log(*ClickOnActor);
+                TheEntresol->Log("Actor Clicked on");
+                TheEntresol->Log(*ClickOnActor);
                 #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
                 {
@@ -936,13 +936,13 @@ bool CatchApp::PostUI()
                             LastActorThrown = rigid;
                         }else{  // since we don't
                             #ifdef MEZZDEBUG
-                            TheWorld->Log("Actor is not an ActorRigid.  Aborting.");
+                            TheEntresol->Log("Actor is not an ActorRigid.  Aborting.");
                             #endif
                         }
                     }
                 }else{
                     #ifdef MEZZDEBUG
-                    TheWorld->Log("Actor is Static/Kinematic.  Aborting.");
+                    TheEntresol->Log("Actor is Static/Kinematic.  Aborting.");
                     #endif
                 }
             }
@@ -952,14 +952,14 @@ bool CatchApp::PostUI()
             if (0 == DragTo)
             {
                 #ifdef MEZZDEBUG
-                TheWorld->Log("PlaneOfPlay Not Clicked on");
+                TheEntresol->Log("PlaneOfPlay Not Clicked on");
                 #endif
             }else{
                 if(Dragger && !firstframe)
                 {
                     #ifdef MEZZDEBUG
-                    TheWorld->Log("Dragged To");
-                    TheWorld->Log(*DragTo);
+                    TheEntresol->Log("Dragged To");
+                    TheEntresol->Log(*DragTo);
                     #endif
                     Dragger->SetPivotBLocation(*DragTo);
                 }
@@ -1010,8 +1010,8 @@ bool CatchApp::PostRender()
 	//Lets set a variable for the time
 	static Whole gametime = 0;
 
-	TheWorld->Log(String("---------- Starting PosterRender CallBack -------------"));
-    TheWorld->Log(String("Current Game Time "));
+	TheEntresol->Log(String("---------- Starting PosterRender CallBack -------------"));
+    TheEntresol->Log(String("Current Game Time "));
 
 	//getting a message from the event manager)
 	EventManager* EventMan = EventManager::GetSingletonPtr();
@@ -1023,7 +1023,7 @@ bool CatchApp::PostRender()
     {
         LastFrame = CurrentTime->getMilliSecondsSinceLastFrame();
 
-        TheWorld->Log(gametime);
+        TheEntresol->Log(gametime);
         gametime+=CurrentTime->getMilliSecondsSinceLastFrame();
 
         delete CurrentTime;

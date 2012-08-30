@@ -10,7 +10,7 @@ class CatchApp;
 class LevelLoader
 {
     protected:
-        World* TheWorld;
+        Entresol* TheEntresol;
         CatchApp* GameApp;
         String LevelToLoad;
         String CurrentLevel;

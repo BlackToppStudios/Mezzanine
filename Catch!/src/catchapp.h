@@ -27,7 +27,7 @@ class CatchApp
 
         bool Paused;
 
-        World* TheWorld;
+        Entresol* TheEntresol;
         ProfileManager* Profiles;
         LevelLoader* Loader;
         LevelScorer* Scorer;

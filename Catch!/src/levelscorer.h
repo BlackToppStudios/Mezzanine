@@ -19,7 +19,7 @@ struct ScoreAreaCache
 class LevelScorer
 {
     protected:
-        World* TheWorld;
+        Entresol* TheEntresol;
         CatchApp* GameApp;
         Whole NormalScore;
         Whole BonusScore;
