@@ -53,7 +53,9 @@ namespace Mezzanine
             : CellGrid(name,Rect,parent),
               HScrollVal(0.0),
               VScrollVal(0.0),
-              AutoHide(true)
+              AutoHide(true),
+              ScrollXHiding(true),
+              ScrollYHiding(true)
         {
             Paging = CG_Scrolled;
             RenderableRect HoriRect;
@@ -103,6 +105,7 @@ namespace Mezzanine
                 CurrentPos+=FixedCellSize.Y;
                 if(CurrentPos >= TargetYPos)
                     return X;
+                CurrentPos+=CellSpacing.Y;
             }
         }
 
@@ -110,17 +113,13 @@ namespace Mezzanine
         {
             Whole TargetXPos = (WorkAreaLimits.X - GetActualSize().X) * ScrollPos;
             Whole CurrentPos = 0;
-            Whole MaxColumns = 0;
-            for( std::vector<CellVector*>::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
-            {
-                if(MaxColumns < (*it)->size())
-                    MaxColumns = (*it)->size();
-            }
+            Whole MaxColumns = GetMaxColumns();
             for( Whole X = 0 ; X < MaxColumns ; X++ )
             {
                 CurrentPos+=FixedCellSize.X;
                 if(CurrentPos >= TargetXPos)
                     return X;
+                CurrentPos+=CellSpacing.X;
             }
         }
 
@@ -139,11 +138,29 @@ namespace Mezzanine
                 VisibleCells[X]->Hide();
             VisibleCells.clear();
 
-            HScrollVal = HorizontalScroll->GetScrollerValue();
-            VScrollVal = VerticalScroll->GetScrollerValue();
+            Whole CurrentRow = 0;
+            Whole CurrentColumn = 0;
+            if( GetMaxRows() > GetMaxYCellsPresentable() )
+            {
+                ScrollYHiding = false;
+                if(Visible && AutoHide)
+                    VerticalScroll->Show();
+                CurrentRow = FindTopRow( VerticalScroll->GetScrollerValue() );
+            }else{
+                ScrollYHiding = true;
+                VerticalScroll->Hide();
+            }
+            if( GetMaxColumns() > GetMaxXCellsPresentable() )
+            {
+                ScrollXHiding = false;
+                if(Visible && AutoHide)
+                    HorizontalScroll->Show();
+                CurrentColumn = FindLeftColumn( HorizontalScroll->GetScrollerValue() );
+            }else{
+                ScrollXHiding = true;
+                HorizontalScroll->Hide();
+            }
 
-            Whole CurrentRow = FindTopRow(VScrollVal);
-            Whole CurrentColumn = FindLeftColumn(HScrollVal);
             const Whole StartRow = CurrentRow;
             const Whole StartColumn = CurrentColumn;
 
@@ -247,9 +264,20 @@ namespace Mezzanine
 
         void ScrolledCellGrid::SetVisibleImpl(bool visible)
         {
-            /// @todo Currently this disregards auto-hides.  Something should be implemented to account for that.
-            HorizontalScroll->SetVisible(visible);
-            VerticalScroll->SetVisible(visible);
+            if( !AutoHide )
+            {
+                HorizontalScroll->SetVisible(visible);
+                VerticalScroll->SetVisible(visible);
+            }else{
+                if( !ScrollXHiding )
+                {
+                    HorizontalScroll->SetVisible(visible);
+                }
+                if( !ScrollYHiding )
+                {
+                    VerticalScroll->SetVisible(visible);
+                }
+            }
             CellGrid::SetVisibleImpl(visible);
         }
 

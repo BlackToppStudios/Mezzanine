@@ -61,6 +61,8 @@ namespace Mezzanine
                 Real HScrollVal;
                 Real VScrollVal;
                 bool AutoHide;
+                bool ScrollXHiding;
+                bool ScrollYHiding;
                 UI::Scrollbar* HorizontalScroll;
                 UI::Scrollbar* VerticalScroll;
                 /// @brief Gets the top row to be rendered based on the scroller position.

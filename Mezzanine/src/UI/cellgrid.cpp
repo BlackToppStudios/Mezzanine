@@ -108,6 +108,32 @@ namespace Mezzanine
             ParentScreen->DestroyBasicRenderable(GridBack);
         }
 
+        Whole CellGrid::GetMaxXCellsPresentable()
+        {
+            Whole MaxColumns = GetMaxColumns();
+            Vector2 ActSize = GetActualSize();
+            Real Size = 0;
+            for( Whole X = 0 ; X < MaxColumns ; ++X )
+            {
+                if( ActSize.X > Size + FixedCellSize.X + CellSpacing.X ) Size += (FixedCellSize.X + CellSpacing.X);
+                else if( ActSize.X > Size + FixedCellSize.X ) return X + 1;
+                else return X;
+            }
+        }
+
+        Whole CellGrid::GetMaxYCellsPresentable()
+        {
+            Whole MaxRows = GetMaxRows();
+            Vector2 ActSize = GetActualSize();
+            Real Size = 0;
+            for( Whole Y = 0 ; Y < MaxRows ; ++Y )
+            {
+                if( ActSize.Y > Size + FixedCellSize.Y + CellSpacing.Y ) Size += (FixedCellSize.Y + CellSpacing.Y);
+                else if( ActSize.Y > Size + FixedCellSize.Y ) return Y + 1;
+                else return Y;
+            }
+        }
+
         Whole CellGrid::GetMaxRows()
         {
             return TheGrid.size();

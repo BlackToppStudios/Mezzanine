@@ -92,6 +92,10 @@ namespace Mezzanine
                 CellList Cells;
                 CellVector VisibleCells;
                 std::vector<CellVector*> TheGrid;
+                /// @brief Gets the maximum cells that can be shown with the current dimensions.
+                virtual Whole GetMaxXCellsPresentable();
+                /// @brief Gets the maximum cells that can be shown with the current dimensions.
+                virtual Whole GetMaxYCellsPresentable();
                 /// @brief Gets the max number of rows in the grid.
                 virtual Whole GetMaxRows();
                 /// @brief Gest the max number of columns in the grid.
