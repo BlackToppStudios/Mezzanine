@@ -375,7 +375,7 @@ int PrintList()
 //This next block of code creates a minimal engine environment for testing managers and other ngine components
 using namespace Mezzanine;
 
-World *TheWorld;
+Entresol* TheEntresol;
 Mezzanine::UI::Caption *TheTextW1;
 Mezzanine::UI::Caption *TheTextB1;
 Mezzanine::UI::Caption *TheTextW2;
@@ -389,8 +389,8 @@ void StartEngine()
 {
     PhysicsConstructionInfo Info;
     Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-    TheWorld = new World(Info,SceneManager::Generic,"plugins.cfg","data/");
-    TheWorld->GameInit(false);
+    TheEntresol = new Entresol(Info,SceneManager::Generic,"plugins.cfg","data/");
+    TheEntresol->GameInit(false);
     ResourceManager::GetSingletonPtr()->AddResourceLocation("data", "FileSystem", "files", false);
     GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
     UIManager::GetSingletonPtr()->LoadMTA("dejavu");
@@ -398,13 +398,13 @@ void StartEngine()
     Mezzanine::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
     Mezzanine::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
 
-    Mezzanine::World::GetWorldPointer()->Log("Found Resolutions:");
-    const std::vector<String>* Resolutions = Mezzanine::World::GetWorldPointer()->GetGraphicsManager()->GetSupportedResolutions();
+    Mezzanine::Entresol::GetSingletonPtr()->Log("Found Resolutions:");
+    const std::vector<String>* Resolutions = Mezzanine::Entresol::GetSingletonPtr()->GetGraphicsManager()->GetSupportedResolutions();
     for (Whole Count=0; Count<Resolutions->size(); ++Count)
     {
-        Mezzanine::World::GetWorldPointer()->Log(Resolutions->at(Count));
+        Mezzanine::Entresol::GetSingletonPtr()->Log(Resolutions->at(Count));
     }
-    Mezzanine::World::GetWorldPointer()->CommitLog();
+    Mezzanine::Entresol::GetSingletonPtr()->CommitLog();
 
     TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),UI::RenderableRect(Vector2(0.0016,0.603),Vector2(1,0.25),true), (Whole)24, TheMessage);
     TheTextB1->SetTextColour(ColourValue::Black());
@@ -451,7 +451,7 @@ TimerEnding* CountDownCallback;
 void StopEngine()
 {
     delete CountDownCallback;
-    delete TheWorld;
+    delete TheEntresol;
     crossplatform::WaitMilliseconds(1000); // Ogre spawns some stuff in a seperate thread this is more then enough time for it to finish
 }
 

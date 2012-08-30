@@ -96,7 +96,7 @@ class WorldNodeTests : public UnitTestGroup
                         { AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     StartCountdown(2);
-                    TheWorld->MainLoop();
+                    TheEntresol->MainLoop();
                 }catch(Ogre::Exception e){
                     std::cerr << "Ogre::Exception" << e.what() << std::endl;
                 }catch(Exception e){

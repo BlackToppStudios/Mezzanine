@@ -109,7 +109,7 @@ class ParticleEffectTests : public UnitTestGroup
                         { AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Success, UnitTestGroup::OverWriteIfMoreSuccessful); }
 
                     StartCountdown(2);
-                    TheWorld->MainLoop();
+                    TheEntresol->MainLoop();
                 }catch(Ogre::Exception e){
                     std::cerr << "Ogre::Exception" << e.what() << std::endl;
                 }catch(Exception e){
