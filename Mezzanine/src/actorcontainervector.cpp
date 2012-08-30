@@ -171,7 +171,7 @@ namespace Mezzanine
     }
 
     ///////////////////////////////////////////////////////////////////////////////////
-    // WorldGetSet/ManagerBase Members
+    // ManagerBase Members
     ///////////////////////////////////
     World* ActorContainerVector::GetGameWorld() const
         { return this->GameWorld; }
