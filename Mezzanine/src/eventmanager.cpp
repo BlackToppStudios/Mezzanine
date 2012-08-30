@@ -45,7 +45,7 @@
 //There will be an instance of this class in the world.
 ///////////////////////////////////////
 
-#include "world.h"
+#include "entresol.h"
 #include "eventmanager.h"
 #include "eventbase.h"
 #include "eventcollision.h"
@@ -257,7 +257,7 @@ namespace Mezzanine
         }
         this->_Data = new Internal::EventManagerInternalData;
 
-        //this->GameWorld = World::GetWorldPointer();
+        //this->GameWorld = Entresol::GetSingletonPtr();
     }
 
 #ifdef MEZZXML
@@ -440,8 +440,8 @@ namespace Mezzanine
                     break;
 
                 default:                //Never thrown by SDL, but could be added by a user
-                    //World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
-                    World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
+                    //Entresol::GetSingletonPtr()->LogAndThrow("Unknown SDL Event Inserted.");
+                    Entresol::GetSingletonPtr()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
                     break;
             }
             //free(FromSDLRaw); //Does this need to Happen?
@@ -451,13 +451,13 @@ namespace Mezzanine
             { this->_Data->DropAllKeyPresses(); }//*/
 
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("User Input entered this Frame");
+        Entresol::GetSingletonPtr()->Log("User Input entered this Frame");
         for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
         {
-            World::GetWorldPointer()->Log(*LIter);
+            Entresol::GetSingletonPtr()->Log(*LIter);
         }
-        World::GetWorldPointer()->Log("End Of User Input entered this Frame");
-        World::GetWorldPointer()->DoMainLoopLogging();
+        Entresol::GetSingletonPtr()->Log("End Of User Input entered this Frame");
+        Entresol::GetSingletonPtr()->DoMainLoopLogging();
         #endif
 
         //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event

@@ -42,7 +42,7 @@
 
 #include "matrix4x4.h"
 #include "mathtool.h"
-#include "world.h"
+#include "entresol.h"
 
 #include <OgreMatrix3.h>
 #include <OgreMatrix4.h>

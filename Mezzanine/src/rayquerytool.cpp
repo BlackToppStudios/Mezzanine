@@ -44,7 +44,6 @@ using namespace std;
 
 #include "rayquerytool.h"
 #include "actorbase.h"
-#include "actorcontainerbase.h"
 #include "actormanager.h"
 #include "graphicsmanager.h"
 #include "eventmanager.h"
@@ -183,7 +182,7 @@ namespace Mezzanine
     {
         VerifyRayQuery();
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
+        Entresol::GetSingletonPtr()->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
         #endif
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
@@ -238,7 +237,7 @@ namespace Mezzanine
         VerifyRayQuery();
         //#define MEZZDEBUG
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
+        Entresol::GetSingletonPtr()->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
         #endif
         try{
             Vector3 u = QueryRay.To - QueryRay.From;
@@ -247,7 +246,7 @@ namespace Mezzanine
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.");
+                Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.");
                 #endif
                 return 0;
             }
@@ -267,7 +266,7 @@ namespace Mezzanine
             }
 
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
+            Entresol::GetSingletonPtr()->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
             #endif
 
             Vector3 w = QueryRay.From - p0;
@@ -286,7 +285,7 @@ namespace Mezzanine
                 else
                 {
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.");
+                    Entresol::GetSingletonPtr()->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.");
                     #endif
                     return 0;
                 }
@@ -297,7 +296,7 @@ namespace Mezzanine
             if(sI < 0 || sI > 1) //checks if the ray is too long
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.");
+                Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.");
                 #endif
                 return 0;
             }
@@ -305,7 +304,7 @@ namespace Mezzanine
             Vector3 test =  Vector3(QueryRay.From + (u * sI));
 
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z << endl;
+            Entresol::GetSingletonPtr()->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z << endl;
             #endif
 
             Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
@@ -315,20 +314,20 @@ namespace Mezzanine
             if(distance > QueryRay.From.Distance(QueryRay.To))
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.");
+                Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.");
                 #endif
                 return 0;
             }
 
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Distance:" << distance << endl;
+            Entresol::GetSingletonPtr()->LogStream << "Distance:" << distance << endl;
             #endif
 
             return return_vector;
         } catch(exception e) {
             //In case we divide b
-            World::GetWorldPointer()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
-            World::GetWorldPointer()->Log(e.what());
+            Entresol::GetSingletonPtr()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
+            Entresol::GetSingletonPtr()->Log(e.what());
             return 0;
         }
     }

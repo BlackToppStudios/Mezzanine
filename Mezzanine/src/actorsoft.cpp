@@ -50,7 +50,7 @@
 
 #include "Internal/meshtools.h.cpp"
 #include "objectreference.h"
-#include "world.h"
+#include "entresol.h"
 #include "physicsmanager.h"
 #include "scenemanager.h"
 #include "actorsoft.h"

@@ -113,7 +113,7 @@ namespace Mezzanine
             return;
         /*if( ( this->GetType() >= Mezzanine::WSO_AEFirst && this->GetType() <= Mezzanine::WSO_AELast ) &&
             ( Target->GetType() >= Mezzanine::WSO_AEFirst && Target->GetType() <= Mezzanine::WSO_AELast ) ) //do not permit AE's to attach to other AE's
-            World::GetWorldPointer()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects."));//*/
+            Entresol::GetSingletonPtr()->LogAndThrow(Exception("Cannot attach AreaEffects to other AreaEffects."));//*/
         if(Target->Parent)
         {
             if(Target->Parent == this) return;

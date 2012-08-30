@@ -60,7 +60,7 @@
 #include "Physics/compoundcollisionshape.h"
 
 // For logging
-#include "world.h"
+#include "entresol.h"
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -659,8 +659,8 @@ namespace Mezzanine
 
             std::stringstream logstream;
             logstream << "Serializing Shape: " << Shape->GetName();
-            World::GetWorldPointer()->Log(logstream.str());
-            World::GetWorldPointer()->DoMainLoopLogging();
+            Entresol::GetSingletonPtr()->Log(logstream.str());
+            Entresol::GetSingletonPtr()->DoMainLoopLogging();
 
             BulletSerializer->registerNameForPointer((void*)Shape->GetBulletShape(),(*it).first.c_str());
             int len = Shape->GetBulletShape()->calculateSerializeBufferSize();

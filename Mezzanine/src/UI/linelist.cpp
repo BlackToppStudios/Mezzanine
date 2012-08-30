@@ -46,7 +46,7 @@
 #include "UI/vertex.h"
 #include "uienumerations.h"
 #include "UI/viewportupdatetool.h"
-#include "world.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {

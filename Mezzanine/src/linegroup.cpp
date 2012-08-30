@@ -42,7 +42,7 @@
 
 #include "linegroup.h"
 #include "scenemanager.h"
-#include "world.h"
+#include "entresol.h"
 
 #include <Ogre.h>
 #include <vector>
@@ -301,9 +301,8 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Mezzanine::LineGroup
 ///////////////////////////////////////
-    LineGroup::LineGroup(World *Parent_)
+    LineGroup::LineGroup()
     {
-        this->Parent = Parent_;
         this->LineData = new Internal::Line3D();
     }
 

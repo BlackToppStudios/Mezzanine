@@ -47,7 +47,7 @@
 #include "physicsmanager.h"
 #include "scenemanager.h"
 #include "worldnode.h"
-#include "world.h"
+#include "entresol.h"
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"

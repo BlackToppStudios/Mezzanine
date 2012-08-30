@@ -60,7 +60,7 @@ namespace Mezzanine
         std::streambuf* OgreDataStreamBuf::setbuf (char* s, std::streamsize n)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::setbuf()");
+            Entresol::GetSingletonPtr()->Log("Entering OgreDataStreamBuf::setbuf()");
             #endif
 
             if ( 0==n ) //They want unbuffered input, well they can't have it
@@ -85,7 +85,7 @@ namespace Mezzanine
         std::streampos OgreDataStreamBuf::seekoff ( std::streamoff off, std::ios_base::seekdir way, std::ios_base::openmode which)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekoff()");
+            Entresol::GetSingletonPtr()->Log("Entering OgreDataStreamBuf::seekoff()");
             #endif
             if (std::ios_base::out & which)
                 { return -1; }
@@ -94,19 +94,19 @@ namespace Mezzanine
             {
                 case std::ios_base::beg :
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via Begin seek logic");
+                    Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::seekoff() via Begin seek logic");
                     #endif
                     return this->seekpos((std::streampos)off,which);
 
                 case std::ios_base::cur :
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
+                    Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::seekoff() via current location seek logic");
                     #endif
                     return this->seekpos(this->GetCurrentLocation()+off,which);
 
                 case std::ios_base::end :
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekoff() via end seek logic");
+                    Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::seekoff() via end seek logic");
                     #endif
                     return this->seekpos((this->OgreStream->size()-1)+off, which);
 
@@ -119,7 +119,7 @@ namespace Mezzanine
         std::streampos OgreDataStreamBuf::seekpos ( std::streampos sp, std::ios_base::openmode which )
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::seekpos()");
+            Entresol::GetSingletonPtr()->Log("Entering OgreDataStreamBuf::seekpos()");
             #endif
             if (std::ios_base::out & which)
                 { return -1; }
@@ -132,7 +132,7 @@ namespace Mezzanine
             }
 
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::seekpos()");
+            Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::seekpos()");
             #endif
             return sp;
         }
@@ -141,18 +141,18 @@ namespace Mezzanine
         std::streamsize OgreDataStreamBuf::showmanyc (void)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::showmanyc()");
+            Entresol::GetSingletonPtr()->Log("Entering OgreDataStreamBuf::showmanyc()");
             #endif
             if(0==this->OgreStream->size())
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::showmanyc() returning -1");
+                Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::showmanyc() returning -1");
                 #endif
                 //Ogre Docs state 0 is a special case
                 return -1;
             }else{
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::showmanyc() returning " << this->OgreStream->size();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::showmanyc() returning " << this->OgreStream->size();
                 #endif
                 return static_cast<signed int>(this->OgreStream->size()-this->GetCurrentLocation());
             }
@@ -161,7 +161,7 @@ namespace Mezzanine
         std::streamsize OgreDataStreamBuf::xsgetn(char* s, std::streamsize n)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::xsgetn(char* s=" << Toint(s) << ", std::streamsize n=" << n << ")"; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::xsgetn(char* s=" << Toint(s) << ", std::streamsize n=" << n << ")"; Entresol::GetSingletonPtr()->Log();
             #endif
 
             bool Fail=false;
@@ -187,13 +187,13 @@ namespace Mezzanine
                 std::streamsize BytesRetrieved = this->OgreStream->read(s,HowManyToRead);
                 this->SetInternalBuffer(Current+BytesRetrieved);
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Current+BytesRetrieved << ") and returning " << BytesRetrieved; World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() After calling this->SetInternalBuffer(" << Current+BytesRetrieved << ") and returning " << BytesRetrieved; Entresol::GetSingletonPtr()->Log();
                 #endif
                 return BytesRetrieved;
             }else{
                 #ifdef MEZZDEBUG
 
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() and returning EOF"; World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::xsgetn() and returning EOF"; Entresol::GetSingletonPtr()->Log();
                 #endif
                 return traits_type::eof();
             }
@@ -202,7 +202,7 @@ namespace Mezzanine
         int OgreDataStreamBuf::underflow()
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::underflow()");
+            Entresol::GetSingletonPtr()->Log("Entering OgreDataStreamBuf::underflow()");
             #endif
 
             Whole Destination = this->GetCurrentLocation();
@@ -216,12 +216,12 @@ namespace Mezzanine
             if( this->OgreStream->tell()<=OrigReadPosition )        //we either couldn't advance the read position or moved it backwards
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After a failure");
+                Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::underflow() After a failure");
                 #endif
                 return traits_type::eof();
             }else{
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::underflow() After performing requested loading");
+                Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::underflow() After performing requested loading");
                 #endif
                 return Toint(this->gptr());
             }
@@ -231,7 +231,7 @@ namespace Mezzanine
         /*int OgreDataStreamBuf::uflow()
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::uflow()");
+            Entresol::GetSingletonPtr()->Log("Entering/exiting OgreDataStreamBuf::uflow()");
             #endif
             return underflow();
         }*/
@@ -239,19 +239,19 @@ namespace Mezzanine
         int OgreDataStreamBuf::pbackfail ( int c )
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering OgreDataStreamBuf::pbackfail()");
+            Entresol::GetSingletonPtr()->Log("Entering OgreDataStreamBuf::pbackfail()");
             #endif
             Whole Destination = this->GetCurrentLocation()-1;
             if(this->CheckStream(Destination))
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() after backing up once");
+                Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::pbackfail() after backing up once");
                 #endif
                 this->SetInternalBuffer(Destination);
                 return Toint(this->gptr());
             }else{
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::pbackfail() with failure");
+                Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::pbackfail() with failure");
                 #endif
                 return traits_type::eof();
             }
@@ -260,25 +260,25 @@ namespace Mezzanine
         std::streamsize OgreDataStreamBuf::xsputn(const char_type* s, std::streamsize n)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::xsputn(const char_type* s, std::streamsize n)");
+            Entresol::GetSingletonPtr()->Log("Entering/exiting OgreDataStreamBuf::xsputn(const char_type* s, std::streamsize n)");
             #endif
-            World::GetWorldPointer()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
+            Entresol::GetSingletonPtr()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
             return -1;
         }
 
         int OgreDataStreamBuf::overflow ( int c )
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Entering/exiting OgreDataStreamBuf::overflow()");
+            Entresol::GetSingletonPtr()->Log("Entering/exiting OgreDataStreamBuf::overflow()");
             #endif
-            World::GetWorldPointer()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
+            Entresol::GetSingletonPtr()->Log("Cannot write to an Ogre::DataStream, with OgreDataStreamBuf");
             return -1;
         }
 
         void OgreDataStreamBuf::SetInternalBuffer(const std::streampos& Destination)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer( streampos Destination=" << Destination <<" )" ; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer( streampos Destination=" << Destination <<" )" ; Entresol::GetSingletonPtr()->Log();
             #endif
 
             if( Destination < 0)                                                            // Basic Error Checking
@@ -311,7 +311,7 @@ namespace Mezzanine
                 else                                                                            //not likely, this thin is some wierd size, and must be nuked
                 {
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log("Mysterious Buffer Size, Deleting and creating fresh" ) ;
+                    Entresol::GetSingletonPtr()->Log("Mysterious Buffer Size, Deleting and creating fresh" ) ;
                     #endif
                     delete [] this->eback();
                     this->setg(0,0,0);
@@ -319,7 +319,7 @@ namespace Mezzanine
                 }
             }
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->Log("Exiting OgreDataStreamBuf::SetInternalBuffer( streampos )" ) ;
+            Entresol::GetSingletonPtr()->Log("Exiting OgreDataStreamBuf::SetInternalBuffer( streampos )" ) ;
             #endif
         }
 
@@ -327,7 +327,7 @@ namespace Mezzanine
         void OgreDataStreamBuf::SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const streampos& Destination)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer(char* BeginPtr=" << Tounsignedint(BeginPtr) << ", Whole BufferSize=" << BufferSize << ", streampos::Destination=" << Destination << ")"; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer(char* BeginPtr=" << Tounsignedint(BeginPtr) << ", Whole BufferSize=" << BufferSize << ", streampos::Destination=" << Destination << ")"; Entresol::GetSingletonPtr()->Log();
             #endif
             if (this->SeekBackOnload > (this->MaxSeekBack * BufferSize) )
                 { this->SeekBackOnload = this->MaxSeekBack * BufferSize; }
@@ -336,21 +336,21 @@ namespace Mezzanine
             if (Destination<this->SeekBackOnload)                                           //But wait are we too close to the beginning?
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::SetInternalBuffer(char*,Whole,streampos) calling SetInternalBuffer(char*,Whole,streampos,streampos) because we were too close to the beginning of the stream. " ; World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::SetInternalBuffer(char*,Whole,streampos) calling SetInternalBuffer(char*,Whole,streampos,streampos) because we were too close to the beginning of the stream. " ; Entresol::GetSingletonPtr()->Log();
                 #endif
                 this->SetInternalBuffer(BeginPtr, BufferSize, Destination, Destination);
             }
             else if (StreamSize-(BufferSize-this->SeekBackOnload)<Destination)              //Or maybe too close to the end?
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::SetInternalBuffer(char*,Whole,streampos) calling SetInternalBuffer(char*,Whole,streampos,streampos) because we were too close to the end of the stream. Determined by (StreamSize-(BufferSize-this->SeekBackOnload) < Destination)/("<< StreamSize << "-(" << BufferSize << "-" << this->SeekBackOnload << ") < " << Destination << ")" ; World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::SetInternalBuffer(char*,Whole,streampos) calling SetInternalBuffer(char*,Whole,streampos,streampos) because we were too close to the end of the stream. Determined by (StreamSize-(BufferSize-this->SeekBackOnload) < Destination)/("<< StreamSize << "-(" << BufferSize << "-" << this->SeekBackOnload << ") < " << Destination << ")" ; Entresol::GetSingletonPtr()->Log();
                 #endif
                 this->SetInternalBuffer(BeginPtr, BufferSize, Destination, this->LoadAtOnce-(static_cast<streampos>(StreamSize)-Destination) );
             }
             else                                                                            //We must be in the middle
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::SetInternalBuffer(char*,Whole,streampos) calling SetInternalBuffer(char*,Whole,streampos,streampos) because we were in the middle of the stream. " ; World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::SetInternalBuffer(char*,Whole,streampos) calling SetInternalBuffer(char*,Whole,streampos,streampos) because we were in the middle of the stream. " ; Entresol::GetSingletonPtr()->Log();
                 #endif
                 this->SetInternalBuffer(BeginPtr, BufferSize, Destination, this->SeekBackOnload);
             }
@@ -359,7 +359,7 @@ namespace Mezzanine
         void OgreDataStreamBuf::SetInternalBuffer(char* BeginPtr, const Whole& BufferSize, const streampos& Destination, const streampos& BackFill)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer(BeginPtr=" << Tounsignedint(BeginPtr) << ", BufferSize=" << BufferSize << ", Destination=" << Destination << ", BackFill=" << BackFill << ")" ; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::SetInternalBuffer(BeginPtr=" << Tounsignedint(BeginPtr) << ", BufferSize=" << BufferSize << ", Destination=" << Destination << ", BackFill=" << BackFill << ")" ; Entresol::GetSingletonPtr()->Log();
             #endif
             this->OgreStream->seek(Destination-BackFill);
             this->OgreStream->read(BeginPtr, BufferSize);
@@ -369,13 +369,13 @@ namespace Mezzanine
         bool OgreDataStreamBuf::CheckInternalBuffer(const streampos& BeginPoint, const streampos& EndPoint)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::CheckInternalBuffer( streampos " << BeginPoint << ", streampos " << EndPoint << " )"; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::CheckInternalBuffer( streampos " << BeginPoint << ", streampos " << EndPoint << " )"; Entresol::GetSingletonPtr()->Log();
             #endif
 
             if (this->egptr() == 0 || this->egptr() == 0 || this->eback())
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=0 NoBuffer";World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=0 NoBuffer"; Entresol::GetSingletonPtr()->Log();
                 #endif
                 return false;
             }
@@ -387,14 +387,14 @@ namespace Mezzanine
             if ( CharBufferEnd < CharBufferStart)
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=false (Begin of corrupt buffer)";World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer()=false (Begin of corrupt buffer)"; Entresol::GetSingletonPtr()->Log();
                 #endif
                 return false;
             }
 
             Whole BufferSize = CharBufferStart - CharBufferEnd;
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Raw Pointers - CharBufferStart=" << Tounsignedint(CharBufferStart) << ", CharBufferEnd=" << Tounsignedint(CharBufferEnd) << " and BufferSize=" << BufferSize; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Raw Pointers - CharBufferStart=" << Tounsignedint(CharBufferStart) << ", CharBufferEnd=" << Tounsignedint(CharBufferEnd) << " and BufferSize=" << BufferSize; Entresol::GetSingletonPtr()->Log();
             #endif
 
             // This function assumes that the cursor in the Ogre stream is the equal to egptr()
@@ -402,8 +402,8 @@ namespace Mezzanine
             Whole BufferEnd = this->OgreStream->tell();
             Whole BufferStart = BufferEnd - BufferSize;
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Stream Locations - BufferStart=" << BufferStart << ", BufferEnd=" << BufferEnd << ", Stream End=" << this->OgreStream->size() ;
-            World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Stream Locations - BufferStart=" << BufferStart << ", BufferEnd=" << BufferEnd << ", Stream End=" << this->OgreStream->size() ;
+            Entresol::GetSingletonPtr()->Log();
             #endif
 
             if( BufferStart<BeginPoint && BeginPoint<BufferEnd )
@@ -411,18 +411,18 @@ namespace Mezzanine
                 if( 0==EndPoint || (BufferStart<BeginPoint && BeginPoint<BufferEnd) )
                 {
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning True" ; World::GetWorldPointer()->Log();
+                    Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning True" ; Entresol::GetSingletonPtr()->Log();
                     #endif
                     return true;
                 }else{
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning False" ; World::GetWorldPointer()->Log();
+                    Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning False" ; Entresol::GetSingletonPtr()->Log();
                     #endif
                     return false;
                 }
             }else{
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning False" ; World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::CheckInternalBuffer() - Returning False" ; Entresol::GetSingletonPtr()->Log();
                 #endif
                 return false;
             }
@@ -431,8 +431,8 @@ namespace Mezzanine
         bool OgreDataStreamBuf::CheckStream(const Whole& BeginPoint, const Whole& EndPoint)
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::CheckStream( Whole " << BeginPoint << ", Whole " << EndPoint << " )" ;
-            World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::CheckStream( Whole " << BeginPoint << ", Whole " << EndPoint << " )" ;
+            Entresol::GetSingletonPtr()->Log();
             #endif
 
             if( 0<=BeginPoint && BeginPoint<=this->OgreStream->size() )
@@ -440,18 +440,18 @@ namespace Mezzanine
                 if( 0==EndPoint || (0<=BeginPoint && BeginPoint<=this->OgreStream->size()) )
                 {
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning True" );
+                    Entresol::GetSingletonPtr()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning True" );
                     #endif
                     return true;
                 }else{
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning False" );
+                    Entresol::GetSingletonPtr()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning False" );
                     #endif
                     return false;
                 }
             }else{
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning False");
+                Entresol::GetSingletonPtr()->Log( "Exiting OgreDataStreamBuf::CheckStream() - Returning False");
                 #endif
                 return false;
             }
@@ -470,19 +470,19 @@ namespace Mezzanine
         Whole OgreDataStreamBuf::GetCurrentLocation()
         {
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Entering OgreDataStreamBuf::GetCurrentLocation()"; World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Entering OgreDataStreamBuf::GetCurrentLocation()"; Entresol::GetSingletonPtr()->Log();
             #endif
 
             if (this->gptr()==0 || this->egptr()==0 || this->eback()==0 )
             {
                 #ifdef MEZZDEBUG
-                World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::GetCurrentLocation()=0";World::GetWorldPointer()->Log();
+                Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::GetCurrentLocation()=0"; Entresol::GetSingletonPtr()->Log();
                 #endif
                 return 0;
             }
 
             #ifdef MEZZDEBUG
-            World::GetWorldPointer()->LogStream << "Exiting OgreDataStreamBuf::GetCurrentLocation() =" << (this->OgreStream->tell() - (this->egptr()-this->gptr())); World::GetWorldPointer()->Log();World::GetWorldPointer()->Log();
+            Entresol::GetSingletonPtr()->LogStream << "Exiting OgreDataStreamBuf::GetCurrentLocation() =" << (this->OgreStream->tell() - (this->egptr()-this->gptr())); Entresol::GetSingletonPtr()->Log(); Entresol::GetSingletonPtr()->Log();
             #endif
             return this->OgreStream->tell() - (this->egptr()-this->gptr());
         }

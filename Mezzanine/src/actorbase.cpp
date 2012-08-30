@@ -55,7 +55,7 @@
 #include "Audio/soundset.h"
 #include "physicsmanager.h"
 #include "scenemanager.h"
-#include "world.h"
+#include "entresol.h"
 #include "xml.h"
 #include "Internal/motionstate.h.cpp"
 #include "Internal/meshtools.h.cpp"

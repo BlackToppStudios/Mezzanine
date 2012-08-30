@@ -44,7 +44,7 @@
 #include "uimanager.h"
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
-#include "world.h"
+#include "entresol.h"
 #include "eventmanager.h"
 #include "mathtool.h"
 #include "inputmanager.h"

@@ -44,7 +44,7 @@
 
 //Internal includes
 #include "crossplatform.h"
-#include "world.h"
+#include "entresol.h"
 #include "graphicsmanager.h"
 #include "uimanager.h"
 #include "gamewindow.h"

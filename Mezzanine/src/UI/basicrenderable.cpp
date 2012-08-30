@@ -45,7 +45,7 @@
 #include "UI/renderablecontainer.h"
 #include "UI/screen.h"
 #include "UI/widget.h"
-#include "world.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {

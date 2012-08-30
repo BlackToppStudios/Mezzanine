@@ -42,7 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
-#include "world.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {

@@ -40,7 +40,7 @@
 #ifndef _inputmetacode_cpp
 #define _inputmetacode_cpp
 
-#include "world.h" //only used for logging
+#include "entresol.h" //only used for logging
 
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
@@ -90,7 +90,7 @@ namespace Mezzanine
     void MetaCode::Construct(const RawEvent& RawEvent_)
     {
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("Entering: MetaCode::Construct(RawEvent);");
+        Entresol::GetSingletonPtr()->Log("Entering: MetaCode::Construct(RawEvent);");
         #endif
         switch(RawEvent_.type)
         {

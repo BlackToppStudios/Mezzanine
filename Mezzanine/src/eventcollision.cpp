@@ -41,7 +41,6 @@
 #define eventcollision_cpp
 
 #include "eventcollision.h"
-#include "actorcontainerbase.h"
 #include "actormanager.h"
 #include "actorbase.h"
 #include "stringtool.h"
@@ -79,7 +78,7 @@ namespace Mezzanine
     {
         if(ActorA)
         {
-            World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
+            Entresol::GetSingletonPtr()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
         }else{
             ActorA = A;
         }
@@ -94,7 +93,7 @@ namespace Mezzanine
     {
         if(ActorB)
         {
-            World::GetWorldPointer()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
+            Entresol::GetSingletonPtr()->Log("Attepting to change Actor pointer Member in EventCollision.  This is not permitted.");
         }else{
             ActorB = B;
         }

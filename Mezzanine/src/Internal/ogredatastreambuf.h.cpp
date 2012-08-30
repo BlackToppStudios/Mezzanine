@@ -50,7 +50,7 @@
 #include <Ogre.h>
 
 #ifdef MEZZDEBUG
-#include "world.h"
+#include "entresol.h"
 #endif
 
 namespace Mezzanine
@@ -216,7 +216,7 @@ namespace Mezzanine
                 AfterStreamError("Beyond Stream Bounds: After end of known stream")
                 {
                     #ifdef MEZZDEBUG
-                    World::GetWorldPointer()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
+                    Entresol::GetSingletonPtr()->Log("Entering/Exiting OgreDataStreamBuf Constructor");
                     #endif
                 }
 

@@ -42,7 +42,6 @@
 
 #include "datatypes.h"
 #include "crossplatformexport.h"
-#include "worldgetset.h"
 
 #ifdef MEZZXML
 #include "xml.h"
@@ -50,7 +49,7 @@
 
 namespace Mezzanine
 {
-    class World;
+    class Entresol;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ManagerBase
     /// @headerfile managerbase.h
@@ -75,8 +74,10 @@ namespace Mezzanine
                 EventManager,
                 GraphicsManager,
                 InputManager,
+                LogManager,
                 MeshManager,
                 NetworkManager,
+                PagingManager,
                 PhysicsManager,
                 ResourceManager,
                 SceneManager,
@@ -107,22 +108,6 @@ namespace Mezzanine
             /// @brief Gets whether or not this manager has been initialized.
             /// @return Returns true if this manager has been initialized, false otherwise.
             bool IsInitialized();
-
-            /// @brief This gets the World that this manager is working with.
-            /// @return This returns a Mezzanine::World* that is the same as the one store in this Manager
-            World* GetGameWorld() const;
-
-            /// @brief This sets the Mezzanine::World that this Manager works with.
-            /// @details It is expected that this won't change very much, and for some managers changing this at the wrong time could
-            /// cause some very fundamental problems. In fact, managers should be designed so that they
-            /// can swapped  out. For example swapping out event managers could allow for a swift re-mapping of game controls when
-            /// a game switches modes.\n\n
-            /// For managers that can be moved it is expected that this function will change the pointer on the Mezzanine::World for the
-            /// appropriate manager to point to this manager. This simplifies the calls that will naturally come next. To detach a
-            /// Manager from the world pass this method a NULL pointer. If the manager cannot be removed or detached it should
-            /// throw and exception using World::LogAndThrow, and it must not fail to attach to a world (that means it must internally
-            /// handle all exception raised by the attaching process or throw an "Unrecoverable Error")
-            virtual void SetGameWorld( World* GameWorld_ );
 
             /// @brief This returns the type of this manager.
             /// @details This is intended to make using and casting from Manager base easier. With this is is possible to cast from
@@ -216,7 +201,7 @@ namespace Mezzanine
         protected:
             /// @internal
             /// @brief The actual pointer to the world
-            World* GameWorld;
+            Entresol* TheEntresol;
 
             /// @internal
             /// @brief This is a function pointer to the function that should be called before running Main Loop Items

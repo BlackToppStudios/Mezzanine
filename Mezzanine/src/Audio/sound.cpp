@@ -42,7 +42,7 @@
 
 #include "Audio/sound.h"
 #include "audiomanager.h"
-#include "world.h"
+#include "entresol.h"
 #include <cAudio.h>
 #include <Ogre.h>
 

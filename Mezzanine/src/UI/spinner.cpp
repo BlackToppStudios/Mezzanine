@@ -50,7 +50,7 @@
 #include "inputmanager.h"
 #include "Input/mouse.h"
 #include "stringtool.h"
-#include "world.h"
+#include "entresol.h"
 #include <sstream>
 
 namespace Mezzanine

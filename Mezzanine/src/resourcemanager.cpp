@@ -74,7 +74,7 @@
 #endif
 
 #ifdef MEZZDEBUG
-#include "world.h"
+#include "entresol.h"
 #endif
 
 #ifdef CreateDirectory
@@ -416,13 +416,13 @@ namespace Mezzanine
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
     {
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("Entering ResourceManager::GetResourceStream(const String& FileName)");
+        Entresol::GetSingletonPtr()->Log("Entering ResourceManager::GetResourceStream(const String& FileName)");
         #endif
         Internal::OgreDataStreamBuf *TempBuffer = new Internal::OgreDataStreamBuf(OgreResource->openResource(FileName));
         ResourceInputStream *Results =  new ResourceInputStream(TempBuffer, this);
         this->DeleteList.push_back(Results);
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("Exiting ResourceManager::GetResourceStream(const String& FileName)");
+        Entresol::GetSingletonPtr()->Log("Exiting ResourceManager::GetResourceStream(const String& FileName)");
         #endif
         return Results;
     }

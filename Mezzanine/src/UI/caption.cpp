@@ -45,7 +45,7 @@
 #include "UI/screen.h"
 #include "UI/viewportupdatetool.h"
 #include "eventmanager.h"
-#include "world.h"
+#include "entresol.h"
 #include "mathtool.h"
 
 namespace Mezzanine

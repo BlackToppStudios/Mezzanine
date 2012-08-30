@@ -51,28 +51,14 @@ namespace Mezzanine
           Initialized(false),
           Priority(0)
     {
-        this->GameWorld = World::GetWorldPointer();
+        this->TheEntresol = Entresol::GetSingletonPtr();
     }
-
-    /*ManagerBase::ManagerBase(World* GameWorld_)
-    {
-        this->GameWorld = GameWorld_;
-        this->PreMainLoop = NULL;
-        this->PostMainLoop = NULL;
-        this->Priority = 0;
-    }*/
 
     ManagerBase::~ManagerBase()
         {}
 
     bool ManagerBase::IsInitialized()
         { return Initialized; }
-
-    World* ManagerBase::GetGameWorld() const
-        { return this->GameWorld; }
-
-    void ManagerBase::SetGameWorld( World* GameWorld_ )
-        { this->GameWorld = GameWorld_; }
 
     String ManagerBase::GetInterfaceTypeAsString() const
     {
@@ -141,11 +127,17 @@ namespace Mezzanine
             case ManagerBase::InputManager:
                 return "InputManager";
                 break;
+            case ManagerBase::LogManager:
+                return "LogManager";
+                break;
             case ManagerBase::MeshManager:
                 return "MeshManager";
                 break;
             case ManagerBase::NetworkManager:
                 return "NetworkManager";
+                break;
+            case ManagerBase::PagingManager:
+                return "PagingManager";
                 break;
             case ManagerBase::PhysicsManager:
                 return "PhysicsManager";
@@ -205,6 +197,16 @@ namespace Mezzanine
                 return ManagerBase::GraphicsManager;
                 break;
             }
+            case 'i':
+            {
+                return ManagerBase::InputManager;
+                break;
+            }
+            case 'l':
+            {
+                return ManagerBase::LogManager;
+                break;
+            }
             case 'm':
             {
                 return ManagerBase::MeshManager;
@@ -217,7 +219,8 @@ namespace Mezzanine
             }
             case 'p':
             {
-                return ManagerBase::PhysicsManager;
+                if( 'a' == Lower.at(1) ) return ManagerBase::PagingManager;
+                else if( 'h' == Lower.at(1) ) return ManagerBase::PhysicsManager;
                 break;
             }
             case 'r':

@@ -45,7 +45,7 @@
 #include <memory>
 
 #ifdef MEZZDEBUG
-#include "world.h"
+#include "entresol.h"
 #include <iostream>
 #endif
 
@@ -103,8 +103,8 @@ namespace Mezzanine
             {
                 /*#ifdef MEZZDEBUG
                 std::ostream *Log;
-                if (World::GetWorldPointerValidity())
-                    { Log = & (World::GetWorldPointer()->LogStream); }
+                if (Entresol::IsSingletonValid())
+                    { Log = & (Entresol::GetSingletonPtr()->LogStream); }
                 else
                     { Log = & std::cout; }
                 *Log << "Acquiring ReferenceCounter, previous counter " << (!itsCounter?"did not exist.":("had "+ToString(itsCounter->Count)+" references.")) << std::endl;
@@ -128,8 +128,8 @@ namespace Mezzanine
             {
                 /*#ifdef MEZZDEBUG
                 std::ostream *Log;
-                if (World::GetWorldPointerValidity())
-                    { Log = & (World::GetWorldPointer()->LogStream); }
+                if (Entresol::IsSingletonValid())
+                    { Log = & (Entresol::GetSingletonPtr()->LogStream); }
                 else
                     { Log = & std::cout; }
                 *Log << "Releasing ReferenceCounter, counter " << (!itsCounter?"did not exist.":("had reference count of "+ToString(itsCounter->Count)+".")) << std::endl;

@@ -45,7 +45,7 @@
 #include "Internal/ogredatastreambuf.h.cpp"
 
 #ifdef MEZZDEBUG
-    #include "world.h"
+    #include "entresol.h"
 #endif
 
 namespace Mezzanine
@@ -53,23 +53,23 @@ namespace Mezzanine
 	void ResourceInputStream::Construct(std::streambuf *InputBuffer, ResourceManager* ResourceManager_)
 	{
 		#ifdef MEZZDEBUG
-		World::GetWorldPointer()->Log("Entering ResourceInputStream::Construct()");
+		Entresol::GetSingletonPtr()->Log("Entering ResourceInputStream::Construct()");
 		#endif
 		this->OgreBuffer=static_cast <Internal::OgreDataStreamBuf*>(InputBuffer);
 		this->Manager=ResourceManager_;
 		 #ifdef MEZZDEBUG
-		World::GetWorldPointer()->Log("Exiting ResourceInputStream::Construct()");
+		Entresol::GetSingletonPtr()->Log("Exiting ResourceInputStream::Construct()");
 		#endif
 	}
 
 	ResourceInputStream::~ResourceInputStream()
 	{
 		#ifdef MEZZDEBUG
-		World::GetWorldPointer()->Log("Entering ResourceInputStream::~ResourceInputStream()");
+		Entresol::GetSingletonPtr()->Log("Entering ResourceInputStream::~ResourceInputStream()");
 		#endif
 		delete this->OgreBuffer;
 		#ifdef MEZZDEBUG
-		World::GetWorldPointer()->Log("Exiting ResourceInputStream::~ResourceInputStream()");
+		Entresol::GetSingletonPtr()->Log("Exiting ResourceInputStream::~ResourceInputStream()");
 		#endif
 	}
 

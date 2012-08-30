@@ -57,7 +57,7 @@ namespace Ogre
 namespace Mezzanine
 {
     class ActorBase;
-    class World;
+    class Entresol;
     class CollisionShape;
     class Mesh;
     ///////////////////////////////////////////////////////////////////////////////

@@ -78,8 +78,6 @@ set(${PROJECT_NAME}_sources
 
 	"${${PROJECT_NAME}_SRC_DIR}actorbase.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorcharacter.h"
-	"${${PROJECT_NAME}_SRC_DIR}actorcontainerbase.h"
-	"${${PROJECT_NAME}_SRC_DIR}actorcontainervector.h"
 	"${${PROJECT_NAME}_SRC_DIR}actormanager.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorphysicssettings.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorrigid.h"
@@ -105,6 +103,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}crossplatformexport.h"
 	"${${PROJECT_NAME}_SRC_DIR}datatypes.h"
 	"${${PROJECT_NAME}_SRC_DIR}entity.h"
+	"${${PROJECT_NAME}_SRC_DIR}entresol.h"
 	"${${PROJECT_NAME}_SRC_DIR}enumerations.h"
 	"${${PROJECT_NAME}_SRC_DIR}eventbase.h"
 	"${${PROJECT_NAME}_SRC_DIR}eventcollision.h"
@@ -275,8 +274,6 @@ set(${PROJECT_NAME}_sources
 
 	"${${PROJECT_NAME}_SRC_DIR}actorbase.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorcharacter.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}actorcontainerbase.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}actorcontainervector.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actormanager.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorphysicssettings.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}actorrigid.cpp"
@@ -297,6 +294,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}colourvalue.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}crossplatform.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}entity.cpp"
+	"${${PROJECT_NAME}_SRC_DIR}entresol.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventbase.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventcollision.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}eventgamewindow.cpp"

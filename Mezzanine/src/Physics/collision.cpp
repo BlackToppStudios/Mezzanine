@@ -41,7 +41,6 @@
 #define _collision_cpp
 
 #include "actorbase.h"
-#include "actorcontainerbase.h"
 #include "actormanager.h"
 #include "collision.h"
 #include "stringtool.h"
@@ -131,7 +130,7 @@ namespace Mezzanine
         {
             if(ObjectA)
             {
-                World::GetWorldPointer()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
+                Entresol::GetSingletonPtr()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
             }else{
                 ObjectA = A;
                 ObjectA->_NotifyCollisionState(this,Collision::Col_Begin);
@@ -147,7 +146,7 @@ namespace Mezzanine
         {
             if(ObjectB)
             {
-                World::GetWorldPointer()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
+                Entresol::GetSingletonPtr()->Log("Attepting to change Object pointer Member in Collision.  This is not permitted.");
             }else{
                 ObjectB = B;
                 ObjectB->_NotifyCollisionState(this,Collision::Col_Begin);

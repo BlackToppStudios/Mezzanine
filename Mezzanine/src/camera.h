@@ -89,7 +89,7 @@ Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode,
 namespace Mezzanine
 {
     class CameraManager;
-    class World;
+    class Entresol;
     class Viewport;
 
     ///////////////////////////////////////////////////////////////////////////////

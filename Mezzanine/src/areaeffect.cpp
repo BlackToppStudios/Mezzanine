@@ -50,7 +50,7 @@
 #include "scenemanager.h"
 #include "objectreference.h"
 #include "Internal/meshtools.h.cpp"
-#include "world.h"
+#include "entresol.h"
 
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
 #include <BulletCollision/Gimpact/btGImpactShape.h>
@@ -371,36 +371,36 @@ namespace Mezzanine
 
     void TestAE::ApplyEffect()
     {
-        World* TheWorld = World::GetWorldPointer();
+        Entresol* TheEntresol = Entresol::GetSingletonPtr();
         std::vector<ActorBase*>::iterator AaRIt;
         std::list<ActorBase*>::iterator CurrIt;
         ActorBase* Act = NULL;
 
         if ( !AddedActors.empty() )
         {
-            TheWorld->Log("Actors Added to field this frame:");
+            TheEntresol->Log("Actors Added to field this frame:");
             for ( AaRIt = AddedActors.begin() ; AaRIt != AddedActors.end() ; AaRIt++ )
             {
                 Act = (*AaRIt);
-                TheWorld->Log(Act);
+                TheEntresol->Log(Act);
             }
         }
         if ( !RemovedActors.empty() )
         {
-            TheWorld->Log("Actors Removed from field this frame:");
+            TheEntresol->Log("Actors Removed from field this frame:");
             for ( AaRIt = RemovedActors.begin() ; AaRIt != RemovedActors.end() ; AaRIt++ )
             {
                 Act = (*AaRIt);
-                TheWorld->Log(Act);
+                TheEntresol->Log(Act);
             }
         }
         if ( !OverlappingActors.empty() )
         {
-            TheWorld->Log("Actors Currently in field this frame:");
+            TheEntresol->Log("Actors Currently in field this frame:");
             for ( CurrIt = OverlappingActors.begin() ; CurrIt != OverlappingActors.end() ; CurrIt++ )
             {
                 Act = (*CurrIt);
-                TheWorld->Log(Act);
+                TheEntresol->Log(Act);
             }
         }
     }

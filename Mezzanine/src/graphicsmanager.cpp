@@ -42,7 +42,6 @@
 
 #include "eventmanager.h"
 #include "eventrendertime.h"
-#include "actorcontainervector.h"
 #include "graphicsmanager.h"
 #include "cameramanager.h"
 #include "resourcemanager.h"
@@ -52,7 +51,7 @@
 #include "crossplatform.h"
 #include "viewport.h"
 #include "stringtool.h"
-#include "world.h"
+#include "entresol.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -232,7 +231,7 @@ namespace Mezzanine
                     SetRenderSystem(CurrRenderSys,true);
                 }else{
                     /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
-                    World::GetWorldPointer()->Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
+                    Entresol::GetSingletonPtr()->Log("WARNING: Attempting to apply new RenderSystem settings after the GraphicsManager has been initialized.  "
                                                   "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
                     CurrRenderSys = RenderSys;
                 }
@@ -495,15 +494,15 @@ namespace Mezzanine
 
     void GraphicsManager::RenderOneFrame()
     {
-        World* TheWorld = World::GetWorldPointer();
+        Entresol* TheEntresol = Entresol::GetSingletonPtr();
         #ifdef MEZZDEBUG
-        TheWorld->Log("Rendering the World.");
+        TheEntresol->Log("Rendering the World.");
         #endif
         Ogre::Root::getSingleton().renderOneFrame();
         if( !GetPrimaryGameWindow()->_GetOgreWindowPointer()->isVisible() )
             Ogre::Root::getSingleton().clearEventTimes();
         #ifdef MEZZDEBUG
-        TheWorld->Log("Finished Rendering");
+        TheEntresol->Log("Finished Rendering");
         #endif
     }
 
@@ -570,11 +569,11 @@ namespace Mezzanine
         RenderOneFrame();
 
         //Do Time Calculations to Determine Rendering Time
-        this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );
+        this->TheEntresol->SetFrameTime( this->RenderTimer->getMilliseconds() );
         this->RenderTimer->reset();
-        if(this->GameWorld->GetTargetFrameTime() > this->GameWorld->GetFrameTime()){
+        if(this->TheEntresol->GetTargetFrameTime() > this->TheEntresol->GetFrameTime()){
             FrameDelay++;
-        }else if(this->GameWorld->GetTargetFrameTime() == this->GameWorld->GetFrameTime()){
+        }else if(this->TheEntresol->GetTargetFrameTime() == this->TheEntresol->GetFrameTime()){
         }else{
             if (0<FrameDelay){
                 FrameDelay--;
@@ -587,7 +586,7 @@ namespace Mezzanine
 
     bool GraphicsManager::PostMainLoopItems()
     {
-        EventManager::GetSingletonPtr()->AddEvent(new EventRenderTime(this->GameWorld->GetFrameTime()));
+        EventManager::GetSingletonPtr()->AddEvent(new EventRenderTime(this->TheEntresol->GetFrameTime()));
         return ManagerBase::PostMainLoopItems();
     }
 

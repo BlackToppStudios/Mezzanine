@@ -44,7 +44,7 @@
 #include "uimanager.h"
 #include "UI/screen.h"
 #include "UI/rectangle.h"
-#include "world.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {

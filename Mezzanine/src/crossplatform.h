@@ -84,7 +84,7 @@ struct SDL_Window;
 namespace Mezzanine
 {
     //Forward Declarations should go here
-    class World;
+    class Entresol;
 
     namespace crossplatform
     {

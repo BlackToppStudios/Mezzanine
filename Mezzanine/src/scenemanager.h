@@ -55,7 +55,7 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class World;
+    class Entresol;
     class Light;
     class Plane;
     class ParticleEffect;

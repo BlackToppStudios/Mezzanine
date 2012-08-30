@@ -85,7 +85,7 @@ namespace Mezzanine
         protected:
             friend class Internal::SceneManagerData;
             friend class GraphicsManager;
-            friend class World;
+            friend class Entresol;
             friend class Camera;
 
             Camera* DefaultCamera;

@@ -58,7 +58,7 @@
 #include "UI/tabset.h"
 #include "UI/viewportupdatetool.h"
 #include "Input/metacode.h"
-#include "world.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {

@@ -82,7 +82,7 @@ void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Event
 
 namespace Mezzanine
 {
-    class World;
+    class Entresol;
     class EventCollision;
     class EventGameWindow;
     class EventRenderTime;

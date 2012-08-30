@@ -45,7 +45,7 @@
 #include "viewport.h"
 #include "camera.h"
 #include "graphicsmanager.h"
-#include "world.h"
+#include "entresol.h"
 
 #include <SDL.h>
 #include "../src/video/SDL_sysvideo.h"
@@ -298,7 +298,7 @@ namespace Mezzanine
                 SDL_SetWindowSize(SDLWindow,ResultWidth,ResultHeight);
                 OgreWindow->setFullscreen(false,ResultWidth,ResultHeight);
             }else if(Result == 1){
-                World::GetWorldPointer()->Log("Cannot create a window larger then the desktop resolution.");
+                Entresol::GetSingletonPtr()->Log("Cannot create a window larger then the desktop resolution.");
                 return;
             }else{
                 SDL_SetWindowSize(SDLWindow,Width,Height);

@@ -44,7 +44,7 @@
 #include "UI/screen.h"
 #include "uimanager.h"
 #include "UI/viewportupdatetool.h"
-#include "world.h"
+#include "entresol.h"
 #include "stringtool.h"
 
 namespace Mezzanine

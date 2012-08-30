@@ -50,7 +50,7 @@
 #include "inputmanager.h"
 #include "Input/metacode.h"
 #include "Input/mouse.h"
-#include "world.h"
+#include "entresol.h"
 
 #include <cmath>
 

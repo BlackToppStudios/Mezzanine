@@ -44,9 +44,8 @@ using namespace std;
 
 #include "linegroup.h"
 #include "physicsmanager.h"
-#include "world.h"
+#include "entresol.h"
 #include "vector3.h"
-#include "actorcontainerbase.h"
 #include "actormanager.h"
 #include "actorphysicssettings.h"
 #include "vector3wactor.h"
@@ -86,8 +85,8 @@ namespace Mezzanine
         {
             private:
                 /// @internal
-                /// @brief A pointer to Mezzanine::World that this Debug Drawer works with
-                World* ParentWorld;
+                /// @brief A pointer to Mezzanine::Entresol that this Debug Drawer works with
+                Entresol* TheEntresol;
 
                 /// @internal
                 /// @brief How many wireframes do you want to keep around on the screen.
@@ -109,8 +108,8 @@ namespace Mezzanine
                 /// @brief Basic Constructor
                 /// @param ParentWorld_ This is a Pointer to the world to be rendered
                 /// @param WireFrameCount_ This sets the amount of previous Wireframes to be rendered, see InternalDebugDrawer::SetWireFrameCount for details.
-                /// @details This creates a basic Debug Drawer which works with the Mezzanine::World that was passed. With a new
-                InternalDebugDrawer(Mezzanine::World *ParentWorld_, Whole WireFrameCount_ = 2);
+                /// @details This creates a basic Debug Drawer which works with the Mezzanine::Entresol that was passed. With a new
+                InternalDebugDrawer(Mezzanine::Entresol* ParentEntresol_, Whole WireFrameCount_ = 2);
 
                 /// @internal
                 /// @brief Destructor
@@ -156,7 +155,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Used by the physics subsystem to report errors using the renderer
                 /// @details We *Believe* that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we
-                /// Have redirected all input from this function to the World::Log function.
+                /// Have redirected all input from this function to the Entresol::Log function.
                 /// @param warningString We *Believe* These are messagesfrom the physics subsystem, and that this should not directly called otherwise
                 virtual void reportErrorWarning(const char* warningString);
 
@@ -181,15 +180,15 @@ namespace Mezzanine
                 virtual int getDebugMode() const;
         };
 
-        InternalDebugDrawer::InternalDebugDrawer( Mezzanine::World *ParentWorld_, Whole WireFrameCount_ )
+        InternalDebugDrawer::InternalDebugDrawer( Mezzanine::Entresol* ParentEntresol_, Whole WireFrameCount_ )
         {
             this->DebugDrawing = 0;
-            this->ParentWorld = ParentWorld_;
+            this->TheEntresol = ParentEntresol_;
 
             this->WireFrameCount = WireFrameCount_;
 
-            //Mezzanine::LineGroup* temp = new Mezzanine::LineGroup(this->ParentWorld);
-            this->WireFrames.push(new Mezzanine::LineGroup(this->ParentWorld));
+            //Mezzanine::LineGroup* temp = new Mezzanine::LineGroup();
+            this->WireFrames.push(new Mezzanine::LineGroup());
         }
 
         InternalDebugDrawer::~InternalDebugDrawer()
@@ -221,7 +220,7 @@ namespace Mezzanine
         void InternalDebugDrawer::reportErrorWarning(const char* warningString)
         {
             String temp(warningString);
-            this->ParentWorld->Log(temp);
+            this->TheEntresol->Log(temp);
         }
 
         void InternalDebugDrawer::draw3dText(const btVector3& location,const char* textString)
@@ -253,7 +252,7 @@ namespace Mezzanine
 
             //This will add the Ogre Scene Nodes to the world and set up a
             this->WireFrames.back()->PrepareForRendering();
-            this->WireFrames.push(new Mezzanine::LineGroup(this->ParentWorld));
+            this->WireFrames.push(new Mezzanine::LineGroup());
         }
 
         void InternalDebugDrawer::SetWireFrameCount(Whole WireFrameCount_)
@@ -619,8 +618,8 @@ namespace Mezzanine
         #ifdef MEZZDEBUG
         std::stringstream logstream;
         logstream << "Processing " << AlgoQueue.size() << " algorithms for collisions." << endl;
-        World::GetWorldPointer()->Log(logstream.str());
-        //World::GetWorldPointer()->DoMainLoopLogging();
+        Entresol::GetSingletonPtr()->Log(logstream.str());
+        //Entresol::GetSingletonPtr()->DoMainLoopLogging();
         #endif
         btCollisionAlgorithm* NewAlgo = AlgoQueue.front();
         while( NewAlgo != NULL )
@@ -940,7 +939,7 @@ namespace Mezzanine
     {
         if(!BulletDrawer)
         {
-            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->TheEntresol);
             this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
         }
 
@@ -969,7 +968,7 @@ namespace Mezzanine
     {
         if(!BulletDrawer)
         {
-            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->TheEntresol);
             this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
         }
 
@@ -1003,7 +1002,7 @@ namespace Mezzanine
         else this->Construct(WorldConstructionInfo);
         if(DebugOn)
         {
-            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->TheEntresol);
             this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
         }
     }
@@ -1048,18 +1047,18 @@ namespace Mezzanine
         #endif
 
         Real FloatTime = TimeElapsed * 0.001; //Convert from MilliSeconds to Seconds
-        Real IdealStep = this->GameWorld->GetTargetFrameTime() * 0.001;
+        Real IdealStep = this->TheEntresol->GetTargetFrameTime() * 0.001;
         IdealStep /= SubstepModifier;
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep)+1;
         #ifdef MEZZPROFILE
         Profiler->reset();
         #endif
-        GameWorld->LogStream << "Entering StepSimulation.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "Entering StepSimulation.";
+        TheEntresol->DoMainLoopLogging();
         this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
         #ifdef MEZZPROFILE
-        GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
+        TheEntresol->DoMainLoopLogging();
         #endif // */
 
         /*#ifdef MEZZPROFILE
@@ -1067,8 +1066,8 @@ namespace Mezzanine
         #endif
         ProcessAllCollisions();
         #ifdef MEZZPROFILE
-        GameWorld->LogStream << "Collisions took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "Collisions took " << Profiler->getMicroseconds() << " microseconds.";
+        TheEntresol->DoMainLoopLogging();
         #endif // */
 
         #ifdef MEZZPROFILE
@@ -1076,8 +1075,8 @@ namespace Mezzanine
         #endif
         ProcessAllEffects();
         #ifdef MEZZPROFILE
-        GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
+        TheEntresol->DoMainLoopLogging();
         #endif // */
 
         #ifdef MEZZPROFILE
@@ -1085,15 +1084,15 @@ namespace Mezzanine
         #endif
         ProcessAllTriggers();
         #ifdef MEZZPROFILE
-        GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
+        TheEntresol->DoMainLoopLogging();
         #endif // */
 
         // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
         //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
         /*#ifdef MEZZDEBUG
-        this->GameWorld->Log("Checking for Collisions.");
+        this->TheEntresol->Log("Checking for Collisions.");
         #endif
 
         #ifdef MEZZPROFILE
@@ -1125,15 +1124,15 @@ namespace Mezzanine
                     //create collision event
                     EventManager::GetSingletonPtr()->AddEvent(ColEvent);
                     #ifdef MEZZDEBUG
-                    this->GameWorld->Log("Collision Event:");
-                    this->GameWorld->Log(*ColEvent);
+                    this->TheEntresol->Log("Collision Event:");
+                    this->TheEntresol->Log(*ColEvent);
                     #endif
                 }
             }
         }
         #ifdef MEZZPROFILE
-        GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
+        TheEntresol->DoMainLoopLogging();
         #endif // */
 
         #ifdef MEZZPROFILE
@@ -1145,8 +1144,8 @@ namespace Mezzanine
             this->BulletDynamicsWorld->debugDrawWorld();
         }
         #ifdef MEZZPROFILE
-        GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->DoMainLoopLogging();
+        TheEntresol->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
+        TheEntresol->DoMainLoopLogging();
         #endif // */
     }
 
@@ -1164,7 +1163,7 @@ namespace Mezzanine
 
     void PhysicsManager::DoMainLoopItems()
     {
-        this->DoMainLoopItems(this->GameWorld->GetFrameTime());
+        this->DoMainLoopItems(this->TheEntresol->GetFrameTime());
     }
 
     ManagerBase::ManagerType PhysicsManager::GetInterfaceType() const

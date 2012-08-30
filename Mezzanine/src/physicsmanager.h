@@ -68,7 +68,7 @@ typedef float btScalar;
 namespace Mezzanine
 {
     // internal forward declarations
-    class World;
+    class Entresol;
     class ActorBase;
     class Vector3WActor;
     class AreaEffect;
@@ -364,14 +364,14 @@ namespace Mezzanine
             int GetDebugPhysicsRendering();
             /// @brief How many Wireframes do you want drawn from previous events
             /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
-            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()
+            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use Entresol::GetTargetFrameTime()
             /// In conjunction with this to specify an amout of seconds worth of wireframes.
             /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
             /// Any amount more than just a few seconds worth can be cumbersome.
             void SetDebugPhysicsWireCount(Whole WireFrameCount_);
             /// @brief This gets how many WireFrames are being drawn.
             /// @details This will tell you how many frames worth of previous in game events are being drawn.
-            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .
+            /// @return This returns either 2 or the last amount passed into Entresol::SetDebugPhysicsWireCount .
             Whole GetDebugPhysicsWireCount();
 
             ///////////////////////////////////////////////////////////////////////////////

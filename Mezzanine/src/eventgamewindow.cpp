@@ -44,7 +44,7 @@
 #include "stringtool.h"
 
 #ifdef MEZZDEBUG
-#include "world.h"
+#include "entresol.h"
 #endif
 
 #include <cassert>
@@ -90,7 +90,7 @@ namespace Mezzanine
     EventGameWindow::~EventGameWindow()
     {
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("De-Constructing internal data for EventGameWindow");
+        Entresol::GetSingletonPtr()->Log("De-Constructing internal data for EventGameWindow");
         #endif
         delete this->Data;
     }
@@ -219,7 +219,7 @@ namespace Mezzanine
     void EventGameWindow::construct(EventGameWindow::GameWindowEventID GWEventID, int First, int Second)
     {
         #ifdef MEZZDEBUG
-        World::GetWorldPointer()->Log("Constructing internal data for EventGameWindow");
+        Entresol::GetSingletonPtr()->Log("Constructing internal data for EventGameWindow");
         #endif
         this->Data=new EventGameWindowData(GWEventID,First, Second);
     }

@@ -159,7 +159,7 @@ namespace Mezzanine
             /// @brief Destructor
             ~SceneManagerData()
             {
-                CameraManager* CamMan = World::GetWorldPointer()->GetCameraManager();
+                CameraManager* CamMan = Entresol::GetSingletonPtr()->GetCameraManager();
                 if(CamMan)
                 {
                     CamMan->DestroyAllCameraControllers();

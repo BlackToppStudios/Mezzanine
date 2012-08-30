@@ -46,7 +46,7 @@
 #include "Audio/soundset.h"
 #include "Audio/musicplayer.h"
 #include "resourcemanager.h"
-#include "world.h"
+#include "entresol.h"
 #include "stringtool.h"
 #include <cAudio.h>
 
@@ -222,7 +222,7 @@ namespace Mezzanine
                     InitializeDevice(DeviceName,OutputFreq,EAXSlots);
                 }else{
                     /// @todo May want to make some other data member so that people can accurately get what is set now, instead of what will be set.
-                    World::GetWorldPointer()->Log("WARNING: Attempting to apply new device settings after the AudioManager has been initialized.  "
+                    Entresol::GetSingletonPtr()->Log("WARNING: Attempting to apply new device settings after the AudioManager has been initialized.  "
                                                   "These Settings will be applied the next time settings are loaded during manager construction if current settings are saved.");
                     AMID->InitializedDevice = DeviceName;
                     AMID->OutputFrequency = OutputFreq;

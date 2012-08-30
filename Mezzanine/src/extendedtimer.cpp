@@ -129,7 +129,7 @@ namespace Mezzanine
             Whole Remainder = CurrentTime.Microseconds - GoesInto * 1000;
             CurrentTime.Microseconds = Remainder;
             CurrentTime.Milliseconds+=GoesInto;
-        }else{ return; /*World::GetWorldPointer()->Log("Holy **** that was a fast frame!");*/ }
+        }else{ return; /*Entresol::GetSingletonPtr()->Log("Holy **** that was a fast frame!");*/ }
         if(CurrentTime.Milliseconds < 0)
         {
             Integer GoesInto = CurrentTime.Milliseconds * 0.001;

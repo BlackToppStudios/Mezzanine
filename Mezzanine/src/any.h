@@ -190,7 +190,7 @@ namespace Mezzanine
             template<typename ValueType>
             ValueType operator()() const
             {
-                /// @todo These exceptions should get logged, but the World class is too large for it to be worthwhile to include it here.
+                /// @todo These exceptions should get logged, but the Entresol class is too large for it to be worthwhile to include it here.
                 if(!Data)
                 {
                     throw Exception("Bad cast from uninitialized Any.  In Any::operator()");

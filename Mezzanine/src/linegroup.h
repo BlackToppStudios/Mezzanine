@@ -47,7 +47,7 @@
 namespace Mezzanine
 {
     // Just a few forward declarations to make wrapping some functionality to engine internals easier.
-    class World;
+    class Entresol;
     namespace Internal
     {
             class Line3D;
@@ -65,8 +65,7 @@ namespace Mezzanine
         public:
             /// @brief Basic Constructor
             /// @details This creates a basic, empty, LineGroup.
-            /// @param Parent_ This is a pointer to the world to render to.
-            LineGroup(World *Parent_);
+            LineGroup();
 
             /// @brief Default Destructor
             /// @details This safely tears down, and removes from the graphics system the LineGroup
@@ -119,12 +118,9 @@ namespace Mezzanine
             Real getBoundingRadius(void) const;
 
         private:
-            /// @brief A pointer to the world that this LineGroup will render to.
-            World *Parent;
-
             /// @brief A Pointer to the internal class that actually does the work.
             Internal::Line3D *LineData;
-    };
-}
+    };//LineGroup
+}//Mezzanine
 
 #endif

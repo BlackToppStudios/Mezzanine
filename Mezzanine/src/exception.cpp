@@ -43,7 +43,7 @@
 
 #include "exception.h"
 #include "stringtool.h"
-#include "world.h"
+#include "entresol.h"
 
 namespace Mezzanine
 {
@@ -54,10 +54,10 @@ namespace Mezzanine
           File(SrcFile),
           Line(FileLine)
     {
-        if(World::GetWorldPointerValidity())
+        if(Entresol::SingletonValid())
         {
-            World::GetWorldPointer()->Log(GetCompleteMessage());
-            World::GetWorldPointer()->DoMainLoopLogging();
+            Entresol::GetSingletonPtr()->Log(GetCompleteMessage());
+            Entresol::GetSingletonPtr()->DoMainLoopLogging();
         }else{
             std::cout << GetCompleteMessage();
         }

@@ -42,7 +42,7 @@
 
 #include "matrix3x3.h"
 #include "mathtool.h"
-#include "world.h"
+#include "entresol.h"
 
 #include "btBulletDynamicsCommon.h"
 #include <OgreMatrix3.h>

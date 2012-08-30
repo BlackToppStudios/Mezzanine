@@ -60,8 +60,6 @@
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  // serializes
 #include "actorcharacter.h"
-#include "actorcontainerbase.h"
-#include "actorcontainervector.h"
 #include "actormanager.h"
 #include "actorphysicssettings.h"       // done
 #include "actorrigid.h"                 // Serializes
@@ -80,6 +78,7 @@
 #include "crossplatformexport.h"        // nothing to do
 #include "datatypes.h"                  // nothing to do
 #include "entity.h"
+#include "entresol.h"
 #include "enumerations.h"               // nothing to do
 #include "eventbase.h"                  // done/serializes
 #include "eventcollision.h"             // done
@@ -141,8 +140,7 @@
 #ifndef SWIG
 #include "vector3wactor.h"
 #include "viewport.h"
-#include "worldgetset.h"
-#include "world.h"
+#include "entresol.h"
 #include "worldnode.h"                  // done
 #include "worldobjectgraphicssettings.h"// done
 #include "worldobject.h"

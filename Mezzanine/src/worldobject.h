@@ -64,7 +64,7 @@ namespace Ogre
 
 namespace Mezzanine
 {
-    class World;
+    class Entresol;
     class WorldNode;
     class ActorBasePhysicsSettings;
     namespace Audio
