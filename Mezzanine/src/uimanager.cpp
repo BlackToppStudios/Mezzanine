@@ -94,17 +94,6 @@ namespace Mezzanine
 
     void UIManager::HoverChecks()
     {
-        /*if(HoveredWidget)
-        {
-            if(HoveredWidget->CheckMouseHover())
-            {
-                if(UI::Widget::W_Button == HoveredWidget->GetType())
-                {
-                    MouseActivationCheck(static_cast<UI::Button*>(HoveredWidget));
-                }
-                return;
-            }
-        }//*/
         HoveredWidget = CheckWidgetMouseIsOver();
         if(HoveredWidget)
         {
