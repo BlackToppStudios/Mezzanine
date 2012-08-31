@@ -879,7 +879,6 @@ bool CatchApp::PostUI()
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     static RayQueryTool* RayQueryer = new RayQueryTool();
 
-    //Queryer.GatherEvents();
     TheEntresol->Log("Mouse location X/Y");
     TheEntresol->Log(SysMouse->GetWindowX());
     TheEntresol->Log(SysMouse->GetWindowY());
