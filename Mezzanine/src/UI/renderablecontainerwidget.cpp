@@ -71,6 +71,7 @@ namespace Mezzanine
             : Widget(name,Parent),
               RenderablesAdded(0)
         {
+            Type = Widget::W_GenericWidgetContainer;
         }
 
         RenderableContainerWidget::~RenderableContainerWidget()
@@ -415,7 +416,6 @@ namespace Mezzanine
         EnclosedRenderableContainerWidget::EnclosedRenderableContainerWidget(ConstString& name, const RenderableRect& Rect, Screen* Parent)
             : RenderableContainerWidget(name,Parent)
         {
-            Type = Widget::W_GenericWidgetContainer;
             if(Rect.Relative)
             {
                 RelPosition = Rect.Position;
