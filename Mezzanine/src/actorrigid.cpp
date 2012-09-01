@@ -120,18 +120,23 @@ namespace Mezzanine
 
     void ActorRigid::AddToWorld()
     {
+        if( IsInWorld() )
+            return;
         PhysicsManager::GetSingletonPtr()->GetPhysicsWorldPointer()->addRigidBody(this->PhysicsRigidBody,GetPhysicsSettings()->GetCollisionGroup(),GetPhysicsSettings()->GetCollisionMask());
         this->AttachToGraphics();
     }
 
     void ActorRigid::RemoveFromWorld()
     {
+        if( !IsInWorld() )
+            return;
+
         try{
             PhysicsManager* PhysMan = PhysicsManager::GetSingletonPtr();
             btSoftRigidDynamicsWorld* BWorld = PhysMan->GetPhysicsWorldPointer();
             BWorld->removeRigidBody(this->PhysicsRigidBody);
             DetachAllChildren();
-        }catch (Ogre::Exception e) {
+        }catch (...) {
             Entresol::GetSingletonPtr()->Log("Failed to locate PhysicsManager While Destructing ActorRigid. This is not a problem if already shutting down.");
         }
 
