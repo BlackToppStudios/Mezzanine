@@ -943,10 +943,11 @@ namespace Mezzanine
         {
             Current = (*iter);
             #ifdef MEZZDEBUG
-            std::cout << "Deleting " << Current->GetInterfaceTypeAsString() << std::endl;
+            this->Log("Deleting " + Current->GetInterfaceTypeAsString());
             #endif
             DestroyManager(Current);
         }
+        DoMainLoopLogging();
     }
 
     void Entresol::AddManager(ManagerBase* ManagerToAdd)
