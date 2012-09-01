@@ -53,6 +53,7 @@ using namespace std;
 #include "eventmanager.h"
 #include "eventcollision.h"
 #include "worldtrigger.h"
+#include "worldobject.h"
 #include "objectreference.h"
 #include "Physics/collision.h"
 #include "scenemanager.h"
@@ -506,6 +507,13 @@ namespace Mezzanine
 
     PhysicsManager::~PhysicsManager()
     {
+        btCollisionObjectArray ObjectArray( BulletDynamicsWorld->getCollisionObjectArray() );
+        for( Whole X = 0 ; X < BulletDynamicsWorld->getNumCollisionObjects() ; ++X )
+        {
+            ObjectReference* ObjectRef = static_cast<ObjectReference*>( ObjectArray[X]->getUserPointer() );
+            ObjectRef->GetObject()->RemoveFromWorld();
+        }
+
         DestroyAllConstraints();
         DestroyAllAreaEffects();
         DestroyAllWorldTriggers();
