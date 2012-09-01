@@ -51,7 +51,7 @@ namespace Mezzanine
     /// @brief This is a small class used to store a reference to a world object.
     /// @details This class is primarily used with internal structures.
     ///////////////////////////////////////
-    class ObjectReference
+    class MEZZ_LIB ObjectReference
     {
         protected:
             WorldAndSceneObjectType Type;
@@ -70,7 +70,7 @@ namespace Mezzanine
             /// @brief Gets the object this class references.
             /// @return Returns a WorldObject pointer pointing to the object this class references.
             WorldObject* GetObject() { return Object; };
-    };
-}
+    };//ObjectReference
+}//Mezzanine
 
 #endif
