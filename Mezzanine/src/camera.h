@@ -120,7 +120,6 @@ namespace Mezzanine
             /// @param Camera A pointer the graphics subsystem camera
             /// @param Manager The camera manager this will be attached to.
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
-
             /// @internal
             /// @brief Stores if yawing should be allowed.
             bool YawOnAxis;
@@ -135,15 +134,12 @@ namespace Mezzanine
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;
-
             /// @internal
             /// @brief This is a pointer to the Viewport this camera is attached to, if any.
             Viewport* CameraVP;
-
             /// @internal
             /// @brief This is the Camera manager that this camera is attached to.
             CameraManager* CamManager;
-
         public:
             /// @brief Basic Camera Constructor.
             /// @details This is the basic constructor for the Camera class.
@@ -283,6 +279,13 @@ namespace Mezzanine
             /// @param ScreenX A Real representing the relative location on screen, on the x axis(0.0-1.0).
             /// @param ScreenY A Real representing the relative location on screen, on the y axis(0.0-1.0).
             Ray GetCameraToViewportRay(const Real& ScreenX, const Real& ScreenY) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the manager this camera belongs to.
+            /// @return Returns a pointer to the CameraManager that created this camera.
+            CameraManager* GetCameraManager() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited From AttachableChild

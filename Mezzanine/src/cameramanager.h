@@ -94,7 +94,7 @@ namespace Mezzanine
             Camera* FindCamera(const String& Name);
             /// @internal
             /// @brief Used to reference the appropriate scene
-            Mezzanine::SceneManager* SManager;
+            Mezzanine::SceneManager* SceneMan;
         public:
             /// @brief Class Constructor.
             CameraManager();
@@ -144,6 +144,13 @@ namespace Mezzanine
             void DestroyCameraController(Camera* ControlledCam);
             /// @brief Destroys all camera controllers being stored in this manager.
             void DestroyAllCameraControllers();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the SceneManager this Camera Manager is working with.
+            /// @return Returns a pointer to the SceneManager all cameras made with this manager belong to.
+            Mezzanine::SceneManager* GetScene() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from ManagerBase

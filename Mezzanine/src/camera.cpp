@@ -60,7 +60,7 @@ namespace Mezzanine
 {
     Camera::Camera(const String& Name, CameraManager* Manager)
     {
-        Ogre::Camera* OgreCam = Manager->SManager->GetGraphicsWorldPointer()->createCamera(Name);
+        Ogre::Camera* OgreCam = Manager->SceneMan->GetGraphicsWorldPointer()->createCamera(Name);
         this->Construct(OgreCam, Manager);
     }
 
@@ -80,8 +80,8 @@ namespace Mezzanine
 
     Camera::~Camera()
     {
-        if(CamManager->SManager && CamManager->SManager->GetGraphicsWorldPointer())
-            { CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam); }
+        if(CamManager->SceneMan && CamManager->SceneMan->GetGraphicsWorldPointer())
+            { CamManager->SceneMan->GetGraphicsWorldPointer()->destroyCamera(Cam); }
     }
 
     ConstString& Camera::GetName() const
@@ -246,6 +246,17 @@ namespace Mezzanine
         return R;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    CameraManager* Camera::GetCameraManager() const
+    {
+        return CamManager;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited From AttachableChild
+
     WorldAndSceneObjectType Camera::GetType() const
     {
         return Mezzanine::WSO_Camera;
@@ -277,14 +288,13 @@ namespace Mezzanine
         _RecalculateGlobalTransform();
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
     Ogre::Camera* Camera::GetOgreCamera() const
     {
         return Cam;
     }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Inherited From AttachableChild
-
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////

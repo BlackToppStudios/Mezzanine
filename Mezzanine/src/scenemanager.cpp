@@ -164,7 +164,7 @@ namespace Mezzanine
                 {
                     CamMan->DestroyAllCameraControllers();
                     CamMan->DestroyAllCameras();
-                    CamMan->SManager = 0;
+                    CamMan->SceneMan = 0;
                 }
                 Ogre::Root::getSingleton().destroySceneManager(OgreManager);
             }

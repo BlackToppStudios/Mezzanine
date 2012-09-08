@@ -56,19 +56,19 @@ namespace Mezzanine
     template<> CameraManager* Singleton<CameraManager>::SingletonPtr = 0;
 
     CameraManager::CameraManager()
-        : SManager(NULL)
+        : SceneMan(NULL)
     {
         if(SceneManager::SingletonValid())
-            this->SManager = SceneManager::GetSingletonPtr();
+            this->SceneMan = SceneManager::GetSingletonPtr();
         this->Priority = 40;
     }
 
 #ifdef MEZZXML
     CameraManager::CameraManager(XML::Node& XMLNode)
-        : SManager(NULL)
+        : SceneMan(NULL)
     {
         if(SceneManager::SingletonValid())
-            this->SManager = SceneManager::GetSingletonPtr();
+            this->SceneMan = SceneManager::GetSingletonPtr();
         this->Priority = 40;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
@@ -104,9 +104,9 @@ namespace Mezzanine
 
     Camera* CameraManager::CreateCamera(const String& Name)
     {
-        if(!SManager)
+        if(!SceneMan)
         {
-            if(SceneManager::SingletonValid()) SManager = SceneManager::GetSingletonPtr();
+            if(SceneManager::SingletonValid()) SceneMan = SceneManager::GetSingletonPtr();
             else { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to create a camera before the SceneManager is created.  This is not supported."); }
         }
         Camera* tempcam = new Camera(Name, this);
@@ -197,14 +197,24 @@ namespace Mezzanine
         CameraControllers.clear();
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
+
+    SceneManager* CameraManager::GetScene() const
+    {
+        return SceneMan;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Inherited from ManagerBase
+
     void CameraManager::Initialize()
     {
-        if(!SManager)
+        if(!SceneMan)
         {
             if(SceneManager::SingletonValid())
             {
-                SManager = SceneManager::GetSingletonPtr();
+                SceneMan = SceneManager::GetSingletonPtr();
             }else{
                 MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to initiailze CameraManager when SceneManager has not yet been constructed.  The SceneManager is a dependancy of the CameraManager.");
             }
