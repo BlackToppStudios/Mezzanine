@@ -166,7 +166,7 @@ namespace Mezzanine
     {
         if(ActivatedButtons.empty())
             return;
-        for(std::vector<UI::Button*>::iterator It = ActivatedButtons.begin() ; It != ActivatedButtons.end() ; It++ )
+        for(ButtonIterator It = ActivatedButtons.begin() ; It != ActivatedButtons.end() ; It++ )
             (*It)->_SetActivation(false);
         ActivatedButtons.clear();
     }
@@ -201,16 +201,19 @@ namespace Mezzanine
     {
         if( Input::KEY_FIRST < Code && Input::KEY_LAST > Code )
         {
-            std::pair<const std::multimap<Input::InputCode,UI::Button*>::iterator,const std::multimap<Input::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(Code);
+            std::pair<const HotKeyIterator,const HotKeyIterator> Result = HotKeys.equal_range(Code);
             if( (*Result.first).first != Code )
                 return;
-            for( std::multimap<Input::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+            for( HotKeyIterator It = Result.first ; It != Result.second ; It++ )
             {
                 if((*It).second->IsVisible())
                     (*It).second->_SetActivation(true);
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Texture Atlas Management
 
     void UIManager::LoadMTA(const String& Name, const String& Group)
     {
@@ -223,22 +226,93 @@ namespace Mezzanine
         /// @todo These NULL returns should probably be exceptions.
         if("" == AtlasName)
         {
-            std::map<String,UI::TextureAtlas*>::iterator It = Atlases.begin();
+            AtlasIterator It = Atlases.begin();
             if(It != Atlases.end()) return (*It).second;
             else return NULL;
         }
-        std::map<String,UI::TextureAtlas*>::iterator It = Atlases.find(AtlasName);
+        AtlasIterator It = Atlases.find(AtlasName);
         if(It != Atlases.end()) return (*It).second;
         else return NULL;
     }
 
-    void UIManager::RedrawAll(bool Force)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Screen Management
+
+    UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
     {
-        for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        UI::Screen* MezzScreen = new UI::Screen(ScreenName, Atlas, WindowViewport);
+        Screens.push_back(MezzScreen);
+
+        VisibleScreenIterator It = VisibleScreens.find(WindowViewport);
+        if( VisibleScreens.end() == It )
         {
-            (*it)->_RedrawAllIndexes(Force);
+            VisibleScreens.insert( std::pair<Viewport*,UI::Screen*>(WindowViewport,MezzScreen) );
+        }else{
+            MezzScreen->Visible = false;
+        }
+
+        return MezzScreen;
+    }
+
+    UI::Screen* UIManager::GetScreen(const String& Name)
+    {
+        for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            if ( Name == (*it)->GetName() )
+            {
+                UI::Screen* Screen = (*it);
+                return Screen;
+            }
+        }
+        return 0;
+    }
+
+    UI::Screen* UIManager::GetScreen(const Whole& Index)
+    {
+        return Screens[Index];
+    }
+
+    Whole UIManager::GetNumScreens()
+    {
+        return Screens.size();
+    }
+
+    void UIManager::DestroyScreen(UI::Screen* Screen)
+    {
+        if(Screens.empty())
+            return;
+        for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            if( Screen == (*it) )
+            {
+                delete (*it);
+                Screens.erase(it);
+                return;
+            }
         }
     }
+
+    void UIManager::DestroyAllScreens()
+    {
+        if(Screens.empty())
+            return;
+        for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            delete (*it);
+        }
+        Screens.clear();
+        return;
+    }
+
+    UI::Screen* UIManager::GetVisibleScreenOnViewport(Viewport* WindowViewport)
+    {
+        VisibleScreenIterator It = VisibleScreens.find(WindowViewport);
+        if( VisibleScreens.end() != It ) return (*It).second;
+        else return NULL;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // HotKey and Activation Management
 
     void UIManager::BindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton)
     {
@@ -248,8 +322,8 @@ namespace Mezzanine
 
     void UIManager::UnbindHotKey(const Input::InputCode& HotKey, UI::Button* BoundButton)
     {
-        std::pair<const std::multimap<Input::InputCode,UI::Button*>::iterator,const std::multimap<Input::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(HotKey);
-        for( std::multimap<Input::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+        std::pair<const HotKeyIterator,const HotKeyIterator> Result = HotKeys.equal_range(HotKey);
+        for( HotKeyIterator It = Result.first ; It != Result.second ; It++ )
         {
             if(BoundButton == (*It).second)
             {
@@ -276,7 +350,7 @@ namespace Mezzanine
 
     void UIManager::AddAutoRegisterCode(Input::InputCode Code)
     {
-        for( std::vector<Input::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+        for( CodeIterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
         {
             if((*It)==Code)
                 return;
@@ -286,7 +360,7 @@ namespace Mezzanine
 
     void UIManager::RemoveAutoRegisterCode(Input::InputCode Code)
     {
-        for( std::vector<Input::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+        for( CodeIterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
         {
             if((*It)==Code)
             {
@@ -301,114 +375,47 @@ namespace Mezzanine
         AutoRegisterCodes.clear();
     }
 
-    std::vector<Input::InputCode>* UIManager::GetAutoRegisteredCodes()
+    UIManager::CodeContainer* UIManager::GetAutoRegisteredCodes()
     {
         return &AutoRegisterCodes;
     }
 
-    UI::Widget* UIManager::GetHoveredWidget()
-    {
-        return HoveredWidget;
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Utility
 
-    UI::Widget* UIManager::GetWidgetFocus()
+    void UIManager::RedrawAll(bool Force)
     {
-        return WidgetFocus;
-    }
-
-    UI::Widget* UIManager::GetWidgetCapturingInput()
-    {
-        return InputCapture;
-    }
-
-    UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
-    {
-        UI::Screen* MezzScreen = new UI::Screen(ScreenName, Atlas, WindowViewport);
-        Screens.push_back(MezzScreen);
-        return MezzScreen;
-    }
-
-    UI::Screen* UIManager::GetScreen(const String& Name)
-    {
-        std::vector<UI::Screen*>::iterator it = Screens.begin();
-        for ( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        for( ScreenIterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
-            if ( Name == (*it)->GetName() )
-            {
-                UI::Screen* Screen = (*it);
-                return Screen;
-            }
+            (*it)->_RedrawAllIndexes(Force);
         }
-        return 0;
-    }
-
-    UI::Screen* UIManager::GetScreen(Whole Index)
-    {
-        return Screens[Index];
-    }
-
-    Whole UIManager::GetNumScreens()
-    {
-        return Screens.size();
-    }
-
-    void UIManager::DestroyScreen(UI::Screen* Screen)
-    {
-        if(Screens.empty())
-            return;
-        for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
-        {
-            if( Screen == (*it) )
-            {
-                delete (*it);
-                Screens.erase(it);
-                return;
-            }
-        }
-    }
-
-    void UIManager::DestroyAllScreens()
-    {
-        if(Screens.empty())
-            return;
-        for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
-        {
-            delete (*it);
-        }
-        Screens.clear();
-        return;
     }
 
     UI::Widget* UIManager::CheckWidgetMouseIsOver()
     {
-        for( Whole x=0 ; x < Screens.size() ; x++ )
+        for( VisibleScreenIterator It = VisibleScreens.begin() ; It != VisibleScreens.end() ; ++It )
         {
-            if( Screens[x]->IsVisible() )
+            if( (*It).second )
             {
-                UI::Widget* widget = Screens[x]->CheckWidgetMouseIsOver();
+                UI::Widget* widget = (*It).second->CheckWidgetMouseIsOver();
                 if(widget)
                 {
                     return widget;
                 }
             }
         }
-        return 0;
+        return NULL;
     }
 
     bool UIManager::MouseIsInUISystem()
     {
-        if(HoveredWidget || WidgetFocus)
-        {
-            return true;
-        }else{
-            return false;
-        }
+        return (HoveredWidget || WidgetFocus);
     }
 
-    std::pair<Whole,Real> UIManager::SuggestGlyphIndex(const Whole& Height, const String& Atlas)
+    UIManager::GlyphIndexResult UIManager::SuggestGlyphIndex(const Whole& Height, const String& Atlas)
     {
         UI::TextureAtlas* TheAtlas = NULL;
-        std::map<String,UI::TextureAtlas*>::iterator It = Atlases.find(Atlas);
+        AtlasIterator It = Atlases.find(Atlas);
         if(It != Atlases.end()) TheAtlas = (*It).second;
         else
         {
@@ -452,12 +459,33 @@ namespace Mezzanine
         if(LargerMatch != 0)
         {
             Scale = RequestedHeight / LargerHeight;
-            return std::pair<Whole,Real>(LargerMatch,Scale);
+            return GlyphIndexResult(LargerMatch,Scale);
         }else{
             Scale = RequestedHeight / SmallerHeight;
-            return std::pair<Whole,Real>(SmallerMatch,Scale);
+            return GlyphIndexResult(SmallerMatch,Scale);
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Fetch Methods
+
+    UI::Widget* UIManager::GetHoveredWidget()
+    {
+        return HoveredWidget;
+    }
+
+    UI::Widget* UIManager::GetWidgetFocus()
+    {
+        return WidgetFocus;
+    }
+
+    UI::Widget* UIManager::GetWidgetCapturingInput()
+    {
+        return InputCapture;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Inherited from ManagerBase
 
     void UIManager::Initialize()
     {
@@ -478,6 +506,24 @@ namespace Mezzanine
 
     String UIManager::GetImplementationTypeName() const
         { return "DefaultUIManager"; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
+    void UIManager::_NotifyScreenVisibility(UI::Screen* BeingShown, bool Visible)
+    {
+        VisibleScreenIterator It = VisibleScreens.find(BeingShown->GetViewport());
+        if( VisibleScreens.end() != It )
+        {
+            if( (*It).second )
+                (*It).second->Visible = false;
+
+            if(Visible) (*It).second = BeingShown;
+            else (*It).second = NULL;
+        }else{
+            VisibleScreens.insert( std::pair<Viewport*,UI::Screen*>(BeingShown->GetViewport(), ( Visible ? BeingShown : NULL ) ) );
+        }
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // DefaultUIManagerFactory Methods

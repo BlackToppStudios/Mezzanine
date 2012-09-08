@@ -64,7 +64,9 @@
 #include "UI/tabset.h"
 #include "UI/renderablecontainerwidget.h"
 #include "viewport.h"
+#include "cameramanager.h"
 #include "scenemanager.h"
+#include "camera.h"
 #include "mathtool.h"
 
 #include <OgreRoot.h>
@@ -135,7 +137,6 @@ namespace Mezzanine
               GameViewport(WindowViewport),
               Scale(Vector3(1,1,1)),
               VertexBufferSize(0),
-              CanRender(true),
               Visible(true),
               IndexRedrawNeeded(false),
               IndexRedrawAll(false),
@@ -143,8 +144,6 @@ namespace Mezzanine
               ViewportSizeChanged(false),
               Orientation(Mezzanine::OM_Degree_0)
         {
-            SceneMan = SceneManager::GetSingletonPtr();
-
             KnownViewportSize.X = (Real)GameViewport->GetActualWidth();
             KnownViewportSize.Y = (Real)GameViewport->GetActualHeight();
             InverseViewportSize.X = 1 / KnownViewportSize.X;
@@ -154,7 +153,9 @@ namespace Mezzanine
             SID->RenderSys = Ogre::Root::getSingletonPtr()->getRenderSystem();
             SID->ParentScreen = this;
 
-            SceneMan->GetGraphicsWorldPointer()->addRenderQueueListener(SID);
+            SceneManager* SceneMan = GetSceneManager();
+            if(SceneMan)
+                SceneMan->GetGraphicsWorldPointer()->addRenderQueueListener(SID);
 
             VertexTransform.SetTransform(Vector3(0,0,0),Scale,Quaternion(0,0,0,1));
             CreateVertexBuffer();
@@ -162,6 +163,24 @@ namespace Mezzanine
 
         Screen::~Screen()
         {
+        }
+
+        SceneManager* Screen::GetSceneManager()
+        {
+            /// @todo This function exists (as opposed to storing a pointer that doesn't change) so that if changes in the
+            /// viewport configuration occur this will pick up on that.  However the render queue listener that is added in
+            /// this class' constructor never gets re-assigned.  This needs to be fixed.  Until then if a change does occur
+            /// the UI will be rendered at a different time then it needs to be, potentially overwritten by the scene render.
+            if(GameViewport)
+            {
+                Camera* Cam = GameViewport->GetViewportCamera();
+                if(Cam)
+                {
+                    SceneManager* SceneMan = Cam->GetCameraManager()->GetScene();
+                    if(SceneMan) return SceneMan;
+                    else return NULL;
+                }else return NULL;
+            }else return NULL;
         }
 
         Screen* Screen::GetScreen()
@@ -186,7 +205,9 @@ namespace Mezzanine
             this->SID->RenderSys->_setWorldMatrix( Ogre::Matrix4::IDENTITY );
             this->SID->RenderSys->_setProjectionMatrix( Ogre::Matrix4::IDENTITY );
             this->SID->RenderSys->_setViewMatrix( Ogre::Matrix4::IDENTITY );
-            SceneMan->GetGraphicsWorldPointer()->_setPass( UIManager::GetSingletonPtr()->GetAtlas(PrimaryAtlas)->_Get2DPass() );
+            SceneManager* SceneMan = GetSceneManager();
+            if(SceneMan)
+                SceneMan->GetGraphicsWorldPointer()->_setPass( UIManager::GetSingletonPtr()->GetAtlas(PrimaryAtlas)->_Get2DPass() );
         }
 
         void Screen::CreateVertexBuffer(const Whole& InitialSize)
@@ -259,9 +280,12 @@ namespace Mezzanine
             return Name;
         }
 
-        void Screen::SetVisible(bool Visible)
+        void Screen::SetVisible(bool visible)
         {
-            this->Visible = Visible;
+            if( this->Visible == visible )
+                return;
+            UIManager::GetSingletonPtr()->_NotifyScreenVisibility(this,visible);
+            this->Visible = visible;
         }
 
         bool Screen::IsVisible()
@@ -271,12 +295,12 @@ namespace Mezzanine
 
         void Screen::Show()
         {
-            this->Visible = true;
+            SetVisible(true);
         }
 
         void Screen::Hide()
         {
-            this->Visible = false;
+            SetVisible(false);
         }
 
         const Vector2& Screen::GetViewportDimensions()

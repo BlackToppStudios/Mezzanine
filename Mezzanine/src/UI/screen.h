@@ -122,12 +122,11 @@ namespace Mezzanine
                 typedef WidgetContainer::iterator        WidgetIterator;
                 typedef WidgetContainer::const_iterator  ConstWidgetIterator;
             protected:
-                SceneManager* SceneMan;
+                friend class Mezzanine::UIManager;
                 Viewport* GameViewport;
                 ScreenInternalData* SID;
                 bool OrientationChanged;
                 bool Visible;
-                bool CanRender;
                 bool IndexRedrawNeeded;
                 bool IndexRedrawAll;
                 bool ViewportSizeChanged;
@@ -144,13 +143,14 @@ namespace Mezzanine
                 IndexMap WidgetsRoot;
                 WidgetContainer Widgets;
 
+                virtual SceneManager* GetSceneManager();
                 virtual Screen* GetScreen();
                 virtual Widget* CheckAndInsert(Widget* ToInsert);
                 virtual void PrepareRenderSystem();
                 virtual void CreateVertexBuffer(const Whole& InitialSize = 32);
                 virtual void DestroyVertexBuffer();
                 virtual void ResizeVertexBuffer(const Whole& RequestedSize);
-            public:
+            //public:
                 /// @brief Internal constructor.
                 /// @param name The name of this screen.
                 /// @param Atlas The name of the primary atlas to be assigned to this screen.
@@ -159,7 +159,7 @@ namespace Mezzanine
                 Screen(const String& name, const String& Atlas, Viewport* WindowViewport);
                 /// @brief Class destructor.
                 virtual ~Screen();
-
+            public:
                 ///////////////////////////////////////////////////////////////////////////////
                 // Utility and Visibility Methods
 
@@ -167,8 +167,8 @@ namespace Mezzanine
                 /// @return Returns a string containing the name of this screen.
                 virtual String& GetName();
                 /// @brief Sets the screens visability.
-                /// @param Visable A bool representing the visability of the screen.
-                virtual void SetVisible(bool Visible);
+                /// @param visable A bool representing the visability of the screen.
+                virtual void SetVisible(bool visible);
                 /// @brief Gets the screens visability.
                 /// @return Returns a bool representing the visability of the screen.
                 virtual bool IsVisible();
