@@ -68,8 +68,10 @@ namespace Mezzanine
 
         void Mouse::UpdateImpl(std::vector<MetaCode>& Codes)
         {
-            /// @todo Setting 0's shouldn't be necessary.  Reliance on polling or zero'ing out arrays can be replaced by a system that reports state change in events
-            /// and then during these updates replaces the change events(Pressing, Lifting) to their next natural progression(Down, Up).
+            /// @todo Getting the mouse focus doesn't do what I originally thought it would.  When a mouse leaves a window, the focus isn't set to NULL
+            /// as expected.  If you have only one window, then it just stays pointing to that window.  If you have two then it will stay on the first
+            /// window until you mouse over the second, even if there is a space between the windows.  This should be updated somehow so that we can set
+            /// "HoveredWindow" to NULL when none of our windows are being hovered.
             // First do some setup.  Get the window and zero out button presses(Key::Up isn't reported).
             SDL_Window* Focus = SDL_GetMouseFocus();
             // Now do the actual updating.
