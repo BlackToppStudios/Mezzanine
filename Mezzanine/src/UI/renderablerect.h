@@ -52,14 +52,15 @@ namespace Mezzanine
         /// @brief This class contains all the utilities necessary for capturing input.
         /// @details This is commonly used for Text-based widgets, such as TextBox's, Spinners, and InputBox's.
         ///////////////////////////////////////
-        struct MEZZ_LIB RenderableRect
+        class MEZZ_LIB RenderableRect
         {
+            public:
             Vector2 Position;
             Vector2 Size;
             bool Relative;
 
             /// @brief Detailed Constructor.
-            /// @details Sets all the data of the struct.
+            /// @details Sets all the data of the class.
             /// @param Position The position of the Renderable's Rect.
             /// @param Size The size of the Renderable's Rect.
             /// @param Relative Whether or not this Rect is using relative(0-1) or absolute units(Pixels).
@@ -73,16 +74,24 @@ namespace Mezzanine
             /// @details Sets all data members to zero's.
             RenderableRect()
             {
-                this->Position = Vector2();
-                this->Size = Vector2();
+                this->Position.SetValues(0,0);
+                this->Size.SetValues(0,0);
                 this->Relative = false;
             };
             /// @brief Class destructor.
-            virtual ~RenderableRect() {};
+            ~RenderableRect() {};
+
+            /// @brief Gets the coordinates to the center of this rect.
+            /// @return Returns a vector2 containing the central point of this rect.
+            Vector2 GetRectCenter() const
+            {
+                return Vector2(Position.X + Size.X * 0.5,Position.Y + Size.Y * 0.5);
+            };
+
             /// @brief Assignment Operator.
             /// @details Copys the contents of a RenderableRect to another.
             /// @param Other The other RenderableRect to copy from.
-            virtual RenderableRect& operator=(const RenderableRect& Other)
+            RenderableRect& operator=(const RenderableRect& Other)
             {
                 this->Position = Other.Position;
                 this->Size = Other.Size;
@@ -92,7 +101,7 @@ namespace Mezzanine
             /// @brief Comparison Operator.
             /// @details Checks to see if the two RenderableRects are equal.
             /// @param Other The other RenderableRect to compare against.
-            virtual bool operator==(const RenderableRect& Other)
+            bool operator==(const RenderableRect& Other)
             {
                 if(this->Position != Other.Position) return false;
                 if(this->Size != Other.Size) return false;
