@@ -757,8 +757,8 @@ class Vector3Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (Mezzanine::Exception e){
-                    std::cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
+                }catch (Mezzanine::Exception& Ex){
+                    std::cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
                 #endif
@@ -777,8 +777,8 @@ class Vector3Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (Mezzanine::Exception e){
-                    std::cerr << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
+                }catch (Mezzanine::Exception& Ex){
+                    std::cerr << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
                 #endif

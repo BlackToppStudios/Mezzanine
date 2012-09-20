@@ -190,8 +190,8 @@ class Vector2Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (Mezzanine::Exception e){
-                    std::cerr << "Failure in: Vector2::operator>>(istream,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
+                }catch (Mezzanine::Exception& Ex){
+                    std::cerr << "Failure in: Vector2::operator>>(istream,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
                 AddTestResult("Vector2::operator>>(istream,Vector2)", temp);            //test
@@ -206,8 +206,8 @@ class Vector2Tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                }catch (Mezzanine::Exception e){
-                    std::cerr << "Failure in: Vector2::operator>>(XML::Node,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << e.what();
+                }catch (Mezzanine::Exception& Ex){
+                    std::cerr << "Failure in: Vector2::operator>>(XML::Node,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
                 #endif

@@ -112,12 +112,12 @@ class CollisionShapeTests : public UnitTestGroup
                 {
                     std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
-                    BoxCollisionShape TestObject1("ABox",Vector3(1,2,3));                                                   //create two objects one initial and functionally empty data and one with many(every) change
-                    BoxCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6));
+                    Physics::BoxCollisionShape TestObject1("ABox",Vector3(1,2,3));                                                   //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::BoxCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6));
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -151,8 +151,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("BoxCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 }
@@ -161,12 +161,12 @@ class CollisionShapeTests : public UnitTestGroup
                 {
                     std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
-                    CapsuleCollisionShape TestObject1("ABox",1,2,Vector3(0,1,0));                                           //create two objects one initial and functionally empty data and one with many(every) change
-                    CapsuleCollisionShape TestObject2("GeorgeWashington",3,4,Axis_Z);
+                    Physics::CapsuleCollisionShape TestObject1("ABox",1,2,Vector3(0,1,0));                                           //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::CapsuleCollisionShape TestObject2("GeorgeWashington",3,4,Axis_Z);
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -200,8 +200,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("CapsuleCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 }
@@ -210,12 +210,12 @@ class CollisionShapeTests : public UnitTestGroup
                 {
                     std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
-                    ConeCollisionShape TestObject1("ABox",1,2,Vector3(0,1,0));                                              //create two objects one initial and functionally empty data and one with many(every) change
-                    ConeCollisionShape TestObject2("GeorgeWashington",3,4,Axis_Z);
+                    Physics::ConeCollisionShape TestObject1("ABox",1,2,Vector3(0,1,0));                                              //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::ConeCollisionShape TestObject2("GeorgeWashington",3,4,Axis_Z);
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -249,8 +249,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("ConeCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 }
@@ -275,12 +275,12 @@ class CollisionShapeTests : public UnitTestGroup
                     ManyPoints.push_back(Vector3(0,0,-1));
                     ManyPoints.push_back(Vector3(0.5,0,0)); //another point completel inside
 
-                    ConvexHullCollisionShape TestObject1("d4",SimplePoints);                                                      //create two objects one initial and functionally empty data and one with many(every) change
-                    ConvexHullCollisionShape TestObject2("IThinkItsAd8WithAgravityPrblem",ManyPoints);
+                    Physics::ConvexHullCollisionShape TestObject1("d4",SimplePoints);                                                      //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::ConvexHullCollisionShape TestObject2("IThinkItsAd8WithAgravityPrblem",ManyPoints);
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -314,8 +314,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("ConvexHullCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
@@ -324,12 +324,12 @@ class CollisionShapeTests : public UnitTestGroup
                 {
                     std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
-                    CylinderCollisionShape TestObject1("ATube",Vector3(1,2,3), Axis_Y);                                     //create two objects one initial and functionally empty data and one with many(every) change
-                    CylinderCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6), Axis_X);
+                    Physics::CylinderCollisionShape TestObject1("ATube",Vector3(1,2,3), Axis_Y);                                     //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::CylinderCollisionShape TestObject2("GeorgeWashington",Vector3(4,5,6), Axis_X);
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -363,8 +363,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("CylinderCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
@@ -403,12 +403,12 @@ class CollisionShapeTests : public UnitTestGroup
                     ManyRadii.push_back(1.5);
                     ManyRadii.push_back(5.0);               // Completely envelopes shape
 
-                    MultiSphereCollisionShape TestObject1("Jake",SimplePoints,SimpleRadii);                                 //create two objects one initial and functionally empty data and one with many(every) change
-                    MultiSphereCollisionShape TestObject2("ThatsNoMoon",ManyPoints,ManyRadii);
+                    Physics::MultiSphereCollisionShape TestObject1("Jake",SimplePoints,SimpleRadii);                                 //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::MultiSphereCollisionShape TestObject2("ThatsNoMoon",ManyPoints,ManyRadii);
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.0,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     //cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -442,8 +442,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("MultiSphereCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/
@@ -453,12 +453,12 @@ class CollisionShapeTests : public UnitTestGroup
                 {
                     std::stringstream Case1Stream, Case2Stream, Case1StreamRS, Case2StreamRS;                                    //create streams for the output of each test
 
-                    SphereCollisionShape TestObject1("Round", 1.0);                                                         //create two objects one initial and functionally empty data and one with many(every) change
-                    SphereCollisionShape TestObject2("ThomasJefferson",10.5);
+                    Physics::SphereCollisionShape TestObject1("Round", 1.0);                                                         //create two objects one initial and functionally empty data and one with many(every) change
+                    Physics::SphereCollisionShape TestObject2("ThomasJefferson",10.5);
                         TestObject2.SetMargin(0.09); // CollisionShape
                         TestObject2.SetScaling(Vector3(7.0,8.5,9.9)); // CollisionShape
-                    CollisionShape* TestObject1RS = 0;
-                    CollisionShape* TestObject2RS = 0;
+                    Physics::CollisionShape* TestObject1RS = 0;
+                    Physics::CollisionShape* TestObject2RS = 0;
                     std::cout << std::endl << std::endl << TestObject1 << std::endl << std::endl << TestObject2 << std::endl << std::endl;
 
                     Case1Stream << TestObject1;                                                                             //Streaming test 1 and compare output with results for results
@@ -492,8 +492,8 @@ class CollisionShapeTests : public UnitTestGroup
                         { AddTestResult("SphereCollisionShape::operator>> (Case2)", Failed, UnitTestGroup::OverWrite); }
                     //cout << std::endl << std::endl << *TestObject1RS << std::endl << std::endl << *TestObject2RS << std::endl << std::endl;
 
-                }catch (Mezzanine::Exception e){
-                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << e.what() << std::endl << std::endl;
+                }catch (Mezzanine::Exception& Ex){
+                    std::cout << std::endl << std::endl << "Mezzanine Exception: " << Ex.GetCompleteMessage() << std::endl << std::endl;
                 }catch (std::exception e){
                     std::cout << std::endl << std::endl << "Non-Mezzanine Exception: " << e.what() << std::endl << std::endl;
                 } //*/

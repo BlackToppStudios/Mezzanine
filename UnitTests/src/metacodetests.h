@@ -63,8 +63,8 @@ class MetaCodeTests : public UnitTestGroup
                 std::stringstream EmptyTestRS, Filled1TestRS, Filled2TestRS;    // create Stringstreams for deserialization test
 
                 MetaCode Mempty;                                                // create three metacodes for testing
-                MetaCode MFilled1(MetaCode::BUTTON_LIFTING,MetaCode::KEY_W);    // The W key being released
-                MetaCode MFilled2(-249,(MetaCode::InputCode)491);               // joystick axis 11 being moved down 249 units from center
+                MetaCode MFilled1(Input::BUTTON_LIFTING,Input::KEY_W);    // The W key being released
+                MetaCode MFilled2(-249,(Input::InputCode)491);               // joystick axis 11 being moved down 249 units from center
                 MetaCode MemptyRS, MFilled1RS, MFilled2RS;                      // Three empty metacodes for Deserialization;
 
                 EmptyTest << Mempty;                                            //Perform the actual Serialization tests

@@ -115,8 +115,8 @@ class ConstraintTests : public UnitTestGroup
                 // Make minimal set for constraint
                 String groupname ("Group1");
                 String filerobot ("robot.mesh");
-                ResourceManager::GetSingletonPtr()->AddResourceLocation("data/common", "FileSystem", groupname, false);
-                CollisionShape* RobotShape = CollisionShapeManager::GetSingletonPtr()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname);
+                ResourceManager::GetSingletonPtr()->AddAssetLocation("data/common", "FileSystem", groupname, false);
+                Physics::CollisionShape* RobotShape = CollisionShapeManager::GetSingletonPtr()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname);
 
                 ActorRigid *ActorA = new ActorRigid (20.0,"RobotA",filerobot,groupname);
                 ActorA->GetPhysicsSettings();//->SetCollisionShape();
@@ -131,8 +131,8 @@ class ConstraintTests : public UnitTestGroup
 
 
 
-                Point2PointConstraint Testee( ActorA, ActorB, Vector3(0.0,0.0,5.0), Vector3(0.0,5.0,0.0) );
-                Point2PointConstraint TesteeRS( ActorA, ActorB, Vector3(0.0,0.0,0.0), Vector3(0.0,0.0,0.0) );
+                Physics::Point2PointConstraint Testee( ActorA, ActorB, Vector3(0.0,0.0,5.0), Vector3(0.0,5.0,0.0) );
+                Physics::Point2PointConstraint TesteeRS( ActorA, ActorB, Vector3(0.0,0.0,0.0), Vector3(0.0,0.0,0.0) );
                 Testee.SetDamping(0.1);
 
                 // make some places to store results
@@ -145,32 +145,32 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestP2PEmpty >> TesteeRS;
                     SerializeTestP2PEmptyRS <<TesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
-                UnsetCFM = Testee.HasParamBeenSet(Con_CFM,-1);          // P2P All of the Unset test
-                UnsetStopCFM = Testee.HasParamBeenSet(Con_Stop_CFM,-1);
-                UnsetERP = Testee.HasParamBeenSet(Con_ERP,-1);
-                UnsetStopERP = Testee.HasParamBeenSet(Con_Stop_ERP,-1);
+                UnsetCFM = Testee.HasParamBeenSet(Physics::Con_CFM,-1);          // P2P All of the Unset test
+                UnsetStopCFM = Testee.HasParamBeenSet(Physics::Con_Stop_CFM,-1);
+                UnsetERP = Testee.HasParamBeenSet(Physics::Con_ERP,-1);
+                UnsetStopERP = Testee.HasParamBeenSet(Physics::Con_Stop_ERP,-1);
 
 
-                Testee.SetParam(Con_CFM,0.1,-1);                        // P2P Serialize Test2
+                Testee.SetParam(Physics::Con_CFM,0.1,-1);                        // P2P Serialize Test2
                 SerializeTestP2PWithOneParam << Testee;
                 try{
                     SerializeTestP2PWithOneParam >> TesteeRS;
                     SerializeTestP2PWithOneParamRS << TesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
-                Testee.SetParam(Con_ERP,0.2,-1);                        // P2P Serialize Test3
+                Testee.SetParam(Physics::Con_ERP,0.2,-1);                        // P2P Serialize Test3
                 SerializeTestP2PWithAllParams << Testee;
                 try{
                     SerializeTestP2PWithAllParams >> TesteeRS;
                     SerializeTestP2PWithAllParamsRS << TesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
-                SetCFM = Testee.HasParamBeenSet(Con_CFM,-1);            // All of the Set tests for P2P
-                SetStopCFM = Testee.HasParamBeenSet(Con_Stop_CFM,-1);
-                SetERP = Testee.HasParamBeenSet(Con_ERP,-1);
-                SetStopERP = Testee.HasParamBeenSet(Con_Stop_ERP,-1);
+                SetCFM = Testee.HasParamBeenSet(Physics::Con_CFM,-1);            // All of the Set tests for P2P
+                SetStopCFM = Testee.HasParamBeenSet(Physics::Con_Stop_CFM,-1);
+                SetERP = Testee.HasParamBeenSet(Physics::Con_ERP,-1);
+                SetStopERP = Testee.HasParamBeenSet(Physics::Con_Stop_ERP,-1);
 
                 //Check Test results
                 String Test1("<Point2PointConstraint Version=\"1\" Tau=\"0.3\" ImpulseClamping=\"0\" Damping=\"0.1\"><ActorA><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"5\" /></ActorA><ActorB><Vector3 Version=\"1\" X=\"0\" Y=\"5\" Z=\"0\" /></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></Point2PointConstraint>");
@@ -278,11 +278,11 @@ class ConstraintTests : public UnitTestGroup
 
 
 
-                HingeConstraint HingeTestee( ActorA, ActorB,                    // Prepare for the hinge test.
+                Physics::HingeConstraint HingeTestee( ActorA, ActorB,                    // Prepare for the hinge test.
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
                                 Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
                                 );
-                HingeConstraint HingeTesteeRS( ActorA, ActorB,                    // Prepare for the hinge test.
+                Physics::HingeConstraint HingeTesteeRS( ActorA, ActorB,                    // Prepare for the hinge test.
                                 Transform(Vector3(0.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.0, 0.0)),
                                 Transform(Vector3(0.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.0, 0.0))
                             );
@@ -294,26 +294,26 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestHinge1 >> HingeTesteeRS;
                     SerializeTestHinge1RS << HingeTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
                 //cout <<endl <<endl << HingeTestee <<endl <<endl;
 
-                HingeTestee.SetParam(Con_CFM,0.1,-1);
+                HingeTestee.SetParam(Physics::Con_CFM,0.1,-1);
                 SerializeTestHinge2 << HingeTestee;                             // Hinge test 1 param
                 try{
                     SerializeTestHinge2 >> HingeTesteeRS;
                     SerializeTestHinge2RS << HingeTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
-                HingeTestee.SetParam(Con_CFM,0.2,5);
-                HingeTestee.SetParam(Con_Stop_ERP,0.3,-1);
-                HingeTestee.SetParam(Con_Stop_ERP,0.4,5);
-                HingeTestee.SetParam(Con_Stop_CFM,0.5,-1);
-                HingeTestee.SetParam(Con_Stop_CFM,0.6,5);
+                HingeTestee.SetParam(Physics::Con_CFM,0.2,5);
+                HingeTestee.SetParam(Physics::Con_Stop_ERP,0.3,-1);
+                HingeTestee.SetParam(Physics::Con_Stop_ERP,0.4,5);
+                HingeTestee.SetParam(Physics::Con_Stop_CFM,0.5,-1);
+                HingeTestee.SetParam(Physics::Con_Stop_CFM,0.6,5);
                 SerializeTestHinge3 << HingeTestee;                             // Hinge test All Params
                 try{
                     SerializeTestHinge3 >> HingeTesteeRS;
                     SerializeTestHinge3RS << HingeTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
 
                 String HingeTest1("<HingeConstraint Version=\"1\" ReferenceInA=\"false\" UseFrameOffset=\"true\"><Motor Enabled=\"true\" MaxImpulse=\"0.01\" TargetVelocity=\"0.05\" /><Limits Low=\"1\" High=\"-1\" Softness=\"0.9\" BiasFactor=\"0.3\" RelaxationFactor=\"1\" /><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></HingeConstraint>");
@@ -367,11 +367,11 @@ class ConstraintTests : public UnitTestGroup
                 std::stringstream SerializeTestG6dof1, SerializeTestG6dof2, SerializeTestG6dof3; // Prepare for the G6dof test.
                 std::stringstream SerializeTestG6dof1RS, SerializeTestG6dof2RS, SerializeTestG6dof3RS;
 
-                Generic6DofConstraint G6dofTestee( ActorA, ActorB,
+                Physics::Generic6DofConstraint G6dofTestee( ActorA, ActorB,
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
                                 Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
                             );
-                Generic6DofConstraint G6dofTesteeRS( ActorA, ActorB,
+                Physics::Generic6DofConstraint G6dofTesteeRS( ActorA, ActorB,
                                 Transform(Vector3(0.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.0, 0.0)),
                                 Transform(Vector3(0.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.0, 0.0))
                             );
@@ -379,7 +379,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof1 >> G6dofTesteeRS;
                     SerializeTestG6dof1RS << G6dofTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
                 G6dofTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                 // 6dof test2
                 G6dofTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
@@ -404,31 +404,31 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dof2 >> G6dofTesteeRS;
                     SerializeTestG6dof2RS << G6dofTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
-                G6dofTestee.SetParam(Con_Stop_ERP,0.01,0);                                        // 6dof Test3
-                G6dofTestee.SetParam(Con_CFM,0.02,0);
-                G6dofTestee.SetParam(Con_Stop_CFM,0.03,0);
-                G6dofTestee.SetParam(Con_Stop_ERP,0.04,1);
-                G6dofTestee.SetParam(Con_CFM,0.05,1);
-                G6dofTestee.SetParam(Con_Stop_CFM,0.06,1);
-                G6dofTestee.SetParam(Con_Stop_ERP,0.07,2);
-                G6dofTestee.SetParam(Con_CFM,0.08,2);
-                G6dofTestee.SetParam(Con_Stop_CFM,0.09,2);
-                G6dofTestee.SetParam(Con_Stop_ERP,0.10,3);
-                G6dofTestee.SetParam(Con_CFM,0.11,3);
-                G6dofTestee.SetParam(Con_Stop_CFM,0.12,3);
-                G6dofTestee.SetParam(Con_Stop_ERP,0.13,4);
-                G6dofTestee.SetParam(Con_CFM,0.14,4);
-                G6dofTestee.SetParam(Con_Stop_CFM,0.15,4);
-                G6dofTestee.SetParam(Con_Stop_ERP,0.16,5);
-                G6dofTestee.SetParam(Con_CFM,0.17,5);
-                G6dofTestee.SetParam(Con_Stop_CFM,0.18,5);
+                G6dofTestee.SetParam(Physics::Con_Stop_ERP,0.01,0);                                        // 6dof Test3
+                G6dofTestee.SetParam(Physics::Con_CFM,0.02,0);
+                G6dofTestee.SetParam(Physics::Con_Stop_CFM,0.03,0);
+                G6dofTestee.SetParam(Physics::Con_Stop_ERP,0.04,1);
+                G6dofTestee.SetParam(Physics::Con_CFM,0.05,1);
+                G6dofTestee.SetParam(Physics::Con_Stop_CFM,0.06,1);
+                G6dofTestee.SetParam(Physics::Con_Stop_ERP,0.07,2);
+                G6dofTestee.SetParam(Physics::Con_CFM,0.08,2);
+                G6dofTestee.SetParam(Physics::Con_Stop_CFM,0.09,2);
+                G6dofTestee.SetParam(Physics::Con_Stop_ERP,0.10,3);
+                G6dofTestee.SetParam(Physics::Con_CFM,0.11,3);
+                G6dofTestee.SetParam(Physics::Con_Stop_CFM,0.12,3);
+                G6dofTestee.SetParam(Physics::Con_Stop_ERP,0.13,4);
+                G6dofTestee.SetParam(Physics::Con_CFM,0.14,4);
+                G6dofTestee.SetParam(Physics::Con_Stop_CFM,0.15,4);
+                G6dofTestee.SetParam(Physics::Con_Stop_ERP,0.16,5);
+                G6dofTestee.SetParam(Physics::Con_CFM,0.17,5);
+                G6dofTestee.SetParam(Physics::Con_Stop_CFM,0.18,5);
                 SerializeTestG6dof3 << G6dofTestee;
                 try{
                     SerializeTestG6dof3 >> G6dofTesteeRS;
                     SerializeTestG6dof3RS << G6dofTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
                 //cout << std::endl << std::endl << G6dofTestee << std::endl << std::endl;
 
@@ -481,11 +481,11 @@ class ConstraintTests : public UnitTestGroup
                 std::stringstream SerializeTestG6dofSpring1, SerializeTestG6dofSpring2;                                      // Begin 6dof Spring tests
                 std::stringstream SerializeTestG6dofSpring1RS, SerializeTestG6dofSpring2RS;
 
-                Generic6DofSpringConstraint G6dofSpringTestee( ActorA, ActorB,
+                Physics::Generic6DofSpringConstraint G6dofSpringTestee( ActorA, ActorB,
                                 Transform(Vector3(1.0, 2.0, 3.0), Quaternion(0.0, 1.0, 0.0, 0.4)),
                                 Transform(Vector3(5.0, 6.0, 7.0), Quaternion(1.0, 0.0, 0.0, 0.8))
                             );
-                Generic6DofSpringConstraint G6dofSpringTesteeRS( ActorA, ActorB,
+                Physics::Generic6DofSpringConstraint G6dofSpringTesteeRS( ActorA, ActorB,
                                 Transform(Vector3(0.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.0, 0.0)),
                                 Transform(Vector3(0.0, 0.0, 0.0), Quaternion(0.0, 0.0, 0.0, 0.0))
                             );
@@ -493,7 +493,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dofSpring1 >> G6dofSpringTesteeRS;
                     SerializeTestG6dofSpring1RS << G6dofSpringTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
 
                 G6dofSpringTestee.SetLinearLimitUpper(Vector3(10.0, 11.0, 12.0));                                       // 6dof spring test2
                 G6dofSpringTestee.SetLinearLimitLower(Vector3(-10.0, -11.0, -12.0));
@@ -511,24 +511,24 @@ class ConstraintTests : public UnitTestGroup
                 G6dofSpringTestee.SetLinearMotorMaxForce(Vector3(26.0, 27.0, 28.0));
                 G6dofSpringTestee.SetLinearMotorTargetVelocity(Vector3(29.0, 30.0, 31.0));
                 G6dofSpringTestee.SetLinearMotorEnabled(Vector3(0, 1, 0));
-                G6dofSpringTestee.SetParam(Con_Stop_ERP,0.01,0);
-                G6dofSpringTestee.SetParam(Con_CFM,0.02,0);
-                G6dofSpringTestee.SetParam(Con_Stop_CFM,0.03,0);
-                G6dofSpringTestee.SetParam(Con_Stop_ERP,0.04,1);
-                G6dofSpringTestee.SetParam(Con_CFM,0.05,1);
-                G6dofSpringTestee.SetParam(Con_Stop_CFM,0.06,1);
-                G6dofSpringTestee.SetParam(Con_Stop_ERP,0.07,2);
-                G6dofSpringTestee.SetParam(Con_CFM,0.08,2);
-                G6dofSpringTestee.SetParam(Con_Stop_CFM,0.09,2);
-                G6dofSpringTestee.SetParam(Con_Stop_ERP,0.10,3);
-                G6dofSpringTestee.SetParam(Con_CFM,0.11,3);
-                G6dofSpringTestee.SetParam(Con_Stop_CFM,0.12,3);
-                G6dofSpringTestee.SetParam(Con_Stop_ERP,0.13,4);
-                G6dofSpringTestee.SetParam(Con_CFM,0.14,4);
-                G6dofSpringTestee.SetParam(Con_Stop_CFM,0.15,4);
-                G6dofSpringTestee.SetParam(Con_Stop_ERP,0.16,5);
-                G6dofSpringTestee.SetParam(Con_CFM,0.17,5);
-                G6dofSpringTestee.SetParam(Con_Stop_CFM,0.18,5);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_ERP,0.01,0);
+                G6dofSpringTestee.SetParam(Physics::Con_CFM,0.02,0);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_CFM,0.03,0);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_ERP,0.04,1);
+                G6dofSpringTestee.SetParam(Physics::Con_CFM,0.05,1);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_CFM,0.06,1);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_ERP,0.07,2);
+                G6dofSpringTestee.SetParam(Physics::Con_CFM,0.08,2);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_CFM,0.09,2);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_ERP,0.10,3);
+                G6dofSpringTestee.SetParam(Physics::Con_CFM,0.11,3);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_CFM,0.12,3);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_ERP,0.13,4);
+                G6dofSpringTestee.SetParam(Physics::Con_CFM,0.14,4);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_CFM,0.15,4);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_ERP,0.16,5);
+                G6dofSpringTestee.SetParam(Physics::Con_CFM,0.17,5);
+                G6dofSpringTestee.SetParam(Physics::Con_Stop_CFM,0.18,5);
 
                 G6dofSpringTestee.SetSpringStiffness(0,0.51);
                 G6dofSpringTestee.SetSpringStiffness(1,0.52);
@@ -552,7 +552,7 @@ class ConstraintTests : public UnitTestGroup
                 try{
                     SerializeTestG6dofSpring2 >> G6dofSpringTesteeRS;
                     SerializeTestG6dofSpring2RS << G6dofSpringTesteeRS;
-                }catch (Exception e){ std::cerr << std::endl << std::endl << e.what() << std::endl << std::endl; }
+                }catch (Exception& Ex){ std::cerr << std::endl << std::endl << Ex.GetCompleteMessage() << std::endl << std::endl; }
                 //cout << std::endl << std::endl << G6dofSpringTestee << std::endl << std::endl;
 
                 String G6dofSpringTest1("<Generic6DofSpringConstraint Version=\"1\"><Generic6DofConstraint Version=\"1\" LinearLimitSoftness=\"0.7\" LinearLimitDamping=\"1\" LinearLimitRestitution=\"0.5\"><LinearLimitUpper><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitUpper><LinearLimitLower><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearLimitLower><AngularLimitUpper><Vector3 Version=\"1\" X=\"-1\" Y=\"-1\" Z=\"-1\" /></AngularLimitUpper><AngularLimitLower><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularLimitLower><AngularLimitMaxForce><Vector3 Version=\"1\" X=\"300\" Y=\"300\" Z=\"300\" /></AngularLimitMaxForce><AngularMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorTargetVelocity><AngularMotorMaxForce><Vector3 Version=\"1\" X=\"0.1\" Y=\"0.1\" Z=\"0.1\" /></AngularMotorMaxForce><AngularMotorDamping><Vector3 Version=\"1\" X=\"1\" Y=\"1\" Z=\"1\" /></AngularMotorDamping><AngularMotorRestitution><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorRestitution><AngularMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></AngularMotorEnabled><LinearMotorMaxForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorMaxForce><LinearMotorTargetVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorTargetVelocity><LinearMotorEnabled><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" /></LinearMotorEnabled><DualTransformConstraint Version=\"1\"><ActorA><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\" /><Quaternion Version=\"1\" X=\"0\" Y=\"0.928477\" Z=\"0\" W=\"0.371391\" /></Transform></ActorA><ActorB><Transform Version=\"1\"><Vector3 Version=\"1\" X=\"5\" Y=\"6\" Z=\"7\" /><Quaternion Version=\"1\" X=\"0.780869\" Y=\"0\" Z=\"0\" W=\"0.624695\" /></Transform></ActorB><TypedConstraint Version=\"1\" ActorNameA=\"RobotA\" ActorNameB=\"RobotB\" /></DualTransformConstraint></Generic6DofConstraint><SpringStiffness Axis0=\"0\" Axis1=\"0\" Axis2=\"0\" Axis3=\"0\" Axis4=\"0\" Axis5=\"0\" /><SpringDamping Axis0=\"1\" Axis1=\"1\" Axis2=\"1\" Axis3=\"1\" Axis4=\"1\" Axis5=\"1\" /><SpringEnabled Axis0=\"false\" Axis1=\"false\" Axis2=\"false\" Axis3=\"false\" Axis4=\"false\" Axis5=\"false\" /></Generic6DofSpringConstraint>");

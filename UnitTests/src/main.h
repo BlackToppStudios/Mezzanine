@@ -84,14 +84,14 @@ Mezzanine::String TestResultToString(TestResult Convertable)
         case NotApplicable:
             return "N/A";
         default:
-            throw(Mezzanine::Exception("Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)));
+            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)); }
     }
 }
 
 TestResult StringToTestResult(Mezzanine::String Text)
 {
     if(Text.size()==0)
-        { throw(Mezzanine::Exception("Cannot convert to TestResult from empty String")); }
+        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from empty String"); }
 
     switch(Text.at(0))
     {
@@ -110,7 +110,7 @@ TestResult StringToTestResult(Mezzanine::String Text)
         case 'N':
             return NotApplicable;
         default:
-            throw(Mezzanine::Exception("Cannot convert to TestResult from text " + Text));
+            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text " + Text); }
     }
     return Unknown;
 }
@@ -389,14 +389,13 @@ void StartEngine()
 {
     PhysicsConstructionInfo Info;
     Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
-    TheEntresol = new Entresol(Info,SceneManager::Generic,"plugins.cfg","data/");
-    TheEntresol->GameInit(false);
-    ResourceManager::GetSingletonPtr()->AddResourceLocation("data", "FileSystem", "files", false);
-    GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
+    TheEntresol = new Entresol(Info,"DefaultSceneManager","plugins.cfg","data/");
+    TheEntresol->EngineInit(false);
+    ResourceManager::GetSingletonPtr()->AddAssetLocation("data", "FileSystem", "files", false);
+    GraphicsManager::GetSingletonPtr()->CreateGameWindow("EventManager Test",800,600,0);
     UIManager::GetSingletonPtr()->LoadMTA("dejavu");
-    ResourceManager::GetSingletonPtr()->InitResourceGroup("files");
-    Mezzanine::UI::Screen *TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetPrimaryGameWindow()->GetViewport(0));
-    Mezzanine::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
+    ResourceManager::GetSingletonPtr()->InitAssetGroup("files");
+    Mezzanine::UI::Screen* TheScreen = UIManager::GetSingletonPtr()->CreateScreen("Screen","dejavu",GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0));
 
     Mezzanine::Entresol::GetSingletonPtr()->Log("Found Resolutions:");
     const std::vector<String>* Resolutions = Mezzanine::Entresol::GetSingletonPtr()->GetGraphicsManager()->GetSupportedResolutions();
@@ -406,17 +405,20 @@ void StartEngine()
     }
     Mezzanine::Entresol::GetSingletonPtr()->CommitLog();
 
-    TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),UI::RenderableRect(Vector2(0.0016,0.603),Vector2(1,0.25),true), (Whole)24, TheMessage);
+    UI::OpenRenderableContainerWidget* HUDContainer = TheScreen->CreateOpenRenderableContainerWidget("HUD");
+    TheScreen->AddRootWidget(0,HUDContainer);
+
+    TheTextB1 = HUDContainer->CreateCaption(ConstString("TheTextB1"),UI::RenderableRect(Vector2(0.0016,0.603),Vector2(1,0.25),true), (Whole)24, TheMessage);
     TheTextB1->SetTextColour(ColourValue::Black());
     TheTextB1->SetBackgroundColour(ColourValue::Transparent());
-    TheTextW1 = TheLayer->CreateCaption(ConstString("TheTextW1"),UI::RenderableRect(Vector2(0,0.6),Vector2(1,0.25),true), (Whole)24, TheMessage);
+    TheTextW1 = HUDContainer->CreateCaption(ConstString("TheTextW1"),UI::RenderableRect(Vector2(0,0.6),Vector2(1,0.25),true), (Whole)24, TheMessage);
     TheTextW1->SetTextColour(ColourValue::White());
     TheTextW1->SetBackgroundColour(ColourValue::Transparent());
 
-    TheTextB2 = TheLayer->CreateCaption(ConstString("TheTextB2"),UI::RenderableRect(Vector2(0.0016,0.753),Vector2(1.0,0.25),true), (Whole)24, TheMessage2);
+    TheTextB2 = HUDContainer->CreateCaption(ConstString("TheTextB2"),UI::RenderableRect(Vector2(0.0016,0.753),Vector2(1.0,0.25),true), (Whole)24, TheMessage2);
     TheTextB2->SetTextColour(ColourValue::Black());
     TheTextB2->SetBackgroundColour(ColourValue::Transparent());
-    TheTextW2 = TheLayer->CreateCaption(ConstString("TheTextW2"),UI::RenderableRect(Vector2(0,0.75),Vector2(1.0,0.25),true), (Whole)24, TheMessage2);
+    TheTextW2 = HUDContainer->CreateCaption(ConstString("TheTextW2"),UI::RenderableRect(Vector2(0,0.75),Vector2(1.0,0.25),true), (Whole)24, TheMessage2);
     TheTextW2->SetTextColour(ColourValue::White());
     TheTextW2->SetBackgroundColour(ColourValue::Transparent());
 
@@ -465,19 +467,19 @@ bool PostInputCheck()
     {
         for (Whole c=0; c<ThisInput->GetMetaCodeCount(); ++c ) //for each metacode in each userinput
         {
-            MetaCode::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
+            Input::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
             switch(ThisCode)
             {
-                case MetaCode::KEY_T: case MetaCode::KEY_Y: // True or Yes
+                case Input::KEY_T: case Input::KEY_Y: // True or Yes
                     AnswerToQuestion = Success;
                     break;
-                case MetaCode::KEY_F: case MetaCode::KEY_N: // False or No
+                case Input::KEY_F: case Input::KEY_N: // False or No
                     AnswerToQuestion = Failed;
                     break;
-                case MetaCode::KEY_C:                       // Cancel
+                case Input::KEY_C:                       // Cancel
                     AnswerToQuestion = Cancelled;
                     break;
-                case MetaCode::KEY_U: case MetaCode::KEY_I: // Unknown or Inconclusive
+                case Input::KEY_U: case Input::KEY_I: // Unknown or Inconclusive
                     AnswerToQuestion = Inconclusive;
                     break;
                 default:

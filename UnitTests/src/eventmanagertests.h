@@ -76,7 +76,7 @@ class EventManagerTests : public UnitTestGroup
                 StartCountdown(15);
                 EventManager* EventMan = EventManager::GetSingletonPtr();
                 EventMan->SetPostMainLoopItems(&PostInputTestNull);
-                TheWorld->MainLoop();
+                TheEntresol->MainLoop();
 
                 TestResult Order1 = Success;
                 TestResult Order2 = Success;
@@ -86,36 +86,36 @@ class EventManagerTests : public UnitTestGroup
                 bool Tested3 = false;
 
                 std::vector<int> Keymap;
-                Keymap.insert(Keymap.end(), MetaCode::KEY_LAST, 0); // make a big empty arraylike thing
+                Keymap.insert(Keymap.end(), Input::KEY_LAST, 0); // make a big empty arraylike thing
 
                 EventUserInput *ThisInput = EventMan->PopNextUserInputEvent();
                 while (ThisInput) //for each userinput event
                 {
                     for (Whole c=0; c<ThisInput->GetMetaCodeCount(); ++c ) //for each metacode in each userinput
                     {
-                        MetaCode::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
-                        if(MetaCode::KEY_LAST > ThisCode)
+                        Input::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
+                        if(Input::KEY_LAST > ThisCode)
                         {
-                            TheWorld->Log(ThisInput->GetMetaCode(c));
-                            MetaCode::ButtonState ThisValue = ThisInput->GetMetaCode(c).GetMetaValueAsButtonState();
-                            if(MetaCode::BUTTON_UP == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
+                            TheEntresol->Log(ThisInput->GetMetaCode(c));
+                            Input::ButtonState ThisValue = ThisInput->GetMetaCode(c).GetMetaValueAsButtonState();
+                            if(Input::BUTTON_UP == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
                             {
                                 Tested1=true;
-                                if(MetaCode::BUTTON_PRESSING==ThisValue)
+                                if(Input::BUTTON_PRESSING==ThisValue)
                                     { Keymap.at(ThisCode) = ThisValue; }
                                 else
                                     { Order1=Failed; }
-                            }else if(MetaCode::BUTTON_PRESSING == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
+                            }else if(Input::BUTTON_PRESSING == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
                             {
                                 Tested2=true;
-                                if(MetaCode::BUTTON_DOWN==ThisValue)
+                                if(Input::BUTTON_DOWN==ThisValue)
                                     { Keymap.at(ThisCode) = ThisValue; }
                                 else
                                     { Order2=Failed; }
-                            }else if(MetaCode::BUTTON_DOWN == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
+                            }else if(Input::BUTTON_DOWN == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
                             {
                                 Tested3=true;
-                                if(MetaCode::BUTTON_LIFTING==ThisValue || MetaCode::BUTTON_DOWN==ThisValue)
+                                if(Input::BUTTON_LIFTING==ThisValue || Input::BUTTON_DOWN==ThisValue)
                                     { Keymap.at(ThisCode) = ThisValue; }
                                 else
                                     { Order3=Failed; }
