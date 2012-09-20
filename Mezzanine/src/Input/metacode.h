@@ -187,17 +187,17 @@ namespace Mezzanine
 
             /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button
             /// @param ButtonerNumber The number of the button you want the code for
-            /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
+            /// @return When passed 0 this returns Input::MOUSEBUTTON, otherwise this returns Input::MOUSEBUTTON_X where X is the number that was passed in
             static Input::InputCode GetMouseButtonCode(short unsigned int ButtonNumber);
 
             /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick button
             /// @param ButtonerNumber The number of the button you want the code for
-            /// @return When passed 0 this returns MetaCode::JOYSTICKBUTTON, otherwise this returns MetaCode::JOYSTICKBUTTON_X where X is the number that was passed in
+            /// @return When passed 0 this returns Input::JOYSTICKBUTTON, otherwise this returns Input::JOYSTICKBUTTON_X where X is the number that was passed in
             static Input::InputCode GetJoystickButtonCode(short unsigned int ButtonNumber);
 
             /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick Axis
             /// @param AxisNumber The number of the button you want the code for
-            /// @return When passed 0 this returns MetaCode::JOYSTICKAXIS, otherwise this returns MetaCode::JOYSTICKAXIS_X where X is the number that was passed in
+            /// @return When passed 0 this returns Input::JOYSTICKAXIS, otherwise this returns Input::JOYSTICKAXIS_X where X is the number that was passed in
             static Input::InputCode GetJoystickAxisCode(short unsigned int AxisNumber);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
