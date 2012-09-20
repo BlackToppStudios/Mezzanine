@@ -243,7 +243,7 @@ void LevelLoader::LoadFerris()
 
     Vector3 BonusScoreSize(18,18,30);
     Physics::CollisionShape* BonusScoreShape = new Physics::BoxCollisionShape("BonusAreaShape",BonusScoreSize);
-    Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
+    Graphics::Mesh* BonusScoreMesh = MeshMan->CreateBoxCornerMesh("BonusAreaMesh",ColourValue(0.50,0.15,0.65,0.8),BonusScoreSize,4.0);
     ScoreArea* BonusZone1 = new ScoreArea("BonusArea1",Vector3(169.6,14.3,0));
     BonusZone1->GetPhysicsSettings()->SetCollisionShape(BonusScoreShape);
     BonusZone1->GetGraphicsSettings()->SetMesh(BonusScoreMesh);
@@ -578,7 +578,7 @@ void LevelLoader::LoadBlowsNotSucks()
 
     Vector3 Score1Size(25,21,25);
     Physics::CollisionShape* ScoreArea1Shape = new Physics::BoxCollisionShape("ScoreArea1Shape",Score1Size);
-    Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
+    Graphics::Mesh* ScoreArea1Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea1Mesh",ColourValue(0.2,0.2,0.8,0.8),Score1Size,4.0);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-10.5,-100.0,0.0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreArea1Shape);
     ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreArea1Mesh);
@@ -586,7 +586,7 @@ void LevelLoader::LoadBlowsNotSucks()
     GameApp->RegisterScoreArea(ScoreZone1);
     Vector3 Score2Size(55,48,15);
     Physics::CollisionShape* ScoreArea2Shape = new Physics::BoxCollisionShape("ScoreArea2Shape",Score2Size);
-    Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
+    Graphics::Mesh* ScoreArea2Mesh = MeshMan->CreateBoxCornerMesh("ScoreArea2Mesh",ColourValue(0.2,0.2,0.8,0.8),Score2Size,4.0);
     ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(-170,100,0));
     ScoreZone2->GetPhysicsSettings()->SetCollisionShape(ScoreArea2Shape);
     ScoreZone2->GetGraphicsSettings()->SetMesh(ScoreArea2Mesh);
@@ -763,7 +763,7 @@ void LevelLoader::LoadJustice()
     // Create the zones
     Vector3 StartSize(60,30,20);
     Physics::CollisionShape* StartAreaShape = new Physics::BoxCollisionShape("StartArea1Shape",StartSize);
-    Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
+    Graphics::Mesh* StartAreaMesh = MeshMan->CreateBoxCornerMesh("StartAreaMesh",ColourValue(0.1,0.8,0.1,0.8),StartSize,4.0);
     StartArea* StartZone1 = new StartArea("StartArea1",Vector3(-160,120,0));
     StartZone1->GetPhysicsSettings()->SetCollisionShape(StartAreaShape);
     StartZone1->GetGraphicsSettings()->SetMesh(StartAreaMesh);
@@ -793,7 +793,7 @@ void LevelLoader::LoadJustice()
 
     Vector3 ScoreSize(52,25,18);
     Physics::CollisionShape* ScoreAreaShape = new Physics::BoxCollisionShape("ScoreAreaShape",ScoreSize);
-    Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
+    Graphics::Mesh* ScoreAreaMesh = MeshMan->CreateBoxCornerMesh("ScoreAreaMesh",ColourValue(0.2,0.2,0.8,0.8),ScoreSize,4.0);
     ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-113,-40,0));
     ScoreZone1->GetPhysicsSettings()->SetCollisionShape(ScoreAreaShape);
     ScoreZone1->GetGraphicsSettings()->SetMesh(ScoreAreaMesh);

@@ -53,7 +53,7 @@ CatchApp::~CatchApp()
 void CatchApp::MakeGUI()
 {
     UIManager* GUI = UIManager::GetSingletonPtr();
-    Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
+    Graphics::Viewport* UIViewport = GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetViewport(0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
@@ -488,7 +488,7 @@ void CatchApp::CreateLoadingScreen()
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
 
     GUI->LoadMTA("Catch_Loading");
-    Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
+    Graphics::Viewport* UIViewport = GraphicsMan->GetGameWindow(0)->GetViewport(0);
     UIViewport->SetCamera(CameraManager::GetSingletonPtr()->CreateCamera("Main"));
 
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
@@ -556,8 +556,8 @@ void CatchApp::VerifySettings()
     {
         GraphicsSettingFile = GraphicsMan->CreateSettingFile(GraphicsSaveFileName);
         // Create the window
-        GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",800,600,GameWindow::WF_FSAA_4);
-        Viewport* MainWinView = MainWin->CreateViewport(NULL,0);
+        Graphics::GameWindow* MainWin = GraphicsMan->CreateGameWindow("Catch!",800,600,Graphics::GameWindow::WF_FSAA_4);
+        Graphics::Viewport* MainWinView = MainWin->CreateViewport(NULL,0);
         // Set the file to save.
         GraphicsSettingFile->SetNeedsSave(true);
         // Make sure the file saves the "Current" setting group.
@@ -1085,7 +1085,7 @@ bool CatchApp::CheckForStuff()
         /*for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             //Is the key we just pushed ESCAPE
-            if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
+            if(Input::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && Input::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
         }// */
 

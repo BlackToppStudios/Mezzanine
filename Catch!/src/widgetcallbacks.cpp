@@ -132,7 +132,7 @@ void OptsVideoRes::SetCaller(UI::Widget* Caller)
     UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
     std::stringstream ResStream;
     GraphicsManager* GraphicsMan = GraphicsManager::GetSingletonPtr();
-    GameWindow* Win = GraphicsMan->GetGameWindow(0);
+    Graphics::GameWindow* Win = GraphicsMan->GetGameWindow(0);
     ResStream << Win->GetRenderWidth() << " x " << Win->GetRenderHeight();
     String CurrentRes(ResStream.str());
     const std::vector<String>* Resolutions = GraphicsMan->GetSupportedResolutions();
@@ -163,7 +163,7 @@ void OptsVideoRes::DoVisibilityChangeItems()
     if(Caller->IsVisible())
     {
         UI::DropDownList* ResList = static_cast<UI::DropDownList*>(this->Caller);
-        GameWindow* Win = GraphicsManager::GetSingletonPtr()->GetGameWindow(0);
+        Graphics::GameWindow* Win = GraphicsManager::GetSingletonPtr()->GetGameWindow(0);
         std::stringstream ResStream;
         ResStream << Win->GetRenderWidth() << " x " << Win->GetRenderHeight();
         ResList->SetSelection(ResStream.str());

@@ -314,7 +314,7 @@ void OptsVideoApply::DoActivateItems()
     WidthStream >> Width;
     HeightStream >> Height;
     // Create the settings
-    GraphicsSettings NewSettings;
+    WindowSettings NewSettings;
     NewSettings.Fullscreen = FullScreenBox->IsChecked();
     NewSettings.RenderWidth = Width;
     NewSettings.RenderHeight = Height;
