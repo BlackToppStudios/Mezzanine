@@ -45,22 +45,6 @@
 
 namespace Mezzanine
 {
-    /// @enum AspectRatio
-    /// @brief This is used primarily by the GraphicsManager to keep track of the supported
-    /// and currently used aspect ratios.
-    enum AspectRatio
-    {
-        AR_3_By_2,     ///< 1.5
-        AR_4_By_3,     ///< 1.334
-        AR_5_By_3,     ///< 1.667
-        AR_5_By_4,     ///< 1.25
-        AR_8_By_5,     ///< 1.6
-        AR_16_By_9,    ///< 1.778
-        AR_17_By_9,    ///< 1.889
-        AR_1_85_By_1,  ///< 1.85
-        AR_2_39_By_1   ///< 2.39
-    };
-
     /// @enum AttenuationStyle
     /// @brief These values represent the kind of attenuation applied to the field strength
     /// over a distance.
@@ -90,21 +74,6 @@ namespace Mezzanine
         OM_Portrait = OM_Degree_0,
         OM_LandscapeRight = OM_Degree_90,
         OM_LandscapeLeft = OM_Degree_270
-    };
-
-    /// @enum RenderSystem
-    /// @brief Used primarily by the graphics manager class during initialization.
-    /// @details This enum specifies which Rendersystem is to be used for rendering.
-    enum RenderSystem
-    {
-        RS_DirectX9  = 0,
-        RS_DirectX10 = 1,
-        RS_DirectX11 = 2,
-        RS_OpenGL2   = 3,
-        RS_OpenGL3   = 4,
-        RS_OpenGL4   = 5,
-        RS_OpenGLES1 = 6,
-        RS_OpenGLES2 = 7
     };
 
     /// @enum StandardAxis

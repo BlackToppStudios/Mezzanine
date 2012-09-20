@@ -46,8 +46,11 @@
 
 namespace Mezzanine
 {
-    class Viewport;
-    class GameWindow;
+    namespace Graphics
+    {
+        class Viewport;
+        class GameWindow;
+    }
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
@@ -59,7 +62,7 @@ namespace Mezzanine
         class MEZZ_LIB Mouse : public Device
         {
             protected:
-                Viewport* CurrentViewport;
+                Graphics::Viewport* CurrentViewport;
                 Input::DirectionalMotionState VerticalWheelState;
                 Input::DirectionalMotionState HorizontalWheelState;
                 Vector2 Position;
@@ -77,10 +80,10 @@ namespace Mezzanine
 
                 /// @brief Gets a pointer to the current viewport the mouse cursor is hovered over.
                 /// @return Returns a pointer to the hovered viewport.
-                Viewport* GetHoveredViewport() const;
+                Graphics::Viewport* GetHoveredViewport() const;
                 /// @brief Gets a pointer to the window with the current mouse focus.
                 /// @return Returns a pointer to the window with the current focus.
-                GameWindow* GetHoveredWindow() const;
+                Graphics::GameWindow* GetHoveredWindow() const;
                 /// @brief Gets the position of the mouse cursor relative to the origin of the window with the mouse focus.
                 /// @return Returns a const reference to the mouse's current position on the window.
                 const Vector2& GetWindowPosition() const;
@@ -150,7 +153,7 @@ namespace Mezzanine
                 /// @brief Sets the mouse cursor's position to the specified point in the specified window.
                 /// @param Win The window to warp the cursor to.
                 /// @param Position The position on the specified window to warp the cursor to.
-                void WarpCursorToPosition(GameWindow* Win, const Vector2& Position);
+                void WarpCursorToPosition(Graphics::GameWindow* Win, const Vector2& Position);
         };//Mouse
     }//Input
 }//Mezzanine

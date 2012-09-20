@@ -58,9 +58,12 @@ namespace Mezzanine
     {
         class InternalWorldObjectGraphicsSettings;
     }
+    namespace Graphics
+    {
+        class Mesh;
+    }
     class ActorBase;
     class WorldObject;
-    class Mesh;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class WorldObjectGraphicsSettings
     /// @headerfile worldobjectgraphicssettings.h
@@ -81,7 +84,7 @@ namespace Mezzanine
 
             /// @internal
             /// @brief The mesh being used by the World Object.
-            Mesh* WorldObjectMesh;
+            Graphics::Mesh* WorldObjectMesh;
 
             ///@internal
             /// @brief Material/textures for the World Object.
@@ -103,7 +106,7 @@ namespace Mezzanine
 
             /// @brief Sets the mesh to be used along with this World Object.
             /// @param Mesh The mesh to apply to this World Object.
-            virtual void SetMesh(Mesh* ObjectMesh);
+            virtual void SetMesh(Graphics::Mesh* ObjectMesh);
 
             /// @brief Sets the mesh to be used along with this World Object.
             /// @param MeshName The name of the mesh to apply to this World Object.
@@ -112,7 +115,7 @@ namespace Mezzanine
 
             /// @brief Gets the mesh being used by this World Object.
             /// @return Returns a pointer to the mesh being used by this World Object.
-            virtual Mesh* GetMesh() const;
+            virtual Graphics::Mesh* GetMesh() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Management

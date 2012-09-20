@@ -46,7 +46,7 @@
 #include "stringtool.h"
 #include "exception.h"
 #include "scenemanager.h"
-#include "viewport.h"
+#include "Graphics/viewport.h"
 #include "xml.h"
 
 #include <Ogre.h>
@@ -89,7 +89,7 @@ namespace Mezzanine
         return this->Cam->getName();
     }
 
-    Viewport* Camera::GetViewport() const
+    Graphics::Viewport* Camera::GetViewport() const
     {
         return this->CameraVP;
     }

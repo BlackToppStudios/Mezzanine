@@ -37,45 +37,30 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _graphicssettings_h
-#define _graphicssettings_h
-
-#include "datatypes.h"
+#ifndef _graphics_h
+#define _graphics_h
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class GraphicsSettings
-    /// @headerfile graphicsmanager.h
-    /// @brief This stores all the possible configuration options the graphics manager supports.
-    /// @details The graphics manager stores one of these for all of it's configuration options,
-    /// additionally one can be created and passed into the manager to set all the configuration
-    /// options at once.
-    ///////////////////////////////////////
-    struct MEZZ_LIB GraphicsSettings
+    /// @namespace Mezzanine::Graphics
+    /// @brief This namespace is for all the classes belonging to the Graphics Subsystem.
+    /// @details Our Graphics system uses Ogre for all of Mezzanine's graphical/visual needs.
+    namespace Graphics
     {
-        /// @brief This stores the Height of the renderwindow.
-        Whole RenderHeight;
-        /// @brief This stores the Width of the renderwindow.
-        Whole RenderWidth;
-        /// @brief This stores the device refresh rate in Hz.
-        Whole RefreshRate;
-        /// @brief This is the desired state of whether the window is fullscreen or not.
-        bool Fullscreen;
-        /// @brief This is the desired state of whether to enable VSync or not.
-        bool VSync;
-        /// @brief Struct Constructor
-        GraphicsSettings() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
-        GraphicsSettings& operator= (const GraphicsSettings &GS)
-        {
-            this->RenderHeight = GS.RenderHeight;
-            this->RenderWidth = GS.RenderWidth;
-            this->RefreshRate = GS.RefreshRate;
-            this->Fullscreen = GS.Fullscreen;
-            this->VSync = GS.VSync;
-            return *this;
-        }
-    };//graphicssettings
-}//Mezzanine
+
+    }
+}
+
+#include "Graphics/graphicsenumerations.h"
+
+#include "Graphics/gamewindow.h"
+#include "Graphics/material.h"
+#include "Graphics/mesh.h"
+#include "Graphics/pass.h"
+#include "Graphics/submesh.h"
+#include "Graphics/technique.h"
+#include "Graphics/texture.h"
+#include "Graphics/viewport.h"
+#include "Graphics/windowsettings.h"
 
 #endif

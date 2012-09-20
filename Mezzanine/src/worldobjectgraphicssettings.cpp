@@ -44,7 +44,7 @@
 #include "actorbase.h"
 #include "worldobject.h"
 #include "objectreference.h"
-#include "mesh.h"
+#include "Graphics/mesh.h"
 #include "serialization.h"
 #include "meshmanager.h"
 #include "scenemanager.h"
@@ -109,7 +109,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Mesh Management
 
-    void WorldObjectGraphicsSettings::SetMesh(Mesh* ObjectMesh)
+    void WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh* ObjectMesh)
     {
         Ogre::SceneManager* OgreManager = SceneManager::GetSingletonPtr()->GetGraphicsWorldPointer();
         if(IWOGS->WorldObjectEnt)
@@ -135,11 +135,11 @@ namespace Mezzanine
 
     void WorldObjectGraphicsSettings::SetMesh(const String& MeshName, const String& Group)
     {
-        Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
+        Graphics::Mesh* TheMesh = MeshManager::GetSingletonPtr()->LoadMesh(MeshName,Group);
         this->SetMesh(TheMesh);
     }
 
-    Mesh* WorldObjectGraphicsSettings::GetMesh() const
+    Graphics::Mesh* WorldObjectGraphicsSettings::GetMesh() const
     {
         return WorldObjectMesh;
     }

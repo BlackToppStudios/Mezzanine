@@ -48,7 +48,7 @@
 #include "eventmanager.h"
 #include "eventuserinput.h"
 #include "resourcemanager.h"
-#include "viewport.h"
+#include "Graphics/viewport.h"
 #include "UI/screen.h"
 #include "UI/button.h"
 #include "UI/widget.h"
@@ -238,7 +238,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Screen Management
 
-    UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
+    UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport)
     {
         UI::Screen* MezzScreen = new UI::Screen(ScreenName, Atlas, WindowViewport);
         Screens.push_back(MezzScreen);
@@ -246,7 +246,7 @@ namespace Mezzanine
         VisibleScreenIterator It = VisibleScreens.find(WindowViewport);
         if( VisibleScreens.end() == It )
         {
-            VisibleScreens.insert( std::pair<Viewport*,UI::Screen*>(WindowViewport,MezzScreen) );
+            VisibleScreens.insert( std::pair<Graphics::Viewport*,UI::Screen*>(WindowViewport,MezzScreen) );
         }else{
             MezzScreen->Visible = false;
         }
@@ -304,7 +304,7 @@ namespace Mezzanine
         return;
     }
 
-    UI::Screen* UIManager::GetVisibleScreenOnViewport(Viewport* WindowViewport)
+    UI::Screen* UIManager::GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport)
     {
         VisibleScreenIterator It = VisibleScreens.find(WindowViewport);
         if( VisibleScreens.end() != It ) return (*It).second;
@@ -521,7 +521,7 @@ namespace Mezzanine
             if(Visible) (*It).second = BeingShown;
             else (*It).second = NULL;
         }else{
-            VisibleScreens.insert( std::pair<Viewport*,UI::Screen*>(BeingShown->GetViewport(), ( Visible ? BeingShown : NULL ) ) );
+            VisibleScreens.insert( std::pair<Graphics::Viewport*,UI::Screen*>(BeingShown->GetViewport(), ( Visible ? BeingShown : NULL ) ) );
         }
     }
 

@@ -89,16 +89,14 @@
 #include "eventuserinput.h"             // done
 #include "exception.h"
 #include "extendedtimer.h"
-#include "gamewindow.h"
+#include "graphics.h"
 #include "graphicsmanager.h"
-#include "graphicssettings.h"
 #include "input.h"
 #include "inputmanager.h"
 #include "light.h"                      // done
 #include "linegroup.h"
 #include "managerbase.h"
 #include "mathtool.h"
-#include "mesh.h"
 #include "meshmanager.h"
 #include "meshterrain.h"
 #include "network.h"
@@ -139,7 +137,7 @@
 // more stuff swig shouldn't read yet
 #ifndef SWIG
 #include "vector3wactor.h"
-#include "viewport.h"
+#include "Graphics/viewport.h"
 #include "entresol.h"
 #include "worldnode.h"                  // done
 #include "worldobjectgraphicssettings.h"// done

@@ -47,7 +47,7 @@
 #include "entresol.h"
 #include "graphicsmanager.h"
 #include "uimanager.h"
-#include "gamewindow.h"
+#include "Graphics/gamewindow.h"
 
 
 //External includes

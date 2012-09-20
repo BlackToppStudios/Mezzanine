@@ -45,7 +45,7 @@
 #include "physicsmanager.h"
 #include "Physics/collisionshape.h"
 #include "collisionshapemanager.h"
-#include "mesh.h"
+#include "Graphics/mesh.h"
 #include "meshmanager.h"
 #include "scenemanager.h"
 #include "objectreference.h"

@@ -47,9 +47,12 @@
 
 namespace Mezzanine
 {
-    class Viewport;
     class UIManager;
     class SceneManager;
+    namespace Graphics
+    {
+        class Viewport;
+    }
     namespace UI
     {
         class Button;
@@ -59,7 +62,7 @@ namespace Mezzanine
         struct ScreenInternalData;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class AtlasAndPosition
-        /// @headerfile uiscreen.h
+        /// @headerfile screen.h
         /// @brief This class stores how the calls to Render are to be done.
         /// @details
         ///////////////////////////////////////
@@ -74,7 +77,7 @@ namespace Mezzanine
         };
         ///////////////////////////////////////////////////////////////////////////////
         /// @class ScreenVertexData
-        /// @headerfile uiscreen.h
+        /// @headerfile screen.h
         /// @brief This class stores all vertices pertaining to a layer sorted by their priority for rendering.
         /// @details
         ///////////////////////////////////////
@@ -104,7 +107,7 @@ namespace Mezzanine
         };
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Screen
-        /// @headerfile uiscreen.h
+        /// @headerfile screen.h
         /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
         /// track of all the elements of a single UI screen.
         /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
@@ -123,7 +126,7 @@ namespace Mezzanine
                 typedef WidgetContainer::const_iterator  ConstWidgetIterator;
             protected:
                 friend class Mezzanine::UIManager;
-                Viewport* GameViewport;
+                Graphics::Viewport* GameViewport;
                 ScreenInternalData* SID;
                 bool OrientationChanged;
                 bool Visible;
@@ -156,7 +159,7 @@ namespace Mezzanine
                 /// @param Atlas The name of the primary atlas to be assigned to this screen.
                 /// This can be overridden later, even by individual UI elements.
                 /// @param WindowViewport The Viewport to which this screen belongs.
-                Screen(const String& name, const String& Atlas, Viewport* WindowViewport);
+                Screen(const String& name, const String& Atlas, Graphics::Viewport* WindowViewport);
                 /// @brief Class destructor.
                 virtual ~Screen();
             public:
@@ -183,7 +186,7 @@ namespace Mezzanine
                 virtual void CheckViewportSize();
                 /// @brief Gets the Viewport this screen is currently rendering to.
                 /// @return Returns a pointer to the Viewport this screen is applied to.
-                virtual Viewport* GetViewport();
+                virtual Graphics::Viewport* GetViewport();
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Hover Checks

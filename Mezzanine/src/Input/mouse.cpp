@@ -41,8 +41,8 @@
 #define _inputmouse_cpp
 
 #include "Input/mouse.h"
-#include "viewport.h"
-#include "gamewindow.h"
+#include "Graphics/viewport.h"
+#include "Graphics/gamewindow.h"
 
 #include <cstring>
 
@@ -114,8 +114,8 @@ namespace Mezzanine
             }
             if( NULL != Focus )
             {
-                GameWindow* Win = static_cast<GameWindow*>(Focus->data->data);
-                for( GameWindow::ViewportIterator ViewIt = Win->BeginViewport() ; ViewIt != Win->EndViewport() ; ++ViewIt )
+                Graphics::GameWindow* Win = static_cast<Graphics::GameWindow*>(Focus->data->data);
+                for( Graphics::GameWindow::ViewportIterator ViewIt = Win->BeginViewport() ; ViewIt != Win->EndViewport() ; ++ViewIt )
                 {
                     if( (Position.X >= (Real)((*ViewIt)->GetActualLeft()) && Position.X <= (Real)((*ViewIt)->GetActualLeft() + (*ViewIt)->GetActualWidth())) &&
                         (Position.Y >= (Real)((*ViewIt)->GetActualTop()) && Position.Y <= (Real)((*ViewIt)->GetActualTop() + (*ViewIt)->GetActualHeight()) ) )
@@ -134,12 +134,12 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Query Methods
 
-        Viewport* Mouse::GetHoveredViewport() const
+        Graphics::Viewport* Mouse::GetHoveredViewport() const
         {
             return CurrentViewport;
         }
 
-        GameWindow* Mouse::GetHoveredWindow() const
+        Graphics::GameWindow* Mouse::GetHoveredWindow() const
         {
             if(CurrentViewport) return CurrentViewport->GetParentWindow();
             else return NULL;
@@ -249,7 +249,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Utility Methods
 
-        void Mouse::WarpCursorToPosition(GameWindow* Win, const Vector2& Position)
+        void Mouse::WarpCursorToPosition(Graphics::GameWindow* Win, const Vector2& Position)
         {
             if(Win)
                 SDL_WarpMouseInWindow(Win->_GetSDLWindowPointer(),(int)Position.X,(int)Position.Y);

@@ -52,8 +52,8 @@ using namespace std;
 #include "inputmanager.h"
 #include "camera.h"
 #include "objectreference.h"
-#include "gamewindow.h"
-#include "viewport.h"
+#include "Graphics/gamewindow.h"
+#include "Graphics/viewport.h"
 #include "plane.h"
 #include "ray.h"
 #include "vector3wactor.h"
@@ -335,7 +335,7 @@ namespace Mezzanine
     Ray* RayQueryTool::GetMouseRay(Real Length)
     {
         VerifyRayQuery();
-        Viewport* HoveredViewport = InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
+        Graphics::Viewport* HoveredViewport = InputManager::GetSingletonPtr()->GetSystemMouse()->GetHoveredViewport();
         Vector2 MousePos = InputManager::GetSingletonPtr()->GetSystemMouse()->GetViewportPosition();
         Ray* MouseRay = NULL;
         if(HoveredViewport)

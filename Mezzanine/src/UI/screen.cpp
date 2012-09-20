@@ -63,7 +63,7 @@
 #include "UI/dropdownlist.h"
 #include "UI/tabset.h"
 #include "UI/renderablecontainerwidget.h"
-#include "viewport.h"
+#include "Graphics/viewport.h"
 #include "cameramanager.h"
 #include "scenemanager.h"
 #include "camera.h"
@@ -131,7 +131,7 @@ namespace Mezzanine
                 { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION,"Out of bounds index requested in ScreenVertexData"); }
         }
 
-        Screen::Screen(const String& name, const String& Atlas, Viewport* WindowViewport)
+        Screen::Screen(const String& name, const String& Atlas, Graphics::Viewport* WindowViewport)
             : Name(name),
               PrimaryAtlas(Atlas),
               GameViewport(WindowViewport),
@@ -328,7 +328,7 @@ namespace Mezzanine
             ViewportSizeChanged = true;
         }
 
-        Viewport* Screen::GetViewport()
+        Graphics::Viewport* Screen::GetViewport()
         {
             return GameViewport;
         }

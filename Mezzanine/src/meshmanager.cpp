@@ -42,7 +42,7 @@
 
 #include "vector2.h"
 #include "meshmanager.h"
-#include "mesh.h"
+#include "Graphics/mesh.h"
 
 #include <Ogre.h>
 
@@ -68,12 +68,12 @@ namespace Mezzanine
         DestroyAllGeneratedMeshes();
     }
 
-    Mesh* MeshManager::GetMesh(const String& MeshName)
+    Graphics::Mesh* MeshManager::GetMesh(const String& MeshName)
     {
-        std::map<String,Mesh*>::iterator lit = LoadedMeshes.find(MeshName);
+        std::map<String,Graphics::Mesh*>::iterator lit = LoadedMeshes.find(MeshName);
         if(lit != LoadedMeshes.end())
             return (*lit).second;
-        std::map<String,Mesh*>::iterator git = GeneratedMeshes.find(MeshName);
+        std::map<String,Graphics::Mesh*>::iterator git = GeneratedMeshes.find(MeshName);
         if(git != GeneratedMeshes.end())
             return (*git).second;
         return NULL;
@@ -85,19 +85,19 @@ namespace Mezzanine
         UnloadAllLoadedMeshes();
     }
 
-    Mesh* MeshManager::LoadMesh(const String& MeshName, const String& Group)
+    Graphics::Mesh* MeshManager::LoadMesh(const String& MeshName, const String& Group)
     {
-        std::map<String,Mesh*>::iterator it = LoadedMeshes.find(MeshName);
+        std::map<String,Graphics::Mesh*>::iterator it = LoadedMeshes.find(MeshName);
         if( it != LoadedMeshes.end() )
             return (*it).second;
-        Mesh* Loaded = new Mesh(Ogre::MeshManager::getSingleton().load(MeshName,Group));
+        Graphics::Mesh* Loaded = new Graphics::Mesh(Ogre::MeshManager::getSingleton().load(MeshName,Group));
         LoadedMeshes[MeshName] = Loaded;
         return Loaded;
     }
 
     void MeshManager::UnloadMesh(const String& MeshName)
     {
-        std::map<String,Mesh*>::iterator it = LoadedMeshes.find(MeshName);
+        std::map<String,Graphics::Mesh*>::iterator it = LoadedMeshes.find(MeshName);
         if( it == LoadedMeshes.end() )
             return;
         Ogre::MeshManager::getSingleton().unload(MeshName);
@@ -112,7 +112,7 @@ namespace Mezzanine
 
     void MeshManager::UnloadAllLoadedMeshes()
     {
-        for( std::map<String,Mesh*>::iterator it = LoadedMeshes.begin() ; it != LoadedMeshes.end() ; it++ )
+        for( std::map<String,Graphics::Mesh*>::iterator it = LoadedMeshes.begin() ; it != LoadedMeshes.end() ; it++ )
         {
             delete (*it).second;
         }
@@ -127,7 +127,7 @@ namespace Mezzanine
 
     void MeshManager::DestroyGeneratedMesh(const String& MeshName)
     {
-        std::map<String,Mesh*>::iterator it = GeneratedMeshes.find(MeshName);
+        std::map<String,Graphics::Mesh*>::iterator it = GeneratedMeshes.find(MeshName);
         if(it == GeneratedMeshes.end())
             return;
         Ogre::MeshManager::getSingletonPtr()->remove((*it).second->GetName());
@@ -138,7 +138,7 @@ namespace Mezzanine
 
     void MeshManager::DestroyAllGeneratedMeshes()
     {
-        for( std::map<String,Mesh*>::iterator it = GeneratedMeshes.begin() ; it != GeneratedMeshes.end() ; it++ )
+        for( std::map<String,Graphics::Mesh*>::iterator it = GeneratedMeshes.begin() ; it != GeneratedMeshes.end() ; it++ )
         {
             Ogre::MeshManager::getSingletonPtr()->remove((*it).second->GetName());
             delete (*it).second;
@@ -146,7 +146,7 @@ namespace Mezzanine
         GeneratedMeshes.clear();
     }
 
-    Mesh* MeshManager::CreateBoxMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents)
+    Graphics::Mesh* MeshManager::CreateBoxMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents)
     {
         Vector3 Half = HalfExtents;
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
@@ -198,20 +198,20 @@ namespace Mezzanine
         Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
         Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
         boxmesh->_setBoundingSphereRadius(1.4 * Largest);
-        Mesh* NewMesh = new Mesh(boxmesh);
+        Graphics::Mesh* NewMesh = new Graphics::Mesh(boxmesh);
         GeneratedMeshes[MeshName] = NewMesh;
         delete box;
         return NewMesh;
     }
 
-    Mesh* MeshManager::CreateBoxMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents)
+    Graphics::Mesh* MeshManager::CreateBoxMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents)
     {
         String MatName(MeshName+"Mat");
         CreateColouredMaterial(MatName,Colour);
         return CreateBoxMesh(MeshName,MatName,HalfExtents);
     }
 
-    Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
+    Graphics::Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
     {
 /// Start of MIT(Ogre Proceadural) License ///
         if(AxisOrientation != Vector3::Unit_Y())
@@ -317,21 +317,21 @@ namespace Mezzanine
         Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
         Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
         cylindermesh->_setBoundingSphereRadius(1.4 * Largest);
-        Mesh* NewMesh = new Mesh(cylindermesh);
+        Graphics::Mesh* NewMesh = new Graphics::Mesh(cylindermesh);
         GeneratedMeshes[MeshName] = NewMesh;
         delete cylinder;
         return NewMesh;
 /// End of MIT(Ogre Proceadural) License ///
     }
 
-    Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
+    Graphics::Mesh* MeshManager::CreateCylinderMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
     {
         String MatName(MeshName+"Mat");
         CreateColouredMaterial(MatName,Colour);
         return CreateCylinderMesh(MeshName,MatName,HalfExtents,AxisOrientation,CircleRes,Segments);
     }
 
-    Mesh* MeshManager::CreateSphereMesh(const String& MeshName, const String& MaterialName, const Real& Radius, const Real& Rings, const Real& Segments)
+    Graphics::Mesh* MeshManager::CreateSphereMesh(const String& MeshName, const String& MaterialName, const Real& Radius, const Real& Rings, const Real& Segments)
     {
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
@@ -374,13 +374,13 @@ namespace Mezzanine
         Ogre::MeshPtr spheremesh = sphere->convertToMesh(MeshName, GroupName);
         spheremesh->_setBounds(Ogre::AxisAlignedBox(-Radius,-Radius,-Radius,Radius,Radius,Radius));
         spheremesh->_setBoundingSphereRadius(Radius);
-        Mesh* NewMesh = new Mesh(spheremesh);
+        Graphics::Mesh* NewMesh = new Graphics::Mesh(spheremesh);
         GeneratedMeshes[MeshName] = NewMesh;
         delete sphere;
         return NewMesh;
     }
 
-    Mesh* MeshManager::CreateSphereMesh(const String& MeshName, const ColourValue& Colour, const Real& Radius, const Real& Rings, const Real& Segments)
+    Graphics::Mesh* MeshManager::CreateSphereMesh(const String& MeshName, const ColourValue& Colour, const Real& Radius, const Real& Rings, const Real& Segments)
     {
         String MatName(MeshName+"Mat");
         CreateColouredMaterial(MatName,Colour);
@@ -407,7 +407,7 @@ namespace Mezzanine
 
     }
 
-    Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Real& BoxThickness)
+    Graphics::Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Real& BoxThickness)
     {
         Vector3 Half = HalfExtents;
         Vector3 Full = HalfExtents * 2;
@@ -608,20 +608,20 @@ namespace Mezzanine
         Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
         Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
         boxcornermesh->_setBoundingSphereRadius(1.4 * Largest);
-        Mesh* NewMesh = new Mesh(boxcornermesh);
+        Graphics::Mesh* NewMesh = new Graphics::Mesh(boxcornermesh);
         GeneratedMeshes[MeshName] = NewMesh;
         delete boxcorner;
         return NewMesh;
     }
 
-    Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Real& BoxThickness)
+    Graphics::Mesh* MeshManager::CreateBoxCornerMesh(const String& MeshName, const ColourValue& Colour, const Vector3& HalfExtents, const Real& BoxThickness)
     {
         String MatName(MeshName+"Mat");
         CreateColouredMaterial(MatName,Colour);
         return CreateBoxCornerMesh(MeshName,MatName,HalfExtents,BoxThickness);
     }
 
-    Mesh* MeshManager::CreateMeshFromShape(const String& MeshName, const String& MaterialName, Physics::CollisionShape* Shape)
+    Graphics::Mesh* MeshManager::CreateMeshFromShape(const String& MeshName, const String& MaterialName, Physics::CollisionShape* Shape)
     {
         return NULL;
     }

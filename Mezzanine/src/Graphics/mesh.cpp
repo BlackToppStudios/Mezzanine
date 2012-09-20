@@ -37,58 +37,64 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mesh_cpp
-#define _mesh_cpp
+#ifndef _graphicsmesh_cpp
+#define _graphicsmesh_cpp
 
-#include "mesh.h"
+#include "Graphics/mesh.h"
 #include <Ogre.h>
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class InternalMeshData
-    /// @brief This class is used to store the internal structures needed by the Mesh class.
-    /// @details Specifically, this class stores a shared pointer to the Ogre Mesh and only
-    /// exists because shared pointers can't be forward declared without compromising how they
-    /// work.
-    ///////////////////////////////////////
-    class MEZZ_LIB InternalMeshData
+    namespace Graphics
     {
-        public:
-            Ogre::MeshPtr GraphicsMesh;
-    };//meshinternaldata
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class InternalMeshData
+        /// @brief This class is used to store the internal structures needed by the Mesh class.
+        /// @details Specifically, this class stores a shared pointer to the Ogre Mesh and only
+        /// exists because shared pointers can't be forward declared without compromising how they
+        /// work.
+        ///////////////////////////////////////
+        class MEZZ_LIB InternalMeshData
+        {
+            public:
+                Ogre::MeshPtr GraphicsMesh;
+        };//InternalMeshData
 
-    Mesh::Mesh()
-    {
-        this->IMD = new InternalMeshData();
-        this->IMD->GraphicsMesh.setNull();
-    }
+        ///////////////////////////////////////////////////////////////////////////////
+        // Mesh Methods
 
-    Mesh::Mesh(Ogre::MeshPtr OgreMesh)
-    {
-        this->IMD = new InternalMeshData();
-        this->IMD->GraphicsMesh = OgreMesh;
-    }
+        Mesh::Mesh()
+        {
+            this->IMD = new InternalMeshData();
+            this->IMD->GraphicsMesh.setNull();
+        }
 
-    Mesh::~Mesh()
-    {
-        delete IMD;
-    }
+        Mesh::Mesh(Ogre::MeshPtr OgreMesh)
+        {
+            this->IMD = new InternalMeshData();
+            this->IMD->GraphicsMesh = OgreMesh;
+        }
 
-    ConstString& Mesh::GetName()
-    {
-        return this->IMD->GraphicsMesh->getName();
-    }
+        Mesh::~Mesh()
+        {
+            delete IMD;
+        }
 
-    ConstString& Mesh::GetGroup()
-    {
-        return this->IMD->GraphicsMesh->getGroup();
-    }
+        ConstString& Mesh::GetName()
+        {
+            return this->IMD->GraphicsMesh->getName();
+        }
 
-    Ogre::MeshPtr Mesh::GetOgreMesh()
-    {
-        return this->IMD->GraphicsMesh;
-    }
+        ConstString& Mesh::GetGroup()
+        {
+            return this->IMD->GraphicsMesh->getGroup();
+        }
+
+        Ogre::MeshPtr Mesh::GetOgreMesh()
+        {
+            return this->IMD->GraphicsMesh;
+        }
+    }//Graphics
 }//Mezzanine
 
 #endif

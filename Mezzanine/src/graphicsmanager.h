@@ -43,9 +43,9 @@
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
-#include "graphicssettings.h"
-#include "enumerations.h"
-#include "gamewindow.h"
+#include "Graphics/windowsettings.h"
+#include "Graphics/graphicsenumerations.h"
+#include "Graphics/gamewindow.h"
 #include "objectsettings.h"
 
 namespace Ogre
@@ -77,16 +77,16 @@ namespace Mezzanine
     class MEZZ_LIB GraphicsManager: public ManagerBase, public ObjectSettingsHandler, public Singleton<GraphicsManager>
     {
         public:
-            typedef std::vector<GameWindow*> GameWindowContainer;
+            typedef std::vector<Graphics::GameWindow*> GameWindowContainer;
             typedef GameWindowContainer::iterator GameWindowIterator;
             typedef GameWindowContainer::const_iterator ConstGameWindowIterator;
         private:
             Ogre::Timer* RenderTimer;
-            GameWindow* PrimaryGameWindow;
+            Graphics::GameWindow* PrimaryGameWindow;
             bool OgreBeenInitialized;
             Whole FrameDelay;
-            Mezzanine::RenderSystem CurrRenderSys;
-            GraphicsSettings DesktopSettings;
+            Graphics::RenderSystem CurrRenderSys;
+            WindowSettings DesktopSettings;
 
             GameWindowContainer GameWindows;
             StringVector SupportedResolutions;
@@ -120,23 +120,23 @@ namespace Mezzanine
             /// @param WindowCaption The caption to be set in the window titlebar.
             /// @param Width The desired width in pixels.
             /// @param Height The desired height in pixels.
-            /// @param Flags Additional misc parameters, see GameWindow class for more info.
-            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
+            /// @param Flags Additional misc parameters, see Graphics::GameWindow class for more info.
+            Graphics::GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             /// @brief Gets a game window by index.
             /// @return Returns a pointer to the game window requested.
-            GameWindow* GetGameWindow(const Whole& Index);
+            Graphics::GameWindow* GetGameWindow(const Whole& Index);
             /// @brief Gets the number of game windows within this manager.
             /// @return Returns a Whole representing the number of game windows within this manager.
             Whole GetNumGameWindows();
             /// @brief Destroys a created game window by index.
             /// @param WindowIndex The index of the window to be destroyed.
-            void DestroyGameWindow(GameWindow* ToBeDestroyed);
+            void DestroyGameWindow(Graphics::GameWindow* ToBeDestroyed);
             /// @brief Destroys every game window created.
             /// @param ExcludePrimary Whether or not you want to spare the primary window created.
             void DestroyAllGameWindows(bool ExcludePrimary = true);
             /// @brief Gets the primary(first) game window.
             /// @return Returns a pointer to the primary game window.
-            GameWindow* GetPrimaryGameWindow();
+            Graphics::GameWindow* GetPrimaryGameWindow();
 
             /// @brief Gets an iterator to the first GameWindow stored in this manager.
             GameWindowIterator BeginGameWindow();
@@ -155,19 +155,19 @@ namespace Mezzanine
             /// to know what rendersystem to build for.  Additionally this cannot be swapped/changed at runtime.  If called after a window has been made this will throw an exception.
             /// @param RenderSys The Render system to be used.
             /// @param InitializeRenderSystem Whether to immediately initialize the rendersystem afterwords.
-            void SetRenderSystem(const Mezzanine::RenderSystem& RenderSys, bool InitializeRenderSystem = false);
+            void SetRenderSystem(const Graphics::RenderSystem& RenderSys, bool InitializeRenderSystem = false);
             /// @brief Gets the current rendersystem being used.
             /// @remarks This does not return a pointer or any other kind of accessor to the actual rendersystem structure.  If you need that, then we're doing something wrong.
             /// @return Returns an enum value coresponding to the render system being used.
-            Mezzanine::RenderSystem GetCurrRenderSystem();
+            Graphics::RenderSystem GetCurrRenderSystem();
             /// @brief Gets the name of the provided render system.
             /// @param RenderSys The rendersystem to get the name of.
             /// @return Returns a string containing the name of the provided render system.
-            String GetRenderSystemName(const Mezzanine::RenderSystem& RenderSys);
+            String GetRenderSystemName(const Graphics::RenderSystem& RenderSys);
             /// @brief Gets a short hand name of the provided render system.
             /// @param RenderSys The rendersystem to get the name of.
             /// @return Returns a string containing the shortened name of the provided render system.
-            String GetShortenedRenderSystemName(const Mezzanine::RenderSystem& RenderSys);
+            String GetShortenedRenderSystemName(const Graphics::RenderSystem& RenderSys);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Query Methods
@@ -181,8 +181,8 @@ namespace Mezzanine
             /// @return Returns a Const Pointer to the vector storing all the supported devices.
             const StringVector* GetSupportedDevices();
             /// @brief Gets the desktop display settings.
-            /// @param Returns a GraphicsSettings struct with the desktop display settings.
-            const GraphicsSettings& GetDesktopSettings();
+            /// @param Returns a WindowSettings struct with the desktop display settings.
+            const WindowSettings& GetDesktopSettings();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Utility Methods

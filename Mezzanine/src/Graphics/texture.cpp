@@ -37,50 +37,43 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mesh_h
-#define _mesh_h
 
-#include "datatypes.h"
+#ifndef _graphicsmaterial_cpp
+#define _graphicsmaterial_cpp
 
-namespace Ogre
-{
-    class MeshPtr;
-}//ogre
+#include "Graphics/texture.h"
+#include <Ogre.h>
 
 namespace Mezzanine
 {
-    class InternalMeshData;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class Mesh
-    /// @headerfile mesh.h
-    /// @brief This class is used to check and modify the properties of a graphics mesh.
-    /// @details
-    ///////////////////////////////////////
-    class MEZZ_LIB Mesh
+    namespace Graphics
     {
-        protected:
-            InternalMeshData* IMD;
-        public:
-            /// @brief Class Constructor.
-            Mesh();
-            /// @internal
-            /// @brief Internal Constructor.
-            /// @param InternalMesh The internal mesh this mesh class is based on.
-            Mesh(Ogre::MeshPtr InternalMesh);
-            /// @brief Class Destructor.
-            ~Mesh();
-            /// @brief Gets the Name of this mesh.
-            /// @note If this mesh originated from a file, usually the name of the mesh will be the file name.
-            /// @return Returns a const string reference containing the name of this mesh.
-            ConstString& GetName();
-            /// @brief Gets the resource group this mesh belongs to.
-            /// @return Returns a const string reference containing the group this mesh belongs to.
-            ConstString& GetGroup();
-            /// @internal
-            /// @brief Gets the internal Ogre Mesh pointer.
-            /// @return Returns an Ogre shared pointer pointing to the internal Ogre Mesh.
-            Ogre::MeshPtr GetOgreMesh();
-    };//Mesh
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class InternalTextureData
+        /// @brief This class is used to store the internal structures needed by the Texture class.
+        /// @details Specifically, this class stores a shared pointer to the Ogre Texture and only
+        /// exists because shared pointers can't be forward declared without compromising how they
+        /// work.
+        ///////////////////////////////////////
+        class MEZZ_LIB InternalTextureData
+        {
+            public:
+                Ogre::TexturePtr GraphicsTexture;
+        };//InternalTextureData
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Texture Methods
+
+        Texture::Texture()
+        {
+
+        }
+
+        Texture::~Texture()
+        {
+
+        }
+    }//Graphics
 }//Mezzanine
 
 #endif

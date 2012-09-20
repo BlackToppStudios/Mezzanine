@@ -90,7 +90,10 @@ namespace Mezzanine
 {
     class CameraManager;
     class Entresol;
-    class Viewport;
+    namespace Graphics
+    {
+        class Viewport;
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Camera
@@ -129,14 +132,14 @@ namespace Mezzanine
 
         protected:
             friend class CameraManager;
-            friend class Viewport;
+            friend class Graphics::Viewport;
 
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps
             Ogre::Camera* Cam;
             /// @internal
             /// @brief This is a pointer to the Viewport this camera is attached to, if any.
-            Viewport* CameraVP;
+            Graphics::Viewport* CameraVP;
             /// @internal
             /// @brief This is the Camera manager that this camera is attached to.
             CameraManager* CamManager;
@@ -158,7 +161,7 @@ namespace Mezzanine
             ConstString& GetName() const;
             /// @brief Gets the Viewport this camera is attached to, if any.
             /// @return Returns a pointer to the Viewport this camera is rendering to, or NULL if not attached.
-            Viewport* GetViewport() const;
+            Graphics::Viewport* GetViewport() const;
 
             /// @brief Sets the type of projection to be used with this camera.
             /// @details By default, all cameras are enabled with Perspective projection.  This is the standard 3-dimentional

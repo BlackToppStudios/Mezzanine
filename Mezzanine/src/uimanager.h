@@ -48,8 +48,11 @@
 
 namespace Mezzanine
 {
-    class Viewport;
     class InputQueryTool;
+    namespace Graphics
+    {
+        class Viewport;
+    }
     namespace UI
     {
         class Screen;
@@ -77,7 +80,7 @@ namespace Mezzanine
             typedef std::vector< UI::Screen* >                     ScreenContainer;
             typedef ScreenContainer::iterator                      ScreenIterator;
             typedef ScreenContainer::const_iterator                ConstScreenIterator;
-            typedef std::map< Viewport*, UI::Screen* >             VisibleScreenContainer;
+            typedef std::map< Graphics::Viewport*, UI::Screen* >   VisibleScreenContainer;
             typedef VisibleScreenContainer::iterator               VisibleScreenIterator;
             typedef VisibleScreenContainer::const_iterator         ConstVisibleScreenIterator;
             typedef std::vector< UI::Button* >                     ButtonContainer;
@@ -144,7 +147,7 @@ namespace Mezzanine
             /// @param ScreenName The name to be given to the screen.
             /// @param Atlas The name of a previously loaded mta file to be used with this screen.
             /// @param WindowViewport The viewport to create this screen in.
-            UI::Screen* CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport);
+            UI::Screen* CreateScreen(const String& ScreenName, const String& Atlas, Graphics::Viewport* WindowViewport);
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
             UI::Screen* GetScreen(const String& Name);
@@ -164,7 +167,7 @@ namespace Mezzanine
             /// @brief Gets the currently visible screen on the provided viewport.
             /// @param WindowViewport The viewport to check for a visible screen.
             /// @return Returns a pointer to the screen currently being shown on the requested viewport.
-            UI::Screen* GetVisibleScreenOnViewport(Viewport* WindowViewport);
+            UI::Screen* GetVisibleScreenOnViewport(Graphics::Viewport* WindowViewport);
 
             ///////////////////////////////////////////////////////////////////////////////
             // HotKey and Activation Management
