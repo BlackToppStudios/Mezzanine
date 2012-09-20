@@ -54,15 +54,15 @@ int main(int argc, char **argv)
     TheEntresol->GetGraphicsManager()->SetPostMainLoopItems(&PostRender);
 
     //Create the windows!
-    GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",800,600,0);
+    Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("First",800,600,0);
     Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("FirstCam");
-    Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
+    Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
     FirstCam->SetLocation( Vector3(0,50,900) );
     FirstCam->LookAt( Vector3(0,0,0) );
 
-    GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
+    Graphics::GameWindow* SecondWindow = GraphMan->CreateGameWindow("Second",640,480,0);
     Camera* SecondCam = CameraManager::GetSingletonPtr()->CreateCamera("SecondCam");
-    Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
+    Graphics::Viewport* SecondViewport = SecondWindow->CreateViewport(SecondCam);
     SecondCam->SetLocation( Vector3(-300,50,-50) );
     SecondCam->LookAt( Vector3(0,0,0) );
 
@@ -673,7 +673,7 @@ void MakeGUI()
 {
     String DefaultScreen = "DefaultScreen";
     UIManager* GUI = TheEntresol->GetUIManager();
-    Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
+    Graphics::Viewport* UIViewport = TheEntresol->GetGraphicsManager()->GetGameWindow(0)->GetViewport(0);
     GUI->LoadMTA("dejavu");
     UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);
 
@@ -957,7 +957,7 @@ void TestsToSave()
         XMLStringStream2 >> ASecondPlane;
         TheEntresol->Log(ASecondPlane);
 
-        MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
+        MetaCode ASingleCode(MetaCode(1,Input::MOUSEBUTTON));
         TheEntresol->Log("ASingleCode:");
         TheEntresol->Log(ASingleCode);
 
@@ -966,7 +966,7 @@ void TestsToSave()
         XMLStringStream3 << ASingleCode;
         TheEntresol->Log(XMLStringStream3.str());
 
-        MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
+        MetaCode ASecondCode(MetaCode(0,Input::KEY_FIRST));
         TheEntresol->Log("ASecondCode:");
         TheEntresol->Log(ASecondCode);
 
