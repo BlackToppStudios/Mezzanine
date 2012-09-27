@@ -270,6 +270,17 @@ class UnitTestGroup : public TestDataStorage
             }
         }
 
+
+        virtual bool AddSuccessFromBool(Mezzanine::String TestName, bool Condition)
+        {
+            if(Condition)
+            {
+                AddTestResult(TestName, Success, UnitTestGroup::OverWrite);
+            }else{
+                AddTestResult(TestName, Failed, UnitTestGroup::OverWrite);
+            }
+            return Condition;
+        }
 };
 
 // The list of all the testgroups

@@ -71,13 +71,9 @@ class SmartPtrTests : public UnitTestGroup
                 std::cout << std::endl << "Creating A Vector3 in a counted pointer: VecPtr" << std::endl;
                 Mezzanine::CountedPtr<Mezzanine::Vector3> VecPtr (new Mezzanine::Vector3(3.0,4.0,5.0));
                 std::cout << "Count of references: " << VecPtr.use_count() << std::endl;
-                if (1 == VecPtr.use_count())
-                {
-                    AddTestResult("CountedPtr::CreateClass", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::CreateClass", Failed, UnitTestGroup::OverWrite);
-                    return; // If we cannot create a pointer then nothing else matters
-                }
+
+                if( !AddSuccessFromBool("CountedPtr::CreateClass",1 == VecPtr.use_count()) )
+                    { return; } // If we cannot create a pointer then nothing else matters
 
                 std::cout << "Creating creating a scoped copy of counted pointer." << std::endl;
                 bool notfailed=true;
@@ -88,13 +84,7 @@ class SmartPtrTests : public UnitTestGroup
                         { notfailed=false; }
                 }
                 std::cout << "Post scope count of references: " << VecPtr.use_count() << std::endl;
-                if (1 == VecPtr.use_count() && notfailed)
-                {
-                    AddTestResult("CountedPtr::ScopedChanged", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ScopedChanged", Failed, UnitTestGroup::OverWrite);
-                }
-
+                AddSuccessFromBool("CountedPtr::ScopedChanged", 1 == VecPtr.use_count() && notfailed);
 
                 std::cout << std::endl << "Creating A fresh Vector3 in a counted pointer: OtherPtr." << std::endl;
                 Mezzanine::CountedPtr<Mezzanine::Vector3> OtherPtr (new Mezzanine::Vector3(0.0,0.0,0.0));
@@ -102,102 +92,33 @@ class SmartPtrTests : public UnitTestGroup
                 std::cout << "Creating OtherPtr2 with copy constructor, using OtherPtr as Original."<< std::endl;
                 Mezzanine::CountedPtr<Mezzanine::Vector3> OtherPtr2 (OtherPtr);
                 std::cout << "Count of OtherPtr references: " << OtherPtr.use_count() << std::endl;
-                if (2 == OtherPtr.use_count())
-                {
-                    AddTestResult("CountedPtr::CopyConstructor", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::CopyConstructor", Failed, UnitTestGroup::OverWrite);
-                }
-
+                AddSuccessFromBool("CountedPtr::CopyConstructor",2 == OtherPtr.use_count());
 
                 std::cout << std::endl << "Assigning OtherPtr the values of VecPtr." << std::endl;
                 OtherPtr = VecPtr;
-                if (2 == VecPtr.use_count() && 2 == OtherPtr.use_count() && 1 == OtherPtr2.use_count())
-                {
-                    AddTestResult("CountedPtr::operator=", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::operator=", Failed, UnitTestGroup::OverWrite);
-                }
-
-                if (3.0 == OtherPtr->X && 4.0 == OtherPtr->Y && 5.0 == OtherPtr->Z)
-                {
-                    AddTestResult("CountedPtr::operator->", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::operator->", Failed, UnitTestGroup::OverWrite);
-                }
-
-                if (3.0 == (*OtherPtr).X && 4.0 == (*OtherPtr).Y && 5.0 == (*OtherPtr).Z)
-                {
-                    AddTestResult("CountedPtr::operator*", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::operator*", Failed, UnitTestGroup::OverWrite);
-                }
+                AddSuccessFromBool("CountedPtr::operator=",2 == VecPtr.use_count() && 2 == OtherPtr.use_count() && 1 == OtherPtr2.use_count());
+                AddSuccessFromBool("CountedPtr::operator->",3.0 == OtherPtr->X && 4.0 == OtherPtr->Y && 5.0 == OtherPtr->Z);
+                AddSuccessFromBool("CountedPtr::operator*",3.0 == (*OtherPtr).X && 4.0 == (*OtherPtr).Y && 5.0 == (*OtherPtr).Z);
 
 
-                if((typeid(ReferenceCount<int>) == typeid(ReferenceCountTraits<int>::ManagedType)))
-                {
-                    AddTestResult("CountedPtr::ReferenceCountTraits::BasicType",Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ReferenceCountTraits::BasicType", Failed, UnitTestGroup::OverWrite);
-                }
-
-                if(typeid(IntrusiveRefCount) == typeid(ReferenceCountTraits<IntrusiveRefCount>::ManagedType))
-                {
-                    AddTestResult("CountedPtr::ReferenceCountTraits::IntrusiveType", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ReferenceCountTraits::IntrusiveType", Failed, UnitTestGroup::OverWrite);
-                }
-
-                if(typeid(ReferenceCount<int>*) == typeid(ReferenceCountTraits<int>::PtrType))
-                {
-                    AddTestResult("CountedPtr::ReferenceCountTraits::BasicPointer", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ReferenceCountTraits::BasicPointer", Failed, UnitTestGroup::OverWrite);
-                }
-
-                if(typeid(IntrusiveRefCount*) == typeid(ReferenceCountTraits<IntrusiveRefCount>::PtrType))
-                {
-                    AddTestResult("CountedPtr::ReferenceCountTraits::IntrusivePointer", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ReferenceCountTraits::IntrusivePointer", Failed, UnitTestGroup::OverWrite);
-                }
-
+                AddSuccessFromBool("CountedPtr::ReferenceCountTraits::BasicType",(typeid(ReferenceCount<int>) == typeid(ReferenceCountTraits<int>::ManagedType)));
+                AddSuccessFromBool("CountedPtr::ReferenceCountTraits::IntrusiveType",typeid(IntrusiveRefCount) == typeid(ReferenceCountTraits<IntrusiveRefCount>::ManagedType));
+                AddSuccessFromBool("CountedPtr::ReferenceCountTraits::BasicPointer",typeid(ReferenceCount<int>*) == typeid(ReferenceCountTraits<int>::PtrType));
+                AddSuccessFromBool("CountedPtr::ReferenceCountTraits::IntrusivePointer",typeid(IntrusiveRefCount*) == typeid(ReferenceCountTraits<IntrusiveRefCount>::PtrType));
 
                 std::cout << std::endl << "Creating an int in a counted pointer: IntPtr" << std::endl;
                 int* IntPointer = new int(10);
                 Mezzanine::CountedPtr<int> intPtr (IntPointer);
-                if (1 == intPtr.use_count())
-                {
-                    AddTestResult("CountedPtr::CreatePOD", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::CreatePOD", Failed, UnitTestGroup::OverWrite);
-                    return;
-                }
-
-                if (typeid(ReferenceCount<int>*) == typeid(ReferenceCountTraits<int>::ConstructionPointer(IntPointer)))
-                {
-                    AddTestResult("CountedPtr::ReferenceCountBasicPointer", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ReferenceCountBasicPointer", Failed, UnitTestGroup::OverWrite);
-                }
+                if( !AddSuccessFromBool("CountedPtr::CreatePOD",1 == intPtr.use_count()) )
+                    { return; }
+                AddSuccessFromBool("CountedPtr::ReferenceCountBasicPointer",typeid(ReferenceCount<int>*) == typeid(ReferenceCountTraits<int>::ConstructionPointer(IntPointer)));
 
                 std::cout << std::endl << "Creating an IntrusiveRefCount in a counted pointer: RefCounterPointer" << std::endl;
                 IntrusiveRefCount* RefCounterPointer = new IntrusiveRefCount();
                 Mezzanine::CountedPtr<IntrusiveRefCount> RefCounterPtr (RefCounterPointer);
-                if (1 == RefCounterPtr.use_count())
-                {
-                    AddTestResult("CountedPtr::CreateInterReferenceCount", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::CreateInterReferenceCount", Failed, UnitTestGroup::OverWrite);
-                    return;
-                }
-
-                if (typeid(IntrusiveRefCount*) == typeid(ReferenceCountTraits<IntrusiveRefCount>::ConstructionPointer(RefCounterPointer)))
-                {
-                    AddTestResult("CountedPtr::ReferenceCountIntrusivePointer", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::ReferenceCountIntrusivePointer", Failed, UnitTestGroup::OverWrite);
-                }
+                if( !AddSuccessFromBool("CountedPtr::CreateInterReferenceCount",1 == RefCounterPtr.use_count()) )
+                    { return; }
+                AddSuccessFromBool("CountedPtr::ReferenceCountIntrusivePointer",typeid(IntrusiveRefCount*) == typeid(ReferenceCountTraits<IntrusiveRefCount>::ConstructionPointer(RefCounterPointer)));
 
                 std::cout << "Creating creating a scoped copy of internally counted pointer." << std::endl;
                 notfailed=true;
@@ -208,13 +129,7 @@ class SmartPtrTests : public UnitTestGroup
                         { notfailed=false; }
                 }
                 std::cout << "Post scope count of references: " << RefCounterPtr.use_count() << std::endl;
-                if (1 == RefCounterPtr.use_count() && notfailed)
-                {
-                    AddTestResult("CountedPtr::CopyConstructorIntrusiveCount", Success, UnitTestGroup::OverWrite);
-                }else{
-                    AddTestResult("CountedPtr::CopyConstructorIntrusiveCount", Failed, UnitTestGroup::OverWrite);
-                }
-
+                AddSuccessFromBool("CountedPtr::CopyConstructorIntrusiveCount",1 == RefCounterPtr.use_count() && notfailed);
 
             }else{
                 AddTestResult("CountedPtr::CreateClass", Skipped);
