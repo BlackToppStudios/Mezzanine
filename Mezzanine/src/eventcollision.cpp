@@ -44,6 +44,7 @@
 #include "actormanager.h"
 #include "actorbase.h"
 #include "stringtool.h"
+#include "entresol.h"
 
 #include <btBulletDynamicsCommon.h>
 #include <memory>

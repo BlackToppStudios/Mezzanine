@@ -43,6 +43,7 @@
 #include "actorbase.h"
 #include "actormanager.h"
 #include "collision.h"
+#include "entresol.h"
 #include "stringtool.h"
 
 #include <btBulletDynamicsCommon.h>

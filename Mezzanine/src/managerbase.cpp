@@ -40,6 +40,7 @@
 #ifndef _managerbase_cpp
 #define _managerbase_cpp
 
+#include "entresol.h"
 #include "managerbase.h"
 #include "stringtool.h"
 

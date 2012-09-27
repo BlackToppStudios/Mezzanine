@@ -45,6 +45,10 @@
 #include "stringtool.h"
 #include "entresol.h"
 
+#ifdef MEZZDEBUG
+#include <iostream>
+#endif
+
 namespace Mezzanine
 {
     Exception::Exception(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
@@ -59,7 +63,9 @@ namespace Mezzanine
             Entresol::GetSingletonPtr()->Log(GetCompleteMessage());
             Entresol::GetSingletonPtr()->DoMainLoopLogging();
         }else{
+            #ifdef MEZZDEBUG
             std::cout << GetCompleteMessage();
+            #endif
         }
     }
 
