@@ -581,7 +581,7 @@ namespace Mezzanine
         }
 
         if(AutoGenPath)
-            ResourceManager::GetSingletonPtr()->CreateDirectoryPath(SettingsFilePath);
+            ResourceManager::GetSingletonPtr()->CreateDirectoryPath(this->SettingsFilePath);
     }
 
     const String& ObjectSettingsHandler::GetSettingsFilePath() const

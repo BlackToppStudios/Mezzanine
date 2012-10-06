@@ -47,6 +47,7 @@ using namespace std;
 #include "actormanager.h"
 #include "graphicsmanager.h"
 #include "eventmanager.h"
+#include "entresol.h"
 #include "cameramanager.h"
 #include "scenemanager.h"
 #include "inputmanager.h"

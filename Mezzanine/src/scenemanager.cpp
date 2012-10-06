@@ -44,6 +44,7 @@
 #include "scenemanager.h"
 #include "light.h"
 #include "entity.h"
+#include "entresol.h"
 #include "plane.h"
 #include "particleeffect.h"
 #include "uimanager.h"

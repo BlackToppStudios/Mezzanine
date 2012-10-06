@@ -64,44 +64,47 @@
 
 
 */
+/// @file
+/// @brief Sets up some compiler variables that allow the Mezzanine to know what platform it is on.
 
-// Check for other nonwindows OS
-#ifdef LINUX
-    #define NONWINDOWS
-#endif
 
-#ifdef MACOSX
-    #define NONWINDOWS
-#endif
-
-//Check for windows, but not in a way that overides what is passed on the command prompt
-#ifdef NONWINDOWS
-    #ifdef __WIN32__
-    #define WINDOWS
+    // Check for other nonwindows OS
+    #ifdef LINUX
+        #define NONWINDOWS
     #endif
 
-    #ifdef _WIN32
-    #define WINDOWS
+    #ifdef MACOSX
+        #define NONWINDOWS
     #endif
 
-    #ifdef __CYGWIN32__
-    #define WINDOWS
-    #endif
+    //Check for windows, but not in a way that overides what is passed on the command prompt
+    #ifndef NONWINDOWS
+        #ifdef __WIN32__
+        #define WINDOWS
+        #endif
 
-    #ifdef _MSC_VER
-    #define WINDOWS
-    #endif
-#endif // \NONWINDOWS
+        #ifdef _WIN32
+        #define WINDOWS
+        #endif
 
-//Used to define whether a class is exported as part of the shared library when compiled
-#ifdef WINDOWS
-    #ifdef EXPORTINGMEZZANINEDLL
-        #define MEZZ_LIB __declspec(dllexport)
+        #ifdef __CYGWIN32__
+        #define WINDOWS
+        #endif
+
+        #ifdef _MSC_VER
+        #define WINDOWS
+        #endif
+    #endif // \NONWINDOWS
+
+    //Used to define whether a class is exported as part of the shared library when compiled
+    #ifdef WINDOWS
+        #ifdef EXPORTINGMEZZANINEDLL
+            #define MEZZ_LIB __declspec(dllexport)
+        #else
+            #define MEZZ_LIB __declspec(dllimport)
+        #endif      // \MAKINGMEZZANINEDLL
     #else
-        #define MEZZ_LIB __declspec(dllimport)
-    #endif      // \MAKINGMEZZANINEDLL
-#else
-    #define MEZZ_LIB
-#endif  // \WINDOWS
+        #define MEZZ_LIB
+    #endif  // \WINDOWS
 
 #endif

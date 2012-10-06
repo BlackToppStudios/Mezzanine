@@ -47,6 +47,9 @@
 #include "singleton.h"
 #include "Resource/inputstream.h"
 
+/// @file
+/// @brief The defintion of the Resource Manager.
+
 class btBulletWorldImporter;
 
 namespace Ogre
@@ -124,6 +127,9 @@ namespace Mezzanine
             /// @brief Get the pathname where engine data is stored
             /// @return A String that contains the pathname
             String GetEngineDataDirectory() const;
+            /// @todo Create a function to check if directory exists in the resource manager
+            // @brief Does a given directory exist
+            // @param Path
 
             /// @brief Resolves a string describing one of the platform data paths to the actual path it is.
             /// @remarks Currently there are only 4 preset path variables, and depending on platform they two or more may go to the same location.

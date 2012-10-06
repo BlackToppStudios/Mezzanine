@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2011 BlackTopp Studios Inc.
+//Â© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -71,7 +71,9 @@
 	#include <errno.h>
 	#include <sys/stat.h>
 	#include <sys/types.h>
+    #include <pwd.h>
 #endif
+
 
 #ifdef MEZZDEBUG
 #include "entresol.h"
@@ -187,6 +189,8 @@ namespace Mezzanine
             PathAttempt.append(FolderVec->at(0));
             StartIndex++;
         }
+        #else
+        PathAttempt.append("/");
         #endif
         for( size_t VecIndex = StartIndex ; VecIndex < FolderVec->size() ; ++VecIndex )
         {
@@ -261,15 +265,25 @@ namespace Mezzanine
         {
             return path_local_appdata;
         }
-        #elif LINUX
-        /// @todo Implement this.
-        #elif MACOS
+        #else
+        struct passwd* pw = getpwuid(getuid());
+        if(pw)
+        {
+            return String(pw->pw_dir);
+        }
+        else
+        {
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve app data directory.");
+        }
+
+        // might be some useful MAC OS X code
+        /*#elif MACOS
         FSRef ref;
         OSType folderType = kApplicationSupportFolderType;
         char path[PATH_MAX];
         FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
         FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
-        return path;
+        return path;*/
         #endif
     }
 
@@ -281,15 +295,16 @@ namespace Mezzanine
         {
             return path_appdata;
         }
-        #elif LINUX
-        /// @todo Implement this.
-        #elif MACOS
-        FSRef ref;
-        OSType folderType = kApplicationSupportFolderType;
-        char path[PATH_MAX];
-        FSFindFolder( kUserDomain, folderType, kCreateFolder, &ref );
-        FSRefMakePath( &ref, (UInt8*)&path, PATH_MAX );
-        return path;
+        #else
+        struct passwd* pw = getpwuid(getuid());
+        if(pw)
+        {
+            return String(pw->pw_dir);
+        }
+        else
+        {
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve home directory.");
+        }
         #endif
     }
 
@@ -301,10 +316,16 @@ namespace Mezzanine
         {
             return path_personal;
         }
-        #elif LINUX
-        /// @todo Implement this.
-        #elif MACOS
-        /// @todo Implement this.
+        #else
+        struct passwd* pw = getpwuid(getuid());
+        if(pw)
+        {
+            return String(pw->pw_dir);
+        }
+        else
+        {
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve user data directory.");
+        }
         #endif
     }
 
@@ -316,10 +337,16 @@ namespace Mezzanine
         {
             return path_common_personal;
         }
-        #elif LINUX
-        /// @todo Implement this.
-        #elif MACOS
-        /// @todo Implement this.
+        #else
+        struct passwd* pw = getpwuid(getuid());
+        if(pw)
+        {
+            return String(pw->pw_dir);
+        }
+        else
+        {
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Could not get user information to retrieve common data directory.");
+        }
         #endif
     }
 
@@ -404,13 +431,13 @@ namespace Mezzanine
 
     String ResourceManager::GetPluginExtension() const
     {
-#ifdef WINDOWS
-        return ".dll";
-#elif LINUX
-        return ".so";
-#elif MACOS
-        return ".dylib";
-#endif
+        #ifdef WINDOWS
+                return ".dll";
+        #elif LINUX
+                return ".so";
+        #elif MACOS
+                return ".dylib";
+        #endif
     }
 
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)

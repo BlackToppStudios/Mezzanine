@@ -75,6 +75,8 @@ class notatestTests : public UnitTestGroup
                 // enum TestResult near the top of main.h for the ranks of failure->success. You
                 AddTestResult("notatest::ThisJustExistsAsABlankSlateForOtherTests-Automatic2", temp, UnitTestGroup::OverWrite);
 
+                // document AddSuccessFromBool()
+
 
             }else{
                 // this block will run if test that can run without human interaction are to be skipped.

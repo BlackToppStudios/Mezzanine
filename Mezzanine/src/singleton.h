@@ -63,9 +63,9 @@ namespace Mezzanine
     {
         private:
             /// @brief Made private because copying a singleton is a no-no.
-            Singleton(const Singleton<Type> &) {};
+            Singleton(const Singleton<Type> &) {}
             /// @brief Made private because copying a singleton is a no-no.
-            Singleton& operator=(const Singleton<Type> &) {};
+            Singleton& operator=(const Singleton<Type> &) {}
         protected:
             static Type* SingletonPtr;
         public:
@@ -85,7 +85,7 @@ namespace Mezzanine
             ~Singleton()
             {
                 SingletonPtr = 0;
-            };
+            }
             /// @brief Fetches a pointer to the singleton.
             /// @return Returns a pointer to the type of singleton this is.
             static Type* GetSingletonPtr()
@@ -95,13 +95,13 @@ namespace Mezzanine
                     MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Attempting to fetch invalid Singleton pointer");
                 #endif
                 return SingletonPtr;
-            };
+            }
             /// @brief Checks to see if the singleton pointer is valid.
             /// @return Returns true if the singleton is valid, false otherwise.
             static bool SingletonValid()
             {
                 return SingletonPtr != NULL;
-            };
+            }
     };//Singleton
 }//Mezzanine
 

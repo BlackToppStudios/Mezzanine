@@ -189,16 +189,19 @@ set(LibSuffix "")
 if(${WIN32})
 	set(BuildPlatform windows)
 	set(LibSuffix .dll)
+        add_definitions(-DWINDOWS )
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	set(BuildPlatform linux)
 	set(LibPrefix lib)
 	set(LibSuffix .so)
+        add_definitions( -DLINUX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	set(BuildPlatform macosx)
+        add_definitions( -DMACOSX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 #######################################
