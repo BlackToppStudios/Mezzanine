@@ -929,8 +929,12 @@ bool CatchApp::PostUI()
                             Dragger = new Physics::Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
                             PhysicsManager::GetSingletonPtr()->AddConstraint(Dragger);
-                            Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
-                            Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
+                            Dragger->SetParam(Physics::Con_Stop_CFM,0.8,-1);
+                            Dragger->SetParam(Physics::Con_CFM,0.8,-1);
+                            //Dragger->SetParam(Physics::Con_Stop_CFM,0.8,0); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,1); Dragger->SetParam(Physics::Con_Stop_CFM,0.8,2); //Dragger->SetParam(4,0.8,3); Dragger->SetParam(4,0.8,4); Dragger->SetParam(4,0.8,5);
+                            Dragger->SetParam(Physics::Con_Stop_ERP,0.1,-1);
+                            Dragger->SetParam(Physics::Con_ERP,0.1,-1);
+                            //Dragger->SetParam(Physics::Con_Stop_ERP,0.1,0); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,1); Dragger->SetParam(Physics::Con_Stop_ERP,0.1,2); //Dragger->SetParam(2,0.1,3); Dragger->SetParam(2,0.1,4); Dragger->SetParam(2,0.1,5);
                             firstframe=true;
                             LastActorThrown = rigid;
                         }else{  // since we don't
