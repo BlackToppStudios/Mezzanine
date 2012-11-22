@@ -189,7 +189,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}Physics/planecollisionshape.h"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/point2pointconstraint.h"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/primitivecollisionshape.h"
-	"${${PROJECT_NAME}_SRC_DIR}Physics/proxy.h"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/sliderconstraint.h"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/spherecollisionshape.h"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.h"
@@ -377,7 +376,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SRC_DIR}Physics/planecollisionshape.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/point2pointconstraint.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/primitivecollisionshape.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}Physics/proxy.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/sliderconstraint.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/spherecollisionshape.cpp"
 	"${${PROJECT_NAME}_SRC_DIR}Physics/staticmeshcollisionshape.cpp"
@@ -545,13 +543,13 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
 
 
 	add_definitions( -DMACOSX)
 	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
 
 ###############################################################################
 #Common Library Configuration items
@@ -674,13 +672,13 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac File Copy Specific Items
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
 	#CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
 
 	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
 
 ###############################################################################
 # The End

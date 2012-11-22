@@ -155,7 +155,7 @@ namespace Mezzanine
                 #ifdef LINUX
                 Window Data = 0;
                 #endif
-                #ifdef MACOS
+                #ifdef MACOSX
                 NSWindow* Data = 0;
                 #endif
                 OgreWindow->getCustomAttribute("WINDOW",&Data);

@@ -270,17 +270,17 @@ CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${License
 
 #####################################
 # Common Data
-if(${UseCatchArchives})
-	message( STATUS "Copying Common Content")
-	file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
-	file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
-	message( STATUS "Copying Level archives")
-	file(GLOB ContentDirLevelContents "${Catch_ArchiveDir}/Lvl Files/*.lvl")
-	file( COPY ${ContentDirLevelContents} DESTINATION ${LevelDir})
-	message( STATUS "Copying Preview Content")
-	file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
-	file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
-endif(${UseCatchArchives})
+#if(${UseCatchArchives})
+#	message( STATUS "Copying Common Content")
+	#file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
+	#file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
+#	message( STATUS "Copying Level archives")
+	#file(GLOB ContentDirLevelContents "${Catch_ArchiveDir}/Lvl Files/*.lvl")
+	#file( COPY ${ContentDirLevelContents} DESTINATION ${LevelDir})
+#	message( STATUS "Copying Preview Content")
+	#file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
+	#file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
+#endif(${UseCatchArchives})
 
 #Ogre stuff
 CopyFilesDuringBuild( data/${BuildPlatform}/plugins${OgresD}.cfg ${PluginDir}plugins.cfg)
@@ -316,15 +316,15 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy pecific Items
-if(${APPLE})
-	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+#if(${APPLE})
+#	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 #	CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
-	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
-	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
-	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib Mezzanine.dylib )
+#	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
+#	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
+#	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib Mezzanine.dylib )
 #	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
-	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
-endif(${APPLE})
+#	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
+#endif(${APPLE})
 
 message ( STATUS "${PROJECT_NAME} - End Copy Process")
 
