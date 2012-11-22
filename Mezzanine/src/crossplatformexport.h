@@ -96,13 +96,14 @@
         #endif
     #endif // \NONWINDOWS
 
-    //Used to define whether a class is exported as part of the shared library when compiled
+    /// @def MEZZ_LIB
+    /// @brief Some platforms require special decorations to denote what is exported/imported in a share library. This is that decoration if when it is needed.
     #ifdef WINDOWS
         #ifdef EXPORTINGMEZZANINEDLL
             #define MEZZ_LIB __declspec(dllexport)
         #else
             #define MEZZ_LIB __declspec(dllimport)
-        #endif      // \MAKINGMEZZANINEDLL
+        #endif      // \EXPORTINGMEZZANINEDLL
     #else
         #define MEZZ_LIB
     #endif  // \WINDOWS

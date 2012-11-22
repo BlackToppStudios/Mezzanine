@@ -100,7 +100,7 @@ namespace Mezzanine
         StringStream ErrorStream;
         ErrorStream << "MEZZANINE EXCEPTION(" << ExceptionTypeName << "): "
                     << ErrorMessage << "  In " << Function << ".  " << "At line "
-                    << (Line?StringTool::ConvertToString(Line):"Unknown") << " of "
+                    << (Line?StringTools::ConvertToString(Line):"Unknown") << " of "
                     << File << ".";
         return ErrorStream.str();
     }

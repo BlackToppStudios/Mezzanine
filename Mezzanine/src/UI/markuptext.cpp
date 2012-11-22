@@ -291,7 +291,7 @@ namespace Mezzanine
                             if( FoundIt == false )
                                 return;
 
-                            UInt32 ID = StringTool::ConvertToUInt32(Text.substr(Begin+1, Index - Begin - 1));
+                            UInt32 ID = StringTools::ConvertToUInt32(Text.substr(Begin+1, Index - Begin - 1));
                             CurrGlyphData = ParentScreen->GetGlyphData(ID,PriAtlas);
                             if( CurrGlyphData == 0 )
                                 return;

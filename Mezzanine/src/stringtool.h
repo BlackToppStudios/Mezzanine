@@ -55,217 +55,205 @@ namespace Mezzanine
     /// @brief This is a utility to help perform all kinds of string related tasks.
     /// @details
     ///////////////////////////////////////
-    class MEZZ_LIB StringTool
+    namespace StringTools
     {
-        public:
-            static const String Blank;
-        protected:
-        public:
-            /// @brief Class constructor.
-            StringTool();
-            /// @brief Class destructor.
-            ~StringTool();
+        ///////////////////////////////////////////////////////////////////////////////
+        // Globals, mostly used for comparison and such
+        const String Blank = "";
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // String Manipulation and checks
+        ///////////////////////////////////////////////////////////////////////////////
+        // String Manipulation and checks
 
-            /// @brief Trims all whitespaces and tabs from a one or both sides of a string.
-            /// @param Source The original string to be trimmed.
-            /// @param Left Whether or not to trim the left side of the string.
-            /// @param Right Whether or not to trim the right side of the string.
-            static void Trim(String& Source, bool Left = true, bool Right = true);
-            /// @brief Splits a string into multiple substrings based on the specified delimiters.
-            /// @param Source The string to be split.
-            /// @param Delims The characters to look for and use as split points in the source string.
-            /// @param MaxSplits The maximum number of splits to perform on this string.  Value of zero means unlimited splits.
-            /// @return Returns a vector containing all the substrings generated from the source string.
-            static CountedPtr<StringVector> Split(const String& Source, const String& Delims = " \t\n", const Whole& MaxSplits = 0);
-            /// @brief Converts all lower case characters in a string to their respective upper case.
-            /// @param Source The string to be converted.
-            static void ToUpperCase(String& Source);
-            /// @brief Converts all upper case characters in a string to their respective lower case.
-            /// @param Source The string to be converted.
-            static void ToLowerCase(String& Source);
-            /// @brief Checks a string to see if it starts with a specific pattern.
-            /// @param Str The string to check.
-            /// @param Pattern The sequence to check for at the start of the string.
-            /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
-            /// @return Returns true if the string starts with the provided pattern, false otherwise.
-            static bool StartsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
-            /// @brief Checks a string to see if it ends with a specific pattern.
-            /// @param Str The string to check.
-            /// @param Pattern The sequence to check for at the end of the string.
-            /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
-            /// @return Returns true if the string ends with the provided pattern, false otherwise.
-            static bool EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
-            /// @brief Replaces all instances of multiple consecutive whitespaces with only a single whitespace.
-            /// @param Source The string to be altered.
-            static void RemoveDuplicateWhitespaces(String& Source);
+        /// @brief Trims all whitespaces and tabs from a one or both sides of a string.
+        /// @param Source The original string to be trimmed.
+        /// @param Left Whether or not to trim the left side of the string.
+        /// @param Right Whether or not to trim the right side of the string.
+        void MEZZ_LIB Trim(String& Source, bool Left = true, bool Right = true);
+        /// @brief Splits a string into multiple substrings based on the specified delimiters.
+        /// @param Source The string to be split.
+        /// @param Delims The characters to look for and use as split points in the source string.
+        /// @param MaxSplits The maximum number of splits to perform on this string.  Value of zero means unlimited splits.
+        /// @return Returns a vector containing all the substrings generated from the source string.
+        CountedPtr<StringVector> MEZZ_LIB Split(const String& Source, const String& Delims = " \t\n", const Whole& MaxSplits = 0);
+        /// @brief Converts all lower case characters in a string to their respective upper case.
+        /// @param Source The string to be converted.
+        void MEZZ_LIB ToUpperCase(String& Source);
+        /// @brief Converts all upper case characters in a string to their respective lower case.
+        /// @param Source The string to be converted.
+        void MEZZ_LIB ToLowerCase(String& Source);
+        /// @brief Checks a string to see if it starts with a specific pattern.
+        /// @param Str The string to check.
+        /// @param Pattern The sequence to check for at the start of the string.
+        /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
+        /// @return Returns true if the string starts with the provided pattern, false otherwise.
+        bool MEZZ_LIB StartsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
+        /// @brief Checks a string to see if it ends with a specific pattern.
+        /// @param Str The string to check.
+        /// @param Pattern The sequence to check for at the end of the string.
+        /// @param CaseSensitive If false this function will check lower-case copies for the pattern, otherwise the strings will be checked as is.
+        /// @return Returns true if the string ends with the provided pattern, false otherwise.
+        bool MEZZ_LIB EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive);
+        /// @brief Replaces all instances of multiple consecutive whitespaces with only a single whitespace.
+        /// @param Source The string to be altered.
+        void MEZZ_LIB RemoveDuplicateWhitespaces(String& Source);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Data Class Utilities
+        ///////////////////////////////////////////////////////////////////////////////
+        // Data Class Utilities
 
-            /// @brief Convert two numbers in a string into a Vector2.
-            /// @param ToConvert The string to be converted.
-            /// @remarks The string is expected to have a certain format.  The format should be "X Y".  If there are not 2 numbers an exception will be thrown.
-            /// @return Returns a Vector2 populated with the values from the string passed in.
-            static Vector2 ConvertToVector2(const String& ToConvert);
-            /// @brief Converts a Vector2 into a string.
-            /// @param ToConvert The Vector2 to be converted.
-            /// @return Returns a string containing the values from the Vector2 in "X Y" format.
-            static String ConvertToString(const Vector2& ToConvert);
-            /// @brief Convert three numbers in a string into a Vector3.
-            /// @param ToConvert The string to be converted.
-            /// @remarks The string is expected to have a certain format.  The format should be "X Y Z".  If there are not 3 numbers an exception will be thrown.
-            /// @return Returns a Vector3 populated with the values from the string passed in.
-            static Vector3 ConvertToVector3(const String& ToConvert);
-            /// @brief Converts a Vector3 into a string.
-            /// @param ToConvert The Vector3 to be converted.
-            /// @return Returns a string containing the values from the Vector3 in "X Y Z" format.
-            static String ConvertToString(const Vector3& ToConvert);
-            /// @brief Convert four numbers in a string into a Quaternion.
-            /// @param ToConvert The string to be converted.
-            /// @remarks The string is expected to have a certain format.  The format should be "X Y Z W".  If there are not 4 numbers an exception will be thrown.
-            /// @return Returns a Quaternion populated with the values from the string passed in.
-            static Quaternion ConvertToQuaternion(const String& ToConvert);
-            /// @brief Converts a Quaternion into a string.
-            /// @param ToConvert The Quaternion to be converted.
-            /// @return Returns a string containing the values from the Quaternion in "X Y Z W" format.
-            static String ConvertToString(const Quaternion& ToConvert);
-            /// @brief Convert four numbers in a string into a ColourValue.
-            /// @param ToConvert The string to be converted.
-            /// @remarks The string is expected to have a certain format.  The format should be "R G B A".  If there are not 4 numbers an exception will be thrown.
-            /// @return Returns a ColourValue populated with the values from the string passed in.
-            static ColourValue ConvertToColourValue(const String& ToConvert);
-            /// @brief Converts a ColourValue into a string.
-            /// @param ToConvert The ColourValue to be converted.
-            /// @return Returns a string containing the values from the ColourValue in "R G B A" format.
-            static String ConvertToString(const ColourValue& ToConvert);
+        /// @brief Convert two numbers in a string into a Vector2.
+        /// @param ToConvert The string to be converted.
+        /// @remarks The string is expected to have a certain format.  The format should be "X Y".  If there are not 2 numbers an exception will be thrown.
+        /// @return Returns a Vector2 populated with the values from the string passed in.
+        Vector2 MEZZ_LIB ConvertToVector2(const String& ToConvert);
+        /// @brief Converts a Vector2 into a string.
+        /// @param ToConvert The Vector2 to be converted.
+        /// @return Returns a string containing the values from the Vector2 in "X Y" format.
+        String MEZZ_LIB ConvertToString(const Vector2& ToConvert);
+        /// @brief Convert three numbers in a string into a Vector3.
+        /// @param ToConvert The string to be converted.
+        /// @remarks The string is expected to have a certain format.  The format should be "X Y Z".  If there are not 3 numbers an exception will be thrown.
+        /// @return Returns a Vector3 populated with the values from the string passed in.
+        Vector3 MEZZ_LIB ConvertToVector3(const String& ToConvert);
+        /// @brief Converts a Vector3 into a string.
+        /// @param ToConvert The Vector3 to be converted.
+        /// @return Returns a string containing the values from the Vector3 in "X Y Z" format.
+        String MEZZ_LIB ConvertToString(const Vector3& ToConvert);
+        /// @brief Convert four numbers in a string into a Quaternion.
+        /// @param ToConvert The string to be converted.
+        /// @remarks The string is expected to have a certain format.  The format should be "X Y Z W".  If there are not 4 numbers an exception will be thrown.
+        /// @return Returns a Quaternion populated with the values from the string passed in.
+        Quaternion MEZZ_LIB ConvertToQuaternion(const String& ToConvert);
+        /// @brief Converts a Quaternion into a string.
+        /// @param ToConvert The Quaternion to be converted.
+        /// @return Returns a string containing the values from the Quaternion in "X Y Z W" format.
+        String MEZZ_LIB ConvertToString(const Quaternion& ToConvert);
+        /// @brief Convert four numbers in a string into a ColourValue.
+        /// @param ToConvert The string to be converted.
+        /// @remarks The string is expected to have a certain format.  The format should be "R G B A".  If there are not 4 numbers an exception will be thrown.
+        /// @return Returns a ColourValue populated with the values from the string passed in.
+        ColourValue MEZZ_LIB ConvertToColourValue(const String& ToConvert);
+        /// @brief Converts a ColourValue into a string.
+        /// @param ToConvert The ColourValue to be converted.
+        /// @return Returns a string containing the values from the ColourValue in "R G B A" format.
+        String MEZZ_LIB ConvertToString(const ColourValue& ToConvert);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Convert-To-Data functions
+        ///////////////////////////////////////////////////////////////////////////////
+        // Convert-To-Data functions
 
-            /// @brief Converts a string into a bool.
-            /// @param ToConvert The string to be converted to a bool.
-            /// @return Returns a bool with the converted value.
-            static bool ConvertToBool(const String& ToConvert, const bool Default = false);
-            /// @brief Converts a string into a Real.
-            /// @param ToConvert The string to be converted to a Real.
-            /// @return Returns a Real with the converted value.
-            static Real ConvertToReal(const String& ToConvert);
-            /// @brief Converts a string into an Integer.
-            /// @param ToConvert The string to be converted to an Integer.
-            /// @return Returns an Integer with the converted value.
-            static Integer ConvertToInteger(const String& ToConvert);
-            /// @brief Converts a string into an Int8.
-            /// @param ToConvert The string to be converted to an Int8.
-            /// @return Returns an Int8 with the converted value.
-            static Int8 ConvertToInt8(const String& ToConvert);
-            /// @brief Converts a string into a UInt8.
-            /// @param ToConvert The string to be converted to a UInt8.
-            /// @return Returns a UInt8 with the converted value.
-            static UInt8 ConvertToUInt8(const String& ToConvert);
-            /// @brief Converts a string into an Int16.
-            /// @param ToConvert The string to be converted to an Int16.
-            /// @return Returns an Int16 with the converted value.
-            static Int16 ConvertToInt16(const String& ToConvert);
-            /// @brief Converts a string into a UInt16.
-            /// @param ToConvert The string to be converted to a UInt16.
-            /// @return Returns a UInt16 with the converted value.
-            static UInt16 ConvertToUInt16(const String& ToConvert);
-            /// @brief Converts an string into an Int32.
-            /// @param ToConvert The string to be converted to an Int32.
-            /// @return Returns an Int32 with the converted value.
-            static Int32 ConvertToInt32(const String& ToConvert);
-            /// @brief Converts a string into a UInt32.
-            /// @param ToConvert The string to be converted to a UInt32.
-            /// @return Returns a UInt32 with the converted value.
-            static UInt32 ConvertToUInt32(const String& ToConvert);
+        /// @brief Converts a string into a bool.
+        /// @param ToConvert The string to be converted to a bool.
+        /// @return Returns a bool with the converted value.
+        bool MEZZ_LIB ConvertToBool(const String& ToConvert, const bool Default = false);
+        /// @brief Converts a string into a Real.
+        /// @param ToConvert The string to be converted to a Real.
+        /// @return Returns a Real with the converted value.
+        Real MEZZ_LIB ConvertToReal(const String& ToConvert);
+        /// @brief Converts a string into an Integer.
+        /// @param ToConvert The string to be converted to an Integer.
+        /// @return Returns an Integer with the converted value.
+        Integer MEZZ_LIB ConvertToInteger(const String& ToConvert);
+        /// @brief Converts a string into an Int8.
+        /// @param ToConvert The string to be converted to an Int8.
+        /// @return Returns an Int8 with the converted value.
+        Int8 MEZZ_LIB ConvertToInt8(const String& ToConvert);
+        /// @brief Converts a string into a UInt8.
+        /// @param ToConvert The string to be converted to a UInt8.
+        /// @return Returns a UInt8 with the converted value.
+        UInt8 MEZZ_LIB ConvertToUInt8(const String& ToConvert);
+        /// @brief Converts a string into an Int16.
+        /// @param ToConvert The string to be converted to an Int16.
+        /// @return Returns an Int16 with the converted value.
+        Int16 MEZZ_LIB ConvertToInt16(const String& ToConvert);
+        /// @brief Converts a string into a UInt16.
+        /// @param ToConvert The string to be converted to a UInt16.
+        /// @return Returns a UInt16 with the converted value.
+        UInt16 MEZZ_LIB ConvertToUInt16(const String& ToConvert);
+        /// @brief Converts an string into an Int32.
+        /// @param ToConvert The string to be converted to an Int32.
+        /// @return Returns an Int32 with the converted value.
+        Int32 MEZZ_LIB ConvertToInt32(const String& ToConvert);
+        /// @brief Converts a string into a UInt32.
+        /// @param ToConvert The string to be converted to a UInt32.
+        /// @return Returns a UInt32 with the converted value.
+        UInt32 MEZZ_LIB ConvertToUInt32(const String& ToConvert);
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Convert-To-String functions
+        ///////////////////////////////////////////////////////////////////////////////
+        // Convert-To-String functions
 
-            /// @brief Converts a bool into a string.
-            /// @param ToConvert The bool to be converted.
-            /// @return Returns "true" if true, or "false" if false.
-            static String ConvertToString(const bool ToConvert);
-            /// @brief Converts an Real into a string.
-            /// @param ToConvert The Real to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const Real& ToConvert);
-            /// @brief Converts an Integer into a string.
-            /// @param ToConvert The Integer to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const Integer& ToConvert);
-            /// @brief Converts an Int8 into a string.
-            /// @param ToConvert The Int8 to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const Int8& ToConvert);
-            /// @brief Converts a UInt8 into a string.
-            /// @param ToConvert The UInt8 to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const UInt8& ToConvert);
-            /// @brief Converts an Int16 into a string.
-            /// @param ToConvert The Int16 to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const Int16& ToConvert);
-            /// @brief Converts a UInt16 into a string.
-            /// @param ToConvert The UInt16 to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const UInt16& ToConvert);
-            /// @brief Converts an Int32 into a string.
-            /// @param ToConvert The Int32 to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const Int32& ToConvert);
-            /// @brief Converts a UInt32 into a string.
-            /// @param ToConvert The UInt32 to be converted.
-            /// @return Returns a string containing the converted input.
-            static String ConvertToString(const UInt32& ToConvert);
-            /// @brief Converts a Input::InputCode into a string.
-            /// @param Code The input code to be converted.
-            /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
-            /// @return Returns a string(usually with only one character) containing the converted input code.
-            static String ConvertToString(const Input::InputCode& Code, bool ShiftPressed);
+        /// @brief Converts any into a string.
+        /// @param ToConvert Stream class instance to be converted.
+        /// @return Returns a string containing the lexicagraphically converted data.
+        template<typename T>
+        String MEZZ_LIB ConvertToString(const T& ToConvert)
+        {
+            StringStream converter;
+            converter << ToConvert;
+            return converter.str();
+        }
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // String Catenate functions
+        /// @brief Converts a bool into a string.
+        /// @param ToConvert The bool to be converted.
+        /// @return Returns "true" if true, or "false" if false.
+        template<>
+        String MEZZ_LIB ConvertToString<bool>(const bool& ToConvert)
+        {
+            if(ToConvert) return "true";
+            else return "false";
+        }
 
-            /// @brief Concatenates 2 Strings
-            /// @param Front The first String
-            /// @param Back The last String
-            /// @return A string containing the other Strings passed attached end to end
-            static String StringCat(const String& Front, const String& Back);
-            /// @brief Concatenates 3 Strings
-            /// @param Front The first String
-            /// @param Middle A String in the middle
-            /// @param Back The last String
-            /// @return A string containing the other Strings passed attached end to end
-            static String StringCat(const String& Front, const String& Middle, const String& Back);
-            /// @brief Concatenates 4 Strings
-            /// @param Front The first String
-            /// @param Middle1 The second string
-            /// @param Middle2 The third string
-            /// @param Back The last String
-            /// @return A string containing the other Strings passed attached end to end
-            static String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
-            /// @brief Concatenates 5 Strings
-            /// @param Front The first String
-            /// @param Middle1 The second string
-            /// @param Middle2 The third string
-            /// @param Middle3 The fourth string
-            /// @param Back The last String
-            /// @return A string containing the other Strings passed attached end to end
-            static String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back);
-            /// @brief Concatenates 6 Strings
-            /// @param Front The first String
-            /// @param Middle1 The second string
-            /// @param Middle2 The third string
-            /// @param Middle3 The fourth string
-            /// @param Middle4 The fifth string
-            /// @param Back The last String
-            /// @return A string containing the other Strings passed attached end to end
-            static String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back);
-    };//stringtool
+        /// @brief Converts a Input::InputCode into a string.
+        /// @param Code The input code to be converted.
+        /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
+        /// @return Returns a string(usually with only one character) containing the converted input code.
+        String MEZZ_LIB ConvertToString(const Input::InputCode& Code, bool ShiftPressed);
+
+        /// @brief Converts a Input::InputCode into a string, assuming shift was not pressed.
+        /// @details this is good for figuring out what key was pressed
+        /// @param Code The input code to be converted.
+        /// @return Returns a string(usually with only one character) containing the converted input code.
+        //template<>
+        //String MEZZ_LIB ConvertToString<Input::InputCode>(const Input::InputCode& Code)
+        //    { return ConvertToString(Code, false); }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // String Catenate functions
+
+        /// @brief Concatenates 2 Strings
+        /// @param Front The first String
+        /// @param Back The last String
+        /// @return A string containing the other Strings passed attached end to end
+        String MEZZ_LIB StringCat(const String& Front, const String& Back);
+        /// @brief Concatenates 3 Strings
+        /// @param Front The first String
+        /// @param Middle A String in the middle
+        /// @param Back The last String
+        /// @return A string containing the other Strings passed attached end to end
+        String MEZZ_LIB StringCat(const String& Front, const String& Middle, const String& Back);
+        /// @brief Concatenates 4 Strings
+        /// @param Front The first String
+        /// @param Middle1 The second string
+        /// @param Middle2 The third string
+        /// @param Back The last String
+        /// @return A string containing the other Strings passed attached end to end
+        String MEZZ_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
+        /// @brief Concatenates 5 Strings
+        /// @param Front The first String
+        /// @param Middle1 The second string
+        /// @param Middle2 The third string
+        /// @param Middle3 The fourth string
+        /// @param Back The last String
+        /// @return A string containing the other Strings passed attached end to end
+        String MEZZ_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back);
+        /// @brief Concatenates 6 Strings
+        /// @param Front The first String
+        /// @param Middle1 The second string
+        /// @param Middle2 The third string
+        /// @param Middle3 The fourth string
+        /// @param Middle4 The fifth string
+        /// @param Back The last String
+        /// @return A string containing the other Strings passed attached end to end
+        String MEZZ_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back);
+    } //stringtool
 }//Mezzanine
 
 #endif

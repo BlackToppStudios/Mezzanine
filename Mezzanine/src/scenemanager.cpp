@@ -238,7 +238,7 @@ namespace Mezzanine
 
                 CurrAttrib = ShadowSettings.GetAttribute("ShadowColour");
                 if(!CurrAttrib)
-                    SetShadowColour(StringTool::ConvertToColourValue(CurrAttrib.AsString()));
+                    SetShadowColour(StringTools::ConvertToColourValue(CurrAttrib.AsString()));
 
                 CurrAttrib = ShadowSettings.GetAttribute("ShadowFarDistance");
                 if(!CurrAttrib)
@@ -774,7 +774,7 @@ namespace Mezzanine
                 for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
                     String Lower = (*ParIt).first;
-                    StringTool::ToLowerCase(Lower);
+                    StringTools::ToLowerCase(Lower);
                     if( "internalmanagertypename" == Lower )
                     {
                         InternalManagerTypeName = (*ParIt).second;

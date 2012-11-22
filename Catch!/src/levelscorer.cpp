@@ -148,22 +148,22 @@ Whole LevelScorer::CalculateFinalScore()
 
     LevelReportCell* NormalScoreCell = new LevelReportCell("GS_NormalCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     NormalScoreCell->GetDescription()->SetText("Normal Area Score:");
-    NormalScoreCell->GetScore()->SetText(StringTool::ConvertToString(NormalScore));
+    NormalScoreCell->GetScore()->SetText(StringTools::ConvertToString(NormalScore));
     BreakdownList->AddCell(NormalScoreCell);
 
     LevelReportCell* BonusScoreCell = new LevelReportCell("GS_BonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     BonusScoreCell->GetDescription()->SetText("Bonus Area Score:");
-    BonusScoreCell->GetScore()->SetText(StringTool::ConvertToString(BonusScore));
+    BonusScoreCell->GetScore()->SetText(StringTools::ConvertToString(BonusScore));
     BreakdownList->AddCell(BonusScoreCell);
 
     LevelReportCell* RemainingCashBonusCell = new LevelReportCell("GS_RemainingCashBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     RemainingCashBonusCell->GetDescription()->SetText("Shop Cash Score:");
-    RemainingCashBonusCell->GetScore()->SetText(StringTool::ConvertToString(ShopScore));
+    RemainingCashBonusCell->GetScore()->SetText(StringTools::ConvertToString(ShopScore));
     BreakdownList->AddCell(RemainingCashBonusCell);
 
     LevelReportCell* TimeBonusCell = new LevelReportCell("GS_TimeBonusCell",UI::RenderableRect(BreakDownPosition,BreakDownSize,true),GameScreen);
     TimeBonusCell->GetDescription()->SetText("Time Score:");
-    TimeBonusCell->GetScore()->SetText(StringTool::ConvertToString(TimeScore));
+    TimeBonusCell->GetScore()->SetText(StringTools::ConvertToString(TimeScore));
     BreakdownList->AddCell(TimeBonusCell);
 
     /*for(  ;  ;  )
@@ -180,7 +180,7 @@ Whole LevelScorer::CalculateFinalScore()
     BreakdownList->GenerateGrid();
 
     Whole TotalScore = NormalScore+BonusScore+ShopScore+TimeScore;
-    TotalDisplay->SetText(StringTool::ConvertToString(TotalScore));
+    TotalDisplay->SetText(StringTools::ConvertToString(TotalScore));
 
     ReportWin->Show();
     return TotalScore;

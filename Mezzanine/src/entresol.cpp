@@ -248,7 +248,7 @@ namespace Mezzanine
                 if(!Frequency.Empty())
                 {
                     String FrequencyStr = Frequency.AsString();
-                    StringTool::ToLowerCase(FrequencyStr);
+                    StringTools::ToLowerCase(FrequencyStr);
                     if( "perframe" == FrequencyStr )
                     {
                         this->SetLoggingFrequency(LogOncePerFrame);
@@ -410,7 +410,7 @@ namespace Mezzanine
                 // Get whether this is recursive
                 CurrAttrib = (*GroupIt).GetAttribute("Recursive");
                 if(!CurrAttrib.Empty())
-                    GroupRecursive = StringTool::ConvertToBool(CurrAttrib.AsString());
+                    GroupRecursive = StringTools::ConvertToBool(CurrAttrib.AsString());
                 // Finally create the resource location.
                 ResourceMan->AddAssetLocation(GroupPath,GroupType,GroupName,GroupRecursive);
             }

@@ -48,20 +48,10 @@
 
 namespace Mezzanine
 {
-    const String StringTool::Blank = "";
-
-    StringTool::StringTool()
-    {
-    }
-
-    StringTool::~StringTool()
-    {
-    }
-
     ///////////////////////////////////////////////////////////////////////////////
     // String Manipulation and checks
 
-    void StringTool::Trim(String& Source, bool Left, bool Right)
+    void StringTools::Trim(String& Source, bool Left, bool Right)
     {
         static const String Delims = " \t\r";
         if(Right)
@@ -70,7 +60,7 @@ namespace Mezzanine
             Source.erase(0,Source.find_first_not_of(Delims));
     }
 
-    CountedPtr<StringVector> StringTool::Split(const String& Source, const String& Delims, const Whole& MaxSplits)
+    CountedPtr<StringVector> StringTools::Split(const String& Source, const String& Delims, const Whole& MaxSplits)
     {
         CountedPtr<StringVector> Ret(new StringVector);
         Ret->reserve( MaxSplits ? MaxSplits+1 : 10 );
@@ -103,17 +93,17 @@ namespace Mezzanine
         return Ret;
     }
 
-    void StringTool::ToUpperCase(String& Source)
+    void StringTools::ToUpperCase(String& Source)
     {
         std::transform(Source.begin(),Source.end(),Source.begin(),::toupper);
     }
 
-    void StringTool::ToLowerCase(String& Source)
+    void StringTools::ToLowerCase(String& Source)
     {
         std::transform(Source.begin(),Source.end(),Source.begin(),::tolower);
     }
 
-    bool StringTool::StartsWith(const String& Str, const String& Pattern, const bool CaseSensitive)
+    bool StringTools::StartsWith(const String& Str, const String& Pattern, const bool CaseSensitive)
     {
         size_t StrLen = Str.length();
         size_t PatternLen = Pattern.length();
@@ -134,7 +124,7 @@ namespace Mezzanine
         return (Start == Pattern);
     }
 
-    bool StringTool::EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive)
+    bool StringTools::EndsWith(const String& Str, const String& Pattern, const bool CaseSensitive)
     {
         size_t StrLen = Str.length();
         size_t PatternLen = Pattern.length();
@@ -155,7 +145,7 @@ namespace Mezzanine
         return (End == Pattern);
     }
 
-    void StringTool::RemoveDuplicateWhitespaces(String& Source)
+    void StringTools::RemoveDuplicateWhitespaces(String& Source)
     {
         for( size_t CurrIndex = Source.find_first_of("  ") ; CurrIndex != String::npos ; CurrIndex = Source.find_first_of("  ",CurrIndex) )
         {
@@ -169,7 +159,7 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Data Class Utilities
 
-    Vector2 StringTool::ConvertToVector2(const String& ToConvert)
+    Vector2 StringTools::ConvertToVector2(const String& ToConvert)
     {
         CountedPtr<StringVector> Digits = Split(ToConvert);
         if(2 == Digits->size())
@@ -180,14 +170,14 @@ namespace Mezzanine
         }
     }
 
-    String StringTool::ConvertToString(const Vector2& ToConvert)
+    String StringTools::ConvertToString(const Vector2& ToConvert)
     {
         std::stringstream converter;
         converter << ToConvert.X << " " << ToConvert.Y;
         return converter.str();
     }
 
-    Vector3 StringTool::ConvertToVector3(const String& ToConvert)
+    Vector3 StringTools::ConvertToVector3(const String& ToConvert)
     {
         CountedPtr<StringVector> Digits = Split(ToConvert);
         if(3 == Digits->size())
@@ -198,14 +188,14 @@ namespace Mezzanine
         }
     }
 
-    String StringTool::ConvertToString(const Vector3& ToConvert)
+    String StringTools::ConvertToString(const Vector3& ToConvert)
     {
         std::stringstream converter;
         converter << ToConvert.X << " " << ToConvert.Y << " " << ToConvert.Z;
         return converter.str();
     }
 
-    Quaternion StringTool::ConvertToQuaternion(const String& ToConvert)
+    Quaternion StringTools::ConvertToQuaternion(const String& ToConvert)
     {
         CountedPtr<StringVector> Digits = Split(ToConvert);
         if(4 == Digits->size())
@@ -216,14 +206,14 @@ namespace Mezzanine
         }
     }
 
-    String StringTool::ConvertToString(const Quaternion& ToConvert)
+    String StringTools::ConvertToString(const Quaternion& ToConvert)
     {
         std::stringstream converter;
         converter << ToConvert.X << " " << ToConvert.Y << " " << ToConvert.Z << " " << ToConvert.W;
         return converter.str();
     }
 
-    ColourValue StringTool::ConvertToColourValue(const String& ToConvert)
+    ColourValue StringTools::ConvertToColourValue(const String& ToConvert)
     {
         CountedPtr<StringVector> Digits = Split(ToConvert);
         if(4 == Digits->size())
@@ -234,7 +224,7 @@ namespace Mezzanine
         }
     }
 
-    String StringTool::ConvertToString(const ColourValue& ToConvert)
+    String StringTools::ConvertToString(const ColourValue& ToConvert)
     {
         std::stringstream converter;
         converter << ToConvert.R << " " << ToConvert.G << " " << ToConvert.B << " " << ToConvert.A;
@@ -244,10 +234,10 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Convert-To-Data functions
 
-    bool StringTool::ConvertToBool(const String& ToConvert, const bool Default)
+    bool StringTools::ConvertToBool(const String& ToConvert, const bool Default)
     {
         String StrCopy = ToConvert;
-        StringTool::ToLowerCase(StrCopy);
+        StringTools::ToLowerCase(StrCopy);
         if("true" == StrCopy) return true;
         else if("yes" == StrCopy) return true;
         else if("1" == StrCopy) return true;
@@ -257,7 +247,7 @@ namespace Mezzanine
         else return Default;
     }
 
-    Real StringTool::ConvertToReal(const String& ToConvert)
+    Real StringTools::ConvertToReal(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         Real Result;
@@ -265,7 +255,7 @@ namespace Mezzanine
         return Result;
     }
 
-    Integer StringTool::ConvertToInteger(const String& ToConvert)
+    Integer StringTools::ConvertToInteger(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         Integer Result;
@@ -273,7 +263,7 @@ namespace Mezzanine
         return Result;
     }
 
-    Int8 StringTool::ConvertToInt8(const String& ToConvert)
+    Int8 StringTools::ConvertToInt8(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         Int8 Result;
@@ -281,7 +271,7 @@ namespace Mezzanine
         return Result;
     }
 
-    UInt8 StringTool::ConvertToUInt8(const String& ToConvert)
+    UInt8 StringTools::ConvertToUInt8(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         UInt8 Result;
@@ -289,7 +279,7 @@ namespace Mezzanine
         return Result;
     }
 
-    Int16 StringTool::ConvertToInt16(const String& ToConvert)
+    Int16 StringTools::ConvertToInt16(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         Int16 Result;
@@ -297,7 +287,7 @@ namespace Mezzanine
         return Result;
     }
 
-    UInt16 StringTool::ConvertToUInt16(const String& ToConvert)
+    UInt16 StringTools::ConvertToUInt16(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         UInt16 Result;
@@ -305,7 +295,7 @@ namespace Mezzanine
         return Result;
     }
 
-    Int32 StringTool::ConvertToInt32(const String& ToConvert)
+    Int32 StringTools::ConvertToInt32(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         Int32 Result;
@@ -313,7 +303,7 @@ namespace Mezzanine
         return Result;
     }
 
-    UInt32 StringTool::ConvertToUInt32(const String& ToConvert)
+    UInt32 StringTools::ConvertToUInt32(const String& ToConvert)
     {
         StringStream converter(ToConvert);
         UInt32 Result;
@@ -321,72 +311,7 @@ namespace Mezzanine
         return Result;
     }
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // Convert-To-String functions
-
-    String StringTool::ConvertToString(const bool ToConvert)
-    {
-        if(ToConvert) return "true";
-        else return "false";
-    }
-
-    String StringTool::ConvertToString(const Real& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const Integer& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const Int8& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const UInt8& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const Int16& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const UInt16& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const Int32& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const UInt32& ToConvert)
-    {
-        StringStream converter;
-        converter << ToConvert;
-        return converter.str();
-    }
-
-    String StringTool::ConvertToString(const Input::InputCode& Code, bool ShiftPressed)
+    String StringTools::ConvertToString(const Input::InputCode& Code, bool ShiftPressed)
     {
         switch(Code)
         {
@@ -736,35 +661,35 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // String Catenate functions
 
-    String StringTool::StringCat(const String& Front, const String& Back)
+    String StringTools::StringCat(const String& Front, const String& Back)
     {
         StringStream Adder;
         Adder << Front << Back;
         return Adder.str();
     }
 
-    String StringTool::StringCat(const String& Front, const String& Middle, const String& Back)
+    String StringTools::StringCat(const String& Front, const String& Middle, const String& Back)
     {
         StringStream Adder;
         Adder << Front  << Middle << Back;
         return Adder.str();
     }
 
-    String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
+    String StringTools::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
     {
         StringStream Adder;
         Adder << Front  << Middle1 << Middle2 << Back;
         return Adder.str();
     }
 
-    String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
+    String StringTools::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
     {
         StringStream Adder;
         Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
         return Adder.str();
     }
 
-    String StringTool::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
+    String StringTools::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
     {
         StringStream Adder;
         Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;

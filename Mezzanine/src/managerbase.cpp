@@ -173,7 +173,7 @@ namespace Mezzanine
     ManagerBase::ManagerType ManagerBase::GetTypeNameFromString(const String& ManagerName)
     {
         String Lower = ManagerName;
-        StringTool::ToLowerCase(Lower);
+        StringTools::ToLowerCase(Lower);
         switch ( Lower.at(0) )
         {
             case 'a':

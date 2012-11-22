@@ -77,7 +77,6 @@ namespace Mezzanine
 #include "Physics/planecollisionshape.h"
 #include "Physics/point2pointconstraint.h"
 #include "Physics/primitivecollisionshape.h"
-#include "Physics/proxy.h"
 #include "Physics/sliderconstraint.h"
 #include "Physics/spherecollisionshape.h"
 #include "Physics/staticmeshcollisionshape.h"

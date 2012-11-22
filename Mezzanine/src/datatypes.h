@@ -48,6 +48,8 @@
 #include "mezzconfig.h"
 #include "crossplatformexport.h"
 
+#include <stdint.h>
+
 
 // Standard Headers are not included in SWIG preprocessing
 // Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that
@@ -76,41 +78,30 @@ namespace Mezzanine
     // Datatypes
     ///////////////////////////////////////
 
-    // "fixed-width" types from SFML
-    /// @todo Verify that these "fixed-width" type-defs work on mobiles and tablets.
     /// @typedef Int8
     /// @brief An 8-bit integer.
-    typedef signed char Int8;
+    typedef int8_t Int8;
     /// @typedef UInt8
     /// @brief An 8-bit unsigned integer.
-    typedef unsigned char UInt8;
+    typedef uint8_t UInt8;
     /// @typedef Int16
     /// @brief An 16-bit integer.
-    typedef signed short Int16;
+    typedef int16_t Int16;
     /// @typedef UInt16
     /// @brief An 16-bit unsigned integer.
-    typedef unsigned short UInt16;
+    typedef uint16_t UInt16;
     /// @typedef Int32
     /// @brief An 32-bit integer.
-    typedef signed long Int32;
+    typedef int32_t Int32;
     /// @typedef UInt32
     /// @brief An 32-bit unsigned integer.
-    typedef unsigned long UInt32;
-    #if defined(_MSC_VER)
+    typedef uint32_t UInt32;
     /// @typedef Int64
     /// @brief An 64-bit integer.
-    typedef signed __int64 Int64;
+    typedef int64_t Int64;
     /// @typedef UInt64
     /// @brief An 64-bit unsigned integer.
-    typedef unsigned __int64 UInt64;
-    #else
-    /// @typedef Int64
-    /// @brief An 64-bit integer.
-    typedef signed long long Int64;
-    /// @typedef UInt64
-    /// @brief An 64-bit unsigned integer.
-    typedef unsigned long long UInt64;
-    #endif
+    typedef uint64_t UInt64;
 
     /// @typedef Real
     /// @brief A Datatype used to represent a real floating point number

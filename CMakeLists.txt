@@ -89,7 +89,7 @@
 cmake_minimum_required (VERSION 2.8)
 project (MezzanineAndCatch)
 
-message("${PROJECT_NAME} - Starting Configuration")
+message("${PROJECT_NAME} - Starting Configuration.")
 
 ###############################################################################
 # Check For the Mezz_Debug option and set values accordingly

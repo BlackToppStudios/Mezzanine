@@ -157,7 +157,7 @@ void ProfileManager::PopulateLevelList(GameProfile* Profile)
         CurrCell->GetLevelTitle()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
 
         /// @todo This need to be changed to a sprite with stars or something to show the progression instead of the number.
-        CurrCell->GetEarnedScore()->SetText( StringTool::ConvertToString(Profile->GetHighestScore(LevelName)) );// */
+        CurrCell->GetEarnedScore()->SetText( StringTools::ConvertToString(Profile->GetHighestScore(LevelName)) );// */
 
         CurrCell->GetEarnedScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
         if(Previews->count(LevelName+".mta"))

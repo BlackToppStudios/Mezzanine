@@ -95,8 +95,8 @@ namespace Mezzanine
                             SetVal = (NonSeparatorPos == String::npos) ? "" : Line.substr(NonSeparatorPos);
                             if (TrimWhitespace)
                             {
-                                StringTool::Trim(SetVal);
-                                StringTool::Trim(SetName);
+                                StringTools::Trim(SetVal);
+                                StringTools::Trim(SetName);
                             }
                             CurrentSection->insert(SettingsMap::value_type(SetName,SetVal));
                         }

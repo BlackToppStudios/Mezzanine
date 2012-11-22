@@ -194,7 +194,7 @@ namespace Mezzanine
 
             if(Trim)
             {
-                StringTool::Trim(Ret);
+                StringTools::Trim(Ret);
             }
 
             return Ret;
