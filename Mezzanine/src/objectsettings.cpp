@@ -253,7 +253,7 @@ namespace Mezzanine
 
     const String& ObjectSettingGroup::GetOptionalFileName() const
     {
-        return OptionalFile ? OptionalFile->GetFileName() : StringTool::Blank;
+        return OptionalFile ? OptionalFile->GetFileName() : StringTools::Blank;
     }
 
     void ObjectSettingGroup::_MarkUpdated()

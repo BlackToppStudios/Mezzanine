@@ -113,14 +113,14 @@ namespace Mezzanine
             while(SecIt != SecEnd)
             {
                 SectionName = (*SecIt).first;
-                StringTool::ToLowerCase(SectionName);
+                StringTools::ToLowerCase(SectionName);
                 Mezzanine::Resource::TextSettingsFile::SettingsMap* CurrSection = (*SecIt).second;
 
                 if(SectionName == "texture")
                     LoadTexture(CurrSection);
-                else if(StringTool::StartsWith(SectionName,"font.",false))
+                else if(StringTools::StartsWith(SectionName,"font.",false))
                 {
-                    UInt32 Index = StringTool::ConvertToUInt32(SectionName.substr(5));
+                    UInt32 Index = StringTools::ConvertToUInt32(SectionName.substr(5));
                     GlyphData* GlyphSet = new GlyphData();
                     Glyphs[Index] = GlyphSet;
 
@@ -148,7 +148,7 @@ namespace Mezzanine
                 if(Comment != String::npos)
                     Data = Data.substr(0,Comment);
 
-                StringTool::ToLowerCase(Name);
+                StringTools::ToLowerCase(Name);
 
                 // file texturename ~groupname
                 // >  file myatlas.png
@@ -162,8 +162,8 @@ namespace Mezzanine
                     {
                         TextureName = Data.substr(0,GroupSplit);
                         GroupName = Data.substr(GroupSplit+1);
-                        StringTool::Trim(TextureName);
-                        StringTool::Trim(GroupName);
+                        StringTools::Trim(TextureName);
+                        StringTools::Trim(GroupName);
                     }
                     this->TAID->TATexture = Ogre::TextureManager::getSingletonPtr()->getByName(Data,GroupName);
                     if(this->TAID->TATexture.isNull())
@@ -178,7 +178,7 @@ namespace Mezzanine
                 }
                 else if(Name == "whitepixel")
                 {
-                    WhitePixel = StringTool::ConvertToVector2(Data);
+                    WhitePixel = StringTools::ConvertToVector2(Data);
                     WhitePixel.X *= InverseTextureSize.X;
                     WhitePixel.Y *= InverseTextureSize.Y;
                 }
@@ -200,48 +200,48 @@ namespace Mezzanine
                 size_t Comment = Data.find_first_of('#');
                 if(Comment != String::npos)
                     Data = Data.substr(0, Comment);
-                StringTool::ToLowerCase(Name);
+                StringTools::ToLowerCase(Name);
 
                 // lineheight x y
                 // >  offset 0 80
                 if (Name == "offset")
                 {
-                    Offset = StringTool::ConvertToVector2(Data);
+                    Offset = StringTools::ConvertToVector2(Data);
                     continue;
                 }
                 // lineheight lineheight
                 // >  lineheight 15
                 else if (Name == "lineheight")
                 {
-                    GlyphD->LineHeight = StringTool::ConvertToReal(Data);
+                    GlyphD->LineHeight = StringTools::ConvertToReal(Data);
                     continue;
                 }
                 // spacelength spacelength
                 // >  spacelength 3
                 else if (Name == "spacelength")
                 {
-                    GlyphD->SpaceLength = StringTool::ConvertToReal(Data);
+                    GlyphD->SpaceLength = StringTools::ConvertToReal(Data);
                     continue;
                 }
                 // spacelength spacelength
                 // >  spacelength 3
                 else if (Name == "baseline")
                 {
-                    GlyphD->Baseline = StringTool::ConvertToReal(Data);
+                    GlyphD->Baseline = StringTools::ConvertToReal(Data);
                     continue;
                 }
                 // monowidth width
                 // >  monowidth 3
                 else if (Name == "monowidth")
                 {
-                    GlyphD->MonoWidth = StringTool::ConvertToReal(Data);
+                    GlyphD->MonoWidth = StringTools::ConvertToReal(Data);
                     continue;
                 }
                 // range lower upper
                 // >  range 33 126
                 else if (Name == "range")
                 {
-                    Vector2 Range = StringTool::ConvertToVector2(Data);
+                    Vector2 Range = StringTools::ConvertToVector2(Data);
                     GlyphD->RangeBegin = (UInt32)Range.X;
                     GlyphD->RangeEnd = (UInt32)Range.Y;
                 }
@@ -249,7 +249,7 @@ namespace Mezzanine
                 // >  kerning -1
                 else if(Name == "letterspacing")
                 {
-                    GlyphD->LetterSpacing = StringTool::ConvertToReal(Data);
+                    GlyphD->LetterSpacing = StringTools::ConvertToReal(Data);
                 }
             }
 
@@ -265,21 +265,21 @@ namespace Mezzanine
                 if(It == Config->end())
                     continue;
 
-                StrValues = StringTool::Split((*It).second," ",5);
+                StrValues = StringTools::Split((*It).second," ",5);
 
                 if(StrValues->size() < 4)
                 {
                     continue;
                 }
 
-                NewGlyph->UVLeft    = Offset.X + StringTool::ConvertToReal( StrValues->at(0) );
-                NewGlyph->UVTop     = Offset.Y + StringTool::ConvertToReal( StrValues->at(1) );
-                NewGlyph->UVWidth   = StringTool::ConvertToReal( StrValues->at(2) );
-                NewGlyph->UVHeight  = StringTool::ConvertToReal( StrValues->at(3) );
+                NewGlyph->UVLeft    = Offset.X + StringTools::ConvertToReal( StrValues->at(0) );
+                NewGlyph->UVTop     = Offset.Y + StringTools::ConvertToReal( StrValues->at(1) );
+                NewGlyph->UVWidth   = StringTools::ConvertToReal( StrValues->at(2) );
+                NewGlyph->UVHeight  = StringTools::ConvertToReal( StrValues->at(3) );
                 NewGlyph->UVRight   = NewGlyph->UVLeft + NewGlyph->UVWidth;
                 NewGlyph->UVBottom  = NewGlyph->UVTop + NewGlyph->UVHeight;
 
-                if(StrValues->size() == 5) NewGlyph->GlyphAdvance = StringTool::ConvertToReal( StrValues->at(4) );
+                if(StrValues->size() == 5) NewGlyph->GlyphAdvance = StringTools::ConvertToReal( StrValues->at(4) );
                 else NewGlyph->GlyphAdvance = NewGlyph->UVWidth;
 
                 NewGlyph->GlyphChar = (GlyphD->Glyphs.size() - 1) + GlyphD->RangeBegin;
@@ -299,7 +299,7 @@ namespace Mezzanine
             {
                 LeftName = It->first;
                 Data = It->second;
-                StringTool::ToLowerCase(LeftName);
+                StringTools::ToLowerCase(LeftName);
 
                 if(LeftName.substr(0,6) != "kerning_")
                     continue;
@@ -309,16 +309,16 @@ namespace Mezzanine
                     Data = Data.substr(0,Comment);
 
                 LeftName = LeftName.substr(8); // chop of kerning_
-                LeftGlyphID = StringTool::ConvertToUInt32(LeftName);
-                StrValues = StringTool::Split(Data," ",2);
+                LeftGlyphID = StringTools::ConvertToUInt32(LeftName);
+                StrValues = StringTools::Split(Data," ",2);
 
                 if(StrValues->size() != 2)
                 {
                     continue;
                 }
 
-                RightGlyphID = StringTool::ConvertToUInt32(StrValues->at(0));
-                Kern = StringTool::ConvertToReal(StrValues->at(1));
+                RightGlyphID = StringTools::ConvertToUInt32(StrValues->at(0));
+                Kern = StringTools::ConvertToReal(StrValues->at(1));
                 GlyphD->Glyphs[RightGlyphID - GlyphD->RangeBegin]->Kernings.push_back(KerningInfo(LeftGlyphID,Kern));
             }
         }
@@ -334,7 +334,7 @@ namespace Mezzanine
             {
                 LeftName = It->first;
                 Data = It->second;
-                StringTool::ToLowerCase(LeftName);
+                StringTools::ToLowerCase(LeftName);
 
                 if(LeftName.substr(0,15) != "verticaloffset_")
                     continue;
@@ -344,8 +344,8 @@ namespace Mezzanine
                     Data = Data.substr(0, Comment);
 
                 LeftName = LeftName.substr(15); // chop of VerticalOffset_
-                GlyphID = StringTool::ConvertToUInt32(LeftName);
-                VerticalOffset = StringTool::ConvertToReal(Data);
+                GlyphID = StringTools::ConvertToUInt32(LeftName);
+                VerticalOffset = StringTools::ConvertToReal(Data);
                 GlyphD->GetGlyph(GlyphID)->VerticalOffset = VerticalOffset;
             }
         }
@@ -365,17 +365,17 @@ namespace Mezzanine
                 if(Comment != String::npos)
                     Data = Data.substr(0, Comment);
 
-                StrValues = StringTool::Split(Data," ",4);
+                StrValues = StringTools::Split(Data," ",4);
 
                 if(StrValues->size() != 4)
                     continue;
 
                 Sprite* NewSprite = new Sprite();
 
-                NewSprite->UVLeft = StringTool::ConvertToUInt32(StrValues->at(0));
-                NewSprite->UVTop = StringTool::ConvertToUInt32(StrValues->at(1));
-                NewSprite->SpriteSize.X = StringTool::ConvertToUInt32(StrValues->at(2));
-                NewSprite->SpriteSize.Y = StringTool::ConvertToUInt32(StrValues->at(3));
+                NewSprite->UVLeft = StringTools::ConvertToUInt32(StrValues->at(0));
+                NewSprite->UVTop = StringTools::ConvertToUInt32(StrValues->at(1));
+                NewSprite->SpriteSize.X = StringTools::ConvertToUInt32(StrValues->at(2));
+                NewSprite->SpriteSize.Y = StringTools::ConvertToUInt32(StrValues->at(3));
                 NewSprite->Atlas = Atlas;
                 Sprites[SpriteName] = NewSprite;
             }

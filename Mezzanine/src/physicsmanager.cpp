@@ -449,10 +449,10 @@ namespace Mezzanine
             }else{
                 CurrAttrib = WorldSettings.GetAttribute("WorldUpperBounds");
                 if(!CurrAttrib.Empty())
-                    Info.GeographyUpperBounds = StringTool::ConvertToVector3(CurrAttrib.AsString());
+                    Info.GeographyUpperBounds = StringTools::ConvertToVector3(CurrAttrib.AsString());
                 CurrAttrib = WorldSettings.GetAttribute("WorldLowerBounds");
                 if(!CurrAttrib.Empty())
-                    Info.GeographyLowerBounds = StringTool::ConvertToVector3(CurrAttrib.AsString());
+                    Info.GeographyLowerBounds = StringTools::ConvertToVector3(CurrAttrib.AsString());
                 CurrAttrib = WorldSettings.GetAttribute("MaxObjects");
                 if(!CurrAttrib.Empty())
                     Info.MaxProxies = CurrAttrib.AsWhole();
@@ -1210,31 +1210,31 @@ namespace Mezzanine
                 for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
                     String Lower = (*ParIt).first;
-                    StringTool::ToLowerCase(Lower);
+                    StringTools::ToLowerCase(Lower);
                     if( "geographyupperbounds" == Lower )
                     {
-                        PhysInfo.GeographyUpperBounds = StringTool::ConvertToVector3( (*ParIt).second );
+                        PhysInfo.GeographyUpperBounds = StringTools::ConvertToVector3( (*ParIt).second );
                     }
                     else if( "geographylowerbounds" == Lower )
                     {
-                        PhysInfo.GeographyLowerBounds = StringTool::ConvertToVector3( (*ParIt).second );
+                        PhysInfo.GeographyLowerBounds = StringTools::ConvertToVector3( (*ParIt).second );
                     }
                     else if( "maxproxies" == Lower )
                     {
-                        PhysInfo.MaxProxies = StringTool::ConvertToUInt32( (*ParIt).second );
+                        PhysInfo.MaxProxies = StringTools::ConvertToUInt32( (*ParIt).second );
                     }
                     else if( "gravity" == Lower )
                     {
-                        PhysInfo.Gravity = StringTool::ConvertToVector3( (*ParIt).second );
+                        PhysInfo.Gravity = StringTools::ConvertToVector3( (*ParIt).second );
                     }
                     else if( "softrigidworld" == Lower )
                     {
-                        if(StringTool::ConvertToBool( (*ParIt).second ))
+                        if(StringTools::ConvertToBool( (*ParIt).second ))
                             PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_SoftRigidWorld);
                     }
                     else if( "limitlessworld" == Lower )
                     {
-                        if(StringTool::ConvertToBool( (*ParIt).second ))
+                        if(StringTools::ConvertToBool( (*ParIt).second ))
                             PhysInfo.PhysicsFlags = (PhysInfo.PhysicsFlags | PhysicsConstructionInfo::PCF_LimitlessWorld);
                     }
                 }

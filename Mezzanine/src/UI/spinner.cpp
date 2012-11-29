@@ -378,7 +378,7 @@ namespace Mezzanine
                     EnterPressed = true;
                     continue;
                 }else{
-                    EditCache+=StringTool::ConvertToString(Current,false);
+                    EditCache+=StringTools::ConvertToString(Current,false);
                 }
             }
             if(EnterPressed)

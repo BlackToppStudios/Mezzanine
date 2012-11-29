@@ -106,7 +106,7 @@ namespace Mezzanine
         {
             CurrAttrib = AutoGenNode.GetAttribute("Auto");
             if(!CurrAttrib.Empty())
-                AutoGenPath = AutoGenFiles = StringTool::ConvertToBool( CurrAttrib.AsString() );
+                AutoGenPath = AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
         }
         // Get preset path to default to if a path is not provided.
         XML::Node PathNode = XMLNode.GetChild("SettingsPath");
@@ -174,18 +174,18 @@ namespace Mezzanine
         // Create and initialize the device settings
         XML::Node DeviceSettingsNode = CurrentSettings.AppendChild("DeviceSettings");
         DeviceSettingsNode.AppendAttribute("DeviceName").SetValue( AMID->InitializedDevice );
-        DeviceSettingsNode.AppendAttribute("OutputFrequency").SetValue( StringTool::ConvertToString(AMID->OutputFrequency) );
-        DeviceSettingsNode.AppendAttribute("EAXEffectSlots").SetValue( StringTool::ConvertToString(AMID->EAXEffectSlots) );
+        DeviceSettingsNode.AppendAttribute("OutputFrequency").SetValue( StringTools::ConvertToString(AMID->OutputFrequency) );
+        DeviceSettingsNode.AppendAttribute("EAXEffectSlots").SetValue( StringTools::ConvertToString(AMID->EAXEffectSlots) );
         // Create and initialize the volume settings
         XML::Node VolumeSettingsNode = CurrentSettings.AppendChild("Volume");
-        VolumeSettingsNode.AppendAttribute("Ambient").SetValue( StringTool::ConvertToString(this->GetAmbientVolume()) );
-        VolumeSettingsNode.AppendAttribute("Dialog").SetValue( StringTool::ConvertToString(this->GetDialogVolume()) );
-        VolumeSettingsNode.AppendAttribute("Effects").SetValue( StringTool::ConvertToString(this->GetEffectVolume()) );
-        VolumeSettingsNode.AppendAttribute("Music").SetValue( StringTool::ConvertToString(this->GetMusicVolume()) );
-        VolumeSettingsNode.AppendAttribute("Master").SetValue( StringTool::ConvertToString(this->GetMasterVolume()) );
+        VolumeSettingsNode.AppendAttribute("Ambient").SetValue( StringTools::ConvertToString(this->GetAmbientVolume()) );
+        VolumeSettingsNode.AppendAttribute("Dialog").SetValue( StringTools::ConvertToString(this->GetDialogVolume()) );
+        VolumeSettingsNode.AppendAttribute("Effects").SetValue( StringTools::ConvertToString(this->GetEffectVolume()) );
+        VolumeSettingsNode.AppendAttribute("Music").SetValue( StringTools::ConvertToString(this->GetMusicVolume()) );
+        VolumeSettingsNode.AppendAttribute("Master").SetValue( StringTools::ConvertToString(this->GetMasterVolume()) );
         // Create and initialize the mute setting
         XML::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
-        MuteSettingNode.AppendAttribute("Muted").SetValue( StringTool::ConvertToString(this->IsMuted()) );
+        MuteSettingNode.AppendAttribute("Muted").SetValue( StringTools::ConvertToString(this->IsMuted()) );
     }
 #endif
     void AudioManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
@@ -205,10 +205,10 @@ namespace Mezzanine
                     DeviceName = CurrSettingValue;
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("OutputFrequency");
                 if(!CurrSettingValue.empty())
-                    OutputFreq = StringTool::ConvertToInteger(CurrSettingValue);
+                    OutputFreq = StringTools::ConvertToInteger(CurrSettingValue);
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("EAXEffectSlots");
                 if(!CurrSettingValue.empty())
-                    EAXSlots = StringTool::ConvertToInteger(CurrSettingValue);
+                    EAXSlots = StringTools::ConvertToInteger(CurrSettingValue);
 
                 if( "Default" == DeviceName ) DeviceName = GetDefaultDeviceName();
                 else
@@ -240,19 +240,19 @@ namespace Mezzanine
                 // Get the values
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Ambient");
                 if(!CurrSettingValue.empty())
-                    AmbientVol = StringTool::ConvertToReal(CurrSettingValue);
+                    AmbientVol = StringTools::ConvertToReal(CurrSettingValue);
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Dialog");
                 if(!CurrSettingValue.empty())
-                    DialogVol = StringTool::ConvertToReal(CurrSettingValue);
+                    DialogVol = StringTools::ConvertToReal(CurrSettingValue);
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Effects");
                 if(!CurrSettingValue.empty())
-                    EffectVol = StringTool::ConvertToReal(CurrSettingValue);
+                    EffectVol = StringTools::ConvertToReal(CurrSettingValue);
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Music");
                 if(!CurrSettingValue.empty())
-                    MusicVol = StringTool::ConvertToReal(CurrSettingValue);
+                    MusicVol = StringTools::ConvertToReal(CurrSettingValue);
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Master");
                 if(!CurrSettingValue.empty())
-                    MasterVol = StringTool::ConvertToReal(CurrSettingValue);
+                    MasterVol = StringTools::ConvertToReal(CurrSettingValue);
                 // Set the values
                 if( 0.0 <= AmbientVol ) SetAmbientVolume(AmbientVol);
                 if( 0.0 <= DialogVol ) SetDialogVolume(DialogVol);
@@ -267,7 +267,7 @@ namespace Mezzanine
                 // Get the values
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Muted");
                 if(!CurrSettingValue.empty())
-                    MuteState = StringTool::ConvertToBool(CurrSettingValue,false);
+                    MuteState = StringTools::ConvertToBool(CurrSettingValue,false);
                 // Set the values
                 Mute(MuteState);
             }
@@ -561,10 +561,10 @@ namespace Mezzanine
                 for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
                     String Lower = (*ParIt).first;
-                    StringTool::ToLowerCase(Lower);
+                    StringTools::ToLowerCase(Lower);
                     if( "defaultsettings" == Lower )
                     {
-                        DefaultSettings = StringTool::ConvertToBool( (*ParIt).second );
+                        DefaultSettings = StringTools::ConvertToBool( (*ParIt).second );
                     }
                 }
                 return new AudioManager(DefaultSettings);

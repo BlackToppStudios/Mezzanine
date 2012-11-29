@@ -156,7 +156,7 @@ namespace Mezzanine
     {
         bool Result = true;
         StringVector FolderNames;
-        CountedPtr<StringVector> FolderVec = StringTool::Split(DirectoryPath,"/\\");
+        CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
         size_t StartIndex = 0;
         /*#ifdef WINDOWS
         // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
@@ -247,7 +247,7 @@ namespace Mezzanine
     String ResourceManager::ResolveDataPathFromString(const String& PathVar)
     {
         String LowerVar = PathVar;
-        StringTool::ToLowerCase(LowerVar);
+        StringTools::ToLowerCase(LowerVar);
         if(LowerVar == "localappdata") return GetLocalAppDataDir();
         else if(LowerVar == "shareableappdata") return GetShareableAppDataDir();
         else if(LowerVar == "currentuserdata") return GetCurrentUserDataDir();
@@ -503,7 +503,7 @@ namespace Mezzanine
                 for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
                     String Lower = (*ParIt).first;
-                    StringTool::ToLowerCase(Lower);
+                    StringTools::ToLowerCase(Lower);
                     if( "enginedatapath" == Lower )
                     {
                         EngineDataPath = (*ParIt).second;

@@ -226,11 +226,11 @@ void LevelLoader::LoadFerris()
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)11.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)15.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)11.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)15.0));
     StartParticle->SetLocation(Vector3(-170,-80,0));
     StartParticle->AddToWorld();// */
 
@@ -377,11 +377,11 @@ void LevelLoader::LoadBigCurve()
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)8.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)10.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)8.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)10.0));
     StartParticle->SetLocation(Vector3(-180,-110,0));
     StartParticle->AddToWorld();// */
 
@@ -506,9 +506,9 @@ void LevelLoader::LoadBlowsNotSucks()
     FanWind->SetFieldStrength(1000.f);
     PhysMan->AddAreaEffect(FanWind);
     ParticleEffect* WindParticle = SceneMan->CreateParticleEffect("WindParticle","WindTunnel");
-    WindParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(FanWindSize.X * (Real)1.8));
-    WindParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(FanWindSize.Y * (Real)0.6));
-    WindParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(FanWindSize.Z * (Real)1.8));
+    WindParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(FanWindSize.X * (Real)1.8));
+    WindParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(FanWindSize.Y * (Real)0.6));
+    WindParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(FanWindSize.Z * (Real)1.8));
     WindParticle->GetEmitter(0)->SetCustomParam("position","0 -60.0 0");
     WindParticle->SetLocation(Vector3(5,40,7.5));
     WindParticle->SetOrientation(FanWindOrientation);
@@ -568,11 +568,11 @@ void LevelLoader::LoadBlowsNotSucks()
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)6.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)9.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)6.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)9.0));
     StartParticle->SetLocation(Vector3(-170,-115,0));
     StartParticle->AddToWorld();// */
 
@@ -775,19 +775,19 @@ void LevelLoader::LoadJustice()
     PhysMan->AddAreaEffect(StartZone2);
     GameApp->RegisterStartArea(StartZone2);// */
     ParticleEffect* StartParticle1 = SceneMan->CreateParticleEffect("StartParticle1","StartVortex");
-    StartParticle1->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle1->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle1->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)3.0));
-    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)4.0));
+    StartParticle1->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle1->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle1->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)3.0));
+    StartParticle1->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)4.0));
     StartParticle1->SetLocation(Vector3(-160,100,0));
     StartParticle1->AddToWorld();// */
     ParticleEffect* StartParticle2 = SceneMan->CreateParticleEffect("StartParticle2","StartVortex");
-    StartParticle2->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle2->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle2->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)3.0));
-    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)4.0));
+    StartParticle2->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle2->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle2->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)3.0));
+    StartParticle2->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)4.0));
     StartParticle2->SetLocation(Vector3(160,100,0));
     StartParticle2->AddToWorld();// */
 
@@ -925,11 +925,11 @@ void LevelLoader::LoadRollers()
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)5.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)6.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)5.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)6.0));
     StartParticle->SetLocation(Vector3(-140,25,0));
     StartParticle->AddToWorld();// */
 
@@ -1069,11 +1069,11 @@ void LevelLoader::LoadJustBounce()
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
     ParticleEffect* StartParticle = SceneMan->CreateParticleEffect("StartParticle","StartVortex");
-    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTool::ConvertToString(StartSize.X * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTool::ConvertToString(StartSize.Y * (Real)0.6));
-    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTool::ConvertToString(StartSize.Z * (Real)1.8));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTool::ConvertToString((Real)5.0));
-    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTool::ConvertToString((Real)6.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("width",StringTools::ConvertToString(StartSize.X * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("height",StringTools::ConvertToString(StartSize.Y * (Real)0.6));
+    StartParticle->GetEmitter(0)->SetCustomParam("depth",StringTools::ConvertToString(StartSize.Z * (Real)1.8));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_min",StringTools::ConvertToString((Real)5.0));
+    StartParticle->GetEmitter(0)->SetCustomParam("time_to_live_max",StringTools::ConvertToString((Real)6.0));
     StartParticle->SetLocation(Vector3(-170,55,0));
     StartParticle->AddToWorld();// */
 

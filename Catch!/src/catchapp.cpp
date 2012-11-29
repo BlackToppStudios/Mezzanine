@@ -615,7 +615,7 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
             if(LevelScore > Profiles->GetActiveProfile()->GetHighestScore(Loader->GetCurrentLevel()))
             {
                 Profiles->GetActiveProfile()->SetNewHighScore(Loader->GetCurrentLevel(),LevelScore);
-                (static_cast<LevelSelectCell*>(Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTool::ConvertToString(LevelScore));
+                (static_cast<LevelSelectCell*>(Profiles->GetLevelGrid()->GetCell(Loader->GetCurrentLevel())))->GetEarnedScore()->SetText(StringTools::ConvertToString(LevelScore));
             }
             break;
         }
@@ -1052,14 +1052,14 @@ bool CatchApp::PostRender()
 
     // Update the score
     UI::Caption* ScoreAmount = static_cast<UI::Caption*>(HUDCont->GetAreaRenderable("GS_ScoreArea"));
-    ScoreAmount->SetText(StringTool::ConvertToString(CurrScore));
+    ScoreAmount->SetText(StringTools::ConvertToString(CurrScore));
 
     // Update Stat information
     UI::OpenRenderableContainerWidget* StatsCont = static_cast<UI::OpenRenderableContainerWidget*>(GameScreen->GetWidget("GS_Stats"));
     UI::Caption* CurFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("CurFPS"));
     UI::Caption* AvFPS = static_cast<UI::Caption*>(StatsCont->GetAreaRenderable("AvFPS"));
-    CurFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetLastFPS()));
-    AvFPS->SetText(StringTool::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetAverageFPS()));
+    CurFPS->SetText(StringTools::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetLastFPS()));
+    AvFPS->SetText(StringTools::ConvertToString(GraphicsManager::GetSingletonPtr()->GetGameWindow(0)->GetAverageFPS()));
 
     //See if the level is over
     if(CurrentState != CatchApp::Catch_ScoreScreen)

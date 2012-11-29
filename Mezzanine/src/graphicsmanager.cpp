@@ -87,7 +87,7 @@ namespace Mezzanine
         {
             CurrAttrib = AutoGenNode.GetAttribute("Auto");
             if(!CurrAttrib.Empty())
-                AutoGenPath = AutoGenFiles = StringTool::ConvertToBool( CurrAttrib.AsString() );
+                AutoGenPath = AutoGenFiles = StringTools::ConvertToBool( CurrAttrib.AsString() );
         }
         // Get preset path to default to if a path is not provided.
         XML::Node PathNode = XMLNode.GetChild("SettingsPath");
@@ -186,22 +186,22 @@ namespace Mezzanine
         {
             XML::Node WindowConfigNode = CurrentSettings.AppendChild("GameWindow");
             WindowConfigNode.AppendAttribute("Caption").SetValue( (*WinIt)->GetWindowCaption() );
-            WindowConfigNode.AppendAttribute("Width").SetValue( StringTool::ConvertToString( (*WinIt)->GetRenderWidth() ) );
-            WindowConfigNode.AppendAttribute("Height").SetValue( StringTool::ConvertToString( (*WinIt)->GetRenderHeight() ) );
-            WindowConfigNode.AppendAttribute("Fullscreen").SetValue( StringTool::ConvertToString( (*WinIt)->GetFullscreen() ) );
-            WindowConfigNode.AppendAttribute("Hidden").SetValue( StringTool::ConvertToString( (*WinIt)->IsHidden() ) );
-            WindowConfigNode.AppendAttribute("Vsync").SetValue( StringTool::ConvertToString( (*WinIt)->VsyncEnabled() ) );
-            WindowConfigNode.AppendAttribute("Resizeable").SetValue( StringTool::ConvertToString( (*WinIt)->BorderIsResizeable() ) );
-            WindowConfigNode.AppendAttribute("Borderless").SetValue( StringTool::ConvertToString( (*WinIt)->IsBorderless() ) );
-            WindowConfigNode.AppendAttribute("FSAA").SetValue( StringTool::ConvertToString( (*WinIt)->GetFSAALevel() ) );
+            WindowConfigNode.AppendAttribute("Width").SetValue( StringTools::ConvertToString( (*WinIt)->GetRenderWidth() ) );
+            WindowConfigNode.AppendAttribute("Height").SetValue( StringTools::ConvertToString( (*WinIt)->GetRenderHeight() ) );
+            WindowConfigNode.AppendAttribute("Fullscreen").SetValue( StringTools::ConvertToString( (*WinIt)->GetFullscreen() ) );
+            WindowConfigNode.AppendAttribute("Hidden").SetValue( StringTools::ConvertToString( (*WinIt)->IsHidden() ) );
+            WindowConfigNode.AppendAttribute("Vsync").SetValue( StringTools::ConvertToString( (*WinIt)->VsyncEnabled() ) );
+            WindowConfigNode.AppendAttribute("Resizeable").SetValue( StringTools::ConvertToString( (*WinIt)->BorderIsResizeable() ) );
+            WindowConfigNode.AppendAttribute("Borderless").SetValue( StringTools::ConvertToString( (*WinIt)->IsBorderless() ) );
+            WindowConfigNode.AppendAttribute("FSAA").SetValue( StringTools::ConvertToString( (*WinIt)->GetFSAALevel() ) );
             /// @todo Currently the maximized setting does nothing in the gamewindow.  If it gets implemented, so does this.
             //WindowConfigNode.AppendAttribute("Maximized").SetValue( (*WinIt)-> );//
             for( Graphics::GameWindow::ViewportIterator VPIt = (*WinIt)->BeginViewport() ; VPIt != (*WinIt)->EndViewport() ; ++VPIt )
             {
                 XML::Node ViewportConfigNode = WindowConfigNode.AppendChild("Viewport");
                 ViewportConfigNode.AppendAttribute("ZOrder").SetValue( (*VPIt)->GetZOrder() );
-                ViewportConfigNode.AppendAttribute("Position").SetValue( StringTool::ConvertToString( Vector2((*VPIt)->GetLeft(),(*VPIt)->GetTop()) ) );
-                ViewportConfigNode.AppendAttribute("Size").SetValue( StringTool::ConvertToString( Vector2((*VPIt)->GetWidth(),(*VPIt)->GetHeight()) ) );
+                ViewportConfigNode.AppendAttribute("Position").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetLeft(),(*VPIt)->GetTop()) ) );
+                ViewportConfigNode.AppendAttribute("Size").SetValue( StringTools::ConvertToString( Vector2((*VPIt)->GetWidth(),(*VPIt)->GetHeight()) ) );
             }
         }
     }
@@ -250,58 +250,58 @@ namespace Mezzanine
                 // Get the width.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Width");
                 if(!CurrSettingValue.empty())
-                    WinWidth = StringTool::ConvertToUInt32(CurrSettingValue);
+                    WinWidth = StringTools::ConvertToUInt32(CurrSettingValue);
                 // Get the height.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Height");
                 if(!CurrSettingValue.empty())
-                    WinHeight = StringTool::ConvertToUInt32(CurrSettingValue);
+                    WinHeight = StringTools::ConvertToUInt32(CurrSettingValue);
                 // Get fullscreen.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Fullscreen");
                 if(!CurrSettingValue.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrSettingValue))
+                    if(StringTools::ConvertToBool(CurrSettingValue))
                         WinFlags = (WinFlags | Graphics::GameWindow::WF_Fullscreen);
                 }
                 // Get hidden.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Hidden");
                 if(!CurrSettingValue.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrSettingValue))
+                    if(StringTools::ConvertToBool(CurrSettingValue))
                         WinFlags = (WinFlags | Graphics::GameWindow::WF_Hidden);
                 }
                 // Get vsync.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Vsync");
                 if(!CurrSettingValue.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrSettingValue))
+                    if(StringTools::ConvertToBool(CurrSettingValue))
                         WinFlags = (WinFlags | Graphics::GameWindow::WF_VsyncEnabled);
                 }
                 // Get resizable.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Resizeable");
                 if(!CurrSettingValue.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrSettingValue))
+                    if(StringTools::ConvertToBool(CurrSettingValue))
                         WinFlags = (WinFlags | Graphics::GameWindow::WF_Resizeable);
                 }
                 // Get maximized.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Maximized");
                 if(!CurrSettingValue.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrSettingValue))
+                    if(StringTools::ConvertToBool(CurrSettingValue))
                         WinFlags = (WinFlags | Graphics::GameWindow::WF_Maximized);
                 }
                 // Get borderless.
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Borderless");
                 if(!CurrSettingValue.empty())
                 {
-                    if(StringTool::ConvertToBool(CurrSettingValue))
+                    if(StringTools::ConvertToBool(CurrSettingValue))
                         WinFlags = (WinFlags | Graphics::GameWindow::WF_Borderless);
                 }
                 // Get the FSAA level
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("FSAA");
                 if(!CurrSettingValue.empty())
                 {
-                    switch (StringTool::ConvertToUInt32(CurrSettingValue))
+                    switch (StringTools::ConvertToUInt32(CurrSettingValue))
                     {
                         case 2:
                             WinFlags = (WinFlags | Graphics::GameWindow::WF_FSAA_2);
@@ -330,13 +330,13 @@ namespace Mezzanine
 
                         CurrSettingValue = (*VPIt)->GetSettingValue("ZOrder");
                         if(!CurrSettingValue.empty())
-                            ZO = StringTool::ConvertToInteger( CurrSettingValue );
+                            ZO = StringTools::ConvertToInteger( CurrSettingValue );
                         CurrSettingValue = (*VPIt)->GetSettingValue("Position");
                         if(!CurrSettingValue.empty())
-                            Position = StringTool::ConvertToVector2( CurrSettingValue );
+                            Position = StringTools::ConvertToVector2( CurrSettingValue );
                         CurrSettingValue = (*VPIt)->GetSettingValue("Size");
                         if(!CurrSettingValue.empty())
-                            Size = StringTool::ConvertToVector2( CurrSettingValue );
+                            Size = StringTools::ConvertToVector2( CurrSettingValue );
 
                         Graphics::Viewport* CurrViewport = CurrWindow->CreateViewport(NULL,ZO);
                         CurrViewport->SetDimensions(Position.X,Position.Y,Size.X,Size.Y);
@@ -543,8 +543,8 @@ namespace Mezzanine
                 for( Whole X = 0 ; X < (configItr)->second.possibleValues.size() ; X++ )
                 {
                     String NewRes = (configItr)->second.possibleValues[X];
-                    StringTool::RemoveDuplicateWhitespaces(NewRes);
-                    StringTool::Trim(NewRes);
+                    StringTools::RemoveDuplicateWhitespaces(NewRes);
+                    StringTools::Trim(NewRes);
                     SupportedResolutions.push_back(NewRes);
                 }
                 continue;
@@ -628,18 +628,18 @@ namespace Mezzanine
                 for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
                     String Lower = (*ParIt).first;
-                    StringTool::ToLowerCase(Lower);
+                    StringTools::ToLowerCase(Lower);
                     if( "width" == Lower )
                     {
-                        Width = StringTool::ConvertToUInt32( (*ParIt).second );
+                        Width = StringTools::ConvertToUInt32( (*ParIt).second );
                     }
                     else if( "height" == Lower )
                     {
-                        Height = StringTool::ConvertToUInt32( (*ParIt).second );
+                        Height = StringTools::ConvertToUInt32( (*ParIt).second );
                     }
                     else if( "fullscreen" == Lower )
                     {
-                        FullScreen = StringTool::ConvertToBool( (*ParIt).second );
+                        FullScreen = StringTools::ConvertToBool( (*ParIt).second );
                     }
                 }
                 return new GraphicsManager();

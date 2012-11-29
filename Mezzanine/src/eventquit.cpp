@@ -41,7 +41,7 @@
 #define EVENTQUIT_CPP
 
 #include "eventquit.h"
-#include "stringtool.h"
+    #include "stringtool.h"
 
 #ifdef MEZZXML
 #include <memory>
