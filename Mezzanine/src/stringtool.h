@@ -191,15 +191,15 @@ namespace Mezzanine
             return converter.str();
         }
 
-        /// @brief Converts a bool into a string.
-        /// @param ToConvert The bool to be converted.
-        /// @return Returns "true" if true, or "false" if false.
-        template<>
-        String MEZZ_LIB ConvertToString<bool>(const bool& ToConvert)
-        {
-            if(ToConvert) return "true";
-            else return "false";
-        }
+        // @brief Converts a bool into a string.
+        // @param ToConvert The bool to be converted.
+        // @return Returns "true" if true, or "false" if false.
+        //template<>
+        //String MEZZ_LIB ConvertToString<bool>(const bool& ToConvert)
+        //{
+        //    if(ToConvert) return "true";
+        //    else return "false";
+        //}
 
         /// @brief Converts a Input::InputCode into a string.
         /// @param Code The input code to be converted.
