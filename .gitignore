@@ -4,5 +4,8 @@ CMakeLists.txt.user
 # Gedit Temp Files
 *~
 
-# Static Library
+# Libraries
 *.a
+*.dll
+*.so
+*.so.*
