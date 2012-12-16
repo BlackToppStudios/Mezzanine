@@ -1,0 +1,8 @@
+# QT Creator Items
+CMakeLists.txt.user
+
+# Gedit Temp Files
+*~
+
+# Static Library
+*.a
