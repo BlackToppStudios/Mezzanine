@@ -60,6 +60,10 @@
 #include <X11/Xlib.h>   //libx11-dev
 #endif
 
+#ifdef MACOSX
+//#import <Cocoa/Cocoa.h>
+#endif
+
 namespace Mezzanine
 {
     namespace Graphics
@@ -156,10 +160,10 @@ namespace Mezzanine
                 Window Data = 0;
                 #endif
                 #ifdef MACOSX
-                NSWindow* Data = 0;
+               // NSWindow* Data = 0;
                 #endif
-                OgreWindow->getCustomAttribute("WINDOW",&Data);
-                SDLWindow = SDL_CreateWindowFrom((void*)Data);
+           //     OgreWindow->getCustomAttribute("WINDOW",&Data);
+           //     SDLWindow = SDL_CreateWindowFrom((void*)Data);
                 SDLWindow->data = new SDL_WindowUserData();
                 SDLWindow->data->name = NULL;
                 SDLWindow->data->data = this;

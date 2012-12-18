@@ -41,7 +41,6 @@
 #define _graphicsgamewindow_h
 
 #include "Graphics/windowsettings.h"
-
 namespace Ogre
 {
     class RenderWindow;
