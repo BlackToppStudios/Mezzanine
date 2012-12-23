@@ -9,3 +9,7 @@ CMakeLists.txt.user
 *.dll
 *.so
 *.so.*
+
+
+# Mac OS X spotlight
+.DS_Store

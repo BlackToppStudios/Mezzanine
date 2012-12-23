@@ -503,7 +503,7 @@ set(SDL SDL)
 
 set(MezzanineBuildFlags "")
 
-set( Bullet_LibraryNames
+set(Bullet_LibraryNames
 	"ConvexDecomposition"
 	"GIMPACTUtils"
 	"BulletWorldImporter"
@@ -515,11 +515,14 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
 )
 
+set(SoundLibraryNames
+    "oggvorbis"
+)
+
 #######################################
 # Windows Build Specific Items
 if(${WIN32})
 	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
-	add_subdirectory ("${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis") #required for cAudio
 	add_definitions( -DWINDOWS -DEXPORTINGMEZZANINEDLL )	
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
@@ -559,6 +562,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
+        "${Mezzanine_LIBINCLUDE_DIR}common/oggvorbis/"
         ${OgreConfigHeaderIncludeDir}
 	"${Mezz_SDLBuildDir}/SDL/include/"
         ${OgreHeaderIncludeDir}
@@ -566,7 +570,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 )
 
 if(${Mezz_Lua51})
-	include_directories( libincludes/common/lua51/lua5.1/src )
+        include_directories( libincludes/common/lua51/lua5.1/src )
 endif(${Mezz_Lua51})
 
 link_directories(
@@ -577,10 +581,6 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
 )
-if(${Mezz_Lua51})
-	link_directories( ${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl )
-endif(${Mezz_Lua51})
-
 
 ###############################################################################
 # Prepare the actual Build
@@ -591,6 +591,7 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
+
 if(${Mezz_Lua51})
 	add_subdirectory (libincludes/common/lua51)
 endif(${Mezz_Lua51})
@@ -608,6 +609,7 @@ target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Mezzanine Depend
 	cAudio
 	${SDL}
 	${NetworkLibrary}
+        ${SoundLibraryNames}
 	RenderSystem_GL Plugin_ParticleFX Plugin_CgProgramManager
 )
 
