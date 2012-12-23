@@ -13,3 +13,7 @@ CMakeLists.txt.user
 
 # Mac OS X spotlight
 .DS_Store
+
+
+# Ignore libincludes mercurial files
+.hg*
