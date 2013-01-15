@@ -3,14 +3,19 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 	The "GNU LESSER GENERAL PUBLIC LICENSE 3.0" as described in lgpl-3.0.txt:
 		libgcc 
 		libstdc++
-		OpenAL
+
+	The "GNU GENERAL PUBLIC LICENSE Version 2" without unique identifying information as described in gpl-2.0.txt.
+		FreeImage
+		Freetype
+		zziplib
+		OpenAl-Soft
 
 	The "MIT License with Torus Knot Copyright" as described in Ogre-MITLicense.txt:
 		Ogre3d 
 
 	The "Simple DirectMedia Layer MIT License" as described in SDL-MITLicense.txt:
 		libsdl
-		
+
 	The "Arseny Kapoulkine MIT License" as described in PugiXML-MITLicense.txt
 		PugiXML renamed as Mezzanine::XML
 
@@ -18,14 +23,28 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 		Bullet3d
 		Bullet Extras - Extras/GIMPACT
 		Bullet Extras - Extras/GIMPACTBullet
-	
+
 	The "zlib/libpng License" as described in zlib-libpngLicense.txt:
 		cAudio
 
-	The "Xiph.org Copyright Notice" XiphCopyrightNotice.txt:
+	The "Xiph.org Copyright Notice" as described in XiphCopyrightNotice.txt:
 		libogg
 		libvorbis
 
-	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt:
+	The "OpenAL soft GPL Version 2.0" as described in OpenAL-Soft-gpl-2.0.txt:
+		
+
+	The "License For Customer Use of NVIDIA Software" as described in Nvidia-CG-License.txt:
+		CG
+
+	The "Zlib License" as described in zlib-zliblicense.txt
+		Zlib
+
+	The "Lua MIT License" as described in Lua-MIT.txt
+		Lua
+
+	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt:zlib-zliblicense.txt
 		Mezzanine Engine
-	
+
+Any required identifying information is presented in the original copies of the license in the appropriate directory in libincludes/ .
+

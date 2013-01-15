@@ -488,18 +488,12 @@ function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
 endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
-# Common pre-build configuration
-
-# Auto building of SDL could go here.
-
-
-###############################################################################
 # System Specific Build Items
 #######################################
 # All Changes that could be system specific should be defined in these variables
 # These will set sane defaults (Where possible), but specific platforms should
 # set a value of their own.
-set(SDL SDL)
+#set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
 set(MezzanineBuildFlags "")
 
@@ -516,7 +510,7 @@ set(Bullet_LibraryNames
 )
 
 set(SoundLibraryNames
-    "oggvorbis"
+	"oggvorbis"
 )
 
 #######################################
@@ -532,8 +526,6 @@ endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
-
-	set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 	include_directories(
@@ -555,18 +547,17 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
-#Common Library Configuration items
+# Common Library Configuration items
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
-        "${Mezzanine_LIBINCLUDE_DIR}common/oggvorbis/"
-        ${OgreConfigHeaderIncludeDir}
-	"${Mezz_SDLBuildDir}/SDL/include/"
-        ${OgreHeaderIncludeDir}
-        "${ProjectIncludeDir}"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
+	"${Mezzanine_LIBINCLUDE_DIR}common/oggvorbis/"
+	${OgreConfigHeaderIncludeDir}
+	${OgreHeaderIncludeDir}
+	"${ProjectIncludeDir}"
 )
 
 if(${Mezz_Lua51})
@@ -574,12 +565,12 @@ if(${Mezz_Lua51})
 endif(${Mezz_Lua51})
 
 link_directories(
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
-	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
+	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
+	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
+	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
+	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
+	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
+	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
 )
 
 ###############################################################################
@@ -591,6 +582,8 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
+add_subdirectory (libincludes/common/sdlsrc/SDL)
+add_subdirectory (libincludes/common/openalsoft/openal-soft)
 
 if(${Mezz_Lua51})
 	add_subdirectory (libincludes/common/lua51)
@@ -629,6 +622,8 @@ CopyFilesDuringBuild( common/gpl-3.0.txt data/common/gpl-3.0.txt )
 CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
+CopyFilesDuringBuild( common/gpl-2.0.txt data/common/gpl-2.0.txt )
+CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
 
 # Ogre
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
@@ -646,19 +641,17 @@ if(${WIN32})
 	set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")					 # remove lib prefix from DLL outputs
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
-	CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
-	#CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )
+	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
 	#CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
 
 
-	target_link_libraries( ${PROJECT_NAME} #Statically linking against SDL means that these must be resolved now, rather than when these were compiled
-		SDLmain
+	target_link_libraries( ${PROJECT_NAME}
 		Winmm
 		Imm32
 		Version
 	)
 
-	CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
+	#CopyFilesDuringBuild( ${BuildPlatform}/openal/wrap_oal.dll wrap_oal.dll )
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 

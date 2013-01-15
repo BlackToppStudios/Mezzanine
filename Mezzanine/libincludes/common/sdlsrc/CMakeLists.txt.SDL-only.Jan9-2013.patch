@@ -1,0 +1,460 @@
+--- CMakeLists.txt.original	2013-01-10 19:43:03.177842714 -0600
++++ CMakeLists.txt	2013-01-10 19:47:31.181836856 -0600
+@@ -30,6 +30,7 @@
+ set(SDL_MAJOR_VERSION 2)
+ set(SDL_MINOR_VERSION 0)
+ set(SDL_MICRO_VERSION 0)
++
+ set(SDL_INTERFACE_AGE 0)
+ set(SDL_BINARY_AGE 0)
+ set(SDL_VERSION "${SDL_MAJOR_VERSION}.${SDL_MINOR_VERSION}.${SDL_MICRO_VERSION}")
+@@ -170,52 +171,52 @@
+   option(SDL_${_OPT} "Enable the ${_SUB} subsystem" ON)
+ endforeach()
+ 
+-option_string(ASSERTIONS "Enable internal sanity checks (auto/disabled/release/enabled/paranoid)" "auto")
++option_string(SDL_ASSERTIONS "Enable internal sanity checks (auto/disabled/release/enabled/paranoid)" "auto")
+ #set_option(DEPENDENCY_TRACKING "Use gcc -MMD -MT dependency tracking" ON)
+-set_option(LIBC                "Use the system C library" ${OPT_DEF_LIBC})
+-set_option(GCC_ATOMICS         "Use gcc builtin atomics" ${USE_GCC})
+-set_option(ASSEMBLY            "Enable assembly routines" ${OPT_DEF_ASM})
+-set_option(SSEMATH             "Allow GCC to use SSE floating point math" ${OPT_DEF_SSEMATH})
+-set_option(MMX                 "Use MMX assembly routines" ${OPT_DEF_ASM})
+-set_option(3DNOW               "Use 3Dnow! MMX assembly routines" ${OPT_DEF_ASM})
+-set_option(SSE                 "Use SSE assembly routines" ${OPT_DEF_ASM})
+-set_option(SSE2                "Use SSE2 assembly routines" ${OPT_DEF_SSEMATH})
+-set_option(ALTIVEC             "Use Altivec assembly routines" ${OPT_DEF_ASM})
+-set_option(DISKAUDIO           "Support the disk writer audio driver" ON)
+-set_option(DUMMYAUDIO          "Support the dummy audio driver" ON)
+-set_option(VIDEO_DIRECTFB      "Use DirectFB video driver" OFF)
+-dep_option(DIRECTFB_SHARED     "Dynamically load directfb support" ON "VIDEO_DIRECTFB" OFF)
+-set_option(FUSIONSOUND         "Use FusionSound audio driver" OFF)
+-dep_option(FUSIONSOUND_SHARED  "Dynamically load fusionsound audio support" ON "FUSIONSOUND_SHARED" OFF)
+-set_option(VIDEO_DUMMY         "Use dummy video driver" ON)
+-set_option(VIDEO_OPENGL        "Include OpenGL support" ON)
+-set_option(VIDEO_OPENGLES      "Include OpenGL ES support" ON)
+-set_option(PTHREADS            "Use POSIX threads for multi-threading" ${UNIX_SYS})
+-dep_option(PTHREADS_SEM        "Use pthread semaphores" ON "PTHREADS" OFF)
++set_option(SDL_LIBC                 "Use the system C library" ${OPT_DEF_LIBC})
++set_option(SDL_GCC_ATOMICS         "Use gcc builtin atomics" ${USE_GCC})
++set_option(SDL_ASSEMBLY            "Enable assembly routines" ${OPT_DEF_ASM})
++set_option(SDL_SSEMATH             "Allow GCC to use SSE floating point math" ${OPT_DEF_SSEMATH})
++set_option(SDL_MMX                 "Use MMX assembly routines" ${OPT_DEF_ASM})
++set_option(SDL_3DNOW               "Use 3Dnow! MMX assembly routines" ${OPT_DEF_ASM})
++set_option(SDL_SSE                 "Use SSE assembly routines" ${OPT_DEF_ASM})
++set_option(SDL_SSE2                "Use SSE2 assembly routines" ${OPT_DEF_SSEMATH})
++set_option(SDL_ALTIVEC             "Use Altivec assembly routines" ${OPT_DEF_ASM})
++set_option(SDL_DISKAUDIO           "Support the disk writer audio driver" ON)
++set_option(SDL_DUMMYAUDIO          "Support the dummy audio driver" ON)
++set_option(SDL_VIDEO_DIRECTFB      "Use DirectFB video driver" OFF)
++dep_option(SDL_DIRECTFB_SHARED     "Dynamically load directfb support" ON "SDL_VIDEO_DIRECTFB" OFF)
++set_option(SDL_FUSIONSOUND         "Use FusionSound audio driver" OFF)
++dep_option(SDL_FUSIONSOUND_SHARED  "Dynamically load fusionsound audio support" ON "FUSIONSOUND_SHARED" OFF)
++set_option(SDL_VIDEO_DUMMY         "Use dummy video driver" ON)
++set_option(SDL_VIDEO_OPENGL        "Include OpenGL support" ON)
++set_option(SDL_VIDEO_OPENGLES      "Include OpenGL ES support" ON)
++set_option(SDL_PTHREADS            "Use POSIX threads for multi-threading" ${UNIX_SYS})
++dep_option(SDL_PTHREADS_SEM        "Use pthread semaphores" ON "PTHREADS" OFF)
+ set_option(SDL_DLOPEN          "Use dlopen for shared object loading" ON)
+-set_option(OSS                 "Support the OSS audio API" ${UNIX_SYS})
+-set_option(ALSA                "Support the ALSA audio API" ${UNIX_SYS})
+-dep_option(ALSA_SHARED         "Dynamically load ALSA audio support" ON "ALSA" OFF)
+-set_option(ESD                 "Support the Enlightened Sound Daemon" ${UNIX_SYS})
+-dep_option(ESD_SHARED          "Dynamically load ESD audio support" ON "ESD" OFF)
+-set_option(PULSEAUDIO          "Use PulseAudio" ${UNIX_SYS})
+-dep_option(PULSEAUDIO_SHARED   "Dynamically load PulseAudio support" ON "PULSEAUDIO" OFF)
+-set_option(ARTS                "Support the Analog Real Time Synthesizer" ${UNIX_SYS})
+-dep_option(ARTS_SHARED         "Dynamically load aRts audio support" ON "ARTS" OFF)
+-set_option(NAS                 "Support the NAS audio API" ${UNIX_SYS})
+-set_option(RPATH               "Use an rpath when linking SDL" ${UNIX_SYS})
+-set_option(CLOCK_GETTIME       "Use clock_gettime() instead of gettimeofday()" OFF)
+-set_option(INPUT_TSLIB         "Use the Touchscreen library for input" ${UNIX_SYS})
+-set_option(VIDEO_X11           "Use X11 video driver" ${UNIX_SYS})
+-dep_option(X11_SHARED          "Dynamically load X11 support" ON "VIDEO_X11" OFF)
++set_option(SDL_OSS                 "Support the OSS audio API" ${UNIX_SYS})
++set_option(SDL_ALSA                "Support the ALSA audio API" ${UNIX_SYS})
++dep_option(SDL_ALSA_SHARED         "Dynamically load ALSA audio support" ON "SDL_ALSA" OFF)
++set_option(SDL_ESD                 "Support the Enlightened Sound Daemon" ${UNIX_SYS})
++dep_option(SDL_ESD_SHARED          "Dynamically load ESD audio support" ON "SDL_ESD" OFF)
++set_option(SDL_PULSEAUDIO          "Use PulseAudio" ${UNIX_SYS})
++dep_option(SDL_PULSEAUDIO_SHARED   "Dynamically load PulseAudio support" ON "SDL_PULSEAUDIO" OFF)
++set_option(SDL_ARTS                "Support the Analog Real Time Synthesizer" ${UNIX_SYS})
++dep_option(SDL_ARTS_SHARED         "Dynamically load aRts audio support" ON "SDL_ARTS" OFF)
++set_option(SDL_NAS                 "Support the NAS audio API" ${UNIX_SYS})
++set_option(SDL_RPATH               "Use an rpath when linking SDL" ${UNIX_SYS})
++set_option(SDL_CLOCK_GETTIME       "Use clock_gettime() instead of gettimeofday()" OFF)
++set_option(SDL_INPUT_TSLIB         "Use the Touchscreen library for input" ${UNIX_SYS})
++set_option(SDL_VIDEO_X11           "Use X11 video driver" ${UNIX_SYS})
++dep_option(SDL_X11_SHARED          "Dynamically load X11 support" ON "SDL_VIDEO_X11" OFF)
+ set(SDL_X11_OPTIONS Xcursor Xinerama XInput Xrandr Xscrnsaver XShape Xvm)
+ foreach(_SUB ${SDL_X11_OPTIONS})
+-  string(TOUPPER "VIDEO_X11_${_SUB}" _OPT)
+-  dep_option(${_OPT}           "Enable ${_SUB} support" ON "VIDEO_X11" OFF)
++  string(TOUPPER "SDL_VIDEO_X11_${_SUB}" _OPT)
++  dep_option(${_OPT}           "Enable ${_SUB} support" ON "SDL_VIDEO_X11" OFF)
+ endforeach()
+-set_option(VIDEO_COCOA         "Use Cocoa video driver" ${APPLE})
+-set_option(DIRECTX             "Use DirectX for Windows audio/video" ${WINDOWS})
+-set_option(RENDER_D3D          "Enable the Direct3D render driver" ${WINDOWS})
++set_option(SDL_VIDEO_COCOA         "Use Cocoa video driver" ${APPLE})
++set_option(SDL_DIRECTX             "Use DirectX for Windows audio/video" ${WINDOWS})
++set_option(SDL_RENDER_D3D          "Enable the Direct3D render driver" ${WINDOWS})
+ 
+ # TODO: We should (should we?) respect cmake's ${BUILD_SHARED_LIBS} flag here
+ # The options below are for compatibility to configure's default behaviour.
+@@ -239,20 +240,20 @@
+   ${SDL2_SOURCE_DIR}/src/video/*.c)
+ 
+ 
+-if(ASSERTIONS STREQUAL "auto")
++if(SDL_ASSERTIONS STREQUAL "auto")
+   # Do nada - use optimization settings to determine the assertion level
+-elseif(ASSERTIONS STREQUAL "disabled")
++elseif(SDL_ASSERTIONS STREQUAL "disabled")
+   set(SDL_DEFAULT_ASSERT_LEVEL 0)
+-elseif(ASSERTIONS STREQUAL "release")
++elseif(SDL_ASSERTIONS STREQUAL "release")
+   set(SDL_DEFAULT_ASSERT_LEVEL 1)
+-elseif(ASSERTIONS STREQUAL "enabled")
++elseif(SDL_ASSERTIONS STREQUAL "enabled")
+   set(SDL_DEFAULT_ASSERT_LEVEL 2)
+-elseif(ASSERTIONS STREQUAL "paranoid")
++elseif(SDL_ASSERTIONS STREQUAL "paranoid")
+   set(SDL_DEFAULT_ASSERT_LEVEL 3)
+ else()
+   message_error("unknown assertion level")
+-endif(ASSERTIONS STREQUAL "auto")
+-set(HAVE_ASSERTIONS ${ASSERTIONS})
++endif(SDL_ASSERTIONS STREQUAL "auto")
++set(HAVE_ASSERTIONS ${SDL_ASSERTIONS})
+ 
+ # Compiler option evaluation
+ if(USE_GCC)
+@@ -264,7 +265,7 @@
+         int main(int argc, char **argv) { }" HAVE_DEPENDENCY_TRACKING)
+   endif(DEPENDENCY_TRACKING)
+ 
+-  if(GCC_ATOMICS)
++  if(SDL_GCC_ATOMICS)
+     check_c_source_compiles("int main(int argc, char **argv) {
+         int a;
+         void *x, *y, *z;
+@@ -279,7 +280,7 @@
+           __sync_lock_test_and_set(&a, 1);
+           __sync_lock_release(&a); }" HAVE_GCC_SYNC_LOCK_TEST_AND_SET)
+     endif(NOT HAVE_GCC_ATOMICS)
+-  endif(GCC_ATOMICS)
++  endif(SDL_GCC_ATOMICS)
+ 
+   set(CMAKE_REQUIRED_FLAGS "-mpreferred-stack-boundary=2")
+   check_c_source_compiles("int x = 0; int main(int argc, char **argv) {}"
+@@ -305,13 +306,13 @@
+   endif(HAVE_GCC_WALL)
+ endif(USE_GCC)
+ 
+-if(ASSEMBLY)
++if(SDL_ASSEMBLY)
+   if(USE_GCC OR USE_CLANG)
+     set(SDL_ASSEMBLY_ROUTINES 1)
+     # TODO: Those all seem to be quite GCC specific - needs to be
+     # reworked for better compiler support
+     set(HAVE_ASSEMBLY TRUE)
+-    if(MMX)
++    if(SDL_MMX)
+       set(CMAKE_REQUIRED_FLAGS "-mmmx")
+       check_c_source_compiles("
+           #ifdef __MINGW32__
+@@ -332,9 +333,9 @@
+         list(APPEND EXTRA_CFLAGS "-mmmx")
+       endif(HAVE_MMX)
+       set(CMAKE_REQUIRED_FLAGS)
+-    endif(MMX)
++    endif(SDL_MMX)
+ 
+-    if(3DNOW)
++    if(SDL_3DNOW)
+       set(CMAKE_REQUIRED_FLAGS "-m3dnow")
+       check_c_source_compiles("
+           #include <mm3dnow.h>
+@@ -349,9 +350,9 @@
+         list(APPEND EXTRA_CFLAGS "-m3dnow")
+       endif(HAVE_3DNOW)
+       set(CMAKE_REQUIRED_FLAGS)
+-    endif(3DNOW)
++    endif(SDL_3DNOW)
+ 
+-    if(SSE)
++    if(SDL_SSE)
+       set(CMAKE_REQUIRED_FLAGS "-msse")
+       check_c_source_compiles("
+           #ifdef __MINGW32__
+@@ -372,9 +373,9 @@
+         list(APPEND EXTRA_CFLAGS "-msse")
+       endif(HAVE_SSE)
+       set(CMAKE_REQUIRED_FLAGS)
+-    endif(SSE)
++    endif(SDL_SSE)
+ 
+-    if(SSE2)
++    if(SDL_SSE2)
+       set(CMAKE_REQUIRED_FLAGS "-msse2")
+       check_c_source_compiles("
+           #ifdef __MINGW32__
+@@ -395,18 +396,18 @@
+         list(APPEND EXTRA_CFLAGS "-msse2")
+       endif(HAVE_SSE2)
+       set(CMAKE_REQUIRED_FLAGS)
+-    endif(SSE2)
++    endif(SDL_SSE2)
+ 
+-    if(SSEMATH)
+-      if(SSE OR SSE2)
++    if(SDL_SSEMATH)
++      if(SDL_SSE OR SSE2)
+         if(USE_GCC)
+           list(APPEND EXTRA_CFLAGS "-mfpmath=387")
+         endif(USE_GCC)
+         set(HAVE_SSEMATH TRUE)
+-      endif(SSE OR SSE2)
+-    endif(SSEMATH)
++      endif(SDL_SSE OR SSE2)
++    endif(SDL_SSEMATH)
+ 
+-    if(ALTIVEC)
++    if(SDL_ALTIVEC)
+       set(CMAKE_REQUIRED_FLAGS "-maltivec")
+       check_c_source_compiles("
+           #include <altivec.h>
+@@ -428,7 +429,7 @@
+           set(HAVE_ALTIVEC_H 1)
+         endif(HAVE_ALTIVEC_H_HDR)
+       endif(HAVE_ALTIVEC OR HAVE_ALTIVEC_H_HDR)
+-    endif(ALTIVEC)
++    endif(SDL_ALTIVEC)
+   elseif(MSVC_VERSION GREATER 1500)
+     # TODO: SDL_cpuinfo.h needs to support the user's configuration wish
+     # for MSVC - right now it is always activated
+@@ -441,15 +442,15 @@
+     set(SDL_ASSEMBLY_ROUTINES 1)
+   endif(USE_GCC OR USE_CLANG)
+ # TODO:
+-#else(ASSEMBLY)
++#else(SDL_ASSEMBLY)
+ #  if(USE_GCC OR USE_CLANG)
+ #    list(APPEND EXTRA_CFLAGS "-mno-sse" "-mno-sse2" "-mno-mmx")
+ #  endif(USE_GCC OR USE_CLANG)
+-endif(ASSEMBLY)
++endif(SDL_ASSEMBLY)
+ 
+ # TODO: Can't deactivate on FreeBSD? w/o LIBC, SDL_stdinc.h can't define
+ # anything.
+-if(LIBC)
++if(SDL_LIBC )
+   if(WINDOWS AND NOT MINGW)
+     set(HAVE_LIBC TRUE)
+     foreach(_HEADER stdio.h string.h ctype.h math.h)
+@@ -526,12 +527,12 @@
+ 
+     check_struct_has_member("struct sigaction" "sa_sigaction" "signal.h" HAVE_SA_SIGACTION)
+   endif(WINDOWS AND NOT MINGW)
+-else(LIBC)
++else(SDL_LIBC )
+   if(WINDOWS)
+     set(HAVE_STDARG_H 1)
+     set(HAVE_STDDEF_H 1)
+   endif(WINDOWS)
+-endif(LIBC)
++endif(SDL_LIBC )
+ 
+ 
+ # Enable/disable various subsystems of the SDL library
+@@ -565,18 +566,18 @@
+ # General SDL subsystem options, valid for all platforms
+ if(SDL_AUDIO)
+   # CheckDummyAudio/CheckDiskAudio - valid for all platforms
+-  if(DUMMYAUDIO)
++  if(SDL_DUMMYAUDIO)
+     set(SDL_AUDIO_DRIVER_DUMMY 1)
+     file(GLOB DUMMYAUDIO_SOURCES ${SDL2_SOURCE_DIR}/src/audio/dummy/*.c)
+     set(SOURCE_FILES ${SOURCE_FILES} ${DUMMYAUDIO_SOURCES})
+     set(HAVE_DUMMYAUDIO TRUE)
+-  endif(DUMMYAUDIO)
+-  if(DISKAUDIO)
++  endif(SDL_DUMMYAUDIO)
++  if(SDL_DISKAUDIO)
+     set(SDL_AUDIO_DRIVER_DISK 1)
+     file(GLOB DISKAUDIO_SOURCES ${SDL2_SOURCE_DIR}/src/audio/disk/*.c)
+     set(SOURCE_FILES ${SOURCE_FILES} ${DISKAUDIO_SOURCES})
+     set(HAVE_DISKAUDIO TRUE)
+-  endif(DISKAUDIO)
++  endif(SDL_DISKAUDIO)
+ endif(SDL_AUDIO)
+ 
+ if(SDL_DLOPEN)
+@@ -587,13 +588,13 @@
+ endif(SDL_DLOPEN)
+ 
+ if(SDL_VIDEO)
+-  if(VIDEO_DUMMY)
++  if(SDL_VIDEO_DUMMY)
+     set(SDL_VIDEO_DRIVER_DUMMY 1)
+     file(GLOB VIDEO_DUMMY_SOURCES ${SDL2_SOURCE_DIR}/src/video/dummy/*.c)
+     set(SOURCE_FILES ${SOURCE_FILES} ${VIDEO_DUMMY_SOURCES})
+     set(HAVE_VIDEO_DUMMY TRUE)
+     set(HAVE_SDL_VIDEO TRUE)
+-  endif(VIDEO_DUMMY)
++  endif(SDL_VIDEO_DUMMY)
+ endif(SDL_VIDEO)
+ 
+ # Platform-specific options and settings
+@@ -652,7 +653,7 @@
+     check_include_file("libudev.h" HAVE_LIBUDEV_H)
+   endif(LINUX)
+ 
+-  if(INPUT_TSLIB)
++  if(SDL_INPUT_TSLIB)
+     check_c_source_compiles("
+         #include \"tslib.h\"
+         int main(int argc, char** argv) { }" HAVE_INPUT_TSLIB)
+@@ -660,7 +661,7 @@
+       set(SDL_INPUT_TSLIB 1)
+       list(APPEND EXTRA_LIBS ts)
+     endif(HAVE_INPUT_TSLIB)
+-  endif(INPUT_TSLIB)
++  endif(SDL_INPUT_TSLIB)
+ 
+   if(SDL_JOYSTICK)
+     CheckUSBHID()   # seems to be BSD specific - limit the test to BSD only?
+@@ -674,7 +675,7 @@
+ 
+   CheckPTHREAD()
+ 
+-  if(CLOCK_GETTIME)
++  if(SDL_CLOCK_GETTIME)
+     check_library_exists(rt clock_gettime "" FOUND_CLOCK_GETTIME)
+     if(FOUND_CLOCK_GETTIME)
+       list(APPEND EXTRA_LIBS rt)
+@@ -685,7 +686,7 @@
+         set(HAVE_CLOCK_GETTIME 1)
+       endif(FOUND_CLOCK_GETTIME)
+     endif(HAVE_CLOCK_GETTIME)
+-  endif(CLOCK_GETTIME)
++  endif(SDL_CLOCK_GETTIME)
+ 
+   check_include_file(linux/version.h HAVE_LINUX_VERSION_H)
+   if(HAVE_LINUX_VERSION_H)
+@@ -708,7 +709,7 @@
+     set(HAVE_SDL_TIMERS TRUE)
+   endif(SDL_TIMERS)
+ 
+-  if(RPATH)
++  if(SDL_RPATH)
+     set(SDL_RLD_FLAGS "")
+     if(BSDI OR FREEBSD OR LINUX OR NETBSD)
+       set(SDL_RLD_FLAGS "-Wl,-rpath,\${libdir}")
+@@ -717,7 +718,7 @@
+     endif()
+     set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+     set(HAVE_RPATH TRUE)
+-  endif(RPATH)
++  endif(SDL_RPATH)
+ 
+ elseif(WINDOWS)
+   find_program(WINDRES windres)
+@@ -730,9 +731,9 @@
+   set(SOURCE_FILES ${SOURCE_FILES} ${WIN_SOURCES})
+ 
+   # Check for DirectX
+-  if(DIRECTX)
++  if(SDL_DIRECTX)
+     if("$ENV{DXSDK_DIR}" STREQUAL "")
+-      message_error("DIRECTX requires the \$DXSDK_DIR environment variable to be set")
++      message_error("SDL_DIRECTX requires the \$DXSDK_DIR environment variable to be set")
+     endif("$ENV{DXSDK_DIR}" STREQUAL "")
+     set(CMAKE_REQUIRED_FLAGS "/I\"$ENV{DXSDK_DIR}\\Include\"")
+     check_include_file(d3d9.h HAVE_D3D_H)
+@@ -747,7 +748,7 @@
+       include_directories($ENV{DXSDK_DIR}\\Include)
+     endif()
+     set(CMAKE_REQUIRED_FLAGS)
+-  endif(DIRECTX)
++  endif(SDL_DIRECTX)
+ 
+   if(SDL_AUDIO)
+     set(SDL_AUDIO_DRIVER_WINMM 1)
+@@ -777,10 +778,10 @@
+     file(GLOB WIN_VIDEO_SOURCES ${SDL2_SOURCE_DIR}/src/video/windows/*.c)
+     set(SOURCE_FILES ${SOURCE_FILES} ${WIN_VIDEO_SOURCES})
+ 
+-    if(RENDER_D3D AND HAVE_D3D_H)
++    if(SDL_RENDER_D3D AND HAVE_D3D_H)
+       set(SDL_VIDEO_RENDER_D3D 1)
+       set(HAVE_RENDER_D3D TRUE)
+-    endif(RENDER_D3D AND HAVE_D3D_H)
++    endif(SDL_RENDER_D3D AND HAVE_D3D_H)
+     set(HAVE_SDL_VIDEO TRUE)
+   endif(SDL_VIDEO)
+ 
+@@ -823,12 +824,12 @@
+   set(SOURCE_FILES ${SOURCE_FILES} ${CORE_SOURCES})
+ 
+   if(SDL_VIDEO)
+-    if(VIDEO_OPENGL)
++    if(SDL_VIDEO_OPENGL)
+       set(SDL_VIDEO_OPENGL 1)
+       set(SDL_VIDEO_OPENGL_WGL 1)
+       set(SDL_VIDEO_RENDER_OGL 1)
+       set(HAVE_VIDEO_OPENGL TRUE)
+-    endif(VIDEO_OPENGL)
++    endif(SDL_VIDEO_OPENGL)
+   endif(SDL_VIDEO)
+ 
+   if(SDL_JOYSTICK)
+@@ -939,7 +940,7 @@
+   # iOS hack needed - http://code.google.com/p/ios-cmake/ ?
+   if(SDL_VIDEO)
+     CheckCOCOA()
+-    if(VIDEO_OPENGL)
++    if(SDL_VIDEO_OPENGL)
+       set(SDL_VIDEO_OPENGL 1)
+       set(SDL_VIDEO_OPENGL_CGL 1)
+       set(SDL_VIDEO_RENDER_OGL 1)
+@@ -948,7 +949,7 @@
+         list(APPEND EXTRA_LIBRARIES ${OpenGL_LIBRARY})
+       endif(DARWIN)
+       set(HAVE_VIDEO_OPENGL TRUE)
+-    endif(VIDEO_OPENGL)
++    endif(SDL_VIDEO_OPENGL)
+   endif(SDL_VIDEO)
+ 
+   CheckPTHREAD()
+@@ -959,14 +960,14 @@
+     set(SOURCE_FILES ${SOURCE_FILES} ${BWINDOW_SOURCES})
+     set(HAVE_SDL_VIDEO TRUE)
+ 
+-    if(VIDEO_OPENGL)
++    if(SDL_VIDEO_OPENGL)
+       # TODO: Use FIND_PACKAGE(OpenGL) instead
+       set(SDL_VIDEO_OPENGL 1)
+       set(SDL_VIDEO_OPENGL_BGL 1)
+       set(SDL_VIDEO_RENDER_OGL 1)
+       list(APPEND EXTRA_LIBS GL)
+       set(HAVE_VIDEO_OPENGL TRUE)
+-    endif(VIDEO_OPENGL)
++    endif(SDL_VIDEO_OPENGL)
+   endif(SDL_VIDEO)
+ endif()
+ 
+@@ -1100,10 +1101,10 @@
+ message(STATUS "Options:")
+ list(SORT ALLOPTIONS)
+ foreach(_OPT ${ALLOPTIONS})
+-  # Longest option is VIDEO_X11_XSCREENSAVER = 22 characters
++  # Longest option is SDL_VIDEO_X11_XSCREENSAVER = 32 characters
+   # Get the padding
+   string(LENGTH ${_OPT} _OPTLEN)
+-  math(EXPR _PADLEN "23 - ${_OPTLEN}")
++  math(EXPR _PADLEN "33 - ${_OPTLEN}")
+   string(RANDOM LENGTH ${_PADLEN} ALPHABET " " _PADDING)
+   message_tested_option(${_OPT} ${_PADDING})
+ endforeach()
