@@ -50,9 +50,6 @@
 # Here is a listing of some of the values that this files sets up for consumption by other
 # build scripts, that can be set as cmake options:
 #
-# That Every project using the Mezzanine will need to use as an include directory in their cmake files.
-#       ProjectIncludeDir               - This is the place that mezzconfig.h and maybe other important headers
-#
 # That affect/add/remove behavior of the engine
 #	Mezz_Debug	 		- True if The Engine will be forced to compile with symbols, will include more logging messages and libraries will also include debug symbols
 #	Mezz_Lua51			- True if lua is to be included and link against. False if lua was not selected to be compiled in.
@@ -91,97 +88,15 @@ endif(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
 # The name of our project is "MezzanineAndCatch".
 cmake_minimum_required (VERSION 2.8)
 project (MezzanineAndCatch)
-
 message ("${PROJECT_NAME} - Starting Configuration.")
 
 #######################################
-# Mezzanine
+# Mezzanine helper variables
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR}/)
 Message(STATUS "Using Source From: ${ProjectRootDir}")
 
 set(ProjectBinaryDir ${${PROJECT_NAME}_BINARY_DIR}/)
 Message(STATUS "Putting all major output in: ${ProjectBinaryDir}")
-
-set(ProjectIncludeDir ${ProjectBinaryDir}/include/)
-Message(STATUS "Putting mezzconfig.h in: ${ProjectIncludeDir}")
-
-###############################################################################
-# Check For the Mezz_Debug option and set values accordingly
-option (Mezz_Debug "Compile with no optimizations and debug symbols" OFF)
-if (Mezz_Debug)
-    message ( STATUS "${PROJECT_NAME} - Enabling Mezz_Debug Messages")
-    set(Mezz_Debug_Arguments ${CMAKE_CXX_FLAGS_DEBUG})
-    set(Mezz_Debug_Defined "MEZZDEBUG = 1")
-else (Mezz_Debug)
-    message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
-    set (Mezz_Debug_Arguments "")
-    set (Mezz_Debug_Defined "MEZZDEBUG_undefined")
-endif (Mezz_Debug)
-
-###############################################################################
-# Check For the Mezz_Profile option and set values accordingly
-option(Mezz_Profile "Executables will gather runtime statistics." OFF)
-if(${Mezz_Profile})
-    message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
-    set(Mezz_Profile_Defined "MEZZPROFILE = 1")
-    set(Mezz_Profile_Arguments "-pg") # The pg makes this only work with gcc, clang and imitators
-else(${Mezz_Profile})
-    message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
-    set(Mezz_Profile_Arguments "")
-    set(Mezz_Profile_Defined "MEZZPROFILE_undefined")
-endif(${Mezz_Profile})
-
-#consider adding options -mmmx -msse -msse2 -m3dnow
-# sse2 is the newest and is supported by the pentium4 first.
-# sse3 and sse4 should also be considered
-# A chart of compatible CPUs should be made, to guide developers to target their code better
-
-###############################################################################
-# Check For the Mezz_XML option and set values accordingly
-option(Mezz_XML "Enable XML and XML serialization support." ON)
-if(${Mezz_XML})
-    message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
-    set(Mezz_XML_Defined "MEZZXML = 1")
-else(${Mezz_XML})
-    message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
-    set(Mezz_XML_Defined "MEZZXML_undefined")
-endif(${Mezz_XML})
-
-###############################################################################
-# Check For the Mezz_Network option and set values accordingly
-option(Mezz_Network "Enable Networking support." ON)
-if(${Mezz_Network})
-    message ( STATUS "${PROJECT_NAME} - Enabling Network subsystem, and setting MEZZNETWORK")
-    set(Mezz_Network_Defined "MEZZNETWORK = 1")
-else(${Mezz_Network})
-    message ( STATUS "${PROJECT_NAME} - Disabling Network subsystem, and unsetting MEZZNETWORK")
-    set(Mezz_Network_Defined "MEZZNETWORK_undefined")
-endif(${Mezz_Network})
-
-###############################################################################
-# Lua Library
-option(Mezz_Lua51 "Include Support for Lua 5.1 Scripting Language" ON)
-if(${Mezz_Lua51})
-    set(LuaProject "Lua")
-    set(LuaLinkName "lua")
-    message ( STATUS "${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting MEZZLUA51")
-    set(Mezz_Lua51_Defined "MEZZLUA51 = 1")
-else(${Mezz_Lua51})
-    message ( STATUS "${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA51")
-    set(Mezz_Lua51_Defined "MEZZLUA51_undefined")
-endif(${Mezz_Lua51})
-
-###############################################################################
-# Misc simple defines
-option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
-if(${Mezz_ThrowOnSingletonFetch})
-    message ( STATUS "${PROJECT_NAME} - Enabling exceptions on bad singleton fetches")
-    set(Mezz_ThrowOnSingletonFetch_Defined "THROW_ON_FETCH_FAIL = 1")
-else(${Mezz_ThrowOnSingletonFetch})
-    message ( STATUS "${PROJECT_NAME} - Disabling exceptions on bad singleton fetches")
-    set(Mezz_ThrowOnSingletonFetch_Defined "THROW_ON_FETCH_FAIL_undefined")
-endif(${Mezz_ThrowOnSingletonFetch})
-mark_as_advanced(Mezz_ThrowOnSingletonFetch)
 
 ###############################################################################
 # Set Platform Specific Variables
@@ -189,21 +104,21 @@ set(LibPrefix "")
 set(LibSuffix "")
 
 if(${WIN32})
-    set(BuildPlatform windows)
-    set(LibSuffix .dll)
-    add_definitions( -DWINDOWS )
+	set(BuildPlatform windows)
+	set(LibSuffix .dll)
+	add_definitions( -DWINDOWS )
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    set(BuildPlatform linux)
-    set(LibPrefix lib)
-    set(LibSuffix .so)
-    add_definitions( -DLINUX )
+	set(BuildPlatform linux)
+	set(LibPrefix lib)
+	set(LibSuffix .so)
+	add_definitions( -DLINUX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set(BuildPlatform macosx)
-    add_definitions( -DMACOSX )
+	set(BuildPlatform macosx)
+	add_definitions( -DMACOSX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 set(MezzanineLibFileName ${LibPrefix}Mezzanine${LibSuffix})
@@ -214,10 +129,99 @@ if(${WIN32})
 endif(${WIN32})
 
 if(${WIN32})
-    set(FPIC "")
+	set(FPIC "")
 else(${WIN32})
-    set(FPIC "-fPIC")
+	set(FPIC "-fPIC")
 endif(${WIN32})
+
+if(${WIN32})
+	set(D "/D")
+else(${WIN32})
+	set(D "-D")
+endif(${WIN32})
+
+
+###############################################################################
+# Check For the Mezz_Debug option and set values accordingly
+option (Mezz_Debug "Compile with no optimizations and debug symbols" OFF)
+if (Mezz_Debug)
+	message ( STATUS "${PROJECT_NAME} - Enabling Mezz_Debug Messages")
+	set(Mezz_Debug_Arguments "${CMAKE_CXX_FLAGS_DEBUG} ${D}MEZZDEBUG")
+	set(Mezz_Debug_Defined "MEZZDEBUG = 1")
+	set(CMAKE_BUILD_TYPE DEBUG)
+else (Mezz_Debug)
+	message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
+	set (Mezz_Debug_Arguments "${D}MEZZDEBUG_undefined")
+	set (Mezz_Debug_Defined "MEZZDEBUG_undefined")
+	set(CMAKE_BUILD_TYPE RELEASE)
+endif (Mezz_Debug)
+
+###############################################################################
+# Check For the Mezz_Profile option and set values accordingly
+option(Mezz_Profile "Executables will gather runtime statistics." OFF)
+if(${Mezz_Profile})
+	message ( STATUS "${PROJECT_NAME} - Enabling gcc profiling and setting MEZZPROFILE")
+	set(Mezz_Profile_Arguments "-pg ${D}MEZZPROFILE") # The pg makes this only work with gcc, clang and imitators
+	set(Mezz_Profile_Defined "MEZZPROFILE = 1")
+else(${Mezz_Profile})
+	message ( STATUS "${PROJECT_NAME} - Disabling gcc profiling and unsetting MEZZPROFILE")
+	set(Mezz_Profile_Arguments "${D}MEZZPROFILE_undefined")
+	set(Mezz_Profile_Defined "MEZZPROFILE_undefined")
+endif(${Mezz_Profile})
+
+###############################################################################
+# Check For the Mezz_XML option and set values accordingly
+option(Mezz_XML "Enable XML and XML serialization support." ON)
+if(${Mezz_XML})
+    message ( STATUS "${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and setting MEZZXML")
+    set(Mezz_XML_Arguments "${D}MEZZXML")
+    set(Mezz_XML_Defined "MEZZXML = 1")
+else(${Mezz_XML})
+    message ( STATUS "${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and unsetting MEZZXML")
+    set(Mezz_XML_Arguments "${D}MEZZXML_undefined")
+    set(Mezz_XML_Defined "MEZZXML_undefined")
+endif(${Mezz_XML})
+
+###############################################################################
+# Check For the Mezz_Network option and set values accordingly
+option(Mezz_Network "Enable Networking support." ON)
+if(${Mezz_Network})
+	message ( STATUS "${PROJECT_NAME} - Enabling Network subsystem, and setting MEZZNETWORK")
+	set(Mezz_Network_Arguments "${D}MEZZNETWORK")
+	set(Mezz_Network_Defined "MEZZNETWORK = 1")
+else(${Mezz_Network})
+	message ( STATUS "${PROJECT_NAME} - Disabling Network subsystem, and unsetting MEZZNETWORK")
+	set(Mezz_Network_Arguments "${D}MEZZNETWORK_undefined")
+	set(Mezz_Network_Defined "MEZZNETWORK_undefined")
+endif(${Mezz_Network})
+
+###############################################################################
+# Lua Library
+option(Mezz_Lua51 "Include Support for Lua 5.1 Scripting Language" ON)
+if(${Mezz_Lua51})
+	set(LuaProject "Lua")
+	set(LuaLinkName "lua")
+	message ( STATUS "${PROJECT_NAME} - Enabling Support for Lua Scripting Language, and setting MEZZLUA51")
+	set(Mezz_Lua51_Arguments "${D}MEZZLUA51")
+	set(Mezz_Lua51_Defined "MEZZLUA51 = 1")
+else(${Mezz_Lua51})
+	message ( STATUS "${PROJECT_NAME} - Disabling Support for Lua Scripting Language, and unsetting MEZZLUA51")
+	set(Mezz_Lua51_Arguments "${D}MEZZLUA51_undefined")
+	set(Mezz_Lua51_Defined "MEZZLUA51_undefined")
+endif(${Mezz_Lua51})
+
+###############################################################################
+# Misc simple defines
+option(Mezz_ThrowOnSingletonFetch "When retrieving an invalid Singleton, should an exception be thrown" OFF)
+if(${Mezz_ThrowOnSingletonFetch})
+	message ( STATUS "${PROJECT_NAME} - Enabling exceptions on bad singleton fetches")
+	set(Mezz_ThrowOnSingletonFetch_Arguments "${D}THROW_ON_FETCH_FAIL")
+	set(Mezz_ThrowOnSingletonFetch_Defined "THROW_ON_FETCH_FAIL = 1")
+else(${Mezz_ThrowOnSingletonFetch})
+	message ( STATUS "${PROJECT_NAME} - Disabling exceptions on bad singleton fetches")
+	set(Mezz_ThrowOnSingletonFetch_Arguments "${D}THROW_ON_FETCH_FAIL_undefined")
+	set(Mezz_ThrowOnSingletonFetch_Defined "THROW_ON_FETCH_FAIL_undefined")
+endif(${Mezz_ThrowOnSingletonFetch})
 
 #######################################
 # Ogre3d related values
@@ -252,7 +256,6 @@ set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix})
 
 ###############################################################################
 # Network Library Define
-
 if(${Mezz_Network})
 	if(${WIN32})
 		set(NetworkLibrary ws2_32)
@@ -261,21 +264,33 @@ if(${Mezz_Network})
 endif(${Mezz_Network})
 
 ###############################################################################
-# Perform Common Tasks for build options and configuration.
-
-set(CommonBuildFlags 
-    ${Mezz_Debug_Arguments}
-    ${Mezz_Debug_Defined}
-    ${Mezz_Profile_Arguments}
-    ${Mezz_Profile_Defined}
-    ${Mezz_XML_Defined}
-    ${Mezz_Network_Defined}
-    ${Mezz_Lua51_Defined}
-    ${Mezz_ThrowOnSingletonFetch_Defined}
-    ${FPIC}    
+# Misc library linking names
+set(Bullet_LibraryNames
+	"ConvexDecomposition"
+	"GIMPACTUtils"
+	"BulletWorldImporter"
+	"BulletFileLoader"
+	#"BulletSoftBodySolvers_OpenCL"
+	#"BulletSoftBodySolvers_CPU"
+	"MiniCL"
+	"BulletMultiThreaded"
+	"BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
 )
 
-configure_file("${ProjectRootDir}Mezzanine/src/mezzconfig.h.original" "${ProjectIncludeDir}mezzconfig.h")
+set(SoundLibraryNames
+	"oggvorbis"
+	"openal"
+        "cAudio"
+)
+
+set(SDLLibraryNames
+        "SDL2"
+)
+
+###############################################################################
+# Perform Common Tasks for build options and configuration.
+set(CommonBuildFlags "${Mezz_Debug_Arguments} ${Mezz_Profile_Arguments} ${Mezz_XML_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${FPIC}")
+#message(FATAL_ERROR ${CommonBuildFlags})
 
 ###############################################################################
 # Add subprojects
@@ -290,31 +305,46 @@ Message(STATUS "Finishing Subproject Configuration.")
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine
 mark_as_advanced( FORCE
-    CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX
-    EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH
-    NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_ICD_CFG NVIDIA_OPENCL_LIBRARIES
-    OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY
-
-    #Open AL soft options
-    ALSOFT_WINE ALSOFT_FORCE_STATIC_VCRT
-    ALSOFT_CPUEXT_SSE ALSOFT_CPUEXT_NEON ALSOFT_REQUIRE_SSE ALSOFT_REQUIRE_NEON
-    ALSOFT_BACKEND_ALSA ALSOFT_BACKEND_OSS ALSOFT_BACKEND_SOLARIS ALSOFT_BACKEND_SNDIO ALSOFT_BACKEND_MMDEVAPI
-    ALSOFT_BACKEND_DSOUND ALSOFT_BACKEND_WINMM ALSOFT_BACKEND_PORTAUDIO ALSOFT_BACKEND_PULSEAUDIO ALSOFT_BACKEND_COREAUDIO
-    ALSOFT_BACKEND_OPENSL ALSOFT_BACKEND_WAVE
-    ALSOFT_REQUIRE_ALSA ALSOFT_REQUIRE_OSS ALSOFT_REQUIRE_SOLARIS ALSOFT_REQUIRE_SNDIO ALSOFT_REQUIRE_MMDEVAPI
-    ALSOFT_REQUIRE_DSOUND ALSOFT_REQUIRE_WINMM ALSOFT_REQUIRE_PORTAUDIO  ALSOFT_REQUIRE_PULSEAUDIO ALSOFT_REQUIRE_COREAUDIO ALSOFT_REQUIRE_OPENSL
-    ALSOFT_DLOPEN ALSOFT_WERROR ALSOFT_UTILS ALSOFT_EXAMPLES ALSOFT_CONFIG
-
-    #SDL options
-    SDLOPTION_ASSERTIONS SDLOPTION_LIBC SDLOPTION_GCC_ATOMICS SDLOPTION_GCC_ATOMICS SDLOPTION_MMX SDLOPTION_3DNOW SDLOPTION_SSE SDLOPTION_SSE2
-    SDLOPTION_ALTIVEC SDLOPTION_DISKAUDIO SDLOPTION_DUMMYAUDIO SDLOPTION_VIDEO_DIRECTFB SDLOPTION_DIRECTFB_SHARED SDLOPTION_FUSIONSOUND 
-    SDLOPTION_FUSIONSOUND_SHARED SDLOPTION_VIDEO_DUMMY SDLOPTION_VIDEO_OPENGL SDLOPTION_VIDEO_OPENGLES SDLOPTION_PTHREADS SDLOPTION_PTHREADS_SEM 
-    SDL_DLOPEN SDLOPTION_OSS SDLOPTION_ALSA SDLOPTION_ALSA_SHARED SDLOPTION_ESD SDLOPTION_ESD_SHARED SDLOPTION_PULSEAUDIO SDLOPTION_PULSEAUDIO_SHARED
-    SDLOPTION_ARTS SDLOPTION_ARTS_SHARED SDLOPTION_NAS SDLOPTION_RPATH SDLOPTION_CLOCK_GETTIME SDLOPTION_INPUT_TSLIB SDLOPTION_VIDEO_X11 
-    SDLOPTION_X11_SHARED SDLOPTION_VIDEO_X11_XCURSOR SDLOPTION_VIDEO_X11_XINERAMA SDLOPTION_VIDEO_X11_XINPUT SDLOPTION_VIDEO_X11_XRANDR
-    SDLOPTION_VIDEO_X11_XSCRNSAVER SDLOPTION_VIDEO_X11_XSHAPE SDLOPTION_VIDEO_X11_XVM SDLOPTION_VIDEO_COCOA SDLOPTION_DIRECTX 
-    SDLOPTION_RENDER_D3D 
     
+	#Mezzanine options
+	Mezz_UseOgreVersion Mezz_ThrowOnSingletonFetch
+
+	#Misc Options
+	CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX
+	EXECUTABLE_OUTPUT_PATH LIBRARY_OUTPUT_PATH
+	NVIDIA_OPENCL_INCLUDES NVIDIA_OPENCL_ICD_CFG NVIDIA_OPENCL_LIBRARIES
+	OGG_LIBRARY VORBISFILE_LIBRARY VORBIS_LIBRARY
+
+	#Open AL soft options
+	ALSOFT_WINE ALSOFT_FORCE_STATIC_VCRT
+	ALSOFT_CPUEXT_SSE ALSOFT_CPUEXT_NEON ALSOFT_REQUIRE_SSE ALSOFT_REQUIRE_NEON
+	ALSOFT_BACKEND_ALSA ALSOFT_BACKEND_OSS ALSOFT_BACKEND_SOLARIS ALSOFT_BACKEND_SNDIO ALSOFT_BACKEND_MMDEVAPI
+	ALSOFT_BACKEND_DSOUND ALSOFT_BACKEND_WINMM ALSOFT_BACKEND_PORTAUDIO ALSOFT_BACKEND_PULSEAUDIO ALSOFT_BACKEND_COREAUDIO
+	ALSOFT_BACKEND_OPENSL ALSOFT_BACKEND_WAVE
+	ALSOFT_REQUIRE_ALSA ALSOFT_REQUIRE_OSS ALSOFT_REQUIRE_SOLARIS ALSOFT_REQUIRE_SNDIO ALSOFT_REQUIRE_MMDEVAPI
+	ALSOFT_REQUIRE_DSOUND ALSOFT_REQUIRE_WINMM ALSOFT_REQUIRE_PORTAUDIO  ALSOFT_REQUIRE_PULSEAUDIO ALSOFT_REQUIRE_COREAUDIO ALSOFT_REQUIRE_OPENSL
+	ALSOFT_DLOPEN ALSOFT_WERROR ALSOFT_UTILS ALSOFT_EXAMPLES ALSOFT_CONFIG
+
+	#SDL Sub-systems
+	SDL_ATOMIC SDL_AUDIO SDL_CPUINFO SDL_EVENTS SDL_FILE SDL_HAPTIC SDL_JOYSTICK SDL_LOADSO
+	SDL_POWER SDL_RENDER SDL_SHARED SDL_STATIC SDL_THREADS SDL_TIMERS SDL_VIDEO
+
+	#SDL options
+	SDLOPTION_ASSEMBLY SDLOPTION_SSEMATH
+	SDLOPTION_ASSERTIONS SDLOPTION_LIBC SDLOPTION_GCC_ATOMICS SDLOPTION_GCC_ATOMICS SDLOPTION_MMX SDLOPTION_3DNOW SDLOPTION_SSE SDLOPTION_SSE2
+	SDLOPTION_ALTIVEC SDLOPTION_DISKAUDIO SDLOPTION_DUMMYAUDIO SDLOPTION_VIDEO_DIRECTFB SDLOPTION_DIRECTFB_SHARED SDLOPTION_FUSIONSOUND 
+	SDLOPTION_FUSIONSOUND_SHARED SDLOPTION_VIDEO_DUMMY SDLOPTION_VIDEO_OPENGL SDLOPTION_VIDEO_OPENGLES SDLOPTION_PTHREADS SDLOPTION_PTHREADS_SEM 
+	SDL_DLOPEN SDLOPTION_OSS SDLOPTION_ALSA SDLOPTION_ALSA_SHARED SDLOPTION_ESD SDLOPTION_ESD_SHARED SDLOPTION_PULSEAUDIO SDLOPTION_PULSEAUDIO_SHARED
+	SDLOPTION_ARTS SDLOPTION_ARTS_SHARED SDLOPTION_NAS SDLOPTION_RPATH SDLOPTION_CLOCK_GETTIME SDLOPTION_INPUT_TSLIB SDLOPTION_VIDEO_X11 
+	SDLOPTION_X11_SHARED SDLOPTION_VIDEO_X11_XCURSOR SDLOPTION_VIDEO_X11_XINERAMA SDLOPTION_VIDEO_X11_XINPUT SDLOPTION_VIDEO_X11_XRANDR
+	SDLOPTION_VIDEO_X11_XSCRNSAVER SDLOPTION_VIDEO_X11_XSHAPE SDLOPTION_VIDEO_X11_XVM SDLOPTION_VIDEO_COCOA SDLOPTION_DIRECTX 
+	SDLOPTION_RENDER_D3D 
+
+	#SDL Indirect Options
+	ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
+
+	#Ogre indirect
+	Boost_DIR
 )
 
 message("${PROJECT_NAME} - Finishing Configuration")

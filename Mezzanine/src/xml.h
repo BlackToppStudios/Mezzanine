@@ -1,4 +1,3 @@
-#include "mezzconfig.h"
 
 #ifdef MEZZXML
 //© Copyright 2010 - 2012 BlackTopp Studios Inc.

@@ -40,7 +40,6 @@
 /// @cond 0
 // To provide compilation option via cmake
 
-#include "mezzconfig.h"
 #ifdef MEZZXML
 
 #ifndef _xmldoc_cpp

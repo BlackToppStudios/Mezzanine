@@ -127,7 +127,7 @@ namespace Mezzanine
         for( Count = 0 ; Count < SDL_NumJoysticks() ; ++Count )
         {
             SDL_Joystick* InternalControl = SDL_JoystickOpen(Count);
-            Input::Controller* NewController = new Input::Controller( InternalControl );
+            Input::Controller* NewController = new Input::Controller( InternalControl, Count );
             this->Controllers.push_back( NewController );
             this->InternalControllers.push_back( InternalControl );
         }

@@ -43,6 +43,7 @@
 
 #include "Internal/ogredatastreambuf.h.cpp"
 #include "exception.h"
+#include "entresol.h"
 
 // Keeps this file form being documented by doxygen
 /// @cond 0

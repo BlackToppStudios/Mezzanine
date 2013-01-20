@@ -45,7 +45,6 @@
 /// @file All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well
 ///////////////////////////////////////
 
-#include "mezzconfig.h"
 #include "crossplatformexport.h"
 
 #include <stdint.h>

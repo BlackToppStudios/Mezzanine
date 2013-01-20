@@ -156,7 +156,6 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         ${OgreConfigHeaderIncludeDir}
         "${Mezz_SDLBuildDir}/SDL/include/"
         ${OgreHeaderIncludeDir}
-        "${ProjectIncludeDir}"
 )
 
 if(${WIN32})

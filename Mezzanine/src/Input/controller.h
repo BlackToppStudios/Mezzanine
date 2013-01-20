@@ -69,7 +69,7 @@ namespace Mezzanine
                 /// @param InternalControl A pointer to the internal struct of this controller.
                 /// @remarks A void pointer is necessary because SDL forward declares it's own struct already and this won't
                 /// compile with two forward declares.
-                Controller(void* InternalControl);
+                Controller(void* InternalControl, int Count);
                 /// @brief Class destructor.
                 ~Controller();
 

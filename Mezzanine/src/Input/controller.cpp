@@ -40,16 +40,17 @@
 #ifndef _inputcontroller_cpp
 #define _inputcontroller_cpp
 
+#include <cstring>
+
 #include "Input/controller.h"
 
 #include "SDL.h"
-#include "../src/joystick/SDL_sysjoystick.h"
 
 namespace Mezzanine
 {
     namespace Input
     {
-        Controller::Controller(void* InternalControl)
+        Controller::Controller(void* InternalControl, int Count)
         {
             SDL_Joystick* InternalController = (SDL_Joystick*)InternalControl;
             Axes.resize( SDL_JoystickNumAxes(InternalController) );
@@ -60,8 +61,9 @@ namespace Mezzanine
             memset( &Trackballs[0],0,sizeof(Trackballs[0]) * Trackballs.size() );
             memset( &Buttons[0],Input::BUTTON_UP,sizeof(Buttons[0]) * Buttons.size() );
             memset( &Hats[0],Input::CONTROLLERHAT_CENTERED,sizeof(Hats[0]) * Hats.size() );
-            Index = SDL_JoystickIndex(InternalController);
-            DeviceName = SDL_JoystickName(Index);
+            Index = Count; //SDL_JoystickIndex(InternalController);
+            DeviceName = SDL_JoystickName(InternalController);
+            //DeviceName = "DefaultName";
         }
 
         Controller::~Controller()

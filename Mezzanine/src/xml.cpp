@@ -40,8 +40,6 @@
 
 /// @cond 0
 
-#include "mezzconfig.h"
-
 #ifdef MEZZXML
 /*
  * pugixml parser - version 1.2

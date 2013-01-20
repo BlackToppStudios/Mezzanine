@@ -74,8 +74,6 @@ message ( STATUS "Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 #######################################
 # A complete listing of our header files
 set(${PROJECT_NAME}_sources
-        "${ProjectIncludeDir}mezzconfig.h"
-
 	"${${PROJECT_NAME}_SRC_DIR}actorbase.h"
 	"${${PROJECT_NAME}_SRC_DIR}actorcharacter.h"
 	"${${PROJECT_NAME}_SRC_DIR}actormanager.h"
@@ -488,30 +486,14 @@ function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
 endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
-# System Specific Build Items
+# System Build Items
 #######################################
 # All Changes that could be system specific should be defined in these variables
 # These will set sane defaults (Where possible), but specific platforms should
 # set a value of their own.
-#set(SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a")
 
-set(MezzanineBuildFlags "")
-
-set(Bullet_LibraryNames
-	"ConvexDecomposition"
-	"GIMPACTUtils"
-	"BulletWorldImporter"
-	"BulletFileLoader"
-	#"BulletSoftBodySolvers_OpenCL"
-	#"BulletSoftBodySolvers_CPU"
-	"MiniCL"
-	"BulletMultiThreaded"
-	"BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
-)
-
-set(SoundLibraryNames
-	"oggvorbis"
-)
+set(LIBTYPE "STATIC") # OpenAL
+file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
 
 #######################################
 # Windows Build Specific Items
@@ -526,13 +508,11 @@ endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
-
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 	include_directories(
 		${Mezz_OgreBuildDir}/ogre/OgreMain/include/
 		${Mezz_OgreBuildDir}/ogre/include/
 	)
-
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
@@ -540,24 +520,32 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 # Mac OS X and iPhone Build pecific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
-
-
 	add_definitions( -DMACOSX)
 	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 # Common Library Configuration items
+
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
-	"${Mezzanine_LIBINCLUDE_DIR}common/oggvorbis/"
+
+        "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
+
+        "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openal-soft"
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openal-soft/include"
+
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
+        #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
+
 	${OgreConfigHeaderIncludeDir}
 	${OgreHeaderIncludeDir}
-	"${ProjectIncludeDir}"
 )
 
 if(${Mezz_Lua51})
@@ -565,6 +553,7 @@ if(${Mezz_Lua51})
 endif(${Mezz_Lua51})
 
 link_directories(
+        "${ProjectBinaryDir}Mezzanine/bin"
 	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
 	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
 	#"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
@@ -579,28 +568,43 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
 #######################################
 # Prepare Common Dependencies
+
 add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
+add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/sdlsrc/SDL)
-add_subdirectory (libincludes/common/openalsoft/openal-soft)
+add_subdirectory (libincludes/common/openalsoftsrc/openal-soft)
+
+set(SDL_ATOMIC 	  off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_EVENTS    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
+set(SDL_FILE      off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_HAPTIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
+set(SDL_JOYSTICK  on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
+set(SDL_LOADSO    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_POWER     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
+set(SDL_RENDER    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_THREADS   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_VIDEO     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
+
+set(SDL_SHARED    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_STATIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 
 if(${Mezz_Lua51})
 	add_subdirectory (libincludes/common/lua51)
 endif(${Mezz_Lua51})
 
-add_dependencies( ${PROJECT_NAME} ${BuildSpecificDependencies} cAudio Bullet Ogre ${LuaProject})
-
 #######################################
 # Library Link Dependencies
+add_dependencies( ${PROJECT_NAME} Ogre ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
 
-add_definitions( ${MezzanineBuildFlags} )
 target_link_libraries( ${PROJECT_NAME} 				# Link to all of the Mezzanine Dependencies
 	${OgreLinkName}
 	${LuaLinkName}
 	${Bullet_LibraryNames}
-	cAudio
-	${SDL}
+	${SDLLibraryNames}
 	${NetworkLibrary}
         ${SoundLibraryNames}
 	RenderSystem_GL Plugin_ParticleFX Plugin_CgProgramManager
@@ -632,7 +636,7 @@ CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatfo
 CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
 CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/${BuildPlatform}/plugins.cfg )
 
-#We should use the new variables to copy the ogre files and Mezzanine library in the common code.
+# We should use the new variables to copy the ogre files and Mezzanine library in the common code.
 
 #######################################
 # Windows File Copy Specific Items

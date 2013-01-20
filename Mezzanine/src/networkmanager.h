@@ -37,7 +37,7 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#include "mezzconfig.h"
+
 #ifdef MEZZNETWORK
 
 #ifndef _networkmanager_h
