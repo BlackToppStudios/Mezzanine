@@ -1,5 +1,3 @@
-
-#ifdef MEZZXML
 //© Copyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
@@ -1738,4 +1736,3 @@ namespace std
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-#endif // \MEZZXML

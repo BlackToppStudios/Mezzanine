@@ -141,7 +141,6 @@ namespace Mezzanine
                     ( (Con_CFM==Param||Con_Stop_CFM==Param) && this->Point2Point->m_flags & BT_P2P_FLAGS_CFM )      ;   //   we are checking cfm OR we are checking stopcfm AND the cfm Flag is set
         }
 
-#ifdef MEZZXML
         void Point2PointConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node P2PNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
@@ -212,25 +211,23 @@ namespace Mezzanine
 
         String Point2PointConstraint::SerializableName()
             { return String("Point2PointConstraint"); }
-#endif // /MEZZXML
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
 
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Point2PointConstraint& x)
-    {
-        Mezzanine::Serialize(stream,x);
-        return stream;
-    }
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Point2PointConstraint& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Point2PointConstraint& x)
+{
+    Mezzanine::Serialize(stream,x);
+    return stream;
+}
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Point2PointConstraint& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif // /MEZZXML
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Point2PointConstraint& x)
+    { return Mezzanine::DeSerialize(stream, x); }
+
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Point2PointConstraint& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

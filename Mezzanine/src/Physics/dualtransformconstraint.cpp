@@ -48,7 +48,6 @@ namespace Mezzanine
 {
     namespace Physics
     {
-#ifdef MEZZXML
         ///////////////////////////////////////////////////////////////////////////////
         // DualTransformConstraint Serialization
 
@@ -114,25 +113,22 @@ namespace Mezzanine
 
         String DualTransformConstraint::SerializableName()
             { return String("DualTransformConstraint"); }
-#endif // /MEZZXML
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::DualTransformConstraint& x)
-    {
-        Mezzanine::Serialize(stream,x);
-        return stream;
-    }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::DualTransformConstraint& x)
+{
+    Mezzanine::Serialize(stream,x);
+    return stream;
+}
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::DualTransformConstraint& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::DualTransformConstraint& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::DualTransformConstraint& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif // /MEZZXML
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::DualTransformConstraint& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

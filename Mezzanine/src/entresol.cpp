@@ -74,7 +74,7 @@ namespace Mezzanine
         this->Construct(PhysicsInfo,"DefaultSceneManager","plugins.cfg",".","Mezzanine.log",temp);
     }
 
-#ifdef MEZZXML
+
     Entresol::Entresol(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
     {
         if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
@@ -93,7 +93,7 @@ namespace Mezzanine
         //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
         else { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
-#endif
+
 
     Entresol::Entresol(   const PhysicsConstructionInfo& PhysicsInfo,
                     const String& SceneType,
@@ -191,7 +191,6 @@ namespace Mezzanine
         SanityChecks();
     }
 
-#ifdef MEZZXML
     void Entresol::ConstructFromXML(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
     {
         //Add default manager factories
@@ -434,7 +433,7 @@ namespace Mezzanine
 
         SanityChecks();
     }
-#endif
+
 
     void Entresol::SanityChecks()
     {
@@ -911,7 +910,7 @@ namespace Mezzanine
         if(AddToWorld)
             AddManager(NewMan);
     }
-#ifdef MEZZXML
+
     ManagerBase* Entresol::CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld)
     {
         ManagerFactoryIterator ManIt = ManagerFactories.find(ManagerImplName);
@@ -923,7 +922,7 @@ namespace Mezzanine
         if(AddToWorld)
             AddManager(NewMan);
     }
-#endif
+
     void Entresol::DestroyManager(ManagerBase* ToBeDestroyed)
     {
         ManagerFactoryIterator ManIt = ManagerFactories.find(ToBeDestroyed->GetImplementationTypeName());

@@ -54,7 +54,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 namespace Mezzanine
 {
     class EventManager; //forward declaration so we can use this in our << and >> operators
@@ -77,8 +76,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventManage
 /// @param Mgr the Mezzanine::EventManager to be reset.
 /// @return This returns theXML::Node that was passed in.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
-
-#endif // \MEZZXML
 
 namespace Mezzanine
 {
@@ -139,22 +136,18 @@ namespace Mezzanine
             EventManager(const EventManager& Dummy)
             {}
 
-            #ifdef MEZZXML
             friend std::ostream& MEZZ_LIB ::operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr);
             friend std::istream& MEZZ_LIB ::operator >> (std::istream& stream, Mezzanine::EventManager& Mgr);
             friend void MEZZ_LIB ::operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& Mgr);
-            #endif // \MEZZXML
 
         public:
             /// @brief Default constructor
             /// @details This creates an empty EventManger
             EventManager();
 
-#ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             EventManager(XML::Node& XMLNode);
-#endif
 
             /// @brief Default Deconstructor
             /// @details This deletes everything still in the event manager and tears it down.
@@ -456,10 +449,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultEventManagerFactory

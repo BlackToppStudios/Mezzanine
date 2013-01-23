@@ -448,53 +448,51 @@ namespace Mezzanine
     bool Quaternion::operator== (const btQuaternion& Other) const
         { return (this->X==Other.getX() && this->Y==Other.getY() && this->Z==Other.getZ() && this->W==Other.getW()); }
 
-#ifdef MEZZXML
-        // Serializable
-        void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const
+    // Serializable
+    void Quaternion::ProtoSerialize(XML::Node& CurrentRoot) const
+    {
+        Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
+        VecNode.SetName(SerializableName());
+
+        Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+        Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
+        Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
+        Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
+        Mezzanine::XML::Attribute WAttr = VecNode.AppendAttribute("W");
+        if( VersionAttr && XAttr && YAttr && ZAttr && WAttr)
         {
-            Mezzanine::XML::Node VecNode = CurrentRoot.AppendChild(SerializableName());
-            VecNode.SetName(SerializableName());
-
-            Mezzanine::XML::Attribute VersionAttr = VecNode.AppendAttribute("Version");
-            Mezzanine::XML::Attribute XAttr = VecNode.AppendAttribute("X");
-            Mezzanine::XML::Attribute YAttr = VecNode.AppendAttribute("Y");
-            Mezzanine::XML::Attribute ZAttr = VecNode.AppendAttribute("Z");
-            Mezzanine::XML::Attribute WAttr = VecNode.AppendAttribute("W");
-            if( VersionAttr && XAttr && YAttr && ZAttr && WAttr)
+            if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z) && WAttr.SetValue(this->W))
             {
-                if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z) && WAttr.SetValue(this->W))
-                {
-                    return;
-                }else{
-                    SerializeError("Create XML Attribute Values", SerializableName(),true);
-                }
+                return;
             }else{
-                SerializeError("Create XML Attributes", SerializableName(),true);
+                SerializeError("Create XML Attribute Values", SerializableName(),true);
             }
+        }else{
+            SerializeError("Create XML Attributes", SerializableName(),true);
         }
+    }
 
-        // DeSerializable
-        void Quaternion::ProtoDeSerialize(const XML::Node& OneNode)
+    // DeSerializable
+    void Quaternion::ProtoDeSerialize(const XML::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
         {
-            if ( Mezzanine::String(OneNode.Name())==Mezzanine::String(SerializableName()) )
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    this->X=OneNode.GetAttribute("X").AsReal();
-                    this->Y=OneNode.GetAttribute("Y").AsReal();
-                    this->Z=OneNode.GetAttribute("Z").AsReal();
-                    this->W=OneNode.GetAttribute("W").AsReal();
-                }else{
-                    MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
-                }
+                this->X=OneNode.GetAttribute("X").AsReal();
+                this->Y=OneNode.GetAttribute("Y").AsReal();
+                this->Z=OneNode.GetAttribute("Z").AsReal();
+                this->W=OneNode.GetAttribute("W").AsReal();
             }else{
-                MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
+                MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for " + SerializableName() + ": Not Version 1.");
             }
+        }else{
+            MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a " + SerializableName() + ", found a " + Mezzanine::String(OneNode.Name()));
         }
+    }
 
-        String Quaternion::SerializableName()
-            { return String("Quaternion"); }
-#endif
+    String Quaternion::SerializableName()
+        { return String("Quaternion"); }
 
 }
 
@@ -559,22 +557,18 @@ Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const btQuaternion& Othe
 
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Quaternion& x)
 {
-    #ifdef MEZZXML
-        Serialize(stream, x);
-        // '"<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
-    #else
-        stream << "[" << x.X << "," << x.Y << "," << x.Z << "," << x.W << "]";
-    #endif // \MEZZXML
+
+    Serialize(stream, x);
+    // '"<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
+
     return stream;
 }
 
-#ifdef MEZZXML
 std::istream& operator >> (std::istream& stream, Mezzanine::Quaternion& Ev)
     { return DeSerialize(stream,Ev); }
 
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Quaternion& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
-#endif // \MEZZXML
 
 
 

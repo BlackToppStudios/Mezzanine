@@ -73,7 +73,6 @@ namespace Mezzanine
         Priority = 15;
     }
 
-#ifdef MEZZXML
     UIManager::UIManager(XML::Node& XMLNode)
         : HoveredWidget(NULL),
           WidgetFocus(NULL),
@@ -85,7 +84,6 @@ namespace Mezzanine
         Priority = 15;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
-#endif
 
     UIManager::~UIManager()
     {

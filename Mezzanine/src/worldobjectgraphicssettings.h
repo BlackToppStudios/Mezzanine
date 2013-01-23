@@ -43,9 +43,9 @@
 #include "datatypes.h"
 #include "colourvalue.h"
 
-#ifdef MEZZXML
+
 #include "xml.h"
-#endif
+
 namespace Ogre
 {
     class Entity;
@@ -178,7 +178,7 @@ namespace Mezzanine
             /// @return The colour that was as the material Diffuse colour, OR a default colourvalue.
             virtual ColourValue GetMaterialDiffuse(const Whole& Submesh = 0) const;
 
-#ifdef MEZZXML
+
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -194,11 +194,9 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorGraphicsSettings"
             static String SerializableName();
-#endif
+
     };//worldobjectgraphicssettings
 }//Mezzanine
-
-#ifdef MEZZXML
 
 /// @brief Serializes the passed Mezzanine::WorldObjectGraphicsSettings to XML
 /// @param stream The ostream to send the xml to.
@@ -217,7 +215,5 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::WorldObject
 /// @param Ev the Mezzanine::WorldObjectGraphicsSettings to be reset.
 /// @return This returns theXML::Node that was passed in.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::WorldObjectGraphicsSettings& Ev);
-
-#endif // \MEZZXML
 
 #endif

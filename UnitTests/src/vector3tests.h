@@ -119,9 +119,8 @@ class Vector3Tests : public UnitTestGroup
                 else
                     { temp=Failed; }
                 AddTestResult("Vector3::Vector3(Vector3)", temp);                       //test
-#ifdef MEZZXML
-		//Vector3(XML::Node OneNode);
-#endif
+
+                //Vector3(XML::Node OneNode);
 
                 if(Vector3::Unit_X().X==1.0 && Vector3::Unit_X().Y==0.0 && Vector3::Unit_X().Z==0.0)
                     { temp=Success; }
@@ -734,7 +733,6 @@ class Vector3Tests : public UnitTestGroup
                 }
 
                 temp = Skipped;
-                #ifdef MEZZXML
                 Vec=Vector3(3.0,4.0,5.0);
                 std::stringstream XMLstream;
                 XMLstream<<Vec;
@@ -744,11 +742,9 @@ class Vector3Tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                #endif
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", temp);            //test
 
                 temp = Skipped;
-                #ifdef MEZZXML
                 try
                 {
                     Vector3 Vec4;
@@ -761,12 +757,10 @@ class Vector3Tests : public UnitTestGroup
                     std::cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
-                #endif
                 AddTestResult("Vector3::operator>>(istream,Vector3)", temp);            //test
 
 
                 temp = Skipped;
-                #ifdef MEZZXML
                 try
                 {
                     Vector3 Vec5;
@@ -781,7 +775,6 @@ class Vector3Tests : public UnitTestGroup
                     std::cerr << "Failure in: Vector3::operator>>(XML::Node,Vector3)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
-                #endif
                 AddTestResult("Vector3::operator>>(XML::Node,Vector3)", temp);          //test
 
                 {
@@ -972,11 +965,9 @@ class Vector3Tests : public UnitTestGroup
                 AddTestResult("Vector3::operator-(cAudio::cVector3,Vector3)", Skipped);
                 AddTestResult("Vector3::operator*(cAudio::cVector3,Vector3)", Skipped);
                 AddTestResult("Vector3::operator/(cAudio::cVector3,Vector3)", Skipped);
-                #ifdef MEZZXML
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(istream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(XML::Node,Vector3)", Skipped);
-                #endif
                 AddTestResult("Vector3::operator<<(cAudio::cVector3,Ogre::Vector3)", Skipped);
                 AddTestResult("Vector3::operator<<(cAudio::cVector3,Vector3)", Skipped);
                 AddTestResult("Vector3::operator<<(cAudio::cVector3,btVector3)", Skipped);

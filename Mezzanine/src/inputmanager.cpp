@@ -71,7 +71,7 @@ namespace Mezzanine
         DetectControllers();
         this->Priority = 5;
     }
-#ifdef MEZZXML
+
     InputManager::InputManager(XML::Node& XMLNode)
     {
         if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
@@ -87,7 +87,7 @@ namespace Mezzanine
         DetectControllers();
         this->Priority = 5;
     }
-#endif
+
     InputManager::~InputManager()
     {
         delete SystemMouse;
@@ -224,7 +224,7 @@ namespace Mezzanine
             return InputManager::GetSingletonPtr();
         }else return new InputManager();
     }
-#ifdef MEZZXML
+
     ManagerBase* DefaultInputManagerFactory::CreateManager(XML::Node& XMLNode)
     {
         if(InputManager::SingletonValid())
@@ -233,7 +233,7 @@ namespace Mezzanine
             return InputManager::GetSingletonPtr();
         }else return new InputManager(XMLNode);
     }
-#endif
+
     void DefaultInputManagerFactory::DestroyManager(ManagerBase* ToBeDestroyed)
     {
         delete ToBeDestroyed;

@@ -170,7 +170,6 @@ class Vector2Tests : public UnitTestGroup
                 AddTestResult("Vector2::operator-(Vector2)", temp);              //test
 
 
-                #ifdef MEZZXML
                 std::stringstream XMLstream;
                 XMLstream<<Vec;
                 Mezzanine::String Actual(XMLstream.str());
@@ -210,7 +209,6 @@ class Vector2Tests : public UnitTestGroup
                     std::cerr << "Failure in: Vector2::operator>>(XML::Node,Vector2)" << std::endl <<"\t Mezzanine::Exception: " << Ex.GetCompleteMessage();
                     temp=Failed;
                 }
-                #endif
                 AddTestResult("Vector2::operator>>(XML::Node,Vector2)", temp);          //test
 
             }else{
@@ -230,11 +228,9 @@ class Vector2Tests : public UnitTestGroup
                 AddTestResult("Vector2::operator-(Vector2)", Skipped);
                 AddTestResult("Vector2::operator*(Vector2)", Skipped);
                 AddTestResult("Vector2::operator/(Vector2)", Skipped);
-                #ifdef MEZZXML
                 AddTestResult("Vector2::operator<<(ostream,Vector2)", Skipped);
                 AddTestResult("Vector2::operator>>(istream,Vector2)", Skipped);
                 AddTestResult("Vector2::operator>>(XML::Node,Vector2)", Skipped);
-                #endif
             }
 
 

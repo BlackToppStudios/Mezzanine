@@ -131,7 +131,6 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization
 ///////////////////////////////////////
-#ifdef MEZZXML
     void ActorBase::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
@@ -160,7 +159,6 @@ namespace Mezzanine
     String ActorBase::SerializableName()
         { return String("ActorBase"); }
 
-#endif  // \mezzxml
 }// /mezz
 
 

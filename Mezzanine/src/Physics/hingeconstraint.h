@@ -240,7 +240,6 @@ namespace Mezzanine
                 /// @copydoc Constraint::GetConstraintBase() const
                 virtual btTypedConstraint* GetConstraintBase() const;
 
-#ifdef MEZZXML
                 ////////////////////////////////////////////////////////////////////////////////
                 // HingeConstraint Serialization
                 // Serializable
@@ -255,21 +254,19 @@ namespace Mezzanine
                 /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
                 /// @return A string containing "HingeConstraint"
                 static String SerializableName();
-#endif // /MEZZXML
+
         };//HingeConstraint
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
-    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::HingeConstraint& x);
-    /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
-    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::HingeConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::HingeConstraint& x);
-#endif // \MEZZXML
+/// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::HingeConstraint& x);
+/// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::HingeConstraint& x);
+/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::HingeConstraint& x);
 
 #endif

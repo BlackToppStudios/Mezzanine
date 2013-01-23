@@ -532,7 +532,6 @@ namespace Mezzanine
     ColourValue ColourValue::YellowGreen()
         { return ColourValue(0.603921,0.803921,0.196078,1.0); }
 
-#ifdef MEZZXML
     // Serializable
     void ColourValue::ProtoSerialize(XML::Node& CurrentRoot) const
     {
@@ -578,14 +577,11 @@ namespace Mezzanine
 
     String ColourValue::SerializableName()
         { return String("ColourValue"); }
-#endif
-
 
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::ColourValue& Ev)
 {
     Serialize(stream,Ev);
@@ -597,7 +593,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ColourValue
 
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ColourValue& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
-#endif // \MEZZXML
 
 
 #endif

@@ -168,7 +168,6 @@ namespace Mezzanine
 
         ////////////////////////////////////////////////////////////////////////////////
         // Generic6DofSpringConstraint Serialization
-#ifdef MEZZXML
         void Generic6DofSpringConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node G6dofSpringNode = CurrentRoot.AppendChild(SerializableName());                        // The base node all the base constraint stuff will go in
@@ -274,25 +273,22 @@ namespace Mezzanine
 
         String Generic6DofSpringConstraint::SerializableName()
             { return String("Generic6DofSpringConstraint"); }
-#endif // /MEZZXML
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Generic6DofSpringConstraint& x)
-    {
-        Mezzanine::Serialize(stream,x);
-        return stream;
-    }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Generic6DofSpringConstraint& x)
+{
+    Mezzanine::Serialize(stream,x);
+    return stream;
+}
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Generic6DofSpringConstraint& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Generic6DofSpringConstraint& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Generic6DofSpringConstraint& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif // /MEZZXML
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Generic6DofSpringConstraint& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

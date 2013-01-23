@@ -79,13 +79,11 @@ namespace Mezzanine
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
-    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::HeightfieldCollisionShape& ShapeToSerialize);
-    /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
-    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::HeightfieldCollisionShape& x);
-    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
-    void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::HeightfieldCollisionShape& x);
-#endif
+/// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::HeightfieldCollisionShape& ShapeToSerialize);
+/// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::HeightfieldCollisionShape& x);
+/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::HeightfieldCollisionShape& x);
 
 #endif

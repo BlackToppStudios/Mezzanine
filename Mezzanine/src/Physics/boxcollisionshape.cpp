@@ -65,7 +65,6 @@ namespace Mezzanine
             SetPointers(BulletShape);
         }
 
-#ifdef MEZZXML
         BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
@@ -85,7 +84,6 @@ namespace Mezzanine
                 DeSerializeError("find usable serialization version",BoxCollisionShape::SerializableName());
             }
         }
-#endif // /MEZZXML
 
         BoxCollisionShape::~BoxCollisionShape()
         {
@@ -119,7 +117,7 @@ namespace Mezzanine
 
         btBoxShape* BoxCollisionShape::GetBulletBoxShape() const
             { return static_cast<btBoxShape*>(ShapeBase); }
-#ifdef MEZZXML
+
         void BoxCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node CollisionNode = CurrentRoot.AppendChild(this->BoxCollisionShape::SerializableName());
@@ -161,19 +159,17 @@ namespace Mezzanine
 
         String BoxCollisionShape::SerializableName()
             {   return String("BoxCollisionShape"); }
-#endif // /MEZZXML
+
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::BoxCollisionShape& ShapeToSerialize)
-        { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::BoxCollisionShape& ShapeToSerialize)
+    { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::BoxCollisionShape& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::BoxCollisionShape& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::BoxCollisionShape& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::BoxCollisionShape& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

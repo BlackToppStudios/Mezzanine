@@ -146,7 +146,6 @@ namespace Mezzanine
             /// @return A Mezzanine::ActorActivationState that describes whether the actor is part of the calculated simulation or not.
             virtual Physics::WorldObjectActivationState GetActivationState() const;
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -162,7 +161,6 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorBasePhysicsSettings"
             static String SerializableName();
-#endif
     };//WorldObjectPhysicsSettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -209,7 +207,6 @@ namespace Mezzanine
             /// @return Returns a Real representing the World Object restitution coefficient.
             virtual Real GetRestitution() const;
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -226,7 +223,7 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorBasePhysicsSettings"
             static String SerializableName();
-#endif
+
     };//NonTriggerPhysicsSettings
 }//Mezzanine
 

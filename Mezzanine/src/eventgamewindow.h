@@ -171,7 +171,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 
 /// @brief Serializes the passed Mezzanine::EventGameWindow to XML
 /// @param stream The ostream to send the xml to.
@@ -190,8 +189,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventGameWi
 /// @param Ev the Mezzanine::EventGameWindow to be reset.
 /// @return This returns theXML::Node that was passed in.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventGameWindow& Ev);
-
-#endif // \MEZZXML
 
 #endif
 

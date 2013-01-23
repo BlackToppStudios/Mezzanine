@@ -127,7 +127,6 @@ namespace Mezzanine
             /// @return Currently this returns a pointer to a btRigidBody.
             virtual btRigidBody* GetBulletObject();
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -156,12 +155,10 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorRigid"
             static String SerializableName();
-#endif
 
     };
 }
 
-#ifdef MEZZXML
 /// @brief Serialize an actor and send it to a stream
 /// @param ActorToSerialize The actor serialize
 /// @param stream the std::ostream to send the actors xml to.
@@ -178,6 +175,5 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigid&
 /// @param OneNode The xml node that contains the deserialize class instance.
 /// @param x The class instance to overwrite witht the proto serialized version in the node.
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x);
-#endif  // \mezzxml
 
 #endif

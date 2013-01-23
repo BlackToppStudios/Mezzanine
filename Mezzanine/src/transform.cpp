@@ -99,7 +99,6 @@ namespace Mezzanine
         return *this;
     }
 
-#ifdef MEZZXML
     void Transform::ProtoSerialize(XML::Node& CurrentRoot) const
     {
         XML::Node TransformNode = CurrentRoot.AppendChild(SerializableName());                     // The base node all the base constraint stuff will go in
@@ -133,7 +132,7 @@ namespace Mezzanine
 
     String Transform::SerializableName()
         { return String("Transform"); }
-#endif // /MEZZXML
+
 }
 
 btTransform& operator<< (btTransform& lhs, const Mezzanine::Transform& rhs)

@@ -215,7 +215,7 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
-#ifdef MEZZXML
+
     // Serializable
     void Vector2::ProtoSerialize(XML::Node& CurrentRoot) const
     {
@@ -258,7 +258,7 @@ namespace Mezzanine
     String Vector2::SerializableName()
         { return String("Vector2"); }
 
-#endif
+
 
 }
 
@@ -266,21 +266,16 @@ namespace Mezzanine
 // Class External << Operators for streaming or assignment
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector2& x)
 {
-    #ifdef MEZZXML
+
         //stream << "<Vector2 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" />";
         Serialize(stream,x);
-    #else
-        stream << "[" << x.X << "," << x.Y << "]";
-    #endif // \MEZZXML
     return stream;
 }
 
-#ifdef MEZZXML
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector2& Vec)
     { return DeSerialize(stream, Vec); }
 
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector2& Vec)
     { Vec.ProtoDeSerialize(OneNode); }
-#endif // \MEZZXML
 
 #endif

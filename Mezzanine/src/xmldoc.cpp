@@ -38,9 +38,6 @@
    John Blackwood - makoenergy02@gmail.com
 */
 /// @cond 0
-// To provide compilation option via cmake
-
-#ifdef MEZZXML
 
 #ifndef _xmldoc_cpp
 #define _xmldoc_cpp
@@ -164,5 +161,4 @@ namespace Mezzanine
 
 #endif
 
-#endif // \MEZZXML
 /// @endcond

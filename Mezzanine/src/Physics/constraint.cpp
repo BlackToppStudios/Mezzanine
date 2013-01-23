@@ -170,7 +170,6 @@ namespace Mezzanine
         Real Constraint::GetParam(ConstraintParam Param, int Axis) const
             { return this->GetConstraintBase()->getParam(Param, Axis); }
 
-#ifdef MEZZXML
         ///////////////////////////////////////////////////////////////////////////////
         // Constraint Serialization
         // Serializable
@@ -278,25 +277,23 @@ namespace Mezzanine
 
         String Constraint::SerializableName()
             { return String("Constraint"); }
-#endif // /MEZZXML
+
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
-    {
-        Mezzanine::Serialize(stream,x);
-        return stream;
-    }
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
+{
+    Mezzanine::Serialize(stream,x);
+    return stream;
+}
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif // /MEZZXML
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 /// @endcond
 

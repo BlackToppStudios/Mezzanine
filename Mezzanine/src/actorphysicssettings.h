@@ -44,10 +44,8 @@
 #include "enumerations.h"
 #include "worldobjectphysicssettings.h"
 
-#ifdef MEZZXML
 #include "xml.h"
 #include <iostream>
-#endif
 
 class btCollisionObject;
 class btRigidBody;
@@ -151,7 +149,6 @@ namespace Mezzanine
             /// @return A pointer ActorBasePhysicsSettings
             ActorBasePhysicsSettings* GetBasePointer();
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -168,7 +165,6 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorBasePhysicsSettings"
             static String SerializableName();
-#endif
 
     };//actorbasephysicssettings
 
@@ -275,7 +271,6 @@ namespace Mezzanine
             /// @param NewInertia The new inertia the object has.
             virtual void SetMass(Real NewMass, const Vector3& NewInertia);
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -292,7 +287,7 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ActorRigidPhysicsSettings"
             static String SerializableName();
-#endif
+
     };//actorrigidphysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -324,8 +319,6 @@ namespace Mezzanine
             virtual void SetCollisionShape(CollisionShape* Shape);
     };//actorsoftphysicssettings
 }//Mezzanine
-
-#ifdef MEZZXML
 
 /// @brief Serializes the passed Mezzanine::ActorBasePhysicsSettings to XML
 /// @param stream The ostream to send the xml to.
@@ -361,7 +354,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigidP
 /// @param Ev the Mezzanine::ActorRigidPhysicsSettings to be reset.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev);
 
-#endif // \MEZZXML
 
 
 #endif

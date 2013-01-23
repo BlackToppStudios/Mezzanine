@@ -43,9 +43,7 @@
 #include "eventquit.h"
     #include "stringtool.h"
 
-#ifdef MEZZXML
 #include <memory>
-#endif
 
 namespace Mezzanine
 {
@@ -59,7 +57,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::EventQuit& Ev)
 {
     stream << "<EventQuit Version=\"1\" />";
@@ -91,7 +88,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }
 
 }
-#endif // \MEZZXML
 
 
 #endif

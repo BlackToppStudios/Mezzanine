@@ -227,7 +227,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::EventGameWindow& Ev)
 {
     stream << "<EventGameWindow Version=\"1\" EventID=\"" << Ev.GetEventID() << "\" First=\"" << Ev.GetFirstEventData() << "\" Second=\"" << Ev.GetSecondEventData() << "\" />";
@@ -261,7 +260,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }
 
 }
-#endif // \MEZZXML
 
 #endif
 

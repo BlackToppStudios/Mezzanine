@@ -329,9 +329,7 @@ namespace Mezzanine
                             const String& EngineDataPath,
                             const String& LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
-#ifdef MEZZXML
             void ConstructFromXML(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile);
-#endif
             void SanityChecks();
             void OneTimeMainLoopInit();
             bool VerifyManagerInitializations();
@@ -355,7 +353,6 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
         ///////////////////////////////////////
-#ifdef MEZZXML
             /// @brief Initializer file constructor.
             /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
             /// If the file provided is not one of this type this function will throw an exception. @n @n
@@ -374,7 +371,6 @@ namespace Mezzanine
             /// @param ArchiveType The type of archive at the path provided.
             /// @param InitializerFile The file that describes how to initialize Mezzanine.
             Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile = "Mezzanine.mxi");
-#endif
 
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
@@ -577,14 +573,14 @@ namespace Mezzanine
             /// @param AddToWorld Whether or not to add the created manager to the world after creation.
             /// @return Returns a pointer to the created manager.
             ManagerBase* CreateManager(const String& ManagerImplName, NameValuePairList& Params, bool AddToWorld = true);
-#ifdef MEZZXML
+
             /// @brief Creates a new manager.
             /// @param ManagerImplName The name of the manager implementation to create.
             /// @param XMLNode An XML node containing all construction and initialization info for the manager to be created.
             /// @param AddToWorld Whether or not to add the created manager to the world after creation.
             /// @return Returns a pointer to the created manager.
             ManagerBase* CreateManager(const String& ManagerImplName, XML::Node& XMLNode, bool AddToWorld = true);
-#endif
+
             /// @brief Destroys a manager.
             /// @param ToBeDestroyed The manager to be destroyed.
             void DestroyManager(ManagerBase* ToBeDestroyed);

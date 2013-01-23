@@ -182,7 +182,6 @@ namespace Mezzanine
 
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
-#ifdef MEZZXML
             // Serializable
             /// @brief Convert this class to an XML::Node ready for serialization
             /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
@@ -196,16 +195,13 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Vector2"
             static String SerializableName();
-#endif
     };
 }
 
 /// @brief Used to Serialize an Mezzanine::Vector2 to a human readable stream
-/// @details If MEZZXML is disabled, this outputs to the format of [x,y], where x is replaced with the X value,
-/// and y is replaced with the Y value. For example [1,2] could be a serialized Vector2.\n\n
-/// If MEZZXML is defined/enabled the square bracket format is replaced with proper XML output,
+/// @details Sends proper XML to the output stream,
 /// including versioning information which will be used to maintain backwards compatibility. The current XML format
-/// will create one node with no child nodes. The name of the xml node will be "Vector2". It will have 3 attributes.
+/// will create one element with no sub-elements. The name of the xml node will be "Vector2". It will have 3 attributes.
 /// "Version", will be set to a value of 1, indicating if came from version 1 compatible Vector3. It will also have an "X" and "Y"
 /// attributes with values set appropriately. For example '<Vector2 Version="1" X="1" Y="2" />'.
 /// @param x The Mezzanine::Vector2 to be converted to a stream of characters.
@@ -213,7 +209,6 @@ namespace Mezzanine
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vector2& x);
 
-#ifdef MEZZXML
 /// @brief Used to de-serialize an Mezzanine::Vector2 from a stream
 /// @details This reads in the xml and sets the target vector according to values from the stream.
 /// @param Vec The Mezzanine::Vector2 that will accept the values from the xml
@@ -223,14 +218,11 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vecto
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector2& Vec);
 
 /// @brief Converts an XML node into a Mezzanine::Vector2
-/// @details If MEZZXML is enabled, this will convert an XML::Node will a valid serialized Mezzanine::Vector2 into a Mezzanine::Vector2
+/// @details This will convert an XML::Node will a valid serialized Mezzanine::Vector2 into a Mezzanine::Vector2
 /// @param OneNode An XML Node containing the the text of a Vector2
 /// @param Vec the Mezzanine::Vector2 to store the deserialized Vector2
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector2& Vec);
-#endif // \MEZZXML
-
-
 
 #endif

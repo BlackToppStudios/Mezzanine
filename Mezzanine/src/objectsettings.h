@@ -46,10 +46,7 @@
 #include "quaternion.h"
 #include "colourvalue.h"
 #include "smartptr.h"
-
-#ifdef MEZZXML
 #include "xml.h"
-#endif
 
 namespace Mezzanine
 {
@@ -310,7 +307,6 @@ namespace Mezzanine
             SettingFilesContainer SettingFiles;
             bool AutoGenPath;
             bool AutoGenFiles;
-#ifdef MEZZXML
             String SettingsFilePath;
             String CurrentSettingsSaveFile;
             CountedPtr<SettingGroupVector> LoadSettingsFromFile(const String& FileName, const String& Path);
@@ -319,7 +315,6 @@ namespace Mezzanine
             void SaveSettingSetToXML(XML::Node& XMLNode, ObjectSettingSet* Set);
             virtual String GetObjectRootNodeName() const = 0;
             virtual void AppendCurrentSettings(XML::Node& CurrentNode) = 0;
-#endif
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group) = 0;
         public:
             /// @brief Class constructor.
@@ -348,7 +343,7 @@ namespace Mezzanine
             void DestroySettingGroup(ObjectSettingGroup* ToBeDestroyed);
             /// @brief Destroys all setting groups stored in this handler.
             void DestroyAllSettingGroups();
-#ifdef MEZZXML
+
             ///////////////////////////////////////////////////////////////////////////////
             // Setting File Handling
             /// @brief Creates a new Setting file that will track which groups are a part of it.
@@ -465,7 +460,6 @@ namespace Mezzanine
             /// @param GroupNames A string vector containing the names for all the settings groups to save.
             /// @param RootSettings The node to populate with all currently loaded settings groups.
             void SaveSettingsToXML(StringVector& GroupNames, XML::Node& RootSettings);
-#endif
     };//ObjectSettingsHandler
 }//Mezzanine
 

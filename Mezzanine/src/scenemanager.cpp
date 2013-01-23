@@ -187,7 +187,6 @@ namespace Mezzanine
         //OgreManager->setShadowCameraSetup(ShadowCam);
     }
 
-#ifdef MEZZXML
     SceneManager::SceneManager(XML::Node& XMLNode)
     {
         this->SMD = new Internal::SceneManagerData(this);
@@ -259,7 +258,6 @@ namespace Mezzanine
                 SetShadowTextureSize(static_cast<unsigned short>(CurrAttrib.AsWhole()));
         }
     }
-#endif
 
     SceneManager::~SceneManager()
     {
@@ -802,7 +800,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::SceneManager& Ev)
 {
     stream      << "<SceneManager Version=\"1\" Name=\"" << Ev.GetName()
@@ -1116,7 +1113,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a SceneManager, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
-#endif
 
 
 

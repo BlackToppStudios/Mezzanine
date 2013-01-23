@@ -245,8 +245,6 @@ namespace Mezzanine
         void HingeConstraint::SetUseFrameOffset(bool FrameOffset)
             { this->Hinge->setUseFrameOffset(FrameOffset); }
 
-
-#ifdef MEZZXML
         ////////////////////////////////////////////////////////////////////////////////
         // HingeConstraint Serialization
         void HingeConstraint::ProtoSerialize(XML::Node& CurrentRoot) const
@@ -349,25 +347,23 @@ namespace Mezzanine
 
         String HingeConstraint::SerializableName()
             { return String("HingeConstraint"); }
-#endif // /MEZZXML
+
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::HingeConstraint& x)
-    {
-        Mezzanine::Serialize(stream,x);
-        return stream;
-    }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::HingeConstraint& x)
+{
+    Mezzanine::Serialize(stream,x);
+    return stream;
+}
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::HingeConstraint& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::HingeConstraint& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::HingeConstraint& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif // /MEZZXML
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::HingeConstraint& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

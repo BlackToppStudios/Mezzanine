@@ -95,21 +95,17 @@ namespace Mezzanine
             /// @brief Construct the manager and set sane defaults.
             void Construct();
             void InitOgreRenderSystem();
-#ifdef MEZZXML
             virtual String GetObjectRootNodeName() const;
             virtual void AppendCurrentSettings(XML::Node& SettingsRootNode);
-#endif
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:
 
             /// @brief Basic constructor
             /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false
             GraphicsManager();
-#ifdef MEZZXML
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             GraphicsManager(XML::Node& XMLNode);
-#endif
             /// @brief Class Destructor.
             ~GraphicsManager();
 
@@ -239,10 +235,8 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultGraphicsManagerFactory

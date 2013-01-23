@@ -97,10 +97,8 @@ namespace Mezzanine
             bool Muted;
             Audio::Listener* Listener;
             Audio::MusicPlayer* MusicPlayer;
-#ifdef MEZZXML
             virtual String GetObjectRootNodeName() const;
             virtual void AppendCurrentSettings(XML::Node& SettingsRootNode);
-#endif
             virtual void ApplySettingGroupImpl(ObjectSettingGroup* Group);
         public:
             /// @brief Class Constructor
@@ -109,11 +107,11 @@ namespace Mezzanine
             /// manager yourself after it is constructed.
             /// @param DefaultSettings Whether or not to load default settings and initialize the manager immediately.
             AudioManager(bool DefaultSettings=true);
-#ifdef MEZZXML
+
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             AudioManager(XML::Node& XMLNode);
-#endif
+
             /// @brief Class Destructor
             /// @details The class destructor.
             virtual ~AudioManager();
@@ -302,10 +300,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultAudioManagerFactory

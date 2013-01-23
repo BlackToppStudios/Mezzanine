@@ -231,8 +231,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
-
 /// @brief Serializes the passed Mezzanine::EventUserInput to XML.
 /// @param stream The ostream to send the xml to.
 /// @param Ev the Mezzanine::EventUserInput to be serialized.
@@ -250,7 +248,5 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventUserIn
 /// @param Ev the Mezzanine::EventUserInput to be reset.
 /// @return This returns theXML::Node that was passed in.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput& Ev);
-
-#endif // \MEZZXML
 
 #endif

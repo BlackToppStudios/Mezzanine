@@ -76,7 +76,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::EventRenderTime& Ev)
 {
     stream << "<EventRenderTime Version=\"1\" Rendertime=\"" << Ev.getMilliSecondsSinceLastFrame() << "\" />";
@@ -107,6 +106,5 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventRenderTime, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
-#endif // \MEZZXML
 
 #endif

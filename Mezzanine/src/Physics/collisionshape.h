@@ -118,7 +118,6 @@ namespace Mezzanine
                 /// @return Returns a pointer to the internal collision shape.
                 virtual btCollisionShape* GetBulletShape() const;
 
-#ifdef MEZZXML
                 // Serializable
                 /// @brief Convert this class to an XML::Node ready for serialization
                 /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
@@ -131,7 +130,6 @@ namespace Mezzanine
                 /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
                 /// @return A string containing "CollisionShape"
                 static String SerializableName();
-#endif
         };//collisionshape
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -145,12 +143,10 @@ namespace Mezzanine
         /// @return A new Mezzanine::CollisionShape with either default Values or the values of the bullet shape if one is provided.
         /// @warning The only checking done on the bullet shape is to verify it is not a null pointer. If the Bullet shape fails to be of the appropriate kind correlating to ShapeToCreate then *undefined behavior* will occur.
         CollisionShape* MEZZ_LIB CreateShape(CollisionShape::ShapeType ShapeToCreate, const String& Name_, btCollisionShape* ShapeToModel);
-#ifdef MEZZXML
         /// @brief Create a CollisionShape from a snippet of xml
         /// @param OneNode A Node for any Collision Shape that can be instanstiated
         /// @return A pointer to a CollisionShape of the Correct Type with the values stored in the XML.
         CollisionShape* MEZZ_LIB CreateShape(XML::Node OneNode);
-#endif  // \mezzxml
         /// @internal
         /// @brief Convert from a Bullet Collision Shape to a CollisionShape::ShapeType
         /// @param BulletShapeType The ShapeType to Convert
@@ -173,7 +169,6 @@ namespace Mezzanine
         ///////////////////////////////////////
         class MEZZ_LIB CollisionShapeDeSerializer : public DeSerializer <CollisionShape>
         {
-#ifdef MEZZXML
             protected:
                 /// @internal
                 /// @brief This Performs the work of Deserializing that DeSerialize and DeSerializeAndRetrieve need to do
@@ -201,26 +196,24 @@ namespace Mezzanine
                 /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
                 /// @return A String containing "Shapes"
                 virtual String ContainerName() const;
-#endif // \mezzxml
         };//CollisionShapeDeSerializer
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    /// @brief Serialize an CollisionShape and send it to a stream
-    /// @param ShapeToSerialize The CollisionShape serialize
-    /// @param stream the std::ostream to send the CollisionShape xml to.
-    /// @return The ostream after the new data has been inserted.
-    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize);
-    /// @brief Get an actor from an XML stream.
-    /// @param stream The stream to get it out of.
-    /// @param x The it you will get out of the stream.
-    /// @return This returns the input stream to allow operator chaining.
-    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x);
-    /// @brief Converts an XML Node into a functional in memory construct.
-    /// @param OneNode The xml node that contains the deserialize class instance.
-    /// @param x The class instance to overwrite witht the proto serialized version in the node.
-    void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x);
-#endif
+/// @brief Serialize an CollisionShape and send it to a stream
+/// @param ShapeToSerialize The CollisionShape serialize
+/// @param stream the std::ostream to send the CollisionShape xml to.
+/// @return The ostream after the new data has been inserted.
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize);
+/// @brief Get an actor from an XML stream.
+/// @param stream The stream to get it out of.
+/// @param x The it you will get out of the stream.
+/// @return This returns the input stream to allow operator chaining.
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x);
+/// @brief Converts an XML Node into a functional in memory construct.
+/// @param OneNode The xml node that contains the deserialize class instance.
+/// @param x The class instance to overwrite witht the proto serialized version in the node.
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x);
+
 
 #endif

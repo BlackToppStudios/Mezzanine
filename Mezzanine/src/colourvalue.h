@@ -544,7 +544,6 @@ namespace Mezzanine
             /// @return Returns the created ColourValue.
             static ColourValue YellowGreen();
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -561,15 +560,12 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "ColourValue"
             static String SerializableName();
-#endif
 
     };//colorvalue
 }//Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
-
 /// @brief Serializes the passed Mezzanine::ColourValue to XML
 /// @param stream The ostream to send the xml to.
 /// @param Ev the Mezzanine::ColourValue to be serialized
@@ -587,7 +583,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ColourValue
 /// @param Ev the Mezzanine::ColourValue to be reset.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ColourValue& Ev);
 
-#endif // \MEZZXML
 
 
 #endif

@@ -83,7 +83,6 @@ namespace Mezzanine
         this->AutoGenFiles = false;
     }
 
-#ifdef MEZZXML
     AudioManager::AudioManager(XML::Node& XMLNode)
         : AmbientVolume(1.0),
           DialogVolume(1.0),
@@ -154,14 +153,14 @@ namespace Mezzanine
 
         Listener = new Audio::Listener(cAudioMan->getListener());
     }
-#endif
+
     AudioManager::~AudioManager()
     {
         DestroyAllSounds();
         cAudio::destroyAudioManager(cAudioMan);
         delete AMID;
     }
-#ifdef MEZZXML
+
     String AudioManager::GetObjectRootNodeName() const
     {
         return "DefaultAudioManagerSettings";
@@ -187,7 +186,7 @@ namespace Mezzanine
         XML::Node MuteSettingNode = CurrentSettings.AppendChild("Mute");
         MuteSettingNode.AppendAttribute("Muted").SetValue( StringTools::ConvertToString(this->IsMuted()) );
     }
-#endif
+
     void AudioManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
     {
         for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )

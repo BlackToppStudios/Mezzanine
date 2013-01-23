@@ -240,7 +240,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::EventUserInput& Ev)
 {
     stream << "<EventUserInput Version=\"1\">";
@@ -287,7 +286,6 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventUserInput
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a EventUserInput, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
-#endif // \MEZZXML
 
 
 #endif

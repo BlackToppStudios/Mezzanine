@@ -98,11 +98,11 @@ namespace Mezzanine
         public:
             /// @brief Class Constructor.
             CameraManager();
-#ifdef MEZZXML
+
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             CameraManager(XML::Node& XMLNode);
-#endif
+
             /// @brief Class Destructor.
             virtual ~CameraManager();
 
@@ -182,10 +182,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultCameraManagerFactory

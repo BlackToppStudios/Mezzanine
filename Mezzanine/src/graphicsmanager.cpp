@@ -72,7 +72,7 @@ namespace Mezzanine
         Construct();
         this->AutoGenFiles = false;
     }
-#ifdef MEZZXML
+
     GraphicsManager::GraphicsManager(XML::Node& XMLNode)
         : OgreBeenInitialized(false),
           CurrRenderSys(Graphics::RS_OpenGL2)
@@ -135,7 +135,7 @@ namespace Mezzanine
         /// assumes.  If possible this should be removed, to keep construction more flexible.
         InitOgreRenderSystem();
     }
-#endif
+
 
     GraphicsManager::~GraphicsManager()
     {
@@ -168,7 +168,7 @@ namespace Mezzanine
         }
     }
 
-#ifdef MEZZXML
+
     String GraphicsManager::GetObjectRootNodeName() const
     {
         return "DefaultGraphicsManagerSettings";
@@ -205,7 +205,7 @@ namespace Mezzanine
             }
         }
     }
-#endif
+
     void GraphicsManager::ApplySettingGroupImpl(ObjectSettingGroup* Group)
     {
         for( ObjectSettingSetContainer::SubSetIterator SubSetIt = Group->SubSetBegin() ; SubSetIt != Group->SubSetEnd() ; ++SubSetIt )

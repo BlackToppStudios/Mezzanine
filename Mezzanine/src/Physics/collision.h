@@ -189,7 +189,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 
 /// @brief Serializes the passed Mezzanine::Physics::Collision to XML
 /// @param stream The ostream to send the xml to.
@@ -209,7 +208,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Co
 /// @return This returns the XML::Node that was passed in.
 void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Collision& Col);
 
-#endif // \MEZZXML
 
 
 #endif

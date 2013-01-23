@@ -403,7 +403,6 @@ namespace Mezzanine
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Generic6DofConstraint Serialization
-#ifdef MEZZXML
                 // Serializable
                 /// @brief Convert this class to an XML::Node ready for serialization
                 /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
@@ -418,21 +417,18 @@ namespace Mezzanine
                 /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
                 /// @return A string containing "Generic6DofConstraint"
                 static String SerializableName();
-#endif // /MEZZXML
         };//Generic6DofConstraint
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
-    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Generic6DofConstraint& x);
-    /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
-    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Generic6DofConstraint& x);
-    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Generic6DofConstraint& x);
-#endif // \MEZZXML
+/// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x)
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Generic6DofConstraint& x);
+/// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x)
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Generic6DofConstraint& x);
+/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x)
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Generic6DofConstraint& x);
 
 #endif

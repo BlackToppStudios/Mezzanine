@@ -58,7 +58,6 @@ namespace Ogre
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 
 /// @brief Serializes the passed Mezzanine::Camera to XML
 /// @param stream The ostream to send the xml to.
@@ -84,7 +83,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Camera& Ev)
 /// @warning This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Camera& Ev);
 
-#endif // \MEZZXML
 
 namespace Mezzanine
 {
@@ -114,10 +112,9 @@ namespace Mezzanine
             };
 
         private:
-#ifdef MEZZXML
             /// @internal
             friend XML::Node& MEZZ_LIB operator >> (XML::Node& OneNode, Camera& Ev);
-#endif
+
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
             /// @param Camera A pointer the graphics subsystem camera

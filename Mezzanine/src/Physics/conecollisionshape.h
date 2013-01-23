@@ -91,10 +91,8 @@ namespace Mezzanine
                 /// @param Name The name of this Shape.
                 /// @param BulletShape The internal shape this shape is based on.
                 ConeCollisionShape(const String& Name, btConeShape* BulletShape);
-    #ifdef MEZZXML
                 /// @copydoc BoxCollisionShape::BoxCollisionShape(XML::Node OneNode)
                 ConeCollisionShape(XML::Node OneNode);
-    #endif // /MEZZXML
                 /// @brief Class Destructor.
                 virtual ~ConeCollisionShape();
 
@@ -127,7 +125,7 @@ namespace Mezzanine
                 virtual CollisionShape::ShapeType GetType() const;
                 /// @copydoc CollisionShape::GetBulletShape
                 virtual btConeShape* GetBulletConeShape() const;
-    #ifdef MEZZXML
+
                 // Serializable
                 /// @copydoc CollisionShape::GetBulletShape
                 virtual void ProtoSerialize(XML::Node& CurrentRoot) const;
@@ -136,18 +134,15 @@ namespace Mezzanine
                 /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
                 /// @return A string containing "ConeCollisionShape"
                 static String SerializableName();
-    #endif
         };//conecollisionshape
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    /// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
-    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::ConeCollisionShape& ShapeToSerialize);
-    /// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
-    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::ConeCollisionShape& x);
-    /// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
-    void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::ConeCollisionShape& x);
-#endif
+/// @copydoc operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::ConeCollisionShape& ShapeToSerialize);
+/// @copydoc operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::ConeCollisionShape& x);
+/// @copydoc operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
+void MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::ConeCollisionShape& x);
 
 #endif

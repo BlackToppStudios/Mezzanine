@@ -76,7 +76,6 @@ namespace Mezzanine
             this->GetBulletHullShape()->setImplicitShapeDimensions(Vector3(0,0,0).GetBulletVector3());
         }
 
-#ifdef MEZZXML
         ConvexHullCollisionShape::ConvexHullCollisionShape(XML::Node OneNode)
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
@@ -93,7 +92,6 @@ namespace Mezzanine
                 DeSerializeError("find usable serialization version", ConvexHullCollisionShape::SerializableName());
             }
         }
-#endif // /MEZZXML
 
         ConvexHullCollisionShape::~ConvexHullCollisionShape()
         {
@@ -134,7 +132,6 @@ namespace Mezzanine
         btConvexHullShape* ConvexHullCollisionShape::GetBulletHullShape() const
             { return static_cast<btConvexHullShape*>(ShapeBase); }
 
-#ifdef MEZZXML
         void ConvexHullCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node CollisionNode = CurrentRoot.AppendChild(this->ConvexHullCollisionShape::SerializableName());
@@ -189,11 +186,10 @@ namespace Mezzanine
 
         String ConvexHullCollisionShape::SerializableName()
             {   return String("ConvexHullCollisionShape"); }
-#endif
+
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
     std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::ConvexHullCollisionShape& ShapeToSerialize)
         { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
@@ -202,6 +198,5 @@ namespace Mezzanine
 
     void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::ConvexHullCollisionShape& x)
         { x.ProtoDeSerialize(OneNode); }
-#endif
 
 #endif

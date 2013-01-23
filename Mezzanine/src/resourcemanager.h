@@ -94,11 +94,11 @@ namespace Mezzanine
             /// @param EngineDataPath The directory for engine specific data.
             /// @param ArchiveType The name of the type of archive at this path.
             ResourceManager(const String& EngineDataPath = ".", const String& ArchiveType = "FileSystem");
-#ifdef MEZZXML
+
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             ResourceManager(XML::Node& XMLNode);
-#endif
+
             /// @details Class Destructor.
             ~ResourceManager();
 
@@ -241,10 +241,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultResourceManagerFactory

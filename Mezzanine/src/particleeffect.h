@@ -210,7 +210,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 
 /// @brief Serializes the passed Mezzanine::ParticleEffect to XML
 /// @param stream The ostream to send the xml to.
@@ -233,7 +232,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ParticleEff
 /// @warning This does not throw an exception if the ParticleEffect could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ParticleEffect& Ev);
 
-#endif
 
 
 #endif

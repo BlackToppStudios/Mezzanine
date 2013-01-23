@@ -107,7 +107,6 @@ namespace Mezzanine
             return ShapeBase;
         }
 
-#ifdef MEZZXML
         void CollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node CollisionNode = CurrentRoot.AppendChild(this->CollisionShape::SerializableName());
@@ -158,7 +157,6 @@ namespace Mezzanine
 
         String CollisionShape::SerializableName()
             {   return String("CollisionShape"); }
-#endif
         /////////////////////////////////////////
         // Utility Functions
         CollisionShape* CreateShape(CollisionShape::ShapeType ShapeToCreate, const String& Name_, btCollisionShape* ShapeToModel)
@@ -200,7 +198,7 @@ namespace Mezzanine
                 MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an empty Bullet Collision Shape type into a CollisionShape instance.");
             }
         }
-#ifdef MEZZXML
+
         CollisionShape* CreateShape(XML::Node OneNode)
         {
             CollisionShape::ShapeType ShapeToCreate = StringToShapeType(OneNode.Name());
@@ -242,7 +240,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an unsupported/unwrapped Collision Shape type into a CollisionShape instance."); }
             }
         }
-#endif
+
         CollisionShape::ShapeType BulletSapeTypeToShapeType(int BulletShapeType)
         {
             switch(BulletShapeType)
@@ -356,7 +354,7 @@ namespace Mezzanine
                     { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to convert an invalid CollisionShape::ShapeType String into a CollisionShape::ShapeType."); }
             }
         }
-#ifdef MEZZXML
+
         ///////////////////////////////////////
         // CollisionShapeDeSerializer
         CollisionShape* CollisionShapeDeSerializer::PerformDeSerialization(std::istream& Stream)
@@ -388,19 +386,18 @@ namespace Mezzanine
 
         String CollisionShapeDeSerializer::ContainerName() const
             { return String("Shapes"); }
-#endif
+
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
-        { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::CollisionShape& ShapeToSerialize)
+    { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::CollisionShape& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CollisionShape& x)
+    { x.ProtoDeSerialize(OneNode); }
+
 
 #endif

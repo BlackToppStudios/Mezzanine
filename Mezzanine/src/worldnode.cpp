@@ -331,7 +331,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::WorldNode& Ev)
 {
     stream      << "<WorldNode Version=\"1\" Name=\"" << Ev.GetName()
@@ -428,7 +427,6 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }
 
 }
-#endif //MEZZXML
 
 
 

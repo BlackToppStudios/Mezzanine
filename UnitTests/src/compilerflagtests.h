@@ -1,4 +1,4 @@
-//©opyright 2010 - 2012 BlackTopp Studios Inc.
+//Â©opyright 2010 - 2012 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -62,16 +62,6 @@ class CompilerFlagTests : public UnitTestGroup
                 AddTestResult("CompilerFlag::MEZZDEBUG", temp);
 #endif
 
-#ifdef MEZZXML
-                temp;
-                temp = GetTestAnswer( "Was MEZZXML set to True when this was configured with CMake(where it is called Mezz_XML) or other config tool? ");
-                AddTestResult("CompilerFlag::MEZZXML", temp);
-#else
-                temp;
-                temp = GetTestAnswer( "Was MEZZXML set to False when this was configured with CMake(where it is called Mezz_XML) or other config tool? ");
-                AddTestResult("CompilerFlag::MEZZXML", temp);
-#endif
-
 #ifdef MEZZPROFILE
                 temp;
                 temp = GetTestAnswer( "Was MEZZPROFILE set to True when this was configured with CMake(where it is called Mezz_Profile) or other config tool? ");
@@ -113,7 +103,6 @@ class CompilerFlagTests : public UnitTestGroup
 #endif
             }else{
                 AddTestResult("CompilerFlag::MEZZDEBUG", Skipped);
-                AddTestResult("CompilerFlag::MEZZXML", Skipped);
                 AddTestResult("CompilerFlag::MEZZPROFILE", Skipped);
             }
 

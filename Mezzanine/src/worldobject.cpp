@@ -195,7 +195,6 @@ namespace Mezzanine
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
     ///////////////////////////////////////
-#ifdef MEZZXML
     void WorldObject::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
@@ -428,7 +427,6 @@ namespace Mezzanine
 
     String NonStaticWorldObject::SerializableName()
         { return String("NonStaticWorldObject"); }
-#endif
 }//Mezzanine
 
 #endif

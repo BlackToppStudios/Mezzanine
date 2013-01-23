@@ -260,7 +260,6 @@ namespace Mezzanine
         //this->GameWorld = Entresol::GetSingletonPtr();
     }
 
-#ifdef MEZZXML
     EventManager::EventManager(XML::Node& XMLNode)
     {
         this->Priority = 0;
@@ -275,7 +274,6 @@ namespace Mezzanine
         this->_Data = new Internal::EventManagerInternalData;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
-#endif
 
     EventManager::~EventManager()
     {
@@ -709,7 +707,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::EventManager& Mgr)
 {
     stream << "<EventManager Version=\"1\">";
@@ -796,9 +793,6 @@ void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::EventManager& 
         MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Attempting to deserialize an EventManager, event mananger not found.");
     }// if event
 }
-#endif // \MEZZXML
-
-
 
 
 

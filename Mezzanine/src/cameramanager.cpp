@@ -63,7 +63,6 @@ namespace Mezzanine
         this->Priority = 40;
     }
 
-#ifdef MEZZXML
     CameraManager::CameraManager(XML::Node& XMLNode)
         : SceneMan(NULL)
     {
@@ -72,7 +71,6 @@ namespace Mezzanine
         this->Priority = 40;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
-#endif
 
     CameraManager::~CameraManager()
     {

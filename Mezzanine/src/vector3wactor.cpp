@@ -58,7 +58,6 @@ namespace Mezzanine
 
 }
 
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3WActor& x)
 {
     if (x.Actor != NULL)
@@ -73,7 +72,6 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3WActor&
     }
     return stream;
 }
-#endif
 
 
 #endif

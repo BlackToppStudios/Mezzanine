@@ -235,7 +235,6 @@ namespace Mezzanine
         return this->IWOGS->Diffuse[Submesh];
     }
 
-#ifdef MEZZXML
         // Serializable
         void WorldObjectGraphicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
         {
@@ -361,11 +360,8 @@ namespace Mezzanine
 
         String WorldObjectGraphicsSettings::SerializableName()
             { return String("WorldObjectGraphicsSettings"); }
-#endif
 }
 
-
-#ifdef MEZZXML
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::WorldObjectGraphicsSettings& Ev)
     { return Serialize(stream, Ev); }
 
@@ -376,7 +372,6 @@ Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode,
     { Ev.ProtoDeSerialize(OneNode); }
 
 
-#endif // \MEZZXML
 
 
 #endif

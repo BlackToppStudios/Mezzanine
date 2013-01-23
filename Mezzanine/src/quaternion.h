@@ -347,7 +347,6 @@ namespace Mezzanine
             /// @return True if the Quaternions are semantically equal, false otherwise.
             bool operator== (const btQuaternion& Other) const;
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -364,7 +363,7 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Quaternion"
             static String SerializableName();
-#endif
+
     };
 }
 
@@ -436,10 +435,7 @@ Ogre::Quaternion& MEZZ_LIB operator<< ( Ogre::Quaternion& Other, const Mezzanine
 Ogre::Quaternion& MEZZ_LIB operator<< ( Ogre::Quaternion& Other, const btQuaternion& Other2);
 
 /// @brief Used to Serialize an Mezzanine::Quaternion to a human readable stream
-/// @details If MEZZXML is disabled, this outputs to the format of [x,y,z,w], where x is replaced with the X value,
-/// y is replaced with the Y value, Z is replaced with the Z value and W is replaced with the W value. For example [1,2,3,0] could be
-/// a serialized Quaternion.\n\n
-/// If MEZZXML is defined/enabled the square bracket format is replaced with proper XML output,
+/// @details This puts proper XML output to the output stream,
 /// including versioning information which will be used to maintain backwards compatibility. The current XML format
 /// will create one node with no child nodes. The name of the xml node will be "Quaternion". It will have 5 attributes.
 /// "Version", will be set to a value of 1, indicating if came from version 1 compatible Quaternion. It will also have an "X", "Y",
@@ -449,9 +445,8 @@ Ogre::Quaternion& MEZZ_LIB operator<< ( Ogre::Quaternion& Other, const btQuatern
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Quaternion& x);
 
-#ifdef MEZZXML
 /// @brief Used to de-serialize an Mezzanine::Quaternion from a stream
-/// @details If MEZZXML is enabled, this reads in the xml and sets the target vector according to values
+/// @details This reads in the xml and sets the target vector according to values
 /// from the stream.
 /// @param Vec The Mezzanine::Quaternion that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the Mezzanine::Quaternion.
@@ -460,12 +455,11 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Quate
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Quaternion& Vec);
 
 /// @brief Converts an XML node into a Mezzanine::Quaternion
-/// @details If MEZZXML is enabled, this will convert an XML::Node will a valid serialized Mezzanine::Quaternion into a Mezzanine::Quaternion
+/// @details This will convert an XML::Node will a valid serialized Mezzanine::Quaternion into a Mezzanine::Quaternion
 /// @param OneNode An XML Node containing the the text of a Quaternion
 /// @param Vec the Mezzanine::Quaternion to store the deserialized Quaternion
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Quaternion& Vec);
-#endif // \MEZZXML
 
 #endif

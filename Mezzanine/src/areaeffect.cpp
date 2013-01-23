@@ -322,7 +322,6 @@ namespace Mezzanine
         }// */
     }
 
-#ifdef MEZZXML
     void AreaEffect::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
@@ -356,7 +355,6 @@ namespace Mezzanine
 
     String AreaEffect::SerializableName()
         { return "AreaEffect"; }
-#endif
 
     ///////////////////////////////////
     // TestAE functions

@@ -89,11 +89,11 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             ActorManager();
-#ifdef MEZZXML
+
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             ActorManager(XML::Node& XMLNode);
-#endif
+
             /// @brief Class destructor.
             virtual ~ActorManager();
 
@@ -188,10 +188,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultActorManagerFactory

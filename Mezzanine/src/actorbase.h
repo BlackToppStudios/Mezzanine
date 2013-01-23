@@ -164,7 +164,6 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
             ///////////////////////////////////////
-#ifdef MEZZXML
         protected:
             /// @internal
             /// @brief a Helper function that assembles strings and throws an exception
@@ -194,7 +193,6 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Point2PointConstraint"
             static String SerializableName();
-#endif
     };
 
 } // /phys

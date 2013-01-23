@@ -133,11 +133,11 @@ namespace Mezzanine
             /// @details Standard class initialization constructor.
             /// @param InternalManagerTypeName The name of the scenemanager type to be constructed.
             SceneManager(const String& InternalManagerTypeName = "DefaultSceneManager");
-#ifdef MEZZXML
+
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             SceneManager(XML::Node& XMLNode);
-#endif
+
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~SceneManager();
@@ -488,10 +488,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultSceneManagerFactory
@@ -499,8 +499,6 @@ namespace Mezzanine
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
-#ifdef MEZZXML
-
 /// @brief Serializes the passed Mezzanine::SceneManager to XML
 /// @param stream The ostream to send the xml to.
 /// @param Ev the Mezzanine::SceneManager to be serialized
@@ -518,8 +516,6 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::SceneManage
 /// @param Ev the Mezzanine::SceneManager to be reset.
 /// @return This returns theXML::Node that was passed in.
 Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::SceneManager& Ev);
-
-#endif // \MEZZXML
 
 
 #endif

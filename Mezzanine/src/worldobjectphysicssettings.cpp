@@ -50,9 +50,7 @@
 #include "stringtool.h"
 #include "xml.h"
 
-#ifdef MEZZXML
 #include <memory>
-#endif
 
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -147,7 +145,6 @@ namespace Mezzanine
         return (Mezzanine::Physics::WorldObjectActivationState)WorldObjectCO->getActivationState();
     }
 
-#ifdef MEZZXML
     ///////////////////////////////////////////////////////////////////////////////
     // Serialization
     void WorldObjectPhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
@@ -229,7 +226,6 @@ namespace Mezzanine
 
     String WorldObjectPhysicsSettings::SerializableName()
         { return String("WorldObjectBasePhysicsSettings"); }
-#endif
 
     ///////////////////////////////////////////////////////////////////////////////
     // NonTriggerPhysicsSettings functions
@@ -279,7 +275,6 @@ namespace Mezzanine
     Real NonTriggerPhysicsSettings::GetRestitution() const
         { return WorldObjectCO->getRestitution(); }
 
-#ifdef MEZZXML
         // Serializable
         void NonTriggerPhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
         {
@@ -326,7 +321,6 @@ namespace Mezzanine
 
         String NonTriggerPhysicsSettings::SerializableName()
             { return String("NonTriggerPhysicsSettings"); }
-#endif
 }
 
 #endif

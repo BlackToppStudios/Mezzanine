@@ -147,7 +147,6 @@ namespace Mezzanine
         btCompoundShape* CompoundCollisionShape::GetBulletCompoundShape() const
             { return static_cast<btCompoundShape*>(ShapeBase); }
 
-#ifdef MEZZXML
         void CompoundCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node CollisionNode = CurrentRoot.AppendChild(this->CompoundCollisionShape::SerializableName());
@@ -221,19 +220,16 @@ namespace Mezzanine
 
         String CompoundCollisionShape::SerializableName()
             {   return String("CompoundCollisionShape"); }
-#endif
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::CompoundCollisionShape& ShapeToSerialize)
-        { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::CompoundCollisionShape& ShapeToSerialize)
+    { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::CompoundCollisionShape& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::CompoundCollisionShape& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CompoundCollisionShape& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CompoundCollisionShape& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

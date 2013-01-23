@@ -54,11 +54,7 @@
  * Copyright Ã© 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-// To provide compilation option via cmake
-
 #include "datatypes.h"
-
-#ifdef MEZZXML
 
 #ifndef _xmldoc_h
 #define _xmldoc_h
@@ -3157,8 +3153,6 @@ namespace Mezzanine
     }
 }
 #endif
-
-#endif // \MEZZXML
 
 /*
  *

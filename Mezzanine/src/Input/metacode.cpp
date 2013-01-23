@@ -288,7 +288,6 @@ namespace Mezzanine
         }
     }
     // Mike's portion of adding serializable to the metacode starts here
-    #ifdef MEZZXML
     // Serializable
     void MetaCode::ProtoSerialize(XML::Node& CurrentRoot) const
     {
@@ -331,7 +330,6 @@ namespace Mezzanine
 
     String MetaCode::SerializableName() const
         { return String("MetaCode"); }
-    #endif // end MEZZXML
     // end of mike's serializable
 }
 
@@ -342,7 +340,6 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::MetaCode& x)
     return stream;
 }
 
-#ifdef MEZZXML
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::MetaCode& x)
 /*{
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
@@ -370,6 +367,5 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
     }
 }*/
 {x.ProtoDeSerialize(OneNode); }
-#endif // \MEZZXML
 
 #endif

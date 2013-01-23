@@ -132,10 +132,8 @@ namespace Mezzanine
     Vector3::Vector3(const Mezzanine::Vector3& Vec)
         { *this = Vec; }
 
-#ifdef MEZZXML
     Vector3::Vector3(XML::Node OneNode)
         { this->ProtoDeSerialize(OneNode); }
-#endif
 
     ///////////////////////////////////////////////////////////////////////////////
     // Prebuilt Vectors
@@ -517,7 +515,6 @@ namespace Mezzanine
         this->Z=Ours.z;
     }
 
-#ifdef MEZZXML
         // Serializable
         void Vector3::ProtoSerialize(XML::Node& CurrentRoot) const
         {
@@ -561,7 +558,6 @@ namespace Mezzanine
 
         String Vector3::SerializableName()
             { return String("Vector3"); }
-#endif
 
 }
 
@@ -596,22 +592,16 @@ Mezzanine::Vector3 operator/ (const cAudio::cVector3 &Vec, const Mezzanine::Vect
 // Class External << Operators for streaming or assignment
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Vector3& x)
 {
-    #ifdef MEZZXML
-        //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\"/>";
-        Serialize(stream,x);
-    #else
-        stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
-    #endif // \MEZZXML
+    //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\"/>";
+    Serialize(stream,x);
     return stream;
 }
 
-#ifdef MEZZXML
 std::istream& operator >> (std::istream& stream, Mezzanine::Vector3& Vec)
     { return DeSerialize(stream, Vec); }
 
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec)
     { Vec.ProtoDeSerialize(OneNode); }
-#endif // \MEZZXML
 
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const Mezzanine::Vector3& VecFrom)
 {

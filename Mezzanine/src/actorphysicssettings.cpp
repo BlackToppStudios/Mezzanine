@@ -51,9 +51,7 @@
 #include "serialization.h"
 #include "stringtool.h"
 
-#ifdef MEZZXML
 #include <memory>
-#endif
 
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
@@ -119,53 +117,51 @@ namespace Mezzanine
     ActorBasePhysicsSettings* ActorBasePhysicsSettings::GetBasePointer()
         { return dynamic_cast<ActorBasePhysicsSettings*>(this); }
 
-#ifdef MEZZXML
-        // Serializable
-        void ActorBasePhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
+    // Serializable
+    void ActorBasePhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
+    {
+        XML::Node BaseNode = CurrentRoot.AppendChild(this->ActorBasePhysicsSettings::SerializableName());
+        if (!BaseNode)
+            { SerializeError("Create BaseNode", SerializableName()); }
+
+        Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
+        if (!Version)
+            { SerializeError("Create Version Attribute", SerializableName()); }
+        Version.SetValue(1);
+
+        Mezzanine::XML::Attribute CCDMotionThreshold = BaseNode.AppendAttribute("CCDMotionThreshold");
+        if (!CCDMotionThreshold)
+            { SerializeError("Create CCDMotionThreshold Attribute", SerializableName()); }
+        CCDMotionThreshold.SetValue(this->GetCCDMotionThreshold());
+
+        Mezzanine::XML::Attribute CCDSphereRadius = BaseNode.AppendAttribute("CCDSphereRadius");
+        if (!CCDSphereRadius)
+            { SerializeError("Create CCDSphereRadius Attribute", SerializableName()); }
+        CCDSphereRadius.SetValue(this->GetCCDSphereRadius());
+
+        NonTriggerPhysicsSettings::ProtoSerialize(BaseNode);
+    }
+
+    // DeSerializable
+    void ActorBasePhysicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
+    {
+        if ( Mezzanine::String(OneNode.Name())==this->ActorBasePhysicsSettings::SerializableName() )
         {
-            XML::Node BaseNode = CurrentRoot.AppendChild(this->ActorBasePhysicsSettings::SerializableName());
-            if (!BaseNode)
-                { SerializeError("Create BaseNode", SerializableName()); }
-
-            Mezzanine::XML::Attribute Version = BaseNode.AppendAttribute("Version");                            // Version
-            if (!Version)
-                { SerializeError("Create Version Attribute", SerializableName()); }
-            Version.SetValue(1);
-
-            Mezzanine::XML::Attribute CCDMotionThreshold = BaseNode.AppendAttribute("CCDMotionThreshold");
-            if (!CCDMotionThreshold)
-                { SerializeError("Create CCDMotionThreshold Attribute", SerializableName()); }
-            CCDMotionThreshold.SetValue(this->GetCCDMotionThreshold());
-
-            Mezzanine::XML::Attribute CCDSphereRadius = BaseNode.AppendAttribute("CCDSphereRadius");
-            if (!CCDSphereRadius)
-                { SerializeError("Create CCDSphereRadius Attribute", SerializableName()); }
-            CCDSphereRadius.SetValue(this->GetCCDSphereRadius());
-
-            NonTriggerPhysicsSettings::ProtoSerialize(BaseNode);
-        }
-
-        // DeSerializable
-        void ActorBasePhysicsSettings::ProtoDeSerialize(const XML::Node& OneNode)
-        {
-            if ( Mezzanine::String(OneNode.Name())==this->ActorBasePhysicsSettings::SerializableName() )
+            if(OneNode.GetAttribute("Version").AsInt() == 1)
             {
-                if(OneNode.GetAttribute("Version").AsInt() == 1)
-                {
-                    NonTriggerPhysicsSettings::ProtoDeSerialize(OneNode.GetChild(this->NonTriggerPhysicsSettings::SerializableName()));
+                NonTriggerPhysicsSettings::ProtoDeSerialize(OneNode.GetChild(this->NonTriggerPhysicsSettings::SerializableName()));
 
-                    this->SetCCDParams(OneNode.GetAttribute("CCDMotionThreshold").AsReal(),OneNode.GetAttribute("CCDSphereRadius").AsReal());
-                }else{
-                    MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for"+ (this->ActorBasePhysicsSettings::SerializableName()) + ": Not Version 1");
-                }
+                this->SetCCDParams(OneNode.GetAttribute("CCDMotionThreshold").AsReal(),OneNode.GetAttribute("CCDSphereRadius").AsReal());
             }else{
-                MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a "+ (this->ActorBasePhysicsSettings::SerializableName()) +", found a "+ OneNode.Name());
+                MEZZ_EXCEPTION(Exception::INVALID_VERSION_EXCEPTION,"Incompatible XML Version for"+ (this->ActorBasePhysicsSettings::SerializableName()) + ": Not Version 1");
             }
+        }else{
+            MEZZ_EXCEPTION(Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a "+ (this->ActorBasePhysicsSettings::SerializableName()) +", found a "+ OneNode.Name());
         }
+    }
 
-        String ActorBasePhysicsSettings::SerializableName()
-            { return String("ActorBasePhysicsSettings"); }
-#endif
+    String ActorBasePhysicsSettings::SerializableName()
+        { return String("ActorBasePhysicsSettings"); }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // ActorRigidPhysicsSettings
@@ -296,7 +292,7 @@ namespace Mezzanine
     void ActorRigidPhysicsSettings::SetMass(Real NewMass,const Vector3& NewInertia)
         { ActorRB->setMassProps(NewMass, NewInertia.GetBulletVector3()); }
 
-#ifdef MEZZXML
+
         // Serializable
     void ActorRigidPhysicsSettings::ProtoSerialize(XML::Node& CurrentRoot) const
     {
@@ -451,7 +447,6 @@ namespace Mezzanine
 
     String ActorRigidPhysicsSettings::SerializableName()
         { return String("ActorRigidPhysicsSettings"); }
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -477,7 +472,6 @@ namespace Mezzanine
 
 } // \Namespace Mezzanine
 
-#ifdef MEZZXML
 std::ostream& operator<< (std::ostream& stream, const Mezzanine::ActorBasePhysicsSettings& Ev)
     { return Serialize(stream, Ev); }
 
@@ -495,6 +489,5 @@ std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ActorRigidP
 
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigidPhysicsSettings& Ev)
     { Ev.ProtoDeSerialize(OneNode); }
-#endif // \MEZZXML
 
 #endif

@@ -359,7 +359,7 @@ namespace Mezzanine
     ObjectSettingsHandler::~ObjectSettingsHandler()
     {
     }
-#ifdef MEZZXML
+
     CountedPtr<ObjectSettingsHandler::SettingGroupVector> ObjectSettingsHandler::LoadSettingsFromFile(const String& FileName, const String& Path)
     {
         CountedPtr<SettingGroupVector> RetVec;
@@ -447,7 +447,7 @@ namespace Mezzanine
             SaveSettingSetToXML( SubSetNode, (*SubSetIt) );
         }
     }
-#endif
+
     ///////////////////////////////////////////////////////////////////////////////
     // Setting Group Handling
     void ObjectSettingsHandler::ApplySettingGroup(const String& GroupName)
@@ -493,7 +493,7 @@ namespace Mezzanine
         SettingGroups.clear();
     }
 
-#ifdef MEZZXML
+
     ///////////////////////////////////////////////////////////////////////////////
     // Setting File Handling
     ObjectSettingFile* ObjectSettingsHandler::CreateSettingFile(const String& FileName)
@@ -784,7 +784,7 @@ namespace Mezzanine
             }
         }
     }
-#endif
+
 }
 
 #endif

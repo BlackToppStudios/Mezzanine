@@ -154,11 +154,9 @@ namespace Mezzanine
         /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
         Vector3(const Mezzanine::Vector3& Vec);
 
-#ifdef MEZZXML
         /// @brief Deserializing constructor
         /// @param Vec The other Mezzanine::Vector3 to copy to make this one.
         explicit Vector3(XML::Node OneNode);
-#endif
 
         ///////////////////////////////////////////////////////////////////////////////
         // Prebuilt Vectors
@@ -488,7 +486,7 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         // Serialization
-#ifdef MEZZXML
+
         // Serializable
         /// @brief Convert this class to an XML::Node ready for serialization
         /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
@@ -502,7 +500,6 @@ namespace Mezzanine
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
         /// @return A string containing "Vector3"
         static String SerializableName();
-#endif
 
     };
 }// /Mezz
@@ -591,10 +588,7 @@ Mezzanine::Vector3 MEZZ_LIB operator/ (const cAudio::cVector3 &Vec, const Mezzan
 #ifndef SWIG
 
 /// @brief Used to Serialize an Mezzanine::Vector3 to a human readable stream
-/// @details If MEZZXML is disabled, this outputs to the format of [x,y,z], where x is replaced with the X value,
-/// y is replaced with the Y value, and Z is replaced with the Z value. For example [1,2,3] could be a serialized Vector3.\n\n
-/// If MEZZXML is defined/enabled the square bracket format is replaced with proper XML output,
-/// including versioning information which will be used to maintain backwards compatibility. The current XML format
+/// @details The current XML format
 /// will create one node with no child nodes. The name of the xml node will be "Vector3". It will have 4 attributes.
 /// "Version", will be set to a value of 1, indicating if came from version 1 compatible Vector3. It will also have an "X", "Y" and
 /// "Z" attributes will values set appropriately. For example '<Vector3 Version="1" X="1" Y="2" Z="3" />'.
@@ -603,9 +597,8 @@ Mezzanine::Vector3 MEZZ_LIB operator/ (const cAudio::cVector3 &Vec, const Mezzan
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vector3& x);
 
-#ifdef MEZZXML
 /// @brief Used to de-serialize an Mezzanine::Vector3 from a stream
-/// @details If MEZZXML is enabled, this reads in the xml and sets the target vector according to values
+/// @details This reads in the xml and sets the target vector according to values
 /// from the stream.
 /// @param Vec The Mezzanine::Vector3 that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the Mezzanine::Vector3.
@@ -614,13 +607,12 @@ std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Vecto
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Vector3& Vec);
 
 /// @brief Converts an XML node into a Mezzanine::Vector3
-/// @details If MEZZXML is enabled, this will convert an XML::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
+/// @details This will convert an XML::Node will a valid serialized Mezzanine::Vector3 into a Mezzanine::Vector3
 /// @param OneNode An XML Node containing the the text of a Vector3
 /// @param Vec the Mezzanine::Vector3 to store the deserialized Vector3
 /// @return This returns a reference to the XML::Node for operator chaining or whatever.
 /// @throw Can throw any exception that any function in the Mezzanine::xml namespace could throw in addition to a Mezzanine::Exception if the serialization version doesn't match.
 void MEZZ_LIB  operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Vector3& Vec);
-#endif // \MEZZXML
 
 /// @brief Conversion Assignment Operator to Ogre::Vector3.
 /// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.

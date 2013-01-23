@@ -40,7 +40,6 @@
 
 /// @cond 0
 
-#ifdef MEZZXML
 /*
  * pugixml parser - version 1.2
  * --------------------------------------------------------
@@ -10333,7 +10332,6 @@ namespace XML
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-#endif // \MEZZXML
 
 /// @endcond
 

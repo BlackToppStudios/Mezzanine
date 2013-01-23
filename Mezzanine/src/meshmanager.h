@@ -76,11 +76,11 @@ namespace Mezzanine
         public:
             /// @brief Class constructor.
             MeshManager();
-#ifdef MEZZXML
+
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
             MeshManager(XML::Node& XMLNode);
-#endif
+
             /// @brief Class destructor.
             virtual ~MeshManager();
 
@@ -243,10 +243,10 @@ namespace Mezzanine
             String GetManagerTypeName() const;
             /// @copydoc ManagerFactory::CreateManager(NameValuePairList&)
             ManagerBase* CreateManager(NameValuePairList& Params);
-#ifdef MEZZXML
+
             /// @copydoc ManagerFactory::CreateManager(XML::Node&)
             ManagerBase* CreateManager(XML::Node& XMLNode);
-#endif
+
             /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)
             void DestroyManager(ManagerBase* ToBeDestroyed);
     };//DefaultMeshManagerFactory

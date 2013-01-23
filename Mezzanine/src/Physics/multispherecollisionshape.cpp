@@ -91,7 +91,6 @@ namespace Mezzanine
             SetPointers(BulletShape);
         }
 
-#ifdef MEZZXML
         MultiSphereCollisionShape::MultiSphereCollisionShape(XML::Node OneNode)
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
@@ -121,7 +120,6 @@ namespace Mezzanine
                 DeSerializeError("find usable serialization version",MultiSphereCollisionShape::SerializableName());
             }
         }
-#endif // /MEZZXML
 
         MultiSphereCollisionShape::~MultiSphereCollisionShape()
         {
@@ -152,7 +150,6 @@ namespace Mezzanine
         btMultiSphereShape* MultiSphereCollisionShape::GetMultiSphereShape() const
             { return static_cast<btMultiSphereShape*>(ShapeBase); }
 
-#ifdef MEZZXML
         void MultiSphereCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node CollisionNode = CurrentRoot.AppendChild(this->MultiSphereCollisionShape::SerializableName());
@@ -203,19 +200,16 @@ namespace Mezzanine
 
         String MultiSphereCollisionShape::SerializableName()
             {   return String("MultiSphereCollisionShape"); }
-#endif
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::MultiSphereCollisionShape& ShapeToSerialize)
-        { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
+std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::MultiSphereCollisionShape& ShapeToSerialize)
+    { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
-    std::istream& operator >> (std::istream& stream, Mezzanine::Physics::MultiSphereCollisionShape& x)
-        { return Mezzanine::DeSerialize(stream, x); }
+std::istream& operator >> (std::istream& stream, Mezzanine::Physics::MultiSphereCollisionShape& x)
+    { return Mezzanine::DeSerialize(stream, x); }
 
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::MultiSphereCollisionShape& x)
-        { x.ProtoDeSerialize(OneNode); }
-#endif
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::MultiSphereCollisionShape& x)
+    { x.ProtoDeSerialize(OneNode); }
 
 #endif

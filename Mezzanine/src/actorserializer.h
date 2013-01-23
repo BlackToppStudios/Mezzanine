@@ -61,7 +61,6 @@ namespace Mezzanine
     /// @brief This creates Rigid body actors and inserts them into a given ActorManager.
     class MEZZ_LIB ActorRigidDeSerializer : public DeSerializer <ActorRigid>
     {
-        #ifdef MEZZXML
 
         protected:
             /// This should point to a specific Actor Manager
@@ -86,7 +85,6 @@ namespace Mezzanine
             /// @return A String containing "RigidActors".
             virtual String ContainerName() const;
 
-        #endif // \MEZZXML
     };
 }
 

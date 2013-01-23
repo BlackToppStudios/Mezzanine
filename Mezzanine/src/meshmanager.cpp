@@ -55,13 +55,11 @@ namespace Mezzanine
         this->Priority = 50;
     }
 
-#ifdef MEZZXML
     MeshManager::MeshManager(XML::Node& XMLNode)
     {
         this->Priority = 50;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
     }
-#endif
 
     MeshManager::~MeshManager()
     {

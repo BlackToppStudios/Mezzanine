@@ -430,7 +430,6 @@ namespace Mezzanine
         this->Construct(Info);
     }
 
-#ifdef MEZZXML
     PhysicsManager::PhysicsManager(XML::Node& XMLNode)
         : BulletDrawer(NULL),
           SimulationPaused(false),
@@ -495,7 +494,6 @@ namespace Mezzanine
             }
         }
     }
-#endif
 
     PhysicsManager::PhysicsManager(const PhysicsConstructionInfo& Info)
         : BulletDrawer(NULL),

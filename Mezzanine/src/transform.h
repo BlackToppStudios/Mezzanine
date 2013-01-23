@@ -112,7 +112,6 @@ namespace Mezzanine
             /// @return A reference to the freshly overwritten Transform.
             Transform& operator= (const btTransform& rhs);
 
-#ifdef MEZZXML
             ///////////////////////////////////////////////////////////////////////////////
             // Serialization
 
@@ -130,7 +129,6 @@ namespace Mezzanine
             /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
             /// @return A string containing "Transform"
             static String SerializableName();
-#endif // /MEZZXML
 
     };
 }

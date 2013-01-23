@@ -42,11 +42,7 @@
 
 /// @file
 /// @brief The interface for serialization
-/// @details If MEZZXML is disabled parts of this file are still included. Primarily the fact
-/// that the classes still exist. That minimizes the need for preprocessor directives in child
-/// class declaration and should still be optimized out of release builds.
 
-#ifdef MEZZXML
     #include "datatypes.h"
     #include "xml.h"
     #include "xmldoc.h"
@@ -56,7 +52,6 @@
         #include <ostream>
         #include <memory>
     #endif
-#endif
 
 namespace Mezzanine
 {
@@ -247,11 +242,9 @@ namespace Mezzanine
     /// in the Mezzanine engine.
     ///
     /// Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be
-    /// made into a template. That doesn't mean that they are difficult to implemt. Here is a typical implemenation of stream
+    /// made into a template. That doesn't mean that they are difficult to implement. Here is a typical implemenation of stream
     /// insertion operators for XML serialization:
     /// @code
-    /// #ifdef MEZZXML
-    ///
     /// std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigid& ActorToSerialize)
     /// {
     ///     Serialize(stream, ActorToSerialize);
@@ -264,13 +257,9 @@ namespace Mezzanine
     /// void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x)
     ///     { x.ProtoDeSerialize(OneNode); }
     ///
-    /// #endif  // \Mezzxml
     /// @endcode
     /// You will want to implement these functions with the appropriate type. The type Mezzanine::ActorRigid is used purely as example
-    /// Though this is actual working code and was in the engine at one point.
-    /// The "#ifdef MEZZXML" Tells the compiler to skip this chunk of code if MEZZXML is not enable. Since this is a configuration
-    /// option of the engine you may wish for you code to be aware of it. More sophisticate handling of this is possible, for example
-    /// The Mezzanine::Vector3 emits a string in the form of [X,Y,Z], if Mezzxml is not enabled.
+    /// Though this is actual working code and was in the engine at one point, the current code is more sophiscticated
     /// \n \n
     /// The function operator<< simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize
     /// function listed in the @ref serializationmaking section.
@@ -304,7 +293,6 @@ namespace Mezzanine
     template <class Serializable>
     class Serializer
     {
-        #ifdef MEZZXML
         public:
         /// @brief Get all of the data from the serializable class instance
         /// @details This is to be implemented in individual serializer with logic
@@ -350,7 +338,6 @@ namespace Mezzanine
             return Stream;
         }
 
-        #endif
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -367,7 +354,6 @@ namespace Mezzanine
     template <class DeSerializable>
     class DeSerializer
     {
-        #ifdef MEZZXML
         public:
         /// @brief Convert An XML Node into a complete series of live class instances
         /// @param OneNode A reference to the XML node to reconstitute into multiple Live classes.
@@ -418,10 +404,8 @@ namespace Mezzanine
         /// @brief This will return the Name of the element that Contains multiple of the items to be DeSerialized
         /// @return A String that correctly indicates the name of an xml tag.
         virtual String ContainerName() const = 0;
-        #endif
     };
 
-    #ifdef MEZZXML
     /// @brief Convert any class that supports serialization or has a serializer to a string of chars in a stream
     /// @details Any Class will work with this template as long as it implements the method "XML::Node ProtoSerialize(XML::Document&) const"
     /// @param Stream The ostream to put the serializable into.
@@ -488,7 +472,6 @@ namespace Mezzanine
     /// A little more readable.
     void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD = false);
 
-    #endif // \MEZZXML
 
 } // /Namespace Mezzanine
 

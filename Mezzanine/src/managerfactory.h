@@ -68,12 +68,10 @@ namespace Mezzanine
             /// @param Params A NameValuePairList containing the params to be applied during construction.
             /// @return Returns a pointer to the manager created.
             virtual ManagerBase* CreateManager(NameValuePairList& Params) = 0;
-#ifdef MEZZXML
             /// @brief Creates a manager from XML.
             /// @param XMLNode The node of the xml document to construct from.
             /// @return Returns a pointer to the manager created.
             virtual ManagerBase* CreateManager(XML::Node& XMLNode) = 0;
-#endif
             /// @brief Destroys a Manager created by this factory.
             /// @param ToBeDestroyed A pointer to the manager to be destroyed.
             virtual void DestroyManager(ManagerBase* ToBeDestroyed) = 0;

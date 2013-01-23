@@ -56,7 +56,7 @@ namespace Mezzanine
 #include "Input/controller.h"
 #include "Input/device.h"
 #include "Input/keyboard.h"
-#include "Input/metacode.h"                   // done
+#include "Input/metacode.h"
 #include "Input/mouse.h"
 
 #endif

@@ -267,7 +267,6 @@ namespace Mezzanine
 ///////////////////////////////////////////////////////////////////////////////
 // Serialization
 ///////////////////////////////////////
-#ifdef MEZZXML
     void ActorRigid::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, SerializableName()); }
 
@@ -339,11 +338,9 @@ namespace Mezzanine
 
     String ActorRigid::SerializableName()
         {   return String("ActorRigid"); }
-#endif  // \mezzxml
 
 }
 
-#ifdef MEZZXML
 std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigid& ActorToSerialize)
 {
     Serialize(stream, ActorToSerialize);
@@ -356,7 +353,5 @@ std::istream& operator >> (std::istream& stream, Mezzanine::ActorRigid& x)
 void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::ActorRigid& x)
     { x.ProtoDeSerialize(OneNode); }
 
-
-#endif  // \mezzxml
 
 #endif

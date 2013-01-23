@@ -70,7 +70,6 @@ namespace Mezzanine
         CapsuleCollisionShape::CapsuleCollisionShape(const String& Name, const Real& Radius, const Real& Height, StandardAxis UpAxis)
             { this->Construct(Name,Radius,Height,UpAxis); }
 
-#ifdef MEZZXML
         CapsuleCollisionShape::CapsuleCollisionShape(XML::Node OneNode)
         {
             if(OneNode.GetAttribute("Version").AsInt() == 1)
@@ -97,7 +96,6 @@ namespace Mezzanine
                 DeSerializeError("find usable serialization version",CapsuleCollisionShape::SerializableName());
             }
         }
-#endif // /MEZZXML
 
         CapsuleCollisionShape::CapsuleCollisionShape(const String& Name, btCapsuleShape* BulletShape)
         {
@@ -138,7 +136,6 @@ namespace Mezzanine
         btCapsuleShape* CapsuleCollisionShape::GetBulletCapsuleShape() const
             { return static_cast<btCapsuleShape*>(ShapeBase); }
 
-#ifdef MEZZXML
         void CapsuleCollisionShape::ProtoSerialize(XML::Node& CurrentRoot) const
         {
             XML::Node CollisionNode = CurrentRoot.AppendChild(this->CapsuleCollisionShape::SerializableName());
@@ -191,11 +188,9 @@ namespace Mezzanine
 
         String CapsuleCollisionShape::SerializableName()
             {   return String("CapsuleCollisionShape"); }
-#endif
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
     std::ostream& operator << (std::ostream& stream, const Mezzanine::Physics::CapsuleCollisionShape& ShapeToSerialize)
         { Mezzanine::Serialize(stream, ShapeToSerialize); return stream; }
 
@@ -204,6 +199,5 @@ namespace Mezzanine
 
     void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::CapsuleCollisionShape& x)
         { x.ProtoDeSerialize(OneNode); }
-#endif
 
 #endif

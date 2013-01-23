@@ -283,7 +283,7 @@ namespace Mezzanine
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Constraint Serialization
-#ifdef MEZZXML
+
                 // Serializable
                 /// @brief Convert this class to an XML::Node ready for serialization
                 /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.
@@ -302,29 +302,27 @@ namespace Mezzanine
                 /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
                 /// @return A string containing "Constraint"
                 static String SerializableName();
-#endif
+
         };//Constraint
     }//Physics
 }//Mezzanine
 
-#ifdef MEZZXML
-    ///////////////////////////////////////////////////////////////////////////////
-    // Class External << Operators for streaming or assignment
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
 
-    /// @brief Convert a constraint to XML and send it down a stream.
-    /// @param stream The stream to send it down.
-    /// @param x The constraint to send down.
-    /// @return This returns the output stream to allow operator chaining.
-    std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x);
-    /// @brief Get a constraint from an XML stream.
-    /// @param stream The stream to get it out of.
-    /// @param x The it you will get out of the stream.
-    /// @return This returns the input stream to allow operator chaining.
-    std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x);
-    /// @brief Converts an XML Node into a functional in memory construct.
-    /// @param OneNode The xml node that contains the deserialize class instance.
-    /// @param x The class instance to overwrite witht the proto serialized version in the node.
-    void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x);
-#endif // \MEZZXML
+/// @brief Convert a constraint to XML and send it down a stream.
+/// @param stream The stream to send it down.
+/// @param x The constraint to send down.
+/// @return This returns the output stream to allow operator chaining.
+std::ostream& MEZZ_LIB operator << (std::ostream& stream, const Mezzanine::Physics::Constraint& x);
+/// @brief Get a constraint from an XML stream.
+/// @param stream The stream to get it out of.
+/// @param x The it you will get out of the stream.
+/// @return This returns the input stream to allow operator chaining.
+std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::Physics::Constraint& x);
+/// @brief Converts an XML Node into a functional in memory construct.
+/// @param OneNode The xml node that contains the deserialize class instance.
+/// @param x The class instance to overwrite witht the proto serialized version in the node.
+void operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::Physics::Constraint& x);
 
 #endif

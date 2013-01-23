@@ -88,7 +88,7 @@ namespace Mezzanine
         { this->ExtractOgrePlane(Plane2); }
 
 }
-#ifdef MEZZXML
+
 std::ostream& operator << (std::ostream& stream, const Mezzanine::Plane& x)
 {
     stream << "<Plane Version=\"1\" Distance=\"" << x.Distance << "\" >" << x.Normal << "</Plane>";
@@ -126,7 +126,5 @@ Mezzanine::XML::Node& MEZZ_LIB operator >> (const Mezzanine::XML::Node& OneNode,
         MEZZ_EXCEPTION(Mezzanine::Exception::II_IDENTITY_INVALID_EXCEPTION,"Attempting to deserialize a Plane, found a " + Mezzanine::String(OneNode.Name()));
     }
 }
-
-#endif // \Mezz_xml
 
 #endif
