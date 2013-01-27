@@ -60,6 +60,7 @@
 #include "Physics/compoundcollisionshape.h"
 
 // For logging
+#include "stringtool.h"
 #include "entresol.h"
 
 #include <Ogre.h>
@@ -640,7 +641,7 @@ namespace Mezzanine
                 }
             }else{
                 static Whole NameCount = 0;
-                Name = String("Unnamed")+=ToString(NameCount++);
+                Name = String("Unnamed")+=StringTools::ConvertToString(NameCount++);
                 Physics::CollisionShape* NewShape = WrapShape(Name,Shape);
                 UnnamedShapes.insert(NewShape);
             }

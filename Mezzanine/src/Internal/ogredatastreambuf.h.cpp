@@ -48,6 +48,7 @@
 #include <streambuf>
 
 #include <Ogre.h>
+#include "entresol.h"
 
 #ifdef MEZZDEBUG
 #include "entresol.h"

@@ -237,7 +237,7 @@
 */
 
 //And now for actual source code!
-
+#include "stringtool.h"
 #include "crossplatform.h"
 #include "eventbase.h"
 #include "exception.h"
@@ -460,7 +460,7 @@ namespace Mezzanine
             /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
             /// Only ones to produce meaningul log messages.
             template <class T> void Log(const T& Message)
-                { this->LogString(ToString(Message)); }
+                { this->LogString(StringTools::ConvertToString(Message)); }
 
             /// @brief Force any outstanding logs to be commited to logs
             void Log();

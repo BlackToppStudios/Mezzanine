@@ -194,7 +194,7 @@ namespace Mezzanine
 
             for (int c=0; c<6; ++c)                                                                         // Each of the spring attributes
             {
-                String AttrName("Axis"+ToString(c));
+                String AttrName("Axis"+StringTools::ConvertToString(c));
 
                 Mezzanine::XML::Attribute AxisStiffness = SpringStiffness.AppendAttribute(AttrName);
                 if (!AxisStiffness)

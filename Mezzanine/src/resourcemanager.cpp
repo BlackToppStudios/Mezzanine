@@ -60,12 +60,13 @@
     #include <WinBase.h>
     #include <Shlobj.h> // for getting system directories
     #include <direct.h> // for _getcwd
-#elif MACOS
+#elif MACOSX
     #include <CoreServices/CoreServices.h>
     #include <unistd.h>//for sleep and getcwd
 	#include <errno.h>
 	#include <sys/stat.h>
 	#include <sys/types.h>
+    #include "pwd.h"
 #else
 	#include <unistd.h>//for sleep and getcwd
 	#include <errno.h>
@@ -275,7 +276,7 @@ namespace Mezzanine
         }
 
         // might be some useful MAC OS X code
-        /*#elif MACOS
+        /*#elif MACOSX
         FSRef ref;
         OSType folderType = kApplicationSupportFolderType;
         char path[PATH_MAX];
@@ -433,7 +434,7 @@ namespace Mezzanine
                 return ".dll";
         #elif LINUX
                 return ".so";
-        #elif MACOS
+        #elif MACOSX
                 return ".dylib";
         #endif
     }

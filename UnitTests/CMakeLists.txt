@@ -175,17 +175,15 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
 
 	include_directories(
-		${${PROJECT_NAME}_ROOT_DIR}/libincludes/common/sdlsrc/SDL/include
-		${OPENAL_INCLUDE_DIR}
-		"${OGRE_INCLUDE_DIR}"
-		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
-		"${OGG_INCLUDE_DIR}"
+		${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
+		${Mezzanine_OgreBuildDir}/ogre/include/
 	)
-endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
+endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
 ##############################################################################
 #Executable definitions
 include_directories(

@@ -497,11 +497,21 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
+<<<<<<< HEAD
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
         add_definitions( -DMACOSX)
         message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+=======
+if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
+
+
+	add_definitions( -DMACOSX)
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
+>>>>>>> 1ae99388858b4e05c79cdf797a6bff278cda1ccf
 
 ###############################################################################
 # Common Library Configuration items
@@ -648,6 +658,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac File Copy Specific Items
+<<<<<<< HEAD
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
         CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
@@ -655,6 +666,15 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
         message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+=======
+if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
+	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
+	#CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
+
+	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
+endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
+>>>>>>> 1ae99388858b4e05c79cdf797a6bff278cda1ccf
 
 ###############################################################################
 # The End
