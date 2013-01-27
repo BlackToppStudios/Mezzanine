@@ -233,11 +233,11 @@ CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt )
 
-CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/plugins.cfg )
-CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName})
-CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginCGPM} data/ogre/${OgrePluginCGPM} )
-CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} data/ogre/${OgrePluginRenderGL} )
-CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginParticle} data/ogre/${OgrePluginParticle} )
+#CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/plugins.cfg )
+#CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName})
+#CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginCGPM} data/ogre/${OgrePluginCGPM} )
+#CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} data/ogre/${OgrePluginRenderGL} )
+#CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginParticle} data/ogre/${OgrePluginParticle} )
 
 #The Engine itself
 CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
@@ -248,11 +248,7 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( data/windows/ogre/cg${OgresD}.dll )
 	CopyFilesFromMezzanineDuringBuild( Mezzanine.dll )
-	CopyFilesFromMezzanineDuringBuild( libboost_thread-mgw45-mt-1_44.dll )
-	CopyFilesFromMezzanineDuringBuild( OpenAL32.dll )
-	CopyFilesFromMezzanineDuringBuild( wrap_oal.dll )
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
@@ -263,7 +259,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 		${Mezz_OgreBuildDir}/ogre/OgreMain/include/
 		${Mezz_OgreBuildDir}/ogre/include/
 	)
-	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
 	CopyFilesFromMezzanineDuringBuildAndRename( data/linux/GLX_icon.png data/GLX_icon.png )
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")

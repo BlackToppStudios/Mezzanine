@@ -198,18 +198,6 @@ function(CopyFilesFromMezzanineDuringBuild FileName Target)
 	)
 endfunction(CopyFilesFromMezzanineDuringBuild)
 
-#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
-#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
-function(CreateSymlinkDuringBuild Targeting LinkName)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
-		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
-		VERBATIM
-	)
-endfunction(CreateSymlinkDuringBuild)
-
 function(CreateDirectoryStructure)
 	add_custom_command(
 		TARGET ${PROJECT_NAME}
@@ -283,12 +271,7 @@ if(${UseCatchArchives})
 endif(${UseCatchArchives})
 
 #Ogre stuff
-CopyFilesDuringBuild( data/${BuildPlatform}/plugins${OgresD}.cfg ${PluginDir}plugins.cfg)
-
-CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName} ${GameDir}${OgreLibFileName})
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginCGPM} ${PluginDir}${OgrePluginCGPM} )
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} ${PluginDir}${OgrePluginRenderGL} )
-CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/${OgrePluginParticle} ${PluginDir}${OgrePluginParticle} )
+#CopyFilesDuringBuild( data/${BuildPlatform}/plugins${OgresD}.cfg ${PluginDir}plugins.cfg)
 
 #The Engine itself
 CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
@@ -299,18 +282,12 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/ogre/cg${OgresD}.dll ${GameDir}cg${OgresD}.dll )
-	CopyFilesFromMezzanineDuringBuild( libboost_thread-mgw45-mt-1_44.dll ${GameDir}libboost_thread-mgw45-mt-1_44.dll )
-	CopyFilesFromMezzanineDuringBuild( OpenAL32.dll ${GameDir}OpenAL32.dll )
-	CopyFilesFromMezzanineDuringBuild( wrap_oal.dll ${GameDir}wrap_oal.dll )
-	#CopyFilesFromMezzanineDuringBuild( SDL.dll ${GameDir}SDL.dll )
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-	CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName}  )
 	CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/GLX_icon.png ${PluginDir}GLX_icon.png )
 	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -319,9 +296,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 if(${APPLE})
 	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 #	CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
-	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
-	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
-	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib Mezzanine.dylib )
 #	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
 	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})

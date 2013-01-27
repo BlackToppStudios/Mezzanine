@@ -116,7 +116,7 @@ include_directories(
 )
 
 # Where to dump the results
-set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/lua51/")
+#set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/lua51/")
 #set (LIBRARY_OUTPUT_PATH "${LIBRARY_OUTPUT_PATH}data/${BuildPlatform}/lua51/")
 message ( STATUS "Putting lua binaries in: ${LIBRARY_OUTPUT_PATH}")
 

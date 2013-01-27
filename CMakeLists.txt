@@ -71,15 +71,15 @@
 #        OgrePluginCGPM                        - The File name of the Ogre CG manager plugin
 #        OgrePluginRenderGL                - The File name of the Ogre OpenGL rendersystem plugin
 #        OgrePluginParticle                - The File name of the Ogre ParticleFX plugin
-#       OgreConfigHeaderIncludeDir      - The Folder where Ogre puts its configured Headers. This is only needed by subprojects if they link directly against Ogre.
-#       OgreHeaderIncludeDir            - The Folder where all the non-configured headers go. This is only needed by subprojects if they link directly against Ogre.
+#        OgreConfigHeaderIncludeDir      - The Folder where Ogre puts its configured Headers. This is only needed by subprojects if they link directly against Ogre.
+#        OgreHeaderIncludeDir            - The Folder where all the non-configured headers go. This is only needed by subprojects if they link directly against Ogre.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
 #        BuildPlatform                        - A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the Mezzanine engine repository.
 #        CommonBuildFlags                 - A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Mezz_Debug's and Mezz_Profile's settings.
-#        LibPrefix                        - This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
-#        LibSuffix                        - This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
+#        DynamicLibPrefix                        - This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
+#        DynamicLibSuffix                        - This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
 #        LuaLinkName                        - This is the name that of the actual compiled lua library, it will be blank if lua is not to be linked
 #        LuaProject                        - The Name of the lua cmake project
 #        MezzanineLinkName                - What should be entered when somethings needs to link against Mezzanine usually "Mezzanine" sometime it specifies and import library, like
@@ -105,28 +105,31 @@ Message(STATUS "Putting all major output in: ${ProjectBinaryDir}")
 
 ###############################################################################
 # Set Platform Specific Variables
-set(LibPrefix "")
-set(LibSuffix "")
+set(DynamicLibPrefix "")
+set(DynamicLibSuffix "")
+set(StaticLibPrefix "")
+set(StaticLibSuffix ".a")
 
 if(${WIN32})
         set(BuildPlatform windows)
-        set(LibSuffix .dll)
+        set(DynamicLibSuffix .dll)
         add_definitions( -DWINDOWS )
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         set(BuildPlatform linux)
-        set(LibPrefix lib)
-        set(LibSuffix .so)
+        set(DynamicLibPrefix lib)
+        set(DynamicLibSuffix .so)
         add_definitions( -DLINUX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         set(BuildPlatform macosx)
+	set(DynamicLibSuffix .dylib)
         add_definitions( -DMACOSX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
-set(MezzanineLibFileName ${LibPrefix}Mezzanine${LibSuffix})
+set(MezzanineLibFileName ${DynamicLibPrefix}Mezzanine${DynamicLibSuffix})
 
 set(MezzanineLinkName "Mezzanine")
 if(${WIN32})
@@ -248,9 +251,9 @@ else(${Mezz_Debug})
 endif(${Mezz_Debug})
 
 #This must be set manually each time ogre is upgraded.
-set(Mezz_UseOgreVersion 1.8.0 CACHE STRING "The version of the ogre libraries to link against")
+set(Mezz_UseOgreVersion 1.8.1 CACHE STRING "The version of the ogre libraries to link against")
 
-set(OgreLibFileName ${LibPrefix}${OgreLinkName}${LibSuffix})
+set(OgreLibFileName ${StaticLibPrefix}${OgreLinkName}${StaticLibSuffix})
 set(OgreLinuxSoName ${OgreLibFileName}.${Mezz_UseOgreVersion})                #This value is gibberish on non-Linux platforms
 
 set(OgreConfigHeaderIncludeDir "${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include/")
@@ -260,9 +263,12 @@ set(OgreHeaderIncludeDir "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/
 Message(STATUS "Putting Ogre3d headers in: ${OgreHeaderIncludeDir}")
 
 # Ogre Plugins
-set(OgrePluginCGPM Plugin_CgProgramManager${OgresD}${LibSuffix})
-set(OgrePluginRenderGL RenderSystem_GL${OgresD}${LibSuffix})
-set(OgrePluginParticle Plugin_ParticleFX${OgresD}${LibSuffix})
+set(OgrePluginCGPM ${StaticLibPrefix}Plugin_CgProgramManager${OgresD}${StaticLibSuffix})
+set(OgrePluginRenderGL ${StaticLibPrefix}RenderSystem_GL${OgresD}${StaticLibSuffix})
+set(OgrePluginParticle ${StaticLibPrefix}Plugin_ParticleFX${OgresD}${StaticLibSuffix})
+
+set(OgreLibraryAllNames ${OgreLinkName} RenderSystem_GL Plugin_ParticleFX Plugin_CgProgramManager)
+set(OgreDepName Ogre)
 
 ###############################################################################
 # Network Library Define
@@ -299,8 +305,8 @@ set(SDLLibraryNames
 
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
-set(CommonBuildFlags "${Mezz_Debug_Arguments} ${Mezz_Profile_Arguments}  ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${FPIC}")
-#message(FATAL_ERROR ${CommonBuildFlags}) #${Mezz_XML_Arguments}
+set(CommonBuildFlags "${Mezz_Debug_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${FPIC}")
+#message(FATAL_ERROR ${CommonBuildFlags})
 
 ###############################################################################
 # Add subprojects
@@ -315,7 +321,7 @@ Message(STATUS "Finishing Subproject Configuration.")
 ###############################################################################
 # Hide Variables not directly related to the Mezzanine Engine
 mark_as_advanced( FORCE
-    
+
         # Mezzanine options
         Mezz_ForceBuildType Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
 
@@ -354,7 +360,38 @@ mark_as_advanced( FORCE
         ARTS_CONFIG D_NAS_LIB XCURSOR_LIB XEXT_LIB XI_LIB XINERAMA_LIB XRANDR_LIB XRENDER_LIB XSS_LIB XXF86VM_LIB X11_LIB
 
         # Ogre indirect
-        Boost_DIR
+        Boost_DIR Boost_LIB_DIAGNOSTIC_DEFINITIONS OGRE_SET_USE_BOOST
+        DirectX_DINPUT8_LIBRARY
+        Cg_LIBRARY_REL Cg_LIBRARY_DBG Cg_INCLUDE_DIR
+
+        # Ogre
+        OGRE_STATIC
+        OGRE_BUILD_RENDERSYSTEM_D3D9
+        OGRE_BUILD_RENDERSYSTEM_D3D11
+        OGRE_BUILD_RENDERSYSTEM_GL
+        OGRE_BUILD_RENDERSYSTEM_GLES
+        OGRE_BUILD_RENDERSYSTEM_GLES2
+        OGRE_BUILD_PLATFORM_APPLE_IOS
+        OGRE_BUILD_PLATFORM_NACL
+        OGRE_BUILD_PLUGIN_BSP
+        OGRE_BUILD_PLUGIN_OCTREE
+        OGRE_BUILD_PLUGIN_PFX
+        OGRE_BUILD_PLUGIN_PCZ
+        OGRE_BUILD_COMPONENT_PAGING
+        OGRE_BUILD_COMPONENT_TERRAIN
+        OGRE_BUILD_COMPONENT_PROPERTY
+        OGRE_BUILD_PLUGIN_CG
+        OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
+        OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
+        OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS
+        OGRE_BUILD_SAMPLES
+        OGRE_BUILD_TOOLS
+        OGRE_BUILD_XSIEXPORTER
+        OGRE_BUILD_TESTS
+        OGRE_CONFIG_DOUBLE
+        OGRE_DEPENDENCIES_DIR
+        OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_MEMTRACK_DEBUG OGRE_CONFIG_MEMTRACK_RELEASE
+        OGRE_UNITY_BUILD OGRE_UNITY_FILES_PER_UNIT
 )
 
 message("${PROJECT_NAME} - Finishing Configuration")

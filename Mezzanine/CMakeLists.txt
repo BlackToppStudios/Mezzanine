@@ -461,30 +461,6 @@ function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
         )
 endfunction(CopyFilesDuringBuild)
 
-#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
-#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
-function(CreateSymlinkDuringBuild Targeting LinkName)
-        add_custom_command(
-                TARGET ${PROJECT_NAME}
-                PRE_LINK
-                COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
-                COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
-                VERBATIM
-        )
-endfunction(CreateSymlinkDuringBuild)
-
-#Description: This function copies items from the root directory into it's expected location in the data/library directory During build time. It does not need leading slashes
-#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
-function(CopyLibraryDuringBuild SourceFile TargetFileInLibraryDir)
-        add_custom_command(
-                TARGET ${PROJECT_NAME}
-                PRE_LINK
-                COMMAND ${CMAKE_COMMAND} -E echo "Preparing Library: ${${PROJECT_NAME}_LIBBINARY_DIR}${TargetFileInLibraryDir}"
-                COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_ROOT_DIR}${SourceFile}" "${${PROJECT_NAME}_LIBBINARY_DIR}${TargetFileInLibraryDir}"
-                VERBATIM
-        )
-endfunction(CopyLibraryDuringBuild)
-
 ###############################################################################
 # System Build Items
 #######################################
@@ -494,6 +470,9 @@ endfunction(CopyLibraryDuringBuild)
 
 set(LIBTYPE "STATIC") # OpenAL
 file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL build process
+set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
+#set(OGRE_STATIC_LIB TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
+set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
 
 #######################################
 # Windows Build Specific Items
@@ -598,16 +577,15 @@ endif(${Mezz_Lua51})
 
 #######################################
 # Library Link Dependencies
-add_dependencies( ${PROJECT_NAME} Ogre ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
+add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
 
 target_link_libraries( ${PROJECT_NAME}                                 # Link to all of the Mezzanine Dependencies
-        ${OgreLinkName}
+        ${OgreLibraryAllNames}
         ${LuaLinkName}
         ${Bullet_LibraryNames}
         ${SDLLibraryNames}
         ${NetworkLibrary}
         ${SoundLibraryNames}
-        RenderSystem_GL Plugin_ParticleFX Plugin_CgProgramManager
 )
 
 ###############################################################################
@@ -630,11 +608,11 @@ CopyFilesDuringBuild( common/gpl-2.0.txt data/common/gpl-2.0.txt )
 CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
 
 # Ogre
-CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
-CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle} data/${BuildPlatform}/ogre/${OgrePluginParticle} )
-CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
-CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
-CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/${BuildPlatform}/plugins.cfg )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginParticle} data/${BuildPlatform}/ogre/${OgrePluginParticle} )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginCGPM} data/${BuildPlatform}/ogre/${OgrePluginCGPM} )
+#CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreLibFileName} ${OgreLibFileName} )
+#CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/${BuildPlatform}/plugins.cfg )
 
 # We should use the new variables to copy the ogre files and Mezzanine library in the common code.
 
@@ -664,7 +642,6 @@ endif(${WIN32})
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
         message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
         CopyFilesDuringBuild( ${BuildPlatform}/GLX_icon.png data/${BuildPlatform}/GLX_icon.png )
-        CreateSymlinkDuringBuild( ${OgreLibFileName} ${OgreLinuxSoName} )
         message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
