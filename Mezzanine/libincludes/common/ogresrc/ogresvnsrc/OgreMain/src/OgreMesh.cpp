@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -420,6 +420,7 @@ namespace Ogre {
 		newMesh->mIsLodManual = mIsLodManual;
 		newMesh->mNumLods = mNumLods;
 		newMesh->mMeshLodUsageList = mMeshLodUsageList;
+        newMesh->mAutoBuildEdgeLists = mAutoBuildEdgeLists;
         // Unreference edge lists, otherwise we'll delete the same lot twice, build on demand
         MeshLodUsageList::iterator lodi;
         for (lodi = newMesh->mMeshLodUsageList.begin(); lodi != newMesh->mMeshLodUsageList.end(); ++lodi) {
@@ -459,12 +460,10 @@ namespace Ogre {
 		newMesh->mSharedVertexDataAnimationType = mSharedVertexDataAnimationType;
 		newMesh->mAnimationTypesDirty = true;
 
-
         newMesh->load();
         newMesh->touch();
 
         return newMesh;
-
     }
     //-----------------------------------------------------------------------
     const AxisAlignedBox& Mesh::getBounds(void) const
@@ -730,15 +729,16 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     void  Mesh::_compileBoneAssignments(void)
     {
-        unsigned short maxBones =
-            _rationaliseBoneAssignments(sharedVertexData->vertexCount, mBoneAssignments);
+		if (sharedVertexData)
+		{
+			unsigned short maxBones = _rationaliseBoneAssignments(sharedVertexData->vertexCount, mBoneAssignments);
 
-        if (maxBones != 0)
-        {
-            compileBoneAssignments(mBoneAssignments, maxBones, 
-                sharedBlendIndexToBoneIndexMap, sharedVertexData);
-        }
-
+			if (maxBones != 0)
+			{
+				compileBoneAssignments(mBoneAssignments, maxBones, 
+					sharedBlendIndexToBoneIndexMap, sharedVertexData);
+			}
+		}
         mBoneAssignmentsOutOfDate = false;
     }
     //---------------------------------------------------------------------
@@ -1264,7 +1264,7 @@ namespace Ogre {
 			{
 				tangentsCalc.clear();
 				tangentsCalc.setVertexData(sm->vertexData);
-				tangentsCalc.addIndexData(sm->indexData);
+                tangentsCalc.addIndexData(sm->indexData, sm->operationType);
 				TangentSpaceCalc::Result res = 
 					tangentsCalc.build(targetSemantic, sourceTexCoordSet, index);
 

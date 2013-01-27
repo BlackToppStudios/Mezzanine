@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -551,7 +551,7 @@ namespace Ogre {
     size_t FileStreamDataStream::read(void* buf, size_t count)
     {
 		mInStream->read(static_cast<char*>(buf), static_cast<std::streamsize>(count));
-        return mInStream->gcount();
+        return (size_t)mInStream->gcount();
     }
 	//-----------------------------------------------------------------------
 	size_t FileStreamDataStream::write(const void* buf, size_t count)
@@ -586,7 +586,7 @@ namespace Ogre {
 		}
 		// maxCount + 1 since count excludes terminator in getline
 		mInStream->getline(buf, static_cast<std::streamsize>(maxCount+1), delim.at(0));
-		size_t ret = mInStream->gcount();
+		size_t ret = (size_t)mInStream->gcount();
 		// three options
 		// 1) we had an eof before we read a whole line
 		// 2) we ran out of buffer space

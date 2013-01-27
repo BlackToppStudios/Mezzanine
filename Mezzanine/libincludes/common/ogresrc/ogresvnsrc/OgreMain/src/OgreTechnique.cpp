@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -611,7 +611,8 @@ namespace Ogre {
 		{
 			// in case we could not get material as it wasn't yet parsed/existent at that time.
 			mShadowCasterMaterial = MaterialManager::getSingleton().getByName(mShadowCasterMaterialName);
-			mShadowCasterMaterial->load();
+            if (!mShadowCasterMaterial.isNull())
+			    mShadowCasterMaterial->load();
 		}
 		if (!mShadowReceiverMaterial.isNull())
 		{
@@ -621,7 +622,8 @@ namespace Ogre {
 		{
 			// in case we could not get material as it wasn't yet parsed/existent at that time.
 			mShadowReceiverMaterial = MaterialManager::getSingleton().getByName(mShadowReceiverMaterialName);
-			mShadowReceiverMaterial->load();
+            if (!mShadowReceiverMaterial.isNull())
+			    mShadowReceiverMaterial->load();
 		}
     }
     //-----------------------------------------------------------------------------

@@ -194,7 +194,7 @@ extern "C" {
 #define WGL_SHARE_ACCUM_EXT            0x200E
 #define WGL_SUPPORT_GDI_EXT            0x200F
 #define WGL_SUPPORT_OPENGL_EXT         0x2010
-#define WGL_DOUBLE_BUFFER_EXT          0x2012
+#define WGL_DOUBLE_BUFFER_EXT          0x2011
 #define WGL_STEREO_EXT                 0x2012
 #define WGL_PIXEL_TYPE_EXT             0x2013
 #define WGL_COLOR_BITS_EXT             0x2014

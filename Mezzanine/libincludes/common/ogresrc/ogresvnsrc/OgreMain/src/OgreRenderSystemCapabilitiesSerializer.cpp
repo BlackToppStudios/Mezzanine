@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -457,6 +457,7 @@ namespace Ogre
         addCapabilitiesMapping("pbuffer", RSC_PBUFFER);
         addCapabilitiesMapping("gl1_5_nohwocclusion", RSC_GL1_5_NOHWOCCLUSION);
         addCapabilitiesMapping("perstageconstant", RSC_PERSTAGECONSTANT);
+        addCapabilitiesMapping("separate_shader_objects", RSC_SEPARATE_SHADER_OBJECTS);
 
     }
 

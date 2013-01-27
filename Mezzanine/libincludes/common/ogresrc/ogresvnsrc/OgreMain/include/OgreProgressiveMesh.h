@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ THE SOFTWARE.
 #include "OgreHardwareVertexBuffer.h"
 #include "OgreHardwareIndexBuffer.h"
 #include "OgreRenderOperation.h"
+#include "OgreHeaderPrefix.h"
 #include "OgreSmallVector.h"
 
 namespace Ogre {
@@ -60,7 +61,7 @@ namespace Ogre {
 		BitArray(int bits_count)	: bits_ptr(NULL) { resize(bits_count); }
 		BitArray& operator=(const BitArray& ba)	{ bits = ba.bits; bits_ptr = bits.size() > 0 ? &bits.front() : NULL; return *this; }
 		
-		bool getBit(size_t i) const	{ return bits_ptr[i >> 3] & bit_mask[i & 7]; }
+		bool getBit(size_t i) const	{ return (bits_ptr[i >> 3] & bit_mask[i & 7]) != 0; }
 		void setBit(size_t i)		{ bits_ptr[i >> 3] |= bit_mask[i & 7]; }
 		void clearBit(size_t i)		{ bits_ptr[i >> 3] &= ~bit_mask[i & 7]; }
 		void clearAllBits()			{ memset(bits_ptr, 0, bits.size()); }
@@ -224,7 +225,7 @@ namespace Ogre {
 		
 		size_t mRemovedVertexDuplicatesCount;	
 		size_t mCurrNumIndexes;
-		float mInvSquaredBoundBoxDiagonal;
+		Real mInvSquaredBoundBoxDiagonal;
 		int mVertexComponentFlags;	
 
         // Internal classes
@@ -412,5 +413,7 @@ namespace Ogre {
 	/** @} */
 	/** @} */
 }
+
+#include "OgreHeaderSuffix.h"
 
 #endif 

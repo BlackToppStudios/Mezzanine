@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -134,7 +134,7 @@ void OctreeNode::_updateBounds( void )
     //update the OctreeSceneManager that things might have moved.
     // if it hasn't been added to the octree, add it, and if has moved
     // enough to leave it's current node, we'll update it.
-    if ( ! mWorldAABB.isNull() )
+    if ( ! mWorldAABB.isNull() && mIsInSceneGraph )
     {
         static_cast < OctreeSceneManager * > ( mCreator ) -> _updateOctreeNode( this );
     }

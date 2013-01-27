@@ -13,7 +13,9 @@
 
 /* Define to 1 if you have the <byteswap.h> header file. */
 #ifndef ZZIP_HAVE_BYTESWAP_H 
-//#define ZZIP_HAVE_BYTESWAP_H  1 
+#ifndef __APPLE__
+#define ZZIP_HAVE_BYTESWAP_H  1 
+#endif
 #endif
 
 /* Define to 1 if you have the <direct.h> header file. */
@@ -198,7 +200,7 @@
 
 /* Version number of package */
 #ifndef ZZIP_VERSION 
-#define ZZIP_VERSION  "0.13.60" 
+#define ZZIP_VERSION  "0.13.62" 
 #endif
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most

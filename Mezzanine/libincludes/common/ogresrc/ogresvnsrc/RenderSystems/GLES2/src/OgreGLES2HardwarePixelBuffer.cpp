@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -141,31 +141,31 @@ namespace Ogre {
             scaled = mBuffer.getSubVolume(dstBox);
             Image::scale(src, scaled, Image::FILTER_BILINEAR);
         }
-        else if ((src.format != mFormat) ||
-                 ((GLES2PixelUtil::getGLOriginFormat(src.format) == 0) && (src.format != PF_R8G8B8)))
+        else if (GLES2PixelUtil::getGLOriginFormat(src.format) == 0)
         {
             // Extents match, but format is not accepted as valid source format for GL
             // do conversion in temporary buffer
             allocateBuffer();
             scaled = mBuffer.getSubVolume(dstBox);
             PixelUtil::bulkPixelConversion(src, scaled);
-            
-            if(mFormat == PF_A4R4G4B4)
-            {
-                // ARGB->BGRA
-                GLES2PixelUtil::convertToGLformat(scaled, scaled);
-            }
         }
         else
         {
             allocateBuffer();
+            // No scaling or conversion needed
             scaled = src;
-
             if (src.format == PF_R8G8B8)
             {
                 scaled.format = PF_B8G8R8;
                 PixelUtil::bulkPixelConversion(src, scaled);
             }
+#if OGRE_PLATFORM == OGRE_PLATFORM_NACL
+            if (src.format == PF_A8R8G8B8)
+            {
+                scaled.format = PF_A8B8G8R8;
+                PixelUtil::bulkPixelConversion(src, scaled);
+            }
+#endif
         }
 
         upload(scaled, dstBox);
@@ -274,8 +274,8 @@ namespace Ogre {
 
         // Log a message
 //        std::stringstream str;
-//        str << "GLES2HardwarePixelBuffer constructed for texture " << mTextureID 
-//            << " face " << mFace << " level " << mLevel << ": "
+//        str << "GLES2HardwarePixelBuffer constructed for texture " << baseName
+//            << " id " << mTextureID << " face " << mFace << " level " << mLevel << ": "
 //            << "width=" << mWidth << " height="<< mHeight << " depth=" << mDepth
 //            << " format=" << PixelUtil::getFormatName(mFormat);
 //        LogManager::getSingleton().logMessage(LML_NORMAL, str.str());
@@ -402,6 +402,10 @@ namespace Ogre {
                 GL_CHECK_ERROR;
             }
 
+//            LogManager::getSingleton().logMessage("GLES2TextureBuffer::upload - ID: " + StringConverter::toString(mTextureID) +
+//                                                  " Format: " + PixelUtil::getFormatName(data.format) +
+//                                                  " Origin format: " + StringConverter::toString(GLES2PixelUtil::getGLOriginFormat(data.format), 0, std::ios::hex) +
+//                                                  " Data type: " + StringConverter::toString(GLES2PixelUtil::getGLOriginDataType(data.format), 0, ' ', std::ios::hex));
             glTexSubImage2D(mFaceTarget,
                             mLevel,
                             dest.left, dest.top,
@@ -584,7 +588,7 @@ namespace Ogre {
             GL_CHECK_ERROR;
             glBindTexture(GL_TEXTURE_2D, tempTex);
             GL_CHECK_ERROR;
-#if GL_APPLE_texture_max_level
+#if GL_APPLE_texture_max_level && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL_APPLE, 0);
             GL_CHECK_ERROR;
 #endif
@@ -788,7 +792,7 @@ namespace Ogre {
         glBindTexture(target, id);
         GL_CHECK_ERROR;
 
-#if GL_APPLE_texture_max_level
+#if GL_APPLE_texture_max_level && OGRE_PLATFORM != OGRE_PLATFORM_NACL
         glTexParameteri(target, GL_TEXTURE_MAX_LEVEL_APPLE, 1000 );
         GL_CHECK_ERROR;
 #endif
@@ -906,7 +910,7 @@ namespace Ogre {
         // Allocate storage for depth buffer
         if (numSamples > 0)
         {
-#if GL_APPLE_framebuffer_multisample
+#if GL_APPLE_framebuffer_multisample && OGRE_PLATFORM != OGRE_PLATFORM_NACL && OGRE_PLATFORM != OGRE_PLATFORM_WIN32
             glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 
                                                 numSamples, format, width, height);
             GL_CHECK_ERROR;

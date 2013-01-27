@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2012 Torus Knot Software Ltd
+ Copyright (c) 2000-2013 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,6 @@
  -----------------------------------------------------------------------------
  */
 #include "OgrePlatform.h"
-#if OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN
-#include <coecntrl.h>
-#endif
 
 #include "SampleBrowser.h"
 
@@ -44,7 +41,7 @@
 #include "SampleBrowser_NaCl.h"
 #endif
 
-#if OGRE_PLATFORM != OGRE_PLATFORM_SYMBIAN  && OGRE_PLATFORM != OGRE_PLATFORM_NACL
+#if OGRE_PLATFORM != OGRE_PLATFORM_NACL
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 INT WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR cmdLine, INT)
@@ -80,8 +77,8 @@ int main(int argc, char *argv[])
         if (Ogre::String(cmdLine).find("nograb") != Ogre::String::npos)
             nograb = true;
 #endif
-		OgreBites::SampleBrowser sb (nograb);
-		sb.go();
+		OgreBites::SampleBrowser brows (nograb);
+		brows.go();
 	}
 	catch (Ogre::Exception& e)
 	{
@@ -96,4 +93,4 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-#endif // OGRE_PLATFORM != OGRE_PLATFORM_SYMBIAN    
+#endif    

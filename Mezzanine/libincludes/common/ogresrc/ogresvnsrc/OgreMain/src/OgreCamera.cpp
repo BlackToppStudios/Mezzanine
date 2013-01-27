@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,10 +38,7 @@ THE SOFTWARE.
 #include "OgreException.h"
 #include "OgreRoot.h"
 #include "OgreRenderSystem.h"
-
-#if OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
-#include "macUtils.h"
-#endif
+#include "OgreProfiler.h"
 
 namespace Ogre {
 
@@ -94,7 +91,8 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     Camera::~Camera()
     {
-		for (ListenerList::iterator i = mListeners.begin(); i != mListeners.end(); ++i)
+		ListenerList listenersCopy = mListeners;
+		for (ListenerList::iterator i = listenersCopy.begin(); i != listenersCopy.end(); ++i)
 		{
 			(*i)->cameraDestroyed(this);
 		}
@@ -406,6 +404,8 @@ namespace Ogre {
     //-----------------------------------------------------------------------
     void Camera::_renderScene(Viewport *vp, bool includeOverlays)
     {
+        OgreProfileBeginGPUEvent("Camera: " + getName());
+
 		//update the pixel display ratio
 		if (mProjType == Ogre::PT_PERSPECTIVE)
 		{
@@ -417,7 +417,8 @@ namespace Ogre {
 		}
 
 		//notify prerender scene
-		for (ListenerList::iterator i = mListeners.begin(); i != mListeners.end(); ++i)
+		ListenerList listenersCopy = mListeners;
+		for (ListenerList::iterator i = listenersCopy.begin(); i != listenersCopy.end(); ++i)
 		{
 			(*i)->cameraPreRenderScene(this);
 		}
@@ -425,11 +426,15 @@ namespace Ogre {
 		//render scene
 		mSceneMgr->_renderScene(this, vp, includeOverlays);
 
+		// Listener list may have change
+		listenersCopy = mListeners;
+
 		//notify postrender scene
-		for (ListenerList::iterator i = mListeners.begin(); i != mListeners.end(); ++i)
+		for (ListenerList::iterator i = listenersCopy.begin(); i != listenersCopy.end(); ++i)
 		{
 			(*i)->cameraPostRenderScene(this);
 		}
+        OgreProfileEndGPUEvent("Camera: " + getName());
 	}
 	//---------------------------------------------------------------------
 	void Camera::addListener(Listener* l)

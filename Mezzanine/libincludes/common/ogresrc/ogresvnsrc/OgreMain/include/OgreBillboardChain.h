@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -259,7 +259,6 @@ namespace Ogre {
 
 
 		// Overridden members follow
-		void _notifyCurrentCamera(Camera* cam);
 		Real getSquaredViewDepth(const Camera* cam) const;
 		Real getBoundingRadius(void) const;
 		const AxisAlignedBox& getBoundingBox(void) const;
@@ -267,6 +266,7 @@ namespace Ogre {
 		const String& getMovableType(void) const;
 		void _updateRenderQueue(RenderQueue *);
 		void getRenderOperation(RenderOperation &);
+		virtual bool preRender(SceneManager* sm, RenderSystem* rsys);
 		void getWorldTransforms(Matrix4 *) const;
 		const LightList& getLights(void) const;
 		/// @copydoc MovableObject::visitRenderables
@@ -299,6 +299,8 @@ namespace Ogre {
 		mutable bool mBoundsDirty;
 		/// Is the index buffer dirty?
 		bool mIndexContentDirty;
+        /// Is the vertex buffer dirty?
+        bool mVertexContentDirty;
 		/// AABB
 		mutable AxisAlignedBox mAABB;
 		/// Bounding radius
@@ -310,6 +312,8 @@ namespace Ogre {
 		TexCoordDirection mTexCoordDir;
 		/// Other texture coord range
 		Real mOtherTexCoordRange[2];
+        /// Camera last used to build the vertex buffer
+        Camera *mVertexCameraUsed;
 		/// When true, the billboards always face the camera
 		bool mFaceCamera;
 		/// Used when mFaceCamera == false; determines the billboard's "normal". i.e.

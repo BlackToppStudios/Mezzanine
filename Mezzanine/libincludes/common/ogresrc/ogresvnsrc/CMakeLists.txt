@@ -43,7 +43,7 @@ endif ()
 
 project(OGRE)
 
-# Added by BTS for merging
+# Added by BTS for Integration
 add_definitions( ${CommonBuildFlags} )
 set(OGRE_BUILD_RENDERSYSTEM_GL TRUE)
 
@@ -68,11 +68,11 @@ set(OGRE_WORK_DIR ${OGRE_BINARY_DIR})
 # Set up the basic build environment
 #####################################################################
 
-#if (CMAKE_BUILD_TYPE STREQUAL "")
+if (CMAKE_BUILD_TYPE STREQUAL "")
   # CMake defaults to leaving CMAKE_BUILD_TYPE empty. This screws up
   # differentiation between debug and release builds.
-  #set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
-#endif ()
+  set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
+endif ()
 
 # determine Ogre version numbers
 include(OgreGetVersion)
@@ -99,7 +99,7 @@ endif ()
 if (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX)
   check_cxx_compiler_flag(-msse OGRE_GCC_HAS_SSE)
   if (OGRE_GCC_HAS_SSE)
-    add_definitions(-msse)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -msse")
   endif ()
   # This is a set of sensible warnings that provide meaningful output
   set(OGRE_WARNING_FLAGS "-Wno-deprecated -Wall -Wctor-dtor-privacy -Winit-self -Wno-overloaded-virtual -Wcast-qual -Wwrite-strings -Wextra -Wno-unused-parameter -pedantic -Wshadow -Wno-missing-field-initializers -Wno-long-long")
@@ -154,8 +154,13 @@ if ((CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_CLANGXX) AND NOT MINGW)
     if (OGRE_BUILD_TYPE STREQUAL "debug" AND OGRE_GCC_VERSION VERSION_LESS "4.2")
       message(STATUS "Skipping -fvisibility-inlines-hidden due to possible bug in g++ < 4.2")
     else ()
-      set(OGRE_GCC_VISIBILITY_FLAGS "${OGRE_GCC_VISIBILITY_FLAGS} -fvisibility-inlines-hidden")
-      set(XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN "YES")
+      if (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
+        message(STATUS "Skipping -fvisibility-inlines-hidden due to linker issues")
+        set(XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN[arch=x86_64] "YES")
+      else()
+        set(OGRE_GCC_VISIBILITY_FLAGS "${OGRE_GCC_VISIBILITY_FLAGS} -fvisibility-inlines-hidden")
+        set(XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN "YES")
+      endif()
     endif ()
   endif (OGRE_GCC_VISIBILITY)
   
@@ -189,11 +194,8 @@ if (APPLE)
   endif ()
 endif (APPLE)
 
-# Commented out by BTS since we are integrating dependancies differently.
-# Was commented out, instead there are other things aside from the core dependancies that we need to find and have available.
 # Find dependencies
 include(Dependencies)
-
 # definitions for samples
 set(OGRE_LIBRARIES OgreMain) 
 set(OGRE_Paging_LIBRARIES OgrePaging)
@@ -234,12 +236,11 @@ if (OGRE_BUILD_PLATFORM_APPLE_IOS)
   set(OGRE_BUILD_RENDERSYSTEM_GLES2 TRUE CACHE BOOL "Forcing OpenGL ES 2 RenderSystem for iOS" FORCE)
   set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for iOS" FORCE)
   set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.\${PRODUCT_NAME:rfc1034identifier}")
+  add_definitions(-mno-thumb)
 
-  set(CMAKE_OSX_ARCHITECTURES ${ARCHS_STANDARD_32_BIT})
-  # armv7 only
-  #set(CMAKE_OSX_ARCHITECTURES ${ARCHS_UNIVERSAL_IPHONE_OS})
+  set(CMAKE_OSX_ARCHITECTURES "$(ARCHS_STANDARD_32_BIT)")
 
-  remove_definitions(-msse)
+  string (REPLACE "-msse" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
 
   # Set 10.5 as the base SDK by default
@@ -255,8 +256,6 @@ elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
   set(OGRE_BUILD_RENDERSYSTEM_GL TRUE)
   set(OGRE_BUILD_RENDERSYSTEM_GLES FALSE)
   set(OGRE_BUILD_RENDERSYSTEM_GLES2 FALSE)
-elseif (SYMBIAN)  
-  set(OGRE_BUILD_RENDERSYSTEM_GLES TRUE CACHE BOOL "Forcing OpenGL ES 1.x RenderSystem for Symbian" FORCE)  
 endif ()
 
 # Enable the PVRTC codec if OpenGL ES is being built
@@ -269,23 +268,22 @@ endif()
 ######################################################################
 
 # Customise what to build
-cmake_dependent_option(OGRE_STATIC "Static build" FALSE "NOT SYMBIAN" TRUE)
+cmake_dependent_option(OGRE_STATIC "Static build" FALSE "" TRUE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D9 "Build Direct3D9 RenderSystem" TRUE "WIN32;DirectX_FOUND" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D11 "Build Direct3D11 RenderSystem [EXPERIMENTAL]" FALSE "WIN32;DirectX_D3D11_FOUND" FALSE)
-cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_GL "Build OpenGL RenderSystem" TRUE "OPENGL_FOUND;NOT OGRE_BUILD_PLATFORM_APPLE_IOS;NOT SYMBIAN" FALSE)
+cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_GL "Build OpenGL RenderSystem" TRUE "OPENGL_FOUND;NOT OGRE_BUILD_PLATFORM_APPLE_IOS" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_GLES "Build OpenGL ES 1.x RenderSystem" FALSE "OPENGLES_FOUND" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_GLES2 "Build OpenGL ES 2.x RenderSystem" FALSE "OPENGLES2_FOUND" FALSE)
-cmake_dependent_option(OGRE_BUILD_PLATFORM_APPLE_IOS "Build Ogre for iOS" FALSE "iOSSDK_FOUND;OPENGLES_FOUND;OPENGLES2_FOUND" FALSE)
 cmake_dependent_option(OGRE_BUILD_PLATFORM_NACL "Build Ogre for Google's Native Client (NaCl)" FALSE "OPENGLES2_FOUND" FALSE)
 option(OGRE_BUILD_PLUGIN_BSP "Build BSP SceneManager plugin" TRUE)
 option(OGRE_BUILD_PLUGIN_OCTREE "Build Octree SceneManager plugin" TRUE)
 option(OGRE_BUILD_PLUGIN_PFX "Build ParticleFX plugin" TRUE)
 
-cmake_dependent_option(OGRE_BUILD_PLUGIN_PCZ "Build PCZ SceneManager plugin" TRUE "NOT SYMBIAN" FALSE)
-cmake_dependent_option(OGRE_BUILD_COMPONENT_PAGING "Build Paging component" TRUE "NOT SYMBIAN" FALSE)
-cmake_dependent_option(OGRE_BUILD_COMPONENT_TERRAIN "Build Terrain component" TRUE "NOT SYMBIAN" FALSE)
+cmake_dependent_option(OGRE_BUILD_PLUGIN_PCZ "Build PCZ SceneManager plugin" TRUE "" FALSE)
+cmake_dependent_option(OGRE_BUILD_COMPONENT_PAGING "Build Paging component" TRUE "" FALSE)
+cmake_dependent_option(OGRE_BUILD_COMPONENT_TERRAIN "Build Terrain component" TRUE "" FALSE)
 cmake_dependent_option(OGRE_BUILD_COMPONENT_PROPERTY "Build Property component" TRUE "Boost_FOUND" FALSE)
-cmake_dependent_option(OGRE_BUILD_PLUGIN_CG "Build Cg plugin" TRUE "Cg_FOUND;NOT OGRE_BUILD_PLATFORM_APPLE_IOS;NOT SYMBIAN" FALSE)
+cmake_dependent_option(OGRE_BUILD_PLUGIN_CG "Build Cg plugin" TRUE "Cg_FOUND;NOT OGRE_BUILD_PLATFORM_APPLE_IOS" FALSE)
 option(OGRE_BUILD_COMPONENT_RTSHADERSYSTEM "Build RTShader System component" TRUE)
 cmake_dependent_option(OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS "Build RTShader System FFP core shaders" TRUE "OGRE_BUILD_COMPONENT_RTSHADERSYSTEM" FALSE)
 cmake_dependent_option(OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS "Build RTShader System extensions shaders" TRUE "OGRE_BUILD_COMPONENT_RTSHADERSYSTEM" FALSE)
@@ -300,38 +298,6 @@ set(OGRE_BUILD_XSIEXPORTER FALSE)
 set(OGRE_BUILD_TESTS FALSE)
 option(OGRE_CONFIG_DOUBLE "Use doubles instead of floats in Ogre" FALSE)
 
-mark_as_advanced(
-	OGRE_STATIC
-	OGRE_BUILD_RENDERSYSTEM_D3D9
-	OGRE_BUILD_RENDERSYSTEM_D3D11
-	OGRE_BUILD_RENDERSYSTEM_GL
-	OGRE_BUILD_RENDERSYSTEM_GLES
-	OGRE_BUILD_RENDERSYSTEM_GLES2
-	OGRE_BUILD_PLATFORM_APPLE_IOS
-	OGRE_BUILD_PLATFORM_NACL
-	OGRE_BUILD_PLUGIN_BSP
-	OGRE_BUILD_PLUGIN_OCTREE
-	OGRE_BUILD_PLUGIN_PFX
-	OGRE_BUILD_PLUGIN_PCZ
-	OGRE_BUILD_COMPONENT_PAGING
-	OGRE_BUILD_COMPONENT_TERRAIN
-	OGRE_BUILD_COMPONENT_PROPERTY
-	OGRE_BUILD_PLUGIN_CG
-	OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
-	OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
-	OGRE_BUILD_RTSHADERSYSTEM_EXT_SHADERS
-	OGRE_BUILD_SAMPLES
-	OGRE_BUILD_TOOLS
-	OGRE_BUILD_XSIEXPORTER
-	OGRE_BUILD_TESTS
-	OGRE_CONFIG_DOUBLE
-	OGRE_DEPENDENCIES_DIR
-)
-
-if (SYMBIAN)
-# Symbian can only use the standard allocator
-set(OGRE_CONFIG_ALLOCATOR 1)
-else ()
 set(OGRE_CONFIG_ALLOCATOR 4 CACHE STRING
 "Specify the memory allocator to use. Possible values:
   1 - Standard allocator
@@ -339,18 +305,13 @@ set(OGRE_CONFIG_ALLOCATOR 4 CACHE STRING
   3 - User-provided allocator
   4 - nedmalloc with pooling"
 )
-endif ()
-mark_as_advanced(OGRE_CONFIG_ALLOCATOR)
 
-cmake_dependent_option(OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR "STL containers in Ogre use the custom allocator" TRUE "NOT SYMBIAN" FALSE)
+cmake_dependent_option(OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR "STL containers in Ogre use the custom allocator" TRUE "" FALSE)
 option(OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR "Ogre String uses the custom allocator" FALSE)
 option(OGRE_CONFIG_MEMTRACK_DEBUG "Enable Ogre's memory tracker in debug mode" FALSE)
 option(OGRE_CONFIG_MEMTRACK_RELEASE "Enable Ogre's memory tracker in release mode" FALSE)
-mark_as_advanced(OGRE_CONFIG_CONTAINERS_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_STRING_USE_CUSTOM_ALLOCATOR OGRE_CONFIG_MEMTRACK_DEBUG OGRE_CONFIG_MEMTRACK_RELEASE)
-
 # determine threading options
 include(PrepareThreadingOptions)
-
 option(OGRE_CONFIG_ENABLE_FREEIMAGE "Build FreeImage codec. If you disable this option, you need to provide your own image handling codecs." TRUE)
 option(OGRE_CONFIG_ENABLE_DDS "Build DDS codec." TRUE)
 option(OGRE_CONFIG_ENABLE_PVRTC "Build PVRTC codec." FALSE)
@@ -360,7 +321,6 @@ option(OGRE_CONFIG_NEW_COMPILERS "Use the new script compilers." TRUE)
 cmake_dependent_option(OGRE_CONFIG_ENABLE_GLES2_CG_SUPPORT "Enable Cg support to ES 2 render system" FALSE "OGRE_BUILD_RENDERSYSTEM_GLES2" FALSE)
 cmake_dependent_option(OGRE_CONFIG_ENABLE_GLES2_GLSL_OPTIMISER "Enable GLSL optimiser use in GLES 2 render system" FALSE "OGRE_BUILD_RENDERSYSTEM_GLES2" FALSE)
 cmake_dependent_option(OGRE_USE_BOOST "Use Boost extensions" TRUE "Boost_FOUND" FALSE)
-
 # Customise what to install
 # option(OGRE_INSTALL_SAMPLES "Install Ogre demos." FALSE)
 # option(OGRE_INSTALL_TOOLS "Install Ogre tools." TRUE)
@@ -374,7 +334,6 @@ set(OGRE_INSTALL_DOCS FALSE)
 set(OGRE_INSTALL_SAMPLES_SOURCE FALSE)
 set(OGRE_INSTALL_PDB FALSE)
 set(OGRE_FULL_RPATH FALSE)
-
 option(OGRE_PROFILING "Enable internal profiling support." FALSE)
 cmake_dependent_option(OGRE_CONFIG_STATIC_LINK_CRT "Statically link the MS CRT dlls (msvcrt)" FALSE "MSVC" FALSE)
 set(OGRE_LIB_DIRECTORY "lib${LIB_SUFFIX}" CACHE STRING "Install path for libraries, e.g. 'lib64' on some 64-bit Linux distros.")
@@ -384,12 +343,6 @@ set(OGRE_LIB_DIRECTORY "lib${LIB_SUFFIX}" CACHE STRING "Install path for librari
 # to potentially speed up the compilation.
 option(OGRE_UNITY_BUILD "Enable unity build for Ogre." FALSE)
 set(OGRE_UNITY_FILES_PER_UNIT "50" CACHE STRING "Number of files per compilation unit in Unity build.")
-mark_as_advanced(OGRE_UNITY_BUILD OGRE_UNITY_FILES_PER_UNIT)
-
-if (SYMBIAN)
-SET (CMAKE_SYMBIAN_UID_3 "0xA0007218" CACHE STRING 
-  "Application UID (or UID3) is used to uniquely identify the binary (EXE or DLL) within the system. The purpose of UID 3 is to prevent one executable from interfering the operation of another executable.")
-endif ()
 
 # hide advanced options
 mark_as_advanced(
@@ -480,6 +433,4 @@ include(Packaging)
 
 # Show feature summary
 include(FeatureSummary)
-
-mark_as_advanced(Boost_LIB_DIAGNOSTIC_DEFINITIONS)
 

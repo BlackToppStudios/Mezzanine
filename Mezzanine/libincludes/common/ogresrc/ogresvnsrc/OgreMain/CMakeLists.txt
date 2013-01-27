@@ -596,21 +596,6 @@ elseif (UNIX)
   if (DL_LIBRARY)
     list(APPEND PLATFORM_LIBS dl)
   endif ()
-elseif (SYMBIAN)
-  include_directories(include/symbian)
-  set(PLATFORM_HEADER_FILES
-    include/GLX/OgreTimerImp.h
-    include/symbian/OgreConfigDialogImp.h
-    include/symbian/OgreErrorDialogImp.h
-  )
-  set(PLATFORM_SOURCE_FILES
-    src/OgreSearchOps.cpp
-    src/GLX/OgreTimer.cpp
-    src/symbian/OgreConfigDialog.cpp
-    src/symbian/OgreErrorDialog.cpp
-  )
-  set(PLATFORM_HEADER_INSTALL "SYMBIAN")
-
 endif()
 
 
@@ -716,7 +701,6 @@ link_directories("${Mezzanine_LIBBINARY_DIR}/${BuildPlatform}/ogre/deps")
 if (NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
 	include_directories("${OGRE_SOURCE_DIR}/Dependencies/src/Cg/include/Cg")
 endif(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-
 # setup OgreMain target
 # exclude OgreAlignedAllocator.cpp from unity builds; causes problems on Linux
 ogre_add_library(OgreMain ${OGRE_LIB_TYPE} ${PREC_HEADER} ${HEADER_FILES} ${SOURCE_FILES} ${PLATFORM_HEADER_FILES} ${PLATFORM_SOURCE_FILES} ${THREAD_HEADER_FILES} ${THREAD_SOURCE_FILES} SEPARATE "src/OgreAlignedAllocator.cpp")
@@ -729,7 +713,6 @@ if(WIN32 AND MSVC10 AND CMAKE_CL_64)
 else()
   set_target_properties(OgreMain PROPERTIES VERSION ${OGRE_SOVERSION})
 endif()
-
 # Added by BTS to integrate dependancy sources.
 #if(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
 #	add_dependencies(OgreMain Cg FreeImage freetype zlib zziplib)

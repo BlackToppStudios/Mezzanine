@@ -5,7 +5,7 @@ This source file is part of OGRE
 For the latest info, see http://www.ogre3d.org
 
 Copyright (c) 2008 Renato Araujo Oliveira Filho <renatox@gmail.com>
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -142,7 +142,8 @@ namespace Ogre {
 
         // Allocate internal buffer so that glTexSubImageXD can be used
         // Internal format
-        GLenum format = GLESPixelUtil::getClosestGLInternalFormat(mFormat, mHwGamma);
+        GLenum format = GLESPixelUtil::getGLOriginFormat(mFormat);
+        GLenum internalformat = GLESPixelUtil::getClosestGLInternalFormat(mFormat, mHwGamma);
         GLenum datatype = GLESPixelUtil::getGLOriginDataType(mFormat);
         size_t width = mWidth;
         size_t height = mHeight;
@@ -150,6 +151,14 @@ namespace Ogre {
 
         if (PixelUtil::isCompressed(mFormat))
         {
+//            LogManager::getSingleton().logMessage("GLESTexture::create - Mip: " + StringConverter::toString(mip) +
+//                                                  " Width: " + StringConverter::toString(width) +
+//                                                  " Height: " + StringConverter::toString(height) +
+//                                                  " Internal Format: " + StringConverter::toString(internalformat, 0, ' ', std::ios::hex) +
+//                                                  " Format: " + StringConverter::toString(format, 0, ' ', std::ios::hex) +
+//                                                  " Datatype: " + StringConverter::toString(datatype, 0, ' ', std::ios::hex)
+//                                                  );
+
             // Compressed formats
             size_t size = PixelUtil::getMemorySize(mWidth, mHeight, mDepth, mFormat);
 
@@ -165,7 +174,7 @@ namespace Ogre {
 
                 glCompressedTexImage2D(GL_TEXTURE_2D,
                                        mip,
-                                       format,
+                                       internalformat,
                                        width, height,
                                        0,
                                        size,
@@ -200,7 +209,7 @@ namespace Ogre {
             {
                 glTexImage2D(GL_TEXTURE_2D,
                              mip,
-                             format,
+                             internalformat,
                              width, height,
                              0,
                              format,

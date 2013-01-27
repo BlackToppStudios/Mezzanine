@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -146,6 +146,7 @@ namespace Ogre
         void convertVertexShaderCaps(RenderSystemCapabilities* rsc) const;
         void convertPixelShaderCaps(RenderSystemCapabilities* rsc) const;
 		bool checkVertexTextureFormats(D3D9RenderWindow* renderWindow) const;
+		void detachRenderTargetImpl(const String& name);
 		
         HashMap<IDirect3DDevice9*, unsigned short> mCurrentLights;
         /// Saved last view matrix
@@ -224,6 +225,9 @@ namespace Ogre
 		
 		/// @copydoc RenderSystem::createMultiRenderTarget
 		virtual MultiRenderTarget * createMultiRenderTarget(const String & name);
+
+		/// @copydoc RenderSystem::detachRenderTarget
+		virtual RenderTarget * detachRenderTarget(const String &name);
 
 		String getErrorDescription( long errorNumber ) const;
 		const String& getName() const;
@@ -353,6 +357,15 @@ namespace Ogre
 
 		/// @copydoc RenderSystem::getDisplayMonitorCount
 		unsigned int getDisplayMonitorCount() const;
+
+		/// @copydoc RenderSystem::beginProfileEvent
+        virtual void beginProfileEvent( const String &eventName );
+
+		/// @copydoc RenderSystem::endProfileEvent
+        virtual void endProfileEvent( void );
+
+		/// @copydoc RenderSystem::markProfileEvent
+        virtual void markProfileEvent( const String &eventName );
 		
 		/// fires a device releated event
 		void fireDeviceEvent( D3D9Device* device, const String & name );

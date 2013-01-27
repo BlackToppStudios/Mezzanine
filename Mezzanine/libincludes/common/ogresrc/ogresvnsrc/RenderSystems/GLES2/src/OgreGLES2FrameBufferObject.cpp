@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ namespace Ogre {
         mMultisampleFB = 0;
 
         // Check multisampling if supported
-#if GL_APPLE_framebuffer_multisample
+#if GL_APPLE_framebuffer_multisample && OGRE_PLATFORM != OGRE_PLATFORM_NACL && OGRE_PLATFORM != OGRE_PLATFORM_WIN32
         // Check samples supported
         glBindFramebuffer(GL_FRAMEBUFFER, mFB);
         GLint maxSamples;
@@ -244,7 +244,7 @@ namespace Ogre {
 	{
 		if (mMultisampleFB)
 		{
-#if GL_APPLE_framebuffer_multisample
+#if GL_APPLE_framebuffer_multisample && OGRE_PLATFORM != OGRE_PLATFORM_NACL && OGRE_PLATFORM != OGRE_PLATFORM_WIN32
 			// Blit from multisample buffer to final buffer, triggers resolve
 //			size_t width = mColour[0].buffer->getWidth();
 //			size_t height = mColour[0].buffer->getHeight();

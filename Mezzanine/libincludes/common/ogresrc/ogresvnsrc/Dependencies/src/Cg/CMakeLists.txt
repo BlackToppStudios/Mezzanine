@@ -1,11 +1,8 @@
 message ( "Declaring Cg - Begin" )
-
 project(Cg)
 
 if(MINGW OR MSVC)
-
 set(Cg_INCLUDE_DIR "${Cg_SOURCE_DIR}/include" CACHE PATH "" FORCE)
-mark_as_advanced(Cg_INCLUDE_DIR)
 
 if (WIN32)
   # manually copy to build and install the correct DLL
@@ -44,7 +41,6 @@ elseif (UNIX)
     set(Cg_LIBRARY_DBG "${Cg_SOURCE_DIR}/lib/libCg.so" CACHE PATH "" FORCE)
   endif ()
 endif ()
-mark_as_advanced(Cg_LIBRARY_REL Cg_LIBRARY_DBG)
 
 if (OGREDEPS_INSTALL_DEV)
   install(DIRECTORY include/ DESTINATION include)
@@ -57,7 +53,6 @@ if (OGREDEPS_INSTALL_DEV)
     endif ()
   endif ()
 endif ()
-
 endif(MINGW OR MSVC)
 
 message ( "Declaring Cg - Begin" )

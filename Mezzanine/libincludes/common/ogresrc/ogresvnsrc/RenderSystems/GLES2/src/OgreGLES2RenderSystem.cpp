@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -301,8 +301,10 @@ namespace Ogre {
         rsc->setCapability(RSC_FRAGMENT_PROGRAM);
 
         // Separate shader objects
+#if OGRE_PLATFORM != OGRE_PLATFORM_NACL
         if(mGLSupport->checkExtension("GL_EXT_separate_shader_objects"))
             rsc->setCapability(RSC_SEPARATE_SHADER_OBJECTS);
+#endif
 
         GLfloat floatConstantCount = 0;
         glGetFloatv(GL_MAX_VERTEX_UNIFORM_VECTORS, &floatConstantCount);
@@ -1519,7 +1521,7 @@ namespace Ogre {
             {
                 GLSLESProgramPipeline* programPipeline = 
                     GLSLESProgramPipelineManager::getSingleton().getActiveProgramPipeline();
-                if (!programPipeline->isAttributeValid(sem, elem->getIndex()))
+                if (!programPipeline || !programPipeline->isAttributeValid(sem, elem->getIndex()))
                 {
                     continue;
                 }
@@ -1529,7 +1531,7 @@ namespace Ogre {
             else
             {
                 GLSLESLinkProgram* linkProgram = GLSLESLinkProgramManager::getSingleton().getActiveLinkProgram();
-                if (!linkProgram->isAttributeValid(sem, elem->getIndex()))
+                if (!linkProgram || !linkProgram->isAttributeValid(sem, elem->getIndex()))
                 {
                     continue;
                 }
@@ -1857,6 +1859,7 @@ namespace Ogre {
     void GLES2RenderSystem::_oneTimeContextInitialization()
     {
 		glDisable(GL_DITHER);
+        static_cast<GLES2TextureManager*>(mTextureManager)->createWarningTexture();
     }
 
     void GLES2RenderSystem::initialiseContext(RenderWindow* primary)
@@ -2143,5 +2146,31 @@ namespace Ogre {
             if((*i).second == buffer)
                 mActiveBufferMap.erase(i);
         }
+    }
+    //---------------------------------------------------------------------
+    void GLES2RenderSystem::beginProfileEvent( const String &eventName )
+    {
+#if GL_EXT_debug_marker && OGRE_PLATFORM != OGRE_PLATFORM_NACL
+        glPushGroupMarkerEXT(0, eventName.c_str());
+#endif
+    }
+    
+    //---------------------------------------------------------------------
+    void GLES2RenderSystem::endProfileEvent( void )
+    {
+#if GL_EXT_debug_marker && OGRE_PLATFORM != OGRE_PLATFORM_NACL
+        glPopGroupMarkerEXT();
+#endif
+    }
+    
+    //---------------------------------------------------------------------
+    void GLES2RenderSystem::markProfileEvent( const String &eventName )
+    {
+        if( eventName.empty() )
+            return;
+
+#if GL_EXT_debug_marker && OGRE_PLATFORM != OGRE_PLATFORM_NACL
+        glInsertEventMarkerEXT(0, eventName.c_str());
+#endif
     }
 }

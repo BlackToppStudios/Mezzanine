@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -276,6 +276,12 @@ namespace Ogre
 						" with a different InstanceBatch",
 						"InstanceBatch::removeInstancedEntity()");
 		}
+		if( !instancedEntity->isInUse() )
+		{
+			OGRE_EXCEPT(Exception::ERR_INVALID_STATE,
+						"Trying to remove an InstancedEntity that is already removed!",
+						"InstanceBatch::removeInstancedEntity()");
+		}
 
 		if( instancedEntity->getParentSceneNode() )
 			instancedEntity->getParentSceneNode()->detachObject( instancedEntity );
@@ -441,10 +447,10 @@ namespace Ogre
 		//We use our own because our SceneNode is just filled with zeroes, and updating it
 		//with real values is expensive, plus we would need to make sure it doesn't get to
 		//the shader
-		Real squaredDepth = getSquaredViewDepth(cam) -
-							Math::Sqr( mMeshReference->getBoundingSphereRadius() );
-        squaredDepth = std::max( squaredDepth, Real(0) );
-        Real lodValue = squaredDepth * cam->_getLodBiasInverse();
+		Real depth = Math::Sqrt( getSquaredViewDepth(cam) ) -
+					 mMeshReference->getBoundingSphereRadius();
+        depth = std::max( depth, Real(0) );
+        Real lodValue = depth * cam->_getLodBiasInverse();
 
 		//Now calculate Material LOD
         /*const LodStrategy *materialStrategy = m_material->getLodStrategy();
@@ -494,7 +500,8 @@ namespace Ogre
 
 			while( itor != end )
 			{
-				mCachedCameraDist = std::min( mCachedCameraDist, (*itor)->getSquaredViewDepth( cam ) );
+				if( (*itor)->isVisible() )
+					mCachedCameraDist = std::min( mCachedCameraDist, (*itor)->getSquaredViewDepth( cam ) );
 				++itor;
 			}
 
@@ -538,7 +545,7 @@ namespace Ogre
 				}
 			}
 
-			queue->addRenderable( this );
+			queue->addRenderable( this, mRenderQueueID, mRenderQueuePriority );
 		}
 
 		//Reset visibility once we skipped addRenderable (which saves GPU time), because OGRE for some

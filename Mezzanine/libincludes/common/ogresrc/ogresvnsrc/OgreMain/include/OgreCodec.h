@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -35,12 +35,6 @@ THE SOFTWARE.
 #include "OgreStringVector.h"
 #include "OgreException.h"
 
-#if __GNUC__ >= 4
-    #define DLL_LOCAL  __attribute__ ((visibility ("hidden")))
-#else
-    #define DLL_LOCAL
-#endif
-
 namespace Ogre {
 	/** \addtogroup Core
 	*  @{
@@ -64,7 +58,7 @@ namespace Ogre {
         typedef map< String, Codec* >::type CodecList; 
         /** A map that contains all the registered codecs.
         */
-        DLL_LOCAL static CodecList msMapCodecs;
+        static CodecList msMapCodecs;
 
     public:
         class _OgrePrivate CodecData : public CodecAlloc
@@ -88,7 +82,7 @@ namespace Ogre {
         static void registerCodec( Codec *pCodec )
         {
 			CodecList::iterator i = msMapCodecs.find(pCodec->getType());
-            if (i != msMapCodecs.end())
+			if (i != msMapCodecs.end())
 				OGRE_EXCEPT(Exception::ERR_DUPLICATE_ITEM, 
 					pCodec->getType() + " already has a registered codec. ", __FUNCTION__);
 

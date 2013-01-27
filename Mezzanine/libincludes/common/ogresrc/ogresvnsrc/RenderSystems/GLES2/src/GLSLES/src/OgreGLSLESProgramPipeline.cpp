@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2012 Torus Knot Software Ltd
+ Copyright (c) 2000-2013 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ namespace Ogre
 
     GLSLESProgramPipeline::~GLSLESProgramPipeline()
     {
-#if GL_EXT_separate_shader_objects
+#if GL_EXT_separate_shader_objects && OGRE_PLATFORM != OGRE_PLATFORM_NACL
         glDeleteProgramPipelinesEXT(1, &mGLProgramPipelineHandle);
         GL_CHECK_ERROR;
 #endif
@@ -48,7 +48,7 @@ namespace Ogre
 
     void GLSLESProgramPipeline::compileAndLink()
 	{
-#if GL_EXT_separate_shader_objects
+#if GL_EXT_separate_shader_objects && OGRE_PLATFORM != OGRE_PLATFORM_NACL
         GLint linkStatus = 0;
         
         glGenProgramPipelinesEXT(1, &mGLProgramPipelineHandle);
@@ -59,8 +59,13 @@ namespace Ogre
 		// Compile and attach Vertex Program
         if(mVertexProgram && !mVertexProgram->isLinked())
         {
-            if (!mVertexProgram->getGLSLProgram()->compile(true))
+            try
             {
+                mVertexProgram->getGLSLProgram()->compile(true);
+            }
+            catch (Exception& e)
+            {
+				LogManager::getSingleton().stream() << e.getDescription();
                 mTriedToLinkAndFailed = true;
                 return;
             }
@@ -80,19 +85,23 @@ namespace Ogre
             }
             
             GL_CHECK_ERROR
-            // TODO: Just fail out here if the program doesn't link?
             mTriedToLinkAndFailed = !linkStatus;
             
             logObjectInfo( getCombinedName() + String("GLSL vertex program result : "), programHandle );
-            
+
             setSkeletalAnimationIncluded(mVertexProgram->isSkeletalAnimationIncluded());
         }
         
 		// Compile and attach Fragment Program
         if(mFragmentProgram && !mFragmentProgram->isLinked())
         {
-            if (!mFragmentProgram->getGLSLProgram()->compile(true))
+            try
             {
+                mFragmentProgram->getGLSLProgram()->compile(true);
+            }
+            catch (Exception& e)
+            {
+				LogManager::getSingleton().stream() << e.getDescription();
                 mTriedToLinkAndFailed = true;
                 return;
             }
@@ -129,7 +138,7 @@ namespace Ogre
 				GLint binaryLength = 0;
 
 #if GL_OES_get_program_binary
-				glGetProgramiv(mGLHandle, GL_PROGRAM_BINARY_LENGTH_OES, &binaryLength);
+				glGetProgramiv(mGLProgramHandle, GL_PROGRAM_BINARY_LENGTH_OES, &binaryLength);
                 GL_CHECK_ERROR;
 #endif
 
@@ -139,7 +148,7 @@ namespace Ogre
 
 #if GL_OES_get_program_binary
 				// Get binary
-				glGetProgramBinaryOES(mGLHandle, binaryLength, NULL, (GLenum *)newMicrocode->getPtr(), newMicrocode->getPtr() + sizeof(GLenum));
+				glGetProgramBinaryOES(mGLProgramHandle, binaryLength, NULL, (GLenum *)newMicrocode->getPtr(), newMicrocode->getPtr() + sizeof(GLenum));
                 GL_CHECK_ERROR;
 #endif
 
@@ -159,6 +168,11 @@ namespace Ogre
 
             // Validate pipeline
             logObjectInfo( getCombinedName() + String("GLSL program pipeline result : "), mGLProgramPipelineHandle );
+#if GL_EXT_debug_label && OGRE_PLATFORM != OGRE_PLATFORM_NACL
+            if(mVertexProgram && mFragmentProgram)
+                glLabelObjectEXT(GL_PROGRAM_PIPELINE_OBJECT_EXT, mGLProgramPipelineHandle, 0,
+                                 (mVertexProgram->getName() + "/" + mFragmentProgram->getName()).c_str());
+#endif
 		}
 #endif
 	}
@@ -167,7 +181,7 @@ namespace Ogre
     {
 		if (mLinked)
 		{
-#if GL_EXT_separate_shader_objects
+#if GL_EXT_separate_shader_objects && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             GL_CHECK_ERROR
             glBindProgramPipelineEXT(mGLProgramPipelineHandle);
             GL_CHECK_ERROR
@@ -286,7 +300,7 @@ namespace Ogre
 		// Iterate through uniform reference list and update uniform values
 		GLUniformReferenceIterator currentUniform = mGLUniformReferences.begin();
 		GLUniformReferenceIterator endUniform = mGLUniformReferences.end();
-#if GL_EXT_separate_shader_objects
+#if GL_EXT_separate_shader_objects && OGRE_PLATFORM != OGRE_PLATFORM_NACL
         GLuint progID = 0;
         if(fromProgType == GPT_VERTEX_PROGRAM)
             progID = mVertexProgram->getGLSLProgram()->getGLProgramHandle();
@@ -396,7 +410,7 @@ namespace Ogre
 				// Get the index in the parameter real list
 				if (index == currentUniform->mConstantDef->physicalIndex)
 				{
-#if GL_EXT_separate_shader_objects
+#if GL_EXT_separate_shader_objects && OGRE_PLATFORM != OGRE_PLATFORM_NACL
                     GLuint progID = 0;
                     if (mVertexProgram && currentUniform->mSourceProgType == GPT_VERTEX_PROGRAM)
                     {

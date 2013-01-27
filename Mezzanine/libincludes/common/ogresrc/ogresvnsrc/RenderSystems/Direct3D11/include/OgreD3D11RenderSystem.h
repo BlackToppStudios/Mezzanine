@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -112,7 +112,7 @@ namespace Ogre
 		void convertPixelShaderCaps(RenderSystemCapabilities* rsc) const;
 		void convertGeometryShaderCaps(RenderSystemCapabilities* rsc) const;
 		bool checkVertexTextureFormats(void);
-
+		void detachRenderTargetImpl(const String& name);
 
 		CompareFunction mSceneAlphaRejectFunc; // should be merged with - mBlendDesc
 		unsigned char mSceneAlphaRejectValue; // should be merged with - mBlendDesc
@@ -227,6 +227,8 @@ namespace Ogre
 		DepthBuffer* _addManualDepthBuffer( ID3D11DepthStencilView *depthSurface,
 											uint32 width, uint32 height, uint32 fsaa, uint32 fsaaQuality );
 
+		/// @copydoc RenderSystem::detachRenderTarget
+		virtual RenderTarget * detachRenderTarget(const String &name);
 
 		const String& getName(void) const;
 		// Low-level overridden members
@@ -352,6 +354,15 @@ namespace Ogre
 
 		/// @copydoc RenderSystem::getDisplayMonitorCount
 		unsigned int getDisplayMonitorCount() const {return 1;} //todo
+
+		/// @copydoc RenderSystem::beginProfileEvent
+        virtual void beginProfileEvent( const String &eventName );
+
+		/// @copydoc RenderSystem::endProfileEvent
+        virtual void endProfileEvent( void );
+
+		/// @copydoc RenderSystem::markProfileEvent
+        virtual void markProfileEvent( const String &eventName );
 
 	};
 }

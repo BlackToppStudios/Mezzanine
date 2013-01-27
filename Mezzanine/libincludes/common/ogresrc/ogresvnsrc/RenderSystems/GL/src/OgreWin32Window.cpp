@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -150,7 +150,7 @@ namespace Ogre {
 
 			if ((opt = miscParams->find("externalWindowHandle")) != end)
 			{
-				mHWnd = (HWND)StringConverter::parseUnsignedInt(opt->second);
+				mHWnd = (HWND)StringConverter::parseSizeT(opt->second);
 				if (mHWnd)
 				{
 					mIsExternal = true;
@@ -193,7 +193,7 @@ namespace Ogre {
 
 			// incompatible with fullscreen
 			if ((opt = miscParams->find("parentWindowHandle")) != end)
-				parent = (HWND)StringConverter::parseUnsignedInt(opt->second);
+				parent = (HWND)StringConverter::parseSizeT(opt->second);
 
 
 			// monitor index
@@ -440,6 +440,14 @@ namespace Ogre {
 				OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR, 
 				"wglCreateContext failed: " + translateWGLError(), "Win32Window::create");
 		}
+
+        if (old_context && old_context != mGlrc)
+        {
+            // Share lists with old context
+		    if (!wglShareLists(old_context, mGlrc))
+			    OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR, "wglShareLists() failed", " Win32Window::create");
+        }
+
 		if (!wglMakeCurrent(mHDC, mGlrc))
 			OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR, "wglMakeCurrent", "Win32Window::create");
 
@@ -457,10 +465,6 @@ namespace Ogre {
             // Restore old context
 		    if (!wglMakeCurrent(old_hdc, old_context))
 			    OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR, "wglMakeCurrent() failed", "Win32Window::create");
-
-            // Share lists with old context
-		    if (!wglShareLists(old_context, mGlrc))
-			    OGRE_EXCEPT(Exception::ERR_RENDERINGAPI_ERROR, "wglShareLists() failed", " Win32Window::create");
         }
 
 		// Create RenderSystem context

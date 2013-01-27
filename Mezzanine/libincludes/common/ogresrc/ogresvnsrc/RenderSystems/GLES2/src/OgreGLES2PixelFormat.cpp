@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -43,19 +43,23 @@ namespace Ogre  {
             case PF_L8:
             case PF_L16:
                 return GL_LUMINANCE;
-#if GL_OES_texture_half_float
+#if GL_OES_texture_half_float && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case PF_FLOAT16_RGB:
+            case PF_FLOAT32_RGB:
                 return GL_RGB;
             case PF_FLOAT16_RGBA:
+            case PF_FLOAT32_RGBA:
                 return GL_RGBA;
 #endif
 
-#if GL_EXT_texture_rg
+#if GL_EXT_texture_rg && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case PF_FLOAT16_R:
+            case PF_FLOAT32_R:
             case PF_R8:
                 return GL_RED_EXT;
 
             case PF_FLOAT16_GR:
+            case PF_FLOAT32_GR:
             case PF_RG8:
                 return GL_RG_EXT;
 #endif
@@ -64,7 +68,7 @@ namespace Ogre  {
                 return GL_LUMINANCE_ALPHA;
 
             // PVRTC compressed formats
-#if GL_IMG_texture_compression_pvrtc
+#if GL_IMG_texture_compression_pvrtc && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case PF_PVRTC_RGB2:
                 return GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
             case PF_PVRTC_RGB4:
@@ -80,31 +84,19 @@ namespace Ogre  {
             case PF_B8G8R8:
                 return GL_RGB;
 
-            case PF_A1R5G5B5:
-                return GL_BGRA;
-            case PF_A4R4G4B4:
-            case PF_X8R8G8B8:
-            case PF_A8R8G8B8:
-            case PF_B8G8R8A8:
-            case PF_X8B8G8R8:
+
+			case PF_X8R8G8B8:
+			case PF_A8R8G8B8:
             case PF_A8B8G8R8:
+            case PF_B8G8R8A8:
+            case PF_A2R10G10B10:
+#if OGRE_PLATFORM != OGRE_PLATFORM_NACL
+                return GL_BGRA;
+#endif
+            case PF_X8B8G8R8:
+			case PF_R8G8B8A8:
+            case PF_A2B10G10R10:
                 return GL_RGBA;
-
-            case PF_DXT1:
-#if GL_EXT_texture_compression_dxt1
-                return GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
-#endif
-            case PF_DXT3:
-#if GL_EXT_texture_compression_s3tc
-                return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
-#endif
-            case PF_DXT5:
-#if GL_EXT_texture_compression_s3tc
-                return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
-#endif
-            case PF_FLOAT32_GR:
-            case PF_FLOAT32_R:
-
             default:
                 return 0;
         }
@@ -131,14 +123,11 @@ namespace Ogre  {
 
 #if OGRE_ENDIAN == OGRE_ENDIAN_BIG
             case PF_X8B8G8R8:
-            case PF_A8B8G8R8:
-                return GL_UNSIGNED_INT_8_8_8_8_REV;
             case PF_X8R8G8B8:
             case PF_A8B8G8R8:
             case PF_A8R8G8B8:
                 return GL_UNSIGNED_INT_8_8_8_8_REV;
             case PF_B8G8R8A8:
-                return GL_UNSIGNED_BYTE;
             case PF_R8G8B8A8:
                 return GL_UNSIGNED_BYTE;
 #else
@@ -154,12 +143,12 @@ namespace Ogre  {
             case PF_FLOAT16_GR:
             case PF_FLOAT16_RGB:
             case PF_FLOAT16_RGBA:
-#if GL_OES_texture_half_float
+#if GL_OES_texture_half_float && OGRE_PLATFORM != OGRE_PLATFORM_NACL
                 return GL_HALF_FLOAT_OES;
 #else
                 return 0;
 #endif
-#if GL_EXT_texture_rg
+#if GL_EXT_texture_rg && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case PF_R8:
             case PF_RG8:
                 return GL_UNSIGNED_BYTE;
@@ -168,17 +157,9 @@ namespace Ogre  {
             case PF_FLOAT32_GR:
             case PF_FLOAT32_RGB:
             case PF_FLOAT32_RGBA:
+#if GL_OES_texture_float && OGRE_PLATFORM != OGRE_PLATFORM_NACL
                 return GL_FLOAT;
-            case PF_DXT1:
-            case PF_DXT3:
-            case PF_DXT5:
-            case PF_R3G3B2:
-            case PF_A2R10G10B10:
-            case PF_A2B10G10R10:
-            case PF_SHORT_RGBA:
-            case PF_SHORT_RGB:
-            case PF_SHORT_GR:
-                // TODO not supported
+#endif
             default:
                 return 0;
         }
@@ -198,7 +179,7 @@ namespace Ogre  {
             case PF_BYTE_LA:
                 return GL_LUMINANCE_ALPHA;
 
-#if GL_IMG_texture_compression_pvrtc
+#if GL_IMG_texture_compression_pvrtc && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case PF_PVRTC_RGB2:
                 return GL_COMPRESSED_RGB_PVRTC_2BPPV1_IMG;
             case PF_PVRTC_RGB4:
@@ -208,21 +189,21 @@ namespace Ogre  {
             case PF_PVRTC_RGBA4:
                 return GL_COMPRESSED_RGBA_PVRTC_4BPPV1_IMG;
 #endif
-                
-            case PF_X8B8G8R8:
-            case PF_X8R8G8B8:
-			case PF_A8B8G8R8:
-            case PF_A8R8G8B8:
-            case PF_B8G8R8A8:
-            case PF_A1R5G5B5:
-            case PF_A4R4G4B4:
-                return GL_RGBA;
-            case PF_R5G6B5:
-            case PF_B5G6R5:
             case PF_R8G8B8:
             case PF_B8G8R8:
+            case PF_FLOAT16_RGB:
+            case PF_FLOAT32_RGB:
                 return GL_RGB;
-#if GL_EXT_texture_rg
+			case PF_X8B8G8R8:
+			case PF_X8R8G8B8:
+            case PF_A8R8G8B8:
+            case PF_A8B8G8R8:
+            case PF_B8G8R8A8:
+            case PF_FLOAT16_RGBA:
+            case PF_FLOAT32_RGBA:
+                return GL_RGBA;
+
+#if GL_EXT_texture_rg && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case PF_FLOAT16_R:
             case PF_FLOAT32_R:
             case PF_R8:
@@ -232,33 +213,8 @@ namespace Ogre  {
             case PF_RG8:
                 return GL_RG_EXT;
 #endif
-            case PF_A4L4:
-            case PF_R3G3B2:
-            case PF_A2R10G10B10:
-            case PF_A2B10G10R10:
-            case PF_FLOAT16_RGBA:
-            case PF_FLOAT32_RGB:
-            case PF_FLOAT32_RGBA:
-            case PF_SHORT_RGBA:
-            case PF_SHORT_RGB:
-            case PF_SHORT_GR:
-			case PF_DXT1:
-#if GL_EXT_texture_compression_dxt1
-				if (!hwGamma)
-					return GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
-#endif
-            case PF_DXT3:
-#if GL_EXT_texture_compression_s3tc
-				if (!hwGamma)
-	                return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
-#endif
-            case PF_DXT5:
-#if GL_EXT_texture_compression_s3tc
-				if (!hwGamma)
-	                return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
-#endif
             default:
-                return 0;
+                return GL_NONE;
         }
     }
 	//-----------------------------------------------------------------------------
@@ -275,7 +231,7 @@ namespace Ogre  {
             }
             else
             {
-                return GL_RGBA;
+                return GL_RGBA8_OES;
             }
         }
         else
@@ -307,51 +263,46 @@ namespace Ogre  {
                 
             case GL_RGB:
                 switch(dataType)
-            {
-                case GL_UNSIGNED_SHORT_5_6_5:
-                    return PF_B5G6R5;
-                default:
-                    return PF_R8G8B8;
-            };
+                {
+                    case GL_UNSIGNED_SHORT_5_6_5:
+                        return PF_B5G6R5;
+                    case GL_HALF_FLOAT_OES:
+                        return PF_FLOAT16_RGB;
+                    case GL_FLOAT:
+                        return PF_FLOAT32_RGB;
+                    default:
+                        return PF_R8G8B8;
+                }
             case GL_RGBA:
                 switch(dataType)
-            {
-                case GL_UNSIGNED_SHORT_5_5_5_1:
-                    return PF_A1R5G5B5;
-                case GL_UNSIGNED_SHORT_4_4_4_4:
-                    return PF_A4R4G4B4;
-                default:
-#if (OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS)
-                    return PF_A8R8G8B8;
-#else
-                    return PF_A8B8G8R8;
-#endif
-            }
+                {
+                    case GL_UNSIGNED_SHORT_5_5_5_1:
+                        return PF_A1R5G5B5;
+                    case GL_UNSIGNED_SHORT_4_4_4_4:
+                        return PF_A4R4G4B4;
+                    case GL_HALF_FLOAT_OES:
+                        return PF_FLOAT16_RGBA;
+                    case GL_FLOAT:
+                        return PF_FLOAT32_RGBA;
+                    default:
+                        return PF_A8B8G8R8;
+                }
 #ifdef GL_BGRA
             case GL_BGRA:
-                return PF_A8B8G8R8;
+                return PF_A8R8G8B8;
 #endif
+            case GL_RGB8_OES:
+                return PF_X8R8G8B8;
+            case GL_RGBA8_OES:
+                return PF_A8R8G8B8;
 
-#if GL_EXT_texture_compression_dxt1
-            case GL_COMPRESSED_RGB_S3TC_DXT1_EXT:
-            case GL_COMPRESSED_RGBA_S3TC_DXT1_EXT:
-                return PF_DXT1;
-#endif
-#if GL_EXT_texture_compression_s3tc
-            case GL_COMPRESSED_RGBA_S3TC_DXT3_EXT:
-                return PF_DXT3;
-            case GL_COMPRESSED_RGBA_S3TC_DXT5_EXT:
-                return PF_DXT5;
-#endif
-      
-#if GL_EXT_texture_rg
+#if GL_EXT_texture_rg && OGRE_PLATFORM != OGRE_PLATFORM_NACL
             case GL_R8_EXT:
                 return PF_R8;
             case GL_RG8_EXT:
                 return PF_RG8;
 #endif
             default:
-                //TODO: not supported
                 return PF_A8R8G8B8;
         };
     }
@@ -360,7 +311,7 @@ namespace Ogre  {
                                       PixelFormat format)
     {
 		size_t count = 0;
-        if((width > 0) && (height > 0))
+        if((width > 0) && (height > 0) && (depth > 0))
         {
             do {
                 if(width>1)		width = width/2;
@@ -380,6 +331,7 @@ namespace Ogre  {
 		return count;
     }
 	//-----------------------------------------------------------------------------
+    // TODO: Remove
     size_t GLES2PixelUtil::optionalPO2(size_t value)
     {
         const RenderSystemCapabilities *caps =
@@ -392,41 +344,6 @@ namespace Ogre  {
         else
         {
             return Bitwise::firstPO2From((uint32)value);
-        }
-    }
-
-    void GLES2PixelUtil::convertToGLformat(const PixelBox &src, const PixelBox &dst)
-    {
-        // Always need to convert PF_A4R4G4B4, GL expects the colors to be in the 
-        // reverse order
-        if (dst.format == PF_A4R4G4B4)
-        {
-            // Convert PF_A4R4G4B4 -> PF_B4G4R4A4
-            // Reverse pixel order
-            uint16 *srcptr = static_cast<uint16*>(src.data)
-			+ (src.left + src.top * src.rowPitch + src.front * src.slicePitch);
-            uint16 *dstptr = static_cast<uint16*>(dst.data)
-			+ (dst.left + dst.top * dst.rowPitch + dst.front * dst.slicePitch);
-            const size_t srcSliceSkip = src.getSliceSkip();
-            const size_t dstSliceSkip = dst.getSliceSkip();
-            const size_t k = src.right - src.left;
-            for(size_t z=src.front; z<src.back; z++) 
-            {
-                for(size_t y=src.top; y<src.bottom; y++)
-                {
-                    for(size_t x=0; x<k; x++)
-                    {
-                        dstptr[x] = ((srcptr[x]&0x000F)<<12) |  // B
-                                    ((srcptr[x]&0x00F0)<<4) |   // G
-                                    ((srcptr[x]&0x0F00)>>4) |   // R
-                                    ((srcptr[x]&0xF000)>>12);   // A
-                    }
-                    srcptr += src.rowPitch;
-                    dstptr += dst.rowPitch;
-                }
-                srcptr += srcSliceSkip;
-                dstptr += dstSliceSkip;
-            }    
         }
     }
 }

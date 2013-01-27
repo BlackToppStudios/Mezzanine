@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -34,12 +34,9 @@ THE SOFTWARE.
 namespace Ogre {
     GLES2TextureManager::GLES2TextureManager(GLES2Support& support)
         : TextureManager(), mGLSupport(support), mWarningTextureID(0)
-    {
-        GL_CHECK_ERROR;
+    {        
         // Register with group manager
         ResourceGroupManager::getSingleton()._registerResourceManager(mResourceType, this);
-
-        createWarningTexture();
     }
 
     GLES2TextureManager::~GLES2TextureManager()
@@ -78,12 +75,13 @@ namespace Ogre {
             }
         }
 
+		GL_CHECK_ERROR;
         // Create GL resource
         glGenTextures(1, &mWarningTextureID);
         GL_CHECK_ERROR;
         glBindTexture(GL_TEXTURE_2D, mWarningTextureID);
         GL_CHECK_ERROR;
-#if GL_APPLE_texture_max_level
+#if GL_APPLE_texture_max_level && OGRE_PLATFORM != OGRE_PLATFORM_NACL
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL_APPLE, 0);
 #endif
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,

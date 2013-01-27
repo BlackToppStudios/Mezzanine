@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -52,33 +52,34 @@ public:
 	/** Class constructor.
 	@param type The type of this program.
 	*/
-	GLSLESProgramProcessor			();
+	GLSLESProgramProcessor();
 
 	/** Class destructor */
-	virtual ~GLSLESProgramProcessor ();
+	virtual ~GLSLESProgramProcessor();
 
 	/** Return the target language of this processor. */
-	virtual const String&           getTargetLanguage	() const { return TargetLanguage; }
+	virtual const String& getTargetLanguage() const { return TargetLanguage; }
 
 	/** 
 	@see ProgramProcessor::preCreateGpuPrograms
     */
-	virtual bool                    preCreateGpuPrograms			(ProgramSet* programSet);
+	virtual bool preCreateGpuPrograms(ProgramSet* programSet);
 
 	/** 
 	@see ProgramProcessor::postCreateGpuPrograms
 	*/
-	virtual bool                    postCreateGpuPrograms			(ProgramSet* programSet);
+	virtual bool postCreateGpuPrograms(ProgramSet* programSet);
 
 
 private:
 
 	/** Bind texture samplers. */
-	void                            bindTextureSamplers				(Program* pCpuProgram, GpuProgramPtr pGpuProgram);
+	void bindTextureSamplers(Program* pCpuProgram, GpuProgramPtr pGpuProgram);
 
-	static String                   TargetLanguage;
+	static String TargetLanguage;
 
-	StringVector                    mLibraryPrograms;		// The list of created library shaders.
+	// The list of created library shaders.
+	StringVector mLibraryPrograms;
 };
 
 

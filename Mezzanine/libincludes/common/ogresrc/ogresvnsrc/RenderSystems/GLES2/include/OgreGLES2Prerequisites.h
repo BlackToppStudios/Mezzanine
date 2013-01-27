@@ -4,7 +4,7 @@ This source file is part of OGRE
     (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -109,7 +109,7 @@ extern PFNGLGETTEXLEVELPARAMETERiVNVPROC glGetTexLevelParameterivNV;
 // Define GL_NONE for convenience
 #define GL_NONE 0
 
-#ifndef GL_BGRA
+#if !defined(GL_BGRA) && OGRE_PLATFORM != OGRE_PLATFORM_NACL
 #   define GL_BGRA  0x80E1
 #endif
 
@@ -140,6 +140,7 @@ extern PFNGLGETTEXLEVELPARAMETERiVNVPROC glGetTexLevelParameterivNV;
     }
 
 #define ENABLE_GL_CHECK 0
+
 #if ENABLE_GL_CHECK
 #define GL_CHECK_ERROR \
     { \

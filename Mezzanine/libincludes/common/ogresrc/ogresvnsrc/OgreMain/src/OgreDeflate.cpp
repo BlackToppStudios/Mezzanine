@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2012 Torus Knot Software Ltd
+ Copyright (c) 2000-2013 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -119,9 +119,23 @@ namespace Ogre
             if(mTempFileName.empty())
             {
                 // Write to temp file
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+                char* tmpname = _tempnam(".", "ogre");
+                if (!tmpname)
+                {
+                    // Having no file name here will cause various problems later.
+                    OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, "Temporary file name generation failed.", "DeflateStream::init");
+                }
+                else
+                {
+                    mTempFileName = tmpname;
+                    free(tmpname);
+                }
+#else
                 char tmpname[L_tmpnam];
                 tmpnam(tmpname);
                 mTempFileName = tmpname;
+#endif
             }
 
 			std::fstream *f = OGRE_NEW_T(std::fstream, MEMCATEGORY_GENERAL)();
@@ -258,7 +272,7 @@ namespace Ogre
 		do 
 		{
 			inFile.read(in, OGRE_DEFLATE_TMP_SIZE);
-			mZStream->avail_in = inFile.gcount();
+			mZStream->avail_in = (uInt)inFile.gcount();
 			if (inFile.bad()) 
 			{
 				deflateEnd(mZStream);

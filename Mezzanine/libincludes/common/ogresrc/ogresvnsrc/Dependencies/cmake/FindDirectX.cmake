@@ -77,7 +77,7 @@ if(WIN32) # The only platform it makes sense to check for DirectX SDK
   )
   
   mark_as_advanced(DirectX_D3DX9_LIBRARY DirectX_DXERR_LIBRARY DirectX_DXGUID_LIBRARY
-    DirectX_DXGI_LIBRARY DirectX_D3DCOMPILER_LIBRARY DirectX_DINPUT8_LIBRARY)
+    DirectX_DXGI_LIBRARY DirectX_D3DCOMPILER_LIBRARY)
   
 
   # look for D3D10 and D3D10.1 components

@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ THE SOFTWARE.
 #include "OgreString.h"
 #include "OgreHardwareBufferManager.h"
 #include "OgreLogManager.h"
+#include <memory>
 
 #if OGRE_DEBUG_MODE 
 #define LOG_PROGRESSIVE_MESH_GENERATION 1
@@ -280,7 +281,7 @@ namespace Ogre {
 		
 		Ogre::Mesh* pMesh = pSubMesh->parent;
 		Real sqrDiag = pMesh->getBounds().getSize().squaredLength();
-		mInvSquaredBoundBoxDiagonal = (0.0 != sqrDiag) ? 1.0 / sqrDiag : 0.0;
+		mInvSquaredBoundBoxDiagonal = ((Real)0.0 != sqrDiag) ? (Real)1.0 / sqrDiag : (Real)0.0;
 		
 		mNextWorstCostHint = 0;
 		mInvalidCostCount = 0;
@@ -1152,7 +1153,7 @@ namespace Ogre {
 			// E = H * sqrt(S) / 2			(side triangle area)
 			// and since H = 3 * V / S		(pyramid volume)
 			// E = 3 * V / (2 * sqrt(S))
-			cost = areaSum > 1e-06 ? tripleVolumeSum / (2.0 * Math::Sqrt(areaSum)) * mInvSquaredBoundBoxDiagonal : 0.0;
+			cost = areaSum > (Real)1e-06 ? tripleVolumeSum / ((Real)2.0 * Math::Sqrt(areaSum)) * mInvSquaredBoundBoxDiagonal : (Real)0.0;
 		}
 		
 		// take into consideration texture coordinates and normal direction

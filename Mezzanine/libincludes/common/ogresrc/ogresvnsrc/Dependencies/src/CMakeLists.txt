@@ -1,7 +1,6 @@
 # provide configuration options to choose which of the dependencies to build
-if(NOT OGRE_BUILD_PLATFORM_APPLE_IOS)
-  #option(OGREDEPS_BUILD_CG "Build Cg dependency" TRUE)
-  set(OGREDEPS_BUILD_CG TRUE)
+if(WIN32)
+  option(OGREDEPS_BUILD_CG "Build Cg dependency" TRUE)
 endif()
 #option(OGREDEPS_BUILD_FREEIMAGE "Build FreeImage dependency" TRUE)
 #option(OGREDEPS_BUILD_FREETYPE "Build FreeType dependency" TRUE)
@@ -56,10 +55,10 @@ if (CMAKE_COMPILER_IS_GNUCXX AND NOT MINGW)
 endif ()
 
 
-# by default, install to source directory
+# by default, install to ogredeps subfolder in build directory
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   if (OGREDEPS_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
-    set(CMAKE_INSTALL_PREFIX "${OGREDEPS_SOURCE_DIR}" CACHE PATH "OGREDEPS install prefix" FORCE)
+      set(CMAKE_INSTALL_PREFIX "${OGREDEPS_BINARY_DIR}/ogredeps" CACHE PATH "OGREDEPS install prefix" FORCE)
   endif ()
 endif ()
 
@@ -78,12 +77,13 @@ macro(install_dep LIBRARY INCLUDE_DIR)
     ARCHIVE_OUTPUT_DIRECTORY ${OGREDEPS_BINARY_DIR}
     LIBRARY_OUTPUT_DIRECTORY ${OGREDEPS_BINARY_DIR}
     RUNTIME_OUTPUT_DIRECTORY ${OGREDEPS_BINARY_DIR}
+    #RUNTIME_OUTPUT_DIRECTORY ${OGREDEPS_RUNTIME_OUTPUT}
   )
 
   if(APPLE AND OGRE_BUILD_PLATFORM_APPLE_IOS)
     add_custom_command(TARGET ${LIBRARY} POST_BUILD
-      COMMAND lipo ARGS -create ${OGREDEPS_BINARY_DIR}/src/${LIBRARY}/$(CONFIGURATION)-iphoneos/lib${LIBRARY}.a -arch i386 ${OGREDEPS_BINARY_DIR}/src/${LIBRARY}/$(CONFIGURATION)-iphonesimulator/lib${LIBRARY}.a
-      -output "${OGREDEPS_BINARY_DIR}/../${OGREDEPS_LIB_DIRECTORY}/lib${LIBRARY}.a"
+      COMMAND if [[ -e ${OGREDEPS_BINARY_DIR}/src/${LIBRARY}/$(CONFIGURATION)-iphonesimulator/lib${LIBRARY}.a && -e ${OGREDEPS_BINARY_DIR}/src/${LIBRARY}/$(CONFIGURATION)-iphoneos/lib${LIBRARY}.a ]] \; then lipo ARGS -create ${OGREDEPS_BINARY_DIR}/src/${LIBRARY}/$(CONFIGURATION)-iphoneos/lib${LIBRARY}.a -arch i386 ${OGREDEPS_BINARY_DIR}/src/${LIBRARY}/$(CONFIGURATION)-iphonesimulator/lib${LIBRARY}.a
+      -output "${OGREDEPS_BINARY_DIR}/../${OGREDEPS_LIB_DIRECTORY}/lib${LIBRARY}.a"\; fi
     )
   endif()
 

@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1453,10 +1453,27 @@ namespace Ogre
 		@see Root::getDisplayMonitorCount
 		*/
 		virtual unsigned int getDisplayMonitorCount() const = 0;
+
+        /**
+        * This marks the beginning of an event for GPU profiling.
+        */
+        virtual void beginProfileEvent( const String &eventName ) = 0;
+
+        /**
+        * Ends the currently active GPU profiling event.
+        */
+        virtual void endProfileEvent( void ) = 0;
+
+        /**
+        * Marks an instantaneous event for graphics profilers.  
+        * This is equivalent to calling @see beginProfileEvent and @see endProfileEvent back to back.
+        */
+        virtual void markProfileEvent( const String &event ) = 0;
+
 	protected:
 
 		/** DepthBuffers to be attached to render targets */
-		DepthBufferMap	mDepthBufferPool;
+		DepthBufferMap mDepthBufferPool;
 
 		/** The render targets. */
 		RenderTargetMap mRenderTargets;

@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1176,7 +1176,7 @@ const Pass* SceneManager::_setPass(const Pass* pass, bool evenIfSuppressed,
 				if (!currentChain)
 				{
 					OGRE_EXCEPT(Exception::ERR_INVALID_STATE,
-						"A pass that wishes to reference a compositor texutre "
+						"A pass that wishes to reference a compositor texture "
 						"attempted to render in a pipeline without a compositor",
 						"SceneManager::_setPass");
 				}
@@ -1367,6 +1367,22 @@ void SceneManager::_renderScene(Camera* camera, Viewport* vp, bool includeOverla
 		// Lock scene graph mutex, no more changes until we're ready to render
 		OGRE_LOCK_MUTEX(sceneGraphMutex)
 
+		// Update scene graph for this camera (can happen multiple times per frame)
+		{
+			OgreProfileGroup("_updateSceneGraph", OGREPROF_GENERAL);
+			_updateSceneGraph(camera);
+
+			// Auto-track nodes
+			AutoTrackingSceneNodes::iterator atsni, atsniend;
+			atsniend = mAutoTrackingSceneNodes.end();
+			for (atsni = mAutoTrackingSceneNodes.begin(); atsni != atsniend; ++atsni)
+			{
+				(*atsni)->_autoTrack();
+			}
+			// Auto-track camera if required
+			camera->_autoTrack();
+		}
+
 		if (mIlluminationStage != IRS_RENDER_TO_TEXTURE && mFindVisibleObjects)
 		{
 			// Locate any lights which could be affecting the frustum
@@ -1395,22 +1411,6 @@ void SceneManager::_renderScene(Camera* camera, Viewport* vp, bool includeOverla
 					mCurrentViewport = vp;
 				}
 			}
-		}
-
-		// Update scene graph for this camera (can happen multiple times per frame)
-		{
-			OgreProfileGroup("_updateSceneGraph", OGREPROF_GENERAL);
-			_updateSceneGraph(camera);
-
-			// Auto-track nodes
-			AutoTrackingSceneNodes::iterator atsni, atsniend;
-			atsniend = mAutoTrackingSceneNodes.end();
-			for (atsni = mAutoTrackingSceneNodes.begin(); atsni != atsniend; ++atsni)
-			{
-				(*atsni)->_autoTrack();
-			}
-			// Auto-track camera if required
-			camera->_autoTrack();
 		}
 
 		// Invert vertex winding?
@@ -3090,7 +3090,7 @@ void SceneManager::renderSingleObject(Renderable* rend, const Pass* pass,
     unsigned short numMatrices;
     RenderOperation ro;
 
-
+    OgreProfileBeginGPUEvent("Material: " + pass->getParent()->getParent()->getName());
     // Set up rendering operation
     // I know, I know, const_cast is nasty but otherwise it requires all internal
     // state of the Renderable assigned to the rop to be mutable
@@ -3540,7 +3540,7 @@ void SceneManager::renderSingleObject(Renderable* rend, const Pass* pass,
 	
     // Reset view / projection changes if any
     resetViewProjMode(passTransformState);
-
+    OgreProfileEndGPUEvent("Material: " + pass->getParent()->getParent()->getName());
 }
 //-----------------------------------------------------------------------
 void SceneManager::setAmbientLight(const ColourValue& colour)
@@ -4012,17 +4012,9 @@ void SceneManager::addListener(Listener* newListener)
 //---------------------------------------------------------------------
 void SceneManager::removeListener(Listener* delListener)
 {
-    ListenerList::iterator i, iend;
-    iend = mListeners.end();
-    for (i = mListeners.begin(); i != iend; ++i)
-    {
-        if (*i == delListener)
-        {
-            mListeners.erase(i);
-            break;
-        }
-    }
-
+    ListenerList::iterator i = std::find(mListeners.begin(), mListeners.end(), delListener);
+    if (i != mListeners.end())
+        mListeners.erase(i);
 }
 //---------------------------------------------------------------------
 void SceneManager::firePreRenderQueues()
@@ -4084,10 +4076,11 @@ void SceneManager::fireRenderSingleObject(Renderable* rend, const Pass* pass,
 //---------------------------------------------------------------------
 void SceneManager::fireShadowTexturesUpdated(size_t numberOfShadowTextures)
 {
+    ListenerList listenersCopy = mListeners;
     ListenerList::iterator i, iend;
 
-    iend = mListeners.end();
-    for (i = mListeners.begin(); i != iend; ++i)
+    iend = listenersCopy.end();
+    for (i = listenersCopy.begin(); i != iend; ++i)
     {
         (*i)->shadowTexturesUpdated(numberOfShadowTextures);
     }
@@ -4095,10 +4088,11 @@ void SceneManager::fireShadowTexturesUpdated(size_t numberOfShadowTextures)
 //---------------------------------------------------------------------
 void SceneManager::fireShadowTexturesPreCaster(Light* light, Camera* camera, size_t iteration)
 {
+    ListenerList listenersCopy = mListeners;
     ListenerList::iterator i, iend;
 
-    iend = mListeners.end();
-    for (i = mListeners.begin(); i != iend; ++i)
+    iend = listenersCopy.end();
+    for (i = listenersCopy.begin(); i != iend; ++i)
     {
         (*i)->shadowTextureCasterPreViewProj(light, camera, iteration);
     }
@@ -4106,10 +4100,11 @@ void SceneManager::fireShadowTexturesPreCaster(Light* light, Camera* camera, siz
 //---------------------------------------------------------------------
 void SceneManager::fireShadowTexturesPreReceiver(Light* light, Frustum* f)
 {
+    ListenerList listenersCopy = mListeners;
     ListenerList::iterator i, iend;
 
-    iend = mListeners.end();
-    for (i = mListeners.begin(); i != iend; ++i)
+    iend = listenersCopy.end();
+    for (i = listenersCopy.begin(); i != iend; ++i)
     {
         (*i)->shadowTextureReceiverPreViewProj(light, f);
     }
@@ -4117,10 +4112,11 @@ void SceneManager::fireShadowTexturesPreReceiver(Light* light, Frustum* f)
 //---------------------------------------------------------------------
 void SceneManager::firePreUpdateSceneGraph(Camera* camera)
 {
+    ListenerList listenersCopy = mListeners;
 	ListenerList::iterator i, iend;
 
-	iend = mListeners.end();
-	for (i = mListeners.begin(); i != iend; ++i)
+	iend = listenersCopy.end();
+	for (i = listenersCopy.begin(); i != iend; ++i)
 	{
 		(*i)->preUpdateSceneGraph(this, camera);
 	}
@@ -4128,10 +4124,11 @@ void SceneManager::firePreUpdateSceneGraph(Camera* camera)
 //---------------------------------------------------------------------
 void SceneManager::firePostUpdateSceneGraph(Camera* camera)
 {
+    ListenerList listenersCopy = mListeners;
 	ListenerList::iterator i, iend;
 
-	iend = mListeners.end();
-	for (i = mListeners.begin(); i != iend; ++i)
+	iend = listenersCopy.end();
+	for (i = listenersCopy.begin(); i != iend; ++i)
 	{
 		(*i)->postUpdateSceneGraph(this, camera);
 	}
@@ -4140,10 +4137,11 @@ void SceneManager::firePostUpdateSceneGraph(Camera* camera)
 //---------------------------------------------------------------------
 void SceneManager::firePreFindVisibleObjects(Viewport* v)
 {
+    ListenerList listenersCopy = mListeners;
 	ListenerList::iterator i, iend;
 
-	iend = mListeners.end();
-	for (i = mListeners.begin(); i != iend; ++i)
+	iend = listenersCopy.end();
+	for (i = listenersCopy.begin(); i != iend; ++i)
 	{
 		(*i)->preFindVisibleObjects(this, mIlluminationStage, v);
 	}
@@ -4152,10 +4150,11 @@ void SceneManager::firePreFindVisibleObjects(Viewport* v)
 //---------------------------------------------------------------------
 void SceneManager::firePostFindVisibleObjects(Viewport* v)
 {
+    ListenerList listenersCopy = mListeners;
 	ListenerList::iterator i, iend;
 
-	iend = mListeners.end();
-	for (i = mListeners.begin(); i != iend; ++i)
+	iend = listenersCopy.end();
+	for (i = listenersCopy.begin(); i != iend; ++i)
 	{
 		(*i)->postFindVisibleObjects(this, mIlluminationStage, v);
 	}
@@ -4165,10 +4164,11 @@ void SceneManager::firePostFindVisibleObjects(Viewport* v)
 //---------------------------------------------------------------------
 void SceneManager::fireSceneManagerDestroyed()
 {
+    ListenerList listenersCopy = mListeners;
 	ListenerList::iterator i, iend;
 
-	iend = mListeners.end();
-	for (i = mListeners.begin(); i != iend; ++i)
+	iend = listenersCopy.end();
+	for (i = listenersCopy.begin(); i != iend; ++i)
 	{
 		(*i)->sceneManagerDestroyed(this);
 	}
@@ -4437,8 +4437,9 @@ void SceneManager::findLightsAffectingFrustum(const Camera* camera)
 			// Allow a Listener to override light sorting
 			// Reverse iterate so last takes precedence
 			bool overridden = false;
-			for (ListenerList::reverse_iterator ri = mListeners.rbegin();
-				ri != mListeners.rend(); ++ri)
+			ListenerList listenersCopy = mListeners;
+			for (ListenerList::reverse_iterator ri = listenersCopy.rbegin();
+				ri != listenersCopy.rend(); ++ri)
 			{
 				overridden = (*ri)->sortLightsAffectingFrustum(mLightsAffectingFrustum);
 				if (overridden)
@@ -4470,8 +4471,8 @@ bool SceneManager::ShadowCasterSceneQueryListener::queryResult(
     if (object->getCastShadows() && object->isVisible() && 
 		mSceneMgr->isRenderQueueToBeProcessed(object->getRenderQueueGroup()) &&
 		// objects need an edge list to cast shadows (shadow volumes only)
-		(((mSceneMgr->getShadowTechnique() & SHADOWDETAILTYPE_TEXTURE) ||
-		 (mSceneMgr->getShadowTechnique() & SHADOWDETAILTYPE_STENCIL)) && object->hasEdgeList()
+		((mSceneMgr->getShadowTechnique() & SHADOWDETAILTYPE_TEXTURE) ||
+        ((mSceneMgr->getShadowTechnique() & SHADOWDETAILTYPE_STENCIL) && object->hasEdgeList())
 		)
 	   )
     {

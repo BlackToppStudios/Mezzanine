@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -55,6 +55,10 @@ THE SOFTWARE.
 
 // DXGetErrorDescription
 #include "DXErr.h"
+
+#if OGRE_PROFILING == 1
+#include "d3d9.h"
+#endif
 
 //---------------------------------------------------------------------
 #define FLOAT2DWORD(f) *((DWORD*)&f)
@@ -1237,9 +1241,16 @@ namespace Ogre
 		return newDepthBuffer;
 	}
 	//---------------------------------------------------------------------
-	void D3D11RenderSystem::destroyRenderTarget(const String& name)
+	RenderTarget* D3D11RenderSystem::detachRenderTarget(const String &name)
 	{
-		// Check in specialised lists
+		RenderTarget* target = RenderSystem::detachRenderTarget(name);
+		detachRenderTargetImpl(name);
+		return target;
+	}
+	//---------------------------------------------------------------------
+	void D3D11RenderSystem::detachRenderTargetImpl(const String& name)
+	{
+		// Check in specialized lists
 		if (mPrimaryWindow->getName() == name)
 		{
 			// We're destroying the primary window, so reset device and window
@@ -1258,6 +1269,12 @@ namespace Ogre
 				}
 			}
 		}
+	}
+	//---------------------------------------------------------------------
+	void D3D11RenderSystem::destroyRenderTarget(const String& name)
+	{
+		detachRenderTargetImpl(name);
+
 		// Do the real removal
 		RenderSystem::destroyRenderTarget(name);
 
@@ -2907,4 +2924,39 @@ namespace Ogre
 	{
 		return mBoundGeometryProgram;
 	}
+
+    //---------------------------------------------------------------------
+    void D3D11RenderSystem::beginProfileEvent( const String &eventName )
+    {
+#if OGRE_PROFILING == 1
+        if( eventName.empty() )
+            return;
+
+        vector<wchar_t>::type result(eventName.length() + 1, '\0');
+        (void)MultiByteToWideChar(CP_ACP, 0, eventName.data(), eventName.length(), &result[0], result.size());
+        (void)D3DPERF_BeginEvent(D3DCOLOR_ARGB(1, 0, 1, 0), &result[0]);
+#endif
+    }
+
+    //---------------------------------------------------------------------
+    void D3D11RenderSystem::endProfileEvent( void )
+    {
+#if OGRE_PROFILING == 1
+        (void)D3DPERF_EndEvent();
+#endif
+    }
+
+    //---------------------------------------------------------------------
+    void D3D11RenderSystem::markProfileEvent( const String &eventName )
+    {
+#if OGRE_PROFILING == 1
+        if( eventName.empty() )
+            return;
+
+        vector<wchar_t>::type result(eventName.length() + 1, '\0');
+        (void)MultiByteToWideChar(CP_ACP, 0, eventName.data(), eventName.length(), &result[0], result.size());
+        (void)D3DPERF_SetMarker(D3DCOLOR_ARGB(1, 0, 1, 0), &result[0]);
+#endif
+    }
+    
 }

@@ -4,7 +4,7 @@
  (Object-oriented Graphics Rendering Engine)
  For the latest info, see http://www.ogre3d.org/
  
- Copyright (c) 2000-2012 Torus Knot Software Ltd
+ Copyright (c) 2000-2013 Torus Knot Software Ltd
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,11 @@
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_APPLE_IOS
 #	include "macUtils.h"
+#endif
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_NACL && !defined(USE_RTSHADER_SYSTEM)
+#   define USE_RTSHADER_SYSTEM
+#include "OgreShaderGenerator.h"
 #endif
 
 

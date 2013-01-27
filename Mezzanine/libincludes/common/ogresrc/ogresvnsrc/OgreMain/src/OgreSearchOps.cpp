@@ -4,7 +4,7 @@ This source file is part of OGRE
 (Object-oriented Graphics Rendering Engine)
 For the latest info, see http://www.ogre3d.org/
 
-Copyright (c) 2000-2012 Torus Knot Software Ltd
+Copyright (c) 2000-2013 Torus Knot Software Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,36 +32,6 @@ THE SOFTWARE.
 #include "OgreSearchOps.h"
 #include <stdio.h>
 #include <ctype.h>
-
-#if OGRE_PLATFORM == OGRE_PLATFORM_SYMBIAN
-#include "OgreString.h"
-
-// SYMBIAN todo - possibly use - CDirScan from C:\Symbian\9.2\S60_3rd_FP1\Epoc32\include\f32file.h
-// see this sample - http://wiki.forum.nokia.com/index.php/Find_Files
-
-bool fnmatch (Ogre::String pattern, Ogre::String name, int dummy)
-{
-	if (pattern == "*")
-	{
-		return true;
-	}
-	if (pattern.substr(0,2) == "*.")
-	{
-		Ogre::StringUtil::toLowerCase(pattern);
-		Ogre::StringUtil::toLowerCase(name);
-		Ogre::String extToFind = pattern.substr(2, pattern.size() - 2);
-		if ((name.size() > extToFind.size()) &&(extToFind == name.substr(name.size() - extToFind.size(), extToFind.size())))
-		{
-			return 0; // match
-		}
-		else
-		{
-			return 1; // don't match
-		}
-	}
-	return false;
-}
-#endif
 
 /* Win32 directory operations emulation */
 #if OGRE_PLATFORM != OGRE_PLATFORM_WIN32
