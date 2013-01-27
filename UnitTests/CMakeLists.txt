@@ -131,19 +131,6 @@ function(CopyFilesFromMezzanineDuringBuildAndRename FileName NewFileName)
 	)
 endfunction(CopyFilesFromMezzanineDuringBuildAndRename)
 
-
-#Description: This creates a symlink in the Binary directory to another file in the binary directory. Used on systems that expect versioned shared object names when you want to link against a more base version.
-#PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called and only on system that support symlinks, otherwise it will fail silently
-function(CreateSymlinkDuringBuild Targeting LinkName)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing Symlink: ${${PROJECT_NAME}_BINARY_DIR}${Targeting}"
-		COMMAND ${CMAKE_COMMAND} -E create_symlink "${Targeting}" "${${PROJECT_NAME}_BINARY_DIR}${LinkName}"
-		VERBATIM
-	)
-endfunction(CreateSymlinkDuringBuild)
-
 ##############################################################################
 # Accessing correct headers
 

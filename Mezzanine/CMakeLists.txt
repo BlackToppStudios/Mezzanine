@@ -497,21 +497,11 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
-<<<<<<< HEAD
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
         add_definitions( -DMACOSX)
         message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-=======
-if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
-	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
-
-
-	add_definitions( -DMACOSX)
-	message ( STATUS "${PROJECT_NAME} - End Apple Specific Build Process")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
->>>>>>> 1ae99388858b4e05c79cdf797a6bff278cda1ccf
 
 ###############################################################################
 # Common Library Configuration items
@@ -631,8 +621,8 @@ CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
 if(${WIN32})
         message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
         set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")                                         # remove lib prefix from DLL outputs
-        CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
-        CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
+        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/cg${OgresD}.dll data/${BuildPlatform}/ogre/cg${OgresD}.dll )
+        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll ) #can this be statically linked
         #CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.dll OpenAL32.dll )
         #CopyFilesDuringBuild( ${BuildPlatform}/openal/OpenAL32.lib OpenAL32.lib )
 
@@ -658,23 +648,11 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 #######################################
 # Mac File Copy Specific Items
-<<<<<<< HEAD
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-        CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
-        #CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
-
         message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-=======
-if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
-	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
-	#CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
 
-	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
-endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
->>>>>>> 1ae99388858b4e05c79cdf797a6bff278cda1ccf
 
 ###############################################################################
 # The End

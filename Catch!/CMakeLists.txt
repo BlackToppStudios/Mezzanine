@@ -296,13 +296,6 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 #if(${APPLE})
 #	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 #	CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
-<<<<<<< HEAD
-=======
-#	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib Plugins/RenderSystem_GL.dylib )
-#	CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg Plugins/plugins.cfg )
-#	CopyFilesFromMezzanineDuringBuild( Mezzanine.dylib Mezzanine.dylib )
->>>>>>> 1ae99388858b4e05c79cdf797a6bff278cda1ccf
-#	CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
 #	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 #endif(${APPLE})
 

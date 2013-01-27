@@ -95,7 +95,7 @@ message ( STATUS "Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 add_definitions( ${CommonBuildFlags} )
 add_library(cAudio STATIC ${${PROJECT_NAME}_sources})
 
-add_dependencies( ${PROJECT_NAME} $(ALname) oggvorbis)
+add_dependencies( ${PROJECT_NAME} ${ALname} oggvorbis)
 
 
 #We have removed the cAudio depencies because they were built with an assumed compile and OS version
@@ -153,6 +153,6 @@ else (${WIN32})
 	#target_link_libraries( ${PROJECT_NAME} openal)
 endif (${WIN32})
 
-target_link_libraries( ${PROJECT_NAME} $(ALname) oggvorbis)
+target_link_libraries( ${PROJECT_NAME} ${ALname} oggvorbis)
 
 message ("${PROJECT_NAME} - End")
