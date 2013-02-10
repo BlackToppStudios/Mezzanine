@@ -522,8 +522,8 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
 
-        "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openal-soft"
-        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openal-soft/include"
+        "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/openalsoftsrc/openalsoft/include"
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/oggvorbis/"
         #"${ProjectBinaryDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/include"
@@ -558,7 +558,7 @@ add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
 add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/sdlsrc/SDL)
-add_subdirectory (libincludes/common/openalsoftsrc/openal-soft)
+add_subdirectory (libincludes/common/openalsoftsrc/openalsoft)
 
 set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
