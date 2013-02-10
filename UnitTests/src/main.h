@@ -402,7 +402,7 @@ void StartEngine()
     Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
     TheEntresol = new Entresol(Info,"DefaultSceneManager","plugins.cfg","data/");
     TheEntresol->EngineInit(false);
-    ResourceManager::GetSingletonPtr()->AddAssetLocation("data", "FileSystem", "files", false);
+    ResourceManager::GetSingletonPtr()->AddAssetLocation("data", FileSystem, "files", false);
     GraphicsManager::GetSingletonPtr()->CreateGameWindow("EventManager Test",800,600,0);
     UIManager::GetSingletonPtr()->LoadMTA("dejavu");
     ResourceManager::GetSingletonPtr()->InitAssetGroup("files");

@@ -218,12 +218,6 @@ CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt )
 
-#CopyFilesDuringBuild( ${BuildPlatform}/plugins${OgresD}.cfg data/plugins.cfg )
-#CopyFilesFromMezzanineDuringBuild( ${OgreLibFileName})
-#CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginCGPM} data/ogre/${OgrePluginCGPM} )
-#CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginRenderGL} data/ogre/${OgrePluginRenderGL} )
-#CopyFilesFromMezzanineDuringBuildAndRename( data/${BuildPlatform}/ogre/${OgrePluginParticle} data/ogre/${OgrePluginParticle} )
-
 #The Engine itself
 CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${MezzanineLibFileName} )
 

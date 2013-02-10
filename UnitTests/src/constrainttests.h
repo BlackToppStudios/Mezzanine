@@ -115,7 +115,7 @@ class ConstraintTests : public UnitTestGroup
                 // Make minimal set for constraint
                 String groupname ("Group1");
                 String filerobot ("robot.mesh");
-                ResourceManager::GetSingletonPtr()->AddAssetLocation("data/common", "FileSystem", groupname, false);
+                ResourceManager::GetSingletonPtr()->AddAssetLocation("data/common", FileSystem, groupname, false);
                 Physics::CollisionShape* RobotShape = CollisionShapeManager::GetSingletonPtr()->GenerateConvexHull("ABasicRobotShape",filerobot,groupname);
 
                 ActorRigid *ActorA = new ActorRigid (20.0,"RobotA",filerobot,groupname);

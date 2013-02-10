@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "enumerations.h"
 #include "managerbase.h"
 #include "managerfactory.h"
 #include "singleton.h"
@@ -93,7 +94,7 @@ namespace Mezzanine
             /// @details Standard manager constructor.
             /// @param EngineDataPath The directory for engine specific data.
             /// @param ArchiveType The name of the type of archive at this path.
-            ResourceManager(const String& EngineDataPath = ".", const String& ArchiveType = "FileSystem");
+            ResourceManager(const String& EngineDataPath = ".", ArchiveType ArchiveType_ = FileSystem);
 
             /// @brief XML constructor.
             /// @param XMLNode The node of the xml document to construct from.
@@ -165,7 +166,7 @@ namespace Mezzanine
             /// Options are: filesystem, zip.
             /// @param Group The name of the group the resources at this location belong to.  If the group does not exist it will be created.
             /// @param recursive Whether or not to search sub-directories.
-            void AddAssetLocation(const String& Location, const String& Type, const String& Group, const bool recursive=false);
+            void AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, const bool recursive=false);
             /// @brief Creates an asset group.
             /// @param GroupName The name to be given to the created asset group.
             void CreateAssetGroup(const String& GroupName);
@@ -210,6 +211,13 @@ namespace Mezzanine
             /// @return An derivative of std::istream a ResourceInputStream that will pull it's data from the desired resource
             /// @details The returned ResourceInputStream is the Caller's responsibility to deal with. If it is not deleted it is a memory leak.
             ResourceInputStream* GetResourceStream(const String& FileName);
+
+            /// @brief Get A string that describes an @ref ArchiveType
+            /// @param ArchiveType_ A @ref ArchiveType That you want to log or pass to Ogre, or just need a @ref String that represents it.
+            /// @return A String that represents the @ref ArchiveType passed
+            static String GetStringFromArchiveType(ArchiveType ArchiveType_);
+
+            static ArchiveType GetArchiveTypeFromString(String FromString);
 
             ///////////////////////////////////////////////////////////////////////////////
             //Inherited from ManagerBase

@@ -241,6 +241,7 @@
 #include "crossplatform.h"
 #include "eventbase.h"
 #include "exception.h"
+#include "enumerations.h"
 #include "datatypes.h"
 #include "vector3.h"
 #include "managerbase.h"
@@ -269,7 +270,6 @@ namespace Mezzanine
     class ManagerFactory;
 }
 
-
 //Other forward declarations
 //forward Declarations so that we do not need #include "SDL.h"
 class SDL_Surface;
@@ -284,6 +284,9 @@ namespace Ogre
 	class SceneManager;
 	class Camera;
 	class Viewport;
+
+    class ParticleFXPlugin;
+    class CgPlugin;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -311,28 +314,44 @@ namespace Mezzanine
             typedef std::map<String,ManagerFactory*> ManagerFactoryMap;
             typedef ManagerFactoryMap::iterator ManagerFactoryIterator;
             typedef ManagerFactoryMap::const_iterator ConstManagerFactoryIterator;
+
         private:
             //friend class PhysicsManager;
 
             //Used by the constructors
             /// @internal
-            /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.
+            /// @brief This is called by most of the constructors so that the is one unified place to have all the settings made.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType This is the type of Scene Manager to be created.
-            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
             /// @param LogFileName This is the place that log messages get sent to. This is relative to the working directory of the application/game.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const PhysicsConstructionInfo& PhysicsInfo,
                             const String& SceneType,
-                            const String& PluginsFileName,
                             const String& EngineDataPath,
                             const String& LogFileName,
-                            std::vector < ManagerBase* > ManagerToBeAdded);
-            void ConstructFromXML(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile);
+                            const std::vector <ManagerBase*>& ManagerToBeAdded );
+
+            /// @internal
+            /// @brief Used to intialize from XML
+            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
+            /// @param ArchiveType_ Should This be looking for raw or zip or whatever kind of files.
+            /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
+            void ConstructFromXML(  const String& EngineDataPath,
+                                    ArchiveType ArchiveType_,
+                                    const String& InitializerFile );
+
             void SanityChecks();
             void OneTimeMainLoopInit();
             bool VerifyManagerInitializations();
+
+            /// @internal
+            /// @brief Used to track Ogre specific details for the statically linked Particle plugin
+            Ogre::ParticleFXPlugin* SubSystemParticleFXPlugin;
+
+            /// @internal
+            /// @brief Used to track Ogre specific details for the statically linked CG plugin
+            Ogre::CgPlugin* SubSystemCgPlugin;
 
             //Settings for Engine Functionality
             Whole TargetFrameLength;
@@ -357,32 +376,29 @@ namespace Mezzanine
             /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
             /// If the file provided is not one of this type this function will throw an exception. @n @n
             /// When initializing factories in the XML file this constructor does not initialize any additional manager factories, so if they are called this will throw an exception.
-            /// @param EngineDataPath The directory where engine specific data resides.  This is where it will search for the specified initializer file.
-            /// @param ArchiveType The type of archive at the path provided.
+            /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
+            /// @param ArchiveType_ The type of archive at the path provided.
             /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            Entresol(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile = "Mezzanine.mxi");
+            Entresol(const String& EngineDataPath, ArchiveType ArchiveType_, const String& InitializerFile = "Mezzanine.mxi");
 
             /// @brief Factory and initializer file constructor.
             /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
             /// If the file provided is not one of this type this function will throw an exception. @n @n
             /// Also default factories are already added and thus do not need to be included in the Factory vector.
             /// @param CustomFactories A vector containing the additional factories to be registered before initializing the engine.
-            /// @param EngineDataPath The directory where engine specific data resides.  This is where it will search for the specified initializer file.
-            /// @param ArchiveType The type of archive at the path provided.
+            /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
+            /// @param ArchiveType_ The type of archive at the path provided.
             /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile = "Mezzanine.mxi");
+            Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, ArchiveType ArchiveType_, const String& InitializerFile = "Mezzanine.mxi");
 
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
             /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
-            /// @param PluginsFileName The filename of the plugins file to be loaded. This is relative to the EngineDataPath.
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially other low level resources.
             /// @param LogFileName This is the place that log messages get sent to.
-            /// @warning Do not make a new world if one already exists. This can only cause problems
             Entresol(  const PhysicsConstructionInfo& PhysicsInfo,
                        const String& SceneType,
-                       const String& PluginsFileName,
                        const String& EngineDataPath,
                        const String& LogFileName = "Mezzanine.log" );
 
@@ -395,11 +411,9 @@ namespace Mezzanine
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
-            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
-            /// @warning Do not make a new world if one already exists. This can only cause problems.
+            /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones.
             Entresol(  const PhysicsConstructionInfo& PhysicsInfo,
                        const String& SceneType,
-                       const String& PluginsFileName,
                        const String& EngineDataPath,
                        const String& LogFileName,
                        const std::vector <ManagerBase*>& ManagerToBeAdded);

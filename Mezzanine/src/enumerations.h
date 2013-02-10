@@ -40,7 +40,8 @@
 #ifndef _enumerations_h
 #define _enumerations_h
 ///////////////////////////////////////////////////////////////////////////////
-//Any global enumerations shared between multiple classes is to be declared here.
+/// @file
+/// @brief Any global enumerations shared between multiple classes is to be declared here.
 ///////////////////////////////////////
 
 namespace Mezzanine
@@ -83,7 +84,7 @@ namespace Mezzanine
     {
         Axis_X         = 0,    ///< X axis
         Axis_Y         = 1,    ///< Y axis
-        Axis_Z         = 2,    ///< Z axis
+        Axis_Z         = 2     ///< Z axis
     };
 
     /// @enum TransformSpace
@@ -170,6 +171,14 @@ namespace Mezzanine
 
         // Other Objects
         WSO_WorldNode = 1048576
+    };
+
+    /// @brief Used to indicate what kind of resources the Entrosol should look for
+    enum ArchiveType
+    {
+        FileSystem  = 0,    ///< Look for raw files
+        Zip         = 1,    ///< Look for stuff in zip files even if the extension is not '.zip'.
+        Invalid     = 32768 ///< Indicates this valid was messed up unrecoverably, most likely by a bug.
     };
 }
 

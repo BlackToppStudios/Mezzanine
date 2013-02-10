@@ -88,12 +88,12 @@ namespace Mezzanine
 {
     template<> ResourceManager* Singleton<ResourceManager>::SingletonPtr = 0;
 
-    ResourceManager::ResourceManager(const String& EngineDataPath, const String& ArchiveType)
+    ResourceManager::ResourceManager(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_)
     {
         this->Priority = 60;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
         EngineDataDir = EngineDataPath;
-        this->AddAssetLocation(EngineDataPath, ArchiveType, "EngineData", false);
+        this->AddAssetLocation(EngineDataPath, ArchiveType_, "EngineData", false);
     }
 
     ResourceManager::ResourceManager(XML::Node& XMLNode)
@@ -365,9 +365,9 @@ namespace Mezzanine
         ResourceGroups.push_back(Name);
     }
 
-    void ResourceManager::AddAssetLocation(const String& Location, const String& Type, const String& Group, bool recursive)
+    void ResourceManager::AddAssetLocation(const String& Location, ArchiveType Type, const String& Group, bool recursive)
     {
-        this->OgreResource->addResourceLocation(Location, Type, Group, recursive);
+        this->OgreResource->addResourceLocation(Location, GetStringFromArchiveType(Type), Group, recursive);
         AddAssetGroupName(Group);
     }
 
@@ -453,6 +453,30 @@ namespace Mezzanine
         return Results;
     }
 
+    String ResourceManager::GetStringFromArchiveType(ArchiveType ArchiveType_)
+    {
+        switch(ArchiveType_)
+        {
+            case FileSystem:
+                return String("FileSystem");
+            case Zip:
+                return String("Zip");
+            default:
+                MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetStringFromArchiveType.");
+                return String("");
+        }
+    }
+
+    ArchiveType ResourceManager::GetArchiveTypeFromString(String FromString)
+    {
+        if(String("FileSystem")==FromString)
+            { return FileSystem; }
+        if(String("Zip")==FromString)
+            { return Zip; }
+        MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Invalid archive type passed to ResourceManager::GetArchiveTypeFromString.");
+        return Invalid;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Inherited from ManagerBase
 
@@ -497,7 +521,8 @@ namespace Mezzanine
             if(Params.empty()) return new ResourceManager();
             else
             {
-                String EngineDataPath, ArchiveType;
+                String EngineDataPath;
+                ArchiveType ArchiveType_;
                 for( NameValuePairList::iterator ParIt = Params.begin() ; ParIt != Params.end() ; ++ParIt )
                 {
                     String Lower = (*ParIt).first;
@@ -508,10 +533,10 @@ namespace Mezzanine
                     }
                     else if( "archivetype" == Lower )
                     {
-                        ArchiveType = (*ParIt).second;
+                        ArchiveType_ = ResourceManager::GetArchiveTypeFromString((*ParIt).second);
                     }
                 }
-                return new ResourceManager(EngineDataPath,ArchiveType);
+                return new ResourceManager(EngineDataPath,ArchiveType_);
             }
         }
     }

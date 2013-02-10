@@ -513,11 +513,11 @@ void LoadContent()
     String robotprefix ("Robot");
 
     Real mass=15.0;
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", "FileSystem", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Music", "FileSystem", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Sounds", "FileSystem", groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Music", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Sounds", FileSystem, groupname, false);
     //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("", "FileSystem", groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("", FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
 
     ParticleEffect *GreenPart = TheEntresol->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");

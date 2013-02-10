@@ -49,7 +49,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
 
+/// @todo Remove #include "mezzanine.h" and just include what is required. Waiting for multithreaded refactor, because we will have to do this again after that.
 #include "mezzanine.h"
+
+//#include "OgreBspSceneManagerPlugin.h"
+#include "OgreCgPlugin.h"
+//#include "OgreOctreePlugin.h"
+//#include "OgreOctreeZonePlugin.h"
+#include "OgreParticleFXPlugin.h"
+//#include "OgrePCZPlugin.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -66,60 +74,60 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Mezzanine constructors
+
+    /// @TODO In the Entrosol, reomves all references to a plugins file
     Entresol::Entresol()
     {
         PhysicsConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
-        this->Construct(PhysicsInfo,"DefaultSceneManager","plugins.cfg",".","Mezzanine.log",temp);
+        this->Construct(PhysicsInfo,"DefaultSceneManager",".","Mezzanine.log",temp);
     }
 
 
-    Entresol::Entresol(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
+    Entresol::Entresol(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_, const String& InitializerFile)
     {
-        if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
-        //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
-        else { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+        if(String::npos != InitializerFile.find(".mxi"))
+            { ConstructFromXML(EngineDataPath, ArchiveType_, InitializerFile); }
+        else
+            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
-    Entresol::Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
+    Entresol::Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_, const String& InitializerFile)
     {
-        for( std::vector<ManagerFactory*>::iterator it = CustomFactories.begin() ; it != CustomFactories.end() ; ++it )
+        for(std::vector<ManagerFactory*>::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
         {
             AddManagerFactory( (*it) );
         }
 
-        if(String::npos != InitializerFile.find(".mxi")) ConstructFromXML(EngineDataPath,ArchiveType,InitializerFile);
-        //else if(String::npos == InitializerFile.find(".mxi")) ConstructFromText(EngineDataPath,InitializerFile);
-        else { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
+        if(String::npos != InitializerFile.find(".mxi"))
+            { ConstructFromXML(EngineDataPath, ArchiveType_, InitializerFile); }
+        else
+            { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
 
-    Entresol::Entresol(   const PhysicsConstructionInfo& PhysicsInfo,
-                    const String& SceneType,
-                    const String& PluginsFileName,
-                    const String& EngineDataPath,
-                    const String& LogFileName)
+    Entresol::Entresol( const PhysicsConstructionInfo& PhysicsInfo,
+                        const String& SceneType,
+                        const String& EngineDataPath,
+                        const String& LogFileName)
     {
         std::vector <ManagerBase*> temp;
         this->Construct(PhysicsInfo,
                         SceneType,
-                        PluginsFileName,
                         EngineDataPath,
                         LogFileName,
                         temp );
     }
 
-    Entresol::Entresol(  const PhysicsConstructionInfo& PhysicsInfo,
-                    const String& SceneType,
-                    const String& PluginsFileName,
-                    const String& EngineDataPath,
-                    const String& LogFileName,
-                    const std::vector <ManagerBase*> &ManagerToBeAdded)
+    Entresol::Entresol( const PhysicsConstructionInfo& PhysicsInfo,
+                        const String& SceneType,
+                        const String& EngineDataPath,
+                        const String& LogFileName,
+                        const std::vector <ManagerBase*>& ManagerToBeAdded)
     {
         this->Construct(PhysicsInfo,
                         SceneType,
-                        PluginsFileName,
                         EngineDataPath,
                         LogFileName,
                         ManagerToBeAdded );
@@ -133,12 +141,12 @@ namespace Mezzanine
         Ogre::Root* OgreCore = 0;
     }
 
-    void Entresol::Construct(  const PhysicsConstructionInfo& PhysicsInfo,
+    void Entresol::Construct(   const PhysicsConstructionInfo& PhysicsInfo,
                                 const String& SceneType,
-                                const String& PluginsFileName,
                                 const String& EngineDataPath,
                                 const String& LogFileName,
-                                std::vector <ManagerBase*> ManagerToBeAdded)
+                                const std::vector <ManagerBase*>& ManagerToBeAdded )
+
     {
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
@@ -149,14 +157,19 @@ namespace Mezzanine
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
-
         if ( 0 == OgreCore )
-            { OgreCore = new Ogre::Root(EngineDataPath+PluginsFileName,"",LogFileName); }
+            { OgreCore = new Ogre::Root("","",LogFileName); }
         else
             { OgreCore = Ogre::Root::getSingletonPtr(); }
 
+        // Load the necessary plugins.
+        SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
+        Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
+        SubSystemCgPlugin = new Ogre::CgPlugin();
+        Ogre::Root::getSingleton().installPlugin(SubSystemCgPlugin);
+
         //add each manager that was passed in to the manager list
-        for(std::vector<ManagerBase*>::iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
+        for(std::vector<ManagerBase*>::const_iterator iter = ManagerToBeAdded.begin(); iter!= ManagerToBeAdded.end(); iter++)
             { this->AddManager(*iter); }
 
         //Create and add any managers that have not been taken care of yet.
@@ -191,7 +204,7 @@ namespace Mezzanine
         SanityChecks();
     }
 
-    void Entresol::ConstructFromXML(const String& EngineDataPath, const String& ArchiveType, const String& InitializerFile)
+    void Entresol::ConstructFromXML(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_, const String& InitializerFile)
     {
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
@@ -207,6 +220,12 @@ namespace Mezzanine
         if( NULL == OgreCore ) OgreCore = new Ogre::Root("","","");
         else OgreCore = Ogre::Root::getSingletonPtr();
 
+        // Load the necessary plugins.
+        SubSystemParticleFXPlugin = new Ogre::ParticleFXPlugin();
+        Ogre::Root::getSingleton().installPlugin(SubSystemParticleFXPlugin);
+        SubSystemCgPlugin = new Ogre::CgPlugin();
+        Ogre::Root::getSingleton().installPlugin(SubSystemCgPlugin);
+
         // Set up the data we'll be populating.
         XML::Attribute CurrAttrib;
         String GUIInit, ResourceInit, PluginsInit, LogFileName;
@@ -215,8 +234,10 @@ namespace Mezzanine
         // Create or set the resource manager.
         /// @todo This currently forces our default resource manager to be constructed, which isn't in line with our factory/initiailzation design.
         /// This should be addressed somehow.
-        if(ResourceManager::SingletonValid()) AddManager(ResourceManager::GetSingletonPtr());
-        else AddManager(new ResourceManager(EngineDataPath,ArchiveType));
+        if(ResourceManager::SingletonValid())
+            { AddManager(ResourceManager::GetSingletonPtr()); }
+        else
+            { AddManager(new ResourceManager(EngineDataPath, ArchiveType_)); }
 
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();
@@ -303,35 +324,6 @@ namespace Mezzanine
             }
         }
 
-        // Load the necessary plugins.
-        if(!PluginsInit.empty())
-        {
-            PluginExtension = ResourceMan->GetPluginExtension();
-            Resource::FileStreamDataStream PluginStream(PluginsInit,EngineDataPath);
-            XML::Document PluginDoc;
-            PluginDoc.Load(PluginStream);
-            // Get the plugin path, if it's there.
-            XML::Node PlgPath = PluginDoc.GetChild("PluginPath");
-            if(!PlgPath.Empty())
-            {
-                CurrAttrib = PlgPath.GetAttribute("Path");
-                if(!CurrAttrib.Empty())
-                    PluginPath = CurrAttrib.AsString();
-            }else PluginPath = ".";
-            XML::Node OgrePlugins = PluginDoc.GetChild("OgrePlugins");
-            for( XML::NodeIterator OPlgIt = OgrePlugins.begin() ; OPlgIt != OgrePlugins.end() ; ++OPlgIt )
-            {
-                CurrAttrib = (*OPlgIt).GetAttribute("FileName");
-                if(!CurrAttrib.Empty())
-                    OgreCore->loadPlugin(PluginPath + (CurrAttrib.AsString()) + PluginExtension);
-            }
-            XML::Node Plugins = PluginDoc.GetChild("Plugins");
-            for( XML::NodeIterator PlgIt = Plugins.begin() ; PlgIt != Plugins.end() ; ++PlgIt )
-            {
-                /// @todo This is currently not supported as we have no plugins of our own.  This should be implemented if that changes.
-            }
-        }
-
         // Load additional resource groups
         /*if(!ResourceInit.empty())
         {
@@ -392,7 +384,8 @@ namespace Mezzanine
             XML::Node ResourceLocations = ResourceDoc.GetChild("ResourceLocations");
             for( XML::NodeIterator GroupIt = ResourceLocations.begin() ; GroupIt != ResourceLocations.end() ; ++GroupIt )
             {
-                String GroupName, GroupType, GroupPath;
+                String GroupName, GroupPath;
+                ArchiveType GroupType;
                 bool GroupRecursive = false;
                 // Get the group path
                 CurrAttrib = (*GroupIt).GetAttribute("GroupPath");
@@ -401,7 +394,7 @@ namespace Mezzanine
                 // Get the group type
                 CurrAttrib = (*GroupIt).GetAttribute("GroupType");
                 if(!CurrAttrib.Empty())
-                    GroupType = CurrAttrib.AsString();
+                    GroupType = ResourceManager::GetArchiveTypeFromString(CurrAttrib.AsString());
                 // Get the group name
                 CurrAttrib = (*GroupIt).GetAttribute("GroupName");
                 if(!CurrAttrib.Empty())
@@ -445,7 +438,7 @@ namespace Mezzanine
         Log(sizeof(int));
         if(sizeof(Input::InputCode) != sizeof(SDL_Scancode))
         {
-            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
+            MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"User input subsystem Event Sizes Don't match, userinput subsystem will go be buggier than a highschool fortran class.");
         }else{
             Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
@@ -509,8 +502,9 @@ namespace Mezzanine
 
         Ogre::Root::getSingleton().shutdown();
         delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
-        OgreCore=0;
-
+        OgreCore = 0;
+        delete SubSystemParticleFXPlugin;
+        delete SubSystemCgPlugin;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

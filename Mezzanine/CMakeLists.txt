@@ -301,6 +301,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}crossplatform.cpp"
         "${${PROJECT_NAME}_SRC_DIR}entity.cpp"
         "${${PROJECT_NAME}_SRC_DIR}entresol.cpp"
+        #"${${PROJECT_NAME}_SRC_DIR}enumerations.cpp"
         "${${PROJECT_NAME}_SRC_DIR}eventbase.cpp"
         "${${PROJECT_NAME}_SRC_DIR}eventcollision.cpp"
         "${${PROJECT_NAME}_SRC_DIR}eventgamewindow.cpp"
@@ -339,11 +340,11 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}matrix4x4.cpp"
         "${${PROJECT_NAME}_SRC_DIR}meshmanager.cpp"
         "${${PROJECT_NAME}_SRC_DIR}meshterrain.cpp"
-         "${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp"
-         "${${PROJECT_NAME}_SRC_DIR}Network/ipaddress.cpp"
-         "${${PROJECT_NAME}_SRC_DIR}Network/packet.cpp"
-         "${${PROJECT_NAME}_SRC_DIR}Network/socket.cpp"
-         "${${PROJECT_NAME}_SRC_DIR}Network/systemaddress.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}networkmanager.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Network/ipaddress.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Network/packet.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Network/socket.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}Network/systemaddress.cpp"
         "${${PROJECT_NAME}_SRC_DIR}objectpair.cpp"
         "${${PROJECT_NAME}_SRC_DIR}objectsettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}particleaffector.cpp"
@@ -473,6 +474,10 @@ file(MAKE_DIRECTORY "${ProjectBinaryDir}include") # To not interfere with SDL bu
 set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
 #set(OGRE_STATIC_LIB TRUE CACHE BOOL "Forcing static build for Mezzanine build." FORCE)
 set(OGRE_SET_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_USE_BOOST FALSE CACHE BOOL "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_CONFIG_THREADS 0 CACHE INT "Forcing minimal build for Mezzanine build." FORCE)
+set(OGRE_CONFIG_THREAD_PROVIDER "" CACHE STRING "Forcing minimal build for Mezzanine build." FORCE)
+
 
 #######################################
 # Windows Build Specific Items

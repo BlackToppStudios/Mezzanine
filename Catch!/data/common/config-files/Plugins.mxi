@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<PluginPath Path="Plugins/" />
-<OgrePlugins>
-	<Plugin FileName="RenderSystem_GL" />
-	<Plugin FileName="Plugin_ParticleFX" />
-	<Plugin FileName="Plugin_CgProgramManager" />
-</OgrePlugins>
-<Plugins>
-</Plugins>

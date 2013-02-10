@@ -68,14 +68,15 @@ namespace Mezzanine
         /// @details This enum specifies which Rendersystem is to be used for rendering.
         enum RenderSystem
         {
-            RS_DirectX9  = 0,
-            RS_DirectX10 = 1,
-            RS_DirectX11 = 2,
-            RS_OpenGL2   = 3,
-            RS_OpenGL3   = 4,
-            RS_OpenGL4   = 5,
-            RS_OpenGLES1 = 6,
-            RS_OpenGLES2 = 7
+            RS_Invalid   = 0,
+            RS_DirectX9  = 1,
+            RS_DirectX10 = 2,
+            RS_DirectX11 = 3,
+            RS_OpenGL2   = 4,
+            RS_OpenGL3   = 5,
+            RS_OpenGL4   = 6,
+            RS_OpenGLES1 = 7,
+            RS_OpenGLES2 = 8
         };
     }//Graphics
 }//Mezzanine

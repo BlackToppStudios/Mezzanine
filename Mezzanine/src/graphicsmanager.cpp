@@ -56,6 +56,22 @@
 #include <SDL.h>
 #include <Ogre.h>
 
+#ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
+#include "OgreD3D9Plugin.h"
+#endif
+#ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
+#include "OgreD3D11Plugin.h"
+#endif
+#ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+#include "OgreGLES2Plugin.h"
+#endif
+#ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+#include "OgreGLESPlugin.h"
+#endif
+#ifdef MEZZ_BUILD_OPENGL_SUPPORT
+#include "OgreGLPlugin.h"
+#endif
+
 #include <cstdlib>
 
 namespace Mezzanine
@@ -140,6 +156,13 @@ namespace Mezzanine
     GraphicsManager::~GraphicsManager()
     {
         DestroyAllGameWindows(false);
+        for (std::vector<Ogre::Plugin*>::iterator Iter = RenderSystems.begin();
+             Iter != RenderSystems.end();
+             Iter++)
+        {
+            Ogre::Root::getSingletonPtr()->uninstallPlugin(*Iter);
+            delete *Iter;
+        }
     }
 
     void GraphicsManager::Construct()
@@ -159,8 +182,51 @@ namespace Mezzanine
         if(!OgreBeenInitialized)
         {
             Ogre::Root* OgreCore = Ogre::Root::getSingletonPtr();
-            String RenderSysName = GetRenderSystemName(CurrRenderSys);
-            OgreCore->setRenderSystem(OgreCore->getRenderSystemByName(RenderSysName));
+            Ogre::Plugin* CurrentRenderSystem = 0;
+
+            #ifdef MEZZ_BUILD_DIRECTX9_SUPPORT
+            CurrentRenderSystem = new Ogre::D3D9Plugin;
+            RenderSystems.push_back(CurrentRenderSystem);
+            OgreCore->installPlugin(CurrentRenderSystem);
+            RenderSystemTypes.push_back(Graphics::RS_DirectX9);
+            #endif
+            #ifdef MEZZ_BUILD_DIRECTX11_SUPPORT
+            CurrentRenderSystem = new Ogre::D3D11Plugin;
+            RenderSystems.push_back(CurrentRenderSystem);
+            OgreCore->installPlugin(CurrentRenderSystem);
+            RenderSystemTypes.push_back(Graphics::RS_DirectX11);
+            #endif
+            #ifdef MEZZ_BUILD_OPENGLES2_SUPPORT
+            CurrentRenderSystem = new Ogre::GLES2Plugin;
+            RenderSystems.push_back(CurrentRenderSystem);
+            OgreCore->installPlugin(CurrentRenderSystem);
+            RenderSystemTypes.push_back(Graphics::RS_OpenGLES2);
+            #endif
+            #ifdef MEZZ_BUILD_OPENGLES_SUPPORT
+            CurrentRenderSystem = new Ogre::GLESPlugin;
+            RenderSystems.push_back(CurrentRenderSystem);
+            OgreCore->installPlugin(CurrentRenderSystem);
+            RenderSystemTypes.push_back(Graphics::RS_OpenGLES1);
+            #endif
+            #ifdef MEZZ_BUILD_OPENGL_SUPPORT
+            CurrentRenderSystem = new Ogre::GLPlugin;
+            RenderSystems.push_back(CurrentRenderSystem);
+            OgreCore->installPlugin(CurrentRenderSystem);
+            RenderSystemTypes.push_back(Graphics::RS_OpenGL2);
+            #endif
+
+            if(RenderSystems.size()==1)
+            {
+                Ogre::RenderSystem* temp= OgreCore->getRenderSystemByName(GetRenderSystemName(RenderSystemTypes[0]));
+                OgreCore->setRenderSystem( OgreCore->getRenderSystemByName(GetRenderSystemName(RenderSystemTypes[0])) );
+            }
+            else
+            {
+                //RenderSys
+                // @todo add logic here to load from file
+                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialize Mezzanine with multiple rendersystems not currently supported.");
+            }
+
             OgreCore->initialise(false,"");
             OgreBeenInitialized = true;
 
@@ -215,15 +281,15 @@ namespace Mezzanine
             {
                 Graphics::RenderSystem RenderSys = Graphics::RS_OpenGL2;
                 CurrSettingValue = (*SubSetIt)->GetSettingValue("Name");
-                if( "Direct3D9" == CurrSettingValue )
+                if( GetShortenedRenderSystemName(Graphics::RS_DirectX9) == CurrSettingValue )
                     RenderSys = Graphics::RS_DirectX9;
-                else if( "Direct3D11" == CurrSettingValue )
+                else if( GetShortenedRenderSystemName(Graphics::RS_DirectX11) == CurrSettingValue )
                     RenderSys = Graphics::RS_DirectX11;
-                else if( "OpenGL" == CurrSettingValue )
+                else if( GetShortenedRenderSystemName(Graphics::RS_OpenGL2) == CurrSettingValue )
                     RenderSys = Graphics::RS_OpenGL2;
-                else if( "OpenGLES1.x" == CurrSettingValue )
+                else if( GetShortenedRenderSystemName(Graphics::RS_OpenGLES1) == CurrSettingValue )
                     RenderSys = Graphics::RS_OpenGLES1;
-                else if( "OpenGLES2.x" == CurrSettingValue )
+                else if( GetShortenedRenderSystemName(Graphics::RS_OpenGLES2) == CurrSettingValue )
                     RenderSys = Graphics::RS_OpenGLES2;
 
                 if(!OgreBeenInitialized)

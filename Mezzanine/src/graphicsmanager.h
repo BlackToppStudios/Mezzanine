@@ -53,6 +53,7 @@ namespace Ogre
     class Timer;
     class RenderWindow;
     class Viewport;
+    class Plugin;
 }
 
 struct SDL_Surface;
@@ -80,7 +81,17 @@ namespace Mezzanine
             typedef std::vector<Graphics::GameWindow*> GameWindowContainer;
             typedef GameWindowContainer::iterator GameWindowIterator;
             typedef GameWindowContainer::const_iterator ConstGameWindowIterator;
-        private:
+
+        protected:
+            /// @internal
+            /// @brief Track all statically linked Ogre render systems, usually only one, but could be many.
+            std::vector<Ogre::Plugin*> RenderSystems;
+
+            /// @internal
+            /// @brief A listing of the types of rendersystems Types that correspond to the entry in @ref RenderSystems .
+            std::vector<Graphics::RenderSystem> RenderSystemTypes;
+
+
             Ogre::Timer* RenderTimer;
             Graphics::GameWindow* PrimaryGameWindow;
             bool OgreBeenInitialized;
