@@ -241,7 +241,7 @@ CopyFilesDuringBuild( data/common/ubuntu-font-family/Ubuntu-R.ttf ${FontDir}Ubun
 #####################################
 # Config Files
 CopyFilesDuringBuild( data/common/config-files/Mezzanine.mxi ${CommonDataDir}Mezzanine.mxi )
-CopyFilesDuringBuild( data/common/config-files/Plugins.mxi ${CommonDataDir}Plugins.mxi )
+#CopyFilesDuringBuild( data/common/config-files/Plugins.mxi ${CommonDataDir}Plugins.mxi )
 CopyFilesDuringBuild( data/common/config-files/Resources.mxi ${CommonDataDir}Resources.mxi )
 
 #####################################

@@ -27,7 +27,7 @@ CatchApp::CatchApp()
     CatchApp::TheRealCatchApp = this;
 
     try{
-        TheEntresol = new Entresol( "Data/", "FileSystem" );
+        TheEntresol = new Entresol( "Data/", FileSystem );
     }catch(...){
         throw;
     }
