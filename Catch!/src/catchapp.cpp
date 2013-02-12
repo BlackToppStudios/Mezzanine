@@ -29,7 +29,7 @@ CatchApp::CatchApp()
     try{
         TheEntresol = new Entresol( "Data/", FileSystem );
     }catch(...){
-        throw;
+        throw "";
     }
     Loader = new LevelLoader();
     Scorer = new LevelScorer();

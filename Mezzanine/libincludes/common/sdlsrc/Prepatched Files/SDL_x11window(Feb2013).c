@@ -576,37 +576,8 @@ int
 X11_CreateWindowFrom(_THIS, SDL_Window * window, const void *data)
 {
     Window w = (Window) data;
+
     window->title = X11_GetWindowTitle(_this, w);
-
-    SDL_VideoData *vdata = (SDL_VideoData *) _this->driverdata;
-    Display *display = vdata->display;
-    XWMHints *wmhints;
-    Uint32 fevent = 0;
-
-#ifdef X_HAVE_UTF8_STRING
-    /*if (SDL_X11_HAVE_UTF8) {
-        pXGetICValues(((SDL_WindowData *) window->driverdata)->ic,
-                      XNFilterEvents, &fevent, NULL);
-    }*/
-#endif
-
-    /* Set the input hints so we get keyboard input */
-    wmhints = XAllocWMHints();
-    if (wmhints) {
-        wmhints->input = True;
-        wmhints->flags = InputHint;
-        XSetWMHints(display, w, wmhints);
-        XFree(wmhints);
-    }
-
-    XSelectInput(display, w,
-                 (FocusChangeMask | EnterWindowMask | LeaveWindowMask |
-                 ExposureMask | ButtonPressMask | ButtonReleaseMask |
-                 PointerMotionMask | KeyPressMask | KeyReleaseMask |
-                 PropertyChangeMask | StructureNotifyMask |
-                 KeymapStateMask | fevent));
-
-    XFlush(display);
 
     if (SetupWindowData(_this, window, w, SDL_FALSE) < 0) {
         return -1;
@@ -960,7 +931,7 @@ X11_MinimizeWindow(_THIS, SDL_Window * window)
     SDL_DisplayData *displaydata =
         (SDL_DisplayData *) SDL_GetDisplayForWindow(window)->driverdata;
     Display *display = data->videodata->display;
-
+ 
     XIconifyWindow(display, data->xwindow, displaydata->screen);
     XFlush(display);
 }
