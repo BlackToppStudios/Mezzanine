@@ -26,11 +26,11 @@ CatchApp::CatchApp()
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
 
-    try{
+    //try{
         TheEntresol = new Entresol( "Data/", FileSystem );
-    }catch(...){
-        throw "";
-    }
+    //}catch(...){
+//        throw "";
+//    }
     Loader = new LevelLoader();
     Scorer = new LevelScorer();
     Profiles = new ProfileManager("Profiles/");

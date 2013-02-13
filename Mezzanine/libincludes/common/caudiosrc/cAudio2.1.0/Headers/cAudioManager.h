@@ -34,7 +34,7 @@ namespace cAudio
 			ON_RELEASE,
 			ON_SOURCECREATE,
 			ON_DECODERREGISTER,
-			ON_DATASOURCEREGISTER,
+            ON_DATASOURCEREGISTER
 		};
 
 		cAudioManager() : Device(NULL), Context(NULL), EFXSupported(false), Initialized(false) { }
