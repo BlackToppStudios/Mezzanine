@@ -160,7 +160,7 @@ namespace Mezzanine
                 Window Data = 0;
                 #endif
                 #ifdef MACOSX
-               // NSWindow* Data = 0;
+                // NSWindow* Data = 0;
                 #endif
                 OgreWindow->getCustomAttribute("WINDOW",&Data);
                 SDLWindow = SDL_CreateWindowFrom((void*)Data);

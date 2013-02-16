@@ -68,15 +68,15 @@ namespace Mezzanine
             // Scripting Manager Core Functionality
 
             /// @brief In implemented classes this
-            virtual void CompileScript(Scripting::Script* ScriptToCompile) = 0;
+            virtual void CompileScript(Scripting::iScript* ScriptToCompile) = 0;
 
-            virtual void AddScript(Scripting::Script* ScriptToAdd) = 0;
+            virtual void AddScript(Scripting::iScript* ScriptToAdd) = 0;
 
             virtual void AddScript(String ScriptInString) = 0;
 
-            virtual void RemoveScript(Scripting::Script* ScriptToRemove) = 0;
+            virtual void RemoveScript(Scripting::iScript* ScriptToRemove) = 0;
 
-            virtual void ExecuteScript(Scripting::Script* ScriptToRemove) = 0;
+            virtual void ExecuteScript(Scripting::iScript* ScriptToRemove) = 0;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Inherited from Managerbase

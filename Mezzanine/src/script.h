@@ -48,20 +48,27 @@ namespace Mezzanine
 {
     namespace Scripting
     {
-        ///////////////////////////////////////////////////////////////////////////////
+        // Forward Declares
+        class iScriptCompilable;
+        class iScriptMultipleReturn;
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script
-        /// @details All the members that all script for all languages must implement.
+        /// @details All the methods that all scripts for all languages must implement.
         /// These are tiny pieces of data that can be run like miniature programs.
+        /// @n @n
+        /// These can be executed by passing them to the appropriate Script Manager.
+        /// @n @n
+        /// This uses multiple inheritance to minimize the amount of features a scripting langauge with need to
+        /// implement. It is expected that a simple scripting language may only need to implement the base
+        /// @ref iScript interface. Other languages that support more features can have their script classes
+        /// multiply inherit from the other classes like
         ///////////////////////////////////////
-        class MEZZ_LIB Script
+        class MEZZ_LIB iScript
         {
             public:
-                /// @brief This adds an argument to be passed to the script.
-                /// @details All arguments added with this are passed in FIFO order to the Script during or just
-                /// before execution. This should normally run in constant time. Some scripting implementations may
-                /// change the order arguments are passed if doing it another way mays more sense.
-                /// @param Arg This accepts a pointer to a script argument and The script assumes responsibility for deleting the argument.
-                virtual void AddArgument(ScriptArgument* Arg) = 0;
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // Work With Arguments
 
                 /// @brief This adds an argument to be passed to the script.
                 /// @details All arguments added with this are passed in FIFO order to the Script during or just
@@ -83,57 +90,171 @@ namespace Mezzanine
                 /// @param ArgNumber The number of the Argument to be removed. This behaves similar to an array or vector as it starts counting at 0.
                 virtual void RemoveArgument(Whole ArgNumber) = 0;
 
+                /// @brief How many arguments have been attached to this script?
+                /// @return A Whole containing the amount of arguments passed in so far.
+                virtual Whole GetArgumentCount() const = 0;
+
                 /// @brief Remove all the ARGs!!! http://imgur.com/DJhw7
                 /// @details This should run in constant time. It still might be slower than removing and readding just one a few arguments
                 /// in simple cases
                 virtual void ClearArguments() = 0;
 
-                virtual Whole GetArgumentCount() const = 0;
-
+                /// @brief Retrieve a argument previously passed in.
+                /// @param ArgNumber The index of the passed parameter to retrun.
+                /// @return A reference counted pointer to a ScriptArgument.
                 virtual CountedPtr<ScriptArgument> GetArgument(Whole ArgNumber) const = 0;
 
-                virtual void SetCode(String Code) = 0;
-                virtual String GetCode() const = 0;
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // Source of the Script
 
+                /// @brief Sets the string version of the script.
+                /// @param Code A string that defines the source code to be executed or compiled whne running the script.
+                /// @detail It is recomended that when this is called that implentors clear any bytecode or any other compiled
+                /// version of the script. This will prevent issues with mismatched version of source and bytecode.
+                virtual void SetSourceCode(String Code) = 0;
+
+                /// @brief If present this returns the code of script
+                /// @return This will return either an empty @ref String or the code. In cases where bytcode is set it is advised to clear this in implementations.
+                virtual String GetSourceCode() const = 0;
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // Compilation Detection support
+
+                /// @brief Used to check if there is a bytecode version of the script available.
+                /// @return This will return false on all scripts not implementing @ref ScriptCompilable and only false when the bytecode is already compiled.
                 virtual bool IsCompiled() const
                     { return false; }
+
+                /// @brief Used to check if this Script supports compilation bytecode.
+                /// @return This will return false on all scripts not implementing @ref ScriptCompilable and on those that do implement it.
                 virtual bool IsCompilable() const
                     { return false; }
 
-                virtual bool IsAvailableAsString() const = 0;
-                virtual bool IsAbleToReturnMultiple() const = 0;
+                /// @brief If your only handle to this is a pointer of type @ref iScript this can be called to get a pointer to an @ref iScriptCompilable if it would be valid
+                /// @return A null pointer if this conversion is invalid or a valid pointer to this as an @ref iScriptCompilable if it is valid.
+                virtual iScriptCompilable* GetAsScriptCompilable()
+                    { return 0; }
 
-                virtual CountedPtr<ScriptArgument> Execute() = 0;
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                // Multiple return Detection Support
+
+                /// @brief Does this script support multiple return values.
+                /// @detail Some scripting language support return tuples of values(Python), return an array of values (javascript), returning tables made of records
+                /// which are groups or values(sql), and some allow return an arbitrary number of items that could be tables, or values and allow for tables to contain
+                /// more tables and values(Lua). This allows for checking for an interface to retrieve some of these.
+                virtual bool CanReturnMultples()
+                    { return false; }
+
+                /// @brief If your only handle to this is a pointer of type @ref iScript this can be called to get a pointer to an @ref iScriptMultipleReturn if it would be valid
+                /// @return A null pointer if this conversion is invalid or a valid pointer to this as an @ref iScriptMultipleReturn if it is valid.
+                virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
+                    { return 0; }
 
         };
 
-        ///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        /// @brief A way to store and pass compile binary scripts.
+        /// @details Intended for use with @ref ScriptCompilable as a basic way to store and pass bytecode around.
+        /// This does not delete the binary on destruction and is not intended to. Some script interpretter's
+        /// will manage their own memory and in other situations is seems likely the Game developor will want to
+        /// manage bytecode lifecycle. Otherwise creating a derived class may be useful.
+        /// @n @n
+        /// This is designed to be fairly minimalistic and pointer-like so that it can be passed by value to reduce
+        /// double pointer indirection and caching costs.
+        struct ByteCode
+        {
+            public:
+
+                /// @brief How many bytes is @ref Binary in size. This is set to 0 if @ref Binary is invalid and should be a null pointer.
+                Whole Size;
+
+                /// @brief A pointer to the actual compiled bytecode.
+                UInt8* Binary;
+
+                /// @brief Default constructor, set everything to zero.
+                ByteCode() :
+                    Size(0),
+                    Binary(NULL)
+                    {}
+
+                /// @brief Verbose constructor, set everything custom on creation.
+                /// @param Size_ The size to set on creation.
+                /// @param Binary_ A pointer to the compiled byte in memory, to be set on creation.
+                ByteCode(Integer Size_, UInt8* Binary_) :
+                    Size(Size_),
+                    Binary(Binary_)
+                    {}
+        };
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script that can be compiled to bytecode
-        /// @details All the members that all script for all languages must implement
+        /// @details All the members that all script for all languages must implement that
+        /// support dynamic compilation in the Mezzanine.
         /// @n @n
         /// These are tiny pieces of data that can be run like miniature programs. In some cases
         /// they will be compiled to a bytecode that can swiftly be executed by the appropriate
-        /// bytecode interpretter. This is faster than interpretting text, but slower than
-        /// running native code. It is more flexible and safer than native code, because
-        /// scripts may be provided by others than the original developers, and there are
-        /// fewer security issues with a completely self contained language as opposed to
-        /// actual native code.
+        /// bytecode interpretter. This is generally faster than interpretting text, but slower than
+        /// running machine code.
+        /// @n @n
+        /// This class is designed for use with multiple inheritance. If a script returns true from
+        /// @ref IsCompilable then its pointer can safely be cast to a ScriptCompilable pointer.
+        /// @todo Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.
         ///////////////////////////////////////
-        class MEZZ_LIB ScriptCompilable : public Script
+        class MEZZ_LIB iScriptCompilable : public virtual iScript
         {
             public:
-                virtual void SetByteCode(String Code) = 0;
-                virtual String GetByteCode() const = 0;
 
+                /// @brief Set the bytecode used when this script is executed.
+                /// @param Code The Binary version of the script
+                /// @details This is what will be executed. No reverse compiling support is provided, so it is advisable
+                /// that implementations of this either clear the source code or set it to the source that matches the
+                /// compiled binary.
+                virtual void SetByteCode(ByteCode Code) = 0;
+
+                /// @brief Get the compiled version of the code if it is available.
+                /// @return If there is valid byte code this will retrieve that, otherwise this will return an empty bytecode.
+                virtual ByteCode GetByteCode() const = 0;
+
+                /// @brief Has this script already been compiled into a bytecode.
+                /// @return True if there is bytecode available false otherwise.
                 virtual bool IsCompiled() const = 0;
+
+                /// @brief Any script implementing this class is compilable.
+                /// @brief returns true.
                 virtual bool IsCompilable() const
                     { return true; }
 
-                virtual bool IsAvailableAsString() const = 0;
-
-                virtual void Compile() = 0;
-                virtual CountedPtr<ScriptArgument> Execute() = 0;
+                virtual iScriptCompilable* GetAsScriptCompilable()
+                    { return this; }
         };
+
+
+        /// @brief A group of arguments that can be returned from some scripts
+        typedef std::vector< CountedPtr<ScriptArgument> > ArgumentSet;
+
+        /// @brief This script can return simple group of values.
+        /// @details This loosely correlates to a tuple like the simple returns
+        /// in Lua or any return in Python. This cannot handle returns that include
+        /// tuples that contain tuples in a graceful way.
+        class MEZZ_LIB iScriptMultipleReturn : public virtual iScript
+        {
+                /// @brief Does this script support multiple return values.
+                /// @return Any implementation of this returns true.
+                virtual bool CanReturnMultples()
+                    { return true; }
+
+                virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
+                    { return this; }
+
+                /// @brief How many values are being returned
+                /// @return A Whole with the amount of items available to be returned now.
+                virtual Whole GetReturnCount();
+
+                /// @brief Get the returns from the last exection of the script
+                /// @return An ArgumentSet that can be iterated over to get all the values returned.
+                virtual ArgumentSet GetAllReturns();
+        };
+
 
     }
 
