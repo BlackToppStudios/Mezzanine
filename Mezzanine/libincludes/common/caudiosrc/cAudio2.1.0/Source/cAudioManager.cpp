@@ -221,7 +221,7 @@ namespace cAudio
 
     IAudioSource* cAudioManager::createFromMemory(const char* name, const char* data, size_t length, const char* extension)
     {
-		cAudioMutexBasicLock lock(Mutex);
+        cAudioMutexBasicLock lock(Mutex);
 
 		cAudioString audioName = safeCStr(name);
 		cAudioString ext = safeCStr(extension);

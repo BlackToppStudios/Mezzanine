@@ -77,6 +77,7 @@ namespace Mezzanine
     {
         AMID = new AudioManagerInternalData(this);
         cAudioMan = cAudio::createAudioManager(DefaultSettings);
+        //cAudioMan->getAvailableDevices();
         Listener = new Audio::Listener(cAudioMan->getListener());
         MusicPlayer = new Audio::MusicPlayer();
         this->Priority = 55;
@@ -209,7 +210,10 @@ namespace Mezzanine
                 if(!CurrSettingValue.empty())
                     EAXSlots = StringTools::ConvertToInteger(CurrSettingValue);
 
-                if( "Default" == DeviceName ) DeviceName = GetDefaultDeviceName();
+                if( "Default" == DeviceName )
+                {
+                    DeviceName = GetDefaultDeviceName();
+                }
                 else
                 {
                     if( !DeviceNameValid(DeviceName) )
@@ -460,6 +464,15 @@ namespace Mezzanine
     String AudioManager::GetDefaultDeviceName() const
     {
         String Device(cAudioMan->getDefaultDeviceName());
+        if(0==Device.length())
+        {
+            if(cAudioMan->getAvailableDeviceCount())
+            {
+                Device = cAudioMan->getAvailableDeviceName(0);
+            }else{
+                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"No Available sound devices.");
+            }
+        }
         return Device;
     }
 

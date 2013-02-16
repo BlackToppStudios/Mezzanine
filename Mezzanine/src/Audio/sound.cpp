@@ -43,6 +43,7 @@
 #include "Audio/sound.h"
 #include "audiomanager.h"
 #include "entresol.h"
+#include "exception.h"
 #include <cAudio.h>
 #include <Ogre.h>
 
@@ -61,6 +62,9 @@ namespace Mezzanine
             Stream->read((void*)buffer, Stream->size());
 
             SoundSource = Manager->GetcAudioManager()->createFromMemory(SoundName.c_str(),buffer,Stream->size(),Extension.c_str());
+            if (!SoundSource)
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed to create sound file."); }
+
             delete[] buffer;
             UpdateVolume();
         }
