@@ -111,7 +111,7 @@ namespace Mezzanine
                 /// @param Code A string that defines the source code to be executed or compiled whne running the script.
                 /// @detail It is recomended that when this is called that implentors clear any bytecode or any other compiled
                 /// version of the script. This will prevent issues with mismatched version of source and bytecode.
-                virtual void SetSourceCode(String Code) = 0;
+                virtual void SetSourceCode(const String& Code) = 0;
 
                 /// @brief If present this returns the code of script
                 /// @return This will return either an empty @ref String or the code. In cases where bytcode is set it is advised to clear this in implementations.
@@ -134,6 +134,10 @@ namespace Mezzanine
                 /// @return A null pointer if this conversion is invalid or a valid pointer to this as an @ref iScriptCompilable if it is valid.
                 virtual iScriptCompilable* GetAsScriptCompilable()
                     { return 0; }
+
+                /// @copydoc GetAsScriptCompilable
+                virtual iScriptCompilable* GetAsScriptCompilable() const
+                { return 0; }
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // Multiple return Detection Support
@@ -178,11 +182,11 @@ namespace Mezzanine
                     {}
 
                 /// @brief Verbose constructor, set everything custom on creation.
-                /// @param Size_ The size to set on creation.
-                /// @param Binary_ A pointer to the compiled byte in memory, to be set on creation.
-                ByteCode(Integer Size_, UInt8* Binary_) :
-                    Size(Size_),
-                    Binary(Binary_)
+                /// @param PredeterminedSize The size to set on creation.
+                /// @param PreCompiledBinary A pointer to the compiled byte in memory, to be set on creation.
+                ByteCode(Integer PredeterminedSize, UInt8* PreCompiledBinary) :
+                    Size(PredeterminedSize),
+                    Binary(PreCompiledBinary)
                     {}
         };
 
@@ -240,7 +244,7 @@ namespace Mezzanine
         {
                 /// @brief Does this script support multiple return values.
                 /// @return Any implementation of this returns true.
-                virtual bool CanReturnMultples()
+                virtual bool CanReturnMultples() const
                     { return true; }
 
                 virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
@@ -248,11 +252,11 @@ namespace Mezzanine
 
                 /// @brief How many values are being returned
                 /// @return A Whole with the amount of items available to be returned now.
-                virtual Whole GetReturnCount();
+                virtual Whole GetReturnCount() const = 0;
 
                 /// @brief Get the returns from the last exection of the script
                 /// @return An ArgumentSet that can be iterated over to get all the values returned.
-                virtual ArgumentSet GetAllReturns();
+                virtual ArgumentSet GetAllReturns() const = 0;
         };
 
 

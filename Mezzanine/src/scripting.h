@@ -51,20 +51,21 @@ namespace Mezzanine
         {}
 }
 
-#include "scriptargument.h"
-#include "script.h"
+#include "Scripting/scriptargument.h"
+#include "Scripting/script.h"
+#include "Scripting/scriptingmanager.h"
 
 
 
 // Each one of these sections should have a complete implementation of a scripting and
 // appropriate bindings for the mezzanine engine.
-#ifdef Mezz_Lua
-    #include "scriptinglua.h"
+#ifdef MEZZLUA51
+    #include "Scripting/Lua51/scriptinglua51.h"
 #endif
 
 
-#ifdef Mezz_Tcl         // Just an example for future logic, not actually implement
-    #include "scriptingtcl.h"
+#ifdef MEZZTCL      // Just an example for future logic, not actually implemented
+    #include "Scripting/Tcl/scriptingtcl.h"
 #endif
 
 

@@ -52,38 +52,38 @@
 #
 # That affect/add/remove behavior of the Mezzanine engine
 #        Mezz_Debug                         - True - The Engine will be forced to compile with debug symbols by setting CMAKE_BUILD_TYPE, this will also include more logging messages and libraries will also include debug symbols
-#        Mezz_Lua51                        - True if lua is to be included and link against. False if lua was not selected to be compiled in.
-#        Mezz_Network                        - Enable or disable networking support
+#        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
+#        Mezz_Network                       - Enable or disable networking support
 #
 # Advanced Mezzanine build options
-#        Mezz_ForceBuildType             - When True this will force the CMAKE_BUILD_TYPE to correspond with Mezz_Debug, otherwise the user is expcte to manually set CMAKE_BUILD_TYPE.
-#        Mezz_Profile                        - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
-#        Mezz_ThrowOnSingletonFetch        - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
+#        Mezz_ForceBuildType                - When True this will force the CMAKE_BUILD_TYPE to correspond with Mezz_Debug, otherwise the user is expcte to manually set CMAKE_BUILD_TYPE.
+#        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
+#        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
 # Depracated options
-#        Mezz_XML                        - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
+#        Mezz_XML                           - Previously disabled/enabled XML options, now XML is used everywhere. Thsi option has been removed.
 #
 # That affect only build time values:
-#        OgreLinkName                        - This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
-#        OgresD                                - This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
-#        OgreLibFileName                        - The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
-#        OgreLinuxSoName                        - Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
-#        OgrePluginCGPM                        - The File name of the Ogre CG manager plugin
-#        OgrePluginRenderGL                - The File name of the Ogre OpenGL rendersystem plugin
-#        OgrePluginParticle                - The File name of the Ogre ParticleFX plugin
-#        OgreConfigHeaderIncludeDir      - The Folder where Ogre puts its configured Headers. This is only needed by subprojects if they link directly against Ogre.
-#        OgreHeaderIncludeDir            - The Folder where all the non-configured headers go. This is only needed by subprojects if they link directly against Ogre.
+#        OgreLinkName                       - This is the name of the ogre library that the compiler expects. Examples: OgreMain, OgreMain_d
+#        OgresD                             - This can be used to help pick/select ogre libraries that may or may not have an "_d" depending on how they are compiled. If debug libraries are in use this is set to "_d" otherwise "".
+#        OgreLibFileName                    - The filename of the actual Ogre library. On some platforms this file may just be a symlink. Examples: OgreMain.dll, libOgreMain.so
+#        OgreLinuxSoName                    - Linux's versioned library system expects specific version of so files. This is the more specific file, that must copied along with the regular so. Examples libOgreMain.so.1.7.1, libOgreMain.so.1.9.3
+#        OgrePluginCGPM                     - The File name of the Ogre CG manager plugin
+#        OgrePluginRenderGL                 - The File name of the Ogre OpenGL rendersystem plugin
+#        OgrePluginParticle                 - The File name of the Ogre ParticleFX plugin
+#        OgreConfigHeaderIncludeDir         - The Folder where Ogre puts its configured Headers. This is only needed by subprojects if they link directly against Ogre.
+#        OgreHeaderIncludeDir               - The Folder where all the non-configured headers go. This is only needed by subprojects if they link directly against Ogre.
 #
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
-#        BuildPlatform                        - A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the Mezzanine engine repository.
-#        CommonBuildFlags                 - A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Mezz_Debug's and Mezz_Profile's settings.
-#        DynamicLibPrefix                        - This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
-#        DynamicLibSuffix                        - This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
+#        BuildPlatform                      - A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the Mezzanine engine repository.
+#        CommonBuildFlags                   - A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Mezz_Debug's and Mezz_Profile's settings.
+#        DynamicLibPrefix                   - This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
+#        DynamicLibSuffix                   - This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
 #        LuaLinkName                        - This is the name that of the actual compiled lua library, it will be blank if lua is not to be linked
-#        LuaProject                        - The Name of the lua cmake project
-#        MezzanineLinkName                - What should be entered when somethings needs to link against Mezzanine usually "Mezzanine" sometime it specifies and import library, like
-#        MezzanineLibFileName                - The actual name of the file the Mezzanine is called.
+#        LuaProject                         - The Name of the lua cmake project
+#        MezzanineLinkName                  - What should be entered when somethings needs to link against Mezzanine usually "Mezzanine" sometime it specifies and import library, like
+#        MezzanineLibFileName               - The actual name of the file the Mezzanine is called.
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
     message(FATAL_ERROR "Prevented in source tree build. Please create a build directory outside of the Mezzanine source code and have cmake build from there.")
@@ -251,7 +251,7 @@ else(${OGRE_BUILD_RENDERSYSTEM_D3D9})
 endif(${OGRE_BUILD_RENDERSYSTEM_D3D9})
 
 option (Mezz_BuildRenderSystemDirectX11 "Include Support for DirectX 11" OFF)
-set(OGRE_BUILD_RENDERSYSTEM_D3D11 ${Mezz_BuildRenderSystemDirectX9} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
+set(OGRE_BUILD_RENDERSYSTEM_D3D11 ${Mezz_BuildRenderSystemDirectX11} CACHE BOOL "Forcing Ogre option to match Mezzanine." FORCE)
 if(${OGRE_BUILD_RENDERSYSTEM_D3D11})
     message ( STATUS "${PROJECT_NAME} - Enabling DirectX 11 Rendering Support")
     set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_DIRECTX11_SUPPORT")

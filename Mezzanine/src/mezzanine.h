@@ -115,7 +115,6 @@
 #include "resource.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"               // Done
-#include "scriptingmanager.h"
 #include "scripting.h"
 #include "serialization.h"              // nothing to do
 #include "simpletimer.h"
@@ -147,10 +146,6 @@
 #include "xmldoc.h"
 #include "xml.h"                        // nothing to do
 
-// Individual scripting implementations
-#ifdef MEZZLUA51
-    #include "scriptinglua51.h"
-#endif
 
 #endif // \no SWIG
 
