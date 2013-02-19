@@ -120,7 +120,7 @@ class WorldNodeTests : public UnitTestGroup
             if (RunInteractiveTests)
             {
 
-                //temp = GetTestAnswer( Mezzanine::StringCat(" (or other config tool)? "));
+                //temp = GetTestAnswer( Mezzanine::String(" (or other config tool)? "));
                 //AddTestResult("CompilerFlag::MEZZDEBUG", temp);
 
             }else{

@@ -215,44 +215,6 @@ namespace Mezzanine
         //String MEZZ_LIB ConvertToString<Input::InputCode>(const Input::InputCode& Code)
         //    { return ConvertToString(Code, false); }
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // String Catenate functions
-
-        /// @brief Concatenates 2 Strings
-        /// @param Front The first String
-        /// @param Back The last String
-        /// @return A string containing the other Strings passed attached end to end
-        String MEZZ_LIB StringCat(const String& Front, const String& Back);
-        /// @brief Concatenates 3 Strings
-        /// @param Front The first String
-        /// @param Middle A String in the middle
-        /// @param Back The last String
-        /// @return A string containing the other Strings passed attached end to end
-        String MEZZ_LIB StringCat(const String& Front, const String& Middle, const String& Back);
-        /// @brief Concatenates 4 Strings
-        /// @param Front The first String
-        /// @param Middle1 The second string
-        /// @param Middle2 The third string
-        /// @param Back The last String
-        /// @return A string containing the other Strings passed attached end to end
-        String MEZZ_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
-        /// @brief Concatenates 5 Strings
-        /// @param Front The first String
-        /// @param Middle1 The second string
-        /// @param Middle2 The third string
-        /// @param Middle3 The fourth string
-        /// @param Back The last String
-        /// @return A string containing the other Strings passed attached end to end
-        String MEZZ_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back);
-        /// @brief Concatenates 6 Strings
-        /// @param Front The first String
-        /// @param Middle1 The second string
-        /// @param Middle2 The third string
-        /// @param Middle3 The fourth string
-        /// @param Middle4 The fifth string
-        /// @param Back The last String
-        /// @return A string containing the other Strings passed attached end to end
-        String MEZZ_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back);
     } //stringtool
 }//Mezzanine
 

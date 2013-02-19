@@ -441,7 +441,6 @@ void UpdateMessage( String Message, String Message2)
     TheTextW1->SetText( Message );
     TheTextB2->SetText( Message2 );
     TheTextW2->SetText( Message2 );
-    //TheText->SetText( StringCat(TheMessage," - ", ToString(ThisTimer->GetCurrentTime())  ));
 }
 
 // Countdown callbacks

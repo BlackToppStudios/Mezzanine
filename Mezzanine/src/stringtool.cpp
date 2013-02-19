@@ -660,41 +660,6 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // String Catenate functions
-
-    String StringTools::StringCat(const String& Front, const String& Back)
-    {
-        StringStream Adder;
-        Adder << Front << Back;
-        return Adder.str();
-    }
-
-    String StringTools::StringCat(const String& Front, const String& Middle, const String& Back)
-    {
-        StringStream Adder;
-        Adder << Front  << Middle << Back;
-        return Adder.str();
-    }
-
-    String StringTools::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
-    {
-        StringStream Adder;
-        Adder << Front  << Middle1 << Middle2 << Back;
-        return Adder.str();
-    }
-
-    String StringTools::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
-    {
-        StringStream Adder;
-        Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
-        return Adder.str();
-    }
-
-    String StringTools::StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
-    {
-        StringStream Adder;
-        Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;
-        return Adder.str();
-    }
 }//Mezzanine
 
 #endif

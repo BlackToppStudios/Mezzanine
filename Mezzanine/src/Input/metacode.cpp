@@ -363,7 +363,7 @@ Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanin
             throw( Mezzanine::Exception("Incompatible XML Version for MetaCode: Not Version 1"));
         }
     }else{
-        throw( Mezzanine::Exception(Mezzanine::StringCat("Attempting to deserialize a MetaCode, found a ", OneNode.Name())));
+        throw( Mezzanine::Exception(Mezzanine::String("Attempting to deserialize a MetaCode, found a ") + OneNode.Name()));
     }
 }*/
 {x.ProtoDeSerialize(OneNode); }

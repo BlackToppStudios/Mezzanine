@@ -51,7 +51,7 @@ namespace Mezzanine
 
         // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
         SoundSet::SoundSet()
-            { Name = StringTools::StringCat("SoundSet",StringTools::ConvertToString((Int32)UnnamedInstanceCount++)); }
+            { Name = String("SoundSet") + StringTools::ConvertToString((Int32)UnnamedInstanceCount++); }
 
         SoundSet::SoundSet(const String& _Name)
             : Name(_Name) {}

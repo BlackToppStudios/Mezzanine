@@ -197,7 +197,7 @@ namespace Mezzanine
             for(AxisList::iterator AxisIter=AllAxis.begin(); AllAxis.end()!=AxisIter; ++AxisIter)
             {
                 XML::Node OneAxisNode;
-                CurrentAxisName = String(StringTools::StringCat("Axis",StringTools::ConvertToString(*AxisIter)));                        // Should result in "Axis-1", "Axis0", "Axis1" ...
+                CurrentAxisName = String("Axis")+StringTools::ConvertToString(*AxisIter);                        // Should result in "Axis-1", "Axis0", "Axis1" ...
                 ParamList AxisParams = ValidParamOnAxis(*AxisIter);
                 for(ParamList::iterator ParamIter=AxisParams.begin(); AxisParams.end()!=ParamIter; ++ParamIter)
                 {
@@ -207,12 +207,12 @@ namespace Mezzanine
                         {
                             OneAxisNode = ConstraintNode.AppendChild(CurrentAxisName);
                             if (!OneAxisNode)
-                                { SerializeError( StringTools::StringCat("Create ", CurrentAxisName ," Node"), SerializableName()); }
+                                { SerializeError( String("Create ") + CurrentAxisName + " Node", SerializableName()); }
                         }
 
                         XML::Attribute CurrenParamAttribute = OneAxisNode.AppendAttribute( ConstraintParamAsString(*ParamIter) );
                         if (!CurrenParamAttribute)
-                            { SerializeError( StringTools::StringCat("Create ", ConstraintParamAsString(*ParamIter), " Attribute in ", CurrentAxisName ," Node"), SerializableName()); }
+                            { SerializeError(String("Create ") + ConstraintParamAsString(*ParamIter) + " Attribute in " + CurrentAxisName + " Node", SerializableName()); }
                         CurrenParamAttribute.SetValue( this->GetParam(*ParamIter,*AxisIter));
                     }
                 }
