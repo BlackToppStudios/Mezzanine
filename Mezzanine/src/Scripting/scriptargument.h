@@ -42,6 +42,7 @@
 
 #include "datatypes.h"
 #include "crossplatformexport.h"
+#include "smartptr.h"
 
 namespace Mezzanine
 {
@@ -100,14 +101,19 @@ namespace Mezzanine
                 /// @brief Create an initialized Argument
                 /// @param IniitialValue The value to initialize the Argument with.
                 /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
-                ScriptArgumentSpecific(T IniitialValue): Datum(IniitialValue)
+                ScriptArgumentSpecific(T InitialValue) :
+                    Datum(InitialValue)
                     {}
 
-                //ScriptArgumentSpecific(T IniitialValue): Datum(IniitialValue)
+                /// @brief Converting Constructor
+                /// @param InitialValue The ScriptArgument tio be used for
+                ScriptArgumentSpecific(CountedPtr<ScriptArgument> InitialValue) :
+                    Datum(ConvertTo<T>( InitialValue->GetString() ))
+                    {}
 
                 /// @brief Get the Argument as a String, slow default implementation.
                 /// @return The argument value lexographically converted as a @ref String
-                virtual String GetString()
+                virtual String GetString() const
                     { return ToString(Datum); }
 
                 /// @brief Get the Argument as a Whole, slow default implementation.
@@ -130,10 +136,12 @@ namespace Mezzanine
                 virtual void SetValue(T NewValue)
                     { Datum=NewValue; }
 
-                /// @brief
+                /// @brief Get the raw primitive to value.
+                /// @return The internal value that meaningful operation can be performed on.
                 virtual T GetValue()
                     { return Datum; }
 
+                /// @brief Overloadable Deconstructor
                 virtual ~ScriptArgumentSpecific()
                     {}
         };
