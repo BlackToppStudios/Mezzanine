@@ -40,8 +40,10 @@
 #ifndef _scriptargument_h
 #define _scriptargument_h
 
+/// @file
+/// @brief This file has the interfaces for Script Arguments and the associated dependency chain
+
 #include "datatypes.h"
-#include "crossplatformexport.h"
 #include "smartptr.h"
 
 namespace Mezzanine
@@ -57,9 +59,12 @@ namespace Mezzanine
         /// about any underlying types. This limits what operations can be done with
         /// this.
         ///////////////////////////////////////
-        class MEZZ_LIB ScriptArgument
+        class MEZZ_LIB iScriptArgument
         {
             public:
+                /// @brief Overidable Deconstructor
+                virtual ~iScriptArgument()
+                    {}
 
                 /// @brief Get the Argument as a String
                 /// @return The argument value lexographically converted as a @ref String
@@ -77,14 +82,11 @@ namespace Mezzanine
                 /// @return The argument value lexographically converted as an @ref Real
                 virtual String GetReal() = 0;
 
-                /// @brief Overidable Deconstructor
-                virtual ~ScriptArgument()
-                    {}
-        };
+        }; // iScriptArgument
 
         /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <class T>
-        class ScriptArgumentSpecific : public virtual ScriptArgument
+        class MEZZ_LIB ScriptArgumentSpecific : public iScriptArgument
         {
             private:
                 /// @brief the actual data.
@@ -107,8 +109,12 @@ namespace Mezzanine
 
                 /// @brief Converting Constructor
                 /// @param InitialValue The ScriptArgument tio be used for
-                ScriptArgumentSpecific(CountedPtr<ScriptArgument> InitialValue) :
+                ScriptArgumentSpecific(CountedPtr<iScriptArgument> InitialValue) :
                     Datum(ConvertTo<T>( InitialValue->GetString() ))
+                    {}
+
+                /// @brief Overloadable Deconstructor
+                virtual ~ScriptArgumentSpecific()
                     {}
 
                 /// @brief Get the Argument as a String, slow default implementation.
@@ -141,15 +147,10 @@ namespace Mezzanine
                 virtual T GetValue()
                     { return Datum; }
 
-                /// @brief Overloadable Deconstructor
-                virtual ~ScriptArgumentSpecific()
-                    {}
-        };
+        }; //ScriptArgumentSpecific
 
 
-    }
-
-
+    }//Scripting
 }//Mezzanine
 
 

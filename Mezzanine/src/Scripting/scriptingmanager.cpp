@@ -43,7 +43,7 @@
 #include "scriptingmanager.h"
 
 /// @file
-/// @brief The implementation of the Interface for Scripting Managers.
+/// @brief The implementation (WTF!!) of the Interface for Scripting Managers.
 
 namespace Mezzanine
 {

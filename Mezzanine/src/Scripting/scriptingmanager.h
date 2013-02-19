@@ -40,6 +40,9 @@
 #ifndef _scriptingmanager_h
 #define _scriptingmanager_h
 
+/// @file
+/// @brief This file has the interfaces for Scripting managers and the associated dependency chain
+
 #include "managerbase.h"
 #include "scripting.h"
 #include "singleton.h"

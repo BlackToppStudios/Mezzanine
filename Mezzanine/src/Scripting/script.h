@@ -40,6 +40,9 @@
 #ifndef _script_h
 #define _script_h
 
+/// @file
+/// @brief This file has the interfaces for Scripts and tag derived classes.
+
 #include "datatypes.h"
 #include "scriptargument.h"
 #include "smartptr.h"
@@ -75,14 +78,14 @@ namespace Mezzanine
                 /// before execution. This should normally run in constant time. Some scripting implementations may
                 /// change the order arguments are passed if doing it another way mays more sense.
                 /// @param Arg This accepts a CountedPtr to a script argument and The script shares responsibility with caller for deleting the argument.
-                virtual void AddArgument(CountedPtr<ScriptArgument> Arg) = 0;
+                virtual void AddArgument(CountedPtr<iScriptArgument> Arg) = 0;
 
                 /// @brief Remove an argument based on a CountedPtr to the script
                 /// @detail This searches through the internal list and removes the first entry it finds matching this.
                 /// This should be treated as taking linear time, relative to the total count of arguments assigned to this script, to run.
                 /// This can be used with AddArgument to re-order the way parameters are passed into a script
                 /// @param Arg A CountedPtr matching the one to be removed
-                virtual void RemoveArgument(CountedPtr<ScriptArgument> Arg) = 0;
+                virtual void RemoveArgument(CountedPtr<iScriptArgument> Arg) = 0;
 
                 /// @brief Remove a Script argument based on the order it will be passed into the Script at Execution.
                 /// @detail This removes the  specified Argument from the internal list. This should be treated as taking linear
@@ -102,7 +105,7 @@ namespace Mezzanine
                 /// @brief Retrieve a argument previously passed in.
                 /// @param ArgNumber The index of the passed parameter to retrun.
                 /// @return A reference counted pointer to a ScriptArgument.
-                virtual CountedPtr<ScriptArgument> GetArgument(Whole ArgNumber) const = 0;
+                virtual CountedPtr<iScriptArgument> GetArgument(Whole ArgNumber) const = 0;
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////
                 // Source of the Script
@@ -234,7 +237,7 @@ namespace Mezzanine
 
 
         /// @brief A group of arguments that can be returned from some scripts
-        typedef std::vector< CountedPtr<ScriptArgument> > ArgumentSet;
+        typedef std::vector< CountedPtr<iScriptArgument> > ArgumentSet;
 
         /// @brief This script can return simple group of values.
         /// @details This loosely correlates to a tuple like the simple returns
