@@ -51,37 +51,86 @@ namespace Mezzanine
         /// @brief The interface for a script argument
         /// @details All the members that all script for all languages must implement.
         /// @n @n
-        /// These are created to provide data to scripts.
+        /// These are created to provide data to scripts. This is intended to primarily
+        /// transport primitive types into and out of scripts without needing to care
+        /// about any underlying types. This limits what operations can be done with
+        /// this.
         ///////////////////////////////////////
         class MEZZ_LIB ScriptArgument
         {
             public:
 
-                virtual String ToString() = 0;
+                /// @brief Get the Argument as a String
+                /// @return The argument value lexographically converted as a @ref String
+                virtual String GetString() = 0;
 
+                /// @brief Get the Argument as a Whole
+                /// @return The argument value lexographically converted as a @ref Whole
+                virtual String GetWhole() = 0;
+
+                /// @brief Get the Argument as a Integer
+                /// @return The argument value lexographically converted as an @ref Integer
+                virtual String GetInteger() = 0;
+
+                /// @brief Get the Argument as a Real
+                /// @return The argument value lexographically converted as an @ref Real
+                virtual String GetReal() = 0;
+
+                /// @brief Overidable Deconstructor
                 virtual ~ScriptArgument()
                     {}
         };
 
+        /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <class T>
-        class ScriptArgumentSpecific : public ScriptArgument
+        class ScriptArgumentSpecific : public virtual ScriptArgument
         {
             private:
+                /// @brief the actual data.
+                /// @warning To prevent Slicing don't store the parent class in a container.
+                /// This practically guarantees that derived class will have different sizes
+                /// and overflow container boundaries.
                 T Datum;
 
             public:
 
+                /// @brief To make working with this easier.
                 typedef T Type;
 
-                ScriptArgumentSpecific(T _Datum): Datum(_Datum)
+                /// @brief Create an initialized Argument
+                /// @param IniitialValue The value to initialize the Argument with.
+                /// @note Intentionally not explicit, this allow for passing convertable types directly to functions.
+                ScriptArgumentSpecific(T IniitialValue): Datum(IniitialValue)
                     {}
 
-                virtual String ToString()
+                //ScriptArgumentSpecific(T IniitialValue): Datum(IniitialValue)
+
+                /// @brief Get the Argument as a String, slow default implementation.
+                /// @return The argument value lexographically converted as a @ref String
+                virtual String GetString()
                     { return ToString(Datum); }
 
-                virtual void SetValue(T _Datum)
-                    { Datum=_Datum; }
+                /// @brief Get the Argument as a Whole, slow default implementation.
+                /// @return The argument value lexographically converted as a @ref Whole
+                virtual String GetWhole()
+                    { return ToWhole(Datum); }
 
+                /// @brief Get the Argument as a Integer, slow default implementation.
+                /// @return The argument value lexographically converted as an @ref Integer
+                virtual String GetInteger()
+                    { return ToInteger(Datum); }
+
+                /// @brief Get the Argument as a Real, slow default implementation.
+                /// @return The argument value lexographically converted as an @ref Real
+                virtual String GetReal()
+                    { return ToReal(Datum); }
+
+                /// @brief Provide an overload point to change assignment that operators will use.
+                /// @param NewValue The new value for this.
+                virtual void SetValue(T NewValue)
+                    { Datum=NewValue; }
+
+                /// @brief
                 virtual T GetValue()
                     { return Datum; }
 

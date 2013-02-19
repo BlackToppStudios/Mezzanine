@@ -46,48 +46,80 @@
 
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ScriptingManager
-    /// @brief What a scripting manager should look like.
-    /// @details This scripting manager implements no scripting language, but serves as
-    /// model for what scripting managers
-    ///////////////////////////////////////
-    class MEZZ_LIB ScriptingManager : public ManagerBase //, public Singleton<ScriptingManager>
+    namespace Scripting
     {
-        protected:
 
-        public:
-            /// @brief Class constructor.
-            /// @details Sets Priority to 350
-            ScriptingManager();
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief What a scripting manager should look like.
+        /// @details This scripting manager implements no scripting language, but serves as
+        /// model for what scripting managers.
+        /// @n @n
+        /// If a scripting language does not support compilation It should implement
+        /// this
+        ///////////////////////////////////////
+        class MEZZ_LIB iScriptingManager : public ManagerBase
+        {
+            protected:
 
-            /// @brief Class destructor.
-            virtual ~ScriptingManager();
+            public:
+                /// @brief Class constructor.
+                /// @details Sets Priority as required by single threaaded main loop
+                iScriptingManager();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Scripting Manager Core Functionality
+                /// @brief Class destructor.
+                virtual ~iScriptingManager();
 
-            /// @brief In implemented classes this
-            virtual void CompileScript(Scripting::iScript* ScriptToCompile) = 0;
+                ///////////////////////////////////////////////////////////////////////////////
+                // Scripting Manager Core Functionality
 
-            virtual void AddScript(Scripting::iScript* ScriptToAdd) = 0;
+                /// @brief Run a string containing script soure code.
+                /// @param ScriptSource The source code of the script.
+                /// @details In implementations it is expected that this will create a script
+                /// object, execute it and return it.
+                /// @return A Shared pointer to the created Script.
+                virtual CountedPtr<iScript> Execute(String ScriptSource) = 0;
 
-            virtual void AddScript(String ScriptInString) = 0;
+                /// @brief Run the script.
+                /// @param ScriptToRun A shared ptr that points to a script to run.
+                /// @details In Scripting langauge implementations this is expected to
+                /// run (compile if needed) a script.
+                virtual void Execute(CountedPtr<iScript> ScriptToRun) = 0;
 
-            virtual void RemoveScript(Scripting::iScript* ScriptToRemove) = 0;
+                ///////////////////////////////////////////////////////////////////////////////
+                // Inherited from Managerbase
 
-            virtual void ExecuteScript(Scripting::iScript* ScriptToRemove) = 0;
+                /// @copydoc Mezzanine::ManagerBase::Initialize()
+                virtual void Initialize();
 
-            ///////////////////////////////////////////////////////////////////////////////
-            // Inherited from Managerbase
+                /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
+                virtual void DoMainLoopItems();
 
-            /// @copydoc Mezzanine::ManagerBase::Initialize()
-            virtual void Initialize();
-            /// @copydoc Mezzanine::ManagerBase::DoMainLoopItems()
-            virtual void DoMainLoopItems();
-            /// @copydoc ManagerBase::GetInterfaceType()
-            virtual ManagerType GetInterfaceType() const;
-    }; //ScriptingManager
+                /// @copydoc ManagerBase::GetInterfaceType()
+                virtual ManagerType GetInterfaceType() const;
+        }; //ScriptingManager
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief What a scripting manager should look like.
+        /// @details This scripting manager implements no scripting language, but serves as
+        /// model for what scripting managers
+        ///////////////////////////////////////
+        class MEZZ_LIB iScriptCompilationManager : public ManagerBase
+        {
+            public:
+                /// @brief Overidable deconstructor.
+                virtual ~iScriptCompilationManager();
+
+                /// @brief Compile a script.
+                /// @param ScriptToCompile A script object to be compiled.
+                virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile) = 0;
+
+                /// @brief Comvert a string into a Script that is compiled and ready for use.
+                /// @param SourceToCompile A string containing source code in the target language.
+                /// @return The Script compiled and ready for use.
+                virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile) = 0;
+        };
+
+    }// Scripting
 }//Mezzanine
 
 // possible languages Lua, Tcl, squirrel, Angelscript, falcon

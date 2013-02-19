@@ -47,28 +47,37 @@
 
 namespace Mezzanine
 {
-    ScriptingManager::ScriptingManager()
+    namespace Scripting
     {
-        this->Priority = 350;
+        iScriptingManager::iScriptingManager()
+        {
+            this->Priority = 350;
+        }
+
+        iScriptingManager::~iScriptingManager()
+        {
+
+        }
+
+        void iScriptingManager::Initialize()
+        {
+            Initialized = true;
+        }
+
+        void iScriptingManager::DoMainLoopItems()
+        {
+
+        }
+
+        ManagerBase::ManagerType iScriptingManager::GetInterfaceType() const
+            { return ManagerBase::ScriptingManager; }
+
+
+        iScriptCompilationManager::~iScriptCompilationManager()
+        {
+
+        }
     }
-
-    ScriptingManager::~ScriptingManager()
-    {
-
-    }
-
-    void ScriptingManager::Initialize()
-    {
-        Initialized = true;
-    }
-
-    void ScriptingManager::DoMainLoopItems()
-    {
-
-    }
-
-    ManagerBase::ManagerType ScriptingManager::GetInterfaceType() const
-        { return ManagerBase::ScriptingManager; }
 }
 
 #endif

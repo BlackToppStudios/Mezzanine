@@ -47,6 +47,9 @@ namespace Mezzanine
     /// @namespace Mezzanine::Scripting
     /// @brief This namespace is for all the classes belonging to the Scripting Subsystem.
     /// @details The system for integrating scripting languages into the engine.
+    /// @n @n
+    /// In general each languages Interpretter/Engine/Compiler/VM is locating in its own
+    /// subnamespace in the associated manager.
     namespace Scripting
         {}
 }

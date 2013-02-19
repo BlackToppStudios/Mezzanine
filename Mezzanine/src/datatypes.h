@@ -185,39 +185,42 @@ namespace Mezzanine
     // Simple conversion functions
     ///////////////////////////////////////
 
+    /// @brief Catch all Lexigraphical Conversion
+    /// @param Datum A value of any type that will be converted.
+    /// @return The value as if 'read' into the target type
+    /// @todo Overload ConvertTo for ToString Conversions.
+    template<typename To, typename From>
+    To ConvertTo(const From& Datum)
+    {
+        std::stringstream Converter;
+        Converter << Datum;
+        To Results;
+        Converter >> Results;
+        return Results;
+    }
+
     /// @brief Converts whatever to a String as long as a streaming operator is available for it
     /// @param Datum The whatever to be converted
     /// @return A String with the converted data
     template<class T> String ToString( const T& Datum )
     {
-        std::stringstream Converter;
-        Converter << Datum;
-        return Converter.str();
+        //std::stringstream Converter;
+        //Converter << Datum;
+        //return Converter.str();
+        return ConvertTo<String>(Datum);
     }
 
     /// @brief Converts whatever to a Whole as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Whole with the converted data
     template<class T> Whole ToWhole( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        Whole Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<Whole>(Datum); }
 
     /// @brief Converts whatever to an Integer as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return An Integer with the converted data
     template<class T> Integer ToInteger( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        Integer Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<Integer>(Datum); }
 
     /// @brief Converts whatever to an int as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
@@ -225,13 +228,7 @@ namespace Mezzanine
     /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
     /// break things
     template<class T> int Toint( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        int Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<int>(Datum); }
 
     /// @brief Converts whatever to an unsigned int as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
@@ -239,25 +236,13 @@ namespace Mezzanine
     /// @details This exists for interacting with other libraies, in situations where changing the Integer Typedef could
     /// break things
     template<class T> unsigned int Tounsignedint( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        unsigned int Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<unsigned int>(Datum); }
 
     /// @brief Converts whatever to a Real as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Real with the converted data
     template<class T> Real ToReal( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        Real Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<Real>(Datum); }
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
@@ -265,26 +250,17 @@ namespace Mezzanine
     /// @details This exists for interacting with other libraies, in situations where changing the Real Typedef could
     /// break things
     template<class T> float Tofloat( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        float Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<float>(Datum); }
 
     /// @brief Converts whatever to a double as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A double with the converted data
     /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things
     template<class T> double Todouble( const T& Datum )
-    {
-        std::stringstream Converter;
-        Converter << Datum;
-        double Results;
-        Converter >> Results;
-        return Results;
-    }
+        { return ConvertTo<double>(Datum); }
+
+
+
 } // \Mezzanine
 
 #endif
