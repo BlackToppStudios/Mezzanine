@@ -32,8 +32,8 @@ message ("Base Directory for Executable binaries and data output: ${${PROJECT_NA
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
+    "${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
+    "${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
 )
 
 ##############################################################################
@@ -42,25 +42,25 @@ set(${PROJECT_NAME}_sources
 #Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        VERBATIM
+    )
 endfunction(CopyFilesDuringBuild)
 
 #Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory  for catch during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromMezzanineDuringBuild FileName)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
+        VERBATIM
+    )
 endfunction(CopyFilesFromMezzanineDuringBuild)
 
 
@@ -72,7 +72,7 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+
 
 ##############################################################################
 # File copies during all builds
@@ -111,25 +111,26 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} )
 
 # Windows File Copy Specific Items
 if(${WIN32})
-	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	#CopyFilesFromMezzanineDuringBuild( data/windows/plugins.cfg )
-	message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+    message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+    #CopyFilesFromMezzanineDuringBuild( data/windows/plugins.cfg )
+    message ("${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-	#CopyFilesFromMezzanineDuringBuild( data/linux/plugins.cfg )
-	CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
-	message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
+    message ("${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+    #CopyFilesFromMezzanineDuringBuild( data/linux/plugins.cfg )
+    CopyFilesFromMezzanineDuringBuild( data/linux/GLX_icon.png )
+    message ("${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy Specific Items
 if(${APPLE})
-	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	#CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
-	#CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
-	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
+    message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+    #CopyFilesFromMezzanineDuringBuild( data/macosx/plugins.cfg )
+    #CopyFilesFromMezzanineDuringBuild( data/macosx/ogre/Ogre.framework)
+    message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
 message ("${PROJECT_NAME} - End Copy Process")

@@ -110,65 +110,65 @@ message ( STATUS "Catch! Profile Output: ${ProfileDir}")
 set(Catch_ArchiveDir "" CACHE FILEPATH "The Directory that contains The Content Archives for Catch!")
 mark_as_advanced(Catch_ArchiveDir)
 if(EXISTS ${Catch_ArchiveDir})
-	set(UseCatchArchives true)
-	#if the user select a file in the content archive folder, pull that filename out, without using FIND, because was introduced as recently as 2.8.5
-	string( LENGTH ${Catch_ArchiveDir} FilePos)
-	math(EXPR FilePos "${FilePos}-1")
-	string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
-	while(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
-		string( SUBSTRING ${Catch_ArchiveDir} 0 "${FilePos}" Catch_ArchiveDir ) 	#snip one char off the end of the string
-		string( LENGTH ${Catch_ArchiveDir} FilePos)				#get the info about the string again
-		math(EXPR FilePos "${FilePos}-1")
-		string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
-		if(${FilePos} LESS 2)							#safe exit strategy, in case gibberish is fed in
-			set(OneChar "/")
-			set(UseCatchArchives false)
-		endif(${FilePos} LESS 2)
-	endwhile(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
+    set(UseCatchArchives true)
+    #if the user select a file in the content archive folder, pull that filename out, without using FIND, because was introduced as recently as 2.8.5
+    string( LENGTH ${Catch_ArchiveDir} FilePos)
+    math(EXPR FilePos "${FilePos}-1")
+    string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
+    while(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
+        string( SUBSTRING ${Catch_ArchiveDir} 0 "${FilePos}" Catch_ArchiveDir ) 	#snip one char off the end of the string
+        string( LENGTH ${Catch_ArchiveDir} FilePos)				#get the info about the string again
+        math(EXPR FilePos "${FilePos}-1")
+        string( SUBSTRING ${Catch_ArchiveDir} "${FilePos}" 1 OneChar )
+        if(${FilePos} LESS 2)							#safe exit strategy, in case gibberish is fed in
+            set(OneChar "/")
+            set(UseCatchArchives false)
+        endif(${FilePos} LESS 2)
+    endwhile(NOT (${OneChar} STREQUAL "/" OR ${OneChar} STREQUAL "\\") )
 else(EXISTS ${Catch_ArchiveDir})
-	set(UseCatchArchives false)
+    set(UseCatchArchives false)
 endif(EXISTS ${Catch_ArchiveDir})
 if(${UseCatchArchives})									#Let user the user know wht is actually happening
-	message ( STATUS "Using content archives for Catch! in folder: ${Catch_ArchiveDir}")
+    message ( STATUS "Using content archives for Catch! in folder: ${Catch_ArchiveDir}")
 else(${UseCatchArchives})
-	message ( STATUS "Not Using content archives for Catch!")
+    message ( STATUS "Not Using content archives for Catch!")
 endif(${UseCatchArchives})
 
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.h"
-	"${${PROJECT_NAME}_SRC_DIR}callbacks.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}callbacks.h"
-	"${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}catchapp.h"
-	"${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}gamebase.h"
-	"${${PROJECT_NAME}_SRC_DIR}itemshop.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}itemshop.h"
-	"${${PROJECT_NAME}_SRC_DIR}itemshopcell.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}itemshopcell.h"
-	"${${PROJECT_NAME}_SRC_DIR}itemshopitems.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}itemshopitems.h"
-	"${${PROJECT_NAME}_SRC_DIR}levelloader.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}levelloader.h"
-	"${${PROJECT_NAME}_SRC_DIR}levelreportcell.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}levelreportcell.h"
-	"${${PROJECT_NAME}_SRC_DIR}levelscorer.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}levelscorer.h"
-	"${${PROJECT_NAME}_SRC_DIR}levelselectcell.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}levelselectcell.h"
-	"${${PROJECT_NAME}_SRC_DIR}leveltriggers.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}leveltriggers.h"
-	"${${PROJECT_NAME}_SRC_DIR}levelzones.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}levelzones.h"
-	"${${PROJECT_NAME}_SRC_DIR}profilemanager.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}profilemanager.h"
-	"${${PROJECT_NAME}_SRC_DIR}throwablegenerator.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
-	"${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.h"
+    "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}buttoncallbacks.h"
+    "${${PROJECT_NAME}_SRC_DIR}callbacks.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}callbacks.h"
+    "${${PROJECT_NAME}_SRC_DIR}catchapp.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}catchapp.h"
+    "${${PROJECT_NAME}_SRC_DIR}gamebase.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}gamebase.h"
+    "${${PROJECT_NAME}_SRC_DIR}itemshop.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}itemshop.h"
+    "${${PROJECT_NAME}_SRC_DIR}itemshopcell.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}itemshopcell.h"
+    "${${PROJECT_NAME}_SRC_DIR}itemshopitems.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}itemshopitems.h"
+    "${${PROJECT_NAME}_SRC_DIR}levelloader.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}levelloader.h"
+    "${${PROJECT_NAME}_SRC_DIR}levelreportcell.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}levelreportcell.h"
+    "${${PROJECT_NAME}_SRC_DIR}levelscorer.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}levelscorer.h"
+    "${${PROJECT_NAME}_SRC_DIR}levelselectcell.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}levelselectcell.h"
+    "${${PROJECT_NAME}_SRC_DIR}leveltriggers.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}leveltriggers.h"
+    "${${PROJECT_NAME}_SRC_DIR}levelzones.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}levelzones.h"
+    "${${PROJECT_NAME}_SRC_DIR}profilemanager.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}profilemanager.h"
+    "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}throwablegenerator.h"
+    "${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}widgetcallbacks.h"
 )
 
 ##############################################################################
@@ -177,41 +177,41 @@ set(${PROJECT_NAME}_sources
 #Description: This function copies items from the Catch Project directory into the location specified. The output is not relative to the Binary Path, the caller must be explicit.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${TargetFileInBinaryTree}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_SOURCE_DIR}${SourceFileInDataTree}" "${TargetFileInBinaryTree}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_SOURCE_DIR}${SourceFileInDataTree}" "${TargetFileInBinaryTree}"
+        VERBATIM
+    )
 endfunction(CopyFilesDuringBuild)
 
 #Description: This function copies items from the output directory in Mezzanine into the location specified. The output is not relative to the Binary Path, the caller must be explicit.
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromMezzanineDuringBuild FileName Target)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${Target}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${Target}"
+        VERBATIM
+    )
 endfunction(CopyFilesFromMezzanineDuringBuild)
 
 function(CreateDirectoryStructure)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Creating Directory Structure"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${LevelDir}"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${CommonDataDir}"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${FontDir}"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${LicenseDir}"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${PluginDir}"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${PreviewDir}"
-		COMMAND ${CMAKE_COMMAND} -E make_directory "${ProfileDir}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Creating Directory Structure"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${LevelDir}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${CommonDataDir}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${FontDir}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${LicenseDir}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${PluginDir}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${PreviewDir}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${ProfileDir}"
+        VERBATIM
+    )
 endfunction(CreateDirectoryStructure)
 
 ##############################################################################
@@ -222,7 +222,7 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
 target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
+
 
 ##############################################################################
 # File copies during all builds
@@ -259,15 +259,15 @@ CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${License
 #####################################
 # Common Data
 #if(${UseCatchArchives})
-#	message( STATUS "Copying Common Content")
-	#file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
-	#file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
-#	message( STATUS "Copying Level archives")
-	#file(GLOB ContentDirLevelContents "${Catch_ArchiveDir}/Lvl Files/*.lvl")
-	#file( COPY ${ContentDirLevelContents} DESTINATION ${LevelDir})
-#	message( STATUS "Copying Preview Content")
-	#file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
-	#file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
+    #message( STATUS "Copying Common Content")
+    #file(GLOB ContentDirRootContents ${Catch_ArchiveDir}/*.zip)
+    #file( COPY ${ContentDirRootContents} DESTINATION ${CommonDataDir})
+    #message( STATUS "Copying Level archives")
+    #file(GLOB ContentDirLevelContents "${Catch_ArchiveDir}/Lvl Files/*.lvl")
+    #file( COPY ${ContentDirLevelContents} DESTINATION ${LevelDir})
+    #message( STATUS "Copying Preview Content")
+    #file(GLOB ContentDirPreviewContents "${Catch_ArchiveDir}/Lvl Previews/*")
+    #file( COPY ${ContentDirPreviewContents} DESTINATION ${PreviewDir})
 #endif(${UseCatchArchives})
 
 #Ogre stuff
@@ -281,22 +281,23 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 
 # Windows File Copy Specific Items
 if(${WIN32})
-	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+    message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+    message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/GLX_icon.png ${PluginDir}GLX_icon.png )
-	message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
+    message ( STATUS "${PROJECT_NAME} - Begin Linux Specific File Copy Process")
+    CopyFilesFromMezzanineDuringBuild( data/${BuildPlatform}/GLX_icon.png ${PluginDir}GLX_icon.png )
+    message ( STATUS "${PROJECT_NAME} - End Linux Specific File Copy Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 # Mac File Copy pecific Items
 #if(${APPLE})
-#	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-#	CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
-#	message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
+    #message ( STATUS "${PROJECT_NAME} - Begin Apple Specific File Copy Process")
+    #CopyFilesFromMezzanineDuringBuild( data/macosx/settings.cfg )
+    #message ( STATUS "${PROJECT_NAME} - End Apple Specific File Copy Process")
 #endif(${APPLE})
 
 message ( STATUS "${PROJECT_NAME} - End Copy Process")
