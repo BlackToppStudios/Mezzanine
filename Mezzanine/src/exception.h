@@ -63,31 +63,33 @@ namespace Mezzanine
             enum ExceptionCodes
             {
                 // Input/Output exceptions
-                IO_UNKNOWN_EXCEPTION = 0x01,               // 1
-                IO_READ_EXCEPTION = 0x01A01,               // 2
-                IO_WRITE_EXCEPTION = 0x01A02,              // 3
-                IO_FILE_NOT_FOUND_EXCEPTION = 0x01A03,     // 4
-                IO_DIRECTORY_NOT_FOUND_EXCEPTION = 0x01A04,// 5
+                IO_UNKNOWN_EXCEPTION                = 0x01A00,  // 1
+                IO_READ_EXCEPTION                   = 0x01A01,  // 2
+                IO_WRITE_EXCEPTION                  = 0x01A02,  // 3
+                IO_FILE_NOT_FOUND_EXCEPTION         = 0x01A03,  // 4
+                IO_DIRECTORY_NOT_FOUND_EXCEPTION    = 0x01A04,  // 5
                 // Instance Identity exceptions
-                II_UNKNOWN_EXCEPTION = 0x02,               // 6
-                II_IDENTITY_INVALID_EXCEPTION = 0x02A01,   // 7
-                II_IDENTITY_NOT_FOUND_EXCEPTION = 0x02A02, // 8
-                II_DUPLICATE_IDENTITY_EXCEPTION = 0x02A03, // 9
+                II_UNKNOWN_EXCEPTION                = 0x02A00,  // 6
+                II_IDENTITY_INVALID_EXCEPTION       = 0x02A01,  // 7
+                II_IDENTITY_NOT_FOUND_EXCEPTION     = 0x02A02,  // 8
+                II_DUPLICATE_IDENTITY_EXCEPTION     = 0x02A03,  // 9
                 // Memory Management exceptions
-                MM_UNKNOWN_EXCEPTION = 0x03,               // 10
-                MM_OUT_OF_MEMORY_EXCEPTION = 0x03A01,      // 11
-                MM_OUT_OF_BOUNDS_EXCEPTION = 0x03A02,      // 12
+                MM_UNKNOWN_EXCEPTION                = 0x03A00,  // 10
+                MM_OUT_OF_MEMORY_EXCEPTION          = 0x03A01,  // 11
+                MM_OUT_OF_BOUNDS_EXCEPTION          = 0x03A02,  // 12
                 // Syntax exceptions
-                UNKNOWN_SYNTAX_EXCEPTION = 0x04,           // 13
+                SYNTAX_ERROR_EXCEPTION              = 0x04A00,  // 13
+                SYNTAX_ERROR_EXCEPTION_XML          = 0x04A01,  // 14
+                SYNTAX_ERROR_EXCEPTION_LUA          = 0x04A02,  // 15
                 // Other exceptions
-                ARITHMETIC_EXCEPTION = 0xA01,              // 14
-                INVALID_PARAMETERS_EXCEPTION = 0xA02,      // 15
-                INVALID_VERSION_EXCEPTION = 0xA03,         // 16
-                INVALID_STATE_EXCEPTION = 0xA04,           // 17
-                RENDERINGAPI_EXCEPTION = 0xA05,            // 18
-                RT_ASSERTION_EXCEPTION = 0xA06,            // 19
-                INTERNAL_EXCEPTION = 0xA07,                // 20
-                NOT_IMPLEMENTED_EXCEPTION = 0xA08          // 21
+                ARITHMETIC_EXCEPTION                = 0x00A01,  // 16
+                INVALID_PARAMETERS_EXCEPTION        = 0x00A02,  // 17
+                INVALID_VERSION_EXCEPTION           = 0x00A03,  // 18
+                INVALID_STATE_EXCEPTION             = 0x00A04,  // 19
+                RENDERINGAPI_EXCEPTION              = 0x00A05,  // 20
+                RT_ASSERTION_EXCEPTION              = 0x00A06,  // 21
+                INTERNAL_EXCEPTION                  = 0x00A07,  // 22
+                NOT_IMPLEMENTED_EXCEPTION           = 0x00A08   // 23
             };
         private:
             /// @internal
@@ -285,15 +287,15 @@ namespace Mezzanine
         { typedef MemoryManagementException Type; };
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class InvalidSyntaxException
+    /// @class SyntaxErrorException
     /// @headerfile exception.h
-    /// @brief An exception for syntax errors when parsing other files, such as LUA files.
+    /// @brief An exception for syntax errors when parsing other files, such as Lua files.
     ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB InvalidSyntaxException : public Exception
+    class MEZZ_LIB SyntaxErrorException : public Exception
     {
         public:
             /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::UNKNOWN_SYNTAX_EXCEPTION;
+            static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION;
         protected:
             /// @brief Inheritance constructor.
             /// @param TypeName The name of the type of exception being thrown.
@@ -301,7 +303,7 @@ namespace Mezzanine
             /// @param SrcFunction The name of the function from which this originated.
             /// @param SrcFile The name of the file from which this originated.
             /// @param FileLine The line on the named file from which this originated.
-            InvalidSyntaxException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            SyntaxErrorException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
                 : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
                 {}
         public:
@@ -310,20 +312,20 @@ namespace Mezzanine
             /// @param SrcFunction The name of the function from which this originated.
             /// @param SrcFile The name of the file from which this originated.
             /// @param FileLine The line on the named file from which this originated.
-            InvalidSyntaxException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            SyntaxErrorException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
                 : Exception("InvalidSyntaxException",Message,SrcFunction,SrcFile,FileLine)
                 {}
             /// @brief Class destructor.
-            virtual ~InvalidSyntaxException() throw() {}
+            virtual ~SyntaxErrorException() throw() {}
 
             /// @copydoc Exception::GetExceptionCode()
             virtual Whole GetExceptionCode() const throw()
-                { return InvalidSyntaxException::ExceptionCode; }
+                { return SyntaxErrorException::ExceptionCode; }
     };//InvalidSyntaxException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<InvalidSyntaxException::ExceptionCode>
-        { typedef InvalidSyntaxException Type; };
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorException::ExceptionCode>
+        { typedef SyntaxErrorException Type; };
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ArithmeticException

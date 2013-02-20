@@ -60,63 +60,65 @@ namespace Mezzanine
 {
     namespace Scripting
     {
-        //simplistic error checking function, to be replace with proper exception driven code later.
-        int PrintErrorMessageOrNothing(int ErrorCode)
+        namespace Lua
         {
-            switch(ErrorCode)
+            //simplistic error checking function, to be replace with proper exception driven code later.
+            int PrintErrorMessageOrNothing(int ErrorCode)
             {
-                case 0:             // Fine
-                    break;
-                case LUA_YIELD:     // most errors seem to be this.
-                    std::cout << std::endl << "Lua Error Code(LUA_YIELD): " << ErrorCode << std::endl;
-                    break;
-                case LUA_ERRRUN:
-                    std::cout << std::endl << "Lua Error Code(LUA_ERRRUN): " << ErrorCode << std::endl;
-                    break;
-                case LUA_ERRSYNTAX:
-                    std::cout << std::endl << "Lua Error Code(LUA_ERRSYNTAX): " << ErrorCode << std::endl;
-                    break;
-                case LUA_ERRERR:
-                    std::cout << std::endl << "Lua Error Code(LUA_ERRERR): " << ErrorCode << std::endl;
-                    break;
-                default:
-                    std::cout << std::endl << "Lua Error Code(Unknown Error): " << ErrorCode << std::endl;
+                switch(ErrorCode)
+                {
+                    case 0:             // Fine
+                        break;
+                    case LUA_YIELD:     // most errors seem to be this.
+                        std::cout << std::endl << "Lua Error Code(LUA_YIELD): " << ErrorCode << std::endl;
+                        break;
+                    case LUA_ERRRUN:
+                        std::cout << std::endl << "Lua Error Code(LUA_ERRRUN): " << ErrorCode << std::endl;
+                        break;
+                    case LUA_ERRSYNTAX:
+                        std::cout << std::endl << "Lua Error Code(LUA_ERRSYNTAX): " << ErrorCode << std::endl;
+                        break;
+                    case LUA_ERRERR:
+                        std::cout << std::endl << "Lua Error Code(LUA_ERRERR): " << ErrorCode << std::endl;
+                        break;
+                    default:
+                        std::cout << std::endl << "Lua Error Code(Unknown Error): " << ErrorCode << std::endl;
+                }
+                return ErrorCode;
             }
-            return ErrorCode;
-        }
 
-        //
-        int test()
-        {
-            lua_State *State;           // create a pointer to Track the Lua State
-            State = luaL_newstate();    // Create a Lua State
-            luaL_openlibs(State);
-            luaopen_Mezzanine(State);
+            //
+            int test()
+            {
+                lua_State *State;           // create a pointer to Track the Lua State
+                State = luaL_newstate();    // Create a Lua State
+                luaL_openlibs(State);
+                luaopen_Mezzanine(State);
 
-            std::cout << std::endl << "Let's try running a Lua command." << std::endl;
-            int Error = luaL_dostring(State,"print \"Hello from Lua\"");    // run a very simple Lua script.
-            PrintErrorMessageOrNothing(Error);
+                std::cout << std::endl << "Let's try running a Lua command." << std::endl;
+                int Error = luaL_dostring(State,"print \"Hello from Lua\"");    // run a very simple Lua script.
+                PrintErrorMessageOrNothing(Error);
 
-            std::cout << std::endl << "Now for Lua to call a function in the Mezzanine." << std::endl;
-            Error = luaL_dostring(State,"Mezzanine.PrintHello()");
-            PrintErrorMessageOrNothing(Error);
+                std::cout << std::endl << "Now for Lua to call a function in the Mezzanine." << std::endl;
+                Error = luaL_dostring(State,"Mezzanine.PrintHello()");
+                PrintErrorMessageOrNothing(Error);
 
-            std::cout << std::endl << "Now for some Lua class creation." << std::endl;
-            Error = luaL_dostring(State,"                                                                   \
-                                  print \"First We need some vectors, lets make A(1,2,3) a and b(4,5,6)\"   \
-                                  A = Mezzanine.Vector3(1,2,3)                                              \
-                                  B = Mezzanine.Vector3(4,5,6)                                              \
-                                  print \"Now lets add them and see what happens\"                          \
-                                  C = A+B                                                                   \
-                                  print(C.X, C.Y, C.Z)                                                    \
-                                  ");
-            PrintErrorMessageOrNothing(Error);
+                std::cout << std::endl << "Now for some Lua class creation." << std::endl;
+                Error = luaL_dostring(State,"                                                                   \
+                                      print \"First We need some vectors, lets make A(1,2,3) a and b(4,5,6)\"   \
+                                      A = Mezzanine.Vector3(1,2,3)                                              \
+                                      B = Mezzanine.Vector3(4,5,6)                                              \
+                                      print \"Now lets add them and see what happens\"                          \
+                                      C = A+B                                                                   \
+                                      print(C.X, C.Y, C.Z)                                                      \
+                                      ");
+                PrintErrorMessageOrNothing(Error);
 
-            lua_close(State);           // Close the Lua state
-        }
-
-    }
-}
+                lua_close(State);           // Close the Lua state
+            }
+        } // Lua
+    } // Scripting
+} // Mezzanine
 
 
 

@@ -60,18 +60,18 @@ namespace Mezzanine
         // ScriptingManagerLua
         // ScriptLua
         // ScriptArgLua
-
     namespace Scripting
     {
-        //simplistic error checking function, to be replace with proper exception driven code later.
-        int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
+        namespace Lua
+        {
+            //simplistic error checking function, to be replace with proper exception driven code later.
+            int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
 
-        // super simple lua test
-        int MEZZ_LIB test();
-    }
-
-
-}//Mezzanine
+            // super simple lua test
+            int MEZZ_LIB test();
+        } // Lua
+    } // Scripting
+} // Mezzanine
 
 
 
