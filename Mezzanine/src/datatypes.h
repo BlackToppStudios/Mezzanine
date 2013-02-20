@@ -179,8 +179,6 @@ namespace Mezzanine
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
     typedef SDL_Event RawEvent;
     
-    
-
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions
     ///////////////////////////////////////

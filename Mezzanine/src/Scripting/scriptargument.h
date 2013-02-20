@@ -86,7 +86,7 @@ namespace Mezzanine
 
         /// @brief A generic implementation of a ScriptArgument that is suitable for primitive types in most situations
         template <class T>
-        class MEZZ_LIB ScriptArgumentSpecific : public iScriptArgument
+        class MEZZ_LIB ScriptArgumentSpecific : public virtual iScriptArgument
         {
             private:
                 /// @brief the actual data.

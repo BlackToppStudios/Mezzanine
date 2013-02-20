@@ -40,7 +40,13 @@
 #ifndef _scriptinglua51_h
 #define _scriptinglua51_h
 
-#include "scripting.h"
+#include "datatypes.h"
+
+#ifdef MEZZLUA51
+
+#include "Scripting/scriptargument.h"
+#include "Scripting/script.h"
+#include "Scripting/scriptingmanager.h"
 
 /// @file
 /// @brief This file has the interface for the Lua based implementation of the Scripting system.
@@ -62,17 +68,35 @@ namespace Mezzanine
         // ScriptArgLua
     namespace Scripting
     {
+        class iScriptCompilationManager;
+
         namespace Lua
         {
+
+            class MEZZ_LIB LuaScriptingEngine : public Mezzanine::Scripting::iScriptCompilationManager
+            {
+                public:
+                    LuaScriptingEngine();
+
+                    virtual CountedPtr<iScript> Execute(String ScriptSource);
+
+                    virtual void Execute(CountedPtr<iScript> ScriptToRun);
+
+                    virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
+
+                    virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile);
+            };
+
             //simplistic error checking function, to be replace with proper exception driven code later.
             int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
 
             // super simple lua test
             int MEZZ_LIB test();
+
         } // Lua
     } // Scripting
 } // Mezzanine
 
 
-
+#endif // MEZZLUA51
 #endif // \_scriptinglua_h

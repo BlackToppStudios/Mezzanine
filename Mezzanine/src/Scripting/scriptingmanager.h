@@ -44,7 +44,8 @@
 /// @brief This file has the interfaces for Scripting managers and the associated dependency chain
 
 #include "managerbase.h"
-#include "scripting.h"
+#include "Scripting/scriptargument.h"
+#include "Scripting/script.h"
 #include "singleton.h"
 
 namespace Mezzanine
@@ -106,7 +107,7 @@ namespace Mezzanine
         /// @details This scripting manager implements no scripting language, but serves as
         /// model for what scripting managers
         ///////////////////////////////////////
-        class MEZZ_LIB iScriptCompilationManager : public ManagerBase
+        class MEZZ_LIB iScriptCompilationManager : public iScriptingManager
         {
             public:
                 /// @brief Overidable deconstructor.

@@ -1,3 +1,5 @@
+#include "datatypes.h"
+#ifdef MEZZLUA51
 #include "mezzanine.h"
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
@@ -5039,3 +5041,4 @@ void SWIG_init_user(lua_State* L)
 
 
 /// @endcond
+#endif // MEZZLUA51

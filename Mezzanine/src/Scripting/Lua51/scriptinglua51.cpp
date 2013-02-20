@@ -40,6 +40,9 @@
 #ifndef _scriptinglua51_cpp
 #define _scriptinglua51_cpp
 
+#include "datatypes.h"
+#ifdef MEZZLUA51
+
 #include "scriptinglua51.h"
 
 /// @file
@@ -62,6 +65,31 @@ namespace Mezzanine
     {
         namespace Lua
         {
+            LuaScriptingEngine::LuaScriptingEngine()
+            {
+
+            }
+
+            CountedPtr<iScript> LuaScriptingEngine::Execute(String ScriptSource)
+            {
+
+            }
+
+            void LuaScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
+            {
+
+            }
+
+            void LuaScriptingEngine::Compile(CountedPtr<iScriptCompilable> ScriptToCompile)
+            {
+
+            }
+
+            CountedPtr<iScriptCompilable> LuaScriptingEngine::Compile(String SourceToCompile)
+            {
+
+            }
+
             //simplistic error checking function, to be replace with proper exception driven code later.
             int PrintErrorMessageOrNothing(int ErrorCode)
             {
@@ -123,4 +151,5 @@ namespace Mezzanine
 
 
 
+#endif //  MEZZLUA51
 #endif
