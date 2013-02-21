@@ -59,6 +59,7 @@
 ///
 /// script class compilation
 
+struct lua_State;
 
 namespace Mezzanine
 {
@@ -75,8 +76,20 @@ namespace Mezzanine
 
             class MEZZ_LIB LuaScriptingEngine : public Mezzanine::Scripting::iScriptCompilationManager
             {
+                private:
+                    /// @brief The current state of the Lua runtime.
+                    lua_State *State;
+
+                protected:
+                    /// @brief This will do nothing if the past integer
+                    /// @param LuaReturn The return code from a Lua Compile or execution call
+                    /// @throws This
+                    virtual void ThrowFromLuaErrorCode(int LuaReturn);
+
                 public:
                     LuaScriptingEngine();
+
+                    virtual ~LuaScriptingEngine();
 
                     virtual CountedPtr<iScript> Execute(String ScriptSource);
 

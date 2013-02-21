@@ -261,4 +261,8 @@ namespace Mezzanine
 
 } // \Mezzanine
 
+#ifndef MEZZLUA51
+#define MEZZLUA51
+#endif
+
 #endif

@@ -65,14 +65,28 @@ namespace Mezzanine
     {
         namespace Lua
         {
-            LuaScriptingEngine::LuaScriptingEngine()
+            void LuaScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
 
             }
 
+            LuaScriptingEngine::LuaScriptingEngine()
+            {
+                State = luaL_newstate();
+                luaL_openlibs(State);
+                luaopen_Mezzanine(State);
+            }
+
+            LuaScriptingEngine::~LuaScriptingEngine()
+            {
+                lua_close(State);
+            }
+
             CountedPtr<iScript> LuaScriptingEngine::Execute(String ScriptSource)
             {
-
+                ThrowFromLuaErrorCode(
+                    luaL_dostring(State,ScriptSource.c_str())
+                );
             }
 
             void LuaScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)

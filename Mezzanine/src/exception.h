@@ -63,33 +63,39 @@ namespace Mezzanine
             enum ExceptionCodes
             {
                 // Input/Output exceptions
-                IO_UNKNOWN_EXCEPTION                = 0x01A00,  // 1
-                IO_READ_EXCEPTION                   = 0x01A01,  // 2
-                IO_WRITE_EXCEPTION                  = 0x01A02,  // 3
-                IO_FILE_NOT_FOUND_EXCEPTION         = 0x01A03,  // 4
-                IO_DIRECTORY_NOT_FOUND_EXCEPTION    = 0x01A04,  // 5
+                IO_UNKNOWN_EXCEPTION                = 0x01F00F00,  // 1
+                IO_READ_EXCEPTION                   = 0x01F01F00,  // 2
+                IO_WRITE_EXCEPTION                  = 0x01F02F00,  // 3
+                IO_FILE_NOT_FOUND_EXCEPTION         = 0x01F03F00,  // 4
+                IO_DIRECTORY_NOT_FOUND_EXCEPTION    = 0x01F04F00,  // 5
                 // Instance Identity exceptions
-                II_UNKNOWN_EXCEPTION                = 0x02A00,  // 6
-                II_IDENTITY_INVALID_EXCEPTION       = 0x02A01,  // 7
-                II_IDENTITY_NOT_FOUND_EXCEPTION     = 0x02A02,  // 8
-                II_DUPLICATE_IDENTITY_EXCEPTION     = 0x02A03,  // 9
+                II_UNKNOWN_EXCEPTION                = 0x02F00F00,  // 6
+                II_IDENTITY_INVALID_EXCEPTION       = 0x02F01F00,  // 7
+                II_IDENTITY_NOT_FOUND_EXCEPTION     = 0x02F02F00,  // 8
+                II_DUPLICATE_IDENTITY_EXCEPTION     = 0x02F03F00,  // 9
                 // Memory Management exceptions
-                MM_UNKNOWN_EXCEPTION                = 0x03A00,  // 10
-                MM_OUT_OF_MEMORY_EXCEPTION          = 0x03A01,  // 11
-                MM_OUT_OF_BOUNDS_EXCEPTION          = 0x03A02,  // 12
+                MM_UNKNOWN_EXCEPTION                = 0x03F00F00,  // 10
+                MM_OUT_OF_MEMORY_EXCEPTION          = 0x03F01F00,  // 11
+                MM_OUT_OF_BOUNDS_EXCEPTION          = 0x03F02F00,  // 12
                 // Syntax exceptions
-                SYNTAX_ERROR_EXCEPTION              = 0x04A00,  // 13
-                SYNTAX_ERROR_EXCEPTION_XML          = 0x04A01,  // 14
-                SYNTAX_ERROR_EXCEPTION_LUA          = 0x04A02,  // 15
+                SYNTAX_ERROR_EXCEPTION              = 0x04F00F00,  // 13
+                SYNTAX_ERROR_EXCEPTION_XML          = 0x04F01F00,  // 14
+                SYNTAX_ERROR_EXCEPTION_LUA          = 0x04F02F00,  // 15
+                // Scripting Error
+                SCRIPT_EXCEPTION                    = 0x05F00F00,  //
+                SCRIPT_EXCEPTION_LUA                = 0x05F01F00,  //
+                SCRIPT_EXCEPTION_LUA_YIELD          = 0x05F01F01,  //
+                SCRIPT_EXCEPTION_LUA_RUNTIME        = 0x05F01F02,  //
+                SCRIPT_EXCEPTION_LUA_ERRERR         = 0x05F01F03,  //       Needs Clarification
                 // Other exceptions
-                ARITHMETIC_EXCEPTION                = 0x00A01,  // 16
-                INVALID_PARAMETERS_EXCEPTION        = 0x00A02,  // 17
-                INVALID_VERSION_EXCEPTION           = 0x00A03,  // 18
-                INVALID_STATE_EXCEPTION             = 0x00A04,  // 19
-                RENDERINGAPI_EXCEPTION              = 0x00A05,  // 20
-                RT_ASSERTION_EXCEPTION              = 0x00A06,  // 21
-                INTERNAL_EXCEPTION                  = 0x00A07,  // 22
-                NOT_IMPLEMENTED_EXCEPTION           = 0x00A08   // 23
+                ARITHMETIC_EXCEPTION                = 0x00F01F00,  // 16
+                INVALID_PARAMETERS_EXCEPTION        = 0x00F02F00,  // 17
+                INVALID_VERSION_EXCEPTION           = 0x00F03F00,  // 18
+                INVALID_STATE_EXCEPTION             = 0x00F04F00,  // 19
+                RENDERINGAPI_EXCEPTION              = 0x00F05F00,  // 20
+                RT_ASSERTION_EXCEPTION              = 0x00F06F00,  // 21
+                INTERNAL_EXCEPTION                  = 0x00F07F00,  // 22
+                NOT_IMPLEMENTED_EXCEPTION           = 0x00F08F00   // 23
             };
         private:
             /// @internal
