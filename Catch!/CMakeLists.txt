@@ -246,15 +246,30 @@ CopyFilesDuringBuild( data/common/config-files/Resources.mxi ${CommonDataDir}Res
 
 #####################################
 # Licences
+#CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}lgpl-3.0.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}Ogre-MITLicense.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}SDL-MITLicense.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}zlib-libpngLicense.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}gpl-3.0.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt ${LicenseDir}Licenses.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}PugiXML-MITLicense.txt )
+#CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}XiphCopyrightNotice.txt )
+
 CopyFilesFromMezzanineDuringBuild( data/common/BulletZLibLicense.txt ${LicenseDir}BulletZLibLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}lgpl-3.0.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}Ogre-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}SDL-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}zlib-libpngLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}gpl-3.0.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt ${LicenseDir}Licenses.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}PugiXML-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}XiphCopyrightNotice.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/gpl-2.0.txt ${LicenseDir}/gpl-2.0.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/gpl-3.0.txt ${LicenseDir}/gpl-3.0.txt)
+CopyFilesFromMezzanineDuringBuild( data/common/lgpl-3.0.txt ${LicenseDir}/lgpl-3.0.tx)
+CopyFilesFromMezzanineDuringBuild( data/common/Licenses.txt ${LicenseDir}/Licenses.txt)
+CopyFilesFromMezzanineDuringBuild( data/common/Lua-MIT.txt ${LicenseDir}/Lua-MIT.txt)
+CopyFilesFromMezzanineDuringBuild( data/common/Nvidia-CG-License.txt ${LicenseDir}/Nvidia-CG-License.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}/Ogre-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}/PugiXML-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/RenéNyffenegger-MIT.txt ${LicenseDir}/RenéNyffenegger-MIT.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}/SDL-MITLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}/XiphCopyrightNotice.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}/zlib-libpngLicense.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/zlib-zliblicense.txt ${LicenseDir}/zlib-zliblicense.txt )
 
 #####################################
 # Common Data

@@ -92,6 +92,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Audio/playlist.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/sound.h"
         "${${PROJECT_NAME}_SRC_DIR}Audio/soundset.h"
+        "${${PROJECT_NAME}_SRC_DIR}binarytool.h"
         "${${PROJECT_NAME}_SRC_DIR}camera.h"
         "${${PROJECT_NAME}_SRC_DIR}cameracontroller.h"
         "${${PROJECT_NAME}_SRC_DIR}cameramanager.h"
@@ -293,6 +294,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}Audio/playlist.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/sound.cpp"
         "${${PROJECT_NAME}_SRC_DIR}Audio/soundset.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}binarytool.cpp"
         "${${PROJECT_NAME}_SRC_DIR}camera.cpp"
         "${${PROJECT_NAME}_SRC_DIR}cameracontroller.cpp"
         "${${PROJECT_NAME}_SRC_DIR}cameramanager.cpp"
@@ -601,16 +603,20 @@ target_link_libraries( ${PROJECT_NAME}                                 # Link to
 
 # Licenses
 CopyFilesDuringBuild( common/BulletZLibLicense.txt data/common/BulletZLibLicense.txt )
-CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
-CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
-CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
-CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )
-CopyFilesDuringBuild( common/gpl-3.0.txt data/common/gpl-3.0.txt )
-CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
-CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
-CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 CopyFilesDuringBuild( common/gpl-2.0.txt data/common/gpl-2.0.txt )
+CopyFilesDuringBuild( common/gpl-3.0.txt data/common/gpl-3.0.txt )
+CopyFilesDuringBuild( common/lgpl-3.0.txt data/common/lgpl-3.0.txt )
+CopyFilesDuringBuild( common/Licenses.txt data/common/Licenses.txt )
 CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
+CopyFilesDuringBuild( common/Nvidia-CG-License.txt data/common/Nvidia-CG-License.txt )
+CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
+CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
+CopyFilesDuringBuild( common/RenéNyffenegger-MIT.txt data/common/RenéNyffenegger-MIT.txt )
+CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
+CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
+CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )
+CopyFilesDuringBuild( common/zlib-zliblicense.txt data/common/zlib-zliblicense.txt )
+
 
 # Ogre
 #CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgrePluginRenderGL} data/${BuildPlatform}/ogre/${OgrePluginRenderGL} )

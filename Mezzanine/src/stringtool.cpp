@@ -313,6 +313,7 @@ namespace Mezzanine
 
     String StringTools::ConvertToString(const Input::InputCode& Code, bool ShiftPressed)
     {
+        /// @todo Get this ( StringTools::ConvertToString ) to support non us keyboards
         switch(Code)
         {
             case Input::KEY_A:
@@ -656,10 +657,9 @@ namespace Mezzanine
                 return "";
                 break;
         }
-    }
+    } // StringTools::ConvertToString
 
-    ///////////////////////////////////////////////////////////////////////////////
-    // String Catenate functions
+
 }//Mezzanine
 
 #endif

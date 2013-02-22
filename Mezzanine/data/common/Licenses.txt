@@ -46,5 +46,8 @@ The following Licenses are applicable to the libraries that comprise the Mezzani
 	The "GNU GENERAL PUBLIC LICENSE 3.0" as described in gpl-3.0.txt:zlib-zliblicense.txt
 		Mezzanine Engine
 
+	The "René Nyffenegger MIT License" as described in RenéNyffenegger-MIT.txt
+		Base64 encoding and decoding functions.
+
 Any required identifying information is presented in the original copies of the license in the appropriate directory in libincludes/ .
 

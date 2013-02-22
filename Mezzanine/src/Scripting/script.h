@@ -43,7 +43,7 @@
 /// @file
 /// @brief This file has the interfaces for Scripts and tag derived classes.
 
-#include "datatypes.h"
+#include "binarytool.h"
 #include "scriptargument.h"
 #include "smartptr.h"
 
@@ -156,42 +156,9 @@ namespace Mezzanine
                 /// @return A null pointer if this conversion is invalid or a valid pointer to this as an @ref iScriptMultipleReturn if it is valid.
                 virtual iScriptMultipleReturn* GetAsiScriptMultipleReturn()
                     { return 0; }
+        }; // iScript
 
-        };
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
-        /// @brief A way to store and pass compile binary scripts.
-        /// @details Intended for use with @ref ScriptCompilable as a basic way to store and pass bytecode around.
-        /// This does not delete the binary on destruction and is not intended to. Some script interpretter's
-        /// will manage their own memory and in other situations is seems likely the Game developor will want to
-        /// manage bytecode lifecycle. Otherwise creating a derived class may be useful.
-        /// @n @n
-        /// This is designed to be fairly minimalistic and pointer-like so that it can be passed by value to reduce
-        /// double pointer indirection and caching costs.
-        struct ByteCode
-        {
-            public:
-
-                /// @brief How many bytes is @ref Binary in size. This is set to 0 if @ref Binary is invalid and should be a null pointer.
-                Whole Size;
-
-                /// @brief A pointer to the actual compiled bytecode.
-                UInt8* Binary;
-
-                /// @brief Default constructor, set everything to zero.
-                ByteCode() :
-                    Size(0),
-                    Binary(NULL)
-                    {}
-
-                /// @brief Verbose constructor, set everything custom on creation.
-                /// @param PredeterminedSize The size to set on creation.
-                /// @param PreCompiledBinary A pointer to the compiled byte in memory, to be set on creation.
-                ByteCode(Integer PredeterminedSize, UInt8* PreCompiledBinary) :
-                    Size(PredeterminedSize),
-                    Binary(PreCompiledBinary)
-                    {}
-        };
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         /// @brief The interface for a script that can be compiled to bytecode
@@ -216,11 +183,11 @@ namespace Mezzanine
                 /// @details This is what will be executed. No reverse compiling support is provided, so it is advisable
                 /// that implementations of this either clear the source code or set it to the source that matches the
                 /// compiled binary.
-                virtual void SetByteCode(ByteCode Code) = 0;
+                virtual void SetByteCode(BinaryTools::ByteCode Code) = 0;
 
                 /// @brief Get the compiled version of the code if it is available.
                 /// @return If there is valid byte code this will retrieve that, otherwise this will return an empty bytecode.
-                virtual ByteCode GetByteCode() const = 0;
+                virtual BinaryTools::ByteCode GetByteCode() const = 0;
 
                 /// @brief Has this script already been compiled into a bytecode.
                 /// @return True if there is bytecode available false otherwise.
