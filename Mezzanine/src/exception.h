@@ -91,14 +91,14 @@ namespace Mezzanine
                 SCRIPT_EXCEPTION_LUA_RUNTIME        = 0x05F01F02,  ///< Using this will generate @ref SyntaxErrorLuaRuntimeException instances
                 SCRIPT_EXCEPTION_LUA_ERRERR         = 0x05F01F03,  ///< Using this will generate @ref SyntaxErrorLuaErrException instances. This needs further clarification.
                 // Other exceptions
-                ARITHMETIC_EXCEPTION                = 0x00F01F00,  // 16
-                INVALID_PARAMETERS_EXCEPTION        = 0x00F02F00,  // 17
-                INVALID_VERSION_EXCEPTION           = 0x00F03F00,  // 18
-                INVALID_STATE_EXCEPTION             = 0x00F04F00,  // 19
-                RENDERINGAPI_EXCEPTION              = 0x00F05F00,  // 20
-                RT_ASSERTION_EXCEPTION              = 0x00F06F00,  // 21
-                INTERNAL_EXCEPTION                  = 0x00F07F00,  // 22
-                NOT_IMPLEMENTED_EXCEPTION           = 0x00F08F00   // 23
+                ARITHMETIC_EXCEPTION                = 0x00F01F00,  ///< Using this will generate @ref ArithmeticException instances
+                INVALID_PARAMETERS_EXCEPTION        = 0x00F02F00,  ///< Using this will generate @ref InvalidParametersException instances
+                INVALID_VERSION_EXCEPTION           = 0x00F03F00,  ///< Using this will generate @ref InvalidVersionException instances
+                INVALID_STATE_EXCEPTION             = 0x00F04F00,  ///< Using this will generate @ref InvalidStateException instances
+                RENDERINGAPI_EXCEPTION              = 0x00F05F00,  ///< Using this will generate @ref RenderingAPIException instances
+                RT_ASSERTION_EXCEPTION              = 0x00F06F00,  ///< Using this will generate @ref RTAssertionException instances
+                INTERNAL_EXCEPTION                  = 0x00F07F00,  ///< Using this will generate @ref InternalException instances
+                NOT_IMPLEMENTED_EXCEPTION           = 0x00F08F00   ///< Using this will generate @ref NotImplementedException instances
             };
         private:
             /// @internal
