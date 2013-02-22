@@ -622,7 +622,7 @@ namespace Mezzanine
         Stream->read((void*)buffer, Stream->size());
         if(!Importer.loadFileFromMemory(buffer, Stream->size()))
         {
-            MEZZ_EXCEPTION(Exception::IO_UNKNOWN_EXCEPTION,"Failed to load file: " + FileName + ".")
+            MEZZ_EXCEPTION(Exception::IO_READ_EXCEPTION,"Failed to load file: " + FileName + ".")
         }
         delete[] buffer;
         for( Whole X = 0 ; X < Importer.getNumCollisionShapes() ; ++X )

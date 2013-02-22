@@ -59,34 +59,37 @@ namespace Mezzanine
         public:
             /// @enum ExceptionCodes
             /// @brief This enum provides mapping/naming for all the core exceptions of Mezzanine.
-            /// @details The numbers listed here must be unique to each exception.
+            /// @details The numbers listed here must be unique to each exception. If an error code does not identify
+            /// the problem exactly it should be considered 'Unknown' for as much as it does specify. For example,
+            /// if there is an error opening a file for reading and writing, and we don't know why it failed, useing
+            /// @ref IO_EXCEPTION would make sense
             enum ExceptionCodes
             {
                 // Input/Output exceptions
-                IO_UNKNOWN_EXCEPTION                = 0x01F00F00,  // 1
-                IO_READ_EXCEPTION                   = 0x01F01F00,  // 2
-                IO_WRITE_EXCEPTION                  = 0x01F02F00,  // 3
-                IO_FILE_NOT_FOUND_EXCEPTION         = 0x01F03F00,  // 4
-                IO_DIRECTORY_NOT_FOUND_EXCEPTION    = 0x01F04F00,  // 5
+                IO_EXCEPTION                        = 0x01F00F00,  ///< Used when There is an Error with IO and it could not be identified. Using this will generate @ref IOException instances.
+                IO_READ_EXCEPTION                   = 0x01F01F00,  ///< Using this with will generate @ref IOReadException instances.
+                IO_WRITE_EXCEPTION                  = 0x01F02F00,  ///< Using this will generate @ref IOWriteException instances.
+                IO_FILE_NOT_FOUND_EXCEPTION         = 0x01F03F00,  ///< Using this will generate @ref FileNotFoundException instances.
+                IO_DIRECTORY_NOT_FOUND_EXCEPTION    = 0x01F04F00,  ///< Using this will generate @ref DirectoryNotFoundException instances.
                 // Instance Identity exceptions
-                II_UNKNOWN_EXCEPTION                = 0x02F00F00,  // 6
-                II_IDENTITY_INVALID_EXCEPTION       = 0x02F01F00,  // 7
-                II_IDENTITY_NOT_FOUND_EXCEPTION     = 0x02F02F00,  // 8
-                II_DUPLICATE_IDENTITY_EXCEPTION     = 0x02F03F00,  // 9
+                II_EXCEPTION                        = 0x02F00F00,  ///< The catchall invalid index exception, Using this will generate @ref InstanceIdentityException instances.
+                II_IDENTITY_INVALID_EXCEPTION       = 0x02F01F00,  ///< Using this will generate @ref IdentityInvalidException instances
+                II_IDENTITY_NOT_FOUND_EXCEPTION     = 0x02F02F00,  ///< Using this will generate @ref IdentityNotFoundException instances
+                II_DUPLICATE_IDENTITY_EXCEPTION     = 0x02F03F00,  ///< Using this will generate @ref DuplicateIdentityException instances
                 // Memory Management exceptions
-                MM_UNKNOWN_EXCEPTION                = 0x03F00F00,  // 10
-                MM_OUT_OF_MEMORY_EXCEPTION          = 0x03F01F00,  // 11
-                MM_OUT_OF_BOUNDS_EXCEPTION          = 0x03F02F00,  // 12
+                MM_EXCEPTION                        = 0x03F00F00,  ///< Generic Memory Management Exception, using this will generate @ref MemoryManagementException instances
+                MM_OUT_OF_MEMORY_EXCEPTION          = 0x03F01F00,  ///< Using this will generate @ref OutOfMemoryException instances
+                MM_OUT_OF_BOUNDS_EXCEPTION          = 0x03F02F00,  ///< Using this will generate @ref OutOfBoundsException instances
                 // Syntax exceptions
-                SYNTAX_ERROR_EXCEPTION              = 0x04F00F00,  // 13
-                SYNTAX_ERROR_EXCEPTION_XML          = 0x04F01F00,  // 14
-                SYNTAX_ERROR_EXCEPTION_LUA          = 0x04F02F00,  // 15
+                SYNTAX_ERROR_EXCEPTION              = 0x04F00F00,  ///< If the kind of syntax is unknown this can be used directly. Using this will generate @ref SyntaxErrorException instances
+                SYNTAX_ERROR_EXCEPTION_XML          = 0x04F01F00,  ///< Using this will generate @ref SyntaxErrorXMLException instances
+                SYNTAX_ERROR_EXCEPTION_LUA          = 0x04F02F00,  ///< Using this will generate @ref SyntaxErrorLuaException instances
                 // Scripting Error
-                SCRIPT_EXCEPTION                    = 0x05F00F00,  //
-                SCRIPT_EXCEPTION_LUA                = 0x05F01F00,  //
-                SCRIPT_EXCEPTION_LUA_YIELD          = 0x05F01F01,  //
-                SCRIPT_EXCEPTION_LUA_RUNTIME        = 0x05F01F02,  //
-                SCRIPT_EXCEPTION_LUA_ERRERR         = 0x05F01F03,  //       Needs Clarification
+                SCRIPT_EXCEPTION                    = 0x05F00F00,  ///< Using this will generate @ref ScriptException instances
+                SCRIPT_EXCEPTION_LUA                = 0x05F01F00,  ///< Using this will generate @ref SyntaxErrorLuaYieldException instances
+                SCRIPT_EXCEPTION_LUA_YIELD          = 0x05F01F01,  ///< Using this will generate @ref SyntaxErrorLuaYieldException instances
+                SCRIPT_EXCEPTION_LUA_RUNTIME        = 0x05F01F02,  ///< Using this will generate @ref SyntaxErrorLuaRuntimeException instances
+                SCRIPT_EXCEPTION_LUA_ERRERR         = 0x05F01F03,  ///< Using this will generate @ref SyntaxErrorLuaErrException instances. This needs further clarification.
                 // Other exceptions
                 ARITHMETIC_EXCEPTION                = 0x00F01F00,  // 16
                 INVALID_PARAMETERS_EXCEPTION        = 0x00F02F00,  // 17
@@ -120,6 +123,7 @@ namespace Mezzanine
             /// @param SrcFunction The name of the function from which this originated.
             /// @param SrcFile The name of the file from which this originated.
             /// @param FileLine The line on the named file from which this originated.
+            /// @details Don't call this, use @ref MEZZ_EXCEPTION to throw these, it is much simpler. It also might get better with time.
             Exception(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine);
             /// @brief Class destructor.
             virtual ~Exception() throw();
@@ -166,6 +170,7 @@ namespace Mezzanine
         typedef Exception Type;
     };//ExceptionFactory
 
+
     ///////////////////////////////////////////////////////////////////////////////
     // Layer 2
 
@@ -178,7 +183,7 @@ namespace Mezzanine
     {
         public:
             /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::IO_UNKNOWN_EXCEPTION;
+            static const Whole ExceptionCode = Exception::IO_EXCEPTION;
         protected:
             /// @brief Inheritance constructor.
             /// @param TypeName The name of the type of exception being thrown.
@@ -210,6 +215,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<IOException::ExceptionCode>
         { typedef IOException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class InstanceIdentityException
     /// @headerfile exception.h
@@ -219,7 +225,7 @@ namespace Mezzanine
     {
         public:
             /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::II_UNKNOWN_EXCEPTION;
+            static const Whole ExceptionCode = Exception::II_EXCEPTION;
         protected:
             /// @brief Inheritance constructor.
             /// @param TypeName The name of the type of exception being thrown.
@@ -251,6 +257,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<InstanceIdentityException::ExceptionCode>
         { typedef InstanceIdentityException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class MemoryManagementException
     /// @headerfile exception.h
@@ -260,7 +267,7 @@ namespace Mezzanine
     {
         public:
             /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::MM_UNKNOWN_EXCEPTION;
+            static const Whole ExceptionCode = Exception::MM_EXCEPTION;
         protected:
             /// @brief Inheritance constructor.
             /// @param TypeName The name of the type of exception being thrown.
@@ -292,6 +299,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<MemoryManagementException::ExceptionCode>
         { typedef MemoryManagementException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SyntaxErrorException
     /// @headerfile exception.h
@@ -319,7 +327,7 @@ namespace Mezzanine
             /// @param SrcFile The name of the file from which this originated.
             /// @param FileLine The line on the named file from which this originated.
             SyntaxErrorException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("InvalidSyntaxException",Message,SrcFunction,SrcFile,FileLine)
+                : Exception("SyntaxErrorException",Message,SrcFunction,SrcFile,FileLine)
                 {}
             /// @brief Class destructor.
             virtual ~SyntaxErrorException() throw() {}
@@ -332,6 +340,49 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<SyntaxErrorException::ExceptionCode>
         { typedef SyntaxErrorException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ScriptException
+    /// @headerfile exception.h
+    /// @brief Some kind of exception happened in a script.
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB ScriptException : public Exception
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION;
+        protected:
+            /// @brief Inheritance constructor.
+            /// @param TypeName The name of the type of exception being thrown.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            ScriptException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
+                {}
+        public:
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            ScriptException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : Exception("ScriptException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~ScriptException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            virtual Whole GetExceptionCode() const throw()
+                { return ScriptException::ExceptionCode; }
+    };//InvalidSyntaxException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ScriptException::ExceptionCode>
+        { typedef ScriptException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ArithmeticException
@@ -364,6 +415,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<ArithmeticException::ExceptionCode>
         { typedef ArithmeticException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class InvalidParametersException
     /// @headerfile exception.h
@@ -395,6 +447,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<InvalidParametersException::ExceptionCode>
         { typedef InvalidParametersException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class InvalidVersionException
     /// @headerfile exception.h
@@ -425,6 +478,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<InvalidVersionException::ExceptionCode>
         { typedef InvalidVersionException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class InvalidStateException
@@ -458,6 +512,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<InvalidStateException::ExceptionCode>
         { typedef InvalidStateException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class RenderingAPIException
     /// @headerfile exception.h
@@ -489,6 +544,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<RenderingAPIException::ExceptionCode>
         { typedef RenderingAPIException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class RTAssertionException
@@ -522,6 +578,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<RTAssertionException::ExceptionCode>
         { typedef RTAssertionException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class InternalException
     /// @headerfile exception.h
@@ -553,6 +610,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<InternalException::ExceptionCode>
         { typedef InternalException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class NotImplementedException
     /// @headerfile exception.h
@@ -583,6 +641,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<NotImplementedException::ExceptionCode>
         { typedef NotImplementedException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Layer 3
@@ -618,6 +677,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<IOReadException::ExceptionCode>
         { typedef IOReadException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class IOWriteException
     /// @headerfile exception.h
@@ -648,6 +708,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<IOWriteException::ExceptionCode>
         { typedef IOWriteException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class FileNotFoundException
@@ -680,6 +741,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<FileNotFoundException::ExceptionCode>
         { typedef FileNotFoundException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class DirectoryNotFoundException
     /// @headerfile exception.h
@@ -710,6 +772,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryNotFoundException::ExceptionCode>
         { typedef DirectoryNotFoundException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class IdentityInvalidException
@@ -742,6 +805,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<IdentityInvalidException::ExceptionCode>
         { typedef IdentityInvalidException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class IdentityNotFoundException
     /// @headerfile exception.h
@@ -772,6 +836,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<IdentityNotFoundException::ExceptionCode>
         { typedef IdentityNotFoundException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class DuplicateIdentityException
@@ -804,6 +869,7 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<DuplicateIdentityException::ExceptionCode>
         { typedef DuplicateIdentityException Type; };
 
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class OutOfMemoryException
     /// @headerfile exception.h
@@ -834,6 +900,7 @@ namespace Mezzanine
     template<>
     struct MEZZ_LIB ExceptionFactory<OutOfMemoryException::ExceptionCode>
         { typedef OutOfMemoryException Type; };
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class OutOfBoundsException
@@ -866,7 +933,202 @@ namespace Mezzanine
     struct MEZZ_LIB ExceptionFactory<OutOfBoundsException::ExceptionCode>
         { typedef OutOfBoundsException Type; };
 
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class SyntaxErrorXMLException
+    /// @headerfile exception.h
+    /// @brief An exception to be thrown when malformed XML is encountered.
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB SyntaxErrorXMLException : public SyntaxErrorException
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION_XML;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            SyntaxErrorXMLException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : SyntaxErrorException("SyntaxErrorXMLException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~SyntaxErrorXMLException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            Whole GetExceptionCode() const throw()
+                { return SyntaxErrorXMLException::ExceptionCode; }
+    };//SyntaxErrorXMLException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorXMLException::ExceptionCode>
+        { typedef SyntaxErrorXMLException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class SyntaxErrorLuaException
+    /// @headerfile exception.h
+    /// @brief An exception to be thrown when malformed Lua is encountered.
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB SyntaxErrorLuaException : public SyntaxErrorException
+    {
+        protected:
+            /// @brief Inheritance constructor.
+            /// @param TypeName The name of the type of exception being thrown.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            SyntaxErrorLuaException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : SyntaxErrorException(TypeName,Message,SrcFunction,SrcFile,FileLine)
+                {}
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION_LUA;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            SyntaxErrorLuaException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : SyntaxErrorException("SyntaxErrorLuaException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~SyntaxErrorLuaException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            Whole GetExceptionCode() const throw()
+                { return SyntaxErrorLuaException::ExceptionCode; }
+    };//SyntaxErrorLuaException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaException::ExceptionCode>
+        { typedef SyntaxErrorLuaException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Layer 4
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class SyntaxErrorLuaYieldException
+    /// @headerfile exception.h
+    /// @brief Lua returned an error condition of yeild (which is sometimes valid)
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB SyntaxErrorLuaYieldException : public SyntaxErrorLuaException
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_YIELD;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            SyntaxErrorLuaYieldException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : SyntaxErrorLuaException("SyntaxErrorLuaYieldException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~SyntaxErrorLuaYieldException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            Whole GetExceptionCode() const throw()
+                { return SyntaxErrorLuaYieldException::ExceptionCode; }
+    };//SyntaxErrorLuaException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaYieldException::ExceptionCode>
+        { typedef SyntaxErrorLuaYieldException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class SyntaxErrorLuaRuntimeException
+    /// @headerfile exception.h
+    /// @brief Lua returned an error during execution
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB SyntaxErrorLuaRuntimeException : public SyntaxErrorLuaException
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_RUNTIME;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            SyntaxErrorLuaRuntimeException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : SyntaxErrorLuaException("SyntaxErrorLuaRuntimeException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~SyntaxErrorLuaRuntimeException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            Whole GetExceptionCode() const throw()
+                { return SyntaxErrorLuaRuntimeException::ExceptionCode; }
+    };//SyntaxErrorLuaException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaRuntimeException::ExceptionCode>
+        { typedef SyntaxErrorLuaRuntimeException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class SyntaxErrorLuaErrException
+    /// @headerfile exception.h
+    /// @brief Lua suffered an internal error.
+    ///////////////////////////////////////////////////////////////////////////////
+    class MEZZ_LIB SyntaxErrorLuaErrException : public SyntaxErrorLuaException
+    {
+        public:
+            /// @brief The internal code for this exception.
+            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_ERRERR;
+
+            /// @brief Class constructor.
+            /// @param Message A basic description of the error.
+            /// @param SrcFunction The name of the function from which this originated.
+            /// @param SrcFile The name of the file from which this originated.
+            /// @param FileLine The line on the named file from which this originated.
+            SyntaxErrorLuaErrException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+                : SyntaxErrorLuaException("SyntaxErrorLuaErrException",Message,SrcFunction,SrcFile,FileLine)
+                {}
+            /// @brief Class destructor.
+            virtual ~SyntaxErrorLuaErrException() throw() {}
+
+            /// @copydoc Exception::GetExceptionCode()
+            Whole GetExceptionCode() const throw()
+                { return SyntaxErrorLuaErrException::ExceptionCode; }
+    };//SyntaxErrorLuaErrException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaErrException::ExceptionCode>
+        { typedef SyntaxErrorLuaErrException Type; };
+
+
+
     #ifndef MEZZ_EXCEPTION
+    /// @brief An easy way to throw exception with rich information.
+    /// @details An important part of troubleshooting errors from the users perspective is being able to
+    /// tie a specific 'fix' to a specific error message. An important part of ensuring correct exceptional
+    /// is catching the right exceptions at the right time. It is also important to not allocate more
+    /// memory or other resources while creating an exception.
+    /// @n @n
+    /// This macro makes doing all of these easy. Every exception thrown by this macro with provide the Function name,
+    /// the file name and the line in the file from which it was thrown. That provides all the information the developer
+    /// needs to identify the issue. This uses some specific template machinery to generate specifically typed exceptions
+    /// static instances at compile to insure the behaviors a programmer needs. Since these are allocated when the
+    /// program is first loaded so there will be no allocations when this is called, and the type is controlled by the
+    /// error number parameter.
+    /// @n @n
+    /// As long as the game developer provides a unique string for each failure, then any messages logged or presented
+    /// to the game player will uniquely identify that specific problem. This allows the user to perform very specific
+    /// web searches and potentially allows troubleshooters/technicians to skip length diagnostics steps.
+    /// @param num A specific code from the @ref Exception::ExceptionCodes enum will control the type of exception produced.
+    /// @param desc
+    /// @todo Get the verion of the Mezzanine in here so that this can pin down errors with extreme specificty across time. (aybe Compilaiton date too)
     #define MEZZ_EXCEPTION(num, desc) throw Mezzanine::ExceptionFactory<num>::Type(desc, __func__, __FILE__, __LINE__ );
     #endif
 }//Mezzanine
