@@ -1,0 +1,48 @@
+#Enum Identifier                       Enum Value   Class Name                                Inherits From
+IO_EXCEPTION                           0x01F00F00   IOException                               Exception
+IO_FILE_EXCEPTION                      0x01F01F00   FileException                             IOException
+IO_FILE_READ_EXCEPTION                 0x01F01F01   FileReadException                         FileException
+IO_FILE_WRITE_EXCEPTION                0x01F01F02   FileWriteException                        FileException
+IO_FILE_NOT_FOUND_EXCEPTION            0x01F01F03   FileNotFoundException                     FileException
+IO_FILE_PERMISSION_EXCEPTION           0x01F01F04   FilePermissionException                   FileException
+IO_DIRECTORY_EXCEPTION                 0x01F02F00   DirectoryException                        IOException
+IO_DIRECTORY_READ_EXCEPTION            0x01F02F01   DirectoryReadException                    DirectoryException
+IO_DIRECTORY_WRITE_EXCEPTION           0x01F02F02   DirectoryWriteException                   DirectoryException
+IO_DIRECTORY_NOT_FOUND_EXCEPTION       0x01F02F03   DirectoryNotFoundException                DirectoryException
+IO_DIRECTORY_PERMISSION_EXCEPTION      0x01F02F04   DirectoryPermissionException              DirectoryException
+IO_NETWORK_EXCEPTION                   0x01F02F00   NetworkException                          IOException
+IO_NETWORK_READ_EXCEPTION              0x01F02F01   NetworkReadException                      NetworkException
+IO_NETWORK_WRITE_EXCEPTION             0x01F02F02   NetworkWriteException                     NetworkException
+IO_NETWORK_NOT_FOUND_EXCEPTION         0x01F02F03   NetworkNotFoundException                  NetworkException
+IO_NETWORK_PERMISSION_EXCEPTION        0x01F02F04   NetworkPermissionException                NetworkException
+#
+IO_WRITE_EXCEPTION                     0x01F08F00   IOWriteException                          IOException
+IO_READ_EXCEPTION                      0x01F09F00   IOReadException                           IOException
+#
+II_EXCEPTION                           0x02F00F00   InstanceIdentityException                 Exception
+II_IDENTITY_INVALID_EXCEPTION          0x02F01F00   InstanceIdentityInvalidException          InstanceIdentityException
+II_IDENTITY_NOT_FOUND_EXCEPTION        0x02F02F00   InstanceIdentityNotFoundException         InstanceIdentityException
+II_DUPLICATE_IDENTITY_EXCEPTION        0x02F03F00   InstanceIdentityDuplicateException        InstanceIdentityException
+#
+MM_EXCEPTION                           0x03F00F00   MemoryManagementException                 Exception
+MM_OUT_OF_MEMORY_EXCEPTION             0x03F01F00   OutOfMemoryException                      MemoryManagementException
+MM_OUT_OF_BOUNDS_EXCEPTION             0x03F02F00   MemoryOutOfBoundsException                MemoryManagementException
+#
+SYNTAX_ERROR_EXCEPTION                 0x04F00F00   SyntaxErrorException                      Exception
+SYNTAX_ERROR_EXCEPTION_XML             0x04F01F00   SyntaxErrorXMLException                   SyntaxErrorException
+SYNTAX_ERROR_EXCEPTION_LUA             0x04F02F00   SyntaxErrorLuaException                   SyntaxErrorException
+#
+SCRIPT_EXCEPTION                       0x05F00F00   ScriptException                           Exception
+SCRIPT_EXCEPTION_LUA                   0x05F01F00   ScriptLuaException                        ScriptException
+SCRIPT_EXCEPTION_LUA_YIELD             0x05F01F01   ScriptLuaYieldException                   ScriptLuaException
+SCRIPT_EXCEPTION_LUA_RUNTIME           0x05F01F02   ScriptLuaRuntimeException                 ScriptLuaException
+SCRIPT_EXCEPTION_LUA_ERRERR            0x05F01F03   ScriptLuaErrErrException                  ScriptLuaException
+#
+ARITHMETIC_EXCEPTION                   0x00F01F00   ArithmeticException                       Exception
+INVALID_PARAMETERS_EXCEPTION           0x00F02F00   InvalidParametersException                Exception
+INVALID_VERSION_EXCEPTION              0x00F03F00   InvalidVersionException                   Exception
+INVALID_STATE_EXCEPTION                0x00F04F00   InvalidStateException                     Exception
+RENDERINGAPI_EXCEPTION                 0x00F05F00   RenderingAPIException                     Exception
+RT_ASSERTION_EXCEPTION                 0x00F06F00   RuntimeAssertionException                 Exception
+INTERNAL_EXCEPTION                     0x00F07F00   InternalException                         Exception
+NOT_IMPLEMENTED_EXCEPTION              0x00F08F00   NotImplementedException                   Exception
