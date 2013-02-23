@@ -183,11 +183,11 @@ namespace Mezzanine
                 /// @details This is what will be executed. No reverse compiling support is provided, so it is advisable
                 /// that implementations of this either clear the source code or set it to the source that matches the
                 /// compiled binary.
-                virtual void SetByteCode(BinaryTools::ByteCode Code) = 0;
+                virtual void SetByteCode(BinaryTools::BinaryBuffer Code) = 0;
 
                 /// @brief Get the compiled version of the code if it is available.
                 /// @return If there is valid byte code this will retrieve that, otherwise this will return an empty bytecode.
-                virtual BinaryTools::ByteCode GetByteCode() const = 0;
+                virtual BinaryTools::BinaryBuffer GetByteCode() const = 0;
 
                 /// @brief Has this script already been compiled into a bytecode.
                 /// @return True if there is bytecode available false otherwise.
