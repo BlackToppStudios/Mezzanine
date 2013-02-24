@@ -22,8 +22,12 @@ for line in Input:lines() do
 		-- Ignore remarked lines
 	else
 		EnumIdentifier = trim(line:sub(1,39))
+		EnumValue = trim(line:sub(40,49))
+		EnumValue = trim(line:sub(40,49))
+		EnumValue = trim(line:sub(40,49))
 
 
+		print("\"" .. EnumValue .. "\"")
 		EnumOutput = EnumOutput .. EnumIdentifier .. ",\n"
 	end
 	
