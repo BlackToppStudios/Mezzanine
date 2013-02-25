@@ -22,6 +22,7 @@ for line in Input:lines() do
 	if string.sub(line,1,1) == "#" then
 		-- Ignore remarked lines
 	else
+		
 		if First == false then
 			First = true			
 		else
@@ -33,22 +34,27 @@ for line in Input:lines() do
 		ClassName = trim(line:sub(53,94))
 		InheritsFrom = trim(line:sub(95))
 
+		CurrentLine = EnumIdentifier
 
 		-- print (EnumIdentifier .. ", " .. EnumValue .. ", " .. ClassName .. ", " .. InheritsFrom .. ", ")
-		EnumOutput = EnumOutput .. EnumIdentifier
+		
 
-		SpaceCount = 50 - EnumOutput:len()
+		SpaceCount = 40 - CurrentLine:len()
+		print (SpaceCount)
 		for i = 1,SpaceCount, 1 do
-			print (i)
-			EnumOutput = EnumOutput .. " "
+		--for i = 1,50, 1 do
+			--print (i)
+			CurrentLine = CurrentLine .. " "
 		end
-		EnumOutput = EnumOutput .. " = " .. EnumValue
+		CurrentLine = CurrentLine .. " = " .. CurrentLine
+		--os.exit
 
+		EnumOutput = EnumOutput .. CurrentLine
 	end
 
 end
 
-EnumOutput = EnumOutput .. " ///<\n"
+EnumOutput = EnumOutput .. "  ///<\n"
 Input:close()
 
 
