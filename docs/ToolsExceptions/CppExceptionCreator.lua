@@ -30,61 +30,72 @@ ClassBrief = ""
 
 Input = io.open("ExceptionDefinition.txt","r")
 for line in Input:lines() do
-	if string.sub(line,1,1) == "#" then
-		-- Ignore remarked lines
-	else	
-		if First == false then
-			First = true			
-		else
-			EnumOutput = EnumOutput .. ", " .. GetEnumRemark(ClassName, ClassBrief)
-		end
+    if string.sub(line,1,1) == "#" then
+        -- Ignore remarked lines
+    else    
+        if First == false then
+            First = true            
+        else
+            EnumOutput = EnumOutput .. ", " .. GetEnumRemark(ClassName, ClassBrief)
+        end
 
-		EnumIdentifier = trim(line:sub(1,39))
-		EnumValue = trim(line:sub(40,49))
-		ClassName = trim(line:sub(53,94))
-		InheritsFrom = trim(line:sub(95,106))
-		ClassBrief = trim(line:sub(129))
-		print (EnumIdentifier .. ", " .. EnumValue .. ", " .. ClassName .. ", " .. InheritsFrom .. ", " .. ClassBrief)
+        EnumIdentifier = trim(line:sub(1,39))
+        EnumValue = trim(line:sub(40,49))
+        ClassName = trim(line:sub(53,94))
+        InheritsFrom = trim(line:sub(95,128))
+        ClassBrief = trim(line:sub(129))
+        print (EnumIdentifier .. ", " .. EnumValue .. ", " .. ClassName .. ", " .. InheritsFrom .. ", " .. ClassBrief)
 
-		CurrentEnumLine = "    " .. EnumIdentifier
-		SpaceCount = 40 - CurrentEnumLine:len()
-		for i = 1,SpaceCount, 1 do
-			CurrentEnumLine = CurrentEnumLine .. " "
-		end
-		CurrentEnumLine = CurrentEnumLine .. " = " .. EnumValue
-		EnumOutput = EnumOutput .. CurrentEnumLine
+        CurrentEnumLine = "    " .. EnumIdentifier
+        SpaceCount = 40 - CurrentEnumLine:len()
+        for i = 1,SpaceCount, 1 do
+            CurrentEnumLine = CurrentEnumLine .. " "
+        end
+        CurrentEnumLine = CurrentEnumLine .. " = " .. EnumValue
+        EnumOutput = EnumOutput .. CurrentEnumLine
 
-		DefinitionOutput = DefinitionOutput .. SectionSeparator
+        DefinitionOutput = DefinitionOutput .. SectionSeparator
                 DefinitionOutput = DefinitionOutput  .. "/// @brief " .. ClassBrief .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "///////////////////\n"
-                DefinitionOutput = DefinitionOutput  .. "class MEZZ_LIB NotImplementedException : public Exception\n"
+                DefinitionOutput = DefinitionOutput  .. "class MEZZ_LIB " .. ClassName .. " : public " .. InheritsFrom .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "{\n"
                 DefinitionOutput = DefinitionOutput  .. "public:\n"
-                DefinitionOutput = DefinitionOutput  .. "    /// @brief The internal code for this exception.\n"
-                DefinitionOutput = DefinitionOutput  .. "    static const Whole ExceptionCode = Exception::NOT_IMPLEMENTED_EXCEPTION;\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @brief " .. ClassBrief .. "\n"
+                DefinitionOutput = DefinitionOutput  .. "    static const Whole ExceptionCode = Exception::" .. EnumIdentifier .. ";\n"
+                DefinitionOutput = DefinitionOutput  .. "\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @brief Class constructor.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @param TypeName The name of this class.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @param Message A basic description of the error.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFunction The name of the function from which this originated.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFile The name of the file from which this originated.\n"
+                DefinitionOutput = DefinitionOutput  .. "    /// @param FileLine The line on the named file from which this originated.\n"
+                DefinitionOutput = DefinitionOutput  .. "    " .. ClassName .. "(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)\n"
+                DefinitionOutput = DefinitionOutput  .. "        : " .. InheritsFrom .. "(\"" .. ClassName .. "\", Message, SrcFunction, SrcFile, FileLine)\n"
+                DefinitionOutput = DefinitionOutput  .. "        {}\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @brief Class constructor.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param Message A basic description of the error.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFunction The name of the function from which this originated.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param SrcFile The name of the file from which this originated.\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @param FileLine The line on the named file from which this originated.\n"
-                DefinitionOutput = DefinitionOutput  .. "    NotImplementedException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)\n"
-                DefinitionOutput = DefinitionOutput  .. "        : Exception(\"NotImplementedException\",Message,SrcFunction,SrcFile,FileLine)\n"
+                DefinitionOutput = DefinitionOutput  .. "    " .. ClassName .. "(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)\n"
+                DefinitionOutput = DefinitionOutput  .. "        : " .. InheritsFrom .. "(\"" .. ClassName .. "\", Message, SrcFunction, SrcFile, FileLine)\n"
                 DefinitionOutput = DefinitionOutput  .. "        {}\n"
+                DefinitionOutput = DefinitionOutput  .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @brief Class destructor.\n"
-                DefinitionOutput = DefinitionOutput  .. "    virtual ~NotImplementedException() throw() {}\n"
+                DefinitionOutput = DefinitionOutput  .. "    virtual ~" .. ClassName .. "() throw() {}\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "    /// @copydoc Exception::GetExceptionCode()\n"
                 DefinitionOutput = DefinitionOutput  .. "    virtual Whole GetExceptionCode() const throw()\n"
-                DefinitionOutput = DefinitionOutput  .. "        { return NotImplementedException::ExceptionCode; }\n"
-                DefinitionOutput = DefinitionOutput  .. "};//NotImplementedException\n"
+                DefinitionOutput = DefinitionOutput  .. "        { return " .. ClassName .. "::ExceptionCode; }\n"
+                DefinitionOutput = DefinitionOutput  .. "}; //" .. ClassName .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "template<>\n"
-                DefinitionOutput = DefinitionOutput  .. "struct MEZZ_LIB ExceptionFactory<NotImplementedException::ExceptionCode>\n"
-                DefinitionOutput = DefinitionOutput  .. "{ typedef NotImplementedException Type; };\n"
+                DefinitionOutput = DefinitionOutput  .. "struct MEZZ_LIB ExceptionFactory<" .. ClassName .. "::ExceptionCode>\n"
+                DefinitionOutput = DefinitionOutput  .. "    { typedef " .. ClassName .. " Type; };\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
-	end
+    end
 
 end
 Input:close()

@@ -46,9 +46,6 @@
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////
-    // Layer 1
-
-    ///////////////////////////////////////////////////////////////////////////////
     /// @class Exception
     /// @headerfile exception.h
     /// @brief This is the exception thrown by most Mezzanine system that can throw exceptions.
@@ -65,41 +62,50 @@ namespace Mezzanine
             /// @ref IO_EXCEPTION would make sense
             enum ExceptionCodes
             {
-                // Input/Output exceptions
-                IO_EXCEPTION                        = 0x01F00F00,  ///< Used when There is an Error with IO and it could not be identified. Using this will generate @ref IOException instances.
-                IO_READ_EXCEPTION                   = 0x01F01F00,  ///< Using this with will generate @ref IOReadException instances.
-                IO_WRITE_EXCEPTION                  = 0x01F02F00,  ///< Using this will generate @ref IOWriteException instances.
-                IO_FILE_NOT_FOUND_EXCEPTION         = 0x01F03F00,  ///< Using this will generate @ref FileNotFoundException instances.
-                IO_DIRECTORY_NOT_FOUND_EXCEPTION    = 0x01F04F00,  ///< Using this will generate @ref DirectoryNotFoundException instances.
-                // Instance Identity exceptions
-                II_EXCEPTION                        = 0x02F00F00,  ///< The catchall invalid index exception, Using this will generate @ref InstanceIdentityException instances.
-                II_IDENTITY_INVALID_EXCEPTION       = 0x02F01F00,  ///< Using this will generate @ref IdentityInvalidException instances
-                II_IDENTITY_NOT_FOUND_EXCEPTION     = 0x02F02F00,  ///< Using this will generate @ref IdentityNotFoundException instances
-                II_DUPLICATE_IDENTITY_EXCEPTION     = 0x02F03F00,  ///< Using this will generate @ref DuplicateIdentityException instances
-                // Memory Management exceptions
-                MM_EXCEPTION                        = 0x03F00F00,  ///< Generic Memory Management Exception, using this will generate @ref MemoryManagementException instances
-                MM_OUT_OF_MEMORY_EXCEPTION          = 0x03F01F00,  ///< Using this will generate @ref OutOfMemoryException instances
-                MM_OUT_OF_BOUNDS_EXCEPTION          = 0x03F02F00,  ///< Using this will generate @ref OutOfBoundsException instances
-                // Syntax exceptions
-                SYNTAX_ERROR_EXCEPTION              = 0x04F00F00,  ///< If the kind of syntax is unknown this can be used directly. Using this will generate @ref SyntaxErrorException instances
-                SYNTAX_ERROR_EXCEPTION_XML          = 0x04F01F00,  ///< Using this will generate @ref SyntaxErrorXMLException instances
-                SYNTAX_ERROR_EXCEPTION_LUA          = 0x04F02F00,  ///< Using this will generate @ref SyntaxErrorLuaException instances
-                // Scripting Error
-                SCRIPT_EXCEPTION                    = 0x05F00F00,  ///< Using this will generate @ref ScriptException instances
-                SCRIPT_EXCEPTION_LUA                = 0x05F01F00,  ///< Using this will generate @ref SyntaxErrorLuaYieldException instances
-                SCRIPT_EXCEPTION_LUA_YIELD          = 0x05F01F01,  ///< Using this will generate @ref SyntaxErrorLuaYieldException instances
-                SCRIPT_EXCEPTION_LUA_RUNTIME        = 0x05F01F02,  ///< Using this will generate @ref SyntaxErrorLuaRuntimeException instances
-                SCRIPT_EXCEPTION_LUA_ERRERR         = 0x05F01F03,  ///< Using this will generate @ref SyntaxErrorLuaErrException instances. This needs further clarification.
-                // Other exceptions
-                ARITHMETIC_EXCEPTION                = 0x00F01F00,  ///< Using this will generate @ref ArithmeticException instances
-                INVALID_PARAMETERS_EXCEPTION        = 0x00F02F00,  ///< Using this will generate @ref InvalidParametersException instances
-                INVALID_VERSION_EXCEPTION           = 0x00F03F00,  ///< Using this will generate @ref InvalidVersionException instances
-                INVALID_STATE_EXCEPTION             = 0x00F04F00,  ///< Using this will generate @ref InvalidStateException instances
-                RENDERINGAPI_EXCEPTION              = 0x00F05F00,  ///< Using this will generate @ref RenderingAPIException instances
-                RT_ASSERTION_EXCEPTION              = 0x00F06F00,  ///< Using this will generate @ref RTAssertionException instances
-                INTERNAL_EXCEPTION                  = 0x00F07F00,  ///< Using this will generate @ref InternalException instances
-                NOT_IMPLEMENTED_EXCEPTION           = 0x00F08F00   ///< Using this will generate @ref NotImplementedException instances
+                IO_EXCEPTION                         = 0x01F00F00,    ///< When used a instance of IOException is thrown. Thrown when there was an issue with IO but very little was known about it.
+                IO_FILE_EXCEPTION                    = 0x01F01F00,    ///< When used a instance of FileException is thrown. Thrown when there is an unknown issue with a file.
+                IO_FILE_READ_EXCEPTION               = 0x01F01F01,    ///< When used a instance of FileReadException is thrown. Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware issue?)
+                IO_FILE_WRITE_EXCEPTION              = 0x01F01F02,    ///< When used a instance of FileWriteException is thrown. Thrown when a file could not be written and perimssions seem not to be an issue.
+                IO_FILE_NOT_FOUND_EXCEPTION          = 0x01F01F03,    ///< When used a instance of FileNotFoundException is thrown. Thrown when a file was expected to be there, but was not.
+                IO_FILE_PERMISSION_EXCEPTION         = 0x01F01F04,    ///< When used a instance of FilePermissionException is thrown. Thrown when permission was denied to a file.
+                IO_DIRECTORY_EXCEPTION               = 0x01F02F00,    ///< When used a instance of DirectoryException is thrown. Thrown when there is an unknown issue with a file.
+                IO_DIRECTORY_READ_EXCEPTION          = 0x01F02F01,    ///< When used a instance of DirectoryReadException is thrown. Thrown when a directory could be read and it wasn't a permission issue.
+                IO_DIRECTORY_WRITE_EXCEPTION         = 0x01F02F02,    ///< When used a instance of DirectoryWriteException is thrown. Thrown when a directory could be written to and it wasn't a permission issue.
+                IO_DIRECTORY_NOT_FOUND_EXCEPTION     = 0x01F02F03,    ///< When used a instance of DirectoryNotFoundException is thrown. Thrown when a directory was expected to be there, but was not.
+                IO_DIRECTORY_PERMISSION_EXCEPTION    = 0x01F02F04,    ///< When used a instance of DirectoryPermissionException is thrown. Thrown when permission is denied to a directory.
+                IO_NETWORK_EXCEPTION                 = 0x01F03F00,    ///< When used a instance of NetworkException is thrown. Thrown when something unknown causes network IO to fail.
+                IO_NETWORK_READ_EXCEPTION            = 0x01F03F01,    ///< When used a instance of NetworkReadException is thrown. Thrown when data could not be read from the network (downloads).
+                IO_NETWORK_WRITE_EXCEPTION           = 0x01F03F02,    ///< When used a instance of NetworkWriteException is thrown. Thrown when data could not be read from the network (i[loads).
+                IO_NETWORK_NOT_FOUND_EXCEPTION       = 0x01F03F03,    ///< When used a instance of NetworkNotFoundException is thrown. Thrown when no network connection is available.
+                IO_NETWORK_URL_EXCEPTION             = 0x01F03F04,    ///< When used a instance of NetworkURLException is thrown. Thrown when an address is invalid or could not be found.
+                IO_NETWORK_PERMISSION_EXCEPTION      = 0x01F03F05,    ///< When used a instance of NetworkPermissionException is thrown. Thrown when permision was denied to a network interface or network resource.
+                IO_WRITE_EXCEPTION                   = 0x01F08F00,    ///< When used a instance of IOWriteException is thrown. Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
+                IO_READ_EXCEPTION                    = 0x01F09F00,    ///< When used a instance of IOReadException is thrown. Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+                II_EXCEPTION                         = 0x02F00F00,    ///< When used a instance of InstanceIdentityException is thrown. Thrown when an unknown error with using an Identifier and it is invalid.
+                II_IDENTITY_INVALID_EXCEPTION        = 0x02F01F00,    ///< When used a instance of InstanceIdentityInvalidException is thrown. Thrown when the identity string wasn't valid at all.
+                II_IDENTITY_NOT_FOUND_EXCEPTION      = 0x02F02F00,    ///< When used a instance of InstanceIdentityNotFoundException is thrown. Thrown when the requested identity could not be found.
+                II_DUPLICATE_IDENTITY_EXCEPTION      = 0x02F03F00,    ///< When used a instance of InstanceIdentityDuplicateException is thrown. Thrown when duplicates of teh same identity string exist.
+                MM_EXCEPTION                         = 0x03F00F00,    ///< When used a instance of MemoryManagementException is thrown. Thrown when an unknown memory management exception occurs.
+                MM_OUT_OF_MEMORY_EXCEPTION           = 0x03F01F00,    ///< When used a instance of OutOfMemoryException is thrown. Thrown when A memory allocation was attempted and failed.
+                MM_OUT_OF_BOUNDS_EXCEPTION           = 0x03F02F00,    ///< When used a instance of MemoryOutOfBoundsException is thrown. Thrown when attempted to access something that really should note be accessed.
+                SYNTAX_ERROR_EXCEPTION               = 0x04F00F00,    ///< When used a instance of SyntaxErrorException is thrown. Thrown when some kind of syntax exception
+                SYNTAX_ERROR_EXCEPTION_XML           = 0x04F01F00,    ///< When used a instance of SyntaxErrorXMLException is thrown. Thrown when xml is being parsed butis invalid
+                SYNTAX_ERROR_EXCEPTION_LUA           = 0x04F02F00,    ///< When used a instance of SyntaxErrorLuaException is thrown. Thrown when lua code in incorrect.
+                SCRIPT_EXCEPTION                     = 0x05F00F00,    ///< When used a instance of ScriptException is thrown. Thrown when an unknown error happens with a script.
+                SCRIPT_EXCEPTION_LUA                 = 0x05F01F00,    ///< When used a instance of ScriptLuaException is thrown. Thrown when an unknown error happens in a Lua script.
+                SCRIPT_EXCEPTION_LUA_YIELD           = 0x05F01F01,    ///< When used a instance of ScriptLuaYieldException is thrown. Thrown when Lua returns a yield and it should not have.
+                SCRIPT_EXCEPTION_LUA_RUNTIME         = 0x05F01F02,    ///< When used a instance of ScriptLuaRuntimeException is thrown. Thrown when a Lua script has a runtime error.
+                SCRIPT_EXCEPTION_LUA_ERRERR          = 0x05F01F03,    ///< When used a instance of ScriptLuaErrErrException is thrown. Thrown when Lua has an error handling an error.
+                ARITHMETIC_EXCEPTION                 = 0x00F01F00,    ///< When used a instance of ArithmeticException is thrown. Thrown when Math has failed.
+                INVALID_PARAMETERS_EXCEPTION         = 0x00F02F00,    ///< When used a instance of InvalidParametersException is thrown. Thrown when parameters are checked at runtime and found invalid.
+                INVALID_VERSION_EXCEPTION            = 0x00F03F00,    ///< When used a instance of InvalidVersionException is thrown. Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
+                INVALID_STATE_EXCEPTION              = 0x00F04F00,    ///< When used a instance of InvalidStateException is thrown. Thrown when the available information should have worked but failed for unknown reasons.
+                RENDERINGAPI_EXCEPTION               = 0x00F05F00,    ///< When used a instance of RenderingAPIException is thrown. Thrown when the graphics card/DirectX/OpenGL fail.
+                RT_ASSERTION_EXCEPTION               = 0x00F06F00,    ///< When used a instance of RuntimeAssertionException is thrown. Thrown when a rutime assertion could have been thrown.
+                INTERNAL_EXCEPTION                   = 0x00F07F00,    ///< When used a instance of InternalException is thrown. Thrown when an unknown internal error occurred.
+                NOT_IMPLEMENTED_EXCEPTION            = 0x00F08F00     ///< When used a instance of NotImplementedException is thrown. Thrown when we just have not coded a thing yet, but we knew what the API should look like.
             };
+
         private:
             /// @internal
             /// @brief This stores the Error Message
@@ -172,44 +178,43 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Layer 2
+    // Exception code class definitions.
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class IOException
-    /// @headerfile exception.h
-    /// @brief An exception for input/output failures.
-    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when there was an issue with IO but very little was known about it.
+    ///////////////////
     class MEZZ_LIB IOException : public Exception
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::IO_EXCEPTION;
-        protected:
-            /// @brief Inheritance constructor.
-            /// @param TypeName The name of the type of exception being thrown.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            IOException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
-                {}
-        public:
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            IOException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("IOException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~IOException() throw() {}
+    public:
+        /// @brief Thrown when there was an issue with IO but very little was known about it.
+        static const Whole ExceptionCode = Exception::IO_EXCEPTION;
 
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return IOException::ExceptionCode; }
-    };//IOException
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        IOException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("IOException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        IOException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("IOException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~IOException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return IOException::ExceptionCode; }
+    }; //IOException
 
     template<>
     struct MEZZ_LIB ExceptionFactory<IOException::ExceptionCode>
@@ -217,525 +222,163 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class InstanceIdentityException
-    /// @headerfile exception.h
-    /// @brief An exception for Instance Identity failures.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB InstanceIdentityException : public Exception
+    /// @brief Thrown when there is an unknown issue with a file.
+    ///////////////////
+    class MEZZ_LIB FileException : public IOException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::II_EXCEPTION;
-        protected:
-            /// @brief Inheritance constructor.
-            /// @param TypeName The name of the type of exception being thrown.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            InstanceIdentityException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
-                {}
-        public:
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            InstanceIdentityException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("InstanceIdentityException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~InstanceIdentityException() throw() {}
+    public:
+        /// @brief Thrown when there is an unknown issue with a file.
+        static const Whole ExceptionCode = Exception::IO_FILE_EXCEPTION;
 
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return InstanceIdentityException::ExceptionCode; }
-    };//InstanceIdentityException
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("FileException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("FileException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~FileException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return FileException::ExceptionCode; }
+    }; //FileException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<InstanceIdentityException::ExceptionCode>
-        { typedef InstanceIdentityException Type; };
+    struct MEZZ_LIB ExceptionFactory<FileException::ExceptionCode>
+        { typedef FileException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class MemoryManagementException
-    /// @headerfile exception.h
-    /// @brief An exception for Memory related failures.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB MemoryManagementException : public Exception
+    /// @brief Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware issue?)
+    ///////////////////
+    class MEZZ_LIB FileReadException : public FileException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::MM_EXCEPTION;
-        protected:
-            /// @brief Inheritance constructor.
-            /// @param TypeName The name of the type of exception being thrown.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            MemoryManagementException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
-                {}
-        public:
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            MemoryManagementException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("MemoryManagementException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~MemoryManagementException() throw() {}
+    public:
+        /// @brief Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware issue?)
+        static const Whole ExceptionCode = Exception::IO_FILE_READ_EXCEPTION;
 
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return InstanceIdentityException::ExceptionCode; }
-    };//MemoryManagementException
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FileReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileReadException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FileReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~FileReadException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return FileReadException::ExceptionCode; }
+    }; //FileReadException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<MemoryManagementException::ExceptionCode>
-        { typedef MemoryManagementException Type; };
+    struct MEZZ_LIB ExceptionFactory<FileReadException::ExceptionCode>
+        { typedef FileReadException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class SyntaxErrorException
-    /// @headerfile exception.h
-    /// @brief An exception for syntax errors when parsing other files, such as Lua files.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB SyntaxErrorException : public Exception
+    /// @brief Thrown when a file could not be written and perimssions seem not to be an issue.
+    ///////////////////
+    class MEZZ_LIB FileWriteException : public FileException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION;
-        protected:
-            /// @brief Inheritance constructor.
-            /// @param TypeName The name of the type of exception being thrown.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
-                {}
-        public:
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("SyntaxErrorException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~SyntaxErrorException() throw() {}
+    public:
+        /// @brief Thrown when a file could not be written and perimssions seem not to be an issue.
+        static const Whole ExceptionCode = Exception::IO_FILE_WRITE_EXCEPTION;
 
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return SyntaxErrorException::ExceptionCode; }
-    };//InvalidSyntaxException
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FileWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileWriteException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FileWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~FileWriteException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return FileWriteException::ExceptionCode; }
+    }; //FileWriteException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<SyntaxErrorException::ExceptionCode>
-        { typedef SyntaxErrorException Type; };
+    struct MEZZ_LIB ExceptionFactory<FileWriteException::ExceptionCode>
+        { typedef FileWriteException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class ScriptException
-    /// @headerfile exception.h
-    /// @brief Some kind of exception happened in a script.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB ScriptException : public Exception
+    /// @brief Thrown when a file was expected to be there, but was not.
+    ///////////////////
+    class MEZZ_LIB FileNotFoundException : public FileException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION;
-        protected:
-            /// @brief Inheritance constructor.
-            /// @param TypeName The name of the type of exception being thrown.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            ScriptException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception(TypeName,Message,SrcFunction,SrcFile,FileLine)
-                {}
-        public:
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            ScriptException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("ScriptException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~ScriptException() throw() {}
+    public:
+        /// @brief Thrown when a file was expected to be there, but was not.
+        static const Whole ExceptionCode = Exception::IO_FILE_NOT_FOUND_EXCEPTION;
 
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return ScriptException::ExceptionCode; }
-    };//InvalidSyntaxException
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FileNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-    template<>
-    struct MEZZ_LIB ExceptionFactory<ScriptException::ExceptionCode>
-        { typedef ScriptException Type; };
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FileNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FileNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
+        /// @brief Class destructor.
+        virtual ~FileNotFoundException() throw() {}
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ArithmeticException
-    /// @headerfile exception.h
-    /// @brief An exception for errors that arise when doing math.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB ArithmeticException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::ARITHMETIC_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            ArithmeticException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("ArithmeticException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~ArithmeticException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return ArithmeticException::ExceptionCode; }
-    };//ArithmeticException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<ArithmeticException::ExceptionCode>
-        { typedef ArithmeticException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class InvalidParametersException
-    /// @headerfile exception.h
-    /// @brief An exception for when improper parameters are passed into an object or method.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB InvalidParametersException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::INVALID_PARAMETERS_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            InvalidParametersException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("InvalidParametersException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~InvalidParametersException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return InvalidParametersException::ExceptionCode; }
-    };//InvalidParametersException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<InvalidParametersException::ExceptionCode>
-        { typedef InvalidParametersException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class InvalidVersionException
-    /// @headerfile exception.h
-    /// @brief An exception for when version mismatches occur.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB InvalidVersionException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::INVALID_VERSION_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            InvalidVersionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("InvalidVersionException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~InvalidVersionException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return InvalidVersionException::ExceptionCode; }
-    };//InvalidVersionException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<InvalidVersionException::ExceptionCode>
-        { typedef InvalidVersionException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class InvalidStateException
-    /// @headerfile exception.h
-    /// @brief An exception for errors that occur when the render system is configured improperly.
-    /// @details This exception mostly exists as a wrapper for it's Ogre counterpart.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB InvalidStateException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::INVALID_STATE_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            InvalidStateException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("InvalidStateException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~InvalidStateException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return InvalidStateException::ExceptionCode; }
-    };//InvalidStateException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<InvalidStateException::ExceptionCode>
-        { typedef InvalidStateException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class RenderingAPIException
-    /// @headerfile exception.h
-    /// @brief An exception for errors that occur in the render system.
-    /// @details This exception mostly exists as a wrapper for it's Ogre counterpart.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB RenderingAPIException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::RENDERINGAPI_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            RenderingAPIException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("RenderingAPIException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~RenderingAPIException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return RenderingAPIException::ExceptionCode; }
-    };//RenderingAPIException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<RenderingAPIException::ExceptionCode>
-        { typedef RenderingAPIException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class RTAssertionException
-    /// @headerfile exception.h
-    /// @brief An exception for failures in run-time asserts.
-    /// @details This exception mostly exists as a wrapper for it's Ogre counterpart.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB RTAssertionException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::RT_ASSERTION_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            RTAssertionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("RTAssertionException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~RTAssertionException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return RTAssertionException::ExceptionCode; }
-    };//RTAssertionException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<RTAssertionException::ExceptionCode>
-        { typedef RTAssertionException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class InternalException
-    /// @headerfile exception.h
-    /// @brief An exception for internal aspects of the engine that can't be otherwise covered.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB InternalException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::INTERNAL_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            InternalException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("InternalException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~InternalException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return InternalException::ExceptionCode; }
-    };//NotImplementedException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<InternalException::ExceptionCode>
-        { typedef InternalException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class NotImplementedException
-    /// @headerfile exception.h
-    /// @brief An exception for area's of the engine that are used but not yet implemented.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB NotImplementedException : public Exception
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::NOT_IMPLEMENTED_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            NotImplementedException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : Exception("NotImplementedException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~NotImplementedException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            virtual Whole GetExceptionCode() const throw()
-                { return NotImplementedException::ExceptionCode; }
-    };//NotImplementedException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<NotImplementedException::ExceptionCode>
-        { typedef NotImplementedException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    // Layer 3
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class IOReadException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of not being able to read from an IO operation.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB IOReadException : public IOException
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::IO_READ_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            IOReadException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : IOException("IOReadException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~IOReadException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return IOReadException::ExceptionCode; }
-    };//IOReadException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<IOReadException::ExceptionCode>
-        { typedef IOReadException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class IOWriteException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of not being able to write to an IO operation.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB IOWriteException : public IOException
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::IO_WRITE_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            IOWriteException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : IOException("IOWriteException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~IOWriteException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return IOWriteException::ExceptionCode; }
-    };//IOWriteException
-
-    template<>
-    struct MEZZ_LIB ExceptionFactory<IOWriteException::ExceptionCode>
-        { typedef IOWriteException Type; };
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class FileNotFoundException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of not finding a requested file.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB FileNotFoundException : public IOException
-    {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::IO_FILE_NOT_FOUND_EXCEPTION;
-
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            FileNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : IOException("FileNotFoundException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~FileNotFoundException() throw() {}
-
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return FileNotFoundException::ExceptionCode; }
-    };//FileNotFoundException
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return FileNotFoundException::ExceptionCode; }
+    }; //FileNotFoundException
 
     template<>
     struct MEZZ_LIB ExceptionFactory<FileNotFoundException::ExceptionCode>
@@ -743,31 +386,204 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class DirectoryNotFoundException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of not finding a requested directory or path.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB DirectoryNotFoundException : public IOException
+    /// @brief Thrown when permission was denied to a file.
+    ///////////////////
+    class MEZZ_LIB FilePermissionException : public FileException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION;
+    public:
+        /// @brief Thrown when permission was denied to a file.
+        static const Whole ExceptionCode = Exception::IO_FILE_PERMISSION_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            DirectoryNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : IOException("DirectoryNotFoundException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~DirectoryNotFoundException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FilePermissionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FilePermissionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return DirectoryNotFoundException::ExceptionCode; }
-    };//DirectoryNotFoundException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        FilePermissionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : FileException("FilePermissionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~FilePermissionException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return FilePermissionException::ExceptionCode; }
+    }; //FilePermissionException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<FilePermissionException::ExceptionCode>
+        { typedef FilePermissionException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when there is an unknown issue with a file.
+    ///////////////////
+    class MEZZ_LIB DirectoryException : public IOException
+    {
+    public:
+        /// @brief Thrown when there is an unknown issue with a file.
+        static const Whole ExceptionCode = Exception::IO_DIRECTORY_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("DirectoryException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("DirectoryException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~DirectoryException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return DirectoryException::ExceptionCode; }
+    }; //DirectoryException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<DirectoryException::ExceptionCode>
+        { typedef DirectoryException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a directory could be read and it wasn't a permission issue.
+    ///////////////////
+    class MEZZ_LIB DirectoryReadException : public DirectoryException
+    {
+    public:
+        /// @brief Thrown when a directory could be read and it wasn't a permission issue.
+        static const Whole ExceptionCode = Exception::IO_DIRECTORY_READ_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryReadException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~DirectoryReadException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return DirectoryReadException::ExceptionCode; }
+    }; //DirectoryReadException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<DirectoryReadException::ExceptionCode>
+        { typedef DirectoryReadException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a directory could be written to and it wasn't a permission issue.
+    ///////////////////
+    class MEZZ_LIB DirectoryWriteException : public DirectoryException
+    {
+    public:
+        /// @brief Thrown when a directory could be written to and it wasn't a permission issue.
+        static const Whole ExceptionCode = Exception::IO_DIRECTORY_WRITE_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryWriteException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~DirectoryWriteException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return DirectoryWriteException::ExceptionCode; }
+    }; //DirectoryWriteException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<DirectoryWriteException::ExceptionCode>
+        { typedef DirectoryWriteException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a directory was expected to be there, but was not.
+    ///////////////////
+    class MEZZ_LIB DirectoryNotFoundException : public DirectoryException
+    {
+    public:
+        /// @brief Thrown when a directory was expected to be there, but was not.
+        static const Whole ExceptionCode = Exception::IO_DIRECTORY_NOT_FOUND_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~DirectoryNotFoundException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return DirectoryNotFoundException::ExceptionCode; }
+    }; //DirectoryNotFoundException
 
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryNotFoundException::ExceptionCode>
@@ -775,127 +591,614 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class IdentityInvalidException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of encountering an invalid identity.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB IdentityInvalidException : public InstanceIdentityException
+    /// @brief Thrown when permission is denied to a directory.
+    ///////////////////
+    class MEZZ_LIB DirectoryPermissionException : public DirectoryException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::II_IDENTITY_INVALID_EXCEPTION;
+    public:
+        /// @brief Thrown when permission is denied to a directory.
+        static const Whole ExceptionCode = Exception::IO_DIRECTORY_PERMISSION_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            IdentityInvalidException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : InstanceIdentityException("IdentityInvalidException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~IdentityInvalidException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryPermissionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryPermissionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return IdentityInvalidException::ExceptionCode; }
-    };//IdentityInvalidException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        DirectoryPermissionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : DirectoryException("DirectoryPermissionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~DirectoryPermissionException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return DirectoryPermissionException::ExceptionCode; }
+    }; //DirectoryPermissionException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<IdentityInvalidException::ExceptionCode>
-        { typedef IdentityInvalidException Type; };
+    struct MEZZ_LIB ExceptionFactory<DirectoryPermissionException::ExceptionCode>
+        { typedef DirectoryPermissionException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class IdentityNotFoundException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of not finding a requested object by it's identity.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB IdentityNotFoundException : public InstanceIdentityException
+    /// @brief Thrown when something unknown causes network IO to fail.
+    ///////////////////
+    class MEZZ_LIB NetworkException : public IOException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::II_IDENTITY_NOT_FOUND_EXCEPTION;
+    public:
+        /// @brief Thrown when something unknown causes network IO to fail.
+        static const Whole ExceptionCode = Exception::IO_NETWORK_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            IdentityNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : InstanceIdentityException("IdentityNotFoundException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~IdentityNotFoundException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("NetworkException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return IdentityNotFoundException::ExceptionCode; }
-    };//IdentityNotFoundException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("NetworkException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NetworkException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NetworkException::ExceptionCode; }
+    }; //NetworkException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<IdentityNotFoundException::ExceptionCode>
-        { typedef IdentityNotFoundException Type; };
+    struct MEZZ_LIB ExceptionFactory<NetworkException::ExceptionCode>
+        { typedef NetworkException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class DuplicateIdentityException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of finding duplicate of a unique identity.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB DuplicateIdentityException : public InstanceIdentityException
+    /// @brief Thrown when data could not be read from the network (downloads).
+    ///////////////////
+    class MEZZ_LIB NetworkReadException : public NetworkException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::II_DUPLICATE_IDENTITY_EXCEPTION;
+    public:
+        /// @brief Thrown when data could not be read from the network (downloads).
+        static const Whole ExceptionCode = Exception::IO_NETWORK_READ_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            DuplicateIdentityException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : InstanceIdentityException("DuplicateIdentityException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~DuplicateIdentityException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return FileNotFoundException::ExceptionCode; }
-    };//DuplicateIdentityException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkReadException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NetworkReadException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NetworkReadException::ExceptionCode; }
+    }; //NetworkReadException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<DuplicateIdentityException::ExceptionCode>
-        { typedef DuplicateIdentityException Type; };
+    struct MEZZ_LIB ExceptionFactory<NetworkReadException::ExceptionCode>
+        { typedef NetworkReadException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class OutOfMemoryException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of a failure to allocate new memory.
+    /// @brief Thrown when data could not be read from the network (i[loads).
+    ///////////////////
+    class MEZZ_LIB NetworkWriteException : public NetworkException
+    {
+    public:
+        /// @brief Thrown when data could not be read from the network (i[loads).
+        static const Whole ExceptionCode = Exception::IO_NETWORK_WRITE_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkWriteException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NetworkWriteException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NetworkWriteException::ExceptionCode; }
+    }; //NetworkWriteException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<NetworkWriteException::ExceptionCode>
+        { typedef NetworkWriteException Type; };
+
+
     ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when no network connection is available.
+    ///////////////////
+    class MEZZ_LIB NetworkNotFoundException : public NetworkException
+    {
+    public:
+        /// @brief Thrown when no network connection is available.
+        static const Whole ExceptionCode = Exception::IO_NETWORK_NOT_FOUND_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NetworkNotFoundException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NetworkNotFoundException::ExceptionCode; }
+    }; //NetworkNotFoundException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<NetworkNotFoundException::ExceptionCode>
+        { typedef NetworkNotFoundException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when an address is invalid or could not be found.
+    ///////////////////
+    class MEZZ_LIB NetworkURLException : public NetworkException
+    {
+    public:
+        /// @brief Thrown when an address is invalid or could not be found.
+        static const Whole ExceptionCode = Exception::IO_NETWORK_URL_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkURLException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkURLException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkURLException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkURLException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NetworkURLException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NetworkURLException::ExceptionCode; }
+    }; //NetworkURLException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<NetworkURLException::ExceptionCode>
+        { typedef NetworkURLException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when permision was denied to a network interface or network resource.
+    ///////////////////
+    class MEZZ_LIB NetworkPermissionException : public NetworkException
+    {
+    public:
+        /// @brief Thrown when permision was denied to a network interface or network resource.
+        static const Whole ExceptionCode = Exception::IO_NETWORK_PERMISSION_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkPermissionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkPermissionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NetworkPermissionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : NetworkException("NetworkPermissionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NetworkPermissionException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NetworkPermissionException::ExceptionCode; }
+    }; //NetworkPermissionException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<NetworkPermissionException::ExceptionCode>
+        { typedef NetworkPermissionException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
+    ///////////////////
+    class MEZZ_LIB IOWriteException : public IOException
+    {
+    public:
+        /// @brief Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what was writing.
+        static const Whole ExceptionCode = Exception::IO_WRITE_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        IOWriteException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("IOWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        IOWriteException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("IOWriteException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~IOWriteException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return IOWriteException::ExceptionCode; }
+    }; //IOWriteException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<IOWriteException::ExceptionCode>
+        { typedef IOWriteException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+    ///////////////////
+    class MEZZ_LIB IOReadException : public IOException
+    {
+    public:
+        /// @brief Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what was reading.
+        static const Whole ExceptionCode = Exception::IO_READ_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        IOReadException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("IOReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        IOReadException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : IOException("IOReadException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~IOReadException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return IOReadException::ExceptionCode; }
+    }; //IOReadException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<IOReadException::ExceptionCode>
+        { typedef IOReadException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when an unknown error with using an Identifier and it is invalid.
+    ///////////////////
+    class MEZZ_LIB InstanceIdentityException : public Exception
+    {
+    public:
+        /// @brief Thrown when an unknown error with using an Identifier and it is invalid.
+        static const Whole ExceptionCode = Exception::II_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InstanceIdentityException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InstanceIdentityException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InstanceIdentityException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InstanceIdentityException::ExceptionCode; }
+    }; //InstanceIdentityException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InstanceIdentityException::ExceptionCode>
+        { typedef InstanceIdentityException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when the identity string wasn't valid at all.
+    ///////////////////
+    class MEZZ_LIB InstanceIdentityInvalidException : public InstanceIdentityException
+    {
+    public:
+        /// @brief Thrown when the identity string wasn't valid at all.
+        static const Whole ExceptionCode = Exception::II_IDENTITY_INVALID_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityInvalidException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : InstanceIdentityException("InstanceIdentityInvalidException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityInvalidException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : InstanceIdentityException("InstanceIdentityInvalidException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InstanceIdentityInvalidException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InstanceIdentityInvalidException::ExceptionCode; }
+    }; //InstanceIdentityInvalidException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InstanceIdentityInvalidException::ExceptionCode>
+        { typedef InstanceIdentityInvalidException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when the requested identity could not be found.
+    ///////////////////
+    class MEZZ_LIB InstanceIdentityNotFoundException : public InstanceIdentityException
+    {
+    public:
+        /// @brief Thrown when the requested identity could not be found.
+        static const Whole ExceptionCode = Exception::II_IDENTITY_NOT_FOUND_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityNotFoundException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : InstanceIdentityException("InstanceIdentityNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityNotFoundException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : InstanceIdentityException("InstanceIdentityNotFoundException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InstanceIdentityNotFoundException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InstanceIdentityNotFoundException::ExceptionCode; }
+    }; //InstanceIdentityNotFoundException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InstanceIdentityNotFoundException::ExceptionCode>
+        { typedef InstanceIdentityNotFoundException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when duplicates of teh same identity string exist.
+    ///////////////////
+    class MEZZ_LIB InstanceIdentityDuplicateException : public InstanceIdentityException
+    {
+    public:
+        /// @brief Thrown when duplicates of teh same identity string exist.
+        static const Whole ExceptionCode = Exception::II_DUPLICATE_IDENTITY_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityDuplicateException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : InstanceIdentityException("InstanceIdentityDuplicateException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InstanceIdentityDuplicateException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : InstanceIdentityException("InstanceIdentityDuplicateException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InstanceIdentityDuplicateException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InstanceIdentityDuplicateException::ExceptionCode; }
+    }; //InstanceIdentityDuplicateException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InstanceIdentityDuplicateException::ExceptionCode>
+        { typedef InstanceIdentityDuplicateException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when an unknown memory management exception occurs.
+    ///////////////////
+    class MEZZ_LIB MemoryManagementException : public Exception
+    {
+    public:
+        /// @brief Thrown when an unknown memory management exception occurs.
+        static const Whole ExceptionCode = Exception::MM_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        MemoryManagementException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("MemoryManagementException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        MemoryManagementException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("MemoryManagementException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~MemoryManagementException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return MemoryManagementException::ExceptionCode; }
+    }; //MemoryManagementException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<MemoryManagementException::ExceptionCode>
+        { typedef MemoryManagementException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when A memory allocation was attempted and failed.
+    ///////////////////
     class MEZZ_LIB OutOfMemoryException : public MemoryManagementException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::MM_OUT_OF_MEMORY_EXCEPTION;
+    public:
+        /// @brief Thrown when A memory allocation was attempted and failed.
+        static const Whole ExceptionCode = Exception::MM_OUT_OF_MEMORY_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            OutOfMemoryException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : MemoryManagementException("OutOfMemoryException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~OutOfMemoryException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        OutOfMemoryException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : MemoryManagementException("OutOfMemoryException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return OutOfMemoryException::ExceptionCode; }
-    };//OutOfMemoryException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        OutOfMemoryException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : MemoryManagementException("OutOfMemoryException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~OutOfMemoryException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return OutOfMemoryException::ExceptionCode; }
+    }; //OutOfMemoryException
 
     template<>
     struct MEZZ_LIB ExceptionFactory<OutOfMemoryException::ExceptionCode>
@@ -903,63 +1206,122 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class OutOfBoundsException
-    /// @headerfile exception.h
-    /// @brief An exception for the event of accessing memory outside of a specified area of memory.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB OutOfBoundsException : public MemoryManagementException
+    /// @brief Thrown when attempted to access something that really should note be accessed.
+    ///////////////////
+    class MEZZ_LIB MemoryOutOfBoundsException : public MemoryManagementException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::MM_OUT_OF_BOUNDS_EXCEPTION;
+    public:
+        /// @brief Thrown when attempted to access something that really should note be accessed.
+        static const Whole ExceptionCode = Exception::MM_OUT_OF_BOUNDS_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            OutOfBoundsException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : MemoryManagementException("OutOfBoundsException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~OutOfBoundsException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        MemoryOutOfBoundsException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : MemoryManagementException("MemoryOutOfBoundsException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return OutOfBoundsException::ExceptionCode; }
-    };//OutOfBoundsException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        MemoryOutOfBoundsException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : MemoryManagementException("MemoryOutOfBoundsException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~MemoryOutOfBoundsException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return MemoryOutOfBoundsException::ExceptionCode; }
+    }; //MemoryOutOfBoundsException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<OutOfBoundsException::ExceptionCode>
-        { typedef OutOfBoundsException Type; };
+    struct MEZZ_LIB ExceptionFactory<MemoryOutOfBoundsException::ExceptionCode>
+        { typedef MemoryOutOfBoundsException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class SyntaxErrorXMLException
-    /// @headerfile exception.h
-    /// @brief An exception to be thrown when malformed XML is encountered.
+    /// @brief Thrown when some kind of syntax exception
+    ///////////////////
+    class MEZZ_LIB SyntaxErrorException : public Exception
+    {
+    public:
+        /// @brief Thrown when some kind of syntax exception
+        static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        SyntaxErrorException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("SyntaxErrorException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        SyntaxErrorException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("SyntaxErrorException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~SyntaxErrorException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return SyntaxErrorException::ExceptionCode; }
+    }; //SyntaxErrorException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<SyntaxErrorException::ExceptionCode>
+        { typedef SyntaxErrorException Type; };
+
+
     ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when xml is being parsed butis invalid
+    ///////////////////
     class MEZZ_LIB SyntaxErrorXMLException : public SyntaxErrorException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION_XML;
+    public:
+        /// @brief Thrown when xml is being parsed butis invalid
+        static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION_XML;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorXMLException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : SyntaxErrorException("SyntaxErrorXMLException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~SyntaxErrorXMLException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        SyntaxErrorXMLException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : SyntaxErrorException("SyntaxErrorXMLException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return SyntaxErrorXMLException::ExceptionCode; }
-    };//SyntaxErrorXMLException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        SyntaxErrorXMLException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : SyntaxErrorException("SyntaxErrorXMLException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~SyntaxErrorXMLException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return SyntaxErrorXMLException::ExceptionCode; }
+    }; //SyntaxErrorXMLException
 
     template<>
     struct MEZZ_LIB ExceptionFactory<SyntaxErrorXMLException::ExceptionCode>
@@ -967,41 +1329,40 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class SyntaxErrorLuaException
-    /// @headerfile exception.h
-    /// @brief An exception to be thrown when malformed Lua is encountered.
-    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when lua code in incorrect.
+    ///////////////////
     class MEZZ_LIB SyntaxErrorLuaException : public SyntaxErrorException
     {
-        protected:
-            /// @brief Inheritance constructor.
-            /// @param TypeName The name of the type of exception being thrown.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorLuaException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : SyntaxErrorException(TypeName,Message,SrcFunction,SrcFile,FileLine)
-                {}
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION_LUA;
+    public:
+        /// @brief Thrown when lua code in incorrect.
+        static const Whole ExceptionCode = Exception::SYNTAX_ERROR_EXCEPTION_LUA;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorLuaException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : SyntaxErrorException("SyntaxErrorLuaException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~SyntaxErrorLuaException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        SyntaxErrorLuaException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : SyntaxErrorException("SyntaxErrorLuaException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return SyntaxErrorLuaException::ExceptionCode; }
-    };//SyntaxErrorLuaException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        SyntaxErrorLuaException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : SyntaxErrorException("SyntaxErrorLuaException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~SyntaxErrorLuaException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return SyntaxErrorLuaException::ExceptionCode; }
+    }; //SyntaxErrorLuaException
 
     template<>
     struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaException::ExceptionCode>
@@ -1009,104 +1370,536 @@ namespace Mezzanine
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    // Layer 4
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class SyntaxErrorLuaYieldException
-    /// @headerfile exception.h
-    /// @brief Lua returned an error condition of yeild (which is sometimes valid)
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB SyntaxErrorLuaYieldException : public SyntaxErrorLuaException
+    /// @brief Thrown when an unknown error happens with a script.
+    ///////////////////
+    class MEZZ_LIB ScriptException : public Exception
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_YIELD;
+    public:
+        /// @brief Thrown when an unknown error happens with a script.
+        static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorLuaYieldException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : SyntaxErrorLuaException("SyntaxErrorLuaYieldException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~SyntaxErrorLuaYieldException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("ScriptException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return SyntaxErrorLuaYieldException::ExceptionCode; }
-    };//SyntaxErrorLuaException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("ScriptException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ScriptException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ScriptException::ExceptionCode; }
+    }; //ScriptException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaYieldException::ExceptionCode>
-        { typedef SyntaxErrorLuaYieldException Type; };
+    struct MEZZ_LIB ExceptionFactory<ScriptException::ExceptionCode>
+        { typedef ScriptException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class SyntaxErrorLuaRuntimeException
-    /// @headerfile exception.h
-    /// @brief Lua returned an error during execution
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB SyntaxErrorLuaRuntimeException : public SyntaxErrorLuaException
+    /// @brief Thrown when an unknown error happens in a Lua script.
+    ///////////////////
+    class MEZZ_LIB ScriptLuaException : public ScriptException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_RUNTIME;
+    public:
+        /// @brief Thrown when an unknown error happens in a Lua script.
+        static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorLuaRuntimeException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : SyntaxErrorLuaException("SyntaxErrorLuaRuntimeException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~SyntaxErrorLuaRuntimeException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptException("ScriptLuaException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return SyntaxErrorLuaRuntimeException::ExceptionCode; }
-    };//SyntaxErrorLuaException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptException("ScriptLuaException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ScriptLuaException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ScriptLuaException::ExceptionCode; }
+    }; //ScriptLuaException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaRuntimeException::ExceptionCode>
-        { typedef SyntaxErrorLuaRuntimeException Type; };
+    struct MEZZ_LIB ExceptionFactory<ScriptLuaException::ExceptionCode>
+        { typedef ScriptLuaException Type; };
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class SyntaxErrorLuaErrException
-    /// @headerfile exception.h
-    /// @brief Lua suffered an internal error.
-    ///////////////////////////////////////////////////////////////////////////////
-    class MEZZ_LIB SyntaxErrorLuaErrException : public SyntaxErrorLuaException
+    /// @brief Thrown when Lua returns a yield and it should not have.
+    ///////////////////
+    class MEZZ_LIB ScriptLuaYieldException : public ScriptLuaException
     {
-        public:
-            /// @brief The internal code for this exception.
-            static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_ERRERR;
+    public:
+        /// @brief Thrown when Lua returns a yield and it should not have.
+        static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_YIELD;
 
-            /// @brief Class constructor.
-            /// @param Message A basic description of the error.
-            /// @param SrcFunction The name of the function from which this originated.
-            /// @param SrcFile The name of the file from which this originated.
-            /// @param FileLine The line on the named file from which this originated.
-            SyntaxErrorLuaErrException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
-                : SyntaxErrorLuaException("SyntaxErrorLuaErrException",Message,SrcFunction,SrcFile,FileLine)
-                {}
-            /// @brief Class destructor.
-            virtual ~SyntaxErrorLuaErrException() throw() {}
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaYieldException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptLuaException("ScriptLuaYieldException", Message, SrcFunction, SrcFile, FileLine)
+            {}
 
-            /// @copydoc Exception::GetExceptionCode()
-            Whole GetExceptionCode() const throw()
-                { return SyntaxErrorLuaErrException::ExceptionCode; }
-    };//SyntaxErrorLuaErrException
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaYieldException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptLuaException("ScriptLuaYieldException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ScriptLuaYieldException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ScriptLuaYieldException::ExceptionCode; }
+    }; //ScriptLuaYieldException
 
     template<>
-    struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaErrException::ExceptionCode>
-        { typedef SyntaxErrorLuaErrException Type; };
+    struct MEZZ_LIB ExceptionFactory<ScriptLuaYieldException::ExceptionCode>
+        { typedef ScriptLuaYieldException Type; };
 
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a Lua script has a runtime error.
+    ///////////////////
+    class MEZZ_LIB ScriptLuaRuntimeException : public ScriptLuaException
+    {
+    public:
+        /// @brief Thrown when a Lua script has a runtime error.
+        static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_RUNTIME;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaRuntimeException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptLuaException("ScriptLuaRuntimeException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaRuntimeException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptLuaException("ScriptLuaRuntimeException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ScriptLuaRuntimeException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ScriptLuaRuntimeException::ExceptionCode; }
+    }; //ScriptLuaRuntimeException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ScriptLuaRuntimeException::ExceptionCode>
+        { typedef ScriptLuaRuntimeException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when Lua has an error handling an error.
+    ///////////////////
+    class MEZZ_LIB ScriptLuaErrErrException : public ScriptLuaException
+    {
+    public:
+        /// @brief Thrown when Lua has an error handling an error.
+        static const Whole ExceptionCode = Exception::SCRIPT_EXCEPTION_LUA_ERRERR;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaErrErrException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptLuaException("ScriptLuaErrErrException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ScriptLuaErrErrException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : ScriptLuaException("ScriptLuaErrErrException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ScriptLuaErrErrException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ScriptLuaErrErrException::ExceptionCode; }
+    }; //ScriptLuaErrErrException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ScriptLuaErrErrException::ExceptionCode>
+        { typedef ScriptLuaErrErrException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when Math has failed.
+    ///////////////////
+    class MEZZ_LIB ArithmeticException : public Exception
+    {
+    public:
+        /// @brief Thrown when Math has failed.
+        static const Whole ExceptionCode = Exception::ARITHMETIC_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ArithmeticException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("ArithmeticException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        ArithmeticException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("ArithmeticException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~ArithmeticException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return ArithmeticException::ExceptionCode; }
+    }; //ArithmeticException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<ArithmeticException::ExceptionCode>
+        { typedef ArithmeticException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when parameters are checked at runtime and found invalid.
+    ///////////////////
+    class MEZZ_LIB InvalidParametersException : public Exception
+    {
+    public:
+        /// @brief Thrown when parameters are checked at runtime and found invalid.
+        static const Whole ExceptionCode = Exception::INVALID_PARAMETERS_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidParametersException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidParametersException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidParametersException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidParametersException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InvalidParametersException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InvalidParametersException::ExceptionCode; }
+    }; //InvalidParametersException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InvalidParametersException::ExceptionCode>
+        { typedef InvalidParametersException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
+    ///////////////////
+    class MEZZ_LIB InvalidVersionException : public Exception
+    {
+    public:
+        /// @brief Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing.
+        static const Whole ExceptionCode = Exception::INVALID_VERSION_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidVersionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidVersionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidVersionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidVersionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InvalidVersionException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InvalidVersionException::ExceptionCode; }
+    }; //InvalidVersionException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InvalidVersionException::ExceptionCode>
+        { typedef InvalidVersionException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when the available information should have worked but failed for unknown reasons.
+    ///////////////////
+    class MEZZ_LIB InvalidStateException : public Exception
+    {
+    public:
+        /// @brief Thrown when the available information should have worked but failed for unknown reasons.
+        static const Whole ExceptionCode = Exception::INVALID_STATE_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidStateException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidStateException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InvalidStateException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InvalidStateException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InvalidStateException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InvalidStateException::ExceptionCode; }
+    }; //InvalidStateException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InvalidStateException::ExceptionCode>
+        { typedef InvalidStateException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when the graphics card/DirectX/OpenGL fail.
+    ///////////////////
+    class MEZZ_LIB RenderingAPIException : public Exception
+    {
+    public:
+        /// @brief Thrown when the graphics card/DirectX/OpenGL fail.
+        static const Whole ExceptionCode = Exception::RENDERINGAPI_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        RenderingAPIException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("RenderingAPIException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        RenderingAPIException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("RenderingAPIException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~RenderingAPIException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return RenderingAPIException::ExceptionCode; }
+    }; //RenderingAPIException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<RenderingAPIException::ExceptionCode>
+        { typedef RenderingAPIException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when a rutime assertion could have been thrown.
+    ///////////////////
+    class MEZZ_LIB RuntimeAssertionException : public Exception
+    {
+    public:
+        /// @brief Thrown when a rutime assertion could have been thrown.
+        static const Whole ExceptionCode = Exception::RT_ASSERTION_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        RuntimeAssertionException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("RuntimeAssertionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        RuntimeAssertionException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("RuntimeAssertionException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~RuntimeAssertionException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return RuntimeAssertionException::ExceptionCode; }
+    }; //RuntimeAssertionException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<RuntimeAssertionException::ExceptionCode>
+        { typedef RuntimeAssertionException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when an unknown internal error occurred.
+    ///////////////////
+    class MEZZ_LIB InternalException : public Exception
+    {
+    public:
+        /// @brief Thrown when an unknown internal error occurred.
+        static const Whole ExceptionCode = Exception::INTERNAL_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InternalException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InternalException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        InternalException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("InternalException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~InternalException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return InternalException::ExceptionCode; }
+    }; //InternalException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<InternalException::ExceptionCode>
+        { typedef InternalException Type; };
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @brief Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+    ///////////////////
+    class MEZZ_LIB NotImplementedException : public Exception
+    {
+    public:
+        /// @brief Thrown when we just have not coded a thing yet, but we knew what the API should look like.
+        static const Whole ExceptionCode = Exception::NOT_IMPLEMENTED_EXCEPTION;
+
+        /// @brief Class constructor.
+        /// @param TypeName The name of this class.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NotImplementedException(const String& TypeName, const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("NotImplementedException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class constructor.
+        /// @param Message A basic description of the error.
+        /// @param SrcFunction The name of the function from which this originated.
+        /// @param SrcFile The name of the file from which this originated.
+        /// @param FileLine The line on the named file from which this originated.
+        NotImplementedException(const String& Message, const String& SrcFunction, const String& SrcFile, const Whole& FileLine)
+            : Exception("NotImplementedException", Message, SrcFunction, SrcFile, FileLine)
+            {}
+
+        /// @brief Class destructor.
+        virtual ~NotImplementedException() throw() {}
+
+        /// @copydoc Exception::GetExceptionCode()
+        virtual Whole GetExceptionCode() const throw()
+            { return NotImplementedException::ExceptionCode; }
+    }; //NotImplementedException
+
+    template<>
+    struct MEZZ_LIB ExceptionFactory<NotImplementedException::ExceptionCode>
+        { typedef NotImplementedException Type; };
 
 
     #ifndef MEZZ_EXCEPTION

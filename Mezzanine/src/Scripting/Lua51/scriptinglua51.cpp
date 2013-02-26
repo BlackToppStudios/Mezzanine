@@ -44,6 +44,7 @@
 #ifdef MEZZLUA51
 
 #include "scriptinglua51.h"
+#include "exception.h"
 
 /// @file
 /// @brief This file has the interface for the Lua based implementation of the Scripting system.
@@ -67,7 +68,25 @@ namespace Mezzanine
         {
             void LuaScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
-
+                switch(LuaReturn)
+                {
+                    case 0:
+                        break;
+                    case LUA_YIELD:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_YIELD, "Lua returned a LUA_YIELD instead of completing.")
+                    case LUA_ERRRUN:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_RUNTIME, "There was a runtime Error handling the Lua script.")
+                    case LUA_ERRSYNTAX:
+                        MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_LUA, "There was an error with the syntax of the Lua script.")
+                    case LUA_ERRERR:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA_ERRERR, "There was an error when Lua attempted to handle an error.")
+                    case LUA_ERRMEM:
+                        MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
+                    case LUA_ERRFILE:
+                        MEZZ_EXCEPTION(Exception::IO_EXCEPTION, "Lua had an error with file IO.")
+                    default:
+                        MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
+                }
             }
 
             LuaScriptingEngine::LuaScriptingEngine()
