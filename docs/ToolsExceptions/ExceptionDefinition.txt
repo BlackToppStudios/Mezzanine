@@ -1,48 +1,49 @@
-#Enum Identifier                       Enum Value   Class Name                                Inherits From
-IO_EXCEPTION                           0x01F00F00   IOException                               Exception
-IO_FILE_EXCEPTION                      0x01F01F00   FileException                             IOException
-IO_FILE_READ_EXCEPTION                 0x01F01F01   FileReadException                         FileException
-IO_FILE_WRITE_EXCEPTION                0x01F01F02   FileWriteException                        FileException
-IO_FILE_NOT_FOUND_EXCEPTION            0x01F01F03   FileNotFoundException                     FileException
-IO_FILE_PERMISSION_EXCEPTION           0x01F01F04   FilePermissionException                   FileException
-IO_DIRECTORY_EXCEPTION                 0x01F02F00   DirectoryException                        IOException
-IO_DIRECTORY_READ_EXCEPTION            0x01F02F01   DirectoryReadException                    DirectoryException
-IO_DIRECTORY_WRITE_EXCEPTION           0x01F02F02   DirectoryWriteException                   DirectoryException
-IO_DIRECTORY_NOT_FOUND_EXCEPTION       0x01F02F03   DirectoryNotFoundException                DirectoryException
-IO_DIRECTORY_PERMISSION_EXCEPTION      0x01F02F04   DirectoryPermissionException              DirectoryException
-IO_NETWORK_EXCEPTION                   0x01F02F00   NetworkException                          IOException
-IO_NETWORK_READ_EXCEPTION              0x01F02F01   NetworkReadException                      NetworkException
-IO_NETWORK_WRITE_EXCEPTION             0x01F02F02   NetworkWriteException                     NetworkException
-IO_NETWORK_NOT_FOUND_EXCEPTION         0x01F02F03   NetworkNotFoundException                  NetworkException
-IO_NETWORK_PERMISSION_EXCEPTION        0x01F02F04   NetworkPermissionException                NetworkException
+#Enum Identifier                       Enum Value   Class Name                                Inherits From                      Brief Dox
+IO_EXCEPTION                           0x01F00F00   IOException                               Exception                          Thrown when there was an issue with IO but very little was known about it.
+IO_FILE_EXCEPTION                      0x01F01F00   FileException                             IOException                        Thrown when there is an unknown issue with a file.
+IO_FILE_READ_EXCEPTION                 0x01F01F01   FileReadException                         FileException                      Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware issue?)
+IO_FILE_WRITE_EXCEPTION                0x01F01F02   FileWriteException                        FileException                      Thrown when a file could not be written and perimssions seem not to be an issue.
+IO_FILE_NOT_FOUND_EXCEPTION            0x01F01F03   FileNotFoundException                     FileException                      Thrown when a file was expected to be there, but was not.
+IO_FILE_PERMISSION_EXCEPTION           0x01F01F04   FilePermissionException                   FileException                      Thrown when permission was denied to a file.
+IO_DIRECTORY_EXCEPTION                 0x01F02F00   DirectoryException                        IOException                        Thrown when there is an unknown issue with a file.
+IO_DIRECTORY_READ_EXCEPTION            0x01F02F01   DirectoryReadException                    DirectoryException                 Thrown when a directory could be read and it wasn't a permission issue.
+IO_DIRECTORY_WRITE_EXCEPTION           0x01F02F02   DirectoryWriteException                   DirectoryException                 Thrown when a directory could be written to and it wasn't a permission issue.
+IO_DIRECTORY_NOT_FOUND_EXCEPTION       0x01F02F03   DirectoryNotFoundException                DirectoryException                 Thrown when a directory was expected to be there, but was not.
+IO_DIRECTORY_PERMISSION_EXCEPTION      0x01F02F04   DirectoryPermissionException              DirectoryException                 Thrown when permission is denied to a directory.
+IO_NETWORK_EXCEPTION                   0x01F02F00   NetworkException                          IOException                        Thrown when something unknown causes network IO to fail.
+IO_NETWORK_READ_EXCEPTION              0x01F02F01   NetworkReadException                      NetworkException                   Thrown when data could not be read from the network (downloads).
+IO_NETWORK_WRITE_EXCEPTION             0x01F02F02   NetworkWriteException                     NetworkException                   Thrown when data could not be read from the network (i[loads).
+IO_NETWORK_NOT_FOUND_EXCEPTION         0x01F02F03   NetworkNotFoundException                  NetworkException                   Thrown when no network connection is available.
+IO_NETWORK_URL_EXCEPTION               0x01F02F04   NetworkURLException                       NetworkException                   Thrown when an address is invalid or could not be found.
+IO_NETWORK_PERMISSION_EXCEPTION        0x01F02F05   NetworkPermissionException                NetworkException                   Thrown when permision was denied to a network interface or network resource.
 #
-IO_WRITE_EXCEPTION                     0x01F08F00   IOWriteException                          IOException
-IO_READ_EXCEPTION                      0x01F09F00   IOReadException                           IOException
+IO_WRITE_EXCEPTION                     0x01F08F00   IOWriteException                          IOException                        Thrown when
+IO_READ_EXCEPTION                      0x01F09F00   IOReadException                           IOException                        Thrown when
 #
-II_EXCEPTION                           0x02F00F00   InstanceIdentityException                 Exception
-II_IDENTITY_INVALID_EXCEPTION          0x02F01F00   InstanceIdentityInvalidException          InstanceIdentityException
-II_IDENTITY_NOT_FOUND_EXCEPTION        0x02F02F00   InstanceIdentityNotFoundException         InstanceIdentityException
-II_DUPLICATE_IDENTITY_EXCEPTION        0x02F03F00   InstanceIdentityDuplicateException        InstanceIdentityException
+II_EXCEPTION                           0x02F00F00   InstanceIdentityException                 Exception                          Thrown when
+II_IDENTITY_INVALID_EXCEPTION          0x02F01F00   InstanceIdentityInvalidException          InstanceIdentityException          Thrown when
+II_IDENTITY_NOT_FOUND_EXCEPTION        0x02F02F00   InstanceIdentityNotFoundException         InstanceIdentityException          Thrown when
+II_DUPLICATE_IDENTITY_EXCEPTION        0x02F03F00   InstanceIdentityDuplicateException        InstanceIdentityException          Thrown when
 #
-MM_EXCEPTION                           0x03F00F00   MemoryManagementException                 Exception
-MM_OUT_OF_MEMORY_EXCEPTION             0x03F01F00   OutOfMemoryException                      MemoryManagementException
-MM_OUT_OF_BOUNDS_EXCEPTION             0x03F02F00   MemoryOutOfBoundsException                MemoryManagementException
+MM_EXCEPTION                           0x03F00F00   MemoryManagementException                 Exception                          Thrown when
+MM_OUT_OF_MEMORY_EXCEPTION             0x03F01F00   OutOfMemoryException                      MemoryManagementException          Thrown when
+MM_OUT_OF_BOUNDS_EXCEPTION             0x03F02F00   MemoryOutOfBoundsException                MemoryManagementException          Thrown when
 #
-SYNTAX_ERROR_EXCEPTION                 0x04F00F00   SyntaxErrorException                      Exception
-SYNTAX_ERROR_EXCEPTION_XML             0x04F01F00   SyntaxErrorXMLException                   SyntaxErrorException
-SYNTAX_ERROR_EXCEPTION_LUA             0x04F02F00   SyntaxErrorLuaException                   SyntaxErrorException
+SYNTAX_ERROR_EXCEPTION                 0x04F00F00   SyntaxErrorException                      Exception                          Thrown when
+SYNTAX_ERROR_EXCEPTION_XML             0x04F01F00   SyntaxErrorXMLException                   SyntaxErrorException               Thrown when
+SYNTAX_ERROR_EXCEPTION_LUA             0x04F02F00   SyntaxErrorLuaException                   SyntaxErrorException               Thrown when
 #
-SCRIPT_EXCEPTION                       0x05F00F00   ScriptException                           Exception
-SCRIPT_EXCEPTION_LUA                   0x05F01F00   ScriptLuaException                        ScriptException
-SCRIPT_EXCEPTION_LUA_YIELD             0x05F01F01   ScriptLuaYieldException                   ScriptLuaException
-SCRIPT_EXCEPTION_LUA_RUNTIME           0x05F01F02   ScriptLuaRuntimeException                 ScriptLuaException
-SCRIPT_EXCEPTION_LUA_ERRERR            0x05F01F03   ScriptLuaErrErrException                  ScriptLuaException
+SCRIPT_EXCEPTION                       0x05F00F00   ScriptException                           Exception                          Thrown when
+SCRIPT_EXCEPTION_LUA                   0x05F01F00   ScriptLuaException                        ScriptException                    Thrown when
+SCRIPT_EXCEPTION_LUA_YIELD             0x05F01F01   ScriptLuaYieldException                   ScriptLuaException                 Thrown when
+SCRIPT_EXCEPTION_LUA_RUNTIME           0x05F01F02   ScriptLuaRuntimeException                 ScriptLuaException                 Thrown when
+SCRIPT_EXCEPTION_LUA_ERRERR            0x05F01F03   ScriptLuaErrErrException                  ScriptLuaException                 Thrown when
 #
-ARITHMETIC_EXCEPTION                   0x00F01F00   ArithmeticException                       Exception
-INVALID_PARAMETERS_EXCEPTION           0x00F02F00   InvalidParametersException                Exception
-INVALID_VERSION_EXCEPTION              0x00F03F00   InvalidVersionException                   Exception
-INVALID_STATE_EXCEPTION                0x00F04F00   InvalidStateException                     Exception
-RENDERINGAPI_EXCEPTION                 0x00F05F00   RenderingAPIException                     Exception
-RT_ASSERTION_EXCEPTION                 0x00F06F00   RuntimeAssertionException                 Exception
-INTERNAL_EXCEPTION                     0x00F07F00   InternalException                         Exception
-NOT_IMPLEMENTED_EXCEPTION              0x00F08F00   NotImplementedException                   Exception
+ARITHMETIC_EXCEPTION                   0x00F01F00   ArithmeticException                       Exception                          Thrown when
+INVALID_PARAMETERS_EXCEPTION           0x00F02F00   InvalidParametersException                Exception                          Thrown when
+INVALID_VERSION_EXCEPTION              0x00F03F00   InvalidVersionException                   Exception                          Thrown when
+INVALID_STATE_EXCEPTION                0x00F04F00   InvalidStateException                     Exception                          Thrown when
+RENDERINGAPI_EXCEPTION                 0x00F05F00   RenderingAPIException                     Exception                          Thrown when
+RT_ASSERTION_EXCEPTION                 0x00F06F00   RuntimeAssertionException                 Exception                          Thrown when
+INTERNAL_EXCEPTION                     0x00F07F00   InternalException                         Exception                          Thrown when
+NOT_IMPLEMENTED_EXCEPTION              0x00F08F00   NotImplementedException                   Exception                          Thrown when
