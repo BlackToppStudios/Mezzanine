@@ -122,6 +122,7 @@ namespace Mezzanine
                 /// @brief Gets the delta movement on the requested trackball.
                 /// @param Trackball An InputCode representing the trackball to query.
                 /// @return Returns a vector2 representing the delta movement for the specified trackball.
+                /// @throw A @ref InvalidParametersException is thrown if anything other than a controllerball value from the @ref Input enum is passed.
                 Real GetTrackballDelta(const Input::InputCode& Trackball) const;
                 /// @copydoc Device::GetButtonState(const UInt16 Button) const
                 virtual const Input::ButtonState& GetButtonState(const UInt16 Button) const;

@@ -81,6 +81,7 @@ namespace Mezzanine
                 /// @param FileName The name of the file.
                 /// @param Group The resource group in which the file resides.
                 /// @param SType The type of sound that this instance is.  See enum Audio::SoundType for more info.
+                /// @throw If this fails to create the exception but succeeds in loading from the disk, this will throw @ref InternalException
                 Sound(ConstString& SoundName, ConstString& FileName, ConstString& Group, Audio::SoundType SType);
                 /// @brief Class destructor.
                 /// @details The class destructor.

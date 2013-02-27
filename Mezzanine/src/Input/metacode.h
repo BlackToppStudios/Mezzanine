@@ -188,16 +188,19 @@ namespace Mezzanine
             /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button
             /// @param ButtonerNumber The number of the button you want the code for
             /// @return When passed 0 this returns Input::MOUSEBUTTON, otherwise this returns Input::MOUSEBUTTON_X where X is the number that was passed in
+            /// @throw This will throw a @ref InvalidParametersException if a value outside of the range betweeb @ref Input::MOUSEBUTTON_FIRST and @ref Input::MOUSEBUTTON_LAST is passed.
             static Input::InputCode GetMouseButtonCode(short unsigned int ButtonNumber);
 
             /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick button
             /// @param ButtonerNumber The number of the button you want the code for
             /// @return When passed 0 this returns Input::JOYSTICKBUTTON, otherwise this returns Input::JOYSTICKBUTTON_X where X is the number that was passed in
+            /// @throw This will throw a @ref InvalidParametersException if a value outside of the range betweeb @ref Input::CONTROLLERBUTTON_FIRST and @ref Input::CONTROLLERBUTTON_LAST is passed.
             static Input::InputCode GetJoystickButtonCode(short unsigned int ButtonNumber);
 
             /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick Axis
             /// @param AxisNumber The number of the button you want the code for
             /// @return When passed 0 this returns Input::JOYSTICKAXIS, otherwise this returns Input::JOYSTICKAXIS_X where X is the number that was passed in
+            /// @throw This will throw a @ref InvalidParametersException if a value outside of the range betweeb @ref Input::CONTROLLERAXIS_FIRST and @ref Input::CONTROLLERAXIS_LAST is passed.
             static Input::InputCode GetJoystickAxisCode(short unsigned int AxisNumber);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
@@ -258,6 +261,7 @@ namespace Mezzanine
         // DeSerializable
         /// @brief Take the data stored in an XML and overwrite this instance of this object with it
         /// @param OneNode and XML::Node containing the data.
+        /// @throw This throws an @ref InstanceIdentityInvalidException if the XML node passed defines another class. This throws @ref InvalidVersionException if the xml is of a newer version than 1.
         virtual void ProtoDeSerialize(const XML::Node& OneNode);
 
         /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.

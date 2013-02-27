@@ -74,6 +74,7 @@ namespace Mezzanine
                 // Playback and Selection
 
                 /// @brief Plays the current selection.
+                /// @throw If the current playlist is empty this throws a @ref InvalidStateException
                 void Play();
                 /// @brief Stops the current selection.
                 void Stop();
@@ -85,13 +86,12 @@ namespace Mezzanine
                 void Previous();
 
                 /// @brief Sets the specified song as the current song.
-                /// @warning If the provided song isn't in the playlist, this will throw an exception.
-                /// Use the ContainsSong() function to verify before using this.
+                /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
                 /// @param Song The song to set.
                 void SwitchToSong(Sound* Song);
+
                 /// @brief Sets the specified song as the current song.
-                /// @warning If the provided song isn't in the playlist, this will throw an exception.
-                /// Use the ContainsSong() function to verify before using this.
+                /// @throw If the provided song isn't in the playlist, this will throw an @ref InstanceIdentityNotFoundException . Use the ContainsSong() function to verify before using this.
                 /// @param SongName The name of the song to select.
                 void SwitchToSong(const String& SongName);
 
