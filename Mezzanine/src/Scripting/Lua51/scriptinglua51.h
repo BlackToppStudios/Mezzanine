@@ -98,6 +98,18 @@ namespace Mezzanine
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
                     virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile);
+
+                    virtual void OpenDefaultLibraries();
+                    virtual void OpenAllLibraries();
+
+                    virtual void OpenIOLibrary();
+                    virtual void OpenOSLibrary();
+                    virtual void OpenPackageLibrary();
+                    virtual void OpenBaseLibrary();
+                    virtual void OpenTableLibrary();
+                    virtual void OpenMathLibrary();
+                    virtual void OpenDebugLibrary();
+                    virtual void OpenMezzanineLibrary();
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.

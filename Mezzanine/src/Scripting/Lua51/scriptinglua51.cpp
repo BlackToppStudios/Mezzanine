@@ -106,6 +106,7 @@ namespace Mezzanine
                 ThrowFromLuaErrorCode(
                     luaL_dostring(State,ScriptSource.c_str())
                 );
+                luaopen_base(State);
             }
 
             void LuaScriptingEngine::Execute(CountedPtr<iScript> ScriptToRun)
@@ -122,6 +123,18 @@ namespace Mezzanine
             {
 
             }
+
+            void LuaScriptingEngine::OpenDefaultLibraries(){}
+            void LuaScriptingEngine::OpenAllLibraries(){}
+
+            void LuaScriptingEngine::OpenIOLibrary(){}
+            void LuaScriptingEngine::OpenOSLibrary(){}
+            void LuaScriptingEngine::OpenPackageLibrary(){}
+            void LuaScriptingEngine::OpenBaseLibrary(){}
+            void LuaScriptingEngine::OpenTableLibrary(){}
+            void LuaScriptingEngine::OpenMathLibrary(){}
+            void LuaScriptingEngine::OpenDebugLibrary(){}
+            void LuaScriptingEngine::OpenMezzanineLibrary(){}
 
             //simplistic error checking function, to be replace with proper exception driven code later.
             int PrintErrorMessageOrNothing(int ErrorCode)
