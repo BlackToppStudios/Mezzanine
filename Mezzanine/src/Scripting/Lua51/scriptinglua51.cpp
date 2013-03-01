@@ -124,17 +124,48 @@ namespace Mezzanine
 
             }
 
-            void LuaScriptingEngine::OpenDefaultLibraries(){}
-            void LuaScriptingEngine::OpenAllLibraries(){}
+            void LuaScriptingEngine::OpenDefaultLibraries()
+            {
+                OpenBaseLibrary();
+                OpenStringLibrary();
+                OpenTableLibrary();
+                OpenMathLibrary();
+                OpenMezzanineSafeLibrary();
+            }
 
-            void LuaScriptingEngine::OpenIOLibrary(){}
-            void LuaScriptingEngine::OpenOSLibrary(){}
-            void LuaScriptingEngine::OpenPackageLibrary(){}
-            void LuaScriptingEngine::OpenBaseLibrary(){}
-            void LuaScriptingEngine::OpenTableLibrary(){}
-            void LuaScriptingEngine::OpenMathLibrary(){}
-            void LuaScriptingEngine::OpenDebugLibrary(){}
-            void LuaScriptingEngine::OpenMezzanineLibrary(){}
+            void LuaScriptingEngine::OpenAllLibraries()
+            {
+                OpenBaseLibrary();
+                OpenPackageLibrary();
+                OpenStringLibrary();
+                OpenTableLibrary();
+                OpenMathLibrary();
+                OpenIOLibrary();
+                OpenOSLibrary();
+                OpenDebugLibrary();
+                OpenMezzanineLibrary();
+            }
+
+            void LuaScriptingEngine::OpenBaseLibrary()
+                { luaopen_base(State); }
+            void LuaScriptingEngine::OpenPackageLibrary()
+                { luaopen_package(State); }
+            void LuaScriptingEngine::OpenStringLibrary()
+                { luaopen_string(State); }
+            void LuaScriptingEngine::OpenTableLibrary()
+                { luaopen_table(State); }
+            void LuaScriptingEngine::OpenMathLibrary()
+                { luaopen_math(State); }
+            void LuaScriptingEngine::OpenIOLibrary()
+                { luaopen_io(State); }
+            void LuaScriptingEngine::OpenOSLibrary()
+                { luaopen_os(State); }
+            void LuaScriptingEngine::OpenDebugLibrary()
+                { luaopen_os(State); }
+            void LuaScriptingEngine::OpenMezzanineLibrary()
+                { luaopen_Mezzanine(State); }
+            void LuaScriptingEngine::OpenMezzanineSafeLibrary()
+                { }
 
             //simplistic error checking function, to be replace with proper exception driven code later.
             int PrintErrorMessageOrNothing(int ErrorCode)

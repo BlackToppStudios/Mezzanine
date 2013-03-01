@@ -63,7 +63,7 @@ namespace Mezzanine
 
             SoundSource = Manager->GetcAudioManager()->createFromMemory(SoundName.c_str(),buffer,Stream->size(),Extension.c_str());
             if (!SoundSource)
-                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed to create sound file."); }
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,"Failed to create sound from file."); }
 
             delete[] buffer;
             UpdateVolume();
