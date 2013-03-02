@@ -66,6 +66,21 @@ namespace Mezzanine
     {
         namespace Lua
         {
+            namespace
+            {
+                /// @internal
+                /// @brief Used in the LuaScriptingEngine to get data from lua_dump durign script compilation
+                /// @param State The lua state as provide by lua_dump
+                /// @param Buffer A pointer to the compiled Lua chunk.
+                /// @param Size The Size of the Lua chunk in bytes
+                /// @param MezzScript A pointer to a Mezzanine::Scripting::Lua::LuaScript
+                int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* MezzScript)
+                {
+                    //LuaScript* CompilingScript = LuaScript(MezzScript);
+
+                }
+            }
+
             void LuaScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
             {
                 switch(LuaReturn)

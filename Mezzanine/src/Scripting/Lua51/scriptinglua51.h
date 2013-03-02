@@ -155,6 +155,11 @@ namespace Mezzanine
                     virtual void OpenMezzanineSafeLibrary();
             };
 
+            class LuaScript : Mezzanine::Scripting::iScript
+            {
+
+            };
+
             //simplistic error checking function, to be replace with proper exception driven code later.
             int MEZZ_LIB PrintErrorMessageOrNothing(int ErrorCode);
 
