@@ -221,7 +221,7 @@ namespace Mezzanine
                     { return this; }
 
                 /// @brief How many values are being returned
-                /// @return A Whole with the amount of items available to be returned now.
+                /// @return A Whole with the amount of items available to be returned now(from the last script call).
                 virtual Whole GetReturnCount() const = 0;
 
                 /// @brief Get the returns from the last exection of the script

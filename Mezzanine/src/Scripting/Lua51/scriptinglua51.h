@@ -73,7 +73,8 @@ namespace Mezzanine
 
         namespace Lua
         {
-
+            ///////////////////////////////////////////////////////////////////////////////////////
+            //
             class MEZZ_LIB LuaScriptingEngine : public Mezzanine::Scripting::iScriptCompilationManager
             {
                 private:
@@ -155,9 +156,71 @@ namespace Mezzanine
                     virtual void OpenMezzanineSafeLibrary();
             };
 
-            class LuaScript : Mezzanine::Scripting::iScript
-            {
+            ///////////////////////////////////////////////////////////////////////////////////////
 
+            class LuaScript //: public Mezzanine::Scripting::iScript // Mezzanine::Scripting::iScriptCompilable, Mezzanine::Scripting::iScriptMultipleReturn
+            {
+                private:
+                    /// @brief This will contain the source of the script
+                    String SourceCode;
+
+                    /// @brief If the script is compiled this will be used to store it.
+                    BinaryTools::BinaryBuffer CompiledByteCode;
+
+                    /// @brief This will compile the Lua script
+                    /// @param Compiler This will be used to compile the script, no safety checks are performed.
+                    void Compile(LuaScriptingEngine* Compiler);
+
+                public:
+                    /// @brief Simple constructor, creates a script that executes a no-op.
+                    LuaScript();
+
+                    /// @brief Compiling Constructor
+                    /// @param SourceCode The source of the script to be used in this.
+                    /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
+                    LuaScript(const String& SourceCode, LuaScriptingEngine* Compiler=0);
+
+                    /// @brief Virtual destructor
+                    virtual ~LuaScript();
+
+                    /// @copydoc Mezzanine::Scripting::iScript::AddArgument
+                    virtual void AddArgument(CountedPtr<iScriptArgument> Arg);
+
+                    /// @copydoc Mezzanine::Scripting::iScript::RemoveArgument
+                    virtual void RemoveArgument(CountedPtr<iScriptArgument> Arg);
+
+                    /// @copydoc Mezzanine::Scripting::iScript::RemoveArgument
+                    virtual void RemoveArgument(Whole ArgNumber);
+
+                    /// @copydoc Mezzanine::Scripting::iScript::GetArgumentCount
+                    virtual Whole GetArgumentCount() const;
+
+                    /// @copydoc Mezzanine::Scripting::iScript::ClearArguments
+                    virtual void ClearArguments();
+
+                    /// @copydoc Mezzanine::Scripting::iScript::GetArgument
+                    virtual CountedPtr<iScriptArgument> GetArgument(Whole ArgNumber) const;
+
+                    /// @copydoc Mezzanine::Scripting::iScript::SetSourceCode
+                    virtual void SetSourceCode(const String& Code);
+
+                    /// @copydoc Mezzanine::Scripting::iScript::GetSourceCode
+                    virtual String GetSourceCode() const;
+
+                    /// @copydoc Mezzanine::Scripting::iScriptCompilable::SetByteCode
+                    virtual void SetByteCode(BinaryTools::BinaryBuffer Code);
+
+                    /// @copydoc Mezzanine::Scripting::iScriptCompilable::GetByteCode
+                    virtual BinaryTools::BinaryBuffer GetByteCode() const;
+
+                    /// @copydoc Mezzanine::Scripting::iScriptCompilable::IsCompiled
+                    virtual bool IsCompiled() const;
+
+                    /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetReturnCount
+                    virtual Whole GetReturnCount() const;
+
+                    /// @copydoc Mezzanine::Scripting::iScriptMultipleReturn::GetAllReturns
+                    virtual ArgumentSet GetAllReturns() const;
             };
 
             //simplistic error checking function, to be replace with proper exception driven code later.

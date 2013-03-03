@@ -47,7 +47,7 @@
 #include "exception.h"
 
 /// @file
-/// @brief This file has the interface for the Lua based implementation of the Scripting system.
+/// @brief This file has the implemetation for the Lua based Scripting system.
 
 extern "C"
 {
@@ -66,6 +66,9 @@ namespace Mezzanine
     {
         namespace Lua
         {
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // LuaScriptEngine and helpers
             namespace
             {
                 /// @internal
@@ -76,7 +79,7 @@ namespace Mezzanine
                 /// @param MezzScript A pointer to a Mezzanine::Scripting::Lua::LuaScript
                 int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* MezzScript)
                 {
-                    //LuaScript* CompilingScript = LuaScript(MezzScript);
+                    LuaScript* CompilingScript = reinterpret_cast<LuaScript*>(MezzScript);
 
                 }
             }
@@ -161,6 +164,7 @@ namespace Mezzanine
                 OpenMezzanineLibrary();
             }
 
+
             void LuaScriptingEngine::OpenBaseLibrary()
                 { luaopen_base(State); }
             void LuaScriptingEngine::OpenPackageLibrary()
@@ -181,6 +185,59 @@ namespace Mezzanine
                 { luaopen_Mezzanine(State); }
             void LuaScriptingEngine::OpenMezzanineSafeLibrary()
                 { }
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // LuaScript
+            void LuaScript::Compile(LuaScriptingEngine* Compiler)
+                { }
+
+            LuaScript::LuaScript()
+                { }
+
+            LuaScript::LuaScript(const String& SourceCode, LuaScriptingEngine* Compiler)
+                { }
+
+            void LuaScript::AddArgument(CountedPtr<iScriptArgument> Arg)
+                { }
+
+            void LuaScript::RemoveArgument(CountedPtr<iScriptArgument> Arg)
+                { }
+
+            void LuaScript::RemoveArgument(Whole ArgNumber)
+                { }
+
+            Whole LuaScript::GetArgumentCount() const
+                { }
+
+            void LuaScript::ClearArguments()
+                { }
+
+            CountedPtr<iScriptArgument> LuaScript::GetArgument(Whole ArgNumber) const
+                { }
+
+            void LuaScript::SetSourceCode(const String& Code)
+                { }
+
+            String LuaScript::GetSourceCode() const
+                { }
+
+            void LuaScript::SetByteCode(BinaryTools::BinaryBuffer Code)
+                { }
+
+            BinaryTools::BinaryBuffer LuaScript::GetByteCode() const
+                { }
+
+            bool LuaScript::IsCompiled() const
+                { }
+
+            Whole LuaScript::GetReturnCount() const
+                { }
+
+            ArgumentSet LuaScript::GetAllReturns() const
+                { }
+
+            ///////////////////////////////////////////////////////////////////////////////////////
+            // Old stuff to be removed
 
             //simplistic error checking function, to be replace with proper exception driven code later.
             int PrintErrorMessageOrNothing(int ErrorCode)
@@ -207,7 +264,6 @@ namespace Mezzanine
                 return ErrorCode;
             }
 
-            //
             int test()
             {
                 lua_State *State;           // create a pointer to Track the Lua State
