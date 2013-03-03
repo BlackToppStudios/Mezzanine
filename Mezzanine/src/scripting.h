@@ -63,7 +63,8 @@ namespace Mezzanine
 // Each one of these sections should have a complete implementation of a scripting and
 // appropriate bindings for the mezzanine engine.
 #ifdef MEZZLUA51
-    #include "Scripting/Lua51/scriptinglua51.h"
+    #include "Scripting/Lua51/lua51script.h"
+    #include "Scripting/Lua51/lua51scriptingengine.h"
 #endif
 
 
