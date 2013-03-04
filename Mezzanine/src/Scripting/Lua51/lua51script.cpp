@@ -71,19 +71,27 @@ namespace Mezzanine
             ///////////////////////////////////////////////////////////////////////////////////////
             // LuaScript
             void Lua51Script::Compile(Lua51ScriptingEngine* Compiler)
-                { }
+            {
+                Compiler->Compile(this);
+            }
 
             Lua51Script::Lua51Script()
                 { }
 
-            Lua51Script::Lua51Script(const String& SourceCode, Lua51ScriptingEngine* Compiler)
-                { }
+            Lua51Script::Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler)
+                : SourceCode(InitialSourceCode)
+            {
+                if(Compiler)
+                    { Compile(Compiler); }
+            }
 
             Lua51Script::~Lua51Script()
                 {}
 
             void Lua51Script::AddArgument(CountedPtr<iScriptArgument> Arg)
-                { }
+            {
+
+            }
 
             void Lua51Script::RemoveArgument(CountedPtr<iScriptArgument> Arg)
                 { }

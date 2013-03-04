@@ -63,7 +63,7 @@ extern "C"
 #include <iostream>
 
 namespace Mezzanine
-{
+ {
     namespace Scripting
     {
         namespace Lua
@@ -84,6 +84,11 @@ namespace Mezzanine
                     Lua51Script* CompilingScript = reinterpret_cast<Lua51Script*>(MezzScript);
 
                 }
+            }
+
+            void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
+            {
+
             }
 
             void Lua51ScriptingEngine::ThrowFromLuaErrorCode(int LuaReturn)
@@ -109,17 +114,11 @@ namespace Mezzanine
                 }
             }
 
-            Lua51ScriptingEngine::Lua51ScriptingEngine()
-            {
-                State = luaL_newstate();
-                luaL_openlibs(State);
-                luaopen_Mezzanine(State);
-            }
+            Lua51ScriptingEngine::Lua51ScriptingEngine(int LibrariesToOpen) : State(luaL_newstate())
+                { OpenLibraries(LibrariesToOpen); }
 
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
-            {
-                lua_close(State);
-            }
+                { lua_close(State); }
 
             CountedPtr<iScript> Lua51ScriptingEngine::Execute(String ScriptSource)
             {
@@ -144,28 +143,34 @@ namespace Mezzanine
 
             }
 
+            void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)
+            {
+                if(AllLibs & BaseLib)
+                    { OpenBaseLibrary(); }
+                if(AllLibs & PackageLib)
+                    { OpenPackageLibrary(); }
+                if(AllLibs & StringLib)
+                    { OpenStringLibrary(); }
+                if(AllLibs & TableLib)
+                    { OpenTableLibrary(); }
+                if(AllLibs & MathLib)
+                    { OpenMathLibrary(); }
+                if(AllLibs & IOLib)
+                    { OpenIOLibrary(); }
+                if(AllLibs & OSLib)
+                    { OpenOSLibrary(); }
+                if(AllLibs & DebugLib)
+                    { OpenDebugLibrary(); }
+                if(AllLibs & MezzLib)
+                    { OpenMezzanineLibrary(); }
+                if(AllLibs & MezzSafeLib)
+                    { OpenMezzanineSafeLibrary(); }
+            }
+
             void Lua51ScriptingEngine::OpenDefaultLibraries()
-            {
-                OpenBaseLibrary();
-                OpenStringLibrary();
-                OpenTableLibrary();
-                OpenMathLibrary();
-                OpenMezzanineSafeLibrary();
-            }
-
+                { OpenLibraries(DefaultLibs); }
             void Lua51ScriptingEngine::OpenAllLibraries()
-            {
-                OpenBaseLibrary();
-                OpenPackageLibrary();
-                OpenStringLibrary();
-                OpenTableLibrary();
-                OpenMathLibrary();
-                OpenIOLibrary();
-                OpenOSLibrary();
-                OpenDebugLibrary();
-                OpenMezzanineLibrary();
-            }
-
+                { OpenLibraries(AllLibs); }
 
             void Lua51ScriptingEngine::OpenBaseLibrary()
                 { luaopen_base(State); }

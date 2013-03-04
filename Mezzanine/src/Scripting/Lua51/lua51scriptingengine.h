@@ -70,6 +70,7 @@ namespace Mezzanine
     namespace Scripting
     {
         class iScriptCompilationManager;
+        class Lua51Script;
 
         /// @brief This contains the Lua51
         namespace Lua
@@ -79,10 +80,17 @@ namespace Mezzanine
             class MEZZ_LIB Lua51ScriptingEngine : public Mezzanine::Scripting::iScriptCompilationManager
             {
                 private:
+                    // Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
+                    friend class Lua51Script;
+
                     /// @brief The current state of the Lua runtime.
                     lua_State *State;
 
                 protected:
+                    /// @brief Performs the compilation on a raw pointer, only used internall
+                    /// @param ScriptToCompile A pointer to the Lua51Script to compile.
+                    virtual void Compile(Lua51Script* ScriptToCompile);
+
                     /// @brief This will do nothing if the past integer
                     /// @param LuaReturn The return code from a Lua Compile or execution call
                     /// @throws This
@@ -90,10 +98,27 @@ namespace Mezzanine
 
                     //virtual void Execute(LuaScript* ScriptToRun);
 
-                    //virtual void Compile(LuaScript* ScriptToCompile);
 
                 public:
-                    Lua51ScriptingEngine();
+                    /// @brief Intended only to make constructing an @ref Lua51ScriptingEngine with the desired libraries opn a little easier.
+                    enum Lua51Libraries
+                    {
+                        BaseLib        = 1,      ///< Correlates to @ref Lua51ScriptingEngine::OpenBaseLibrary
+                        PackageLib     = 2,      ///< Correlates to @ref Lua51ScriptingEngine::OpenPackageLibrary
+                        StringLib      = 4,      ///< Correlates to @ref Lua51ScriptingEngine::OpenStringLibrary
+                        TableLib       = 8,      ///< Correlates to @ref Lua51ScriptingEngine::OpenTableLibrary
+                        MathLib        = 16,     ///< Correlates to @ref Lua51ScriptingEngine::OpenMathLibrary
+                        IOLib          = 32,     ///< Correlates to @ref Lua51ScriptingEngine::OpenIOLibrary
+                        OSLib          = 64,     ///< Correlates to @ref Lua51ScriptingEngine::OpenOSLibrary
+                        DebugLib       = 128,    ///< Correlates to @ref Lua51ScriptingEngine::OpenDebugLibrary
+                        MezzLib        = 256,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineLibrary
+                        MezzSafeLib    = 512,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+
+                        DefaultLibs    = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
+                        AllLibs        = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzSafeLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                    };
+
+                    explicit Lua51ScriptingEngine(int LibrariesToOpen=DefaultLibs);
 
                     virtual ~Lua51ScriptingEngine();
 
@@ -104,6 +129,8 @@ namespace Mezzanine
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
                     virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile);
+
+                    virtual void OpenLibraries(int LibrariesToOpen);
 
                     /// @brief Prepare most Mezzanine and some Lua functionality for use in Lua scripts.
                     /// @details This will load a the Lua Base, String, Table and Math libraries. This
@@ -116,7 +143,7 @@ namespace Mezzanine
                     /// @warning This makes arbitrary execution of programs and file IO available to scripts. This is not suitable if untrusted scripts will be run.
                     virtual void OpenAllLibraries();
 
-                    /// @brief Make som eof the more core functionality available to lua scripts.
+                    /// @brief Make some eof the more core functionality available to lua scripts.
                     /// @details See the Lua manual at http://www.lua.org/manual/5.1/manual.html#5.1 and http://www.lua.org/manual/5.1/manual.html#5.2 for further details on the
                     /// functionality this enables.
                     /// @warning This enables lua scripts to load and execute arbitrary Lua scripts.

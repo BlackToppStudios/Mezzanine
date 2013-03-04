@@ -66,6 +66,9 @@ namespace Mezzanine
             class MEZZ_LIB Lua51Script : Mezzanine::Scripting::iScriptCompilable, Mezzanine::Scripting::iScriptMultipleReturn
             {
                 private:
+                    // Makes passing internal data much easier and all Lua51 are logically encapsulated as a single system still.
+                    friend class Lua51ScriptingEngine;
+
                     /// @brief This will contain the source of the script
                     String SourceCode;
 
@@ -76,6 +79,12 @@ namespace Mezzanine
                     /// @param Compiler This will be used to compile the script, no safety checks are performed.
                     void Compile(Lua51ScriptingEngine* Compiler);
 
+                    /// @brief A set of the arguments being passed into the Lua script
+                    ArgumentSet Args;
+
+                    /// @brief A set of all the values the Lua script returned teh last time it was executed.
+                    ArgumentSet Returns;
+
                 public:
                     /// @brief Simple constructor, creates a script that executes a no-op.
                     Lua51Script();
@@ -83,7 +92,7 @@ namespace Mezzanine
                     /// @brief Compiling Constructor
                     /// @param SourceCode The source of the script to be used in this.
                     /// @param Compiler Defaults to a null pointer. If passed a null pointer this does nothing. If passed a valid LuaScriptingEngine then that engine is used to compile (but not run) this script.
-                    Lua51Script(const String& SourceCode, Lua51ScriptingEngine* Compiler=0);
+                    Lua51Script(const String& InitialSourceCode, Lua51ScriptingEngine* Compiler=0);
 
                     /// @brief Virtual destructor
                     virtual ~Lua51Script();
