@@ -41,7 +41,7 @@
  * pugixml parser - version 1.2
  * --------------------------------------------------------
  * Copyright © 2006-2012, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
- * Report bugs and downLoad new versions at http://pugixml.org/
+ * Report bugs and download new versions at http://pugixml.org/
  *
  * This library is distributed under the MIT License. See notice at the end
  * of this file.
