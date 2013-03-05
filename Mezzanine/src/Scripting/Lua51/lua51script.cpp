@@ -48,6 +48,8 @@
 #include "lua51scriptingengine.h"
 #include "exception.h"
 
+#include <algorithm>
+
 /// @file
 /// @brief This file has the implemetation for the Lua script storage.
 
@@ -89,45 +91,43 @@ namespace Mezzanine
                 {}
 
             void Lua51Script::AddArgument(CountedPtr<iScriptArgument> Arg)
-            {
-
-            }
+                { Args.push_back(Arg); }
 
             void Lua51Script::RemoveArgument(CountedPtr<iScriptArgument> Arg)
-                { }
+                { Args.erase( std::find(Args.begin(),Args.end(),Arg) ); }
 
             void Lua51Script::RemoveArgument(Whole ArgNumber)
                 { }
 
             Whole Lua51Script::GetArgumentCount() const
-                { }
+                { return Args.size(); }
 
             void Lua51Script::ClearArguments()
-                { }
+                { Args.clear(); }
 
             CountedPtr<iScriptArgument> Lua51Script::GetArgument(Whole ArgNumber) const
-                { }
+                { return Args.at(ArgNumber); }
 
             void Lua51Script::SetSourceCode(const String& Code)
-                { }
+                { SourceCode = Code; }
 
             String Lua51Script::GetSourceCode() const
-                { }
+                { return SourceCode; }
 
             void Lua51Script::SetByteCode(BinaryTools::BinaryBuffer Code)
-                { }
+                { CompiledByteCode = Code; }
 
             BinaryTools::BinaryBuffer Lua51Script::GetByteCode() const
-                { }
+                { return CompiledByteCode; }
 
             bool Lua51Script::IsCompiled() const
-                { }
+                { return CompiledByteCode.Binary != 0; }
 
             Whole Lua51Script::GetReturnCount() const
-                { }
+                { return Returns.size(); }
 
             ArgumentSet Lua51Script::GetAllReturns() const
-                { }
+                { return Returns; }
         } // Lua
     } // Scripting
 } // Mezzanine

@@ -72,6 +72,8 @@ namespace Mezzanine
                     Binary(NULL)
                     {}
 
+                BinaryBuffer(const BinaryBuffer& Other);
+
                 /// @brief Verbose constructor, set everything custom on creation.
                 /// @param PredeterminedSize The size to set on creation.
                 /// @param BinaryPointer A pointer to the first byte in memory, to be set on creation.

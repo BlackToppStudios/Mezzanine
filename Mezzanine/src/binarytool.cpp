@@ -79,6 +79,19 @@ namespace Mezzanine
 
     #include <string.h>
 
+    BinaryTools::BinaryBuffer::BinaryBuffer(const BinaryBuffer& Other)
+    {
+        if (this == &Other)
+            { return; }
+        this->Size = Other.Size;
+        this->Binary = new UInt8[this->Size];
+        memcpy(this->Binary,Other.Binary,this->Size);
+    }
+
+
+
+
+
     BinaryTools::BinaryBuffer::~BinaryBuffer()
         { DeleteBuffer(); }
 
