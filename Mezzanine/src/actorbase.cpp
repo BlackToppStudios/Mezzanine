@@ -56,7 +56,7 @@
 #include "physicsmanager.h"
 #include "scenemanager.h"
 #include "entresol.h"
-#include "xml.h"
+#include "xml/xml.h"
 #include "Internal/motionstate.h.cpp"
 #include "Internal/meshtools.h.cpp"
 

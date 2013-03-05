@@ -43,7 +43,7 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "Physics/physicsenumerations.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 class btCollisionObject;
 class btRigidBody;

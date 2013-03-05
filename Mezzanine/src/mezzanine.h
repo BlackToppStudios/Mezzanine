@@ -143,8 +143,8 @@
 #include "worldobject.h"
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
-#include "xmldoc.h"
-#include "xml.h"                        // nothing to do
+#include "xml/xmldoc.h"
+#include "xml/xml.h"                        // nothing to do
 
 
 #endif // \no SWIG

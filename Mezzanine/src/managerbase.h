@@ -42,7 +42,7 @@
 
 #include "datatypes.h"
 #include "crossplatformexport.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 namespace Mezzanine
 {

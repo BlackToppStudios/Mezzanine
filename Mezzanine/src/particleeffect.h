@@ -43,7 +43,7 @@
 #include "attachable.h"
 #include "datatypes.h"
 #include "quaternion.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 /// @file particleeffect.cpp
 /// @brief Contains the declaration of the ParticleEffect class

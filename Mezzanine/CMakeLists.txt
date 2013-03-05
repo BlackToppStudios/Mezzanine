@@ -274,8 +274,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
-        "${${PROJECT_NAME}_SRC_DIR}xml.h"
-        "${${PROJECT_NAME}_SRC_DIR}xmldoc.h"
+        "${${PROJECT_NAME}_SRC_DIR}xml/xml.h"
+        "${${PROJECT_NAME}_SRC_DIR}xml/xmldoc.h"
 
 #######################################
 # A complete listing of our source files
@@ -447,8 +447,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}xml.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}xmldoc.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}xml/xml.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}xml/xmldoc.cpp"
 )
 
 ###############################################################################

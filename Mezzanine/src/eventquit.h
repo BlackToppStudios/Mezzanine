@@ -45,7 +45,7 @@
 
 #include "crossplatformexport.h"
 #include "eventbase.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 namespace Mezzanine
 {

@@ -42,7 +42,7 @@
 #ifndef _xmldoc_cpp
 #define _xmldoc_cpp
 
-#include "xml.h"
+#include "xml/xml.h"
 #include "stringtool.h"
 
 namespace Mezzanine

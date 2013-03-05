@@ -42,7 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 class btQuaternion;
 namespace Ogre

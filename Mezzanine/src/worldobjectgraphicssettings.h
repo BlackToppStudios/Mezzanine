@@ -44,7 +44,7 @@
 #include "colourvalue.h"
 
 
-#include "xml.h"
+#include "xml/xml.h"
 
 namespace Ogre
 {

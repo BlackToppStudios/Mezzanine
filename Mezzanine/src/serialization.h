@@ -44,8 +44,8 @@
 /// @brief The interface for serialization
 
     #include "datatypes.h"
-    #include "xml.h"
-    #include "xmldoc.h"
+    #include "xml/xml.h"
+    #include "xml/xmldoc.h"
 
     // Standard Headers are not included in SWIG preprocessing
     #ifndef SWIG

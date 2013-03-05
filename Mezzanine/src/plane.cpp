@@ -46,7 +46,7 @@
 #include "exception.h"
 #include "plane.h"
 #include "stringtool.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 #include "Ogre.h"
 

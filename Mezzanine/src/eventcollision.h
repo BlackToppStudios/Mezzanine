@@ -41,7 +41,7 @@
 #define eventcollision_h
 
 #include "eventbase.h"
-#include "xml.h"
+#include "xml/xml.h"
 #include "vector3.h"
 
 namespace Mezzanine

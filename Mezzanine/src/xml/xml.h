@@ -89,7 +89,7 @@
 
 // Include user configuration file (this can define various configuration macros)
 #include "crossplatform.h"
-#include "xmldoc.h"
+#include "xml/xmldoc.h"
 #include "exception.h"
 #include "Resource/datastream.h"
 

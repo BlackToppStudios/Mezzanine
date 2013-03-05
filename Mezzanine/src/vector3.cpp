@@ -46,7 +46,7 @@
 #include "serialization.h"
 #include "stringtool.h"
 #include "mathtool.h"
-#include "xml.h"            // Needed for streaming to xml
+#include "xml/xml.h"            // Needed for streaming to xml
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"

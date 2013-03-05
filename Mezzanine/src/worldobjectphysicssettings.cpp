@@ -48,7 +48,7 @@
 #include "physicsmanager.h"
 #include "serialization.h"
 #include "stringtool.h"
-#include "xml.h"
+#include "xml/xml.h"
 
 #include <memory>
 
