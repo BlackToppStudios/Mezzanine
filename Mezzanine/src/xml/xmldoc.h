@@ -3155,7 +3155,7 @@ namespace Mezzanine
  * Software, Files, Libraries and all other items referenced in this clause refers only
  * to the contents of this file and associated documentation.
  *
- * Copyright Ã© 2006-2010 Arseny Kapoulkine
+ * Copyright © 2006-2012 Arseny Kapoulkine
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
