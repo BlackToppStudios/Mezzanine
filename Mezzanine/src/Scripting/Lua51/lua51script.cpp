@@ -94,10 +94,10 @@ namespace Mezzanine
                 { Args.push_back(Arg); }
 
             void Lua51Script::RemoveArgument(CountedPtr<iScriptArgument> Arg)
-                { Args.erase( std::find(Args.begin(),Args.end(),Arg) ); }
+                { Args.erase( std::remove(Args.begin(),Args.end(),Arg) ); }
 
             void Lua51Script::RemoveArgument(Whole ArgNumber)
-                { }
+                { Args.erase(Args.begin()+ArgNumber); }
 
             Whole Lua51Script::GetArgumentCount() const
                 { return Args.size(); }

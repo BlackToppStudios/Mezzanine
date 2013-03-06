@@ -13,9 +13,11 @@ echo '// We really should not document this file to much more, it would be like 
 echo '/// @cond 0'>> scriptbindinglua51.cpp
 echo '' >> scriptbindinglua51.cpp
 
-swig2.0 -c++ -v -Wall -lua -importall -includeall -o scriptbindinglua51.cpp.tmp mezzanine.h
+swig2.0 -c++ -v -Wall -lua -includeall -o scriptbindinglua51.cpp.tmp mezzanine.h
 cat scriptbindinglua51.cpp.tmp >> scriptbindinglua51.cpp
 rm scriptbindinglua51.cpp.tmp
+mv scriptbindinglua51.cpp Scripting/Lua51/
+
 
 echo '' >> scriptbindinglua51.cpp
 echo '/// @endcond' >> scriptbindinglua51.cpp

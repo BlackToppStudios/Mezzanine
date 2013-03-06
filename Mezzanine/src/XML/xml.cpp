@@ -4879,6 +4879,21 @@ namespace XML
 		return internal::GetValue_float(d ? d->Value : 0, def);
 	}
 
+    PUGI__FN Real Text::AsReal(Real def) const
+    {
+        return AsFloat(def);
+    }
+
+    PUGI__FN Whole Text::AsWhole(Whole def) const
+    {
+        return AsUint(def);
+    }
+
+    PUGI__FN Integer Text::AsInteger(Integer def) const
+    {
+        return AsInt(def);
+    }
+
 	PUGI__FN bool Text::AsBool(bool def) const
 	{
 		NodeStruct* d = _data();

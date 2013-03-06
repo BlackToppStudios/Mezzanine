@@ -72,7 +72,7 @@ namespace Mezzanine
         class iScriptCompilationManager;
         class Lua51Script;
 
-        /// @brief This contains the Lua51
+        /// @brief This contains the Lua51 and Lua52 resources.
         namespace Lua
         {
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -93,7 +93,7 @@ namespace Mezzanine
 
                     /// @brief This will do nothing if the past integer
                     /// @param LuaReturn The return code from a Lua Compile or execution call
-                    /// @throws This
+                    /// @throws This Throws ScriptLuaYieldException, ScriptLuaRuntimeException, ScriptLuaRuntimeException, ScriptLuaErrErrException, SyntaxErrorLuaException, OutOfMemoryException, FileException, ScriptLuaException with as much precision as possible when thrown.
                     virtual void ThrowFromLuaErrorCode(int LuaReturn);
 
                     //virtual void Execute(LuaScript* ScriptToRun);

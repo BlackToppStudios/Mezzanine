@@ -92,16 +92,15 @@
 #ifndef _XML_H
 #define _XML_H
 
-// Include stddef.h for size_t and ptrdiff_t
-#include <stddef.h>
+#ifndef SWIG
+    // Include stddef.h for size_t and ptrdiff_t
+    #include <stddef.h>
 
-// Include exception header for XPath
-#include <exception>
-
-// Include STL headers
-#include <iterator>
-#include <iosfwd>
-#include <string>
+    // Include STL headers
+    #include <iterator>
+    #include <iosfwd>
+    #include <string>
+#endif
 
 namespace Mezzanine {
 // Character interface macros

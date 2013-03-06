@@ -108,7 +108,7 @@ namespace Mezzanine
                     case LUA_ERRMEM:
                         MEZZ_EXCEPTION(Exception::MM_OUT_OF_MEMORY_EXCEPTION, "Lua could not allocate memory.")
                     case LUA_ERRFILE:
-                        MEZZ_EXCEPTION(Exception::IO_EXCEPTION, "Lua had an error with file IO.")
+                        MEZZ_EXCEPTION(Exception::IO_FILE_EXCEPTION, "Lua had an error with file IO.")
                     default:
                         MEZZ_EXCEPTION(Exception::SCRIPT_EXCEPTION_LUA, "Lua had an error and we are not sure what it was.")
                 }
