@@ -42,7 +42,7 @@
 
 #include "attachable.h"
 #include "colourvalue.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 /// @file light.h
 /// @brief Declaration of Mezzanine::Light

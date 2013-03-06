@@ -83,7 +83,6 @@ namespace Mezzanine
         ///     - @ref XMLDOM
         ///         - @ref XMLTreeStructure
         ///         - @ref XMLInterface
-        ///         - @ref XMLUnicode
         ///         - @ref XMLThreadSafety
         ///         - @ref XMLExceptionSafety
         ///         - @ref XMLMemory
@@ -137,7 +136,7 @@ namespace Mezzanine
         /// @subsection XMLIntroduction Introduction
         /// Mezzanine::xml is a light-weight C++ XML processing library. It consists of a DOM-like interface with rich traversal/modification capabilities, an
         /// extremely fast XML parser which constructs the DOM tree from an XML file/buffer, and an @ref Mezzanine::XML::XPathQuery "XPath 1.0 implementation"
-        /// for complex data-driven tree queries. Full Unicode support is also available, with @ref XMLUnicode "two Unicode interface variants" and
+        /// for complex data-driven tree queries. Unicode is fully support via UF8 in 8bit characters and for
         /// conversions between different Unicode encodings (which happen automatically during parsing/saving).
         /// \n \n
         /// Mezzanine::xml enables very fast, convenient and memory-efficient XML document processing. However, since Mezzanine::xml has a DOM parser, it can't process
@@ -319,62 +318,6 @@ namespace Mezzanine
         /// destroyed, the handles to those objects become invalid. While this means that destruction of the entire tree invalidates all node/attribute handles, it also means that
         /// destroying a subtree ( by calling Mezzanine::XML::Node::RemoveChild ) or removing an attribute invalidates the corresponding handles. There is no way to check handle
         /// validity; you have to ensure correctness through external mechanisms.
-        /// \n \n
-        /// @subsection XMLUnicode Unicode Interface
-        /// There are two choices of interface and internal representation when working with Mezzanine::xml : you can either choose the UTF-8 (also called char) interface or UTF-16/32
-        /// (also called wchar_t) one. The choice is controlled via XML_WCHAR_MODE define; you can set it via xml.h or via preprocessor options beore engine compilation. If this
-        /// define is set, the wchar_t interface is used; otherwise (by default) the char interface is used. The exact wide character encoding is assumed to be either UTF-16 or
-        /// UTF-32 and is determined based on the size of wchar_t type.
-        /// @warning There are a few places that the reset of the engine assumes the use of the UTF-8/char interface. The task of integrating this cleanly is currently considered
-        /// a low priority. If you use XML_WCHAR_MODE you will encounter bugs, they could be tiny or huge. Since we didn't test it, we assumed it doesn't work.
-        ///
-        /// @note If the size of wchar_t is 2, Mezzanine::xml assumes UTF-16 encoding instead of UCS-2, which means that some characters are represented as two code points.
-        ///
-        /// All tree functions that work with strings work with either C-style null terminated strings or STL strings of the selected character type. For example, node name
-        /// accessors look like this in char mode:
-        /// @code
-        /// const char* Mezzanine::XML::Node::Name() const;
-        /// bool Mezzanine::XML::Node::SetName(const char* value);
-        /// bool Mezzanine::XML::Node::SetName(const String& value);
-        /// @endcode
-        /// and like this in wchar_t mode:
-        /// @code
-        /// const wchar_t* Mezzanine::XML::Node::Name() const;
-        /// bool Mezzanine::XML::Node::SetName(const wchar_t* value);
-        /// @endcode
-        /// There is a special type, Mezzanine::XML::char_t, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation
-        /// hereafter. There is also a type Mezzanine::XML::string_t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to
-        /// std::wstring in wchar_t mode.
-        /// \n \n
-        /// The version of this function that accepts a String simply converts it to a c-style string and calls the other SetName function.
-        /// \n \n
-        /// In addition to the interface, the internal implementation changes to store XML data as Mezzanine::XML::char_t; this means that these two modes have different memory usage
-        /// characteristics. The conversion to Mezzanine::XML::char_t upon document loading and from Mezzanine::XML::char_t upon document saving happen automatically, which also carries
-        /// minor performance penalty. The general advice however is to select the character mode based on usage scenario, i.e. if UTF-8 is inconvenient to process and most of
-        /// your XML data is non-ASCII, wchar_t mode is probably a better choice (if this is the case any patches, notifications or bugfixes that could be sent our way would
-        /// help.)
-        /// \n \n
-        /// There are cases when you'll have to convert string data between UTF-8 and wchar_t encodings; the following helper functions are provided for such purposes:
-        /// @code
-        /// std::string AsUtf8(const wchar_t* str);
-        /// std::wstring AsUtf8(const char* str);
-        /// @endcode
-        /// Both functions accept a null-terminated string as an argument str, and return the converted string. AsUtf8 performs conversion from UTF-16/32 to UTF-8; AsWide performs
-        /// conversion from UTF-8 to UTF-16/32. Invalid UTF sequences are silently discarded upon conversion. str has to be a valid string; passing null pointer results in
-        /// undefined behavior. There are also two overloads with the same semantics which accept a string as an argument:
-        /// @code
-        /// std::string AsUtf8(const std::wstring& str);
-        /// std::wstring AsWide(const std::string& str);
-        /// @endcode
-        /// @note
-        /// Most examples in this documentation assume char interface and therefore will not compile with XML_WCHAR_MODE. This is done to simplify the documentation; usually the
-        /// only changes you'll have to make is to pass wchar_t string literals, i.e. instead of
-        /// \n \n
-        /// @code Mezzanine::XML::Node node = doc.GetChild("bookstore").FindChildbyAttribute("book", "id", "12345"); @endcode
-        /// \n \n
-        /// you'll have to do
-        /// \n \n
-        /// @code Mezzanine::XML::Node node = doc.GetChild(L"bookstore").FindChildbyAttribute(L"book", L"id", L"12345"); @endcode
         /// \n \n
         /// @subsection XMLThreadSafety Thread-safety guarantees
         ///Almost all functions in Mezzanine::xml have the following thread-safety guarantees:

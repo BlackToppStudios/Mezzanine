@@ -26,16 +26,12 @@
 #include <stddef.h>
 
 // Include exception header for XPath
-#if !defined(PUGIXML_NO_XPATH) && !defined(PUGIXML_NO_EXCEPTIONS)
-#	include <exception>
-#endif
+#include <exception>
 
 // Include STL headers
-#ifndef PUGIXML_NO_STL
-#	include <iterator>
-#	include <iosfwd>
-#	include <string>
-#endif
+#include <iterator>
+#include <iosfwd>
+#include <string>
 
 // Macro for deprecated features
 #ifndef PUGIXML_DEPRECATED
@@ -62,7 +58,7 @@
 #ifndef PUGIXML_FUNCTION
 #	define PUGIXML_FUNCTION PUGIXML_API
 #endif
-
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 // Character interface macros
 #ifdef PUGIXML_WCHAR_MODE
 #	define PUGIXML_TEXT(t) L ## t

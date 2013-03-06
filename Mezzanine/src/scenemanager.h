@@ -46,7 +46,7 @@
 #include "singleton.h"
 #include "quaternion.h"
 #include "vector3.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 namespace Ogre
 {

@@ -56,7 +56,7 @@
 #ifndef SOURCE_XML_CPP
 #define SOURCE_XML_CPP
 
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 #include <stdlib.h>
 #include <stdio.h>

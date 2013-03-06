@@ -50,7 +50,7 @@
 #include "eventbase.h"
 #include "singleton.h"
 #include "vector2.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment

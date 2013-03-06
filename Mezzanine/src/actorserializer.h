@@ -44,7 +44,7 @@
 #include "actormanager.h"
 #include "datatypes.h"
 #include "serialization.h"
-#include "xml/xmldoc.h"
+#include "XML/xmldoc.h"
 
 /// @file actorserializer.h
 /// @brief This is where the declarations of any Serializers or DeSerializers for actors will go.

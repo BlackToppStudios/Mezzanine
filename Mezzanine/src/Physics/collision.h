@@ -41,7 +41,7 @@
 #define _collision_h
 
 #include "vector3.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 class btPersistentManifold;
 class btBroadphasePair;

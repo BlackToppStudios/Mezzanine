@@ -47,7 +47,7 @@
 #include "exception.h"
 #include "scenemanager.h"
 #include "Graphics/viewport.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 #include <Ogre.h>
 

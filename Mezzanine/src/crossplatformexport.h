@@ -108,4 +108,16 @@
         #define MEZZ_LIB
     #endif  // \WINDOWS
 
+    /// @def MEZZ_DEPRECATED
+    /// @brief Used to mark old functionality that should not be used as such. In supported compilers using such functionality should produce warnings.
+    #ifndef MEZZ_DEPRECATED
+    #	if defined(__GNUC__)
+    #		define MEZZ_DEPRECATED __attribute__((deprecated))
+    #	elif defined(_MSC_VER) && _MSC_VER >= 1300
+    #		define MEZZ_DEPRECATED __declspec(deprecated)
+    #	else
+    #		define MEZZ_DEPRECATED
+    #	endif
+    #endif
+
 #endif

@@ -69,7 +69,7 @@
 */
 
 #include "datatypes.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 #include "Input/inputenumerations.h"
 
 namespace Mezzanine

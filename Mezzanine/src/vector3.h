@@ -44,7 +44,7 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "swig.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;

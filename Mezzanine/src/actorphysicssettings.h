@@ -44,7 +44,7 @@
 #include "enumerations.h"
 #include "worldobjectphysicssettings.h"
 
-#include "xml/xml.h"
+#include "XML/xml.h"
 #include <iostream>
 
 class btCollisionObject;

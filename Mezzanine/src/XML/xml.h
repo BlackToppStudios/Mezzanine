@@ -53,9 +53,6 @@
 #ifndef _XMLCONFIG_H
 #define _XMLCONFIG_H
 
-// Uncomment this to enable wchar_t mode
-// #define XML_WCHAR_MODE
-
 // Uncomment this to disable XPath
 // #define XML_NO_XPATH
 
@@ -87,9 +84,8 @@
 #	define XML_VERSION 120
 #endif
 
-// Include user configuration file (this can define various configuration macros)
 #include "crossplatform.h"
-#include "xml/xmldoc.h"
+#include "XML/xmldoc.h"
 #include "exception.h"
 #include "Resource/datastream.h"
 
@@ -100,47 +96,17 @@
 #include <stddef.h>
 
 // Include exception header for XPath
-#if !defined(XML_NO_XPATH) && !defined(XML_NO_EXCEPTIONS)
-#	include <exception>
-#endif
+#include <exception>
 
 // Include STL headers
-#ifndef XML_NO_STL
-#	include <iterator>
-#	include <iosfwd>
-#	include <string>
-#endif
-
-// Macro for deprecated features
-#ifndef XML_DEPRECATED
-#	if defined(__GNUC__)
-#		define XML_DEPRECATED __attribute__((deprecated))
-#	elif defined(_MSC_VER) && _MSC_VER >= 1300
-#		define XML_DEPRECATED __declspec(deprecated)
-#	else
-#		define XML_DEPRECATED
-#	endif
-#endif
-
-// If no API is defined, assume default
-#ifndef MEZZ_LIB
-#	define MEZZ_LIB
-#endif
-
-// If no API for classes is defined, assume default
-#ifndef MEZZ_LIB
-#	define MEZZ_LIB MEZZ_LIB
-#endif
-
-// If no API for functions is defined, assume default
-#ifndef MEZZ_LIB
-#	define MEZZ_LIB MEZZ_LIB
-#endif
+#include <iterator>
+#include <iosfwd>
+#include <string>
 
 namespace Mezzanine {
 // Character interface macros
-
-#ifdef XML_WCHAR_MODE
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
+#ifdef XML_WCHAR_MODE // <- Removing this
 #	define XML_TEXT(t) L ## t
 #	define XML_CHAR wchar_t
 #else
@@ -152,16 +118,7 @@ namespace Mezzanine {
 namespace XML
 {
 	/// @brief Used to represent a UTF8 code point, char, or wchar_t depending on how compiled.
-		/// @details compatibility with Mezzanine::Character is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .
-
 	typedef Character char_t;
-
-#ifndef XML_NO_STL
-	/// @brief Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.
-		/// @details compatibility with Mezzanine::String is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .
-
-	typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > String;
-#endif
 }
 
 // The PugiXML namespace

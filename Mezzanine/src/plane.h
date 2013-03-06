@@ -42,7 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "vector3.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 namespace Ogre
 {

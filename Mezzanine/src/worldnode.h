@@ -42,7 +42,7 @@
 
 #include "attachable.h"
 #include "enumerations.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 /// @file worldnode.h
 /// @brief The declaration of the WorldNode, A class to facilitate navigation in 3d environment

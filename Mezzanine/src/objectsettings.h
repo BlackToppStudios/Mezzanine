@@ -46,7 +46,7 @@
 #include "quaternion.h"
 #include "colourvalue.h"
 #include "smartptr.h"
-#include "xml/xml.h"
+#include "XML/xml.h"
 
 namespace Mezzanine
 {
