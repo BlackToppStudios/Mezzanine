@@ -96,20 +96,23 @@
 #ifndef _XML_H
 #define _XML_H
 
-// Include stddef.h for size_t and ptrdiff_t
-#include <stddef.h>
+#ifndef SWIG
+    // Include stddef.h for size_t and ptrdiff_t
+    #include <stddef.h>
 
-// Include exception header for XPath
-#if !defined(XML_NO_XPATH) && !defined(XML_NO_EXCEPTIONS)
-#	include <exception>
+    // Include exception header for XPath
+    #if !defined(XML_NO_XPATH) && !defined(XML_NO_EXCEPTIONS)
+    #	include <exception>
+    #endif
+
+    // Include STL headers
+    #ifndef XML_NO_STL
+    #	include <iterator>
+    #	include <iosfwd>
+    #	include <string>
+    #endif
 #endif
 
-// Include STL headers
-#ifndef XML_NO_STL
-#	include <iterator>
-#	include <iosfwd>
-#	include <string>
-#endif
 
 // Macro for deprecated features
 #ifndef XML_DEPRECATED

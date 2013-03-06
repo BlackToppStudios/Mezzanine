@@ -47,14 +47,13 @@
 
 #include "crossplatformexport.h"
 
-#include <stdint.h>
-
-
 // Standard Headers are not included in SWIG preprocessing
 // Most std includes are centralized here to make modifying this list as simple as possible. Other standard includes that
 // are not included here are in places that they are required and conditionally may not be compiled in. For example,
 // Serialization requires <memory> and <ostream> and can optionally be compiled as part of Mezz_XML.
 #ifndef SWIG
+    #include <stdint.h>
+
     #include <algorithm>
     #include <exception>
     #include <istream>

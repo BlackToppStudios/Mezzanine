@@ -63,6 +63,18 @@
     %}
 
     %include stl.i
+    %include stdint.i
+    %include std_except.i
+    %include std_common.i
+    //%include std_container.i
+    %include std_deque.i
+    %include std_except.i
+    //%include std_list.i
+    %include std_map.i
+    %include std_pair.i
+    %include std_string.i
+    %include std_vector.i
+
     %module Mezzanine
 
     #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
@@ -70,7 +82,7 @@
 
     #define SWIG_INFO_WARN              %warn "999: Warning 990 to 999 are informational messages."
 #else
-    // Define warnings as nothing as to not fuck with other classes
+    // Define warnings as nothing as to not interfere with other classes
     #define SWIG_INFO_BEGINCLASS
     #define SWIG_INFO_ENDCLASS
     #define SWIG_INFO_WARN
