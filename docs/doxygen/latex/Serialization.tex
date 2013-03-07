@@ -1,153 +1,179 @@
-\hypertarget{Serialization_SerializationMain}{}\subsection{SerializationMain}\label{Serialization_SerializationMain}
-Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do, and can be done with a variety of other factors in mind. The xml text can be sent down any stream, put in any file, compressed, queried. You should see \hyperlink{XMLManual}{Mezzanine::xml Manual} for information about the xml system itself. \par
- \par
- Topics:
-\begin{DoxyItemize}
-\item \hyperlink{Serialization_serializationxml}{Serialization and XML}
-\item \hyperlink{Serialization_serializationintegration}{Integrate Serialization into Your Code}
-\begin{DoxyItemize}
-\item \hyperlink{Serialization_serializationmaking}{Make a Serializable or a DeSerializable}
-\item \hyperlink{Serialization_serializationserializers}{Working with Serializers and Deserializers}
-\item \hyperlink{Serialization_serializationlegacy}{Integrating with External XML Providers}
-\end{DoxyItemize}
-\item \hyperlink{Serialization_serializationoperators}{Serialization Operators}
-\item \hyperlink{Serialization_serializationmisc}{Other little Things} 
-\end{DoxyItemize}\hypertarget{Serialization_serializationxml}{}\subsubsection{Serialization and XML}\label{Serialization_serializationxml}
-The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to XML it only make sense to closely integrate with the \hyperlink{namespaceMezzanine_1_1xml}{Mezzanine::xml} portion of the engine. If you plan on writing serialization and deserialization code you should read the following parts of the \hyperlink{XMLManual}{Mezzanine::xml Manual} at a minimum:
-\begin{DoxyItemize}
-\item \hyperlink{XMLManual_XMLDOM}{Document Object Model}
-\item \hyperlink{XMLManual_XMLAccessingBasics}{Basic traversal functions}
-\item \hyperlink{XMLManual_XMLModifyingNodeData}{Setting Node Data}
-\item \hyperlink{XMLManual_XMLModifyingAttributeData}{Setting Attribute Data}
-\end{DoxyItemize}
+\begin{DoxyVerb}   @section SerializationMain
+   Serialization is the process of converting a class instance into a serial sequence of bits. DeSerialization is taking those
+   bits and reconstructing th e original object without losing anything of value (in practice the only things not saved are cached
+   values or values calulated as they are needed). These bits could be just about anything, because of its ubiquity we chose
+   to serialize to xml (or something so similar as to be indistinguishable from standard xml). This allows a wide variety of tools
+   to be used when working with and verifying these serialized classes. Additionally, transmitting and storing xml is easy to do,
+   and can be done with a variety of other factors in mind. The xml text can be sent down any stream, put in any file, compressed,
+   queried. You should see @ref XMLManual for information about the xml system itself.
+   \n \n
+   Topics:
+       - @ref serializationxml
+       - @ref serializationintegration
+           - @ref serializationmaking
+           - @ref serializationserializers
+           - @ref serializationlegacy
+       - @ref serializationoperators
+       - @ref serializationmisc
+   @subsection serializationxml Serialization and XML
+   The process of serializing doesn't just convert from class instance to text. Since our end goal is to convert live objects to
+   XML it only make sense to closely integrate with the Mezzanine::xml portion of the engine. If you plan on writing serialization
+   and deserialization code you should read the following parts of the @ref XMLManual at a minimum:
+       - @ref XMLDOM
+       - @ref XMLAccessingBasics
+       - @ref XMLModifyingNodeData
+       - @ref XMLModifyingAttributeData
 
-The central object that will carry information during this process is the \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node}. The \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} is an excellent tool for converting and storing data in a single unified heirarchy. \par
- \par
- C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally Hierarchies are implied when complex class have other complex class or datatypes as members. Both of these structures map cleanly onto the kind of hierarchies that a well formed xml documents provide. \par
- \par
- There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to accomplish this, some include: two passes of processing were constraintw would be done in the second pass, a work queue that would store objects that couldn't be deserialized yet, a prefetcher that would dig through the xml to find the required object. \par
- \par
- Those methods all likely could have been made to work. However, they are not optimal for a variety of reasons. All of them have a set of preconditions and require more computing resources and could potentially delay loading or transmission times. Some of them heavily imply that all of the items to deserialize must be stored in the same xml source. Some demand access to xml that may not have been transmitted yet. \par
- \par
- The simplest, most performant way to work around the issues that cross-\/hierarchical relationships presented was to ignore them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions So can produce their own solutions:
-\begin{DoxyItemize}
-\item CollisionShapes must come before Actors and AreaEffects
-\item WorldNodes must come before Actors, \hyperlink{classMezzanine_1_1Light}{Light} and ParticleEffects. (this is still work in progress).
-\begin{DoxyItemize}
-\item Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)
-\end{DoxyItemize}
-\item Actors must come before constraints.
-\item Actors may have a \hyperlink{classMezzanine_1_1WorldNode}{WorldNode} inside them, if this is the case, then the actor must come before Lights and ParticleEffects Attached to it.
-\item Actors must be done before SoundSets
-\item Sounds must be done before SoundSet (Still in progress)
-\end{DoxyItemize}
+   The central object that will carry information during this process is the Mezzanine::XML::Node. The Mezzanine::XML::Node is an excellent
+   tool for converting and storing data in a single unified heirarchy.
+   \n \n
+   C++ and most object oriented languages heavily imply that class inheritance should be structured as hierarchies. Additionally
+   Hierarchies are implied when complex class have other complex class or datatypes as members. Both of these structures map
+   cleanly onto the kind of hierarchies that a well formed xml documents provide.
+   \n \n
+   There are some relationships in video game objects that cross normal hierarchical boundaries. For example, A constraint
+   references two actors, and defines a relationship between them. When serialized the constraint simply stores the name of
+   the actor and looks it up in the actor manager during deserialization. This implies that the actors exist already, or that
+   there is some mechanism to create the constraint and fill in the actor later. Several mechanisms were discussed to
+   accomplish this, some include: two passes of processing were constraintw would be done in the second pass, a work queue that
+   would store objects that couldn't be deserialized yet, a prefetcher that would dig through the xml to find the required
+   object.
+   \n \n
+   Those methods all likely could have been made to work. However, they are not optimal for a variety of reasons. All of them
+   have a set of preconditions and require more computing resources and could potentially delay loading or transmission times.
+   Some of them heavily imply that all of the items to deserialize must be stored in the same xml source. Some demand access to
+   xml that may not have been transmitted yet.
+   \n \n
+   The simplest, most performant way to work around the issues that cross-hierarchical relationships presented was to ignore
+   them. More specifically, throw an exception if an object reference during deserialization is not present. Then we ask that
+   programmers who write could that must store, transmit and reconstruct class instances be aware of the following preconditions
+   So can produce their own solutions:
+       - CollisionShapes must come before Actors and AreaEffects
+       - WorldNodes must come before Actors, Light and ParticleEffects. (this is still work in progress).
+           - Currently WorldNodes try to find the objects that are attached to them, and the attached tries to find the world node. (if one does not exist, this silently fails)
+       - Actors must come before constraints.
+       - Actors may have a WorldNode inside them, if this is the case, then the actor must come before Lights and ParticleEffects Attached to it.
+       - Actors must be done before SoundSets
+       - Sounds must be done before SoundSet (Still in progress)
 
-The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything else it will have relatively little trouble making it work. \hypertarget{Serialization_serializationintegration}{}\subsubsection{Integrate Serialization into Your Code}\label{Serialization_serializationintegration}
-There several ways to interact with the current serialization system. One might have to create a class that can be serialized or deserialized. There may be situations where another system is emitting xml and it must be intergrated into an existing game. It may be desired to create a 'factory' that produces objects from and xml source or create a sink to put objects into so they can be serialized. Here we will discuss some of the ways that the serialization system can be extended and what kind of assumptions it makes, so that anyone can write software that interacts with it cleanly. \hypertarget{Serialization_serializationmaking}{}\paragraph{Make a Serializable or a DeSerializable}\label{Serialization_serializationmaking}
-Creating a class that be serialized is easy. There is just one function that it must implement. If a class implements this, it is said to be Serializable: 
+   The easyiest way to meet these conditions and not consume an inordinate amount of computing resources, is to pay attention
+   to the order that items are serialized in. If a program serializes the worldnodes, then the actors, then everything  else
+   it will have relatively little trouble making it work.
+   @subsection serializationintegration Integrate Serialization into Your Code
+   There several ways to interact with the current serialization system. One might have to create a class that can be
+   serialized or deserialized. There may be situations where another system is emitting xml and it must be intergrated into
+   an existing game. It may be desired to create a 'factory' that produces objects from and xml source or create a sink to put
+   objects into so they can be serialized. Here we will discuss some of the ways that the serialization system can be extended
+   and what kind of assumptions it makes, so that anyone can write software that interacts with it cleanly.
+   @subsubsection serializationmaking Make a Serializable or a DeSerializable
+   Creating a class that be serialized is easy. There is just one function that it must implement. If a class implements this,
+   it is said to be Serializable:
+   @code 
+\end{DoxyVerb}
+ void Serializable\-Class\-::\-Proto\-Serialize(\-X\-M\-L\-::\-Node\&) const;  The member Proto\-Serialize(\-X\-M\-L\-::\-Node\&) is expected to accept a Mezzanine\-::\-X\-M\-L\-::\-Node and attach exactly one Node to it. This new Serialized node should contain all the data stored in the current state of the object being serialized. Storing data outside of this one node could cause undefined behavior. \par
+ \par
+ The exact layout of the data in the Serialized Node is not pre-\/determined. The creator of that function need only take into account any difficulties De\-Serializing when creating this. Because of this concern it is advisable name the Serialized node something unique and appropriate and to include a 'Version' attribute on it. If the class changes, the De\-Serialization function will only need to check the 'Version' attribute to know if and how it can handle it. \par
+ \par
+ Integrating with the De\-Serialization code is pretty easy too. There are two functions you are expected to implement to create a De\-Serializable\-: 
 \begin{DoxyCode}
- void SerializableClass::ProtoSerialize(xml::Node&) const;
+\textcolor{keywordtype}{void} DeSerializableClass::ProtoDeSerialize(\textcolor{keyword}{const} XML::Node&);
+\textcolor{keyword}{static} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} DeSerializableClass::SerializableName();
 \end{DoxyCode}
- The member ProtoSerialize(xml::Node\&) is expected to accept a \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} and attach exactly one Node to it. This new Serialized node should contain all the data stored in the current state of the object being serialized. Storing data outside of this one node could cause undefined behavior. \par
+ The Serializable\-Name() is expected to simply return the name of the xml elements this class will De\-Serialize. For example A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine\-::\-Vector3} returns \char`\"{}\-Vector3\char`\"{}, and a \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine\-::\-Actor\-Rigid} return \char`\"{}\-Actor\-Rigid\char`\"{}. If a class is both De\-Serializable and serializable it makes sense to call this function when assigning the name to the Serialized Node it creates. \par
  \par
- The exact layout of the data in the Serialized Node is not pre-\/determined. The creator of that function need only take into account any difficulties DeSerializing when creating this. Because of this concern it is advisable name the Serialized node something unique and appropriate and to include a 'Version' attribute on it. If the class changes, the DeSerialization function will only need to check the 'Version' attribute to know if and how it can handle it. \par
+ Proto\-De\-Serialize(const X\-M\-L\-::\-Node\&), accepts a Mezzanine\-::\-X\-M\-L\-::\-Node. The Node passed to it would correspond to the Serialized Node created by the Proto\-Serialize(\-X\-M\-L\-::\-Node\&) function listed above. If xml is created by something then this is calling code is expecting this function to be the correct deserialization function. It is advisable but not required to verify the name of the xml node matches what is expected and that the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the best it can be. If exceptions are thrown for every discrepency, then programmers using this will create xml and code that produce no discrepencies. \par
  \par
- Integrating with the DeSerialization code is pretty easy too. There are two functions you are expected to implement to create a DeSerializable: 
+ The following template make use of only the 3 functions described above to Serialize or De\-Serialize class instances\-: 
 \begin{DoxyCode}
- void DeSerializableClass::ProtoDeSerialize(const xml::Node&);
- static String DeSerializableClass::SerializableName();
+\textcolor{keyword}{template} <\textcolor{keyword}{class} T> std::ostream& \hyperlink{namespaceMezzanine_a9015c5e668e14b857a27888c56934148}{Serialize}(std::ostream& Stream, \textcolor{keyword}{const}
+       T& Converted, \textcolor{keyword}{const} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}& Indent = \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}(\textcolor{stringliteral}{""}) );
+\textcolor{keyword}{template} <\textcolor{keyword}{class} T> std::istream& \hyperlink{namespaceMezzanine_ad8989ea81ccd1ad6d59a11921f0239a4}{DeSerialize}(std::istream& Stream, T
+      & Converted);
 \end{DoxyCode}
- The SerializableName() is expected to simply return the name of the xml elements this class will DeSerialize. For example A \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} returns \char`\"{}Vector3\char`\"{}, and a \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine::ActorRigid} return \char`\"{}ActorRigid\char`\"{}. If a class is both DeSerializable and serializable it makes sense to call this function when assigning the name to the Serialized Node it creates. \par
+ The functions make calls on the Mezzanine\-::xml system and expect a fairly basic set of conditions to be met before they are used. Serialize accepts an output stream and the class instance to be Serialized. It will create an X\-M\-L\-::\-Document and populate it data from the class provided and then emit that into the stream. De\-Serialize accepts an inputstream and the object to be populated. It expects the next xml element in the stream to be a serialized version of the passed object and will then overwrite as many of the values of the passed object as possible with the serialized values. For small items De\-Serialize is fine, where possible it is better to have the X\-M\-L\-::\-Document open the file or stream itself as to prevent the second pass through to find exactly one xml element. \par
  \par
- ProtoDeSerialize(const xml::Node\&), accepts a \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node}. The Node passed to it would correspond to the Serialized Node created by the ProtoSerialize(xml::Node\&) function listed above. If xml is created by something then this is calling code is expecting this function to be the correct deserialization function. It is advisable but not required to verify the name of the xml node matches what is expected and that the 'Version' is something this code can handle. It is also advisable that every piece of data pulled out is verified the best it can be. If exceptions are thrown for every discrepency, then programmers using this will create xml and code that produce no discrepencies. \par
+ 
+
+In some cases, there are some pieces of information that cannot be supplied or entered by the class itself. This data must be provided by another class or upon creation of the class. This other class can implement the \hyperlink{classMezzanine_1_1Serializer}{Serializer}, \hyperlink{classMezzanine_1_1DeSerializer}{De\-Serializer}, or both interfaces to make working with large amounts of serialization easier. \par
  \par
- The following template make use of only the 3 functions described above to Serialize or DeSerialize class instances: 
+ For example actors can only accept a mesh upon construction. So overwriting an existing actor is impossible to do completely. It expected to be partially implemented, to the extent possible, in the class members. But if you have the need to create Actors on the fly from data stored in files it makes sense to have a dedicated class or interface than can create these. Here is what goes into a \hyperlink{classMezzanine_1_1Serializer}{Serializer}\-: 
 \begin{DoxyCode}
- template <class T> std::ostream& Serialize(std::ostream& Stream, const T& Conver
-      ted, const String& Indent = String("") );
- template <class T> std::istream& DeSerialize(std::istream& Stream, T& Converted)
-      ;
+\textcolor{keyword}{template} <\textcolor{keyword}{class} Serializable> \textcolor{keyword}{class }Serializer
+\{
+    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \hyperlink{classMezzanine_1_1Serializer_addec7bf46f6d1b149eaf3e449c5d8501}{Serializer::ProtoSerializeAll}(
+      XML::Node& CurrentRoot) \textcolor{keyword}{const} = 0;
+    \textcolor{keyword}{virtual} std::ostream& \hyperlink{classMezzanine_1_1Serializer_aa178dfa519a2e73e84c0a2f35b2b8b5f}{Serializer::SerializeAll}(
+      std::ostream& Stream) \textcolor{keyword}{const};
+    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \hyperlink{classMezzanine_1_1Serializer_ae20b1167a26fe0d913c9123788d30657}{Serializer::ProtoSerialize}(\textcolor{keyword}{const} 
+      Serializable& Target, XML::Node& CurrentRoot) = 0;
+    \textcolor{keyword}{virtual} std::ostream& \hyperlink{classMezzanine_1_1Serializer_af71f7716c36ba0a583ab1e29e08cac6d}{Serializer::Serialize}(
+      std::ostream& Stream, \textcolor{keyword}{const} Serializable& Target)
+\};
 \end{DoxyCode}
- The functions make calls on the \hyperlink{namespaceMezzanine_1_1xml}{Mezzanine::xml} system and expect a fairly basic set of conditions to be met before they are used. Serialize accepts an output stream and the class instance to be Serialized. It will create an \hyperlink{classMezzanine_1_1xml_1_1Document}{xml::Document} and populate it data from the class provided and then emit that into the stream. DeSerialize accepts an inputstream and the object to be populated. It expects the next xml element in the stream to be a serialized version of the passed object and will then overwrite as many of the values of the passed object as possible with the serialized values. For small items DeSerialize is fine, where possible it is better to have the \hyperlink{classMezzanine_1_1xml_1_1Document}{xml::Document} open the file or stream itself as to prevent the second pass through to find exactly one xml element. \par
+ \hyperlink{classMezzanine_1_1Serializer_ae20b1167a26fe0d913c9123788d30657}{Serializer\-::\-Proto\-Serialize()} when implement should take the required steps to attach a Serialized Node to the Passed X\-M\-L\-::\-Node that represent the Serialization target. It is expected to get the extra information that the target cannot provide from somewhere else. Ideally the the \hyperlink{classMezzanine_1_1Serializer}{Serializer} can be, or be associated with, a manager or container of some kind. There is not default implementation of this. \par
  \par
- \hypertarget{Serialization_serializationserializers}{}\paragraph{Working with Serializers and Deserializers}\label{Serialization_serializationserializers}
-In some cases, there are some pieces of information that cannot be supplied or entered by the class itself. This data must be provided by another class or upon creation of the class. This other class can implement the \hyperlink{classMezzanine_1_1Serializer}{Serializer}, \hyperlink{classMezzanine_1_1DeSerializer}{DeSerializer}, or both interfaces to make working with large amounts of serialization easier. \par
+ \hyperlink{classMezzanine_1_1Serializer_af71f7716c36ba0a583ab1e29e08cac6d}{Serializer\-::\-Serialize()} Goes one step further than \hyperlink{classMezzanine_1_1Serializer_ae20b1167a26fe0d913c9123788d30657}{Serializer\-::\-Proto\-Serialize()} and also sends it down a stream. The default implements use \hyperlink{classMezzanine_1_1Serializer_ae20b1167a26fe0d913c9123788d30657}{Serializer\-::\-Proto\-Serialize()}. \par
  \par
- For example actors can only accept a mesh upon construction. So overwriting an existing actor is impossible to do completely. It expected to be partially implemented, to the extent possible, in the class members. But if you have the need to create Actors on the fly from data stored in files it makes sense to have a dedicated class or interface than can create these. Here is what goes into a \hyperlink{classMezzanine_1_1Serializer}{Serializer}: 
+ \hyperlink{classMezzanine_1_1Serializer_addec7bf46f6d1b149eaf3e449c5d8501}{Serializer\-::\-Proto\-Serialize\-All()} performs a similar role to \hyperlink{classMezzanine_1_1Serializer_ae20b1167a26fe0d913c9123788d30657}{Serializer\-::\-Proto\-Serialize()}, but again, it goes one step further. Rather than accept a single Target to serialize it is expected that the \hyperlink{classMezzanine_1_1Serializer}{Serializer} go to the source of the Targets and serialize all of them that are available. All of the target should be contained in one Node attached to the Node the function accepts. This is not implemented by default, the logic is too specific to the items to be serialized. \par
+ \par
+ \hyperlink{classMezzanine_1_1Serializer_aa178dfa519a2e73e84c0a2f35b2b8b5f}{Serializer\-::\-Serialize\-All()} uses \hyperlink{classMezzanine_1_1Serializer_addec7bf46f6d1b149eaf3e449c5d8501}{Serializer\-::\-Proto\-Serialize\-All()} to send all of the available Targets in Serialized down a stream. \par
+ \par
+ The logic behind a \hyperlink{classMezzanine_1_1DeSerializer}{De\-Serializer} is similar to a \hyperlink{classMezzanine_1_1Serializer}{Serializer}. The same types of methods, even similar implementations if the function is implemented. Like the Proto\-De\-Serialize() individual De\-Serializables implement, the functions on a \hyperlink{classMezzanine_1_1DeSerializer}{De\-Serializer} will be passed the nodes that would correspond to the those created by their counterparts on the \hyperlink{classMezzanine_1_1Serializer}{Serializer}. Here is the contents of a Deserializer\-: 
 \begin{DoxyCode}
- template <class Serializable> class Serializer
- {
-     virtual void Serializer::ProtoSerializeAll(xml::Node& CurrentRoot) const = 0
-      ;
-     virtual std::ostream& Serializer::SerializeAll(std::ostream& Stream) const;
-     virtual void Serializer::ProtoSerialize(const Serializable& Target, xml::Nod
-      e& CurrentRoot) = 0;
-     virtual std::ostream& Serializer::Serialize(std::ostream& Stream, const Seri
-      alizable& Target)
- };
+\textcolor{keyword}{template} <\textcolor{keyword}{class} DeSerializable> \textcolor{keyword}{class }DeSerializer
+\{
+    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \hyperlink{classMezzanine_1_1DeSerializer_a59b92952b1465392178d6db736118c26}{DeSerializer::ProtoDeSerializeAll}
+      (\textcolor{keyword}{const} XML::Node& OneNode) = 0;
+    \textcolor{keyword}{virtual} std::istream& \hyperlink{classMezzanine_1_1DeSerializer_ab2765b0fe8f803344c6965df50333073}{DeSerializer::DeSerializeAll}
+      (std::istream& Stream)
+    \textcolor{keyword}{virtual} DeSerializable* \hyperlink{classMezzanine_1_1DeSerializer_af1a7d10744ae974c985ad762e7dd55bd}{DeSerializer::ProtoDeSerialize}
+      (\textcolor{keyword}{const} XML::Node& OneNode) = 0;
+    \textcolor{keyword}{virtual} std::istream& \hyperlink{classMezzanine_1_1DeSerializer_aaf31c38d936ec89323c3cb9196a5a97f}{DeSerializer::DeSerialize}(
+      std::istream& Stream)
+    \textcolor{keyword}{virtual} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1DeSerializer_a99e25b2dab4cde22af1c77fa31665bae}{ContainerName}() \textcolor{keyword}{const} = 0;
+\};
 \end{DoxyCode}
- \hyperlink{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}{Serializer::ProtoSerialize()} when implement should take the required steps to attach a Serialized Node to the Passed \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} that represent the Serialization target. It is expected to get the extra information that the target cannot provide from somewhere else. Ideally the the \hyperlink{classMezzanine_1_1Serializer}{Serializer} can be, or be associated with, a manager or container of some kind. There is not default implementation of this. \par
+ The function Container\-Name() should be used when creating and verifying the xml element that is parent to the items De\-Serialized by Proto\-De\-Serialize\-All(). The Default implmentation of De\-Serialize\-All() will use Container\-Name to verify it has extracted the correct Node. \par
  \par
- \hyperlink{classMezzanine_1_1Serializer_af71f7716c36ba0a583ab1e29e08cac6d}{Serializer::Serialize()} Goes one step further than \hyperlink{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}{Serializer::ProtoSerialize()} and also sends it down a stream. The default implements use \hyperlink{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}{Serializer::ProtoSerialize()}. \par
- \par
- \hyperlink{classMezzanine_1_1Serializer_a310e3fb563ccc12528ea9b8c25fcd7a8}{Serializer::ProtoSerializeAll()} performs a similar role to \hyperlink{classMezzanine_1_1Serializer_af756e6eba414a1dca624d452abf4bf63}{Serializer::ProtoSerialize()}, but again, it goes one step further. Rather than accept a single Target to serialize it is expected that the \hyperlink{classMezzanine_1_1Serializer}{Serializer} go to the source of the Targets and serialize all of them that are available. All of the target should be contained in one Node attached to the Node the function accepts. This is not implemented by default, the logic is too specific to the items to be serialized. \par
- \par
- \hyperlink{classMezzanine_1_1Serializer_aa178dfa519a2e73e84c0a2f35b2b8b5f}{Serializer::SerializeAll()} uses \hyperlink{classMezzanine_1_1Serializer_a310e3fb563ccc12528ea9b8c25fcd7a8}{Serializer::ProtoSerializeAll()} to send all of the available Targets in Serialized down a stream. \par
- \par
- The logic behind a \hyperlink{classMezzanine_1_1DeSerializer}{DeSerializer} is similar to a \hyperlink{classMezzanine_1_1Serializer}{Serializer}. The same types of methods, even similar implementations if the function is implemented. Like the ProtoDeSerialize() individual DeSerializables implement, the functions on a \hyperlink{classMezzanine_1_1DeSerializer}{DeSerializer} will be passed the nodes that would correspond to the those created by their counterparts on the \hyperlink{classMezzanine_1_1Serializer}{Serializer}. Here is the contents of a Deserializer: 
+ There is no technical reason why a class cannot be both a serializer and a deserializer, or even multiple kinds of Serializers or De\-Serializers. To keep things simple the Managers provided by the \hyperlink{namespaceMezzanine}{Mezzanine} engine will store a pointer to the appropriate \hyperlink{classMezzanine_1_1Serializer}{Serializer} when one is required. 
+
+Sometimes yu will be forced to work with a system that produces xml that is not structured in a similar way to this system. Sometimes it may be too costly or not possible to modify the code to integrate it. For these the following function exists\-: 
 \begin{DoxyCode}
- template <class DeSerializable> class DeSerializer
- {
-     virtual void DeSerializer::ProtoDeSerializeAll(const xml::Node& OneNode) = 0
-      ;
-     virtual std::istream& DeSerializer::DeSerializeAll(std::istream& Stream)
-     virtual DeSerializable* DeSerializer::ProtoDeSerialize(const xml::Node& OneN
-      ode) = 0;
-     virtual std::istream& DeSerializer::DeSerialize(std::istream& Stream)
-     virtual String ContainerName() const = 0;
- };
+\textcolor{keyword}{template} <\textcolor{keyword}{class} T> \textcolor{keywordtype}{void} \hyperlink{namespaceMezzanine_a519df380398999cb532245118b9cb6a2}{SloppyProtoSerialize}(\textcolor{keyword}{const} T& 
+      Converted, XML::Node& CurrentRoot)
 \end{DoxyCode}
- The function ContainerName() should be used when creating and verifying the xml element that is parent to the items DeSerialized by ProtoDeSerializeAll(). The Default implmentation of DeSerializeAll() will use ContainerName to verify it has extracted the correct Node. \par
- \par
- There is no technical reason why a class cannot be both a serializer and a deserializer, or even multiple kinds of Serializers or DeSerializers. To keep things simple the Managers provided by the \hyperlink{namespaceMezzanine}{Mezzanine} engine will store a pointer to the appropriate \hyperlink{classMezzanine_1_1Serializer}{Serializer} when one is required. \hypertarget{Serialization_serializationlegacy}{}\paragraph{Integrating with External XML Providers}\label{Serialization_serializationlegacy}
-Sometimes yu will be forced to work with a system that produces xml that is not structured in a similar way to this system. Sometimes it may be too costly or not possible to modify the code to integrate it. For these the following function exists: 
-\begin{DoxyCode}
- template <class T> void SloppyProtoSerialize(const T& Converted, xml::Node& Curr
-      entRoot)
-\end{DoxyCode}
- This function will make a call on the the stream insertion operator of the class passed in. If one doesn't exist it is easy to add one in your code without chaning the original source. If one does exist than you should probably copy/paste the whole function and re-\/implement it calling the functions that emit the XML string or stream. If you want to implement a stream insertion operator, the function prototype should be similar to the stream insertion operator in the \hyperlink{Serialization_serializationoperators}{Serialization Operators} section. \hypertarget{Serialization_serializationoperators}{}\subsubsection{Serialization Operators}\label{Serialization_serializationoperators}
+ This function will make a call on the the stream insertion operator of the class passed in. If one doesn't exist it is easy to add one in your code without chaning the original source. If one does exist than you should probably copy/paste the whole function and re-\/implement it calling the functions that emit the X\-M\-L string or stream. If you want to implement a stream insertion operator, the function prototype should be similar to the stream insertion operator in the \hyperlink{Serialization_serializationoperators}{Serialization Operators} section. 
+
 The stream insertion ($<$$<$) and stream extraction ($>$$>$) operators can be used for serializing and deserializing most items in the \hyperlink{namespaceMezzanine}{Mezzanine} engine.
 
-Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be made into a template. That doesn't mean that they are difficult to implemt. Here is a typical implemenation of stream insertion operators for XML serialization: 
+Unfortunately due to conflict with the stream insertion operators provided with the iostreams library these couldn't be made into a template. That doesn't mean that they are difficult to implement. Here is a typical implemenation of stream insertion operators for X\-M\-L serialization\-: 
 \begin{DoxyCode}
- #ifdef MEZZXML
+std::ostream& operator << (std::ostream& stream, \textcolor{keyword}{const} \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine::ActorRigid}
+      & ActorToSerialize)
+\{
+    \hyperlink{namespaceMezzanine_a9015c5e668e14b857a27888c56934148}{Serialize}(stream, ActorToSerialize);
+    \textcolor{keywordflow}{return} stream;
+\}
 
- std::ostream& operator << (std::ostream& stream, const Mezzanine::ActorRigid& Ac
-      torToSerialize)
- {
-     Serialize(stream, ActorToSerialize);
-     return stream;
- }
+std::istream& operator >> (std::istream& stream, \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine::ActorRigid}
+      & x)
+    \{ \textcolor{keywordflow}{return} \hyperlink{namespaceMezzanine_ad8989ea81ccd1ad6d59a11921f0239a4}{DeSerialize}(stream, x); \}
 
- std::istream& operator >> (std::istream& stream, Mezzanine::ActorRigid& x)
-     { return DeSerialize(stream, x); }
-
- void operator >> (const Mezzanine::xml::Node& OneNode, Mezzanine::ActorRigid& x)
-      
-     { x.ProtoDeSerialize(OneNode); }
-
- #endif  // \Mezzxml
+\textcolor{keywordtype}{void} operator >> (\textcolor{keyword}{const} Mezzanine::XML::Node& OneNode, \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine::ActorRigid}
+      & x)
+    \{ x.\hyperlink{classMezzanine_1_1ActorRigid_abec93275a1d839ade34a142b090aea31}{ProtoDeSerialize}(OneNode); \}
 \end{DoxyCode}
- You will want to implement these functions with the appropriate type. The type \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine::ActorRigid} is used purely as example Though this is actual working code and was in the engine at one point. The \char`\"{}\#ifdef MEZZXML\char`\"{} Tells the compiler to skip this chunk of code if MEZZXML is not enable. Since this is a configuration option of the engine you may wish for you code to be aware of it. More sophisticate handling of this is possible, for example The \hyperlink{classMezzanine_1_1Vector3}{Mezzanine::Vector3} emits a string in the form of \mbox{[}X,Y,Z\mbox{]}, if Mezzxml is not enabled. \par
+ You will want to implement these functions with the appropriate type. The type \hyperlink{classMezzanine_1_1ActorRigid}{Mezzanine\-::\-Actor\-Rigid} is used purely as example Though this is actual working code and was in the engine at one point, the current code is more sophiscticated \par
  \par
- The function operator$<$$<$ simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize function listed in the \hyperlink{Serialization_serializationmaking}{Make a Serializable or a DeSerializable} section. \par
+ The function operator$<$$<$ simply calls Serialize and returns the stream, so it has all the pre and cost conditions of the Serialize function listed in the \hyperlink{serialization.h_serializationmaking}{Make a Serializable or a De\-Serializable} section. \par
  \par
- The stream extraction operators are a little bit more interesting. The operator$>$$>$(istream,YourType), by virtue of calling Deserialize will wind up taking two passes over the XML. One looking for the ending tag that matches the first (it gets all the children of that tag too) and one performing the actual parsing. The operator$>$$>$(istream,YourType) will work only with completely parsed objects in memory. With the combination of these two all the heavy lifting of parsing is done up front, and the rest of the deserialization is just a bunch of pointer and string manipulation. Another possibility with your stream extraction operator, if you new that it had exactly one parent xml node ,you create without that first pass for improved performance. \hypertarget{Serialization_serializationmisc}{}\subsubsection{Other little Things}\label{Serialization_serializationmisc}
-To simplify and standardize errors thrown, the following functions exist: 
+ The stream extraction operators are a little bit more interesting. The operator$>$$>$(istream,\-Your\-Type), by virtue of calling Deserialize will wind up taking two passes over the X\-M\-L. One looking for the ending tag that matches the first (it gets all the children of that tag too) and one performing the actual parsing. The operator$>$$>$(istream,\-Your\-Type) will work only with completely parsed objects in memory. With the combination of these two all the heavy lifting of parsing is done up front, and the rest of the deserialization is just a bunch of pointer and string manipulation. Another possibility with your stream extraction operator, if you new that it had exactly one parent xml node ,you create without that first pass for improved performance. 
+
+To simplify and standardize errors thrown, the following functions exist\-: 
 \begin{DoxyCode}
- void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD =
-       true);
- void DeSerializeError(const String& FailedTo, const String& ClassName, bool SOrD
-       = false);
+\textcolor{keywordtype}{void} \hyperlink{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}{SerializeError}(\textcolor{keyword}{const} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}& FailedTo, \textcolor{keyword}{const} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}
+      & ClassName, \textcolor{keywordtype}{bool} SOrD = \textcolor{keyword}{true});
+\textcolor{keywordtype}{void} \hyperlink{namespaceMezzanine_aec75a8a3369287cb02f331c62b32df73}{DeSerializeError}(\textcolor{keyword}{const} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String}& FailedTo, \textcolor{keyword}{const} \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{
+      String}& ClassName, \textcolor{keywordtype}{bool} SOrD = \textcolor{keyword}{false});
 \end{DoxyCode}
- Both of these functions throw a \hyperlink{classMezzanine_1_1Exception}{Mezzanine::Exception} with the descriptive text of \char`\"{}Could not \{FailedTo\} during \{ClassName\} \mbox{[}De\mbox{]}Serialization.\char`\"{} If SOrD (Serialize Or Deserialize) is true the \char`\"{}De\char`\"{} is not printed. 
+ Both of these functions throw a \hyperlink{classMezzanine_1_1Exception}{Mezzanine\-::\-Exception} with the descriptive text of \char`\"{}\-Could not \{\-Failed\-To\} during \{\-Class\-Name\} \mbox{[}\-De\mbox{]}\-Serialization.\char`\"{} If S\-Or\-D (Serialize Or Deserialize) is true the \char`\"{}\-De\char`\"{} is not printed. 

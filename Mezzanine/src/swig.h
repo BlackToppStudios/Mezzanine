@@ -75,7 +75,11 @@
     %include std_string.i
     %include std_vector.i
 
+    #ifdef SWIG_UNSAFE
     %module Mezzanine
+    #else
+    %module MezzanineSafe
+    #endif
 
     #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
     #define SWIG_INFO_ENDCLASS          %warn "991: Completing parsing of class."

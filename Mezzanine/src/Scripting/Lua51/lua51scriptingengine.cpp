@@ -58,6 +58,7 @@ extern "C"
     #include "lauxlib.h"        // Extra Lua Goodies like lua_open()
 
     int luaopen_Mezzanine(lua_State* L);
+    int luaopen_MezzanineSafe(lua_State* L);
 }
 
 #include <iostream>
@@ -191,7 +192,7 @@ namespace Mezzanine
             void Lua51ScriptingEngine::OpenMezzanineLibrary()
                 { luaopen_Mezzanine(State); }
             void Lua51ScriptingEngine::OpenMezzanineSafeLibrary()
-                { }
+                { luaopen_MezzanineSafe(State); }
 
 
             ///////////////////////////////////////////////////////////////////////////////////////

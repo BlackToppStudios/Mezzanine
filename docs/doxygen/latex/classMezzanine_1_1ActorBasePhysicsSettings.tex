@@ -1,6 +1,5 @@
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings}{
-\subsection{Mezzanine::ActorBasePhysicsSettings Class Reference}
-\label{classMezzanine_1_1ActorBasePhysicsSettings}\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings}{\subsection{Mezzanine\-:\-:Actor\-Base\-Physics\-Settings Class Reference}
+\label{classMezzanine_1_1ActorBasePhysicsSettings}\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
 }
 
 
@@ -9,65 +8,64 @@ This is a base helper class for configuring physics settings of an actor.
 
 
 
-{\ttfamily \#include $<$actorphysicssettings.h$>$}
+{\ttfamily \#include $<$actorphysicssettings.\-h$>$}
 
-Inheritance diagram for Mezzanine::ActorBasePhysicsSettings:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=4.000000cm]{classMezzanine_1_1ActorBasePhysicsSettings}
-\end{center}
-\end{figure}
+
+
+Inheritance diagram for Mezzanine\-:\-:Actor\-Base\-Physics\-Settings\-:
+
+
+Collaboration diagram for Mezzanine\-:\-:Actor\-Base\-Physics\-Settings\-:
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3f8d93a77d1d9a61314ef350a1c3394a}{ActorBasePhysicsSettings} (\hyperlink{classMezzanine_1_1ActorBase}{ActorBase} $\ast$Actor, btCollisionObject $\ast$PhysicsObject)
-\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{
-virtual \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{$\sim$ActorBasePhysicsSettings} ()}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}
+\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a88ee3f05285a61e2d9c96170b6110460}{Actor\-Base\-Physics\-Settings} (\hyperlink{classMezzanine_1_1ActorBase}{Actor\-Base} $\ast$Actor, bt\-Collision\-Object $\ast$Physics\-Object)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{virtual \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}{$\sim$\-Actor\-Base\-Physics\-Settings} ()}\label{classMezzanine_1_1ActorBasePhysicsSettings_a6273131ed9e51182abde28d5af4ded83}
 
-\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}{GetBasePointer} ()
-\begin{DoxyCompactList}\small\item\em Get a pointer to this class of type \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{GetCCDMotionThreshold} () const 
-\begin{DoxyCompactList}\small\item\em Gets the amount of motion needed to enable CCD for this object. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{GetCCDSphereRadius} () const 
-\begin{DoxyCompactList}\small\item\em Gets the radius of the embedded sphere used for CCD. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a8acd986f63a0c58ad6df9e4d3e291067}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
-\begin{DoxyCompactList}\small\item\em Take the data stored in an XML and overwrite this instance of this object with it. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ad3c4f8ac2df1c14f9cd498e1a60a34b2}{ProtoSerialize} (\hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&CurrentRoot) const 
-\begin{DoxyCompactList}\small\item\em Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{SetCCDParams} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&MotionThreshold, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&SweptSphereRadius=0)
-\begin{DoxyCompactList}\small\item\em Sets the parameters used for Continuous \hyperlink{classMezzanine_1_1Collision}{Collision} Detection. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{SetKinematic} ()
-\begin{DoxyCompactList}\small\item\em Sets the state of the object to Kinematic. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{SetStatic} ()
-\begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Class destructor. \end{DoxyCompactList}\item 
+\hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{Actor\-Base\-Physics\-Settings} $\ast$ \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}{Get\-Base\-Pointer} ()
+\begin{DoxyCompactList}\small\item\em Get a pointer to this class of type \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{Actor\-Base\-Physics\-Settings}. \end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{Get\-C\-C\-D\-Motion\-Threshold} () const 
+\begin{DoxyCompactList}\small\item\em Gets the amount of motion needed to enable C\-C\-D for this object. \end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{Get\-C\-C\-D\-Sphere\-Radius} () const 
+\begin{DoxyCompactList}\small\item\em Gets the radius of the embedded sphere used for C\-C\-D. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a6410a001b1d8a932ea87f66ed50cdc31}{Proto\-De\-Serialize} (const X\-M\-L\-::\-Node \&One\-Node)
+\begin{DoxyCompactList}\small\item\em Take the data stored in an X\-M\-L and overwrite this instance of this object with it. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a56059cc085ceab1167ce96f1b63b0e4d}{Proto\-Serialize} (X\-M\-L\-::\-Node \&Current\-Root) const 
+\begin{DoxyCompactList}\small\item\em Convert this class to an X\-M\-L\-::\-Node ready for serialization. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{Set\-C\-C\-D\-Params} (const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Motion\-Threshold, const \hyperlink{namespaceMezzanine_a726731b1a7df72bf3583e4a97282c6f6}{Real} \&Swept\-Sphere\-Radius=0)
+\begin{DoxyCompactList}\small\item\em Sets the parameters used for Continuous Collision Detection. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{Set\-Kinematic} ()
+\begin{DoxyCompactList}\small\item\em Sets the state of the object to Kinematic. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{Set\-Static} ()
+\begin{DoxyCompactList}\small\item\em Sets the state of the object to Static. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}{SerializableName} ()
-\begin{DoxyCompactList}\small\item\em Get the name of the the XML tag this class will leave behind as its instances are serialized. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+static \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}{Serializable\-Name} ()
+\begin{DoxyCompactList}\small\item\em Get the name of the the X\-M\-L tag this class will leave behind as its instances are serialized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Additional Inherited Members}
 
 
 \subsubsection{Detailed Description}
-This is a base helper class for configuring physics settings of an actor. This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see ActorGraphicsSettings. 
+This is a base helper class for configuring physics settings of an actor. 
 
-Definition at line 109 of file actorphysicssettings.h.
+This class contains functions for the configuring of physics specific settings of an actor. This class can only configure the actors physics. For configuring actor graphics, see Actor\-Graphics\-Settings. 
+
+Definition at line 110 of file actorphysicssettings.\-h.
 
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3f8d93a77d1d9a61314ef350a1c3394a}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!ActorBasePhysicsSettings@{ActorBasePhysicsSettings}}
-\index{ActorBasePhysicsSettings@{ActorBasePhysicsSettings}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{ActorBasePhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky Mezzanine Mezzanine src actorphysicssettings cpp home sqeaky Mezzanine Mezzanine src actorphysicssettings cpp home sqeaky Mezzanine Mezzanine src actorphysicssettings cpp Mezzanine::ActorBasePhysicsSettings::ActorBasePhysicsSettings (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a88ee3f05285a61e2d9c96170b6110460}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Actor\-Base\-Physics\-Settings@{Actor\-Base\-Physics\-Settings}}
+\index{Actor\-Base\-Physics\-Settings@{Actor\-Base\-Physics\-Settings}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Actor\-Base\-Physics\-Settings}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Actor\-Base\-Physics\-Settings (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{Actor, }
-\item[{btCollisionObject $\ast$}]{PhysicsObject}
+\item[{{\bf Actor\-Base} $\ast$}]{Actor, }
+\item[{bt\-Collision\-Object $\ast$}]{Physics\-Object}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a3f8d93a77d1d9a61314ef350a1c3394a}
+)}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a88ee3f05285a61e2d9c96170b6110460}
 
 
 Standard Constructor. 
@@ -76,198 +74,182 @@ Standard Constructor.
 \begin{DoxyParams}{Parameters}
 {\em Actor} & The actor this settings class configures. \\
 \hline
-{\em PhysicsObject} & The physics object belonging to the actor this class configures. \\
+{\em Physics\-Object} & The physics object belonging to the actor this class configures. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 67 of file actorphysicssettings.cpp.
+Definition at line 61 of file actorphysicssettings.\-cpp.
 
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetBasePointer@{GetBasePointer}}
-\index{GetBasePointer@{GetBasePointer}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{GetBasePointer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBasePhysicsSettings} $\ast$ Mezzanine::ActorBasePhysicsSettings::GetBasePointer (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Get\-Base\-Pointer@{Get\-Base\-Pointer}}
+\index{Get\-Base\-Pointer@{Get\-Base\-Pointer}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Get\-Base\-Pointer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Actor\-Base\-Physics\-Settings} $\ast$ Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Get\-Base\-Pointer (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}
+)}}\label{classMezzanine_1_1ActorBasePhysicsSettings_ae43e2938e30b69ac11627b9648c43415}
 
 
-Get a pointer to this class of type \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings}. 
+Get a pointer to this class of type \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{Actor\-Base\-Physics\-Settings}. 
 
 \begin{DoxyReturn}{Returns}
-A pointer \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{ActorBasePhysicsSettings} 
+A pointer \hyperlink{classMezzanine_1_1ActorBasePhysicsSettings}{Actor\-Base\-Physics\-Settings} 
 \end{DoxyReturn}
 
 
-Definition at line 123 of file actorphysicssettings.cpp.
+Definition at line 117 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCCDMotionThreshold@{GetCCDMotionThreshold}}
-\index{GetCCDMotionThreshold@{GetCCDMotionThreshold}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{GetCCDMotionThreshold}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetCCDMotionThreshold (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Get\-C\-C\-D\-Motion\-Threshold@{Get\-C\-C\-D\-Motion\-Threshold}}
+\index{Get\-C\-C\-D\-Motion\-Threshold@{Get\-C\-C\-D\-Motion\-Threshold}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Get\-C\-C\-D\-Motion\-Threshold}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Get\-C\-C\-D\-Motion\-Threshold (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a804941eb77d960dd3c73d331c47c891c}
 
 
-Gets the amount of motion needed to enable CCD for this object. 
+Gets the amount of motion needed to enable C\-C\-D for this object. 
 
 \begin{DoxyReturn}{Returns}
-Returns a Real representing the required amount of motion to enable CCD, or zero if CCD is disabled. 
+Returns a Real representing the required amount of motion to enable C\-C\-D, or zero if C\-C\-D is disabled. 
 \end{DoxyReturn}
 
 
-Definition at line 103 of file actorphysicssettings.cpp.
+Definition at line 97 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!GetCCDSphereRadius@{GetCCDSphereRadius}}
-\index{GetCCDSphereRadius@{GetCCDSphereRadius}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{GetCCDSphereRadius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine::ActorBasePhysicsSettings::GetCCDSphereRadius (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Get\-C\-C\-D\-Sphere\-Radius@{Get\-C\-C\-D\-Sphere\-Radius}}
+\index{Get\-C\-C\-D\-Sphere\-Radius@{Get\-C\-C\-D\-Sphere\-Radius}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Get\-C\-C\-D\-Sphere\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Get\-C\-C\-D\-Sphere\-Radius (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a3729e8ee88bc2d8892d921016aa4a4c0}
 
 
-Gets the radius of the embedded sphere used for CCD. 
+Gets the radius of the embedded sphere used for C\-C\-D. 
 
 \begin{DoxyReturn}{Returns}
-Returns a Real representing the radius of the sphere embedded into the objects collision shape used for CCD. 
+Returns a Real representing the radius of the sphere embedded into the objects collision shape used for C\-C\-D. 
 \end{DoxyReturn}
 
 
-Definition at line 108 of file actorphysicssettings.cpp.
+Definition at line 102 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a8acd986f63a0c58ad6df9e4d3e291067}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!ProtoDeSerialize@{ProtoDeSerialize}}
-\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::ProtoDeSerialize (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a6410a001b1d8a932ea87f66ed50cdc31}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Proto\-De\-Serialize@{Proto\-De\-Serialize}}
+\index{Proto\-De\-Serialize@{Proto\-De\-Serialize}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Proto\-De\-Serialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Proto\-De\-Serialize (
 \begin{DoxyParamCaption}
-\item[{const {\bf xml::Node} \&}]{OneNode}
+\item[{const X\-M\-L\-::\-Node \&}]{One\-Node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a8acd986f63a0c58ad6df9e4d3e291067}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a6410a001b1d8a932ea87f66ed50cdc31}
 
 
-Take the data stored in an XML and overwrite this instance of this object with it. 
+Take the data stored in an X\-M\-L and overwrite this instance of this object with it. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em OneNode} & and \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} containing the data. \\
+{\em One\-Node} & and X\-M\-L\-::\-Node containing the data. \\
 \hline
 \end{DoxyParams}
 
 
-Reimplemented from \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aef475cdfe28b1f2ee121b64d32d6f0a6}{Mezzanine::NonTriggerPhysicsSettings}.
+Reimplemented from \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_ae169e23f1ec17866c8bc8ec370964d64}{Mezzanine\-::\-Non\-Trigger\-Physics\-Settings}.
 
 
 
-Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a3858fe916114998aee33005fd2a968e7}{Mezzanine::ActorRigidPhysicsSettings}.
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a94dc33b8a4e969908a6ff97106b98d58}{Mezzanine\-::\-Actor\-Rigid\-Physics\-Settings}.
 
 
 
-Definition at line 153 of file actorphysicssettings.cpp.
+Definition at line 146 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ad3c4f8ac2df1c14f9cd498e1a60a34b2}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!ProtoSerialize@{ProtoSerialize}}
-\index{ProtoSerialize@{ProtoSerialize}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{ProtoSerialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::ProtoSerialize (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a56059cc085ceab1167ce96f1b63b0e4d}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Proto\-Serialize@{Proto\-Serialize}}
+\index{Proto\-Serialize@{Proto\-Serialize}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Proto\-Serialize}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Proto\-Serialize (
 \begin{DoxyParamCaption}
-\item[{{\bf xml::Node} \&}]{CurrentRoot}
+\item[{X\-M\-L\-::\-Node \&}]{Current\-Root}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_ad3c4f8ac2df1c14f9cd498e1a60a34b2}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a56059cc085ceab1167ce96f1b63b0e4d}
 
 
-Convert this class to an \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} ready for serialization. 
+Convert this class to an X\-M\-L\-::\-Node ready for serialization. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em CurrentRoot} & The point in the XML hierarchy that all this quaternion should be appended to. \\
+{\em Current\-Root} & The point in the X\-M\-L hierarchy that all this quaternion should be appended to. \\
 \hline
 \end{DoxyParams}
 
 
-Reimplemented from \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a7a09c93f7d14a7aeec7ae261bd4d4ea5}{Mezzanine::NonTriggerPhysicsSettings}.
+Reimplemented from \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_a27bb52736f232c423ae1c0e17eccef96}{Mezzanine\-::\-Non\-Trigger\-Physics\-Settings}.
 
 
 
-Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_ab3977a3b5939b9e68657b84b5a80a24d}{Mezzanine::ActorRigidPhysicsSettings}.
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a6a92bc5cc93a371cf9378aa2d68c2615}{Mezzanine\-::\-Actor\-Rigid\-Physics\-Settings}.
 
 
 
-Definition at line 128 of file actorphysicssettings.cpp.
+Definition at line 121 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SerializableName@{SerializableName}}
-\index{SerializableName@{SerializableName}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{SerializableName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ActorBasePhysicsSettings::SerializableName (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Serializable\-Name@{Serializable\-Name}}
+\index{Serializable\-Name@{Serializable\-Name}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Serializable\-Name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Serializable\-Name (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_aa386f1bf24f1cc09fceba5d337c3ab29}
 
 
-Get the name of the the XML tag this class will leave behind as its instances are serialized. 
+Get the name of the the X\-M\-L tag this class will leave behind as its instances are serialized. 
 
 \begin{DoxyReturn}{Returns}
-A string containing \char`\"{}ActorBasePhysicsSettings\char`\"{} 
+A string containing \char`\"{}\-Actor\-Base\-Physics\-Settings\char`\"{} 
 \end{DoxyReturn}
 
 
-Reimplemented from \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aaa6448dd1e05f3ca9ac673e924ef26af}{Mezzanine::NonTriggerPhysicsSettings}.
+Reimplemented from \hyperlink{classMezzanine_1_1NonTriggerPhysicsSettings_aaa6448dd1e05f3ca9ac673e924ef26af}{Mezzanine\-::\-Non\-Trigger\-Physics\-Settings}.
 
 
 
-Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a8dab39e71eb26175a3cb4bbb3966c9b1}{Mezzanine::ActorRigidPhysicsSettings}.
+Reimplemented in \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a8dab39e71eb26175a3cb4bbb3966c9b1}{Mezzanine\-::\-Actor\-Rigid\-Physics\-Settings}.
 
 
 
-Definition at line 170 of file actorphysicssettings.cpp.
+Definition at line 163 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetCCDParams@{SetCCDParams}}
-\index{SetCCDParams@{SetCCDParams}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{SetCCDParams}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetCCDParams (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Set\-C\-C\-D\-Params@{Set\-C\-C\-D\-Params}}
+\index{Set\-C\-C\-D\-Params@{Set\-C\-C\-D\-Params}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Set\-C\-C\-D\-Params}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Set\-C\-C\-D\-Params (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{MotionThreshold, }
-\item[{const {\bf Real} \&}]{SweptSphereRadius = {\ttfamily 0}}
+\item[{const {\bf Real} \&}]{Motion\-Threshold, }
+\item[{const {\bf Real} \&}]{Swept\-Sphere\-Radius = {\ttfamily 0}}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a702a20cfb7d87dbc2a7d44ba9260ead2}
 
 
-Sets the parameters used for Continuous \hyperlink{classMezzanine_1_1Collision}{Collision} Detection. 
+Sets the parameters used for Continuous Collision Detection. 
 
-If a Swept Sphere Radius is not provided, this function will attempt to find one for you using the currently set \hyperlink{classMezzanine_1_1Collision}{Collision} Shape. If this fails for any reason or a shape is not set, it will set the radius to 1. 
+If a Swept Sphere Radius is not provided, this function will attempt to find one for you using the currently set Collision Shape. If this fails for any reason or a shape is not set, it will set the radius to 1. 
 \begin{DoxyParams}{Parameters}
-{\em MotionThreshold} & The speed at which the object has to be moving in order to enable CCD for the object. If set to zero CCD will be disabled. \\
+{\em Motion\-Threshold} & The speed at which the object has to be moving in order to enable C\-C\-D for the object. If set to zero C\-C\-D will be disabled. \\
 \hline
-{\em SweptSphereRadius} & The radius of the sphere to be used for CCD sweep tests. Essentially this should be the largest radius in which a sphere can fully fit inside your object. \\
+{\em Swept\-Sphere\-Radius} & The radius of the sphere to be used for C\-C\-D sweep tests. Essentially this should be the largest radius in which a sphere can fully fit inside your object. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 76 of file actorphysicssettings.cpp.
+Definition at line 70 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetKinematic@{SetKinematic}}
-\index{SetKinematic@{SetKinematic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{SetKinematic}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetKinematic (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Set\-Kinematic@{Set\-Kinematic}}
+\index{Set\-Kinematic@{Set\-Kinematic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Set\-Kinematic}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Set\-Kinematic (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_a3b01243f038e30eb39b04f8e38fb8a14}
 
 
 Sets the state of the object to Kinematic. 
@@ -275,17 +257,15 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 113 of file actorphysicssettings.cpp.
+Definition at line 107 of file actorphysicssettings.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{
-\index{Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}!SetStatic@{SetStatic}}
-\index{SetStatic@{SetStatic}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine::ActorBasePhysicsSettings}}
-\paragraph[{SetStatic}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine::ActorBasePhysicsSettings::SetStatic (
+\hypertarget{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}{\index{Mezzanine\-::\-Actor\-Base\-Physics\-Settings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}!Set\-Static@{Set\-Static}}
+\index{Set\-Static@{Set\-Static}!Mezzanine::ActorBasePhysicsSettings@{Mezzanine\-::\-Actor\-Base\-Physics\-Settings}}
+\paragraph[{Set\-Static}]{\setlength{\rightskip}{0pt plus 5cm}void Mezzanine\-::\-Actor\-Base\-Physics\-Settings\-::\-Set\-Static (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorBasePhysicsSettings_ac72f39fa6bc9e2f050fdf90e42dd0deb}
 
 
 Sets the state of the object to Static. 
@@ -293,11 +273,11 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 118 of file actorphysicssettings.cpp.
+Definition at line 112 of file actorphysicssettings.\-cpp.
 
 
 
-The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-actorphysicssettings.h\item 
-actorphysicssettings.cpp\end{DoxyCompactItemize}
+actorphysicssettings.\-h\item 
+actorphysicssettings.\-cpp\end{DoxyCompactItemize}

@@ -1,139 +1,126 @@
-\hypertarget{classMezzanine_1_1ActorRigidDeSerializer}{
-\subsection{Mezzanine::ActorRigidDeSerializer Class Reference}
-\label{classMezzanine_1_1ActorRigidDeSerializer}\index{Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}}
+\hypertarget{classMezzanine_1_1ActorRigidDeSerializer}{\subsection{Mezzanine\-:\-:Actor\-Rigid\-De\-Serializer Class Reference}
+\label{classMezzanine_1_1ActorRigidDeSerializer}\index{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}}
 }
 
 
-This creates Rigid body actors and inserts them into a given \hyperlink{classMezzanine_1_1ActorManager}{ActorManager}.  
+This creates Rigid body actors and inserts them into a given \hyperlink{classMezzanine_1_1ActorManager}{Actor\-Manager}.  
 
 
 
 
-{\ttfamily \#include $<$actorserializer.h$>$}
+{\ttfamily \#include $<$actorserializer.\-h$>$}
 
-Inheritance diagram for Mezzanine::ActorRigidDeSerializer:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{classMezzanine_1_1ActorRigidDeSerializer}
-\end{center}
-\end{figure}
+
+
+Inheritance diagram for Mezzanine\-:\-:Actor\-Rigid\-De\-Serializer\-:
+
+
+Collaboration diagram for Mezzanine\-:\-:Actor\-Rigid\-De\-Serializer\-:
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a97354288510148767134246ac26d319b}{ActorRigidDeSerializer} (\hyperlink{classMezzanine_1_1ActorManager}{ActorManager} $\ast$DeSerializeTarget)
-\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a4f28a9c4679891e249f9f5e4381a3f93}{ContainerName} () const 
-\begin{DoxyCompactList}\small\item\em Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml text). \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_aff6fdcd7d7fdbc52e493ba2c8229b2e1}{ProtoDeSerialize} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} \&OneNode)
-\begin{DoxyCompactList}\small\item\em Accepts one \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} with an actor in it and create a new \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a97354288510148767134246ac26d319b}{Actor\-Rigid\-De\-Serializer} (\hyperlink{classMezzanine_1_1ActorManager}{Actor\-Manager} $\ast$De\-Serialize\-Target)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{namespaceMezzanine_acf9fcc130e6ebf08e3d8491aebcf1c86}{String} \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a4f28a9c4679891e249f9f5e4381a3f93}{Container\-Name} () const 
+\begin{DoxyCompactList}\small\item\em Should indicate the Name of the node that Proto\-De\-Serialize\-All all accepts (when deserializing raw xml text). \end{DoxyCompactList}\item 
+virtual \hyperlink{classMezzanine_1_1ActorRigid}{Actor\-Rigid} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a43aa00f112ec13168a8369183099099f}{Proto\-De\-Serialize} (const X\-M\-L\-::\-Node \&One\-Node)
+\begin{DoxyCompactList}\small\item\em Accepts one X\-M\-L\-::\-Node with an actor in it and create a new \hyperlink{classMezzanine_1_1ActorRigid}{Actor\-Rigid}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a2721883c45e41b5a1b7992feb57750bc}{
-\hyperlink{classMezzanine_1_1ActorManager}{ActorManager} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a2721883c45e41b5a1b7992feb57750bc}{Target}}
-\label{classMezzanine_1_1ActorRigidDeSerializer_a2721883c45e41b5a1b7992feb57750bc}
+\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a2721883c45e41b5a1b7992feb57750bc}{\hyperlink{classMezzanine_1_1ActorManager}{Actor\-Manager} $\ast$ \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a2721883c45e41b5a1b7992feb57750bc}{Target}}\label{classMezzanine_1_1ActorRigidDeSerializer_a2721883c45e41b5a1b7992feb57750bc}
 
-\begin{DoxyCompactList}\small\item\em This should point to a specific Actor Manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This should point to a specific Actor Manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-This creates Rigid body actors and inserts them into a given \hyperlink{classMezzanine_1_1ActorManager}{ActorManager}. 
+This creates Rigid body actors and inserts them into a given \hyperlink{classMezzanine_1_1ActorManager}{Actor\-Manager}. 
 
-Definition at line 62 of file actorserializer.h.
+Definition at line 62 of file actorserializer.\-h.
 
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a97354288510148767134246ac26d319b}{
-\index{Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}!ActorRigidDeSerializer@{ActorRigidDeSerializer}}
-\index{ActorRigidDeSerializer@{ActorRigidDeSerializer}!Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}}
-\paragraph[{ActorRigidDeSerializer}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine::ActorRigidDeSerializer::ActorRigidDeSerializer (
+\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a97354288510148767134246ac26d319b}{\index{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}!Actor\-Rigid\-De\-Serializer@{Actor\-Rigid\-De\-Serializer}}
+\index{Actor\-Rigid\-De\-Serializer@{Actor\-Rigid\-De\-Serializer}!Mezzanine::ActorRigidDeSerializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}}
+\paragraph[{Actor\-Rigid\-De\-Serializer}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine\-::\-Actor\-Rigid\-De\-Serializer\-::\-Actor\-Rigid\-De\-Serializer (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorManager} $\ast$}]{DeSerializeTarget}
+\item[{{\bf Actor\-Manager} $\ast$}]{De\-Serialize\-Target}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}inline, explicit\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorRigidDeSerializer_a97354288510148767134246ac26d319b}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}}\label{classMezzanine_1_1ActorRigidDeSerializer_a97354288510148767134246ac26d319b}
 
 
 Constructor. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em DeSerializeTarget} & A pointer to the actor manager that will be populated with deserialized actors. \\
+{\em De\-Serialize\-Target} & A pointer to the actor manager that will be populated with deserialized actors. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 74 of file actorserializer.h.
+Definition at line 73 of file actorserializer.\-h.
 
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a4f28a9c4679891e249f9f5e4381a3f93}{
-\index{Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}!ContainerName@{ContainerName}}
-\index{ContainerName@{ContainerName}!Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}}
-\paragraph[{ContainerName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine::ActorRigidDeSerializer::ContainerName (
+\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a4f28a9c4679891e249f9f5e4381a3f93}{\index{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}!Container\-Name@{Container\-Name}}
+\index{Container\-Name@{Container\-Name}!Mezzanine::ActorRigidDeSerializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}}
+\paragraph[{Container\-Name}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} Mezzanine\-::\-Actor\-Rigid\-De\-Serializer\-::\-Container\-Name (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorRigidDeSerializer_a4f28a9c4679891e249f9f5e4381a3f93}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorRigidDeSerializer_a4f28a9c4679891e249f9f5e4381a3f93}
 
 
-Should indicate the Name of the node that ProtoDeSerializeAll all accepts (when deserializing raw xml text). 
+Should indicate the Name of the node that Proto\-De\-Serialize\-All all accepts (when deserializing raw xml text). 
 
 \begin{DoxyWarning}{Warning}
-If The \hyperlink{classMezzanine_1_1ActorManager}{ActorManager} Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth. 
+If The \hyperlink{classMezzanine_1_1ActorManager}{Actor\-Manager} Passed in at construction is null, this will do very little other than eat cpu and memory bandwidth. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
-A String containing \char`\"{}RigidActors\char`\"{}. 
+A String containing \char`\"{}\-Rigid\-Actors\char`\"{}. 
 \end{DoxyReturn}
 
 
-Implements \hyperlink{classMezzanine_1_1DeSerializer_a99e25b2dab4cde22af1c77fa31665bae}{Mezzanine::DeSerializer$<$ ActorRigid $>$}.
+Implements \hyperlink{classMezzanine_1_1DeSerializer_a99e25b2dab4cde22af1c77fa31665bae}{Mezzanine\-::\-De\-Serializer$<$ Actor\-Rigid $>$}.
 
 
 
-Definition at line 101 of file actorserializer.cpp.
+Definition at line 100 of file actorserializer.\-cpp.
 
-\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_aff6fdcd7d7fdbc52e493ba2c8229b2e1}{
-\index{Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}!ProtoDeSerialize@{ProtoDeSerialize}}
-\index{ProtoDeSerialize@{ProtoDeSerialize}!Mezzanine::ActorRigidDeSerializer@{Mezzanine::ActorRigidDeSerializer}}
-\paragraph[{ProtoDeSerialize}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky Mezzanine Mezzanine src actorserializer cpp {\bf ActorRigid} $\ast$ Mezzanine::ActorRigidDeSerializer::ProtoDeSerialize (
+\hypertarget{classMezzanine_1_1ActorRigidDeSerializer_a43aa00f112ec13168a8369183099099f}{\index{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}!Proto\-De\-Serialize@{Proto\-De\-Serialize}}
+\index{Proto\-De\-Serialize@{Proto\-De\-Serialize}!Mezzanine::ActorRigidDeSerializer@{Mezzanine\-::\-Actor\-Rigid\-De\-Serializer}}
+\paragraph[{Proto\-De\-Serialize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Actor\-Rigid} $\ast$ Mezzanine\-::\-Actor\-Rigid\-De\-Serializer\-::\-Proto\-De\-Serialize (
 \begin{DoxyParamCaption}
-\item[{const {\bf xml::Node} \&}]{OneNode}
+\item[{const X\-M\-L\-::\-Node \&}]{One\-Node}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{classMezzanine_1_1ActorRigidDeSerializer_aff6fdcd7d7fdbc52e493ba2c8229b2e1}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classMezzanine_1_1ActorRigidDeSerializer_a43aa00f112ec13168a8369183099099f}
 
 
-Accepts one \hyperlink{classMezzanine_1_1xml_1_1Node}{xml::Node} with an actor in it and create a new \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid}. 
+Accepts one X\-M\-L\-::\-Node with an actor in it and create a new \hyperlink{classMezzanine_1_1ActorRigid}{Actor\-Rigid}. 
 
-In addition to returning the created actor it's pointer is also added to the Target \hyperlink{classMezzanine_1_1ActorManager}{ActorManager} 
+In addition to returning the created actor it's pointer is also added to the Target \hyperlink{classMezzanine_1_1ActorManager}{Actor\-Manager} 
 \begin{DoxyParams}{Parameters}
-{\em OneNode} & The node that should have an \hyperlink{classMezzanine_1_1ActorRigid}{ActorRigid} in it \\
+{\em One\-Node} & The node that should have an \hyperlink{classMezzanine_1_1ActorRigid}{Actor\-Rigid} in it \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A pointer to the freshly created actor 
 \end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000006}{Todo}]T\-O\-D\-O\-: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default \end{DoxyRefDesc}
 
 
-\begin{Desc}
-\item[\hyperlink{todo__todo000003}{Todo}]TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default \end{Desc}
-
-
-
-
-Implements \hyperlink{classMezzanine_1_1DeSerializer_a646390cf8138c622c64aa83a93b10cce}{Mezzanine::DeSerializer$<$ ActorRigid $>$}.
+Implements \hyperlink{classMezzanine_1_1DeSerializer_af1a7d10744ae974c985ad762e7dd55bd}{Mezzanine\-::\-De\-Serializer$<$ Actor\-Rigid $>$}.
 
 
 
-Definition at line 48 of file actorserializer.cpp.
+Definition at line 47 of file actorserializer.\-cpp.
 
 
 
-The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{actorserializer_8h}{actorserializer.h}\item 
-actorserializer.cpp\end{DoxyCompactItemize}
+\hyperlink{actorserializer_8h}{actorserializer.\-h}\item 
+actorserializer.\-cpp\end{DoxyCompactItemize}

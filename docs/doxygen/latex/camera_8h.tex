@@ -1,73 +1,70 @@
-\hypertarget{camera_8h}{
-\subsection{camera.h File Reference}
-\label{camera_8h}\index{camera.h@{camera.h}}
+\hypertarget{camera_8h}{\subsection{camera.\-h File Reference}
+\label{camera_8h}\index{camera.\-h@{camera.\-h}}
 }
 
 
-Declaration of the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} class.  
+Declaration of the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} class.  
 
 
-{\ttfamily \#include \char`\"{}attachable.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}crossplatformexport.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}datatypes.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}quaternion.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}ray.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}vector3.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}worldnode.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}attachable.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}crossplatformexport.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}datatypes.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}quaternion.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ray.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}vector3.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}worldnode.\-h\char`\"{}}\\*
+Include dependency graph for camera.\-h\-:
+This graph shows which files directly or indirectly include this file\-:
 \subsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}
-\begin{DoxyCompactList}\small\item\em This is the camera class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+class \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera}
+\begin{DoxyCompactList}\small\item\em This is the camera class. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \hyperlink{namespaceMezzanine}{Mezzanine}
-
-
-\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
-
-\item 
+\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \end{DoxyCompactList}\item 
+namespace \hyperlink{namespaceMezzanine_1_1Graphics}{Mezzanine\-::\-Graphics}
+\begin{DoxyCompactList}\small\item\em This namespace is for all the classes belonging to the \hyperlink{namespaceMezzanine_1_1Graphics}{Graphics} Subsystem. \end{DoxyCompactList}\item 
 namespace \hyperlink{namespaceOgre}{Ogre}
 \end{DoxyCompactItemize}
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std::ostream \&MEZZ\_\-LIB \hyperlink{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}{operator$<$$<$} (std::ostream \&stream, const \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} \&Ev)
-\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to XML. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&MEZZ\_\-LIB \hyperlink{camera_8h_a0667d7be6ccbc8437d4969770e335080}{operator$>$$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} \&Ev)
-\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} from parsed xml. \item\end{DoxyCompactList}\item 
-std::istream \&MEZZ\_\-LIB \hyperlink{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}{operator$>$$>$} (std::istream \&stream, \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} \&Ev)
-\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+std\-::ostream \&\hyperlink{crossplatformexport_8h_a455f91aab9e6a1cf4286f5cdfa74c7bc}{M\-E\-Z\-Z\-\_\-\-L\-I\-B} \hyperlink{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}{operator$<$$<$} (std\-::ostream \&stream, const \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} \&Ev)
+\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} to X\-M\-L. \end{DoxyCompactList}\item 
+std\-::istream \&\hyperlink{crossplatformexport_8h_a455f91aab9e6a1cf4286f5cdfa74c7bc}{M\-E\-Z\-Z\-\_\-\-L\-I\-B} \hyperlink{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}{operator$>$$>$} (std\-::istream \&stream, \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} \&Ev)
+\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera}. \end{DoxyCompactList}\item 
+Mezzanine\-::\-X\-M\-L\-::\-Node \&\hyperlink{crossplatformexport_8h_a455f91aab9e6a1cf4286f5cdfa74c7bc}{M\-E\-Z\-Z\-\_\-\-L\-I\-B} \hyperlink{camera_8h_a99c795bd180f97817d79f9b8c5d09ab5}{operator$>$$>$} (const Mezzanine\-::\-X\-M\-L\-::\-Node \&One\-Node, \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} \&Ev)
+\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} from parsed xml. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-Declaration of the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} class. 
+Declaration of the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} class. 
 
-Definition in file \hyperlink{camera_8h_source}{camera.h}.
+Definition in file \hyperlink{camera_8h_source}{camera.\-h}.
 
 
 
 \subsubsection{Function Documentation}
-\hypertarget{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}{
-\index{camera.h@{camera.h}!operator$<$$<$@{operator$<$$<$}}
-\index{operator$<$$<$@{operator$<$$<$}!camera.h@{camera.h}}
-\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& MEZZ\_\-LIB operator$<$$<$ (
+\hypertarget{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}{\index{camera.\-h@{camera.\-h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!camera.h@{camera.\-h}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::ostream\& {\bf M\-E\-Z\-Z\-\_\-\-L\-I\-B} operator$<$$<$ (
 \begin{DoxyParamCaption}
-\item[{std::ostream \&}]{stream, }
-\item[{const {\bf Mezzanine::Camera} \&}]{Ev}
+\item[{std\-::ostream \&}]{stream, }
+\item[{const {\bf Mezzanine\-::\-Camera} \&}]{Ev}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}
+)}}\label{camera_8h_ab5f16fad6ef8f76b4d1e4aeba87368bb}
 
 
-Serializes the passed \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to XML. 
+Serializes the passed \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} to X\-M\-L. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em stream} & The ostream to send the xml to. \\
 \hline
-{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to be serialized \\
+{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} to be serialized \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -80,64 +77,29 @@ This does not s the pointer to the camera manager. When a camera manager is seri
 \end{DoxyWarning}
 
 
-Definition at line 288 of file camera.cpp.
+Definition at line 303 of file camera.\-cpp.
 
-\hypertarget{camera_8h_a0667d7be6ccbc8437d4969770e335080}{
-\index{camera.h@{camera.h}!operator$>$$>$@{operator$>$$>$}}
-\index{operator$>$$>$@{operator$>$$>$}!camera.h@{camera.h}}
-\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::xml::Node}\& MEZZ\_\-LIB operator$>$$>$ (
+\hypertarget{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}{\index{camera.\-h@{camera.\-h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!camera.h@{camera.\-h}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::istream\& {\bf M\-E\-Z\-Z\-\_\-\-L\-I\-B} operator$>$$>$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Mezzanine::xml::Node} \&}]{OneNode, }
-\item[{{\bf Mezzanine::Camera} \&}]{Ev}
+\item[{std\-::istream \&}]{stream, }
+\item[{{\bf Mezzanine\-::\-Camera} \&}]{Ev}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{camera_8h_a0667d7be6ccbc8437d4969770e335080}
+)}}\label{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}
 
 
-Set all values of a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} from parsed xml. 
+Deserialize a \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em OneNode} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \\
+{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera}. \\
 \hline
-{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to be reset. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-This returns thexml::Node that was passed in. 
-\end{DoxyReturn}
-\begin{DoxyWarning}{Warning}
-This does not attempt to de-\/serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera. 
-
-This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. 
-\end{DoxyWarning}
-
-
-Definition at line 315 of file camera.cpp.
-
-\hypertarget{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}{
-\index{camera.h@{camera.h}!operator$>$$>$@{operator$>$$>$}}
-\index{operator$>$$>$@{operator$>$$>$}!camera.h@{camera.h}}
-\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& MEZZ\_\-LIB operator$>$$>$ (
-\begin{DoxyParamCaption}
-\item[{std::istream \&}]{stream, }
-\item[{{\bf Mezzanine::Camera} \&}]{Ev}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{camera_8h_a9a703b3ee254d0b13243b73ccf8d6b7a}
-
-
-Deserialize a \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera}. \\
-\hline
-{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} to be deserialized. \\
+{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} to be deserialized. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} that was recreated onto Ev. 
+this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} that was recreated onto Ev. 
 \end{DoxyReturn}
 \begin{DoxyWarning}{Warning}
 This does not attempt to store the camera aspect ratio. This is too often hardware dependent and may not be reliably re-\/serialized. 
@@ -146,5 +108,36 @@ This does not s the pointer to the camera manager. When a camera manager is seri
 \end{DoxyWarning}
 
 
-Definition at line 305 of file camera.cpp.
+Definition at line 320 of file camera.\-cpp.
+
+\hypertarget{camera_8h_a99c795bd180f97817d79f9b8c5d09ab5}{\index{camera.\-h@{camera.\-h}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!camera.h@{camera.\-h}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine\-::\-X\-M\-L\-::\-Node\& {\bf M\-E\-Z\-Z\-\_\-\-L\-I\-B} operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{const Mezzanine\-::\-X\-M\-L\-::\-Node \&}]{One\-Node, }
+\item[{{\bf Mezzanine\-::\-Camera} \&}]{Ev}
+\end{DoxyParamCaption}
+)}}\label{camera_8h_a99c795bd180f97817d79f9b8c5d09ab5}
+
+
+Set all values of a \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} from parsed xml. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em One\-Node} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-::\-Camera} to be reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns the\-X\-M\-L\-::\-Node that was passed in. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not attempt to de-\/serialize the name of the camera. This is not currently changeable after the creation of a camera. However, the cameramanager will correctly create name camera upon creation then deserialize the rest of the camera. 
+
+This does not throw an exception if the camera could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second. 
+\end{DoxyWarning}
+
+
+Definition at line 330 of file camera.\-cpp.
 

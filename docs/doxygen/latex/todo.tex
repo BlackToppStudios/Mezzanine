@@ -1,416 +1,220 @@
-\label{todo__todo000045}
-\hypertarget{todo__todo000045}{}
- 
-\begin{DoxyDescription}
-\item[Page \hyperlink{mainloop1}{Main Loop Structure and Flow} ]create a lighting manager and put this in there 
-\end{DoxyDescription}
 
-\label{todo__todo000046}
-\hypertarget{todo__todo000046}{}
- 
-\begin{DoxyDescription}
-\item[page \hyperlink{index}{Mezzanine} ]Fill out the Simple Data Types with all the enumerations.
-\end{DoxyDescription}
-
-\label{todo__todo000002}
-\hypertarget{todo__todo000002}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1ActorRigid_a68827280395bc3b9e0266710ec44247d}{Mezzanine::ActorRigid::\_\-NotifyCollisionState}(Collision $\ast$Col, const Collision::CollisionState \&State) ]Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies. 
-\end{DoxyDescription}
-
-\label{todo__todo000003}
-\hypertarget{todo__todo000003}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_aff6fdcd7d7fdbc52e493ba2c8229b2e1}{Mezzanine::ActorRigidDeSerializer::ProtoDeSerialize}(const xml::Node \&OneNode) ]TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default 
-\end{DoxyDescription}
-
-\label{todo__todo000001}
-\hypertarget{todo__todo000001}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a56d106b78dfa0ea5415c7928491e4fa7}{Mezzanine::ActorRigidPhysicsSettings::$\sim$ActorRigidPhysicsSettings}() ]Occasionally a SIGTRAP occurs here without any breakpoint set while debugging. Needs to be fixed. on Linux it is a SIGSEGV. 
-\end{DoxyDescription}
-
-\label{todo__todo000004}
-\hypertarget{todo__todo000004}{}
- 
-\begin{DoxyDescription}
-\item[Class \hyperlink{classMezzanine_1_1Camera}{Mezzanine::Camera} ]Fix all the extra occurences of the word Camera in Function names on the camera. 
-\end{DoxyDescription}
-
-\label{todo__todo000007}
-\hypertarget{todo__todo000007}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{namespaceMezzanine_a3b5904fe847274e3bd0d6a1b39cbed02}{Mezzanine::CreateShape}(xml::Node OneNode) ]Complete CreateShape function once DynamicMeshCollisionShape can be deserialized 
-
-Complete CreateShape function once ActorSoftCollisionShape can be deserialized 
-
-Complete CreateShape function once StaticMeshCollisionShape can be deserialized 
-
-Complete CreateShape function once ActorSoftCollisionShape can be deserialized 
-
-Complete CreateShape function once StaticMeshCollisionShape can be deserialized 
-
-Complete CreateShape function once ActorSoftCollisionShape can be deserialized 
-
-Complete CreateShape function once StaticMeshCollisionShape can be deserialized 
-\end{DoxyDescription}
-
-\label{todo__todo000014}
-\hypertarget{todo__todo000014}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1EventManager_a95ce9d2d865b0d8d9468448969b0ade2}{Mezzanine::EventManager::EventManager}() ]TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock 
-\end{DoxyDescription}
-
-\label{todo__todo000012}
-\hypertarget{todo__todo000012}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{namespaceMezzanine_acbb048ee99aa07566d5a6eb33f5a2c2d}{Mezzanine::Int8} ]Verify that these \char`\"{}fixed-\/width\char`\"{} type-\/defs work on mobiles and tablets.
-
-
-\end{DoxyDescription}
-
-\label{todo__todo000016}
-\hypertarget{todo__todo000016}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1internal_1_1Line3D_a17264ad5672bef8807ce6b4a8366e573}{Mezzanine::internal::Line3D::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen 
-\end{DoxyDescription}
-
-\label{todo__todo000018}
-\hypertarget{todo__todo000018}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1LineGroup_acadb6f8ccbe70828b094f07a11f276ac}{Mezzanine::LineGroup::drawLine}(const Vector3 \&start, const Vector3 \&end) ]TODO: In the future we will add a break in the line segment chain when this is called. 
-\end{DoxyDescription}
-
-\label{todo__todo000019}
-\hypertarget{todo__todo000019}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1LineGroup_a85da1685525915f1e07d685b98f79f23}{Mezzanine::LineGroup::drawLines}(void) ]TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. 
-\end{DoxyDescription}
-
-\label{todo__todo000017}
-\hypertarget{todo__todo000017}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1LineGroup_a8789254da1d3e930681b793165fedeca}{Mezzanine::LineGroup::LineGroup}(World $\ast$Parent\_\-) ]TODO: This class really should support rotation, the underlying implementation does. 
-\end{DoxyDescription}
-
-\label{todo__todo000020}
-\hypertarget{todo__todo000020}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Matrix3x3_ac759aa60d4dc6dee040b6741b6d44392}{Mezzanine::Matrix3x3::Transpose}() const  ]I'm not gonna lie, I have no idea what the hell the Transpose of a 3x3 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review. 
-\end{DoxyDescription}
-
-\label{todo__todo000021}
-\hypertarget{todo__todo000021}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Matrix4x4_a1330573388a3070bc747bad97d93d3e9}{Mezzanine::Matrix4x4::Transpose}() const  ]I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review. 
-\end{DoxyDescription}
-
-\label{todo__todo000022}
-\hypertarget{todo__todo000022}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1MeshManager_a6de2e01b43302a9439dc01c1dcc90f4c}{Mezzanine::MeshManager::CreateCylinderMesh}(const String \&MeshName, const String \&MaterialName, const Vector3 \&HalfExtents, const Vector3 \&AxisOrientation, const Whole \&CircleRes=16, const Whole \&Segments=1) ]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed. 
-\end{DoxyDescription}
-
-\label{todo__todo000010}
-\hypertarget{todo__todo000010}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Point2PointConstraint_a9eba349fe0f12483330b9c309e305168}{Mezzanine::Point2PointConstraint::SetTAU}(Real TAU) ]Research this more carefully 
-\end{DoxyDescription}
-
-\label{todo__todo000024}
-\hypertarget{todo__todo000024}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Ray_a7164d929caf75bcebceed9149e9a3540}{Mezzanine::Ray::GetNormal}() const  ]discuss the merits throwing an error here. 
-\end{DoxyDescription}
-
-\label{todo__todo000025}
-\hypertarget{todo__todo000025}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1RayQueryTool_a9ded1647755a523d3dbda297a0e73eba}{Mezzanine::RayQueryTool::GetFirstActorOnRayByAABB}(Ray ActorRay, Whole ObjectFlags) ]TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. 
-
-TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested 
-
-TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account 
-\end{DoxyDescription}
-
-\label{todo__todo000028}
-\hypertarget{todo__todo000028}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Resource_1_1FileHandleDataStream_a719a6d2600f7f4228d44cbfcf961acc5}{Mezzanine::Resource::FileHandleDataStream::FileHandleDataStream}(const String \&Name, const String \&Path, const DataStream::AccessMode \&Mode=DataStream::DS\_\-Read, bool CreateOnFail=false, bool IsBinary=false) ]We should probably add something to fetch/interpret the error and add it to the exception. 
-\end{DoxyDescription}
-
-\label{todo__todo000029}
-\hypertarget{todo__todo000029}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Resource_1_1FileStreamDataStream_ac000582b45359ff0013dccea8ec3a830}{Mezzanine::Resource::FileStreamDataStream::FileStreamDataStream}(const String \&Name, const String \&Path, const DataStream::AccessMode \&Mode=DataStream::DS\_\-Read, bool CreateOnFail=false, bool IsBinary=false) ]We should probably add something to fetch/interpret the error and add it to the exception. 
-\end{DoxyDescription}
-
-\label{todo__todo000031}
-\hypertarget{todo__todo000031}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1Resource_1_1TextSettingsFile_a5ffb86d6822701880e1dc47b4f37a637}{Mezzanine::Resource::TextSettingsFile::Load}(const String \&Filename, const String \&Group, const String \&Separators=\char`\"{} $\backslash$t:=\char`\"{}, bool TrimWhitespace=true) ]Once the resource system has been updated to be independant of Ogre's, this function needs to be updated to access our methods instead of theirs. 
-\end{DoxyDescription}
-
-\label{todo__todo000030}
-\hypertarget{todo__todo000030}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1ResourceManager_aa827efdad18698b7d7319dab35864bbe}{Mezzanine::ResourceManager::DestroyResourceGroup}(const String \&GroupName) ]This is a bit of a hack, but needs to be here until we can upgrade our resource system. 
-\end{DoxyDescription}
-
-\label{todo__todo000006}
-\hypertarget{todo__todo000006}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1StaticMeshCollisionShape_a1c565cc4d62ab7a0cd5cf55254905f05}{Mezzanine::StaticMeshCollisionShape::StaticMeshCollisionShape}(const String \&Name, btBvhTriangleMeshShape $\ast$BulletShape) ]May need to create a btScaledBvhTriangleMeshShape for scaling this shape appropriately. 
-\end{DoxyDescription}
-
-\label{todo__todo000032}
-\hypertarget{todo__todo000032}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}{Mezzanine::TerrainManager::RemoveAllTerrains}() ]When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors. 
-\end{DoxyDescription}
-
-\label{todo__todo000033}
-\hypertarget{todo__todo000033}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Button_aae0a7f6a07f79856ed6da8b8b3bc5ecd}{Mezzanine::UI::Button::BindActivationKeyOrButton}(const MetaCode::InputCode \&Code) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000034}
-\hypertarget{todo__todo000034}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Caption_a2cc9da9ae1e10cd5829117f0d473186a}{Mezzanine::UI::Caption::SetGlyphIndex}(const Whole \&GlyphIndex) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000035}
-\hypertarget{todo__todo000035}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Caption_abe41befd65e977a1bb300427d0dd5936}{Mezzanine::UI::Caption::SetGlyphIndex}(const Whole \&GlyphIndex, const String \&Atlas) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000036}
-\hypertarget{todo__todo000036}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1ListBox_a60130f372bc78fbb20f28270bbed8cf2}{Mezzanine::UI::ListBox::ListBox}(ConstString \&name, const RenderableRect \&Rect, const UI::ScrollbarStyle \&ScrollStyle, Layer $\ast$PLayer) ]Currently this class has little support for a border around the selections. Ideally when the UI system is more complete we'll be able to seemlessly move objects around different layers and thus have more control over z-\/order. When that happens we should add a rect to this class be be placed over the selections for use with a border or other kind of decoration. 
-\end{DoxyDescription}
-
-\label{todo__todo000037}
-\hypertarget{todo__todo000037}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1ListBox_a81ddebed01b1503478c2fa7b75ce4b24}{Mezzanine::UI::ListBox::SetSelected}(Caption $\ast$ToBeSelected) ]Maybe add a checker to verify the caption belongs to this widget? 
-\end{DoxyDescription}
-
-\label{todo__todo000039}
-\hypertarget{todo__todo000039}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a8455dbc85e8ed56f366c14f1cab24f49}{Mezzanine::UI::MarkupText::SetDefaultGlyphIndex}(const Whole \&DefaultGlyphIndex) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000040}
-\hypertarget{todo__todo000040}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1MarkupText_a2cff9446978935a555fafdc0795de517}{Mezzanine::UI::MarkupText::SetDefaultGlyphIndex}(const Whole \&DefaultGlyphIndex, const String \&Atlas) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000041}
-\hypertarget{todo__todo000041}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1Screen_a47c85a1fad08b96b3b24b2c1402a4fcd}{Mezzanine::UI::Screen::CreateLayer}(const String \&Name, const Whole \&Zorder) ]add an exception here or maybe log entry, some notification it failed. 
-\end{DoxyDescription}
-
-\label{todo__todo000042}
-\hypertarget{todo__todo000042}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1ScrolledCellGrid_a259a2f007e7afc5b2fa967c02b0d5627}{Mezzanine::UI::ScrolledCellGrid::SetVisibleImpl}(bool visible) ]Currently this disregards auto-\/hides. Something should be implemented to account for that. 
-\end{DoxyDescription}
-
-\label{todo__todo000043}
-\hypertarget{todo__todo000043}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1TextButton_ab81057cd97a96390ae23c12cc729a07b}{Mezzanine::UI::TextButton::SetGlyphIndex}(const Whole \&GlyphIndex) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000044}
-\hypertarget{todo__todo000044}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UI_1_1TextButton_a472deffab04ac63c4938cc928d24f11e}{Mezzanine::UI::TextButton::SetGlyphIndex}(const Whole \&GlyphIndex, const String \&Atlas) ]Throw an error? 
-\end{DoxyDescription}
-
-\label{todo__todo000038}
-\hypertarget{todo__todo000038}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1UIManager_a904d4d7a3957a13cf5e27e8d97dd1add}{Mezzanine::UIManager::GetAtlas}(const String \&AtlasName) ]These NULL returns should probably be exceptions. 
-\end{DoxyDescription}
-
-\label{todo__todo000049}
-\hypertarget{todo__todo000049}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1WorldNode_a417e459d58c4d612bcbbe98a328c7b50}{Mezzanine::WorldNode::SetAutoTracking}(AttachableBase $\ast$Target, const Vector3 \&LocalDirection=Vector3::Neg\_\-Unit\_\-Z(), const Vector3 \&Offset=Vector3()) ]TODO: The WorldNode Does not Correctly Serialize AutoTracking. 
-\end{DoxyDescription}
-
-\label{todo__todo000048}
-\hypertarget{todo__todo000048}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1WorldNode_ab088981b0bea9d73e9bfaac5f237abc8}{Mezzanine::WorldNode::SetDirection}(const Vector3 \&Direction, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine::TransformSpace} \&TS=Mezzanine::TS\_\-World, const Vector3 \&LocalAxis=Vector3::Neg\_\-Unit\_\-Z()) ]May want to change this to an exception, maybe. 
-\end{DoxyDescription}
-
-\label{todo__todo000060}
-\hypertarget{todo__todo000060}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_af7c9a4dd3907c53875b60fffd0737731}{Mezzanine::xml::Attribute::AsDouble}() const  ]Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000061}
-\hypertarget{todo__todo000061}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a0b941b115c4ee1a2e9bcffd044a32a86}{Mezzanine::xml::Attribute::AsFloat}() const  ]Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000058}
-\hypertarget{todo__todo000058}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_afe13b2cfd2ae5425efdfbb7e537c5b02}{Mezzanine::xml::Attribute::AsInt}() const  ]Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000059}
-\hypertarget{todo__todo000059}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a5933a59c21bf71049ea71750f4c69bc3}{Mezzanine::xml::Attribute::AsUint}() const  ]Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. 
-\end{DoxyDescription}
-
-\label{todo__todo000052}
-\hypertarget{todo__todo000052}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a3c47acd1ef9cdf05f312fa954cf988a6}{Mezzanine::xml::Attribute::SetValue}(unsigned int rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000053}
-\hypertarget{todo__todo000053}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_aa6f33397178b9823d85906692320a440}{Mezzanine::xml::Attribute::SetValue}(double rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000055}
-\hypertarget{todo__todo000055}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_ab4ab2fb15cd198cd8527d796583cf994}{Mezzanine::xml::Attribute::SetValue}(T rhs) ]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. 
-\end{DoxyDescription}
-
-\label{todo__todo000054}
-\hypertarget{todo__todo000054}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a4b4b035128dfe3c7fd70e228c70d5118}{Mezzanine::xml::Attribute::SetValue}(bool rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000050}
-\hypertarget{todo__todo000050}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_a850c7d6692ac542ea197952c734e3800}{Mezzanine::xml::Attribute::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000051}
-\hypertarget{todo__todo000051}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Attribute_ae17cb2b4aadcf29fc74e6d16fa1ad746}{Mezzanine::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000064}
-\hypertarget{todo__todo000064}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a0cc23e97d5ed9b2c1c46fcb442d8b337}{Mezzanine::xml::Node::FirstElementByPath}(const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const  ]Investigate this more deeply. 
-\end{DoxyDescription}
-
-\label{todo__todo000062}
-\hypertarget{todo__todo000062}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a227829d650b184329245c5abdd0476df}{Mezzanine::xml::Node::InsertChildAfter}(NodeType Type, const Node \&node) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
-
-Not all nodes can be added to other nodes, we need to figure it out and put it here. 
-\end{DoxyDescription}
-
-\label{todo__todo000057}
-\hypertarget{todo__todo000057}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a0f877b7c3d64ede9a73662ed2fff0ef5}{Mezzanine::xml::Node::InsertChildBefore}(NodeType Type, const Node \&node) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
-\end{DoxyDescription}
-
-\label{todo__todo000056}
-\hypertarget{todo__todo000056}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classMezzanine_1_1xml_1_1Node_a86ca6281c21ba29a3e1476ac7cd5a48f}{Mezzanine::xml::Node::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
-\label{todo__todo000011}
-\hypertarget{todo__todo000011}{}
- 
-\begin{DoxyDescription}
-\item[Namespace \hyperlink{namespaceOgre}{Ogre} ]Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this. 
-\end{DoxyDescription}
-
-\label{todo__todo000047}
-\hypertarget{todo__todo000047}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{worldnode_8h_a6509ccb839197be1acefdc54e46a62fe}{operator$>$$>$}(const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine::WorldNode} \&Ev) ]This doesn't account for other objects aside from world nodes to be attached. Additional checks that fetch other types by name in the case of a null pointer should be implemented. 
-\end{DoxyDescription}
+\begin{DoxyRefList}
+\item[\label{todo__todo000024}%
+\hypertarget{todo__todo000024}{}%
+Page \hyperlink{mainloop1}{Main Loop Structure and Flow} ]create a lighting manager and put this in there  
+\item[\label{todo__todo000025}%
+\hypertarget{todo__todo000025}{}%
+page \hyperlink{index}{Mezzanine} ]Fill out the Simple Data Types with all the enumerations. 
+\item[\label{todo__todo000001}%
+\hypertarget{todo__todo000001}{}%
+Member \hyperlink{classMezzanine_1_1ActorManager_af01011777296ba4f2768b6d41500923d}{Mezzanine\-:\-:Actor\-Manager\-:\-:Actor\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000005}%
+\hypertarget{todo__todo000005}{}%
+Member \hyperlink{classMezzanine_1_1ActorRigid_a0290af701cc57b7bf2d8085e04841faf}{Mezzanine\-:\-:Actor\-Rigid\-:\-:\-\_\-\-Notify\-Collision\-State} (Physics\-::\-Collision $\ast$\-Col, const Physics\-::\-Collision\-::\-Collision\-State \&State)]Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies.  
+\item[\label{todo__todo000006}%
+\hypertarget{todo__todo000006}{}%
+Member \hyperlink{classMezzanine_1_1ActorRigidDeSerializer_a43aa00f112ec13168a8369183099099f}{Mezzanine\-:\-:Actor\-Rigid\-De\-Serializer\-:\-:Proto\-De\-Serialize} (const X\-M\-L\-::\-Node \&One\-Node)]T\-O\-D\-O\-: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default  
+\item[\label{todo__todo000004}%
+\hypertarget{todo__todo000004}{}%
+Member \hyperlink{classMezzanine_1_1ActorRigidPhysicsSettings_a56d106b78dfa0ea5415c7928491e4fa7}{Mezzanine\-:\-:Actor\-Rigid\-Physics\-Settings\-:\-:$\sim$\-Actor\-Rigid\-Physics\-Settings} ()]Occasionally a S\-I\-G\-T\-R\-A\-P occurs here without any breakpoint set while debugging. Needs to be fixed. on Linux it is a S\-I\-G\-S\-E\-G\-V.  
+\item[\label{todo__todo000007}%
+\hypertarget{todo__todo000007}{}%
+Member \hyperlink{classMezzanine_1_1Any_a80e0935053029b964ccc1f057600bc8f}{Mezzanine\-:\-:Any\-:\-:operator()} () const ]These exceptions should get logged, but the Entresol class is too large for it to be worthwhile to include it here.  
+\item[\label{todo__todo000008}%
+\hypertarget{todo__todo000008}{}%
+Member \hyperlink{classMezzanine_1_1AudioManager_a48ad7f946649a3971e52a3d9bf3aba20}{Mezzanine\-:\-:Audio\-Manager\-:\-:Apply\-Setting\-Group\-Impl} (Object\-Setting\-Group $\ast$\-Group)]May want to make some other data member so that people can accurately get what is set now, instead of what will be set.  
+\item[\label{todo__todo000011}%
+\hypertarget{todo__todo000011}{}%
+Member \hyperlink{namespaceMezzanine_1_1BinaryTools_a5d589d15b7cf318b1759487b0d3e6de4}{Mezzanine\-:\-:Binary\-Tools\-:\-:Base64\-Decode} (String const \&Encoded\-String)]Return something not a String and more amenable to use as a binary buffer.  
+\item[\label{todo__todo000012}%
+\hypertarget{todo__todo000012}{}%
+Class \hyperlink{classMezzanine_1_1Camera}{Mezzanine\-:\-:Camera} ]Fix all the extra occurences of the word Camera in Function names on the camera.  
+\item[\label{todo__todo000013}%
+\hypertarget{todo__todo000013}{}%
+Member \hyperlink{classMezzanine_1_1CameraManager_a426dd240a72299e1b5f6e69ca2859542}{Mezzanine\-:\-:Camera\-Manager\-:\-:Camera\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000016}%
+\hypertarget{todo__todo000016}{}%
+Member \hyperlink{classMezzanine_1_1CollisionShapeManager_a33671dfe83da86a6abbb172ff8a679f8}{Mezzanine\-:\-:Collision\-Shape\-Manager\-:\-:Collision\-Shape\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000020}%
+\hypertarget{todo__todo000020}{}%
+Member \hyperlink{namespaceMezzanine_a36fefd8e3d822274f02c7633b0ef5072}{Mezzanine\-:\-:Convert\-To} (const From \&Datum)]Overload Convert\-To for To\-String Conversions.  
+\item[\label{todo__todo000002}%
+\hypertarget{todo__todo000002}{}%
+Member \hyperlink{classMezzanine_1_1DefaultActorManagerFactory_ace07bebd9a19ecafa99ca647855b308e}{Mezzanine\-:\-:Default\-Actor\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000003}%
+\hypertarget{todo__todo000003}{}%
+Member \hyperlink{classMezzanine_1_1DefaultActorManagerFactory_a0677fb6f2d51af8ec6316e54a3e3b90e}{Mezzanine\-:\-:Default\-Actor\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000009}%
+\hypertarget{todo__todo000009}{}%
+Member \hyperlink{classMezzanine_1_1DefaultAudioManagerFactory_a083a7548bd1d6d6b06952829604d174a}{Mezzanine\-:\-:Default\-Audio\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000010}%
+\hypertarget{todo__todo000010}{}%
+Member \hyperlink{classMezzanine_1_1DefaultAudioManagerFactory_a4dd9d443d94e468643119e2fb1893ea2}{Mezzanine\-:\-:Default\-Audio\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000015}%
+\hypertarget{todo__todo000015}{}%
+Member \hyperlink{classMezzanine_1_1DefaultCameraManagerFactory_adf79601857c8faff305e0fd9b282dbaf}{Mezzanine\-:\-:Default\-Camera\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000014}%
+\hypertarget{todo__todo000014}{}%
+Member \hyperlink{classMezzanine_1_1DefaultCameraManagerFactory_a36f97fcfe2ac3b4b71be3f93a026f7e1}{Mezzanine\-:\-:Default\-Camera\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000017}%
+\hypertarget{todo__todo000017}{}%
+Member \hyperlink{classMezzanine_1_1DefaultCollisionShapeManagerFactory_a52b64a79bcbba0637463e0904b38587b}{Mezzanine\-:\-:Default\-Collision\-Shape\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000018}%
+\hypertarget{todo__todo000018}{}%
+Member \hyperlink{classMezzanine_1_1DefaultCollisionShapeManagerFactory_ab4b7d4bbc5cc5e49ff5b5fa1b2e4bb82}{Mezzanine\-:\-:Default\-Collision\-Shape\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000029}%
+\hypertarget{todo__todo000029}{}%
+Member \hyperlink{classMezzanine_1_1DefaultEventManagerFactory_a3c35239092245b4b582033e5b45a7d79}{Mezzanine\-:\-:Default\-Event\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000030}%
+\hypertarget{todo__todo000030}{}%
+Member \hyperlink{classMezzanine_1_1DefaultEventManagerFactory_a592440bd81d0a2012828523833dd0e10}{Mezzanine\-:\-:Default\-Event\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000037}%
+\hypertarget{todo__todo000037}{}%
+Member \hyperlink{classMezzanine_1_1DefaultGraphicsManagerFactory_aa45d7cf497bd28287359e1fd22d3d280}{Mezzanine\-:\-:Default\-Graphics\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000038}%
+\hypertarget{todo__todo000038}{}%
+Member \hyperlink{classMezzanine_1_1DefaultGraphicsManagerFactory_a3a50ec77812d038d96366d36ab15025f}{Mezzanine\-:\-:Default\-Graphics\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000039}%
+\hypertarget{todo__todo000039}{}%
+Member \hyperlink{classMezzanine_1_1DefaultInputManagerFactory_a4f694ef119088a8cff459dc20a3bc260}{Mezzanine\-:\-:Default\-Input\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000040}%
+\hypertarget{todo__todo000040}{}%
+Member \hyperlink{classMezzanine_1_1DefaultInputManagerFactory_a8aaff12f9cef0676708cd67106116ae0}{Mezzanine\-:\-:Default\-Input\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000049}%
+\hypertarget{todo__todo000049}{}%
+Member \hyperlink{classMezzanine_1_1DefaultMeshManagerFactory_a2c0397aa59f15dc5b770aadd0b8e35ed}{Mezzanine\-:\-:Default\-Mesh\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000050}%
+\hypertarget{todo__todo000050}{}%
+Member \hyperlink{classMezzanine_1_1DefaultMeshManagerFactory_a4fa87a9778190048f7cc18066be58b43}{Mezzanine\-:\-:Default\-Mesh\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000052}%
+\hypertarget{todo__todo000052}{}%
+Member \hyperlink{classMezzanine_1_1DefaultPhysicsManagerFactory_a9a690ef47906753aaea4fdab4fbef499}{Mezzanine\-:\-:Default\-Physics\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000053}%
+\hypertarget{todo__todo000053}{}%
+Member \hyperlink{classMezzanine_1_1DefaultPhysicsManagerFactory_a2a47545af6d3afd469e7143ab0309453}{Mezzanine\-:\-:Default\-Physics\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000060}%
+\hypertarget{todo__todo000060}{}%
+Member \hyperlink{classMezzanine_1_1DefaultResourceManagerFactory_a6016da8ab7d3ce53ac6b584c13cca98e}{Mezzanine\-:\-:Default\-Resource\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000061}%
+\hypertarget{todo__todo000061}{}%
+Member \hyperlink{classMezzanine_1_1DefaultResourceManagerFactory_af60851cccb93c107139fe0dcac3556d2}{Mezzanine\-:\-:Default\-Resource\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000064}%
+\hypertarget{todo__todo000064}{}%
+Member \hyperlink{classMezzanine_1_1DefaultSceneManagerFactory_acf05fe23c2007787714ce4cd7dbe9ab2}{Mezzanine\-:\-:Default\-Scene\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000063}%
+\hypertarget{todo__todo000063}{}%
+Member \hyperlink{classMezzanine_1_1DefaultSceneManagerFactory_a045c794aa5905ef26fcb8e7bb1457e75}{Mezzanine\-:\-:Default\-Scene\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000070}%
+\hypertarget{todo__todo000070}{}%
+Member \hyperlink{classMezzanine_1_1DefaultTerrainManagerFactory_a1062237ff970a575fa8718d68603f64e}{Mezzanine\-:\-:Default\-Terrain\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000071}%
+\hypertarget{todo__todo000071}{}%
+Member \hyperlink{classMezzanine_1_1DefaultTerrainManagerFactory_a89280d351831add1a4902fd16e6b88e8}{Mezzanine\-:\-:Default\-Terrain\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000073}%
+\hypertarget{todo__todo000073}{}%
+Member \hyperlink{classMezzanine_1_1DefaultTimerManagerFactory_ab284f43297d70c3389594e6d752d58e0}{Mezzanine\-:\-:Default\-Timer\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000074}%
+\hypertarget{todo__todo000074}{}%
+Member \hyperlink{classMezzanine_1_1DefaultTimerManagerFactory_ad8cac8b702a8f9637ad1cd5e2ecddc3f}{Mezzanine\-:\-:Default\-Timer\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000077}%
+\hypertarget{todo__todo000077}{}%
+Member \hyperlink{classMezzanine_1_1DefaultUIManagerFactory_aee5a9ea55ba77f7d118dc052605bf2d3}{Mezzanine\-:\-:Default\-U\-I\-Manager\-Factory\-:\-:Create\-Manager} (Name\-Value\-Pair\-List \&Params)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000078}%
+\hypertarget{todo__todo000078}{}%
+Member \hyperlink{classMezzanine_1_1DefaultUIManagerFactory_a64230cbd8c6dffa83018189d0dae5116}{Mezzanine\-:\-:Default\-U\-I\-Manager\-Factory\-:\-:Create\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  
+\item[\label{todo__todo000027}%
+\hypertarget{todo__todo000027}{}%
+Member \hyperlink{classMezzanine_1_1EventManager_a95ce9d2d865b0d8d9468448969b0ade2}{Mezzanine\-:\-:Event\-Manager\-:\-:Event\-Manager} ()]T\-O\-D\-O\-: Make the Event\-Manager completely thread safe. I\-F this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\-\_\-lock  
+\item[\label{todo__todo000028}%
+\hypertarget{todo__todo000028}{}%
+Member \hyperlink{classMezzanine_1_1EventManager_abf3650bfe862473ed2418dddbd83eec3}{Mezzanine\-:\-:Event\-Manager\-:\-:Event\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000033}%
+\hypertarget{todo__todo000033}{}%
+Member \hyperlink{classMezzanine_1_1GraphicsManager_a0c643b05edba99f2c70d0fd9dacf3110}{Mezzanine\-:\-:Graphics\-Manager\-:\-:Append\-Current\-Settings} (X\-M\-L\-::\-Node \&Settings\-Root\-Node)]Currently the maximized setting does nothing in the gamewindow. If it gets implemented, so does this.  
+\item[\label{todo__todo000034}%
+\hypertarget{todo__todo000034}{}%
+Member \hyperlink{classMezzanine_1_1GraphicsManager_ac990a8260dc99ba245383076a98026ac}{Mezzanine\-:\-:Graphics\-Manager\-:\-:Apply\-Setting\-Group\-Impl} (Object\-Setting\-Group $\ast$\-Group)]May want to make some other data member so that people can accurately get what is set now, instead of what will be set.  
+\item[\label{todo__todo000035}%
+\hypertarget{todo__todo000035}{}%
+Member \hyperlink{classMezzanine_1_1GraphicsManager_ac551af6ddb5453e93ffb0cbca2441d46}{Mezzanine\-:\-:Graphics\-Manager\-:\-:Get\-Render\-System\-Name} (const Graphics\-::\-Render\-System \&Render\-Sys)]This will likely have to change when other O\-G\-L systems are implemented  
+\item[\label{todo__todo000036}%
+\hypertarget{todo__todo000036}{}%
+Member \hyperlink{classMezzanine_1_1GraphicsManager_a2b1ef2b45f8e23fb28213277e640c709}{Mezzanine\-:\-:Graphics\-Manager\-:\-:Get\-Shortened\-Render\-System\-Name} (const Graphics\-::\-Render\-System \&Render\-Sys)]This will likely have to change when other O\-G\-L systems are implemented  
+\item[\label{todo__todo000032}%
+\hypertarget{todo__todo000032}{}%
+Member \hyperlink{classMezzanine_1_1GraphicsManager_a2593a4d4032c66ee5bf3230fcf590a98}{Mezzanine\-:\-:Graphics\-Manager\-:\-:Graphics\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible.  
+\item[\label{todo__todo000041}%
+\hypertarget{todo__todo000041}{}%
+Member \hyperlink{classMezzanine_1_1Internal_1_1Line3D_a65e447dd23d6428bb7c2715e57f4e972}{Mezzanine\-:\-:Internal\-:\-:Line3\-D\-:\-:draw\-Line} (const Vector3 \&start, const Vector3 \&end)]T\-O\-D\-O\-: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen  
+\item[\label{todo__todo000043}%
+\hypertarget{todo__todo000043}{}%
+Member \hyperlink{classMezzanine_1_1LineGroup_acadb6f8ccbe70828b094f07a11f276ac}{Mezzanine\-:\-:Line\-Group\-:\-:draw\-Line} (const Vector3 \&start, const Vector3 \&end)]T\-O\-D\-O\-: In the future we will add a break in the line segment chain when this is called.  
+\item[\label{todo__todo000044}%
+\hypertarget{todo__todo000044}{}%
+Member \hyperlink{classMezzanine_1_1LineGroup_a85da1685525915f1e07d685b98f79f23}{Mezzanine\-:\-:Line\-Group\-:\-:draw\-Lines} (void)]T\-O\-D\-O\-: Prepare\-For\-Rendering should be rolled into draw\-Lines, but this cannot happen until the physics debug rendererin gets more attention.  
+\item[\label{todo__todo000042}%
+\hypertarget{todo__todo000042}{}%
+Member \hyperlink{classMezzanine_1_1LineGroup_afbc11e001ce594846b926c7dab7ceafd}{Mezzanine\-:\-:Line\-Group\-:\-:Line\-Group} ()]T\-O\-D\-O\-: This class really should support rotation, the underlying implementation does.  
+\item[\label{todo__todo000045}%
+\hypertarget{todo__todo000045}{}%
+Member \hyperlink{classMezzanine_1_1Matrix3x3_ac759aa60d4dc6dee040b6741b6d44392}{Mezzanine\-:\-:Matrix3x3\-:\-:Transpose} () const ]I'm not gonna lie, I have no idea what the hell the Transpose of a 3x3 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review.  
+\item[\label{todo__todo000046}%
+\hypertarget{todo__todo000046}{}%
+Member \hyperlink{classMezzanine_1_1Matrix4x4_a1330573388a3070bc747bad97d93d3e9}{Mezzanine\-:\-:Matrix4x4\-:\-:Transpose} () const ]I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review.  
+\item[\label{todo__todo000048}%
+\hypertarget{todo__todo000048}{}%
+Member \hyperlink{classMezzanine_1_1MeshManager_aa95df6921ad121eeea7ab073d1d1e5a7}{Mezzanine\-:\-:Mesh\-Manager\-:\-:Create\-Cylinder\-Mesh} (const String \&Mesh\-Name, const String \&Material\-Name, const Vector3 \&Half\-Extents, const Vector3 \&Axis\-Orientation, const Whole \&Circle\-Res=16, const Whole \&Segments=1)]These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed.  
+\item[\label{todo__todo000047}%
+\hypertarget{todo__todo000047}{}%
+Member \hyperlink{classMezzanine_1_1MeshManager_a830f36f16d0ea53e3bb41d8bdc86076e}{Mezzanine\-:\-:Mesh\-Manager\-:\-:Mesh\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000054}%
+\hypertarget{todo__todo000054}{}%
+Member \hyperlink{classMezzanine_1_1Ray_a7164d929caf75bcebceed9149e9a3540}{Mezzanine\-:\-:Ray\-:\-:Get\-Normal} () const ]discuss the merits throwing an error here.  
+\item[\label{todo__todo000055}%
+\hypertarget{todo__todo000055}{}%
+Member \hyperlink{classMezzanine_1_1RayQueryTool_a9ded1647755a523d3dbda297a0e73eba}{Mezzanine\-:\-:Ray\-Query\-Tool\-:\-:Get\-First\-Actor\-On\-Ray\-By\-A\-A\-B\-B} (Ray Actor\-Ray, Whole Object\-Flags)]T\-O\-D\-O\-: The function World\-Query\-Tool\-::\-Get\-First\-Actor\-On\-Ray\-By\-A\-A\-B\-B does not return an valid offset. This needs to be calculated somehow. 
+
+T\-O\-D\-O\-: The function World\-Query\-Tool\-::\-Get\-First\-Actor\-On\-Ray\-By\-A\-A\-B\-B has not been tested and needs to be tested 
+
+T\-O\-D\-O\-: The function World\-Query\-Tool\-::\-Get\-First\-Actor\-On\-Ray\-By\-A\-A\-B\-B does not take other obstructions into account  
+\item[\label{todo__todo000059}%
+\hypertarget{todo__todo000059}{}%
+Member \hyperlink{classMezzanine_1_1ResourceManager_aee575de144fe2ac87df4e06f54cb3b92}{Mezzanine\-:\-:Resource\-Manager\-:\-:Destroy\-Asset\-Group} (const String \&Group\-Name)]This is a bit of a hack, but needs to be here until we can upgrade our resource system.  
+\item[\label{todo__todo000062}%
+\hypertarget{todo__todo000062}{}%
+Member \hyperlink{classMezzanine_1_1ResourceManager_a17b72af560fcf890ee2571dab2109a6d}{Mezzanine\-:\-:Resource\-Manager\-:\-:Resolve\-Data\-Path\-From\-String} (const String \&Path\-Var)]Create a function to check if directory exists in the resource manager  
+\item[\label{todo__todo000058}%
+\hypertarget{todo__todo000058}{}%
+Member \hyperlink{classMezzanine_1_1ResourceManager_a23c46c4660e85d0e38f8e61ed12fde3c}{Mezzanine\-:\-:Resource\-Manager\-:\-:Resource\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000065}%
+\hypertarget{todo__todo000065}{}%
+Member \hyperlink{namespaceMezzanine_ab061665515c8e8a8b09ee54d93612da1}{Mezzanine\-:\-:Serialize\-Error} (const String \&Failed\-To, const String \&Class\-Name, bool S\-Or\-D=true)]This may not be an appropriate type of exception to throw here, should evaluate if a new exception is needed at some point.  
+\item[\label{todo__todo000069}%
+\hypertarget{todo__todo000069}{}%
+Member \hyperlink{classMezzanine_1_1TerrainManager_ae940f33a369e54c2322de4202d236eb2}{Mezzanine\-:\-:Terrain\-Manager\-:\-:Remove\-All\-Terrains} ()]When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors.  
+\item[\label{todo__todo000068}%
+\hypertarget{todo__todo000068}{}%
+Member \hyperlink{classMezzanine_1_1TerrainManager_a48caf07a7cb678b42c3eb15b1e2b01d6}{Mezzanine\-:\-:Terrain\-Manager\-:\-:Terrain\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000072}%
+\hypertarget{todo__todo000072}{}%
+Member \hyperlink{classMezzanine_1_1TimerManager_a0e4e5170256385e883bf85a54289880e}{Mezzanine\-:\-:Timer\-Manager\-:\-:Timer\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000076}%
+\hypertarget{todo__todo000076}{}%
+Member \hyperlink{classMezzanine_1_1UIManager_a904d4d7a3957a13cf5e27e8d97dd1add}{Mezzanine\-:\-:U\-I\-Manager\-:\-:Get\-Atlas} (const String \&Atlas\-Name)]These N\-U\-L\-L returns should probably be exceptions.  
+\item[\label{todo__todo000075}%
+\hypertarget{todo__todo000075}{}%
+Member \hyperlink{classMezzanine_1_1UIManager_a7d9205e916c67a75f6af55c038642b29}{Mezzanine\-:\-:U\-I\-Manager\-:\-:U\-I\-Manager} (X\-M\-L\-::\-Node \&X\-M\-L\-Node)]This class currently doesn't initialize anything from X\-M\-L, if that changes this constructor needs to be expanded.  
+\item[\label{todo__todo000081}%
+\hypertarget{todo__todo000081}{}%
+Member \hyperlink{classMezzanine_1_1WorldNode_a417e459d58c4d612bcbbe98a328c7b50}{Mezzanine\-:\-:World\-Node\-:\-:Set\-Auto\-Tracking} (Attachable\-Base $\ast$\-Target, const Vector3 \&Local\-Direction=Vector3\-::\-Neg\-\_\-\-Unit\-\_\-\-Z(), const Vector3 \&Offset=Vector3())]T\-O\-D\-O\-: The World\-Node Does not Correctly Serialize Auto\-Tracking.  
+\item[\label{todo__todo000080}%
+\hypertarget{todo__todo000080}{}%
+Member \hyperlink{classMezzanine_1_1WorldNode_ab088981b0bea9d73e9bfaac5f237abc8}{Mezzanine\-:\-:World\-Node\-:\-:Set\-Direction} (const Vector3 \&Direction, const \hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3}{Mezzanine\-::\-Transform\-Space} \&T\-S=\hyperlink{namespaceMezzanine_ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d}{Mezzanine\-::\-T\-S\-\_\-\-World}, const Vector3 \&Local\-Axis=Vector3\-::\-Neg\-\_\-\-Unit\-\_\-\-Z())]May want to change this to an exception, maybe.  
+\item[\label{todo__todo000019}%
+\hypertarget{todo__todo000019}{}%
+Namespace \hyperlink{namespaceOgre}{Ogre} ]Make main page in documentation with wiki link and listing of required steps (build target and O\-S define), and dependencies required to build this.  
+\item[\label{todo__todo000079}%
+\hypertarget{todo__todo000079}{}%
+Member \hyperlink{worldnode_8h_a0c2361278b97bfb9147d048d81ebeab4}{operator$>$$>$} (const Mezzanine\-::\-X\-M\-L\-::\-Node \&One\-Node, \hyperlink{classMezzanine_1_1WorldNode}{Mezzanine\-::\-World\-Node} \&Ev)]This doesn't account for other objects aside from world nodes to be attached. Additional checks that fetch other types by name in the case of a null pointer should be implemented. 
+\end{DoxyRefList}

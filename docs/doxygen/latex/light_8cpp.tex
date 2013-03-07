@@ -1,66 +1,59 @@
-\hypertarget{light_8cpp}{
-\subsection{light.cpp File Reference}
-\label{light_8cpp}\index{light.cpp@{light.cpp}}
+\hypertarget{light_8cpp}{\subsection{light.\-cpp File Reference}
+\label{light_8cpp}\index{light.\-cpp@{light.\-cpp}}
 }
 
 
-Implemenation of \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}.  
+Implemenation of \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light}.  
 
 
-{\ttfamily \#include \char`\"{}light.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}scenemanager.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}stringtool.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}world.h\char`\"{}}\par
-{\ttfamily \#include \char`\"{}worldnode.h\char`\"{}}\par
-{\ttfamily \#include $<$Ogre.h$>$}\par
-{\ttfamily \#include $<$memory$>$}\par
+{\ttfamily \#include \char`\"{}light.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}scenemanager.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stringtool.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}worldnode.\-h\char`\"{}}\\*
+{\ttfamily \#include $<$Ogre.\-h$>$}\\*
+{\ttfamily \#include $<$memory$>$}\\*
+Include dependency graph for light.\-cpp\-:
 \subsubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \hyperlink{namespaceMezzanine}{Mezzanine}
-
-
-\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \item\end{DoxyCompactList}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The bulk of the engine components go in this namspace. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std::ostream \& \hyperlink{light_8cpp_ae812026f309cc78af060c63d17ee1120}{operator$<$$<$} (std::ostream \&stream, const \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} \&Ev)
-\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} to XML. \item\end{DoxyCompactList}\item 
-\hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \& \hyperlink{light_8cpp_a3b40b2e0b1ed1376917b2089a7902c9c}{operator$>$$>$} (const \hyperlink{classMezzanine_1_1xml_1_1Node}{Mezzanine::xml::Node} \&OneNode, \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} \&Ev)
-\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} from parsed xml. \item\end{DoxyCompactList}\item 
-std::istream \&MEZZ\_\-LIB \hyperlink{light_8cpp_a729847b50a14c49b4daa9f3119fe0c33}{operator$>$$>$} (std::istream \&stream, \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} \&Ev)
-\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+std\-::ostream \& \hyperlink{light_8cpp_ae812026f309cc78af060c63d17ee1120}{operator$<$$<$} (std\-::ostream \&stream, const \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} \&Ev)
+\begin{DoxyCompactList}\small\item\em Serializes the passed \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} to X\-M\-L. \end{DoxyCompactList}\item 
+std\-::istream \&\hyperlink{crossplatformexport_8h_a455f91aab9e6a1cf4286f5cdfa74c7bc}{M\-E\-Z\-Z\-\_\-\-L\-I\-B} \hyperlink{light_8cpp_a729847b50a14c49b4daa9f3119fe0c33}{operator$>$$>$} (std\-::istream \&stream, \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} \&Ev)
+\begin{DoxyCompactList}\small\item\em Deserialize a \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light}. \end{DoxyCompactList}\item 
+Mezzanine\-::\-X\-M\-L\-::\-Node \& \hyperlink{light_8cpp_a23d6263c68c4d671f79df896adb02d1d}{operator$>$$>$} (const Mezzanine\-::\-X\-M\-L\-::\-Node \&One\-Node, \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} \&Ev)
+\begin{DoxyCompactList}\small\item\em Set all values of a \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} from parsed xml. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-Implemenation of \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}. 
+Implemenation of \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light}. 
 
-Definition in file \hyperlink{light_8cpp_source}{light.cpp}.
+Definition in file \hyperlink{light_8cpp_source}{light.\-cpp}.
 
 
 
 \subsubsection{Function Documentation}
-\hypertarget{light_8cpp_ae812026f309cc78af060c63d17ee1120}{
-\index{light.cpp@{light.cpp}!operator$<$$<$@{operator$<$$<$}}
-\index{operator$<$$<$@{operator$<$$<$}!light.cpp@{light.cpp}}
-\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& operator$<$$<$ (
+\hypertarget{light_8cpp_ae812026f309cc78af060c63d17ee1120}{\index{light.\-cpp@{light.\-cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!light.cpp@{light.\-cpp}}
+\paragraph[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::ostream\& operator$<$$<$ (
 \begin{DoxyParamCaption}
-\item[{std::ostream \&}]{stream, }
-\item[{const {\bf Mezzanine::Light} \&}]{Ev}
+\item[{std\-::ostream \&}]{stream, }
+\item[{const {\bf Mezzanine\-::\-Light} \&}]{Ev}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{light_8cpp_ae812026f309cc78af060c63d17ee1120}
+)}}\label{light_8cpp_ae812026f309cc78af060c63d17ee1120}
 
 
-Serializes the passed \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} to XML. 
+Serializes the passed \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} to X\-M\-L. 
 
 
 \begin{DoxyParams}{Parameters}
 {\em stream} & The ostream to send the xml to. \\
 \hline
-{\em Ev} & the \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} to be serialized \\
+{\em Ev} & the \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} to be serialized \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -68,31 +61,58 @@ this returns the ostream, now with the serialized data
 \end{DoxyReturn}
 
 
-Definition at line 264 of file light.cpp.
+Definition at line 262 of file light.\-cpp.
 
-\hypertarget{light_8cpp_a3b40b2e0b1ed1376917b2089a7902c9c}{
-\index{light.cpp@{light.cpp}!operator$>$$>$@{operator$>$$>$}}
-\index{operator$>$$>$@{operator$>$$>$}!light.cpp@{light.cpp}}
-\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Mezzanine::xml::Node}\& operator$>$$>$ (
+\hypertarget{light_8cpp_a729847b50a14c49b4daa9f3119fe0c33}{\index{light.\-cpp@{light.\-cpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!light.cpp@{light.\-cpp}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std\-::istream\& {\bf M\-E\-Z\-Z\-\_\-\-L\-I\-B} operator$>$$>$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Mezzanine::xml::Node} \&}]{OneNode, }
-\item[{{\bf Mezzanine::Light} \&}]{Ev}
+\item[{std\-::istream \&}]{stream, }
+\item[{{\bf Mezzanine\-::\-Light} \&}]{Ev}
 \end{DoxyParamCaption}
-)}\hfill}
-\label{light_8cpp_a3b40b2e0b1ed1376917b2089a7902c9c}
+)}}\label{light_8cpp_a729847b50a14c49b4daa9f3119fe0c33}
 
 
-Set all values of a \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} from parsed xml. 
+Deserialize a \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light}. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em OneNode} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}. \\
+{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light}. \\
 \hline
-{\em Ev} & the \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} to be reset. \\
+{\em Ev} & the \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} to be deserialized. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-This returns thexml::Node that was passed in. 
+this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} that was recreated onto Ev. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. 
+\end{DoxyWarning}
+
+
+Definition at line 284 of file light.\-cpp.
+
+\hypertarget{light_8cpp_a23d6263c68c4d671f79df896adb02d1d}{\index{light.\-cpp@{light.\-cpp}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!light.cpp@{light.\-cpp}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}Mezzanine\-::\-X\-M\-L\-::\-Node\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{const Mezzanine\-::\-X\-M\-L\-::\-Node \&}]{One\-Node, }
+\item[{{\bf Mezzanine\-::\-Light} \&}]{Ev}
+\end{DoxyParamCaption}
+)}}\label{light_8cpp_a23d6263c68c4d671f79df896adb02d1d}
+
+
+Set all values of a \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} from parsed xml. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em One\-Node} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light}. \\
+\hline
+{\em Ev} & the \hyperlink{classMezzanine_1_1Light}{Mezzanine\-::\-Light} to be reset. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns the\-X\-M\-L\-::\-Node that was passed in. 
 \end{DoxyReturn}
 \begin{DoxyWarning}{Warning}
 This does not attempt to de-\/serialize the name of the Light. This is not currently changeable after the creation of a Light. However, the Lightmanager will correctly create name Light upon creation then deserialize the rest of the Light. 
@@ -101,36 +121,5 @@ This does not throw an exception if the Light could not be attached to the appro
 \end{DoxyWarning}
 
 
-Definition at line 296 of file light.cpp.
-
-\hypertarget{light_8cpp_a729847b50a14c49b4daa9f3119fe0c33}{
-\index{light.cpp@{light.cpp}!operator$>$$>$@{operator$>$$>$}}
-\index{operator$>$$>$@{operator$>$$>$}!light.cpp@{light.cpp}}
-\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& MEZZ\_\-LIB operator$>$$>$ (
-\begin{DoxyParamCaption}
-\item[{std::istream \&}]{stream, }
-\item[{{\bf Mezzanine::Light} \&}]{Ev}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{light_8cpp_a729847b50a14c49b4daa9f3119fe0c33}
-
-
-Deserialize a \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em stream} & The istream to get the xml from to (re)make the \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light}. \\
-\hline
-{\em Ev} & the \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} to be deserialized. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-this returns the ostream, advanced past the \hyperlink{classMezzanine_1_1Light}{Mezzanine::Light} that was recreated onto Ev. 
-\end{DoxyReturn}
-\begin{DoxyWarning}{Warning}
-This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use. 
-\end{DoxyWarning}
-
-
-Definition at line 286 of file light.cpp.
+Definition at line 294 of file light.\-cpp.
 
