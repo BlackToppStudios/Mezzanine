@@ -2,19 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>physicsmanager.h Source File</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<title>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/physicsmanager.h Source File</title>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -65,7 +58,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +72,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2cb3f4bbed36e97976e95e8895b6e0de.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_28f80092e9c3ae4676af90cfa1b625bf.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">physicsmanager.h</div>  </div>
@@ -232,7 +229,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    {</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;            <span class="comment">// needed for collision processing</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1CollisionDispatcher.html" title="Used to provide better reporting of collisions.">CollisionDispatcher</a>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>CollisionDispatcher;</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;            <span class="comment">//Some Data Items</span></div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <a class="code" href="classMezzanine_1_1PhysicsConstructionInfo.html">PhysicsConstructionInfo</a> WorldConstructionInfo;</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordtype">bool</span> SimulationPaused;</div>
@@ -249,7 +246,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            btCollisionDispatcher* BulletDispatcher;</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            btSequentialImpulseConstraintSolver* BulletSolver;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            btSoftRigidDynamicsWorld* BulletDynamicsWorld;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            <a class="code" href="classMezzanine_1_1debug_1_1InternalDebugDrawer.html" title="This is used to draw wireframse for the Physics subsystem.">debug::InternalDebugDrawer</a>* BulletDrawer;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            debug::InternalDebugDrawer* BulletDrawer;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment">            /// @brief This takes care of all the real work in contructing this</span></div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">            /// @details This method is called by all the constructors to insure consistent behavior.</span></div>
@@ -278,7 +275,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">            /// @brief XML constructor.</span></div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">            /// @param XMLNode The node of the xml document to construct from.</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>(XML::Node&amp; XMLNode);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1PhysicsManager.html" title="This is simply a place for storing all the Physics Related functions.">PhysicsManager</a>(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; XMLNode);</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">            /// @brief Simple Constructor</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">            /// @details This constructor will assign some sane default values and will create a physics</span></div>
@@ -332,18 +329,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">            /// @details Adds the constraint to the world so that it can/will take effect.</span></div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">            /// @param Con The constraint to be added.</span></div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">            /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> AddConstraint(Physics::Constraint* Con, <span class="keywordtype">bool</span> DisableCollisions = <span class="keyword">false</span>);<span class="comment"></span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> AddConstraint(<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported.">Physics::Constraint</a>* Con, <span class="keywordtype">bool</span> DisableCollisions = <span class="keyword">false</span>);<span class="comment"></span></div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">            /// @brief Gets a constraint by index.</span></div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">            /// @param Index The index of the constraint you want.</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">            /// @return Returns a pointer to the specified constraint.</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment"></span>            Physics::Constraint* GetConstraint(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index);<span class="comment"></span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported.">Physics::Constraint</a>* GetConstraint(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index);<span class="comment"></span></div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">            /// @brief Gets the number of constraints currently in the world.</span></div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">            /// @return Returns a whole representing the number of constraints in the world.</span></div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumConstraints();<span class="comment"></span></div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">            /// @brief Removes a constraint from the world.</span></div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">            /// @details Removes a constraint from the world so that it will have no effect.</span></div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">            /// @param Con The constraint to be removed.</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveConstraint(Physics::Constraint* Con);<span class="comment"></span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveConstraint(<a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported.">Physics::Constraint</a>* Con);<span class="comment"></span></div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">            /// @brief Destroys all constraints currently in the manager.</span></div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">            /// @details In practice it is cleaner to remove constraints from the world before removing any constrained actors.</span></div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> DestroyAllConstraints();</div>
@@ -404,7 +401,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">            /// @brief Gets a Collision by object pair.</span></div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="comment">            /// @param Pair A pair of objects.</span></div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">            /// @return Returns a pointer to the Collision if a collision for the provided pair exists, NULL otherwise.</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment"></span>            Physics::Collision* GetCollision(<a class="code" href="classMezzanine_1_1ObjectPair.html" title="This is an interface class for pairs of world objects.">ObjectPair</a>* Pair);<span class="comment"></span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Physics::Collision</a>* GetCollision(<a class="code" href="classMezzanine_1_1ObjectPair.html" title="This is an interface class for pairs of world objects.">ObjectPair</a>* Pair);<span class="comment"></span></div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment">            /// @brief Gets the number of Collisions currently in the world.</span></div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment">            /// @return Returns a whole representing the number of Collisions in the world.</span></div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment"></span>            <a class="code" href="namespaceMezzanine.html#adcbb6ce6d1eb4379d109e51171e2e493" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumCollisions();<span class="comment"></span></div>
@@ -413,7 +410,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment">            /// Mostly this function exists to facilitate removal of objects from the world before the simulation ends.</span></div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">            /// In such cases you have to clean up traces of the collision.</span></div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">            /// @param Col The collision to be removed.</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveCollision(Physics::Collision* Col);<span class="comment"></span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveCollision(<a class="code" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Physics::Collision</a>* Col);<span class="comment"></span></div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="comment">            /// @brief Removes all stored collisions that involve the specified Object.</span></div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">            /// @param Object The Object which will have all of it&#39;s collisions removed.</span></div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> RemoveCollisionsContainingObject(<a class="code" href="classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world.">WorldObject</a>* Object);<span class="comment"></span></div>
@@ -522,7 +519,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* CreateManager(<a class="code" href="namespaceMezzanine.html#ac9f30d4ba179aab9013e0c8fbf55bd28" title="This is a datatype mostly used for describing settings or parameters that can&#39;t be declared in advanc...">NameValuePairList</a>&amp; Params);</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::CreateManager(XML::Node&amp;)</span></div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* CreateManager(XML::Node&amp; XMLNode);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* CreateManager(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; XMLNode);</div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;<span class="comment">            /// @copydoc ManagerFactory::DestroyManager(ManagerBase*)</span></div>
 <div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> DestroyManager(<a class="code" href="classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>* ToBeDestroyed);</div>
@@ -532,6 +529,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

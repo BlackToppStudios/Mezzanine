@@ -1,0 +1,5 @@
+<map id="Mezzanine::InstanceIdentityDuplicateException" name="Mezzanine::InstanceIdentityDuplicateException">
+<area shape="rect" id="node2" href="$classMezzanine_1_1InstanceIdentityException.html" title="Thrown when an unknown error with using an Identifier and it is invalid." alt="" coords="5,161,184,205"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Exception.html" title="This is the exception thrown by most Mezzanine system that can throw exceptions." alt="" coords="23,83,167,111"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="45,6,144,34"/>
+</map>

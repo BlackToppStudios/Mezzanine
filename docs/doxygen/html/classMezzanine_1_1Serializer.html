@@ -3,18 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <title>Mezzanine::Serializer&lt; Serializable &gt; Class Template Reference</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -102,9 +95,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae20b1167a26fe0d913c9123788d30657"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#ae20b1167a26fe0d913c9123788d30657">ProtoSerialize</a> (const Serializable &amp;Target, XML::Node &amp;CurrentRoot)=0</td></tr>
-<tr class="memdesc:ae20b1167a26fe0d913c9123788d30657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the serialized data about one class instance in an XML::Node.  <a href="#ae20b1167a26fe0d913c9123788d30657"></a><br/></td></tr>
-<tr class="memitem:addec7bf46f6d1b149eaf3e449c5d8501"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#addec7bf46f6d1b149eaf3e449c5d8501">ProtoSerializeAll</a> (XML::Node &amp;CurrentRoot) const =0</td></tr>
+<tr class="memitem:ae20b1167a26fe0d913c9123788d30657"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#ae20b1167a26fe0d913c9123788d30657">ProtoSerialize</a> (const Serializable &amp;Target, <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot)=0</td></tr>
+<tr class="memdesc:ae20b1167a26fe0d913c9123788d30657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all the serialized data about one class instance in an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>.  <a href="#ae20b1167a26fe0d913c9123788d30657"></a><br/></td></tr>
+<tr class="memitem:addec7bf46f6d1b149eaf3e449c5d8501"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#addec7bf46f6d1b149eaf3e449c5d8501">ProtoSerializeAll</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const =0</td></tr>
 <tr class="memdesc:addec7bf46f6d1b149eaf3e449c5d8501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all of the data from the serializable class instance.  <a href="#addec7bf46f6d1b149eaf3e449c5d8501"></a><br/></td></tr>
 <tr class="memitem:af71f7716c36ba0a583ab1e29e08cac6d"><td class="memItemLeft" align="right" valign="top">virtual std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Serializer.html#af71f7716c36ba0a583ab1e29e08cac6d">Serialize</a> (std::ostream &amp;Stream, const Serializable &amp;Target)</td></tr>
 <tr class="memdesc:af71f7716c36ba0a583ab1e29e08cac6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the specified member to a stream.  <a href="#af71f7716c36ba0a583ab1e29e08cac6d"></a><br/></td></tr>
@@ -140,7 +133,7 @@ template&lt;class Serializable &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">XML::Node &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>CurrentRoot</em>&#160;</td>
         </tr>
         <tr>
@@ -156,7 +149,7 @@ template&lt;class Serializable &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Get all the serialized data about one class instance in an XML::Node. </p>
+<p>Get all the serialized data about one class instance in an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">Target</td><td>A reference to class instance to be deserialized.</td></tr>
@@ -166,7 +159,7 @@ template&lt;class Serializable &gt; </div>
 <p>This is not implemented by default. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vector3 should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> hierarchy that all this vector3 should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -185,7 +178,7 @@ template&lt;class Serializable &gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="classMezzanine_1_1Serializer.html">Mezzanine::Serializer</a>&lt; Serializable &gt;::ProtoSerializeAll </td>
           <td>(</td>
-          <td class="paramtype">XML::Node &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>CurrentRoot</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -198,14 +191,14 @@ template&lt;class Serializable &gt; </div>
 </div><div class="memdoc">
 
 <p>Get all of the data from the serializable class instance. </p>
-<p>This is to be implemented in individual serializer with logic specific to the required tasks. It is expected to produce an XML::Node containing the entirety of the data required to reconstitute the serialized class. <br/>
+<p>This is to be implemented in individual serializer with logic specific to the required tasks. It is expected to produce an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the entirety of the data required to reconstitute the serialized class. <br/>
  <br/>
  This is expected to gets it's knowledge about what to serialize some other than being passed as an argument. It could query a manager or be passed a series pointers that is needs to work with. <br/>
  <br/>
  This is not implemented by default. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all the items deserialized should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> hierarchy that all the items deserialized should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -300,10 +293,10 @@ template&lt;class Serializable &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="serialization_8h_source.html">serialization.h</a></li>
+<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/<a class="el" href="serialization_8h_source.html">serialization.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:21 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

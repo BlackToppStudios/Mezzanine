@@ -3,18 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <title>Mezzanine::DeSerializer&lt; DeSerializable &gt; Class Template Reference</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -108,10 +101,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aaf31c38d936ec89323c3cb9196a5a97f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the serialized version of all the live data from the stream.  <a href="#aaf31c38d936ec89323c3cb9196a5a97f"></a><br/></td></tr>
 <tr class="memitem:ab2765b0fe8f803344c6965df50333073"><td class="memItemLeft" align="right" valign="top">virtual std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#ab2765b0fe8f803344c6965df50333073">DeSerializeAll</a> (std::istream &amp;Stream)</td></tr>
 <tr class="memdesc:ab2765b0fe8f803344c6965df50333073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them.  <a href="#ab2765b0fe8f803344c6965df50333073"></a><br/></td></tr>
-<tr class="memitem:af1a7d10744ae974c985ad762e7dd55bd"><td class="memItemLeft" align="right" valign="top">virtual DeSerializable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd">ProtoDeSerialize</a> (const XML::Node &amp;OneNode)=0</td></tr>
-<tr class="memdesc:af1a7d10744ae974c985ad762e7dd55bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node into a complete live data structure.  <a href="#af1a7d10744ae974c985ad762e7dd55bd"></a><br/></td></tr>
-<tr class="memitem:a59b92952b1465392178d6db736118c26"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26">ProtoDeSerializeAll</a> (const XML::Node &amp;OneNode)</td></tr>
-<tr class="memdesc:a59b92952b1465392178d6db736118c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node into a complete series of live class instances.  <a href="#a59b92952b1465392178d6db736118c26"></a><br/></td></tr>
+<tr class="memitem:af1a7d10744ae974c985ad762e7dd55bd"><td class="memItemLeft" align="right" valign="top">virtual DeSerializable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)=0</td></tr>
+<tr class="memdesc:af1a7d10744ae974c985ad762e7dd55bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> Node into a complete live data structure.  <a href="#af1a7d10744ae974c985ad762e7dd55bd"></a><br/></td></tr>
+<tr class="memitem:a59b92952b1465392178d6db736118c26"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26">ProtoDeSerializeAll</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
+<tr class="memdesc:a59b92952b1465392178d6db736118c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> Node into a complete series of live class instances.  <a href="#a59b92952b1465392178d6db736118c26"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class DeSerializable&gt;<br/>
@@ -152,7 +145,7 @@ template&lt;class DeSerializable&gt; </div>
 <p>This will return the Name of the element that Contains multiple of the items to be DeSerialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A String that correctly indicates the name of an xml tag. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#a4f28a9c4679891e249f9f5e4381a3f93">Mezzanine::ActorRigidDeSerializer</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShapeDeSerializer.html#ae13e53426a858a96207b55083a4c84ce">Mezzanine::Physics::CollisionShapeDeSerializer</a>, and <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#ad2032087ce77a5c6df1316dd77b41cdb">Mezzanine::ActorRigidDeSerializer</a>.</p>
 
 </div>
 </div>
@@ -187,8 +180,10 @@ template&lt;class DeSerializable&gt; </div>
   </table>
   </dd>
 </dl>
-<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node*) to accept The complete XML to serialise and assemble it in memory. </p>
+<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node*) to accept The complete <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> to serialise and assemble it in memory. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShapeDeSerializer.html#a7b56632df76baf2f151dbae84fe518b8">Mezzanine::Physics::CollisionShapeDeSerializer</a>.</p>
 
 <p>Definition at line <a class="el" href="serialization_8h_source.html#l00396">396</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
 
@@ -225,7 +220,7 @@ template&lt;class DeSerializable&gt; </div>
   </table>
   </dd>
 </dl>
-<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node&amp;) to accept11 The complete XML to serialise and assemble it in memory. </p>
+<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node&amp;) to accept11 The complete <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> to serialise and assemble it in memory. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
 
 <p>Definition at line <a class="el" href="serialization_8h_source.html#l00378">378</a> of file <a class="el" href="serialization_8h_source.html">serialization.h</a>.</p>
@@ -244,7 +239,7 @@ template&lt;class DeSerializable&gt; </div>
         <tr>
           <td class="memname">virtual DeSerializable* <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::ProtoDeSerialize </td>
           <td>(</td>
-          <td class="paramtype">const XML::Node &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>OneNode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -256,17 +251,17 @@ template&lt;class DeSerializable&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Convert An XML Node into a complete live data structure. </p>
+<p>Convert An <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> Node into a complete live data structure. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into a live class instance.</td></tr>
+    <tr><td class="paramname">OneNode</td><td>A reference to the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> node to reconstitute into a live class instance.</td></tr>
   </table>
   </dd>
 </dl>
 <p>Not implemented in default serializer. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the freshly deserialized class instance. </dd></dl>
 
-<p>Implemented in <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#a43aa00f112ec13168a8369183099099f">Mezzanine::ActorRigidDeSerializer</a>.</p>
+<p>Implemented in <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShapeDeSerializer.html#aaaefc79651c18d3b668aea69a38340b0">Mezzanine::Physics::CollisionShapeDeSerializer</a>, and <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#ae77f82daf5970b5b2a5ed76ed8b917de">Mezzanine::ActorRigidDeSerializer</a>.</p>
 
 </div>
 </div>
@@ -282,7 +277,7 @@ template&lt;class DeSerializable&gt; </div>
         <tr>
           <td class="memname">virtual void <a class="el" href="classMezzanine_1_1DeSerializer.html">Mezzanine::DeSerializer</a>&lt; DeSerializable &gt;::ProtoDeSerializeAll </td>
           <td>(</td>
-          <td class="paramtype">const XML::Node &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;&#160;</td>
           <td class="paramname"><em>OneNode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -294,10 +289,10 @@ template&lt;class DeSerializable&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Convert An XML Node into a complete series of live class instances. </p>
+<p>Convert An <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> Node into a complete series of live class instances. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into multiple Live classes.</td></tr>
+    <tr><td class="paramname">OneNode</td><td>A reference to the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> node to reconstitute into multiple Live classes.</td></tr>
   </table>
   </dd>
 </dl>
@@ -310,10 +305,10 @@ template&lt;class DeSerializable&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="serialization_8h_source.html">serialization.h</a></li>
+<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/<a class="el" href="serialization_8h_source.html">serialization.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:19 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

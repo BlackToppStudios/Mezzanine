@@ -2,19 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>colourvalue.h Source File</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<title>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/colourvalue.h Source File</title>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -65,7 +58,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +72,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2cb3f4bbed36e97976e95e8895b6e0de.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_28f80092e9c3ae4676af90cfa1b625bf.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">colourvalue.h</div>  </div>
@@ -129,7 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;datatypes.h&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;XML/xml.h&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">XML/xml.h</a>&quot;</span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">namespace </span>Ogre</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{</div>
@@ -637,12 +634,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;            <span class="comment">// Serializable</span><span class="comment"></span></div>
 <div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;<span class="comment">            /// @brief Convert this class to an XML::Node ready for serialization</span></div>
 <div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;<span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this quaternion should be appended to.</span></div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(XML::Node&amp; CurrentRoot) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;</div>
 <div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;            <span class="comment">// DeSerializable</span><span class="comment"></span></div>
 <div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;<span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span></div>
 <div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;<span class="comment">            /// @param OneNode and XML::Node containing the data.</span></div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> XML::Node&amp; OneNode);</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; OneNode);</div>
 <div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;<span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span></div>
 <div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;<span class="comment">            /// @return A string containing &quot;ColourValue&quot;</span></div>
@@ -657,24 +654,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="comment">/// @param stream The ostream to send the xml to.</span></div>
 <div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;<span class="comment">/// @param Ev the Mezzanine::ColourValue to be serialized</span></div>
 <div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;<span class="comment">/// @return this returns the ostream, now with the serialized data</span></div>
-<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;<span class="comment"></span>std::ostream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">Mezzanine::ColourValue</a>&amp; Ev);</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;<span class="comment"></span>std::ostream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="camera_8h.html#a547c3f8cb5c51da38148a6945d4b5447" title="Serializes the passed Mezzanine::Camera to XML.">operator &lt;&lt; </a>(std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">Mezzanine::ColourValue</a>&amp; Ev);</div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;<span class="comment">/// @brief Deserialize a Mezzanine::ColourValue</span></div>
 <div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;<span class="comment">/// @param stream The istream to get the xml from to (re)make the Mezzanine::ColourValue.</span></div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;<span class="comment">/// @param Ev the Mezzanine::ColourValue to be deserialized.</span></div>
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;<span class="comment">/// @return this returns the ostream, advanced past the Mezzanine::ColourValue that was recreated onto Ev.</span></div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;<span class="comment"></span>std::istream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">Mezzanine::ColourValue</a>&amp; Ev);</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;<span class="comment"></span>std::istream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="camera_8h.html#a642e70b85734d279125f4e5d3d07722a" title="Deserialize a Mezzanine::Camera.">operator &gt;&gt; </a>(std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">Mezzanine::ColourValue</a>&amp; Ev);</div>
 <div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;<span class="comment">/// @brief Set all values of a Mezzanine::ColourValue from parsed xml.</span></div>
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;<span class="comment">/// @param OneNode The istream to get the xml from to (re)make the Mezzanine::ColourValue.</span></div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;<span class="comment">/// @param Ev the Mezzanine::ColourValue to be reset.</span></div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::XML::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">Mezzanine::ColourValue</a>&amp; Ev);</div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="camera_8h.html#a642e70b85734d279125f4e5d3d07722a" title="Deserialize a Mezzanine::Camera.">operator &gt;&gt; </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">Mezzanine::ColourValue</a>&amp; Ev);</div>
 <div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;</div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;</div>
 <div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

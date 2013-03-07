@@ -2,19 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>serialization.h Source File</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<title>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h Source File</title>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -65,7 +58,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +72,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2cb3f4bbed36e97976e95e8895b6e0de.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_28f80092e9c3ae4676af90cfa1b625bf.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">serialization.h</div>  </div>
@@ -131,8 +128,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/// @brief The interface for serialization</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">    #include &quot;datatypes.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    #include &quot;XML/xml.h&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">    #include &quot;XML/xmldoc.h&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">XML/xml.h</a>&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">    #include &quot;<a class="code" href="xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system.">XML/xmldoc.h</a>&quot;</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">// Standard Headers are not included in SWIG preprocessing</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">    #ifndef SWIG</span></div>
@@ -392,17 +389,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">        /// \n \n</span></div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">        /// This is not implemented by default.</span></div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">        /// @param CurrentRoot The point in the XML hierarchy that all the items deserialized should be appended to.</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Serializer.html#addec7bf46f6d1b149eaf3e449c5d8501" title="Get all of the data from the serializable class instance.">ProtoSerializeAll</a>(XML::Node&amp; CurrentRoot) <span class="keyword">const</span> = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Serializer.html#addec7bf46f6d1b149eaf3e449c5d8501" title="Get all of the data from the serializable class instance.">ProtoSerializeAll</a>(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; CurrentRoot) <span class="keyword">const</span> = 0;<span class="comment"></span></div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">        /// @brief Output the complete serialized data to a stream.</span></div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="comment">        /// @param Stream The std::ostream to send the data into.</span></div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">        /// @details By default this is implemented in using ProtoSerializeAll().</span></div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="comment">        /// @return The populated ostream.</span></div>
 <div class="line"><a name="l00313"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Serializer.html#aa178dfa519a2e73e84c0a2f35b2b8b5f">  313</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classMezzanine_1_1Serializer.html#aa178dfa519a2e73e84c0a2f35b2b8b5f" title="Output the complete serialized data to a stream.">SerializeAll</a>(std::ostream&amp; Stream)<span class="keyword"> const</span></div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            Mezzanine::XML::Document Doc;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            Doc.Load(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            <a class="code" href="classMezzanine_1_1XML_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Mezzanine::XML::Document</a> Doc;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            Doc.<a class="code" href="classMezzanine_1_1XML_1_1Document.html#afb9abd5b77651735b1380f6bd5934837" title="Load a document from a data stream.">Load</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <a class="code" href="classMezzanine_1_1Serializer.html#addec7bf46f6d1b149eaf3e449c5d8501" title="Get all of the data from the serializable class instance.">ProtoSerializeAll</a>(Doc);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            Doc.Print(Stream);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            Doc.<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ada45ce476fbeecdfb8ff63e93b5f1114" title="Output the XML document using a Writer.">Print</a>(Stream);</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;            <span class="keywordflow">return</span> Stream;</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;        }</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="comment"></span></div>
@@ -410,7 +407,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">        /// @param Target A reference to class instance to be deserialized.</span></div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">        /// @details This is not implemented by default.</span></div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="comment">        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Serializer.html#ae20b1167a26fe0d913c9123788d30657" title="Get all the serialized data about one class instance in an XML::Node.">ProtoSerialize</a>(<span class="keyword">const</span> Serializable&amp; Target, XML::Node&amp; CurrentRoot) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1Serializer.html#ae20b1167a26fe0d913c9123788d30657" title="Get all the serialized data about one class instance in an XML::Node.">ProtoSerialize</a>(<span class="keyword">const</span> Serializable&amp; Target, <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; CurrentRoot) = 0;<span class="comment"></span></div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="comment">        /// @brief Output the specified member to a stream</span></div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="comment">        /// @param Target A reference to class instance to be deserialized.</span></div>
 <div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="comment">        /// @param Stream The std::ostream to send the data into.</span></div>
@@ -418,10 +415,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="comment">        /// @return The std::ostream that was passed in.</span></div>
 <div class="line"><a name="l00332"></a><span class="lineno"><a class="code" href="classMezzanine_1_1Serializer.html#af71f7716c36ba0a583ab1e29e08cac6d">  332</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> std::ostream&amp; <a class="code" href="classMezzanine_1_1Serializer.html#af71f7716c36ba0a583ab1e29e08cac6d" title="Output the specified member to a stream.">Serialize</a>(std::ostream&amp; Stream, <span class="keyword">const</span> Serializable&amp; Target)</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;        {</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            Mezzanine::XML::Document Doc;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            Doc.Load(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <a class="code" href="classMezzanine_1_1XML_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Mezzanine::XML::Document</a> Doc;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            Doc.<a class="code" href="classMezzanine_1_1XML_1_1Document.html#afb9abd5b77651735b1380f6bd5934837" title="Load a document from a data stream.">Load</a>(<span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            <a class="code" href="classMezzanine_1_1Serializer.html#ae20b1167a26fe0d913c9123788d30657" title="Get all the serialized data about one class instance in an XML::Node.">ProtoSerialize</a>(Target,Doc);</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            Doc.Print(Stream);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            Doc.<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ada45ce476fbeecdfb8ff63e93b5f1114" title="Output the XML document using a Writer.">Print</a>(Stream);</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <span class="keywordflow">return</span> Stream;</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        }</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
@@ -447,14 +444,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">        /// @details This is expected to put the deserialized items somewhere they can be accessed by the calling,</span></div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">        /// but provides no facility for working them itself. \n \n</span></div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment">        /// Not implemented in default DeSerializer.</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno"><a class="code" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26">  363</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26" title="Convert An XML Node into a complete series of live class instances.">ProtoDeSerializeAll</a>(<span class="keyword">const</span> XML::Node&amp; OneNode)</div>
+<div class="line"><a name="l00363"></a><span class="lineno"><a class="code" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26">  363</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26" title="Convert An XML Node into a complete series of live class instances.">ProtoDeSerializeAll</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; OneNode)</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        {</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;            <span class="comment">// no checking occurs here, because this should be DeSerializeAll(istream&amp;)</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            XML::Node SingleItemNode = OneNode.GetFirstChild();</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;            <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> SingleItemNode = OneNode.<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ad286510b4d8d77b8632a74b92841fb08" title="Get the first child Node of this Node.">GetFirstChild</a>();</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            <span class="keywordflow">while</span>(SingleItemNode)</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            {</div>
 <div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                <a class="code" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd" title="Convert An XML Node into a complete live data structure.">ProtoDeSerialize</a>(SingleItemNode);</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                SingleItemNode = SingleItemNode.GetNextSibling();</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                SingleItemNode = SingleItemNode.<a class="code" href="classMezzanine_1_1XML_1_1Node.html#a6832dd76f958c7bdba1715ae499dfb40" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>();</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;            }</div>
 <div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        }<span class="comment"></span></div>
 <div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;<span class="comment">        /// @brief Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them</span></div>
@@ -464,9 +461,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">        /// @return This returns the input stream after the xml document has been extracted from it.</span></div>
 <div class="line"><a name="l00378"></a><span class="lineno"><a class="code" href="classMezzanine_1_1DeSerializer.html#ab2765b0fe8f803344c6965df50333073">  378</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> std::istream&amp; <a class="code" href="classMezzanine_1_1DeSerializer.html#ab2765b0fe8f803344c6965df50333073" title="Get One node that has several of the appropriate kinds of nodes as children and deserialize all of th...">DeSerializeAll</a>(std::istream&amp; Stream)</div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;        {</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( Mezzanine::XML::GetOneTag(Stream) );</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            std::auto_ptr&lt;Mezzanine::XML::Document&gt; Doc(Mezzanine::XML::PreParseClassFromSingleTag(this-&gt;<a class="code" href="classMezzanine_1_1DeSerializer.html#a99e25b2dab4cde22af1c77fa31665bae" title="This will return the Name of the element that Contains multiple of the items to be DeSerialized...">ContainerName</a>(), OneTag) );</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            <a class="code" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26" title="Convert An XML Node into a complete series of live class instances.">ProtoDeSerializeAll</a>(Doc-&gt;GetFirstChild());</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( <a class="code" href="namespaceMezzanine_1_1XML.html#a230007eaf534ce57ad58f440a7a89b6c" title="Gets the first tag out of the Stream and returns it as a String.">Mezzanine::XML::GetOneTag</a>(Stream) );</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            std::auto_ptr&lt;Mezzanine::XML::Document&gt; Doc(<a class="code" href="namespaceMezzanine_1_1XML.html#a666837c21098b243a1b35976b2f11e6d" title="Perform a basic series of checks for extracting meaning from a single xml tag.">Mezzanine::XML::PreParseClassFromSingleTag</a>(this-&gt;<a class="code" href="classMezzanine_1_1DeSerializer.html#a99e25b2dab4cde22af1c77fa31665bae" title="This will return the Name of the element that Contains multiple of the items to be DeSerialized...">ContainerName</a>(), OneTag) );</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            <a class="code" href="classMezzanine_1_1DeSerializer.html#a59b92952b1465392178d6db736118c26" title="Convert An XML Node into a complete series of live class instances.">ProtoDeSerializeAll</a>(Doc-&gt;<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ad286510b4d8d77b8632a74b92841fb08" title="Get the first child Node of this Node.">GetFirstChild</a>());</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            <span class="keywordflow">return</span> Stream;</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        }</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment"></span></div>
@@ -474,7 +471,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">        /// @param OneNode A reference to the XML node to reconstitute into a live class instance.</span></div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">        /// @details Not implemented in default serializer.</span></div>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">        /// @return A pointer to the freshly deserialized class instance.</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> DeSerializable* <a class="code" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd" title="Convert An XML Node into a complete live data structure.">ProtoDeSerialize</a>(<span class="keyword">const</span> XML::Node&amp; OneNode) = 0;<span class="comment"></span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> DeSerializable* <a class="code" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd" title="Convert An XML Node into a complete live data structure.">ProtoDeSerialize</a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; OneNode) = 0;<span class="comment"></span></div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">        /// @brief Get the serialized version of all the live data from the stream.</span></div>
 <div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment">        /// @param Stream The std::istream to get the data from.</span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment">        /// @details The default implementation of this uses ProtoDeSerializeAll(XML::Node*) to accept</span></div>
@@ -482,9 +479,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">        /// @return This returns the input stream after the xml document has been extracted from it.</span></div>
 <div class="line"><a name="l00396"></a><span class="lineno"><a class="code" href="classMezzanine_1_1DeSerializer.html#aaf31c38d936ec89323c3cb9196a5a97f">  396</a></span>&#160;<span class="comment"></span>        <span class="keyword">virtual</span> std::istream&amp; <a class="code" href="classMezzanine_1_1DeSerializer.html#aaf31c38d936ec89323c3cb9196a5a97f" title="Get the serialized version of all the live data from the stream.">DeSerialize</a>(std::istream&amp; Stream)</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        {</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( Mezzanine::XML::GetOneTag(Stream) );</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            std::auto_ptr&lt;Mezzanine::XML::Document&gt; Doc(Mezzanine::XML::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            <a class="code" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd" title="Convert An XML Node into a complete live data structure.">ProtoDeSerialize</a>(Doc-&gt;GetFirstChild());</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( <a class="code" href="namespaceMezzanine_1_1XML.html#a230007eaf534ce57ad58f440a7a89b6c" title="Gets the first tag out of the Stream and returns it as a String.">Mezzanine::XML::GetOneTag</a>(Stream) );</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            std::auto_ptr&lt;Mezzanine::XML::Document&gt; Doc(<a class="code" href="namespaceMezzanine_1_1XML.html#a666837c21098b243a1b35976b2f11e6d" title="Perform a basic series of checks for extracting meaning from a single xml tag.">Mezzanine::XML::PreParseClassFromSingleTag</a>(DeSerializable::SerializableName(), OneTag) );</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;            <a class="code" href="classMezzanine_1_1DeSerializer.html#af1a7d10744ae974c985ad762e7dd55bd" title="Convert An XML Node into a complete live data structure.">ProtoDeSerialize</a>(Doc-&gt;<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ad286510b4d8d77b8632a74b92841fb08" title="Get the first child Node of this Node.">GetFirstChild</a>());</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <span class="keywordflow">return</span> Stream;</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;        }</div>
 <div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="comment"></span></div>
@@ -502,10 +499,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
 <div class="line"><a name="l00416"></a><span class="lineno"><a class="code" href="namespaceMezzanine.html#a9015c5e668e14b857a27888c56934148">  416</a></span>&#160;    std::ostream&amp; <a class="code" href="namespaceMezzanine.html#a9015c5e668e14b857a27888c56934148" title="Convert any class that supports serialization or has a serializer to a string of chars in a stream...">Serialize</a>(std::ostream&amp; Stream, <span class="keyword">const</span> T&amp; Converted, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; Indent = <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>(<span class="stringliteral">&quot;&quot;</span>) )</div>
 <div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    {</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        Mezzanine::XML::Document Doc;</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        Doc.Load(<span class="stringliteral">&quot;&quot;</span>);           <span class="comment">// This sets the encoding to UTF8 ?!</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        <a class="code" href="classMezzanine_1_1XML_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Mezzanine::XML::Document</a> Doc;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        Doc.<a class="code" href="classMezzanine_1_1XML_1_1Document.html#afb9abd5b77651735b1380f6bd5934837" title="Load a document from a data stream.">Load</a>(<span class="stringliteral">&quot;&quot;</span>);           <span class="comment">// This sets the encoding to UTF8 ?!</span></div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        Converted.ProtoSerialize(Doc);</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        Doc.Print(Stream, Indent.c_str());</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;        Doc.<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ada45ce476fbeecdfb8ff63e93b5f1114" title="Output the XML document using a Writer.">Print</a>(Stream, Indent.c_str());</div>
 <div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;        <span class="keywordflow">return</span> Stream;</div>
 <div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    }</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;<span class="comment"></span></div>
@@ -518,10 +515,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
 <div class="line"><a name="l00432"></a><span class="lineno"><a class="code" href="namespaceMezzanine.html#ad8989ea81ccd1ad6d59a11921f0239a4">  432</a></span>&#160;    std::istream&amp; <a class="code" href="namespaceMezzanine.html#ad8989ea81ccd1ad6d59a11921f0239a4" title="Deserialize the next xml tag in the stream into a specific in memory class instance.">DeSerialize</a>(std::istream&amp; Stream, T&amp; Converted)</div>
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    {</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( Mezzanine::XML::GetOneTag(Stream) );</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        std::auto_ptr&lt;Mezzanine::XML::Document&gt; Doc( Mezzanine::XML::PreParseClassFromSingleTag(<span class="stringliteral">&quot;Mezzanine::&quot;</span>, Converted.SerializableName(), OneTag) );</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">Mezzanine::String</a> OneTag( <a class="code" href="namespaceMezzanine_1_1XML.html#a230007eaf534ce57ad58f440a7a89b6c" title="Gets the first tag out of the Stream and returns it as a String.">Mezzanine::XML::GetOneTag</a>(Stream) );</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        std::auto_ptr&lt;Mezzanine::XML::Document&gt; Doc( <a class="code" href="namespaceMezzanine_1_1XML.html#a666837c21098b243a1b35976b2f11e6d" title="Perform a basic series of checks for extracting meaning from a single xml tag.">Mezzanine::XML::PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;Mezzanine::&quot;</span>, Converted.SerializableName(), OneTag) );</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        Converted.ProtoDeSerialize(Doc-&gt;GetFirstChild());</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;        Converted.ProtoDeSerialize(Doc-&gt;<a class="code" href="classMezzanine_1_1XML_1_1Node.html#ad286510b4d8d77b8632a74b92841fb08" title="Get the first child Node of this Node.">GetFirstChild</a>());</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;</div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        <span class="keywordflow">return</span> Stream;</div>
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    }</div>
@@ -533,14 +530,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="comment">    /// @param Converted The class implementing older serialization code.</span></div>
 <div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="comment">    /// @param CurrentRoot The place in the xml hiearchy to append the items to be sloppily ProtoSerialized.</span></div>
 <div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;<span class="comment"></span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00449"></a><span class="lineno"><a class="code" href="namespaceMezzanine.html#a519df380398999cb532245118b9cb6a2">  449</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceMezzanine.html#a519df380398999cb532245118b9cb6a2" title="Used to interface with a previous version of the serialization code.">SloppyProtoSerialize</a>(<span class="keyword">const</span> T&amp; Converted, XML::Node&amp; CurrentRoot)</div>
+<div class="line"><a name="l00449"></a><span class="lineno"><a class="code" href="namespaceMezzanine.html#a519df380398999cb532245118b9cb6a2">  449</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="namespaceMezzanine.html#a519df380398999cb532245118b9cb6a2" title="Used to interface with a previous version of the serialization code.">SloppyProtoSerialize</a>(<span class="keyword">const</span> T&amp; Converted, <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; CurrentRoot)</div>
 <div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    {</div>
 <div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        std::stringstream Depot;         <span class="comment">//Make a place to store serialized XML</span></div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        XML::Document Staging;      <span class="comment">//Make a place to convert from XML to an xml node</span></div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        <a class="code" href="classMezzanine_1_1XML_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">XML::Document</a> Staging;      <span class="comment">//Make a place to convert from XML to an xml node</span></div>
 <div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;        Depot &lt;&lt; Converted;         <span class="comment">//Use old conversion tools to convert to serialized XML as if writing to a file</span></div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        Staging.Load(Depot);        <span class="comment">//Load To the staging area as if loading XML form a file or whatever.</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        Staging.<a class="code" href="classMezzanine_1_1XML_1_1Document.html#afb9abd5b77651735b1380f6bd5934837" title="Load a document from a data stream.">Load</a>(Depot);        <span class="comment">//Load To the staging area as if loading XML form a file or whatever.</span></div>
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        CurrentRoot.AppendCopy(Staging.DocumentElement()); <span class="comment">//Append our work as an XML::node to the desired place in the xml Hierarchy.</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        CurrentRoot.<a class="code" href="classMezzanine_1_1XML_1_1Node.html#a6aff8fe6b9a3458e34932c86d5b832fd" title="Copies an Attribute and puts the copy at the end of this Nodes attributes.">AppendCopy</a>(Staging.<a class="code" href="classMezzanine_1_1XML_1_1Document.html#aac1611207ee9ef11a80bc1796020cf4d" title="Get document element.">DocumentElement</a>()); <span class="comment">//Append our work as an XML::node to the desired place in the xml Hierarchy.</span></div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    }</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;<span class="comment">    /// @brief Simply does some string concatenation, then throws an Exception</span></div>
@@ -583,6 +580,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

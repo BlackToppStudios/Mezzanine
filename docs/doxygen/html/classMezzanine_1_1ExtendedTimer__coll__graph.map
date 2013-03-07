@@ -1,0 +1,5 @@
+<map id="Mezzanine::ExtendedTimer" name="Mezzanine::ExtendedTimer">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers." alt="" coords="29,99,152,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TimerCallback.html" title="A callback class for use automated and timed&#45;event based timers." alt="" coords="5,6,176,34"/>
+<area shape="rect" id="node6" href="$structMezzanine_1_1Time.html" title="A container for the metrics of time relevant for the timer class." alt="" coords="176,99,293,127"/>
+</map>

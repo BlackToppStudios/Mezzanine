@@ -3,18 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <title>Mezzanine::LineGroup Class Reference</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -143,10 +136,8 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Basic Constructor. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000042">Todo:</a></b></dt><dd>TODO: This class really should support rotation, the underlying implementation does. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>TODO: This class really should support rotation, the underlying implementation does. </dd></dl>
 <p>This creates a basic, empty, <a class="el" href="classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a>. </p>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00304">304</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -166,8 +157,6 @@ Public Member Functions</h2></td></tr>
 
 <p>Default Destructor. </p>
 <p>This safely tears down, and removes from the graphics system the <a class="el" href="classMezzanine_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">LineGroup</a> </p>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00309">309</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,8 +183,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00314">314</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -225,7 +212,7 @@ Public Member Functions</h2></td></tr>
 
 <p>This adds Two points to the list. </p>
 <p>This could add 2 line segments, be it simply adds two lines to the list, but if you don't care then this is an easy way to guarantee that a specific line segment be rendered. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000043">Todo:</a></b></dt><dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>TODO: In the future we will add a break in the line segment chain when this is called. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">start</td><td>The first point to be added </td></tr>
@@ -233,8 +220,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00335">335</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,9 +239,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Renders the line segment chain. </p>
 <p>This send the Line segment information to the rending subsystem. <a class="el" href="classMezzanine_1_1LineGroup.html#ab94688dd800d390aefce0e6b9742b296" title="This assists in the rendering process.">PrepareForRendering()</a> should be called first </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000044">Todo:</a></b></dt><dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd></dl>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00342">342</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention. </dd></dl>
 
 </div>
 </div>
@@ -278,8 +261,6 @@ Public Member Functions</h2></td></tr>
 <p>This returns the radius the a circle would need to have to surround this line group. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns a real number which indicates the radius. </dd></dl>
 
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00347">347</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="a518e2ccf64cb6dc9bcc309a08d40f8c9"></a>
@@ -299,8 +280,6 @@ Public Member Functions</h2></td></tr>
 <p>Get the amount of points used to define Line Segments. </p>
 <p>This return the amount of points and therefore line segments. There will always be one more point Than line segments. </p>
 <dl class="section return"><dt>Returns</dt><dd>A Whole Number which indicates the amount of points. </dd></dl>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00325">325</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,8 +306,6 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00319">319</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
-
 </div>
 </div>
 <a class="anchor" id="ab94688dd800d390aefce0e6b9742b296"></a>
@@ -346,8 +323,6 @@ Public Member Functions</h2></td></tr>
 
 <p>This assists in the rendering process. </p>
 <p>This sends some of the data to the rendering subsystem to aid drawLines </p>
-
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00352">352</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,16 +360,13 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="linegroup_8cpp_source.html#l00330">330</a> of file <a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a>.</p>
-
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="linegroup_8h_source.html">linegroup.h</a></li>
-<li><a class="el" href="linegroup_8cpp_source.html">linegroup.cpp</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/<a class="el" href="linegroup_8h_source.html">linegroup.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:37 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

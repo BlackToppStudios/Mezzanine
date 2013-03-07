@@ -1,0 +1,23 @@
+<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/particleeffect.cpp" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/particleeffect.cpp">
+<area shape="rect" id="node3" href="$particleeffect_8h_source.html" title="particleeffect.h" alt="" coords="299,115,403,143"/>
+<area shape="rect" id="node52" href="$scenemanager_8h_source.html" title="scenemanager.h" alt="" coords="717,193,832,221"/>
+<area shape="rect" id="node75" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="571,270,653,298"/>
+<area shape="rect" id="node92" href="$worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="84,115,175,143"/>
+<area shape="rect" id="node97" href="$particleaffector_8h_source.html" title="particleaffector.h" alt="" coords="1247,193,1361,221"/>
+<area shape="rect" id="node100" href="$particleemitter_8h_source.html" title="particleemitter.h" alt="" coords="1108,193,1223,221"/>
+<area shape="rect" id="node5" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="125,193,216,221"/>
+<area shape="rect" id="node13" href="$datatypes_8h_source.html" title="datatypes.h" alt="" coords="921,425,1007,453"/>
+<area shape="rect" id="node44" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="287,347,377,375"/>
+<area shape="rect" id="node7" href="$transform_8h.html" title="The defintion of the transform is stored in this file." alt="" coords="127,270,212,298"/>
+<area shape="rect" id="node9" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="137,347,212,375"/>
+<area shape="rect" id="node11" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="417,502,561,530"/>
+<area shape="rect" id="node38" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="5,425,115,453"/>
+<area shape="rect" id="node40" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="212,425,268,453"/>
+<area shape="rect" id="node54" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="697,347,793,375"/>
+<area shape="rect" id="node59" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="817,347,927,375"/>
+<area shape="rect" id="node64" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="844,270,964,298"/>
+<area shape="rect" id="node67" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="991,270,1073,298"/>
+<area shape="rect" id="node69" href="$exception_8h_source.html" title="exception.h" alt="" coords="1001,347,1087,375"/>
+<area shape="rect" id="node79" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="452,347,527,375"/>
+<area shape="rect" id="node87" href="$smartptr_8h_source.html" title="smartptr.h" alt="" coords="1161,347,1239,375"/>
+</map>

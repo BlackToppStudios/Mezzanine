@@ -1,0 +1,21 @@
+<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/light.cpp" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/light.cpp">
+<area shape="rect" id="node3" href="$light_8h.html" title="Declaration of Mezzanine::Light." alt="" coords="399,115,455,143"/>
+<area shape="rect" id="node55" href="$scenemanager_8h_source.html" title="scenemanager.h" alt="" coords="707,193,821,221"/>
+<area shape="rect" id="node74" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="395,270,477,298"/>
+<area shape="rect" id="node91" href="$worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="64,115,155,143"/>
+<area shape="rect" id="node5" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="105,193,196,221"/>
+<area shape="rect" id="node49" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="665,347,761,375"/>
+<area shape="rect" id="node7" href="$transform_8h.html" title="The defintion of the transform is stored in this file." alt="" coords="156,270,241,298"/>
+<area shape="rect" id="node9" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="156,347,231,375"/>
+<area shape="rect" id="node44" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="551,347,641,375"/>
+<area shape="rect" id="node11" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="363,502,507,530"/>
+<area shape="rect" id="node13" href="$datatypes_8h_source.html" title="datatypes.h" alt="" coords="827,425,912,453"/>
+<area shape="rect" id="node38" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="5,425,115,453"/>
+<area shape="rect" id="node40" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="231,425,287,453"/>
+<area shape="rect" id="node58" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="785,347,895,375"/>
+<area shape="rect" id="node63" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="823,270,943,298"/>
+<area shape="rect" id="node66" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="969,270,1052,298"/>
+<area shape="rect" id="node68" href="$exception_8h_source.html" title="exception.h" alt="" coords="969,347,1055,375"/>
+<area shape="rect" id="node78" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="401,347,476,375"/>
+<area shape="rect" id="node86" href="$smartptr_8h_source.html" title="smartptr.h" alt="" coords="1079,347,1156,375"/>
+</map>

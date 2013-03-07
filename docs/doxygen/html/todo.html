@@ -3,18 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <title>Todo List</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -80,154 +73,85 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000024"></a>Page <a class="el" href="mainloop1.html">Main Loop Structure and Flow</a>  </dt>
-<dd>create a lighting manager and put this in there  </dd>
-<dt><a class="anchor" id="_todo000025"></a>page <a class="el" href="index.html">Mezzanine</a>  </dt>
+<dt><a class="anchor" id="_todo000006"></a>page <a class="el" href="index.html">Mezzanine</a>  </dt>
 <dd>Fill out the Simple Data Types with all the enumerations. </dd>
-<dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classMezzanine_1_1ActorManager.html#af01011777296ba4f2768b6d41500923d">Mezzanine::ActorManager::ActorManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classMezzanine_1_1ActorRigid.html#a0290af701cc57b7bf2d8085e04841faf">Mezzanine::ActorRigid::_NotifyCollisionState</a>  (Physics::Collision *Col, const Physics::Collision::CollisionState &amp;State)</dt>
-<dd>Update this to be workable with other objects that have rigid bodies internally, and maybe soft bodies.  </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classMezzanine_1_1ActorRigidDeSerializer.html#a43aa00f112ec13168a8369183099099f">Mezzanine::ActorRigidDeSerializer::ProtoDeSerialize</a>  (const XML::Node &amp;OneNode)</dt>
-<dd>TODO: Why is gravity done here, can it be done elsewhere? Apparently the addind to the world removed what is deserialized here and this should how be used if it is different from the default  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classMezzanine_1_1ActorRigidPhysicsSettings.html#a56d106b78dfa0ea5415c7928491e4fa7">Mezzanine::ActorRigidPhysicsSettings::~ActorRigidPhysicsSettings</a>  ()</dt>
-<dd>Occasionally a SIGTRAP occurs here without any breakpoint set while debugging. Needs to be fixed. on Linux it is a SIGSEGV.  </dd>
-<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="classMezzanine_1_1Any.html#a80e0935053029b964ccc1f057600bc8f">Mezzanine::Any::operator()</a>  () const </dt>
+<dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classMezzanine_1_1Any.html#a80e0935053029b964ccc1f057600bc8f">Mezzanine::Any::operator()</a>  () const </dt>
 <dd>These exceptions should get logged, but the Entresol class is too large for it to be worthwhile to include it here.  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="classMezzanine_1_1AudioManager.html#a48ad7f946649a3971e52a3d9bf3aba20">Mezzanine::AudioManager::ApplySettingGroupImpl</a>  (ObjectSettingGroup *Group)</dt>
-<dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="namespaceMezzanine_1_1BinaryTools.html#a5d589d15b7cf318b1759487b0d3e6de4">Mezzanine::BinaryTools::Base64Decode</a>  (String const &amp;EncodedString)</dt>
+<dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="namespaceMezzanine_1_1BinaryTools.html#a5d589d15b7cf318b1759487b0d3e6de4">Mezzanine::BinaryTools::Base64Decode</a>  (String const &amp;EncodedString)</dt>
 <dd>Return something not a String and more amenable to use as a binary buffer.  </dd>
-<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a>  </dt>
+<dt><a class="anchor" id="_todo000003"></a>Class <a class="el" href="classMezzanine_1_1Camera.html">Mezzanine::Camera</a>  </dt>
 <dd>Fix all the extra occurences of the word Camera in Function names on the camera.  </dd>
-<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="classMezzanine_1_1CameraManager.html#a426dd240a72299e1b5f6e69ca2859542">Mezzanine::CameraManager::CameraManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="classMezzanine_1_1CollisionShapeManager.html#a33671dfe83da86a6abbb172ff8a679f8">Mezzanine::CollisionShapeManager::CollisionShapeManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="namespaceMezzanine.html#a36fefd8e3d822274f02c7633b0ef5072">Mezzanine::ConvertTo</a>  (const From &amp;Datum)</dt>
+<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="namespaceMezzanine.html#a36fefd8e3d822274f02c7633b0ef5072">Mezzanine::ConvertTo</a>  (const From &amp;Datum)</dt>
 <dd>Overload ConvertTo for ToString Conversions.  </dd>
-<dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classMezzanine_1_1DefaultActorManagerFactory.html#ace07bebd9a19ecafa99ca647855b308e">Mezzanine::DefaultActorManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classMezzanine_1_1DefaultActorManagerFactory.html#a0677fb6f2d51af8ec6316e54a3e3b90e">Mezzanine::DefaultActorManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classMezzanine_1_1DefaultAudioManagerFactory.html#a083a7548bd1d6d6b06952829604d174a">Mezzanine::DefaultAudioManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="classMezzanine_1_1DefaultAudioManagerFactory.html#a4dd9d443d94e468643119e2fb1893ea2">Mezzanine::DefaultAudioManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="classMezzanine_1_1DefaultCameraManagerFactory.html#adf79601857c8faff305e0fd9b282dbaf">Mezzanine::DefaultCameraManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="classMezzanine_1_1DefaultCameraManagerFactory.html#a36f97fcfe2ac3b4b71be3f93a026f7e1">Mezzanine::DefaultCameraManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="classMezzanine_1_1DefaultCollisionShapeManagerFactory.html#a52b64a79bcbba0637463e0904b38587b">Mezzanine::DefaultCollisionShapeManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000018"></a>Member <a class="el" href="classMezzanine_1_1DefaultCollisionShapeManagerFactory.html#ab4b7d4bbc5cc5e49ff5b5fa1b2e4bb82">Mezzanine::DefaultCollisionShapeManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="classMezzanine_1_1DefaultEventManagerFactory.html#a3c35239092245b4b582033e5b45a7d79">Mezzanine::DefaultEventManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="classMezzanine_1_1DefaultEventManagerFactory.html#a592440bd81d0a2012828523833dd0e10">Mezzanine::DefaultEventManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000037"></a>Member <a class="el" href="classMezzanine_1_1DefaultGraphicsManagerFactory.html#aa45d7cf497bd28287359e1fd22d3d280">Mezzanine::DefaultGraphicsManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000038"></a>Member <a class="el" href="classMezzanine_1_1DefaultGraphicsManagerFactory.html#a3a50ec77812d038d96366d36ab15025f">Mezzanine::DefaultGraphicsManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000039"></a>Member <a class="el" href="classMezzanine_1_1DefaultInputManagerFactory.html#a4f694ef119088a8cff459dc20a3bc260">Mezzanine::DefaultInputManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000040"></a>Member <a class="el" href="classMezzanine_1_1DefaultInputManagerFactory.html#a8aaff12f9cef0676708cd67106116ae0">Mezzanine::DefaultInputManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000049"></a>Member <a class="el" href="classMezzanine_1_1DefaultMeshManagerFactory.html#a2c0397aa59f15dc5b770aadd0b8e35ed">Mezzanine::DefaultMeshManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000050"></a>Member <a class="el" href="classMezzanine_1_1DefaultMeshManagerFactory.html#a4fa87a9778190048f7cc18066be58b43">Mezzanine::DefaultMeshManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000052"></a>Member <a class="el" href="classMezzanine_1_1DefaultPhysicsManagerFactory.html#a9a690ef47906753aaea4fdab4fbef499">Mezzanine::DefaultPhysicsManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000053"></a>Member <a class="el" href="classMezzanine_1_1DefaultPhysicsManagerFactory.html#a2a47545af6d3afd469e7143ab0309453">Mezzanine::DefaultPhysicsManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000060"></a>Member <a class="el" href="classMezzanine_1_1DefaultResourceManagerFactory.html#a6016da8ab7d3ce53ac6b584c13cca98e">Mezzanine::DefaultResourceManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000061"></a>Member <a class="el" href="classMezzanine_1_1DefaultResourceManagerFactory.html#af60851cccb93c107139fe0dcac3556d2">Mezzanine::DefaultResourceManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000064"></a>Member <a class="el" href="classMezzanine_1_1DefaultSceneManagerFactory.html#acf05fe23c2007787714ce4cd7dbe9ab2">Mezzanine::DefaultSceneManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000063"></a>Member <a class="el" href="classMezzanine_1_1DefaultSceneManagerFactory.html#a045c794aa5905ef26fcb8e7bb1457e75">Mezzanine::DefaultSceneManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000070"></a>Member <a class="el" href="classMezzanine_1_1DefaultTerrainManagerFactory.html#a1062237ff970a575fa8718d68603f64e">Mezzanine::DefaultTerrainManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000071"></a>Member <a class="el" href="classMezzanine_1_1DefaultTerrainManagerFactory.html#a89280d351831add1a4902fd16e6b88e8">Mezzanine::DefaultTerrainManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000073"></a>Member <a class="el" href="classMezzanine_1_1DefaultTimerManagerFactory.html#ab284f43297d70c3389594e6d752d58e0">Mezzanine::DefaultTimerManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000074"></a>Member <a class="el" href="classMezzanine_1_1DefaultTimerManagerFactory.html#ad8cac8b702a8f9637ad1cd5e2ecddc3f">Mezzanine::DefaultTimerManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000077"></a>Member <a class="el" href="classMezzanine_1_1DefaultUIManagerFactory.html#aee5a9ea55ba77f7d118dc052605bf2d3">Mezzanine::DefaultUIManagerFactory::CreateManager</a>  (NameValuePairList &amp;Params)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000078"></a>Member <a class="el" href="classMezzanine_1_1DefaultUIManagerFactory.html#a64230cbd8c6dffa83018189d0dae5116">Mezzanine::DefaultUIManagerFactory::CreateManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>Add something to log a warning that the manager exists and was requested to be constructed when we have a logging manager set up.  </dd>
-<dt><a class="anchor" id="_todo000027"></a>Member <a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">Mezzanine::EventManager::EventManager</a>  ()</dt>
-<dd>TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock  </dd>
-<dt><a class="anchor" id="_todo000028"></a>Member <a class="el" href="classMezzanine_1_1EventManager.html#abf3650bfe862473ed2418dddbd83eec3">Mezzanine::EventManager::EventManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="classMezzanine_1_1GraphicsManager.html#a0c643b05edba99f2c70d0fd9dacf3110">Mezzanine::GraphicsManager::AppendCurrentSettings</a>  (XML::Node &amp;SettingsRootNode)</dt>
-<dd>Currently the maximized setting does nothing in the gamewindow. If it gets implemented, so does this.  </dd>
-<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="classMezzanine_1_1GraphicsManager.html#ac990a8260dc99ba245383076a98026ac">Mezzanine::GraphicsManager::ApplySettingGroupImpl</a>  (ObjectSettingGroup *Group)</dt>
-<dd>May want to make some other data member so that people can accurately get what is set now, instead of what will be set.  </dd>
-<dt><a class="anchor" id="_todo000035"></a>Member <a class="el" href="classMezzanine_1_1GraphicsManager.html#ac551af6ddb5453e93ffb0cbca2441d46">Mezzanine::GraphicsManager::GetRenderSystemName</a>  (const Graphics::RenderSystem &amp;RenderSys)</dt>
-<dd>This will likely have to change when other OGL systems are implemented  </dd>
-<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="classMezzanine_1_1GraphicsManager.html#a2b1ef2b45f8e23fb28213277e640c709">Mezzanine::GraphicsManager::GetShortenedRenderSystemName</a>  (const Graphics::RenderSystem &amp;RenderSys)</dt>
-<dd>This will likely have to change when other OGL systems are implemented  </dd>
-<dt><a class="anchor" id="_todo000032"></a>Member <a class="el" href="classMezzanine_1_1GraphicsManager.html#a2593a4d4032c66ee5bf3230fcf590a98">Mezzanine::GraphicsManager::GraphicsManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This is currently necessary because a render window of some kind needs to exist for the loading of resources that occurs later in world construction (when this is constructed by the world, which this assumes. If possible this should be removed, to keep construction more flexible.  </dd>
-<dt><a class="anchor" id="_todo000041"></a>Member <a class="el" href="classMezzanine_1_1Internal_1_1Line3D.html#a65e447dd23d6428bb7c2715e57f4e972">Mezzanine::Internal::Line3D::drawLine</a>  (const Vector3 &amp;start, const Vector3 &amp;end)</dt>
-<dd>TODO: when using this function there should be a break in the line segment rendering. Not sure abot the best way to implement that, but it should happen  </dd>
-<dt><a class="anchor" id="_todo000043"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.html#acadb6f8ccbe70828b094f07a11f276ac">Mezzanine::LineGroup::drawLine</a>  (const Vector3 &amp;start, const Vector3 &amp;end)</dt>
+<dt><a class="anchor" id="_todo000016"></a>Class <a class="el" href="classMezzanine_1_1Input_1_1Keyboard.html">Mezzanine::Input::Keyboard</a>  </dt>
+<dd>SDL mentions a ModState for keys. May want to implement that.  </dd>
+<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.html#acadb6f8ccbe70828b094f07a11f276ac">Mezzanine::LineGroup::drawLine</a>  (const Vector3 &amp;start, const Vector3 &amp;end)</dt>
 <dd>TODO: In the future we will add a break in the line segment chain when this is called.  </dd>
-<dt><a class="anchor" id="_todo000044"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.html#a85da1685525915f1e07d685b98f79f23">Mezzanine::LineGroup::drawLines</a>  (void)</dt>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.html#a85da1685525915f1e07d685b98f79f23">Mezzanine::LineGroup::drawLines</a>  (void)</dt>
 <dd>TODO: PrepareForRendering should be rolled into drawLines, but this cannot happen until the physics debug rendererin gets more attention.  </dd>
-<dt><a class="anchor" id="_todo000042"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.html#afbc11e001ce594846b926c7dab7ceafd">Mezzanine::LineGroup::LineGroup</a>  ()</dt>
+<dt><a class="anchor" id="_todo000008"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.html#afbc11e001ce594846b926c7dab7ceafd">Mezzanine::LineGroup::LineGroup</a>  ()</dt>
 <dd>TODO: This class really should support rotation, the underlying implementation does.  </dd>
-<dt><a class="anchor" id="_todo000045"></a>Member <a class="el" href="classMezzanine_1_1Matrix3x3.html#ac759aa60d4dc6dee040b6741b6d44392">Mezzanine::Matrix3x3::Transpose</a>  () const </dt>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classMezzanine_1_1Matrix3x3.html#ac759aa60d4dc6dee040b6741b6d44392">Mezzanine::Matrix3x3::Transpose</a>  () const </dt>
 <dd>I'm not gonna lie, I have no idea what the hell the Transpose of a 3x3 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review.  </dd>
-<dt><a class="anchor" id="_todo000046"></a>Member <a class="el" href="classMezzanine_1_1Matrix4x4.html#a1330573388a3070bc747bad97d93d3e9">Mezzanine::Matrix4x4::Transpose</a>  () const </dt>
+<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="classMezzanine_1_1Matrix4x4.html#a1330573388a3070bc747bad97d93d3e9">Mezzanine::Matrix4x4::Transpose</a>  () const </dt>
 <dd>I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review.  </dd>
-<dt><a class="anchor" id="_todo000048"></a>Member <a class="el" href="classMezzanine_1_1MeshManager.html#aa95df6921ad121eeea7ab073d1d1e5a7">Mezzanine::MeshManager::CreateCylinderMesh</a>  (const String &amp;MeshName, const String &amp;MaterialName, const Vector3 &amp;HalfExtents, const Vector3 &amp;AxisOrientation, const Whole &amp;CircleRes=16, const Whole &amp;Segments=1)</dt>
-<dd>These if/elses aren't really a long term solution as they won't work for any more then 1 segment. This needs to be addressed.  </dd>
-<dt><a class="anchor" id="_todo000047"></a>Member <a class="el" href="classMezzanine_1_1MeshManager.html#a830f36f16d0ea53e3bb41d8bdc86076e">Mezzanine::MeshManager::MeshManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000054"></a>Member <a class="el" href="classMezzanine_1_1Ray.html#a7164d929caf75bcebceed9149e9a3540">Mezzanine::Ray::GetNormal</a>  () const </dt>
-<dd>discuss the merits throwing an error here.  </dd>
-<dt><a class="anchor" id="_todo000055"></a>Member <a class="el" href="classMezzanine_1_1RayQueryTool.html#a9ded1647755a523d3dbda297a0e73eba">Mezzanine::RayQueryTool::GetFirstActorOnRayByAABB</a>  (Ray ActorRay, Whole ObjectFlags)</dt>
-<dd><p class="startdd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. </p>
-<p>TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested </p>
-<p class="enddd">TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account  </p>
-</dd>
-<dt><a class="anchor" id="_todo000059"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.html#aee575de144fe2ac87df4e06f54cb3b92">Mezzanine::ResourceManager::DestroyAssetGroup</a>  (const String &amp;GroupName)</dt>
-<dd>This is a bit of a hack, but needs to be here until we can upgrade our resource system.  </dd>
-<dt><a class="anchor" id="_todo000062"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.html#a17b72af560fcf890ee2571dab2109a6d">Mezzanine::ResourceManager::ResolveDataPathFromString</a>  (const String &amp;PathVar)</dt>
+<dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="classMezzanine_1_1Physics_1_1Point2PointConstraint.html#a464972d0867d642f5c605c5209b5f524">Mezzanine::Physics::Point2PointConstraint::SetTAU</a>  (Real TAU)</dt>
+<dd>Research this more carefully  </dd>
+<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.html#a17b72af560fcf890ee2571dab2109a6d">Mezzanine::ResourceManager::ResolveDataPathFromString</a>  (const String &amp;PathVar)</dt>
 <dd>Create a function to check if directory exists in the resource manager  </dd>
-<dt><a class="anchor" id="_todo000058"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.html#a23c46c4660e85d0e38f8e61ed12fde3c">Mezzanine::ResourceManager::ResourceManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000065"></a>Member <a class="el" href="namespaceMezzanine.html#ab061665515c8e8a8b09ee54d93612da1">Mezzanine::SerializeError</a>  (const String &amp;FailedTo, const String &amp;ClassName, bool SOrD=true)</dt>
-<dd>This may not be an appropriate type of exception to throw here, should evaluate if a new exception is needed at some point.  </dd>
-<dt><a class="anchor" id="_todo000069"></a>Member <a class="el" href="classMezzanine_1_1TerrainManager.html#ae940f33a369e54c2322de4202d236eb2">Mezzanine::TerrainManager::RemoveAllTerrains</a>  ()</dt>
-<dd>When adding more types of terrains, it should be remembered that code should be added to clear the extra vectors.  </dd>
-<dt><a class="anchor" id="_todo000068"></a>Member <a class="el" href="classMezzanine_1_1TerrainManager.html#a48caf07a7cb678b42c3eb15b1e2b01d6">Mezzanine::TerrainManager::TerrainManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000072"></a>Member <a class="el" href="classMezzanine_1_1TimerManager.html#a0e4e5170256385e883bf85a54289880e">Mezzanine::TimerManager::TimerManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000076"></a>Member <a class="el" href="classMezzanine_1_1UIManager.html#a904d4d7a3957a13cf5e27e8d97dd1add">Mezzanine::UIManager::GetAtlas</a>  (const String &amp;AtlasName)</dt>
-<dd>These NULL returns should probably be exceptions.  </dd>
-<dt><a class="anchor" id="_todo000075"></a>Member <a class="el" href="classMezzanine_1_1UIManager.html#a7d9205e916c67a75f6af55c038642b29">Mezzanine::UIManager::UIManager</a>  (XML::Node &amp;XMLNode)</dt>
-<dd>This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.  </dd>
-<dt><a class="anchor" id="_todo000081"></a>Member <a class="el" href="classMezzanine_1_1WorldNode.html#a417e459d58c4d612bcbbe98a328c7b50">Mezzanine::WorldNode::SetAutoTracking</a>  (AttachableBase *Target, const Vector3 &amp;LocalDirection=Vector3::Neg_Unit_Z(), const Vector3 &amp;Offset=Vector3())</dt>
+<dt><a class="anchor" id="_todo000018"></a>Class <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.html">Mezzanine::Scripting::iScriptCompilable</a>  </dt>
+<dd>Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.  </dd>
+<dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="classMezzanine_1_1WorldNode.html#a417e459d58c4d612bcbbe98a328c7b50">Mezzanine::WorldNode::SetAutoTracking</a>  (AttachableBase *Target, const Vector3 &amp;LocalDirection=Vector3::Neg_Unit_Z(), const Vector3 &amp;Offset=Vector3())</dt>
 <dd>TODO: The WorldNode Does not Correctly Serialize AutoTracking.  </dd>
-<dt><a class="anchor" id="_todo000080"></a>Member <a class="el" href="classMezzanine_1_1WorldNode.html#ab088981b0bea9d73e9bfaac5f237abc8">Mezzanine::WorldNode::SetDirection</a>  (const Vector3 &amp;Direction, const <a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3" title="Used to define what frame of reference is to be used when positioning or rotating objects...">Mezzanine::TransformSpace</a> &amp;TS=<a class="el" href="namespaceMezzanine.html#ad81c74de3529f1e643bd145173924ed3aeb8fde3835a59be182f10353d961882d" title="World space.">Mezzanine::TS_World</a>, const Vector3 &amp;LocalAxis=Vector3::Neg_Unit_Z())</dt>
-<dd>May want to change this to an exception, maybe.  </dd>
-<dt><a class="anchor" id="_todo000019"></a>Namespace <a class="el" href="namespaceOgre.html">Ogre</a>  </dt>
-<dd>Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this.  </dd>
-<dt><a class="anchor" id="_todo000079"></a>Member <a class="el" href="worldnode_8h.html#a0c2361278b97bfb9147d048d81ebeab4">operator&gt;&gt;</a>  (const Mezzanine::XML::Node &amp;OneNode, <a class="el" href="classMezzanine_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Mezzanine::WorldNode</a> &amp;Ev)</dt>
-<dd>This doesn't account for other objects aside from world nodes to be attached. Additional checks that fetch other types by name in the case of a null pointer should be implemented. </dd>
+<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a98f4fb1148fdb93e32d1c41316978aea">Mezzanine::XML::Attribute::AsDouble</a>  (double def=0) const </dt>
+<dd>Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
+<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a38792091034218b1f9a0e8789b429845">Mezzanine::XML::Attribute::AsFloat</a>  (float def=0) const </dt>
+<dd>Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
+<dt><a class="anchor" id="_todo000019"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a56a7b51ed3dadc64945eb1e574ab1bc5">Mezzanine::XML::Attribute::AsInt</a>  (int def=0) const </dt>
+<dd>Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
+<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a3376aa3b8a5a2a233da9074a40e08fe9">Mezzanine::XML::Attribute::AsUint</a>  (unsigned int def=0) const </dt>
+<dd>Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
+<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a69984ae38bd7e6f7b83b32f5e1309273">Mezzanine::XML::Attribute::SetValue</a>  (double rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000027"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a13396c31dfa58bc7aaa6d0c61cc1d6b5">Mezzanine::XML::Attribute::SetValue</a>  (const char_t *rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000031"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a7deca5348aad40d7ffd40f4a74737332">Mezzanine::XML::Attribute::SetValue</a>  (bool rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a331f9de766259d24a707ec552d7e5726">Mezzanine::XML::Attribute::SetValue</a>  (unsigned int rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000032"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a50ea0652d3e71c8d41d573f1cfc3a3bd">Mezzanine::XML::Attribute::SetValue</a>  (T rhs)</dt>
+<dd>Strip "&gt;" automatically and provide a method to reconsitute it.  </dd>
+<dt><a class="anchor" id="_todo000028"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.html#a59221d61ea9d7e45eaab2c6cc1bad519">Mezzanine::XML::Attribute::SetValue</a>  (int rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.html#a5a5ec6a1326f3b968eb9502dd0aa807b">Mezzanine::XML::Node::FirstElementByPath</a>  (const char_t *Path, char_t delimiter= '/') const </dt>
+<dd>Investigate this more deeply.  </dd>
+<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.html#a09592f5157a294e00f2f3032cb1f53f6">Mezzanine::XML::Node::InsertChildAfter</a>  (NodeType Type, const Node &amp;node)</dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here.  </dd>
+<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.html#a3d880d9761fa75e9582f22355693a1f6">Mezzanine::XML::Node::InsertChildBefore</a>  (NodeType Type, const Node &amp;node)</dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here.  </dd>
+<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.html#af609002f7a507f69a4b74bd237619beb">Mezzanine::XML::Node::PrependChild</a>  (NodeType Type=NodeElement)</dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here.  </dd>
+<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.html#ab4032cce13b933b30d9271163d8c9021">Mezzanine::XML::Node::SetValue</a>  (const char_t *rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000026"></a>Class <a class="el" href="classMezzanine_1_1XML_1_1XMLStreamWrapper.html">Mezzanine::XML::XMLStreamWrapper</a>  </dt>
+<dd>Ideally this class should not exist, and the XML system should be made to use the resource system instead of doing its own IO.  </dd>
+<dt><a class="anchor" id="_todo000004"></a>Namespace <a class="el" href="namespaceOgre.html">Ogre</a>  </dt>
+<dd>Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this. </dd>
 </dl>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:36 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

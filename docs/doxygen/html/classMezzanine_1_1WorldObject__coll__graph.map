@@ -1,0 +1,11 @@
+<map id="Mezzanine::WorldObject" name="Mezzanine::WorldObject">
+<area shape="rect" id="node8" href="$classMezzanine_1_1WorldObjectPhysicsSettings.html" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1004,295,1207,339"/>
+<area shape="rect" id="node20" href="$classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world." alt="" coords="1039,219,1172,263"/>
+<area shape="rect" id="node25" href="$classMezzanine_1_1WorldObjectGraphicsSettings.html" title="This is a helper class for configuring graphics settings of a World Object." alt="" coords="1000,110,1211,154"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Audio_1_1SoundSet.html" title="This is a vector that stores sounds." alt="" coords="348,274,532,302"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="149,274,296,302"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="680,389,813,433"/>
+<area shape="rect" id="node13" title="STL class." alt="" coords="403,374,477,402"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="163,366,283,410"/>
+<area shape="rect" id="node28" href="$classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="677,5,816,49"/>
+</map>

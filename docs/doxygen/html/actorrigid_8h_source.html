@@ -2,19 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>actorrigid.h Source File</title>
-<!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
-<link href="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<title>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/actorrigid.h Source File</title>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="$relpath<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { searchBox.OnSelectItem(0); });
-</script>/search.js"></script>
-<!-- <link href="doxygen.css" rel="stylesheet" type="text/css"/> -->
+</script>
 <link href="DoxyStyle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
@@ -24,7 +17,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;" nowrap="nowrap">
-   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 18, 2012</span></div>
+   <div id="projectname"><a href="http://blacktoppstudios.com"><img src="logogreen100pxtall.png"></a>MezzanineEngine&#160;<span id="projectnumber">March 7, 2013</span></div>
   </td>
  </tr>
  </tbody>
@@ -65,7 +58,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +72,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_2cb3f4bbed36e97976e95e8895b6e0de.html">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_28f80092e9c3ae4676af90cfa1b625bf.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">actorrigid.h</div>  </div>
@@ -150,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorRigid.html">   63</a></span>&#160;<span class="comment"></span>    <span class="keyword">class </span><a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">ActorRigid</a> : <span class="keyword">public</span> <a class="code" href="classMezzanine_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    {</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span>Physics::Constraint;<span class="comment"></span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classMezzanine_1_1Physics_1_1Constraint.html" title="This is the base class for all constraints supported.">Physics::Constraint</a>;<span class="comment"></span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">            /// @brief Used to simulate the behavior of a btRigidBody</span></div>
 <div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="classMezzanine_1_1ActorRigid.html#a92b4e040b752527b73e861ab7c00119e">   68</a></span>&#160;<span class="comment"></span>            btRigidBody* <a class="code" href="classMezzanine_1_1ActorRigid.html#a92b4e040b752527b73e861ab7c00119e" title="Used to simulate the behavior of a btRigidBody.">PhysicsRigidBody</a>;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment"></span></div>
@@ -207,7 +204,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">            /// @copydoc WorldObject::_Update()</span></div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> _Update();<span class="comment"></span></div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">            /// @copydoc WorldObject::_NotifyCollisionState(Physics::Collision* Col)</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> _NotifyCollisionState(Physics::Collision* Col, <span class="keyword">const</span> Physics::Collision::CollisionState&amp; State);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> _NotifyCollisionState(<a class="code" href="classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world.">Physics::Collision</a>* Col, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1Physics_1_1Collision.html#a65c483a4ea1e7faf02539e7e0c18af7f" title="Enum specifying the state change occuring in the collision.">Physics::Collision::CollisionState</a>&amp; State);</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">            /// @brief Get the Physics data raw from the physic subsystem</span></div>
@@ -232,13 +229,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;            <span class="comment">// Serializable</span><span class="comment"></span></div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">            /// @brief Convert this class to an XML::Node ready for serialization</span></div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="comment">            /// @param CurrentRoot The point in the XML hierarchy that all this vectorw should be appended to.</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(XML::Node&amp; CurrentRoot) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoSerialize(<a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; CurrentRoot) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="comment">// DeSerializable</span><span class="comment"></span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">            /// @brief Take the data stored in an XML and overwrite this instance of this object with it</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">            /// @param OneNode and XML::Node containing the data.</span></div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">            /// @warning A precondition of using this is that all of the actors intended for use must already be Deserialized.</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> XML::Node&amp; OneNode);<span class="comment"></span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ProtoDeSerialize(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a>&amp; OneNode);<span class="comment"></span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">            /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">            /// @return A string containing &quot;ActorRigid&quot;</span></div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> SerializableName();</div>
@@ -250,22 +247,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="comment">/// @param ActorToSerialize The actor serialize</span></div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="comment">/// @param stream the std::ostream to send the actors xml to.</span></div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="comment">/// @return The ostream after the new data has been inserted.</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment"></span>std::ostream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; ActorToSerialize);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="comment"></span>std::ostream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="camera_8h.html#a547c3f8cb5c51da38148a6945d4b5447" title="Serializes the passed Mezzanine::Camera to XML.">operator &lt;&lt; </a>(std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; ActorToSerialize);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">/// @brief Get an actor from an XML stream.</span></div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="comment">/// @param stream The stream to get it out of.</span></div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">/// @param x The it you will get out of the stream.</span></div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="comment">/// @return This returns the input stream to allow operator chaining.</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment"></span>std::istream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment"></span>std::istream&amp; <a class="code" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> <a class="code" href="camera_8h.html#a642e70b85734d279125f4e5d3d07722a" title="Deserialize a Mezzanine::Camera.">operator &gt;&gt; </a>(std::istream&amp; stream, <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x);</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">/// @brief Converts an XML Node into a functional in memory construct.</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">/// @param OneNode The xml node that contains the deserialize class instance.</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">/// @param x The class instance to overwrite witht the proto serialized version in the node.</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> operator &gt;&gt; (<span class="keyword">const</span> Mezzanine::XML::Node&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="camera_8h.html#a642e70b85734d279125f4e5d3d07722a" title="Deserialize a Mezzanine::Camera.">operator &gt;&gt; </a>(<span class="keyword">const</span> <a class="code" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Mezzanine::XML::Node</a>&amp; OneNode, <a class="code" href="classMezzanine_1_1ActorRigid.html" title="This is the actor class for Rigid Objects.">Mezzanine::ActorRigid</a>&amp; x);</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 6 2013 21:58:35 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 07:25:16 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

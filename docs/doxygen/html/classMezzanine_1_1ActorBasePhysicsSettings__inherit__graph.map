@@ -1,0 +1,6 @@
+<map id="Mezzanine::ActorBasePhysicsSettings" name="Mezzanine::ActorBasePhysicsSettings">
+<area shape="rect" id="node7" href="$classMezzanine_1_1ActorRigidPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorRigid." alt="" coords="5,286,197,330"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1ActorSoftPhysicsSettings.html" title="This is a helper class for configuring physics settings of an ActorSoft." alt="" coords="221,286,408,330"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1NonTriggerPhysicsSettings.html" title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I..." alt="" coords="111,99,305,143"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1WorldObjectPhysicsSettings.html" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="107,6,309,50"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Mezzanine::Timer" name="Mezzanine::Timer">
+<area shape="rect" id="node3" href="$classMezzanine_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time." alt="" coords="5,83,179,111"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1SimpleTimer.html" title="A basic timer class that can be used to track short intervals of time." alt="" coords="203,83,365,111"/>
+</map>

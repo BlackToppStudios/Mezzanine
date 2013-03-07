@@ -1,0 +1,288 @@
+# Doxyfile 1.7.3
+
+#---------------------------------------------------------------------------
+# Project related configuration options
+#---------------------------------------------------------------------------
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = MezzanineEngine
+PROJECT_NUMBER         = "March 6, 2013"
+PROJECT_BRIEF          = A Game Engine Designed to ease the creation of cross platform games with 3d physics, 3d graphics and 3d Sound.
+PROJECT_LOGO           = img/logogreen100pxtall.png
+OUTPUT_DIRECTORY       = ../
+CREATE_SUBDIRS         = NO
+OUTPUT_LANGUAGE        = English
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+ABBREVIATE_BRIEF       =
+ALWAYS_DETAILED_SEC    = NO
+INLINE_INHERITED_MEMB  = NO
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        =
+STRIP_FROM_INC_PATH    =
+SHORT_NAMES            = NO
+JAVADOC_AUTOBRIEF      = NO
+QT_AUTOBRIEF           = NO
+MULTILINE_CPP_IS_BRIEF = NO
+INHERIT_DOCS           = YES
+SEPARATE_MEMBER_PAGES  = NO
+TAB_SIZE               = 4
+ALIASES                =
+TCL_SUBST              =
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_FOR_FORTRAN   = NO
+OPTIMIZE_OUTPUT_VHDL   = NO
+EXTENSION_MAPPING      =
+BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = NO
+SIP_SUPPORT            = NO
+IDL_PROPERTY_SUPPORT   = YES
+DISTRIBUTE_GROUP_DOC   = NO
+SUBGROUPING            = YES
+INLINE_GROUPED_CLASSES = NO
+INLINE_SIMPLE_STRUCTS  = NO
+TYPEDEF_HIDES_STRUCT   = NO
+SYMBOL_CACHE_SIZE      = 0
+LOOKUP_CACHE_SIZE      = 0
+#---------------------------------------------------------------------------
+# Build related configuration options
+#---------------------------------------------------------------------------
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+EXTRACT_ANON_NSPACES   = NO
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+HIDE_FRIEND_COMPOUNDS  = NO
+HIDE_IN_BODY_DOCS      = NO
+INTERNAL_DOCS          = YES
+CASE_SENSE_NAMES       = YES
+HIDE_SCOPE_NAMES       = NO
+SHOW_INCLUDE_FILES     = YES
+FORCE_LOCAL_INCLUDES   = NO
+INLINE_INFO            = YES
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+SORT_MEMBERS_CTORS_1ST = YES
+SORT_GROUP_NAMES       = YES
+SORT_BY_SCOPE_NAME     = YES
+STRICT_PROTO_MATCHING  = NO
+GENERATE_TODOLIST      = YES
+GENERATE_TESTLIST      = YES
+GENERATE_BUGLIST       = YES
+GENERATE_DEPRECATEDLIST= YES
+ENABLED_SECTIONS       =
+MAX_INITIALIZER_LINES  = 30
+SHOW_USED_FILES        = YES
+SHOW_DIRECTORIES       = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = YES
+FILE_VERSION_FILTER    =
+LAYOUT_FILE            =
+CITE_BIB_FILES         =
+#---------------------------------------------------------------------------
+# configuration options related to warning and progress messages
+#---------------------------------------------------------------------------
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = YES
+WARN_FORMAT            = "$file:$line: $text"
+WARN_LOGFILE           = ../DoxygenWarnings.txt
+#---------------------------------------------------------------------------
+# configuration options related to the input files
+#---------------------------------------------------------------------------
+INPUT                  = ../../../Mezzanine/src/actorbase.h ../../../Mezzanine/src/actorcharacter.h ../../../Mezzanine/src/actormanager.h ../../../Mezzanine/src/actorphysicssettings.h ../../../Mezzanine/src/actorrigid.h ../../../Mezzanine/src/actorserializer.h ../../../Mezzanine/src/actorsoft.h ../../../Mezzanine/src/any.h ../../../Mezzanine/src/areaeffect.h ../../../Mezzanine/src/attachable.h ../../../Mezzanine/src/audio.h ../../../Mezzanine/src/audiomanager.h ../../../Mezzanine/src/binarytool.h ../../../Mezzanine/src/cameracontroller.h ../../../Mezzanine/src/camera.h ../../../Mezzanine/src/cameramanager.h ../../../Mezzanine/src/collisionshapemanager.h ../../../Mezzanine/src/colourvalue.h ../../../Mezzanine/src/crossplatformexport.h ../../../Mezzanine/src/crossplatform.h ../../../Mezzanine/src/datatypes.h ../../../Mezzanine/src/entity.h ../../../Mezzanine/src/entresol.h ../../../Mezzanine/src/enumerations.h ../../../Mezzanine/src/eventbase.h ../../../Mezzanine/src/eventcollision.h ../../../Mezzanine/src/eventgamewindow.h ../../../Mezzanine/src/eventmanager.h ../../../Mezzanine/src/eventquit.h ../../../Mezzanine/src/eventrendertime.h ../../../Mezzanine/src/eventuserinput.h ../../../Mezzanine/src/exception.h ../../../Mezzanine/src/extendedtimer.h ../../../Mezzanine/src/graphics.h ../../../Mezzanine/src/graphicsmanager.h ../../../Mezzanine/src/input.h ../../../Mezzanine/src/inputmanager.h ../../../Mezzanine/src/light.h ../../../Mezzanine/src/linegroup.h ../../../Mezzanine/src/managerbase.h ../../../Mezzanine/src/managerfactory.h ../../../Mezzanine/src/mathtool.h ../../../Mezzanine/src/matrix3x3.h ../../../Mezzanine/src/matrix4x4.h ../../../Mezzanine/src/meshmanager.h ../../../Mezzanine/src/meshterrain.h ../../../Mezzanine/src/mezzanine.h ../../../Mezzanine/src/network.h ../../../Mezzanine/src/networkmanager.h ../../../Mezzanine/src/objectpair.h ../../../Mezzanine/src/objectreference.h ../../../Mezzanine/src/objectsettings.h ../../../Mezzanine/src/particleaffector.h ../../../Mezzanine/src/particleeffect.h ../../../Mezzanine/src/particleemitter.h ../../../Mezzanine/src/physics.h ../../../Mezzanine/src/physicsmanager.h ../../../Mezzanine/src/plane.h ../../../Mezzanine/src/quaternion.h ../../../Mezzanine/src/ray.h ../../../Mezzanine/src/rayquerytool.h ../../../Mezzanine/src/resource.h ../../../Mezzanine/src/resourcemanager.h ../../../Mezzanine/src/scenemanager.h ../../../Mezzanine/src/scripting.h ../../../Mezzanine/src/serialization.h ../../../Mezzanine/src/simpletimer.h ../../../Mezzanine/src/singleton.h ../../../Mezzanine/src/smartptr.h ../../../Mezzanine/src/stringtool.h ../../../Mezzanine/src/swig.h ../../../Mezzanine/src/terrainbase.h ../../../Mezzanine/src/terrainmanager.h ../../../Mezzanine/src/timer.h ../../../Mezzanine/src/timermanager.h ../../../Mezzanine/src/transform.h ../../../Mezzanine/src/ui.h ../../../Mezzanine/src/uimanager.h ../../../Mezzanine/src/vector2.h ../../../Mezzanine/src/vector3.h ../../../Mezzanine/src/vector3wactor.h ../../../Mezzanine/src/world.h ../../../Mezzanine/src/worldnode.h ../../../Mezzanine/src/worldobjectgraphicssettings.h ../../../Mezzanine/src/worldobject.h ../../../Mezzanine/src/worldobjectphysicssettings.h ../../../Mezzanine/src/worldtrigger.h ../../../Mezzanine/src/Audio/audioenumerations.h ../../../Mezzanine/src/Audio/listener.h ../../../Mezzanine/src/Audio/musicplayer.h ../../../Mezzanine/src/Audio/playlist.h ../../../Mezzanine/src/Audio/sound.h ../../../Mezzanine/src/Audio/soundset.h ../../../Mezzanine/src/Graphics/gamewindow.h ../../../Mezzanine/src/Graphics/graphicsenumerations.h ../../../Mezzanine/src/Graphics/material.h ../../../Mezzanine/src/Graphics/mesh.h ../../../Mezzanine/src/Graphics/pass.h ../../../Mezzanine/src/Graphics/submesh.h ../../../Mezzanine/src/Graphics/technique.h ../../../Mezzanine/src/Graphics/texture.h ../../../Mezzanine/src/Graphics/viewport.h ../../../Mezzanine/src/Graphics/windowsettings.h ../../../Mezzanine/src/Input/controller.h ../../../Mezzanine/src/Input/device.h ../../../Mezzanine/src/Input/inputenumerations.h ../../../Mezzanine/src/Input/keyboard.h ../../../Mezzanine/src/Input/metacode.h ../../../Mezzanine/src/Input/mouse.h ../../../Mezzanine/src/Network/ipaddress.h ../../../Mezzanine/src/Network/packet.h ../../../Mezzanine/src/Network/socket.h ../../../Mezzanine/src/Network/systemaddress.h ../../../Mezzanine/src/Physics/actorsoftcollisionshape.h ../../../Mezzanine/src/Physics/boxcollisionshape.h ../../../Mezzanine/src/Physics/capsulecollisionshape.h ../../../Mezzanine/src/Physics/collision.h ../../../Mezzanine/src/Physics/collisionshape.h ../../../Mezzanine/src/Physics/compoundcollisionshape.h ../../../Mezzanine/src/Physics/conecollisionshape.h ../../../Mezzanine/src/Physics/conetwistconstraint.h ../../../Mezzanine/src/Physics/constraint.h ../../../Mezzanine/src/Physics/convexhullcollisionshape.h ../../../Mezzanine/src/Physics/cylindercollisionshape.h ../../../Mezzanine/src/Physics/dualtransformconstraint.h ../../../Mezzanine/src/Physics/dynamicmeshcollisionshape.h ../../../Mezzanine/src/Physics/fieldcollisionshape.h ../../../Mezzanine/src/Physics/generic6dofconstraint.h ../../../Mezzanine/src/Physics/generic6dofspringconstraint.h ../../../Mezzanine/src/Physics/heightfieldcollisionshape.h ../../../Mezzanine/src/Physics/hinge2constraint.h ../../../Mezzanine/src/Physics/hingeconstraint.h ../../../Mezzanine/src/Physics/meshcollisionshape.h ../../../Mezzanine/src/Physics/multispherecollisionshape.h ../../../Mezzanine/src/Physics/physicsenumerations.h ../../../Mezzanine/src/Physics/physicsproxy.h ../../../Mezzanine/src/Physics/planecollisionshape.h ../../../Mezzanine/src/Physics/point2pointconstraint.h ../../../Mezzanine/src/Physics/primitivecollisionshape.h ../../../Mezzanine/src/Physics/rigidproxy.h ../../../Mezzanine/src/Physics/sliderconstraint.h ../../../Mezzanine/src/Physics/spherecollisionshape.h ../../../Mezzanine/src/Physics/staticmeshcollisionshape.h ../../../Mezzanine/src/Physics/universalconstraint.h ../../../Mezzanine/src/Resource/archive.h ../../../Mezzanine/src/Resource/assetgroup.h ../../../Mezzanine/src/Resource/asset.h ../../../Mezzanine/src/Resource/assethandler.h ../../../Mezzanine/src/Resource/datastream.h ../../../Mezzanine/src/Resource/inputstream.h ../../../Mezzanine/src/Resource/resourceenumerations.h ../../../Mezzanine/src/Resource/textsettingsfile.h ../../../Mezzanine/src/Scripting/scriptargument.h ../../../Mezzanine/src/Scripting/script.h ../../../Mezzanine/src/Scripting/scriptingmanager.h ../../../Mezzanine/src/UI/activatable.h ../../../Mezzanine/src/UI/arearenderable.h ../../../Mezzanine/src/UI/basicrenderable.h ../../../Mezzanine/src/UI/button.h ../../../Mezzanine/src/UI/caption.h ../../../Mezzanine/src/UI/cellgrid.h ../../../Mezzanine/src/UI/cell.h ../../../Mezzanine/src/UI/checkbox.h ../../../Mezzanine/src/UI/dropdownlist.h ../../../Mezzanine/src/UI/glyph.h ../../../Mezzanine/src/UI/kerning.h ../../../Mezzanine/src/UI/linelist.h ../../../Mezzanine/src/UI/listbox.h ../../../Mezzanine/src/UI/markuptext.h ../../../Mezzanine/src/UI/menu.h ../../../Mezzanine/src/UI/menuwindow.h ../../../Mezzanine/src/UI/pagedcellgrid.h ../../../Mezzanine/src/UI/radiobutton.h ../../../Mezzanine/src/UI/rectangle.h ../../../Mezzanine/src/UI/renderablecontainer.h ../../../Mezzanine/src/UI/renderablecontainerwidget.h ../../../Mezzanine/src/UI/renderable.h ../../../Mezzanine/src/UI/renderablerect.h ../../../Mezzanine/src/UI/resizehandler.h ../../../Mezzanine/src/UI/resizinginfo.h ../../../Mezzanine/src/UI/screen.h ../../../Mezzanine/src/UI/scrollbar.h ../../../Mezzanine/src/UI/scrolledcellgrid.h ../../../Mezzanine/src/UI/spinner.h ../../../Mezzanine/src/UI/sprite.h ../../../Mezzanine/src/UI/tabset.h ../../../Mezzanine/src/UI/textureatlas.h ../../../Mezzanine/src/UI/uienumerations.h ../../../Mezzanine/src/UI/vertex.h ../../../Mezzanine/src/UI/viewportupdatetool.h ../../../Mezzanine/src/UI/widget.h ../../../Mezzanine/src/UI/window.h ../../../Mezzanine/src/XML/xmlboilerplate.h ../../../Mezzanine/src/XML/xmldoc.h ../../../Mezzanine/src/XML/xml.h
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          =
+RECURSIVE              = NO
+EXCLUDE                =
+EXCLUDE_SYMLINKS       = NO
+EXCLUDE_PATTERNS       =
+EXCLUDE_SYMBOLS        =
+EXAMPLE_PATH           = Examples/
+EXAMPLE_PATTERNS       =
+EXAMPLE_RECURSIVE      = NO
+IMAGE_PATH             = img/
+INPUT_FILTER           =
+FILTER_PATTERNS        =
+FILTER_SOURCE_FILES    = NO
+FILTER_SOURCE_PATTERNS =
+#---------------------------------------------------------------------------
+# configuration options related to source browsing
+#---------------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = NO
+REFERENCES_RELATION    = NO
+REFERENCES_LINK_SOURCE = YES
+USE_HTAGS              = NO
+VERBATIM_HEADERS       = YES
+#---------------------------------------------------------------------------
+# configuration options related to the alphabetical class index
+#---------------------------------------------------------------------------
+ALPHABETICAL_INDEX     = YES
+COLS_IN_ALPHA_INDEX    = 5
+IGNORE_PREFIX          =
+#---------------------------------------------------------------------------
+# configuration options related to the HTML output
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            = html/DoxyHeader.html
+HTML_FOOTER            = html/DoxyFooter.html
+HTML_STYLESHEET        = html/DoxyStyle.css
+HTML_EXTRA_FILES       = img/bc_s.png img/nav_f.png img/nav_h.png img/tab_a.png img/tab_b.png img/tab_h.png img/tab_s.png
+#doxyfiles/bc_s.png doxyfiles/nav_f.png doxyfiles/nav_h.png doxyfiles/tab_a.png doxyfiles/tab_b.png doxyfiles/tab_h.png doxyfiles/tab_s.png
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+HTML_TIMESTAMP         = YES
+HTML_ALIGN_MEMBERS     = YES
+HTML_DYNAMIC_SECTIONS  = YES
+GENERATE_DOCSET        = NO
+DOCSET_FEEDNAME        = "Doxygen generated docs"
+DOCSET_BUNDLE_ID       = org.doxygen.Project
+DOCSET_PUBLISHER_ID    = org.doxygen.Publisher
+DOCSET_PUBLISHER_NAME  = Publisher
+GENERATE_HTMLHELP      = NO
+CHM_FILE               =
+HHC_LOCATION           =
+GENERATE_CHI           = NO
+CHM_INDEX_ENCODING     =
+BINARY_TOC             = NO
+TOC_EXPAND             = NO
+GENERATE_QHP           = NO
+QCH_FILE               =
+QHP_NAMESPACE          = org.doxygen.Project
+QHP_VIRTUAL_FOLDER     = doc
+QHP_CUST_FILTER_NAME   =
+QHP_CUST_FILTER_ATTRS  =
+QHP_SECT_FILTER_ATTRS  =
+QHG_LOCATION           =
+GENERATE_ECLIPSEHELP   = NO
+ECLIPSE_DOC_ID         = org.doxygen.Project
+DISABLE_INDEX          = NO
+GENERATE_TREEVIEW      = NO
+ENUM_VALUES_PER_LINE   = 4
+USE_INLINE_TREES       = NO
+TREEVIEW_WIDTH         = 250
+EXT_LINKS_IN_WINDOW    = NO
+FORMULA_FONTSIZE       = 10
+FORMULA_TRANSPARENT    = YES
+USE_MATHJAX            = NO
+MATHJAX_RELPATH        = http://www.mathjax.org/mathjax
+MATHJAX_EXTENSIONS     =
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+#---------------------------------------------------------------------------
+# configuration options related to the LaTeX output
+#---------------------------------------------------------------------------
+GENERATE_LATEX         = NO
+LATEX_OUTPUT           = latex
+LATEX_CMD_NAME         = latex
+MAKEINDEX_CMD_NAME     = makeindex
+COMPACT_LATEX          = YES
+PAPER_TYPE             = a4wide
+EXTRA_PACKAGES         =
+LATEX_HEADER           =
+LATEX_FOOTER           =
+PDF_HYPERLINKS         = YES
+USE_PDFLATEX           = YES
+LATEX_BATCHMODE        = NO
+LATEX_HIDE_INDICES     = NO
+LATEX_SOURCE_CODE      = NO
+LATEX_BIB_STYLE        = plain
+#---------------------------------------------------------------------------
+# configuration options related to the RTF output
+#---------------------------------------------------------------------------
+GENERATE_RTF           = NO
+RTF_OUTPUT             = rtf
+COMPACT_RTF            = NO
+RTF_HYPERLINKS         = YES
+RTF_STYLESHEET_FILE    =
+RTF_EXTENSIONS_FILE    =
+#---------------------------------------------------------------------------
+# configuration options related to the man page output
+#---------------------------------------------------------------------------
+GENERATE_MAN           = NO
+MAN_OUTPUT             = man
+MAN_EXTENSION          = .3
+MAN_LINKS              = NO
+#---------------------------------------------------------------------------
+# configuration options related to the XML output
+#---------------------------------------------------------------------------
+GENERATE_XML           = NO
+XML_OUTPUT             = xml
+XML_SCHEMA             =
+XML_DTD                =
+XML_PROGRAMLISTING     = YES
+#---------------------------------------------------------------------------
+# configuration options for the AutoGen Definitions output
+#---------------------------------------------------------------------------
+GENERATE_AUTOGEN_DEF   = NO
+#---------------------------------------------------------------------------
+# configuration options related to the Perl module output
+#---------------------------------------------------------------------------
+GENERATE_PERLMOD       = NO
+PERLMOD_LATEX          = NO
+PERLMOD_PRETTY         = YES
+PERLMOD_MAKEVAR_PREFIX =
+#---------------------------------------------------------------------------
+# Configuration options related to the preprocessor
+#---------------------------------------------------------------------------
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = NO
+SEARCH_INCLUDES        = YES
+INCLUDE_PATH           =
+INCLUDE_FILE_PATTERNS  =
+PREDEFINED             = MEZZXML=1, MEZZLUA51=1
+EXPAND_AS_DEFINED      =
+SKIP_FUNCTION_MACROS   = YES
+#---------------------------------------------------------------------------
+# Configuration::additions related to external references
+#---------------------------------------------------------------------------
+TAGFILES               =
+GENERATE_TAGFILE       =
+ALLEXTERNALS           = NO
+EXTERNAL_GROUPS        = YES
+PERL_PATH              = /usr/bin/perl
+#---------------------------------------------------------------------------
+# Configuration options related to the dot tool
+#---------------------------------------------------------------------------
+CLASS_DIAGRAMS         = YES
+MSCGEN_PATH            =
+HIDE_UNDOC_RELATIONS   = YES
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 0
+DOT_FONTNAME           = FreeSans
+DOT_FONTSIZE           = 10
+DOT_FONTPATH           =
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = YES
+GROUP_GRAPHS           = YES
+UML_LOOK               = NO
+TEMPLATE_RELATIONS     = NO
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = YES
+DOT_PATH               =
+DOTFILE_DIRS           =
+MSCFILE_DIRS           =
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+DOT_TRANSPARENT        = NO
+DOT_MULTI_TARGETS      = YES
+GENERATE_LEGEND        = YES
+DOT_CLEANUP            = YES

@@ -1,0 +1,6 @@
+<map id="Mezzanine::Input::Controller" name="Mezzanine::Input::Controller">
+<area shape="rect" id="node2" href="$classMezzanine_1_1Input_1_1Device.html" title="This is a base class for all input devices." alt="" coords="315,35,477,63"/>
+<area shape="rect" id="node12" href="$classMezzanine_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen." alt="" coords="8,149,141,177"/>
+<area shape="rect" id="node14" title="STL class." alt="" coords="359,203,433,231"/>
+<area shape="rect" id="node16" title="STL class." alt="" coords="15,199,135,243"/>
+</map>

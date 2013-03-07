@@ -1,0 +1,27 @@
+<map id="Mezzanine::AudioManager" name="Mezzanine::AudioManager">
+<area shape="rect" id="node57" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;" alt="" coords="2559,241,2700,285"/>
+<area shape="rect" id="node73" href="$classMezzanine_1_1Audio_1_1Sound.html" title="This is an instance of a sound that can be played and manipulated." alt="" coords="2547,307,2712,335"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit." alt="" coords="1964,247,2132,275"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="1581,206,1715,234"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1977,175,2119,219"/>
+<area shape="rect" id="node9" title="STL class." alt="" coords="1187,177,1301,205"/>
+<area shape="rect" id="node11" title="STL class." alt="" coords="819,54,971,98"/>
+<area shape="rect" id="node13" title="STL class." alt="" coords="528,54,659,98"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="352,71,475,115"/>
+<area shape="rect" id="node17" title="STL class." alt="" coords="152,43,299,71"/>
+<area shape="rect" id="node21" title="STL class." alt="" coords="349,5,477,49"/>
+<area shape="rect" id="node19" title="STL class." alt="" coords="7,43,100,71"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1ObjectSettingsHandler.html" title="An abstract class for other classes that manage groups of settings." alt="" coords="1961,585,2135,629"/>
+<area shape="rect" id="node28" href="$classMezzanine_1_1ObjectSettingFile.html" title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s." alt="" coords="800,657,989,685"/>
+<area shape="rect" id="node36" href="$classMezzanine_1_1ObjectSettingGroup.html" title="A class that store&#39;s a collection of SettingSets that can be applied together." alt="" coords="1160,715,1328,759"/>
+<area shape="rect" id="node30" title="STL class." alt="" coords="556,606,631,634"/>
+<area shape="rect" id="node38" href="$classMezzanine_1_1ObjectSettingSetContainer.html" title="A base class for other classes that store ObjectSettingSet&#39;s." alt="" coords="811,833,979,877"/>
+<area shape="rect" id="node32" title="STL class." alt="" coords="353,598,473,642"/>
+<area shape="rect" id="node42" href="$classMezzanine_1_1ObjectSettingSet.html" title="A class that store&#39;s a named set of settings for an object." alt="" coords="1151,901,1337,929"/>
+<area shape="rect" id="node60" href="$classMezzanine_1_1Audio_1_1Listener.html" title="This is the listener class used for 3D sound." alt="" coords="1961,298,2135,326"/>
+<area shape="rect" id="node64" href="$classMezzanine_1_1Audio_1_1SoundSet.html" title="This is a vector that stores sounds." alt="" coords="1556,357,1740,385"/>
+<area shape="rect" id="node66" title="STL class." alt="" coords="1171,433,1317,461"/>
+<area shape="rect" id="node82" title="STL class." alt="" coords="1364,475,1529,503"/>
+<area shape="rect" id="node77" href="$classMezzanine_1_1Audio_1_1MusicPlayer.html" title="This is a convenience class for the playing of music in a game." alt="" coords="2820,473,3017,501"/>
+<area shape="rect" id="node80" href="$classMezzanine_1_1Audio_1_1Playlist.html" title="This class is a list of sounds with common playlist features." alt="" coords="1767,415,1935,443"/>
+</map>

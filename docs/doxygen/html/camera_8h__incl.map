@@ -1,0 +1,17 @@
+<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/camera.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/camera.h">
+<area shape="rect" id="node3" href="$attachable_8h.html" title="Contains the Mezzanine::Attachable Class and Mezzanine::Attachable::AttachableElement enumeration dec..." alt="" coords="293,193,384,221"/>
+<area shape="rect" id="node7" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="251,347,325,375"/>
+<area shape="rect" id="node9" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="60,657,204,685"/>
+<area shape="rect" id="node11" href="$datatypes_8h_source.html" title="datatypes.h" alt="" coords="745,579,831,607"/>
+<area shape="rect" id="node62" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="459,347,549,375"/>
+<area shape="rect" id="node70" href="$ray_8h_source.html" title="ray.h" alt="" coords="171,270,219,298"/>
+<area shape="rect" id="node75" href="$worldnode_8h.html" title="The declaration of the WorldNode, A class to facilitate navigation in 3d environment." alt="" coords="376,115,467,143"/>
+<area shape="rect" id="node5" href="$transform_8h.html" title="The defintion of the transform is stored in this file." alt="" coords="296,270,381,298"/>
+<area shape="rect" id="node36" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="357,425,467,453"/>
+<area shape="rect" id="node38" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="227,425,283,453"/>
+<area shape="rect" id="node40" href="$xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int..." alt="" coords="543,425,625,453"/>
+<area shape="rect" id="node42" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="195,502,304,530"/>
+<area shape="rect" id="node46" href="$xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system." alt="" coords="925,502,1029,530"/>
+<area shape="rect" id="node49" href="$exception_8h_source.html" title="exception.h" alt="" coords="637,502,723,530"/>
+<area shape="rect" id="node52" href="$datastream_8h_source.html" title="Resource/datastream.h" alt="" coords="747,502,901,530"/>
+</map>

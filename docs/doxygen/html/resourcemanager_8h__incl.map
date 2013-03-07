@@ -1,0 +1,25 @@
+<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/resourcemanager.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/resourcemanager.h">
+<area shape="rect" id="node3" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="136,657,280,685"/>
+<area shape="rect" id="node5" href="$datatypes_8h_source.html" title="datatypes.h" alt="" coords="1244,579,1329,607"/>
+<area shape="rect" id="node30" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="93,425,203,453"/>
+<area shape="rect" id="node32" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="1157,347,1267,375"/>
+<area shape="rect" id="node58" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="1633,193,1753,221"/>
+<area shape="rect" id="node61" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="1555,270,1637,298"/>
+<area shape="rect" id="node64" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1171,115,1328,143"/>
+<area shape="rect" id="node36" href="$xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int..." alt="" coords="725,425,808,453"/>
+<area shape="rect" id="node38" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="347,502,456,530"/>
+<area shape="rect" id="node42" href="$xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system." alt="" coords="891,502,995,530"/>
+<area shape="rect" id="node45" href="$exception_8h_source.html" title="exception.h" alt="" coords="1552,502,1637,530"/>
+<area shape="rect" id="node48" href="$datastream_8h_source.html" title="Resource/datastream.h" alt="" coords="1019,502,1173,530"/>
+<area shape="rect" id="node68" href="$entresol_8h_source.html" title="entresol.h" alt="" coords="1197,193,1275,221"/>
+<area shape="rect" id="node70" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="859,270,941,298"/>
+<area shape="rect" id="node83" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="863,347,937,375"/>
+<area shape="rect" id="node107" href="$eventbase_8h_source.html" title="eventbase.h" alt="" coords="1249,270,1340,298"/>
+<area shape="rect" id="node72" href="$metacode_8h_source.html" title="Input/metacode.h" alt="" coords="1004,347,1127,375"/>
+<area shape="rect" id="node78" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="367,347,441,375"/>
+<area shape="rect" id="node91" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="529,347,620,375"/>
+<area shape="rect" id="node96" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="725,347,821,375"/>
+<area shape="rect" id="node101" href="$smartptr_8h_source.html" title="smartptr.h" alt="" coords="1304,347,1381,375"/>
+<area shape="rect" id="node76" href="$inputenumerations_8h_source.html" title="Input/inputenumerations.h" alt="" coords="1013,425,1184,453"/>
+<area shape="rect" id="node88" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="883,425,939,453"/>
+</map>
