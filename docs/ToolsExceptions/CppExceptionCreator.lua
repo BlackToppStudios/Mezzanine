@@ -90,6 +90,7 @@ for line in Input:lines() do
                 DefinitionOutput = DefinitionOutput  .. "        { return " .. ClassName .. "::ExceptionCode; }\n"
                 DefinitionOutput = DefinitionOutput  .. "}; //" .. ClassName .. "\n"
                 DefinitionOutput = DefinitionOutput  .. "\n"
+                DefinitionOutput = DefinitionOutput  .. "/// @brief A template metaprogramming construct used to ensure that all required " .. ClassName .. " can be created at compile time if the compiler is clever. \n"
                 DefinitionOutput = DefinitionOutput  .. "template<>\n"
                 DefinitionOutput = DefinitionOutput  .. "struct MEZZ_LIB ExceptionFactory<" .. ClassName .. "::ExceptionCode>\n"
                 DefinitionOutput = DefinitionOutput  .. "    { typedef " .. ClassName .. " Type; };\n"

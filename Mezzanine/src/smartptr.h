@@ -44,7 +44,8 @@
 
 #include <memory>
 
-/// @file This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and exposes in its API
+/// @file
+/// @brief This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and exposes in its API
 namespace Mezzanine
 {
     ///////////////////////////////////////////////////////////////////////////////

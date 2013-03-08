@@ -56,25 +56,19 @@
 
 #include "datatypes.h"
 
+/// @file
+/// @brief This file houses all the documentation for the XML system that is not directly related to a specific class or function call.
+
 #ifndef _xmldoc_h
 #define _xmldoc_h
 namespace Mezzanine
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @brief This is where bulk of the XML subsystem resides, (See @ref XMLManual "Mezzanine::xml Manual" for details) there are numerous class that are all tighlty integrated so one file seemed appropriate.
-    /// @details Our XML Parser IS a copy of PugiXML. It is simply the fastest, most stable, most reliable, feature rich, and robust XML parser we are
-    /// aware of. We are using it with permission per it's included license. See the licenses folder, in either the docs folder, or the data/common folder.
-    /// \n \n
-    /// This XML parser uses an 'in place' design. It attempts to load all of an XML document to one contiguous location in memory, then create a tree
-    /// of meta data that references the already loaded document text. In testing this has been shown to be extremely fast. See pugixml.org for more
-    /// details on the performace.
-    /// \n \n
-    /// For the complete XML Documentation, please see the @ref XMLManual "Mezzanine::xml Manual"
-    namespace XML
-    {
 
+    namespace XML
+    {        
+        /// @endcode
         /// @page XMLManual Mezzanine::xml Manual
-        /// This asdf
+        /// This will describe how to use the XML components of the Mezzanine
         /// @section XMLTOC Table Of Contents
         ///     - @ref XMLOverview
         ///         - @ref XMLIntroduction

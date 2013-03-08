@@ -12,7 +12,7 @@
 <area shape="rect" id="node59" href="$plane_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/plane.h" alt="" coords="43,334,237,394"/>
 <area shape="rect" id="node66" href="$rayquerytool_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/rayquerytool.h" alt="" coords="981,334,1176,394"/>
 <area shape="rect" id="node78" href="$vector3wactor_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/vector3wactor.h" alt="" coords="485,334,688,394"/>
-<area shape="rect" id="node85" href="$datatypes_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/datatypes.h" alt="" coords="4409,115,4604,175"/>
+<area shape="rect" id="node85" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="4409,115,4604,175"/>
 <area shape="rect" id="node88" href="$quaternion_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/quaternion.h" alt="" coords="3148,225,3343,285"/>
 <area shape="rect" id="node105" href="$colourvalue_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/colourvalue.h" alt="" coords="5107,225,5301,285"/>
 <area shape="rect" id="node124" href="$managerbase_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/managerbase.h" alt="" coords="5056,334,5253,394"/>
@@ -47,5 +47,5 @@
 <area shape="rect" id="node135" href="$managerfactory_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/managerfactory.h" alt="" coords="4669,334,4880,394"/>
 <area shape="rect" id="node144" href="$exception_8h_source.html" title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/exception.h" alt="" coords="5968,334,6163,394"/>
 <area shape="rect" id="node149" href="$serialization_8h.html" title="The interface for serialization." alt="" coords="6204,443,6399,503"/>
-<area shape="rect" id="node153" href="$xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system." alt="" coords="6339,334,6533,394"/>
+<area shape="rect" id="node153" href="$xmldoc_8h.html" title="This file houses all the documentation for the XML system that is not directly related to a specific ..." alt="" coords="6339,334,6533,394"/>
 </map>

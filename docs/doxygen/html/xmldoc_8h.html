@@ -86,9 +86,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>The Doxygen documentation and minor tools to assist with the XML system.  
+<p>This file houses all the documentation for the XML system that is not directly related to a specific class or function call.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;datatypes.h&quot;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="datatypes_8h_source.html">datatypes.h</a>&quot;</code><br/>
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for xmldoc.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -110,27 +110,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMezzanine"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html">Mezzanine</a></td></tr>
 <tr class="memdesc:namespaceMezzanine"><td class="mdescLeft">&#160;</td><td class="mdescRight">The bulk of the engine components go in this namspace. <br/></td></tr>
-<tr class="memitem:namespaceMezzanine_1_1XML"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html">Mezzanine::XML</a></td></tr>
-<tr class="memdesc:namespaceMezzanine_1_1XML"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is where bulk of the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> subsystem resides, (See <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a80fe6c59a5a1501f15802ff7ceb0d2fb"><td class="memItemLeft" align="right" valign="top">String <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a80fe6c59a5a1501f15802ff7ceb0d2fb">Mezzanine::XML::EscapeXML</a> (const String &amp;XMLText)</td></tr>
-<tr class="memdesc:a80fe6c59a5a1501f15802ff7ceb0d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert &lt; &gt; &amp; and " in text to &amp;lt;, &amp;gt;, &amp;amp; and &amp;quote so text can safely be stored in <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a>.  <a href="#a80fe6c59a5a1501f15802ff7ceb0d2fb"></a><br/></td></tr>
-<tr class="memitem:a230007eaf534ce57ad58f440a7a89b6c"><td class="memItemLeft" align="right" valign="top">String <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a230007eaf534ce57ad58f440a7a89b6c">Mezzanine::XML::GetOneTag</a> (std::istream &amp;stream)</td></tr>
+<tr class="memitem:a80fe6c59a5a1501f15802ff7ceb0d2fb"><td class="memItemLeft" align="right" valign="top">String <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::EscapeXML</b> (const String &amp;XMLText)</td></tr>
+<tr class="memdesc:a80fe6c59a5a1501f15802ff7ceb0d2fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert &lt; &gt; &amp; and " in text to &amp;lt;, &amp;gt;, &amp;amp; and &amp;quote so text can safely be stored in XML.  <a href="#a80fe6c59a5a1501f15802ff7ceb0d2fb"></a><br/></td></tr>
+<tr class="memitem:a230007eaf534ce57ad58f440a7a89b6c"><td class="memItemLeft" align="right" valign="top">String <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::GetOneTag</b> (std::istream &amp;stream)</td></tr>
 <tr class="memdesc:a230007eaf534ce57ad58f440a7a89b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the first tag out of the Stream and returns it as a String.  <a href="#a230007eaf534ce57ad58f440a7a89b6c"></a><br/></td></tr>
-<tr class="memitem:a666837c21098b243a1b35976b2f11e6d"><td class="memItemLeft" align="right" valign="top">Document *<a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a666837c21098b243a1b35976b2f11e6d">Mezzanine::XML::PreParseClassFromSingleTag</a> (const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag)</td></tr>
+<tr class="memitem:a666837c21098b243a1b35976b2f11e6d"><td class="memItemLeft" align="right" valign="top">Document *<a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::PreParseClassFromSingleTag</b> (const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag)</td></tr>
 <tr class="memdesc:a666837c21098b243a1b35976b2f11e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a basic series of checks for extracting meaning from a single xml tag.  <a href="#a666837c21098b243a1b35976b2f11e6d"></a><br/></td></tr>
-<tr class="memitem:a74f33f1434219f14ce83c142521e5bd6"><td class="memItemLeft" align="right" valign="top">Document *<a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a74f33f1434219f14ce83c142521e5bd6">Mezzanine::XML::PreParseClassFromSingleTag</a> (const String &amp;ClassName, const String &amp;OneTag)</td></tr>
+<tr class="memitem:a74f33f1434219f14ce83c142521e5bd6"><td class="memItemLeft" align="right" valign="top">Document *<a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::PreParseClassFromSingleTag</b> (const String &amp;ClassName, const String &amp;OneTag)</td></tr>
 <tr class="memdesc:a74f33f1434219f14ce83c142521e5bd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls PreParseClassFromSingleTag passing a "" as the Namespace.  <a href="#a74f33f1434219f14ce83c142521e5bd6"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>The Doxygen documentation and minor tools to assist with the XML system. </p>
+<div class="textblock"><p>This file houses all the documentation for the XML system that is not directly related to a specific class or function call. </p>
+<p>The Doxygen documentation and minor tools to assist with the XML system.</p>
 <p>The integration process for PugiXML requires that our changes all be stored in shell script. This is not condusive to good clean documentation and is why the doxygen documention for the XML parser exist here instead of <a class="el" href="xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>. </p>
 
 <p>Definition in file <a class="el" href="xmldoc_8h_source.html">xmldoc.h</a>.</p>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 7 2013 07:25:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 18:50:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

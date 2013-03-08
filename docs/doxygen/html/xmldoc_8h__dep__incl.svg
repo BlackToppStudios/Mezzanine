@@ -223,7 +223,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node34 -->
 <g id="node103" class="node"><title>Node34</title>
-<a xlink:href="particleeffect_8h_source.html" target="_top" xlink:title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/particleeffect.h">
+<a xlink:href="particleeffect_8h.html" target="_top" xlink:title="Contains the declaration of the ParticleEffect class.">
 <polygon fill="white" stroke="black" points="2650,-329 2650,-373 2796,-373 2796,-329 2650,-329"/>
 <text text-anchor="start" x="2658" y="-360" font-family="FreeSans" font-size="10.00">/home/sqeaky/Projects</text>
 <text text-anchor="start" x="2658" y="-348" font-family="FreeSans" font-size="10.00">/MezzanineCurrent/Mezzanine</text>

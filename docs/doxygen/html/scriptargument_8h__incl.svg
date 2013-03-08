@@ -51,7 +51,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="datatypes_8h_source.html" target="_top" xlink:title="datatypes.h">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="411.5,-59 411.5,-79 476.5,-79 476.5,-59 411.5,-59"/>
 <text text-anchor="middle" x="444" y="-66" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -63,7 +63,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
-<a xlink:href="smartptr_8h_source.html" target="_top" xlink:title="smartptr.h">
+<a xlink:href="smartptr_8h.html" target="_top" xlink:title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e...">
 <polygon fill="white" stroke="black" points="471.5,-117 471.5,-137 530.5,-137 530.5,-117 471.5,-117"/>
 <text text-anchor="middle" x="501" y="-124" font-family="FreeSans" font-size="10.00">smartptr.h</text>
 </a>

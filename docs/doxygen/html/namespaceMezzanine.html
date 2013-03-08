@@ -108,8 +108,6 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespaceMezzanine_1_1Scripting"><td class="mdescLeft">&#160;</td><td class="mdescRight">This namespace is for all the classes belonging to the <a class="el" href="namespaceMezzanine_1_1Scripting.html" title="This namespace is for all the classes belonging to the Scripting Subsystem.">Scripting</a> Subsystem. <br/></td></tr>
 <tr class="memitem:namespaceMezzanine_1_1UI"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1UI.html">UI</a></td></tr>
 <tr class="memdesc:namespaceMezzanine_1_1UI"><td class="mdescLeft">&#160;</td><td class="mdescRight">This namespace is for all the classes belonging to the Graphical User Interface Subsystem. <br/></td></tr>
-<tr class="memitem:namespaceMezzanine_1_1XML"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html">XML</a></td></tr>
-<tr class="memdesc:namespaceMezzanine_1_1XML"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is where bulk of the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> subsystem resides, (See <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -222,47 +220,89 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory.html">ExceptionFactory</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template class that serves as the base for exception factories.  <a href="structMezzanine_1_1ExceptionFactory.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ArithmeticException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; ArithmeticException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ArithmeticException.html" title="Thrown when Math has failed.">ArithmeticException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01ArithmeticException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01DirectoryException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; DirectoryException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1DirectoryException.html" title="Thrown when there is an unknown issue with a file.">DirectoryException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01DirectoryException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01DirectoryNotFoundException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; DirectoryNotFoundException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1DirectoryNotFoundException.html" title="Thrown when a directory was expected to be there, but was not.">DirectoryNotFoundException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01DirectoryNotFoundException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01DirectoryPermissionException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; DirectoryPermissionException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1DirectoryPermissionException.html" title="Thrown when permission is denied to a directory.">DirectoryPermissionException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01DirectoryPermissionException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01DirectoryReadException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; DirectoryReadException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1DirectoryReadException.html" title="Thrown when a directory could be read and it wasn&#39;t a permission issue.">DirectoryReadException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01DirectoryReadException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01DirectoryWriteException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; DirectoryWriteException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1DirectoryWriteException.html" title="Thrown when a directory could be written to and it wasn&#39;t a permission issue.">DirectoryWriteException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01DirectoryWriteException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01FileException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; FileException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1FileException.html" title="Thrown when there is an unknown issue with a file.">FileException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01FileException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01FileNotFoundException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; FileNotFoundException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1FileNotFoundException.html" title="Thrown when a file was expected to be there, but was not.">FileNotFoundException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01FileNotFoundException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01FilePermissionException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; FilePermissionException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1FilePermissionException.html" title="Thrown when permission was denied to a file.">FilePermissionException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01FilePermissionException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01FileReadException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; FileReadException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1FileReadException.html" title="Thrown when a file could not be read and permissions seem to not be an issue (Filesystem/hardware iss...">FileReadException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01FileReadException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01FileWriteException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; FileWriteException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1FileWriteException.html" title="Thrown when a file could not be written and perimssions seem not to be an issue.">FileWriteException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01FileWriteException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityDuplicateException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InstanceIdentityDuplicateException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InstanceIdentityDuplicateException.html" title="Thrown when duplicates of teh same identity string exist.">InstanceIdentityDuplicateException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityDuplicateException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InstanceIdentityException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InstanceIdentityException.html" title="Thrown when an unknown error with using an Identifier and it is invalid.">InstanceIdentityException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityInvalidException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InstanceIdentityInvalidException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InstanceIdentityInvalidException.html" title="Thrown when the identity string wasn&#39;t valid at all.">InstanceIdentityInvalidException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityInvalidException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityNotFoundException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InstanceIdentityNotFoundException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InstanceIdentityNotFoundException.html" title="Thrown when the requested identity could not be found.">InstanceIdentityNotFoundException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InstanceIdentityNotFoundException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InternalException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InternalException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InternalException.html" title="Thrown when an unknown internal error occurred.">InternalException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InternalException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InvalidParametersException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InvalidParametersException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InvalidParametersException.html" title="Thrown when parameters are checked at runtime and found invalid.">InvalidParametersException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InvalidParametersException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InvalidStateException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InvalidStateException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InvalidStateException.html" title="Thrown when the available information should have worked but failed for unknown reasons.">InvalidStateException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InvalidStateException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01InvalidVersionException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; InvalidVersionException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1InvalidVersionException.html" title="Thrown when a version is accessed/parsed/required and it cannot work correctly or is missing...">InvalidVersionException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01InvalidVersionException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01IOException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; IOException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1IOException.html" title="Thrown when there was an issue with IO but very little was known about it.">IOException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01IOException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01IOReadException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; IOReadException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1IOReadException.html" title="Thrown when a read is happening but asoemthing has prevented teh underlying code from knowing what wa...">IOReadException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01IOReadException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01IOWriteException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; IOWriteException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1IOWriteException.html" title="Thrown when a write is happening but asoemthing has prevented teh underlying code from knowing what w...">IOWriteException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01IOWriteException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01MemoryManagementException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; MemoryManagementException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1MemoryManagementException.html" title="Thrown when an unknown memory management exception occurs.">MemoryManagementException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01MemoryManagementException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01MemoryOutOfBoundsException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; MemoryOutOfBoundsException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1MemoryOutOfBoundsException.html" title="Thrown when attempted to access something that really should note be accessed.">MemoryOutOfBoundsException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01MemoryOutOfBoundsException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NetworkException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NetworkException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NetworkException.html" title="Thrown when something unknown causes network IO to fail.">NetworkException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NetworkException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NetworkNotFoundException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NetworkNotFoundException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NetworkNotFoundException.html" title="Thrown when no network connection is available.">NetworkNotFoundException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NetworkNotFoundException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NetworkPermissionException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NetworkPermissionException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NetworkPermissionException.html" title="Thrown when permision was denied to a network interface or network resource.">NetworkPermissionException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NetworkPermissionException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NetworkReadException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NetworkReadException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NetworkReadException.html" title="Thrown when data could not be read from the network (downloads).">NetworkReadException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NetworkReadException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NetworkURLException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NetworkURLException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NetworkURLException.html" title="Thrown when an address is invalid or could not be found.">NetworkURLException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NetworkURLException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NetworkWriteException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NetworkWriteException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NetworkWriteException.html" title="Thrown when data could not be read from the network (i[loads).">NetworkWriteException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NetworkWriteException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01NotImplementedException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; NotImplementedException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1NotImplementedException.html" title="Thrown when we just have not coded a thing yet, but we knew what the API should look like...">NotImplementedException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01NotImplementedException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01OutOfMemoryException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; OutOfMemoryException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1OutOfMemoryException.html" title="Thrown when A memory allocation was attempted and failed.">OutOfMemoryException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01OutOfMemoryException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01RenderingAPIException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; RenderingAPIException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1RenderingAPIException.html" title="Thrown when the graphics card/DirectX/OpenGL fail.">RenderingAPIException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01RenderingAPIException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01RuntimeAssertionException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; RuntimeAssertionException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1RuntimeAssertionException.html" title="Thrown when a rutime assertion could have been thrown.">RuntimeAssertionException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01RuntimeAssertionException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ScriptException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; ScriptException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ScriptException.html" title="Thrown when an unknown error happens with a script.">ScriptException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01ScriptException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaErrErrException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; ScriptLuaErrErrException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ScriptLuaErrErrException.html" title="Thrown when Lua has an error handling an error.">ScriptLuaErrErrException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaErrErrException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; ScriptLuaException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ScriptLuaException.html" title="Thrown when an unknown error happens in a Lua script.">ScriptLuaException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaRuntimeException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; ScriptLuaRuntimeException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ScriptLuaRuntimeException.html" title="Thrown when a Lua script has a runtime error.">ScriptLuaRuntimeException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaRuntimeException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaYieldException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; ScriptLuaYieldException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1ScriptLuaYieldException.html" title="Thrown when Lua returns a yield and it should not have.">ScriptLuaYieldException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01ScriptLuaYieldException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; SyntaxErrorException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1SyntaxErrorException.html" title="Thrown when some kind of syntax exception.">SyntaxErrorException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorLuaException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; SyntaxErrorLuaException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1SyntaxErrorLuaException.html" title="Thrown when lua code in incorrect.">SyntaxErrorLuaException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorLuaException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorXMLException_1_1ExceptionCode_01_4.html">ExceptionFactory&lt; SyntaxErrorXMLException::ExceptionCode &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A template metaprogramming construct used to ensure that all required <a class="el" href="classMezzanine_1_1SyntaxErrorXMLException.html" title="Thrown when xml is being parsed butis invalid.">SyntaxErrorXMLException</a> can be created at compile time if the compiler is clever.  <a href="structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorXMLException_1_1ExceptionCode_01_4.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ExtendedTimer.html">ExtendedTimer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An enhanced timer class that can store and track many units of time.  <a href="classMezzanine_1_1ExtendedTimer.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1FieldOfForce.html">FieldOfForce</a></td></tr>
@@ -667,7 +707,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A datatype to represent one character. </p>
 <p>This should be a char if String is an std::string. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00144">144</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00145">145</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -684,7 +724,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A Datatype used to a series of imutable characters. </p>
 <p>This is a typedef to const String, but could change. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00139">139</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00140">140</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -701,7 +741,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A datatype use to represent any integer close to. </p>
 <p>This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00123">123</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00124">124</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -718,7 +758,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>This is a datatype mostly used for describing settings or parameters that can't be declared in advance. </p>
 <p>This datatype uses the std::list container for it's storage. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00157">157</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00158">158</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -735,7 +775,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>This is a datatype mostly used for describing settings or parameters that can't be declared in advance. </p>
 <p>This datatype uses the std::map container for it's storage. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00162">162</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00163">163</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -752,7 +792,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>This is an internal datatype use to communicate with the User input Subsystem. </p>
 <p>This is a typedef to SDL_Event. See the SDL Documentation for more details </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00176">176</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00177">177</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -769,7 +809,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A Datatype used to represent a real floating point number. </p>
 <p>This Datatype is currently a typedef to a float, This is to match our compilations of <a class="el" href="namespaceOgre.html">Ogre</a> (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00112">112</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00113">113</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -786,7 +826,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A Datatype used to a series of characters. </p>
 <p>This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00129">129</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00130">130</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -803,7 +843,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A Datatype used to represent an postive integer numbers. </p>
 <p>This is a typedef to unsigned Long. but could be smaller in some situations </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00117">117</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00118">118</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -820,7 +860,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>A wide version of the String typedef. </p>
 <p>Wide strings are seldom used, but often come in handy when dealing with Unicode strings. </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00134">134</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00135">135</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1131,7 @@ template&lt;typename To , typename From &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>The value as if 'read' into the target type </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Overload ConvertTo for ToString Conversions. </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00187">187</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00188">188</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1347,7 +1387,7 @@ template&lt;class T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>A double with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Typedefs could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00253">253</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00254">254</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1377,7 +1417,7 @@ template&lt;class T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>A float with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Real Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00246">246</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00247">247</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1407,7 +1447,7 @@ template&lt;class T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>An int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00224">224</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00225">225</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1436,7 +1476,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An Integer with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00216">216</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00217">217</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1465,7 +1505,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Real with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00238">238</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00239">239</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1494,7 +1534,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A String with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00199">199</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00200">200</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1524,7 +1564,7 @@ template&lt;class T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>An unsigned int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00232">232</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00233">233</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -1553,12 +1593,12 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Whole with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00210">210</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="datatypes_8h_source.html#l00211">211</a> of file <a class="el" href="datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 7 2013 07:25:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 18:50:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

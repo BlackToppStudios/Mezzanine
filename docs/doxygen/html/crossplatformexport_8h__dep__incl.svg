@@ -232,7 +232,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node31 -->
 <g id="node85" class="node"><title>Node31</title>
-<a xlink:href="datatypes_8h_source.html" target="_top" xlink:title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/datatypes.h">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="red" points="3303,-493 3303,-537 3449,-537 3449,-493 3303,-493"/>
 <text text-anchor="start" x="3311" y="-524" font-family="FreeSans" font-size="10.00">/home/sqeaky/Projects</text>
 <text text-anchor="start" x="3311" y="-512" font-family="FreeSans" font-size="10.00">/MezzanineCurrent/Mezzanine</text>
@@ -982,7 +982,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node42 -->
 <g id="node153" class="node"><title>Node42</title>
-<a xlink:href="xmldoc_8h.html" target="_top" xlink:title="The Doxygen documentation and minor tools to assist with the XML system.">
+<a xlink:href="xmldoc_8h.html" target="_top" xlink:title="This file houses all the documentation for the XML system that is not directly related to a specific ...">
 <polygon fill="white" stroke="red" points="4750,-329 4750,-373 4896,-373 4896,-329 4750,-329"/>
 <text text-anchor="start" x="4758" y="-360" font-family="FreeSans" font-size="10.00">/home/sqeaky/Projects</text>
 <text text-anchor="start" x="4758" y="-348" font-family="FreeSans" font-size="10.00">/MezzanineCurrent/Mezzanine</text>

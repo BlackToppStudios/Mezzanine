@@ -42,6 +42,9 @@
 
 #include "datatypes.h"
 
+/// @file
+/// @brief The interface for the Musicplayer class
+
 namespace Mezzanine
 {
     namespace Audio
@@ -49,8 +52,6 @@ namespace Mezzanine
         class Playlist;
         class Sound;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class MusicPlayer
-        /// @headerfile audiomusicplayer.h
         /// @brief This is a convenience class for the playing of music in a game.
         /// @details
         ///////////////////////////////////////

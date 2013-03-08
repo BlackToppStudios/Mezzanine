@@ -42,7 +42,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 // Any Special data types that we need will get declared right here
-/// @file All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well
+/// @file
+/// @brief All the definitions for datatypes as well as some basic conversion functions are defined here. Additionally, this is where all of the other singular header inclusions go as well
 ///////////////////////////////////////
 
 #include "crossplatformexport.h"

@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock"><code>#include &quot;crossplatform.h&quot;</code><br/>
 <code>#include &quot;<a class="el" href="xmldoc_8h_source.html">XML/xmldoc.h</a>&quot;</code><br/>
 <code>#include &quot;exception.h&quot;</code><br/>
-<code>#include &quot;Resource/datastream.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="datastream_8h_source.html">Resource/datastream.h</a>&quot;</code><br/>
 <code>#include &lt;stddef.h&gt;</code><br/>
 <code>#include &lt;iterator&gt;</code><br/>
 <code>#include &lt;iosfwd&gt;</code><br/>
@@ -144,7 +144,7 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterStream.html">Mezzanine::XML::WriterStream</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An implementation of <a class="el" href="classMezzanine_1_1XML_1_1Writer.html">Writer</a> intended for writing std::ostreams.  <a href="classMezzanine_1_1XML_1_1WriterStream.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XMLStreamWrapper.html">Mezzanine::XML::XMLStreamWrapper</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a simple wrapper that makes data streams compatible with the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> API.  <a href="classMezzanine_1_1XML_1_1XMLStreamWrapper.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This represents a simple wrapper that makes data streams compatible with the XML API.  <a href="classMezzanine_1_1XML_1_1XMLStreamWrapper.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathException.html">Mezzanine::XML::XPathException</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.  <a href="classMezzanine_1_1XML_1_1XPathException.html#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNode.html">Mezzanine::XML::XPathNode</a></td></tr>
@@ -164,8 +164,6 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceMezzanine"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.html">Mezzanine</a></td></tr>
 <tr class="memdesc:namespaceMezzanine"><td class="mdescLeft">&#160;</td><td class="mdescRight">The bulk of the engine components go in this namspace. <br/></td></tr>
-<tr class="memitem:namespaceMezzanine_1_1XML"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html">Mezzanine::XML</a></td></tr>
-<tr class="memdesc:namespaceMezzanine_1_1XML"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is where bulk of the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> subsystem resides, (See <a class="el" href="XMLManual.html">Mezzanine::xml Manual</a> for details) there are numerous class that are all tighlty integrated so one file seemed appropriate. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -181,174 +179,174 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a07ad174921b7a0efcc0e94467d94e19f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07ad174921b7a0efcc0e94467d94e19f"></a>
-typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a07ad174921b7a0efcc0e94467d94e19f">Mezzanine::XML::AllocationFunction</a> )(size_t size)</td></tr>
+typedef void *(*&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::AllocationFunction</b> )(size_t size)</td></tr>
 <tr class="memdesc:a07ad174921b7a0efcc0e94467d94e19f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory allocation function interface; returns pointer to allocated memory or NULL on failure. <br/></td></tr>
 <tr class="memitem:a8c62e409c42534a7dd6ffcdac1a75247"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c62e409c42534a7dd6ffcdac1a75247"></a>
 typedef Character&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::char_t</b></td></tr>
 <tr class="memitem:a9941b08237600710a0955ed9c8bc9b56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9941b08237600710a0955ed9c8bc9b56"></a>
-typedef Character&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a9941b08237600710a0955ed9c8bc9b56">Mezzanine::XML::char_t</a></td></tr>
+typedef Character&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::char_t</b></td></tr>
 <tr class="memdesc:a9941b08237600710a0955ed9c8bc9b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to represent a UTF8 code point, char, or wchar_t depending on how compiled. <br/></td></tr>
 <tr class="memitem:adb13a18915ff3de65f44d0ebe632603a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb13a18915ff3de65f44d0ebe632603a"></a>
-typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#adb13a18915ff3de65f44d0ebe632603a">Mezzanine::XML::deAllocationFunction</a> )(void *ptr)</td></tr>
+typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::deAllocationFunction</b> )(void *ptr)</td></tr>
 <tr class="memdesc:adb13a18915ff3de65f44d0ebe632603a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory deallocation function interface. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a77aa299731a2a63d9bab92cf6f03b057"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057">Mezzanine::XML::Encoding</a> { <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057a4f2e9ef9dba9d2107959ef366ff3e0d0">Mezzanine::XML::EncodingAuto</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057a35f9ab156d233ebde5c2024963f056ea">Mezzanine::XML::EncodingUTF8</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057a4377948e369ce9b90550735e0c88ea11">Mezzanine::XML::EncodingUTF16LE</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057a7eafcbad3e22337e870669a9ce4c37d0">Mezzanine::XML::EncodingUTF16BE</a>, 
+<tr class="memitem:a77aa299731a2a63d9bab92cf6f03b057"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>Encoding</b> { <br/>
+&#160;&#160;<b>Mezzanine::XML::EncodingAuto</b>, 
+<b>Mezzanine::XML::EncodingUTF8</b>, 
+<b>Mezzanine::XML::EncodingUTF16LE</b>, 
+<b>Mezzanine::XML::EncodingUTF16BE</b>, 
 <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057a63bae0b4e1300cdf5422fe3911e4bbbb">Mezzanine::XML::EncodingUTF16</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057af71a5797d91e67b771de385754d48443">Mezzanine::XML::EncodingUTF32LE</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057afa11f5fb538e6ad6856d2bbe41f767a7">Mezzanine::XML::EncodingUTF32BE</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057aa83277f65205098776004eaf85f095e1">Mezzanine::XML::EncodingUTF32</a>, 
+&#160;&#160;<b>Mezzanine::XML::EncodingUTF16</b>, 
+<b>Mezzanine::XML::EncodingUTF32LE</b>, 
+<b>Mezzanine::XML::EncodingUTF32BE</b>, 
+<b>Mezzanine::XML::EncodingUTF32</b>, 
 <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057a18393d522838a7e659ff173e2c2a43fe">Mezzanine::XML::Encodingwchar_t</a>, 
+&#160;&#160;<b>Mezzanine::XML::Encodingwchar_t</b>, 
 <b>DocumentEncoding_latin1</b>
 <br/>
  }</td></tr>
-<tr class="memdesc:a77aa299731a2a63d9bab92cf6f03b057"><td class="mdescLeft">&#160;</td><td class="mdescRight">These flags determine the encoding of input data for an XML document.  <a href="namespaceMezzanine_1_1XML.html#a77aa299731a2a63d9bab92cf6f03b057">More...</a><br/></td></tr>
-<tr class="memitem:a79dc84831ed2506631fb4adeb899564a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564a">Mezzanine::XML::NodeType</a> { <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aaa37c01d8c7360e58957c106651a4a213">Mezzanine::XML::NodeNull</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa85ad1fc3e8ec807fc7b83a13be4078b3">Mezzanine::XML::NodeDocument</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa935832e64259b755a538a42f7692bb76">Mezzanine::XML::NodeElement</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aaef5e1792d12d11df163a65ec67e9e5ad">Mezzanine::XML::NodePcdata</a>, 
+<tr class="memdesc:a77aa299731a2a63d9bab92cf6f03b057"><td class="mdescLeft">&#160;</td><td class="mdescRight">These flags determine the encoding of input data for an XML document. <br/></td></tr>
+<tr class="memitem:a79dc84831ed2506631fb4adeb899564a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>NodeType</b> { <br/>
+&#160;&#160;<b>Mezzanine::XML::NodeNull</b>, 
+<b>Mezzanine::XML::NodeDocument</b>, 
+<b>Mezzanine::XML::NodeElement</b>, 
+<b>Mezzanine::XML::NodePcdata</b>, 
 <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa248e48c6a618bfeddceb72cf5ca4dd34">Mezzanine::XML::NodeCdata</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aaacbc2087dd7252f78a8bcfc86d09276b">Mezzanine::XML::NodeComment</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa07ac2fe80793461cdaa529b551e054ef">Mezzanine::XML::NodePi</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa73011af11cb8448888a1df317c4ae80f">Mezzanine::XML::NodeDeclaration</a>, 
+&#160;&#160;<b>Mezzanine::XML::NodeCdata</b>, 
+<b>Mezzanine::XML::NodeComment</b>, 
+<b>Mezzanine::XML::NodePi</b>, 
+<b>Mezzanine::XML::NodeDeclaration</b>, 
 <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564aa491769303391873c440d734c108fc7aa">Mezzanine::XML::NodeDocType</a>
-<br/>
- }</td></tr>
-<tr class="memdesc:a79dc84831ed2506631fb4adeb899564a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of nodes.  <a href="namespaceMezzanine_1_1XML.html#a79dc84831ed2506631fb4adeb899564a">More...</a><br/></td></tr>
-<tr class="memitem:a25d44cacbf75a9d031eae1baa9481442"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442">Mezzanine::XML::ParseStatus</a> { <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442abf4ebec5e533d2aae675eea396a825e8">Mezzanine::XML::StatusOk</a> =  0, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a84dc94940dc7421072eea505eeda85aa">Mezzanine::XML::StatusFileNotFound</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a9dfe7d94658b14a3518dfceac886ac11">Mezzanine::XML::StatusIOError</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442af1070d02c47aae1c7ce9d2d78d2de687">Mezzanine::XML::StatusOutOfMemory</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a9808999ab5d9ee7c071e05be4f955588">Mezzanine::XML::StatusInternalError</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a55671092895e0852de71dd52d9614971">Mezzanine::XML::StatusUnrecognizedTag</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442ac926e463133455cb3c4cb59c66772e94">Mezzanine::XML::StatusBadPi</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a4f5139dc951f896daef2673e4d335a42">Mezzanine::XML::StatusBadComment</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a5ea0c2832f795012a2d7f7da13fdd237">Mezzanine::XML::StatusBadCdata</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a7dd02f8c4d569e018a4ba207e88fe631">Mezzanine::XML::StatusBadDocType</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442afad817908c76d174f1f93f37380f3d18">Mezzanine::XML::StatusBadPcdata</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a500d08b23c251288554c00dab6fe6c81">Mezzanine::XML::StatusBadStartElement</a>, 
-<br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a07017a65f7833e95e09ba0bb86661b9c">Mezzanine::XML::StatusBadAttribute</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a2dde66147af1a68ce06d9c1f07e84291">Mezzanine::XML::StatusBadEndElement</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442a29c2734a429043a7c52c237aafbc8f1d">Mezzanine::XML::StatusEndElementMismatch</a>
+&#160;&#160;<b>Mezzanine::XML::NodeDocType</b>
 <br/>
  }</td></tr>
-<tr class="memdesc:a25d44cacbf75a9d031eae1baa9481442"><td class="mdescLeft">&#160;</td><td class="mdescRight">These statuses are used to help determine what issues, if any the parser had. the XML parser had.  <a href="namespaceMezzanine_1_1XML.html#a25d44cacbf75a9d031eae1baa9481442">More...</a><br/></td></tr>
-<tr class="memitem:a9bd26a1f9b2d49df236a663038cd77ee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77ee">Mezzanine::XML::XPathValueType</a> { <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eea045872865f8139e01423bcf60531feca">Mezzanine::XML::XPathTypeNone</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eeac15018c2765830e9c9e99af93dc07a21">Mezzanine::XML::XPathTypeNodeSet</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eea621e7c8b0082b72121f0a8bdcd9c0227">Mezzanine::XML::XPathTypeNumber</a>, 
-<a class="el" href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eea3cba1fd0092d279cff54f6309026f64e">Mezzanine::XML::XPathTypeString</a>, 
+<tr class="memdesc:a79dc84831ed2506631fb4adeb899564a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The types of nodes. <br/></td></tr>
+<tr class="memitem:a25d44cacbf75a9d031eae1baa9481442"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>ParseStatus</b> { <br/>
+&#160;&#160;<b>Mezzanine::XML::StatusOk</b> =  0, 
+<b>Mezzanine::XML::StatusFileNotFound</b>, 
+<b>Mezzanine::XML::StatusIOError</b>, 
+<b>Mezzanine::XML::StatusOutOfMemory</b>, 
 <br/>
-&#160;&#160;<a class="el" href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77eea28e070bc949dc0557f742e3eafed3828">Mezzanine::XML::XPathTypeBoolean</a>
+&#160;&#160;<b>Mezzanine::XML::StatusInternalError</b>, 
+<b>Mezzanine::XML::StatusUnrecognizedTag</b>, 
+<b>Mezzanine::XML::StatusBadPi</b>, 
+<b>Mezzanine::XML::StatusBadComment</b>, 
+<br/>
+&#160;&#160;<b>Mezzanine::XML::StatusBadCdata</b>, 
+<b>Mezzanine::XML::StatusBadDocType</b>, 
+<b>Mezzanine::XML::StatusBadPcdata</b>, 
+<b>Mezzanine::XML::StatusBadStartElement</b>, 
+<br/>
+&#160;&#160;<b>Mezzanine::XML::StatusBadAttribute</b>, 
+<b>Mezzanine::XML::StatusBadEndElement</b>, 
+<b>Mezzanine::XML::StatusEndElementMismatch</b>
 <br/>
  }</td></tr>
-<tr class="memdesc:a9bd26a1f9b2d49df236a663038cd77ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">XPathQuery return type.  <a href="namespaceMezzanine_1_1XML.html#a9bd26a1f9b2d49df236a663038cd77ee">More...</a><br/></td></tr>
+<tr class="memdesc:a25d44cacbf75a9d031eae1baa9481442"><td class="mdescLeft">&#160;</td><td class="mdescRight">These statuses are used to help determine what issues, if any the parser had. the XML parser had. <br/></td></tr>
+<tr class="memitem:a9bd26a1f9b2d49df236a663038cd77ee"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>XPathValueType</b> { <br/>
+&#160;&#160;<b>Mezzanine::XML::XPathTypeNone</b>, 
+<b>Mezzanine::XML::XPathTypeNodeSet</b>, 
+<b>Mezzanine::XML::XPathTypeNumber</b>, 
+<b>Mezzanine::XML::XPathTypeString</b>, 
+<br/>
+&#160;&#160;<b>Mezzanine::XML::XPathTypeBoolean</b>
+<br/>
+ }</td></tr>
+<tr class="memdesc:a9bd26a1f9b2d49df236a663038cd77ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">XPathQuery return type. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abffe9a84ab44a5e5e9ad71e296be34dc"><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; char, <br class="typebreak"/>
 std::char_traits&lt; char &gt;<br class="typebreak"/>
 , std::allocator&lt; char &gt;<br class="typebreak"/>
- &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#abffe9a84ab44a5e5e9ad71e296be34dc">Mezzanine::XML::AsUtf8</a> (const wchar_t *str)</td></tr>
+ &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::AsUtf8</b> (const wchar_t *str)</td></tr>
 <tr class="memdesc:abffe9a84ab44a5e5e9ad71e296be34dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a c-style string of wchar_t to std::string containing UTF8.  <a href="#abffe9a84ab44a5e5e9ad71e296be34dc"></a><br/></td></tr>
 <tr class="memitem:a2257e517c4c111ad4a38236f152f2a5a"><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; char, <br class="typebreak"/>
 std::char_traits&lt; char &gt;<br class="typebreak"/>
 , std::allocator&lt; char &gt;<br class="typebreak"/>
- &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a2257e517c4c111ad4a38236f152f2a5a">Mezzanine::XML::AsUtf8</a> (const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)</td></tr>
+ &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::AsUtf8</b> (const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)</td></tr>
 <tr class="memdesc:a2257e517c4c111ad4a38236f152f2a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a std::wstring to a UTF8 std::string.  <a href="#a2257e517c4c111ad4a38236f152f2a5a"></a><br/></td></tr>
 <tr class="memitem:a6bd29b5bfc542d609be8d06853a38ec9"><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; wchar_t, <br class="typebreak"/>
 std::char_traits&lt; wchar_t &gt;<br class="typebreak"/>
 , std::allocator&lt; wchar_t &gt;<br class="typebreak"/>
- &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a6bd29b5bfc542d609be8d06853a38ec9">Mezzanine::XML::AsWide</a> (const char *str)</td></tr>
+ &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::AsWide</b> (const char *str)</td></tr>
 <tr class="memdesc:a6bd29b5bfc542d609be8d06853a38ec9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#a6bd29b5bfc542d609be8d06853a38ec9"></a><br/></td></tr>
 <tr class="memitem:ad8a5bbf1f662e8c4bf29016ce503e1f7"><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; wchar_t, <br class="typebreak"/>
 std::char_traits&lt; wchar_t &gt;<br class="typebreak"/>
 , std::allocator&lt; wchar_t &gt;<br class="typebreak"/>
- &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#ad8a5bbf1f662e8c4bf29016ce503e1f7">Mezzanine::XML::AsWide</a> (const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)</td></tr>
+ &gt; <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::AsWide</b> (const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)</td></tr>
 <tr class="memdesc:ad8a5bbf1f662e8c4bf29016ce503e1f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#ad8a5bbf1f662e8c4bf29016ce503e1f7"></a><br/></td></tr>
-<tr class="memitem:a0087ce6526e3842467be8261ae75c116"><td class="memItemLeft" align="right" valign="top">AllocationFunction <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a0087ce6526e3842467be8261ae75c116">Mezzanine::XML::GetMemoryAllocationFunction</a> ()</td></tr>
+<tr class="memitem:a0087ce6526e3842467be8261ae75c116"><td class="memItemLeft" align="right" valign="top">AllocationFunction <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::GetMemoryAllocationFunction</b> ()</td></tr>
 <tr class="memdesc:a0087ce6526e3842467be8261ae75c116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current allocation funciton.  <a href="#a0087ce6526e3842467be8261ae75c116"></a><br/></td></tr>
-<tr class="memitem:adab9aafffd1bab64cc55f38477925da6"><td class="memItemLeft" align="right" valign="top">deAllocationFunction <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#adab9aafffd1bab64cc55f38477925da6">Mezzanine::XML::GetMemoryDeallocationFunction</a> ()</td></tr>
+<tr class="memitem:adab9aafffd1bab64cc55f38477925da6"><td class="memItemLeft" align="right" valign="top">deAllocationFunction <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::GetMemoryDeallocationFunction</b> ()</td></tr>
 <tr class="memdesc:adab9aafffd1bab64cc55f38477925da6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current allocation funciton.  <a href="#adab9aafffd1bab64cc55f38477925da6"></a><br/></td></tr>
-<tr class="memitem:a23d3bc5d06c91b2b161b5dd881f8aa3b"><td class="memItemLeft" align="right" valign="top">void <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a23d3bc5d06c91b2b161b5dd881f8aa3b">Mezzanine::XML::SetMemory_management_functions</a> (AllocationFunction allocate, deAllocationFunction deallocate)</td></tr>
+<tr class="memitem:a23d3bc5d06c91b2b161b5dd881f8aa3b"><td class="memItemLeft" align="right" valign="top">void <a class="el" href="crossplatformexport_8h.html#a455f91aab9e6a1cf4286f5cdfa74c7bc">MEZZ_LIB</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::SetMemory_management_functions</b> (AllocationFunction allocate, deAllocationFunction deallocate)</td></tr>
 <tr class="memdesc:a23d3bc5d06c91b2b161b5dd881f8aa3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.  <a href="#a23d3bc5d06c91b2b161b5dd881f8aa3b"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a3c7ac360714f03e6b44dd89f87b8ef0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c7ac360714f03e6b44dd89f87b8ef0d"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a3c7ac360714f03e6b44dd89f87b8ef0d">Mezzanine::XML::FormatDefault</a> = FormatRaw</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatDefault</b> = FormatRaw</td></tr>
 <tr class="memdesc:a3c7ac360714f03e6b44dd89f87b8ef0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default set of formatting flags. Only FormatRaw is enabled. <br/></td></tr>
 <tr class="memitem:afa336b3b53e94b5e46fd00a89df52b98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa336b3b53e94b5e46fd00a89df52b98"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#afa336b3b53e94b5e46fd00a89df52b98">Mezzanine::XML::FormatIndent</a> = 0x01</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatIndent</b> = 0x01</td></tr>
 <tr class="memdesc:afa336b3b53e94b5e46fd00a89df52b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default. <br/></td></tr>
 <tr class="memitem:adc3e051eea0d855685660cee420a00f3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc3e051eea0d855685660cee420a00f3"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#adc3e051eea0d855685660cee420a00f3">Mezzanine::XML::FormatNoDeclaration</a> = 0x08</td></tr>
-<tr class="memdesc:adc3e051eea0d855685660cee420a00f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Omit default <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> declaration even if there is no declaration in the document. This flag is off by default. <br/></td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatNoDeclaration</b> = 0x08</td></tr>
+<tr class="memdesc:adc3e051eea0d855685660cee420a00f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Omit default XML declaration even if there is no declaration in the document. This flag is off by default. <br/></td></tr>
 <tr class="memitem:a3c62c89a322e80ecda0682755ef2a825"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c62c89a322e80ecda0682755ef2a825"></a>
 const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatNoEscapes</b> = 0x10</td></tr>
 <tr class="memitem:a72b35862c6ac7041f4cf06f658aa6f39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72b35862c6ac7041f4cf06f658aa6f39"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a72b35862c6ac7041f4cf06f658aa6f39">Mezzanine::XML::FormatRaw</a> = 0x04</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatRaw</b> = 0x04</td></tr>
 <tr class="memdesc:a72b35862c6ac7041f4cf06f658aa6f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use raw output mode (no indentation and no line breaks are written). This flag is on by default. <br/></td></tr>
 <tr class="memitem:aba51fb162156123758bf5e06f122ab76"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba51fb162156123758bf5e06f122ab76"></a>
 const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatSaveFileText</b> = 0x20</td></tr>
 <tr class="memitem:a991a54f59b6fab3d8ae244ce84d96b1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a991a54f59b6fab3d8ae244ce84d96b1a"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a991a54f59b6fab3d8ae244ce84d96b1a">Mezzanine::XML::FormatWriteBom</a> = 0x02</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::FormatWriteBom</b> = 0x02</td></tr>
 <tr class="memdesc:a991a54f59b6fab3d8ae244ce84d96b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default. <br/></td></tr>
 <tr class="memitem:aed8040dea86e78874867b3b57161be64"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed8040dea86e78874867b3b57161be64"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#aed8040dea86e78874867b3b57161be64">Mezzanine::XML::ParseCdata</a> = 0x0004</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseCdata</b> = 0x0004</td></tr>
 <tr class="memdesc:aed8040dea86e78874867b3b57161be64"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default. <br/></td></tr>
 <tr class="memitem:a7f0ea027d462cdb78fb7e6fdbd8dd1ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f0ea027d462cdb78fb7e6fdbd8dd1ce"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a7f0ea027d462cdb78fb7e6fdbd8dd1ce">Mezzanine::XML::ParseComments</a> = 0x0002</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseComments</b> = 0x0002</td></tr>
 <tr class="memdesc:a7f0ea027d462cdb78fb7e6fdbd8dd1ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default. <br/></td></tr>
 <tr class="memitem:aeb5ed8c009fe4b563c24e641e9b62a69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb5ed8c009fe4b563c24e641e9b62a69"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#aeb5ed8c009fe4b563c24e641e9b62a69">Mezzanine::XML::ParseDeclaration</a> = 0x0100</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseDeclaration</b> = 0x0100</td></tr>
 <tr class="memdesc:aeb5ed8c009fe4b563c24e641e9b62a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. <br/></td></tr>
-<tr class="memitem:ac205294622ea731abda219d2717f5bc5"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#ac205294622ea731abda219d2717f5bc5">Mezzanine::XML::ParseDefault</a> = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol</td></tr>
+<tr class="memitem:ac205294622ea731abda219d2717f5bc5"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseDefault</b> = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol</td></tr>
 <tr class="memdesc:ac205294622ea731abda219d2717f5bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default parsing mode.  <a href="#ac205294622ea731abda219d2717f5bc5"></a><br/></td></tr>
 <tr class="memitem:a26b8a98906c8471a258b2365643f9806"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26b8a98906c8471a258b2365643f9806"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a26b8a98906c8471a258b2365643f9806">Mezzanine::XML::ParseDocType</a> = 0x0200</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseDocType</b> = 0x0200</td></tr>
 <tr class="memdesc:a26b8a98906c8471a258b2365643f9806"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. <br/></td></tr>
 <tr class="memitem:a6a4f517adb8662e38ba628bc85ddded6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a4f517adb8662e38ba628bc85ddded6"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a6a4f517adb8662e38ba628bc85ddded6">Mezzanine::XML::ParseEol</a> = 0x0020</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseEol</b> = 0x0020</td></tr>
 <tr class="memdesc:a6a4f517adb8662e38ba628bc85ddded6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default. <br/></td></tr>
 <tr class="memitem:a63e5934ea5ffdb04165059200ccf343e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63e5934ea5ffdb04165059200ccf343e"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a63e5934ea5ffdb04165059200ccf343e">Mezzanine::XML::ParseEscapes</a> = 0x0010</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseEscapes</b> = 0x0010</td></tr>
 <tr class="memdesc:a63e5934ea5ffdb04165059200ccf343e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if character and entity references are expanded during parsing. This flag is on by default. <br/></td></tr>
-<tr class="memitem:a3e721af926b0b8f82dc4d68306652a47"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a3e721af926b0b8f82dc4d68306652a47">Mezzanine::XML::ParseFull</a> = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDocType</td></tr>
+<tr class="memitem:a3e721af926b0b8f82dc4d68306652a47"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseFull</b> = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDocType</td></tr>
 <tr class="memdesc:a3e721af926b0b8f82dc4d68306652a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">The full parsing mode.  <a href="#a3e721af926b0b8f82dc4d68306652a47"></a><br/></td></tr>
-<tr class="memitem:ac6152566ff0bd16bea6a26638f72aede"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#ac6152566ff0bd16bea6a26638f72aede">Mezzanine::XML::ParseMinimal</a> = 0x0000</td></tr>
+<tr class="memitem:ac6152566ff0bd16bea6a26638f72aede"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseMinimal</b> = 0x0000</td></tr>
 <tr class="memdesc:ac6152566ff0bd16bea6a26638f72aede"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimal parsing mode (equivalent to turning all other flags off).  <a href="#ac6152566ff0bd16bea6a26638f72aede"></a><br/></td></tr>
 <tr class="memitem:a0e3ded6cadaa4f42e0852c4b23ee4829"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e3ded6cadaa4f42e0852c4b23ee4829"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a0e3ded6cadaa4f42e0852c4b23ee4829">Mezzanine::XML::ParsePi</a> = 0x0001</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParsePi</b> = 0x0001</td></tr>
 <tr class="memdesc:a0e3ded6cadaa4f42e0852c4b23ee4829"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default. <br/></td></tr>
 <tr class="memitem:a7003be8735a05ad1291d960ed47c9bce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7003be8735a05ad1291d960ed47c9bce"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a7003be8735a05ad1291d960ed47c9bce">Mezzanine::XML::ParseWconvAttribute</a> = 0x0040</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseWconvAttribute</b> = 0x0040</td></tr>
 <tr class="memdesc:a7003be8735a05ad1291d960ed47c9bce"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default. <br/></td></tr>
 <tr class="memitem:a003c25804c7e27a7d94cb1d53eb2c0dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a003c25804c7e27a7d94cb1d53eb2c0dc"></a>
-const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a003c25804c7e27a7d94cb1d53eb2c0dc">Mezzanine::XML::ParseWnormAttribute</a> = 0x0080</td></tr>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseWnormAttribute</b> = 0x0080</td></tr>
 <tr class="memdesc:a003c25804c7e27a7d94cb1d53eb2c0dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. <br/></td></tr>
-<tr class="memitem:a1651108c3ec090ccd90e2d8f5a2704ee"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine_1_1XML.html#a1651108c3ec090ccd90e2d8f5a2704ee">Mezzanine::XML::ParseWsPcdata</a> = 0x0008</td></tr>
+<tr class="memitem:a1651108c3ec090ccd90e2d8f5a2704ee"><td class="memItemLeft" align="right" valign="top">const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseWsPcdata</b> = 0x0008</td></tr>
 <tr class="memdesc:a1651108c3ec090ccd90e2d8f5a2704ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.  <a href="#a1651108c3ec090ccd90e2d8f5a2704ee"></a><br/></td></tr>
 <tr class="memitem:a52f0171a14ec94635b21ce5b0532b625"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52f0171a14ec94635b21ce5b0532b625"></a>
 const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::XML::ParseWsPcdata_single</b> = 0x0400</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. </p>
-<p>See <a class="el" href="xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system.">xmldoc.h</a> for additional details. </p>
+<p>See <a class="el" href="xmldoc_8h.html" title="This file houses all the documentation for the XML system that is not directly related to a specific ...">xmldoc.h</a> for additional details. </p>
 
 <p>Definition in file <a class="el" href="xml_8h_source.html">xml.h</a>.</p>
 </div><h2>Macro Definition Documentation</h2>
@@ -406,6 +404,6 @@ const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzani
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 7 2013 07:25:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 18:50:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

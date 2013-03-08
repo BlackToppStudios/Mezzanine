@@ -193,9 +193,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:afd5f4af261e30de8b02599a9d3cc3a88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#afd5f4af261e30de8b02599a9d3cc3a88">SaveSettingsByFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:afd5f4af261e30de8b02599a9d3cc3a88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all settings that have their optional filename set to the specified file.  <a href="#afd5f4af261e30de8b02599a9d3cc3a88"></a><br/></td></tr>
 <tr class="memitem:ac93a239a2d69022d9a27d387dbcf5abe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#ac93a239a2d69022d9a27d387dbcf5abe">SaveSettingsToXML</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings, bool SaveCurrent=true)</td></tr>
-<tr class="memdesc:ac93a239a2d69022d9a27d387dbcf5abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> node.  <a href="#ac93a239a2d69022d9a27d387dbcf5abe"></a><br/></td></tr>
+<tr class="memdesc:ac93a239a2d69022d9a27d387dbcf5abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all the current setting groups as children of the provided XML node.  <a href="#ac93a239a2d69022d9a27d387dbcf5abe"></a><br/></td></tr>
 <tr class="memitem:aae2839db005c52ecdd0fad15723243ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aae2839db005c52ecdd0fad15723243ca">SaveSettingsToXML</a> (<a class="el" href="namespaceMezzanine.html#a9b3665ebc21b3444e1d7858d460475f6">StringVector</a> &amp;GroupNames, <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;RootSettings)</td></tr>
-<tr class="memdesc:aae2839db005c52ecdd0fad15723243ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the named settings groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> node.  <a href="#aae2839db005c52ecdd0fad15723243ca"></a><br/></td></tr>
+<tr class="memdesc:aae2839db005c52ecdd0fad15723243ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the named settings groups as children of the provided XML node.  <a href="#aae2839db005c52ecdd0fad15723243ca"></a><br/></td></tr>
 <tr class="memitem:aac4557c72aee5a8f02a7c1515e857175"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#aac4557c72aee5a8f02a7c1515e857175">SetCurrentSettingsSaveFile</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;FileName)</td></tr>
 <tr class="memdesc:aac4557c72aee5a8f02a7c1515e857175"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of the file that will have this object's "current" settings saved to.  <a href="#aac4557c72aee5a8f02a7c1515e857175"></a><br/></td></tr>
 <tr class="memitem:a31002ee8b05d8876500a726448a0dd2a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingsHandler.html#a31002ee8b05d8876500a726448a0dd2a">SetSettingsFilePath</a> (const <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;Path)</td></tr>
@@ -889,10 +889,10 @@ SettingGroupContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Sett
       </table>
 </div><div class="memdoc">
 
-<p>Saves all the current setting groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> node. </p>
+<p>Saves all the current setting groups as children of the provided XML node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">SaveCurrent</td><td>Whether or not to also save the current settings to <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a>. </td></tr>
+    <tr><td class="paramname">SaveCurrent</td><td>Whether or not to also save the current settings to XML. </td></tr>
     <tr><td class="paramname">RootSettings</td><td>The node to populate with all currently loaded settings groups. </td></tr>
   </table>
   </dd>
@@ -924,7 +924,7 @@ SettingGroupContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Sett
       </table>
 </div><div class="memdoc">
 
-<p>Saves the named settings groups as children of the provided <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> node. </p>
+<p>Saves the named settings groups as children of the provided XML node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">GroupNames</td><td>A string vector containing the names for all the settings groups to save. </td></tr>
@@ -991,6 +991,6 @@ SettingGroupContainer&#160;</td><td class="memItemRight" valign="bottom"><b>Sett
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 7 2013 07:25:21 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 18:50:18 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

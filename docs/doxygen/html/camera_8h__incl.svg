@@ -86,7 +86,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="datatypes_8h_source.html" target="_top" xlink:title="datatypes.h">
+<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="554.5,-59 554.5,-79 619.5,-79 619.5,-59 554.5,-59"/>
 <text text-anchor="middle" x="587" y="-66" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -334,7 +334,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node46" class="node"><title>Node22</title>
-<a xlink:href="xmldoc_8h.html" target="_top" xlink:title="The Doxygen documentation and minor tools to assist with the XML system.">
+<a xlink:href="xmldoc_8h.html" target="_top" xlink:title="This file houses all the documentation for the XML system that is not directly related to a specific ...">
 <polygon fill="white" stroke="black" points="690,-117 690,-137 768,-137 768,-117 690,-117"/>
 <text text-anchor="middle" x="729" y="-124" font-family="FreeSans" font-size="10.00">XML/xmldoc.h</text>
 </a>
@@ -358,7 +358,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node52" class="node"><title>Node24</title>
-<a xlink:href="datastream_8h_source.html" target="_top" xlink:title="Resource/datastream.h">
+<a xlink:href="datastream_8h.html" target="_top" xlink:title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream.">
 <polygon fill="white" stroke="black" points="556,-117 556,-137 672,-137 672,-117 556,-117"/>
 <text text-anchor="middle" x="614" y="-124" font-family="FreeSans" font-size="10.00">Resource/datastream.h</text>
 </a>

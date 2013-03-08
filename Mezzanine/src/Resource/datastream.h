@@ -42,13 +42,16 @@
 
 #include "datatypes.h"
 
+/// @file
+/// @brief Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream
+/// @todo Investigate how required these these stream implementations are
+
+
 namespace Mezzanine
 {
     namespace Resource
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class DataStream
-        /// @headerfile resourcedatastream.h
         /// @brief This represents a stream to a piece of data, usually a file.
         /// @details This is a base class that can be overriden to read from a variey of sources including
         /// data in memory, and archive files.
@@ -159,8 +162,6 @@ namespace Mezzanine
         };//DataStream
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class MemoryDataStream
-        /// @headerfile resourcedatastream.h
         /// @brief This represents a stream to a buffer in memory.
         /// @details
         ///////////////////////////////////////
@@ -239,8 +240,6 @@ namespace Mezzanine
         };//MemoryDataStream
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class FileHandleDataStream
-        /// @headerfile resourcedatastream.h
         /// @brief This represents a stream to a file on disk using the C file API.
         /// @details
         ///////////////////////////////////////
@@ -287,8 +286,6 @@ namespace Mezzanine
         };//FileHandleDataStream
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class FileStreamDataStream
-        /// @headerfile resourcedatastream.h
         /// @brief This represents a stream to a file on disk using the C++ file stream API.
         /// @details
         ///////////////////////////////////////

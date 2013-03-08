@@ -42,14 +42,15 @@
 
 #include "datatypes.h"
 
+/// @file
+/// @brief The declaration of the Playlist class.
+
 namespace Mezzanine
 {
     namespace Audio
     {
         class Sound;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Playlist
-        /// @headerfile audioplaylist.h
         /// @brief This class is a list of sounds with common playlist features.
         /// @details
         ///////////////////////////////////////

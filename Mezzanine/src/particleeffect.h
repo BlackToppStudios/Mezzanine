@@ -45,7 +45,7 @@
 #include "quaternion.h"
 #include "XML/xml.h"
 
-/// @file particleeffect.cpp
+/// @file
 /// @brief Contains the declaration of the ParticleEffect class
 
 namespace Ogre

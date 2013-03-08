@@ -176,7 +176,6 @@ namespace Mezzanine
         typedef Exception Type;
     };//ExceptionFactory
 
-
     ///////////////////////////////////////////////////////////////////////////////
     // Exception code class definitions.
 
@@ -216,6 +215,7 @@ namespace Mezzanine
             { return IOException::ExceptionCode; }
     }; //IOException
 
+    /// @brief A template metaprogramming construct used to ensure that all required IOException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<IOException::ExceptionCode>
         { typedef IOException Type; };
@@ -257,6 +257,7 @@ namespace Mezzanine
             { return FileException::ExceptionCode; }
     }; //FileException
 
+    /// @brief A template metaprogramming construct used to ensure that all required FileException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<FileException::ExceptionCode>
         { typedef FileException Type; };
@@ -298,6 +299,7 @@ namespace Mezzanine
             { return FileReadException::ExceptionCode; }
     }; //FileReadException
 
+    /// @brief A template metaprogramming construct used to ensure that all required FileReadException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<FileReadException::ExceptionCode>
         { typedef FileReadException Type; };
@@ -339,6 +341,7 @@ namespace Mezzanine
             { return FileWriteException::ExceptionCode; }
     }; //FileWriteException
 
+    /// @brief A template metaprogramming construct used to ensure that all required FileWriteException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<FileWriteException::ExceptionCode>
         { typedef FileWriteException Type; };
@@ -380,6 +383,7 @@ namespace Mezzanine
             { return FileNotFoundException::ExceptionCode; }
     }; //FileNotFoundException
 
+    /// @brief A template metaprogramming construct used to ensure that all required FileNotFoundException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<FileNotFoundException::ExceptionCode>
         { typedef FileNotFoundException Type; };
@@ -421,6 +425,7 @@ namespace Mezzanine
             { return FilePermissionException::ExceptionCode; }
     }; //FilePermissionException
 
+    /// @brief A template metaprogramming construct used to ensure that all required FilePermissionException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<FilePermissionException::ExceptionCode>
         { typedef FilePermissionException Type; };
@@ -462,6 +467,7 @@ namespace Mezzanine
             { return DirectoryException::ExceptionCode; }
     }; //DirectoryException
 
+    /// @brief A template metaprogramming construct used to ensure that all required DirectoryException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryException::ExceptionCode>
         { typedef DirectoryException Type; };
@@ -503,6 +509,7 @@ namespace Mezzanine
             { return DirectoryReadException::ExceptionCode; }
     }; //DirectoryReadException
 
+    /// @brief A template metaprogramming construct used to ensure that all required DirectoryReadException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryReadException::ExceptionCode>
         { typedef DirectoryReadException Type; };
@@ -544,6 +551,7 @@ namespace Mezzanine
             { return DirectoryWriteException::ExceptionCode; }
     }; //DirectoryWriteException
 
+    /// @brief A template metaprogramming construct used to ensure that all required DirectoryWriteException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryWriteException::ExceptionCode>
         { typedef DirectoryWriteException Type; };
@@ -585,6 +593,7 @@ namespace Mezzanine
             { return DirectoryNotFoundException::ExceptionCode; }
     }; //DirectoryNotFoundException
 
+    /// @brief A template metaprogramming construct used to ensure that all required DirectoryNotFoundException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryNotFoundException::ExceptionCode>
         { typedef DirectoryNotFoundException Type; };
@@ -626,6 +635,7 @@ namespace Mezzanine
             { return DirectoryPermissionException::ExceptionCode; }
     }; //DirectoryPermissionException
 
+    /// @brief A template metaprogramming construct used to ensure that all required DirectoryPermissionException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<DirectoryPermissionException::ExceptionCode>
         { typedef DirectoryPermissionException Type; };
@@ -667,6 +677,7 @@ namespace Mezzanine
             { return NetworkException::ExceptionCode; }
     }; //NetworkException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NetworkException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NetworkException::ExceptionCode>
         { typedef NetworkException Type; };
@@ -708,6 +719,7 @@ namespace Mezzanine
             { return NetworkReadException::ExceptionCode; }
     }; //NetworkReadException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NetworkReadException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NetworkReadException::ExceptionCode>
         { typedef NetworkReadException Type; };
@@ -749,6 +761,7 @@ namespace Mezzanine
             { return NetworkWriteException::ExceptionCode; }
     }; //NetworkWriteException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NetworkWriteException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NetworkWriteException::ExceptionCode>
         { typedef NetworkWriteException Type; };
@@ -790,6 +803,7 @@ namespace Mezzanine
             { return NetworkNotFoundException::ExceptionCode; }
     }; //NetworkNotFoundException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NetworkNotFoundException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NetworkNotFoundException::ExceptionCode>
         { typedef NetworkNotFoundException Type; };
@@ -831,6 +845,7 @@ namespace Mezzanine
             { return NetworkURLException::ExceptionCode; }
     }; //NetworkURLException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NetworkURLException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NetworkURLException::ExceptionCode>
         { typedef NetworkURLException Type; };
@@ -872,6 +887,7 @@ namespace Mezzanine
             { return NetworkPermissionException::ExceptionCode; }
     }; //NetworkPermissionException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NetworkPermissionException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NetworkPermissionException::ExceptionCode>
         { typedef NetworkPermissionException Type; };
@@ -913,6 +929,7 @@ namespace Mezzanine
             { return IOWriteException::ExceptionCode; }
     }; //IOWriteException
 
+    /// @brief A template metaprogramming construct used to ensure that all required IOWriteException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<IOWriteException::ExceptionCode>
         { typedef IOWriteException Type; };
@@ -954,6 +971,7 @@ namespace Mezzanine
             { return IOReadException::ExceptionCode; }
     }; //IOReadException
 
+    /// @brief A template metaprogramming construct used to ensure that all required IOReadException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<IOReadException::ExceptionCode>
         { typedef IOReadException Type; };
@@ -995,6 +1013,7 @@ namespace Mezzanine
             { return InstanceIdentityException::ExceptionCode; }
     }; //InstanceIdentityException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InstanceIdentityException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InstanceIdentityException::ExceptionCode>
         { typedef InstanceIdentityException Type; };
@@ -1036,6 +1055,7 @@ namespace Mezzanine
             { return InstanceIdentityInvalidException::ExceptionCode; }
     }; //InstanceIdentityInvalidException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InstanceIdentityInvalidException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InstanceIdentityInvalidException::ExceptionCode>
         { typedef InstanceIdentityInvalidException Type; };
@@ -1077,6 +1097,7 @@ namespace Mezzanine
             { return InstanceIdentityNotFoundException::ExceptionCode; }
     }; //InstanceIdentityNotFoundException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InstanceIdentityNotFoundException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InstanceIdentityNotFoundException::ExceptionCode>
         { typedef InstanceIdentityNotFoundException Type; };
@@ -1118,6 +1139,7 @@ namespace Mezzanine
             { return InstanceIdentityDuplicateException::ExceptionCode; }
     }; //InstanceIdentityDuplicateException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InstanceIdentityDuplicateException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InstanceIdentityDuplicateException::ExceptionCode>
         { typedef InstanceIdentityDuplicateException Type; };
@@ -1159,6 +1181,7 @@ namespace Mezzanine
             { return MemoryManagementException::ExceptionCode; }
     }; //MemoryManagementException
 
+    /// @brief A template metaprogramming construct used to ensure that all required MemoryManagementException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<MemoryManagementException::ExceptionCode>
         { typedef MemoryManagementException Type; };
@@ -1200,6 +1223,7 @@ namespace Mezzanine
             { return OutOfMemoryException::ExceptionCode; }
     }; //OutOfMemoryException
 
+    /// @brief A template metaprogramming construct used to ensure that all required OutOfMemoryException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<OutOfMemoryException::ExceptionCode>
         { typedef OutOfMemoryException Type; };
@@ -1241,6 +1265,7 @@ namespace Mezzanine
             { return MemoryOutOfBoundsException::ExceptionCode; }
     }; //MemoryOutOfBoundsException
 
+    /// @brief A template metaprogramming construct used to ensure that all required MemoryOutOfBoundsException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<MemoryOutOfBoundsException::ExceptionCode>
         { typedef MemoryOutOfBoundsException Type; };
@@ -1282,6 +1307,7 @@ namespace Mezzanine
             { return SyntaxErrorException::ExceptionCode; }
     }; //SyntaxErrorException
 
+    /// @brief A template metaprogramming construct used to ensure that all required SyntaxErrorException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<SyntaxErrorException::ExceptionCode>
         { typedef SyntaxErrorException Type; };
@@ -1323,6 +1349,7 @@ namespace Mezzanine
             { return SyntaxErrorXMLException::ExceptionCode; }
     }; //SyntaxErrorXMLException
 
+    /// @brief A template metaprogramming construct used to ensure that all required SyntaxErrorXMLException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<SyntaxErrorXMLException::ExceptionCode>
         { typedef SyntaxErrorXMLException Type; };
@@ -1364,6 +1391,7 @@ namespace Mezzanine
             { return SyntaxErrorLuaException::ExceptionCode; }
     }; //SyntaxErrorLuaException
 
+    /// @brief A template metaprogramming construct used to ensure that all required SyntaxErrorLuaException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<SyntaxErrorLuaException::ExceptionCode>
         { typedef SyntaxErrorLuaException Type; };
@@ -1405,6 +1433,7 @@ namespace Mezzanine
             { return ScriptException::ExceptionCode; }
     }; //ScriptException
 
+    /// @brief A template metaprogramming construct used to ensure that all required ScriptException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<ScriptException::ExceptionCode>
         { typedef ScriptException Type; };
@@ -1446,6 +1475,7 @@ namespace Mezzanine
             { return ScriptLuaException::ExceptionCode; }
     }; //ScriptLuaException
 
+    /// @brief A template metaprogramming construct used to ensure that all required ScriptLuaException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<ScriptLuaException::ExceptionCode>
         { typedef ScriptLuaException Type; };
@@ -1487,6 +1517,7 @@ namespace Mezzanine
             { return ScriptLuaYieldException::ExceptionCode; }
     }; //ScriptLuaYieldException
 
+    /// @brief A template metaprogramming construct used to ensure that all required ScriptLuaYieldException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<ScriptLuaYieldException::ExceptionCode>
         { typedef ScriptLuaYieldException Type; };
@@ -1528,6 +1559,7 @@ namespace Mezzanine
             { return ScriptLuaRuntimeException::ExceptionCode; }
     }; //ScriptLuaRuntimeException
 
+    /// @brief A template metaprogramming construct used to ensure that all required ScriptLuaRuntimeException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<ScriptLuaRuntimeException::ExceptionCode>
         { typedef ScriptLuaRuntimeException Type; };
@@ -1569,6 +1601,7 @@ namespace Mezzanine
             { return ScriptLuaErrErrException::ExceptionCode; }
     }; //ScriptLuaErrErrException
 
+    /// @brief A template metaprogramming construct used to ensure that all required ScriptLuaErrErrException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<ScriptLuaErrErrException::ExceptionCode>
         { typedef ScriptLuaErrErrException Type; };
@@ -1610,6 +1643,7 @@ namespace Mezzanine
             { return ArithmeticException::ExceptionCode; }
     }; //ArithmeticException
 
+    /// @brief A template metaprogramming construct used to ensure that all required ArithmeticException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<ArithmeticException::ExceptionCode>
         { typedef ArithmeticException Type; };
@@ -1651,6 +1685,7 @@ namespace Mezzanine
             { return InvalidParametersException::ExceptionCode; }
     }; //InvalidParametersException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InvalidParametersException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InvalidParametersException::ExceptionCode>
         { typedef InvalidParametersException Type; };
@@ -1692,6 +1727,7 @@ namespace Mezzanine
             { return InvalidVersionException::ExceptionCode; }
     }; //InvalidVersionException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InvalidVersionException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InvalidVersionException::ExceptionCode>
         { typedef InvalidVersionException Type; };
@@ -1733,6 +1769,7 @@ namespace Mezzanine
             { return InvalidStateException::ExceptionCode; }
     }; //InvalidStateException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InvalidStateException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InvalidStateException::ExceptionCode>
         { typedef InvalidStateException Type; };
@@ -1774,6 +1811,7 @@ namespace Mezzanine
             { return RenderingAPIException::ExceptionCode; }
     }; //RenderingAPIException
 
+    /// @brief A template metaprogramming construct used to ensure that all required RenderingAPIException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<RenderingAPIException::ExceptionCode>
         { typedef RenderingAPIException Type; };
@@ -1815,6 +1853,7 @@ namespace Mezzanine
             { return RuntimeAssertionException::ExceptionCode; }
     }; //RuntimeAssertionException
 
+    /// @brief A template metaprogramming construct used to ensure that all required RuntimeAssertionException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<RuntimeAssertionException::ExceptionCode>
         { typedef RuntimeAssertionException Type; };
@@ -1856,6 +1895,7 @@ namespace Mezzanine
             { return InternalException::ExceptionCode; }
     }; //InternalException
 
+    /// @brief A template metaprogramming construct used to ensure that all required InternalException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<InternalException::ExceptionCode>
         { typedef InternalException Type; };
@@ -1897,12 +1937,14 @@ namespace Mezzanine
             { return NotImplementedException::ExceptionCode; }
     }; //NotImplementedException
 
+    /// @brief A template metaprogramming construct used to ensure that all required NotImplementedException can be created at compile time if the compiler is clever.
     template<>
     struct MEZZ_LIB ExceptionFactory<NotImplementedException::ExceptionCode>
         { typedef NotImplementedException Type; };
 
 
-    #ifndef MEZZ_EXCEPTION
+
+#ifndef MEZZ_EXCEPTION
     /// @brief An easy way to throw exception with rich information.
     /// @details An important part of troubleshooting errors from the users perspective is being able to
     /// tie a specific 'fix' to a specific error message. An important part of ensuring correct exceptional

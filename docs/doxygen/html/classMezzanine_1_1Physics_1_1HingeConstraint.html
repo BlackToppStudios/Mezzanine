@@ -164,7 +164,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afe12f9c1873db37cb6a2635ae130e754"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#afe12f9c1873db37cb6a2635ae130e754">HasParamBeenSet</a> (<a class="el" href="namespaceMezzanine_1_1Physics.html#aa640f4c4b2baf4a4039db76fd792d2c1">ConstraintParam</a> Param, int Axis) const </td></tr>
 <tr class="memdesc:afe12f9c1873db37cb6a2635ae130e754"><td class="mdescLeft">&#160;</td><td class="mdescRight"> <a href="#afe12f9c1873db37cb6a2635ae130e754"></a><br/></td></tr>
 <tr class="memitem:a1175041e5d31f725f9e867686cc749c7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#a1175041e5d31f725f9e867686cc749c7">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;OneNode)</td></tr>
-<tr class="memdesc:a1175041e5d31f725f9e867686cc749c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> and overwrite this instance of this object with it.  <a href="#a1175041e5d31f725f9e867686cc749c7"></a><br/></td></tr>
+<tr class="memdesc:a1175041e5d31f725f9e867686cc749c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a1175041e5d31f725f9e867686cc749c7"></a><br/></td></tr>
 <tr class="memitem:a7893ab146681feae99a3c8eb30c8fa72"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#a7893ab146681feae99a3c8eb30c8fa72">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:a7893ab146681feae99a3c8eb30c8fa72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a7893ab146681feae99a3c8eb30c8fa72"></a><br/></td></tr>
 <tr class="memitem:aa5400c7936b880b999e11bf0d9c109b1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#aa5400c7936b880b999e11bf0d9c109b1">SetAPivotRotation</a> (const <a class="el" href="classMezzanine_1_1Quaternion.html">Quaternion</a> &amp;Rotation)</td></tr>
@@ -231,7 +231,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:afa346bfccfc0dcb21d16f3577218743f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.html#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1HingeConstraint.html#afa346bfccfc0dcb21d16f3577218743f">SerializableName</a> ()</td></tr>
-<tr class="memdesc:afa346bfccfc0dcb21d16f3577218743f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> tag this class will leave behind as its instances are serialized.  <a href="#afa346bfccfc0dcb21d16f3577218743f"></a><br/></td></tr>
+<tr class="memdesc:afa346bfccfc0dcb21d16f3577218743f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#afa346bfccfc0dcb21d16f3577218743f"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -1159,7 +1159,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 </div><div class="memdoc">
 
-<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> and overwrite this instance of this object with it. </p>
+<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data. </td></tr>
@@ -1197,7 +1197,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> hierarchy that all this vectorw should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1227,7 +1227,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table>
 </div><div class="memdoc">
 
-<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> tag this class will leave behind as its instances are serialized. </p>
+<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "HingeConstraint" </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html#a4b7acb78cef7f1460a328645cc3735fa">Mezzanine::Physics::DualTransformConstraint</a>.</p>
@@ -1840,6 +1840,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 7 2013 07:25:23 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 18:50:19 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

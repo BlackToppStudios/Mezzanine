@@ -42,13 +42,14 @@
 
 #include "Input/metacode.h"
 
+/// @file
+/// @brief The declaration of the User input Device class.
+
 namespace Mezzanine
 {
     namespace Input
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Device
-        /// @headerfile inputdevice.h
         /// @brief This is a base class for all input devices.
         /// @details
         ///////////////////////////////////////

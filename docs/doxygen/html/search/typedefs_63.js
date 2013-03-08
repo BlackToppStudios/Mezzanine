@@ -1,7 +1,6 @@
 var searchData=
 [
   ['callback',['Callback',['../classMezzanine_1_1ManagerBase.html#ab23a9aa27c4e3cb58d902a149d3c6de2',1,'Mezzanine::ManagerBase']]],
-  ['char_5ft',['char_t',['../namespaceMezzanine_1_1XML.html#a9941b08237600710a0955ed9c8bc9b56',1,'Mezzanine::XML']]],
   ['character',['Character',['../namespaceMezzanine.html#ad5147a419db7627ee552a2b582f1052d',1,'Mezzanine']]],
   ['collisioniterator',['CollisionIterator',['../classMezzanine_1_1PhysicsManager.html#a776e9bd99369c83297958207fa0a2eb3',1,'Mezzanine::PhysicsManager']]],
   ['const_5fiterator',['const_iterator',['../classMezzanine_1_1CollisionShapeManager.html#add99b0db976867d9e370b785474c7296',1,'Mezzanine::CollisionShapeManager::const_iterator()'],['../classMezzanine_1_1XML_1_1XPathNodeSet.html#adc34a0847553a7e13e9e4ecf36dbef6c',1,'Mezzanine::XML::XPathNodeSet::const_iterator()']]],

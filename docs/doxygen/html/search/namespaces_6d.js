@@ -9,6 +9,5 @@ var searchData=
   ['physics',['Physics',['../namespaceMezzanine_1_1Physics.html',1,'Mezzanine']]],
   ['resource',['Resource',['../namespaceMezzanine_1_1Resource.html',1,'Mezzanine']]],
   ['scripting',['Scripting',['../namespaceMezzanine_1_1Scripting.html',1,'Mezzanine']]],
-  ['ui',['UI',['../namespaceMezzanine_1_1UI.html',1,'Mezzanine']]],
-  ['xml',['XML',['../namespaceMezzanine_1_1XML.html',1,'Mezzanine']]]
+  ['ui',['UI',['../namespaceMezzanine_1_1UI.html',1,'Mezzanine']]]
 ];

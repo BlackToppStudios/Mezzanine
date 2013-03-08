@@ -185,7 +185,6 @@ var searchData=
   ['setmaxdistance',['SetMaxDistance',['../classMezzanine_1_1Audio_1_1Sound.html#a3d999baec9e4a5a611a6face5a6bcd26',1,'Mezzanine::Audio::Sound']]],
   ['setmaxmotorimpulse',['SetMaxMotorImpulse',['../classMezzanine_1_1Physics_1_1HingeConstraint.html#a1824e80476a2d89270cb008cfb0c7bd6',1,'Mezzanine::Physics::HingeConstraint']]],
   ['setmaxvolume',['SetMaxVolume',['../classMezzanine_1_1Audio_1_1Sound.html#a609fd6dbdccd60a23d7483f667391d34',1,'Mezzanine::Audio::Sound']]],
-  ['setmemory_5fmanagement_5ffunctions',['SetMemory_management_functions',['../namespaceMezzanine_1_1XML.html#a23d3bc5d06c91b2b161b5dd881f8aa3b',1,'Mezzanine::XML']]],
   ['setmesh',['SetMesh',['../classMezzanine_1_1WorldObjectGraphicsSettings.html#ab5cf73fe5a04b92aa37dd1f1e90f4ee2',1,'Mezzanine::WorldObjectGraphicsSettings::SetMesh(Graphics::Mesh *ObjectMesh)'],['../classMezzanine_1_1WorldObjectGraphicsSettings.html#ab99041039ec6f409248609a55a7662bb',1,'Mezzanine::WorldObjectGraphicsSettings::SetMesh(const String &amp;MeshName, const String &amp;Group)']]],
   ['setmetavalue',['SetMetaValue',['../classMezzanine_1_1MetaCode.html#a6a98dad161c7e45a3f9154b2864db47b',1,'Mezzanine::MetaCode']]],
   ['setmetersperunit',['SetMetersPerUnit',['../classMezzanine_1_1Audio_1_1Listener.html#ab413b3d85270ff5ff816b4cc5c23554e',1,'Mezzanine::Audio::Listener']]],

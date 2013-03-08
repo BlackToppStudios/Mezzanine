@@ -1,7 +1,7 @@
 <map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/actorserializer.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/actorserializer.h">
 <area shape="rect" id="node3" href="$actorrigid_8h_source.html" title="actorrigid.h" alt="" coords="863,115,948,143"/>
-<area shape="rect" id="node17" href="$datatypes_8h_source.html" title="datatypes.h" alt="" coords="988,734,1073,762"/>
-<area shape="rect" id="node52" href="$xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system." alt="" coords="1093,657,1197,685"/>
+<area shape="rect" id="node17" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="988,734,1073,762"/>
+<area shape="rect" id="node52" href="$xmldoc_8h.html" title="This file houses all the documentation for the XML system that is not directly related to a specific ..." alt="" coords="1093,657,1197,685"/>
 <area shape="rect" id="node110" href="$actormanager_8h_source.html" title="actormanager.h" alt="" coords="1501,425,1611,453"/>
 <area shape="rect" id="node125" href="$serialization_8h.html" title="The interface for serialization." alt="" coords="1152,502,1251,530"/>
 <area shape="rect" id="node5" href="$actorbase_8h.html" title="The base class for all Actors is defined here." alt="" coords="501,193,589,221"/>
@@ -19,7 +19,7 @@
 <area shape="rect" id="node44" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="243,579,299,607"/>
 <area shape="rect" id="node48" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="219,657,328,685"/>
 <area shape="rect" id="node55" href="$exception_8h_source.html" title="exception.h" alt="" coords="1221,657,1307,685"/>
-<area shape="rect" id="node58" href="$datastream_8h_source.html" title="Resource/datastream.h" alt="" coords="813,657,968,685"/>
+<area shape="rect" id="node58" href="$datastream_8h.html" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="813,657,968,685"/>
 <area shape="rect" id="node85" href="$worldobjectgraphicssettings_8h_source.html" title="worldobjectgraphicssettings.h" alt="" coords="5,425,195,453"/>
 <area shape="rect" id="node94" href="$worldobjectphysicssettings_8h_source.html" title="worldobjectphysicssettings.h" alt="" coords="771,502,952,530"/>
 <area shape="rect" id="node88" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="39,502,135,530"/>

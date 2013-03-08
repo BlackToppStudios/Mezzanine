@@ -25,7 +25,6 @@ var searchData=
   ['erasecode',['EraseCode',['../classMezzanine_1_1EventUserInput.html#aecca59338264fd49cf96661f28f02471',1,'Mezzanine::EventUserInput::EraseCode(const MetaCode &amp;Code_)'],['../classMezzanine_1_1EventUserInput.html#aede2a3b45edd2442eeac34814b9c03cc',1,'Mezzanine::EventUserInput::EraseCode(const unsigned int &amp;Index)']]],
   ['erasepostmainloopitems',['ErasePostMainLoopItems',['../classMezzanine_1_1ManagerBase.html#aec6f56b909c0453370771f921d29e7d7',1,'Mezzanine::ManagerBase']]],
   ['erasepremainloopitems',['ErasePreMainLoopItems',['../classMezzanine_1_1ManagerBase.html#a173afcb032bfe374c220d17e24a2ef2c',1,'Mezzanine::ManagerBase']]],
-  ['escapexml',['EscapeXML',['../namespaceMezzanine_1_1XML.html#a80fe6c59a5a1501f15802ff7ceb0d2fb',1,'Mezzanine::XML']]],
   ['evaluateboolean',['EvaluateBoolean',['../classMezzanine_1_1XML_1_1XPathQuery.html#accf9d0e861384f11db263f86a91c7511',1,'Mezzanine::XML::XPathQuery']]],
   ['evaluatenodeset',['EvaluateNodeSet',['../classMezzanine_1_1XML_1_1XPathQuery.html#a2a194972f7d30c092b05fc8a7e136313',1,'Mezzanine::XML::XPathQuery']]],
   ['evaluatenumber',['EvaluateNumber',['../classMezzanine_1_1XML_1_1XPathQuery.html#a745a0a9f898c1a727bcdf05385b3e447',1,'Mezzanine::XML::XPathQuery']]],

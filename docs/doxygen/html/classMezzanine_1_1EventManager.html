@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a95ce9d2d865b0d8d9468448969b0ade2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a95ce9d2d865b0d8d9468448969b0ade2">EventManager</a> ()</td></tr>
 <tr class="memdesc:a95ce9d2d865b0d8d9468448969b0ade2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#a95ce9d2d865b0d8d9468448969b0ade2"></a><br/></td></tr>
 <tr class="memitem:abf3650bfe862473ed2418dddbd83eec3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#abf3650bfe862473ed2418dddbd83eec3">EventManager</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.html">XML::Node</a> &amp;XMLNode)</td></tr>
-<tr class="memdesc:abf3650bfe862473ed2418dddbd83eec3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> constructor.  <a href="#abf3650bfe862473ed2418dddbd83eec3"></a><br/></td></tr>
+<tr class="memdesc:abf3650bfe862473ed2418dddbd83eec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XML constructor.  <a href="#abf3650bfe862473ed2418dddbd83eec3"></a><br/></td></tr>
 <tr class="memitem:a39b9e0f783c2ab0d39f5574a7a106141"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a39b9e0f783c2ab0d39f5574a7a106141">~EventManager</a> ()</td></tr>
 <tr class="memdesc:a39b9e0f783c2ab0d39f5574a7a106141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Deconstructor.  <a href="#a39b9e0f783c2ab0d39f5574a7a106141"></a><br/></td></tr>
 <tr class="memitem:aa791c61d2665422614d54c7653e87e88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#aa791c61d2665422614d54c7653e87e88">AddEvent</a> (<a class="el" href="classMezzanine_1_1EventBase.html">EventBase</a> *EventToAdd)</td></tr>
@@ -237,7 +237,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="heading"><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a241e80fc1115c080af059dc4396f11bb"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a241e80fc1115c080af059dc4396f11bb">operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> &amp;Mgr)</td></tr>
-<tr class="memdesc:a241e80fc1115c080af059dc4396f11bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the passed <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">Mezzanine::EventManager</a> to <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a>.  <a href="#a241e80fc1115c080af059dc4396f11bb"></a><br/></td></tr>
+<tr class="memdesc:a241e80fc1115c080af059dc4396f11bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the passed <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">Mezzanine::EventManager</a> to XML.  <a href="#a241e80fc1115c080af059dc4396f11bb"></a><br/></td></tr>
 <tr class="memitem:a063bbbf2108e405b70c707090ba7eab0"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1EventManager.html#a063bbbf2108e405b70c707090ba7eab0">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classMezzanine_1_1EventManager.html">Mezzanine::EventManager</a> &amp;Mgr)</td></tr>
 <tr class="memdesc:a063bbbf2108e405b70c707090ba7eab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize a <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">Mezzanine::EventManager</a>.  <a href="#a063bbbf2108e405b70c707090ba7eab0"></a><br/></td></tr>
 </table><table class="memberdecls">
@@ -341,7 +341,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a> constructor. </p>
+<p>XML constructor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">XMLNode</td><td>The node of the xml document to construct from. </td></tr>
@@ -1287,7 +1287,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </table>
 </div><div class="memdoc">
 
-<p>Serializes the passed <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">Mezzanine::EventManager</a> to <a class="el" href="namespaceMezzanine_1_1XML.html" title="This is where bulk of the XML subsystem resides, (See Mezzanine::xml Manual for details) there are nu...">XML</a>. </p>
+<p>Serializes the passed <a class="el" href="classMezzanine_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">Mezzanine::EventManager</a> to XML. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">stream</td><td>The ostream to send the xml to. </td></tr>
@@ -1348,6 +1348,6 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 7 2013 07:25:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Thu Mar 7 2013 18:50:17 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

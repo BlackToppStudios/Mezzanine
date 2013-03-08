@@ -9,12 +9,12 @@
 <area shape="rect" id="node9" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="1199,347,1273,375"/>
 <area shape="rect" id="node64" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="1028,347,1119,375"/>
 <area shape="rect" id="node11" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="893,657,1037,685"/>
-<area shape="rect" id="node13" href="$datatypes_8h_source.html" title="datatypes.h" alt="" coords="464,579,549,607"/>
+<area shape="rect" id="node13" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="464,579,549,607"/>
 <area shape="rect" id="node40" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1416,425,1472,453"/>
 <area shape="rect" id="node44" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="896,502,1005,530"/>
-<area shape="rect" id="node48" href="$xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system." alt="" coords="389,502,493,530"/>
+<area shape="rect" id="node48" href="$xmldoc_8h.html" title="This file houses all the documentation for the XML system that is not directly related to a specific ..." alt="" coords="389,502,493,530"/>
 <area shape="rect" id="node51" href="$exception_8h_source.html" title="exception.h" alt="" coords="517,502,603,530"/>
-<area shape="rect" id="node54" href="$datastream_8h_source.html" title="Resource/datastream.h" alt="" coords="627,502,781,530"/>
+<area shape="rect" id="node54" href="$datastream_8h.html" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="627,502,781,530"/>
 <area shape="rect" id="node81" href="$worldobjectgraphicssettings_8h_source.html" title="worldobjectgraphicssettings.h" alt="" coords="375,270,564,298"/>
 <area shape="rect" id="node90" href="$worldobjectphysicssettings_8h_source.html" title="worldobjectphysicssettings.h" alt="" coords="823,347,1004,375"/>
 <area shape="rect" id="node84" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="303,347,399,375"/>

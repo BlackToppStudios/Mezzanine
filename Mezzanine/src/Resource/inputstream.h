@@ -54,9 +54,7 @@ namespace Mezzanine
 	class ResourceManager;
 
 	///////////////////////////////////////////////////////////////////////////////
-	/// @class ResourceInputStream
-	/// @headerfile resourceinputstream.h
-	/// @brief A stream from a file, can read from zip files as well
+    /// @brief A stream from a file, can read from zip files as well
 	/// @warning This currently only supports reading from the stream, and does not support any pointer navigation, or any other non-reading functions
 	/// @details
 	class MEZZ_LIB ResourceInputStream : public std::istream
