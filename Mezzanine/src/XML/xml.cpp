@@ -211,11 +211,7 @@ PUGI__NS_BEGIN
 	{
 		assert(s);
 
-	#ifdef XML_WCHAR_MODE
-		return wcslen(s);
-	#else
 		return strlen(s);
-	#endif
 	}
 
 	// Compare two strings
@@ -223,11 +219,8 @@ PUGI__NS_BEGIN
 	{
 		assert(src && dst);
 
-	#ifdef XML_WCHAR_MODE
-		return wcscmp(src, dst) == 0;
-	#else
 		return strcmp(src, dst) == 0;
-	#endif
+
 	}
 
 	// Compare lhs with [rhs_begin, rhs_end)
@@ -240,14 +233,6 @@ PUGI__NS_BEGIN
 		return lhs[count] == 0;
 	}
 
-#ifdef XML_WCHAR_MODE
-	// Convert string to wide string, assuming all symbols are ASCII
-	PUGI__FN void widen_ascii(wchar_t* dest, const char* source)
-	{
-		for (const char* i = source; *i; ++i) *dest++ = *i;
-		*dest = 0;
-	}
-#endif
 PUGI__NS_END
 
 #if !defined(XML_NO_STL) || !defined(XML_NO_XPATH)
@@ -1050,12 +1035,6 @@ PUGI__NS_BEGIN
 		for (size_t i = 0; i < length; ++i) Result[i] = endian_swap(data[i]);
 	}
 
-#ifdef XML_WCHAR_MODE
-	PUGI__FN void convert_wchar_endian_swap(wchar_t* Result, const wchar_t* data, size_t length)
-	{
-		for (size_t i = 0; i < length; ++i) Result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::Type>(data[i])));
-	}
-#endif
 PUGI__NS_END
 
 PUGI__NS_BEGIN
@@ -1123,11 +1102,7 @@ PUGI__NS_BEGIN
 		20, 20, 20, 20, 20, 20, 20, 20,	20, 20, 20, 20, 20, 20, 20, 20
 	};
 
-#ifdef XML_WCHAR_MODE
-	#define PUGI__IS_CHARTYPE_IMPL(c, ct, table) ((static_cast<unsigned int>(c) < 128 ? table[static_cast<unsigned int>(c)] : table[128]) & (ct))
-#else
 	#define PUGI__IS_CHARTYPE_IMPL(c, ct, table) (table[static_cast<unsigned char>(c)] & (ct))
-#endif
 
 	#define PUGI__IS_CHARTYPE(c, ct) PUGI__IS_CHARTYPE_IMPL(c, ct, charCollectionTypeable)
 	#define PUGI__IS_CHARTYPEX(c, ct) PUGI__IS_CHARTYPE_IMPL(c, ct, charTypex_table)
@@ -1219,161 +1194,6 @@ PUGI__NS_BEGIN
 		return true;
 	}
 
-#ifdef XML_WCHAR_MODE
-	PUGI__FN bool need_endian_swap_utf(Encoding le, Encoding re)
-	{
-		return (le == EncodingUTF16BE && re == EncodingUTF16LE) || (le == EncodingUTF16LE && re == EncodingUTF16BE) ||
-			   (le == EncodingUTF32BE && re == EncodingUTF32LE) || (le == EncodingUTF32LE && re == EncodingUTF32BE);
-	}
-
-	PUGI__FN bool convert_buffer_endian_swap(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
-	{
-		const char_t* data = static_cast<const char_t*>(contents);
-
-		if (is_mutable)
-		{
-			out_buffer = const_cast<char_t*>(data);
-		}
-		else
-		{
-			out_buffer = static_cast<char_t*>(Memory::allocate(size > 0 ? size : 1));
-			if (!out_buffer) return false;
-		}
-
-		out_length = size / sizeof(char_t);
-
-		convert_wchar_endian_swap(out_buffer, data, out_length);
-
-		return true;
-	}
-
-	PUGI__FN bool convert_buffer_utf8(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size)
-	{
-		const uint8_t* data = static_cast<const uint8_t*>(contents);
-
-		// first pass: get length in wchar_t units
-		out_length = utf_decoder<wchar_counter>::decode_utf8_block(data, size, 0);
-
-		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
-		if (!out_buffer) return false;
-
-		// second pass: convert utf8 input to wchar_t
-		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer);
-		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, out_begin);
-
-		assert(out_end == out_begin + out_length);
-		(void)!out_end;
-
-		return true;
-	}
-
-	template <typename opt_swap> PUGI__FN bool convert_buffer_utf16(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
-	{
-		const uint16_t* data = static_cast<const uint16_t*>(contents);
-		size_t length = size / sizeof(uint16_t);
-
-		// first pass: get length in wchar_t units
-		out_length = utf_decoder<wchar_counter, opt_swap>::decode_utf16_block(data, length, 0);
-
-		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
-		if (!out_buffer) return false;
-
-		// second pass: convert utf16 input to wchar_t
-		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer);
-		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin);
-
-		assert(out_end == out_begin + out_length);
-		(void)!out_end;
-
-		return true;
-	}
-
-	template <typename opt_swap> PUGI__FN bool convert_buffer_utf32(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
-	{
-		const uint32_t* data = static_cast<const uint32_t*>(contents);
-		size_t length = size / sizeof(uint32_t);
-
-		// first pass: get length in wchar_t units
-		out_length = utf_decoder<wchar_counter, opt_swap>::decode_utf32_block(data, length, 0);
-
-		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
-		if (!out_buffer) return false;
-
-		// second pass: convert utf32 input to wchar_t
-		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer);
-		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin);
-
-		assert(out_end == out_begin + out_length);
-		(void)!out_end;
-
-		return true;
-	}
-
-	PUGI__FN bool convert_buffer_latin1(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size)
-	{
-		const uint8_t* data = static_cast<const uint8_t*>(contents);
-
-		// get length in wchar_t units
-		out_length = size;
-
-		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
-		if (!out_buffer) return false;
-
-		// convert latin1 input to wchar_t
-		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer);
-		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance>::decode_latin1_block(data, size, out_begin);
-
-		assert(out_end == out_begin + out_length);
-		(void)!out_end;
-
-		return true;
-	}
-
-	PUGI__FN bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable)
-	{
-		// get native DocumentEncoding
-		Encoding wchar_DocumentEncoding = GetWchar_DocumentEncoding();
-
-		// fast Path: no conversion required
-		if (DocumentEncoding == wchar_DocumentEncoding) return GetMutable_buffer(out_buffer, out_length, contents, size, is_mutable);
-
-		// only endian-swapping is required
-		if (need_endian_swap_utf(DocumentEncoding, wchar_DocumentEncoding)) return convert_buffer_endian_swap(out_buffer, out_length, contents, size, is_mutable);
-
-		// source DocumentEncoding is utf8
-		if (DocumentEncoding == EncodingUTF8) return convert_buffer_utf8(out_buffer, out_length, contents, size);
-
-		// source DocumentEncoding is utf16
-		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE)
-		{
-			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE;
-
-			return (native_DocumentEncoding == DocumentEncoding) ?
-				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_false()) :
-				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_true());
-		}
-
-		// source DocumentEncoding is utf32
-		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE)
-		{
-			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE;
-
-			return (native_DocumentEncoding == DocumentEncoding) ?
-				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_false()) :
-				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_true());
-		}
-
-		// source DocumentEncoding is latin1
-		if (DocumentEncoding == DocumentEncoding_latin1) return convert_buffer_latin1(out_buffer, out_length, contents, size);
-
-		assert(!"Invalid DocumentEncoding");
-		return false;
-	}
-#else
 	template <typename opt_swap> PUGI__FN bool convert_buffer_utf16(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
 	{
 		const uint16_t* data = static_cast<const uint16_t*>(contents);
@@ -1491,7 +1311,7 @@ PUGI__NS_BEGIN
 		assert(!"Invalid DocumentEncoding");
 		return false;
 	}
-#endif
+
 
 	PUGI__FN size_t AsUtf8_begin(const wchar_t* str, size_t length)
 	{
@@ -1710,11 +1530,9 @@ PUGI__NS_BEGIN
 					++stre;
 				}
 
-			#ifdef XML_WCHAR_MODE
-				s = reinterpret_cast<char_t*>(wchar_WriterInstance::any(reinterpret_cast<wchar_WriterInstance::value_type>(s), ucsc));
-			#else
+
 				s = reinterpret_cast<char_t*>(utf8_WriterInstance::any(reinterpret_cast<uint8_t*>(s), ucsc));
-			#endif
+
 
 				g.push(s, stre - s);
 				return stre;
@@ -2695,11 +2513,7 @@ PUGI__NS_BEGIN
 	// Output facilities
 	PUGI__FN Encoding GetWrite_native_DocumentEncoding()
 	{
-	#ifdef XML_WCHAR_MODE
-		return GetWchar_DocumentEncoding();
-	#else
 		return EncodingUTF8;
-	#endif
 	}
 
 	PUGI__FN Encoding GetWrite_DocumentEncoding(Encoding DocumentEncoding)
@@ -2720,79 +2534,6 @@ PUGI__NS_BEGIN
 		return EncodingUTF8;
 	}
 
-#ifdef XML_WCHAR_MODE
-	PUGI__FN size_t GetValid_length(const char_t* data, size_t length)
-	{
-		assert(length > 0);
-
-		// discard last character if it's the lead of a surrogate pair
-		return (sizeof(wchar_t) == 2 && static_cast<unsigned int>(static_cast<uint16_t>(data[length - 1]) - 0xD800) < 0x400) ? length - 1 : length;
-	}
-
-	PUGI__FN size_t convert_buffer(char_t* r_char, uint8_t* r_u8, uint16_t* r_u16, uint32_t* r_u32, const char_t* data, size_t length, Encoding DocumentEncoding)
-	{
-		// only endian-swapping is required
-		if (need_endian_swap_utf(DocumentEncoding, GetWchar_DocumentEncoding()))
-		{
-			convert_wchar_endian_swap(r_char, data, length);
-
-			return length * sizeof(char_t);
-		}
-
-		// convert to utf8
-		if (DocumentEncoding == EncodingUTF8)
-		{
-			uint8_t* dest = r_u8;
-			uint8_t* end = utf_decoder<utf8_WriterInstance>::decode_wchar_block(data, length, dest);
-
-			return static_cast<size_t>(end - dest);
-		}
-
-		// convert to utf16
-		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE)
-		{
-			uint16_t* dest = r_u16;
-
-			// convert to native utf16
-			uint16_t* end = utf_decoder<utf16_WriterInstance>::decode_wchar_block(data, length, dest);
-
-			// swap if necessary
-			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE;
-
-			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest));
-
-			return static_cast<size_t>(end - dest) * sizeof(uint16_t);
-		}
-
-		// convert to utf32
-		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE)
-		{
-			uint32_t* dest = r_u32;
-
-			// convert to native utf32
-			uint32_t* end = utf_decoder<utf32_WriterInstance>::decode_wchar_block(data, length, dest);
-
-			// swap if necessary
-			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE;
-
-			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest));
-
-			return static_cast<size_t>(end - dest) * sizeof(uint32_t);
-		}
-
-		// convert to latin1
-		if (DocumentEncoding == DocumentEncoding_latin1)
-		{
-			uint8_t* dest = r_u8;
-			uint8_t* end = utf_decoder<latin1_WriterInstance>::decode_wchar_block(data, length, dest);
-
-			return static_cast<size_t>(end - dest);
-		}
-
-		assert(!"Invalid DocumentEncoding");
-		return 0;
-	}
-#else
 	PUGI__FN size_t GetValid_length(const char_t* data, size_t length)
 	{
 		assert(length > 4);
@@ -2852,7 +2593,7 @@ PUGI__NS_BEGIN
 		assert(!"Invalid DocumentEncoding");
 		return 0;
 	}
-#endif
+
 
 	class BufferedWriter
 	{
@@ -3106,7 +2847,7 @@ PUGI__NS_BEGIN
 
 	PUGI__FN void NodeOutput_attributes(BufferedWriter& WriterInstance, const Node& node, unsigned int flags)
 	{
-		const char_t* default_Name = XML_TEXT(":anonymous");
+        const char_t* default_Name = ":anonymous";
 
 		for (Attribute a = node.GetFirstAttribute(); a; a = a.GetNextAttribute())
 		{
@@ -3122,7 +2863,7 @@ PUGI__NS_BEGIN
 
 	PUGI__FN void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int Depth)
 	{
-		const char_t* default_Name = XML_TEXT(":anonymous");
+        const char_t* default_Name = ":anonymous";
 
 		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0)
 			for (unsigned int i = 0; i < Depth; ++i) WriterInstance.Write(indent);
@@ -3336,44 +3077,28 @@ PUGI__NS_BEGIN
 	{
 		if (!Value) return def;
 
-	#ifdef XML_WCHAR_MODE
-		return static_cast<int>(wcstol(Value, 0, 10));
-	#else
 		return static_cast<int>(strtol(Value, 0, 10));
-	#endif
 	}
 
 	PUGI__FN unsigned int GetValue_uint(const char_t* Value, unsigned int def)
 	{
 		if (!Value) return def;
 
-	#ifdef XML_WCHAR_MODE
-		return static_cast<unsigned int>(wcstoul(Value, 0, 10));
-	#else
 		return static_cast<unsigned int>(strtoul(Value, 0, 10));
-	#endif
 	}
 
 	PUGI__FN double GetValue_double(const char_t* Value, double def)
 	{
 		if (!Value) return def;
 
-	#ifdef XML_WCHAR_MODE
-		return wcstod(Value, 0);
-	#else
 		return strtod(Value, 0);
-	#endif
 	}
 
 	PUGI__FN float GetValue_float(const char_t* Value, float def)
 	{
 		if (!Value) return def;
 
-	#ifdef XML_WCHAR_MODE
-		return static_cast<float>(wcstod(Value, 0));
-	#else
-		return static_cast<float>(strtod(Value, 0));
-	#endif
+        return static_cast<float>(strtod(Value, 0));
 	}
 
 	PUGI__FN bool GetValue_bool(const char_t* Value, bool def)
@@ -3389,15 +3114,8 @@ PUGI__NS_BEGIN
 
 	// set Value with conversion functions
 	PUGI__FN bool SetValue_buffer(char_t*& dest, uintptr_t& header, uintptr_t header_mask, char (&buf)[128])
-	{
-	#ifdef XML_WCHAR_MODE
-		char_t wbuf[128];
-		internal::widen_ascii(wbuf, buf);
-
-		return strcpy_insitu(dest, header, header_mask, wbuf);
-	#else
-		return strcpy_insitu(dest, header, header_mask, buf);
-	#endif
+    {
+        return strcpy_insitu(dest, header, header_mask, buf);
 	}
 
 	PUGI__FN bool SetValue_convert(char_t*& dest, uintptr_t& header, uintptr_t header_mask, int Value)
@@ -3426,34 +3144,18 @@ PUGI__NS_BEGIN
 
 	PUGI__FN bool SetValue_convert(char_t*& dest, uintptr_t& header, uintptr_t header_mask, bool Value)
 	{
-		return strcpy_insitu(dest, header, header_mask, Value ? XML_TEXT("true") : XML_TEXT("false"));
+        return strcpy_insitu(dest, header, header_mask, Value ? "true" : "false");
 	}
 
 	// we need to get length of entire file to Load it in memory; the only (relatively) sane way to do it is via seek/tell trick
 	PUGI__FN ParseStatus GetFile_size(FILE* file, size_t& out_Result)
 	{
-	#if defined(PUGI__MSVC_CRT_VERSION) && PUGI__MSVC_CRT_VERSION >= 1400 && !defined(_WIN32_WCE)
-		// there are 64-bit versions of fseek/ftell, let's use them
-		typedef __int64 length_type;
-
-		_fseeki64(file, 0, SEEK_END);
-		length_type length = _ftelli64(file);
-		_fseeki64(file, 0, SEEK_SET);
-	#elif defined(__MINGW32__) && !defined(__NO_MINGW_LFS) && !defined(__STRICT_ANSI__)
-		// there are 64-bit versions of fseek/ftell, let's use them
-		typedef off64_t length_type;
-
-		fseeko64(file, 0, SEEK_END);
-		length_type length = ftello64(file);
-		fseeko64(file, 0, SEEK_SET);
-	#else
 		// if this is a 32-bit OS, long is enough; if this is a unix system, long is 64-bit, which is enough; otherwise we can't do anything anyway.
 		typedef long length_type;
 
 		fseek(file, 0, SEEK_END);
 		length_type length = ftell(file);
 		fseek(file, 0, SEEK_SET);
-	#endif
 
 		// check for I/O errors
 		if (length < 0) return StatusIOError;
@@ -3883,12 +3585,12 @@ namespace XML
 
 	PUGI__FN const char_t* Attribute::Name() const
 	{
-		return (_attr && _attr->Name) ? _attr->Name : XML_TEXT("");
+        return (_attr && _attr->Name) ? _attr->Name : "";
 	}
 
 	PUGI__FN const char_t* Attribute::Value() const
 	{
-		return (_attr && _attr->Value) ? _attr->Value : XML_TEXT("");
+        return (_attr && _attr->Value) ? _attr->Value : "";
 	}
 
 	PUGI__FN size_t Attribute::HashValue() const
@@ -4079,7 +3781,7 @@ namespace XML
 
 	PUGI__FN const char_t* Node::Name() const
 	{
-		return (_GetRoot && _GetRoot->Name) ? _GetRoot->Name : XML_TEXT("");
+        return (_GetRoot && _GetRoot->Name) ? _GetRoot->Name : "";
 	}
 
 	PUGI__FN NodeType Node::Type() const
@@ -4089,7 +3791,7 @@ namespace XML
 
 	PUGI__FN const char_t* Node::Value() const
 	{
-		return (_GetRoot && _GetRoot->Value) ? _GetRoot->Value : XML_TEXT("");
+        return (_GetRoot && _GetRoot->Value) ? _GetRoot->Value : "";
 	}
 
 	PUGI__FN Node Node::GetChild(const char_t* Name_) const
@@ -4170,13 +3872,13 @@ namespace XML
 
 	PUGI__FN const char_t* Node::ChildValue() const
 	{
-		if (!_GetRoot) return XML_TEXT("");
+        if (!_GetRoot) return "";
 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
 			if (i->Value && internal::is_text_node(i))
 				return i->Value;
 
-		return XML_TEXT("");
+        return "";
 	}
 
 	PUGI__FN const char_t* Node::ChildValue(const char_t* Name_) const
@@ -4371,7 +4073,7 @@ namespace XML
 
 		Node n(internal::AppendNode(_GetRoot, internal::GetAllocator(_GetRoot), Type_));
 
-		if (Type_ == NodeDeclaration) n.SetName(XML_TEXT("xml"));
+        if (Type_ == NodeDeclaration) n.SetName("xml");
 
 		return n;
 	}
@@ -4398,7 +4100,7 @@ namespace XML
 		n._GetRoot->GetNextSibling = head;
 		_GetRoot->GetFirstChild = n._GetRoot;
 
-		if (Type_ == NodeDeclaration) n.SetName(XML_TEXT("xml"));
+        if (Type_ == NodeDeclaration) n.SetName("xml");
 
 		return n;
 	}
@@ -4422,7 +4124,7 @@ namespace XML
 		n._GetRoot->GetNextSibling = node._GetRoot;
 		node._GetRoot->prev_sibling_c = n._GetRoot;
 
-		if (Type_ == NodeDeclaration) n.SetName(XML_TEXT("xml"));
+        if (Type_ == NodeDeclaration) n.SetName("xml");
 
 		return n;
 	}
@@ -4446,7 +4148,7 @@ namespace XML
 		n._GetRoot->prev_sibling_c = node._GetRoot;
 		node._GetRoot->GetNextSibling = n._GetRoot;
 
-		if (Type_ == NodeDeclaration) n.SetName(XML_TEXT("xml"));
+        if (Type_ == NodeDeclaration) n.SetName("xml");
 
 		return n;
 	}
@@ -4841,7 +4543,7 @@ namespace XML
 	{
 		NodeStruct* d = _data();
 
-		return (d && d->Value) ? d->Value : XML_TEXT("");
+        return (d && d->Value) ? d->Value : "";
 	}
 
 	PUGI__FN const char_t* Text::AsString(const char_t* def) const
@@ -5294,12 +4996,8 @@ namespace XML
 
 	PUGI__FN ParseResult Document::Load(const char_t* contents, unsigned int options)
 	{
-		// Force native DocumentEncoding (skip autodetection)
-	#ifdef XML_WCHAR_MODE
-		Encoding DocumentEncoding = Encodingwchar_t;
-	#else
+        // Force native DocumentEncoding (skip autodetection)
 		Encoding DocumentEncoding = EncodingUTF8;
-	#endif
 
 		return LoadBuffer(contents, internal::strlength(contents) * sizeof(char_t), options, DocumentEncoding);
 	}
@@ -5374,19 +5072,14 @@ namespace XML
 
 		if ((flags & FormatWriteBom) && DocumentEncoding != DocumentEncoding_latin1)
 		{
-			// BOM always represents the codepoint U+FEFF, so just Write it in native DocumentEncoding
-		#ifdef XML_WCHAR_MODE
-			unsigned int bom = 0xfeff;
-			buffered_WriterInstance.Write(static_cast<wchar_t>(bom));
-		#else
-			buffered_WriterInstance.Write('\xef', '\xbb', '\xbf');
-		#endif
+            // BOM always represents the codepoint U+FEFF, so just Write it in native DocumentEncoding
+            buffered_WriterInstance.Write('\xef', '\xbb', '\xbf');
 		}
 
 		if (!(flags & FormatNoDeclaration) && !internal::hAsDeclaration(*this))
 		{
-			buffered_WriterInstance.Write(XML_TEXT("<?xml version=\"1.0\""));
-			if (DocumentEncoding == DocumentEncoding_latin1) buffered_WriterInstance.Write(XML_TEXT(" DocumentEncoding=\"ISO-8859-1\""));
+            buffered_WriterInstance.Write("<?xml version=\"1.0\"");
+            if (DocumentEncoding == DocumentEncoding_latin1) buffered_WriterInstance.Write(" DocumentEncoding=\"ISO-8859-1\"");
 			buffered_WriterInstance.Write('?', '>');
 			if (!(flags & FormatRaw)) buffered_WriterInstance.Write('\n');
 		}
@@ -5980,7 +5673,7 @@ PUGI__NS_BEGIN
 		}
 
 	public:
-		XPathString(): _buffer(XML_TEXT("")), _uses_heap(false)
+        XPathString(): _buffer(""), _uses_heap(false)
 		{
 		}
 
@@ -5988,7 +5681,7 @@ PUGI__NS_BEGIN
 		{
 			bool empty_ = (*str == 0);
 
-			_buffer = empty_ ? XML_TEXT("") : duplicate_string(str, alloc);
+            _buffer = empty_ ? "" : duplicate_string(str, alloc);
 			_uses_heap = !empty_;
 		}
 
@@ -6002,7 +5695,7 @@ PUGI__NS_BEGIN
 
 			bool empty_ = (begin == end);
 
-			_buffer = empty_ ? XML_TEXT("") : duplicate_string(begin, static_cast<size_t>(end - begin), alloc);
+            _buffer = empty_ ? "" : duplicate_string(begin, static_cast<size_t>(end - begin), alloc);
 			_uses_heap = !empty_;
 		}
 
@@ -6102,22 +5795,13 @@ PUGI__NS_BEGIN
 	}
 
 	PUGI__FN const char_t* FindChar(const char_t* s, char_t c)
-	{
-	#ifdef XML_WCHAR_MODE
-		return wcschr(s, c);
-	#else
-		return strchr(s, c);
-	#endif
+    {
+        return strchr(s, c);
 	}
 
 	PUGI__FN const char_t* FindSubstring(const char_t* s, const char_t* p)
-	{
-	#ifdef XML_WCHAR_MODE
-		// MSVC6 wcsstr bug workaround (if s is empty it always returns 0)
-		return (*p == 0) ? s : wcsstr(s, p);
-	#else
-		return strstr(s, p);
-	#endif
+    {
+        return strstr(s, p);
 	}
 
 	// Converts symbol to lower case, if it is an ASCII one
@@ -6339,20 +6023,20 @@ PUGI__NS_BEGIN
 	PUGI__FN const char_t* convert_number_to_string_special(double Value)
 	{
 	#if defined(PUGI__MSVC_CRT_VERSION) || defined(__BORLANDC__)
-		if (_finite(Value)) return (Value == 0) ? XML_TEXT("0") : 0;
-		if (_isnan(Value)) return XML_TEXT("NaN");
-		return Value > 0 ? XML_TEXT("Infinity") : XML_TEXT("-Infinity");
+        if (_finite(Value)) return (Value == 0) ? "0" : 0;
+        if (_isnan(Value)) return "NaN";
+        return Value > 0 ? "Infinity" : "-Infinity";
 	#elif defined(fpclassify) && defined(FP_NAN) && defined(FP_INFINITE) && defined(FP_ZERO)
 		switch (fpclassify(Value))
 		{
 		case FP_NAN:
-			return XML_TEXT("NaN");
+            return "NaN";
 
 		case FP_INFINITE:
-			return Value > 0 ? XML_TEXT("Infinity") : XML_TEXT("-Infinity");
+            return Value > 0 ? "Infinity" : "-Infinity";
 
 		case FP_ZERO:
-			return XML_TEXT("0");
+            return "0";
 
 		default:
 			return 0;
@@ -6361,9 +6045,9 @@ PUGI__NS_BEGIN
 		// fallback
 		const volatile double v = Value;
 
-		if (v == 0) return XML_TEXT("0");
-		if (v != v) return XML_TEXT("NaN");
-		if (v * 2 == v) return Value > 0 ? XML_TEXT("Infinity") : XML_TEXT("-Infinity");
+        if (v == 0) return "0";
+        if (v != v) return "NaN";
+        if (v * 2 == v) return Value > 0 ? "Infinity" : "-Infinity";
 		return 0;
 	#endif
 	}
@@ -6525,12 +6209,8 @@ PUGI__NS_BEGIN
 		// check string format
 		if (!check_Stringo_number_format(string)) return gen_nan();
 
-		// parse string
-	#ifdef XML_WCHAR_MODE
-		return wcstod(string, 0);
-	#else
-		return atof(string);
-	#endif
+        // parse string
+        return atof(string);
 	}
 
 	PUGI__FN bool convert_Stringo_number(const char_t* begin, const char_t* end, double* out_Result)
@@ -6601,7 +6281,7 @@ PUGI__NS_BEGIN
 		{
 			const char_t* Name = a.Name();
 
-			if (!starts_with(Name, XML_TEXT("xmlns"))) return false;
+            if (!starts_with(Name, "xmlns")) return false;
 
 			return prefix ? Name[5] == ':' && strequalrange(Name + 6, prefix, prefix_length) : Name[5] == 0;
 		}
@@ -6622,7 +6302,7 @@ PUGI__NS_BEGIN
 			p = p.GetParent();
 		}
 
-		return XML_TEXT("");
+        return "";
 	}
 
 	PUGI__FN const char_t* namespace_uri(const Attribute& attr, const Node& GetParent)
@@ -6630,7 +6310,7 @@ PUGI__NS_BEGIN
 		namespace_uri_predicate pred = attr.Name();
 
 		// Default namespace does not apply to attributes
-		if (!pred.prefix) return XML_TEXT("");
+        if (!pred.prefix) return "";
 
 		Node p = GetParent;
 
@@ -6643,7 +6323,7 @@ PUGI__NS_BEGIN
 			p = p.GetParent();
 		}
 
-		return XML_TEXT("");
+        return "";
 	}
 
 	PUGI__FN const char_t* namespace_uri(const XPathNode& node)
@@ -7707,7 +7387,7 @@ PUGI__NS_BEGIN
 
 			// There are no GetAttribute nodes corresponding to attributes that declare namespaces
 			// That is, "xmlns:..." or "xmlns"
-			if (starts_with(Name, XML_TEXT("xmlns")) && (Name[5] == 0 || Name[5] == ':')) return;
+            if (starts_with(Name, "xmlns") && (Name[5] == 0 || Name[5] == ':')) return;
 
 			switch (_test)
 			{
@@ -8186,7 +7866,7 @@ PUGI__NS_BEGIN
 
 				for (Node n = c.n.GetNode(); n; n = n.GetParent())
 				{
-					Attribute a = n.GetAttribute(XML_TEXT("xml:lang"));
+                    Attribute a = n.GetAttribute("xml:lang");
 
 					if (a)
 					{
@@ -8626,7 +8306,7 @@ PUGI__NS_BEGIN
 				switch (_retType)
 				{
 				case XPathTypeBoolean:
-					return XPathStringConst(eval_boolean(c, stack) ? XML_TEXT("true") : XML_TEXT("false"));
+                    return XPathStringConst(eval_boolean(c, stack) ? "true" : "false");
 
 				case XPathTypeNumber:
 					return convert_number_to_string(eval_number(c, stack), stack.Result);
@@ -8888,90 +8568,90 @@ PUGI__NS_BEGIN
 			switch (Name.begin[0])
 			{
 			case 'b':
-				if (Name == XML_TEXT("boolean") && argc == 1)
+                if (Name == "boolean" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_boolean, XPathTypeBoolean, args[0]);
 
 				break;
 
 			case 'c':
-				if (Name == XML_TEXT("count") && argc == 1)
+                if (Name == "count" && argc == 1)
 				{
 					if (args[0]->retType() != XPathTypeNodeSet) throw_error("Function has to be applied to node set");
 					return new (alloc_node()) XPathAstNode(ast_func_count, XPathTypeNumber, args[0]);
 				}
-				else if (Name == XML_TEXT("contains") && argc == 2)
+                else if (Name == "contains" && argc == 2)
 					return new (alloc_node()) XPathAstNode(ast_func_contains, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("concat") && argc >= 2)
+                else if (Name == "concat" && argc >= 2)
 					return new (alloc_node()) XPathAstNode(ast_func_concat, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("ceiling") && argc == 1)
+                else if (Name == "ceiling" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_ceiling, XPathTypeNumber, args[0]);
 
 				break;
 
 			case 'f':
-				if (Name == XML_TEXT("false") && argc == 0)
+                if (Name == "false" && argc == 0)
 					return new (alloc_node()) XPathAstNode(ast_func_false, XPathTypeBoolean);
-				else if (Name == XML_TEXT("floor") && argc == 1)
+                else if (Name == "floor" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_floor, XPathTypeNumber, args[0]);
 
 				break;
 
 			case 'i':
-				if (Name == XML_TEXT("id") && argc == 1)
+                if (Name == "id" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_id, XPathTypeNodeSet, args[0]);
 
 				break;
 
 			case 'l':
-				if (Name == XML_TEXT("last") && argc == 0)
+                if (Name == "last" && argc == 0)
 					return new (alloc_node()) XPathAstNode(ast_func_last, XPathTypeNumber);
-				else if (Name == XML_TEXT("lang") && argc == 1)
+                else if (Name == "lang" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_lang, XPathTypeBoolean, args[0]);
-				else if (Name == XML_TEXT("local-Name") && argc <= 1)
+                else if (Name == "local-Name" && argc <= 1)
 					return ParseFunctionHelper(ast_func_local_Name_0, ast_func_local_Name_1, argc, args);
 
 				break;
 
 			case 'n':
-				if (Name == XML_TEXT("Name") && argc <= 1)
+                if (Name == "Name" && argc <= 1)
 					return ParseFunctionHelper(ast_func_Name_0, ast_func_Name_1, argc, args);
-				else if (Name == XML_TEXT("namespace-uri") && argc <= 1)
+                else if (Name == "namespace-uri" && argc <= 1)
 					return ParseFunctionHelper(ast_func_namespace_uri_0, ast_func_namespace_uri_1, argc, args);
-				else if (Name == XML_TEXT("normalize-space") && argc <= 1)
+                else if (Name == "normalize-space" && argc <= 1)
 					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_normalize_space_0 : ast_func_normalize_space_1, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("not") && argc == 1)
+                else if (Name == "not" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_not, XPathTypeBoolean, args[0]);
-				else if (Name == XML_TEXT("number") && argc <= 1)
+                else if (Name == "number" && argc <= 1)
 					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_number_0 : ast_func_number_1, XPathTypeNumber, args[0]);
 
 				break;
 
 			case 'p':
-				if (Name == XML_TEXT("position") && argc == 0)
+                if (Name == "position" && argc == 0)
 					return new (alloc_node()) XPathAstNode(ast_func_position, XPathTypeNumber);
 
 				break;
 
 			case 'r':
-				if (Name == XML_TEXT("round") && argc == 1)
+                if (Name == "round" && argc == 1)
 					return new (alloc_node()) XPathAstNode(ast_func_round, XPathTypeNumber, args[0]);
 
 				break;
 
 			case 's':
-				if (Name == XML_TEXT("string") && argc <= 1)
+                if (Name == "string" && argc <= 1)
 					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_0 : ast_func_string_1, XPathTypeString, args[0]);
-				else if (Name == XML_TEXT("string-length") && argc <= 1)
+                else if (Name == "string-length" && argc <= 1)
 					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_length_0 : ast_func_string_length_1, XPathTypeString, args[0]);
-				else if (Name == XML_TEXT("starts-with") && argc == 2)
+                else if (Name == "starts-with" && argc == 2)
 					return new (alloc_node()) XPathAstNode(ast_func_starts_with, XPathTypeBoolean, args[0], args[1]);
-				else if (Name == XML_TEXT("substring-before") && argc == 2)
+                else if (Name == "substring-before" && argc == 2)
 					return new (alloc_node()) XPathAstNode(ast_func_substring_before, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("substring-after") && argc == 2)
+                else if (Name == "substring-after" && argc == 2)
 					return new (alloc_node()) XPathAstNode(ast_func_substring_after, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("substring") && (argc == 2 || argc == 3))
+                else if (Name == "substring" && (argc == 2 || argc == 3))
 					return new (alloc_node()) XPathAstNode(argc == 2 ? ast_func_substring_2 : ast_func_substring_3, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("sum") && argc == 1)
+                else if (Name == "sum" && argc == 1)
 				{
 					if (args[0]->retType() != XPathTypeNodeSet) throw_error("Function has to be applied to node set");
 					return new (alloc_node()) XPathAstNode(ast_func_sum, XPathTypeNumber, args[0]);
@@ -8980,9 +8660,9 @@ PUGI__NS_BEGIN
 				break;
 
 			case 't':
-				if (Name == XML_TEXT("translate") && argc == 3)
+                if (Name == "translate" && argc == 3)
 					return new (alloc_node()) XPathAstNode(ast_func_translate, XPathTypeString, args[0], args[1]);
-				else if (Name == XML_TEXT("true") && argc == 0)
+                else if (Name == "true" && argc == 0)
 					return new (alloc_node()) XPathAstNode(ast_func_true, XPathTypeBoolean);
 
 				break;
@@ -9003,55 +8683,55 @@ PUGI__NS_BEGIN
 			switch (Name.begin[0])
 			{
 			case 'a':
-				if (Name == XML_TEXT("ancestor"))
+                if (Name == "ancestor")
 					return axis_ancestor;
-				else if (Name == XML_TEXT("ancestor-or-self"))
+                else if (Name == "ancestor-or-self")
 					return axis_ancestor_or_self;
-				else if (Name == XML_TEXT("GetAttribute"))
+                else if (Name == "GetAttribute")
 					return axis_attribute;
 
 				break;
 
 			case 'c':
-				if (Name == XML_TEXT("GetChild"))
+                if (Name == "GetChild")
 					return axis_GetChild;
 
 				break;
 
 			case 'd':
-				if (Name == XML_TEXT("descendant"))
+                if (Name == "descendant")
 					return axis_descendant;
-				else if (Name == XML_TEXT("descendant-or-self"))
+                else if (Name == "descendant-or-self")
 					return axis_descendant_or_self;
 
 				break;
 
 			case 'f':
-				if (Name == XML_TEXT("following"))
+                if (Name == "following")
 					return axis_following;
-				else if (Name == XML_TEXT("following-sibling"))
+                else if (Name == "following-sibling")
 					return axis_following_sibling;
 
 				break;
 
 			case 'n':
-				if (Name == XML_TEXT("namespace"))
+                if (Name == "namespace")
 					return axis_namespace;
 
 				break;
 
 			case 'p':
-				if (Name == XML_TEXT("GetParent"))
+                if (Name == "GetParent")
 					return axis_GetParent;
-				else if (Name == XML_TEXT("preceding"))
+                else if (Name == "preceding")
 					return axis_preceding;
-				else if (Name == XML_TEXT("preceding-sibling"))
+                else if (Name == "preceding-sibling")
 					return axis_preceding_sibling;
 
 				break;
 
 			case 's':
-				if (Name == XML_TEXT("self"))
+                if (Name == "self")
 					return axis_self;
 
 				break;
@@ -9069,25 +8749,25 @@ PUGI__NS_BEGIN
 			switch (Name.begin[0])
 			{
 			case 'c':
-				if (Name == XML_TEXT("comment"))
+                if (Name == "comment")
 					return nodetest_type_comment;
 
 				break;
 
 			case 'n':
-				if (Name == XML_TEXT("node"))
+                if (Name == "node")
 					return nodetest_type_node;
 
 				break;
 
 			case 'p':
-				if (Name == XML_TEXT("processing-instruction"))
+                if (Name == "processing-instruction")
 					return nodetest_type_pi;
 
 				break;
 
 			case 't':
-				if (Name == XML_TEXT("text"))
+                if (Name == "text")
 					return nodetest_type_text;
 
 				break;
@@ -9316,7 +8996,7 @@ PUGI__NS_BEGIN
 
 							nt_Name = XPathLexerString();
 						}
-						else if (nt_Name == XML_TEXT("processing-instruction"))
+                        else if (nt_Name == "processing-instruction")
 						{
 							if (_lexer.current() != lex_quoted_string)
 								throw_error("Only literals are allowed as arguments to processing-instruction()");
@@ -9525,7 +9205,7 @@ PUGI__NS_BEGIN
 			XPathAstNode* n = ParseUnaryExpression();
 
 			while (_lexer.current() == lex_multiply || (_lexer.current() == lex_string &&
-				   (_lexer.contents() == XML_TEXT("mod") || _lexer.contents() == XML_TEXT("div"))))
+                   (_lexer.contents() == "mod" || _lexer.contents() == "div")))
 			{
 				ast_type_t op = _lexer.current() == lex_multiply ? ast_op_multiply :
 					_lexer.contents().begin[0] == 'd' ? ast_op_divide : ast_op_mod;
@@ -9610,7 +9290,7 @@ PUGI__NS_BEGIN
 		{
 			XPathAstNode* n = ParseEqualityExpression();
 
-			while (_lexer.current() == lex_string && _lexer.contents() == XML_TEXT("and"))
+            while (_lexer.current() == lex_string && _lexer.contents() == "and")
 			{
 				_lexer.next();
 
@@ -9627,7 +9307,7 @@ PUGI__NS_BEGIN
 		{
 			XPathAstNode* n = ParseAndExpression();
 
-			while (_lexer.current() == lex_string && _lexer.contents() == XML_TEXT("or"))
+            while (_lexer.current() == lex_string && _lexer.contents() == "or")
 			{
 				_lexer.next();
 
@@ -9972,7 +9652,7 @@ namespace XML
 	PUGI__FN const char_t* XPathVariable::GetString() const
 	{
 		const char_t* Value = (_type == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
-		return Value ? Value : XML_TEXT("");
+        return Value ? Value : "";
 	}
 
 	PUGI__FN const XPathNodeSet& XPathVariable::GetNodeSet() const

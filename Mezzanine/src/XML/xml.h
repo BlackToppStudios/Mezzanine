@@ -81,6 +81,8 @@
 
 #ifndef XML_VERSION
 // Define version macro; evaluates to major * 100 + minor so that it's safe to use in less-than comparisons
+/// @def XML_VERSION This correlates to the version of pugixml this uses
+/// @brief
 #	define XML_VERSION 120
 #endif
 
@@ -103,16 +105,8 @@
 #endif
 
 namespace Mezzanine {
-// Character interface macros
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-#ifdef XML_WCHAR_MODE // <- Removing this
-#	define XML_TEXT(t) L ## t
-#	define XML_CHAR wchar_t
-#else
-#	define XML_TEXT(t) t
-#	define XML_CHAR char
-	typedef Character char_t;
-#endif
 
 namespace XML
 {
@@ -376,7 +370,7 @@ namespace XML
 		const char_t* Value() const;
 
 		// Get GetAttribute Value, or the default Value if GetAttribute is empty
-		const char_t* AsString(const char_t* def = XML_TEXT("")) const;
+        const char_t* AsString(const char_t* def = "") const;
 
 		// Get GetAttribute Value as a number, or the default Value if conversion did not succeed or GetAttribute is empty
 		int AsInt(int def = 0) const;
@@ -815,7 +809,7 @@ namespace XML
 		/// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
-		void Print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
+        void Print(Writer& WriterInstance, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
 
 	#ifndef XML_NO_STL
 		// Print subtree to stream
@@ -827,7 +821,7 @@ namespace XML
 		/// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
-		void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
+        void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
 
 		/// @brief Output the XML document using a Output Stream.
 		/// @param os An output stream to send xml text to.
@@ -835,14 +829,14 @@ namespace XML
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
-		void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const;
+        void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = "\t", unsigned int flags = FormatDefault, unsigned int Depth = 0) const;
 	#endif
 
 		// Child nodes iterators
 		typedef NodeIterator iterator;
 
 		iterator begin() const;
-		iterator end() const;
+        iterator end() const;
 
 		// Attribute iterators
 		typedef AttributeIterator attribute_iterator;
@@ -903,7 +897,7 @@ namespace XML
 		const char_t* Get() const;
 
 		// Get text, or the default Value if object is empty
-		const char_t* AsString(const char_t* def = XML_TEXT("")) const;
+        const char_t* AsString(const char_t* def = "") const;
 
 		// Get text as a number, or the default Value if conversion did not succeed or object is empty
 		int AsInt(int def = 0) const;
@@ -1224,7 +1218,7 @@ namespace XML
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-		void Save(Resource::DataStream& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        void Save(Resource::DataStream& stream, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 
 
@@ -1233,16 +1227,16 @@ namespace XML
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-		void Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        void Save(Writer& WriterInstance, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 	#ifndef XML_NO_STL
 		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details).
-		void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 		/// @brief Save XML document to a stream of wide characters.
 		/// @param stream The output stream of wide characters to send the XML document to.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const;
+        void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = "\t", unsigned int flags = FormatDefault) const;
 	#endif
 
 		/// @brief Save XML to file.
@@ -1251,14 +1245,14 @@ namespace XML
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return False if the target file could not be opened for writing
-		bool SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        bool SaveFile(const char* Path, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 		/// @brief Save XML to file.
 		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return False if the target file could not be opened for writing
-		bool SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        bool SaveFile(const wchar_t* Path, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 		// Get document element
 		/// @brief Get document element

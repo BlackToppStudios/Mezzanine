@@ -1386,7 +1386,7 @@ namespace Mezzanine
         ///     virtual void Write(const void* data, size_t size) = 0;
         /// };
         ///
-        /// void Mezzanine::XML::Document::Save (Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const;
+        /// void Mezzanine::XML::Document::Save (Writer &WriterInstance, const char_t *indent="\t", unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const;
         /// @endcode
         /// In order to output the document via some custom transport, for example sockets, you should create an object which implements Mezzanine::XML::Writer interface and pass it to save function.
         /// Mezzanine::XML::Writer::Write function is called with a buffer as an input, where data points to buffer start, and size is equal to the buffer size in bytes. The Write implementation must
@@ -1411,9 +1411,9 @@ namespace Mezzanine
         /// @subsection XMLSavingSubtree Saving a Single Subtree
         /// While the previously described functions save the whole document to the destination, it is easy to save a single subtree. The following functions are provided:
         /// @code
-        /// void Mezzanine::XML::Node::Print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const ;
-        /// void Mezzanine::XML::Node::Print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, unsigned int Depth=0) const ) const;
-        /// void Mezzanine::XML::Node::Print(Mezzanine::XML::Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const;
+        /// void Mezzanine::XML::Node::Print(std::basic_ostream< char, std::char_traits< char > > &os, const char_t *indent="\t", unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const ;
+        /// void Mezzanine::XML::Node::Print(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &os, const char_t *indent="\t", unsigned int flags=FormatDefault, unsigned int Depth=0) const ) const;
+        /// void Mezzanine::XML::Node::Print(Mezzanine::XML::Writer &WriterInstance, const char_t *indent="\t", unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto, unsigned int Depth=0) const;
         /// @endcode
         /// These functions have the same arguments with the same meaning as the corresponding Mezzanine::XML::Document::Save functions, and allow you to save the subtree to either a C++ IOstream
         /// or to any object that implements Mezzanine::XML::Writer interface.
@@ -2122,16 +2122,6 @@ namespace Mezzanine
         /// @def _XML_H
         /// @internal
         /// @brief Prevents accidental loading of the file xml.h multiple times.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @def XML_TEXT
-        /// @internal
-        /// @brief Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @def XML_CHAR
-        /// @internal
-        /// @brief Links the  Pugi character datatype to match the Mezzanine Mezzanine::Characterdatatype
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Attribute
