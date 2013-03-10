@@ -95,9 +95,6 @@ namespace pugi
 		node_doctype		// Document type declaration, i.e. '<!DOCTYPE doc>'
 	};
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-
-
 	// Parsing options
 
 	// Minimal parsing mode (equivalent to turning all other flags off).
@@ -189,6 +186,9 @@ namespace pugi
 	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
 	const unsigned int format_default = format_indent;
 		
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
+
+
 	// Forward declarations
 	struct xml_attribute_struct;
 	struct xml_node_struct;

@@ -128,94 +128,95 @@ namespace XML
 
 	// Parsing options
 
-	// Minimal parsing mode (equivalent to turning all other flags off).
-	// Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
+    /// @brief Minimal parsing mode (equivalent to turning all other flags off).
+    /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
 	const unsigned int ParseMinimal = 0x0000;
 
-	// This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default.
-	const unsigned int ParsePi = 0x0001;
+    /// @brief This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default.
+    const unsigned int ParsePi = 0x0001;
 
-	// This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default.
-	const unsigned int ParseComments = 0x0002;
+    /// @brief This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default.
+    const unsigned int ParseComments = 0x0002;
 
-	// This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default.
-	const unsigned int ParseCdata = 0x0004;
+    /// @brief This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default.
+    const unsigned int ParseCdata = 0x0004;
 
-	// This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.
-	// This flag is off by default; turning it on usually Results in slower parsing and more memory consumption.
-	const unsigned int ParseWsPcdata = 0x0008;
+    /// @brief This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.
+    /// @details This flag is off by default; turning it on usually results in slower parsing and more memory consumption.
+    const unsigned int ParseWsPcdata = 0x0008;
 
-	// This flag determines if character and entity references are expanded during parsing. This flag is on by default.
-	const unsigned int ParseEscapes = 0x0010;
+    /// @brief This flag determines if character and entity references are expanded during parsing. This flag is on by default.
+    const unsigned int ParseEscapes = 0x0010;
 
-	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
-	const unsigned int ParseEol = 0x0020;
+    /// @brief This flag determines if EOL characters are normalized (converted to \#xA) during parsing. This flag is on by default.
+    const unsigned int ParseEol = 0x0020;
 
-	// This flag determines if GetAttribute Values are normalized using CDATA normalization rules during parsing. This flag is on by default.
-	const unsigned int ParseWconvAttribute = 0x0040;
+    /// @brief This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
+    const unsigned int ParseWconvAttribute = 0x0040;
 
-	// This flag determines if GetAttribute Values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
-	const unsigned int ParseWnormAttribute = 0x0080;
+    /// @brief This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
+    const unsigned int ParseWnormAttribute = 0x0080;
 
-	// This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
-	const unsigned int ParseDeclaration = 0x0100;
+    /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
+    const unsigned int ParseDeclaration = 0x0100;
 
-	// This flag determines if document Type declaration (NodeDocType) is added to the DOM tree. This flag is off by default.
-	const unsigned int ParseDocType = 0x0200;
+    /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.
+    const unsigned int ParseDocType = 0x0200;
 
-	// This flag determines if plain character data (NodePcdata) that is the only GetChild of the GetParent node and that consists only
-	// of whitespace is added to the DOM tree.
-	// This flag is off by default; turning it on may Result in slower parsing and more memory consumption.
+    /// @brief This flag determines if plain character data (NodePcdata) that is the only child of the parent node and that consists only of whitespace is added to the DOM tree.
+    /// @details This flag is off by default; turning it on may Result in slower parsing and more memory consumption.
 	const unsigned int ParseWsPcdata_single = 0x0400;
 
-	// The default parsing mode.
-	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
-	// End-of-Line characters are normalized, GetAttribute Values are normalized using CDATA normalization rules.
+    /// @brief The default parsing mode.
+    /// @details Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
+    /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
 	const unsigned int ParseDefault = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol;
 
-	// The full parsing mode.
-	// Nodes of all Types are added to the DOM tree, character/reference entities are expanded,
-	// End-of-Line characters are normalized, GetAttribute Values are normalized using CDATA normalization rules.
+    /// @brief The full parsing mode.
+    /// @details Nodes of all types are added to the DOM tree, character/reference entities are expanded,
+    /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
 	const unsigned int ParseFull = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDocType;
 
-	// These flags determine the DocumentEncoding of input data for XML document
+    /// @brief These flags determine the encoding of input data for an XML document.
 	enum Encoding
 	{
-		EncodingAuto,		// Auto-detect input DocumentEncoding using BOM or < / <? detection; use UTF8 if BOM is not found
-		EncodingUTF8,		// UTF8 DocumentEncoding
-		EncodingUTF16LE,	// Little-endian UTF16
-		EncodingUTF16BE,	// Big-endian UTF16
-		EncodingUTF16,		// UTF16 with native endianness
-		EncodingUTF32LE,	// Little-endian UTF32
-		EncodingUTF32BE,	// Big-endian UTF32
-		EncodingUTF32,		// UTF32 with native endianness
-		Encodingwchar_t,		// The same DocumentEncoding wchar_t has (either UTF16 or UTF32)
-		DocumentEncoding_latin1
+        EncodingAuto,           ///< Auto-detect input DocumentEncoding using BOM or < / <? detection; use UTF8 if BOM is not found
+        EncodingUTF8,           ///< UTF8 DocumentEncoding
+        EncodingUTF16LE,        ///< Little-endian UTF16
+        EncodingUTF16BE,        ///< Big-endian UTF16n
+        EncodingUTF16,          ///< UTF16 with native endianness
+        EncodingUTF32LE,        ///< Little-endian UTF32
+        EncodingUTF32BE,        ///< Big-endian UTF32
+        EncodingUTF32,          ///< UTF32 with native endianness
+        Encodingwchar_t,		///< The same document encoding wchar_t has (usually either UTF16 or UTF32)
+        EncodingLatin1          ///< Also called IEC_8859-1 a common encoding on windows, see http://en.wikipedia.org/wiki/ISO/IEC_8859-1 for furhter
 	};
 
 	// Formatting flags
 
-	// Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
+    /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default.
 	const unsigned int FormatIndent = 0x01;
 
-	// Write DocumentEncoding-specific BOM to the output stream. This flag is off by default.
+    /// @brief Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default.
 	const unsigned int FormatWriteBom = 0x02;
 
-	// Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
+    /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is on by default.
 	const unsigned int FormatRaw = 0x04;
 
-	// Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
+    /// @brief Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
 	const unsigned int FormatNoDeclaration = 0x08;
 
-	// Don't escape GetAttribute Values and PCDATA contents. This flag is off by default.
+    /// @brief  Don't escape GetAttribute Values and PCDATA contents. This flag is off by default.
 	const unsigned int FormatNoEscapes = 0x10;
 
-	// Open file using text mode in Document::SaveFile. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
+    /// @brief Open file using text mode in XML::Document::SaveFile. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
 	const unsigned int FormatSaveFileText = 0x20;
 
-	// The default set of formatting flags.
-	// Nodes are indented depending on their Depth in DOM tree, a default declaration is output if document has none.
+    /// @brief The default set of formatting flags. Only FormatRaw is enabled.
+    /// @note PugiXML defaults to FormatIndent which is not well suited to computer to computer transmission as games commonly do
 	const unsigned int FormatDefault = FormatRaw;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// Forward declarations
 	struct AttributeStruct;

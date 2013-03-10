@@ -42579,7 +42579,7 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("EncodingUTF32BE", Mezzanine::XML::EncodingUTF32BE)},
     {SWIG_LUA_CONSTTAB_INT("EncodingUTF32", Mezzanine::XML::EncodingUTF32)},
     {SWIG_LUA_CONSTTAB_INT("Encodingwchar_t", Mezzanine::XML::Encodingwchar_t)},
-    {SWIG_LUA_CONSTTAB_INT("DocumentEncoding_latin1", Mezzanine::XML::DocumentEncoding_latin1)},
+    {SWIG_LUA_CONSTTAB_INT("EncodingLatin1", Mezzanine::XML::EncodingLatin1)},
     {SWIG_LUA_CONSTTAB_INT("StatusOk", Mezzanine::XML::StatusOk)},
     {SWIG_LUA_CONSTTAB_INT("StatusFileNotFound", Mezzanine::XML::StatusFileNotFound)},
     {SWIG_LUA_CONSTTAB_INT("StatusIOError", Mezzanine::XML::StatusIOError)},

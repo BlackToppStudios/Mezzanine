@@ -1306,7 +1306,7 @@ PUGI__NS_BEGIN
 		}
 
 		// source DocumentEncoding is latin1
-		if (DocumentEncoding == DocumentEncoding_latin1) return convert_buffer_latin1(out_buffer, out_length, contents, size, is_mutable);
+        if (DocumentEncoding == EncodingLatin1) return convert_buffer_latin1(out_buffer, out_length, contents, size, is_mutable);
 
 		assert(!"Invalid DocumentEncoding");
 		return false;
@@ -2582,7 +2582,7 @@ PUGI__NS_BEGIN
 			return static_cast<size_t>(end - dest) * sizeof(uint32_t);
 		}
 
-		if (DocumentEncoding == DocumentEncoding_latin1)
+        if (DocumentEncoding == EncodingLatin1)
 		{
 			uint8_t* dest = r_u8;
 			uint8_t* end = utf_decoder<latin1_WriterInstance>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest);
@@ -5070,7 +5070,7 @@ namespace XML
 	{
 		internal::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
 
-		if ((flags & FormatWriteBom) && DocumentEncoding != DocumentEncoding_latin1)
+        if ((flags & FormatWriteBom) && DocumentEncoding != EncodingLatin1)
 		{
             // BOM always represents the codepoint U+FEFF, so just Write it in native DocumentEncoding
             buffered_WriterInstance.Write('\xef', '\xbb', '\xbf');
@@ -5079,7 +5079,7 @@ namespace XML
 		if (!(flags & FormatNoDeclaration) && !internal::hAsDeclaration(*this))
 		{
             buffered_WriterInstance.Write("<?xml version=\"1.0\"");
-            if (DocumentEncoding == DocumentEncoding_latin1) buffered_WriterInstance.Write(" DocumentEncoding=\"ISO-8859-1\"");
+            if (DocumentEncoding == EncodingLatin1) buffered_WriterInstance.Write(" DocumentEncoding=\"ISO-8859-1\"");
 			buffered_WriterInstance.Write('?', '>');
 			if (!(flags & FormatRaw)) buffered_WriterInstance.Write('\n');
 		}
