@@ -207,7 +207,7 @@ PUGI__NS_END
 // String utilities
 PUGI__NS_BEGIN
 	// Get string length
-	PUGI__FN size_t strlength(const char_t* s)
+    PUGI__FN size_t strlength(const Char8* s)
 	{
 		assert(s);
 
@@ -215,7 +215,7 @@ PUGI__NS_BEGIN
 	}
 
 	// Compare two strings
-	PUGI__FN bool strequal(const char_t* src, const char_t* dst)
+    PUGI__FN bool strequal(const Char8* src, const Char8* dst)
 	{
 		assert(src && dst);
 
@@ -224,7 +224,7 @@ PUGI__NS_BEGIN
 	}
 
 	// Compare lhs with [rhs_begin, rhs_end)
-	PUGI__FN bool strequalrange(const char_t* lhs, const char_t* rhs, size_t count)
+    PUGI__FN bool strequalrange(const Char8* lhs, const Char8* rhs, size_t count)
 	{
 		for (size_t i = 0; i < count; ++i)
 			if (lhs[i] != rhs[i])
@@ -397,10 +397,10 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		char_t* allocate_string(size_t length)
+        Char8* allocate_string(size_t length)
 		{
 			// allocate memory for string and header block
-			size_t size = sizeof(MemoryString_header) + length * sizeof(char_t);
+            size_t size = sizeof(MemoryString_header) + length * sizeof(Char8);
 
 			// round size up to pointer alignment boundary
 			size_t full_size = (size + (sizeof(void*) - 1)) & ~(sizeof(void*) - 1);
@@ -422,10 +422,10 @@ PUGI__NS_BEGIN
 
 			// round-trip through void* to avoid 'cast increases required alignment of target Type' warning
 			// header is guaranteed a pointer-sized alignment, which should be enough for char_t
-			return static_cast<char_t*>(static_cast<void*>(header + 1));
+            return static_cast<Char8*>(static_cast<void*>(header + 1));
 		}
 
-		void deallocate_string(char_t* string)
+        void deallocate_string(Char8* string)
 		{
 			// this function casts pointers through void* to avoid 'cast increases required alignment of target Type' warnings
 			// we're guaranteed the proper (pointer-sized) alignment on the input string if it was allocated via allocate_string
@@ -499,8 +499,8 @@ namespace XML
 
 		uintptr_t header;
 
-		char_t* Name;	////< Pointer to GetAttribute Name.
-		char_t*	Value;	////< Pointer to GetAttribute Value.
+        Char8* Name;	////< Pointer to GetAttribute Name.
+        Char8*	Value;	////< Pointer to GetAttribute Value.
 
 		AttributeStruct* prev_attribute_c;	////< Previous GetAttribute (cyclic list)
 		AttributeStruct* GetNextAttribute;	////< Next attribute
@@ -519,8 +519,8 @@ namespace XML
 
 		NodeStruct*		GetParent;					////< Pointer to GetParent
 
-		char_t*					Name;					////< Pointer to element Name.
-		char_t*					Value;					////< Pointer to any associated string data.
+        Char8*					Name;					////< Pointer to element Name.
+        Char8*					Value;					////< Pointer to any associated string data.
 
 		NodeStruct*		GetFirstChild;			////< First GetChild
 
@@ -538,7 +538,7 @@ PUGI__NS_BEGIN
 		{
 		}
 
-		const char_t* buffer;
+        const Char8* buffer;
 	};
 
 	inline Allocator& GetAllocator(const NodeStruct* node)
@@ -1173,11 +1173,11 @@ PUGI__NS_BEGIN
 		return guess_buffer_DocumentEncoding(d0, d1, d2, d3);
 	}
 
-	PUGI__FN bool GetMutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
+    PUGI__FN bool GetMutable_buffer(Char8*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
 	{
 		if (is_mutable)
 		{
-			out_buffer = static_cast<char_t*>(const_cast<void*>(contents));
+            out_buffer = static_cast<Char8*>(const_cast<void*>(contents));
 		}
 		else
 		{
@@ -1186,15 +1186,15 @@ PUGI__NS_BEGIN
 
 			memcpy(buffer, contents, size);
 
-			out_buffer = static_cast<char_t*>(buffer);
+            out_buffer = static_cast<Char8*>(buffer);
 		}
 
-		out_length = size / sizeof(char_t);
+        out_length = size / sizeof(Char8);
 
 		return true;
 	}
 
-	template <typename opt_swap> PUGI__FN bool convert_buffer_utf16(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
+    template <typename opt_swap> PUGI__FN bool convert_buffer_utf16(Char8*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
 	{
 		const uint16_t* data = static_cast<const uint16_t*>(contents);
 		size_t length = size / sizeof(uint16_t);
@@ -1203,7 +1203,7 @@ PUGI__NS_BEGIN
 		out_length = utf_decoder<utf8_counter, opt_swap>::decode_utf16_block(data, length, 0);
 
 		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
+        out_buffer = static_cast<Char8*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(Char8)));
 		if (!out_buffer) return false;
 
 		// second pass: convert utf16 input to utf8
@@ -1216,7 +1216,7 @@ PUGI__NS_BEGIN
 		return true;
 	}
 
-	template <typename opt_swap> PUGI__FN bool convert_buffer_utf32(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
+    template <typename opt_swap> PUGI__FN bool convert_buffer_utf32(Char8*& out_buffer, size_t& out_length, const void* contents, size_t size, opt_swap)
 	{
 		const uint32_t* data = static_cast<const uint32_t*>(contents);
 		size_t length = size / sizeof(uint32_t);
@@ -1225,7 +1225,7 @@ PUGI__NS_BEGIN
 		out_length = utf_decoder<utf8_counter, opt_swap>::decode_utf32_block(data, length, 0);
 
 		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
+        out_buffer = static_cast<Char8*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(Char8)));
 		if (!out_buffer) return false;
 
 		// second pass: convert utf32 input to utf8
@@ -1247,7 +1247,7 @@ PUGI__NS_BEGIN
 		return size;
 	}
 
-	PUGI__FN bool convert_buffer_latin1(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
+    PUGI__FN bool convert_buffer_latin1(Char8*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable)
 	{
 		const uint8_t* data = static_cast<const uint8_t*>(contents);
 
@@ -1265,7 +1265,7 @@ PUGI__NS_BEGIN
 		out_length = prefix_length + utf_decoder<utf8_counter>::decode_latin1_block(postfix, postfix_length, 0);
 
 		// allocate buffer of suitable length
-		out_buffer = static_cast<char_t*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(char_t)));
+        out_buffer = static_cast<Char8*>(Memory::allocate((out_length > 0 ? out_length : 1) * sizeof(Char8)));
 		if (!out_buffer) return false;
 
 		// second pass: convert latin1 input to utf8
@@ -1280,7 +1280,7 @@ PUGI__NS_BEGIN
 		return true;
 	}
 
-	PUGI__FN bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable)
+    PUGI__FN bool convert_buffer(Char8*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable)
 	{
 		// fast Path: no conversion required
 		if (DocumentEncoding == EncodingUTF8) return GetMutable_buffer(out_buffer, out_length, contents, size, is_mutable);
@@ -1373,7 +1373,7 @@ PUGI__NS_BEGIN
 	}
 #endif
 
-	inline bool strcpy_insitu_allow(size_t length, uintptr_t allocated, char_t* target)
+    inline bool strcpy_insitu_allow(size_t length, uintptr_t allocated, Char8* target)
 	{
 		assert(target);
 		size_t tarGetLength = strlength(target);
@@ -1387,7 +1387,7 @@ PUGI__NS_BEGIN
 		return tarGetLength >= length && (tarGetLength < reuse_threshold || tarGetLength - length < tarGetLength / 2);
 	}
 
-	PUGI__FN bool strcpy_insitu(char_t*& dest, uintptr_t& header, uintptr_t header_mask, const char_t* source)
+    PUGI__FN bool strcpy_insitu(Char8*& dest, uintptr_t& header, uintptr_t header_mask, const Char8* source)
 	{
 		size_t source_length = strlength(source);
 
@@ -1407,7 +1407,7 @@ PUGI__NS_BEGIN
 		else if (dest && strcpy_insitu_allow(source_length, header & header_mask, dest))
 		{
 			// we can reuse old buffer, so just copy the new data (including zero terminator)
-			memcpy(dest, source, (source_length + 1) * sizeof(char_t));
+            memcpy(dest, source, (source_length + 1) * sizeof(Char8));
 
 			return true;
 		}
@@ -1416,11 +1416,11 @@ PUGI__NS_BEGIN
 			Allocator* alloc = reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)->allocator;
 
 			// allocate new buffer
-			char_t* buf = alloc->allocate_string(source_length + 1);
+            Char8* buf = alloc->allocate_string(source_length + 1);
 			if (!buf) return false;
 
 			// copy the string (including zero terminator)
-			memcpy(buf, source, (source_length + 1) * sizeof(char_t));
+            memcpy(buf, source, (source_length + 1) * sizeof(Char8));
 
 			// deallocate old buffer (*after* the above to protect against overlapping memory and/or allocation failures)
 			if (header & header_mask) alloc->deallocate_string(dest);
@@ -1435,7 +1435,7 @@ PUGI__NS_BEGIN
 
 	struct gap
 	{
-		char_t* end;
+        Char8* end;
 		size_t size;
 
 		gap(): end(0), size(0)
@@ -1444,7 +1444,7 @@ PUGI__NS_BEGIN
 
 		// Push new gap, move s count bytes further (skipping the gap).
 		// Collapse previous gap.
-		void push(char_t*& s, size_t count)
+        void push(Char8*& s, size_t count)
 		{
 			if (end) // there was a gap already; collapse it
 			{
@@ -1461,7 +1461,7 @@ PUGI__NS_BEGIN
 		}
 
 		// Collapse all gaps, return past-the-end pointer
-		char_t* flush(char_t* s)
+        Char8* flush(Char8* s)
 		{
 			if (end)
 			{
@@ -1475,9 +1475,9 @@ PUGI__NS_BEGIN
 		}
 	};
 
-	PUGI__FN char_t* strconv_escape(char_t* s, gap& g)
+    PUGI__FN Char8* strconv_escape(Char8* s, gap& g)
 	{
-		char_t* stre = s + 1;
+        Char8* stre = s + 1;
 
 		switch (*stre)
 		{
@@ -1489,7 +1489,7 @@ PUGI__NS_BEGIN
 				{
 					stre += 2;
 
-					char_t ch = *stre;
+                    Char8 ch = *stre;
 
 					if (ch == ';') return stre;
 
@@ -1511,7 +1511,7 @@ PUGI__NS_BEGIN
 				}
 				else	// &#... (dec code)
 				{
-					char_t ch = *++stre;
+                    Char8 ch = *++stre;
 
 					if (ch == ';') return stre;
 
@@ -1531,7 +1531,7 @@ PUGI__NS_BEGIN
 				}
 
 
-				s = reinterpret_cast<char_t*>(utf8_WriterInstance::any(reinterpret_cast<uint8_t*>(s), ucsc));
+                s = reinterpret_cast<Char8*>(utf8_WriterInstance::any(reinterpret_cast<uint8_t*>(s), ucsc));
 
 
 				g.push(s, stre - s);
@@ -1616,7 +1616,7 @@ PUGI__NS_BEGIN
 	// Utility macro for last character handling
 	#define ENDSWITH(c, e) ((c) == (e) || ((c) == 0 && endch == (e)))
 
-	PUGI__FN char_t* strconv_comment(char_t* s, char_t endch)
+    PUGI__FN Char8* strconv_comment(Char8* s, Char8 endch)
 	{
 		gap g;
 
@@ -1644,7 +1644,7 @@ PUGI__NS_BEGIN
 		}
 	}
 
-	PUGI__FN char_t* strconv_cdata(char_t* s, char_t endch)
+    PUGI__FN Char8* strconv_cdata(Char8* s, Char8 endch)
 	{
 		gap g;
 
@@ -1672,11 +1672,11 @@ PUGI__NS_BEGIN
 		}
 	}
 
-	typedef char_t* (*strconv_pcdata_t)(char_t*);
+    typedef Char8* (*strconv_pcdata_t)(Char8*);
 
 	template <typename opt_eol, typename opt_escape> struct strconv_pcdata_impl
 	{
-		static char_t* parse(char_t* s)
+        static Char8* parse(Char8* s)
 		{
 			gap g;
 
@@ -1723,18 +1723,18 @@ PUGI__NS_BEGIN
 		}
 	}
 
-	typedef char_t* (*strconv_attribute_t)(char_t*, char_t);
+    typedef Char8* (*strconv_attribute_t)(Char8*, Char8);
 
 	template <typename opt_escape> struct strconv_attribute_impl
 	{
-		static char_t* ParseWnorm(char_t* s, char_t end_quote)
+        static Char8* ParseWnorm(Char8* s, Char8 end_quote)
 		{
 			gap g;
 
 			// trim leading whitespaces
 			if (PUGI__IS_CHARTYPE(*s, ct_space))
 			{
-				char_t* str = s;
+                Char8* str = s;
 
 				do ++str;
 				while (PUGI__IS_CHARTYPE(*str, ct_space));
@@ -1748,7 +1748,7 @@ PUGI__NS_BEGIN
 
 				if (*s == end_quote)
 				{
-					char_t* str = g.flush(s);
+                    Char8* str = g.flush(s);
 
 					do *str-- = 0;
 					while (PUGI__IS_CHARTYPE(*str, ct_space));
@@ -1761,7 +1761,7 @@ PUGI__NS_BEGIN
 
 					if (PUGI__IS_CHARTYPE(*s, ct_space))
 					{
-						char_t* str = s + 1;
+                        Char8* str = s + 1;
 						while (PUGI__IS_CHARTYPE(*str, ct_space)) ++str;
 
 						g.push(s, str - s);
@@ -1779,7 +1779,7 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		static char_t* ParseWconv(char_t* s, char_t end_quote)
+        static Char8* ParseWconv(Char8* s, Char8 end_quote)
 		{
 			gap g;
 
@@ -1815,7 +1815,7 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		static char_t* ParseEol(char_t* s, char_t end_quote)
+        static Char8* ParseEol(Char8* s, Char8 end_quote)
 		{
 			gap g;
 
@@ -1847,7 +1847,7 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		static char_t* ParseSimple(char_t* s, char_t end_quote)
+        static Char8* ParseSimple(Char8* s, Char8 end_quote)
 		{
 			gap g;
 
@@ -1912,7 +1912,7 @@ PUGI__NS_BEGIN
 	struct Parser
 	{
 		Allocator alloc;
-		char_t* error_Offset;
+        Char8* error_Offset;
 		ParseStatus error_Status;
 
 		// Parser utilities.
@@ -1923,7 +1923,7 @@ PUGI__NS_BEGIN
 		#define PUGI__SCANFOR(X)			{ while (*s != 0 && !(X)) ++s; }
 		#define PUGI__SCANWHILE(X)		{ while ((X)) ++s; }
 		#define PUGI__ENDSEG()			{ ch = *s; *s = 0; ++s; }
-		#define PUGI__THROW_ERROR(err, m)	return error_Offset = m, error_Status = err, static_cast<char_t*>(0)
+        #define PUGI__THROW_ERROR(err, m)	return error_Offset = m, error_Status = err, static_cast<Char8*>(0)
 		#define PUGI__CHECK_ERROR(err, m)	{ if (*s == 0) PUGI__THROW_ERROR(err, m); }
 
 		Parser(const Allocator& alloc_): alloc(alloc_), error_Offset(0), error_Status(StatusOk)
@@ -1937,12 +1937,12 @@ PUGI__NS_BEGIN
 		// First group can not contain nested groups
 		// Second group can contain nested groups of the same type
 		// Third group can contain all other groups
-		char_t* ParseDocTypePrimitive(char_t* s)
+        Char8* ParseDocTypePrimitive(Char8* s)
 		{
 			if (*s == '"' || *s == '\'')
 			{
 				// quoted string
-				char_t ch = *s++;
+                Char8 ch = *s++;
 				PUGI__SCANFOR(*s == ch);
 				if (!*s) PUGI__THROW_ERROR(StatusBadDocType, s);
 
@@ -1970,7 +1970,7 @@ PUGI__NS_BEGIN
 			return s;
 		}
 
-		char_t* ParseDocTypeIgnore(char_t* s)
+        Char8* ParseDocTypeIgnore(Char8* s)
 		{
 			assert(s[0] == '<' && s[1] == '!' && s[2] == '[');
 			s++;
@@ -1996,7 +1996,7 @@ PUGI__NS_BEGIN
 			PUGI__THROW_ERROR(StatusBadDocType, s);
 		}
 
-		char_t* ParseDocTypeGroup(char_t* s, char_t endch, bool toplevel)
+        Char8* ParseDocTypeGroup(Char8* s, Char8 endch, bool toplevel)
 		{
 			assert(s[0] == '<' && s[1] == '!');
 			s++;
@@ -2038,7 +2038,7 @@ PUGI__NS_BEGIN
 			return s;
 		}
 
-		char_t* ParseExclamation(char_t* s, NodeStruct* cursor, unsigned int optmsk, char_t endch)
+        Char8* ParseExclamation(Char8* s, NodeStruct* cursor, unsigned int optmsk, Char8 endch)
 		{
 			// parse node contents, starting with exclamation mark
 			++s;
@@ -2123,7 +2123,7 @@ PUGI__NS_BEGIN
 
 				if (cursor->GetParent) PUGI__THROW_ERROR(StatusBadDocType, s);
 
-				char_t* mark = s + 9;
+                Char8* mark = s + 9;
 
 				s = ParseDocTypeGroup(s, endch, true);
 				if (!s) return s;
@@ -2149,17 +2149,17 @@ PUGI__NS_BEGIN
 			return s;
 		}
 
-		char_t* ParseQuestion(char_t* s, NodeStruct*& ref_cursor, unsigned int optmsk, char_t endch)
+        Char8* ParseQuestion(Char8* s, NodeStruct*& ref_cursor, unsigned int optmsk, Char8 endch)
 		{
 			// Load into registers
 			NodeStruct* cursor = ref_cursor;
-			char_t ch = 0;
+            Char8 ch = 0;
 
 			// parse node contents, starting with question mark
 			++s;
 
 			// read PI target
-			char_t* target = s;
+            Char8* target = s;
 
 			if (!PUGI__IS_CHARTYPE(*s, ct_start_symbol)) PUGI__THROW_ERROR(StatusBadPi, s);
 
@@ -2201,7 +2201,7 @@ PUGI__NS_BEGIN
 					PUGI__SKIPWS();
 
 					// scan for tag end
-					char_t* Value = s;
+                    Char8* Value = s;
 
 					PUGI__SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>'));
 					PUGI__CHECK_ERROR(StatusBadPi, s);
@@ -2242,14 +2242,14 @@ PUGI__NS_BEGIN
 			return s;
 		}
 
-		char_t* parse(char_t* s, NodeStruct* xmldoc, unsigned int optmsk, char_t endch)
+        Char8* parse(Char8* s, NodeStruct* xmldoc, unsigned int optmsk, Char8 endch)
 		{
 			strconv_attribute_t strconv_attribute = GetStrconv_attribute(optmsk);
 			strconv_pcdata_t strconv_pcdata = GetStrconv_pcdata(optmsk);
 
-			char_t ch = 0;
+            Char8 ch = 0;
 			NodeStruct* cursor = xmldoc;
-			char_t* mark = s;
+            Char8* mark = s;
 
 			while (*s != 0)
 			{
@@ -2376,7 +2376,7 @@ PUGI__NS_BEGIN
 					{
 						++s;
 
-						char_t* Name = cursor->Name;
+                        Char8* Name = cursor->Name;
 						if (!Name) PUGI__THROW_ERROR(StatusEndElementMismatch, s);
 
 						while (PUGI__IS_CHARTYPE(*s, ct_symbol))
@@ -2473,7 +2473,7 @@ PUGI__NS_BEGIN
 			return s;
 		}
 
-		static ParseResult parse(char_t* buffer, size_t length, NodeStruct* GetRoot, unsigned int optmsk)
+        static ParseResult parse(Char8* buffer, size_t length, NodeStruct* GetRoot, unsigned int optmsk)
 		{
 			DocumentStruct* xmldoc = static_cast<DocumentStruct*>(GetRoot);
 
@@ -2487,7 +2487,7 @@ PUGI__NS_BEGIN
 			Parser parser(*xmldoc);
 
 			// Save last character and make buffer zero-terminated (speeds up parsing)
-			char_t endch = buffer[length - 1];
+            Char8 endch = buffer[length - 1];
 			buffer[length - 1] = 0;
 
 			// perform actual parsing
@@ -2534,7 +2534,7 @@ PUGI__NS_BEGIN
 		return EncodingUTF8;
 	}
 
-	PUGI__FN size_t GetValid_length(const char_t* data, size_t length)
+    PUGI__FN size_t GetValid_length(const Char8* data, size_t length)
 	{
 		assert(length > 4);
 
@@ -2550,7 +2550,7 @@ PUGI__NS_BEGIN
 		return length;
 	}
 
-	PUGI__FN size_t convert_buffer(char_t* /* r_char */, uint8_t* r_u8, uint16_t* r_u16, uint32_t* r_u32, const char_t* data, size_t length, Encoding DocumentEncoding)
+    PUGI__FN size_t convert_buffer(Char8* /* r_char */, uint8_t* r_u8, uint16_t* r_u16, uint32_t* r_u32, const Char8* data, size_t length, Encoding DocumentEncoding)
 	{
 		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE)
 		{
@@ -2617,13 +2617,13 @@ PUGI__NS_BEGIN
 			bufsize = 0;
 		}
 
-		void flush(const char_t* data, size_t size)
+        void flush(const Char8* data, size_t size)
 		{
 			if (size == 0) return;
 
 			// fast Path, just Write data
 			if (DocumentEncoding == GetWrite_native_DocumentEncoding())
-				WriterInstance.Write(data, size * sizeof(char_t));
+                WriterInstance.Write(data, size * sizeof(Char8));
 			else
 			{
 				// convert chunk
@@ -2635,7 +2635,7 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		void Write(const char_t* data, size_t length)
+        void Write(const Char8* data, size_t length)
 		{
 			if (bufsize + length > bufcapacity)
 			{
@@ -2648,7 +2648,7 @@ PUGI__NS_BEGIN
 					if (DocumentEncoding == GetWrite_native_DocumentEncoding())
 					{
 						// fast Path, can just Write data chunk
-						WriterInstance.Write(data, length * sizeof(char_t));
+                        WriterInstance.Write(data, length * sizeof(Char8));
 						return;
 					}
 
@@ -2672,16 +2672,16 @@ PUGI__NS_BEGIN
 				}
 			}
 
-			memcpy(buffer + bufsize, data, length * sizeof(char_t));
+            memcpy(buffer + bufsize, data, length * sizeof(Char8));
 			bufsize += length;
 		}
 
-		void Write(const char_t* data)
+        void Write(const Char8* data)
 		{
 			Write(data, strlength(data));
 		}
 
-		void Write(char_t d0)
+        void Write(Char8 d0)
 		{
 			if (bufsize + 1 > bufcapacity) flush();
 
@@ -2689,7 +2689,7 @@ PUGI__NS_BEGIN
 			bufsize += 1;
 		}
 
-		void Write(char_t d0, char_t d1)
+        void Write(Char8 d0, Char8 d1)
 		{
 			if (bufsize + 2 > bufcapacity) flush();
 
@@ -2698,7 +2698,7 @@ PUGI__NS_BEGIN
 			bufsize += 2;
 		}
 
-		void Write(char_t d0, char_t d1, char_t d2)
+        void Write(Char8 d0, Char8 d1, Char8 d2)
 		{
 			if (bufsize + 3 > bufcapacity) flush();
 
@@ -2708,7 +2708,7 @@ PUGI__NS_BEGIN
 			bufsize += 3;
 		}
 
-		void Write(char_t d0, char_t d1, char_t d2, char_t d3)
+        void Write(Char8 d0, Char8 d1, Char8 d2, Char8 d3)
 		{
 			if (bufsize + 4 > bufcapacity) flush();
 
@@ -2719,7 +2719,7 @@ PUGI__NS_BEGIN
 			bufsize += 4;
 		}
 
-		void Write(char_t d0, char_t d1, char_t d2, char_t d3, char_t d4)
+        void Write(Char8 d0, Char8 d1, Char8 d2, Char8 d3, Char8 d4)
 		{
 			if (bufsize + 5 > bufcapacity) flush();
 
@@ -2731,7 +2731,7 @@ PUGI__NS_BEGIN
 			bufsize += 5;
 		}
 
-		void Write(char_t d0, char_t d1, char_t d2, char_t d3, char_t d4, char_t d5)
+        void Write(Char8 d0, Char8 d1, Char8 d2, Char8 d3, Char8 d4, Char8 d5)
 		{
 			if (bufsize + 6 > bufcapacity) flush();
 
@@ -2756,17 +2756,17 @@ PUGI__NS_BEGIN
 				10240
 			#endif
 			,
-			bufcapacity = bufcapacitybytes / (sizeof(char_t) + 4)
+            bufcapacity = bufcapacitybytes / (sizeof(Char8) + 4)
 		};
 
-		char_t buffer[bufcapacity];
+        Char8 buffer[bufcapacity];
 
 		union
 		{
 			uint8_t data_u8[4 * bufcapacity];
 			uint16_t data_u16[2 * bufcapacity];
 			uint32_t data_u32[bufcapacity];
-			char_t data_char[bufcapacity];
+            Char8 data_char[bufcapacity];
 		} scratch;
 
 		Writer& WriterInstance;
@@ -2774,11 +2774,11 @@ PUGI__NS_BEGIN
 		Encoding DocumentEncoding;
 	};
 
-	PUGI__FN void text_output_escaped(BufferedWriter& WriterInstance, const char_t* s, charTypex_t Type)
+    PUGI__FN void text_output_escaped(BufferedWriter& WriterInstance, const Char8* s, charTypex_t Type)
 	{
 		while (*s)
 		{
-			const char_t* prev = s;
+            const Char8* prev = s;
 
 			// While *s is a usual symbol
 			while (!PUGI__IS_CHARTYPEX(*s, Type)) ++s;
@@ -2809,13 +2809,13 @@ PUGI__NS_BEGIN
 					unsigned int ch = static_cast<unsigned int>(*s++);
 					assert(ch < 32);
 
-					WriterInstance.Write('&', '#', static_cast<char_t>((ch / 10) + '0'), static_cast<char_t>((ch % 10) + '0'), ';');
+                    WriterInstance.Write('&', '#', static_cast<Char8>((ch / 10) + '0'), static_cast<Char8>((ch % 10) + '0'), ';');
 				}
 			}
 		}
 	}
 
-	PUGI__FN void text_output(BufferedWriter& WriterInstance, const char_t* s, charTypex_t Type, unsigned int flags)
+    PUGI__FN void text_output(BufferedWriter& WriterInstance, const Char8* s, charTypex_t Type, unsigned int flags)
 	{
 		if (flags & FormatNoEscapes)
 			WriterInstance.Write(s);
@@ -2823,14 +2823,14 @@ PUGI__NS_BEGIN
 			text_output_escaped(WriterInstance, s, Type);
 	}
 
-	PUGI__FN void text_output_cdata(BufferedWriter& WriterInstance, const char_t* s)
+    PUGI__FN void text_output_cdata(BufferedWriter& WriterInstance, const Char8* s)
 	{
 		do
 		{
 			WriterInstance.Write('<', '!', '[', 'C', 'D');
 			WriterInstance.Write('A', 'T', 'A', '[');
 
-			const char_t* prev = s;
+            const Char8* prev = s;
 
 			// look for ]]> sequence - we can't output it as is since it terminates CDATA
 			while (*s && !(s[0] == ']' && s[1] == ']' && s[2] == '>')) ++s;
@@ -2847,7 +2847,7 @@ PUGI__NS_BEGIN
 
 	PUGI__FN void NodeOutput_attributes(BufferedWriter& WriterInstance, const Node& node, unsigned int flags)
 	{
-        const char_t* default_Name = ":anonymous";
+        const Char8* default_Name = ":anonymous";
 
 		for (Attribute a = node.GetFirstAttribute(); a; a = a.GetNextAttribute())
 		{
@@ -2861,9 +2861,9 @@ PUGI__NS_BEGIN
 		}
 	}
 
-	PUGI__FN void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int Depth)
+    PUGI__FN void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const Char8* indent, unsigned int flags, unsigned int Depth)
 	{
-        const char_t* default_Name = ":anonymous";
+        const Char8* default_Name = ":anonymous";
 
 		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0)
 			for (unsigned int i = 0; i < Depth; ++i) WriterInstance.Write(indent);
@@ -2879,7 +2879,7 @@ PUGI__NS_BEGIN
 
 		case NodeElement:
 		{
-			const char_t* Name = node.Name()[0] ? node.Name() : default_Name;
+            const Char8* Name = node.Name()[0] ? node.Name() : default_Name;
 
 			WriterInstance.Write('<');
 			WriterInstance.Write(Name);
@@ -3073,52 +3073,52 @@ PUGI__NS_BEGIN
 	}
 
 	// get Value with conversion functions
-	PUGI__FN int GetValue_int(const char_t* Value, int def)
+    PUGI__FN int GetValue_int(const Char8* Value, int def)
 	{
 		if (!Value) return def;
 
 		return static_cast<int>(strtol(Value, 0, 10));
 	}
 
-	PUGI__FN unsigned int GetValue_uint(const char_t* Value, unsigned int def)
+    PUGI__FN unsigned int GetValue_uint(const Char8* Value, unsigned int def)
 	{
 		if (!Value) return def;
 
 		return static_cast<unsigned int>(strtoul(Value, 0, 10));
 	}
 
-	PUGI__FN double GetValue_double(const char_t* Value, double def)
+    PUGI__FN double GetValue_double(const Char8* Value, double def)
 	{
 		if (!Value) return def;
 
 		return strtod(Value, 0);
 	}
 
-	PUGI__FN float GetValue_float(const char_t* Value, float def)
+    PUGI__FN float GetValue_float(const Char8* Value, float def)
 	{
 		if (!Value) return def;
 
         return static_cast<float>(strtod(Value, 0));
 	}
 
-	PUGI__FN bool GetValue_bool(const char_t* Value, bool def)
+    PUGI__FN bool GetValue_bool(const Char8* Value, bool def)
 	{
 		if (!Value) return def;
 
 		// only look at first char
-		char_t first = *Value;
+        Char8 first = *Value;
 
 		// 1*, t* (true), T* (True), y* (yes), Y* (YES)
 		return (first == '1' || first == 't' || first == 'T' || first == 'y' || first == 'Y');
 	}
 
 	// set Value with conversion functions
-	PUGI__FN bool SetValue_buffer(char_t*& dest, uintptr_t& header, uintptr_t header_mask, char (&buf)[128])
+    PUGI__FN bool SetValue_buffer(Char8*& dest, uintptr_t& header, uintptr_t header_mask, char (&buf)[128])
     {
         return strcpy_insitu(dest, header, header_mask, buf);
 	}
 
-	PUGI__FN bool SetValue_convert(char_t*& dest, uintptr_t& header, uintptr_t header_mask, int Value)
+    PUGI__FN bool SetValue_convert(Char8*& dest, uintptr_t& header, uintptr_t header_mask, int Value)
 	{
 		char buf[128];
 		sprintf(buf, "%d", Value);
@@ -3126,7 +3126,7 @@ PUGI__NS_BEGIN
 		return SetValue_buffer(dest, header, header_mask, buf);
 	}
 
-	PUGI__FN bool SetValue_convert(char_t*& dest, uintptr_t& header, uintptr_t header_mask, unsigned int Value)
+    PUGI__FN bool SetValue_convert(Char8*& dest, uintptr_t& header, uintptr_t header_mask, unsigned int Value)
 	{
 		char buf[128];
 		sprintf(buf, "%u", Value);
@@ -3134,7 +3134,7 @@ PUGI__NS_BEGIN
 		return SetValue_buffer(dest, header, header_mask, buf);
 	}
 
-	PUGI__FN bool SetValue_convert(char_t*& dest, uintptr_t& header, uintptr_t header_mask, double Value)
+    PUGI__FN bool SetValue_convert(Char8*& dest, uintptr_t& header, uintptr_t header_mask, double Value)
 	{
 		char buf[128];
 		sprintf(buf, "%g", Value);
@@ -3142,7 +3142,7 @@ PUGI__NS_BEGIN
 		return SetValue_buffer(dest, header, header_mask, buf);
 	}
 
-	PUGI__FN bool SetValue_convert(char_t*& dest, uintptr_t& header, uintptr_t header_mask, bool Value)
+    PUGI__FN bool SetValue_convert(Char8*& dest, uintptr_t& header, uintptr_t header_mask, bool Value)
 	{
         return strcpy_insitu(dest, header, header_mask, Value ? "true" : "false");
 	}
@@ -3401,7 +3401,7 @@ PUGI__NS_BEGIN
 	}
 #endif
 
-	PUGI__FN bool SaveFileImpl(const Document& doc, FILE* file, const char_t* indent, unsigned int flags, Encoding DocumentEncoding)
+    PUGI__FN bool SaveFileImpl(const Document& doc, FILE* file, const Char8* indent, unsigned int flags, Encoding DocumentEncoding)
 	{
 		if (!file) return false;
 
@@ -3539,7 +3539,7 @@ namespace XML
 		return _attr && _attr->prev_attribute_c->GetNextAttribute ? Attribute(_attr->prev_attribute_c) : Attribute();
 	}
 
-	PUGI__FN const char_t* Attribute::AsString(const char_t* def) const
+    PUGI__FN const Char8* Attribute::AsString(const Char8* def) const
 	{
 		return (_attr && _attr->Value) ? _attr->Value : def;
 	}
@@ -3583,12 +3583,12 @@ namespace XML
 		return !_attr;
 	}
 
-	PUGI__FN const char_t* Attribute::Name() const
+    PUGI__FN const Char8* Attribute::Name() const
 	{
         return (_attr && _attr->Name) ? _attr->Name : "";
 	}
 
-	PUGI__FN const char_t* Attribute::Value() const
+    PUGI__FN const Char8* Attribute::Value() const
 	{
         return (_attr && _attr->Value) ? _attr->Value : "";
 	}
@@ -3603,7 +3603,7 @@ namespace XML
 		return _attr;
 	}
 
-	PUGI__FN Attribute& Attribute::operator=(const char_t* rhs)
+    PUGI__FN Attribute& Attribute::operator=(const Char8* rhs)
 	{
 		SetValue(rhs);
 		return *this;
@@ -3633,14 +3633,14 @@ namespace XML
 		return *this;
 	}
 
-	PUGI__FN bool Attribute::SetName(const char_t* rhs)
+    PUGI__FN bool Attribute::SetName(const Char8* rhs)
 	{
 		if (!_attr) return false;
 
 		return internal::strcpy_insitu(_attr->Name, _attr->header, internal::MemoryPage_Name_allocated_mask, rhs);
 	}
 
-	PUGI__FN bool Attribute::SetValue(const char_t* rhs)
+    PUGI__FN bool Attribute::SetValue(const Char8* rhs)
 	{
 		if (!_attr) return false;
 
@@ -3734,7 +3734,7 @@ namespace XML
 		return ObjectRange<NodeIterator>(begin(), end());
 	}
 
-	PUGI__FN ObjectRange<NamedNode_iterator> Node::GetChildren(const char_t* Name_) const
+    PUGI__FN ObjectRange<NamedNode_iterator> Node::GetChildren(const Char8* Name_) const
 	{
 		return ObjectRange<NamedNode_iterator>(NamedNode_iterator(GetChild(Name_), Name_), NamedNode_iterator());
 	}
@@ -3779,7 +3779,7 @@ namespace XML
 		return !_GetRoot;
 	}
 
-	PUGI__FN const char_t* Node::Name() const
+    PUGI__FN const Char8* Node::Name() const
 	{
         return (_GetRoot && _GetRoot->Name) ? _GetRoot->Name : "";
 	}
@@ -3789,12 +3789,12 @@ namespace XML
 		return _GetRoot ? static_cast<NodeType>((_GetRoot->header & internal::MemoryPage_type_mask) + 1) : NodeNull;
 	}
 
-	PUGI__FN const char_t* Node::Value() const
+    PUGI__FN const Char8* Node::Value() const
 	{
         return (_GetRoot && _GetRoot->Value) ? _GetRoot->Value : "";
 	}
 
-	PUGI__FN Node Node::GetChild(const char_t* Name_) const
+    PUGI__FN Node Node::GetChild(const Char8* Name_) const
 	{
 		if (!_GetRoot) return Node();
 
@@ -3804,7 +3804,7 @@ namespace XML
 		return Node();
 	}
 
-	PUGI__FN Attribute Node::GetAttribute(const char_t* Name_) const
+    PUGI__FN Attribute Node::GetAttribute(const Char8* Name_) const
 	{
 		if (!_GetRoot) return Attribute();
 
@@ -3815,7 +3815,7 @@ namespace XML
 		return Attribute();
 	}
 
-	PUGI__FN Node Node::GetNextSibling(const char_t* Name_) const
+    PUGI__FN Node Node::GetNextSibling(const Char8* Name_) const
 	{
 		if (!_GetRoot) return Node();
 
@@ -3833,7 +3833,7 @@ namespace XML
 		else return Node();
 	}
 
-	PUGI__FN Node Node::GetPreviousSibling(const char_t* Name_) const
+    PUGI__FN Node Node::GetPreviousSibling(const Char8* Name_) const
 	{
 		if (!_GetRoot) return Node();
 
@@ -3870,7 +3870,7 @@ namespace XML
 		return Text(_GetRoot);
 	}
 
-	PUGI__FN const char_t* Node::ChildValue() const
+    PUGI__FN const Char8* Node::ChildValue() const
 	{
         if (!_GetRoot) return "";
 
@@ -3881,7 +3881,7 @@ namespace XML
         return "";
 	}
 
-	PUGI__FN const char_t* Node::ChildValue(const char_t* Name_) const
+    PUGI__FN const Char8* Node::ChildValue(const Char8* Name_) const
 	{
 		return GetChild(Name_).ChildValue();
 	}
@@ -3906,7 +3906,7 @@ namespace XML
 		return _GetRoot && _GetRoot->GetFirstChild ? Node(_GetRoot->GetFirstChild->prev_sibling_c) : Node();
 	}
 
-	PUGI__FN bool Node::SetName(const char_t* rhs)
+    PUGI__FN bool Node::SetName(const Char8* rhs)
 	{
 		switch (Type())
 		{
@@ -3920,7 +3920,7 @@ namespace XML
 		}
 	}
 
-	PUGI__FN bool Node::SetValue(const char_t* rhs)
+    PUGI__FN bool Node::SetValue(const Char8* rhs)
 	{
 		switch (Type())
 		{
@@ -3936,7 +3936,7 @@ namespace XML
 		}
 	}
 
-	PUGI__FN Attribute Node::AppendAttribute(const char_t* Name_)
+    PUGI__FN Attribute Node::AppendAttribute(const Char8* Name_)
 	{
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute();
 
@@ -3946,7 +3946,7 @@ namespace XML
 		return a;
 	}
 
-	PUGI__FN Attribute Node::PrependAttribute(const char_t* Name_)
+    PUGI__FN Attribute Node::PrependAttribute(const Char8* Name_)
 	{
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute();
 
@@ -3971,7 +3971,7 @@ namespace XML
 		return a;
 	}
 
-	PUGI__FN Attribute Node::InsertAttributeBefore(const char_t* Name_, const Attribute& attr)
+    PUGI__FN Attribute Node::InsertAttributeBefore(const Char8* Name_, const Attribute& attr)
 	{
 		if ((Type() != NodeElement && Type() != NodeDeclaration) || attr.Empty()) return Attribute();
 
@@ -3999,7 +3999,7 @@ namespace XML
 		return a;
 	}
 
-	PUGI__FN Attribute Node::InsertAttributeAfter(const char_t* Name_, const Attribute& attr)
+    PUGI__FN Attribute Node::InsertAttributeAfter(const Char8* Name_, const Attribute& attr)
 	{
 		if ((Type() != NodeElement && Type() != NodeDeclaration) || attr.Empty()) return Attribute();
 
@@ -4153,7 +4153,7 @@ namespace XML
 		return n;
 	}
 
-	PUGI__FN Node Node::AppendChild(const char_t* Name_)
+    PUGI__FN Node Node::AppendChild(const Char8* Name_)
 	{
 		Node Result = AppendChild(NodeElement);
 
@@ -4162,7 +4162,7 @@ namespace XML
 		return Result;
 	}
 
-	PUGI__FN Node Node::PrependChild(const char_t* Name_)
+    PUGI__FN Node Node::PrependChild(const Char8* Name_)
 	{
 		Node Result = PrependChild(NodeElement);
 
@@ -4171,7 +4171,7 @@ namespace XML
 		return Result;
 	}
 
-	PUGI__FN Node Node::InsertChildAfter(const char_t* Name_, const Node& node)
+    PUGI__FN Node Node::InsertChildAfter(const Char8* Name_, const Node& node)
 	{
 		Node Result = InsertChildAfter(NodeElement, node);
 
@@ -4180,7 +4180,7 @@ namespace XML
 		return Result;
 	}
 
-	PUGI__FN Node Node::InsertChildBefore(const char_t* Name_, const Node& node)
+    PUGI__FN Node Node::InsertChildBefore(const Char8* Name_, const Node& node)
 	{
 		Node Result = InsertChildBefore(NodeElement, node);
 
@@ -4225,7 +4225,7 @@ namespace XML
 		return Result;
 	}
 
-	PUGI__FN bool Node::RemoveAttribute(const char_t* Name_)
+    PUGI__FN bool Node::RemoveAttribute(const Char8* Name_)
 	{
 		return RemoveAttribute(GetAttribute(Name_));
 	}
@@ -4252,7 +4252,7 @@ namespace XML
 		return true;
 	}
 
-	PUGI__FN bool Node::RemoveChild(const char_t* Name_)
+    PUGI__FN bool Node::RemoveChild(const Char8* Name_)
 	{
 		return RemoveChild(GetChild(Name_));
 	}
@@ -4272,7 +4272,7 @@ namespace XML
 		return true;
 	}
 
-	PUGI__FN Node Node::FindChildbyAttribute(const char_t* Name_, const char_t* AttrName, const char_t* AttrValue) const
+    PUGI__FN Node Node::FindChildbyAttribute(const Char8* Name_, const Char8* AttrName, const Char8* AttrValue) const
 	{
 		if (!_GetRoot) return Node();
 
@@ -4287,7 +4287,7 @@ namespace XML
 		return Node();
 	}
 
-	PUGI__FN Node Node::FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const
+    PUGI__FN Node Node::FindChildbyAttribute(const Char8* AttrName, const Char8* AttrValue) const
 	{
 		if (!_GetRoot) return Node();
 
@@ -4300,7 +4300,7 @@ namespace XML
 	}
 
 #ifndef XML_NO_STL
-	PUGI__FN String Node::Path(char_t delimiter) const
+    PUGI__FN String Node::Path(Char8 delimiter) const
 	{
 		Node cursor = *this; // Make a copy.
 
@@ -4320,7 +4320,7 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN Node Node::FirstElementByPath(const char_t* Path_, char_t delimiter) const
+    PUGI__FN Node Node::FirstElementByPath(const Char8* Path_, Char8 delimiter) const
 	{
 		Node found = *this; // Current search context.
 
@@ -4333,17 +4333,17 @@ namespace XML
 			++Path_;
 		}
 
-		const char_t* Path_segment = Path_;
+        const Char8* Path_segment = Path_;
 
 		while (*Path_segment == delimiter) ++Path_segment;
 
-		const char_t* Path_segment_end = Path_segment;
+        const Char8* Path_segment_end = Path_segment;
 
 		while (*Path_segment_end && *Path_segment_end != delimiter) ++Path_segment_end;
 
 		if (Path_segment == Path_segment_end) return found;
 
-		const char_t* NextSegment = Path_segment_end;
+        const Char8* NextSegment = Path_segment_end;
 
 		while (*NextSegment == delimiter) ++NextSegment;
 
@@ -4425,7 +4425,7 @@ namespace XML
 		return _GetRoot;
 	}
 
-	PUGI__FN void Node::Print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
+    PUGI__FN void Node::Print(Writer& WriterInstance, const Char8* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
 	{
 		if (!_GetRoot) return;
 
@@ -4435,14 +4435,14 @@ namespace XML
 	}
 
 #ifndef XML_NO_STL
-	PUGI__FN void Node::Print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
+    PUGI__FN void Node::Print(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
 	{
 		WriterStream WriterInstance(stream);
 
 		Print(WriterInstance, indent, flags, DocumentEncoding, Depth);
 	}
 
-	PUGI__FN void Node::Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int Depth) const
+    PUGI__FN void Node::Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const Char8* indent, unsigned int flags, unsigned int Depth) const
 	{
 		WriterStream WriterInstance(stream);
 
@@ -4456,7 +4456,7 @@ namespace XML
 
 		if (!r) return -1;
 
-		const char_t* buffer = static_cast<internal::DocumentStruct*>(r)->buffer;
+        const Char8* buffer = static_cast<internal::DocumentStruct*>(r)->buffer;
 
 		if (!buffer) return -1;
 
@@ -4539,14 +4539,14 @@ namespace XML
 		return _data() == 0;
 	}
 
-	PUGI__FN const char_t* Text::Get() const
+    PUGI__FN const Char8* Text::Get() const
 	{
 		NodeStruct* d = _data();
 
         return (d && d->Value) ? d->Value : "";
 	}
 
-	PUGI__FN const char_t* Text::AsString(const char_t* def) const
+    PUGI__FN const Char8* Text::AsString(const Char8* def) const
 	{
 		NodeStruct* d = _data();
 
@@ -4603,7 +4603,7 @@ namespace XML
 		return internal::GetValue_bool(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN bool Text::Set(const char_t* rhs)
+    PUGI__FN bool Text::Set(const Char8* rhs)
 	{
 		NodeStruct* dn = _data_new();
 
@@ -4638,7 +4638,7 @@ namespace XML
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN Text& Text::operator=(const char_t* rhs)
+    PUGI__FN Text& Text::operator=(const Char8* rhs)
 	{
 		Set(rhs);
 		return *this;
@@ -4811,7 +4811,7 @@ namespace XML
 	{
 	}
 
-	PUGI__FN NamedNode_iterator::NamedNode_iterator(const Node& node, const char_t* Name): _node(node), _Name(Name)
+    PUGI__FN NamedNode_iterator::NamedNode_iterator(const Node& node, const Char8* Name): _node(node), _Name(Name)
 	{
 	}
 
@@ -4938,7 +4938,7 @@ namespace XML
 	    return internal::LoadDataStreamImpl(*this, stream, options, DocumentEncoding);
 	}
 
-	PUGI__FN void Document::Save(Resource::DataStream& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+    PUGI__FN void Document::Save(Resource::DataStream& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
         	XMLStreamWrapper WriterInstance(&stream);
         	Save(WriterInstance, indent, flags, DocumentEncoding);
@@ -4994,12 +4994,12 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN ParseResult Document::Load(const char_t* contents, unsigned int options)
+    PUGI__FN ParseResult Document::Load(const Char8* contents, unsigned int options)
 	{
         // Force native DocumentEncoding (skip autodetection)
 		Encoding DocumentEncoding = EncodingUTF8;
 
-		return LoadBuffer(contents, internal::strlength(contents) * sizeof(char_t), options, DocumentEncoding);
+        return LoadBuffer(contents, internal::strlength(contents) * sizeof(Char8), options, DocumentEncoding);
 	}
 
 	PUGI__FN ParseResult Document::LoadFile(const char* Path_, unsigned int options, Encoding DocumentEncoding)
@@ -5031,7 +5031,7 @@ namespace XML
 		Encoding buffer_DocumentEncoding = internal::GetBuffer_DocumentEncoding(DocumentEncoding, contents, size);
 
 		// get private buffer
-		char_t* buffer = 0;
+        Char8* buffer = 0;
 		size_t length = 0;
 
 		if (!internal::convert_buffer(buffer, length, buffer_DocumentEncoding, contents, size, is_mutable)) return internal::make_ParseResult(StatusOutOfMemory);
@@ -5066,7 +5066,7 @@ namespace XML
 		return LoadBufferImpl(contents, size, options, DocumentEncoding, true, true);
 	}
 
-	PUGI__FN void Document::Save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+    PUGI__FN void Document::Save(Writer& WriterInstance, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		internal::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
 
@@ -5088,14 +5088,14 @@ namespace XML
 	}
 
 #ifndef XML_NO_STL
-	PUGI__FN void Document::Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+    PUGI__FN void Document::Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		WriterStream WriterInstance(stream);
 
 		Save(WriterInstance, indent, flags, DocumentEncoding);
 	}
 
-	PUGI__FN void Document::Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const
+    PUGI__FN void Document::Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const Char8* indent, unsigned int flags) const
 	{
 		WriterStream WriterInstance(stream);
 
@@ -5103,13 +5103,13 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN bool Document::SaveFile(const char* Path_, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+    PUGI__FN bool Document::SaveFile(const char* Path_, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		FILE* file = fopen(Path_, (flags & FormatSaveFileText) ? "w" : "wb");
 		return internal::SaveFileImpl(*this, file, indent, flags, DocumentEncoding);
 	}
 
-	PUGI__FN bool Document::SaveFile(const wchar_t* Path_, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const
+    PUGI__FN bool Document::SaveFile(const wchar_t* Path_, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		FILE* file = internal::open_file_wide(Path_, (flags & FormatSaveFileText) ? L"w" : L"wb");
 		return internal::SaveFileImpl(*this, file, indent, flags, DocumentEncoding);
@@ -5653,21 +5653,21 @@ PUGI__NS_END
 PUGI__NS_BEGIN
 	class XPathString
 	{
-		const char_t* _buffer;
+        const Char8* _buffer;
 		bool _uses_heap;
 
-		static char_t* duplicate_string(const char_t* string, size_t length, XPathAllocator* alloc)
+        static Char8* duplicate_string(const Char8* string, size_t length, XPathAllocator* alloc)
 		{
-			char_t* Result = static_cast<char_t*>(alloc->allocate((length + 1) * sizeof(char_t)));
+            Char8* Result = static_cast<Char8*>(alloc->allocate((length + 1) * sizeof(Char8)));
 			assert(Result);
 
-			memcpy(Result, string, length * sizeof(char_t));
+            memcpy(Result, string, length * sizeof(Char8));
 			Result[length] = 0;
 
 			return Result;
 		}
 
-		static char_t* duplicate_string(const char_t* string, XPathAllocator* alloc)
+        static Char8* duplicate_string(const Char8* string, XPathAllocator* alloc)
 		{
 			return duplicate_string(string, strlength(string), alloc);
 		}
@@ -5677,7 +5677,7 @@ PUGI__NS_BEGIN
 		{
 		}
 
-		explicit XPathString(const char_t* str, XPathAllocator* alloc)
+        explicit XPathString(const Char8* str, XPathAllocator* alloc)
 		{
 			bool empty_ = (*str == 0);
 
@@ -5685,11 +5685,11 @@ PUGI__NS_BEGIN
 			_uses_heap = !empty_;
 		}
 
-		explicit XPathString(const char_t* str, bool use_heap): _buffer(str), _uses_heap(use_heap)
+        explicit XPathString(const Char8* str, bool use_heap): _buffer(str), _uses_heap(use_heap)
 		{
 		}
 
-		XPathString(const char_t* begin, const char_t* end, XPathAllocator* alloc)
+        XPathString(const Char8* begin, const Char8* end, XPathAllocator* alloc)
 		{
 			assert(begin <= end);
 
@@ -5717,14 +5717,14 @@ PUGI__NS_BEGIN
 				size_t Result_length = tarGetLength + source_length;
 
 				// allocate new buffer
-				char_t* Result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (tarGetLength + 1) * sizeof(char_t), (Result_length + 1) * sizeof(char_t)));
+                Char8* Result = static_cast<Char8*>(alloc->reallocate(_uses_heap ? const_cast<Char8*>(_buffer) : 0, (tarGetLength + 1) * sizeof(Char8), (Result_length + 1) * sizeof(Char8)));
 				assert(Result);
 
 				// append first string to the new buffer in case there was no reallocation
-				if (!_uses_heap) memcpy(Result, _buffer, tarGetLength * sizeof(char_t));
+                if (!_uses_heap) memcpy(Result, _buffer, tarGetLength * sizeof(Char8));
 
 				// append second string to the new buffer
-				memcpy(Result + tarGetLength, o._buffer, source_length * sizeof(char_t));
+                memcpy(Result + tarGetLength, o._buffer, source_length * sizeof(Char8));
 				Result[Result_length] = 0;
 
 				// finalize
@@ -5733,7 +5733,7 @@ PUGI__NS_BEGIN
 			}
 		}
 
-		const char_t* c_str() const
+        const Char8* c_str() const
 		{
 			return _buffer;
 		}
@@ -5743,7 +5743,7 @@ PUGI__NS_BEGIN
 			return strlength(_buffer);
 		}
 
-		char_t* data(XPathAllocator* alloc)
+        Char8* data(XPathAllocator* alloc)
 		{
 			// make private heap copy
 			if (!_uses_heap)
@@ -5752,7 +5752,7 @@ PUGI__NS_BEGIN
 				_uses_heap = true;
 			}
 
-			return const_cast<char_t*>(_buffer);
+            return const_cast<Char8*>(_buffer);
 		}
 
 		bool Empty() const
@@ -5776,14 +5776,14 @@ PUGI__NS_BEGIN
 		}
 	};
 
-	PUGI__FN XPathString XPathStringConst(const char_t* str)
+    PUGI__FN XPathString XPathStringConst(const Char8* str)
 	{
 		return XPathString(str, false);
 	}
 PUGI__NS_END
 
 PUGI__NS_BEGIN
-	PUGI__FN bool starts_with(const char_t* string, const char_t* pattern)
+    PUGI__FN bool starts_with(const Char8* string, const Char8* pattern)
 	{
 		while (*pattern && *string == *pattern)
 		{
@@ -5794,20 +5794,20 @@ PUGI__NS_BEGIN
 		return *pattern == 0;
 	}
 
-	PUGI__FN const char_t* FindChar(const char_t* s, char_t c)
+    PUGI__FN const Char8* FindChar(const Char8* s, Char8 c)
     {
         return strchr(s, c);
 	}
 
-	PUGI__FN const char_t* FindSubstring(const char_t* s, const char_t* p)
+    PUGI__FN const Char8* FindSubstring(const Char8* s, const Char8* p)
     {
         return strstr(s, p);
 	}
 
 	// Converts symbol to lower case, if it is an ASCII one
-	PUGI__FN char_t tolower_ascii(char_t ch)
+    PUGI__FN Char8 tolower_ascii(Char8 ch)
 	{
-		return static_cast<unsigned int>(ch - 'A') < 26 ? static_cast<char_t>(ch | ' ') : ch;
+        return static_cast<unsigned int>(ch - 'A') < 26 ? static_cast<Char8>(ch | ' ') : ch;
 	}
 
 	PUGI__FN XPathString string_Value(const XPathNode& na, XPathAllocator* alloc)
@@ -6020,7 +6020,7 @@ PUGI__NS_BEGIN
 	#endif
 	}
 
-	PUGI__FN const char_t* convert_number_to_string_special(double Value)
+    PUGI__FN const Char8* convert_number_to_string_special(double Value)
 	{
 	#if defined(PUGI__MSVC_CRT_VERSION) || defined(__BORLANDC__)
         if (_finite(Value)) return (Value == 0) ? "0" : 0;
@@ -6114,7 +6114,7 @@ PUGI__NS_BEGIN
 	PUGI__FN XPathString convert_number_to_string(double Value, XPathAllocator* alloc)
 	{
 		// try special number conversion
-		const char_t* special = convert_number_to_string_special(Value);
+        const Char8* special = convert_number_to_string_special(Value);
 		if (special) return XPathStringConst(special);
 
 		// get mantissa + exponent form
@@ -6125,8 +6125,8 @@ PUGI__NS_BEGIN
 		convert_number_to_mantissa_exponent(Value, mantissa_buffer, sizeof(mantissa_buffer), &mantissa, &exponent);
 
 		// make the number!
-		char_t Result[512];
-		char_t* s = Result;
+        Char8 Result[512];
+        Char8* s = Result;
 
 		// sign
 		if (Value < 0) *s++ = '-';
@@ -6174,7 +6174,7 @@ PUGI__NS_BEGIN
 		return XPathString(Result, alloc);
 	}
 
-	PUGI__FN bool check_Stringo_number_format(const char_t* string)
+    PUGI__FN bool check_Stringo_number_format(const Char8* string)
 	{
 		// parse leading whitespace
 		while (PUGI__IS_CHARTYPE(*string, ct_space)) ++string;
@@ -6204,7 +6204,7 @@ PUGI__NS_BEGIN
 		return *string == 0;
 	}
 
-	PUGI__FN double convert_Stringo_number(const char_t* string)
+    PUGI__FN double convert_Stringo_number(const Char8* string)
 	{
 		// check string format
 		if (!check_Stringo_number_format(string)) return gen_nan();
@@ -6213,22 +6213,22 @@ PUGI__NS_BEGIN
         return atof(string);
 	}
 
-	PUGI__FN bool convert_Stringo_number(const char_t* begin, const char_t* end, double* out_Result)
+    PUGI__FN bool convert_Stringo_number(const Char8* begin, const Char8* end, double* out_Result)
 	{
-		char_t buffer[32];
+        Char8 buffer[32];
 
 		size_t length = static_cast<size_t>(end - begin);
-		char_t* scratch = buffer;
+        Char8* scratch = buffer;
 
 		if (length >= sizeof(buffer) / sizeof(buffer[0]))
 		{
 			// need to make dummy on-heap copy
-			scratch = static_cast<char_t*>(Memory::allocate((length + 1) * sizeof(char_t)));
+            scratch = static_cast<Char8*>(Memory::allocate((length + 1) * sizeof(Char8)));
 			if (!scratch) return false;
 		}
 
 		// copy string to zero-terminated buffer and perform conversion
-		memcpy(scratch, begin, length * sizeof(char_t));
+        memcpy(scratch, begin, length * sizeof(Char8));
 		scratch[length] = 0;
 
 		*out_Result = convert_Stringo_number(scratch);
@@ -6251,27 +6251,27 @@ PUGI__NS_BEGIN
 		return (Value >= -0.5 && Value <= 0) ? ceil(Value) : floor(Value + 0.5);
 	}
 
-	PUGI__FN const char_t* qualified_Name(const XPathNode& node)
+    PUGI__FN const Char8* qualified_Name(const XPathNode& node)
 	{
 		return node.GetAttribute() ? node.GetAttribute().Name() : node.GetNode().Name();
 	}
 
-	PUGI__FN const char_t* local_Name(const XPathNode& node)
+    PUGI__FN const Char8* local_Name(const XPathNode& node)
 	{
-		const char_t* Name = qualified_Name(node);
-		const char_t* p = FindChar(Name, ':');
+        const Char8* Name = qualified_Name(node);
+        const Char8* p = FindChar(Name, ':');
 
 		return p ? p + 1 : Name;
 	}
 
 	struct namespace_uri_predicate
 	{
-		const char_t* prefix;
+        const Char8* prefix;
 		size_t prefix_length;
 
-		namespace_uri_predicate(const char_t* Name)
+        namespace_uri_predicate(const Char8* Name)
 		{
-			const char_t* pos = FindChar(Name, ':');
+            const Char8* pos = FindChar(Name, ':');
 
 			prefix = pos ? Name : 0;
 			prefix_length = pos ? static_cast<size_t>(pos - Name) : 0;
@@ -6279,7 +6279,7 @@ PUGI__NS_BEGIN
 
 		bool operator()(const Attribute& a) const
 		{
-			const char_t* Name = a.Name();
+            const Char8* Name = a.Name();
 
             if (!starts_with(Name, "xmlns")) return false;
 
@@ -6287,7 +6287,7 @@ PUGI__NS_BEGIN
 		}
 	};
 
-	PUGI__FN const char_t* namespace_uri(const Node& node)
+    PUGI__FN const Char8* namespace_uri(const Node& node)
 	{
 		namespace_uri_predicate pred = node.Name();
 
@@ -6305,7 +6305,7 @@ PUGI__NS_BEGIN
         return "";
 	}
 
-	PUGI__FN const char_t* namespace_uri(const Attribute& attr, const Node& GetParent)
+    PUGI__FN const Char8* namespace_uri(const Attribute& attr, const Node& GetParent)
 	{
 		namespace_uri_predicate pred = attr.Name();
 
@@ -6326,18 +6326,18 @@ PUGI__NS_BEGIN
         return "";
 	}
 
-	PUGI__FN const char_t* namespace_uri(const XPathNode& node)
+    PUGI__FN const Char8* namespace_uri(const XPathNode& node)
 	{
 		return node.GetAttribute() ? namespace_uri(node.GetAttribute(), node.GetParent()) : namespace_uri(node.GetNode());
 	}
 
-	PUGI__FN void normalize_space(char_t* buffer)
+    PUGI__FN void normalize_space(Char8* buffer)
 	{
-		char_t* Write = buffer;
+        Char8* Write = buffer;
 
-		for (char_t* it = buffer; *it; )
+        for (Char8* it = buffer; *it; )
 		{
-			char_t ch = *it++;
+            Char8 ch = *it++;
 
 			if (PUGI__IS_CHARTYPE(ch, ct_space))
 			{
@@ -6357,17 +6357,17 @@ PUGI__NS_BEGIN
 		*Write = 0;
 	}
 
-	PUGI__FN void translate(char_t* buffer, const char_t* from, const char_t* to)
+    PUGI__FN void translate(Char8* buffer, const Char8* from, const Char8* to)
 	{
 		size_t to_length = strlength(to);
 
-		char_t* Write = buffer;
+        Char8* Write = buffer;
 
 		while (*buffer)
 		{
-			PUGI__DMC_VOLATILE char_t ch = *buffer++;
+            PUGI__DMC_VOLATILE Char8 ch = *buffer++;
 
-			const char_t* pos = FindChar(from, ch);
+            const Char8* pos = FindChar(from, ch);
 
 			if (!pos)
 				*Write++ = ch; // do not process
@@ -6386,7 +6386,7 @@ PUGI__NS_BEGIN
 		}
 
 		bool Value;
-		char_t Name[1];
+        Char8 Name[1];
 	};
 
 	struct XPathVariableNumber: XPathVariable
@@ -6396,7 +6396,7 @@ PUGI__NS_BEGIN
 		}
 
 		double Value;
-		char_t Name[1];
+        Char8 Name[1];
 	};
 
 	struct XPathVariableString: XPathVariable
@@ -6410,19 +6410,19 @@ PUGI__NS_BEGIN
 			if (Value) Memory::deallocate(Value);
 		}
 
-		char_t* Value;
-		char_t Name[1];
+        Char8* Value;
+        Char8 Name[1];
 	};
 
 	struct XPathVariableNodeSet: XPathVariable
 	{
 		XPathNodeSet Value;
-		char_t Name[1];
+        Char8 Name[1];
 	};
 
 	static const XPathNodeSet dummy_NodeSet;
 
-	PUGI__FN unsigned int hash_string(const char_t* str)
+    PUGI__FN unsigned int hash_string(const Char8* str)
 	{
 		// Jenkins one-at-a-time hash (http://en.wikipedia.org/wiki/Jenkins_hash_function#one-at-a-time)
 		unsigned int Result = 0;
@@ -6441,23 +6441,23 @@ PUGI__NS_BEGIN
 		return Result;
 	}
 
-	template <typename T> PUGI__FN T* new_XPathVariable(const char_t* Name)
+    template <typename T> PUGI__FN T* new_XPathVariable(const Char8* Name)
 	{
 		size_t length = strlength(Name);
 		if (length == 0) return 0; // empty variable names are invalid
 
 		// $$ we can't use offsetof(T, Name) because T is non-POD, so we just allocate additional length characters
-		void* memory = Memory::allocate(sizeof(T) + length * sizeof(char_t));
+        void* memory = Memory::allocate(sizeof(T) + length * sizeof(Char8));
 		if (!memory) return 0;
 
 		T* Result = new (memory) T();
 
-		memcpy(Result->Name, Name, (length + 1) * sizeof(char_t));
+        memcpy(Result->Name, Name, (length + 1) * sizeof(Char8));
 
 		return Result;
 	}
 
-	PUGI__FN XPathVariable* new_XPathVariable(XPathValueType Type, const char_t* Name)
+    PUGI__FN XPathVariable* new_XPathVariable(XPathValueType Type, const Char8* Name)
 	{
 		switch (Type)
 		{
@@ -6509,22 +6509,22 @@ PUGI__NS_BEGIN
 		}
 	}
 
-	PUGI__FN XPathVariable* GetVariable(XPathVariableSet* set, const char_t* begin, const char_t* end)
+    PUGI__FN XPathVariable* GetVariable(XPathVariableSet* set, const Char8* begin, const Char8* end)
 	{
-		char_t buffer[32];
+        Char8 buffer[32];
 
 		size_t length = static_cast<size_t>(end - begin);
-		char_t* scratch = buffer;
+        Char8* scratch = buffer;
 
 		if (length >= sizeof(buffer) / sizeof(buffer[0]))
 		{
 			// need to make dummy on-heap copy
-			scratch = static_cast<char_t*>(Memory::allocate((length + 1) * sizeof(char_t)));
+            scratch = static_cast<Char8*>(Memory::allocate((length + 1) * sizeof(Char8)));
 			if (!scratch) return 0;
 		}
 
 		// copy string to zero-terminated buffer and perform lookup
-		memcpy(scratch, begin, length * sizeof(char_t));
+        memcpy(scratch, begin, length * sizeof(Char8));
 		scratch[length] = 0;
 
 		XPathVariable* Result = set->Get(scratch);
@@ -6733,14 +6733,14 @@ PUGI__NS_BEGIN
 
 	struct XPathLexerString
 	{
-		const char_t* begin;
-		const char_t* end;
+        const Char8* begin;
+        const Char8* end;
 
 		XPathLexerString(): begin(0), end(0)
 		{
 		}
 
-		bool operator==(const char_t* other) const
+        bool operator==(const Char8* other) const
 		{
 			size_t length = static_cast<size_t>(end - begin);
 
@@ -6750,26 +6750,26 @@ PUGI__NS_BEGIN
 
 	class XPathLexer
 	{
-		const char_t* _cur;
-		const char_t* _cur_lexeme_pos;
+        const Char8* _cur;
+        const Char8* _cur_lexeme_pos;
 		XPathLexerString _cur_lexeme_contents;
 
 		lexeme_t _cur_lexeme;
 
 	public:
-		explicit XPathLexer(const char_t* query): _cur(query)
+        explicit XPathLexer(const Char8* query): _cur(query)
 		{
 			next();
 		}
 
-		const char_t* state() const
+        const Char8* state() const
 		{
 			return _cur;
 		}
 
 		void next()
 		{
-			const char_t* cur = _cur;
+            const Char8* cur = _cur;
 
 			while (PUGI__IS_CHARTYPE(*cur, ct_space)) ++cur;
 
@@ -6954,7 +6954,7 @@ PUGI__NS_BEGIN
 			case '"':
 			case '\'':
 			{
-				char_t terminator = *cur;
+                Char8 terminator = *cur;
 
 				++cur;
 
@@ -7041,7 +7041,7 @@ PUGI__NS_BEGIN
 			return _cur_lexeme;
 		}
 
-		const char_t* current_pos() const
+        const Char8* current_pos() const
 		{
 			return _cur_lexeme_pos;
 		}
@@ -7172,13 +7172,13 @@ PUGI__NS_BEGIN
 		union
 		{
 			// Value for ast_string_constant
-			const char_t* string;
+            const Char8* string;
 			// Value for ast_number_constant
 			double number;
 			// variable for ast_variable
 			XPathVariable* variable;
 			// node test for ast_step (node Name/namespace/node Type/pi target)
-			const char_t* nodetest;
+            const Char8* nodetest;
 		} _data;
 
 		XPathAstNode(const XPathAstNode&);
@@ -7383,7 +7383,7 @@ PUGI__NS_BEGIN
 		{
 			if (!a) return;
 
-			const char_t* Name = a.Name();
+            const Char8* Name = a.Name();
 
 			// There are no GetAttribute nodes corresponding to attributes that declare namespaces
 			// That is, "xmlns:..." or "xmlns"
@@ -7754,7 +7754,7 @@ PUGI__NS_BEGIN
 		}
 
 	public:
-		XPathAstNode(ast_type_t Type, XPathValueType retType_, const char_t* Value):
+        XPathAstNode(ast_type_t Type, XPathValueType retType_, const Char8* Value):
 			_type(static_cast<char>(Type)), _retType(static_cast<char>(retType_)), _axis(0), _test(0), _left(0), _right(0), _next(0)
 		{
 			assert(Type == ast_string_constant);
@@ -7780,7 +7780,7 @@ PUGI__NS_BEGIN
 		{
 		}
 
-		XPathAstNode(ast_type_t Type, XPathAstNode* left, axis_t axis, nodetest_t test, const char_t* contents):
+        XPathAstNode(ast_type_t Type, XPathAstNode* left, axis_t axis, nodetest_t test, const Char8* contents):
 			_type(static_cast<char>(Type)), _retType(XPathTypeNodeSet), _axis(static_cast<char>(axis)), _test(static_cast<char>(test)), _left(left), _right(0), _next(0)
 		{
 			_data.nodetest = contents;
@@ -7870,10 +7870,10 @@ PUGI__NS_BEGIN
 
 					if (a)
 					{
-						const char_t* Value = a.Value();
+                        const Char8* Value = a.Value();
 
 						// strnicmp / strncasecmp is not portable
-						for (const char_t* lit = lang.c_str(); *lit; ++lit)
+                        for (const Char8* lit = lang.c_str(); *lit; ++lit)
 						{
 							if (tolower_ascii(*lit) != tolower_ascii(*Value)) return false;
 							++Value;
@@ -8097,13 +8097,13 @@ PUGI__NS_BEGIN
 			for (size_t i = 0; i < count; ++i) length += buffer[i].length();
 
 			// create final string
-			char_t* Result = static_cast<char_t*>(stack.Result->allocate((length + 1) * sizeof(char_t)));
+            Char8* Result = static_cast<Char8*>(stack.Result->allocate((length + 1) * sizeof(Char8)));
 			assert(Result);
 
-			char_t* ri = Result;
+            Char8* ri = Result;
 
 			for (size_t j = 0; j < count; ++j)
-				for (const char_t* bi = buffer[j].c_str(); *bi; ++bi)
+                for (const Char8* bi = buffer[j].c_str(); *bi; ++bi)
 					*ri++ = *bi;
 
 			*ri = 0;
@@ -8187,7 +8187,7 @@ PUGI__NS_BEGIN
 				XPathString s = _left->eval_string(c, swapped_stack);
 				XPathString p = _right->eval_string(c, swapped_stack);
 
-				const char_t* pos = FindSubstring(s.c_str(), p.c_str());
+                const Char8* pos = FindSubstring(s.c_str(), p.c_str());
 
 				return pos ? XPathString(s.c_str(), pos, stack.Result) : XPathString();
 			}
@@ -8201,10 +8201,10 @@ PUGI__NS_BEGIN
 				XPathString s = _left->eval_string(c, swapped_stack);
 				XPathString p = _right->eval_string(c, swapped_stack);
 
-				const char_t* pos = FindSubstring(s.c_str(), p.c_str());
+                const Char8* pos = FindSubstring(s.c_str(), p.c_str());
 				if (!pos) return XPathString();
 
-				const char_t* Result = pos + p.length();
+                const Char8* Result = pos + p.length();
 
 				return s.uses_heap() ? XPathString(Result, stack.Result) : XPathStringConst(Result);
 			}
@@ -8226,7 +8226,7 @@ PUGI__NS_BEGIN
 				size_t pos = first < 1 ? 1 : static_cast<size_t>(first);
 				assert(1 <= pos && pos <= s_length + 1);
 
-				const char_t* rbegin = s.c_str() + (pos - 1);
+                const Char8* rbegin = s.c_str() + (pos - 1);
 
 				return s.uses_heap() ? XPathString(rbegin, stack.Result) : XPathStringConst(rbegin);
 			}
@@ -8252,8 +8252,8 @@ PUGI__NS_BEGIN
 				size_t end = last >= s_length + 1 ? s_length + 1 : static_cast<size_t>(last);
 
 				assert(1 <= pos && pos <= end && end <= s_length + 1);
-				const char_t* rbegin = s.c_str() + (pos - 1);
-				const char_t* rend = s.c_str() + (end - 1);
+                const Char8* rbegin = s.c_str() + (pos - 1);
+                const Char8* rend = s.c_str() + (end - 1);
 
 				return (end == s_length + 1 && !s.uses_heap()) ? XPathStringConst(rbegin) : XPathString(rbegin, rend, stack.Result);
 			}
@@ -8498,7 +8498,7 @@ PUGI__NS_BEGIN
 		XPathAllocator* _alloc;
 		XPathLexer _lexer;
 
-		const char_t* _query;
+        const Char8* _query;
 		XPathVariableSet* _variables;
 
 		XPathParseResult* _Result;
@@ -8537,16 +8537,16 @@ PUGI__NS_BEGIN
 			return Result;
 		}
 
-		const char_t* alloc_string(const XPathLexerString& Value)
+        const Char8* alloc_string(const XPathLexerString& Value)
 		{
 			if (Value.begin)
 			{
 				size_t length = static_cast<size_t>(Value.end - Value.begin);
 
-				char_t* c = static_cast<char_t*>(_alloc->allocate_nothrow((length + 1) * sizeof(char_t)));
+                Char8* c = static_cast<Char8*>(_alloc->allocate_nothrow((length + 1) * sizeof(Char8)));
 				if (!c) throw_error_oom();
 
-				memcpy(c, Value.begin, length * sizeof(char_t));
+                memcpy(c, Value.begin, length * sizeof(Char8));
 				c[length] = 0;
 
 				return c;
@@ -8817,7 +8817,7 @@ PUGI__NS_BEGIN
 
 			case lex_quoted_string:
 			{
-				const char_t* Value = alloc_string(_lexer.contents());
+                const Char8* Value = alloc_string(_lexer.contents());
 
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_string_constant, XPathTypeString, Value);
 				_lexer.next();
@@ -9129,7 +9129,7 @@ PUGI__NS_BEGIN
 				if (_lexer.current() == lex_string)
 				{
 					// This is either a function call, or not - if not, we shall proceed with location Path
-					const char_t* state = _lexer.state();
+                    const Char8* state = _lexer.state();
 
 					while (PUGI__IS_CHARTYPE(*state, ct_space)) ++state;
 
@@ -9325,7 +9325,7 @@ PUGI__NS_BEGIN
 			return ParseOrExpression();
 		}
 
-		XPathParser(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* Result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _Result(Result)
+        XPathParser(const Char8* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* Result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _Result(Result)
 		{
 		}
 
@@ -9342,7 +9342,7 @@ PUGI__NS_BEGIN
 			return Result;
 		}
 
-		static XPathAstNode* parse(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* Result)
+        static XPathAstNode* parse(const Char8* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* Result)
 		{
 			XPathParser parser(query, variables, alloc, Result);
 
@@ -9612,7 +9612,7 @@ namespace XML
 	{
 	}
 
-	PUGI__FN const char_t* XPathVariable::Name() const
+    PUGI__FN const Char8* XPathVariable::Name() const
 	{
 		switch (_type)
 		{
@@ -9649,9 +9649,9 @@ namespace XML
 		return (_type == XPathTypeNumber) ? static_cast<const internal::XPathVariableNumber*>(this)->Value : internal::gen_nan();
 	}
 
-	PUGI__FN const char_t* XPathVariable::GetString() const
+    PUGI__FN const Char8* XPathVariable::GetString() const
 	{
-		const char_t* Value = (_type == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
+        const Char8* Value = (_type == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
         return Value ? Value : "";
 	}
 
@@ -9676,16 +9676,16 @@ namespace XML
 		return true;
 	}
 
-	PUGI__FN bool XPathVariable::Set(const char_t* Value)
+    PUGI__FN bool XPathVariable::Set(const Char8* Value)
 	{
 		if (_type != XPathTypeString) return false;
 
 		internal::XPathVariableString* var = static_cast<internal::XPathVariableString*>(this);
 
 		// duplicate string
-		size_t size = (internal::strlength(Value) + 1) * sizeof(char_t);
+        size_t size = (internal::strlength(Value) + 1) * sizeof(Char8);
 
-		char_t* copy = static_cast<char_t*>(internal::Memory::allocate(size));
+        Char8* copy = static_cast<Char8*>(internal::Memory::allocate(size));
 		if (!copy) return false;
 
 		memcpy(copy, Value, size);
@@ -9727,7 +9727,7 @@ namespace XML
 		}
 	}
 
-	PUGI__FN XPathVariable* XPathVariableSet::find(const char_t* Name) const
+    PUGI__FN XPathVariable* XPathVariableSet::find(const Char8* Name) const
 	{
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]);
 		size_t hash = internal::hash_string(Name) % hash_size;
@@ -9740,7 +9740,7 @@ namespace XML
 		return 0;
 	}
 
-	PUGI__FN XPathVariable* XPathVariableSet::Add(const char_t* Name, XPathValueType Type)
+    PUGI__FN XPathVariable* XPathVariableSet::Add(const Char8* Name, XPathValueType Type)
 	{
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]);
 		size_t hash = internal::hash_string(Name) % hash_size;
@@ -9764,41 +9764,41 @@ namespace XML
 		return Result;
 	}
 
-	PUGI__FN bool XPathVariableSet::Set(const char_t* Name, bool Value)
+    PUGI__FN bool XPathVariableSet::Set(const Char8* Name, bool Value)
 	{
 		XPathVariable* var = Add(Name, XPathTypeBoolean);
 		return var ? var->Set(Value) : false;
 	}
 
-	PUGI__FN bool XPathVariableSet::Set(const char_t* Name, double Value)
+    PUGI__FN bool XPathVariableSet::Set(const Char8* Name, double Value)
 	{
 		XPathVariable* var = Add(Name, XPathTypeNumber);
 		return var ? var->Set(Value) : false;
 	}
 
-	PUGI__FN bool XPathVariableSet::Set(const char_t* Name, const char_t* Value)
+    PUGI__FN bool XPathVariableSet::Set(const Char8* Name, const Char8* Value)
 	{
 		XPathVariable* var = Add(Name, XPathTypeString);
 		return var ? var->Set(Value) : false;
 	}
 
-	PUGI__FN bool XPathVariableSet::Set(const char_t* Name, const XPathNodeSet& Value)
+    PUGI__FN bool XPathVariableSet::Set(const Char8* Name, const XPathNodeSet& Value)
 	{
 		XPathVariable* var = Add(Name, XPathTypeNodeSet);
 		return var ? var->Set(Value) : false;
 	}
 
-	PUGI__FN XPathVariable* XPathVariableSet::Get(const char_t* Name)
+    PUGI__FN XPathVariable* XPathVariableSet::Get(const Char8* Name)
 	{
 		return find(Name);
 	}
 
-	PUGI__FN const XPathVariable* XPathVariableSet::Get(const char_t* Name) const
+    PUGI__FN const XPathVariable* XPathVariableSet::Get(const Char8* Name) const
 	{
 		return find(Name);
 	}
 
-	PUGI__FN XPathQuery::XPathQuery(const char_t* query, XPathVariableSet* variables): _impl(0)
+    PUGI__FN XPathQuery::XPathQuery(const Char8* query, XPathVariableSet* variables): _impl(0)
 	{
 		internal::XPathQueryImpl* qimpl = internal::XPathQueryImpl::create();
 
@@ -9873,7 +9873,7 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN size_t XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const
+    PUGI__FN size_t XPathQuery::EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const
 	{
 		internal::XPathStackData sd;
 
@@ -9886,7 +9886,7 @@ namespace XML
 			size_t size = (full_size < capacity) ? full_size : capacity;
 			assert(size > 0);
 
-			memcpy(buffer, r.c_str(), (size - 1) * sizeof(char_t));
+            memcpy(buffer, r.c_str(), (size - 1) * sizeof(Char8));
 			buffer[size - 1] = 0;
 		}
 
@@ -9942,7 +9942,7 @@ namespace XML
 		return !_impl;
 	}
 
-	PUGI__FN XPathNode Node::FindSingleNode(const char_t* query, XPathVariableSet* variables) const
+    PUGI__FN XPathNode Node::FindSingleNode(const Char8* query, XPathVariableSet* variables) const
 	{
 		XPathQuery q(query, variables);
 		return FindSingleNode(q);
@@ -9954,7 +9954,7 @@ namespace XML
 		return s.Empty() ? XPathNode() : s.first();
 	}
 
-	PUGI__FN XPathNodeSet Node::FindNodes(const char_t* query, XPathVariableSet* variables) const
+    PUGI__FN XPathNodeSet Node::FindNodes(const Char8* query, XPathVariableSet* variables) const
 	{
 		XPathQuery q(query, variables);
 		return FindNodes(q);

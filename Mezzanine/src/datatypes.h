@@ -139,10 +139,10 @@ namespace Mezzanine
     /// @details This is a typedef to const String, but could change.
     typedef const String ConstString;
 
-    /// @typedef Character
+    /// @typedef Char8
     /// @brief A datatype to represent one character.
     /// @details This should be a char if String is an std::string.
-    typedef char Character;
+    typedef char Char8;
 
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.

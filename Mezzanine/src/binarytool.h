@@ -102,7 +102,7 @@ namespace Mezzanine
         /// @brief Is a character a valid Base64 character
         /// @param Character a single char to check if it could possibly be valid base64
         /// @return True if the character could be part of a valid block of Base64 text, false otherwise
-        bool IsBase64(unsigned char Character);
+        bool IsBase64(unsigned char Char8);
 
         /// @brief Convert a binary buffer to a Base64 string.
         /// @param BytesToEncode A pointer to the beginning of the buffer.

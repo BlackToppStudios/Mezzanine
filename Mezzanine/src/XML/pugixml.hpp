@@ -58,7 +58,7 @@
 #ifndef PUGIXML_FUNCTION
 #	define PUGIXML_FUNCTION PUGIXML_API
 #endif
-////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
+
 // Character interface macros
 #ifdef PUGIXML_WCHAR_MODE
 #	define PUGIXML_TEXT(t) L ## t
@@ -67,7 +67,6 @@
 #	define PUGIXML_TEXT(t) t
 #	define PUGIXML_CHAR char
 #endif
-
 namespace pugi
 {
 	// Character type used for all internal storage and operations; depends on PUGIXML_WCHAR_MODE
@@ -95,6 +94,9 @@ namespace pugi
 		node_declaration,	// Document declaration, i.e. '<?xml version="1.0"?>'
 		node_doctype		// Document type declaration, i.e. '<!DOCTYPE doc>'
 	};
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
+
 
 	// Parsing options
 

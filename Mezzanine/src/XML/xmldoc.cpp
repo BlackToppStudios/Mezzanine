@@ -60,8 +60,8 @@ namespace Mezzanine
 
         String GetOneTag(std::istream& stream )     // this function might be optimizes by counting characters, then copying several characters, or something like that.
         {
-            Character ReadOne = 0;
-            Character PrevOne = 0;
+            Char8 ReadOne = 0;
+            Char8 PrevOne = 0;
             Integer TagCount = 0;
             bool HaveSlash = false;
             bool InText = false;

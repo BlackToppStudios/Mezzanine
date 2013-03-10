@@ -1995,37 +1995,6 @@ namespace Mezzanine
         /// @brief The same document encoding wchar_t has (usually either UTF16 or UTF32)
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @enum NodeType
-        /// @brief The types of nodes.
-
-        /// @var NodeNull
-        /// @brief Empty (null) node handle.
-
-        /// @var NodeDocument
-        /// @brief A document tree's absolute root.
-
-        /// @var NodeElement
-        /// @brief Element tag, i.e. '\<node/\>'.
-
-        /// @var NodePcdata
-        /// @brief Plain character data, i.e. 'text'.
-
-        /// @var NodeCdata
-        /// @brief Character data, i.e. '\<![CDATA[text]]\>'.
-
-        /// @var NodeComment
-        /// @brief Comment tag, i.e. '\<!-- text --\>'.
-
-        /// @var NodePi
-        /// @brief Processing instructions to the XML parser, i.e. '<?name?>'.
-
-        /// @var NodeDeclaration
-        /// @brief Document declaration, i.e. '<?xml version="1.0"?>'.
-
-        /// @var NodeDocType
-        /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @var Mezzanine::XML::ParseMinimal
         /// @brief Minimal parsing mode (equivalent to turning all other flags off).
         /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.

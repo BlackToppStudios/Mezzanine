@@ -106,30 +106,25 @@
 
 namespace Mezzanine {
 
-////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-
-namespace XML
-{
-	/// @brief Used to represent a UTF8 code point, char, or wchar_t depending on how compiled.
-	typedef Character char_t;
-}
 
 // The PugiXML namespace
 namespace XML
 {
-	// Tree node Types
+    /// @brief The types of nodes that could be in the XML Tree.
 	enum NodeType
 	{
-		NodeNull,			// Empty (null) node handle
-		NodeDocument,		// A document tree's absolute GetRoot
-		NodeElement,		// Element tag, i.e. '<node/>'
-		NodePcdata,		// Plain character data, i.e. 'text'
-		NodeCdata,			// Character data, i.e. '<![CDATA[text]]>'
-		NodeComment,		// Comment tag, i.e. '<!-- text -->'
-		NodePi,			// Processing instruction, i.e. '<?Name?>'
-		NodeDeclaration,	// Document declaration, i.e. '<?xml version="1.0"?>'
-		NodeDocType		// Document Type declaration, i.e. '<!DOCTYPE doc>'
+        NodeNull,			///< Empty (null) node handle
+        NodeDocument,		///< A document tree's absolute GetRoot
+        NodeElement,		///< Element tag, i.e. '\<node/\>'
+        NodePcdata,         ///< Plain character data, i.e. 'text'
+        NodeCdata,			///< Character data, i.e. '\<![CDATA[text]]\>'
+        NodeComment,		///< Comment tag, i.e. '\<!-- text --\>'
+        NodePi,             ///< Processing instruction, i.e. '\<?Name?\>'
+        NodeDeclaration,	///< Document declaration, i.e. '\<?xml version="1.0"?\>'
+        NodeDocType         ///< Document Type declaration, i.e. '\<!DOCTYPE doc\>'
 	};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// Parsing options
 
@@ -366,11 +361,11 @@ namespace XML
 		bool Empty() const;
 
 		// Get GetAttribute Name/Value, or "" if GetAttribute is empty
-		const char_t* Name() const;
-		const char_t* Value() const;
+        const Char8* Name() const;
+        const Char8* Value() const;
 
 		// Get GetAttribute Value, or the default Value if GetAttribute is empty
-        const char_t* AsString(const char_t* def = "") const;
+        const Char8* AsString(const Char8* def = "") const;
 
 		// Get GetAttribute Value as a number, or the default Value if conversion did not succeed or GetAttribute is empty
 		int AsInt(int def = 0) const;
@@ -388,7 +383,7 @@ namespace XML
 		/// @brief Set the name of .
 		/// @param rhs The desired name.
 		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
-		bool SetName(const char_t* rhs);
+        bool SetName(const Char8* rhs);
 		/// @brief Set the name of this object
 		/// @param rhs The desired name .
 		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
@@ -399,7 +394,7 @@ namespace XML
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
 		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
-		bool SetValue(const char_t* rhs);
+        bool SetValue(const Char8* rhs);
 
 		// Set GetAttribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
@@ -438,7 +433,7 @@ namespace XML
 		}
 
 		// Set GetAttribute Value (equivalent to SetValue without error checking)
-		Attribute& operator=(const char_t* rhs);
+        Attribute& operator=(const Char8* rhs);
 		Attribute& operator=(int rhs);
 		Attribute& operator=(unsigned int rhs);
 		Attribute& operator=(double rhs);
@@ -503,8 +498,8 @@ namespace XML
 		NodeType Type() const;
 
 		// Get node Name/Value, or "" if node is empty or it has no Name/Value
-		const char_t* Name() const;
-		const char_t* Value() const;
+        const Char8* Name() const;
+        const Char8* Value() const;
 
 		// Get GetAttribute list
 		Attribute GetFirstAttribute() const;
@@ -531,28 +526,28 @@ namespace XML
 		/// @brief Attempt to get a child Node with a given name.
 		/// @param Name The name of the desired child Node.
 		/// @return A Node that represents the first desired child, or an empty Node on failure.
-		Node GetChild(const char_t* Name) const;
+        Node GetChild(const Char8* Name) const;
 		/// @brief Attempt to get a child Node with a given name.
 		/// @param Name The name of the desired child Node.
 		/// @return A Node that represents the first desired child, or an empty Node on failure.
 		Node GetChild(const String& Name) const
 			{ return GetChild(Name.c_str()); }
 
-		Attribute GetAttribute(const char_t* Name) const;
-		Node GetNextSibling(const char_t* Name) const;
-		Node GetPreviousSibling(const char_t* Name) const;
+        Attribute GetAttribute(const Char8* Name) const;
+        Node GetNextSibling(const Char8* Name) const;
+        Node GetPreviousSibling(const Char8* Name) const;
 
 		// Get GetChild Value of current node; that is, Value of the first GetChild node of Type PCDATA/CDATA
-		const char_t* ChildValue() const;
+        const Char8* ChildValue() const;
 
 		// Get GetChild Value of GetChild with specified Name. Equivalent to GetChild(Name).ChildValue().
-		const char_t* ChildValue(const char_t* Name) const;
+        const Char8* ChildValue(const Char8* Name) const;
 
 		// Set node Name/Value (returns false if node is empty, there is not enough memory, or node can not have Name/Value)
 		/// @brief Set the name of .
 		/// @param rhs The desired name.
 		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
-		bool SetName(const char_t* rhs);
+        bool SetName(const Char8* rhs);
 		/// @brief Set the name of this object
 		/// @param rhs The desired name .
 		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
@@ -563,7 +558,7 @@ namespace XML
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
 		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
-		bool SetValue(const char_t* rhs);
+        bool SetValue(const Char8* rhs);
 
 		// Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors.
 
@@ -573,15 +568,15 @@ namespace XML
 		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
 		/// fail and return an empty attribute if this Node is empty.
 		/// @return The created Attribute or an empty Attribute on Failure.
-		Attribute AppendAttribute(const char_t* Name);
+        Attribute AppendAttribute(const Char8* Name);
 		/// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
 		/// @param Name The name of the New attribute to be created
 		/// @return The created Attribute or an empty Attribute on Failure.
 		Attribute AppendAttribute(const String& Name)
 			{ return AppendAttribute(Name.c_str()); }
-		Attribute PrependAttribute(const char_t* Name);
-		Attribute InsertAttributeAfter(const char_t* Name, const Attribute& attr);
-		Attribute InsertAttributeBefore(const char_t* Name, const Attribute& attr);
+        Attribute PrependAttribute(const Char8* Name);
+        Attribute InsertAttributeAfter(const Char8* Name, const Attribute& attr);
+        Attribute InsertAttributeBefore(const Char8* Name, const Attribute& attr);
 
 		// Add a copy of the specified GetAttribute. Returns added GetAttribute, or empty GetAttribute on errors.
 
@@ -630,7 +625,7 @@ namespace XML
 		/// @param Name The name of the Node to be created.
 		/// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.
 		/// @return The desired Node on success, an empty Node on failure.
-		Node AppendChild(const char_t* Name);
+        Node AppendChild(const Char8* Name);
 		/// @brief Creates an element Node as a child of this Node, with the given name.
 		/// @param Name The name of the Node to be created.
 		/// @details Calls @ref Node::AppendChild(const char_t*)
@@ -641,7 +636,7 @@ namespace XML
 		/// @param Name The name of the Node to be created.
 		/// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.
 		/// @return The desired Node on success, an empty Node on failure.
-		Node PrependChild(const char_t* Name);
+        Node PrependChild(const Char8* Name);
 		/// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
 		/// @param Name The name of the Node to be created.
 		/// @details Calls @ref Node::PrependChild(const char_t*);
@@ -654,13 +649,13 @@ namespace XML
 		/// @param node The node just before were the Create node is to be placed.
 		/// @details Calls Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.
 		/// @return The desired Node on success, an empty Node on failure.
-		Node InsertChildAfter(const char_t* Name, const Node& node);
+        Node InsertChildAfter(const Char8* Name, const Node& node);
 		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
 		/// @param Name The name of the Node to be created.
 		/// @param node The node just after were the Create node is to be placed.
 		/// @details Calls Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType.
 		/// @return The desired Node on success, an empty Node on failure.
-		Node InsertChildBefore(const char_t* Name, const Node& node);
+        Node InsertChildBefore(const Char8* Name, const Node& node);
 
 		/// @brief Copies a Node and puts the copy at the end of the list of this Nodes Childrem.
 		/// @param proto The Node to be copied. If this is emptry, no work is performed.
@@ -685,7 +680,7 @@ namespace XML
 
 		// Remove specified attribute
 		bool RemoveAttribute(const Attribute& a);
-		bool RemoveAttribute(const char_t* Name);
+        bool RemoveAttribute(const Char8* Name);
 
 		// Remove specified GetChild
 		bool RemoveChild(const Node& n);
@@ -693,7 +688,7 @@ namespace XML
 		/// @brief Remove child element as specified by name.
 		/// @param Name The name of the Node to remove.
 		/// @return True if the removal was successful, false otherwise
-		bool RemoveChild(const char_t* Name);
+        bool RemoveChild(const Char8* Name);
 
 		/// @brief Search for an Attribute using a function to check each Attribute individually.
 		/// @param pred a pointer to a function that accepts an Attribute, and returns bool.
@@ -761,28 +756,28 @@ namespace XML
 		}
 
 		// Find GetChild node by GetAttribute Name/Value
-		Node FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const;
+        Node FindChildbyAttribute(const Char8* Name, const Char8* AttrName, const Char8* AttrValue) const;
 		/// @brief Find a Node by an Attribute it has.
 		/// @param AttrName The name of the matching Attribute.
 		/// @param AttrValue The value of the matching Attribute.
 		/// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
 		/// @return The First matching XML::Node
-		Node FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const;
+        Node FindChildbyAttribute(const Char8* AttrName, const Char8* AttrValue) const;
 
 	#ifndef XML_NO_STL
 		// Get the absolute node Path from GetRoot as a text string.
-		String Path(char_t delimiter = '/') const;
+        String Path(Char8 delimiter = '/') const;
 	#endif
 
 		// Search for a node by Path consisting of node names and . or .. elements.
-		Node FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
+        Node FirstElementByPath(const Char8* Path, Char8 delimiter = '/') const;
 
 		// Recursively Traverse subtree with TreeWalker
 		bool Traverse(TreeWalker& walker);
 
 	#ifndef XML_NO_XPATH
 		// Select single node by evaluating XPath query. Returns first node from the Resulting node set.
-		XPathNode FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
+        XPathNode FindSingleNode(const Char8* query, XPathVariableSet* variables = 0) const;
 		XPathNode FindSingleNode(const XPathQuery& query) const;
 
 		// Select node set by evaluating XPath query
@@ -791,7 +786,7 @@ namespace XML
 		/// @param query The XPath query as a c-string to be evaluated.
 		/// @param variables undocumented.
 		/// @return An XPathNodeSet with the Matchs of the XPath query.
-		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
+        XPathNodeSet FindNodes(const Char8* query, XPathVariableSet* variables = 0) const;
 
 		/// @brief Select a group of nodes by evaluating an XPath query.
 		/// @param query The XPath query XPathQuery class instance.
@@ -809,7 +804,7 @@ namespace XML
 		/// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
-        void Print(Writer& WriterInstance, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
+        void Print(Writer& WriterInstance, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
 
 	#ifndef XML_NO_STL
 		// Print subtree to stream
@@ -821,7 +816,7 @@ namespace XML
 		/// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
-        void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
+        void Print(std::basic_ostream<char, std::char_traits<char> >& os, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
 
 		/// @brief Output the XML document using a Output Stream.
 		/// @param os An output stream to send xml text to.
@@ -829,7 +824,7 @@ namespace XML
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault
 		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
 		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
-        void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = "\t", unsigned int flags = FormatDefault, unsigned int Depth = 0) const;
+        void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const Char8* indent = "\t", unsigned int flags = FormatDefault, unsigned int Depth = 0) const;
 	#endif
 
 		// Child nodes iterators
@@ -846,7 +841,7 @@ namespace XML
 
 		// Range-based for support
 		ObjectRange<NodeIterator> GetChildren() const;
-		ObjectRange<NamedNode_iterator> GetChildren(const char_t* Name) const;
+        ObjectRange<NamedNode_iterator> GetChildren(const Char8* Name) const;
 		ObjectRange<AttributeIterator> attributes() const;
 
 		// Get node Offset in parsed file/string (in char_t units) for debugging purposes
@@ -894,10 +889,10 @@ namespace XML
 		bool Empty() const;
 
 		// Get text, or "" if object is empty
-		const char_t* Get() const;
+        const Char8* Get() const;
 
 		// Get text, or the default Value if object is empty
-        const char_t* AsString(const char_t* def = "") const;
+        const Char8* AsString(const Char8* def = "") const;
 
 		// Get text as a number, or the default Value if conversion did not succeed or object is empty
 		int AsInt(int def = 0) const;
@@ -912,7 +907,7 @@ namespace XML
 		bool AsBool(bool def = false) const;
 
 		// Set text (returns false if object is empty or there is not enough memory)
-		bool Set(const char_t* rhs);
+        bool Set(const Char8* rhs);
 
 		// Set text with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
 		bool Set(int rhs);
@@ -921,7 +916,7 @@ namespace XML
 		bool Set(bool rhs);
 
 		// Set text (equivalent to set without error checking)
-		Text& operator=(const char_t* rhs);
+        Text& operator=(const Char8* rhs);
 		Text& operator=(int rhs);
 		Text& operator=(unsigned int rhs);
 		Text& operator=(double rhs);
@@ -1039,7 +1034,7 @@ namespace XML
 		NamedNode_iterator();
 
 		// Construct an iterator which points to the specified node
-		NamedNode_iterator(const Node& node, const char_t* Name);
+        NamedNode_iterator(const Node& node, const Char8* Name);
 
 		// Iterator operators
 		bool operator==(const NamedNode_iterator& rhs) const;
@@ -1053,7 +1048,7 @@ namespace XML
 
 	private:
 		mutable Node _node;
-		const char_t* _Name;
+        const Char8* _Name;
 	};
 
 	// Abstract tree walker class (see Node::Traverse)
@@ -1132,7 +1127,7 @@ namespace XML
 	class MEZZ_LIB Document: public Node
 	{
 	private:
-		char_t* _buffer;
+        Char8* _buffer;
 
 		char _memory[192];
 
@@ -1172,7 +1167,7 @@ namespace XML
 	#endif
 
 		// Load document from zero-terminated string. No DocumentEncoding conversions are applied.
-		ParseResult Load(const char_t* contents, unsigned int options = ParseDefault);
+        ParseResult Load(const Char8* contents, unsigned int options = ParseDefault);
 
 		// Load document from file
 		/// @brief Load document from file
@@ -1218,7 +1213,7 @@ namespace XML
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-        void Save(Resource::DataStream& stream, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        void Save(Resource::DataStream& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 
 
@@ -1227,16 +1222,16 @@ namespace XML
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-        void Save(Writer& WriterInstance, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        void Save(Writer& WriterInstance, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 	#ifndef XML_NO_STL
 		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details).
-        void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 		/// @brief Save XML document to a stream of wide characters.
 		/// @param stream The output stream of wide characters to send the XML document to.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-        void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = "\t", unsigned int flags = FormatDefault) const;
+        void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault) const;
 	#endif
 
 		/// @brief Save XML to file.
@@ -1245,14 +1240,14 @@ namespace XML
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return False if the target file could not be opened for writing
-        bool SaveFile(const char* Path, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        bool SaveFile(const char* Path, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 		/// @brief Save XML to file.
 		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
 		/// @return False if the target file could not be opened for writing
-        bool SaveFile(const wchar_t* Path, const char_t* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        bool SaveFile(const wchar_t* Path, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
 		// Get document element
 		/// @brief Get document element
@@ -1308,7 +1303,7 @@ namespace XML
 
 	public:
 		// Get variable name
-		const char_t* Name() const;
+        const Char8* Name() const;
 
 		// Get variable type
 		XPathValueType Type() const;
@@ -1325,7 +1320,7 @@ namespace XML
 		/// @brief Get this as a c-string.
 		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
 		/// @return This as a c-string of char_t, without conversion.
-		const char_t* GetString() const;
+        const Char8* GetString() const;
 		/// @brief Get this as a XPathNodeSet.
 		/// @details Get variable Value; no Type conversion is performed, if type of variable is not a XPathNodeSet then an XPathException is thrown
 		/// @throw XPathException on type mismatch or allocation error
@@ -1341,7 +1336,7 @@ namespace XML
 		/// @brief Set variable Value; no Type conversion is performed.
 		/// @param Value The value as a char_t array to attempt to put into this.
 		/// @return True is return, false is returned on Type mismatch error.
-		bool Set(const char_t* Value);
+        bool Set(const Char8* Value);
 		/// @brief Set variable Value; no Type conversion is performed.
 		/// @param Value The value to attempt to put into this.
 		/// @return True is return, false is returned on Type mismatch error.
@@ -1358,7 +1353,7 @@ namespace XML
 		XPathVariableSet(const XPathVariableSet&);
 		XPathVariableSet& operator=(const XPathVariableSet&);
 
-		XPathVariable* find(const char_t* Name) const;
+        XPathVariable* find(const Char8* Name) const;
 
 	public:
 		// Default constructor/destructor
@@ -1366,32 +1361,32 @@ namespace XML
 		~XPathVariableSet();
 
 		// Add a new variable or get the existing one, if the Types match
-		XPathVariable* Add(const char_t* Name, XPathValueType Type);
+        XPathVariable* Add(const Char8* Name, XPathValueType Type);
 
 		/// @brief Set contained variable Value; no Type conversion is performed.
 		/// @param Name The name of variable to change.
 		/// @param Value The value to attempt to put into the named variable.
 		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-		bool Set(const char_t* Name, bool Value);
+        bool Set(const Char8* Name, bool Value);
 		/// @brief Set contained variable Value; no Type conversion is performed.
 		/// @param Name The name of variable to change.
 		/// @param Value The value to attempt to put into the named variable.
 		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-		bool Set(const char_t* Name, double Value);
+        bool Set(const Char8* Name, double Value);
 		/// @brief Set contained variable Value; no Type conversion is performed.
 		/// @param Name The name of variable to change.
 		/// @param Value The value to attempt to put into the named variable.
 		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-		bool Set(const char_t* Name, const char_t* Value);
+        bool Set(const Char8* Name, const Char8* Value);
 		/// @brief Set contained variable Value; no Type conversion is performed.
 		/// @param Name The name of variable to change.
 		/// @param Value The value to attempt to put into the named variable.
 		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-		bool Set(const char_t* Name, const XPathNodeSet& Value);
+        bool Set(const Char8* Name, const XPathNodeSet& Value);
 
 		// Get existing variable by name
-		XPathVariable* Get(const char_t* Name);
-		const XPathVariable* Get(const char_t* Name) const;
+        XPathVariable* Get(const Char8* Name);
+        const XPathVariable* Get(const Char8* Name) const;
 	};
 
 	// A compiled XPath query object
@@ -1415,7 +1410,7 @@ namespace XML
 		/// @param query The query in the form of a c-string style char_t array.
 		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
 		/// @throw If XML_NO_EXCEPTIONS is not defined (which is the default), throws XPathException on compilation errors.
-		explicit XPathQuery(const char_t* query, XPathVariableSet* variables = 0);
+        explicit XPathQuery(const Char8* query, XPathVariableSet* variables = 0);
 
 		// Destructor
 		/// @brief Destructor
@@ -1456,7 +1451,7 @@ namespace XML
 		/// @param n The XPathNode that with serve as the context for the query.
 		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, this returns empty  set instead.
 		/// @return Full result size is returned (includes terminating zero).
-		size_t EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const;
+        size_t EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const;
 
 		// Evaluate expression as node set in the specified context.
 		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors.

@@ -119,7 +119,7 @@ namespace Mezzanine
             return Ret;
         }
 
-        size_t DataStream::ReadLine(Character* Buffer, size_t MaxCount, const String& Delim)
+        size_t DataStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
         {
             bool TrimCR = false;
             if(Delim.find_first_of('\n') != String::npos)
@@ -308,7 +308,7 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Stream Access and Manipulation
 
-        size_t MemoryDataStream::ReadLine(Character* Buffer, size_t MaxCount, const String& Delim)
+        size_t MemoryDataStream::ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim)
         {
             bool TrimCR = false;
             if(Delim.find_first_of('\n') != String::npos)

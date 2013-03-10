@@ -124,7 +124,7 @@ namespace Mezzanine
                 /// @param MaxCount The maximum number of bytes to read.  Usually you want this to be your buffer size.
                 /// @param Delim The character that marks the end of a line.
                 /// @return Returns the number of bytes actually read, not including the Delimiter.
-                virtual size_t ReadLine(Character* Buffer, size_t MaxCount, const String& Delim = "\n");
+                virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
                 /// @brief Gets the contents of the current line in the stream.
                 //// @remarks This function should only be used if a file was opened in binary mode.
                 /// @param Trim Whether or not to trim whitespaces on both sides of the string.
@@ -220,7 +220,7 @@ namespace Mezzanine
                 // Stream Access and Manipulation
 
                 /// @copydoc DataStream::ReadLine
-                virtual size_t ReadLine(Character* Buffer, size_t MaxCount, const String& Delim = "\n");
+                virtual size_t ReadLine(Char8* Buffer, size_t MaxCount, const String& Delim = "\n");
                 /// @copydoc DataStream::SkipLine
                 virtual size_t SkipLine(const String& Delim = "\n");
                 /// @copydoc DataStream::Read
