@@ -277,6 +277,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlwriter.h"
 
 #######################################
 # A complete listing of our source files
@@ -451,6 +452,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlwriter.cpp"
 )
 
 ###############################################################################

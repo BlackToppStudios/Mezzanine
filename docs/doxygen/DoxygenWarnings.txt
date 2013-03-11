@@ -41,7 +41,7 @@
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/widget.h:289: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/window.h:50: warning: the name `uiwindow.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:288: warning: the name `resourcedatastream.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2014: warning: documentation for unknown define XML_DEPRECATED found.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2008: warning: documentation for unknown define XML_DEPRECATED found.
 
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Resource/assetgroup.h:54: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:848: warning: Compound Mezzanine::XML::Text is not documented.
@@ -60,7 +60,7 @@
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2144: warning: no uniquely matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2138: warning: no uniquely matching class member found for 
   Mezzanine::XML::Attribute::operator=(const char_t *rhs)
 Possible candidates:
   Attribute & Mezzanine::XML::Attribute::operator=(const Char8 *rhs)' at line 420 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
@@ -69,31 +69,31 @@ Possible candidates:
   Attribute & Mezzanine::XML::Attribute::operator=(double rhs)' at line 423 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
   Attribute & Mezzanine::XML::Attribute::operator=(bool rhs)' at line 424 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2312: warning: no matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2306: warning: no matching class member found for 
   Mezzanine::XML::Node::ChildValue(const char_t *Name) const
 Possible candidates:
   const Char8 * Mezzanine::XML::Node::ChildValue() const 
   const Char8 * Mezzanine::XML::Node::ChildValue(const Char8 *Name) const 
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2370: warning: no matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2364: warning: no matching class member found for 
   Mezzanine::XML::Node::RemoveAttribute(const char_t *Name)
 Possible candidates:
   bool Mezzanine::XML::Node::RemoveAttribute(const Attribute &a)
   bool Mezzanine::XML::Node::RemoveAttribute(const Char8 *Name)
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2380: warning: no matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2374: warning: no matching class member found for 
   Mezzanine::XML::Node::FindChildbyAttribute(const char_t *Name, const char_t *AttrName, const char_t *AttrValue) const
 Possible candidates:
   Node Mezzanine::XML::Node::FindChildbyAttribute(const Char8 *Name, const Char8 *AttrName, const Char8 *AttrValue) const 
   Node Mezzanine::XML::Node::FindChildbyAttribute(const Char8 *AttrName, const Char8 *AttrValue) const 
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2406: warning: no matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2400: warning: no matching class member found for 
   Mezzanine::XML::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const
 Possible candidates:
   XPathNode Mezzanine::XML::Node::FindSingleNode(const Char8 *query, XPathVariableSet *variables=0) const 
   XPathNode Mezzanine::XML::Node::FindSingleNode(const XPathQuery &query) const 
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2667: warning: no uniquely matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2661: warning: no uniquely matching class member found for 
   Mezzanine::XML::Document::Load(const char_t *contents, unsigned int options=ParseDefault)
 Possible candidates:
   ParseResult Mezzanine::XML::Document::Load(Resource::DataStream &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)' at line 1144 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
@@ -101,13 +101,13 @@ Possible candidates:
   ParseResult Mezzanine::XML::Document::Load(std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=ParseDefault)' at line 1149 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
   ParseResult Mezzanine::XML::Document::Load(const Char8 *contents, unsigned int options=ParseDefault)' at line 1153 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2752: warning: no matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2746: warning: no matching class member found for 
   Mezzanine::XML::XPathVariableSet::Get(const char_t *Name)
 Possible candidates:
   XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name)
   const XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name) const 
 
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2757: warning: no matching class member found for 
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2751: warning: no matching class member found for 
   Mezzanine::XML::XPathVariableSet::Get(const char_t *Name) const
 Possible candidates:
   XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name)
@@ -125,17 +125,16 @@ warning: Include graph for 'mezzanine.h' not generated, too many nodes. Consider
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:231: warning: found subsubsection command outside of subsection context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:243: warning: found subsection command outside of section context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:276: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:127: warning: unexpected command endcode
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2015: warning: Unsupported xml/html tag <mesh> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2020: warning: Unsupported xml/html tag <node> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2021: warning: Unsupported xml/html tag <node> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2022: warning: Unsupported xml/html tag <innernode> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2023: warning: Unsupported xml/html tag </node> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2024: warning: Unsupported xml/html tag </mesh> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2026: warning: unexpected command endcode
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2031: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2380: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2392: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:265: warning: Unsupported xml/html tag <mesh> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:270: warning: Unsupported xml/html tag <node> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:271: warning: Unsupported xml/html tag <node> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:272: warning: Unsupported xml/html tag <innernode> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:273: warning: Unsupported xml/html tag </node> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:274: warning: Unsupported xml/html tag </mesh> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:276: warning: unexpected command endcode
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:281: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2374: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2386: warning: found subsection command outside of section context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:719: warning: found subsection command outside of section context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:727: warning: found subsubsection command outside of subsection context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:750: warning: found subsubsection command outside of subsection context!
@@ -2466,15 +2465,15 @@ warning: Include graph for 'mezzanine.h' not generated, too many nodes. Consider
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/markuptext.h:88: warning: Member Pxheight (variable) of class Mezzanine::UI::Word is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/markuptext.h:87: warning: Member Pxlength (variable) of class Mezzanine::UI::Word is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:420: warning: Member operator=(const Char8 *rhs) (function) of class Mezzanine::XML::Attribute is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2141: warning: parameters of member Mezzanine::XML::Attribute::AsBool are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2105: warning: parameters of member Mezzanine::XML::Attribute::AsDouble are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2111: warning: parameters of member Mezzanine::XML::Attribute::AsFloat are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2093: warning: parameters of member Mezzanine::XML::Attribute::AsInt are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2129: warning: parameters of member Mezzanine::XML::Attribute::AsInteger are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2117: warning: parameters of member Mezzanine::XML::Attribute::AsReal are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2135: warning: parameters of member Mezzanine::XML::Attribute::AsString are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2099: warning: parameters of member Mezzanine::XML::Attribute::AsUint are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2123: warning: parameters of member Mezzanine::XML::Attribute::AsWhole are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2135: warning: parameters of member Mezzanine::XML::Attribute::AsBool are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2099: warning: parameters of member Mezzanine::XML::Attribute::AsDouble are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2105: warning: parameters of member Mezzanine::XML::Attribute::AsFloat are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2087: warning: parameters of member Mezzanine::XML::Attribute::AsInt are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2123: warning: parameters of member Mezzanine::XML::Attribute::AsInteger are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2111: warning: parameters of member Mezzanine::XML::Attribute::AsReal are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2129: warning: parameters of member Mezzanine::XML::Attribute::AsString are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2093: warning: parameters of member Mezzanine::XML::Attribute::AsUint are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2117: warning: parameters of member Mezzanine::XML::Attribute::AsWhole are not (all) documented
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1153: warning: Member Load(const Char8 *contents, unsigned int options=ParseDefault) (function) of class Mezzanine::XML::Document is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1212: warning: Member Save(std::basic_ostream< char, std::char_traits< char > > &stream, const Char8 *indent="\t", unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class Mezzanine::XML::Document is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:828: warning: Member attributes() const  (function) of class Mezzanine::XML::Node is not documented.
@@ -2515,7 +2514,7 @@ warning: Include graph for 'mezzanine.h' not generated, too many nodes. Consider
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:453: warning: Member unspecified_bool_type)(Node ***) (typedef) of class Mezzanine::XML::Node is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:616: warning: unable to resolve reference to `Node::AppendChild(const char_t*)' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:627: warning: unable to resolve reference to `Node::PrependChild(const char_t*)' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2260: warning: unable to resolve reference to `NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2254: warning: unable to resolve reference to `NodeType' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1106: warning: Member Description() const  (function) of class Mezzanine::XML::ParseResult is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1095: warning: unable to resolve reference to `Encoding' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1089: warning: unable to resolve reference to `ParseStatus' for \ref command
