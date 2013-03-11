@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ExtendedTimer.html" target="_top" xlink:title="An enhanced timer class that can store and track many units of time.">
+<a xlink:href="classMezzanine_1_1ExtendedTimer.xhtml" target="_top" xlink:title="An enhanced timer class that can store and track many units of time.">
 <polygon fill="white" stroke="black" points="-0.5,-1 -0.5,-21 130.5,-21 130.5,-1 -0.5,-1"/>
 <text text-anchor="middle" x="65" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::ExtendedTimer</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1SimpleTimer.html" target="_top" xlink:title="A basic timer class that can be used to track short intervals of time.">
+<a xlink:href="classMezzanine_1_1SimpleTimer.xhtml" target="_top" xlink:title="A basic timer class that can be used to track short intervals of time.">
 <polygon fill="white" stroke="black" points="148,-1 148,-21 270,-21 270,-1 148,-1"/>
 <text text-anchor="middle" x="209" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::SimpleTimer</text>
 </a>

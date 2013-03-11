@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 165,-24 165,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1UI_1_1ScreenVertexData.html" target="_top" xlink:title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">
+<a xlink:href="classMezzanine_1_1UI_1_1ScreenVertexData.xhtml" target="_top" xlink:title="This class stores all vertices pertaining to a layer sorted by their priority for rendering...">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-20 159.5,-20 159.5,-0 0.5,-0"/>
 <text text-anchor="middle" x="80" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::UI::ScreenVertexData</text>
 </a>

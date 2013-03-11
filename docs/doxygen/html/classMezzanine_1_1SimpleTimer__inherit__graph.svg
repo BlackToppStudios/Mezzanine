@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers.">
+<a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
 <polygon fill="white" stroke="black" points="15,-59 15,-79 107,-79 107,-59 15,-59"/>
 <text text-anchor="middle" x="61" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>

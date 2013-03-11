@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml" target="_top" xlink:title="The interface for a script argument.">
 <polygon fill="white" stroke="black" points="20.5,-71 20.5,-103 125.5,-103 125.5,-71 20.5,-71"/>
 <text text-anchor="start" x="28.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="73" y="-78" font-family="FreeSans" font-size="10.00">::iScriptArgument</text>

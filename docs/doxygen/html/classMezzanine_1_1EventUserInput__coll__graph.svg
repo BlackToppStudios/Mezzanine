@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1EventBase.html" target="_top" xlink:title="The base class for all events.">
+<a xlink:href="classMezzanine_1_1EventBase.xhtml" target="_top" xlink:title="The base class for all events.">
 <polygon fill="white" stroke="black" points="-0.5,-61 -0.5,-81 112.5,-81 112.5,-61 -0.5,-61"/>
 <text text-anchor="middle" x="56" y="-68" font-family="FreeSans" font-size="10.00">Mezzanine::EventBase</text>
 </a>

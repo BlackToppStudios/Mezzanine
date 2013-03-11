@@ -66,7 +66,6 @@ namespace Mezzanine
 
     namespace XML
     {        
-        /// @endcode
         /// @page XMLManual Mezzanine::xml Manual
         /// This will describe how to use the XML components of the Mezzanine
         /// @section XMLTOC Table Of Contents
@@ -206,33 +205,45 @@ namespace Mezzanine
         ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeElement Element/tag node" - This is the most common type of node, which represents XML elements. Element nodes
         ///     have a name, a collection of attributes and a collection of child nodes (both of which may be empty). The attribute is a simple name/value pair. The example
         ///     XML representation of element nodes is as follows:
-        ///     @code <node attr="value"><child/></node> @endcode
+        ///     @code
+        ///         <node attr="value"><child/></node>
+        ///     @endcode
         ///     There are two element nodes here: one has name "node", single attribute "attr" and the single child "child" which has the name "child" and does not have
         ///     any attributes or child nodes. \n
         ///     - @ref Mezzanine::XML::NodeType "NodeType::NodePcdata Plain character data node" - Represent plain text in XML. PCDATA nodes have a value, but do not have a name
         ///     or children/attributes. Note that plain character data is not a part of the element node but instead has its own node; for example, an element node can have
         ///     several child PCDATA nodes. The example XML representation of text nodes is as follows:
-        ///     @code <node> text1 <child/> text2 </node> @endcode
+        ///     @code
+        ///         <node> text1 <child/> text2 </node>
+        ///     @endcode
         ///     Here "node" element has three children, two of which are PCDATA nodes with values "text1" and "text2". \n
         ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeCdata Character data nodes" - These represent text in XML that is quoted in a special way. CDATA nodes do not differ
         ///     from PCDATA nodes except in XML representation - the above text example looks like this with CDATA:
-        ///     @code <node> <![CDATA[[text1]]> <child/> <![CDATA[[text2]]> </node> @endcode
+        ///     @code
+        ///         <node> <![CDATA[[text1]]> <child/> <![CDATA[[text2]]> </node>
+        ///     @endcode
         ///     CDATA nodes make it easy to include non-escaped \<, \& and \> characters in plain text. CDATA value can not contain the character sequence ]]\>, since it is
         ///     used to determine the end of node contents. \n
         ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeComment Comment nodes" - represent comments in XML. Comment nodes have a value, but do not have a name or
         ///     children/attributes. The example XML representation of a comment node is as follows:
-        ///     @code <!-- comment text --> @endcode
+        ///     @code
+        ///         <!-- comment text -->
+        ///     @endcode
         ///     Here the comment node has value "comment text". By default comment nodes are treated as non-essential part of XML markup and are not loaded during XML parsing.
         ///     You can override this behavior with Mezzanine::XML::ParseComments flag. \n
         ///     - @ref Mezzanine::XML::NodeType "NodeType::NodePi Processing instruction node" - Represent Processing Instructions (PI) in XML. PI nodes have a name and an optional
         ///     value, but do not have children/attributes. The example XML representation of a PI node is as follows:
-        ///     @code <?name value?> @endcode
+        ///     @code
+        ///         <?name value?>
+        ///     @endcode
         ///     Here the name (also called PI target) is "name", and the value is "value". By default PI nodes are treated as non-essential part of XML markup and are not
         ///     loaded during XML parsing. You can override this behavior with Mezzanine::XML::ParsePi flag. \n
         ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeDeclaration Declaration node" - Represents document declarations in XML. Declaration nodes have a name ("xml") and an
         ///     optional collection of attributes, but do not have value or children. There can be only one declaration node in a document; moreover, it should be the topmost
         ///     node (its parent should be the document). The example XML representation of a declaration node is as follows:
-        ///     @code <?xml version="1.0"?> @endcode
+        ///     @code
+        ///         <?xml version="1.0"?>
+        ///     @endcode
         ///     Here the node has name "xml" and a single attribute with name "version" and value "1.0". By default declaration nodes are treated as non-essential part of XML
         ///     markup and are not loaded during XML parsing. You can override this behavior with Mezzanine::XML::ParseDeclaration flag. Also, by default a dummy declaration is
         ///     output when XML document is saved unless there is already a declaration in the document; you can disable this with Mezzanine::XML::FormatNoDeclaration flag. \n
@@ -240,7 +251,9 @@ namespace Mezzanine
         ///     have a value, which corresponds to the entire document type contents; no additional nodes are created for inner elements like \<!ENTITY\>. There can be only one
         ///     document type declaration node in a document; moreover, it should be the topmost node (its parent should be the document). The example XML representation of a
         ///     document type declaration node is as follows:
-        ///     @code <!DOCTYPE greeting [ <!ELEMENT greeting (#PCDATA)> ]> @endcode
+        ///     @code
+        ///         <!DOCTYPE greeting [ <!ELEMENT greeting (#PCDATA)> ]>
+        ///     @endcode
         ///     Here the node has value "greeting [ <!ELEMENT greeting (#PCDATA)> ]". By default document type declaration nodes are treated as non-essential part of XML markup
         ///     and are not loaded during XML parsing. You can override this behavior with Mezzanine::XML::ParseDocType flag. \n
         /// \n \n

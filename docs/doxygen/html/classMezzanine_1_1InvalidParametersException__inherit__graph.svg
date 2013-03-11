@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="17.5,-71 17.5,-91 126.5,-91 126.5,-71 17.5,-71"/>
 <text text-anchor="middle" x="72" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

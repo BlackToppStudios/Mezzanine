@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1SyntaxErrorException.html" target="_top" xlink:title="Thrown when some kind of syntax exception.">
+<a xlink:href="classMezzanine_1_1SyntaxErrorException.xhtml" target="_top" xlink:title="Thrown when some kind of syntax exception.">
 <polygon fill="white" stroke="black" points="10,-59 10,-79 168,-79 168,-59 10,-59"/>
 <text text-anchor="middle" x="89" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::SyntaxErrorException</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="34.5,-117 34.5,-137 143.5,-137 143.5,-117 34.5,-117"/>
 <text text-anchor="middle" x="89" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

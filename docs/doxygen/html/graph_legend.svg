@@ -16,7 +16,7 @@
 </g>
 <!-- Node10 -->
 <g id="node2" class="node"><title>Node10</title>
-<a xlink:href="$classPublicBase.html" xlink:title="PublicBase">
+<a xlink:href="$classPublicBase.xhtml" xlink:title="PublicBase">
 <polygon fill="none" stroke="black" points="64,-88 2.4869e-14,-88 0,-68 64,-68 64,-88"/>
 <text text-anchor="middle" x="32" y="-75" font-family="FreeSans" font-size="10.00">PublicBase</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node11 -->
 <g id="node4" class="node"><title>Node11</title>
-<a xlink:href="$classTruncated.html" xlink:title="Truncated">
+<a xlink:href="$classTruncated.xhtml" xlink:title="Truncated">
 <polygon fill="none" stroke="red" points="62,-156 2,-156 2,-136 62,-136 62,-156"/>
 <text text-anchor="middle" x="32" y="-143" font-family="FreeSans" font-size="10.00">Truncated</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node13 -->
 <g id="node6" class="node"><title>Node13</title>
-<a xlink:href="$classProtectedBase.html" xlink:title="ProtectedBase">
+<a xlink:href="$classProtectedBase.xhtml" xlink:title="ProtectedBase">
 <polygon fill="none" stroke="black" points="162,-88 82,-88 82,-68 162,-68 162,-88"/>
 <text text-anchor="middle" x="122" y="-75" font-family="FreeSans" font-size="10.00">ProtectedBase</text>
 </a>
@@ -52,7 +52,7 @@
 </g>
 <!-- Node14 -->
 <g id="node8" class="node"><title>Node14</title>
-<a xlink:href="$classPrivateBase.html" xlink:title="PrivateBase">
+<a xlink:href="$classPrivateBase.xhtml" xlink:title="PrivateBase">
 <polygon fill="none" stroke="black" points="248,-88 180,-88 180,-68 248,-68 248,-88"/>
 <text text-anchor="middle" x="214" y="-75" font-family="FreeSans" font-size="10.00">PrivateBase</text>
 </a>
@@ -74,7 +74,7 @@
 </g>
 <!-- Node16 -->
 <g id="node12" class="node"><title>Node16</title>
-<a xlink:href="$classTempl.html" xlink:title="Templ&lt; int &gt;">
+<a xlink:href="$classTempl.xhtml" xlink:title="Templ&lt; int &gt;">
 <polygon fill="none" stroke="black" points="436,-88 366,-88 366,-68 436,-68 436,-88"/>
 <text text-anchor="middle" x="401" y="-75" font-family="FreeSans" font-size="10.00">Templ&lt; int &gt;</text>
 </a>
@@ -86,7 +86,7 @@
 </g>
 <!-- Node17 -->
 <g id="node14" class="node"><title>Node17</title>
-<a xlink:href="$classTempl.html" xlink:title="Templ&lt; T &gt;">
+<a xlink:href="$classTempl.xhtml" xlink:title="Templ&lt; T &gt;">
 <polygon fill="none" stroke="black" points="434,-156 368,-156 368,-136 434,-136 434,-156"/>
 <text text-anchor="middle" x="401" y="-143" font-family="FreeSans" font-size="10.00">Templ&lt; T &gt;</text>
 </a>
@@ -99,7 +99,7 @@
 </g>
 <!-- Node18 -->
 <g id="node16" class="node"><title>Node18</title>
-<a xlink:href="$classUsed.html" xlink:title="Used">
+<a xlink:href="$classUsed.xhtml" xlink:title="Used">
 <polygon fill="none" stroke="black" points="492,-88 454,-88 454,-68 492,-68 492,-88"/>
 <text text-anchor="middle" x="473" y="-75" font-family="FreeSans" font-size="10.00">Used</text>
 </a>

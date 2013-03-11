@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
 <polygon fill="white" stroke="black" points="0,-83 0,-103 100,-103 100,-83 0,-83"/>
 <text text-anchor="middle" x="50" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
 <polygon fill="white" stroke="black" points="115.5,-153 115.5,-173 246.5,-173 246.5,-153 115.5,-153"/>
 <text text-anchor="middle" x="181" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>

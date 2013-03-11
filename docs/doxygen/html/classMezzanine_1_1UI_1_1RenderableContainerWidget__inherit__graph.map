@@ -1,8 +1,8 @@
 <map id="Mezzanine::UI::RenderableContainerWidget" name="Mezzanine::UI::RenderableContainerWidget">
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.html" title="This is an abstract class for the creation and storage of widgets to be used by other classes..." alt="" coords="647,5,871,49"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.html" title="Mezzanine::UI::OpenRenderable\lContainerWidget" alt="" coords="657,71,860,115"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="228,46,375,74"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="5,46,179,74"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Window.html" title="This is a container widget capable of holding any other widget." alt="" coords="921,13,1073,41"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget..." alt="" coords="1124,13,1308,41"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1EnclosedRenderableContainerWidget.xhtml" title="This is an abstract class for the creation and storage of widgets to be used by other classes..." alt="" coords="647,5,871,49"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1UI_1_1OpenRenderableContainerWidget.xhtml" title="Mezzanine::UI::OpenRenderable\lContainerWidget" alt="" coords="657,71,860,115"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="228,46,375,74"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="5,46,179,74"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1Window.xhtml" title="This is a container widget capable of holding any other widget." alt="" coords="921,13,1073,41"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1UI_1_1MenuWindow.xhtml" title="This class is an extended version of the window class for use exclusively with the menu widget..." alt="" coords="1124,13,1308,41"/>
 </map>

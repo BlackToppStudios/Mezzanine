@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="89.5,-83 89.5,-103 190.5,-103 190.5,-83 89.5,-83"/>
 <text text-anchor="middle" x="140" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="150.5,-1 150.5,-33 257.5,-33 257.5,-1 150.5,-1"/>
 <text text-anchor="start" x="158.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="204" y="-8" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>

@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1AnyHolder.html" target="_top" xlink:title="This is a holder for the actual value stored by an Any.">
+<a xlink:href="classMezzanine_1_1AnyHolder.xhtml" target="_top" xlink:title="This is a holder for the actual value stored by an Any.">
 <polygon fill="white" stroke="black" points="12.5,-1 12.5,-33 123.5,-33 123.5,-1 12.5,-1"/>
 <text text-anchor="start" x="20.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::AnyHolder</text>
 <text text-anchor="middle" x="68" y="-8" font-family="FreeSans" font-size="10.00">&lt; ValueType &gt;</text>

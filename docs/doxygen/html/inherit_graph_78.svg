@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 145,-24 145,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1ObjectReference.html" target="_top" xlink:title="This is a small class used to store a reference to a world object.">
+<a xlink:href="classMezzanine_1_1ObjectReference.xhtml" target="_top" xlink:title="This is a small class used to store a reference to a world object.">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 140,-20 140,-0 0,-0"/>
 <text text-anchor="middle" x="70" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectReference</text>
 </a>

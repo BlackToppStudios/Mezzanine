@@ -16,7 +16,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.html" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
+<a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
 <polygon fill="white" stroke="black" points="748.5,-70 748.5,-102 901.5,-102 901.5,-70 748.5,-70"/>
 <text text-anchor="start" x="756.5" y="-89" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectPhysics</text>
 <text text-anchor="middle" x="825" y="-77" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Collision.html" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Collision.xhtml" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
 <polygon fill="white" stroke="black" points="775,-127 775,-159 875,-159 875,-127 775,-127"/>
 <text text-anchor="start" x="783" y="-146" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="825" y="-134" font-family="FreeSans" font-size="10.00">::Collision</text>
@@ -45,7 +45,7 @@
 </g>
 <!-- Node12 -->
 <g id="node25" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1WorldObjectGraphicsSettings.html" target="_top" xlink:title="This is a helper class for configuring graphics settings of a World Object.">
+<a xlink:href="classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" target="_top" xlink:title="This is a helper class for configuring graphics settings of a World Object.">
 <polygon fill="white" stroke="black" points="746,-209 746,-241 904,-241 904,-209 746,-209"/>
 <text text-anchor="start" x="754" y="-228" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectGraphics</text>
 <text text-anchor="middle" x="825" y="-216" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -59,7 +59,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.html" target="_top" xlink:title="This is a vector that stores sounds.">
+<a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.xhtml" target="_top" xlink:title="This is a vector that stores sounds.">
 <polygon fill="white" stroke="black" points="256.5,-98 256.5,-118 395.5,-118 395.5,-98 256.5,-98"/>
 <text text-anchor="middle" x="326" y="-105" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>
@@ -101,7 +101,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
 <polygon fill="white" stroke="black" points="506,-0 506,-32 606,-32 606,-0 506,-0"/>
 <text text-anchor="start" x="514" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="556" y="-7" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
@@ -182,7 +182,7 @@
 </g>
 <!-- Node13 -->
 <g id="node28" class="node"><title>Node13</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Mesh.html" target="_top" xlink:title="This class is used to check and modify the properties of a graphics mesh.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Mesh.xhtml" target="_top" xlink:title="This class is used to check and modify the properties of a graphics mesh.">
 <polygon fill="white" stroke="black" points="503.5,-288 503.5,-320 608.5,-320 608.5,-288 503.5,-288"/>
 <text text-anchor="start" x="511.5" y="-307" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="556" y="-295" font-family="FreeSans" font-size="10.00">::Mesh</text>

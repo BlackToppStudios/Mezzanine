@@ -61,7 +61,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="structMezzanine_1_1UI_1_1VertexData.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
+<a xlink:href="structMezzanine_1_1UI_1_1VertexData.xhtml" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
 <polygon fill="white" stroke="black" points="364,-45 364,-65 492,-65 492,-45 364,-45"/>
 <text text-anchor="middle" x="428" y="-52" font-family="FreeSans" font-size="10.00">Mezzanine::UI::VertexData</text>
 </a>
@@ -74,7 +74,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="structMezzanine_1_1UI_1_1Vertex.html" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
+<a xlink:href="structMezzanine_1_1UI_1_1Vertex.xhtml" target="_top" xlink:title="Basic class describing a vertex in the UI to be rendered.">
 <polygon fill="white" stroke="black" points="194,-69 194,-89 302,-89 302,-69 194,-69"/>
 <text text-anchor="middle" x="248" y="-76" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Vertex</text>
 </a>
@@ -87,7 +87,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
 <polygon fill="white" stroke="black" points="10,-126 10,-146 110,-146 110,-126 10,-126"/>
 <text text-anchor="middle" x="60" y="-133" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -100,7 +100,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1ColourValue.html" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
+<a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
 <polygon fill="white" stroke="black" points="0.5,-88 0.5,-108 119.5,-108 119.5,-88 0.5,-88"/>
 <text text-anchor="middle" x="60" y="-95" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
@@ -113,7 +113,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
 <polygon fill="white" stroke="black" points="10,-50 10,-70 110,-70 110,-50 10,-50"/>
 <text text-anchor="middle" x="60" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>

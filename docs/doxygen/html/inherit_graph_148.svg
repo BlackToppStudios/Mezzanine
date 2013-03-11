@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 133,-24 133,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1XML_1_1Attribute.html" target="_top" xlink:title="A light&#45;weight handle for manipulating attributes in DOM tree.">
+<a xlink:href="classMezzanine_1_1XML_1_1Attribute.xhtml" target="_top" xlink:title="A light&#45;weight handle for manipulating attributes in DOM tree.">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 128,-20 128,-0 0,-0"/>
 <text text-anchor="middle" x="64" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::XML::Attribute</text>
 </a>

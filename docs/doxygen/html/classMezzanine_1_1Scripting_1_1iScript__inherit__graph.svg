@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptCompilable.html" target="_top" xlink:title="The interface for a script that can be compiled to bytecode.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml" target="_top" xlink:title="The interface for a script that can be compiled to bytecode.">
 <polygon fill="white" stroke="black" points="145.5,-50 145.5,-82 250.5,-82 250.5,-50 145.5,-50"/>
 <text text-anchor="start" x="153.5" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="198" y="-57" font-family="FreeSans" font-size="10.00">::iScriptCompilable</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.html" target="_top" xlink:title="This script can return simple group of values.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptMultipleReturn.xhtml" target="_top" xlink:title="This script can return simple group of values.">
 <polygon fill="white" stroke="black" points="142.5,-0 142.5,-32 253.5,-32 253.5,-0 142.5,-0"/>
 <text text-anchor="start" x="150.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="198" y="-7" font-family="FreeSans" font-size="10.00">::iScriptMultipleReturn</text>

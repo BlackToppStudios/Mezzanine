@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 109,-24 109,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Word.html" target="_top" xlink:title="This class creates and encapsultes the concept of a word in a MarkupText.">
+<a xlink:href="classMezzanine_1_1UI_1_1Word.xhtml" target="_top" xlink:title="This class creates and encapsultes the concept of a word in a MarkupText.">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 104,-20 104,-0 0,-0"/>
 <text text-anchor="middle" x="52" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Word</text>
 </a>

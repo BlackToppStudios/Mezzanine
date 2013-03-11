@@ -16,7 +16,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
+<a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
 <polygon fill="white" stroke="black" points="81,-83 81,-115 207,-115 207,-83 81,-83"/>
 <text text-anchor="start" x="89" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="144" y="-90" font-family="FreeSans" font-size="10.00">Group</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
 <polygon fill="white" stroke="black" points="201,-165 201,-197 327,-197 327,-165 201,-165"/>
 <text text-anchor="start" x="209" y="-184" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="264" y="-172" font-family="FreeSans" font-size="10.00">SetContainer</text>
@@ -105,7 +105,7 @@
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
 <polygon fill="white" stroke="black" points="300.5,-89 300.5,-109 441.5,-109 441.5,-89 300.5,-89"/>
 <text text-anchor="middle" x="371" y="-96" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>

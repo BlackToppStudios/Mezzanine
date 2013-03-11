@@ -48,7 +48,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="58.5,-1 58.5,-33 165.5,-33 165.5,-1 58.5,-1"/>
 <text text-anchor="start" x="66.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="112" y="-8" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>

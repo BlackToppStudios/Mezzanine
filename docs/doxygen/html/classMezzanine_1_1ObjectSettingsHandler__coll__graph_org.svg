@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingFile.html" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
 <polygon fill="white" stroke="black" points="294,-212.376 294,-232.376 436,-232.376 436,-212.376 294,-212.376"/>
 <text text-anchor="middle" x="365" y="-219.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingGroup.html" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
+<a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
 <polygon fill="white" stroke="black" points="564,-167.376 564,-199.376 690,-199.376 690,-167.376 564,-167.376"/>
 <text text-anchor="start" x="572" y="-186.376" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="627" y="-174.376" font-family="FreeSans" font-size="10.00">Group</text>
@@ -82,7 +82,7 @@
 </g>
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.html" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
 <polygon fill="white" stroke="black" points="302,-74.3755 302,-106.376 428,-106.376 428,-74.3755 302,-74.3755"/>
 <text text-anchor="start" x="310" y="-93.3755" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="365" y="-81.3755" font-family="FreeSans" font-size="10.00">SetContainer</text>
@@ -162,7 +162,7 @@
 </g>
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
 <polygon fill="white" stroke="black" points="556.5,-27.3755 556.5,-47.3755 697.5,-47.3755 697.5,-27.3755 556.5,-27.3755"/>
 <text text-anchor="middle" x="627" y="-34.3755" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>

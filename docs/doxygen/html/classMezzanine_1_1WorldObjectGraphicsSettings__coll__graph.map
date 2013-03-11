@@ -1,11 +1,11 @@
 <map id="Mezzanine::WorldObjectGraphicsSettings" name="Mezzanine::WorldObjectGraphicsSettings">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.html" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="811,73,971,101"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1WorldObjectPhysicsSettings.html" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1145,81,1348,125"/>
-<area shape="rect" id="node22" href="$classMezzanine_1_1Physics_1_1Collision.html" title="This is an event class used to track collsions in the physics world." alt="" coords="1180,147,1313,191"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Audio_1_1SoundSet.html" title="This is a vector that stores sounds." alt="" coords="464,7,648,35"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="811,73,971,101"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1145,81,1348,125"/>
+<area shape="rect" id="node22" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1180,147,1313,191"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="464,7,648,35"/>
 <area shape="rect" id="node6" title="STL class." alt="" coords="149,7,296,35"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="824,186,957,230"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="824,186,957,230"/>
 <area shape="rect" id="node15" title="STL class." alt="" coords="519,170,593,198"/>
 <area shape="rect" id="node17" title="STL class." alt="" coords="163,162,283,206"/>
-<area shape="rect" id="node28" href="$classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="153,75,292,119"/>
+<area shape="rect" id="node28" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="153,75,292,119"/>
 </map>

@@ -1,25 +1,25 @@
 <map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/resourcemanager.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/resourcemanager.h">
-<area shape="rect" id="node3" href="$crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="136,657,280,685"/>
-<area shape="rect" id="node5" href="$datatypes_8h.html" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="1244,579,1329,607"/>
-<area shape="rect" id="node30" href="$enumerations_8h.html" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="93,425,203,453"/>
-<area shape="rect" id="node32" href="$managerbase_8h_source.html" title="managerbase.h" alt="" coords="1157,347,1267,375"/>
-<area shape="rect" id="node58" href="$managerfactory_8h_source.html" title="managerfactory.h" alt="" coords="1633,193,1753,221"/>
-<area shape="rect" id="node61" href="$singleton_8h_source.html" title="singleton.h" alt="" coords="1555,270,1637,298"/>
-<area shape="rect" id="node64" href="$inputstream_8h_source.html" title="Resource/inputstream.h" alt="" coords="1171,115,1328,143"/>
-<area shape="rect" id="node36" href="$xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int..." alt="" coords="725,425,808,453"/>
-<area shape="rect" id="node38" href="$crossplatform_8h_source.html" title="crossplatform.h" alt="" coords="347,502,456,530"/>
-<area shape="rect" id="node42" href="$xmldoc_8h.html" title="This file houses all the documentation for the XML system that is not directly related to a specific ..." alt="" coords="891,502,995,530"/>
-<area shape="rect" id="node45" href="$exception_8h_source.html" title="exception.h" alt="" coords="1552,502,1637,530"/>
-<area shape="rect" id="node48" href="$datastream_8h.html" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="1019,502,1173,530"/>
-<area shape="rect" id="node68" href="$entresol_8h_source.html" title="entresol.h" alt="" coords="1197,193,1275,221"/>
-<area shape="rect" id="node70" href="$stringtool_8h_source.html" title="stringtool.h" alt="" coords="859,270,941,298"/>
-<area shape="rect" id="node83" href="$vector3_8h_source.html" title="vector3.h" alt="" coords="863,347,937,375"/>
-<area shape="rect" id="node107" href="$eventbase_8h_source.html" title="eventbase.h" alt="" coords="1249,270,1340,298"/>
-<area shape="rect" id="node72" href="$metacode_8h_source.html" title="Input/metacode.h" alt="" coords="1004,347,1127,375"/>
-<area shape="rect" id="node78" href="$vector2_8h_source.html" title="vector2.h" alt="" coords="367,347,441,375"/>
-<area shape="rect" id="node91" href="$quaternion_8h_source.html" title="quaternion.h" alt="" coords="529,347,620,375"/>
-<area shape="rect" id="node96" href="$colourvalue_8h_source.html" title="colourvalue.h" alt="" coords="725,347,821,375"/>
-<area shape="rect" id="node101" href="$smartptr_8h.html" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="1304,347,1381,375"/>
-<area shape="rect" id="node76" href="$inputenumerations_8h_source.html" title="Input/inputenumerations.h" alt="" coords="1013,425,1184,453"/>
-<area shape="rect" id="node88" href="$swig_8h.html" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="883,425,939,453"/>
+<area shape="rect" id="node3" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="1763,657,1907,685"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="559,579,644,607"/>
+<area shape="rect" id="node30" href="$enumerations_8h.xhtml" title="Any global enumerations shared between multiple classes is to be declared here." alt="" coords="1971,425,2080,453"/>
+<area shape="rect" id="node32" href="$managerbase_8h_source.xhtml" title="managerbase.h" alt="" coords="1495,347,1604,375"/>
+<area shape="rect" id="node60" href="$managerfactory_8h_source.xhtml" title="managerfactory.h" alt="" coords="5,193,125,221"/>
+<area shape="rect" id="node63" href="$singleton_8h_source.xhtml" title="singleton.h" alt="" coords="251,270,333,298"/>
+<area shape="rect" id="node66" href="$inputstream_8h_source.xhtml" title="Resource/inputstream.h" alt="" coords="1099,115,1256,143"/>
+<area shape="rect" id="node36" href="$xml_8h.xhtml" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int..." alt="" coords="1163,425,1245,453"/>
+<area shape="rect" id="node38" href="$crossplatform_8h_source.xhtml" title="crossplatform.h" alt="" coords="1587,502,1696,530"/>
+<area shape="rect" id="node44" href="$xmldoc_8h.xhtml" title="This file houses all the documentation for the XML system that is not directly related to a specific ..." alt="" coords="843,502,947,530"/>
+<area shape="rect" id="node47" href="$exception_8h_source.xhtml" title="exception.h" alt="" coords="352,502,437,530"/>
+<area shape="rect" id="node50" href="$datastream_8h.xhtml" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="664,502,819,530"/>
+<area shape="rect" id="node70" href="$entresol_8h_source.xhtml" title="entresol.h" alt="" coords="1139,193,1216,221"/>
+<area shape="rect" id="node72" href="$stringtool_8h_source.xhtml" title="stringtool.h" alt="" coords="1136,270,1219,298"/>
+<area shape="rect" id="node85" href="$vector3_8h_source.xhtml" title="vector3.h" alt="" coords="1765,347,1840,375"/>
+<area shape="rect" id="node109" href="$eventbase_8h_source.xhtml" title="eventbase.h" alt="" coords="408,270,499,298"/>
+<area shape="rect" id="node74" href="$metacode_8h_source.xhtml" title="Input/metacode.h" alt="" coords="836,347,959,375"/>
+<area shape="rect" id="node80" href="$vector2_8h_source.xhtml" title="vector2.h" alt="" coords="1193,347,1268,375"/>
+<area shape="rect" id="node93" href="$quaternion_8h_source.xhtml" title="quaternion.h" alt="" coords="1079,347,1169,375"/>
+<area shape="rect" id="node98" href="$colourvalue_8h_source.xhtml" title="colourvalue.h" alt="" coords="1347,347,1443,375"/>
+<area shape="rect" id="node103" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="519,347,596,375"/>
+<area shape="rect" id="node78" href="$inputenumerations_8h_source.xhtml" title="Input/inputenumerations.h" alt="" coords="595,425,765,453"/>
+<area shape="rect" id="node90" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1840,425,1896,453"/>
 </map>

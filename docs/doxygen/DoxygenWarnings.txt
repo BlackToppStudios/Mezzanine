@@ -40,11 +40,11 @@
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/widget.h:91: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/widget.h:289: warning: the name `uiwidget.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/window.h:50: warning: the name `uiwindow.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:315: warning: the name `resourcedatastream.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2118: warning: documentation for unknown define XML_DEPRECATED found.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:288: warning: the name `resourcedatastream.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2014: warning: documentation for unknown define XML_DEPRECATED found.
 
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Resource/assetgroup.h:54: warning: Compound Mezzanine::Resource::AssetGroup is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:876: warning: Compound Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:848: warning: Compound Mezzanine::XML::Text is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/textureatlas.h:68: warning: Compound Mezzanine::UI::TextureAtlas is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Resource/assethandler.h:54: warning: Compound Mezzanine::Resource::AssetHandler is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/meshterrain.h:52: warning: Compound Mezzanine::MeshTerrain is not documented.
@@ -53,129 +53,177 @@
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/world.h:59: warning: Compound Mezzanine::World is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/physicsmanager.h:93: warning: Compound Mezzanine::PhysicsConstructionInfo is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/renderablecontainer.h:280: warning: Compound Mezzanine::UI::RenderableContainer is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1032: warning: Compound Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1004: warning: Compound Mezzanine::XML::NamedNode_iterator is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Resource/textsettingsfile.h:55: warning: Compound Mezzanine::Resource::TextSettingsFile is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:254: warning: Compound Mezzanine::XML::ObjectRange is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/resizehandler.h:54: warning: Compound Mezzanine::UI::ResizeHandler is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/listbox.h:52: warning: Compound Mezzanine::UI::TemplateParams is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Resource/archive.h:54: warning: Compound Mezzanine::Resource::Archive is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/renderablecontainerwidget.h:266: warning: Compound Mezzanine::UI::OpenRenderableContainerWidget is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/managerbase.h:60: warning: Documentation for undefined enum `ManagerTypeName' found.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1117: warning: unable to resolve reference to `ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1123: warning: unable to resolve reference to `Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2144: warning: no uniquely matching class member found for 
+  Mezzanine::XML::Attribute::operator=(const char_t *rhs)
+Possible candidates:
+  Attribute & Mezzanine::XML::Attribute::operator=(const Char8 *rhs)' at line 420 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  Attribute & Mezzanine::XML::Attribute::operator=(int rhs)' at line 421 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  Attribute & Mezzanine::XML::Attribute::operator=(unsigned int rhs)' at line 422 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  Attribute & Mezzanine::XML::Attribute::operator=(double rhs)' at line 423 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  Attribute & Mezzanine::XML::Attribute::operator=(bool rhs)' at line 424 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2312: warning: no matching class member found for 
+  Mezzanine::XML::Node::ChildValue(const char_t *Name) const
+Possible candidates:
+  const Char8 * Mezzanine::XML::Node::ChildValue() const 
+  const Char8 * Mezzanine::XML::Node::ChildValue(const Char8 *Name) const 
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2370: warning: no matching class member found for 
+  Mezzanine::XML::Node::RemoveAttribute(const char_t *Name)
+Possible candidates:
+  bool Mezzanine::XML::Node::RemoveAttribute(const Attribute &a)
+  bool Mezzanine::XML::Node::RemoveAttribute(const Char8 *Name)
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2380: warning: no matching class member found for 
+  Mezzanine::XML::Node::FindChildbyAttribute(const char_t *Name, const char_t *AttrName, const char_t *AttrValue) const
+Possible candidates:
+  Node Mezzanine::XML::Node::FindChildbyAttribute(const Char8 *Name, const Char8 *AttrName, const Char8 *AttrValue) const 
+  Node Mezzanine::XML::Node::FindChildbyAttribute(const Char8 *AttrName, const Char8 *AttrValue) const 
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2406: warning: no matching class member found for 
+  Mezzanine::XML::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const
+Possible candidates:
+  XPathNode Mezzanine::XML::Node::FindSingleNode(const Char8 *query, XPathVariableSet *variables=0) const 
+  XPathNode Mezzanine::XML::Node::FindSingleNode(const XPathQuery &query) const 
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2667: warning: no uniquely matching class member found for 
+  Mezzanine::XML::Document::Load(const char_t *contents, unsigned int options=ParseDefault)
+Possible candidates:
+  ParseResult Mezzanine::XML::Document::Load(Resource::DataStream &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)' at line 1144 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  ParseResult Mezzanine::XML::Document::Load(std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto)' at line 1148 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  ParseResult Mezzanine::XML::Document::Load(std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=ParseDefault)' at line 1149 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+  ParseResult Mezzanine::XML::Document::Load(const Char8 *contents, unsigned int options=ParseDefault)' at line 1153 of file /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2752: warning: no matching class member found for 
+  Mezzanine::XML::XPathVariableSet::Get(const char_t *Name)
+Possible candidates:
+  XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name)
+  const XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name) const 
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2757: warning: no matching class member found for 
+  Mezzanine::XML::XPathVariableSet::Get(const char_t *Name) const
+Possible candidates:
+  XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name)
+  const XPathVariable * Mezzanine::XML::XPathVariableSet::Get(const Char8 *Name) const 
+
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1089: warning: unable to resolve reference to `ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1095: warning: unable to resolve reference to `Encoding' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/crossplatformexport.h:318: warning: end of comment block while expecting command </b>
 warning: Included by graph for 'datatypes.h' not generated, too many nodes. Consider increasing DOT_GRAPH_MAX_NODES.
 warning: Include graph for 'mezzanine.h' not generated, too many nodes. Consider increasing DOT_GRAPH_MAX_NODES.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:84: warning: Member XML_VERSION (macro definition) of file xml.h is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:114: warning: Member char_t (typedef) of namespace Mezzanine is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:222: warning: Member FormatNoEscapes (variable) of namespace Mezzanine::XML is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:225: warning: Member FormatSaveFileText (variable) of namespace Mezzanine::XML is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:180: warning: Member ParseWsPcdata_single (variable) of namespace Mezzanine::XML is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:83: warning: Member XML_VERSION (macro definition) of file xml.h is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:236: warning: included file gpl.txt is not found. Check your EXAMPLE_PATH
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:133: warning: unexpected command endcode
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:175: warning: found subsubsection command outside of subsection context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:231: warning: found subsubsection command outside of subsection context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:243: warning: found subsection command outside of section context!
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/serialization.h:276: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:252: warning: Unsupported xml/html tag <mesh> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:257: warning: Unsupported xml/html tag <node> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:258: warning: Unsupported xml/html tag <node> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:259: warning: Unsupported xml/html tag <innernode> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:260: warning: Unsupported xml/html tag </node> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:261: warning: Unsupported xml/html tag </mesh> found
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:263: warning: unexpected command endcode
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:268: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2494: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2506: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:746: warning: found subsection command outside of section context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:754: warning: found subsubsection command outside of subsection context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:777: warning: found subsubsection command outside of subsection context!
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:806: warning: unable to resolve reference to `XMLUnicode' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1272: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1289: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1291: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1292: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1292: warning: explicit link request to 'wstream' could not be resolved
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1294: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1296: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1297: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1299: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1300: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1302: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1304: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1306: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1308: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1354: warning: unable to resolve reference to `Mezzanine::XML::ParseDeclaration' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1354: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1356: warning: unable to resolve reference to `Mezzanine::XML::ParseDocType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1356: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1358: warning: unable to resolve reference to `Mezzanine::XML::ParsePi' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1358: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1360: warning: unable to resolve reference to `Mezzanine::XML::ParseComments' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1360: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1362: warning: unable to resolve reference to `Mezzanine::XML::ParseCdata' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1362: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1364: warning: unable to resolve reference to `Mezzanine::XML::ParseWsPcdata' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1364: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1367: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1367: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1368: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1371: warning: unable to resolve reference to `Mezzanine::XML::ParseEscapes' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1372: warning: explicit link request to 'x' could not be resolved
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1372: warning: explicit link request to 'x' could not be resolved
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1375: warning: unable to resolve reference to `Mezzanine::XML::ParseEol' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1378: warning: unable to resolve reference to `Mezzanine::XML::ParseWconvAttribute' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1381: warning: unable to resolve reference to `Mezzanine::XML::ParseWnormAttribute' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1424: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1434: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1436: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1437: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1438: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1440: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1441: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1442: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1444: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1445: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1445: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1447: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1525: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1525: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1525: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1526: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1526: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1527: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1527: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1528: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1537: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1542: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1542: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:767: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:813: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:814: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:814: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:815: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:815: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:815: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:815: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:816: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:824: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:928: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:929: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:929: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:931: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:931: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:932: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:932: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:933: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1078: warning: unexpected command endcode
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1129: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1276: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1279: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1300: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1300: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1301: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1301: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:114: warning: Member char_t (typedef) of namespace Mezzanine is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:127: warning: unexpected command endcode
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2015: warning: Unsupported xml/html tag <mesh> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2020: warning: Unsupported xml/html tag <node> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2021: warning: Unsupported xml/html tag <node> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2022: warning: Unsupported xml/html tag <innernode> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2023: warning: Unsupported xml/html tag </node> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2024: warning: Unsupported xml/html tag </mesh> found
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2026: warning: unexpected command endcode
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2031: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2380: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2392: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:719: warning: found subsection command outside of section context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:727: warning: found subsubsection command outside of subsection context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:750: warning: found subsubsection command outside of subsection context!
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:779: warning: unable to resolve reference to `XMLUnicode' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1244: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1261: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1263: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1264: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1264: warning: explicit link request to 'wstream' could not be resolved
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1266: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1268: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1269: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1271: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1272: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1274: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1276: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1278: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1280: warning: unable to resolve reference to `Mezzanine::XML::ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1326: warning: unable to resolve reference to `Mezzanine::XML::ParseDeclaration' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1326: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1328: warning: unable to resolve reference to `Mezzanine::XML::ParseDocType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1328: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1330: warning: unable to resolve reference to `Mezzanine::XML::ParsePi' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1330: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1332: warning: unable to resolve reference to `Mezzanine::XML::ParseComments' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1332: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1334: warning: unable to resolve reference to `Mezzanine::XML::ParseCdata' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1334: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1336: warning: unable to resolve reference to `Mezzanine::XML::ParseWsPcdata' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1336: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1339: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1339: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1340: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1343: warning: unable to resolve reference to `Mezzanine::XML::ParseEscapes' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1344: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1344: warning: explicit link request to 'x' could not be resolved
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1347: warning: unable to resolve reference to `Mezzanine::XML::ParseEol' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1350: warning: unable to resolve reference to `Mezzanine::XML::ParseWconvAttribute' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1353: warning: unable to resolve reference to `Mezzanine::XML::ParseWnormAttribute' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1396: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1406: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1408: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1409: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1410: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1412: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1413: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1414: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1416: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1417: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1417: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1419: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1497: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1497: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1497: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1498: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1498: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1499: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1499: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1500: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1509: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1514: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1514: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:740: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:786: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:787: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:787: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:788: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:788: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:788: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:788: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:789: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:797: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:901: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:902: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:902: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:904: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:904: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:905: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:905: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:906: warning: unable to resolve reference to `Mezzanine::XML::NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1051: warning: unexpected command endcode
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1102: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1248: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1251: warning: unable to resolve reference to `Mezzanine::XML::Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1272: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1272: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1273: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:1273: warning: unable to resolve reference to `Mezzanine::XML::XPathValueType' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/actorphysicssettings.h:68: warning: Member StickyConstraint (typedef) of namespace Mezzanine is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/vector3.h:66: warning: Member PrintHello() (function) of namespace Mezzanine is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/worldobject.h:295: warning: target WorldObject::SetLocation(Vector3&) of \copydoc command not found
@@ -1020,6 +1068,9 @@ warning: Include graph for 'mezzanine.h' not generated, too many nodes. Consider
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Audio/sound.h:75: warning: return type of member Mezzanine::Audio::Sound::GetTypeVolume is not documented
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Audio/soundset.h:89: warning: Member SerializableName() (function) of class Mezzanine::Audio::SoundSet is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/binarytool.h:107: warning: return type of member Mezzanine::BinaryTools::Base64Encode is not documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/binarytool.h:102: warning: argument 'Character' of command @param is not found in the argument list of Mezzanine::BinaryTools::IsBase64(unsigned char Char8)
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/binarytool.h:102: warning: The following parameters of Mezzanine::BinaryTools::IsBase64(unsigned char Char8) are not documented:
+  parameter 'Char8'
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/binarytool.h:75: warning: Member BinaryBuffer(const BinaryBuffer &Other) (function) of class Mezzanine::BinaryTools::BinaryBuffer is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/binarytool.h:55: warning: unable to resolve reference to `ScriptCompilable' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/crossplatform.h:91: warning: parameters of member Mezzanine::crossplatform::GetSDLOgreBinder are not (all) documented
@@ -2414,86 +2465,97 @@ warning: Include graph for 'mezzanine.h' not generated, too many nodes. Consider
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/markuptext.h:86: warning: Member NewlineBefore (variable) of class Mezzanine::UI::Word is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/markuptext.h:88: warning: Member Pxheight (variable) of class Mezzanine::UI::Word is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/UI/markuptext.h:87: warning: Member Pxlength (variable) of class Mezzanine::UI::Word is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2255: warning: parameters of member Mezzanine::XML::Attribute::AsBool are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2219: warning: parameters of member Mezzanine::XML::Attribute::AsDouble are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2225: warning: parameters of member Mezzanine::XML::Attribute::AsFloat are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2207: warning: parameters of member Mezzanine::XML::Attribute::AsInt are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2243: warning: parameters of member Mezzanine::XML::Attribute::AsInteger are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2231: warning: parameters of member Mezzanine::XML::Attribute::AsReal are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2249: warning: parameters of member Mezzanine::XML::Attribute::AsString are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2213: warning: parameters of member Mezzanine::XML::Attribute::AsUint are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2237: warning: parameters of member Mezzanine::XML::Attribute::AsWhole are not (all) documented
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1240: warning: Member Save(std::basic_ostream< char, std::char_traits< char > > &stream, const char_t *indent="\t", unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class Mezzanine::XML::Document is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:856: warning: Member attributes() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:854: warning: Member GetChildren() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:855: warning: Member GetChildren(const char_t *Name) const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:548: warning: Member GetNextSibling(const char_t *Name) const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:525: warning: Member GetPreviousSibling() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:549: warning: Member GetPreviousSibling(const char_t *Name) const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:534: warning: Member text() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:480: warning: Member unspecified_bool_type)(Node ***) (typedef) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1035: warning: Member difference_type (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1041: warning: Member iterator_category (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1037: warning: Member pointer (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1038: warning: Member reference (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1036: warning: Member value_type (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1048: warning: Member NamedNode_iterator(const Node &node, const char_t *Name) (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1052: warning: Member operator!=(const NamedNode_iterator &rhs) const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1054: warning: Member operator*() const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1057: warning: Member operator++() (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1058: warning: Member operator++(int) (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1055: warning: Member operator->() const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1051: warning: Member operator==(const NamedNode_iterator &rhs) const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:856: warning: Member attributes() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:854: warning: Member GetChildren() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:855: warning: Member GetChildren(const char_t *Name) const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:548: warning: Member GetNextSibling(const char_t *Name) const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:525: warning: Member GetPreviousSibling() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:549: warning: Member GetPreviousSibling(const char_t *Name) const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:534: warning: Member text() const  (function) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:480: warning: Member unspecified_bool_type)(Node ***) (typedef) of class Mezzanine::XML::Node is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2374: warning: unable to resolve reference to `NodeType' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:256: warning: Member const_iterator (typedef) of class Mezzanine::XML::ObjectRange is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:259: warning: Member ObjectRange(It b, It e) (function) of class Mezzanine::XML::ObjectRange is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:262: warning: Member begin() const  (function) of class Mezzanine::XML::ObjectRange is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:263: warning: Member end() const  (function) of class Mezzanine::XML::ObjectRange is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1134: warning: Member Description() const  (function) of class Mezzanine::XML::ParseResult is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1123: warning: unable to resolve reference to `Encoding' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1117: warning: unable to resolve reference to `ParseStatus' for \ref command
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:918: warning: Member AsBool(bool def=false) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:911: warning: Member AsDouble(double def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:912: warning: Member AsFloat(float def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:909: warning: Member AsInt(int def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:915: warning: Member AsInteger(Integer def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:913: warning: Member AsReal(Real def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:906: warning: Member AsString(const char_t *def="") const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:910: warning: Member AsUint(unsigned int def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:914: warning: Member AsWhole(Whole def=0) const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:937: warning: Member data() const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:900: warning: Member Empty() const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:903: warning: Member Get() const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:897: warning: Member operator!() const  (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:930: warning: Member operator=(const char_t *rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:931: warning: Member operator=(int rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:932: warning: Member operator=(unsigned int rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:933: warning: Member operator=(double rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:934: warning: Member operator=(bool rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:921: warning: Member Set(const char_t *rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:924: warning: Member Set(int rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:925: warning: Member Set(unsigned int rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:926: warning: Member Set(double rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:927: warning: Member Set(bool rhs) (function) of class Mezzanine::XML::Text is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:276: warning: Member Write(const void *data, size_t size)=0 (function) of class Mezzanine::XML::Writer is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:286: warning: Member Write(const void *data, size_t size) (function) of class Mezzanine::XML::WriterFile is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:298: warning: Member WriterStream(std::basic_ostream< char, std::char_traits< char > > &stream) (function) of class Mezzanine::XML::WriterStream is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:304: warning: Member Write(const void *data, size_t size) (function) of class Mezzanine::XML::WriterStream is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:324: warning: Member WrappedStream (variable) of class Mezzanine::XML::XMLStreamWrapper is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1584: warning: Member XPathNodeSet(const XPathNodeSet &ns) (function) of class Mezzanine::XML::XPathNodeSet is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1297: warning: Member Description() const  (function) of class Mezzanine::XML::XPathParseResult is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1317: warning: Member Name() const  (function) of class Mezzanine::XML::XPathVariable is not documented.
-/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1320: warning: Member Type() const  (function) of class Mezzanine::XML::XPathVariable is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:420: warning: Member operator=(const Char8 *rhs) (function) of class Mezzanine::XML::Attribute is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2141: warning: parameters of member Mezzanine::XML::Attribute::AsBool are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2105: warning: parameters of member Mezzanine::XML::Attribute::AsDouble are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2111: warning: parameters of member Mezzanine::XML::Attribute::AsFloat are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2093: warning: parameters of member Mezzanine::XML::Attribute::AsInt are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2129: warning: parameters of member Mezzanine::XML::Attribute::AsInteger are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2117: warning: parameters of member Mezzanine::XML::Attribute::AsReal are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2135: warning: parameters of member Mezzanine::XML::Attribute::AsString are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2099: warning: parameters of member Mezzanine::XML::Attribute::AsUint are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2123: warning: parameters of member Mezzanine::XML::Attribute::AsWhole are not (all) documented
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1153: warning: Member Load(const Char8 *contents, unsigned int options=ParseDefault) (function) of class Mezzanine::XML::Document is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1212: warning: Member Save(std::basic_ostream< char, std::char_traits< char > > &stream, const Char8 *indent="\t", unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class Mezzanine::XML::Document is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:828: warning: Member attributes() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:528: warning: Member ChildValue(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:743: warning: Member FindChildbyAttribute(const Char8 *Name, const Char8 *AttrName, const Char8 *AttrValue) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:763: warning: Member FindSingleNode(const Char8 *query, XPathVariableSet *variables=0) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:826: warning: Member GetChildren() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:827: warning: Member GetChildren(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:521: warning: Member GetNextSibling(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:498: warning: Member GetPreviousSibling() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:522: warning: Member GetPreviousSibling(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:667: warning: Member RemoveAttribute(const Char8 *Name) (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:507: warning: Member text() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:453: warning: Member unspecified_bool_type)(Node ***) (typedef) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1007: warning: Member difference_type (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1013: warning: Member iterator_category (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1009: warning: Member pointer (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1010: warning: Member reference (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1008: warning: Member value_type (typedef) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1020: warning: Member NamedNode_iterator(const Node &node, const Char8 *Name) (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1024: warning: Member operator!=(const NamedNode_iterator &rhs) const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1026: warning: Member operator*() const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1029: warning: Member operator++() (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1030: warning: Member operator++(int) (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1027: warning: Member operator->() const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1023: warning: Member operator==(const NamedNode_iterator &rhs) const  (function) of class Mezzanine::XML::NamedNode_iterator is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:828: warning: Member attributes() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:528: warning: Member ChildValue(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:743: warning: Member FindChildbyAttribute(const Char8 *Name, const Char8 *AttrName, const Char8 *AttrValue) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:763: warning: Member FindSingleNode(const Char8 *query, XPathVariableSet *variables=0) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:826: warning: Member GetChildren() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:827: warning: Member GetChildren(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:521: warning: Member GetNextSibling(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:498: warning: Member GetPreviousSibling() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:522: warning: Member GetPreviousSibling(const Char8 *Name) const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:667: warning: Member RemoveAttribute(const Char8 *Name) (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:507: warning: Member text() const  (function) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:453: warning: Member unspecified_bool_type)(Node ***) (typedef) of class Mezzanine::XML::Node is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:616: warning: unable to resolve reference to `Node::AppendChild(const char_t*)' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:627: warning: unable to resolve reference to `Node::PrependChild(const char_t*)' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xmldoc.h:2260: warning: unable to resolve reference to `NodeType' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1106: warning: Member Description() const  (function) of class Mezzanine::XML::ParseResult is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1095: warning: unable to resolve reference to `Encoding' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1089: warning: unable to resolve reference to `ParseStatus' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:890: warning: Member AsBool(bool def=false) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:883: warning: Member AsDouble(double def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:884: warning: Member AsFloat(float def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:881: warning: Member AsInt(int def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:887: warning: Member AsInteger(Integer def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:885: warning: Member AsReal(Real def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:878: warning: Member AsString(const Char8 *def="") const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:882: warning: Member AsUint(unsigned int def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:886: warning: Member AsWhole(Whole def=0) const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:909: warning: Member data() const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:872: warning: Member Empty() const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:875: warning: Member Get() const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:869: warning: Member operator!() const  (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:902: warning: Member operator=(const Char8 *rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:903: warning: Member operator=(int rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:904: warning: Member operator=(unsigned int rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:905: warning: Member operator=(double rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:906: warning: Member operator=(bool rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:893: warning: Member Set(const Char8 *rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:896: warning: Member Set(int rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:897: warning: Member Set(unsigned int rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:898: warning: Member Set(double rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:899: warning: Member Set(bool rhs) (function) of class Mezzanine::XML::Text is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:251: warning: Member Write(const void *data, size_t size)=0 (function) of class Mezzanine::XML::Writer is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:261: warning: Member Write(const void *data, size_t size) (function) of class Mezzanine::XML::WriterFile is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:272: warning: Member WriterStream(std::basic_ostream< char, std::char_traits< char > > &stream) (function) of class Mezzanine::XML::WriterStream is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:278: warning: Member Write(const void *data, size_t size) (function) of class Mezzanine::XML::WriterStream is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:297: warning: Member WrappedStream (variable) of class Mezzanine::XML::XMLStreamWrapper is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1555: warning: Member XPathNodeSet(const XPathNodeSet &ns) (function) of class Mezzanine::XML::XPathNodeSet is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1268: warning: Member Description() const  (function) of class Mezzanine::XML::XPathParseResult is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1288: warning: Member Name() const  (function) of class Mezzanine::XML::XPathVariable is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1291: warning: Member Type() const  (function) of class Mezzanine::XML::XPathVariable is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1370: warning: Member Get(const Char8 *Name) (function) of class Mezzanine::XML::XPathVariableSet is not documented.
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h:1371: warning: Member Get(const Char8 *Name) const  (function) of class Mezzanine::XML::XPathVariableSet is not documented.
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:92: warning: unable to resolve reference to `Mezzanine::StringTool' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:110: warning: unable to resolve reference to `Mezzanine::NetworkManager' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:121: warning: unable to resolve reference to `mainloop1' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:127: warning: unable to resolve reference to `actorcontainer1' for \ref command
+/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
 /home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h:176: warning: unable to resolve reference to `LuaManual' for \ref command

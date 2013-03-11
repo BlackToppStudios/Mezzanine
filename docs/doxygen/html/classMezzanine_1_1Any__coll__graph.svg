@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1AnyPlaceHolder.html" target="_top" xlink:title="This is an abstract interface for a Holder to be used with the Any class.">
+<a xlink:href="classMezzanine_1_1AnyPlaceHolder.xhtml" target="_top" xlink:title="This is an abstract interface for a Holder to be used with the Any class.">
 <polygon fill="white" stroke="black" points="0,-71 0,-91 136,-91 136,-71 0,-71"/>
 <text text-anchor="middle" x="68" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::AnyPlaceHolder</text>
 </a>

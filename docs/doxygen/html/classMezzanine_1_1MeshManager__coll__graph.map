@@ -1,8 +1,8 @@
 <map id="Mezzanine::MeshManager" name="Mezzanine::MeshManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;" alt="" coords="2036,57,2177,101"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit." alt="" coords="1416,10,1584,38"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="1153,55,1287,83"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1429,61,1571,105"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;" alt="" coords="2036,57,2177,101"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1416,10,1584,38"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1153,55,1287,83"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1429,61,1571,105"/>
 <area shape="rect" id="node9" title="STL class." alt="" coords="916,55,1031,83"/>
 <area shape="rect" id="node11" title="STL class." alt="" coords="709,47,861,91"/>
 <area shape="rect" id="node13" title="STL class." alt="" coords="528,47,659,91"/>
@@ -12,5 +12,5 @@
 <area shape="rect" id="node19" title="STL class." alt="" coords="7,43,100,71"/>
 <area shape="rect" id="node29" title="STL class." alt="" coords="1183,129,1257,157"/>
 <area shape="rect" id="node31" title="STL class." alt="" coords="913,121,1033,165"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1Mesh.html" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="1151,179,1289,223"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="1151,179,1289,223"/>
 </map>

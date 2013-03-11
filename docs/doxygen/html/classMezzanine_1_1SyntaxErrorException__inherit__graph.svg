@@ -16,7 +16,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1SyntaxErrorLuaException.html" target="_top" xlink:title="Thrown when lua code in incorrect.">
+<a xlink:href="classMezzanine_1_1SyntaxErrorLuaException.xhtml" target="_top" xlink:title="Thrown when lua code in incorrect.">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 132,-33 132,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::SyntaxErrorLua</text>
 <text text-anchor="middle" x="66" y="-8" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1SyntaxErrorXMLException.html" target="_top" xlink:title="Thrown when xml is being parsed butis invalid.">
+<a xlink:href="classMezzanine_1_1SyntaxErrorXMLException.xhtml" target="_top" xlink:title="Thrown when xml is being parsed butis invalid.">
 <polygon fill="white" stroke="black" points="149.5,-7 149.5,-27 328.5,-27 328.5,-7 149.5,-7"/>
 <text text-anchor="middle" x="239" y="-14" font-family="FreeSans" font-size="10.00">Mezzanine::SyntaxErrorXMLException</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="97.5,-129 97.5,-149 206.5,-149 206.5,-129 97.5,-129"/>
 <text text-anchor="middle" x="152" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.html" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Generic6DofConstraint.xhtml" target="_top" xlink:title="Create simple but specific limits on any axis of movement or rotation.">
 <polygon fill="white" stroke="black" points="4.5,-71 4.5,-103 123.5,-103 123.5,-71 4.5,-71"/>
 <text text-anchor="start" x="12.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="64" y="-78" font-family="FreeSans" font-size="10.00">::Generic6DofConstraint</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1DualTransformConstraint.html" target="_top" xlink:title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">
+<a xlink:href="classMezzanine_1_1Physics_1_1DualTransformConstraint.xhtml" target="_top" xlink:title="All constraints that track rotation and location of the Pivot relative to each Actor inherit from thi...">
 <polygon fill="white" stroke="black" points="0,-141 0,-173 128,-173 128,-141 0,-141"/>
 <text text-anchor="start" x="8" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="64" y="-148" font-family="FreeSans" font-size="10.00">::DualTransformConstraint</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.html" target="_top" xlink:title="This is the base class for all constraints supported.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Constraint.xhtml" target="_top" xlink:title="This is the base class for all constraints supported.">
 <polygon fill="white" stroke="black" points="14,-211 14,-243 114,-243 114,-211 14,-211"/>
 <text text-anchor="start" x="22" y="-230" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="64" y="-218" font-family="FreeSans" font-size="10.00">::Constraint</text>

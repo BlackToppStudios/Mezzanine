@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 167,-36 167,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1Physics_1_1StickyConstraintConstructionInfo.html" target="_top" xlink:title="Simple struct for holding information on how sticky constraints should be constructed.">
+<a xlink:href="structMezzanine_1_1Physics_1_1StickyConstraintConstructionInfo.xhtml" target="_top" xlink:title="Simple struct for holding information on how sticky constraints should be constructed.">
 <polygon fill="white" stroke="black" points="0,-0 0,-32 162,-32 162,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="81" y="-7" font-family="FreeSans" font-size="10.00">::StickyConstraintConstructionInfo</text>

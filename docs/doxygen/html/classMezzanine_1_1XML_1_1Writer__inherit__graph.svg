@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1XML_1_1WriterFile.html" target="_top" xlink:title="An implementation of Writer intended for writing to FILEs as defined in stdio.">
+<a xlink:href="classMezzanine_1_1XML_1_1WriterFile.xhtml" target="_top" xlink:title="An implementation of Writer intended for writing to FILEs as defined in stdio.">
 <polygon fill="white" stroke="black" points="162.5,-88 162.5,-108 295.5,-108 295.5,-88 162.5,-88"/>
 <text text-anchor="middle" x="229" y="-95" font-family="FreeSans" font-size="10.00">Mezzanine::XML::WriterFile</text>
 </a>
@@ -28,7 +28,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1XML_1_1WriterStream.html" target="_top" xlink:title="An implementation of Writer intended for writing std::ostreams.">
+<a xlink:href="classMezzanine_1_1XML_1_1WriterStream.xhtml" target="_top" xlink:title="An implementation of Writer intended for writing std::ostreams.">
 <polygon fill="white" stroke="black" points="154.5,-50 154.5,-70 303.5,-70 303.5,-50 154.5,-50"/>
 <text text-anchor="middle" x="229" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::XML::WriterStream</text>
 </a>
@@ -40,7 +40,7 @@
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1XML_1_1XMLStreamWrapper.html" target="_top" xlink:title="This represents a simple wrapper that makes data streams compatible with the XML API.">
+<a xlink:href="classMezzanine_1_1XML_1_1XMLStreamWrapper.xhtml" target="_top" xlink:title="This represents a simple wrapper that makes data streams compatible with the XML API.">
 <polygon fill="white" stroke="black" points="157.5,-0 157.5,-32 300.5,-32 300.5,-0 157.5,-0"/>
 <text text-anchor="start" x="165.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::XML::XMLStream</text>
 <text text-anchor="middle" x="229" y="-7" font-family="FreeSans" font-size="10.00">Wrapper</text>

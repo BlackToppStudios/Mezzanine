@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="scripting_8h_source.html" target="_top" xlink:title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/scripting.h">
+<a xlink:href="scripting_8h_source.xhtml" target="_top" xlink:title="/home/sqeaky/Projects\l/MezzanineCurrent/Mezzanine\l/Mezzanine/src/scripting.h">
 <polygon fill="white" stroke="black" points="0,-83 0,-127 146,-127 146,-83 0,-83"/>
 <text text-anchor="start" x="8" y="-114" font-family="FreeSans" font-size="10.00">/home/sqeaky/Projects</text>
 <text text-anchor="start" x="8" y="-102" font-family="FreeSans" font-size="10.00">/MezzanineCurrent/Mezzanine</text>
@@ -33,7 +33,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="mezzanine_8h.html" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
+<a xlink:href="mezzanine_8h.xhtml" target="_top" xlink:title="A single file that includes all of the Mezzanine engine.">
 <polygon fill="white" stroke="black" points="0,-1 0,-45 146,-45 146,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-32" font-family="FreeSans" font-size="10.00">/home/sqeaky/Projects</text>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">/MezzanineCurrent/Mezzanine</text>

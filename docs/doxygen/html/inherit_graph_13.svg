@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 325,-36 325,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1DeSerializer.html" target="_top" xlink:title="Mezzanine::DeSerializer\l\&lt; ActorRigid \&gt;">
+<a xlink:href="classMezzanine_1_1DeSerializer.xhtml" target="_top" xlink:title="Mezzanine::DeSerializer\l\&lt; ActorRigid \&gt;">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 119.5,-32 119.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::DeSerializer</text>
 <text text-anchor="middle" x="60" y="-7" font-family="FreeSans" font-size="10.00">&lt; ActorRigid &gt;</text>
@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ActorRigidDeSerializer.html" target="_top" xlink:title="This creates Rigid body actors and inserts them into a given ActorManager.">
+<a xlink:href="classMezzanine_1_1ActorRigidDeSerializer.xhtml" target="_top" xlink:title="This creates Rigid body actors and inserts them into a given ActorManager.">
 <polygon fill="white" stroke="black" points="156,-6 156,-26 320,-26 320,-6 156,-6"/>
 <text text-anchor="middle" x="238" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::ActorRigidDeSerializer</text>
 </a>

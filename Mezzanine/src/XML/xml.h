@@ -53,9 +53,6 @@
 #ifndef _XMLCONFIG_H
 #define _XMLCONFIG_H
 
-// Uncomment this to disable XPath
-// #define XML_NO_XPATH
-
 // Uncomment this to disable STL
 // #define XML_NO_STL
 
@@ -87,8 +84,10 @@
 #endif
 
 #include "crossplatform.h"
+#include "XML/objectrange.h"
 #include "XML/xmldoc.h"
 #include "exception.h"
+
 #include "Resource/datastream.h"
 
 #ifndef _XML_H
@@ -216,7 +215,8 @@ namespace XML
     /// @note PugiXML defaults to FormatIndent which is not well suited to computer to computer transmission as games commonly do
 	const unsigned int FormatDefault = FormatRaw;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// @todo Do something about forward declares in xml.h
 
 	// Forward declarations
 	struct AttributeStruct;
@@ -232,29 +232,14 @@ namespace XML
 
 	class Text;
 
-	#ifndef XML_NO_XPATH
 	class XPathNode;
 	class XPathNodeSet;
 	class XPathQuery;
 	class XPathVariableSet;
-	#endif
 
 	// Range-based for loop support
-	template <typename It> class ObjectRange
-	{
-	public:
-		typedef It const_iterator;
 
-		ObjectRange(It b, It e): _begin(b), _end(e)
-		{
-		}
-
-		It begin() const { return _begin; }
-		It end() const { return _end; }
-
-	private:
-		It _begin, _end;
-	};
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// Writer interface for node Printing (see Node::Print)
 	class MEZZ_LIB Writer
@@ -279,7 +264,6 @@ namespace XML
 		void* file;
 	};
 
-	#ifndef XML_NO_STL
 	// Writer implementation for streams
 	class MEZZ_LIB WriterStream: public Writer
 	{
@@ -298,7 +282,6 @@ namespace XML
 		/// @internal
 		std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream;
 	};
-	#endif
 
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -776,7 +759,6 @@ namespace XML
 		// Recursively Traverse subtree with TreeWalker
 		bool Traverse(TreeWalker& walker);
 
-	#ifndef XML_NO_XPATH
 		// Select single node by evaluating XPath query. Returns first node from the Resulting node set.
         XPathNode FindSingleNode(const Char8* query, XPathVariableSet* variables = 0) const;
 		XPathNode FindSingleNode(const XPathQuery& query) const;
@@ -794,7 +776,7 @@ namespace XML
 		/// @return An XPathNodeSet with the Matchs of the XPath query.
 		/// @param query The XPath query XPathQuery class instance.
 		XPathNodeSet FindNodes(const XPathQuery& query) const;
-	#endif
+
 
 		// Print subtree using a WriterInstance object
 
@@ -1256,8 +1238,7 @@ namespace XML
 		Node DocumentElement() const;
 	};
 
-#ifndef XML_NO_XPATH
-	// XPath query return type
+    // XPath query return type
 	enum XPathValueType
 	{
 		XPathTypeNone,	  // Unknown Type (query failed to compile)
@@ -1608,7 +1589,7 @@ namespace XML
 
 		void _assign(const_iterator begin, const_iterator end);
 	};
-#endif
+
 
 #ifndef XML_NO_STL
 	// Convert wide string to UTF8

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Resource_1_1DataStream.html" target="_top" xlink:title="This represents a stream to a piece of data, usually a file.">
+<a xlink:href="classMezzanine_1_1Resource_1_1DataStream.xhtml" target="_top" xlink:title="This represents a stream to a piece of data, usually a file.">
 <polygon fill="white" stroke="black" points="-0.5,-83 -0.5,-115 106.5,-115 106.5,-83 -0.5,-83"/>
 <text text-anchor="start" x="7.5" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="53" y="-90" font-family="FreeSans" font-size="10.00">::DataStream</text>

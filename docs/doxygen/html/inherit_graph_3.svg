@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 135,-24 135,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1Listener.html" target="_top" xlink:title="This is the listener class used for 3D sound.">
+<a xlink:href="classMezzanine_1_1Audio_1_1Listener.xhtml" target="_top" xlink:title="This is the listener class used for 3D sound.">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 130,-20 130,-0 0,-0"/>
 <text text-anchor="middle" x="65" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Listener</text>
 </a>

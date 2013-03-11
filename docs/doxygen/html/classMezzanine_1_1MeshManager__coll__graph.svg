@@ -48,7 +48,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; MeshManager \&gt;">
 <polygon fill="white" stroke="black" points="1522.5,-92 1522.5,-124 1629.5,-124 1629.5,-92 1522.5,-92"/>
 <text text-anchor="start" x="1530.5" y="-111" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1576" y="-99" font-family="FreeSans" font-size="10.00">&lt; MeshManager &gt;</text>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
 <polygon fill="white" stroke="black" points="1058,-139 1058,-159 1184,-159 1184,-139 1058,-139"/>
 <text text-anchor="middle" x="1121" y="-146" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -74,7 +74,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="860.5,-105 860.5,-125 961.5,-125 961.5,-105 860.5,-105"/>
 <text text-anchor="middle" x="911" y="-112" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -87,7 +87,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="1067.5,-89 1067.5,-121 1174.5,-121 1174.5,-89 1067.5,-89"/>
 <text text-anchor="start" x="1075.5" y="-108" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1121" y="-96" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
@@ -244,7 +244,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node16 -->
 <g id="node33" class="node"><title>Node16</title>
-<a xlink:href="classMezzanine_1_1Graphics_1_1Mesh.html" target="_top" xlink:title="This class is used to check and modify the properties of a graphics mesh.">
+<a xlink:href="classMezzanine_1_1Graphics_1_1Mesh.xhtml" target="_top" xlink:title="This class is used to check and modify the properties of a graphics mesh.">
 <polygon fill="white" stroke="black" points="858.5,-0 858.5,-32 963.5,-32 963.5,-0 858.5,-0"/>
 <text text-anchor="start" x="866.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="911" y="-7" font-family="FreeSans" font-size="10.00">::Mesh</text>

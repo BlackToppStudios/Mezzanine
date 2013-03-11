@@ -274,6 +274,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"
 

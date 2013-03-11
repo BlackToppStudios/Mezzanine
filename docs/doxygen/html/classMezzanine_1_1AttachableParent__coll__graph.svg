@@ -16,7 +16,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1AttachableChild.html" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
+<a xlink:href="classMezzanine_1_1AttachableChild.xhtml" target="_top" xlink:title="This class is the base class for objects that can be attached to AttachableParent.">
 <polygon fill="white" stroke="black" points="116.5,-71 116.5,-91 251.5,-91 251.5,-71 116.5,-71"/>
 <text text-anchor="middle" x="184" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableChild</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1AttachableBase.html" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
+<a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
 <polygon fill="white" stroke="black" points="32.5,-211 32.5,-231 167.5,-231 167.5,-211 32.5,-211"/>
 <text text-anchor="middle" x="100" y="-218" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
@@ -63,7 +63,7 @@
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1Transform.html" target="_top" xlink:title="Stores information about relative location and rotation in 3d space.">
+<a xlink:href="classMezzanine_1_1Transform.xhtml" target="_top" xlink:title="Stores information about relative location and rotation in 3d space.">
 <polygon fill="white" stroke="black" points="198,-141 198,-161 308,-161 308,-141 198,-141"/>
 <text text-anchor="middle" x="253" y="-148" font-family="FreeSans" font-size="10.00">Mezzanine::Transform</text>
 </a>
@@ -76,7 +76,7 @@
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1Vector3.html" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
+<a xlink:href="classMezzanine_1_1Vector3.xhtml" target="_top" xlink:title="This is used to represent a point in space, or a vector through space.">
 <polygon fill="white" stroke="black" points="197,-211 197,-231 297,-231 297,-211 197,-211"/>
 <text text-anchor="middle" x="247" y="-218" font-family="FreeSans" font-size="10.00">Mezzanine::Vector3</text>
 </a>
@@ -89,7 +89,7 @@
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1Quaternion.html" target="_top" xlink:title="This is used to store information about rotation in 3d space.">
+<a xlink:href="classMezzanine_1_1Quaternion.xhtml" target="_top" xlink:title="This is used to store information about rotation in 3d space.">
 <polygon fill="white" stroke="black" points="315,-211 315,-231 429,-231 429,-211 315,-211"/>
 <text text-anchor="middle" x="372" y="-218" font-family="FreeSans" font-size="10.00">Mezzanine::Quaternion</text>
 </a>

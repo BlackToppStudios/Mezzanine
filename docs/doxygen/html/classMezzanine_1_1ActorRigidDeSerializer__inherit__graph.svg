@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1DeSerializer.html" target="_top" xlink:title="Mezzanine::DeSerializer\l\&lt; ActorRigid \&gt;">
+<a xlink:href="classMezzanine_1_1DeSerializer.xhtml" target="_top" xlink:title="Mezzanine::DeSerializer\l\&lt; ActorRigid \&gt;">
 <polygon fill="white" stroke="black" points="22.5,-59 22.5,-91 141.5,-91 141.5,-59 22.5,-59"/>
 <text text-anchor="start" x="30.5" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::DeSerializer</text>
 <text text-anchor="middle" x="82" y="-66" font-family="FreeSans" font-size="10.00">&lt; ActorRigid &gt;</text>

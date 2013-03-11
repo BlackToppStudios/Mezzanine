@@ -1,10 +1,10 @@
 <map id="Mezzanine::Physics::PrimitiveCollisionShape" name="Mezzanine::Physics::PrimitiveCollisionShape">
-<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1BoxCollisionShape.html" title="A box physics shape." alt="" coords="423,5,556,49"/>
-<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1CapsuleCollisionShape.html" title="A capsule physics shape." alt="" coords="411,71,568,115"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1ConeCollisionShape.html" title="A cone physics shape." alt="" coords="419,138,560,182"/>
-<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.html" title="A simple convex shape built from a low number of points in local space." alt="" coords="401,205,577,249"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CylinderCollisionShape.html" title="A cylinder physics shape." alt="" coords="411,271,568,315"/>
-<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1MultiSphereCollisionShape.html" title="A physics shape comprised of multiple sphere&#39;s placed in local space." alt="" coords="399,338,580,382"/>
-<area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1SphereCollisionShape.html" title="A sphere physics shape." alt="" coords="412,405,567,449"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="5,205,139,249"/>
+<area shape="rect" id="node5" href="$classMezzanine_1_1Physics_1_1BoxCollisionShape.xhtml" title="A box physics shape." alt="" coords="423,5,556,49"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1Physics_1_1CapsuleCollisionShape.xhtml" title="A capsule physics shape." alt="" coords="411,71,568,115"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1Physics_1_1ConeCollisionShape.xhtml" title="A cone physics shape." alt="" coords="419,138,560,182"/>
+<area shape="rect" id="node11" href="$classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.xhtml" title="A simple convex shape built from a low number of points in local space." alt="" coords="401,205,577,249"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CylinderCollisionShape.xhtml" title="A cylinder physics shape." alt="" coords="411,271,568,315"/>
+<area shape="rect" id="node15" href="$classMezzanine_1_1Physics_1_1MultiSphereCollisionShape.xhtml" title="A physics shape comprised of multiple sphere&#39;s placed in local space." alt="" coords="399,338,580,382"/>
+<area shape="rect" id="node17" href="$classMezzanine_1_1Physics_1_1SphereCollisionShape.xhtml" title="A sphere physics shape." alt="" coords="412,405,567,449"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="5,205,139,249"/>
 </map>

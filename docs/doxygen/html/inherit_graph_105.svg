@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 293,-36 293,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.html" target="_top" xlink:title="The interface for a script argument.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptArgument.xhtml" target="_top" xlink:title="The interface for a script argument.">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-32 105.5,-32 105.5,-0 0.5,-0"/>
 <text text-anchor="start" x="8.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="53" y="-7" font-family="FreeSans" font-size="10.00">::iScriptArgument</text>
@@ -19,7 +19,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html" target="_top" xlink:title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations...">
+<a xlink:href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.xhtml" target="_top" xlink:title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations...">
 <polygon fill="white" stroke="black" points="142,-0 142,-32 288,-32 288,-0 142,-0"/>
 <text text-anchor="start" x="150" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="215" y="-7" font-family="FreeSans" font-size="10.00">::ScriptArgumentSpecific&lt; T &gt;</text>

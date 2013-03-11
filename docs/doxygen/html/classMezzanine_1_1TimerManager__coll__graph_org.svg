@@ -16,7 +16,7 @@
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; TimerManager \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; TimerManager \&gt;">
 <polygon fill="white" stroke="black" points="165.5,-1 165.5,-33 272.5,-33 272.5,-1 165.5,-1"/>
 <text text-anchor="start" x="173.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="219" y="-8" font-family="FreeSans" font-size="10.00">&lt; TimerManager &gt;</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
 <polygon fill="white" stroke="black" points="0,-159 0,-179 126,-179 126,-159 0,-159"/>
 <text text-anchor="middle" x="63" y="-166" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="89.5,-235 89.5,-255 190.5,-255 190.5,-235 89.5,-235"/>
 <text text-anchor="middle" x="140" y="-242" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -55,7 +55,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="143.5,-153 143.5,-185 250.5,-185 250.5,-153 143.5,-153"/>
 <text text-anchor="start" x="151.5" y="-172" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="197" y="-160" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
@@ -184,7 +184,7 @@
 </g>
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1Timer.html" target="_top" xlink:title="A base timer class for the different timers.">
+<a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
 <polygon fill="white" stroke="black" points="275,-235 275,-255 367,-255 367,-235 275,-235"/>
 <text text-anchor="middle" x="321" y="-242" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
@@ -197,7 +197,7 @@
 </g>
 <!-- Node15 -->
 <g id="node31" class="node"><title>Node15</title>
-<a xlink:href="classMezzanine_1_1TimerCallback.html" target="_top" xlink:title="A callback class for use automated and timed&#45;event based timers.">
+<a xlink:href="classMezzanine_1_1TimerCallback.xhtml" target="_top" xlink:title="A callback class for use automated and timed&#45;event based timers.">
 <polygon fill="white" stroke="black" points="256.5,-305 256.5,-325 385.5,-325 385.5,-305 256.5,-305"/>
 <text text-anchor="middle" x="321" y="-312" font-family="FreeSans" font-size="10.00">Mezzanine::TimerCallback</text>
 </a>

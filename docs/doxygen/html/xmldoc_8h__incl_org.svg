@@ -18,7 +18,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="datatypes_8h.html" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
+<a xlink:href="datatypes_8h.xhtml" target="_top" xlink:title="All the definitions for datatypes as well as some basic conversion functions are defined here...">
 <polygon fill="white" stroke="black" points="411.5,-59 411.5,-79 476.5,-79 476.5,-59 411.5,-59"/>
 <text text-anchor="middle" x="444" y="-66" font-family="FreeSans" font-size="10.00">datatypes.h</text>
 </a>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="crossplatformexport_8h.html" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
+<a xlink:href="crossplatformexport_8h.xhtml" target="_top" xlink:title="This file is used on some platforms to determine what data should be read and written to and from a s...">
 <polygon fill="white" stroke="black" points="0,-1 0,-21 108,-21 108,-1 0,-1"/>
 <text text-anchor="middle" x="54" y="-8" font-family="FreeSans" font-size="10.00">crossplatformexport.h</text>
 </a>

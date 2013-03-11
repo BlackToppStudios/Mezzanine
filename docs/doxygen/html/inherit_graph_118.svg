@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 129,-24 129,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="structMezzanine_1_1UI_1_1Character.html" target="_top" xlink:title="This class creates and encapsultes a character that can be used in a Word.">
+<a xlink:href="structMezzanine_1_1UI_1_1Character.xhtml" target="_top" xlink:title="This class creates and encapsultes a character that can be used in a Word.">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-20 123.5,-20 123.5,-0 0.5,-0"/>
 <text text-anchor="middle" x="62" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Character</text>
 </a>

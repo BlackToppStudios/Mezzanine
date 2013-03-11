@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 129,-24 129,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Audio_1_1Sound.html" target="_top" xlink:title="This is an instance of a sound that can be played and manipulated.">
+<a xlink:href="classMezzanine_1_1Audio_1_1Sound.xhtml" target="_top" xlink:title="This is an instance of a sound that can be played and manipulated.">
 <polygon fill="white" stroke="black" points="0,-0 0,-20 124,-20 124,-0 0,-0"/>
 <text text-anchor="middle" x="62" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Sound</text>
 </a>

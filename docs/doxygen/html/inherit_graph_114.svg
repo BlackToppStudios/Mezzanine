@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 135,-24 135,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1TimerCallback.html" target="_top" xlink:title="A callback class for use automated and timed&#45;event based timers.">
+<a xlink:href="classMezzanine_1_1TimerCallback.xhtml" target="_top" xlink:title="A callback class for use automated and timed&#45;event based timers.">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-20 129.5,-20 129.5,-0 0.5,-0"/>
 <text text-anchor="middle" x="65" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::TimerCallback</text>
 </a>

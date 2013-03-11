@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.html" target="_top" xlink:title="This is a proxy from which rigid body objects are handled.">
+<a xlink:href="classMezzanine_1_1Physics_1_1RigidProxy.xhtml" target="_top" xlink:title="This is a proxy from which rigid body objects are handled.">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 100,-33 100,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-8" font-family="FreeSans" font-size="10.00">::RigidProxy</text>

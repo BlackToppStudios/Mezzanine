@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ScriptLuaException.html" target="_top" xlink:title="Thrown when an unknown error happens in a Lua script.">
+<a xlink:href="classMezzanine_1_1ScriptLuaException.xhtml" target="_top" xlink:title="Thrown when an unknown error happens in a Lua script.">
 <polygon fill="white" stroke="black" points="0,-71 0,-91 150,-91 150,-71 0,-71"/>
 <text text-anchor="middle" x="75" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptLuaException</text>
 </a>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ScriptException.html" target="_top" xlink:title="Thrown when an unknown error happens with a script.">
+<a xlink:href="classMezzanine_1_1ScriptException.xhtml" target="_top" xlink:title="Thrown when an unknown error happens with a script.">
 <polygon fill="white" stroke="black" points="8,-129 8,-149 142,-149 142,-129 8,-129"/>
 <text text-anchor="middle" x="75" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::ScriptException</text>
 </a>
@@ -41,7 +41,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="20.5,-187 20.5,-207 129.5,-207 129.5,-187 20.5,-187"/>
 <text text-anchor="middle" x="75" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

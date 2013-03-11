@@ -1,4 +1,4 @@
 <map id="Mezzanine::SimpleTimer" name="Mezzanine::SimpleTimer">
-<area shape="rect" id="node2" href="$classMezzanine_1_1Timer.html" title="A base timer class for the different timers." alt="" coords="29,99,152,127"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1TimerCallback.html" title="A callback class for use automated and timed&#45;event based timers." alt="" coords="5,6,176,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1Timer.xhtml" title="A base timer class for the different timers." alt="" coords="29,99,152,127"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1TimerCallback.xhtml" title="A callback class for use automated and timed&#45;event based timers." alt="" coords="5,6,176,34"/>
 </map>

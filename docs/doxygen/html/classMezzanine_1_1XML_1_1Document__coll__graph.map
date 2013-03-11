@@ -1,4 +1,4 @@
 <map id="Mezzanine::XML::Document" name="Mezzanine::XML::Document">
-<area shape="rect" id="node2" href="$classMezzanine_1_1XML_1_1Node.html" title="A light&#45;weight handle for manipulating nodes in DOM tree." alt="" coords="20,99,172,127"/>
-<area shape="rect" id="node4" href="$classNodeStruct.html" title="The internal data storage structure used in a Node." alt="" coords="53,6,139,34"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1XML_1_1Node.xhtml" title="A light&#45;weight handle for manipulating nodes in DOM tree." alt="" coords="20,99,172,127"/>
+<area shape="rect" id="node4" href="$classNodeStruct.xhtml" title="The internal data storage structure used in a Node." alt="" coords="53,6,139,34"/>
 </map>

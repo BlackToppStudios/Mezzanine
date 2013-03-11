@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ActorBasePhysicsSettings.html" target="_top" xlink:title="This is a base helper class for configuring physics settings of an actor.">
+<a xlink:href="classMezzanine_1_1ActorBasePhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of an actor.">
 <polygon fill="white" stroke="black" points="3.5,-71 3.5,-103 148.5,-103 148.5,-71 3.5,-71"/>
 <text text-anchor="start" x="11.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::ActorBasePhysics</text>
 <text text-anchor="middle" x="76" y="-78" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1NonTriggerPhysicsSettings.html" target="_top" xlink:title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I...">
+<a xlink:href="classMezzanine_1_1NonTriggerPhysicsSettings.xhtml" target="_top" xlink:title="This is an extension of the basic WorldObjectPhysicsSettings class for non&#45;trigger objects(I...">
 <polygon fill="white" stroke="black" points="2.5,-141 2.5,-173 149.5,-173 149.5,-141 2.5,-141"/>
 <text text-anchor="start" x="10.5" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::NonTriggerPhysics</text>
 <text text-anchor="middle" x="76" y="-148" font-family="FreeSans" font-size="10.00">Settings</text>
@@ -43,7 +43,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.html" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
+<a xlink:href="classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" target="_top" xlink:title="This is a base helper class for configuring physics settings of a world object.">
 <polygon fill="white" stroke="black" points="-0.5,-211 -0.5,-243 152.5,-243 152.5,-211 -0.5,-211"/>
 <text text-anchor="start" x="7.5" y="-230" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectPhysics</text>
 <text text-anchor="middle" x="76" y="-218" font-family="FreeSans" font-size="10.00">Settings</text>

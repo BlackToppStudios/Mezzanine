@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ReferenceCountTraits.html" target="_top" xlink:title="Mezzanine::ReferenceCount\lTraits\&lt; TypePointedTo \&gt;">
+<a xlink:href="classMezzanine_1_1ReferenceCountTraits.xhtml" target="_top" xlink:title="Mezzanine::ReferenceCount\lTraits\&lt; TypePointedTo \&gt;">
 <polygon fill="white" stroke="black" points="-0.5,-83 -0.5,-115 136.5,-115 136.5,-83 -0.5,-83"/>
 <text text-anchor="start" x="7.5" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::ReferenceCount</text>
 <text text-anchor="middle" x="68" y="-90" font-family="FreeSans" font-size="10.00">Traits&lt; TypePointedTo &gt;</text>

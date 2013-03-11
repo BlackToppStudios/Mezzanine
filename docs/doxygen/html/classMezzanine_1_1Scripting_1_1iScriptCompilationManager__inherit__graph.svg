@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.html" target="_top" xlink:title="What a scripting manager should look like.">
+<a xlink:href="classMezzanine_1_1Scripting_1_1iScriptingManager.xhtml" target="_top" xlink:title="What a scripting manager should look like.">
 <polygon fill="white" stroke="black" points="15.5,-71 15.5,-103 120.5,-103 120.5,-71 15.5,-71"/>
 <text text-anchor="start" x="23.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="68" y="-78" font-family="FreeSans" font-size="10.00">::iScriptingManager</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
 <polygon fill="white" stroke="black" points="5,-141 5,-161 131,-161 131,-141 5,-141"/>
 <text text-anchor="middle" x="68" y="-148" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>

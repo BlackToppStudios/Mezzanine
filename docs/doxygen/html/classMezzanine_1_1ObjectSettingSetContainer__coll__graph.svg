@@ -17,7 +17,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ObjectSettingSet.html" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
+<a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
 <polygon fill="white" stroke="black" points="91.5,-83 91.5,-103 232.5,-103 232.5,-83 91.5,-83"/>
 <text text-anchor="middle" x="162" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>

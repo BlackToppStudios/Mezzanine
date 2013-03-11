@@ -185,9 +185,6 @@ namespace pugi
 	// The default set of formatting flags.
 	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
 	const unsigned int format_default = format_indent;
-		
-////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-
 
 	// Forward declarations
 	struct xml_attribute_struct;
@@ -226,6 +223,7 @@ namespace pugi
 	private:
 		It _begin, _end;
 	};
+////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// Writer interface for node printing (see xml_node::print)
 	class PUGIXML_CLASS xml_writer

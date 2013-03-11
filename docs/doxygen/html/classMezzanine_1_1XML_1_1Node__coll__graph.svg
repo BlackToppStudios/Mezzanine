@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classNodeStruct.html" target="_top" xlink:title="The internal data storage structure used in a Node.">
+<a xlink:href="classNodeStruct.xhtml" target="_top" xlink:title="The internal data storage structure used in a Node.">
 <polygon fill="white" stroke="black" points="24.5,-71 24.5,-91 89.5,-91 89.5,-71 24.5,-71"/>
 <text text-anchor="middle" x="57" y="-78" font-family="FreeSans" font-size="10.00">NodeStruct</text>
 </a>

@@ -1,6 +1,6 @@
 <map id="Mezzanine::UI::CellGrid" name="Mezzanine::UI::CellGrid">
-<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1PagedCellGrid.html" title="This is a specialization of the cell grid that allows you to use a spinner to navigate through pages ..." alt="" coords="5,238,195,266"/>
-<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1ScrolledCellGrid.html" title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ..." alt="" coords="219,238,419,266"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.html" title="This class is the base class for all widgets." alt="" coords="136,83,283,111"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.html" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="123,6,296,34"/>
+<area shape="rect" id="node7" href="$classMezzanine_1_1UI_1_1PagedCellGrid.xhtml" title="This is a specialization of the cell grid that allows you to use a spinner to navigate through pages ..." alt="" coords="5,238,195,266"/>
+<area shape="rect" id="node9" href="$classMezzanine_1_1UI_1_1ScrolledCellGrid.xhtml" title="This is a specialization of the cell grid that allows you to use scrollbars to navigate the cells on ..." alt="" coords="219,238,419,266"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1UI_1_1Widget.xhtml" title="This class is the base class for all widgets." alt="" coords="136,83,283,111"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1UI_1_1Renderable.xhtml" title="Basic class for all structures that get inserted into the rendering hierarchy." alt="" coords="123,6,296,34"/>
 </map>

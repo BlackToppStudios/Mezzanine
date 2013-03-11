@@ -1,8 +1,8 @@
 <map id="Mezzanine::CollisionShapeManager" name="Mezzanine::CollisionShapeManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="2061,167,2240,211"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit." alt="" coords="1432,11,1600,39"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="1155,55,1288,83"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1445,63,1587,107"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; CollisionShapeManager \&gt;" alt="" coords="2061,167,2240,211"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1432,11,1600,39"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1155,55,1288,83"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1445,63,1587,107"/>
 <area shape="rect" id="node9" title="STL class." alt="" coords="912,55,1027,83"/>
 <area shape="rect" id="node11" title="STL class." alt="" coords="709,47,861,91"/>
 <area shape="rect" id="node13" title="STL class." alt="" coords="528,47,659,91"/>
@@ -11,8 +11,8 @@
 <area shape="rect" id="node21" title="STL class." alt="" coords="349,71,477,115"/>
 <area shape="rect" id="node19" title="STL class." alt="" coords="7,43,100,71"/>
 <area shape="rect" id="node29" title="STL class." alt="" coords="932,150,1007,178"/>
-<area shape="rect" id="node33" href="$classMezzanine_1_1Physics_1_1CollisionShape.html" title="This is the base class for all collision shapes." alt="" coords="1155,194,1288,238"/>
+<area shape="rect" id="node33" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="1155,194,1288,238"/>
 <area shape="rect" id="node31" title="STL class." alt="" coords="725,142,845,186"/>
-<area shape="rect" id="node39" href="$classMezzanine_1_1Physics_1_1CollisionShapeDeSerializer.html" title="A tool to aid in deserialization for the specific instances that DeSerialization CollisionShapes othe..." alt="" coords="1425,267,1607,311"/>
-<area shape="rect" id="node41" href="$classMezzanine_1_1DeSerializer.html" title="Mezzanine::DeSerializer\l\&lt; CollisionShape \&gt;" alt="" coords="1143,267,1300,311"/>
+<area shape="rect" id="node39" href="$classMezzanine_1_1Physics_1_1CollisionShapeDeSerializer.xhtml" title="A tool to aid in deserialization for the specific instances that DeSerialization CollisionShapes othe..." alt="" coords="1425,267,1607,311"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1DeSerializer.xhtml" title="Mezzanine::DeSerializer\l\&lt; CollisionShape \&gt;" alt="" coords="1143,267,1300,311"/>
 </map>

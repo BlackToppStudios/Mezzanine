@@ -1,4 +1,4 @@
 <map id="Mezzanine::TimerManager" name="Mezzanine::TimerManager">
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit." alt="" coords="5,14,173,42"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; TimerManager \&gt;" alt="" coords="197,6,339,50"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="5,14,173,42"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; TimerManager \&gt;" alt="" coords="197,6,339,50"/>
 </map>

@@ -11,14 +11,14 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 289,-36 289,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1AnyPlaceHolder.html" target="_top" xlink:title="This is an abstract interface for a Holder to be used with the Any class.">
+<a xlink:href="classMezzanine_1_1AnyPlaceHolder.xhtml" target="_top" xlink:title="This is an abstract interface for a Holder to be used with the Any class.">
 <polygon fill="white" stroke="black" points="0,-6 0,-26 136,-26 136,-6 0,-6"/>
 <text text-anchor="middle" x="68" y="-13" font-family="FreeSans" font-size="10.00">Mezzanine::AnyPlaceHolder</text>
 </a>
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1AnyHolder.html" target="_top" xlink:title="This is a holder for the actual value stored by an Any.">
+<a xlink:href="classMezzanine_1_1AnyHolder.xhtml" target="_top" xlink:title="This is a holder for the actual value stored by an Any.">
 <polygon fill="white" stroke="black" points="172.5,-0 172.5,-32 283.5,-32 283.5,-0 172.5,-0"/>
 <text text-anchor="start" x="180.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::AnyHolder</text>
 <text text-anchor="middle" x="228" y="-7" font-family="FreeSans" font-size="10.00">&lt; ValueType &gt;</text>

@@ -1,8 +1,8 @@
 <map id="Mezzanine::ResourceManager" name="Mezzanine::ResourceManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;" alt="" coords="2225,165,2372,209"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit." alt="" coords="1592,22,1760,50"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="1335,66,1468,94"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1605,75,1747,119"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;" alt="" coords="2225,165,2372,209"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="1592,22,1760,50"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="1335,66,1468,94"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="1605,75,1747,119"/>
 <area shape="rect" id="node9" title="STL class." alt="" coords="991,66,1105,94"/>
 <area shape="rect" id="node11" title="STL class." alt="" coords="720,58,872,102"/>
 <area shape="rect" id="node13" title="STL class." alt="" coords="528,58,659,102"/>
@@ -11,7 +11,7 @@
 <area shape="rect" id="node21" title="STL class." alt="" coords="349,71,477,115"/>
 <area shape="rect" id="node33" title="STL class." alt="" coords="352,138,475,182"/>
 <area shape="rect" id="node19" title="STL class." alt="" coords="7,79,100,107"/>
-<area shape="rect" id="node29" href="$classMezzanine_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well." alt="" coords="711,138,881,182"/>
+<area shape="rect" id="node29" href="$classMezzanine_1_1ResourceInputStream.xhtml" title="A stream from a file, can read from zip files as well." alt="" coords="711,138,881,182"/>
 <area shape="rect" id="node31" title="STL class." alt="" coords="551,146,636,174"/>
 <area shape="rect" id="node36" title="STL class." alt="" coords="1364,219,1439,247"/>
 <area shape="rect" id="node38" title="STL class." alt="" coords="988,211,1108,255"/>

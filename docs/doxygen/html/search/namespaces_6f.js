@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ogre',['Ogre',['../namespaceOgre.html',1,'']]]
+  ['ogre',['Ogre',['../namespaceOgre.xhtml',1,'']]]
 ];

@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.html" target="_top" xlink:title="This is the base class for all Primitive shapes.">
+<a xlink:href="classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.xhtml" target="_top" xlink:title="This is the base class for all Primitive shapes.">
 <polygon fill="white" stroke="black" points="0,-73 0,-105 122,-105 122,-73 0,-73"/>
 <text text-anchor="start" x="8" y="-92" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="61" y="-80" font-family="FreeSans" font-size="10.00">::PrimitiveCollisionShape</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.html" target="_top" xlink:title="This is the base class for all collision shapes.">
+<a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
 <polygon fill="white" stroke="black" points="11,-145 11,-177 111,-177 111,-145 11,-145"/>
 <text text-anchor="start" x="19" y="-164" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="61" y="-152" font-family="FreeSans" font-size="10.00">::CollisionShape</text>

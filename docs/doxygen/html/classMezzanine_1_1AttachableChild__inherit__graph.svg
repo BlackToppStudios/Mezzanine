@@ -48,7 +48,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1AreaEffect.html" target="_top" xlink:title="This class is used to define area&#39;s in the world that have unique effects.">
+<a xlink:href="classMezzanine_1_1AreaEffect.xhtml" target="_top" xlink:title="This class is used to define area&#39;s in the world that have unique effects.">
 <polygon fill="white" stroke="black" points="350.5,-190 350.5,-210 461.5,-210 461.5,-190 350.5,-190"/>
 <text text-anchor="middle" x="406" y="-197" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffect</text>
 </a>
@@ -60,7 +60,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<a xlink:href="classMezzanine_1_1Camera.html" target="_top" xlink:title="This is the camera class.">
+<a xlink:href="classMezzanine_1_1Camera.xhtml" target="_top" xlink:title="This is the camera class.">
 <polygon fill="white" stroke="black" points="355.5,-152 355.5,-172 456.5,-172 456.5,-152 355.5,-152"/>
 <text text-anchor="middle" x="406" y="-159" font-family="FreeSans" font-size="10.00">Mezzanine::Camera</text>
 </a>
@@ -72,7 +72,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
-<a xlink:href="classMezzanine_1_1Entity.html" target="_top" xlink:title="This class is useful for representing graphical bodies without a physics representation.">
+<a xlink:href="classMezzanine_1_1Entity.xhtml" target="_top" xlink:title="This class is useful for representing graphical bodies without a physics representation.">
 <polygon fill="white" stroke="black" points="360.5,-114 360.5,-134 451.5,-134 451.5,-114 360.5,-114"/>
 <text text-anchor="middle" x="406" y="-121" font-family="FreeSans" font-size="10.00">Mezzanine::Entity</text>
 </a>
@@ -84,7 +84,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1Light.html" target="_top" xlink:title="This class is the class used for dynamic lighting within the scene.">
+<a xlink:href="classMezzanine_1_1Light.xhtml" target="_top" xlink:title="This class is the class used for dynamic lighting within the scene.">
 <polygon fill="white" stroke="black" points="362,-76 362,-96 450,-96 450,-76 362,-76"/>
 <text text-anchor="middle" x="406" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::Light</text>
 </a>
@@ -96,7 +96,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
-<a xlink:href="classMezzanine_1_1ParticleEffect.html" target="_top" xlink:title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">
+<a xlink:href="classMezzanine_1_1ParticleEffect.xhtml" target="_top" xlink:title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">
 <polygon fill="white" stroke="black" points="344,-38 344,-58 468,-58 468,-38 344,-38"/>
 <text text-anchor="middle" x="406" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::ParticleEffect</text>
 </a>
@@ -108,7 +108,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1WorldNode.html" target="_top" xlink:title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails...">
+<a xlink:href="classMezzanine_1_1WorldNode.xhtml" target="_top" xlink:title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails...">
 <polygon fill="white" stroke="black" points="349,-0 349,-20 463,-20 463,-0 349,-0"/>
 <text text-anchor="middle" x="406" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::WorldNode</text>
 </a>
@@ -120,7 +120,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1AttachableBase.html" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
+<a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
 <polygon fill="white" stroke="black" points="0.5,-95 0.5,-115 135.5,-115 135.5,-95 0.5,-95"/>
 <text text-anchor="middle" x="68" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
@@ -132,7 +132,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1FieldOfForce.html" target="_top" xlink:title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity.">
+<a xlink:href="classMezzanine_1_1FieldOfForce.xhtml" target="_top" xlink:title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity.">
 <polygon fill="white" stroke="black" points="504.5,-247 504.5,-267 627.5,-267 627.5,-247 504.5,-247"/>
 <text text-anchor="middle" x="566" y="-254" font-family="FreeSans" font-size="10.00">Mezzanine::FieldOfForce</text>
 </a>
@@ -144,7 +144,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
-<a xlink:href="classMezzanine_1_1GravityField.html" target="_top" xlink:title="This is a gravity field implementation of the AreaEffect class.">
+<a xlink:href="classMezzanine_1_1GravityField.xhtml" target="_top" xlink:title="This is a gravity field implementation of the AreaEffect class.">
 <polygon fill="white" stroke="black" points="507,-209 507,-229 625,-229 625,-209 507,-209"/>
 <text text-anchor="middle" x="566" y="-216" font-family="FreeSans" font-size="10.00">Mezzanine::GravityField</text>
 </a>
@@ -156,7 +156,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
-<a xlink:href="classMezzanine_1_1GravityWell.html" target="_top" xlink:title="This is a gravity well implementation of the AreaEffect class.">
+<a xlink:href="classMezzanine_1_1GravityWell.xhtml" target="_top" xlink:title="This is a gravity well implementation of the AreaEffect class.">
 <polygon fill="white" stroke="black" points="508,-171 508,-191 624,-191 624,-171 508,-171"/>
 <text text-anchor="middle" x="566" y="-178" font-family="FreeSans" font-size="10.00">Mezzanine::GravityWell</text>
 </a>
@@ -168,7 +168,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
-<a xlink:href="classMezzanine_1_1TestAE.html" target="_top" xlink:title="This is a dummy class to test if the AE field works. Details will be output to the log...">
+<a xlink:href="classMezzanine_1_1TestAE.xhtml" target="_top" xlink:title="This is a dummy class to test if the AE field works. Details will be output to the log...">
 <polygon fill="white" stroke="black" points="517,-133 517,-153 615,-153 615,-133 517,-133"/>
 <text text-anchor="middle" x="566" y="-140" font-family="FreeSans" font-size="10.00">Mezzanine::TestAE</text>
 </a>

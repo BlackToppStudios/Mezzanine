@@ -17,7 +17,7 @@
 </g>
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.html" target="_top" xlink:title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations...">
+<a xlink:href="classMezzanine_1_1Scripting_1_1ScriptArgumentSpecific.xhtml" target="_top" xlink:title="A generic implementation of a ScriptArgument that is suitable for primitive types in most situations...">
 <polygon fill="white" stroke="black" points="0,-1 0,-33 146,-33 146,-1 0,-1"/>
 <text text-anchor="start" x="8" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Scripting</text>
 <text text-anchor="middle" x="73" y="-8" font-family="FreeSans" font-size="10.00">::ScriptArgumentSpecific&lt; T &gt;</text>

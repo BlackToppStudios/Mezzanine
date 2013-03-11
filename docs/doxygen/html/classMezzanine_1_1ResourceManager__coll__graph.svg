@@ -48,7 +48,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;">
 <polygon fill="white" stroke="black" points="1664.5,-60 1664.5,-92 1775.5,-92 1775.5,-60 1664.5,-60"/>
 <text text-anchor="start" x="1672.5" y="-79" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1720" y="-67" font-family="FreeSans" font-size="10.00">&lt; ResourceManager &gt;</text>
@@ -62,7 +62,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
 <polygon fill="white" stroke="black" points="1190,-179 1190,-199 1316,-199 1316,-179 1190,-179"/>
 <text text-anchor="middle" x="1253" y="-186" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -74,7 +74,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="996.5,-146 996.5,-166 1097.5,-166 1097.5,-146 996.5,-146"/>
 <text text-anchor="middle" x="1047" y="-153" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -87,7 +87,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="1199.5,-127 1199.5,-159 1306.5,-159 1306.5,-127 1199.5,-127"/>
 <text text-anchor="start" x="1207.5" y="-146" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1253" y="-134" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
@@ -230,7 +230,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
-<a xlink:href="classMezzanine_1_1ResourceInputStream.html" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
+<a xlink:href="classMezzanine_1_1ResourceInputStream.xhtml" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
 <polygon fill="white" stroke="black" points="528.5,-80 528.5,-112 657.5,-112 657.5,-80 528.5,-80"/>
 <text text-anchor="start" x="536.5" y="-99" font-family="FreeSans" font-size="10.00">Mezzanine::ResourceInput</text>
 <text text-anchor="middle" x="593" y="-87" font-family="FreeSans" font-size="10.00">Stream</text>

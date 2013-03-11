@@ -59,7 +59,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1ColourValue.html" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
+<a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
 <polygon fill="white" stroke="black" points="859.5,-190.276 859.5,-210.276 978.5,-210.276 978.5,-190.276 859.5,-190.276"/>
 <text text-anchor="middle" x="919" y="-197.276" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
@@ -72,7 +72,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Vector2.html" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
+<a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
 <polygon fill="white" stroke="black" points="223,-113.276 223,-133.276 323,-133.276 323,-113.276 223,-113.276"/>
 <text text-anchor="middle" x="273" y="-120.276" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
@@ -86,7 +86,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<a xlink:href="structMezzanine_1_1UI_1_1Sprite.html" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
+<a xlink:href="structMezzanine_1_1UI_1_1Sprite.xhtml" target="_top" xlink:title="Basic class used to describe a portion of a texture to be applied to a Quad.">
 <polygon fill="white" stroke="black" points="865.5,-103.276 865.5,-123.276 972.5,-123.276 972.5,-103.276 865.5,-103.276"/>
 <text text-anchor="middle" x="919" y="-110.276" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Sprite</text>
 </a>
@@ -100,7 +100,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1UI_1_1Glyph.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
+<a xlink:href="classMezzanine_1_1UI_1_1Glyph.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
 <polygon fill="white" stroke="black" points="428,-7.27571 428,-27.2757 534,-27.2757 534,-7.27571 428,-7.27571"/>
 <text text-anchor="middle" x="481" y="-14.2757" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Glyph</text>
 </a>
@@ -150,7 +150,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node10 -->
 <g id="node20" class="node"><title>Node10</title>
-<a xlink:href="classMezzanine_1_1UI_1_1GlyphData.html" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
+<a xlink:href="classMezzanine_1_1UI_1_1GlyphData.xhtml" target="_top" xlink:title="Class used to describe a single glyph or character available for text operations.">
 <polygon fill="white" stroke="black" points="856,-7.27571 856,-27.2757 982,-27.2757 982,-7.27571 856,-7.27571"/>
 <text text-anchor="middle" x="919" y="-14.2757" font-family="FreeSans" font-size="10.00">Mezzanine::UI::GlyphData</text>
 </a>
@@ -221,7 +221,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
-<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.html" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
+<a xlink:href="structMezzanine_1_1UI_1_1KerningInfo.xhtml" target="_top" xlink:title="Basic class used to describe Kerning for a given Glyph.">
 <polygon fill="white" stroke="black" points="0.5,-7.27571 0.5,-27.2757 131.5,-27.2757 131.5,-7.27571 0.5,-7.27571"/>
 <text text-anchor="middle" x="66" y="-14.2757" font-family="FreeSans" font-size="10.00">Mezzanine::UI::KerningInfo</text>
 </a>

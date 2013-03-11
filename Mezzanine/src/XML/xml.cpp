@@ -64,13 +64,13 @@
 #include <assert.h>
 #include <wchar.h>
 
-#ifndef XML_NO_XPATH
-#	include <math.h>
-#	include <float.h>
-#	ifdef XML_NO_EXCEPTIONS
-#		include <setjmp.h>
-#	endif
+
+#include <math.h>
+#include <float.h>
+#ifdef XML_NO_EXCEPTIONS
+#	include <setjmp.h>
 #endif
+
 
 #ifndef XML_NO_STL
 #	include <istream>
@@ -235,7 +235,7 @@ PUGI__NS_BEGIN
 
 PUGI__NS_END
 
-#if !defined(XML_NO_STL) || !defined(XML_NO_XPATH)
+#if !defined(XML_NO_STL)
 // auto_ptr-like buffer holder for exception recovery
 PUGI__NS_BEGIN
 	struct buffer_holder
@@ -5208,9 +5208,6 @@ namespace std
 	}
 }
 #endif
-
-#ifndef XML_NO_XPATH
-
 // STL replacements
 PUGI__NS_BEGIN
 	struct equal_to
@@ -9965,8 +9962,6 @@ namespace XML
 		return query.EvaluateNodeSet(*this);
 	}
 }
-
-#endif
 
 #ifdef __BORLANDC__
 #	pragma option pop

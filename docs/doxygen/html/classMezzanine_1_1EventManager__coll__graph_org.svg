@@ -16,7 +16,7 @@
 </g>
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; EventManager \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; EventManager \&gt;">
 <polygon fill="white" stroke="black" points="10.5,-1 10.5,-33 117.5,-33 117.5,-1 10.5,-1"/>
 <text text-anchor="start" x="18.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="64" y="-8" font-family="FreeSans" font-size="10.00">&lt; EventManager &gt;</text>
@@ -30,7 +30,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1ManagerBase.html" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
+<a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
 <polygon fill="white" stroke="black" points="1,-149 1,-169 127,-169 127,-149 1,-149"/>
 <text text-anchor="middle" x="64" y="-156" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
@@ -42,7 +42,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Entresol.html" target="_top" xlink:title="This is the main entry point for the entire library.">
+<a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
 <polygon fill="white" stroke="black" points="90.5,-225 90.5,-245 191.5,-245 191.5,-225 90.5,-225"/>
 <text text-anchor="middle" x="141" y="-232" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
@@ -55,7 +55,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<a xlink:href="classMezzanine_1_1Singleton.html" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
+<a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
 <polygon fill="white" stroke="black" points="151.5,-143 151.5,-175 258.5,-175 258.5,-143 151.5,-143"/>
 <text text-anchor="start" x="159.5" y="-162" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="205" y="-150" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>

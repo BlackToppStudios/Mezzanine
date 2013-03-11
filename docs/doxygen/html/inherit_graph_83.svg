@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-36 105,-36 105,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Physics_1_1Collision.html" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
+<a xlink:href="classMezzanine_1_1Physics_1_1Collision.xhtml" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
 <polygon fill="white" stroke="black" points="0,-0 0,-32 100,-32 100,-0 0,-0"/>
 <text text-anchor="start" x="8" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="50" y="-7" font-family="FreeSans" font-size="10.00">::Collision</text>

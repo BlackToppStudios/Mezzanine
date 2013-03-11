@@ -16,7 +16,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<a xlink:href="classMezzanine_1_1MemoryManagementException.html" target="_top" xlink:title="Thrown when an unknown memory management exception occurs.">
+<a xlink:href="classMezzanine_1_1MemoryManagementException.xhtml" target="_top" xlink:title="Thrown when an unknown memory management exception occurs.">
 <polygon fill="white" stroke="black" points="6,-59 6,-91 164,-91 164,-59 6,-59"/>
 <text text-anchor="start" x="14" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::MemoryManagement</text>
 <text text-anchor="middle" x="85" y="-66" font-family="FreeSans" font-size="10.00">Exception</text>
@@ -29,7 +29,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<a xlink:href="classMezzanine_1_1Exception.html" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
+<a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
 <polygon fill="white" stroke="black" points="30.5,-129 30.5,-149 139.5,-149 139.5,-129 30.5,-129"/>
 <text text-anchor="middle" x="85" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>

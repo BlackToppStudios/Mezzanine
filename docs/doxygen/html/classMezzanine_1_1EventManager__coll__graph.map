@@ -1,8 +1,8 @@
 <map id="Mezzanine::EventManager" name="Mezzanine::EventManager">
-<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; EventManager \&gt;" alt="" coords="20,830,161,874"/>
-<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit." alt="" coords="7,649,175,677"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.html" title="This is the main entry point for the entire library." alt="" coords="127,547,260,575"/>
-<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.html" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="208,641,349,685"/>
+<area shape="rect" id="node24" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; EventManager \&gt;" alt="" coords="20,830,161,874"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1ManagerBase.xhtml" title="This is the base class from which all the World Managers inherit." alt="" coords="7,649,175,677"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library." alt="" coords="127,547,260,575"/>
+<area shape="rect" id="node6" href="$classMezzanine_1_1Singleton.xhtml" title="Mezzanine::Singleton\l\&lt; Entresol \&gt;" alt="" coords="208,641,349,685"/>
 <area shape="rect" id="node9" title="STL class." alt="" coords="136,454,251,482"/>
 <area shape="rect" id="node11" title="STL class." alt="" coords="117,358,269,402"/>
 <area shape="rect" id="node13" title="STL class." alt="" coords="128,262,259,306"/>

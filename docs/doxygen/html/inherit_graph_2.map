@@ -1,4 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classMezzanine_1_1AnyPlaceHolder.html" title="This is an abstract interface for a Holder to be used with the Any class." alt="" coords="5,13,187,41"/>
-<area shape="rect" id="node3" href="$classMezzanine_1_1AnyHolder.html" title="This is a holder for the actual value stored by an Any." alt="" coords="236,5,383,49"/>
+<area shape="rect" id="node1" href="$classMezzanine_1_1AnyPlaceHolder.xhtml" title="This is an abstract interface for a Holder to be used with the Any class." alt="" coords="5,13,187,41"/>
+<area shape="rect" id="node3" href="$classMezzanine_1_1AnyHolder.xhtml" title="This is a holder for the actual value stored by an Any." alt="" coords="236,5,383,49"/>
 </map>

@@ -11,7 +11,7 @@
 <polygon fill="white" stroke="white" points="-4,5 -4,-24 117,-24 117,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1LineGroup.html" target="_top" xlink:title="This is a group of consectutive line segments to be rendered together.">
+<a xlink:href="classMezzanine_1_1LineGroup.xhtml" target="_top" xlink:title="This is a group of consectutive line segments to be rendered together.">
 <polygon fill="white" stroke="black" points="0.5,-0 0.5,-20 111.5,-20 111.5,-0 0.5,-0"/>
 <text text-anchor="middle" x="56" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::LineGroup</text>
 </a>
