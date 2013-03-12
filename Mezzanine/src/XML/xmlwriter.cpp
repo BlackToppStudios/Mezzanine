@@ -54,10 +54,10 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-#include "xml/xmlboilerplate.h"
+#include "XML/xmlwriter.h"
 
-#ifndef _xmlboilerplate_cpp
-#define _xmlboilerplate_cpp
+#ifndef _xmlwriter_cpp
+#define _xmlwriter_cpp
 namespace Mezzanine
 {
     namespace XML

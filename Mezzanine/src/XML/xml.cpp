@@ -316,8 +316,7 @@ PUGI__NS_BEGIN
 		uint16_t full_size; // 0 if string occupies whole page
 	};
 
-	struct Allocator
-	{
+	struct Allocator	{
 		Allocator(MemoryPage* GetRoot): _GetRoot(GetRoot), _busy_size(GetRoot->busy_size)
 		{
 		}
@@ -3418,13 +3417,13 @@ PUGI__NS_END
 
 namespace XML
 {
-	PUGI__FN WriterFile::WriterFile(void* file_): file(file_)
+    PUGI__FN WriterFile::WriterFile(void* FilePtr): TargetFile(FilePtr)
 	{
 	}
 
 	PUGI__FN void WriterFile::Write(const void* data, size_t size)
 	{
-		size_t Result = fwrite(data, 1, size, static_cast<FILE*>(file));
+        size_t Result = fwrite(data, 1, size, static_cast<FILE*>(TargetFile));
 		(void)!Result; // unfortunately we can't do proper error handling here
 	}
 

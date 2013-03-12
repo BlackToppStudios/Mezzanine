@@ -1978,37 +1978,6 @@ namespace Mezzanine
 
 
         ///////////////////////////////////////////////////////////////////////////////
-        // @typedef string_t
-        // @brief A string class used internally to store data in the XML parser.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class Writer
-        /// @brief Interface for node printing (see @ref Node::Print)
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class WriterFile
-        /// @brief An implementation of @ref Writer intended for writing to FILEs as defined in stdio
-
-        /// @var WriterFile::file
-        /// @internal
-        /// @brief A pointer to a FILE as defined in stdio
-
-        /// @fn WriterFile::WriterFile(void* file)
-        /// @brief Construct a Writer from a FILE* object.
-        /// @param file The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class WriterStream
-        /// @brief An implementation of @ref Writer intended for writing std::ostreams
-
-		/// @var WriterStream::narrow_stream
-		/// @internal
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @def XML_DEPRECATED
-        /// @brief Used to mark XML internals as deprecated at the compiler level.
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @def _XML_H
         /// @internal
         /// @brief Prevents accidental loading of the file xml.h multiple times.

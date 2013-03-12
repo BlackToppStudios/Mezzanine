@@ -55,13 +55,103 @@
  */
 
 #include "datatypes.h"
+#include "resource.h"
 
 #ifndef _xmlwriter_h
 #define _xmlwriter_h
 namespace Mezzanine
 {
+
     namespace XML
     {
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief Interface for node printing (see @ref Node::Print)
+        class MEZZ_LIB Writer
+        {
+        public:
+            /// @brief Safe to dervied doconstructor
+            virtual ~Writer() {}
+
+            /// @brief Write memory chunk into stream/file/whatever
+            /// @param data A void pointer that could be anything, so that it does not interfere with inheritance
+            /// @param size How much to write in bytes.
+            virtual void Write(const void* data, size_t size) = 0;
+        };
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @brief An implementation of @ref Writer intended for writing to FILEs as defined in stdio
+        class MEZZ_LIB WriterFile: public Writer
+        {
+            private:
+                /// @internal
+                /// @brief A pointer to a FILE as defined in stdio
+                void* TargetFile;
+
+            public:
+                /// @brief Construct WriterInstance from a FILE* object; void* is used to avoid header dependencies on stdio
+                /// @param FilePtr the c  style FILE* to contruct this from.
+                WriterFile(void* FilePtr);
+
+                /// @brief Construct a Writer from a FILE* object.
+                /// @param data Data To be written to the FILE.
+                /// @param size How much data to write.
+                virtual void Write(const void* data, size_t size);
+        };
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WriterStream
+        /// @brief An implementation of @ref Writer intended for writing std::ostreams
+        class MEZZ_LIB WriterStream: public Writer
+        {
+        public:
+                /// @brief A constructor that accepts a stream of characters
+                /// @param stream A stream to send stuff to.
+            WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream);
+
+            /// @brief A constructor that accepts a stream of wide characters
+            /// @param stream A stream to send stuff to.
+            WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);
+
+            /// @brief Actually issues the write commands.
+            /// @param
+            virtual void Write(const void* data, size_t size);
+
+        private:
+            /// @internal
+            std::basic_ostream<char, std::char_traits<char> >* narrow_stream;
+            /// @internal
+            std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream;
+        };
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XMLStreamWrapper
+        /// @headerfile resourcedatastream.h
+        /// @brief This represents a simple wrapper that makes data streams compatible with the XML API.
+        /// @details
+        /// @todo Ideally this class should not exist, and the XML system should be made to use the resource system instead of doing its own IO.
+        ///////////////////////////////////////
+        class MEZZ_LIB XMLStreamWrapper : public Writer
+        {
+            protected:
+
+                Resource::DataStream* WrappedStream;
+            public:
+                /// @brief Class constructor.
+                /// @param Stream The stream to be wrapped.
+                XMLStreamWrapper(Resource::DataStream* Stream) : WrappedStream(Stream) {}
+
+                /// @brief Class destructor.
+                virtual ~XMLStreamWrapper() {}
+
+                /// @brief Writes data to the stream.
+                /// @param data The data to be written.
+                /// @param size The number of bytes to be written.
+                void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
+        };//XMLStreamWrapper
+
 
     }
 }

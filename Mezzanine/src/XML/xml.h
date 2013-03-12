@@ -86,6 +86,7 @@
 #include "crossplatform.h"
 #include "XML/objectrange.h"
 #include "XML/xmldoc.h"
+#include "XML/xmlwriter.h"
 #include "exception.h"
 
 #include "Resource/datastream.h"
@@ -240,73 +241,6 @@ namespace XML
 	// Range-based for loop support
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-
-	// Writer interface for node Printing (see Node::Print)
-	class MEZZ_LIB Writer
-	{
-	public:
-		virtual ~Writer() {}
-
-		// Write memory chunk into stream/file/whatever
-		virtual void Write(const void* data, size_t size) = 0;
-	};
-
-	// Writer implementation for FILE*
-	class MEZZ_LIB WriterFile: public Writer
-	{
-	public:
-		// Construct WriterInstance from a FILE* object; void* is used to avoid header dependencies on stdio
-		WriterFile(void* file);
-
-		virtual void Write(const void* data, size_t size);
-
-	private:
-		void* file;
-	};
-
-	// Writer implementation for streams
-	class MEZZ_LIB WriterStream: public Writer
-	{
-	public:
-		// Construct WriterInstance from an output stream object
-		WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream);
-
-		/// @brief A constructor that accepts a stream of wide characters
-		/// @param stream A stream to send stuff to.
-		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);
-
-		virtual void Write(const void* data, size_t size);
-
-	private:
-		std::basic_ostream<char, std::char_traits<char> >* narrow_stream;
-		/// @internal
-		std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream;
-	};
-
-
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class XMLStreamWrapper
-    /// @headerfile resourcedatastream.h
-    /// @brief This represents a simple wrapper that makes data streams compatible with the XML API.
-    /// @details
-    /// @todo Ideally this class should not exist, and the XML system should be made to use the resource system instead of doing its own IO.
-    ///////////////////////////////////////
-    class MEZZ_LIB XMLStreamWrapper : public Writer
-    {
-        protected:
-            Resource::DataStream* WrappedStream;
-        public:
-            /// @brief Class constructor.
-            /// @param Stream The stream to be wrapped.
-            XMLStreamWrapper(Resource::DataStream* Stream) : WrappedStream(Stream) {};
-            /// @brief Class destructor.
-            virtual ~XMLStreamWrapper() {};
-
-            /// @brief Writes data to the stream.
-            /// @param data The data to be written.
-            /// @param size The number of bytes to be written.
-            void Write(const void* data, size_t size) { WrappedStream->Write(data,size); };
-    };//XMLStreamWrapper
 
     // A light-weight handle for manipulating attributes in DOM tree
 	class MEZZ_LIB Attribute
