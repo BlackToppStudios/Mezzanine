@@ -41,7 +41,10 @@
 #define _resourcetextsettingsfile_h
 
 #include "datatypes.h"
+
+#ifndef SWIG
 #include <map>
+#endif
 
 namespace Mezzanine
 {

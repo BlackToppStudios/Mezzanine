@@ -55,7 +55,10 @@
  */
 
 #include "datatypes.h"
+
+//#ifndef SWIG
 #include "resource.h"
+//#endif
 
 #ifndef _xmlwriter_h
 #define _xmlwriter_h
@@ -64,18 +67,20 @@ namespace Mezzanine
 
     namespace XML
     {
+
+#if 1 //(!SWIG) || (SWIG_UNSAFE)
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Interface for node printing (see @ref Node::Print)
         class MEZZ_LIB Writer
         {
-        public:
-            /// @brief Safe to dervied doconstructor
-            virtual ~Writer() {}
+            public:
+                /// @brief Safe to dervied doconstructor
+                virtual ~Writer() {}
 
-            /// @brief Write memory chunk into stream/file/whatever
-            /// @param data A void pointer that could be anything, so that it does not interfere with inheritance
-            /// @param size How much to write in bytes.
-            virtual void Write(const void* data, size_t size) = 0;
+                /// @brief Write memory chunk into stream/file/whatever
+                /// @param data A void pointer that could be anything, so that it does not interfere with inheritance
+                /// @param size How much to write in bytes.
+                virtual void Write(const void* data, size_t size) = 0;
         };
 
 
@@ -152,7 +157,7 @@ namespace Mezzanine
                 void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 
-
+#endif // (!SWIG) || (SWIG_UNSAFE)
     }
 }
 #endif

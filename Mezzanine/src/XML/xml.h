@@ -89,7 +89,9 @@
 #include "XML/xmlwriter.h"
 #include "exception.h"
 
+//#ifndef SWIG
 #include "Resource/datastream.h"
+//#endif
 
 #ifndef _XML_H
 #define _XML_H
