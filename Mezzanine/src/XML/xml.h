@@ -83,15 +83,15 @@
 #	define XML_VERSION 120
 #endif
 
-#include "crossplatform.h"
+#include "datatypes.h"
 #include "XML/objectrange.h"
 #include "XML/xmldoc.h"
 #include "XML/xmlwriter.h"
 #include "exception.h"
 
-//#ifndef SWIG
+#ifndef SWIG
 #include "Resource/datastream.h"
-//#endif
+#endif
 
 #ifndef _XML_H
 #define _XML_H

@@ -3417,6 +3417,7 @@ PUGI__NS_END
 
 namespace XML
 {
+    #ifndef SWIG_SAFE
     PUGI__FN WriterFile::WriterFile(void* FilePtr): TargetFile(FilePtr)
 	{
 	}
@@ -3427,7 +3428,7 @@ namespace XML
 		(void)!Result; // unfortunately we can't do proper error handling here
 	}
 
-#ifndef XML_NO_STL
+
 	PUGI__FN WriterStream::WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream): narrow_stream(&stream), wide_stream(0)
 	{
 	}
@@ -3451,7 +3452,7 @@ namespace XML
 			wide_stream->write(reinterpret_cast<const wchar_t*>(data), static_cast<std::streamsize>(size / sizeof(wchar_t)));
 		}
 	}
-#endif
+    #endif //SWIG_SAFE
 
 	PUGI__FN TreeWalker::TreeWalker(): _Depth(0)
 	{

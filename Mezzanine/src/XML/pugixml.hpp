@@ -223,7 +223,6 @@ namespace pugi
 	private:
 		It _begin, _end;
 	};
-////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// Writer interface for node printing (see xml_node::print)
 	class PUGIXML_CLASS xml_writer
@@ -264,6 +263,8 @@ namespace pugi
 		std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream;
 	};
 	#endif
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// A light-weight handle for manipulating attributes in DOM tree
 	class PUGIXML_CLASS xml_attribute

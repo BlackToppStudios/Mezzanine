@@ -43,6 +43,12 @@
 #include "btBulletDynamicsCommon.h"
 #include <cAudio.h>
 #include "resource.h"
+#include "XML/xml.h"
+
+using namespace Mezzanine::XML;
+using namespace Mezzanine::Resource;
+using namespace Mezzanine;
+
 
 /// @file
 /// @brief This file has the interface for the Lua based implementation of the Scripting system.

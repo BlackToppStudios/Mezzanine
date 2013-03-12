@@ -54,11 +54,14 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+/// @file
+/// @brief The definitions for all of the XML::Writer inheritance hierarchy.
+
 #include "datatypes.h"
 
-//#ifndef SWIG
+#ifndef SWIG
 #include "resource.h"
-//#endif
+#endif
 
 #ifndef _xmlwriter_h
 #define _xmlwriter_h
@@ -68,7 +71,7 @@ namespace Mezzanine
     namespace XML
     {
 
-#if 1 //(!SWIG) || (SWIG_UNSAFE)
+#ifndef SWIG_SAFE
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Interface for node printing (see @ref Node::Print)
         class MEZZ_LIB Writer
@@ -157,7 +160,7 @@ namespace Mezzanine
                 void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 
-#endif // (!SWIG) || (SWIG_UNSAFE)
+#endif //
     }
 }
 #endif
