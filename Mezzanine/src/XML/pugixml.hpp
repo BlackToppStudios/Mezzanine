@@ -265,6 +265,7 @@ namespace pugi
 	#endif
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
+    // Just need to compare this to the Mezzanine::XML::Attribute
 
 	// A light-weight handle for manipulating attributes in DOM tree
 	class PUGIXML_CLASS xml_attribute

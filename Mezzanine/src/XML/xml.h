@@ -85,6 +85,7 @@
 
 #include "datatypes.h"
 #include "XML/objectrange.h"
+#include "XML/xmlattribute.h"
 #include "XML/xmldoc.h"
 #include "XML/xmlwriter.h"
 #include "exception.h"
@@ -244,137 +245,6 @@ namespace XML
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
-    // A light-weight handle for manipulating attributes in DOM tree
-	class MEZZ_LIB Attribute
-	{
-		friend class AttributeIterator;
-		friend class Node;
-
-	private:
-		AttributeStruct* _attr;
-
-		typedef void (*unspecified_bool_type)(Attribute***);
-
-	public:
-		// Default constructor. Constructs an empty GetAttribute.
-		Attribute();
-
-		// Constructs GetAttribute from internal pointer
-		explicit Attribute(AttributeStruct* attr);
-
-		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal data is set and false otherwise.
-		operator unspecified_bool_type() const;
-
-		// Borland C++ workaround
-		bool operator!() const;
-
-		// Comparison operators (compares wrapped GetAttribute pointers)
-		bool operator==(const Attribute& r) const;
-		bool operator!=(const Attribute& r) const;
-		bool operator<(const Attribute& r) const;
-		bool operator>(const Attribute& r) const;
-		bool operator<=(const Attribute& r) const;
-		bool operator>=(const Attribute& r) const;
-
-		// Check if GetAttribute is empty
-		bool Empty() const;
-
-		// Get GetAttribute Name/Value, or "" if GetAttribute is empty
-        const Char8* Name() const;
-        const Char8* Value() const;
-
-		// Get GetAttribute Value, or the default Value if GetAttribute is empty
-        const Char8* AsString(const Char8* def = "") const;
-
-		// Get GetAttribute Value as a number, or the default Value if conversion did not succeed or GetAttribute is empty
-		int AsInt(int def = 0) const;
-		unsigned int AsUint(unsigned int def = 0) const;
-		double AsDouble(double def = 0) const;
-		float AsFloat(float def = 0) const;
-		Real AsReal(Real def = 0) const;
-		Whole AsWhole(Whole def = 0) const;
-		Integer AsInteger(Integer def = 0) const;
-
-		// Get GetAttribute Value as bool (returns true if first character is in '1tTyY' set), or the default Value if GetAttribute is empty
-		bool AsBool(bool def = false) const;
-
-		// Set GetAttribute Name/Value (returns false if GetAttribute is empty or there is not enough memory)
-		/// @brief Set the name of .
-		/// @param rhs The desired name.
-		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
-        bool SetName(const Char8* rhs);
-		/// @brief Set the name of this object
-		/// @param rhs The desired name .
-		/// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
-		bool SetName(const String& rhs)
-			{ return SetName(rhs.c_str()); }
-		/// @brief Set the value of this.
-		/// @param rhs The new Value.
-		/// @return True if successful, returns false if this is empty or there is not enough memory.
-		/// @todo update this to make the error return code redundant and use an exception instead.
-		/// @todo Review for possiblity of buffer overflow.
-        bool SetValue(const Char8* rhs);
-
-		// Set GetAttribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
-		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
-		/// @param rhs The new value as an int.
-		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redundant and use an exception instead.
-		/// @todo Review for possiblity of buffer overflow.
-		bool SetValue(int rhs);
-		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
-		/// @param rhs The new value as an unsigned int.
-		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redundant and use an exception instead.
-		/// @todo Review for possiblity of buffer overflow.
-		bool SetValue(unsigned int rhs);
-		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
-		/// @param rhs The new value as a double.
-		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redundant and use an exception instead.
-		/// @todo Review for possiblity of buffer overflow.
-		bool SetValue(double rhs);
-		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
-		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.
-		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redundant and use an exception instead.
-		/// @todo Review for possiblity of buffer overflow.
-		bool SetValue(bool rhs);
-
-		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
-		/// @param rhs This with be converted to a character array using the appropriate streaming operator <<, then used as the new value.
-		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @warning You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the ">" character, then you can reinsert it later
-		/// @todo Strip ">" automatically and provide a method to reconsitute it.
-		template <class T> bool SetValue(T rhs)
-		{
-			return SetValue(ToString(rhs).c_str());
-		}
-
-		// Set GetAttribute Value (equivalent to SetValue without error checking)
-        Attribute& operator=(const Char8* rhs);
-		Attribute& operator=(int rhs);
-		Attribute& operator=(unsigned int rhs);
-		Attribute& operator=(double rhs);
-		Attribute& operator=(bool rhs);
-
-		// Get next/previous GetAttribute in the GetAttribute list of the GetParent node
-		Attribute GetNextAttribute() const;
-		Attribute GetPreviousAttribute() const;
-
-		// Get hash Value (unique for handles to the same object)
-		size_t HashValue() const;
-
-		// Get internal pointer
-		AttributeStruct* InternalObject() const;
-	};
-
-#ifdef __BORLANDC__
-	// Borland C++ workaround
-	bool MEZZ_LIB operator&&(const Attribute& lhs, bool rhs);
-	bool MEZZ_LIB operator||(const Attribute& lhs, bool rhs);
-#endif
 
 	// A light-weight handle for manipulating nodes in DOM tree
 	class MEZZ_LIB Node
@@ -773,12 +643,6 @@ namespace XML
 		NodeStruct* InternalObject() const;
 	};
 
-#ifdef __BORLANDC__
-	// Borland C++ workaround
-	bool MEZZ_LIB operator&&(const Node& lhs, bool rhs);
-	bool MEZZ_LIB operator||(const Node& lhs, bool rhs);
-#endif
-
 	// A helper for working with text inside PCDATA nodes
 	class MEZZ_LIB Text
 	{
@@ -844,12 +708,6 @@ namespace XML
 		// Get the data node (NodePcdata or NodeCdata) for this object
 		Node data() const;
 	};
-
-#ifdef __BORLANDC__
-	// Borland C++ workaround
-	bool MEZZ_LIB operator&&(const Text& lhs, bool rhs);
-	bool MEZZ_LIB operator||(const Text& lhs, bool rhs);
-#endif
 
 	// Child node iterator (a bidirectional iterator over a collection of Node)
 	class MEZZ_LIB NodeIterator
@@ -1456,12 +1314,6 @@ namespace XML
 		/// @return True if this and the other XML::XPathNode are referencing the same item, false otherwise;
 		bool operator!=(const XPathNode& n) const;
 	};
-
-#ifdef __BORLANDC__
-	// Borland C++ workaround
-	bool MEZZ_LIB operator&&(const XPathNode& lhs, bool rhs);
-	bool MEZZ_LIB operator||(const XPathNode& lhs, bool rhs);
-#endif
 
 	// A fixed-size collection of XPath nodes
 	class MEZZ_LIB XPathNodeSet
