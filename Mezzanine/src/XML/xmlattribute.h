@@ -76,7 +76,7 @@ namespace Mezzanine
             private:
                 /// @internal
                 /// @brief Stores pointers to the attribute data and some metadata about the attribute.
-                AttributeStruct* _attr;
+                AttributeStruct* AttributeData;
 
                 #ifndef SWIG
                 /// @brief Used to prevent casting to numerical types acccidentally.
@@ -156,54 +156,63 @@ namespace Mezzanine
 
                 /// @brief Attempts to convert the value of the attribute to a String and returns the results.
                 /// @return If the value of this attribute can be converted to a Real by reading the character
-                /// and interpretting them a number, that number is returned. Returns 0 on failure.
+                /// and interpretting them a number, that number is returned. Returns def on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @exception This can throw exception in certain overflow conditions
                 const Char8* AsString(const Char8* def = "") const;
 
                 /// @brief Attempts to convert the value of the attribute to an int and returns the results.
-                /// @return If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+                /// @return If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns passed parameter on failure.
                 /// @todo Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+                /// @param def Is returned if the attribute is empty.
                 /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition.
                 int AsInt(int def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to an unsigned int and returns the results.
                 /// @return If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @todo Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
                 /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition.
                 unsigned int AsUint(unsigned int def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to a double and returns the results.
-                /// @return If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+                /// @return If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns parameter def on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @todo Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
                 /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check "errno" and see if it is set to "ERANGE" to test for this condition.
                 double AsDouble(double def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to a float and returns the results.
-                /// @return If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+                /// @return If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns def on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @todo Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
                 /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition.
                 float AsFloat(float def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to a Real and returns the results.
                 /// @return If the value of this attribute can be converted to a Real by reading the character
-                /// and interpretting them a number, that number is returned. Returns 0 on failure.
+                /// and interpretting them a number, that number is returned. Returns argument def on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @exception This can throw exception in certain overflow conditions
                 Real AsReal(Real def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to a Whole and returns the results.
                 /// @return If the value of this attribute can be converted to a Whole by reading the character
-                /// and interpretting them a number, that number is returned. Returns 0 on failure.
+                /// and interpretting them a number, that number is returned. Returns passed parameter on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @exception This can throw exception in certain overflow conditions
                 Whole AsWhole(Whole def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to a Integer and returns the results.
                 /// @return If the value of this attribute can be converted to a Integer by reading the character
-                /// and interpretting them a number, that number is returned. Returns 0 on failure.
+                /// and interpretting them a number, that number is returned. Returns 0 (def defaults to 0) on failure.
+                /// @param def Is returned if the attribute is empty
                 /// @exception This can throw exception in certain overflow conditions
                 Integer AsInteger(Integer def = 0) const;
 
                 /// @brief Attempts to convert the value of the attribute to a float and returns the results.
-                /// @return Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty
+                /// @return Value as bool (returns true if first character is in '1tTyY' set), or def if attribute is empty
+                /// @param def Is returned if the attribute is empty
                 bool AsBool(bool def = false) const;
 
                 #ifndef SWIG
@@ -279,8 +288,6 @@ namespace Mezzanine
                 /// @note This overload is used in scripting languages.
                 bool SetValue(const String& rhs)
                     { return SetValue(rhs.c_str()); }
-
-
 
                 /// @param rhs The new value as an c-style string.
                 /// @brief The same as @ref Attribute::SetValue(); without the error return

@@ -3461,11 +3461,11 @@ namespace XML
 		return true;
 	}
 
-	PUGI__FN Attribute::Attribute(): _attr(0)
+	PUGI__FN Attribute::Attribute(): AttributeData(0)
 	{
 	}
 
-	PUGI__FN Attribute::Attribute(AttributeStruct* attr): _attr(attr)
+	PUGI__FN Attribute::Attribute(AttributeStruct* attr): AttributeData(attr)
 	{
 	}
 
@@ -3475,116 +3475,116 @@ namespace XML
 
 	PUGI__FN Attribute::operator Attribute::unspecified_bool_type() const
 	{
-		return _attr ? unspecified_bool_Attribute : 0;
+		return AttributeData ? unspecified_bool_Attribute : 0;
 	}
 
 	PUGI__FN bool Attribute::operator!() const
 	{
-		return !_attr;
+		return !AttributeData;
 	}
 
 	PUGI__FN bool Attribute::operator==(const Attribute& r) const
 	{
-		return (_attr == r._attr);
+		return (AttributeData == r.AttributeData);
 	}
 
 	PUGI__FN bool Attribute::operator!=(const Attribute& r) const
 	{
-		return (_attr != r._attr);
+		return (AttributeData != r.AttributeData);
 	}
 
 	PUGI__FN bool Attribute::operator<(const Attribute& r) const
 	{
-		return (_attr < r._attr);
+		return (AttributeData < r.AttributeData);
 	}
 
 	PUGI__FN bool Attribute::operator>(const Attribute& r) const
 	{
-		return (_attr > r._attr);
+		return (AttributeData > r.AttributeData);
 	}
 
 	PUGI__FN bool Attribute::operator<=(const Attribute& r) const
 	{
-		return (_attr <= r._attr);
+		return (AttributeData <= r.AttributeData);
 	}
 
 	PUGI__FN bool Attribute::operator>=(const Attribute& r) const
 	{
-		return (_attr >= r._attr);
+		return (AttributeData >= r.AttributeData);
 	}
 
 	PUGI__FN Attribute Attribute::GetNextAttribute() const
 	{
-		return _attr ? Attribute(_attr->GetNextAttribute) : Attribute();
+		return AttributeData ? Attribute(AttributeData->GetNextAttribute) : Attribute();
 	}
 
 	PUGI__FN Attribute Attribute::GetPreviousAttribute() const
 	{
-		return _attr && _attr->prev_attribute_c->GetNextAttribute ? Attribute(_attr->prev_attribute_c) : Attribute();
+		return AttributeData && AttributeData->prev_attribute_c->GetNextAttribute ? Attribute(AttributeData->prev_attribute_c) : Attribute();
 	}
 
     PUGI__FN const Char8* Attribute::AsString(const Char8* def) const
 	{
-		return (_attr && _attr->Value) ? _attr->Value : def;
+		return (AttributeData && AttributeData->Value) ? AttributeData->Value : def;
 	}
 
 	PUGI__FN int Attribute::AsInt(int def) const
 	{
-		return internal::GetValue_int(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_int(AttributeData ? AttributeData->Value : 0, def);
 	}
 
 	PUGI__FN unsigned int Attribute::AsUint(unsigned int def) const
 	{
-		return internal::GetValue_uint(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_uint(AttributeData ? AttributeData->Value : 0, def);
 	}
 
 	PUGI__FN double Attribute::AsDouble(double def) const
 	{
-		return internal::GetValue_double(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_double(AttributeData ? AttributeData->Value : 0, def);
 	}
 
 	PUGI__FN Whole Attribute::AsWhole(Whole def) const
-		{ return (_attr ? ToWhole(_attr->Value) : def); }
+		{ return (AttributeData ? ToWhole(AttributeData->Value) : def); }
 
 	PUGI__FN Integer Attribute::AsInteger(Integer def) const
-		{ return (_attr ? ToInteger(_attr->Value) : def); }
+		{ return (AttributeData ? ToInteger(AttributeData->Value) : def); }
 
 	PUGI__FN  Real Attribute::AsReal(Real def) const
-		{ return (_attr ? ToReal(_attr->Value) : def); }
+		{ return (AttributeData ? ToReal(AttributeData->Value) : def); }
 
 	PUGI__FN float Attribute::AsFloat(float def) const
 	{
-		return internal::GetValue_float(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_float(AttributeData ? AttributeData->Value : 0, def);
 	}
 
 	PUGI__FN bool Attribute::AsBool(bool def) const
 	{
-		return internal::GetValue_bool(_attr ? _attr->Value : 0, def);
+		return internal::GetValue_bool(AttributeData ? AttributeData->Value : 0, def);
 	}
 
 	PUGI__FN bool Attribute::Empty() const
 	{
-		return !_attr;
+		return !AttributeData;
 	}
 
     PUGI__FN const Char8* Attribute::Name() const
 	{
-        return (_attr && _attr->Name) ? _attr->Name : "";
+        return (AttributeData && AttributeData->Name) ? AttributeData->Name : "";
 	}
 
     PUGI__FN const Char8* Attribute::Value() const
 	{
-        return (_attr && _attr->Value) ? _attr->Value : "";
+        return (AttributeData && AttributeData->Value) ? AttributeData->Value : "";
 	}
 
 	PUGI__FN size_t Attribute::HashValue() const
 	{
-		return static_cast<size_t>(reinterpret_cast<uintptr_t>(_attr) / sizeof(AttributeStruct));
+		return static_cast<size_t>(reinterpret_cast<uintptr_t>(AttributeData) / sizeof(AttributeStruct));
 	}
 
 	PUGI__FN AttributeStruct* Attribute::InternalObject() const
 	{
-		return _attr;
+		return AttributeData;
 	}
 
     PUGI__FN Attribute& Attribute::operator=(const Char8* rhs)
@@ -3619,44 +3619,44 @@ namespace XML
 
     PUGI__FN bool Attribute::SetName(const Char8* rhs)
 	{
-		if (!_attr) return false;
+		if (!AttributeData) return false;
 
-		return internal::strcpy_insitu(_attr->Name, _attr->header, internal::MemoryPage_Name_allocated_mask, rhs);
+		return internal::strcpy_insitu(AttributeData->Name, AttributeData->header, internal::MemoryPage_Name_allocated_mask, rhs);
 	}
 
     PUGI__FN bool Attribute::SetValue(const Char8* rhs)
 	{
-		if (!_attr) return false;
+		if (!AttributeData) return false;
 
-		return internal::strcpy_insitu(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
+		return internal::strcpy_insitu(AttributeData->Value, AttributeData->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(int rhs)
 	{
-		if (!_attr) return false;
+		if (!AttributeData) return false;
 
-		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(AttributeData->Value, AttributeData->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(unsigned int rhs)
 	{
-		if (!_attr) return false;
+		if (!AttributeData) return false;
 
-		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(AttributeData->Value, AttributeData->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(double rhs)
 	{
-		if (!_attr) return false;
+		if (!AttributeData) return false;
 
-		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(AttributeData->Value, AttributeData->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 	PUGI__FN bool Attribute::SetValue(bool rhs)
 	{
-		if (!_attr) return false;
+		if (!AttributeData) return false;
 
-		return internal::SetValue_convert(_attr->Value, _attr->header, internal::MemoryPage_Value_allocated_mask, rhs);
+		return internal::SetValue_convert(AttributeData->Value, AttributeData->header, internal::MemoryPage_Value_allocated_mask, rhs);
 	}
 
 #ifdef __BORLANDC__
@@ -3943,14 +3943,14 @@ namespace XML
 
 		if (head)
 		{
-			a._attr->prev_attribute_c = head->prev_attribute_c;
-			head->prev_attribute_c = a._attr;
+			a.AttributeData->prev_attribute_c = head->prev_attribute_c;
+			head->prev_attribute_c = a.AttributeData;
 		}
 		else
-			a._attr->prev_attribute_c = a._attr;
+			a.AttributeData->prev_attribute_c = a.AttributeData;
 
-		a._attr->GetNextAttribute = head;
-		_GetRoot->GetFirstAttribute = a._attr;
+		a.AttributeData->GetNextAttribute = head;
+		_GetRoot->GetFirstAttribute = a.AttributeData;
 
 		return a;
 	}
@@ -3960,7 +3960,7 @@ namespace XML
 		if ((Type() != NodeElement && Type() != NodeDeclaration) || attr.Empty()) return Attribute();
 
 		// check that GetAttribute belongs to *this
-		AttributeStruct* cur = attr._attr;
+		AttributeStruct* cur = attr.AttributeData;
 
 		while (cur->prev_attribute_c->GetNextAttribute) cur = cur->prev_attribute_c;
 
@@ -3971,14 +3971,14 @@ namespace XML
 
 		a.SetName(Name_);
 
-		if (attr._attr->prev_attribute_c->GetNextAttribute)
-			attr._attr->prev_attribute_c->GetNextAttribute = a._attr;
+		if (attr.AttributeData->prev_attribute_c->GetNextAttribute)
+			attr.AttributeData->prev_attribute_c->GetNextAttribute = a.AttributeData;
 		else
-			_GetRoot->GetFirstAttribute = a._attr;
+			_GetRoot->GetFirstAttribute = a.AttributeData;
 
-		a._attr->prev_attribute_c = attr._attr->prev_attribute_c;
-		a._attr->GetNextAttribute = attr._attr;
-		attr._attr->prev_attribute_c = a._attr;
+		a.AttributeData->prev_attribute_c = attr.AttributeData->prev_attribute_c;
+		a.AttributeData->GetNextAttribute = attr.AttributeData;
+		attr.AttributeData->prev_attribute_c = a.AttributeData;
 
 		return a;
 	}
@@ -3988,7 +3988,7 @@ namespace XML
 		if ((Type() != NodeElement && Type() != NodeDeclaration) || attr.Empty()) return Attribute();
 
 		// check that GetAttribute belongs to *this
-		AttributeStruct* cur = attr._attr;
+		AttributeStruct* cur = attr.AttributeData;
 
 		while (cur->prev_attribute_c->GetNextAttribute) cur = cur->prev_attribute_c;
 
@@ -3999,14 +3999,14 @@ namespace XML
 
 		a.SetName(Name_);
 
-		if (attr._attr->GetNextAttribute)
-			attr._attr->GetNextAttribute->prev_attribute_c = a._attr;
+		if (attr.AttributeData->GetNextAttribute)
+			attr.AttributeData->GetNextAttribute->prev_attribute_c = a.AttributeData;
 		else
-			_GetRoot->GetFirstAttribute->prev_attribute_c = a._attr;
+			_GetRoot->GetFirstAttribute->prev_attribute_c = a.AttributeData;
 
-		a._attr->GetNextAttribute = attr._attr->GetNextAttribute;
-		a._attr->prev_attribute_c = attr._attr;
-		attr._attr->GetNextAttribute = a._attr;
+		a.AttributeData->GetNextAttribute = attr.AttributeData->GetNextAttribute;
+		a.AttributeData->prev_attribute_c = attr.AttributeData;
+		attr.AttributeData->GetNextAttribute = a.AttributeData;
 
 		return a;
 	}
@@ -4216,22 +4216,22 @@ namespace XML
 
 	PUGI__FN bool Node::RemoveAttribute(const Attribute& a)
 	{
-		if (!_GetRoot || !a._attr) return false;
+		if (!_GetRoot || !a.AttributeData) return false;
 
 		// check that GetAttribute belongs to *this
-		AttributeStruct* attr = a._attr;
+		AttributeStruct* attr = a.AttributeData;
 
 		while (attr->prev_attribute_c->GetNextAttribute) attr = attr->prev_attribute_c;
 
 		if (attr != _GetRoot->GetFirstAttribute) return false;
 
-		if (a._attr->GetNextAttribute) a._attr->GetNextAttribute->prev_attribute_c = a._attr->prev_attribute_c;
-		else if (_GetRoot->GetFirstAttribute) _GetRoot->GetFirstAttribute->prev_attribute_c = a._attr->prev_attribute_c;
+		if (a.AttributeData->GetNextAttribute) a.AttributeData->GetNextAttribute->prev_attribute_c = a.AttributeData->prev_attribute_c;
+		else if (_GetRoot->GetFirstAttribute) _GetRoot->GetFirstAttribute->prev_attribute_c = a.AttributeData->prev_attribute_c;
 
-		if (a._attr->prev_attribute_c->GetNextAttribute) a._attr->prev_attribute_c->GetNextAttribute = a._attr->GetNextAttribute;
-		else _GetRoot->GetFirstAttribute = a._attr->GetNextAttribute;
+		if (a.AttributeData->prev_attribute_c->GetNextAttribute) a.AttributeData->prev_attribute_c->GetNextAttribute = a.AttributeData->GetNextAttribute;
+		else _GetRoot->GetFirstAttribute = a.AttributeData->GetNextAttribute;
 
-		internal::destroy_attribute(a._attr, internal::GetAllocator(_GetRoot));
+		internal::destroy_attribute(a.AttributeData, internal::GetAllocator(_GetRoot));
 
 		return true;
 	}
@@ -4744,30 +4744,30 @@ namespace XML
 
 	PUGI__FN bool AttributeIterator::operator==(const AttributeIterator& rhs) const
 	{
-		return _wrap._attr == rhs._wrap._attr && _GetParent._GetRoot == rhs._GetParent._GetRoot;
+		return _wrap.AttributeData == rhs._wrap.AttributeData && _GetParent._GetRoot == rhs._GetParent._GetRoot;
 	}
 
 	PUGI__FN bool AttributeIterator::operator!=(const AttributeIterator& rhs) const
 	{
-		return _wrap._attr != rhs._wrap._attr || _GetParent._GetRoot != rhs._GetParent._GetRoot;
+		return _wrap.AttributeData != rhs._wrap.AttributeData || _GetParent._GetRoot != rhs._GetParent._GetRoot;
 	}
 
 	PUGI__FN Attribute& AttributeIterator::operator*() const
 	{
-		assert(_wrap._attr);
+		assert(_wrap.AttributeData);
 		return _wrap;
 	}
 
 	PUGI__FN Attribute* AttributeIterator::operator->() const
 	{
-		assert(_wrap._attr);
+		assert(_wrap.AttributeData);
 		return const_cast<Attribute*>(&_wrap); // BCC32 workaround
 	}
 
 	PUGI__FN const AttributeIterator& AttributeIterator::operator++()
 	{
-		assert(_wrap._attr);
-		_wrap._attr = _wrap._attr->GetNextAttribute;
+		assert(_wrap.AttributeData);
+		_wrap.AttributeData = _wrap.AttributeData->GetNextAttribute;
 		return *this;
 	}
 
@@ -4780,7 +4780,7 @@ namespace XML
 
 	PUGI__FN const AttributeIterator& AttributeIterator::operator--()
 	{
-		_wrap = _wrap._attr ? _wrap.GetPreviousAttribute() : _GetParent.GetLastAttribute();
+		_wrap = _wrap.AttributeData ? _wrap.GetPreviousAttribute() : _GetParent.GetLastAttribute();
 		return *this;
 	}
 
