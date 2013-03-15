@@ -54,10 +54,10 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-#include "XML/xmlwriter.h"
+#include "XML/attribute.h"
 
-#ifndef _xmlwriter_cpp
-#define _xmlwriter_cpp
+#ifndef _xmlattribute_cpp
+#define _xmlattribute_cpp
 namespace Mezzanine
 {
     namespace XML

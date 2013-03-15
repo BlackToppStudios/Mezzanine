@@ -275,10 +275,12 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.h"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmlattribute.h"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmlwriter.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"       # Going away soon
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"    # Going away soon
+        "${${PROJECT_NAME}_SRC_DIR}XML/attribute.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/node.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/writer.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlenumerations.h"
 
 #######################################
 # A complete listing of our source files
@@ -451,10 +453,11 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectgraphicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmlattribute.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmlwriter.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"     # Going away soon
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.cpp"  # Going away soon
+        "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/node.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/writer.cpp"
 )
 
 ###############################################################################

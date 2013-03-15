@@ -264,9 +264,6 @@ namespace pugi
 	};
 	#endif
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-    // Just need to compare this to the Mezzanine::XML::Attribute
-
 	// A light-weight handle for manipulating attributes in DOM tree
 	class PUGIXML_CLASS xml_attribute
 	{
@@ -351,6 +348,7 @@ namespace pugi
 	bool PUGIXML_FUNCTION operator&&(const xml_attribute& lhs, bool rhs);
 	bool PUGIXML_FUNCTION operator||(const xml_attribute& lhs, bool rhs);
 #endif
+    ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 	// A light-weight handle for manipulating nodes in DOM tree
 	class PUGIXML_CLASS xml_node
