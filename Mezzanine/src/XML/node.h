@@ -54,17 +54,23 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+#ifndef _xmlnode_h
+#define _xmlnode_h
+
 #include "datatypes.h"
+#include "swig.h"
 #include "XML/xmlenumerations.h"
 #include "XML/attribute.h"
 #include "XML/objectrange.h"
+
 
 #ifndef SWIG
 #include <cstddef>
 #endif
 
-#ifndef _xmlnode_h
-#define _xmlnode_h
+SWIG_INFO_BEGINCLASS
+
+
 namespace Mezzanine
 {
     namespace XML
@@ -216,10 +222,13 @@ namespace Mezzanine
                 /// @return An @ref Text which represents the PCData of this node.
                 Text GetText() const;
 
+                #ifndef SWIG
                 /// @brief Attempt to get a child Node with a given name.
                 /// @param Name The name of the desired child Node.
                 /// @return A Node that represents the first desired child, or an empty Node on failure.
+                /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Node GetChild(const Char8* Name) const;
+                #endif
 
                 /// @brief Attempt to get a child Node with a given name.
                 /// @param Name The name of the desired child Node.
@@ -242,22 +251,30 @@ namespace Mezzanine
                 /// @return The previous sibling with a matching name, or a null/empty node.
                 Node GetPreviousSibling(const Char8* Name) const;
 
-                // Get GetChild Value of current node; that is, Value of the first GetChild node of Type PCDATA/CDATA
+                /// @brief Retrieve the value of this(or a child's) Nodes PCDATA child Node
+                /// @details If this node represents "<node>Some text in the PCDATA field, that is actually represent by a node</node>", then this would return "Some text in the PCDATA field, that is actually represent by a node". This will iterate through child Nodes from until it finds a PCDATA node or fails
+                /// @return This will return the Value of the first available PCDATA node.
                 const Char8* ChildValue() const;
 
-                // Get GetChild Value of GetChild with specified Name. Equivalent to GetChild(Name).ChildValue().
+                /// @brief Get the PCDATA of a given child. The same a calling "GetChild(Name).ChildValue()".
+                /// @param Name The Name of the desired child node.
+                /// @return This will return the Value of the first available matching PCDATA node.
                 const Char8* ChildValue(const Char8* Name) const;
 
-                // Set node Name/Value (returns false if node is empty, there is not enough memory, or node can not have Name/Value)
+                #ifndef SWIG
                 /// @brief Set the name of .
                 /// @param rhs The desired name.
                 /// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
+                /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 bool SetName(const Char8* rhs);
+                #endif
+
                 /// @brief Set the name of this object
                 /// @param rhs The desired name .
                 /// @return True if successful, returns false if the name cannot be stored or there is not enough memory.
                 bool SetName(const String& rhs)
                     { return SetName(rhs.c_str()); }
+
                 /// @brief Set the value of this.
                 /// @param rhs The new Value.
                 /// @return True if successful, returns false if this is empty or there is not enough memory.
@@ -265,25 +282,48 @@ namespace Mezzanine
                 /// @todo Review for possiblity of buffer overflow.
                 bool SetValue(const Char8* rhs);
 
-                // Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors.
-
+                #ifndef SWIG
                 /// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
                 /// @param Name The name of the New attribute to be created
                 /// @details This attempts to create an Attribute and stick it at the end of the list of attribute on the current
                 /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
                 /// fail and return an empty attribute if this Node is empty.
                 /// @return The created Attribute or an empty Attribute on Failure.
+                /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Attribute AppendAttribute(const Char8* Name);
+                #endif
+
                 /// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
                 /// @param Name The name of the New attribute to be created
                 /// @return The created Attribute or an empty Attribute on Failure.
                 Attribute AppendAttribute(const String& Name)
                     { return AppendAttribute(Name.c_str()); }
-                Attribute PrependAttribute(const Char8* Name);
-                Attribute InsertAttributeAfter(const Char8* Name, const Attribute& attr);
-                Attribute InsertAttributeBefore(const Char8* Name, const Attribute& attr);
 
-                // Add a copy of the specified GetAttribute. Returns added GetAttribute, or empty GetAttribute on errors.
+                /// @brief Creates an Attribute and puts it at the begining of this Nodes attributes
+                /// @param Name The name of the New attribute to be created
+                /// @details This attempts to create an Attribute and stick it at the beginning of the list of attributes on the current
+                /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+                /// fail and return an empty attribute if this Node is empty.
+                /// @return The created Attribute or an empty Attribute on Failure.
+                Attribute PrependAttribute(const Char8* Name);
+
+                /// @brief Creates an Attribute and puts it into the list of this Nodes attributes.
+                /// @param Name The name of the New attribute to be created
+                /// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new Attribute.
+                /// @details This attempts to create an Attribute and stick it in the list of attributes, Just after another Attribute, on the current
+                /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+                /// fail and return an empty attribute if this Node is empty.
+                /// @return The created Attribute or an empty Attribute on Failure.
+                Attribute InsertAttributeAfter(const Char8* Name, const Attribute& attr);
+
+                /// @brief Creates an Attribute and puts it into the list of this Nodes attributes.
+                /// @param Name The name of the New attribute to be created
+                /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new Attribute.
+                /// @details This attempts to create an Attribute and stick it in the list of attributes, Just before another Attribute, on the current
+                /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+                /// fail and return an empty attribute if this Node is empty.
+                /// @return The created Attribute or an empty Attribute on Failure.
+                Attribute InsertAttributeBefore(const Char8* Name, const Attribute& attr);
 
                 /// @brief Copies an Attribute and puts the copy at the end of this Nodes attributes.
                 /// @param proto The attribute to be copied.
@@ -309,15 +349,34 @@ namespace Mezzanine
                 /// fail and return an empty attribute if this Node is empty.
                 /// @return The created Attribute or an empty Attribute on Failure.
                 Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr);
+
+                /// @brief Copies an Attribute and puts the copy into the list of this Nodes attributes.
+                /// @param proto The attribute to be copied.
+                /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new copy of proto.
+                /// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just before a selected attribute, on the current
+                /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+                /// fail and return an empty attribute if this Node is empty.
+                /// @return The created Attribute or an empty Attribute on Failure.
                 Attribute InsertCopyBefore(const Attribute& proto, const Attribute& attr);
 
-                // Add GetChild node with specified Type. Returns added node, or empty node on errors.
                 /// @brief Creates a Node and makes it a child of this one.
                 /// @param Type The NodeType of the Node to be added to list of child Nodes.
                 /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
                 Node AppendChild(NodeType Type = NodeElement);
+
+                /// @brief Creates a Node and makes it a child of this one, and puts at the beginning of the Child Nodes.
+                /// @param Type The NodeType of the Node to be added to the beginning list of child Nodes.
+                /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
                 Node PrependChild(NodeType Type = NodeElement);
+
+                /// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
+                /// @param Type The NodeType of the Node to be added, just after another specific node.
+                /// @param node The specific node to add the new one after.
+                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+                /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
                 Node InsertChildAfter(NodeType Type, const Node& node);
+
                 /// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
                 /// @param Type The NodeType of the Node to be added, just before another specific node.
                 /// @param node The specific node to add the new one before.
@@ -325,23 +384,31 @@ namespace Mezzanine
                 /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
                 Node InsertChildBefore(NodeType Type, const Node& node);
 
-                // Add GetChild element with specified Name. Returns added node, or empty node on errors.
+                #ifndef SWIG
                 /// @brief Creates an element Node as a child of this Node, with the given name.
                 /// @param Name The name of the Node to be created.
                 /// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.
                 /// @return The desired Node on success, an empty Node on failure.
+                /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Node AppendChild(const Char8* Name);
+                #endif
+
                 /// @brief Creates an element Node as a child of this Node, with the given name.
                 /// @param Name The name of the Node to be created.
                 /// @details Calls @ref Node::AppendChild(const char_t*)
                 /// @return The desired Node on success, an empty Node on failure.
                 Node AppendChild(const String& Name)
                     { return AppendChild(Name.c_str()); }
+
+                #ifndef SWIG
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
                 /// @param Name The name of the Node to be created.
                 /// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.
                 /// @return The desired Node on success, an empty Node on failure.
+                /// @note Not available in scripting languages in favor of the overload of this function that accepts String as a parameter.
                 Node PrependChild(const Char8* Name);
+                #endif
+
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
                 /// @param Name The name of the Node to be created.
                 /// @details Calls @ref Node::PrependChild(const char_t*);
@@ -355,6 +422,7 @@ namespace Mezzanine
                 /// @details Calls Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.
                 /// @return The desired Node on success, an empty Node on failure.
                 Node InsertChildAfter(const Char8* Name, const Node& node);
+
                 /// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
                 /// @param Name The name of the Node to be created.
                 /// @param node The node just after were the Create node is to be placed.
@@ -377,17 +445,26 @@ namespace Mezzanine
                 /// @param node The Node just before the desired place in the list of children to insert the copied node.
                 /// @return The copied Node on success, an empty Node on failure.
                 Node InsertCopyAfter(const Node& proto, const Node& node);
+
                 /// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.
                 /// @param proto The Node to be copied. If this is emptry, no work is performed.
                 /// @param node The Node just after the desired place in the list of children to insert the copied node.
                 /// @return The copied Node on success, an empty Node on failure.
                 Node InsertCopyBefore(const Node& proto, const Node& node);
 
-                // Remove specified attribute
+                /// @brief Remove specified Attribute.
+                /// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
+                /// @return True if the removal was successful, false otherwise.
                 bool RemoveAttribute(const Attribute& a);
+
+                /// @brief Remove Attribute as specified by name.
+                /// @param Name The name of the Attribute to remove.
+                /// @return True if the removal was successful, false otherwise.
                 bool RemoveAttribute(const Char8* Name);
 
-                // Remove specified GetChild
+                /// @brief Remove specified child element.
+                /// @param n The Node to look for. If the given Attribute doesn't belong to this Node then this will fail
+                /// @return True if the removal was successful, false otherwise.
                 bool RemoveChild(const Node& n);
 
                 /// @brief Remove child element as specified by name.
@@ -460,8 +537,14 @@ namespace Mezzanine
                     return Node();
                 }
 
-                // Find GetChild node by GetAttribute Name/Value
+                /// @brief Find a Node by an Attribute it has.
+                /// @param Name The name of the matching Node.
+                /// @param AttrName The name of the matching Attribute.
+                /// @param AttrValue The value of the matching Attribute.
+                /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
+                /// @return The First matching XML::Node
                 Node FindChildbyAttribute(const Char8* Name, const Char8* AttrName, const Char8* AttrValue) const;
+
                 /// @brief Find a Node by an Attribute it has.
                 /// @param AttrName The name of the matching Attribute.
                 /// @param AttrValue The value of the matching Attribute.
@@ -469,20 +552,34 @@ namespace Mezzanine
                 /// @return The First matching XML::Node
                 Node FindChildbyAttribute(const Char8* AttrName, const Char8* AttrValue) const;
 
-                // Get the absolute node Path from GetRoot as a text string.
+                /// @brief Get the absolute path to this Node
+                /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
+                /// @return A String containing an path
                 String Path(Char8 delimiter = '/') const;
 
-                // Search for a node by Path consisting of node names and . or .. elements.
+                /// @brief Search for a node by Path consisting of node names and . or .. elements.
+                /// @todo Investigate this more deeply.
+                /// @param Path The path to search for.
+                /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
+                /// @return The matching Node, of an empty Node on failure.
                 Node FirstElementByPath(const Char8* Path, Char8 delimiter = '/') const;
 
-                // Recursively Traverse subtree with TreeWalker
+                /// @brief Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree.
+                /// @param walker Any class that fully implement XML::Treewalker. This is where the algorithm to be run is located.
+                /// @return True if every descendant Node of this Node was iterated through, false if it didn't go through every Node.
+                /// @see XML::TreeWalker
                 bool Traverse(TreeWalker& walker);
 
-                // Select single node by evaluating XPath query. Returns first node from the Resulting node set.
+                /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
+                /// @param query The XPath query as a c-string to be evaluated.
+                /// @param variables undocumented.
+                /// @return XPathNode The first matching XPath node.
                 XPathNode FindSingleNode(const Char8* query, XPathVariableSet* variables = 0) const;
-                XPathNode FindSingleNode(const XPathQuery& query) const;
 
-                // Select node set by evaluating XPath query
+                /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
+                /// @param query The XPath query XPathQuery class instance.
+                /// @return XPathNode The first matching XPath node.
+                XPathNode FindSingleNode(const XPathQuery& query) const;
 
                 /// @brief Select a group of nodes by evaluating an XPath query.
                 /// @param query The XPath query as a c-string to be evaluated.
@@ -496,9 +593,7 @@ namespace Mezzanine
                 /// @param query The XPath query XPathQuery class instance.
                 XPathNodeSet FindNodes(const XPathQuery& query) const;
 
-
-                // Print subtree using a WriterInstance object
-
+                #ifndef SWIG_SAFE
                 /// @brief Output the XML document using a Writer.
                 /// @param WriterInstance The Writer that will be used to output the xml text.
                 /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
@@ -506,9 +601,8 @@ namespace Mezzanine
                 /// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
                 /// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
                 /// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+                /// @note This is not available in the safe libraries in scripting languages
                 void Print(Writer& WriterInstance, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
-
-                // Print subtree to stream
 
                 /// @brief Output the XML document using a Output Stream.
                 /// @param os An output stream to send xml text to.
@@ -517,6 +611,7 @@ namespace Mezzanine
                 /// @param DocumentEncoding The XML::Encoding of the document, whichs defaults to EncodingAuto
                 /// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
                 /// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+                /// @note This is not available in the safe libraries in scripting languages
                 void Print(std::basic_ostream<char, std::char_traits<char> >& os, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;
 
                 /// @brief Output the XML document using a Output Stream.
@@ -525,37 +620,65 @@ namespace Mezzanine
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault
                 /// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
                 /// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+                /// @note This is not available in the safe libraries in scripting languages
                 void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const Char8* indent = "\t", unsigned int flags = FormatDefault, unsigned int Depth = 0) const;
+                #endif //SWIG_SAFE
 
-
-                // Child nodes iterators
+                /// @brief An iterator for child Nodes that will be easier for members of the std namespace to work with.
                 typedef NodeIterator iterator;
 
+                /// @brief Get a Child node iterator that references the first child Node.
+                /// @return A Node::Iterator that reference the first child Node.
                 iterator begin() const;
+
+                /// @brief Get a Child node iterator that references one past the last child Node.
+                /// @return A Node::Iterator that reference the last child Node.
                 iterator end() const;
 
-                // Attribute iterators
+                /// @brief An iterator for Attribute members on this Node
                 typedef AttributeIterator attribute_iterator;
 
+                /// @brief Get an Attribute iterator that references the first Attribute on this Node.
+                /// @return A Node::Iterator that reference the first child node.
                 attribute_iterator attributes_begin() const;
+
+                /// @brief Get an Attribute iterator that references the one past the last Attribute on this Node.
+                /// @return A Node::Iterator that reference the last Attribute on this Node.
                 attribute_iterator attributes_end() const;
 
-                // Range-based for support
+                /// @brief Get an iterator range for this node's children nodes.
+                /// @return The Begin and end iterators for a collection of all child nodes.
                 ObjectRange<NodeIterator> GetChildren() const;
+
+                /// @brief Get an iterator range for this a subset of this node's children nodes.
+                /// @param Name All members of the returned range with have this for a name.
+                /// @return A begin and end iterator for a range containing only the child nodes with the given name.
                 ObjectRange<NamedNode_iterator> GetChildren(const Char8* Name) const;
+
+                /// @brief A range of iterators for just the attributes of this node.
+                /// @return A par of iterators suitable for traversing all Attributes directly as children of this noce.
                 ObjectRange<AttributeIterator> attributes() const;
 
-                // Get node Offset in parsed file/string (in char_t units) for debugging purposes
+                /// @internal
+                /// @brief Get node Offset in parsed file/string (in char_t units) for debugging purposes
+                /// @return A ptrdiff_t containing how far into the document this node is.
                 ptrdiff_t OffSetDebug() const;
 
-                // Get hash Value (unique for handles to the same object)
+                /// @internal
+                /// @brief Get hash Value (unique for handles to the same object)
+                /// @return A size_t that uniquely identifies this node.
                 size_t HashValue() const;
 
-                // Get internal pointer
+                /// @internal
+                /// @brief Get internal pointer
+                /// @return A NodeStruct* that points to the internal data of this Node
                 NodeStruct* InternalObject() const;
         }; // /Class Node
     }
 }
+
+SWIG_INFO_ENDCLASS
+
 #endif
 
 /*

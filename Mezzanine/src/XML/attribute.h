@@ -54,13 +54,19 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-#include "datatypes.h"
 
 /// @file
 /// @brief Contains the definition for the XML::Attribute class.
 
+
 #ifndef _xmlattribute_h
 #define _xmlattribute_h
+
+#include "datatypes.h"
+#include "swig.h"
+
+SWIG_INFO_BEGINCLASS
+
 namespace Mezzanine
 {
     namespace XML
@@ -339,6 +345,9 @@ namespace Mezzanine
 
     }
 }
+
+SWIG_INFO_ENDCLASS
+
 #endif
 
 /*

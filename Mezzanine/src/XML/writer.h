@@ -57,14 +57,17 @@
 /// @file
 /// @brief The definitions for all of the XML::Writer inheritance hierarchy.
 
+
+#ifndef _xmlwriter_h
+#define _xmlwriter_h
+
 #include "datatypes.h"
+#include "swig.h"
 
 #ifndef SWIG
 #include "resource.h"
 #endif
 
-#ifndef _xmlwriter_h
-#define _xmlwriter_h
 namespace Mezzanine
 {
 
@@ -72,6 +75,8 @@ namespace Mezzanine
     {
 
 #ifndef SWIG_SAFE
+
+SWIG_INFO_BEGINCLASS
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief Interface for node printing (see @ref Node::Print)
         class MEZZ_LIB Writer
@@ -159,6 +164,8 @@ namespace Mezzanine
                 /// @param size The number of bytes to be written.
                 void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
+
+SWIG_INFO_ENDCLASS
 
 #endif //
     }
