@@ -3671,11 +3671,11 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN Node::Node(): _GetRoot(0)
+	PUGI__FN Node::Node(): NodeData(0)
 	{
 	}
 
-	PUGI__FN Node::Node(NodeStruct* p): _GetRoot(p)
+	PUGI__FN Node::Node(NodeStruct* p): NodeData(p)
 	{
 	}
 
@@ -3685,32 +3685,32 @@ namespace XML
 
 	PUGI__FN Node::operator Node::unspecified_bool_type() const
 	{
-		return _GetRoot ? unspecified_bool_Node : 0;
+		return NodeData ? unspecified_bool_Node : 0;
 	}
 
 	PUGI__FN bool Node::operator!() const
 	{
-		return !_GetRoot;
+		return !NodeData;
 	}
 
 	PUGI__FN Node::iterator Node::begin() const
 	{
-		return iterator(_GetRoot ? _GetRoot->GetFirstChild : 0, _GetRoot);
+		return iterator(NodeData ? NodeData->GetFirstChild : 0, NodeData);
 	}
 
 	PUGI__FN Node::iterator Node::end() const
 	{
-		return iterator(0, _GetRoot);
+		return iterator(0, NodeData);
 	}
 
 	PUGI__FN Node::attribute_iterator Node::attributes_begin() const
 	{
-		return attribute_iterator(_GetRoot ? _GetRoot->GetFirstAttribute : 0, _GetRoot);
+		return attribute_iterator(NodeData ? NodeData->GetFirstAttribute : 0, NodeData);
 	}
 
 	PUGI__FN Node::attribute_iterator Node::attributes_end() const
 	{
-		return attribute_iterator(0, _GetRoot);
+		return attribute_iterator(0, NodeData);
 	}
 
 	PUGI__FN ObjectRange<NodeIterator> Node::GetChildren() const
@@ -3730,59 +3730,59 @@ namespace XML
 
 	PUGI__FN bool Node::operator==(const Node& r) const
 	{
-		return (_GetRoot == r._GetRoot);
+		return (NodeData == r.NodeData);
 	}
 
 	PUGI__FN bool Node::operator!=(const Node& r) const
 	{
-		return (_GetRoot != r._GetRoot);
+		return (NodeData != r.NodeData);
 	}
 
 	PUGI__FN bool Node::operator<(const Node& r) const
 	{
-		return (_GetRoot < r._GetRoot);
+		return (NodeData < r.NodeData);
 	}
 
 	PUGI__FN bool Node::operator>(const Node& r) const
 	{
-		return (_GetRoot > r._GetRoot);
+		return (NodeData > r.NodeData);
 	}
 
 	PUGI__FN bool Node::operator<=(const Node& r) const
 	{
-		return (_GetRoot <= r._GetRoot);
+		return (NodeData <= r.NodeData);
 	}
 
 	PUGI__FN bool Node::operator>=(const Node& r) const
 	{
-		return (_GetRoot >= r._GetRoot);
+		return (NodeData >= r.NodeData);
 	}
 
 	PUGI__FN bool Node::Empty() const
 	{
-		return !_GetRoot;
+		return !NodeData;
 	}
 
     PUGI__FN const Char8* Node::Name() const
 	{
-        return (_GetRoot && _GetRoot->Name) ? _GetRoot->Name : "";
+        return (NodeData && NodeData->Name) ? NodeData->Name : "";
 	}
 
 	PUGI__FN NodeType Node::Type() const
 	{
-		return _GetRoot ? static_cast<NodeType>((_GetRoot->header & internal::MemoryPage_type_mask) + 1) : NodeNull;
+		return NodeData ? static_cast<NodeType>((NodeData->header & internal::MemoryPage_type_mask) + 1) : NodeNull;
 	}
 
     PUGI__FN const Char8* Node::Value() const
 	{
-        return (_GetRoot && _GetRoot->Value) ? _GetRoot->Value : "";
+        return (NodeData && NodeData->Value) ? NodeData->Value : "";
 	}
 
     PUGI__FN Node Node::GetChild(const Char8* Name_) const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
+		for (NodeStruct* i = NodeData->GetFirstChild; i; i = i->GetNextSibling)
 			if (i->Name && internal::strequal(Name_, i->Name)) return Node(i);
 
 		return Node();
@@ -3790,9 +3790,9 @@ namespace XML
 
     PUGI__FN Attribute Node::GetAttribute(const Char8* Name_) const
 	{
-		if (!_GetRoot) return Attribute();
+		if (!NodeData) return Attribute();
 
-		for (AttributeStruct* i = _GetRoot->GetFirstAttribute; i; i = i->GetNextAttribute)
+		for (AttributeStruct* i = NodeData->GetFirstAttribute; i; i = i->GetNextAttribute)
 			if (i->Name && internal::strequal(Name_, i->Name))
 				return Attribute(i);
 
@@ -3801,9 +3801,9 @@ namespace XML
 
     PUGI__FN Node Node::GetNextSibling(const Char8* Name_) const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		for (NodeStruct* i = _GetRoot->GetNextSibling; i; i = i->GetNextSibling)
+		for (NodeStruct* i = NodeData->GetNextSibling; i; i = i->GetNextSibling)
 			if (i->Name && internal::strequal(Name_, i->Name)) return Node(i);
 
 		return Node();
@@ -3811,17 +3811,17 @@ namespace XML
 
 	PUGI__FN Node Node::GetNextSibling() const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		if (_GetRoot->GetNextSibling) return Node(_GetRoot->GetNextSibling);
+		if (NodeData->GetNextSibling) return Node(NodeData->GetNextSibling);
 		else return Node();
 	}
 
     PUGI__FN Node Node::GetPreviousSibling(const Char8* Name_) const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		for (NodeStruct* i = _GetRoot->prev_sibling_c; i->GetNextSibling; i = i->prev_sibling_c)
+		for (NodeStruct* i = NodeData->prev_sibling_c; i->GetNextSibling; i = i->prev_sibling_c)
 			if (i->Name && internal::strequal(Name_, i->Name)) return Node(i);
 
 		return Node();
@@ -3829,36 +3829,36 @@ namespace XML
 
 	PUGI__FN Node Node::GetPreviousSibling() const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		if (_GetRoot->prev_sibling_c->GetNextSibling) return Node(_GetRoot->prev_sibling_c);
+		if (NodeData->prev_sibling_c->GetNextSibling) return Node(NodeData->prev_sibling_c);
 		else return Node();
 	}
 
 	PUGI__FN Node Node::GetParent() const
 	{
-		return _GetRoot ? Node(_GetRoot->GetParent) : Node();
+		return NodeData ? Node(NodeData->GetParent) : Node();
 	}
 
 	PUGI__FN Node Node::GetRoot() const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		internal::MemoryPage* page = reinterpret_cast<internal::MemoryPage*>(_GetRoot->header & internal::MemoryPage_pointer_mask);
+		internal::MemoryPage* page = reinterpret_cast<internal::MemoryPage*>(NodeData->header & internal::MemoryPage_pointer_mask);
 
 		return Node(static_cast<internal::DocumentStruct*>(page->allocator));
 	}
 
-	PUGI__FN Text Node::text() const
+    PUGI__FN Text Node::GetText() const
 	{
-		return Text(_GetRoot);
+		return Text(NodeData);
 	}
 
     PUGI__FN const Char8* Node::ChildValue() const
 	{
-        if (!_GetRoot) return "";
+        if (!NodeData) return "";
 
-		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
+		for (NodeStruct* i = NodeData->GetFirstChild; i; i = i->GetNextSibling)
 			if (i->Value && internal::is_text_node(i))
 				return i->Value;
 
@@ -3872,22 +3872,22 @@ namespace XML
 
 	PUGI__FN Attribute Node::GetFirstAttribute() const
 	{
-		return _GetRoot ? Attribute(_GetRoot->GetFirstAttribute) : Attribute();
+		return NodeData ? Attribute(NodeData->GetFirstAttribute) : Attribute();
 	}
 
 	PUGI__FN Attribute Node::GetLastAttribute() const
 	{
-		return _GetRoot && _GetRoot->GetFirstAttribute ? Attribute(_GetRoot->GetFirstAttribute->prev_attribute_c) : Attribute();
+		return NodeData && NodeData->GetFirstAttribute ? Attribute(NodeData->GetFirstAttribute->prev_attribute_c) : Attribute();
 	}
 
 	PUGI__FN Node Node::GetFirstChild() const
 	{
-		return _GetRoot ? Node(_GetRoot->GetFirstChild) : Node();
+		return NodeData ? Node(NodeData->GetFirstChild) : Node();
 	}
 
 	PUGI__FN Node Node::GetLastChild() const
 	{
-		return _GetRoot && _GetRoot->GetFirstChild ? Node(_GetRoot->GetFirstChild->prev_sibling_c) : Node();
+		return NodeData && NodeData->GetFirstChild ? Node(NodeData->GetFirstChild->prev_sibling_c) : Node();
 	}
 
     PUGI__FN bool Node::SetName(const Char8* rhs)
@@ -3897,7 +3897,7 @@ namespace XML
 		case NodePi:
 		case NodeDeclaration:
 		case NodeElement:
-			return internal::strcpy_insitu(_GetRoot->Name, _GetRoot->header, internal::MemoryPage_Name_allocated_mask, rhs);
+			return internal::strcpy_insitu(NodeData->Name, NodeData->header, internal::MemoryPage_Name_allocated_mask, rhs);
 
 		default:
 			return false;
@@ -3913,7 +3913,7 @@ namespace XML
 		case NodePcdata:
 		case NodeComment:
 		case NodeDocType:
-			return internal::strcpy_insitu(_GetRoot->Value, _GetRoot->header, internal::MemoryPage_Value_allocated_mask, rhs);
+			return internal::strcpy_insitu(NodeData->Value, NodeData->header, internal::MemoryPage_Value_allocated_mask, rhs);
 
 		default:
 			return false;
@@ -3924,7 +3924,7 @@ namespace XML
 	{
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute();
 
-		Attribute a(internal::AppendAttribute_ll(_GetRoot, internal::GetAllocator(_GetRoot)));
+		Attribute a(internal::AppendAttribute_ll(NodeData, internal::GetAllocator(NodeData)));
 		a.SetName(Name_);
 
 		return a;
@@ -3934,12 +3934,12 @@ namespace XML
 	{
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute();
 
-		Attribute a(internal::allocate_attribute(internal::GetAllocator(_GetRoot)));
+		Attribute a(internal::allocate_attribute(internal::GetAllocator(NodeData)));
 		if (!a) return Attribute();
 
 		a.SetName(Name_);
 
-		AttributeStruct* head = _GetRoot->GetFirstAttribute;
+		AttributeStruct* head = NodeData->GetFirstAttribute;
 
 		if (head)
 		{
@@ -3950,7 +3950,7 @@ namespace XML
 			a.AttributeData->prev_attribute_c = a.AttributeData;
 
 		a.AttributeData->GetNextAttribute = head;
-		_GetRoot->GetFirstAttribute = a.AttributeData;
+		NodeData->GetFirstAttribute = a.AttributeData;
 
 		return a;
 	}
@@ -3964,9 +3964,9 @@ namespace XML
 
 		while (cur->prev_attribute_c->GetNextAttribute) cur = cur->prev_attribute_c;
 
-		if (cur != _GetRoot->GetFirstAttribute) return Attribute();
+		if (cur != NodeData->GetFirstAttribute) return Attribute();
 
-		Attribute a(internal::allocate_attribute(internal::GetAllocator(_GetRoot)));
+		Attribute a(internal::allocate_attribute(internal::GetAllocator(NodeData)));
 		if (!a) return Attribute();
 
 		a.SetName(Name_);
@@ -3974,7 +3974,7 @@ namespace XML
 		if (attr.AttributeData->prev_attribute_c->GetNextAttribute)
 			attr.AttributeData->prev_attribute_c->GetNextAttribute = a.AttributeData;
 		else
-			_GetRoot->GetFirstAttribute = a.AttributeData;
+			NodeData->GetFirstAttribute = a.AttributeData;
 
 		a.AttributeData->prev_attribute_c = attr.AttributeData->prev_attribute_c;
 		a.AttributeData->GetNextAttribute = attr.AttributeData;
@@ -3992,9 +3992,9 @@ namespace XML
 
 		while (cur->prev_attribute_c->GetNextAttribute) cur = cur->prev_attribute_c;
 
-		if (cur != _GetRoot->GetFirstAttribute) return Attribute();
+		if (cur != NodeData->GetFirstAttribute) return Attribute();
 
-		Attribute a(internal::allocate_attribute(internal::GetAllocator(_GetRoot)));
+		Attribute a(internal::allocate_attribute(internal::GetAllocator(NodeData)));
 		if (!a) return Attribute();
 
 		a.SetName(Name_);
@@ -4002,7 +4002,7 @@ namespace XML
 		if (attr.AttributeData->GetNextAttribute)
 			attr.AttributeData->GetNextAttribute->prev_attribute_c = a.AttributeData;
 		else
-			_GetRoot->GetFirstAttribute->prev_attribute_c = a.AttributeData;
+			NodeData->GetFirstAttribute->prev_attribute_c = a.AttributeData;
 
 		a.AttributeData->GetNextAttribute = attr.AttributeData->GetNextAttribute;
 		a.AttributeData->prev_attribute_c = attr.AttributeData;
@@ -4055,7 +4055,7 @@ namespace XML
 	{
 		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
 
-		Node n(internal::AppendNode(_GetRoot, internal::GetAllocator(_GetRoot), Type_));
+		Node n(internal::AppendNode(NodeData, internal::GetAllocator(NodeData), Type_));
 
         if (Type_ == NodeDeclaration) n.SetName("xml");
 
@@ -4066,23 +4066,23 @@ namespace XML
 	{
 		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
 
-		Node n(internal::allocate_node(internal::GetAllocator(_GetRoot), Type_));
+		Node n(internal::allocate_node(internal::GetAllocator(NodeData), Type_));
 		if (!n) return Node();
 
-		n._GetRoot->GetParent = _GetRoot;
+		n.NodeData->GetParent = NodeData;
 
-		NodeStruct* head = _GetRoot->GetFirstChild;
+		NodeStruct* head = NodeData->GetFirstChild;
 
 		if (head)
 		{
-			n._GetRoot->prev_sibling_c = head->prev_sibling_c;
-			head->prev_sibling_c = n._GetRoot;
+			n.NodeData->prev_sibling_c = head->prev_sibling_c;
+			head->prev_sibling_c = n.NodeData;
 		}
 		else
-			n._GetRoot->prev_sibling_c = n._GetRoot;
+			n.NodeData->prev_sibling_c = n.NodeData;
 
-		n._GetRoot->GetNextSibling = head;
-		_GetRoot->GetFirstChild = n._GetRoot;
+		n.NodeData->GetNextSibling = head;
+		NodeData->GetFirstChild = n.NodeData;
 
         if (Type_ == NodeDeclaration) n.SetName("xml");
 
@@ -4092,21 +4092,21 @@ namespace XML
 	PUGI__FN Node Node::InsertChildBefore(NodeType Type_, const Node& node)
 	{
 		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
-		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node();
+		if (!node.NodeData || node.NodeData->GetParent != NodeData) return Node();
 
-		Node n(internal::allocate_node(internal::GetAllocator(_GetRoot), Type_));
+		Node n(internal::allocate_node(internal::GetAllocator(NodeData), Type_));
 		if (!n) return Node();
 
-		n._GetRoot->GetParent = _GetRoot;
+		n.NodeData->GetParent = NodeData;
 
-		if (node._GetRoot->prev_sibling_c->GetNextSibling)
-			node._GetRoot->prev_sibling_c->GetNextSibling = n._GetRoot;
+		if (node.NodeData->prev_sibling_c->GetNextSibling)
+			node.NodeData->prev_sibling_c->GetNextSibling = n.NodeData;
 		else
-			_GetRoot->GetFirstChild = n._GetRoot;
+			NodeData->GetFirstChild = n.NodeData;
 
-		n._GetRoot->prev_sibling_c = node._GetRoot->prev_sibling_c;
-		n._GetRoot->GetNextSibling = node._GetRoot;
-		node._GetRoot->prev_sibling_c = n._GetRoot;
+		n.NodeData->prev_sibling_c = node.NodeData->prev_sibling_c;
+		n.NodeData->GetNextSibling = node.NodeData;
+		node.NodeData->prev_sibling_c = n.NodeData;
 
         if (Type_ == NodeDeclaration) n.SetName("xml");
 
@@ -4116,21 +4116,21 @@ namespace XML
 	PUGI__FN Node Node::InsertChildAfter(NodeType Type_, const Node& node)
 	{
 		if (!internal::allow_InsertChild(this->Type(), Type_)) return Node();
-		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node();
+		if (!node.NodeData || node.NodeData->GetParent != NodeData) return Node();
 
-		Node n(internal::allocate_node(internal::GetAllocator(_GetRoot), Type_));
+		Node n(internal::allocate_node(internal::GetAllocator(NodeData), Type_));
 		if (!n) return Node();
 
-		n._GetRoot->GetParent = _GetRoot;
+		n.NodeData->GetParent = NodeData;
 
-		if (node._GetRoot->GetNextSibling)
-			node._GetRoot->GetNextSibling->prev_sibling_c = n._GetRoot;
+		if (node.NodeData->GetNextSibling)
+			node.NodeData->GetNextSibling->prev_sibling_c = n.NodeData;
 		else
-			_GetRoot->GetFirstChild->prev_sibling_c = n._GetRoot;
+			NodeData->GetFirstChild->prev_sibling_c = n.NodeData;
 
-		n._GetRoot->GetNextSibling = node._GetRoot->GetNextSibling;
-		n._GetRoot->prev_sibling_c = node._GetRoot;
-		node._GetRoot->GetNextSibling = n._GetRoot;
+		n.NodeData->GetNextSibling = node.NodeData->GetNextSibling;
+		n.NodeData->prev_sibling_c = node.NodeData;
+		node.NodeData->GetNextSibling = n.NodeData;
 
         if (Type_ == NodeDeclaration) n.SetName("xml");
 
@@ -4216,22 +4216,22 @@ namespace XML
 
 	PUGI__FN bool Node::RemoveAttribute(const Attribute& a)
 	{
-		if (!_GetRoot || !a.AttributeData) return false;
+		if (!NodeData || !a.AttributeData) return false;
 
 		// check that GetAttribute belongs to *this
 		AttributeStruct* attr = a.AttributeData;
 
 		while (attr->prev_attribute_c->GetNextAttribute) attr = attr->prev_attribute_c;
 
-		if (attr != _GetRoot->GetFirstAttribute) return false;
+		if (attr != NodeData->GetFirstAttribute) return false;
 
 		if (a.AttributeData->GetNextAttribute) a.AttributeData->GetNextAttribute->prev_attribute_c = a.AttributeData->prev_attribute_c;
-		else if (_GetRoot->GetFirstAttribute) _GetRoot->GetFirstAttribute->prev_attribute_c = a.AttributeData->prev_attribute_c;
+		else if (NodeData->GetFirstAttribute) NodeData->GetFirstAttribute->prev_attribute_c = a.AttributeData->prev_attribute_c;
 
 		if (a.AttributeData->prev_attribute_c->GetNextAttribute) a.AttributeData->prev_attribute_c->GetNextAttribute = a.AttributeData->GetNextAttribute;
-		else _GetRoot->GetFirstAttribute = a.AttributeData->GetNextAttribute;
+		else NodeData->GetFirstAttribute = a.AttributeData->GetNextAttribute;
 
-		internal::destroy_attribute(a.AttributeData, internal::GetAllocator(_GetRoot));
+		internal::destroy_attribute(a.AttributeData, internal::GetAllocator(NodeData));
 
 		return true;
 	}
@@ -4243,24 +4243,24 @@ namespace XML
 
 	PUGI__FN bool Node::RemoveChild(const Node& n)
 	{
-		if (!_GetRoot || !n._GetRoot || n._GetRoot->GetParent != _GetRoot) return false;
+		if (!NodeData || !n.NodeData || n.NodeData->GetParent != NodeData) return false;
 
-		if (n._GetRoot->GetNextSibling) n._GetRoot->GetNextSibling->prev_sibling_c = n._GetRoot->prev_sibling_c;
-		else if (_GetRoot->GetFirstChild) _GetRoot->GetFirstChild->prev_sibling_c = n._GetRoot->prev_sibling_c;
+		if (n.NodeData->GetNextSibling) n.NodeData->GetNextSibling->prev_sibling_c = n.NodeData->prev_sibling_c;
+		else if (NodeData->GetFirstChild) NodeData->GetFirstChild->prev_sibling_c = n.NodeData->prev_sibling_c;
 
-		if (n._GetRoot->prev_sibling_c->GetNextSibling) n._GetRoot->prev_sibling_c->GetNextSibling = n._GetRoot->GetNextSibling;
-		else _GetRoot->GetFirstChild = n._GetRoot->GetNextSibling;
+		if (n.NodeData->prev_sibling_c->GetNextSibling) n.NodeData->prev_sibling_c->GetNextSibling = n.NodeData->GetNextSibling;
+		else NodeData->GetFirstChild = n.NodeData->GetNextSibling;
 
-		internal::destroy_node(n._GetRoot, internal::GetAllocator(_GetRoot));
+		internal::destroy_node(n.NodeData, internal::GetAllocator(NodeData));
 
 		return true;
 	}
 
     PUGI__FN Node Node::FindChildbyAttribute(const Char8* Name_, const Char8* AttrName, const Char8* AttrValue) const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
+		for (NodeStruct* i = NodeData->GetFirstChild; i; i = i->GetNextSibling)
 			if (i->Name && internal::strequal(Name_, i->Name))
 			{
 				for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute)
@@ -4273,9 +4273,9 @@ namespace XML
 
     PUGI__FN Node Node::FindChildbyAttribute(const Char8* AttrName, const Char8* AttrValue) const
 	{
-		if (!_GetRoot) return Node();
+		if (!NodeData) return Node();
 
-		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
+		for (NodeStruct* i = NodeData->GetFirstChild; i; i = i->GetNextSibling)
 			for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute)
 				if (internal::strequal(AttrName, a->Name) && internal::strequal(AttrValue, a->Value))
 					return Node(i);
@@ -4308,7 +4308,7 @@ namespace XML
 	{
 		Node found = *this; // Current search context.
 
-		if (!_GetRoot || !Path_ || !Path_[0]) return found;
+		if (!NodeData || !Path_ || !Path_[0]) return found;
 
 		if (Path_[0] == delimiter)
 		{
@@ -4337,7 +4337,7 @@ namespace XML
 			return found.GetParent().FirstElementByPath(NextSegment, delimiter);
 		else
 		{
-			for (NodeStruct* j = found._GetRoot->GetFirstChild; j; j = j->GetNextSibling)
+			for (NodeStruct* j = found.NodeData->GetFirstChild; j; j = j->GetNextSibling)
 			{
 				if (j->Name && internal::strequalrange(j->Name, Path_segment, static_cast<size_t>(Path_segment_end - Path_segment)))
 				{
@@ -4401,17 +4401,17 @@ namespace XML
 
 	PUGI__FN size_t Node::HashValue() const
 	{
-		return static_cast<size_t>(reinterpret_cast<uintptr_t>(_GetRoot) / sizeof(NodeStruct));
+		return static_cast<size_t>(reinterpret_cast<uintptr_t>(NodeData) / sizeof(NodeStruct));
 	}
 
 	PUGI__FN NodeStruct* Node::InternalObject() const
 	{
-		return _GetRoot;
+		return NodeData;
 	}
 
     PUGI__FN void Node::Print(Writer& WriterInstance, const Char8* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
 	{
-		if (!_GetRoot) return;
+		if (!NodeData) return;
 
 		internal::BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding);
 
@@ -4436,7 +4436,7 @@ namespace XML
 
 	PUGI__FN ptrdiff_t Node::OffSetDebug() const
 	{
-		NodeStruct* r = GetRoot()._GetRoot;
+		NodeStruct* r = GetRoot().NodeData;
 
 		if (!r) return -1;
 
@@ -4452,13 +4452,13 @@ namespace XML
 		case NodeElement:
 		case NodeDeclaration:
 		case NodePi:
-			return (_GetRoot->header & internal::MemoryPage_Name_allocated_mask) ? -1 : _GetRoot->Name - buffer;
+			return (NodeData->header & internal::MemoryPage_Name_allocated_mask) ? -1 : NodeData->Name - buffer;
 
 		case NodePcdata:
 		case NodeCdata:
 		case NodeComment:
 		case NodeDocType:
-			return (_GetRoot->header & internal::MemoryPage_Value_allocated_mask) ? -1 : _GetRoot->Value - buffer;
+			return (NodeData->header & internal::MemoryPage_Value_allocated_mask) ? -1 : NodeData->Value - buffer;
 
 		default:
 			return -1;
@@ -4683,30 +4683,30 @@ namespace XML
 
 	PUGI__FN bool NodeIterator::operator==(const NodeIterator& rhs) const
 	{
-		return _wrap._GetRoot == rhs._wrap._GetRoot && _GetParent._GetRoot == rhs._GetParent._GetRoot;
+		return _wrap.NodeData == rhs._wrap.NodeData && _GetParent.NodeData == rhs._GetParent.NodeData;
 	}
 
 	PUGI__FN bool NodeIterator::operator!=(const NodeIterator& rhs) const
 	{
-		return _wrap._GetRoot != rhs._wrap._GetRoot || _GetParent._GetRoot != rhs._GetParent._GetRoot;
+		return _wrap.NodeData != rhs._wrap.NodeData || _GetParent.NodeData != rhs._GetParent.NodeData;
 	}
 
 	PUGI__FN Node& NodeIterator::operator*() const
 	{
-		assert(_wrap._GetRoot);
+		assert(_wrap.NodeData);
 		return _wrap;
 	}
 
 	PUGI__FN Node* NodeIterator::operator->() const
 	{
-		assert(_wrap._GetRoot);
+		assert(_wrap.NodeData);
 		return const_cast<Node*>(&_wrap); // BCC32 workaround
 	}
 
 	PUGI__FN const NodeIterator& NodeIterator::operator++()
 	{
-		assert(_wrap._GetRoot);
-		_wrap._GetRoot = _wrap._GetRoot->GetNextSibling;
+		assert(_wrap.NodeData);
+		_wrap.NodeData = _wrap.NodeData->GetNextSibling;
 		return *this;
 	}
 
@@ -4719,7 +4719,7 @@ namespace XML
 
 	PUGI__FN const NodeIterator& NodeIterator::operator--()
 	{
-		_wrap = _wrap._GetRoot ? _wrap.GetPreviousSibling() : _GetParent.GetLastChild();
+		_wrap = _wrap.NodeData ? _wrap.GetPreviousSibling() : _GetParent.GetLastChild();
 		return *this;
 	}
 
@@ -4744,12 +4744,12 @@ namespace XML
 
 	PUGI__FN bool AttributeIterator::operator==(const AttributeIterator& rhs) const
 	{
-		return _wrap.AttributeData == rhs._wrap.AttributeData && _GetParent._GetRoot == rhs._GetParent._GetRoot;
+		return _wrap.AttributeData == rhs._wrap.AttributeData && _GetParent.NodeData == rhs._GetParent.NodeData;
 	}
 
 	PUGI__FN bool AttributeIterator::operator!=(const AttributeIterator& rhs) const
 	{
-		return _wrap.AttributeData != rhs._wrap.AttributeData || _GetParent._GetRoot != rhs._GetParent._GetRoot;
+		return _wrap.AttributeData != rhs._wrap.AttributeData || _GetParent.NodeData != rhs._GetParent.NodeData;
 	}
 
 	PUGI__FN Attribute& AttributeIterator::operator*() const
@@ -4811,19 +4811,19 @@ namespace XML
 
 	PUGI__FN Node& NamedNode_iterator::operator*() const
 	{
-		assert(_node._GetRoot);
+		assert(_node.NodeData);
 		return _node;
 	}
 
 	PUGI__FN Node* NamedNode_iterator::operator->() const
 	{
-		assert(_node._GetRoot);
+		assert(_node.NodeData);
 		return const_cast<Node*>(&_node); // BCC32 workaround
 	}
 
 	PUGI__FN const NamedNode_iterator& NamedNode_iterator::operator++()
 	{
-		assert(_node._GetRoot);
+		assert(_node.NodeData);
 		_node = _node.GetNextSibling(_Name);
 		return *this;
 	}
@@ -4909,11 +4909,11 @@ namespace XML
 		page->busy_size = internal::MemoryPage_size;
 
 		// allocate new GetRoot
-		_GetRoot = new (page->data) internal::DocumentStruct(page);
-		_GetRoot->prev_sibling_c = _GetRoot;
+		NodeData = new (page->data) internal::DocumentStruct(page);
+		NodeData->prev_sibling_c = NodeData;
 
 		// setup sentinel page
-		page->allocator = static_cast<internal::DocumentStruct*>(_GetRoot);
+		page->allocator = static_cast<internal::DocumentStruct*>(NodeData);
 	}
 
 	PUGI__FN ParseResult Document::Load(Resource::DataStream& stream, unsigned int options, Encoding DocumentEncoding)
@@ -4938,9 +4938,9 @@ namespace XML
 		}
 
 		// destroy dynamic storage, leave sentinel page (it's in static memory)
-		if (_GetRoot)
+		if (NodeData)
 		{
-			internal::MemoryPage* GetRoot_page = reinterpret_cast<internal::MemoryPage*>(_GetRoot->header & internal::MemoryPage_pointer_mask);
+			internal::MemoryPage* GetRoot_page = reinterpret_cast<internal::MemoryPage*>(NodeData->header & internal::MemoryPage_pointer_mask);
 			assert(GetRoot_page && !GetRoot_page->prev && !GetRoot_page->memory);
 
 			// destroy all pages
@@ -4958,7 +4958,7 @@ namespace XML
 			GetRoot_page->next = 0;
 			GetRoot_page->busy_size = GetRoot_page->freed_size = 0;
 
-			_GetRoot = 0;
+			NodeData = 0;
 		}
 	}
 
@@ -5024,7 +5024,7 @@ namespace XML
 		if (own && buffer != contents && contents) internal::Memory::deallocate(contents);
 
 		// parse
-		ParseResult res = internal::Parser::parse(buffer, length, _GetRoot, options);
+		ParseResult res = internal::Parser::parse(buffer, length, NodeData, options);
 
 		// remember DocumentEncoding
 		res.DocumentEncoding = buffer_DocumentEncoding;
@@ -5101,7 +5101,7 @@ namespace XML
 
 	PUGI__FN Node Document::DocumentElement() const
 	{
-		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling)
+		for (NodeStruct* i = NodeData->GetFirstChild; i; i = i->GetNextSibling)
 			if ((i->header & internal::MemoryPage_type_mask) + 1 == NodeElement)
 				return Node(i);
 

@@ -83,7 +83,7 @@ namespace Mezzanine
 
 
 
-        // A light-weight handle for manipulating nodes in DOM tree
+        /// @brief A light-weight handle for manipulating nodes in DOM tree.
         class MEZZ_LIB Node
         {
                 friend class AttributeIterator;
@@ -91,77 +91,155 @@ namespace Mezzanine
                 friend class NamedNode_iterator;
 
             protected:
-                NodeStruct* _GetRoot;
+                /// @internal
+                /// @brief Stores pointers to the Node data and some metadata.
+                NodeStruct* NodeData;
 
+                #ifndef SWIG
+                /// @brief Used to prevent casting to numerical types acccidentally.
+                /// @note Not available in scripting languages because conversion is handled on a per langauge basis.
                 typedef void (*unspecified_bool_type)(Node***);
+                #endif
 
             public:
-                // Default constructor. Constructs an empty node.
+                /// @brief Default constructor. Constructs an empty node.
                 Node();
 
                 /// @brief Constructs node from internal pointer
                 /// @param p An internal node pointer.
                 explicit Node(NodeStruct* p);
 
+                #ifndef SWIG
                 /// @brief Used to convert this to a boolean value in a safe way
                 /// @return Returns true if the internal data is set and false otherwise.
+                /// @note Not available in scripting languages because conversion is handled on a per langauge basis.
                 operator unspecified_bool_type() const;
+                #endif
 
-                // Borland C++ workaround
+                /// @brief Used to convert this node the opposite of it's normal boolean value
+                /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
+                /// @return Returns false if the internal pointer NodeStruct is set and true otherwise.
                 bool operator!() const;
 
-                // Comparison operators (compares wrapped node pointers)
+                #ifndef SWIG
+                /// @brief Compares the internal values to check equality.
+                /// @param r The other @ref Node this is being compared to.
+                /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+                /// @return Returns true if all the internal values match between this and the other Node.
+                /// @note Not available in scripting languages
                 bool operator==(const Node& r) const;
+                #endif
+
+                /// @brief Compares the internal values to check inequality.
+                /// @param r The other @ref Node this is being compared to.
+                /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+                /// @return Returns true if any of the internal values don't match between this and the other @ref Node.
                 bool operator!=(const Node& r) const;
+
+                /// @brief Compares the internal values to check for lessthanness.
+                /// @param r The other @ref Node this is being compared to.
+                /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+                /// @return Returns True if the other @ref Node is greater than this one as per sequential comparison of internal pointers.
                 bool operator<(const Node& r) const;
+
+                /// @brief Compares the internal values to check for greaterthanness.
+                /// @param r The other @ref Node this is being compared to.
+                /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+                /// @return Returns True if the other @ref Node is less than this one as per sequential comparison of internal pointers.
                 bool operator>(const Node& r) const;
+
+                /// @brief Compares the internal values to check for inequality and lessthanness.
+                /// @param r The other @ref Node this is being compared to.
+                /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+                /// @return Returns True if the other @ref Node is greater than or equal to this one as per sequential comparison of internal pointers.
                 bool operator<=(const Node& r) const;
+
+                /// @brief Compares the internal values to check for inequality and greaterthanness.
+                /// @param r The other @ref Node this is being compared to.
+                /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+                /// @return Returns True if the other @ref Node is less than or equal to this one as per sequential comparison of internal pointers.
                 bool operator>=(const Node& r) const;
 
-                // Check if node is empty.
+                /// @brief Is this storing anything at all?
+                /// @return Returns True if this @ref Node is storing nothing. False if it is storing anything.
                 bool Empty() const;
 
-                // Get node type
+                /// @brief Identify what kind of Node this is.
+                /// @return A @ref NodeType identifying this Node, or o/NULL if this Node is empty.
                 NodeType Type() const;
 
-                // Get node Name/Value, or "" if node is empty or it has no Name/Value
+                /// @brief Get the name of this @ref Node.
+                /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
+                /// @warning returns "" if Node is empty.
                 const Char8* Name() const;
+
+                /// @brief Get the Value of this @ref Node.
+                /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
+                /// @warning returns "" if Node is empty.
                 const Char8* Value() const;
 
-                // Get GetAttribute list
+                /// @brief Get the First Attribute in this Node.
+                /// @return This attempts to return the First @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
                 Attribute GetFirstAttribute() const;
+
+                /// @brief Get the Last Attribute in this Node.
+                /// @return This attempts to return the Last @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
                 Attribute GetLastAttribute() const;
 
-                // Get GetChildren list
+                /// @brief Get the first child Node of this Node.
+                /// @return Returns the First child node if it exists, otherwise it return an empty node.
                 Node GetFirstChild() const;
+
+                /// @brief Get the last child Node of this Node.
+                /// @return Returns the last child node if it exists, otherwise it return an empty node.
                 Node GetLastChild() const;
 
-                // Get next/previous sibling in the GetChildren list of the GetParent node
+                /// @brief Attempt to retrieve the next sibling of this Node.
+                /// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
+                /// @return A Node that represents a sibling, or an empty Node on failure.
                 Node GetNextSibling() const;
+
+                /// @brief Attempt to retrieve the prvious sibling of this Node.
+                /// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
+                /// @return A Node that represents a sibling, or an empty Node on failure.
                 Node GetPreviousSibling() const;
 
-                // Get GetParent node
+                /// @brief Attempt to retrieve the parent of this Node.
+                /// @return A Node that represents the parent Node, or an empty Node on failure.
                 Node GetParent() const;
 
-                // Get GetRoot of DOM tree this node belongs to
+                /// @brief Attempt to retrieve the root Node, or the most base Node containing this Node.
+                /// @return A Node that represents the root of the XML document, or an empty Node on failure. If there are multiple roots this attempts to retrieve the appropriate one.
                 Node GetRoot() const;
 
-                // Get text object for the current node
-                Text text() const;
+                /// @brief Get text object for the current node
+                /// @return An @ref Text which represents the PCData of this node.
+                Text GetText() const;
 
-                // Get GetChild, GetAttribute or next/previous sibling with the specified name
                 /// @brief Attempt to get a child Node with a given name.
                 /// @param Name The name of the desired child Node.
                 /// @return A Node that represents the first desired child, or an empty Node on failure.
                 Node GetChild(const Char8* Name) const;
+
                 /// @brief Attempt to get a child Node with a given name.
                 /// @param Name The name of the desired child Node.
                 /// @return A Node that represents the first desired child, or an empty Node on failure.
                 Node GetChild(const String& Name) const
                     { return GetChild(Name.c_str()); }
 
+                /// @brief Attempt to get an Attribute on this Node with a given name.
+                /// @param Name The name of the desired Attribute.
+                /// @return An Attribute that represents the first matching Attribute, or an empty Attribute on failure.
                 Attribute GetAttribute(const Char8* Name) const;
+
+                /// @brief Like @ref GetNextSibling except that the return will be a null Node or have a matching name.
+                /// @param Name if possible this will return the next sibling with this name.
+                /// @return The next sibling with a matching name, or a null/empty node.
                 Node GetNextSibling(const Char8* Name) const;
+
+                /// @brief Like @ref GetPreviousSibling except that the return will be a null Node or have a matching name.
+                /// @param Name if possible this will return the previous sibling with this name.
+                /// @return The previous sibling with a matching name, or a null/empty node.
                 Node GetPreviousSibling(const Char8* Name) const;
 
                 // Get GetChild Value of current node; that is, Value of the first GetChild node of Type PCDATA/CDATA
@@ -325,7 +403,7 @@ namespace Mezzanine
                 /// @return This returns the first Attribute that causes Predicate to return true.
                 template <typename Predicate> Attribute FindAttribute(Predicate pred) const
                 {
-                    if (!_GetRoot) return Attribute();
+                    if (!NodeData) return Attribute();
 
                     for (Attribute attrib = GetFirstAttribute(); attrib; attrib = attrib.GetNextAttribute())
                         if (pred(attrib))
@@ -343,7 +421,7 @@ namespace Mezzanine
                 /// @return This returns the first Node that causes Predicate to return true.
                 template <typename Predicate> Node FindChild(Predicate pred) const
                 {
-                    if (!_GetRoot) return Node();
+                    if (!NodeData) return Node();
 
                     for (Node node = GetFirstChild(); node; node = node.GetNextSibling())
                         if (pred(node))
@@ -361,11 +439,11 @@ namespace Mezzanine
                 /// @return This returns the first Node that causes Predicate to return true.
                 template <typename Predicate> Node FindNode(Predicate pred) const
                 {
-                    if (!_GetRoot) return Node();
+                    if (!NodeData) return Node();
 
                     Node cur = GetFirstChild();
 
-                    while (cur._GetRoot && cur._GetRoot != _GetRoot)
+                    while (cur.NodeData && cur.NodeData != NodeData)
                     {
                         if (pred(cur)) return cur;
 
@@ -373,9 +451,9 @@ namespace Mezzanine
                         else if (cur.GetNextSibling()) cur = cur.GetNextSibling();
                         else
                         {
-                            while (!cur.GetNextSibling() && cur._GetRoot != _GetRoot) cur = cur.GetParent();
+                            while (!cur.GetNextSibling() && cur.NodeData != NodeData) cur = cur.GetParent();
 
-                            if (cur._GetRoot != _GetRoot) cur = cur.GetNextSibling();
+                            if (cur.NodeData != NodeData) cur = cur.GetNextSibling();
                         }
                     }
 

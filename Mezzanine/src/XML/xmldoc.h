@@ -1985,107 +1985,69 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Node
-        /// @brief A light-weight handle for manipulating nodes in DOM tree
+
 
         /// @var Node::_GetRoot
-        /// @internal
-        /// @brief Stores pointers to the Node data and some metadata.
+
 
         /// @fn Node::Node()
-        /// @brief Default constructor. Constructs an empty node.
+
 
         /// @fn Node::operator!() const
-        /// @brief Used to convert this node the opposite of it's normal boolean value
-        /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
-        /// @return Returns false if the internal pointer NodeStruct is set and true otherwise.
+
 
         /// @fn Node::operator==(const Node& r) const;
-        /// @brief Compares the internal values to check equality.
-        /// @param r The other @ref Node this is being compared to.
-        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
-        /// @return Returns true if all the internal values match between this and the other Node.
+
 
         /// @fn Node::operator!=(const Node& r) const;
-        /// @brief Compares the internal values to check inequality.
-        /// @param r The other @ref Node this is being compared to.
-        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
-        /// @return Returns true if any of the internal values don't match between this and the other @ref Node.
+
 
         /// @fn Node::operator<(const Node& r) const;
-        /// @brief Compares the internal values to check for inequality.
-        /// @param r The other @ref Node this is being compared to.
-        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
-        /// @return Returns True if the other @ref Node is greater than this one as per sequential comparison of internal pointers.
 
         /// @fn Node::operator>(const Node& r) const;
-        /// @brief Compares the internal values to check for inequality.
-        /// @param r The other @ref Node this is being compared to.
-        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
-        /// @return Returns True if the other @ref Node is less than this one as per sequential comparison of internal pointers.
+
 
         /// @fn Node::operator<=(const Node& r) const;
-        /// @brief Compares the internal values to check for inequality.
-        /// @param r The other @ref Node this is being compared to.
-        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
-        /// @return Returns True if the other @ref Node is greater than or equal to this one as per sequential comparison of internal pointers.
+
 
         /// @fn Node::operator>=(const Node& r) const;
-        /// @brief Compares the internal values to check for inequality.
-        /// @param r The other @ref Node this is being compared to.
-        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
-        /// @return Returns True if the other @ref Node is less than or equal to this one as per sequential comparison of internal pointers.
+
 
         /// @fn Node::Empty() const;
-        /// @brief Is this storing anything at all?
-        /// @return Returns True if this @ref Node is storing nothing. False if it is storing anything.
+
 
         /// @fn Node::Type() const;
-        /// @brief Identify what kind of Node this is.
-        /// @return A @ref NodeType identifying this Node, or o/NULL if this Node is empty.
+
 
         /// @fn Node::Name() const;
-        /// @brief Get the name of this @ref Node.
-        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
-        /// @warning returns "" if Node is empty.
+
 
         /// @fn Node::Value() const;
-        /// @brief Get the Value of this @ref Node.
-        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
-        /// @warning returns "" if Node is empty.
+
 
 		/// @fn Node::GetFirstAttribute() const;
-		/// @brief Get the First Attribute in this Node.
-		/// @return This attempts to return the First @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
 
         /// @fn Node::GetLastAttribute() const;
-        /// @brief Get the Last Attribute in this Node.
-        /// @return This attempts to return the Last @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
 
 		/// @fn Node::GetFirstChild() const;
-		/// @brief Get the first child Node of this Node.
-		/// @return Returns the First child node if it exists, otherwise it return an empty node.
+
 
 		/// @fn Node::GetLastChild() const;
-		/// @brief Get the last child Node of this Node.
-		/// @return Returns the last child node if it exists, otherwise it return an empty node.
+
 
         /// @fn Node::GetNextSibling() const;
-        /// @brief Attempt to retrieve the next sibling of this Node.
-        /// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
-        /// @return A Node that represents a sibling, or an empty Node on failure.
+
 
         /// @fn Node::GetParent() const;
-        /// @brief Attempt to retrieve the parent of this Node.
-        /// @return A Node that represents the parent Node, or an empty Node on failure.
+
 
         /// @fn Node::GetRoot() const;
-        /// @brief Attempt to retrieve the root Node, or the most base Node containing this Node.
-        /// @return A Node that represents the root of the XML document, or an empty Node on failure. If there are multiple roots this attempts to retrieve the appropriate one.
+
 
         /// @fn Node::GetAttribute(const char_t* Name) const;
-        /// @brief Attempt to get an Attribute on this Node with a given name.
-        /// @param Name The name of the desired Attribute.
-        /// @return An Attribute that represents the first matching Attribute, or an empty Attribute on failure.
+
 
         /// @fn Node::ChildValue() const;
         /// @brief Retrieve the value of this(or a child's) Nodes PCDATA child Node

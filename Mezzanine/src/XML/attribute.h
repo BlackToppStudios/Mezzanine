@@ -104,11 +104,13 @@ namespace Mezzanine
                 /// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
                 bool operator!() const;
 
+                #ifndef SWIG
                 /// @brief Compares the internal values to check equality.
                 /// @param r The other @ref Attribute this is being compared to.
                 /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
                 /// @return Returns true if all the internal values match between this and the other Attribute.
                 bool operator==(const Attribute& r) const;
+                #endif
 
                 /// @brief Compares the internal values to check inequality.
                 /// @param r The other @ref Attribute this is being compared to.
