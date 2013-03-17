@@ -53,16 +53,82 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
-#ifndef _xmlboilerplate_cpp
-#define _xmlboilerplate_cpp
+#ifndef _xmlnodetext_h
+#define _xmlnodetext_h
 
-#include "XML/xmlboilerplate.h"
+#include "datatypes.h"
+#include "node.h"
 
 namespace Mezzanine
 {
     namespace XML
     {
+        /// @brief A helper for working with text inside PCDATA nodes.
+        class MEZZ_LIB NodeText
+        {
+            friend class Node;
 
+            /// @brief Actually the the data for this NodeText
+            NodeStruct* RootNode;
+
+            typedef void (*unspecified_bool_type)(NodeText***);
+
+            explicit NodeText(NodeStruct* GetRoot);
+
+            NodeStruct* _data_new();
+            NodeStruct* _data() const;
+
+        public:
+            // Default constructor. Constructs an empty object.
+            NodeText();
+
+            /// @brief Used to convert this to a boolean value in a safe way
+            /// @return Returns true if the internal data is set and false otherwise.
+            operator unspecified_bool_type() const;
+
+            // Borland C++ workaround
+            bool operator!() const;
+
+            // Check if text object is empty
+            bool Empty() const;
+
+            // Get text, or "" if object is empty
+            const Char8* Get() const;
+
+            // Get text, or the default Value if object is empty
+            const Char8* AsString(const Char8* def = "") const;
+
+            // Get text as a number, or the default Value if conversion did not succeed or object is empty
+            int AsInt(int def = 0) const;
+            unsigned int AsUint(unsigned int def = 0) const;
+            double AsDouble(double def = 0) const;
+            float AsFloat(float def = 0) const;
+            Real AsReal(Real def = 0) const;
+            Whole AsWhole(Whole def = 0) const;
+            Integer AsInteger(Integer def = 0) const;
+
+            // Get text as bool (returns true if first character is in '1tTyY' set), or the default Value if object is empty
+            bool AsBool(bool def = false) const;
+
+            // Set text (returns false if object is empty or there is not enough memory)
+            bool Set(const Char8* rhs);
+
+            // Set text with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
+            bool Set(int rhs);
+            bool Set(unsigned int rhs);
+            bool Set(double rhs);
+            bool Set(bool rhs);
+
+            // Set text (equivalent to set without error checking)
+            NodeText& operator=(const Char8* rhs);
+            NodeText& operator=(int rhs);
+            NodeText& operator=(unsigned int rhs);
+            NodeText& operator=(double rhs);
+            NodeText& operator=(bool rhs);
+
+            // Get the data node (NodePcdata or NodeCdata) for this object
+            Node data() const;
+        };
     }
 }
 #endif

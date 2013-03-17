@@ -86,6 +86,7 @@
 #include "datatypes.h"
 #include "XML/objectrange.h"
 #include "XML/attribute.h"
+#include "XML/nodetext.h"
 #include "XML/node.h"
 #include "XML/writer.h"
 #include "XML/xmldoc.h"
@@ -122,7 +123,7 @@ namespace XML
 //////////////////////////////////////////////////////////////////////////////////////////////////////
     /// @todo Do something about forward declares in xml.h
 
-	// Forward declarations
+    // Forward declarationsxmlboilerplate
 	struct AttributeStruct;
 	struct NodeStruct;
 
@@ -134,7 +135,7 @@ namespace XML
 
 	class Node;
 
-	class Text;
+    class NodeText;
 
 	class XPathNode;
 	class XPathNodeSet;
@@ -147,72 +148,6 @@ namespace XML
 
 
 
-
-	// A helper for working with text inside PCDATA nodes
-	class MEZZ_LIB Text
-	{
-		friend class Node;
-
-		NodeStruct* _GetRoot;
-
-		typedef void (*unspecified_bool_type)(Text***);
-
-		explicit Text(NodeStruct* GetRoot);
-
-		NodeStruct* _data_new();
-		NodeStruct* _data() const;
-
-	public:
-		// Default constructor. Constructs an empty object.
-		Text();
-
-		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal data is set and false otherwise.
-		operator unspecified_bool_type() const;
-
-		// Borland C++ workaround
-		bool operator!() const;
-
-		// Check if text object is empty
-		bool Empty() const;
-
-		// Get text, or "" if object is empty
-        const Char8* Get() const;
-
-		// Get text, or the default Value if object is empty
-        const Char8* AsString(const Char8* def = "") const;
-
-		// Get text as a number, or the default Value if conversion did not succeed or object is empty
-		int AsInt(int def = 0) const;
-		unsigned int AsUint(unsigned int def = 0) const;
-		double AsDouble(double def = 0) const;
-		float AsFloat(float def = 0) const;
-		Real AsReal(Real def = 0) const;
-		Whole AsWhole(Whole def = 0) const;
-		Integer AsInteger(Integer def = 0) const;
-
-		// Get text as bool (returns true if first character is in '1tTyY' set), or the default Value if object is empty
-		bool AsBool(bool def = false) const;
-
-		// Set text (returns false if object is empty or there is not enough memory)
-        bool Set(const Char8* rhs);
-
-		// Set text with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
-		bool Set(int rhs);
-		bool Set(unsigned int rhs);
-		bool Set(double rhs);
-		bool Set(bool rhs);
-
-		// Set text (equivalent to set without error checking)
-        Text& operator=(const Char8* rhs);
-		Text& operator=(int rhs);
-		Text& operator=(unsigned int rhs);
-		Text& operator=(double rhs);
-		Text& operator=(bool rhs);
-
-		// Get the data node (NodePcdata or NodeCdata) for this object
-		Node data() const;
-	};
 
 	// Child node iterator (a bidirectional iterator over a collection of Node)
 	class MEZZ_LIB NodeIterator

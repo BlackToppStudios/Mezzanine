@@ -76,7 +76,7 @@ namespace Mezzanine
     namespace XML
     {
         class NodeStruct;
-        class Text;
+        class NodeText;
         class TreeWalker;
         class XPathNode;
         class XPathNodeSet;
@@ -220,7 +220,7 @@ namespace Mezzanine
 
                 /// @brief Get text object for the current node
                 /// @return An @ref Text which represents the PCData of this node.
-                Text GetText() const;
+                NodeText GetText() const;
 
                 #ifndef SWIG
                 /// @brief Attempt to get a child Node with a given name.
@@ -254,12 +254,12 @@ namespace Mezzanine
                 /// @brief Retrieve the value of this(or a child's) Nodes PCDATA child Node
                 /// @details If this node represents "<node>Some text in the PCDATA field, that is actually represent by a node</node>", then this would return "Some text in the PCDATA field, that is actually represent by a node". This will iterate through child Nodes from until it finds a PCDATA node or fails
                 /// @return This will return the Value of the first available PCDATA node.
-                const Char8* ChildValue() const;
+                const Char8* GetChildValue() const;
 
                 /// @brief Get the PCDATA of a given child. The same a calling "GetChild(Name).ChildValue()".
                 /// @param Name The Name of the desired child node.
                 /// @return This will return the Value of the first available matching PCDATA node.
-                const Char8* ChildValue(const Char8* Name) const;
+                const Char8* GetChildValue(const Char8* Name) const;
 
                 #ifndef SWIG
                 /// @brief Set the name of .

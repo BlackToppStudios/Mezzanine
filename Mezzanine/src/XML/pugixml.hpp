@@ -77,6 +77,16 @@ namespace pugi
 	typedef std::basic_string<PUGIXML_CHAR, std::char_traits<PUGIXML_CHAR>, std::allocator<PUGIXML_CHAR> > string_t;
 #endif
 }
+swig.h:105: Warning 999:  Warning 990 to 999 are informational messages.
+XML/attribute.h:70: Warning 990:  Begining parsing of class.
+XML/attribute.h:381: Warning 991:  Completing parsing of class.
+XML/node.h:74: Warning 990:  Begining parsing of class.
+XML/node.h:712: Warning 991:  Completing parsing of class.
+XML/writer.h:82: Warning 990:  Begining parsing of class.
+XML/writer.h:171: Warning 991:  Completing parsing of class.
+vector3.h:62: Warning 990:  Begining parsing of class.
+vector3.h:698: Warning 991:  Completing parsing of class.
+Processing types...
 
 // The PugiXML namespace
 namespace pugi

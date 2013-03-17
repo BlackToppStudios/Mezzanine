@@ -3849,12 +3849,12 @@ namespace XML
 		return Node(static_cast<internal::DocumentStruct*>(page->allocator));
 	}
 
-    PUGI__FN Text Node::GetText() const
+    PUGI__FN NodeText Node::GetText() const
 	{
-		return Text(NodeData);
+        return NodeText(NodeData);
 	}
 
-    PUGI__FN const Char8* Node::ChildValue() const
+    PUGI__FN const Char8* Node::GetChildValue() const
 	{
         if (!NodeData) return "";
 
@@ -3865,9 +3865,9 @@ namespace XML
         return "";
 	}
 
-    PUGI__FN const Char8* Node::ChildValue(const Char8* Name_) const
+    PUGI__FN const Char8* Node::GetChildValue(const Char8* Name_) const
 	{
-		return GetChild(Name_).ChildValue();
+		return GetChild(Name_).GetChildValue();
 	}
 
 	PUGI__FN Attribute Node::GetFirstAttribute() const
@@ -4477,182 +4477,182 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN Text::Text(NodeStruct* GetRoot): _GetRoot(GetRoot)
+    PUGI__FN NodeText::NodeText(NodeStruct* GetRoot): RootNode(GetRoot)
 	{
 	}
 
-	PUGI__FN NodeStruct* Text::_data() const
+    PUGI__FN NodeStruct* NodeText::_data() const
 	{
-		if (!_GetRoot || internal::is_text_node(_GetRoot)) return _GetRoot;
+        if (!RootNode || internal::is_text_node(RootNode)) return RootNode;
 
-		for (NodeStruct* node = _GetRoot->GetFirstChild; node; node = node->GetNextSibling)
+        for (NodeStruct* node = RootNode->GetFirstChild; node; node = node->GetNextSibling)
 			if (internal::is_text_node(node))
 				return node;
 
 		return 0;
 	}
 
-	PUGI__FN NodeStruct* Text::_data_new()
+    PUGI__FN NodeStruct* NodeText::_data_new()
 	{
 		NodeStruct* d = _data();
 		if (d) return d;
 
-		return Node(_GetRoot).AppendChild(NodePcdata).InternalObject();
+        return Node(RootNode).AppendChild(NodePcdata).InternalObject();
 	}
 
-	PUGI__FN Text::Text(): _GetRoot(0)
+    PUGI__FN NodeText::NodeText(): RootNode(0)
 	{
 	}
 
-	PUGI__FN static void unspecified_bool_Text(Text***)
+    PUGI__FN static void unspecified_bool_Text(NodeText***)
 	{
 	}
 
-	PUGI__FN Text::operator Text::unspecified_bool_type() const
+    PUGI__FN NodeText::operator NodeText::unspecified_bool_type() const
 	{
 		return _data() ? unspecified_bool_Text : 0;
 	}
 
-	PUGI__FN bool Text::operator!() const
+    PUGI__FN bool NodeText::operator!() const
 	{
 		return !_data();
 	}
 
-	PUGI__FN bool Text::Empty() const
+    PUGI__FN bool NodeText::Empty() const
 	{
 		return _data() == 0;
 	}
 
-    PUGI__FN const Char8* Text::Get() const
+    PUGI__FN const Char8* NodeText::Get() const
 	{
 		NodeStruct* d = _data();
 
         return (d && d->Value) ? d->Value : "";
 	}
 
-    PUGI__FN const Char8* Text::AsString(const Char8* def) const
+    PUGI__FN const Char8* NodeText::AsString(const Char8* def) const
 	{
 		NodeStruct* d = _data();
 
 		return (d && d->Value) ? d->Value : def;
 	}
 
-	PUGI__FN int Text::AsInt(int def) const
+    PUGI__FN int NodeText::AsInt(int def) const
 	{
 		NodeStruct* d = _data();
 
 		return internal::GetValue_int(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN unsigned int Text::AsUint(unsigned int def) const
+    PUGI__FN unsigned int NodeText::AsUint(unsigned int def) const
 	{
 		NodeStruct* d = _data();
 
 		return internal::GetValue_uint(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN double Text::AsDouble(double def) const
+    PUGI__FN double NodeText::AsDouble(double def) const
 	{
 		NodeStruct* d = _data();
 
 		return internal::GetValue_double(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN float Text::AsFloat(float def) const
+    PUGI__FN float NodeText::AsFloat(float def) const
 	{
 		NodeStruct* d = _data();
 
 		return internal::GetValue_float(d ? d->Value : 0, def);
 	}
 
-    PUGI__FN Real Text::AsReal(Real def) const
+    PUGI__FN Real NodeText::AsReal(Real def) const
     {
         return AsFloat(def);
     }
 
-    PUGI__FN Whole Text::AsWhole(Whole def) const
+    PUGI__FN Whole NodeText::AsWhole(Whole def) const
     {
         return AsUint(def);
     }
 
-    PUGI__FN Integer Text::AsInteger(Integer def) const
+    PUGI__FN Integer NodeText::AsInteger(Integer def) const
     {
         return AsInt(def);
     }
 
-	PUGI__FN bool Text::AsBool(bool def) const
+    PUGI__FN bool NodeText::AsBool(bool def) const
 	{
 		NodeStruct* d = _data();
 
 		return internal::GetValue_bool(d ? d->Value : 0, def);
 	}
 
-    PUGI__FN bool Text::Set(const Char8* rhs)
+    PUGI__FN bool NodeText::Set(const Char8* rhs)
 	{
 		NodeStruct* dn = _data_new();
 
 		return dn ? internal::strcpy_insitu(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(int rhs)
+    PUGI__FN bool NodeText::Set(int rhs)
 	{
 		NodeStruct* dn = _data_new();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(unsigned int rhs)
+    PUGI__FN bool NodeText::Set(unsigned int rhs)
 	{
 		NodeStruct* dn = _data_new();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(double rhs)
+    PUGI__FN bool NodeText::Set(double rhs)
 	{
 		NodeStruct* dn = _data_new();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(bool rhs)
+    PUGI__FN bool NodeText::Set(bool rhs)
 	{
 		NodeStruct* dn = _data_new();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-    PUGI__FN Text& Text::operator=(const Char8* rhs)
+    PUGI__FN NodeText& NodeText::operator=(const Char8* rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(int rhs)
+    PUGI__FN NodeText& NodeText::operator=(int rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(unsigned int rhs)
+    PUGI__FN NodeText& NodeText::operator=(unsigned int rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(double rhs)
+    PUGI__FN NodeText& NodeText::operator=(double rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(bool rhs)
+    PUGI__FN NodeText& NodeText::operator=(bool rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Node Text::data() const
+    PUGI__FN Node NodeText::data() const
 	{
 		return Node(_data());
 	}

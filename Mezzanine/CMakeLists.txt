@@ -279,6 +279,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"    # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/node.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmlenumerations.h"
 
@@ -457,6 +458,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.cpp"  # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/node.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.cpp"
 )
 
