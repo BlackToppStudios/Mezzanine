@@ -59,6 +59,10 @@
 #include "datatypes.h"
 #include "node.h"
 
+
+/// @file
+/// @brief The declaration of the XML::NodeText class
+
 namespace Mezzanine
 {
     namespace XML
@@ -71,62 +75,146 @@ namespace Mezzanine
             /// @brief Actually the the data for this NodeText
             NodeStruct* RootNode;
 
+            #ifndef SWIG
+            /// @brief Used to prevent casting to numerical types acccidentally.
+            /// @note Not available in scripting languages because conversion is handled on a per langauge basis
             typedef void (*unspecified_bool_type)(NodeText***);
+            #endif
 
-            explicit NodeText(NodeStruct* GetRoot);
+            /// @internal
+            /// @brief Create this from the internal data of another node.
+            explicit NodeText(NodeStruct* OtherRoot);
 
-            NodeStruct* _data_new();
-            NodeStruct* _data() const;
+            /// @internal
+            /// @brief Get the internal data pointer for the nearest Parent node or allocate one if required.
+            NodeStruct* DataNew();
+
+            /// @internal
+            /// @brief Get the internal data pointer for the nearest Parent node
+            NodeStruct* Data() const;
 
         public:
-            // Default constructor. Constructs an empty object.
+            /// @brief Default constructor. Constructs an empty object.
             NodeText();
 
+            #ifndef SWIG
             /// @brief Used to convert this to a boolean value in a safe way
             /// @return Returns true if the internal data is set and false otherwise.
             operator unspecified_bool_type() const;
+            #endif
 
-            // Borland C++ workaround
+            /// @brief Used to convert this attribute the opposite of it's normal boolean value
+            /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
+            /// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
             bool operator!() const;
 
-            // Check if text object is empty
+            /// @brief Is this storing anything at all?
+            /// @return Returns True if this @ref NodeText is storing nothing. False if it is storing anything.
             bool Empty() const;
 
-            // Get text, or "" if object is empty
-            const Char8* Get() const;
+            /// @brief Get text, or "" if object is empty
+            /// @return A pointer to the string or "" if this is empty.
+            const Char8* GetString() const;
 
-            // Get text, or the default Value if object is empty
+            /// @brief Get text, or the default Value if object is empty
+            /// @param def The value to be returned if there is no valid return
+            /// @return This will return The content of this node or def
             const Char8* AsString(const Char8* def = "") const;
 
-            // Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as an int or def if the text is invalid for conversion or generates an error.
             int AsInt(int def = 0) const;
+
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as an unisgned int or def if the text is invalid for conversion or generates an error.
             unsigned int AsUint(unsigned int def = 0) const;
+
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as a double or def if the text is invalid for conversion or generates an error.
             double AsDouble(double def = 0) const;
+
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as a float or def if the text is invalid for conversion or generates an error.
             float AsFloat(float def = 0) const;
+
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as a Mezzanine::Real or def if the text is invalid for conversion or generates an error.
             Real AsReal(Real def = 0) const;
+
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as a Mezzanine::Whole or def if the text is invalid for conversion or generates an error.
             Whole AsWhole(Whole def = 0) const;
+
+            /// @brief Get text as a number, or the default Value if conversion did not succeed or object is empty
+            /// @param def The value To be returned if an error occurs in conversion, like a an out of memory condition.
+            /// @return The value in this @ref NodeText as a Mezzanine::Integer or def if the text is invalid for conversion or generates an error.
             Integer AsInteger(Integer def = 0) const;
 
-            // Get text as bool (returns true if first character is in '1tTyY' set), or the default Value if object is empty
+            /// @brief Get text as bool
+            /// @param def The default value to return if conversion is not possible.
+            /// @return True if first character is in '1tTyY' set), or the default Value if object is empty.
             bool AsBool(bool def = false) const;
 
-            // Set text (returns false if object is empty or there is not enough memory)
+            /// @brief Set text
+            /// @param rhs The value to store in this text.
+            /// @return False if object is empty or there is not enough memory.
             bool Set(const Char8* rhs);
 
-            // Set text with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
+            #ifndef SWIG
+            /// @brief Set text by lexigraphically converting rhs.
+            /// @param rhs The value to store in this text.
+            /// @return False if object is empty or there is not enough memory.
             bool Set(int rhs);
-            bool Set(unsigned int rhs);
-            bool Set(double rhs);
-            bool Set(bool rhs);
 
-            // Set text (equivalent to set without error checking)
+            /// @brief Set text by lexigraphically converting rhs.
+            /// @param rhs The value to store in this text.
+            /// @return False if object is empty or there is not enough memory.
+            bool Set(unsigned int rhs);
+
+            /// @brief Set text by lexigraphically converting rhs.
+            /// @param rhs The value to store in this text.
+            /// @return False if object is empty or there is not enough memory.
+            bool Set(double rhs);
+
+            /// @brief Set text by converting value to "true"/"false"
+            /// @param rhs The value to store in this text.
+            /// @return False if object is empty or there is not enough memory.
+            bool Set(bool rhs);
+            #endif
+
+            /// @brief Set text (equivalent to set without error checking)
+            /// @param rhs The value to store in this text.
+            /// @return A reference to the modified NodeText to allow operator chaining.
             NodeText& operator=(const Char8* rhs);
+
+            /// @brief Set text (equivalent to set without error checking) by lexigraphically converting rhs.
+            /// @param rhs The value to store in this text.
+            /// @return A reference to the modified NodeText to allow operator chaining.
             NodeText& operator=(int rhs);
+
+            /// @brief Set text (equivalent to set without error checking) by lexigraphically converting rhs.
+            /// @param rhs The value to store in this text.
+            /// @return A reference to the modified NodeText to allow operator chaining.
             NodeText& operator=(unsigned int rhs);
+
+            /// @brief Set text (equivalent to set without error checking) by lexigraphically converting rhs.
+            /// @param rhs The value to store in this text.
+            /// @return A reference to the modified NodeText to allow operator chaining.
             NodeText& operator=(double rhs);
+
+            /// @brief Set text (equivalent to set without error checking)by converting value to "true"/"false"
+            /// @param rhs The value to store in this text.
+            /// @return A reference to the modified NodeText to allow operator chaining.
             NodeText& operator=(bool rhs);
 
-            // Get the data node (NodePcdata or NodeCdata) for this object
+            /// @brief Get the data node (NodePcdata or NodeCdata) for this object
+            /// @return A Node that contains this NodeText.
             Node data() const;
         };
     }

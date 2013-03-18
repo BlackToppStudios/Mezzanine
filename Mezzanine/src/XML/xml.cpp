@@ -4477,11 +4477,11 @@ namespace XML
 	}
 #endif
 
-    PUGI__FN NodeText::NodeText(NodeStruct* GetRoot): RootNode(GetRoot)
+    PUGI__FN NodeText::NodeText(NodeStruct* OtherRoot): RootNode(OtherRoot)
 	{
 	}
 
-    PUGI__FN NodeStruct* NodeText::_data() const
+    PUGI__FN NodeStruct* NodeText::Data() const
 	{
         if (!RootNode || internal::is_text_node(RootNode)) return RootNode;
 
@@ -4492,9 +4492,9 @@ namespace XML
 		return 0;
 	}
 
-    PUGI__FN NodeStruct* NodeText::_data_new()
+    PUGI__FN NodeStruct* NodeText::DataNew()
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 		if (d) return d;
 
         return Node(RootNode).AppendChild(NodePcdata).InternalObject();
@@ -4510,57 +4510,57 @@ namespace XML
 
     PUGI__FN NodeText::operator NodeText::unspecified_bool_type() const
 	{
-		return _data() ? unspecified_bool_Text : 0;
+        return Data() ? unspecified_bool_Text : 0;
 	}
 
     PUGI__FN bool NodeText::operator!() const
 	{
-		return !_data();
+        return !Data();
 	}
 
     PUGI__FN bool NodeText::Empty() const
 	{
-		return _data() == 0;
+        return Data() == 0;
 	}
 
-    PUGI__FN const Char8* NodeText::Get() const
+    PUGI__FN const Char8* NodeText::GetString() const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
         return (d && d->Value) ? d->Value : "";
 	}
 
     PUGI__FN const Char8* NodeText::AsString(const Char8* def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return (d && d->Value) ? d->Value : def;
 	}
 
     PUGI__FN int NodeText::AsInt(int def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_int(d ? d->Value : 0, def);
 	}
 
     PUGI__FN unsigned int NodeText::AsUint(unsigned int def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_uint(d ? d->Value : 0, def);
 	}
 
     PUGI__FN double NodeText::AsDouble(double def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_double(d ? d->Value : 0, def);
 	}
 
     PUGI__FN float NodeText::AsFloat(float def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_float(d ? d->Value : 0, def);
 	}
@@ -4582,42 +4582,42 @@ namespace XML
 
     PUGI__FN bool NodeText::AsBool(bool def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_bool(d ? d->Value : 0, def);
 	}
 
     PUGI__FN bool NodeText::Set(const Char8* rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::strcpy_insitu(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
     PUGI__FN bool NodeText::Set(int rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
     PUGI__FN bool NodeText::Set(unsigned int rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
     PUGI__FN bool NodeText::Set(double rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
     PUGI__FN bool NodeText::Set(bool rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
@@ -4654,7 +4654,7 @@ namespace XML
 
     PUGI__FN Node NodeText::data() const
 	{
-		return Node(_data());
+        return Node(Data());
 	}
 
 #ifdef __BORLANDC__

@@ -8360,6 +8360,23 @@ static swig_lua_class *swig_Mezzanine_XML_Node_bases[] = {0};
 static const char *swig_Mezzanine_XML_Node_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_XML_Node = { "Node", &SWIGTYPE_p_Mezzanine__XML__Node,_wrap_new_Node, swig_delete_Node, swig_Mezzanine_XML_Node_methods, swig_Mezzanine_XML_Node_attributes, swig_Mezzanine_XML_Node_bases, swig_Mezzanine_XML_Node_base_names };
 
+static int _wrap_new_NodeText(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::NodeText *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::NodeText::NodeText",0,0)
+  result = (Mezzanine::XML::NodeText *)new Mezzanine::XML::NodeText();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__NodeText,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
 static int _wrap_NodeText_Empty(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
@@ -8384,19 +8401,19 @@ fail:
 }
 
 
-static int _wrap_NodeText_Get(lua_State* L) {
+static int _wrap_NodeText_GetString(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Char8 *result = 0 ;
   
-  SWIG_check_num_args("Mezzanine::XML::NodeText::Get",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Get",1,"Mezzanine::XML::NodeText const *");
+  SWIG_check_num_args("Mezzanine::XML::NodeText::GetString",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::GetString",1,"Mezzanine::XML::NodeText const *");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
-    SWIG_fail_ptr("NodeText_Get",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
+    SWIG_fail_ptr("NodeText_GetString",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
   }
   
-  result = (Mezzanine::Char8 *)((Mezzanine::XML::NodeText const *)arg1)->Get();
+  result = (Mezzanine::Char8 *)((Mezzanine::XML::NodeText const *)arg1)->GetString();
   lua_pushstring(L,(const char *)result); SWIG_arg++;
   return SWIG_arg;
   
@@ -9310,7 +9327,7 @@ static int _wrap_NodeText_AsBool(lua_State* L) {
 }
 
 
-static int _wrap_NodeText_Set__SWIG_0(lua_State* L) {
+static int _wrap_NodeText_Set(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
   Mezzanine::Char8 *arg2 = (Mezzanine::Char8 *) 0 ;
@@ -9334,229 +9351,6 @@ static int _wrap_NodeText_Set__SWIG_0(lua_State* L) {
 fail:
   lua_error(L);
   return SWIG_arg;
-}
-
-
-static int _wrap_NodeText_Set__SWIG_1(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
-  int arg2 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::NodeText::Set",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",1,"Mezzanine::XML::NodeText *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",2,"int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
-    SWIG_fail_ptr("NodeText_Set",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
-  }
-  
-  arg2 = (int)lua_tonumber(L, 2);
-  result = (bool)(arg1)->Set(arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_NodeText_Set__SWIG_2(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
-  unsigned int arg2 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::NodeText::Set",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",1,"Mezzanine::XML::NodeText *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",2,"unsigned int");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
-    SWIG_fail_ptr("NodeText_Set",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
-  }
-  
-  SWIG_contract_assert((lua_tonumber(L,2)>=0),"number must not be negative")
-  arg2 = (unsigned int)lua_tonumber(L, 2);
-  result = (bool)(arg1)->Set(arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_NodeText_Set__SWIG_3(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
-  double arg2 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::NodeText::Set",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",1,"Mezzanine::XML::NodeText *");
-  if(!lua_isnumber(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",2,"double");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
-    SWIG_fail_ptr("NodeText_Set",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
-  }
-  
-  arg2 = (double)lua_tonumber(L, 2);
-  result = (bool)(arg1)->Set(arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_NodeText_Set__SWIG_4(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::NodeText *arg1 = (Mezzanine::XML::NodeText *) 0 ;
-  bool arg2 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::NodeText::Set",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",1,"Mezzanine::XML::NodeText *");
-  if(!lua_isboolean(L,2)) SWIG_fail_arg("Mezzanine::XML::NodeText::Set",2,"bool");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__NodeText,0))){
-    SWIG_fail_ptr("NodeText_Set",1,SWIGTYPE_p_Mezzanine__XML__NodeText);
-  }
-  
-  arg2 = (lua_toboolean(L, 2)!=0);
-  result = (bool)(arg1)->Set(arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_NodeText_Set(lua_State* L) {
-  int argc;
-  int argv[3]={
-    1,2,3
-  };
-  
-  argc = lua_gettop(L);
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isboolean(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_NodeText_Set__SWIG_4(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_NodeText_Set__SWIG_2(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_NodeText_Set__SWIG_3(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = lua_isnumber(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_NodeText_Set__SWIG_1(L);
-      }
-    }
-  }
-  if (argc == 2) {
-    int _v;
-    {
-      void *ptr;
-      if (SWIG_isptrtype(L,argv[0])==0 || SWIG_ConvertPtr(L,argv[0], (void **) &ptr, SWIGTYPE_p_Mezzanine__XML__NodeText, 0)) {
-        _v = 0;
-      } else {
-        _v = 1;
-      }
-    }
-    if (_v) {
-      {
-        _v = SWIG_lua_isnilstring(L,argv[1]);
-      }
-      if (_v) {
-        return _wrap_NodeText_Set__SWIG_0(L);
-      }
-    }
-  }
-  
-  lua_pushstring(L,"Wrong arguments for overloaded function 'NodeText_Set'\n"
-    "  Possible C/C++ prototypes are:\n"
-    "    Mezzanine::XML::NodeText::Set(Mezzanine::Char8 const *)\n"
-    "    Mezzanine::XML::NodeText::Set(int)\n"
-    "    Mezzanine::XML::NodeText::Set(unsigned int)\n"
-    "    Mezzanine::XML::NodeText::Set(double)\n"
-    "    Mezzanine::XML::NodeText::Set(bool)\n");
-  lua_error(L);return 0;
 }
 
 
@@ -9593,7 +9387,7 @@ delete arg1;
 }
 static swig_lua_method swig_Mezzanine_XML_NodeText_methods[] = {
     {"Empty", _wrap_NodeText_Empty}, 
-    {"Get", _wrap_NodeText_Get}, 
+    {"GetString", _wrap_NodeText_GetString}, 
     {"AsString", _wrap_NodeText_AsString}, 
     {"AsInt", _wrap_NodeText_AsInt}, 
     {"AsUint", _wrap_NodeText_AsUint}, 
@@ -9612,7 +9406,7 @@ static swig_lua_attribute swig_Mezzanine_XML_NodeText_attributes[] = {
 };
 static swig_lua_class *swig_Mezzanine_XML_NodeText_bases[] = {0};
 static const char *swig_Mezzanine_XML_NodeText_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_XML_NodeText = { "NodeText", &SWIGTYPE_p_Mezzanine__XML__NodeText,0, swig_delete_NodeText, swig_Mezzanine_XML_NodeText_methods, swig_Mezzanine_XML_NodeText_attributes, swig_Mezzanine_XML_NodeText_bases, swig_Mezzanine_XML_NodeText_base_names };
+static swig_lua_class _wrap_class_Mezzanine_XML_NodeText = { "NodeText", &SWIGTYPE_p_Mezzanine__XML__NodeText,_wrap_new_NodeText, swig_delete_NodeText, swig_Mezzanine_XML_NodeText_methods, swig_Mezzanine_XML_NodeText_attributes, swig_Mezzanine_XML_NodeText_bases, swig_Mezzanine_XML_NodeText_base_names };
 
 static int _wrap_Writer_Write(lua_State* L) {
   int SWIG_arg = 0;
