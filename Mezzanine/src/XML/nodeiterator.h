@@ -59,51 +59,92 @@
 #include "datatypes.h"
 #include "node.h"
 
-
+/// @file
+/// @brief Contains the defintion of the NodeIterator class.
 
 namespace Mezzanine
 {
     namespace XML
     {
 
-        // Child node iterator (a bidirectional iterator over a collection of Node)
+        /// @brief Child node iterator (a bidirectional iterator over a collection of @ref Node)
+        /// @details Node::begin() and Node::attributes_begin() return iterators that point to the first node/attribute, respectively; Node::end() and Node::attributes_end() return past-the-end iterator for node/attribute list, respectively - this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing past-the-end iterator results in undefined behavior). Past-the-end iterator is commonly used as a termination value for iteration loops. If you want to get an iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: xml_node_iterator(node). For xml_attribute_iterator, you'll have to provide both an attribute and its parent node.\n\n
+        /// Node::begin() and Node::end() return equal iterators if called on null Node; such iterators can't be dereferenced. Node::attributes_begin() and Node::attributes_end() behave the same way. For correct iterator usage this means that child node/attribute collections of null nodes appear to be empty.\n\n
+        /// Both types of iterators have bidirectional iterator semantics (i.e. they can be incremented and decremented, but efficient random access is not supported) and support all usual iterator operations - comparison, dereference, etc. The iterators are invalidated if the node/attribute objects they're pointing to are removed from the tree; adding nodes/attributes does not invalidate any iterators.
         class MEZZ_LIB NodeIterator
         {
                 friend class Node;
 
             private:
+
+                /// @brief internal
+                /// @brief The current @ref Node this iterator points to.
                 mutable Node Wrap;
+
+                /// @internal
+                /// @brief The node that contains this collection of nodes. Used in error situations.
                 Node ParentNode;
 
+                /// @brief Internal Constructor, almost a copy construtor
+                /// @param ref Some of the internal data from another @ref NodeIterator specifically the Node it points to.
+                /// @param ParentNode Some of the internal data from another @ref NodeIterator specifically the parent of the Node it points to.
                 NodeIterator(NodeStruct* ref, NodeStruct* ParentNode);
 
             public:
-                // Iterator traits
+                /// @brief An Iterator trait
                 typedef ptrdiff_t difference_type;
+
+                /// @brief An Iterator trait
                 typedef Node value_type;
+
+                /// @brief An Iterator trait
                 typedef Node* pointer;
+
+                /// @brief An Iterator trait
                 typedef Node& reference;
 
+                /// @brief An Iterator trait
                 typedef std::bidirectional_iterator_tag iterator_category;
 
-
-                // Default constructor
+                /// @brief Default Constructor, makes a blank iterator
                 NodeIterator();
 
-                // Construct an iterator which points to the specified node
+                /// @brief Construct an iterator which points to the specified node
+                /// @param node A Node that this iterator will point to.
                 NodeIterator(const Node& node);
 
-                // Iterator operators
+                /// @brief Compares this NodeIterator to another NodeIterator for equality
+                /// @param rhs The Right Hand Side NodeIterator
+                /// @return True if the internal data stored in Node this NodeIterator refers to is the same as the metadata in the other NodeIterator's Node, false otherwise.
                 bool operator==(const NodeIterator& rhs) const;
+
+                /// @brief Compares this NodeIterator to another NodeIterator for inequality
+                /// @param rhs The Right Hand Side NodeIterator.
+                /// @return False if the internal data stored in Node this NodeIterator refers to is the same as the metadata in the other NodeIterator's Node, True otherwise.
                 bool operator!=(const NodeIterator& rhs) const;
 
+                /// @brief Deferences this Iterator
+                /// @return a Node reference to the node pointed at by this NodeIterator.
                 Node& operator*() const;
+
+                /// @brief Get the pointer the Node this points to.
+                /// @return A pointer to the Node this NodeIterator references.
                 Node* operator->() const;
 
+                /// @brief Increment the iterator to the next member of the container.
+                /// @return Returns a const NodeIterator.
                 const NodeIterator& operator++();
+
+                /// @brief Increment the iterator to the next member of the container.
+                /// @return Returns a NodeIterator.
                 NodeIterator operator++(int);
 
+                /// @brief Decrement the iterator to the next member of the container.
+                /// @return Returns a const NodeIterator.
                 const NodeIterator& operator--();
+
+                /// @brief Decrement the iterator to the next member of the container.
+                /// @return Returns a NodeIterator.
                 NodeIterator operator--(int);
         };
     }
