@@ -67,16 +67,12 @@
 
 #include <math.h>
 #include <float.h>
-#ifdef XML_NO_EXCEPTIONS
-#	include <setjmp.h>
-#endif
 
 
-#ifndef XML_NO_STL
-#	include <istream>
-#	include <ostream>
-#	include <string>
-#endif
+#include <istream>
+#include <ostream>
+#include <string>
+
 
 // For placement new
 #include <new>
@@ -219,7 +215,6 @@ PUGI__NS_BEGIN
 
 PUGI__NS_END
 
-#if !defined(XML_NO_STL)
 // auto_ptr-like buffer holder for exception recovery
 PUGI__NS_BEGIN
 	struct buffer_holder
@@ -244,7 +239,7 @@ PUGI__NS_BEGIN
 		}
 	};
 PUGI__NS_END
-#endif
+
 
 PUGI__NS_BEGIN
 	static const size_t MemoryPage_size =
@@ -1315,7 +1310,7 @@ PUGI__NS_BEGIN
 		buffer[size] = 0;
 	}
 
-#ifndef XML_NO_STL
+
 	PUGI__FN std::string AsUtf8_impl(const wchar_t* str, size_t length)
 	{
 		// first pass: get length in utf8 characters
@@ -1354,7 +1349,7 @@ PUGI__NS_BEGIN
 
 		return Result;
 	}
-#endif
+
 
     inline bool strcpy_insitu_allow(size_t length, uintptr_t allocated, Char8* target)
 	{
@@ -4668,40 +4663,40 @@ namespace XML
 	{
 	}
 
-	PUGI__FN NodeIterator::NodeIterator(const Node& node): _wrap(node), ParentNode(node.GetParent())
+    PUGI__FN NodeIterator::NodeIterator(const Node& node): Wrap(node), ParentNode(node.GetParent())
 	{
 	}
 
-	PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* GetParent): _wrap(ref), ParentNode(GetParent)
+    PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* ParentNode): Wrap(ref), ParentNode(ParentNode)
 	{
 	}
 
 	PUGI__FN bool NodeIterator::operator==(const NodeIterator& rhs) const
 	{
-		return _wrap.NodeData == rhs._wrap.NodeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
+        return Wrap.NodeData == rhs.Wrap.NodeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN bool NodeIterator::operator!=(const NodeIterator& rhs) const
 	{
-		return _wrap.NodeData != rhs._wrap.NodeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
+        return Wrap.NodeData != rhs.Wrap.NodeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN Node& NodeIterator::operator*() const
 	{
-		assert(_wrap.NodeData);
-		return _wrap;
+        assert(Wrap.NodeData);
+        return Wrap;
 	}
 
 	PUGI__FN Node* NodeIterator::operator->() const
 	{
-		assert(_wrap.NodeData);
-		return const_cast<Node*>(&_wrap); // BCC32 workaround
+        assert(Wrap.NodeData);
+        return const_cast<Node*>(&Wrap); // BCC32 workaround
 	}
 
 	PUGI__FN const NodeIterator& NodeIterator::operator++()
 	{
-		assert(_wrap.NodeData);
-		_wrap.NodeData = _wrap.NodeData->GetNextSibling;
+        assert(Wrap.NodeData);
+        Wrap.NodeData = Wrap.NodeData->GetNextSibling;
 		return *this;
 	}
 
@@ -4714,7 +4709,7 @@ namespace XML
 
 	PUGI__FN const NodeIterator& NodeIterator::operator--()
 	{
-		_wrap = _wrap.NodeData ? _wrap.GetPreviousSibling() : ParentNode.GetLastChild();
+        Wrap = Wrap.NodeData ? Wrap.GetPreviousSibling() : ParentNode.GetLastChild();
 		return *this;
 	}
 
@@ -5391,15 +5386,11 @@ PUGI__NS_BEGIN
 		size_t _GetRoot_size;
 
 	public:
-	#ifdef XML_NO_EXCEPTIONS
-		jmp_buf* error_handler;
-	#endif
+
 
 		XPathAllocator(XPathMemoryBlock* GetRoot, size_t GetRoot_size = 0): _GetRoot(GetRoot), _GetRoot_size(GetRoot_size)
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			error_handler = 0;
-		#endif
+
 		}
 
 		void* allocate_nothrow(size_t size)
@@ -5438,12 +5429,7 @@ PUGI__NS_BEGIN
 
 			if (!Result)
 			{
-			#ifdef XML_NO_EXCEPTIONS
-				assert(error_handler);
-				longjmp(*error_handler, 1);
-			#else
 				throw std::bad_alloc();
-			#endif
 			}
 
 			return Result;
@@ -5557,10 +5543,6 @@ PUGI__NS_BEGIN
 		XPathAllocator temp;
 		XPathStack stack;
 
-	#ifdef XML_NO_EXCEPTIONS
-		jmp_buf error_handler;
-	#endif
-
 		XPathStackData(): Result(blocks + 0), temp(blocks + 1)
 		{
 			blocks[0].next = blocks[1].next = 0;
@@ -5568,9 +5550,6 @@ PUGI__NS_BEGIN
 			stack.Result = &Result;
 			stack.temp = &temp;
 
-		#ifdef XML_NO_EXCEPTIONS
-			Result.error_handler = temp.error_handler = &error_handler;
-		#endif
 		}
 
 		~XPathStackData()
@@ -8435,29 +8414,17 @@ PUGI__NS_BEGIN
 
 		XPathParseResult* _Result;
 
-	#ifdef XML_NO_EXCEPTIONS
-		jmp_buf _error_handler;
-	#endif
-
 		void throw_error(const char* message)
 		{
 			_Result->error = message;
 			_Result->Offset = _lexer.current_pos() - _query;
 
-		#ifdef XML_NO_EXCEPTIONS
-			longjmp(_error_handler, 1);
-		#else
-			//throw XPathException(*_Result);
-		#endif
+
 		}
 
 		void throw_error_oom()
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			throw_error("Out of memory");
-		#else
 			throw std::bad_alloc();
-		#endif
 		}
 
 		void* alloc_node()
@@ -9278,13 +9245,7 @@ PUGI__NS_BEGIN
 		{
 			XPathParser parser(query, variables, alloc, Result);
 
-		#ifdef XML_NO_EXCEPTIONS
-			int error = setjmp(parser._error_handler);
-
-			return (error == 0) ? parser.parse() : 0;
-		#else
-			return parser.parse();
-		#endif
+            return parser.parse();
 		}
 	};
 
@@ -9322,10 +9283,6 @@ PUGI__NS_BEGIN
 	{
 		if (!impl) return XPathString();
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return XPathString();
-	#endif
-
 		XPathContext c(n, 1, 1);
 
 		return impl->GetRoot->eval_string(c, sd.stack);
@@ -9334,7 +9291,6 @@ PUGI__NS_END
 
 namespace XML
 {
-#ifndef XML_NO_EXCEPTIONS
 	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): Exception("","","","",0), _Result(Result_)
 	{
 		assert(_Result.error);
@@ -9349,7 +9305,6 @@ namespace XML
 	{
 		return _Result;
 	}
-#endif
 
 	PUGI__FN XPathNode::XPathNode()
 	{
@@ -9438,11 +9393,7 @@ namespace XML
 
 			if (!storage)
 			{
-			#ifdef XML_NO_EXCEPTIONS
-				return;
-			#else
 				throw std::bad_alloc();
-			#endif
 			}
 
 			memcpy(storage, begin_, size_ * sizeof(XPathNode));
@@ -9736,11 +9687,7 @@ namespace XML
 
 		if (!qimpl)
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			_Result.error = "Out of memory";
-		#else
 			throw std::bad_alloc();
-		#endif
 		}
 		else
 		{
@@ -9775,10 +9722,6 @@ namespace XML
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return false;
-	#endif
-
 		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_boolean(c, sd.stack);
 	}
 
@@ -9788,10 +9731,6 @@ namespace XML
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
-
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return internal::gen_nan();
-	#endif
 
 		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_number(c, sd.stack);
 	}
@@ -9831,22 +9770,16 @@ namespace XML
 
 		if (GetRoot->retType() != XPathTypeNodeSet)
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			return XPathNodeSet();
-		#else
 			XPathParseResult res;
 			res.error = "Expression does not evaluate to node set";
 
 			//throw XPathException(res);
-		#endif
+
 		}
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return XPathNodeSet();
-	#endif
 
 		internal::XPathNodeSet_raw r = GetRoot->eval_NodeSet(c, sd.stack);
 

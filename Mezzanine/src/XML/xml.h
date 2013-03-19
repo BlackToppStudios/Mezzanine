@@ -53,12 +53,6 @@
 #ifndef _XMLCONFIG_H
 #define _XMLCONFIG_H
 
-// Uncomment this to disable STL
-// #define XML_NO_STL
-
-// Uncomment this to disable exceptions
-// #define XML_NO_EXCEPTIONS
-
 // Set this to control attributes for public classes/functions, i.e.:
 // #define MEZZ_LIB __declspec(dllexport) // to export all public symbols from DLL
 // #define MEZZ_LIB __declspec(dllimport) // to import all classes from DLL
@@ -86,6 +80,7 @@
 #include "datatypes.h"
 #include "XML/objectrange.h"
 #include "XML/attribute.h"
+#include "XML/nodeiterator.h"
 #include "XML/nodetext.h"
 #include "XML/node.h"
 #include "XML/writer.h"
@@ -149,47 +144,7 @@ namespace XML
 
 
 
-	// Child node iterator (a bidirectional iterator over a collection of Node)
-	class MEZZ_LIB NodeIterator
-	{
-		friend class Node;
 
-	private:
-		mutable Node _wrap;
-        Node ParentNode;
-
-		NodeIterator(NodeStruct* ref, NodeStruct* GetParent);
-
-	public:
-		// Iterator traits
-		typedef ptrdiff_t difference_type;
-		typedef Node value_type;
-		typedef Node* pointer;
-		typedef Node& reference;
-
-	#ifndef XML_NO_STL
-		typedef std::bidirectional_iterator_tag iterator_category;
-	#endif
-
-		// Default constructor
-		NodeIterator();
-
-		// Construct an iterator which points to the specified node
-		NodeIterator(const Node& node);
-
-		// Iterator operators
-		bool operator==(const NodeIterator& rhs) const;
-		bool operator!=(const NodeIterator& rhs) const;
-
-		Node& operator*() const;
-		Node* operator->() const;
-
-		const NodeIterator& operator++();
-		NodeIterator operator++(int);
-
-		const NodeIterator& operator--();
-		NodeIterator operator--(int);
-	};
 
 	// Attribute iterator (a bidirectional iterator over a collection of Attribute)
 	class MEZZ_LIB AttributeIterator
@@ -209,9 +164,7 @@ namespace XML
 		typedef Attribute* pointer;
 		typedef Attribute& reference;
 
-	#ifndef XML_NO_STL
 		typedef std::bidirectional_iterator_tag iterator_category;
-	#endif
 
 		// Default constructor
 		AttributeIterator();
@@ -243,9 +196,7 @@ namespace XML
 		typedef Node* pointer;
 		typedef Node& reference;
 
-	#ifndef XML_NO_STL
 		typedef std::forward_iterator_tag iterator_category;
-	#endif
 
 		// Default constructor
 		NamedNode_iterator();
@@ -377,11 +328,9 @@ namespace XML
 		/// @return A ParseResult that stores the the outcome of attempting to load the document.
         ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
-	#ifndef XML_NO_STL
 		// Load document from stream.
 		ParseResult Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 		ParseResult Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
-	#endif
 
 		// Load document from zero-terminated string. No DocumentEncoding conversions are applied.
         ParseResult Load(const Char8* contents, unsigned int options = ParseDefault);
@@ -441,7 +390,6 @@ namespace XML
 		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
         void Save(Writer& WriterInstance, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
-	#ifndef XML_NO_STL
 		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details).
         void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 		/// @brief Save XML document to a stream of wide characters.
@@ -449,7 +397,7 @@ namespace XML
 		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
 		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
         void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault) const;
-	#endif
+
 
 		/// @brief Save XML to file.
 		/// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
@@ -620,12 +568,11 @@ namespace XML
 
 	public:
 		// Construct a compiled object from XPath expression.
-		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on compilation errors.
 
 		/// @brief Construct a compiled object from XPath expression.
 		/// @param query The query in the form of a c-string style char_t array.
 		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (which is the default), throws XPathException on compilation errors.
+        /// @throw Throws XPathException on compilation errors.
         explicit XPathQuery(const Char8* query, XPathVariableSet* variables = 0);
 
 		// Destructor
@@ -636,49 +583,43 @@ namespace XML
 		XPathValueType ReturnType() const;
 
 		// Evaluate expression as boolean Value in the specified context; performs Type conversion if necessary.
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+        // throws std::bad_alloc on out of memory errors.
 		bool EvaluateBoolean(const XPathNode& n) const;
 
 		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary.
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		/// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.
 		/// @param n The XPathNode that will serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+        /// @throw Throws std::bad_alloc on out of memory errors.
 		/// @return A result as a double from evaluating the expression.
 		double EvaluateNumber(const XPathNode& n) const;
 
-	#ifndef XML_NO_STL
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary.
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
 		/// @param n The XPathNode that will serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+        /// @throw Throws std::bad_alloc on out of memory errors.
 		/// @return A result as a String from evaluating the expression.
 		String EvaluateString(const XPathNode& n) const;
-	#endif
+
 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary.
 		// At most capacity characters are written to the destination buffer, full Result size is returned (includes terminating zero).
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
-		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead.
 		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
 		/// @param buffer The place to store the c-style Character array
 		/// @param capacity At most capacity characters are written to the destination buffer.
 		/// @param n The XPathNode that with serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, this returns empty  set instead.
+        /// @throw  std::bad_alloc on out of memory errors.
 		/// @return Full result size is returned (includes terminating zero).
         size_t EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const;
 
 		// Evaluate expression as node set in the specified context.
-		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors.
-		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
+        // throws XPathException on Type mismatch and std::bad_alloc on out of memory errors.
+
 		/// @brief Evaluate expression as node set in the specified context.
 		/// @param n The XPathNode that with serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
 		/// @return An XPathNodeSet.
 		XPathNodeSet EvaluateNodeSet(const XPathNode& n) const;
 
-		// Get parsing Result (used to get compilation errors in XML_NO_EXCEPTIONS mode)
+        // Get parsing Result
 		const XPathParseResult& Result() const;
 
 		/// @brief Used to convert this to a boolean value in a safe way
@@ -689,7 +630,6 @@ namespace XML
 		bool operator!() const;
 	};
 
-	#ifndef XML_NO_EXCEPTIONS
 	// XPath exception class
 	class MEZZ_LIB XPathException: public Mezzanine::Exception
 	{
@@ -707,7 +647,7 @@ namespace XML
 		// Get parse Result
 		const XPathParseResult& Result() const;
 	};
-	#endif
+
 
 	// XPath node class (either Node or Attribute)
 	class MEZZ_LIB XPathNode
@@ -818,8 +758,6 @@ namespace XML
 		void _assign(const_iterator begin, const_iterator end);
 	};
 
-
-#ifndef XML_NO_STL
 	// Convert wide string to UTF8
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > MEZZ_LIB AsUtf8(const wchar_t* str);
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > MEZZ_LIB AsUtf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str);
@@ -827,7 +765,7 @@ namespace XML
 	// Convert UTF8 to wide string
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > MEZZ_LIB AsWide(const char* str);
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > MEZZ_LIB AsWide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str);
-#endif
+
 
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure
 	typedef void* (*AllocationFunction)(size_t size);
@@ -844,26 +782,6 @@ namespace XML
 }
 //Name spaces end here
 }
-
-#if !defined(XML_NO_STL) && (defined(_MSC_VER) || defined(__ICC))
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
-	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::NodeIterator&);
-	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::AttributeIterator&);
-	std::forward_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::NamedNode_iterator&);
-}
-#endif
-
-#if !defined(XML_NO_STL) && defined(__SUNPRO_CC)
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection
-	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::NodeIterator&);
-	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::AttributeIterator&);
-	std::forward_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::NamedNode_iterator&);
-}
-#endif
 
 #endif
 

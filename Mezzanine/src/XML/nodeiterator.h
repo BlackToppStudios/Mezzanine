@@ -57,6 +57,8 @@
 #define _xmlnodeiterator_h
 
 #include "datatypes.h"
+#include "node.h"
+
 
 
 namespace Mezzanine
@@ -64,6 +66,46 @@ namespace Mezzanine
     namespace XML
     {
 
+        // Child node iterator (a bidirectional iterator over a collection of Node)
+        class MEZZ_LIB NodeIterator
+        {
+                friend class Node;
+
+            private:
+                mutable Node Wrap;
+                Node ParentNode;
+
+                NodeIterator(NodeStruct* ref, NodeStruct* ParentNode);
+
+            public:
+                // Iterator traits
+                typedef ptrdiff_t difference_type;
+                typedef Node value_type;
+                typedef Node* pointer;
+                typedef Node& reference;
+
+                typedef std::bidirectional_iterator_tag iterator_category;
+
+
+                // Default constructor
+                NodeIterator();
+
+                // Construct an iterator which points to the specified node
+                NodeIterator(const Node& node);
+
+                // Iterator operators
+                bool operator==(const NodeIterator& rhs) const;
+                bool operator!=(const NodeIterator& rhs) const;
+
+                Node& operator*() const;
+                Node* operator->() const;
+
+                const NodeIterator& operator++();
+                NodeIterator operator++(int);
+
+                const NodeIterator& operator--();
+                NodeIterator operator--(int);
+        };
     }
 }
 #endif
