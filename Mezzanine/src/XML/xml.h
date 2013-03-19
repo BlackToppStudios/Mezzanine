@@ -156,7 +156,7 @@ namespace XML
 
 	private:
 		mutable Node _wrap;
-		Node _GetParent;
+        Node ParentNode;
 
 		NodeIterator(NodeStruct* ref, NodeStruct* GetParent);
 

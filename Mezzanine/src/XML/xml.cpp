@@ -3208,7 +3208,6 @@ PUGI__NS_BEGIN
 		return doc.LoadBufferInplaceOwn(contents, size, options, DocumentEncoding);
 	}
 
-#ifndef XML_NO_STL
 	template <typename T> struct StreamChunk
 	{
 		static StreamChunk* create()
@@ -3338,7 +3337,7 @@ PUGI__NS_BEGIN
 
 		return doc.LoadBufferInplaceOwn(buffer, size, options, DocumentEncoding);
 	}
-#endif
+
 
 #if defined(PUGI__MSVC_CRT_VERSION) || defined(__BORLANDC__) || (defined(__MINGW32__) && !defined(__STRICT_ANSI__))
 	PUGI__FN FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode)
@@ -4283,7 +4282,6 @@ namespace XML
 		return Node();
 	}
 
-#ifndef XML_NO_STL
     PUGI__FN String Node::Path(Char8 delimiter) const
 	{
 		Node cursor = *this; // Make a copy.
@@ -4302,7 +4300,6 @@ namespace XML
 
 		return Result;
 	}
-#endif
 
     PUGI__FN Node Node::FirstElementByPath(const Char8* Path_, Char8 delimiter) const
 	{
@@ -4418,7 +4415,6 @@ namespace XML
 		internal::NodeOutput(buffered_WriterInstance, *this, indent, flags, Depth);
 	}
 
-#ifndef XML_NO_STL
     PUGI__FN void Node::Print(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
 	{
 		WriterStream WriterInstance(stream);
@@ -4432,7 +4428,6 @@ namespace XML
 
 		Print(WriterInstance, indent, flags, Encodingwchar_t, Depth);
 	}
-#endif
 
 	PUGI__FN ptrdiff_t Node::OffSetDebug() const
 	{
@@ -4673,22 +4668,22 @@ namespace XML
 	{
 	}
 
-	PUGI__FN NodeIterator::NodeIterator(const Node& node): _wrap(node), _GetParent(node.GetParent())
+	PUGI__FN NodeIterator::NodeIterator(const Node& node): _wrap(node), ParentNode(node.GetParent())
 	{
 	}
 
-	PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* GetParent): _wrap(ref), _GetParent(GetParent)
+	PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* GetParent): _wrap(ref), ParentNode(GetParent)
 	{
 	}
 
 	PUGI__FN bool NodeIterator::operator==(const NodeIterator& rhs) const
 	{
-		return _wrap.NodeData == rhs._wrap.NodeData && _GetParent.NodeData == rhs._GetParent.NodeData;
+		return _wrap.NodeData == rhs._wrap.NodeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN bool NodeIterator::operator!=(const NodeIterator& rhs) const
 	{
-		return _wrap.NodeData != rhs._wrap.NodeData || _GetParent.NodeData != rhs._GetParent.NodeData;
+		return _wrap.NodeData != rhs._wrap.NodeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN Node& NodeIterator::operator*() const
@@ -4719,7 +4714,7 @@ namespace XML
 
 	PUGI__FN const NodeIterator& NodeIterator::operator--()
 	{
-		_wrap = _wrap.NodeData ? _wrap.GetPreviousSibling() : _GetParent.GetLastChild();
+		_wrap = _wrap.NodeData ? _wrap.GetPreviousSibling() : ParentNode.GetLastChild();
 		return *this;
 	}
 
@@ -4962,7 +4957,6 @@ namespace XML
 		}
 	}
 
-#ifndef XML_NO_STL
 	PUGI__FN ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 		Reset();
@@ -4976,7 +4970,6 @@ namespace XML
 
 		return internal::LoadStreamImpl(*this, stream, options, Encodingwchar_t);
 	}
-#endif
 
     PUGI__FN ParseResult Document::Load(const Char8* contents, unsigned int options)
 	{
@@ -5071,7 +5064,6 @@ namespace XML
 		internal::NodeOutput(buffered_WriterInstance, *this, indent, flags, 0);
 	}
 
-#ifndef XML_NO_STL
     PUGI__FN void Document::Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		WriterStream WriterInstance(stream);
@@ -5085,7 +5077,6 @@ namespace XML
 
 		Save(WriterInstance, indent, flags, Encodingwchar_t);
 	}
-#endif
 
     PUGI__FN bool Document::SaveFile(const char* Path_, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
@@ -5108,7 +5099,6 @@ namespace XML
 		return Node();
 	}
 
-#ifndef XML_NO_STL
 	PUGI__FN std::string MEZZ_LIB AsUtf8(const wchar_t* str)
 	{
 		assert(str);
@@ -5132,7 +5122,7 @@ namespace XML
 	{
 		return internal::AsWide_impl(str.c_str(), str.size());
 	}
-#endif
+
 
 	PUGI__FN void MEZZ_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate)
 	{
@@ -5151,47 +5141,8 @@ namespace XML
 	}
 }
 
-#if !defined(XML_NO_STL) && (defined(_MSC_VER) || defined(__ICC))
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
-	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::XML::NodeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
 
-	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::XML::AttributeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
 
-	PUGI__FN std::forward_iterator_tag _Iter_cat(const Mezzanine::XML::NamedNode_iterator&)
-	{
-		return std::forward_iterator_tag();
-	}
-}
-#endif
-
-#if !defined(XML_NO_STL) && defined(__SUNPRO_CC)
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection
-	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::XML::NodeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
-
-	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::XML::AttributeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
-
-	PUGI__FN std::forward_iterator_tag __iterator_category(const Mezzanine::XML::NamedNode_iterator&)
-	{
-		return std::forward_iterator_tag();
-	}
-}
-#endif
 // STL replacements
 PUGI__NS_BEGIN
 	struct equal_to
@@ -9845,14 +9796,12 @@ namespace XML
 		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_number(c, sd.stack);
 	}
 
-#ifndef XML_NO_STL
 	PUGI__FN String XPathQuery::EvaluateString(const XPathNode& n) const
 	{
 		internal::XPathStackData sd;
 
 		return internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(_impl), n, sd).c_str();
 	}
-#endif
 
     PUGI__FN size_t XPathQuery::EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const
 	{

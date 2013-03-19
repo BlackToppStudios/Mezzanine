@@ -1033,7 +1033,6 @@ namespace Mezzanine
         /// In case path component is ambiguous (if there are two nodes with given name), the first one is selected; paths are not guaranteed to uniquely identify nodes in a document. If any
         /// component of a path is not found, the result of FirstElementByPath is null node; also FirstElementByPath returns null node for null nodes, in which case the path does not matter.
         /// path returns an empty string for null nodes.
-        /// @note The Path function returns the result as String which is currently a typedef of std::string, and thus is not available if XML_NO_STL is defined.
         ///
         /// Mezzanine::xml does not record row/column information for nodes upon parsing for efficiency reasons. However, if the node has not changed in a significant way since parsing (the
         /// name/value are not changed, and the node itself is the original one, i.e. it was not deleted from the tree and re-added later), it is possible to get the offset from the
@@ -1651,7 +1650,7 @@ namespace Mezzanine
         /// EvaluateString always return a result, but EvaluateNodeSet results in an error if the return type is not node set ( see @ref XMLXPathError ).
         /// @note Calling node.FindNodes("query") is equivalent to calling Mezzanine::XML::XPathQuery("query").EvaluateNodeSet(node).
         ///
-        /// Note that EvaluateString function returns the STL string; as such, it's not available in XML_NO_STL mode and also usually allocates memory. There is another string evaluation
+        /// There is another string evaluation
         /// function:
         /// @code
         /// size_t Mezzanine::XML::XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const Mezzanine::XML::XPathNode& n) const;
