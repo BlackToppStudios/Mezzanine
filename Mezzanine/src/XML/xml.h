@@ -53,16 +53,6 @@
 #ifndef _XMLCONFIG_H
 #define _XMLCONFIG_H
 
-// Set this to control attributes for public classes/functions, i.e.:
-// #define MEZZ_LIB __declspec(dllexport) // to export all public symbols from DLL
-// #define MEZZ_LIB __declspec(dllimport) // to import all classes from DLL
-// #define MEZZ_LIB __fastcall // to set calling conventions to all public functions to fastcall
-// In absence of MEZZ_LIB/MEZZ_LIB definitions MEZZ_LIB is used instead
-
-// Uncomment this to switch to header-only version
-// #define XML_HEADER_ONLY
-// #include "pugixml.cpp"
-
 // Tune these constants to adjust memory-related behavior
 // #define XML_MEMORY_PAGE_SIZE 32768
 // #define XML_MEMORY_OUTPUT_STACK 10240
@@ -80,6 +70,7 @@
 #include "datatypes.h"
 #include "XML/objectrange.h"
 #include "XML/attribute.h"
+#include "XML/attributeiterator.h"
 #include "XML/nodeiterator.h"
 #include "XML/nodetext.h"
 #include "XML/node.h"
@@ -142,10 +133,6 @@ namespace XML
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 
-
-
-
-
 	// Attribute iterator (a bidirectional iterator over a collection of Attribute)
 	class MEZZ_LIB AttributeIterator
 	{
@@ -183,7 +170,7 @@ namespace XML
 		AttributeIterator operator++(int);
 
 		const AttributeIterator& operator--();
-		AttributeIterator operator--(int);
+        AttributeIterator operator--(int);
 	};
 
 	// Named node range helper
