@@ -1945,49 +1945,7 @@ namespace Mezzanine
         /// @brief The internal data storage structure used in an Attribute.
         /// @warning Not part of the API, subject to change without warning.
 
-        //////////////////////////////////////////////////////////////////////////////
-        /// @class TreeWalker
-        /// @brief Used to call a function for_each member of the subtree of nodes descended from a specific node.
-        /// @details If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some
-        /// equivalent method or use a TreeWalker. This provides a helper for depth-first traversal of a subtree. In order
-        /// to use it, you have to implement XML::TreeWalker interface and call XML::Node::Traverse() function. \n\n
-        ///  * First, TreeWalker::begin() is called with traversal root as its argument.\n
-        ///  * Then, TreeWalker::for_each() function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each Node is passed as an argument.\n
-        ///  * Finally, TreeWalker::end() function is called with traversal root as its argument.\n\n
-        /// If TreeWalker::begin(), TreeWalker::end() or any of the TreeWalker::for_each() calls return false, the traversal
-        /// is terminated and false is returned as the traversal result; otherwise, the traversal results in true. Note that
-        /// you don't have to override begin or end functions; their default implementations return true.\n\n
-        /// You can get the node's depth relative to the traversal root at any point by calling TreeWalker::Depth() function.
 
-        /// @fn TreeWalker::Depth() const;
-        /// @brief How many descendants deep are we during traversal.
-        /// @return This returns -1 if called from TreeWalker::begin() or TreeWalker::end(), and returns 0-based depth if called from for_each - depth is 0 for all children of the traversal root, 1 for all grandchildren, 2 for great-grandchildren and so on.
-
-        /// @fn TreeWalker::TreeWalker();
-        /// @brief Default constructor, initializes depth, and can do little else without a fully implemented treewalker.
-
-        /// @fn TreeWalker::~TreeWalker();
-        /// @brief Virtual deconstructor. Tears down a TreeWalker
-
-        /// @fn TreeWalker::begin(Node& node);
-        /// @brief Called by the root Node of the xml subtree when traversal begins.
-        /// @param node The first node the Tree to traverse
-        /// @details By default this simply returns true, but is expected to be overridden with any desired behavior
-        /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
-
-        /// @fn TreeWalker::for_each(Node& node);
-        /// @brief A Pure Virtual function that is expected to be implemented to create the desired behavior.
-        /// @param node The curren node being trraversed.
-        /// @details This is called on every Node that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches
-        /// of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching
-        /// many nodes.
-        /// @return if true Traversal is expected to continue, if false, then traversal ends and the Node::Traverse() that was called is expected to return false.
-
-        /// @fn TreeWalker::end(Node& node);
-        /// @brief Called on the root Node of the xml subtree when traversal ends.
-        /// @param node The last node the Tree to traverse
-        /// @details By default this simply returns true, but is expected to be overridden with any desired behavior
-        /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
 
         //////////////////////////////////////////////////////////////////////////////
         /// @class Document

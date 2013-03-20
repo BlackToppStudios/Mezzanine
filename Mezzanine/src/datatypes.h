@@ -66,6 +66,8 @@
     #include <vector>
     #include <utility>
 #endif
+#include "swig.h"
+
 
 /// @internal
 /// @brief Forward declaration for SDL compatibilty

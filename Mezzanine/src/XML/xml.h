@@ -74,6 +74,7 @@
 #include "XML/nodeiterator.h"
 #include "XML/nodetext.h"
 #include "XML/node.h"
+#include "XML/treewalker.h"
 #include "XML/writer.h"
 #include "XML/xmldoc.h"
 #include "XML/xmlenumerations.h"
@@ -133,31 +134,7 @@ namespace XML
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 
-	// Abstract tree walker class (see Node::Traverse)
-	class MEZZ_LIB TreeWalker
-	{
-		friend class Node;
 
-	private:
-		int _Depth;
-
-	protected:
-		// Get current traversal Depth
-		int Depth() const;
-
-	public:
-		TreeWalker();
-		virtual ~TreeWalker();
-
-		// Callback that is called when traversal begins
-		virtual bool begin(Node& node);
-
-		// Callback that is called for each node Traversed
-		virtual bool for_each(Node& node) = 0;
-
-		// Callback that is called when traversal ends
-		virtual bool end(Node& node);
-	};
 
 
 

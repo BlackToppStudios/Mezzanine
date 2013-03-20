@@ -57,19 +57,19 @@
 #ifndef _xmlnode_h
 #define _xmlnode_h
 
+/// @file
+/// @brief This defines the @ref XML::Node one of the cetral XML classes.
+
 #include "datatypes.h"
-#include "swig.h"
 #include "XML/xmlenumerations.h"
 #include "XML/attribute.h"
 #include "XML/objectrange.h"
-
 
 #ifndef SWIG
 #include <cstddef>
 #endif
 
 SWIG_INFO_BEGINCLASS
-
 
 namespace Mezzanine
 {

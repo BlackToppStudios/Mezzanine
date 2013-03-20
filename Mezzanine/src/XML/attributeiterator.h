@@ -56,11 +56,13 @@
 #ifndef _xmlattributeiterator_h
 #define _xmlattributeiterator_h
 
+/// @file
+/// @brief Contains the defintion of the AttributeIterator class
+
 #include "datatypes.h"
 #include "XML/node.h"
 
-/// @file
-/// @brief Contains the defintion of the AttributeIterator class
+SWIG_INFO_BEGINCLASS
 
 namespace Mezzanine
 {
@@ -146,11 +148,11 @@ namespace Mezzanine
                 AttributeIterator operator--(int);
         };
 
-
-
-
     }
 }
+
+SWIG_INFO_ENDCLASS
+
 #endif
 
 /*

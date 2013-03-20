@@ -56,11 +56,14 @@
 #ifndef _xmlnodeiterator_h
 #define _xmlnodeiterator_h
 
-#include "datatypes.h"
-#include "node.h"
-
 /// @file
 /// @brief Contains the defintion of the @ref XML::NodeIterator and @ref XML::NamedNodeIterator class.
+
+#include "datatypes.h"
+#include "node.h"
+#include "swig.h"
+
+SWIG_INFO_BEGINCLASS
 
 namespace Mezzanine
 {
@@ -213,6 +216,9 @@ namespace Mezzanine
 
     }
 }
+
+SWIG_INFO_ENDCLASS
+
 #endif
 
 /*

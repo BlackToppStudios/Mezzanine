@@ -54,10 +54,16 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-#include "datatypes.h"
-
 #ifndef _xmlenums_h
 #define _xmlenums_h
+
+/// @file
+/// @brief Enumerations and constant values used primarily in the XML system but useful for interacting with it in other places.
+
+#include "datatypes.h"
+
+SWIG_INFO_BEGINCLASS
+
 namespace Mezzanine
 {
     namespace XML
@@ -173,6 +179,9 @@ namespace Mezzanine
         };
     }
 }
+
+SWIG_INFO_ENDCLASS
+
 #endif
 
 /*

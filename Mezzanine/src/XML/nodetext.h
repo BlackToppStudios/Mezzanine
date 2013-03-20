@@ -56,12 +56,14 @@
 #ifndef _xmlnodetext_h
 #define _xmlnodetext_h
 
-#include "datatypes.h"
-#include "node.h"
-
-
 /// @file
 /// @brief The declaration of the XML::NodeText class
+
+#include "datatypes.h"
+#include "node.h"
+#include "swig.h"
+
+SWIG_INFO_BEGINCLASS
 
 namespace Mezzanine
 {
@@ -219,6 +221,9 @@ namespace Mezzanine
         };
     }
 }
+
+SWIG_INFO_ENDCLASS
+
 #endif
 
 /*

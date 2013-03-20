@@ -54,15 +54,13 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-/// @file
-/// @brief The definitions for all of the XML::Writer inheritance hierarchy.
-
-
 #ifndef _xmlwriter_h
 #define _xmlwriter_h
 
+/// @file
+/// @brief The definitions for all of the XML::Writer inheritance hierarchy.
+
 #include "datatypes.h"
-#include "swig.h"
 
 #ifndef SWIG
 #include "resource.h"

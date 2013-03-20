@@ -3432,7 +3432,7 @@ namespace XML
 	}
     #endif //SWIG_SAFE
 
-	PUGI__FN TreeWalker::TreeWalker(): _Depth(0)
+    PUGI__FN TreeWalker::TreeWalker(): TraversalDepth(0)
 	{
 	}
 
@@ -3442,15 +3442,15 @@ namespace XML
 
 	PUGI__FN int TreeWalker::Depth() const
 	{
-		return _Depth;
+        return TraversalDepth;
 	}
 
-	PUGI__FN bool TreeWalker::begin(Node&)
+    PUGI__FN bool TreeWalker::OnTraversalBegin(Node&)
 	{
 		return true;
 	}
 
-	PUGI__FN bool TreeWalker::end(Node&)
+    PUGI__FN bool TreeWalker::OnTraversalEnd(Node&)
 	{
 		return true;
 	}
@@ -4345,26 +4345,26 @@ namespace XML
 
 	PUGI__FN bool Node::Traverse(TreeWalker& walker)
 	{
-		walker._Depth = -1;
+        walker.TraversalDepth = -1;
 
 		Node arg_begin = *this;
-		if (!walker.begin(arg_begin)) return false;
+        if (!walker.OnTraversalBegin(arg_begin)) return false;
 
 		Node cur = GetFirstChild();
 
 		if (cur)
 		{
-			++walker._Depth;
+            ++walker.TraversalDepth;
 
 			do
 			{
 				Node arg_for_each = cur;
-				if (!walker.for_each(arg_for_each))
+                if (!walker.OnEachNode(arg_for_each))
 					return false;
 
 				if (cur.GetFirstChild())
 				{
-					++walker._Depth;
+                    ++walker.TraversalDepth;
 					cur = cur.GetFirstChild();
 				}
 				else if (cur.GetNextSibling())
@@ -4374,7 +4374,7 @@ namespace XML
 					// Borland C++ workaround
 					while (!cur.GetNextSibling() && cur != *this && !cur.GetParent().Empty())
 					{
-						--walker._Depth;
+                        --walker.TraversalDepth;
 						cur = cur.GetParent();
 					}
 
@@ -4385,10 +4385,10 @@ namespace XML
 			while (cur && cur != *this);
 		}
 
-		assert(walker._Depth == -1);
+        assert(walker.TraversalDepth == -1);
 
 		Node arg_end = *this;
-		return walker.end(arg_end);
+        return walker.OnTraversalEnd(arg_end);
 	}
 
 	PUGI__FN size_t Node::HashValue() const

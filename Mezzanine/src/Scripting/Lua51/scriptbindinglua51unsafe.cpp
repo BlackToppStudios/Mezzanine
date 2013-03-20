@@ -20137,6 +20137,116 @@ static swig_lua_class *swig_Mezzanine_XML_NodeText_bases[] = {0};
 static const char *swig_Mezzanine_XML_NodeText_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_XML_NodeText = { "NodeText", &SWIGTYPE_p_Mezzanine__XML__NodeText,_wrap_new_NodeText, swig_delete_NodeText, swig_Mezzanine_XML_NodeText_methods, swig_Mezzanine_XML_NodeText_attributes, swig_Mezzanine_XML_NodeText_bases, swig_Mezzanine_XML_NodeText_base_names };
 
+static int _wrap_TreeWalker_OnTraversalBegin(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::TreeWalker::OnTraversalBegin",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalBegin",1,"Mezzanine::XML::TreeWalker *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalBegin",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalBegin",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalBegin",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->OnTraversalBegin(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TreeWalker_OnEachNode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::TreeWalker::OnEachNode",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnEachNode",1,"Mezzanine::XML::TreeWalker *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnEachNode",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("TreeWalker_OnEachNode",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("TreeWalker_OnEachNode",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->OnEachNode(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_TreeWalker_OnTraversalEnd(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
+  Mezzanine::XML::Node *arg2 = 0 ;
+  bool result;
+  
+  SWIG_check_num_args("Mezzanine::XML::TreeWalker::OnTraversalEnd",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalEnd",1,"Mezzanine::XML::TreeWalker *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::OnTraversalEnd",2,"Mezzanine::XML::Node &");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalEnd",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
+    SWIG_fail_ptr("TreeWalker_OnTraversalEnd",2,SWIGTYPE_p_Mezzanine__XML__Node);
+  }
+  
+  result = (bool)(arg1)->OnTraversalEnd(*arg2);
+  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_TreeWalker(void *obj) {
+Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_XML_TreeWalker_methods[] = {
+    {"OnTraversalBegin", _wrap_TreeWalker_OnTraversalBegin}, 
+    {"OnEachNode", _wrap_TreeWalker_OnEachNode}, 
+    {"OnTraversalEnd", _wrap_TreeWalker_OnTraversalEnd}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_XML_TreeWalker_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_XML_TreeWalker_bases[] = {0};
+static const char *swig_Mezzanine_XML_TreeWalker_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_XML_TreeWalker = { "TreeWalker", &SWIGTYPE_p_Mezzanine__XML__TreeWalker,0, swig_delete_TreeWalker, swig_Mezzanine_XML_TreeWalker_methods, swig_Mezzanine_XML_TreeWalker_attributes, swig_Mezzanine_XML_TreeWalker_bases, swig_Mezzanine_XML_TreeWalker_base_names };
+
 static int _wrap_Writer_Write(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::Writer *arg1 = (Mezzanine::XML::Writer *) 0 ;
@@ -28349,116 +28459,6 @@ static swig_lua_attribute swig_Mezzanine_NotImplementedException_attributes[] = 
 static swig_lua_class *swig_Mezzanine_NotImplementedException_bases[] = {0,0};
 static const char *swig_Mezzanine_NotImplementedException_base_names[] = {"Mezzanine::Exception *",0};
 static swig_lua_class _wrap_class_Mezzanine_NotImplementedException = { "NotImplementedException", &SWIGTYPE_p_Mezzanine__NotImplementedException,_wrap_new_NotImplementedException, swig_delete_NotImplementedException, swig_Mezzanine_NotImplementedException_methods, swig_Mezzanine_NotImplementedException_attributes, swig_Mezzanine_NotImplementedException_bases, swig_Mezzanine_NotImplementedException_base_names };
-
-static int _wrap_TreeWalker_begin(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
-  Mezzanine::XML::Node *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::TreeWalker::begin",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::begin",1,"Mezzanine::XML::TreeWalker *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::begin",2,"Mezzanine::XML::Node &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
-    SWIG_fail_ptr("TreeWalker_begin",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
-    SWIG_fail_ptr("TreeWalker_begin",2,SWIGTYPE_p_Mezzanine__XML__Node);
-  }
-  
-  result = (bool)(arg1)->begin(*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_TreeWalker_for_each(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
-  Mezzanine::XML::Node *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::TreeWalker::for_each",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::for_each",1,"Mezzanine::XML::TreeWalker *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::for_each",2,"Mezzanine::XML::Node &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
-    SWIG_fail_ptr("TreeWalker_for_each",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
-    SWIG_fail_ptr("TreeWalker_for_each",2,SWIGTYPE_p_Mezzanine__XML__Node);
-  }
-  
-  result = (bool)(arg1)->for_each(*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_TreeWalker_end(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) 0 ;
-  Mezzanine::XML::Node *arg2 = 0 ;
-  bool result;
-  
-  SWIG_check_num_args("Mezzanine::XML::TreeWalker::end",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::end",1,"Mezzanine::XML::TreeWalker *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::TreeWalker::end",2,"Mezzanine::XML::Node &");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__TreeWalker,0))){
-    SWIG_fail_ptr("TreeWalker_end",1,SWIGTYPE_p_Mezzanine__XML__TreeWalker);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_Mezzanine__XML__Node,0))){
-    SWIG_fail_ptr("TreeWalker_end",2,SWIGTYPE_p_Mezzanine__XML__Node);
-  }
-  
-  result = (bool)(arg1)->end(*arg2);
-  lua_pushboolean(L,(int)(result!=0)); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_TreeWalker(void *obj) {
-Mezzanine::XML::TreeWalker *arg1 = (Mezzanine::XML::TreeWalker *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_XML_TreeWalker_methods[] = {
-    {"begin", _wrap_TreeWalker_begin}, 
-    {"for_each", _wrap_TreeWalker_for_each}, 
-    {"end", _wrap_TreeWalker_end}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_XML_TreeWalker_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_XML_TreeWalker_bases[] = {0};
-static const char *swig_Mezzanine_XML_TreeWalker_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_XML_TreeWalker = { "TreeWalker", &SWIGTYPE_p_Mezzanine__XML__TreeWalker,0, swig_delete_TreeWalker, swig_Mezzanine_XML_TreeWalker_methods, swig_Mezzanine_XML_TreeWalker_attributes, swig_Mezzanine_XML_TreeWalker_bases, swig_Mezzanine_XML_TreeWalker_base_names };
 
 static int _wrap_ParseResult_Status_set(lua_State* L) {
   int SWIG_arg = 0;
