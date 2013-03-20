@@ -60,7 +60,7 @@
 #include "node.h"
 
 /// @file
-/// @brief Contains the defintion of the NodeIterator class.
+/// @brief Contains the defintion of the @ref XML::NodeIterator and @ref XML::NamedNodeIterator class.
 
 namespace Mezzanine
 {
@@ -79,7 +79,7 @@ namespace Mezzanine
 
                 /// @brief internal
                 /// @brief The current @ref Node this iterator points to.
-                mutable Node Wrap;
+                mutable Node TargetNode;
 
                 /// @internal
                 /// @brief The node that contains this collection of nodes. Used in error situations.
@@ -87,7 +87,7 @@ namespace Mezzanine
 
                 /// @brief Internal Constructor, almost a copy construtor
                 /// @param ref Some of the internal data from another @ref NodeIterator specifically the Node it points to.
-                /// @param ParentNode Some of the internal data from another @ref NodeIterator specifically the parent of the Node it points to.
+                /// @param ParentNode Some of the interal data from another @ref NodeIterator specifically the parent of the Node it points to.
                 NodeIterator(NodeStruct* ref, NodeStruct* ParentNode);
 
             public:
@@ -147,6 +147,70 @@ namespace Mezzanine
                 /// @return Returns a NodeIterator.
                 NodeIterator operator--(int);
         };
+
+        // Named node range helper
+        /// @brief Child node iterator (a forward iterator over a collection of @ref Node) only iterates over nodes with a given name.
+        /// @details Node::begin() and Node::attributes_begin() return iterators that point to the first node/attribute, respectively; Node::end() and Node::attributes_end() return past-the-end iterator for node/attribute list, respectively - this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing past-the-end iterator results in undefined behavior). Past-the-end iterator is commonly used as a termination value for iteration loops. If you want to get an iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: xml_node_iterator(node). For xml_attribute_iterator, you'll have to provide both an attribute and its parent node.\n\n
+        /// Node::begin() and Node::end() return equal iterators if called on null Node; such iterators can't be dereferenced. Node::attributes_begin() and Node::attributes_end() behave the same way. For correct iterator usage this means that child node/attribute collections of null nodes appear to be empty.\n\n
+        /// Both types of iterators have bidirectional iterator semantics (i.e. they can be incremented and decremented, but efficient random access is not supported) and support all usual iterator operations - comparison, dereference, etc. The iterators are invalidated if the node/attribute objects they're pointing to are removed from the tree; adding nodes/attributes does not invalidate any iterators.
+        class MEZZ_LIB NamedNodeIterator
+        {
+            public:
+                /// @brief An Iterator trait
+                typedef ptrdiff_t difference_type;
+
+                /// @brief An Iterator trait
+                typedef Node value_type;
+
+                /// @brief An Iterator trait
+                typedef Node* pointer;
+
+                /// @brief An Iterator trait
+                typedef Node& reference;
+
+                /// @brief An Iterator trait
+                typedef std::forward_iterator_tag iterator_category;
+
+                /// @brief Default constructor
+                NamedNodeIterator();
+
+                /// @brief Construct an iterator which points to the specified node
+                NamedNodeIterator(const Node& node, const Char8* Name );
+
+                /// @brief Compares this NamedNodeIterator to another NamedNodeIterator for equality
+                /// @param rhs The Right Hand Side NamedNodeIterator.
+                /// @return False if the internal data stored in Node this NamedNodeIterator refers to is the same as the metadata in the other NamedNodeIterator's Node, True otherwise.
+                bool operator==(const NamedNodeIterator& rhs) const;
+
+                /// @brief Compares this NamedNodeIterator to another NamedNodeIterator for inequality
+                /// @param rhs The Right Hand Side NamedNodeIterator.
+                /// @return False if the internal data stored in Node this NamedNodeIterator refers to is the same as the metadata in the other NamedNodeIterator's Node, True otherwise.
+                bool operator!=(const NamedNodeIterator& rhs) const;
+
+                /// @brief Deferences this Iterator
+                /// @return a Node reference to the node pointed at by this NamedNodeIterator.
+                Node& operator*() const;
+
+                /// @brief Get the pointer the Node this points to.
+                /// @return A pointer to the Node this NamedNodeIterator references.
+                Node* operator->() const;
+
+                /// @brief Increment the iterator to the next member of the container.
+                /// @return Returns a const NodeIterator.
+                const NamedNodeIterator& operator++();
+
+                /// @brief Increment the iterator to the next member of the container.
+                /// @return Returns a NodeIterator.
+                NamedNodeIterator operator++(int);
+
+            private:
+                /// @brief The Current @ref Node being pointed to by this iterator.
+                mutable Node TargetNode;
+
+                /// @brief The Name any nodet his points to will assume.
+                const Char8* TargetName;
+        };
+
     }
 }
 #endif

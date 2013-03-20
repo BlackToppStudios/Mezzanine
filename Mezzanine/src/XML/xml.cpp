@@ -3712,9 +3712,9 @@ namespace XML
 		return ObjectRange<NodeIterator>(begin(), end());
 	}
 
-    PUGI__FN ObjectRange<NamedNode_iterator> Node::GetChildren(const Char8* Name_) const
+    PUGI__FN ObjectRange<NamedNodeIterator> Node::GetChildren(const Char8* Name_) const
 	{
-		return ObjectRange<NamedNode_iterator>(NamedNode_iterator(GetChild(Name_), Name_), NamedNode_iterator());
+        return ObjectRange<NamedNodeIterator>(NamedNodeIterator(GetChild(Name_), Name_), NamedNodeIterator());
 	}
 
 	PUGI__FN ObjectRange<AttributeIterator> Node::attributes() const
@@ -4663,40 +4663,40 @@ namespace XML
 	{
 	}
 
-    PUGI__FN NodeIterator::NodeIterator(const Node& node): Wrap(node), ParentNode(node.GetParent())
+    PUGI__FN NodeIterator::NodeIterator(const Node& node): TargetNode(node), ParentNode(node.GetParent())
 	{
 	}
 
-    PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* ParentNode): Wrap(ref), ParentNode(ParentNode)
+    PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* ParentNode): TargetNode(ref), ParentNode(ParentNode)
 	{
 	}
 
 	PUGI__FN bool NodeIterator::operator==(const NodeIterator& rhs) const
 	{
-        return Wrap.NodeData == rhs.Wrap.NodeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
+        return TargetNode.NodeData == rhs.TargetNode.NodeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN bool NodeIterator::operator!=(const NodeIterator& rhs) const
 	{
-        return Wrap.NodeData != rhs.Wrap.NodeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
+        return TargetNode.NodeData != rhs.TargetNode.NodeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN Node& NodeIterator::operator*() const
 	{
-        assert(Wrap.NodeData);
-        return Wrap;
+        assert(TargetNode.NodeData);
+        return TargetNode;
 	}
 
 	PUGI__FN Node* NodeIterator::operator->() const
 	{
-        assert(Wrap.NodeData);
-        return const_cast<Node*>(&Wrap); // BCC32 workaround
+        assert(TargetNode.NodeData);
+        return const_cast<Node*>(&TargetNode); // BCC32 workaround
 	}
 
 	PUGI__FN const NodeIterator& NodeIterator::operator++()
 	{
-        assert(Wrap.NodeData);
-        Wrap.NodeData = Wrap.NodeData->GetNextSibling;
+        assert(TargetNode.NodeData);
+        TargetNode.NodeData = TargetNode.NodeData->GetNextSibling;
 		return *this;
 	}
 
@@ -4709,7 +4709,7 @@ namespace XML
 
 	PUGI__FN const NodeIterator& NodeIterator::operator--()
 	{
-        Wrap = Wrap.NodeData ? Wrap.GetPreviousSibling() : ParentNode.GetLastChild();
+        TargetNode = TargetNode.NodeData ? TargetNode.GetPreviousSibling() : ParentNode.GetLastChild();
 		return *this;
 	}
 
@@ -4724,40 +4724,40 @@ namespace XML
 	{
 	}
 
-	PUGI__FN AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent): _wrap(attr), _GetParent(GetParent)
+	PUGI__FN AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent): TargetAttribute(attr), ParentNode(GetParent)
 	{
 	}
 
-	PUGI__FN AttributeIterator::AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent): _wrap(ref), _GetParent(GetParent)
+	PUGI__FN AttributeIterator::AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent): TargetAttribute(ref), ParentNode(GetParent)
 	{
 	}
 
 	PUGI__FN bool AttributeIterator::operator==(const AttributeIterator& rhs) const
 	{
-		return _wrap.AttributeData == rhs._wrap.AttributeData && _GetParent.NodeData == rhs._GetParent.NodeData;
+		return TargetAttribute.AttributeData == rhs.TargetAttribute.AttributeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN bool AttributeIterator::operator!=(const AttributeIterator& rhs) const
 	{
-		return _wrap.AttributeData != rhs._wrap.AttributeData || _GetParent.NodeData != rhs._GetParent.NodeData;
+		return TargetAttribute.AttributeData != rhs.TargetAttribute.AttributeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN Attribute& AttributeIterator::operator*() const
 	{
-		assert(_wrap.AttributeData);
-		return _wrap;
+		assert(TargetAttribute.AttributeData);
+		return TargetAttribute;
 	}
 
 	PUGI__FN Attribute* AttributeIterator::operator->() const
 	{
-		assert(_wrap.AttributeData);
-		return const_cast<Attribute*>(&_wrap); // BCC32 workaround
+		assert(TargetAttribute.AttributeData);
+		return const_cast<Attribute*>(&TargetAttribute); // BCC32 workaround
 	}
 
 	PUGI__FN const AttributeIterator& AttributeIterator::operator++()
 	{
-		assert(_wrap.AttributeData);
-		_wrap.AttributeData = _wrap.AttributeData->GetNextAttribute;
+		assert(TargetAttribute.AttributeData);
+		TargetAttribute.AttributeData = TargetAttribute.AttributeData->GetNextAttribute;
 		return *this;
 	}
 
@@ -4770,7 +4770,7 @@ namespace XML
 
 	PUGI__FN const AttributeIterator& AttributeIterator::operator--()
 	{
-		_wrap = _wrap.AttributeData ? _wrap.GetPreviousAttribute() : _GetParent.GetLastAttribute();
+		TargetAttribute = TargetAttribute.AttributeData ? TargetAttribute.GetPreviousAttribute() : ParentNode.GetLastAttribute();
 		return *this;
 	}
 
@@ -4781,46 +4781,46 @@ namespace XML
 		return temp;
 	}
 
-	PUGI__FN NamedNode_iterator::NamedNode_iterator(): _Name(0)
+    PUGI__FN NamedNodeIterator::NamedNodeIterator(): TargetName(0)
 	{
 	}
 
-    PUGI__FN NamedNode_iterator::NamedNode_iterator(const Node& node, const Char8* Name): _node(node), _Name(Name)
+    PUGI__FN NamedNodeIterator::NamedNodeIterator(const Node& node, const Char8* Name): TargetNode(node), TargetName(Name)
 	{
 	}
 
-	PUGI__FN bool NamedNode_iterator::operator==(const NamedNode_iterator& rhs) const
+    PUGI__FN bool NamedNodeIterator::operator==(const NamedNodeIterator& rhs) const
 	{
-		return _node == rhs._node;
+        return TargetNode == rhs.TargetNode;
 	}
 
-	PUGI__FN bool NamedNode_iterator::operator!=(const NamedNode_iterator& rhs) const
+    PUGI__FN bool NamedNodeIterator::operator!=(const NamedNodeIterator& rhs) const
 	{
-		return _node != rhs._node;
+        return TargetNode != rhs.TargetNode;
 	}
 
-	PUGI__FN Node& NamedNode_iterator::operator*() const
+    PUGI__FN Node& NamedNodeIterator::operator*() const
 	{
-		assert(_node.NodeData);
-		return _node;
+        assert(TargetNode.NodeData);
+        return TargetNode;
 	}
 
-	PUGI__FN Node* NamedNode_iterator::operator->() const
+    PUGI__FN Node* NamedNodeIterator::operator->() const
 	{
-		assert(_node.NodeData);
-		return const_cast<Node*>(&_node); // BCC32 workaround
+        assert(TargetNode.NodeData);
+        return const_cast<Node*>(&TargetNode); // BCC32 workaround
 	}
 
-	PUGI__FN const NamedNode_iterator& NamedNode_iterator::operator++()
+    PUGI__FN const NamedNodeIterator& NamedNodeIterator::operator++()
 	{
-		assert(_node.NodeData);
-		_node = _node.GetNextSibling(_Name);
+        assert(TargetNode.NodeData);
+        TargetNode = TargetNode.GetNextSibling(TargetName);
 		return *this;
 	}
 
-	PUGI__FN NamedNode_iterator NamedNode_iterator::operator++(int)
+    PUGI__FN NamedNodeIterator NamedNodeIterator::operator++(int)
 	{
-		NamedNode_iterator temp = *this;
+        NamedNodeIterator temp = *this;
 		++*this;
 		return temp;
 	}

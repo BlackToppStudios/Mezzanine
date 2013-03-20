@@ -115,7 +115,7 @@ namespace XML
 
 	class NodeIterator;
 	class AttributeIterator;
-	class NamedNode_iterator;
+    class NamedNodeIterator;
 
 	class TreeWalker;
 
@@ -132,79 +132,6 @@ namespace XML
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
-
-	// Attribute iterator (a bidirectional iterator over a collection of Attribute)
-	class MEZZ_LIB AttributeIterator
-	{
-		friend class Node;
-
-	private:
-		mutable Attribute _wrap;
-		Node _GetParent;
-
-		AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent);
-
-	public:
-		// Iterator traits
-		typedef ptrdiff_t difference_type;
-		typedef Attribute value_type;
-		typedef Attribute* pointer;
-		typedef Attribute& reference;
-
-		typedef std::bidirectional_iterator_tag iterator_category;
-
-		// Default constructor
-		AttributeIterator();
-
-		// Construct an iterator which points to the specified attribute
-		AttributeIterator(const Attribute& attr, const Node& GetParent);
-
-		// Iterator operators
-		bool operator==(const AttributeIterator& rhs) const;
-		bool operator!=(const AttributeIterator& rhs) const;
-
-		Attribute& operator*() const;
-		Attribute* operator->() const;
-
-		const AttributeIterator& operator++();
-		AttributeIterator operator++(int);
-
-		const AttributeIterator& operator--();
-        AttributeIterator operator--(int);
-	};
-
-	// Named node range helper
-	class NamedNode_iterator
-	{
-	public:
-		// Iterator traits
-		typedef ptrdiff_t difference_type;
-		typedef Node value_type;
-		typedef Node* pointer;
-		typedef Node& reference;
-
-		typedef std::forward_iterator_tag iterator_category;
-
-		// Default constructor
-		NamedNode_iterator();
-
-		// Construct an iterator which points to the specified node
-        NamedNode_iterator(const Node& node, const Char8* Name);
-
-		// Iterator operators
-		bool operator==(const NamedNode_iterator& rhs) const;
-		bool operator!=(const NamedNode_iterator& rhs) const;
-
-		Node& operator*() const;
-		Node* operator->() const;
-
-		const NamedNode_iterator& operator++();
-		NamedNode_iterator operator++(int);
-
-	private:
-		mutable Node _node;
-        const Char8* _Name;
-	};
 
 	// Abstract tree walker class (see Node::Traverse)
 	class MEZZ_LIB TreeWalker

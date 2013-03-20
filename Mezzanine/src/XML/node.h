@@ -85,7 +85,7 @@ namespace Mezzanine
         class Writer;
         class NodeIterator;
         class AttributeIterator;
-        class NamedNode_iterator;
+        class NamedNodeIterator;
 
 
 
@@ -94,7 +94,7 @@ namespace Mezzanine
         {
                 friend class AttributeIterator;
                 friend class NodeIterator;
-                friend class NamedNode_iterator;
+                friend class NamedNodeIterator;
 
             protected:
                 /// @internal
@@ -653,7 +653,7 @@ namespace Mezzanine
                 /// @brief Get an iterator range for this a subset of this node's children nodes.
                 /// @param Name All members of the returned range with have this for a name.
                 /// @return A begin and end iterator for a range containing only the child nodes with the given name.
-                ObjectRange<NamedNode_iterator> GetChildren(const Char8* Name) const;
+                ObjectRange<NamedNodeIterator> GetChildren(const Char8* Name) const;
 
                 /// @brief A range of iterators for just the attributes of this node.
                 /// @return A par of iterators suitable for traversing all Attributes directly as children of this noce.

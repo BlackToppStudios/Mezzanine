@@ -1994,68 +1994,6 @@ namespace Mezzanine
         /// @warning Not part of the API, subject to change without warning.
 
         //////////////////////////////////////////////////////////////////////////////
-        /// @class AttributeIterator
-        /// @brief Attribute iterator (a bidirectional iterator over a collection of Attribute).
-        /// @see This behaves very similar to XML::NodeIterator
-
-		/// @typedef AttributeIterator::difference_type;
-		/// @brief An Iterator trait
-
-		/// @typedef AttributeIterator::value_type;
-		/// @brief An Iterator trait
-
-		/// @typedef AttributeIterator::pointer;
-		/// @brief An Iterator trait
-
-		/// @typedef AttributeIterator::reference;
-		/// @brief An Iterator trait
-
-		/// @typedef AttributeIterator::iterator_category;
-		/// @brief An Iterator trait
-
-        /// @fn AttributeIterator::AttributeIterator();
-        /// @brief Default Constructor, makes a blank iterator
-
-        /// @fn AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent);
-        /// @brief Construct an iterator which points to the specified node
-        /// @param GetParent A Node that contains the Attribute this iterator will point to.
-        /// @param attr The Attribute this iterator points to.
-
-        /// @fn AttributeIterator::operator==(const AttributeIterator& rhs) const;
-        /// @brief Compares this AttributeIterator to another AttributeIterator for equality
-        /// @param rhs The Right Hand Side AttributeIterator
-        /// @return True if the internal data stored in the Attribute this AttributeIterator refers to is the same as the metadata in the other AttributeIterator's Attribute, false otherwise.
-
-        /// @fn AttributeIterator::operator!=(const AttributeIterator& rhs) const;
-        /// @brief Compares this AttributeIterator to another AttributeIterator for inequality
-        /// @param rhs The Right Hand Side AttributeIterator.
-        /// @return False if the internal data stored in Node this AttributeIterator refers to is the same as the metadata in the other AttributeIterator's Attribute, True otherwise.
-
-        /// @fn AttributeIterator::operator*();
-        /// @brief Deferences this Iterator
-        /// @return a Attribute reference to the Attribute pointed at by this AttributeIterator.
-
-        /// @fn AttributeIterator::operator->();
-        /// @brief Get the pointer the Attribute this points to.
-        /// @return A pointer to the Attribute this AttributeIterator references.
-
-		/// @fn AttributeIterator::operator++();
-		/// @brief Increment the iterator to the next member of the container.
-        /// @return Returns a const AttributeIterator.
-
-		/// @fn AttributeIterator::operator++(int);
-		/// @brief Increment the iterator to the next member of the container.
-        /// @return Returns a AttributeIterator.
-
-		/// @fn AttributeIterator::operator--();
-		/// @brief Decrement the iterator to the next member of the container.
-        /// @return Returns a const AttributeIterator.
-
-		/// @fn AttributeIterator::operator--(int);
-		/// @brief Decrement the iterator to the next member of the container.
-        /// @return Returns a AttributeIterator.
-
-        //////////////////////////////////////////////////////////////////////////////
         /// @class TreeWalker
         /// @brief Used to call a function for_each member of the subtree of nodes descended from a specific node.
         /// @details If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some
