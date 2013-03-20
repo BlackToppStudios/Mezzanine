@@ -282,6 +282,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/node.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodeiterator.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmlenumerations.h"
 
@@ -463,6 +464,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/node.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodeiterator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.cpp"
 )
 

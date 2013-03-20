@@ -67,38 +67,27 @@ namespace Mezzanine
         /// @brief Minimal parsing mode (equivalent to turning all other flags off).
         /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
         const unsigned int ParseMinimal = 0x0000;
-
         /// @brief This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default.
         const unsigned int ParsePi = 0x0001;
-
         /// @brief This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default.
         const unsigned int ParseComments = 0x0002;
-
         /// @brief This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default.
         const unsigned int ParseCdata = 0x0004;
-
         /// @brief This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.
         /// @details This flag is off by default; turning it on usually results in slower parsing and more memory consumption.
         const unsigned int ParseWsPcdata = 0x0008;
-
         /// @brief This flag determines if character and entity references are expanded during parsing. This flag is on by default.
         const unsigned int ParseEscapes = 0x0010;
-
         /// @brief This flag determines if EOL characters are normalized (converted to \#xA) during parsing. This flag is on by default.
         const unsigned int ParseEol = 0x0020;
-
         /// @brief This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
         const unsigned int ParseWconvAttribute = 0x0040;
-
         /// @brief This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
         const unsigned int ParseWnormAttribute = 0x0080;
-
         /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
         const unsigned int ParseDeclaration = 0x0100;
-
         /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.
         const unsigned int ParseDocType = 0x0200;
-
         /// @brief This flag determines if plain character data (NodePcdata) that is the only child of the parent node and that consists only of whitespace is added to the DOM tree.
         /// @details This flag is off by default; turning it on may Result in slower parsing and more memory consumption.
         const unsigned int ParseWsPcdata_single = 0x0400;
@@ -107,7 +96,6 @@ namespace Mezzanine
         /// @details Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
         /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
         const unsigned int ParseDefault = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol;
-
         /// @brief The full parsing mode.
         /// @details Nodes of all types are added to the DOM tree, character/reference entities are expanded,
         /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
@@ -132,22 +120,16 @@ namespace Mezzanine
 
         /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default.
         const unsigned int FormatIndent = 0x01;
-
         /// @brief Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default.
         const unsigned int FormatWriteBom = 0x02;
-
         /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is on by default.
         const unsigned int FormatRaw = 0x04;
-
         /// @brief Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
         const unsigned int FormatNoDeclaration = 0x08;
-
         /// @brief  Don't escape GetAttribute Values and PCDATA contents. This flag is off by default.
         const unsigned int FormatNoEscapes = 0x10;
-
         /// @brief Open file using text mode in XML::Document::SaveFile. This enables special character (i.e. new-line) conversions on some systems. This flag is off by default.
         const unsigned int FormatSaveFileText = 0x20;
-
         /// @brief The default set of formatting flags. Only FormatRaw is enabled.
         /// @note PugiXML defaults to FormatIndent which is not well suited to computer to computer transmission as games commonly do
         const unsigned int FormatDefault = FormatRaw;
@@ -164,6 +146,30 @@ namespace Mezzanine
             NodePi,             ///< Processing instruction, i.e. '\<?Name?\>'
             NodeDeclaration,	///< Document declaration, i.e. '\<?xml version="1.0"?\>'
             NodeDocType         ///< Document Type declaration, i.e. '\<!DOCTYPE doc\>'
+        };
+
+        /// @brief These statuses are used to help determine what issues, if any the parser had. Returned by @ref ParseResult instances.
+        enum ParseStatus
+        {
+            StatusOk = 0,                       ///< This is returned to indicated there where no issues parsing the XML document.
+
+            StatusFileNotFound,                 ///< File was not found during a loading from filename attempt.
+            StatusIOError,                      ///< Error reading from file or stream.
+
+            StatusOutOfMemory,                  ///< Could not allocate memory.
+            StatusInternalError,                ///< An unkown error, currently nothing should be able to return this status.
+
+            StatusUnrecognizedTag,              ///< The parser could not determine type of tag.
+
+            StatusBadProcessingInstruction,		///< Parsing error occurred while parsing document declaration/processing instruction.
+            StatusBadComment,                   ///< Parsing error occurred while parsing comment.
+            StatusBadCdata,                     ///< Parsing error occurred while parsing CDATA section.
+            StatusBadDocType,                   ///< Parsing error occurred while parsing document type declaration.
+            StatusBadPcdata,                    ///< Parsing error occurred while parsing PCDATA section.
+            StatusBadStartElement,              ///< Parsing error occurred while parsing start element tag.
+            StatusBadAttribute,                 ///< Parsing error occurred while parsing element attribute.
+            StatusBadEndElement,                ///< Parsing error occurred while parsing end element tag.
+            StatusEndElementMismatch            ///< There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
         };
     }
 }

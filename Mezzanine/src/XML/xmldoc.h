@@ -1922,54 +1922,6 @@ namespace Mezzanine
         /// @details See xmldoc.h for additional details.
         ///////////////////////////////////////
 
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @enum ParseStatus
-        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
-
-        /// @var StatusOk
-        /// @brief This is returned to indicated there where no issues parsing the XML document
-
-        /// @var StatusFileNotFound
-        /// @brief File was not found during a loading from filename attempt.
-
-        /// @var StatusIOError
-        /// @brief Error reading from file or stream.
-
-        /// @var StatusOutOfMemory
-        /// @brief Could not allocate memory.
-
-        /// @var StatusInternalError
-        /// @brief An unkown error, currently nothing should be able to return this status
-
-        /// @var StatusUnrecognizedTag
-        /// @brief The parser could not determine type of tag.
-
-        /// @var StatusBadPi
-        /// @brief Parsing error occurred while parsing document declaration/processing instruction.
-
-        /// @var StatusBadComment
-        /// @brief Parsing error occurred while parsing comment.
-
-        /// @var StatusBadCdata
-        /// @brief Parsing error occurred while parsing CDATA section.
-
-        /// @var StatusBadDocType
-        /// @brief Parsing error occurred while parsing document type declaration.
-
-        /// @var StatusBadPcdata
-        /// @brief Parsing error occurred while parsing PCDATA section.
-
-        /// @var StatusBadStartElement
-        /// @brief Parsing error occurred while parsing start element tag .
-
-        /// @var StatusBadAttribute
-        /// @brief Parsing error occurred while parsing element attribute.
-
-        /// @var StatusBadEndElement
-        /// @brief Parsing error occurred while parsing end element tag.
-
-        /// @var StatusEndElementMismatch
-        /// @brief There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @struct ParseResult

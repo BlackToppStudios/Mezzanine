@@ -2139,10 +2139,10 @@ PUGI__NS_BEGIN
 			// read PI target
             Char8* target = s;
 
-			if (!PUGI__IS_CHARTYPE(*s, ct_start_symbol)) PUGI__THROW_ERROR(StatusBadPi, s);
+            if (!PUGI__IS_CHARTYPE(*s, ct_start_symbol)) PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 
 			PUGI__SCANWHILE(PUGI__IS_CHARTYPE(*s, ct_symbol));
-			PUGI__CHECK_ERROR(StatusBadPi, s);
+            PUGI__CHECK_ERROR(StatusBadProcessingInstruction, s);
 
 			// determine node Type; stricmp / strcasecmp is not portable
 			bool declaration = (target[0] | ' ') == 'x' && (target[1] | ' ') == 'm' && (target[2] | ' ') == 'l' && target + 3 == s;
@@ -2152,7 +2152,7 @@ PUGI__NS_BEGIN
 				if (declaration)
 				{
 					// disallow non top-level declarations
-					if (cursor->GetParent) PUGI__THROW_ERROR(StatusBadPi, s);
+                    if (cursor->GetParent) PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 
 					PUGI__PUSHNODE(NodeDeclaration);
 				}
@@ -2169,7 +2169,7 @@ PUGI__NS_BEGIN
 				if (ch == '?')
 				{
 					// empty node
-					if (!ENDSWITH(*s, '>')) PUGI__THROW_ERROR(StatusBadPi, s);
+                    if (!ENDSWITH(*s, '>')) PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 					s += (*s == '>');
 
 					PUGI__POPNODE();
@@ -2182,7 +2182,7 @@ PUGI__NS_BEGIN
                     Char8* Value = s;
 
 					PUGI__SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>'));
-					PUGI__CHECK_ERROR(StatusBadPi, s);
+                    PUGI__CHECK_ERROR(StatusBadProcessingInstruction, s);
 
 					if (declaration)
 					{
@@ -2203,13 +2203,13 @@ PUGI__NS_BEGIN
 						s += (*s == '>');
 					}
 				}
-				else PUGI__THROW_ERROR(StatusBadPi, s);
+                else PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 			}
 			else
 			{
 				// scan for tag end
 				PUGI__SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>'));
-				PUGI__CHECK_ERROR(StatusBadPi, s);
+                PUGI__CHECK_ERROR(StatusBadProcessingInstruction, s);
 
 				s += (s[1] == '>' ? 2 : 1);
 			}
@@ -2395,7 +2395,7 @@ PUGI__NS_BEGIN
 						s = ParseExclamation(s, cursor, optmsk, endch);
 						if (!s) return s;
 					}
-					else if (*s == 0 && endch == '?') PUGI__THROW_ERROR(StatusBadPi, s);
+                    else if (*s == 0 && endch == '?') PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 					else PUGI__THROW_ERROR(StatusUnrecognizedTag, s);
 				}
 				else
@@ -4847,7 +4847,7 @@ namespace XML
 
 		case StatusUnrecognizedTag: return "Could not determine tag Type";
 
-		case StatusBadPi: return "Error parsing document declaration/processing instruction";
+        case StatusBadProcessingInstruction: return "Error parsing document declaration/processing instruction";
 		case StatusBadComment: return "Error parsing comment";
 		case StatusBadCdata: return "Error parsing CDATA section";
 		case StatusBadDocType: return "Error parsing document Type declaration";

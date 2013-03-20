@@ -159,28 +159,7 @@ namespace XML
 		virtual bool end(Node& node);
 	};
 
-	// Parsing Status, returned as part of ParseResult object
-	enum ParseStatus
-	{
-		StatusOk = 0,				// No error
 
-		StatusFileNotFound,		// File was not found during LoadFile()
-		StatusIOError,			// Error reading from file/stream
-		StatusOutOfMemory,		// Could not allocate memory
-		StatusInternalError,		// Internal error occurred
-
-		StatusUnrecognizedTag,	// Parser could not determine tag type
-
-		StatusBadPi,				// Parsing error occurred while parsing document declaration/processing instruction
-		StatusBadComment,			// Parsing error occurred while parsing comment
-		StatusBadCdata,			// Parsing error occurred while parsing CDATA section
-		StatusBadDocType,			// Parsing error occurred while parsing document Type declaration
-		StatusBadPcdata,			// Parsing error occurred while parsing PCDATA section
-		StatusBadStartElement,	// Parsing error occurred while parsing start element tag
-		StatusBadAttribute,		// Parsing error occurred while parsing element attribute
-		StatusBadEndElement,		// Parsing error occurred while parsing end element tag
-		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect Name, some tag was not closed or there was an excessive closing tag)
-	};
 
 	// Parsing Result
 	struct MEZZ_LIB ParseResult
