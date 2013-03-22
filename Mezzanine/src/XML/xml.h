@@ -74,6 +74,7 @@
 #include "XML/nodeiterator.h"
 #include "XML/nodetext.h"
 #include "XML/node.h"
+#include "XML/parseresult.h"
 #include "XML/treewalker.h"
 #include "XML/writer.h"
 #include "XML/xmldoc.h"
@@ -132,35 +133,6 @@ namespace XML
 	// Range-based for loop support
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-
-
-
-
-
-
-	// Parsing Result
-	struct MEZZ_LIB ParseResult
-	{
-		/// @brief Parsing status ( see @ref ParseStatus )
-		ParseStatus Status;
-
-		/// @brief Last parsed offset (in char_t units from start of input data)
-		ptrdiff_t Offset;
-
-		/// @brief Source document encoding ( see @ref Encoding )
-		Encoding DocumentEncoding;
-
-		/// @brief Default constructor, initializes object to failed state.
-		ParseResult();
-
-		/// @brief Cast to bool operator
-		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.
-
-		operator bool() const;
-
-		// Get error Description
-		const char* Description() const;
-	};
 
 	// Document class (DOM tree GetRoot)
 	class MEZZ_LIB Document: public Node

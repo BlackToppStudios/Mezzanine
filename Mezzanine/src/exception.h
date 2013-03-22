@@ -43,8 +43,13 @@
 
 #include "datatypes.h"
 
+SWIG_INFO_BEGINCLASS
+
 namespace Mezzanine
 {
+    #ifdef SWIG
+    %nodefaultctor Foo;
+    #endif
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Exception
     /// @headerfile exception.h
@@ -1967,5 +1972,7 @@ namespace Mezzanine
     #define MEZZ_EXCEPTION(num, desc) throw Mezzanine::ExceptionFactory<num>::Type(desc, __func__, __FILE__, __LINE__ );
     #endif
 }//Mezzanine
+
+SWIG_INFO_ENDCLASS
 
 #endif // \exception_cpp

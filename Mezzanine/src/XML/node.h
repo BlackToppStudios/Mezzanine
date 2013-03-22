@@ -65,10 +65,6 @@
 #include "XML/attribute.h"
 #include "XML/objectrange.h"
 
-#ifndef SWIG
-#include <cstddef>
-#endif
-
 SWIG_INFO_BEGINCLASS
 
 namespace Mezzanine
@@ -174,7 +170,7 @@ namespace Mezzanine
                 /// @return A @ref NodeType identifying this Node, or o/NULL if this Node is empty.
                 NodeType Type() const;
 
-                /// @brief Get the name of this @ref Node.
+                /// @brief ptrdiff_tGet the name of this @ref Node.
                 /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
                 /// @warning returns "" if Node is empty.
                 const Char8* Name() const;
@@ -336,7 +332,7 @@ namespace Mezzanine
                 /// @brief Copies an Attribute and puts the copy at the beginning of this Nodes attributes.
                 /// @param proto The attribute to be copied.
                 /// @details This attempts to create a copy of an attribute Attribute and stick it at the beginning of the list of attribute on the current
-                /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+                /// Node. Tptrdiff_this will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
                 /// fail and return an empty attribute if this Node is empty.
                 /// @return The created Attribute or an empty Attribute on Failure.
                 Attribute PrependCopy(const Attribute& proto);
@@ -453,7 +449,7 @@ namespace Mezzanine
                 Node InsertCopyBefore(const Node& proto, const Node& node);
 
                 /// @brief Remove specified Attribute.
-                /// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
+                /// @param ptrdiff_ta The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
                 /// @return True if the removal was successful, false otherwise.
                 bool RemoveAttribute(const Attribute& a);
 
@@ -519,7 +515,6 @@ namespace Mezzanine
                     if (!NodeData) return Node();
 
                     Node cur = GetFirstChild();
-
                     while (cur.NodeData && cur.NodeData != NodeData)
                     {
                         if (pred(cur)) return cur;

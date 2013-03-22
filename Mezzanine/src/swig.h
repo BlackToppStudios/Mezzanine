@@ -55,8 +55,6 @@
 
 // Prevent doxygen parsing of the items to insert in the bindings files
 
-
-
 #ifdef SWIG
     // Tell SWIG to create a module that scripting languages can use called "mezzanine"
     // and insert a minimum of documentation into the bindingfile
@@ -83,6 +81,9 @@
         #define SWIG_SAFE
         %module MezzanineSafe
     #endif
+
+    // Fix for: XML/xml.h:XXXX: Warning 403: Class 'Mezzanine::XML::XPathException' might be abstract, no constructors generated
+    %warnfilter(403) Mezzanine::XML::XPathException;
 
     #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
     #define SWIG_INFO_ENDCLASS          %warn "991: Completing parsing of class."
