@@ -56,8 +56,12 @@
 #ifndef _xmlboilerplate_h
 #define _xmlboilerplate_h
 
+/// @file
+/// @brief Describe file here
+
 #include "datatypes.h"
 
+SWIG_INFO_BEGINCLASS
 
 namespace Mezzanine
 {
@@ -65,8 +69,12 @@ namespace Mezzanine
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+SWIG_INFO_ENDCLASS
+
+#endif // Include guard
+
 
 /*
  *

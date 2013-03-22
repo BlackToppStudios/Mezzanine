@@ -56,6 +56,9 @@
 #ifndef _xmltreewalker_cpp
 #define _xmltreewalker_cpp
 
+/// @file
+/// @brief Describe file here
+
 #include "XML/treewalker.h"
 
 namespace Mezzanine
@@ -64,8 +67,9 @@ namespace Mezzanine
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+#endif // Include guard
 
 /*
  *

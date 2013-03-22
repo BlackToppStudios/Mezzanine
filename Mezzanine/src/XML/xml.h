@@ -155,6 +155,7 @@ namespace XML
 
 		/// @brief Cast to bool operator
 		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.
+
 		operator bool() const;
 
 		// Get error Description

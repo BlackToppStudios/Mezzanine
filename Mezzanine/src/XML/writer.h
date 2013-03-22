@@ -163,12 +163,14 @@ SWIG_INFO_BEGINCLASS
                 void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 
-SWIG_INFO_ENDCLASS
+
+SWIG_INFO_ENDCLASS // placed here to avoid inclusion in safe swig library for scripting language.
 
 #endif //
     }
-}
-#endif
+}// /namespace Mezzanine
+
+#endif // Include guard
 
 /*
  *

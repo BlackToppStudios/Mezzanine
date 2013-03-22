@@ -56,6 +56,9 @@
 #ifndef _xmlnodeiterator_cpp
 #define _xmlnodeiterator_cpp
 
+/// @file
+/// @brief Describe file here
+
 #include "XML/nodeiterator.h"
 
 namespace Mezzanine
@@ -64,8 +67,9 @@ namespace Mezzanine
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+#endif // Include guard
 
 /*
  *

@@ -98,11 +98,11 @@ namespace Mezzanine
                 It end() const { return End; }
         };
     }
-}
+}// /namespace Mezzanine
 
 SWIG_INFO_ENDCLASS
 
-#endif
+#endif // Include guard
 
 /*
  *

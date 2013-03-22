@@ -56,6 +56,9 @@
 #ifndef _xmlattributeiterator_cpp
 #define _xmlattributeiterator_cpp
 
+/// @file
+/// @brief Describe file here
+
 #include "XML/attributeiterator.h"
 
 namespace Mezzanine
@@ -64,8 +67,9 @@ namespace Mezzanine
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+#endif // Include guard
 
 /*
  *

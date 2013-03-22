@@ -675,11 +675,11 @@ namespace Mezzanine
                 NodeStruct* InternalObject() const;
         }; // /Class Node
     }
-}
+} // /namespace Mezzanine
 
 SWIG_INFO_ENDCLASS
 
-#endif
+#endif // Include guard
 
 /*
  *

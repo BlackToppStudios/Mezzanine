@@ -178,11 +178,11 @@ namespace Mezzanine
             StatusEndElementMismatch            ///< There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
         };
     }
-}
+} // /namespace Mezzanine
 
 SWIG_INFO_ENDCLASS
 
-#endif
+#endif // Include guard
 
 /*
  *

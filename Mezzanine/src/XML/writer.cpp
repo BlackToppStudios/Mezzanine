@@ -53,19 +53,23 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
+#ifndef _xmlwriter_cpp
+#define _xmlwriter_cpp
+
+/// @file
+/// @brief Describe file here
 
 #include "XML/writer.h"
 
-#ifndef _xmlwriter_cpp
-#define _xmlwriter_cpp
 namespace Mezzanine
 {
     namespace XML
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+#endif // Include guard
 
 /*
  *

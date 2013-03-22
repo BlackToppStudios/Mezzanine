@@ -220,11 +220,11 @@ namespace Mezzanine
             Node data() const;
         };
     }
-}
+}// /namespace Mezzanine
 
 SWIG_INFO_ENDCLASS
 
-#endif
+#endif // Include guard
 
 /*
  *

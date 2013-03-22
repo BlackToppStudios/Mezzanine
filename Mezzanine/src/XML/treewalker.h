@@ -125,11 +125,11 @@ namespace Mezzanine
                 virtual bool OnTraversalEnd(Node& node);
         };
     }
-}
+}// /namespace Mezzanine
 
 SWIG_INFO_ENDCLASS
 
-#endif
+#endif // Include guard
 
 /*
  *
