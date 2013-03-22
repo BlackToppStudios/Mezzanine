@@ -41,6 +41,12 @@
 #ifndef _inputenumerations_h
 #define _inputenumerations_h
 
+/// @todo This exists because somewhere in our chain of includes we have "winnt.h" (on windows) defining "KEY_EXECUTE", which causes the compile to fail at the line
+/// declaring "KEY_EXECUTE".  I am reasonably certain this only exists when <Ogre.h> is included above this file in the include chain.
+#ifdef KEY_EXECUTE
+#undef KEY_EXECUTE
+#endif
+
 namespace Mezzanine
 {
     namespace Input

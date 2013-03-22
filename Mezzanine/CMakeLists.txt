@@ -532,7 +532,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
 
-        "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
+        #"${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
 
         "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
@@ -551,17 +551,11 @@ endif(${Mezz_Lua51})
 
 link_directories(
         "${ProjectBinaryDir}Mezzanine/bin"
-        #"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/ogre"
-        #"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/bullet"
-        #"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
-        #"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
-        #"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
-        #"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
 )
 
 ###############################################################################
 # Prepare the actual Build
-add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
+#add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
 
 #######################################
 # Prepare Common Dependencies
@@ -573,6 +567,20 @@ add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/sdlsrc/SDL)
 add_subdirectory (libincludes/common/openalsoftsrc/openalsoft)
 
+#######################################
+# Extra includes from Ogre
+
+if(${WIN32})
+	include_directories( ${DirectX_INCLUDE_DIR} ${DirectX_D3D11_INCLUDE_DIR} )
+endif(${WIN32})
+
+# This was moved to below the sub-libraries so the directX includes in the lines above will work.
+# This is necessary because of static linking and the lack of foresight on the part of the people that wrote those rendersystems.
+# It's a hack and makes me a sad panda.
+###############################################################################
+# Prepare the actual Build
+add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_sources} )
+
 set(SDL_ATOMIC    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_AUDIO     off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_CPUINFO   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
@@ -580,7 +588,7 @@ set(SDL_EVENTS    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_FILE      off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_HAPTIC    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_JOYSTICK  on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
-set(SDL_LOADSO    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
+set(SDL_LOADSO    on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_POWER     on  CACHE BOOL "ENABLED as Mezzanine Component"  FORCE)
 set(SDL_RENDER    off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
 set(SDL_THREADS   off CACHE BOOL "DISABLED as Mezzanine Component" FORCE)
@@ -622,7 +630,7 @@ CopyFilesDuringBuild( common/Lua-MIT.txt data/common/Lua-MIT.txt )
 CopyFilesDuringBuild( common/Nvidia-CG-License.txt data/common/Nvidia-CG-License.txt )
 CopyFilesDuringBuild( common/Ogre-MITLicense.txt data/common/Ogre-MITLicense.txt )
 CopyFilesDuringBuild( common/PugiXML-MITLicense.txt data/common/PugiXML-MITLicense.txt )
-CopyFilesDuringBuild( common/RenéNyffenegger-MIT.txt data/common/RenéNyffenegger-MIT.txt )
+CopyFilesDuringBuild( common/ReneNyffenegger-MIT.txt data/common/ReneNyffenegger-MIT.txt )
 CopyFilesDuringBuild( common/SDL-MITLicense.txt data/common/SDL-MITLicense.txt )
 CopyFilesDuringBuild( common/XiphCopyrightNotice.txt data/common/XiphCopyrightNotice.txt )
 CopyFilesDuringBuild( common/zlib-libpngLicense.txt data/common/zlib-libpngLicense.txt )

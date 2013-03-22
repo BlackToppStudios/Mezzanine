@@ -79,21 +79,23 @@
 
     //Check for windows, but not in a way that overides what is passed on the command prompt
     #ifndef NONWINDOWS
-        #ifdef __WIN32__
-        #define WINDOWS
-        #endif
+        #ifndef WINDOWS
+            #ifdef __WIN32__
+            #define WINDOWS
+            #endif
 
-        #ifdef _WIN32
-        #define WINDOWS
-        #endif
+            #ifdef _WIN32
+            #define WINDOWS
+            #endif
 
-        #ifdef __CYGWIN32__
-        #define WINDOWS
-        #endif
+            #ifdef __CYGWIN32__
+            #define WINDOWS
+            #endif
 
-        #ifdef _MSC_VER
-        #define WINDOWS
-        #endif
+            #ifdef _MSC_VER
+            #define WINDOWS
+            #endif
+        #endif // WINDOWS
     #endif // \NONWINDOWS
 
     /// @def MEZZ_LIB

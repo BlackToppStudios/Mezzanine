@@ -411,19 +411,6 @@ ENDIF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} GREATER 2.5)
 #OPTION(BUILD_UNIT_TESTS "Build Unit Tests"	OFF)
 SET(BUILD_UNIT_TESTS OFF)
 
-#Hack to put the libs directly into the phys source tree
-#if(${WIN32})
-#	set(BuildPlat "windows")
-#endif(${WIN32})
-#if(${UNIX})
-#	set(BuildPlat "linux")
-#endif(${UNIX})
-#if(${APPLE})
-#	set(BuildPlat "macosx")
-#endif(${APPLE})
-#SET (LIBRARY_OUTPUT_PATH "${BULLET_PHYSICS_SOURCE_DIR}/../../../../data/${BuildPlat}/bullet/")
-# /HACK
-
 IF (BUILD_UNIT_TESTS)
 	SUBDIRS(UnitTests)
 ENDIF()

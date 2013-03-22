@@ -64,12 +64,12 @@ OPTION(ALSOFT_EXAMPLES  "Build and install example programs"  ON)
 
 OPTION(ALSOFT_CONFIG "Install alsoft.conf sample configuration file" ON)
 
-
+SET(LIBNAME openal)
 IF(WIN32)
-    SET(LIBNAME OpenAL32)
+    #SET(LIBNAME OpenAL32)
     ADD_DEFINITIONS("-D_WIN32 -D_WIN32_WINNT=0x0501")
 ELSE()
-    SET(LIBNAME openal)
+    #SET(LIBNAME openal)
 ENDIF()
 
 IF(NOT LIBTYPE)

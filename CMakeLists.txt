@@ -142,11 +142,11 @@ else(${WIN32})
     set(FPIC "-fPIC")
 endif(${WIN32})
 
-if(${WIN32})
+if(MSVC)
     set(D "/D")
-else(${WIN32})
+else(MSVC)
     set(D "-D")
-endif(${WIN32})
+endif(MSVC)
 
 
 ###############################################################################
@@ -243,7 +243,7 @@ set(OGRE_BUILD_RENDERSYSTEM_D3D9 ${Mezz_BuildRenderSystemDirectX9} CACHE BOOL "F
 if(${OGRE_BUILD_RENDERSYSTEM_D3D9})
     message ( STATUS "${PROJECT_NAME} - Enabling DirectX 9 Rendering Support")
     set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_DIRECTX9_SUPPORT")
-    set(OgreHeaderIncludeDir "${OgreHeaderIncludeDir} ${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/Direct3D9/include")
+    set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/Direct3D9/include")
     set(OgreLibraryAllNames ${OgreLibraryAllNames} RenderSystem_Direct3D9)
 else(${OGRE_BUILD_RENDERSYSTEM_D3D9})
     message ( STATUS "${PROJECT_NAME} - Disabling DirectX 9 Rendering Support")
@@ -255,7 +255,7 @@ set(OGRE_BUILD_RENDERSYSTEM_D3D11 ${Mezz_BuildRenderSystemDirectX11} CACHE BOOL 
 if(${OGRE_BUILD_RENDERSYSTEM_D3D11})
     message ( STATUS "${PROJECT_NAME} - Enabling DirectX 11 Rendering Support")
     set(Ogre_Arguments "${Ogre_Arguments} ${D}MEZZ_BUILD_DIRECTX11_SUPPORT")
-    set(OgreHeaderIncludeDir "${OgreHeaderIncludeDir} ${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/Direct3D11/include")
+    set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/Direct3D11/include")
     set(OgreLibraryAllNames ${OgreLibraryAllNames} RenderSystem_Direct3D11)
 else(${OGRE_BUILD_RENDERSYSTEM_D3D11})
     message ( STATUS "${PROJECT_NAME} - Disabling DirectX 11 Rendering Support")
@@ -267,7 +267,7 @@ set(OGRE_BUILD_RENDERSYSTEM_GL ${Mezz_BuildRenderSystemOpenGL} CACHE BOOL "Forci
 if(${OGRE_BUILD_RENDERSYSTEM_GL})
     message ( STATUS "${PROJECT_NAME} - Enabling OpenGL Rendering Support")
     set(Ogre_Arguments ${Ogre_Arguments} "${D}MEZZ_BUILD_OPENGL_SUPPORT")
-    set(OgreHeaderIncludeDir "${OgreHeaderIncludeDir} ${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/GL/include")
+    set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/GL/include")
     set(OgreLibraryAllNames ${OgreLibraryAllNames} RenderSystem_GL)
 else(${OGRE_BUILD_RENDERSYSTEM_GL})
     message ( STATUS "${PROJECT_NAME} - Disabling OpenGL Rendering Support")
@@ -279,7 +279,7 @@ set(OGRE_BUILD_RENDERSYSTEM_GLES ${Mezz_BuildRenderSystemOpenGLES} CACHE BOOL "F
 if(${OGRE_BUILD_RENDERSYSTEM_GLES})
     message ( STATUS "${PROJECT_NAME} - Enabling OpenGLES Rendering Support")
     set(Ogre_Arguments ${Ogre_Arguments} "${D}MEZZ_BUILD_OPENGLES_SUPPORT")
-    set(OgreHeaderIncludeDir "${OgreHeaderIncludeDir} ${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/GLES/include")
+    set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/RenderSystems/GLES/include")
     set(OgreLibraryAllNames ${OgreLibraryAllNames} RenderSystem_GLES)
 else(${OGRE_BUILD_RENDERSYSTEM_GLES})
     message ( STATUS "${PROJECT_NAME} - Disabling OpenGLES Rendering Support")
@@ -322,6 +322,11 @@ Message(STATUS "Putting Ogre3d config.h in: ${OgreConfigHeaderIncludeDir}")
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/OgreMain/include")
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/PlugIns/ParticleFX/include")
 set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/PlugIns/CgProgramManager/include")
+
+# Line below is needed on Windows, maybe other platforms as well.
+if(${WIN32})
+	set(OgreHeaderIncludeDir ${OgreHeaderIncludeDir} "${ProjectRootDir}Mezzanine/libincludes/common/ogresrc/ogresvnsrc/Dependencies/src/Cg/include")
+endif(${WIN32})
 Message(STATUS "Looking for Ogre3d headers in: ${OgreHeaderIncludeDir}")
 
 # Ogre Plugins
@@ -354,9 +359,16 @@ set(Bullet_LibraryNames
     "BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
 )
 
+#if (${WIN32})
+#	set(ALname OpenAL32)
+#else (${WIN32})
+#	set(ALname openal)
+#endif (${WIN32})
+
 set(SoundLibraryNames
     "oggvorbis"
     "openal"
+	#${ALname}
     "cAudio"
 )
 

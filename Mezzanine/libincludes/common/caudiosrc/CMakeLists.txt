@@ -95,40 +95,26 @@ message ( STATUS "Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 add_definitions( ${CommonBuildFlags} )
 add_library(cAudio STATIC ${${PROJECT_NAME}_sources})
 
-add_dependencies( ${PROJECT_NAME} ${ALname} oggvorbis)
-
-
 #We have removed the cAudio depencies because they were built with an assumed compile and OS version
 # to make this work, we have modified the source to compile and removed the "AL/" from
 include_directories(
 	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
     "${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libogg-1.3.0/include"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.2/lib/"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.2/include"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.3/lib/"
+	"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.3/include"
    )
 	link_directories(
 		"${${PROJECT_NAME}_SOURCE_DIR}/oggvorbis/"
 	)
 
 if (${WIN32})
-    set(ALname OpenAL32)
-	#add_dependencies( ${PROJECT_NAME} oggvorbis)
+    #set(ALname OpenAL32)
 	include_directories(
-		"${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/openal/"
-		"${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/openal/AL/"
-		#"${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libogg-1.3.0/include"
-		#"${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libvorbis-1.3.2/lib/"
-		#"${Mezzanine_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis/libvorbis-1.3.2/include"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/openalsoftsrc/openalsoft/include/AL"
 	)
-	link_directories(
-		"${Mezzanine_ROOT_DIR}data/${BuildPlatform}/openal/"
-		#"${Mezzanine_ROOT_DIR}data/${BuildPlatform}/oggvorbis/"
-	)
-
-	#target_link_libraries( ${PROJECT_NAME} OpenAL32 )
 else (${WIN32})
-    set(ALname openal)
+    #set(ALname openal)
 	include_directories( "/usr/include/" )		#This should somehow search for pthread.h
 
 	include(FindOpenAL)
@@ -153,6 +139,7 @@ else (${WIN32})
 	#target_link_libraries( ${PROJECT_NAME} openal)
 endif (${WIN32})
 
+add_dependencies( ${PROJECT_NAME} ${ALname} oggvorbis)
 target_link_libraries( ${PROJECT_NAME} ${ALname} oggvorbis)
 
 message ("${PROJECT_NAME} - End")
