@@ -114,7 +114,7 @@ if (${WIN32})
 		"${Mezzanine_LIBINCLUDE_DIR}/common/openalsoftsrc/openalsoft/include/AL"
 	)
 else (${WIN32})
-    #set(ALname openal)
+    set(ALname openal)
 	include_directories( "/usr/include/" )		#This should somehow search for pthread.h
 
 	include(FindOpenAL)
