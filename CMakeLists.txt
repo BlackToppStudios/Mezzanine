@@ -360,9 +360,9 @@ set(Bullet_LibraryNames
 )
 
 set(SoundLibraryNames
-    "oggvorbis"
-    "openal"
     "cAudio"
+    "openal"
+    "oggvorbis"
 )
 
 set(SDLLibraryNames
