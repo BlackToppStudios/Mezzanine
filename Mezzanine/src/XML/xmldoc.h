@@ -1898,7 +1898,7 @@ namespace Mezzanine
         The documentation was copied with permission per the copyright notice near the bottom of Table of contents and several other pages as follows:
         \n \n
         @verbatim
-        Copyright Ã© 2010 Arseny Kapoulkine
+        Copyright © 2010 Arseny Kapoulkine
         Distributed under the MIT License
         @endverbatim
         */
@@ -1939,53 +1939,6 @@ namespace Mezzanine
         /// @brief The internal data storage structure used in an Attribute.
         /// @warning Not part of the API, subject to change without warning.
 
-
-
-        //////////////////////////////////////////////////////////////////////////////
-        /// @class Document
-        /// @brief The root node of any xml hierarchy is a Document Node
-        /// @details This has all the same features as a Node and include a few features for saving, loading, streaming
-        /// and to a limited degree managing the document declaration.
-
-        /// @fn Document::Document();
-        /// @brief Creates an empty document with just a root Node
-
-        /// @fn Document::~Document()
-        /// @brief Tears down a document, and incidentally invalidates all Node and Attribute handles to this document.
-
-        /// @fn Document::Reset();
-        /// @brief Removes all nodes, leaving the empty document.
-
-        /// @fn Document::Reset(const Document& proto);
-        /// @brief Removes all nodes, then copies the entire contents of the specified document
-        /// @param proto The Document to copy.
-
-        /// @fn Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-        /// @brief Load XML from a stream.
-        /// @param stream An std::istream which has xml text in it.
-        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-        /// @return A ParseResult that stores the the outcome of attempting to load the document.
-
-        /// @fn Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
-        /// @brief Load XML from a wide stream.
-        /// @param stream An std::basic_istream which has xml wide character text in it.
-        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-        /// @return A ParseResult that stores the the outcome of attempting to load the document.
-
-        /// @fn Document::Load(const char_t* contents, unsigned int options = ParseDefault);
-        /// @brief Load XML from a Character array.
-        /// @param contents A pointer to the Null terminated array of Characters.
-        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-        /// @return A ParseResult that stores the the outcome of attempting to load the document.
-
-        /// @fn Document::LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-        /// @brief Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
-        /// @param contents A pointer to buffer containing the xml document to be parsed, that will remain unchanged.
-        /// @param size The size of the buffer.
-        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-        /// @return A ParseResult that stores the the outcome of attempting to load the document.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @enum XPathValueType

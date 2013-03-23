@@ -77,66 +77,117 @@ namespace Mezzanine
 {
     namespace XML
     {
-        // Document class (DOM tree GetRoot)
+        /// @brief The root node of any xml hierarchy is a @ref Document
+        /// @details This has all the same features as a Node and include a few features for saving, loading, streaming
+        /// and to a limited degree managing the document declaration.
         class MEZZ_LIB Document: public Node
         {
             private:
+                /// @internal
                 /// @brief Almost all of the XML Text is stored in this.
                 Char8* _buffer;
 
+                /// @internal
+                /// @brief Used when initializining for storing parts of pages
                 char _memory[192];
 
-                // Non-copyable semantics
+
+                /// @brief Private copy constructor to make this non-copyable.
                 Document(const Document&);
+
+                /// @brief Private assignment operator enforces non-assignability.
                 const Document& operator=(const Document&);
 
+                /// @internal
+                /// @brief Performs all required memory allocation for construction.
                 void create();
+
+                /// @internal
+                /// @brief De-allocates Every allocated durign normal use and the Document::create funciton.
                 void destroy();
 
+                /// @internal
+                /// @brief The implementation for the different functions that load rom buffers.
+                /// @param contents The Buffer
+                /// @param size The size of the buffer in bytes
+                /// @param options A bitmask of parsing options as declared in @ref xmlenumerations.h
+                /// @param DocumentEncoding Value used to determine if we need to guess encoding or use this or a variant of this.
+                /// @param is_mutable can we changethe buffer or do we need to write changes elsewhere
+                /// @param own Does the XML system own this now?
                 ParseResult LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own);
 
             public:
-                // Default constructor, makes empty document
+                /// @brief Creates an empty document with just a root Node
                 Document();
 
-                // Destructor, invalidates all node/GetAttribute handles to this document
+                /// @brief Tears down a document, and incidentally invalidates all Node and Attribute handles to this document.
                 ~Document();
 
-                // Removes all nodes, leaving the empty document
+                /// @brief Removes all nodes, leaving the empty document.
                 void Reset();
 
-                // Removes all nodes, then copies the entire contents of the specified document
+                /// @brief Removes all nodes, then copies the entire contents of the specified document
+                /// @param proto The Document to copy.
                 void Reset(const Document& proto);
 
+                #ifndef SWIG_SAFE
                 /// @brief Load a document from a data stream.
                 /// @param stream The stream to load from.
                 /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
                 /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it provides
                 ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
-                // Load document from stream.
+                /// @brief Load XML from a stream.
+                /// @param stream An std::istream which has xml text in it.
+                /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+                /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+                /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 ParseResult Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-                ParseResult Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
 
-                // Load document from zero-terminated string. No DocumentEncoding conversions are applied.
+                /// @brief Load XML from a wide stream.
+                /// @param stream An std::basic_istream which has xml wide character text in it.
+                /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+                /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
+                ParseResult Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
+                #endif
+
+                /// @brief Load XML from a C-style string.
+                /// @param contents A pointer to the Null terminated array of Characters.
+                /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+                /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note The only Load method available in the 'Safe' scripting languages.
                 ParseResult Load(const Char8* contents, unsigned int options = ParseDefault);
 
+                #ifndef SWIG_SAFE
                 // Load document from file
                 /// @brief Load document from file
                 /// @param Path An c-style char array that contains the path and filename of the xml document to load.
                 /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
                 /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 ParseResult LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+
                 /// @brief Load document from file
                 /// @param Path An c-style wide char array that contains the path and filename of the xml document to load.
                 /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
                 /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 ParseResult LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+                #endif
 
-                // Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
+                /// @brief Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
+                /// @param contents A pointer to buffer containing the xml document to be parsed, that will remain unchanged.
+                /// @param size The size of the buffer.
+                /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+                /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+                /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note All buffer loading Methods of the XML::Document are made available to all scripting languages libraries.
                 ParseResult LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
                 // Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
@@ -148,6 +199,7 @@ namespace Mezzanine
                 /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
                 /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note All buffer loading Methods of the XML::Document are made available to all scripting languages libraries.
                 ParseResult LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
                 // Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
@@ -159,32 +211,39 @@ namespace Mezzanine
                 /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
                 /// @return A ParseResult that stores the the outcome of attempting to load the document.
+                /// @note All buffer loading Methods of the XML::Document are made available to all scripting languages libraries.
                 ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
 
+                #ifndef SWIG_SAFE
                 /// @brief Save XML document to a stream.
                 /// @param stream The stream to save this document to.
                 /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 void Save(Resource::DataStream& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
-
-
 
                 /// @brief Save XML document to WriterInstance.
                 /// @param WriterInstance The Writer that will be used to output the xml text.
                 /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 void Save(Writer& WriterInstance, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 
-                // Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details).
+                /// @brief Save XML document to a stream of characters.
+                /// @param stream The output stream of wide characters to send the XML document to.
+                /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+                /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+
                 /// @brief Save XML document to a stream of wide characters.
                 /// @param stream The output stream of wide characters to send the XML document to.
                 /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault) const;
-
 
                 /// @brief Save XML to file.
                 /// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
@@ -192,14 +251,18 @@ namespace Mezzanine
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
                 /// @return False if the target file could not be opened for writing
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 bool SaveFile(const char* Path, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+
                 /// @brief Save XML to file.
                 /// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
                 /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
                 /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
                 /// @return False if the target file could not be opened for writing
+                /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 bool SaveFile(const wchar_t* Path, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+                #endif
 
                 // Get document element
                 /// @brief Get document element
