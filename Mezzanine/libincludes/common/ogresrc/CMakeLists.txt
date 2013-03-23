@@ -3,10 +3,12 @@ project (Ogre)
 message ( "${PROJECT_NAME} - Begin" )
 
 #Choose the destination directory
-set ( Ogre_BINARY_DIR "${ProjectBinaryDir}/ogre/" )
-set ( OGREDEPS_BINARY_DIR "${Ogre_BINARY_DIR}deps" )
+#set ( Ogre_BINARY_DIR "${ProjectBinaryDir}/ogre/" )
+#set ( OGREDEPS_BINARY_DIR "${Ogre_BINARY_DIR}deps" )
+set ( Ogre_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
+set ( OgreDeps_BINARY_DIR ${LIBRARY_OUTPUT_PATH} )
 message ( STATUS "Putting Ogre binaries in: ${Ogre_BINARY_DIR}" )
-message ( STATUS "Putting Ogre Dependancy binaries in: ${OGREDEPS_BINARY_DIR}" )
+message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 
 # Long list of changes necessary to get ogre properly merged with our project.
 # One quick thing to note is that all I applied these changes from top to bottom noting their line number as I went.  If you try to use the mentioned

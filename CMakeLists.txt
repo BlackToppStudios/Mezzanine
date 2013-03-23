@@ -359,16 +359,9 @@ set(Bullet_LibraryNames
     "BulletSoftBody" "BulletDynamics" "BulletCollision" "LinearMath"
 )
 
-#if (${WIN32})
-#	set(ALname OpenAL32)
-#else (${WIN32})
-#	set(ALname openal)
-#endif (${WIN32})
-
 set(SoundLibraryNames
     "oggvorbis"
     "openal"
-	#${ALname}
     "cAudio"
 )
 

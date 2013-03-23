@@ -532,7 +532,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
 
-        #"${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
+        "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
 
         "${ProjectBinaryDir}Mezzanine/libincludes/common/openalsoftsrc/openalsoft"
