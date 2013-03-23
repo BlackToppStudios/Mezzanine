@@ -287,14 +287,14 @@ class UnitTestGroup : public TestDataStorage
 std::map<Mezzanine::String, UnitTestGroup*> TestGroups;
 
 // Drops a String to all lower case, changes the string passed in
-char* AllLower(char* CString)
+char* AllLower(char* StringToConvert)
 {
     std::locale loc;
-    for(int c=0; CString[c]!='\0'; ++c)
+    for(int c=0; StringToConvert[c]!='\0'; ++c)
     {
-        CString[c]=tolower(CString[c],loc);
+        StringToConvert[c]=tolower(StringToConvert[c],loc);
     }
-    return CString;
+    return StringToConvert;
 }
 
 // Some simple functions for formatting user input/output
