@@ -98,23 +98,28 @@ add_library(cAudio STATIC ${${PROJECT_NAME}_sources})
 #We have removed the cAudio depencies because they were built with an assumed compile and OS version
 # to make this work, we have modified the source to compile and removed the "AL/" from
 include_directories(
-	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
-	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
-    "${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libogg-1.3.0/include"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.3/lib/"
-	"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.3/include"
-   )
-	link_directories(
-		"${${PROJECT_NAME}_SOURCE_DIR}/oggvorbis/"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/"
+		"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/Headers/"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libogg-1.3.0/include"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.3/lib/"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/oggvorbis/libvorbis-1.3.3/include"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/openalsoftsrc/openalsoft/include/AL"
+		"${Mezzanine_LIBINCLUDE_DIR}/common/openalsoftsrc/openalsoft/OpenAL32/include"
+	)
+	
+link_directories(
+		#"${${PROJECT_NAME}_SOURCE_DIR}/oggvorbis/"
+		"${Mezzanine_BINARY_DIR}"
 	)
 
+set(ALname openal)
 if (${WIN32})
     #set(ALname OpenAL32)
-	include_directories(
-		"${Mezzanine_LIBINCLUDE_DIR}/common/openalsoftsrc/openalsoft/include/AL"
-	)
+	#include_directories(
+	#	"${Mezzanine_LIBINCLUDE_DIR}/common/openalsoftsrc/openalsoft/include/AL"
+	#)
 else (${WIN32})
-    set(ALname openal)
+    #set(ALname openal)
 	include_directories( "/usr/include/" )		#This should somehow search for pthread.h
 
 	include(FindOpenAL)

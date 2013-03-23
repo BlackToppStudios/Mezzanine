@@ -572,12 +572,12 @@ link_directories(
 #######################################
 # Prepare Common Dependencies
 
-add_subdirectory (libincludes/common/caudiosrc)
 add_subdirectory (libincludes/common/bulletsrc)
 add_subdirectory (libincludes/common/ogresrc)
-add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/sdlsrc/SDL)
+add_subdirectory (libincludes/common/oggvorbis)
 add_subdirectory (libincludes/common/openalsoftsrc/openalsoft)
+add_subdirectory (libincludes/common/caudiosrc)
 
 #######################################
 # Extra includes from Ogre
