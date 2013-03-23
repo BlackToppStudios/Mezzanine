@@ -53,19 +53,24 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
+#ifndef _xmlattribute_cpp
+#define _xmlattribute_cpp
+
+/// @file
+/// @brief Describe file here
 
 #include "XML/attribute.h"
 
-#ifndef _xmlattribute_cpp
-#define _xmlattribute_cpp
 namespace Mezzanine
 {
     namespace XML
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+#endif // Include guard
+
 
 /*
  *

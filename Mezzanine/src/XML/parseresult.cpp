@@ -56,9 +56,6 @@
 #ifndef _xmlboilerplate_cpp
 #define _xmlboilerplate_cpp
 
-/// @file
-/// @brief Describe file here
-
 #include "XML/xmlboilerplate.h"
 
 namespace Mezzanine
@@ -67,10 +64,8 @@ namespace Mezzanine
     {
 
     }
-} // /namespace Mezzanine
-
-#endif // Include guard
-
+}
+#endif
 
 /*
  *

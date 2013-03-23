@@ -54,15 +54,13 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-/// @file
-/// @brief The definitions for all of the XML::Writer inheritance hierarchy.
-
-
 #ifndef _xmlwriter_h
 #define _xmlwriter_h
 
+/// @file
+/// @brief The definitions for all of the XML::Writer inheritance hierarchy.
+
 #include "datatypes.h"
-#include "swig.h"
 
 #ifndef SWIG
 #include "resource.h"
@@ -165,12 +163,14 @@ SWIG_INFO_BEGINCLASS
                 void Write(const void* data, size_t size) { WrappedStream->Write(data,size); }
         };//XMLStreamWrapper
 
-SWIG_INFO_ENDCLASS
+
+SWIG_INFO_ENDCLASS // placed here to avoid inclusion in safe swig library for scripting language.
 
 #endif //
     }
-}
-#endif
+}// /namespace Mezzanine
+
+#endif // Include guard
 
 /*
  *

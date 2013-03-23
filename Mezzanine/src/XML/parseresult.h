@@ -53,24 +53,48 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
-#ifndef _xmlboilerplate_cpp
-#define _xmlboilerplate_cpp
+#ifndef _xmlboilerplate_h
+#define _xmlboilerplate_h
 
 /// @file
-/// @brief Describe file here
+/// @brief
 
-#include "XML/xmlboilerplate.h"
+#include "datatypes.h"
+#include "xmlenumerations.h"
+
 
 namespace Mezzanine
 {
     namespace XML
     {
+        /// @brief Troubleshooting data intended to help troublshoot XML parsing errors
+        struct MEZZ_LIB ParseResult
+        {
+            /// @brief Parsing status ( see @ref ParseStatus )
+            ParseStatus Status;
 
+            /// @brief Last parsed offset (in char_t units from start of input data)
+            ptrdiff_t Offset;
+
+            /// @brief Source document encoding ( see @ref Encoding )
+            Encoding DocumentEncoding;
+
+            /// @brief Default constructor, initializes object to failed state.
+            ParseResult();
+
+            /// @brief Cast to bool operator
+            /// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.
+            #ifndef SWIG
+            operator bool() const;
+            #endif
+
+            /// @brief Get error Description
+            /// @return A c-syle string that contains the
+            const char* Description() const;
+        };
     }
-} // /namespace Mezzanine
-
-#endif // Include guard
-
+}
+#endif
 
 /*
  *

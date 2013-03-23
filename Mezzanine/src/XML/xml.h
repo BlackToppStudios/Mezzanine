@@ -53,22 +53,6 @@
 #ifndef _XMLCONFIG_H
 #define _XMLCONFIG_H
 
-// Uncomment this to disable STL
-// #define XML_NO_STL
-
-// Uncomment this to disable exceptions
-// #define XML_NO_EXCEPTIONS
-
-// Set this to control attributes for public classes/functions, i.e.:
-// #define MEZZ_LIB __declspec(dllexport) // to export all public symbols from DLL
-// #define MEZZ_LIB __declspec(dllimport) // to import all classes from DLL
-// #define MEZZ_LIB __fastcall // to set calling conventions to all public functions to fastcall
-// In absence of MEZZ_LIB/MEZZ_LIB definitions MEZZ_LIB is used instead
-
-// Uncomment this to switch to header-only version
-// #define XML_HEADER_ONLY
-// #include "pugixml.cpp"
-
 // Tune these constants to adjust memory-related behavior
 // #define XML_MEMORY_PAGE_SIZE 32768
 // #define XML_MEMORY_OUTPUT_STACK 10240
@@ -86,7 +70,13 @@
 #include "datatypes.h"
 #include "XML/objectrange.h"
 #include "XML/attribute.h"
+#include "XML/attributeiterator.h"
+#include "XML/document.h"
+#include "XML/nodeiterator.h"
+#include "XML/nodetext.h"
 #include "XML/node.h"
+#include "XML/parseresult.h"
+#include "XML/treewalker.h"
 #include "XML/writer.h"
 #include "XML/xmldoc.h"
 #include "XML/xmlenumerations.h"
@@ -122,19 +112,19 @@ namespace XML
 //////////////////////////////////////////////////////////////////////////////////////////////////////
     /// @todo Do something about forward declares in xml.h
 
-	// Forward declarations
+    // Forward declarationsxmlboilerplate
 	struct AttributeStruct;
 	struct NodeStruct;
 
 	class NodeIterator;
 	class AttributeIterator;
-	class NamedNode_iterator;
+    class NamedNodeIterator;
 
 	class TreeWalker;
 
 	class Node;
 
-	class Text;
+    class NodeText;
 
 	class XPathNode;
 	class XPathNodeSet;
@@ -145,397 +135,6 @@ namespace XML
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
-
-
-
-	// A helper for working with text inside PCDATA nodes
-	class MEZZ_LIB Text
-	{
-		friend class Node;
-
-		NodeStruct* _GetRoot;
-
-		typedef void (*unspecified_bool_type)(Text***);
-
-		explicit Text(NodeStruct* GetRoot);
-
-		NodeStruct* _data_new();
-		NodeStruct* _data() const;
-
-	public:
-		// Default constructor. Constructs an empty object.
-		Text();
-
-		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal data is set and false otherwise.
-		operator unspecified_bool_type() const;
-
-		// Borland C++ workaround
-		bool operator!() const;
-
-		// Check if text object is empty
-		bool Empty() const;
-
-		// Get text, or "" if object is empty
-        const Char8* Get() const;
-
-		// Get text, or the default Value if object is empty
-        const Char8* AsString(const Char8* def = "") const;
-
-		// Get text as a number, or the default Value if conversion did not succeed or object is empty
-		int AsInt(int def = 0) const;
-		unsigned int AsUint(unsigned int def = 0) const;
-		double AsDouble(double def = 0) const;
-		float AsFloat(float def = 0) const;
-		Real AsReal(Real def = 0) const;
-		Whole AsWhole(Whole def = 0) const;
-		Integer AsInteger(Integer def = 0) const;
-
-		// Get text as bool (returns true if first character is in '1tTyY' set), or the default Value if object is empty
-		bool AsBool(bool def = false) const;
-
-		// Set text (returns false if object is empty or there is not enough memory)
-        bool Set(const Char8* rhs);
-
-		// Set text with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false")
-		bool Set(int rhs);
-		bool Set(unsigned int rhs);
-		bool Set(double rhs);
-		bool Set(bool rhs);
-
-		// Set text (equivalent to set without error checking)
-        Text& operator=(const Char8* rhs);
-		Text& operator=(int rhs);
-		Text& operator=(unsigned int rhs);
-		Text& operator=(double rhs);
-		Text& operator=(bool rhs);
-
-		// Get the data node (NodePcdata or NodeCdata) for this object
-		Node data() const;
-	};
-
-	// Child node iterator (a bidirectional iterator over a collection of Node)
-	class MEZZ_LIB NodeIterator
-	{
-		friend class Node;
-
-	private:
-		mutable Node _wrap;
-		Node _GetParent;
-
-		NodeIterator(NodeStruct* ref, NodeStruct* GetParent);
-
-	public:
-		// Iterator traits
-		typedef ptrdiff_t difference_type;
-		typedef Node value_type;
-		typedef Node* pointer;
-		typedef Node& reference;
-
-	#ifndef XML_NO_STL
-		typedef std::bidirectional_iterator_tag iterator_category;
-	#endif
-
-		// Default constructor
-		NodeIterator();
-
-		// Construct an iterator which points to the specified node
-		NodeIterator(const Node& node);
-
-		// Iterator operators
-		bool operator==(const NodeIterator& rhs) const;
-		bool operator!=(const NodeIterator& rhs) const;
-
-		Node& operator*() const;
-		Node* operator->() const;
-
-		const NodeIterator& operator++();
-		NodeIterator operator++(int);
-
-		const NodeIterator& operator--();
-		NodeIterator operator--(int);
-	};
-
-	// Attribute iterator (a bidirectional iterator over a collection of Attribute)
-	class MEZZ_LIB AttributeIterator
-	{
-		friend class Node;
-
-	private:
-		mutable Attribute _wrap;
-		Node _GetParent;
-
-		AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent);
-
-	public:
-		// Iterator traits
-		typedef ptrdiff_t difference_type;
-		typedef Attribute value_type;
-		typedef Attribute* pointer;
-		typedef Attribute& reference;
-
-	#ifndef XML_NO_STL
-		typedef std::bidirectional_iterator_tag iterator_category;
-	#endif
-
-		// Default constructor
-		AttributeIterator();
-
-		// Construct an iterator which points to the specified attribute
-		AttributeIterator(const Attribute& attr, const Node& GetParent);
-
-		// Iterator operators
-		bool operator==(const AttributeIterator& rhs) const;
-		bool operator!=(const AttributeIterator& rhs) const;
-
-		Attribute& operator*() const;
-		Attribute* operator->() const;
-
-		const AttributeIterator& operator++();
-		AttributeIterator operator++(int);
-
-		const AttributeIterator& operator--();
-		AttributeIterator operator--(int);
-	};
-
-	// Named node range helper
-	class NamedNode_iterator
-	{
-	public:
-		// Iterator traits
-		typedef ptrdiff_t difference_type;
-		typedef Node value_type;
-		typedef Node* pointer;
-		typedef Node& reference;
-
-	#ifndef XML_NO_STL
-		typedef std::forward_iterator_tag iterator_category;
-	#endif
-
-		// Default constructor
-		NamedNode_iterator();
-
-		// Construct an iterator which points to the specified node
-        NamedNode_iterator(const Node& node, const Char8* Name);
-
-		// Iterator operators
-		bool operator==(const NamedNode_iterator& rhs) const;
-		bool operator!=(const NamedNode_iterator& rhs) const;
-
-		Node& operator*() const;
-		Node* operator->() const;
-
-		const NamedNode_iterator& operator++();
-		NamedNode_iterator operator++(int);
-
-	private:
-		mutable Node _node;
-        const Char8* _Name;
-	};
-
-	// Abstract tree walker class (see Node::Traverse)
-	class MEZZ_LIB TreeWalker
-	{
-		friend class Node;
-
-	private:
-		int _Depth;
-
-	protected:
-		// Get current traversal Depth
-		int Depth() const;
-
-	public:
-		TreeWalker();
-		virtual ~TreeWalker();
-
-		// Callback that is called when traversal begins
-		virtual bool begin(Node& node);
-
-		// Callback that is called for each node Traversed
-		virtual bool for_each(Node& node) = 0;
-
-		// Callback that is called when traversal ends
-		virtual bool end(Node& node);
-	};
-
-	// Parsing Status, returned as part of ParseResult object
-	enum ParseStatus
-	{
-		StatusOk = 0,				// No error
-
-		StatusFileNotFound,		// File was not found during LoadFile()
-		StatusIOError,			// Error reading from file/stream
-		StatusOutOfMemory,		// Could not allocate memory
-		StatusInternalError,		// Internal error occurred
-
-		StatusUnrecognizedTag,	// Parser could not determine tag type
-
-		StatusBadPi,				// Parsing error occurred while parsing document declaration/processing instruction
-		StatusBadComment,			// Parsing error occurred while parsing comment
-		StatusBadCdata,			// Parsing error occurred while parsing CDATA section
-		StatusBadDocType,			// Parsing error occurred while parsing document Type declaration
-		StatusBadPcdata,			// Parsing error occurred while parsing PCDATA section
-		StatusBadStartElement,	// Parsing error occurred while parsing start element tag
-		StatusBadAttribute,		// Parsing error occurred while parsing element attribute
-		StatusBadEndElement,		// Parsing error occurred while parsing end element tag
-		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect Name, some tag was not closed or there was an excessive closing tag)
-	};
-
-	// Parsing Result
-	struct MEZZ_LIB ParseResult
-	{
-		/// @brief Parsing status ( see @ref ParseStatus )
-		ParseStatus Status;
-
-		/// @brief Last parsed offset (in char_t units from start of input data)
-		ptrdiff_t Offset;
-
-		/// @brief Source document encoding ( see @ref Encoding )
-		Encoding DocumentEncoding;
-
-		/// @brief Default constructor, initializes object to failed state.
-		ParseResult();
-
-		/// @brief Cast to bool operator
-		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.
-		operator bool() const;
-
-		// Get error Description
-		const char* Description() const;
-	};
-
-	// Document class (DOM tree GetRoot)
-	class MEZZ_LIB Document: public Node
-	{
-	private:
-        Char8* _buffer;
-
-		char _memory[192];
-
-		// Non-copyable semantics
-		Document(const Document&);
-		const Document& operator=(const Document&);
-
-		void create();
-		void destroy();
-
-		ParseResult LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own);
-
-	public:
-		// Default constructor, makes empty document
-		Document();
-
-		// Destructor, invalidates all node/GetAttribute handles to this document
-		~Document();
-
-		// Removes all nodes, leaving the empty document
-		void Reset();
-
-		// Removes all nodes, then copies the entire contents of the specified document
-		void Reset(const Document& proto);
-
-		/// @brief Load a document from a data stream.
-		/// @param stream The stream to load from.
-		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-        ParseResult Load(Resource::DataStream& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-
-	#ifndef XML_NO_STL
-		// Load document from stream.
-		ParseResult Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-		ParseResult Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
-	#endif
-
-		// Load document from zero-terminated string. No DocumentEncoding conversions are applied.
-        ParseResult Load(const Char8* contents, unsigned int options = ParseDefault);
-
-		// Load document from file
-		/// @brief Load document from file
-		/// @param Path An c-style char array that contains the path and filename of the xml document to load.
-		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-		ParseResult LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-		/// @brief Load document from file
-		/// @param Path An c-style wide char array that contains the path and filename of the xml document to load.
-		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-		ParseResult LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-
-		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
-		ParseResult LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-
-		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
-		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		/// @details You should ensure that buffer data will persist throughout the documents lifetime, and free the buffer memory manually once document is destroyed.
-		/// @param contents A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the XML::Document.
-		/// @param size The size of the buffer.
-		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
-		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-		ParseResult LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-
-		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore).
-		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		/// @details You should allocate the buffer with pugixml allocation function; XML::Document will free the buffer when it is no longer needed (you can not use it anymore).
-		/// @param contents A pointer to buffer containing the xml document to be parsed.
-		/// @param size The size of the buffer.
-		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-		/// @return A ParseResult that stores the the outcome of attempting to load the document.
-		ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-
-		/// @brief Save XML document to a stream.
-		/// @param stream The stream to save this document to.
-		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-        void Save(Resource::DataStream& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
-
-
-
-		/// @brief Save XML document to WriterInstance.
-		/// @param WriterInstance The Writer that will be used to output the xml text.
-		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-        void Save(Writer& WriterInstance, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
-
-	#ifndef XML_NO_STL
-		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details).
-        void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
-		/// @brief Save XML document to a stream of wide characters.
-		/// @param stream The output stream of wide characters to send the XML document to.
-		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-        void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault) const;
-	#endif
-
-		/// @brief Save XML to file.
-		/// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
-		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-		/// @return False if the target file could not be opened for writing
-        bool SaveFile(const char* Path, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
-		/// @brief Save XML to file.
-		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
-		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
-		/// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
-		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
-		/// @return False if the target file could not be opened for writing
-        bool SaveFile(const wchar_t* Path, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
-
-		// Get document element
-		/// @brief Get document element
-		/// @return An XML::Node that is the root element of the xml Document
-		Node DocumentElement() const;
-	};
 
     // XPath query return type
 	enum XPathValueType
@@ -685,12 +284,11 @@ namespace XML
 
 	public:
 		// Construct a compiled object from XPath expression.
-		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on compilation errors.
 
 		/// @brief Construct a compiled object from XPath expression.
 		/// @param query The query in the form of a c-string style char_t array.
 		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (which is the default), throws XPathException on compilation errors.
+        /// @throw Throws XPathException on compilation errors.
         explicit XPathQuery(const Char8* query, XPathVariableSet* variables = 0);
 
 		// Destructor
@@ -701,49 +299,43 @@ namespace XML
 		XPathValueType ReturnType() const;
 
 		// Evaluate expression as boolean Value in the specified context; performs Type conversion if necessary.
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
+        // throws std::bad_alloc on out of memory errors.
 		bool EvaluateBoolean(const XPathNode& n) const;
 
 		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary.
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		/// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.
 		/// @param n The XPathNode that will serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+        /// @throw Throws std::bad_alloc on out of memory errors.
 		/// @return A result as a double from evaluating the expression.
 		double EvaluateNumber(const XPathNode& n) const;
 
-	#ifndef XML_NO_STL
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary.
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
 		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
 		/// @param n The XPathNode that will serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+        /// @throw Throws std::bad_alloc on out of memory errors.
 		/// @return A result as a String from evaluating the expression.
 		String EvaluateString(const XPathNode& n) const;
-	#endif
+
 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary.
 		// At most capacity characters are written to the destination buffer, full Result size is returned (includes terminating zero).
-		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors.
-		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead.
 		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
 		/// @param buffer The place to store the c-style Character array
 		/// @param capacity At most capacity characters are written to the destination buffer.
 		/// @param n The XPathNode that with serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, this returns empty  set instead.
+        /// @throw  std::bad_alloc on out of memory errors.
 		/// @return Full result size is returned (includes terminating zero).
         size_t EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const;
 
 		// Evaluate expression as node set in the specified context.
-		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors.
-		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
+        // throws XPathException on Type mismatch and std::bad_alloc on out of memory errors.
+
 		/// @brief Evaluate expression as node set in the specified context.
 		/// @param n The XPathNode that with serve as the context for the query.
-		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
 		/// @return An XPathNodeSet.
 		XPathNodeSet EvaluateNodeSet(const XPathNode& n) const;
 
-		// Get parsing Result (used to get compilation errors in XML_NO_EXCEPTIONS mode)
+        // Get parsing Result
 		const XPathParseResult& Result() const;
 
 		/// @brief Used to convert this to a boolean value in a safe way
@@ -754,7 +346,6 @@ namespace XML
 		bool operator!() const;
 	};
 
-	#ifndef XML_NO_EXCEPTIONS
 	// XPath exception class
 	class MEZZ_LIB XPathException: public Mezzanine::Exception
 	{
@@ -772,7 +363,7 @@ namespace XML
 		// Get parse Result
 		const XPathParseResult& Result() const;
 	};
-	#endif
+
 
 	// XPath node class (either Node or Attribute)
 	class MEZZ_LIB XPathNode
@@ -883,8 +474,6 @@ namespace XML
 		void _assign(const_iterator begin, const_iterator end);
 	};
 
-
-#ifndef XML_NO_STL
 	// Convert wide string to UTF8
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > MEZZ_LIB AsUtf8(const wchar_t* str);
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > MEZZ_LIB AsUtf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str);
@@ -892,7 +481,7 @@ namespace XML
 	// Convert UTF8 to wide string
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > MEZZ_LIB AsWide(const char* str);
 	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > MEZZ_LIB AsWide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str);
-#endif
+
 
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure
 	typedef void* (*AllocationFunction)(size_t size);
@@ -909,26 +498,6 @@ namespace XML
 }
 //Name spaces end here
 }
-
-#if !defined(XML_NO_STL) && (defined(_MSC_VER) || defined(__ICC))
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
-	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::NodeIterator&);
-	std::bidirectional_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::AttributeIterator&);
-	std::forward_iterator_tag MEZZ_LIB _Iter_cat(const Mezzanine::XML::NamedNode_iterator&);
-}
-#endif
-
-#if !defined(XML_NO_STL) && defined(__SUNPRO_CC)
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection
-	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::NodeIterator&);
-	std::bidirectional_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::AttributeIterator&);
-	std::forward_iterator_tag MEZZ_LIB __iterator_category(const Mezzanine::XML::NamedNode_iterator&);
-}
-#endif
 
 #endif
 

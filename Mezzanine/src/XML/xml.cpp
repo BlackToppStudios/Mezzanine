@@ -67,16 +67,12 @@
 
 #include <math.h>
 #include <float.h>
-#ifdef XML_NO_EXCEPTIONS
-#	include <setjmp.h>
-#endif
 
 
-#ifndef XML_NO_STL
-#	include <istream>
-#	include <ostream>
-#	include <string>
-#endif
+#include <istream>
+#include <ostream>
+#include <string>
+
 
 // For placement new
 #include <new>
@@ -219,7 +215,6 @@ PUGI__NS_BEGIN
 
 PUGI__NS_END
 
-#if !defined(XML_NO_STL)
 // auto_ptr-like buffer holder for exception recovery
 PUGI__NS_BEGIN
 	struct buffer_holder
@@ -244,7 +239,7 @@ PUGI__NS_BEGIN
 		}
 	};
 PUGI__NS_END
-#endif
+
 
 PUGI__NS_BEGIN
 	static const size_t MemoryPage_size =
@@ -1315,7 +1310,7 @@ PUGI__NS_BEGIN
 		buffer[size] = 0;
 	}
 
-#ifndef XML_NO_STL
+
 	PUGI__FN std::string AsUtf8_impl(const wchar_t* str, size_t length)
 	{
 		// first pass: get length in utf8 characters
@@ -1354,7 +1349,7 @@ PUGI__NS_BEGIN
 
 		return Result;
 	}
-#endif
+
 
     inline bool strcpy_insitu_allow(size_t length, uintptr_t allocated, Char8* target)
 	{
@@ -2144,10 +2139,10 @@ PUGI__NS_BEGIN
 			// read PI target
             Char8* target = s;
 
-			if (!PUGI__IS_CHARTYPE(*s, ct_start_symbol)) PUGI__THROW_ERROR(StatusBadPi, s);
+            if (!PUGI__IS_CHARTYPE(*s, ct_start_symbol)) PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 
 			PUGI__SCANWHILE(PUGI__IS_CHARTYPE(*s, ct_symbol));
-			PUGI__CHECK_ERROR(StatusBadPi, s);
+            PUGI__CHECK_ERROR(StatusBadProcessingInstruction, s);
 
 			// determine node Type; stricmp / strcasecmp is not portable
 			bool declaration = (target[0] | ' ') == 'x' && (target[1] | ' ') == 'm' && (target[2] | ' ') == 'l' && target + 3 == s;
@@ -2157,7 +2152,7 @@ PUGI__NS_BEGIN
 				if (declaration)
 				{
 					// disallow non top-level declarations
-					if (cursor->GetParent) PUGI__THROW_ERROR(StatusBadPi, s);
+                    if (cursor->GetParent) PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 
 					PUGI__PUSHNODE(NodeDeclaration);
 				}
@@ -2174,7 +2169,7 @@ PUGI__NS_BEGIN
 				if (ch == '?')
 				{
 					// empty node
-					if (!ENDSWITH(*s, '>')) PUGI__THROW_ERROR(StatusBadPi, s);
+                    if (!ENDSWITH(*s, '>')) PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 					s += (*s == '>');
 
 					PUGI__POPNODE();
@@ -2187,7 +2182,7 @@ PUGI__NS_BEGIN
                     Char8* Value = s;
 
 					PUGI__SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>'));
-					PUGI__CHECK_ERROR(StatusBadPi, s);
+                    PUGI__CHECK_ERROR(StatusBadProcessingInstruction, s);
 
 					if (declaration)
 					{
@@ -2208,13 +2203,13 @@ PUGI__NS_BEGIN
 						s += (*s == '>');
 					}
 				}
-				else PUGI__THROW_ERROR(StatusBadPi, s);
+                else PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 			}
 			else
 			{
 				// scan for tag end
 				PUGI__SCANFOR(s[0] == '?' && ENDSWITH(s[1], '>'));
-				PUGI__CHECK_ERROR(StatusBadPi, s);
+                PUGI__CHECK_ERROR(StatusBadProcessingInstruction, s);
 
 				s += (s[1] == '>' ? 2 : 1);
 			}
@@ -2400,7 +2395,7 @@ PUGI__NS_BEGIN
 						s = ParseExclamation(s, cursor, optmsk, endch);
 						if (!s) return s;
 					}
-					else if (*s == 0 && endch == '?') PUGI__THROW_ERROR(StatusBadPi, s);
+                    else if (*s == 0 && endch == '?') PUGI__THROW_ERROR(StatusBadProcessingInstruction, s);
 					else PUGI__THROW_ERROR(StatusUnrecognizedTag, s);
 				}
 				else
@@ -3208,7 +3203,6 @@ PUGI__NS_BEGIN
 		return doc.LoadBufferInplaceOwn(contents, size, options, DocumentEncoding);
 	}
 
-#ifndef XML_NO_STL
 	template <typename T> struct StreamChunk
 	{
 		static StreamChunk* create()
@@ -3338,7 +3332,7 @@ PUGI__NS_BEGIN
 
 		return doc.LoadBufferInplaceOwn(buffer, size, options, DocumentEncoding);
 	}
-#endif
+
 
 #if defined(PUGI__MSVC_CRT_VERSION) || defined(__BORLANDC__) || (defined(__MINGW32__) && !defined(__STRICT_ANSI__))
 	PUGI__FN FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode)
@@ -3438,7 +3432,7 @@ namespace XML
 	}
     #endif //SWIG_SAFE
 
-	PUGI__FN TreeWalker::TreeWalker(): _Depth(0)
+    PUGI__FN TreeWalker::TreeWalker(): TraversalDepth(0)
 	{
 	}
 
@@ -3448,15 +3442,15 @@ namespace XML
 
 	PUGI__FN int TreeWalker::Depth() const
 	{
-		return _Depth;
+        return TraversalDepth;
 	}
 
-	PUGI__FN bool TreeWalker::begin(Node&)
+    PUGI__FN bool TreeWalker::OnTraversalBegin(Node&)
 	{
 		return true;
 	}
 
-	PUGI__FN bool TreeWalker::end(Node&)
+    PUGI__FN bool TreeWalker::OnTraversalEnd(Node&)
 	{
 		return true;
 	}
@@ -3718,9 +3712,9 @@ namespace XML
 		return ObjectRange<NodeIterator>(begin(), end());
 	}
 
-    PUGI__FN ObjectRange<NamedNode_iterator> Node::GetChildren(const Char8* Name_) const
+    PUGI__FN ObjectRange<NamedNodeIterator> Node::GetChildren(const Char8* Name_) const
 	{
-		return ObjectRange<NamedNode_iterator>(NamedNode_iterator(GetChild(Name_), Name_), NamedNode_iterator());
+        return ObjectRange<NamedNodeIterator>(NamedNodeIterator(GetChild(Name_), Name_), NamedNodeIterator());
 	}
 
 	PUGI__FN ObjectRange<AttributeIterator> Node::attributes() const
@@ -3849,12 +3843,12 @@ namespace XML
 		return Node(static_cast<internal::DocumentStruct*>(page->allocator));
 	}
 
-    PUGI__FN Text Node::GetText() const
+    PUGI__FN NodeText Node::GetText() const
 	{
-		return Text(NodeData);
+        return NodeText(NodeData);
 	}
 
-    PUGI__FN const Char8* Node::ChildValue() const
+    PUGI__FN const Char8* Node::GetChildValue() const
 	{
         if (!NodeData) return "";
 
@@ -3865,9 +3859,9 @@ namespace XML
         return "";
 	}
 
-    PUGI__FN const Char8* Node::ChildValue(const Char8* Name_) const
+    PUGI__FN const Char8* Node::GetChildValue(const Char8* Name_) const
 	{
-		return GetChild(Name_).ChildValue();
+		return GetChild(Name_).GetChildValue();
 	}
 
 	PUGI__FN Attribute Node::GetFirstAttribute() const
@@ -4283,7 +4277,6 @@ namespace XML
 		return Node();
 	}
 
-#ifndef XML_NO_STL
     PUGI__FN String Node::Path(Char8 delimiter) const
 	{
 		Node cursor = *this; // Make a copy.
@@ -4302,7 +4295,6 @@ namespace XML
 
 		return Result;
 	}
-#endif
 
     PUGI__FN Node Node::FirstElementByPath(const Char8* Path_, Char8 delimiter) const
 	{
@@ -4353,26 +4345,26 @@ namespace XML
 
 	PUGI__FN bool Node::Traverse(TreeWalker& walker)
 	{
-		walker._Depth = -1;
+        walker.TraversalDepth = -1;
 
 		Node arg_begin = *this;
-		if (!walker.begin(arg_begin)) return false;
+        if (!walker.OnTraversalBegin(arg_begin)) return false;
 
 		Node cur = GetFirstChild();
 
 		if (cur)
 		{
-			++walker._Depth;
+            ++walker.TraversalDepth;
 
 			do
 			{
 				Node arg_for_each = cur;
-				if (!walker.for_each(arg_for_each))
+                if (!walker.OnEachNode(arg_for_each))
 					return false;
 
 				if (cur.GetFirstChild())
 				{
-					++walker._Depth;
+                    ++walker.TraversalDepth;
 					cur = cur.GetFirstChild();
 				}
 				else if (cur.GetNextSibling())
@@ -4382,7 +4374,7 @@ namespace XML
 					// Borland C++ workaround
 					while (!cur.GetNextSibling() && cur != *this && !cur.GetParent().Empty())
 					{
-						--walker._Depth;
+                        --walker.TraversalDepth;
 						cur = cur.GetParent();
 					}
 
@@ -4393,10 +4385,10 @@ namespace XML
 			while (cur && cur != *this);
 		}
 
-		assert(walker._Depth == -1);
+        assert(walker.TraversalDepth == -1);
 
 		Node arg_end = *this;
-		return walker.end(arg_end);
+        return walker.OnTraversalEnd(arg_end);
 	}
 
 	PUGI__FN size_t Node::HashValue() const
@@ -4418,7 +4410,6 @@ namespace XML
 		internal::NodeOutput(buffered_WriterInstance, *this, indent, flags, Depth);
 	}
 
-#ifndef XML_NO_STL
     PUGI__FN void Node::Print(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const
 	{
 		WriterStream WriterInstance(stream);
@@ -4432,7 +4423,6 @@ namespace XML
 
 		Print(WriterInstance, indent, flags, Encodingwchar_t, Depth);
 	}
-#endif
 
 	PUGI__FN ptrdiff_t Node::OffSetDebug() const
 	{
@@ -4477,184 +4467,184 @@ namespace XML
 	}
 #endif
 
-	PUGI__FN Text::Text(NodeStruct* GetRoot): _GetRoot(GetRoot)
+    PUGI__FN NodeText::NodeText(NodeStruct* OtherRoot): RootNode(OtherRoot)
 	{
 	}
 
-	PUGI__FN NodeStruct* Text::_data() const
+    PUGI__FN NodeStruct* NodeText::Data() const
 	{
-		if (!_GetRoot || internal::is_text_node(_GetRoot)) return _GetRoot;
+        if (!RootNode || internal::is_text_node(RootNode)) return RootNode;
 
-		for (NodeStruct* node = _GetRoot->GetFirstChild; node; node = node->GetNextSibling)
+        for (NodeStruct* node = RootNode->GetFirstChild; node; node = node->GetNextSibling)
 			if (internal::is_text_node(node))
 				return node;
 
 		return 0;
 	}
 
-	PUGI__FN NodeStruct* Text::_data_new()
+    PUGI__FN NodeStruct* NodeText::DataNew()
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 		if (d) return d;
 
-		return Node(_GetRoot).AppendChild(NodePcdata).InternalObject();
+        return Node(RootNode).AppendChild(NodePcdata).InternalObject();
 	}
 
-	PUGI__FN Text::Text(): _GetRoot(0)
+    PUGI__FN NodeText::NodeText(): RootNode(0)
 	{
 	}
 
-	PUGI__FN static void unspecified_bool_Text(Text***)
+    PUGI__FN static void unspecified_bool_Text(NodeText***)
 	{
 	}
 
-	PUGI__FN Text::operator Text::unspecified_bool_type() const
+    PUGI__FN NodeText::operator NodeText::unspecified_bool_type() const
 	{
-		return _data() ? unspecified_bool_Text : 0;
+        return Data() ? unspecified_bool_Text : 0;
 	}
 
-	PUGI__FN bool Text::operator!() const
+    PUGI__FN bool NodeText::operator!() const
 	{
-		return !_data();
+        return !Data();
 	}
 
-	PUGI__FN bool Text::Empty() const
+    PUGI__FN bool NodeText::Empty() const
 	{
-		return _data() == 0;
+        return Data() == 0;
 	}
 
-    PUGI__FN const Char8* Text::Get() const
+    PUGI__FN const Char8* NodeText::GetString() const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
         return (d && d->Value) ? d->Value : "";
 	}
 
-    PUGI__FN const Char8* Text::AsString(const Char8* def) const
+    PUGI__FN const Char8* NodeText::AsString(const Char8* def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return (d && d->Value) ? d->Value : def;
 	}
 
-	PUGI__FN int Text::AsInt(int def) const
+    PUGI__FN int NodeText::AsInt(int def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_int(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN unsigned int Text::AsUint(unsigned int def) const
+    PUGI__FN unsigned int NodeText::AsUint(unsigned int def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_uint(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN double Text::AsDouble(double def) const
+    PUGI__FN double NodeText::AsDouble(double def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_double(d ? d->Value : 0, def);
 	}
 
-	PUGI__FN float Text::AsFloat(float def) const
+    PUGI__FN float NodeText::AsFloat(float def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_float(d ? d->Value : 0, def);
 	}
 
-    PUGI__FN Real Text::AsReal(Real def) const
+    PUGI__FN Real NodeText::AsReal(Real def) const
     {
         return AsFloat(def);
     }
 
-    PUGI__FN Whole Text::AsWhole(Whole def) const
+    PUGI__FN Whole NodeText::AsWhole(Whole def) const
     {
         return AsUint(def);
     }
 
-    PUGI__FN Integer Text::AsInteger(Integer def) const
+    PUGI__FN Integer NodeText::AsInteger(Integer def) const
     {
         return AsInt(def);
     }
 
-	PUGI__FN bool Text::AsBool(bool def) const
+    PUGI__FN bool NodeText::AsBool(bool def) const
 	{
-		NodeStruct* d = _data();
+        NodeStruct* d = Data();
 
 		return internal::GetValue_bool(d ? d->Value : 0, def);
 	}
 
-    PUGI__FN bool Text::Set(const Char8* rhs)
+    PUGI__FN bool NodeText::Set(const Char8* rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::strcpy_insitu(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(int rhs)
+    PUGI__FN bool NodeText::Set(int rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(unsigned int rhs)
+    PUGI__FN bool NodeText::Set(unsigned int rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(double rhs)
+    PUGI__FN bool NodeText::Set(double rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-	PUGI__FN bool Text::Set(bool rhs)
+    PUGI__FN bool NodeText::Set(bool rhs)
 	{
-		NodeStruct* dn = _data_new();
+        NodeStruct* dn = DataNew();
 
 		return dn ? internal::SetValue_convert(dn->Value, dn->header, internal::MemoryPage_Value_allocated_mask, rhs) : false;
 	}
 
-    PUGI__FN Text& Text::operator=(const Char8* rhs)
+    PUGI__FN NodeText& NodeText::operator=(const Char8* rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(int rhs)
+    PUGI__FN NodeText& NodeText::operator=(int rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(unsigned int rhs)
+    PUGI__FN NodeText& NodeText::operator=(unsigned int rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(double rhs)
+    PUGI__FN NodeText& NodeText::operator=(double rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Text& Text::operator=(bool rhs)
+    PUGI__FN NodeText& NodeText::operator=(bool rhs)
 	{
 		Set(rhs);
 		return *this;
 	}
 
-	PUGI__FN Node Text::data() const
+    PUGI__FN Node NodeText::data() const
 	{
-		return Node(_data());
+        return Node(Data());
 	}
 
 #ifdef __BORLANDC__
@@ -4673,40 +4663,40 @@ namespace XML
 	{
 	}
 
-	PUGI__FN NodeIterator::NodeIterator(const Node& node): _wrap(node), _GetParent(node.GetParent())
+    PUGI__FN NodeIterator::NodeIterator(const Node& node): TargetNode(node), ParentNode(node.GetParent())
 	{
 	}
 
-	PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* GetParent): _wrap(ref), _GetParent(GetParent)
+    PUGI__FN NodeIterator::NodeIterator(NodeStruct* ref, NodeStruct* ParentNode): TargetNode(ref), ParentNode(ParentNode)
 	{
 	}
 
 	PUGI__FN bool NodeIterator::operator==(const NodeIterator& rhs) const
 	{
-		return _wrap.NodeData == rhs._wrap.NodeData && _GetParent.NodeData == rhs._GetParent.NodeData;
+        return TargetNode.NodeData == rhs.TargetNode.NodeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN bool NodeIterator::operator!=(const NodeIterator& rhs) const
 	{
-		return _wrap.NodeData != rhs._wrap.NodeData || _GetParent.NodeData != rhs._GetParent.NodeData;
+        return TargetNode.NodeData != rhs.TargetNode.NodeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN Node& NodeIterator::operator*() const
 	{
-		assert(_wrap.NodeData);
-		return _wrap;
+        assert(TargetNode.NodeData);
+        return TargetNode;
 	}
 
 	PUGI__FN Node* NodeIterator::operator->() const
 	{
-		assert(_wrap.NodeData);
-		return const_cast<Node*>(&_wrap); // BCC32 workaround
+        assert(TargetNode.NodeData);
+        return const_cast<Node*>(&TargetNode); // BCC32 workaround
 	}
 
 	PUGI__FN const NodeIterator& NodeIterator::operator++()
 	{
-		assert(_wrap.NodeData);
-		_wrap.NodeData = _wrap.NodeData->GetNextSibling;
+        assert(TargetNode.NodeData);
+        TargetNode.NodeData = TargetNode.NodeData->GetNextSibling;
 		return *this;
 	}
 
@@ -4719,7 +4709,7 @@ namespace XML
 
 	PUGI__FN const NodeIterator& NodeIterator::operator--()
 	{
-		_wrap = _wrap.NodeData ? _wrap.GetPreviousSibling() : _GetParent.GetLastChild();
+        TargetNode = TargetNode.NodeData ? TargetNode.GetPreviousSibling() : ParentNode.GetLastChild();
 		return *this;
 	}
 
@@ -4734,40 +4724,40 @@ namespace XML
 	{
 	}
 
-	PUGI__FN AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent): _wrap(attr), _GetParent(GetParent)
+	PUGI__FN AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent): TargetAttribute(attr), ParentNode(GetParent)
 	{
 	}
 
-	PUGI__FN AttributeIterator::AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent): _wrap(ref), _GetParent(GetParent)
+	PUGI__FN AttributeIterator::AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent): TargetAttribute(ref), ParentNode(GetParent)
 	{
 	}
 
 	PUGI__FN bool AttributeIterator::operator==(const AttributeIterator& rhs) const
 	{
-		return _wrap.AttributeData == rhs._wrap.AttributeData && _GetParent.NodeData == rhs._GetParent.NodeData;
+		return TargetAttribute.AttributeData == rhs.TargetAttribute.AttributeData && ParentNode.NodeData == rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN bool AttributeIterator::operator!=(const AttributeIterator& rhs) const
 	{
-		return _wrap.AttributeData != rhs._wrap.AttributeData || _GetParent.NodeData != rhs._GetParent.NodeData;
+		return TargetAttribute.AttributeData != rhs.TargetAttribute.AttributeData || ParentNode.NodeData != rhs.ParentNode.NodeData;
 	}
 
 	PUGI__FN Attribute& AttributeIterator::operator*() const
 	{
-		assert(_wrap.AttributeData);
-		return _wrap;
+		assert(TargetAttribute.AttributeData);
+		return TargetAttribute;
 	}
 
 	PUGI__FN Attribute* AttributeIterator::operator->() const
 	{
-		assert(_wrap.AttributeData);
-		return const_cast<Attribute*>(&_wrap); // BCC32 workaround
+		assert(TargetAttribute.AttributeData);
+		return const_cast<Attribute*>(&TargetAttribute); // BCC32 workaround
 	}
 
 	PUGI__FN const AttributeIterator& AttributeIterator::operator++()
 	{
-		assert(_wrap.AttributeData);
-		_wrap.AttributeData = _wrap.AttributeData->GetNextAttribute;
+		assert(TargetAttribute.AttributeData);
+		TargetAttribute.AttributeData = TargetAttribute.AttributeData->GetNextAttribute;
 		return *this;
 	}
 
@@ -4780,7 +4770,7 @@ namespace XML
 
 	PUGI__FN const AttributeIterator& AttributeIterator::operator--()
 	{
-		_wrap = _wrap.AttributeData ? _wrap.GetPreviousAttribute() : _GetParent.GetLastAttribute();
+		TargetAttribute = TargetAttribute.AttributeData ? TargetAttribute.GetPreviousAttribute() : ParentNode.GetLastAttribute();
 		return *this;
 	}
 
@@ -4791,46 +4781,46 @@ namespace XML
 		return temp;
 	}
 
-	PUGI__FN NamedNode_iterator::NamedNode_iterator(): _Name(0)
+    PUGI__FN NamedNodeIterator::NamedNodeIterator(): TargetName(0)
 	{
 	}
 
-    PUGI__FN NamedNode_iterator::NamedNode_iterator(const Node& node, const Char8* Name): _node(node), _Name(Name)
+    PUGI__FN NamedNodeIterator::NamedNodeIterator(const Node& node, const Char8* Name): TargetNode(node), TargetName(Name)
 	{
 	}
 
-	PUGI__FN bool NamedNode_iterator::operator==(const NamedNode_iterator& rhs) const
+    PUGI__FN bool NamedNodeIterator::operator==(const NamedNodeIterator& rhs) const
 	{
-		return _node == rhs._node;
+        return TargetNode == rhs.TargetNode;
 	}
 
-	PUGI__FN bool NamedNode_iterator::operator!=(const NamedNode_iterator& rhs) const
+    PUGI__FN bool NamedNodeIterator::operator!=(const NamedNodeIterator& rhs) const
 	{
-		return _node != rhs._node;
+        return TargetNode != rhs.TargetNode;
 	}
 
-	PUGI__FN Node& NamedNode_iterator::operator*() const
+    PUGI__FN Node& NamedNodeIterator::operator*() const
 	{
-		assert(_node.NodeData);
-		return _node;
+        assert(TargetNode.NodeData);
+        return TargetNode;
 	}
 
-	PUGI__FN Node* NamedNode_iterator::operator->() const
+    PUGI__FN Node* NamedNodeIterator::operator->() const
 	{
-		assert(_node.NodeData);
-		return const_cast<Node*>(&_node); // BCC32 workaround
+        assert(TargetNode.NodeData);
+        return const_cast<Node*>(&TargetNode); // BCC32 workaround
 	}
 
-	PUGI__FN const NamedNode_iterator& NamedNode_iterator::operator++()
+    PUGI__FN const NamedNodeIterator& NamedNodeIterator::operator++()
 	{
-		assert(_node.NodeData);
-		_node = _node.GetNextSibling(_Name);
+        assert(TargetNode.NodeData);
+        TargetNode = TargetNode.GetNextSibling(TargetName);
 		return *this;
 	}
 
-	PUGI__FN NamedNode_iterator NamedNode_iterator::operator++(int)
+    PUGI__FN NamedNodeIterator NamedNodeIterator::operator++(int)
 	{
-		NamedNode_iterator temp = *this;
+        NamedNodeIterator temp = *this;
 		++*this;
 		return temp;
 	}
@@ -4857,7 +4847,7 @@ namespace XML
 
 		case StatusUnrecognizedTag: return "Could not determine tag Type";
 
-		case StatusBadPi: return "Error parsing document declaration/processing instruction";
+        case StatusBadProcessingInstruction: return "Error parsing document declaration/processing instruction";
 		case StatusBadComment: return "Error parsing comment";
 		case StatusBadCdata: return "Error parsing CDATA section";
 		case StatusBadDocType: return "Error parsing document Type declaration";
@@ -4962,7 +4952,6 @@ namespace XML
 		}
 	}
 
-#ifndef XML_NO_STL
 	PUGI__FN ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding)
 	{
 		Reset();
@@ -4976,7 +4965,6 @@ namespace XML
 
 		return internal::LoadStreamImpl(*this, stream, options, Encodingwchar_t);
 	}
-#endif
 
     PUGI__FN ParseResult Document::Load(const Char8* contents, unsigned int options)
 	{
@@ -5071,7 +5059,6 @@ namespace XML
 		internal::NodeOutput(buffered_WriterInstance, *this, indent, flags, 0);
 	}
 
-#ifndef XML_NO_STL
     PUGI__FN void Document::Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
 		WriterStream WriterInstance(stream);
@@ -5085,7 +5072,6 @@ namespace XML
 
 		Save(WriterInstance, indent, flags, Encodingwchar_t);
 	}
-#endif
 
     PUGI__FN bool Document::SaveFile(const char* Path_, const Char8* indent, unsigned int flags, Encoding DocumentEncoding) const
 	{
@@ -5108,7 +5094,6 @@ namespace XML
 		return Node();
 	}
 
-#ifndef XML_NO_STL
 	PUGI__FN std::string MEZZ_LIB AsUtf8(const wchar_t* str)
 	{
 		assert(str);
@@ -5132,7 +5117,7 @@ namespace XML
 	{
 		return internal::AsWide_impl(str.c_str(), str.size());
 	}
-#endif
+
 
 	PUGI__FN void MEZZ_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate)
 	{
@@ -5151,47 +5136,8 @@ namespace XML
 	}
 }
 
-#if !defined(XML_NO_STL) && (defined(_MSC_VER) || defined(__ICC))
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier)
-	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::XML::NodeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
 
-	PUGI__FN std::bidirectional_iterator_tag _Iter_cat(const Mezzanine::XML::AttributeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
 
-	PUGI__FN std::forward_iterator_tag _Iter_cat(const Mezzanine::XML::NamedNode_iterator&)
-	{
-		return std::forward_iterator_tag();
-	}
-}
-#endif
-
-#if !defined(XML_NO_STL) && defined(__SUNPRO_CC)
-namespace std
-{
-	// Workarounds for (non-standard) iterator category detection
-	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::XML::NodeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
-
-	PUGI__FN std::bidirectional_iterator_tag __iterator_category(const Mezzanine::XML::AttributeIterator&)
-	{
-		return std::bidirectional_iterator_tag();
-	}
-
-	PUGI__FN std::forward_iterator_tag __iterator_category(const Mezzanine::XML::NamedNode_iterator&)
-	{
-		return std::forward_iterator_tag();
-	}
-}
-#endif
 // STL replacements
 PUGI__NS_BEGIN
 	struct equal_to
@@ -5440,15 +5386,11 @@ PUGI__NS_BEGIN
 		size_t _GetRoot_size;
 
 	public:
-	#ifdef XML_NO_EXCEPTIONS
-		jmp_buf* error_handler;
-	#endif
+
 
 		XPathAllocator(XPathMemoryBlock* GetRoot, size_t GetRoot_size = 0): _GetRoot(GetRoot), _GetRoot_size(GetRoot_size)
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			error_handler = 0;
-		#endif
+
 		}
 
 		void* allocate_nothrow(size_t size)
@@ -5487,12 +5429,7 @@ PUGI__NS_BEGIN
 
 			if (!Result)
 			{
-			#ifdef XML_NO_EXCEPTIONS
-				assert(error_handler);
-				longjmp(*error_handler, 1);
-			#else
 				throw std::bad_alloc();
-			#endif
 			}
 
 			return Result;
@@ -5606,10 +5543,6 @@ PUGI__NS_BEGIN
 		XPathAllocator temp;
 		XPathStack stack;
 
-	#ifdef XML_NO_EXCEPTIONS
-		jmp_buf error_handler;
-	#endif
-
 		XPathStackData(): Result(blocks + 0), temp(blocks + 1)
 		{
 			blocks[0].next = blocks[1].next = 0;
@@ -5617,9 +5550,6 @@ PUGI__NS_BEGIN
 			stack.Result = &Result;
 			stack.temp = &temp;
 
-		#ifdef XML_NO_EXCEPTIONS
-			Result.error_handler = temp.error_handler = &error_handler;
-		#endif
 		}
 
 		~XPathStackData()
@@ -8484,29 +8414,17 @@ PUGI__NS_BEGIN
 
 		XPathParseResult* _Result;
 
-	#ifdef XML_NO_EXCEPTIONS
-		jmp_buf _error_handler;
-	#endif
-
 		void throw_error(const char* message)
 		{
 			_Result->error = message;
 			_Result->Offset = _lexer.current_pos() - _query;
 
-		#ifdef XML_NO_EXCEPTIONS
-			longjmp(_error_handler, 1);
-		#else
-			//throw XPathException(*_Result);
-		#endif
+
 		}
 
 		void throw_error_oom()
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			throw_error("Out of memory");
-		#else
 			throw std::bad_alloc();
-		#endif
 		}
 
 		void* alloc_node()
@@ -9327,13 +9245,7 @@ PUGI__NS_BEGIN
 		{
 			XPathParser parser(query, variables, alloc, Result);
 
-		#ifdef XML_NO_EXCEPTIONS
-			int error = setjmp(parser._error_handler);
-
-			return (error == 0) ? parser.parse() : 0;
-		#else
-			return parser.parse();
-		#endif
+            return parser.parse();
 		}
 	};
 
@@ -9371,10 +9283,6 @@ PUGI__NS_BEGIN
 	{
 		if (!impl) return XPathString();
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return XPathString();
-	#endif
-
 		XPathContext c(n, 1, 1);
 
 		return impl->GetRoot->eval_string(c, sd.stack);
@@ -9383,7 +9291,6 @@ PUGI__NS_END
 
 namespace XML
 {
-#ifndef XML_NO_EXCEPTIONS
 	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): Exception("","","","",0), _Result(Result_)
 	{
 		assert(_Result.error);
@@ -9398,7 +9305,6 @@ namespace XML
 	{
 		return _Result;
 	}
-#endif
 
 	PUGI__FN XPathNode::XPathNode()
 	{
@@ -9487,11 +9393,7 @@ namespace XML
 
 			if (!storage)
 			{
-			#ifdef XML_NO_EXCEPTIONS
-				return;
-			#else
 				throw std::bad_alloc();
-			#endif
 			}
 
 			memcpy(storage, begin_, size_ * sizeof(XPathNode));
@@ -9785,11 +9687,7 @@ namespace XML
 
 		if (!qimpl)
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			_Result.error = "Out of memory";
-		#else
 			throw std::bad_alloc();
-		#endif
 		}
 		else
 		{
@@ -9824,10 +9722,6 @@ namespace XML
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return false;
-	#endif
-
 		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_boolean(c, sd.stack);
 	}
 
@@ -9838,21 +9732,15 @@ namespace XML
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return internal::gen_nan();
-	#endif
-
 		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_number(c, sd.stack);
 	}
 
-#ifndef XML_NO_STL
 	PUGI__FN String XPathQuery::EvaluateString(const XPathNode& n) const
 	{
 		internal::XPathStackData sd;
 
 		return internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(_impl), n, sd).c_str();
 	}
-#endif
 
     PUGI__FN size_t XPathQuery::EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const
 	{
@@ -9882,22 +9770,16 @@ namespace XML
 
 		if (GetRoot->retType() != XPathTypeNodeSet)
 		{
-		#ifdef XML_NO_EXCEPTIONS
-			return XPathNodeSet();
-		#else
 			XPathParseResult res;
 			res.error = "Expression does not evaluate to node set";
 
 			//throw XPathException(res);
-		#endif
+
 		}
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-	#ifdef XML_NO_EXCEPTIONS
-		if (setjmp(sd.error_handler)) return XPathNodeSet();
-	#endif
 
 		internal::XPathNodeSet_raw r = GetRoot->eval_NodeSet(c, sd.stack);
 

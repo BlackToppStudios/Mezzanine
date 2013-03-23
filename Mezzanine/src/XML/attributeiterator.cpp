@@ -53,13 +53,13 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
-#ifndef _xmlboilerplate_cpp
-#define _xmlboilerplate_cpp
+#ifndef _xmlattributeiterator_cpp
+#define _xmlattributeiterator_cpp
 
 /// @file
 /// @brief Describe file here
 
-#include "XML/xmlboilerplate.h"
+#include "XML/attributeiterator.h"
 
 namespace Mezzanine
 {
@@ -70,7 +70,6 @@ namespace Mezzanine
 } // /namespace Mezzanine
 
 #endif // Include guard
-
 
 /*
  *

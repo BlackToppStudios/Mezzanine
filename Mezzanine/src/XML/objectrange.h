@@ -54,13 +54,16 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
-#include "datatypes.h"
+#ifndef _xmlobjectrange_h
+#define _xmlobjectrange_h
 
 /// @file
 /// @brief Contains the implementation of the ObjectRange class template
 
-#ifndef _xmlobjectrange_h
-#define _xmlobjectrange_h
+#include "datatypes.h"
+
+SWIG_INFO_BEGINCLASS
+
 namespace Mezzanine
 {
     namespace XML
@@ -95,8 +98,11 @@ namespace Mezzanine
                 It end() const { return End; }
         };
     }
-}
-#endif
+}// /namespace Mezzanine
+
+SWIG_INFO_ENDCLASS
+
+#endif // Include guard
 
 /*
  *

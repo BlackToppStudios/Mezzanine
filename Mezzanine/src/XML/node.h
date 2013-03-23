@@ -57,26 +57,22 @@
 #ifndef _xmlnode_h
 #define _xmlnode_h
 
+/// @file
+/// @brief This defines the @ref XML::Node one of the cetral XML classes.
+
 #include "datatypes.h"
-#include "swig.h"
 #include "XML/xmlenumerations.h"
 #include "XML/attribute.h"
 #include "XML/objectrange.h"
 
-
-#ifndef SWIG
-#include <cstddef>
-#endif
-
 SWIG_INFO_BEGINCLASS
-
 
 namespace Mezzanine
 {
     namespace XML
     {
         class NodeStruct;
-        class Text;
+        class NodeText;
         class TreeWalker;
         class XPathNode;
         class XPathNodeSet;
@@ -85,7 +81,7 @@ namespace Mezzanine
         class Writer;
         class NodeIterator;
         class AttributeIterator;
-        class NamedNode_iterator;
+        class NamedNodeIterator;
 
 
 
@@ -94,7 +90,7 @@ namespace Mezzanine
         {
                 friend class AttributeIterator;
                 friend class NodeIterator;
-                friend class NamedNode_iterator;
+                friend class NamedNodeIterator;
 
             protected:
                 /// @internal
@@ -174,7 +170,7 @@ namespace Mezzanine
                 /// @return A @ref NodeType identifying this Node, or o/NULL if this Node is empty.
                 NodeType Type() const;
 
-                /// @brief Get the name of this @ref Node.
+                /// @brief ptrdiff_tGet the name of this @ref Node.
                 /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
                 /// @warning returns "" if Node is empty.
                 const Char8* Name() const;
@@ -220,7 +216,7 @@ namespace Mezzanine
 
                 /// @brief Get text object for the current node
                 /// @return An @ref Text which represents the PCData of this node.
-                Text GetText() const;
+                NodeText GetText() const;
 
                 #ifndef SWIG
                 /// @brief Attempt to get a child Node with a given name.
@@ -254,12 +250,12 @@ namespace Mezzanine
                 /// @brief Retrieve the value of this(or a child's) Nodes PCDATA child Node
                 /// @details If this node represents "<node>Some text in the PCDATA field, that is actually represent by a node</node>", then this would return "Some text in the PCDATA field, that is actually represent by a node". This will iterate through child Nodes from until it finds a PCDATA node or fails
                 /// @return This will return the Value of the first available PCDATA node.
-                const Char8* ChildValue() const;
+                const Char8* GetChildValue() const;
 
                 /// @brief Get the PCDATA of a given child. The same a calling "GetChild(Name).ChildValue()".
                 /// @param Name The Name of the desired child node.
                 /// @return This will return the Value of the first available matching PCDATA node.
-                const Char8* ChildValue(const Char8* Name) const;
+                const Char8* GetChildValue(const Char8* Name) const;
 
                 #ifndef SWIG
                 /// @brief Set the name of .
@@ -336,7 +332,7 @@ namespace Mezzanine
                 /// @brief Copies an Attribute and puts the copy at the beginning of this Nodes attributes.
                 /// @param proto The attribute to be copied.
                 /// @details This attempts to create a copy of an attribute Attribute and stick it at the beginning of the list of attribute on the current
-                /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+                /// Node. Tptrdiff_this will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
                 /// fail and return an empty attribute if this Node is empty.
                 /// @return The created Attribute or an empty Attribute on Failure.
                 Attribute PrependCopy(const Attribute& proto);
@@ -453,7 +449,7 @@ namespace Mezzanine
                 Node InsertCopyBefore(const Node& proto, const Node& node);
 
                 /// @brief Remove specified Attribute.
-                /// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
+                /// @param ptrdiff_ta The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
                 /// @return True if the removal was successful, false otherwise.
                 bool RemoveAttribute(const Attribute& a);
 
@@ -519,7 +515,6 @@ namespace Mezzanine
                     if (!NodeData) return Node();
 
                     Node cur = GetFirstChild();
-
                     while (cur.NodeData && cur.NodeData != NodeData)
                     {
                         if (pred(cur)) return cur;
@@ -653,7 +648,7 @@ namespace Mezzanine
                 /// @brief Get an iterator range for this a subset of this node's children nodes.
                 /// @param Name All members of the returned range with have this for a name.
                 /// @return A begin and end iterator for a range containing only the child nodes with the given name.
-                ObjectRange<NamedNode_iterator> GetChildren(const Char8* Name) const;
+                ObjectRange<NamedNodeIterator> GetChildren(const Char8* Name) const;
 
                 /// @brief A range of iterators for just the attributes of this node.
                 /// @return A par of iterators suitable for traversing all Attributes directly as children of this noce.
@@ -675,11 +670,11 @@ namespace Mezzanine
                 NodeStruct* InternalObject() const;
         }; // /Class Node
     }
-}
+} // /namespace Mezzanine
 
 SWIG_INFO_ENDCLASS
 
-#endif
+#endif // Include guard
 
 /*
  *

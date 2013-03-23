@@ -53,19 +53,28 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
+#ifndef _xmlboilerplate_h
+#define _xmlboilerplate_h
+
+/// @file
+/// @brief Describe file here
 
 #include "datatypes.h"
 
-#ifndef _xmlboilerplate_h
-#define _xmlboilerplate_h
+SWIG_INFO_BEGINCLASS
+
 namespace Mezzanine
 {
     namespace XML
     {
 
     }
-}
-#endif
+} // /namespace Mezzanine
+
+SWIG_INFO_ENDCLASS
+
+#endif // Include guard
+
 
 /*
  *
