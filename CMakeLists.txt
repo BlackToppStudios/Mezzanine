@@ -366,7 +366,7 @@ set(SoundLibraryNames
 )
 
 set(SDLLibraryNames
-    "SDL2"
+	"SDL2-static"
 )
 
 ###############################################################################
