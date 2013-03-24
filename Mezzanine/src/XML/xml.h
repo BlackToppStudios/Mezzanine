@@ -83,6 +83,7 @@
 #include "XML/xpathparseresult.h"
 #include "XML/xpathvariable.h"
 #include "XML/xpathvariableset.h"
+#include "XML/xpathquery.h"
 
 #include "exception.h"
 
@@ -138,84 +139,6 @@ namespace XML
 	// Range-based for loop support
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
-
-
-	// A compiled XPath query object
-	class MEZZ_LIB XPathQuery
-	{
-	private:
-		void* _impl;
-		XPathParseResult _Result;
-
-		typedef void (*unspecified_bool_type)(XPathQuery***);
-
-		// Non-copyable semantics
-		XPathQuery(const XPathQuery&);
-		XPathQuery& operator=(const XPathQuery&);
-
-	public:
-		// Construct a compiled object from XPath expression.
-
-		/// @brief Construct a compiled object from XPath expression.
-		/// @param query The query in the form of a c-string style char_t array.
-		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
-        /// @throw Throws XPathException on compilation errors.
-        explicit XPathQuery(const Char8* query, XPathVariableSet* variables = 0);
-
-		// Destructor
-		/// @brief Destructor
-		~XPathQuery();
-
-		// Get query expression return type
-		XPathValueType ReturnType() const;
-
-		// Evaluate expression as boolean Value in the specified context; performs Type conversion if necessary.
-        // throws std::bad_alloc on out of memory errors.
-		bool EvaluateBoolean(const XPathNode& n) const;
-
-		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary.
-		/// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.
-		/// @param n The XPathNode that will serve as the context for the query.
-        /// @throw Throws std::bad_alloc on out of memory errors.
-		/// @return A result as a double from evaluating the expression.
-		double EvaluateNumber(const XPathNode& n) const;
-
-		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary.
-		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
-		/// @param n The XPathNode that will serve as the context for the query.
-        /// @throw Throws std::bad_alloc on out of memory errors.
-		/// @return A result as a String from evaluating the expression.
-		String EvaluateString(const XPathNode& n) const;
-
-
-		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary.
-		// At most capacity characters are written to the destination buffer, full Result size is returned (includes terminating zero).
-		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
-		/// @param buffer The place to store the c-style Character array
-		/// @param capacity At most capacity characters are written to the destination buffer.
-		/// @param n The XPathNode that with serve as the context for the query.
-        /// @throw  std::bad_alloc on out of memory errors.
-		/// @return Full result size is returned (includes terminating zero).
-        size_t EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const;
-
-		// Evaluate expression as node set in the specified context.
-        // throws XPathException on Type mismatch and std::bad_alloc on out of memory errors.
-
-		/// @brief Evaluate expression as node set in the specified context.
-		/// @param n The XPathNode that with serve as the context for the query.
-		/// @return An XPathNodeSet.
-		XPathNodeSet EvaluateNodeSet(const XPathNode& n) const;
-
-        // Get parsing Result
-		const XPathParseResult& Result() const;
-
-		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal data is set and false otherwise.
-		operator unspecified_bool_type() const;
-
-		// Borland C++ workaround
-		bool operator!() const;
-	};
 
 	// XPath node class (either Node or Attribute)
 	class MEZZ_LIB XPathNode

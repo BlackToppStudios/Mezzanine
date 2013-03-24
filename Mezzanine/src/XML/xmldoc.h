@@ -1941,53 +1941,6 @@ namespace Mezzanine
         /// @warning Not part of the API, subject to change without warning.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathVariableSet
-
-
-        /// @fn XPathVariableSet::XPathVariableSet();
-
-
-        /// @fn XPathVariableSet::~XPathVariableSet();
-
-
-        /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
-        
-
-   		/// @fn XPathVariableSet::Get(const char_t* Name);
-   		
-
-		/// @fn XPathVariableSet::Get(const char_t* Name) const;
-		
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathQuery
-        /// @brief A compiled XPath query object
-        /// @details When you call select_nodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects can be needed in the following circumstances: \n
-        /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n
-        /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n
-        /// - You can get the type of expression value via query object. \n \n
-        /// Query objects correspond to XML::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to XML::XPathQuery in the container. \n \n
-        /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, XPathQuery::EvaluateBoolean(), XPathQuery::EvaluateNumber() and XPathQuery::EvaluateString() always return a result, but EvaluateNodeSet results in an error if the return type is not node set.
-
-        /// @fn XPathQuery::ReturnType() const;
-        /// @brief Get query expression return Type.
-        /// @return A XPathValueType.
-
-        /// @fn XPathQuery::EvaluateBoolean(const XPathNode& n) const;
-        /// @brief Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.
-        /// @return A bool result of evaluating the expression.
-        /// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
-        /// @param n The XPathNode that will serve as the context for the query.
-
-        /// @fn XPathQuery::Result() const;
-        /// @brief Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled)
-		/// @return A const reference to an XPathParseResult.
-
-        /// @fn XPathQuery::operator!() const;
-        /// @brief Logical not operator, used a workaround for borland compiler.
-        /// @return A bool that is the opposite of evaluatig this as a bool normally.
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNode
         /// @brief An XPath node which can store handles to a XML::Node or an XML::Attribute.
         /// @details Because an XPath node can be either a XML::Node or an XML::Attribute, there is a special type, XPathNode,
