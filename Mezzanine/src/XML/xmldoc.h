@@ -1939,26 +1939,6 @@ namespace Mezzanine
         /// @brief The internal data storage structure used in an Attribute.
         /// @warning Not part of the API, subject to change without warning.
 
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @enum XPathValueType
-        /// @brief XPathQuery return type
-
-		/// @var XPathTypeNone
-		/// @brief Unknown Type (query failed to compile)
-
-		/// @var XPathTypeNodeSet
-		/// @brief Node set (XPathNodeSet)
-
-		/// @var XPathTypeNumber
-		/// @brief Number This corresponds to a double or Real.
-
-		/// @var XPathTypeString
-		/// @brief Corresponds to the String type.
-
-		/// @var XPathTypeBoolean
-		/// @brief A Boolean value.
-
 		///////////////////////////////////////////////////////////////////////////////
         /// @struct XPathParseResult
         /// @brief XPath parsing result

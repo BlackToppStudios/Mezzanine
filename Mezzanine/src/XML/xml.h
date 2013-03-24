@@ -136,15 +136,7 @@ namespace XML
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
 
-    // XPath query return type
-	enum XPathValueType
-	{
-		XPathTypeNone,	  // Unknown Type (query failed to compile)
-		XPathTypeNodeSet,  // Node set (XPathNodeSet)
-		XPathTypeNumber,	  // Number
-		XPathTypeString,	  // String
-		XPathTypeBoolean	  // Boolean
-	};
+
 
 	// XPath parsing Result
 	struct MEZZ_LIB XPathParseResult
