@@ -1764,26 +1764,26 @@ SWIG_Lua_dostring(lua_State *L, const char* str) {
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorException swig_types[41]
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorLuaException swig_types[42]
 #define SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException swig_types[43]
-#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[44]
-#define SWIGTYPE_p_Mezzanine__XML__Attribute swig_types[45]
-#define SWIGTYPE_p_Mezzanine__XML__AttributeIterator swig_types[46]
-#define SWIGTYPE_p_Mezzanine__XML__AttributeStruct swig_types[47]
-#define SWIGTYPE_p_Mezzanine__XML__Document swig_types[48]
-#define SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator swig_types[49]
-#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[50]
-#define SWIGTYPE_p_Mezzanine__XML__NodeIterator swig_types[51]
-#define SWIGTYPE_p_Mezzanine__XML__NodeStruct swig_types[52]
-#define SWIGTYPE_p_Mezzanine__XML__NodeText swig_types[53]
-#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t swig_types[54]
-#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t swig_types[55]
-#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t swig_types[56]
-#define SWIGTYPE_p_Mezzanine__XML__ParseResult swig_types[57]
-#define SWIGTYPE_p_Mezzanine__XML__TreeWalker swig_types[58]
-#define SWIGTYPE_p_Mezzanine__XML__Writer swig_types[59]
-#define SWIGTYPE_p_Mezzanine__XML__WriterFile swig_types[60]
-#define SWIGTYPE_p_Mezzanine__XML__WriterStream swig_types[61]
-#define SWIGTYPE_p_Mezzanine__XML__XMLStreamWrapper swig_types[62]
-#define SWIGTYPE_p_Mezzanine__XML__XPathException swig_types[63]
+#define SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException swig_types[44]
+#define SWIGTYPE_p_Mezzanine__Vector3 swig_types[45]
+#define SWIGTYPE_p_Mezzanine__XML__Attribute swig_types[46]
+#define SWIGTYPE_p_Mezzanine__XML__AttributeIterator swig_types[47]
+#define SWIGTYPE_p_Mezzanine__XML__AttributeStruct swig_types[48]
+#define SWIGTYPE_p_Mezzanine__XML__Document swig_types[49]
+#define SWIGTYPE_p_Mezzanine__XML__NamedNodeIterator swig_types[50]
+#define SWIGTYPE_p_Mezzanine__XML__Node swig_types[51]
+#define SWIGTYPE_p_Mezzanine__XML__NodeIterator swig_types[52]
+#define SWIGTYPE_p_Mezzanine__XML__NodeStruct swig_types[53]
+#define SWIGTYPE_p_Mezzanine__XML__NodeText swig_types[54]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__AttributeIterator_t swig_types[55]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NamedNodeIterator_t swig_types[56]
+#define SWIGTYPE_p_Mezzanine__XML__ObjectRangeT_Mezzanine__XML__NodeIterator_t swig_types[57]
+#define SWIGTYPE_p_Mezzanine__XML__ParseResult swig_types[58]
+#define SWIGTYPE_p_Mezzanine__XML__TreeWalker swig_types[59]
+#define SWIGTYPE_p_Mezzanine__XML__Writer swig_types[60]
+#define SWIGTYPE_p_Mezzanine__XML__WriterFile swig_types[61]
+#define SWIGTYPE_p_Mezzanine__XML__WriterStream swig_types[62]
+#define SWIGTYPE_p_Mezzanine__XML__XMLStreamWrapper swig_types[63]
 #define SWIGTYPE_p_Mezzanine__XML__XPathNode swig_types[64]
 #define SWIGTYPE_p_Mezzanine__XML__XPathNodeSet swig_types[65]
 #define SWIGTYPE_p_Mezzanine__XML__XPathParseResult swig_types[66]
@@ -29617,6 +29617,186 @@ static swig_lua_class *swig_Mezzanine_SyntaxErrorXMLException_bases[] = {0,0};
 static const char *swig_Mezzanine_SyntaxErrorXMLException_base_names[] = {"Mezzanine::SyntaxErrorException *",0};
 static swig_lua_class _wrap_class_Mezzanine_SyntaxErrorXMLException = { "SyntaxErrorXMLException", &SWIGTYPE_p_Mezzanine__SyntaxErrorXMLException,_wrap_new_SyntaxErrorXMLException, swig_delete_SyntaxErrorXMLException, swig_Mezzanine_SyntaxErrorXMLException_methods, swig_Mezzanine_SyntaxErrorXMLException_attributes, swig_Mezzanine_SyntaxErrorXMLException_bases, swig_Mezzanine_SyntaxErrorXMLException_base_names };
 
+static int _wrap_new_SyntaxErrorXPathException__SWIG_0(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::String *arg4 = 0 ;
+  Mezzanine::Whole *arg5 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::String temp4 ;
+  Mezzanine::Whole temp5 ;
+  Mezzanine::SyntaxErrorXPathException *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",5,5)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",3,"Mezzanine::String const &");
+  if(!lua_isstring(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",4,"Mezzanine::String const &");
+  if(!lua_isnumber(L,5)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",5,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  temp4.assign(lua_tostring(L,4),lua_rawlen(L,4)); arg4=&temp4;
+  SWIG_contract_assert((lua_tonumber(L,5)>=0),"number must not be negative")
+  temp5=(Mezzanine::Whole)lua_tonumber(L,5); arg5=&temp5;
+  result = (Mezzanine::SyntaxErrorXPathException *)new Mezzanine::SyntaxErrorXPathException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::String const &)*arg4,(Mezzanine::Whole const &)*arg5);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorXPathException__SWIG_1(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::String *arg1 = 0 ;
+  Mezzanine::String *arg2 = 0 ;
+  Mezzanine::String *arg3 = 0 ;
+  Mezzanine::Whole *arg4 = 0 ;
+  Mezzanine::String temp1 ;
+  Mezzanine::String temp2 ;
+  Mezzanine::String temp3 ;
+  Mezzanine::Whole temp4 ;
+  Mezzanine::SyntaxErrorXPathException *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",4,4)
+  if(!lua_isstring(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",1,"Mezzanine::String const &");
+  if(!lua_isstring(L,2)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",2,"Mezzanine::String const &");
+  if(!lua_isstring(L,3)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",3,"Mezzanine::String const &");
+  if(!lua_isnumber(L,4)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException",4,"Mezzanine::Whole const &");
+  temp1.assign(lua_tostring(L,1),lua_rawlen(L,1)); arg1=&temp1;
+  temp2.assign(lua_tostring(L,2),lua_rawlen(L,2)); arg2=&temp2;
+  temp3.assign(lua_tostring(L,3),lua_rawlen(L,3)); arg3=&temp3;
+  SWIG_contract_assert((lua_tonumber(L,4)>=0),"number must not be negative")
+  temp4=(Mezzanine::Whole)lua_tonumber(L,4); arg4=&temp4;
+  result = (Mezzanine::SyntaxErrorXPathException *)new Mezzanine::SyntaxErrorXPathException((Mezzanine::String const &)*arg1,(Mezzanine::String const &)*arg2,(Mezzanine::String const &)*arg3,(Mezzanine::Whole const &)*arg4);
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_SyntaxErrorXPathException(lua_State* L) {
+  int argc;
+  int argv[6]={
+    1,2,3,4,5,6
+  };
+  
+  argc = lua_gettop(L);
+  if (argc == 4) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isnumber(L,argv[3]);
+          }
+          if (_v) {
+            return _wrap_new_SyntaxErrorXPathException__SWIG_1(L);
+          }
+        }
+      }
+    }
+  }
+  if (argc == 5) {
+    int _v;
+    {
+      _v = lua_isstring(L,argv[0]);
+    }
+    if (_v) {
+      {
+        _v = lua_isstring(L,argv[1]);
+      }
+      if (_v) {
+        {
+          _v = lua_isstring(L,argv[2]);
+        }
+        if (_v) {
+          {
+            _v = lua_isstring(L,argv[3]);
+          }
+          if (_v) {
+            {
+              _v = lua_isnumber(L,argv[4]);
+            }
+            if (_v) {
+              return _wrap_new_SyntaxErrorXPathException__SWIG_0(L);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  lua_pushstring(L,"Wrong arguments for overloaded function 'new_SyntaxErrorXPathException'\n"
+    "  Possible C/C++ prototypes are:\n"
+    "    Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n"
+    "    Mezzanine::SyntaxErrorXPathException::SyntaxErrorXPathException(Mezzanine::String const &,Mezzanine::String const &,Mezzanine::String const &,Mezzanine::Whole const &)\n");
+  lua_error(L);return 0;
+}
+
+
+static int _wrap_SyntaxErrorXPathException_GetExceptionCode(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::SyntaxErrorXPathException *arg1 = (Mezzanine::SyntaxErrorXPathException *) 0 ;
+  Mezzanine::Whole result;
+  
+  SWIG_check_num_args("Mezzanine::SyntaxErrorXPathException::GetExceptionCode",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::SyntaxErrorXPathException::GetExceptionCode",1,"Mezzanine::SyntaxErrorXPathException const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,0))){
+    SWIG_fail_ptr("SyntaxErrorXPathException_GetExceptionCode",1,SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException);
+  }
+  
+  result = (Mezzanine::Whole)((Mezzanine::SyntaxErrorXPathException const *)arg1)->GetExceptionCode();
+  lua_pushnumber(L, (lua_Number) result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_SyntaxErrorXPathException(void *obj) {
+Mezzanine::SyntaxErrorXPathException *arg1 = (Mezzanine::SyntaxErrorXPathException *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_SyntaxErrorXPathException_methods[] = {
+    {"GetExceptionCode", _wrap_SyntaxErrorXPathException_GetExceptionCode}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_SyntaxErrorXPathException_attributes[] = {
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_SyntaxErrorXPathException_bases[] = {0,0};
+static const char *swig_Mezzanine_SyntaxErrorXPathException_base_names[] = {"Mezzanine::SyntaxErrorException *",0};
+static swig_lua_class _wrap_class_Mezzanine_SyntaxErrorXPathException = { "SyntaxErrorXPathException", &SWIGTYPE_p_Mezzanine__SyntaxErrorXPathException,_wrap_new_SyntaxErrorXPathException, swig_delete_SyntaxErrorXPathException, swig_Mezzanine_SyntaxErrorXPathException_methods, swig_Mezzanine_SyntaxErrorXPathException_attributes, swig_Mezzanine_SyntaxErrorXPathException_bases, swig_Mezzanine_SyntaxErrorXPathException_base_names };
+
 static int _wrap_new_SyntaxErrorLuaException__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::String *arg1 = 0 ;
@@ -33499,70 +33679,6 @@ static swig_lua_attribute swig_Mezzanine_XML_XPathQuery_attributes[] = {
 static swig_lua_class *swig_Mezzanine_XML_XPathQuery_bases[] = {0};
 static const char *swig_Mezzanine_XML_XPathQuery_base_names[] = {0};
 static swig_lua_class _wrap_class_Mezzanine_XML_XPathQuery = { "XPathQuery", &SWIGTYPE_p_Mezzanine__XML__XPathQuery,_wrap_new_XPathQuery, swig_delete_XPathQuery, swig_Mezzanine_XML_XPathQuery_methods, swig_Mezzanine_XML_XPathQuery_attributes, swig_Mezzanine_XML_XPathQuery_bases, swig_Mezzanine_XML_XPathQuery_base_names };
-
-static int _wrap_XPathException_what(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathException *arg1 = (Mezzanine::XML::XPathException *) 0 ;
-  char *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathException::what",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathException::what",1,"Mezzanine::XML::XPathException const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathException,0))){
-    SWIG_fail_ptr("XPathException_what",1,SWIGTYPE_p_Mezzanine__XML__XPathException);
-  }
-  
-  result = (char *)((Mezzanine::XML::XPathException const *)arg1)->what();
-  lua_pushstring(L,(const char *)result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_XPathException_Result(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathException *arg1 = (Mezzanine::XML::XPathException *) 0 ;
-  Mezzanine::XML::XPathParseResult *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathException::Result",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathException::Result",1,"Mezzanine::XML::XPathException const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathException,0))){
-    SWIG_fail_ptr("XPathException_Result",1,SWIGTYPE_p_Mezzanine__XML__XPathException);
-  }
-  
-  result = (Mezzanine::XML::XPathParseResult *) &((Mezzanine::XML::XPathException const *)arg1)->Result();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_XPathException(void *obj) {
-Mezzanine::XML::XPathException *arg1 = (Mezzanine::XML::XPathException *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_XML_XPathException_methods[] = {
-    {"what", _wrap_XPathException_what}, 
-    {"Result", _wrap_XPathException_Result}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_XML_XPathException_attributes[] = {
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_XML_XPathException_bases[] = {0,0};
-static const char *swig_Mezzanine_XML_XPathException_base_names[] = {"Mezzanine::Exception *",0};
-static swig_lua_class _wrap_class_Mezzanine_XML_XPathException = { "XPathException", &SWIGTYPE_p_Mezzanine__XML__XPathException,0, swig_delete_XPathException, swig_Mezzanine_XML_XPathException_methods, swig_Mezzanine_XML_XPathException_attributes, swig_Mezzanine_XML_XPathException_bases, swig_Mezzanine_XML_XPathException_base_names };
 
 static int _wrap_new_XPathNode__SWIG_0(lua_State* L) {
   int SWIG_arg = 0;
@@ -37518,6 +37634,7 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("Exception_MM_OUT_OF_BOUNDS_EXCEPTION", Mezzanine::Exception::MM_OUT_OF_BOUNDS_EXCEPTION)},
     {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION)},
     {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION_XML", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_XML)},
+    {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION_XPATH", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_XPATH)},
     {SWIG_LUA_CONSTTAB_INT("Exception_SYNTAX_ERROR_EXCEPTION_LUA", Mezzanine::Exception::SYNTAX_ERROR_EXCEPTION_LUA)},
     {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION", Mezzanine::Exception::SCRIPT_EXCEPTION)},
     {SWIG_LUA_CONSTTAB_INT("Exception_SCRIPT_EXCEPTION_LUA", Mezzanine::Exception::SCRIPT_EXCEPTION_LUA)},
@@ -37560,6 +37677,7 @@ static swig_lua_const_info swig_constants[] = {
     {SWIG_LUA_CONSTTAB_INT("MemoryOutOfBoundsException_ExceptionCode", Mezzanine::MemoryOutOfBoundsException::ExceptionCode)},
     {SWIG_LUA_CONSTTAB_INT("SyntaxErrorException_ExceptionCode", Mezzanine::SyntaxErrorException::ExceptionCode)},
     {SWIG_LUA_CONSTTAB_INT("SyntaxErrorXMLException_ExceptionCode", Mezzanine::SyntaxErrorXMLException::ExceptionCode)},
+    {SWIG_LUA_CONSTTAB_INT("SyntaxErrorXPathException_ExceptionCode", Mezzanine::SyntaxErrorXPathException::ExceptionCode)},
     {SWIG_LUA_CONSTTAB_INT("SyntaxErrorLuaException_ExceptionCode", Mezzanine::SyntaxErrorLuaException::ExceptionCode)},
     {SWIG_LUA_CONSTTAB_INT("ScriptException_ExceptionCode", Mezzanine::ScriptException::ExceptionCode)},
     {SWIG_LUA_CONSTTAB_INT("ScriptLuaException_ExceptionCode", Mezzanine::ScriptLuaException::ExceptionCode)},
@@ -37619,6 +37737,9 @@ static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptExcepti
 }
 static void *_p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__SyntaxErrorException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::SyntaxErrorException *)  ((Mezzanine::SyntaxErrorXMLException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__SyntaxErrorException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::SyntaxErrorException *)  ((Mezzanine::SyntaxErrorXPathException *) x));
 }
 static void *_p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__SyntaxErrorException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::SyntaxErrorException *)  ((Mezzanine::SyntaxErrorLuaException *) x));
@@ -37731,9 +37852,6 @@ static void *_p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__IOException(void *x, 
 static void *_p_Mezzanine__IOReadExceptionTo_p_Mezzanine__IOException(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::IOException *)  ((Mezzanine::IOReadException *) x));
 }
-static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaErrErrException *) x));
-}
 static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaRuntimeException *) x));
 }
@@ -37748,6 +37866,9 @@ static void *_p_Mezzanine__ScriptExceptionTo_p_Mezzanine__Exception(void *x, int
 }
 static void *_p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Exception *) (Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorLuaException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXPathException *) x));
 }
 static void *_p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Exception *) (Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXMLException *) x));
@@ -37833,6 +37954,9 @@ static void *_p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__Exception(void *x
 static void *_p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Exception *) (Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkWriteException *) x));
 }
+static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((Mezzanine::Exception *) (Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaErrErrException *) x));
+}
 static void *_p_Mezzanine__ArithmeticExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Exception *)  ((Mezzanine::ArithmeticException *) x));
 }
@@ -37857,12 +37981,6 @@ static void *_p_Mezzanine__InternalExceptionTo_p_Mezzanine__Exception(void *x, i
 static void *_p_Mezzanine__NotImplementedExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::Exception *)  ((Mezzanine::NotImplementedException *) x));
 }
-static void *_p_Mezzanine__XML__XPathExceptionTo_p_Mezzanine__Exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((Mezzanine::Exception *)  ((Mezzanine::XML::XPathException *) x));
-}
-static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaRuntimeException *) x));
-}
 static void *_p_Mezzanine__ScriptLuaYieldExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaYieldException *) x));
 }
@@ -37874,6 +37992,9 @@ static void *_p_Mezzanine__ScriptExceptionTo_p_std__exception(void *x, int *SWIG
 }
 static void *_p_Mezzanine__SyntaxErrorLuaExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorLuaException *) x));
+}
+static void *_p_Mezzanine__SyntaxErrorXPathExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXPathException *) x));
 }
 static void *_p_Mezzanine__SyntaxErrorXMLExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::SyntaxErrorException *) ((Mezzanine::SyntaxErrorXMLException *) x));
@@ -37962,6 +38083,9 @@ static void *_p_Mezzanine__NetworkExceptionTo_p_std__exception(void *x, int *SWI
 static void *_p_Mezzanine__NetworkReadExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::IOException *)(Mezzanine::NetworkException *) ((Mezzanine::NetworkReadException *) x));
 }
+static void *_p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
+    return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaRuntimeException *) x));
+}
 static void *_p_Mezzanine__ScriptLuaErrErrExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (Mezzanine::Exception *)(Mezzanine::ScriptException *)(Mezzanine::ScriptLuaException *) ((Mezzanine::ScriptLuaErrErrException *) x));
 }
@@ -37988,9 +38112,6 @@ static void *_p_Mezzanine__InternalExceptionTo_p_std__exception(void *x, int *SW
 }
 static void *_p_Mezzanine__NotImplementedExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::NotImplementedException *) x));
-}
-static void *_p_Mezzanine__XML__XPathExceptionTo_p_std__exception(void *x, int *SWIGUNUSEDPARM(newmemory)) {
-    return (void *)((std::exception *) (Mezzanine::Exception *) ((Mezzanine::XML::XPathException *) x));
 }
 static void *_p_Mezzanine__XML__DocumentTo_p_Mezzanine__XML__Node(void *x, int *SWIGUNUSEDPARM(newmemory)) {
     return (void *)((Mezzanine::XML::Node *)  ((Mezzanine::XML::Document *) x));
@@ -38039,6 +38160,7 @@ static swig_type_info _swigt__p_Mezzanine__ScriptLuaYieldException = {"_p_Mezzan
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorException = {"_p_Mezzanine__SyntaxErrorException", "Mezzanine::SyntaxErrorException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorLuaException = {"_p_Mezzanine__SyntaxErrorLuaException", "Mezzanine::SyntaxErrorLuaException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorLuaException, 0};
 static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXMLException = {"_p_Mezzanine__SyntaxErrorXMLException", "Mezzanine::SyntaxErrorXMLException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXMLException, 0};
+static swig_type_info _swigt__p_Mezzanine__SyntaxErrorXPathException = {"_p_Mezzanine__SyntaxErrorXPathException", "Mezzanine::SyntaxErrorXPathException *", 0, 0, (void*)&_wrap_class_Mezzanine_SyntaxErrorXPathException, 0};
 static swig_type_info _swigt__p_Mezzanine__Vector3 = {"_p_Mezzanine__Vector3", "Mezzanine::Vector3 *", 0, 0, (void*)&_wrap_class_Mezzanine_Vector3, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__Attribute = {"_p_Mezzanine__XML__Attribute", "Mezzanine::XML::Attribute *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_Attribute, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__AttributeIterator = {"_p_Mezzanine__XML__AttributeIterator", "Mezzanine::XML::AttributeIterator *|Mezzanine::XML::Node::attribute_iterator *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_AttributeIterator, 0};
@@ -38058,7 +38180,6 @@ static swig_type_info _swigt__p_Mezzanine__XML__Writer = {"_p_Mezzanine__XML__Wr
 static swig_type_info _swigt__p_Mezzanine__XML__WriterFile = {"_p_Mezzanine__XML__WriterFile", "Mezzanine::XML::WriterFile *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_WriterFile, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__WriterStream = {"_p_Mezzanine__XML__WriterStream", "Mezzanine::XML::WriterStream *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_WriterStream, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__XMLStreamWrapper = {"_p_Mezzanine__XML__XMLStreamWrapper", "Mezzanine::XML::XMLStreamWrapper *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_XMLStreamWrapper, 0};
-static swig_type_info _swigt__p_Mezzanine__XML__XPathException = {"_p_Mezzanine__XML__XPathException", "Mezzanine::XML::XPathException *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_XPathException, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__XPathNode = {"_p_Mezzanine__XML__XPathNode", "Mezzanine::XML::XPathNodeSet::const_iterator|Mezzanine::XML::XPathNode *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_XPathNode, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__XPathNodeSet = {"_p_Mezzanine__XML__XPathNodeSet", "Mezzanine::XML::XPathNodeSet *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_XPathNodeSet, 0};
 static swig_type_info _swigt__p_Mezzanine__XML__XPathParseResult = {"_p_Mezzanine__XML__XPathParseResult", "Mezzanine::XML::XPathParseResult *", 0, 0, (void*)&_wrap_class_Mezzanine_XML_XPathParseResult, 0};
@@ -38151,6 +38272,7 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__SyntaxErrorException,
   &_swigt__p_Mezzanine__SyntaxErrorLuaException,
   &_swigt__p_Mezzanine__SyntaxErrorXMLException,
+  &_swigt__p_Mezzanine__SyntaxErrorXPathException,
   &_swigt__p_Mezzanine__Vector3,
   &_swigt__p_Mezzanine__XML__Attribute,
   &_swigt__p_Mezzanine__XML__AttributeIterator,
@@ -38170,7 +38292,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Mezzanine__XML__WriterFile,
   &_swigt__p_Mezzanine__XML__WriterStream,
   &_swigt__p_Mezzanine__XML__XMLStreamWrapper,
-  &_swigt__p_Mezzanine__XML__XPathException,
   &_swigt__p_Mezzanine__XML__XPathNode,
   &_swigt__p_Mezzanine__XML__XPathNodeSet,
   &_swigt__p_Mezzanine__XML__XPathParseResult,
@@ -38225,7 +38346,7 @@ static swig_cast_info _swigc__p_Mezzanine__DirectoryNotFoundException[] = {  {&_
 static swig_cast_info _swigc__p_Mezzanine__DirectoryPermissionException[] = {  {&_swigt__p_Mezzanine__DirectoryPermissionException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DirectoryReadException[] = {  {&_swigt__p_Mezzanine__DirectoryReadException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__DirectoryWriteException[] = {  {&_swigt__p_Mezzanine__DirectoryWriteException, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__Exception[] = {  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__Exception, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidParametersException, _p_Mezzanine__InvalidParametersExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__XML__XPathException, _p_Mezzanine__XML__XPathExceptionTo_p_Mezzanine__Exception, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__Exception[] = {  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__Exception, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidParametersException, _p_Mezzanine__InvalidParametersExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_Mezzanine__Exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_Mezzanine__Exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FileException[] = {  {&_swigt__p_Mezzanine__FileException, 0, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_Mezzanine__FileException, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_Mezzanine__FileException, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_Mezzanine__FileException, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_Mezzanine__FileException, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FileNotFoundException[] = {  {&_swigt__p_Mezzanine__FileNotFoundException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__FilePermissionException[] = {  {&_swigt__p_Mezzanine__FilePermissionException, 0, 0, 0},{0, 0, 0, 0}};
@@ -38260,9 +38381,10 @@ static swig_cast_info _swigc__p_Mezzanine__ScriptLuaErrErrException[] = {  {&_sw
 static swig_cast_info _swigc__p_Mezzanine__ScriptLuaException[] = {  {&_swigt__p_Mezzanine__ScriptLuaException, 0, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_Mezzanine__ScriptLuaException, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ScriptLuaRuntimeException[] = {  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__ScriptLuaYieldException[] = {  {&_swigt__p_Mezzanine__ScriptLuaYieldException, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorException, 0, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorException, 0, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_Mezzanine__SyntaxErrorException, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorLuaException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXMLException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_Mezzanine__SyntaxErrorXPathException[] = {  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__Vector3[] = {  {&_swigt__p_Mezzanine__Vector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__Attribute[] = {  {&_swigt__p_Mezzanine__XML__Attribute, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__AttributeIterator[] = {  {&_swigt__p_Mezzanine__XML__AttributeIterator, 0, 0, 0},{0, 0, 0, 0}};
@@ -38282,7 +38404,6 @@ static swig_cast_info _swigc__p_Mezzanine__XML__Writer[] = {  {&_swigt__p_Mezzan
 static swig_cast_info _swigc__p_Mezzanine__XML__WriterFile[] = {  {&_swigt__p_Mezzanine__XML__WriterFile, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__WriterStream[] = {  {&_swigt__p_Mezzanine__XML__WriterStream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__XMLStreamWrapper[] = {  {&_swigt__p_Mezzanine__XML__XMLStreamWrapper, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_Mezzanine__XML__XPathException[] = {  {&_swigt__p_Mezzanine__XML__XPathException, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__XPathNode[] = {  {&_swigt__p_Mezzanine__XML__XPathNode, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__XPathNodeSet[] = {  {&_swigt__p_Mezzanine__XML__XPathNodeSet, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Mezzanine__XML__XPathParseResult[] = {  {&_swigt__p_Mezzanine__XML__XPathParseResult, 0, 0, 0},{0, 0, 0, 0}};
@@ -38313,7 +38434,7 @@ static swig_cast_info _swigc__p_std__basic_ostreamT_char_std__char_traitsT_char_
 static swig_cast_info _swigc__p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t[] = {  {&_swigt__p_std__basic_ostreamT_wchar_t_std__char_traitsT_wchar_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t[] = {  {&_swigt__p_std__basic_stringT_char_std__char_traitsT_char_t_std__allocatorT_char_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t[] = {  {&_swigt__p_std__basic_stringT_wchar_t_std__char_traitsT_wchar_t_t_std__allocatorT_wchar_t_t_t, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__Exception, _p_Mezzanine__ExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidParametersException, _p_Mezzanine__InvalidParametersExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__XML__XPathException, _p_Mezzanine__XML__XPathExceptionTo_p_std__exception, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_std__exception[] = {  {&_swigt__p_Mezzanine__SyntaxErrorException, _p_Mezzanine__SyntaxErrorExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXMLException, _p_Mezzanine__SyntaxErrorXMLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorXPathException, _p_Mezzanine__SyntaxErrorXPathExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__SyntaxErrorLuaException, _p_Mezzanine__SyntaxErrorLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptException, _p_Mezzanine__ScriptExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaErrErrException, _p_Mezzanine__ScriptLuaErrErrExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaException, _p_Mezzanine__ScriptLuaExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaYieldException, _p_Mezzanine__ScriptLuaYieldExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ScriptLuaRuntimeException, _p_Mezzanine__ScriptLuaRuntimeExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityDuplicateException, _p_Mezzanine__InstanceIdentityDuplicateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityNotFoundException, _p_Mezzanine__InstanceIdentityNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityInvalidException, _p_Mezzanine__InstanceIdentityInvalidExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InstanceIdentityException, _p_Mezzanine__InstanceIdentityExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__Exception, _p_Mezzanine__ExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOReadException, _p_Mezzanine__IOReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOWriteException, _p_Mezzanine__IOWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__IOException, _p_Mezzanine__IOExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileException, _p_Mezzanine__FileExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileReadException, _p_Mezzanine__FileReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileWriteException, _p_Mezzanine__FileWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_std__exception, 0, 0, 0},  {&_swigt__p_Mezzanine__NetworkException, _p_Mezzanine__NetworkExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkReadException, _p_Mezzanine__NetworkReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkWriteException, _p_Mezzanine__NetworkWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkNotFoundException, _p_Mezzanine__NetworkNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkURLException, _p_Mezzanine__NetworkURLExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NetworkPermissionException, _p_Mezzanine__NetworkPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryPermissionException, _p_Mezzanine__DirectoryPermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryNotFoundException, _p_Mezzanine__DirectoryNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryWriteException, _p_Mezzanine__DirectoryWriteExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryReadException, _p_Mezzanine__DirectoryReadExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__DirectoryException, _p_Mezzanine__DirectoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FilePermissionException, _p_Mezzanine__FilePermissionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__FileNotFoundException, _p_Mezzanine__FileNotFoundExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryOutOfBoundsException, _p_Mezzanine__MemoryOutOfBoundsExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__OutOfMemoryException, _p_Mezzanine__OutOfMemoryExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__MemoryManagementException, _p_Mezzanine__MemoryManagementExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__ArithmeticException, _p_Mezzanine__ArithmeticExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidParametersException, _p_Mezzanine__InvalidParametersExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidVersionException, _p_Mezzanine__InvalidVersionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InvalidStateException, _p_Mezzanine__InvalidStateExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RenderingAPIException, _p_Mezzanine__RenderingAPIExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__RuntimeAssertionException, _p_Mezzanine__RuntimeAssertionExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__InternalException, _p_Mezzanine__InternalExceptionTo_p_std__exception, 0, 0},  {&_swigt__p_Mezzanine__NotImplementedException, _p_Mezzanine__NotImplementedExceptionTo_p_std__exception, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__istream[] = {  {&_swigt__p_std__istream, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__listT_std__pairT_std__string_std__string_t_t[] = {  {&_swigt__p_std__listT_std__pairT_std__string_std__string_t_t, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_std__mapT_std__string_std__string_t[] = {  {&_swigt__p_std__mapT_std__string_std__string_t, 0, 0, 0},{0, 0, 0, 0}};
@@ -38375,6 +38496,7 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__SyntaxErrorException,
   _swigc__p_Mezzanine__SyntaxErrorLuaException,
   _swigc__p_Mezzanine__SyntaxErrorXMLException,
+  _swigc__p_Mezzanine__SyntaxErrorXPathException,
   _swigc__p_Mezzanine__Vector3,
   _swigc__p_Mezzanine__XML__Attribute,
   _swigc__p_Mezzanine__XML__AttributeIterator,
@@ -38394,7 +38516,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Mezzanine__XML__WriterFile,
   _swigc__p_Mezzanine__XML__WriterStream,
   _swigc__p_Mezzanine__XML__XMLStreamWrapper,
-  _swigc__p_Mezzanine__XML__XPathException,
   _swigc__p_Mezzanine__XML__XPathNode,
   _swigc__p_Mezzanine__XML__XPathNodeSet,
   _swigc__p_Mezzanine__XML__XPathParseResult,

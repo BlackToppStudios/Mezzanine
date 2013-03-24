@@ -346,7 +346,7 @@ namespace Mezzanine
         /// guarantee (functions that operate on streams). Also functions that call user-defined callbacks (i.e. Mezzanine::XML::Node::Traverse or Mezzanine::XML::Node::FindNode) do not
         /// provide any exception guarantees beyond the ones provided by the callback.
         /// \n \n
-        /// If exception handling is not disabled with XML_NO_EXCEPTIONS define, XPath functions may throw Mezzanine::XML::XPathException on parsing errors; also, XPath functions may
+        /// XPath functions may throw Mezzanine::XML::XPathException on parsing errors; also, XPath functions may
         /// throw std::bad_alloc in low memory conditions. Still, XPath functions provide strong exception guarantee.
         /// \n \n
         /// @subsection XMLMemory Memory management
@@ -1591,7 +1591,7 @@ namespace Mezzanine
         /// in document order from the result, and is equivalent to calling FindNodes(query).first(). If the XPath expression does not match anything, or the node handle is null, FindNodes
         /// returns an empty set, and FindSingleNode returns null XPath node.
         /// \n \n
-        /// If exception handling is not disabled, both functions throw Mezzanine::XML::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
+        /// Both functions throw Mezzanine::XML::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
         /// Error handling for details.
         /// \n \n
         /// While compiling expressions is fast, the compilation time can introduce a significant overhead if the same expression is used many times on small subtrees. If you're doing many
@@ -1601,7 +1601,7 @@ namespace Mezzanine
         /// Mezzanine::XML::XPathNode Mezzanine::XML::Node::FindSingleNode(const Mezzanine::XML::XPathQuery& query) const;
         /// Mezzanine::XML::XPathNodeSet Mezzanine::XML::Node::FindNodes(const Mezzanine::XML::XPathQuery& query) const;
         /// @endcode
-        /// If exception handling is not disabled, both functions throw Mezzanine::XML::XPathException if the query returns a value with type other than node set.
+        /// Both functions throw Mezzanine::XML::XPathException if the query returns a value with type other than node set.
         /// \n \n
         /// This is an example of selecting nodes using XPath expressions:
         /// @code
@@ -2048,18 +2048,6 @@ namespace Mezzanine
         /// @fn XPathQuery::operator!() const;
         /// @brief Logical not operator, used a workaround for borland compiler.
         /// @return A bool that is the opposite of evaluatig this as a bool normally.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathException
-        /// @brief Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.
-
-		/// @fn XPathException::what() const throw();
-		/// @brief Get error message.
-		/// @return A description of the error message as a c-style string.
-
-		/// @fn XPathException::Result() const;
-		/// @brief Get parse Result.
-		/// @return The XPathParseResult used to create this exception.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNode

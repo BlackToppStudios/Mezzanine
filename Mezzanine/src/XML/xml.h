@@ -346,25 +346,6 @@ namespace XML
 		bool operator!() const;
 	};
 
-	// XPath exception class
-	class MEZZ_LIB XPathException: public Mezzanine::Exception
-	{
-	private:
-		XPathParseResult _Result;
-
-	public:
-		// Construct exception from parse Result
-		/// @brief Construct exception from parse Result
-		explicit XPathException(const XPathParseResult& Result);
-
-		// Get error message
-		virtual const char* what() const throw();
-
-		// Get parse Result
-		const XPathParseResult& Result() const;
-	};
-
-
 	// XPath node class (either Node or Attribute)
 	class MEZZ_LIB XPathNode
 	{

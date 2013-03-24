@@ -9291,21 +9291,6 @@ PUGI__NS_END
 
 namespace XML
 {
-	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): Exception("","","","",0), _Result(Result_)
-	{
-		assert(_Result.error);
-	}
-
-	PUGI__FN const char* XPathException::what() const throw()
-	{
-		return _Result.error;
-	}
-
-	PUGI__FN const XPathParseResult& XPathException::Result() const
-	{
-		return _Result;
-	}
-
 	PUGI__FN XPathNode::XPathNode()
 	{
 	}
@@ -9771,11 +9756,12 @@ namespace XML
 		if (GetRoot->retType() != XPathTypeNodeSet)
 		{
 			XPathParseResult res;
-			res.error = "Expression does not evaluate to node set";
+            res.error = "Expression does not evaluate to node set";
 
-			//throw XPathException(res);
+            String ErrorMessage(String(res.Description()) + "\nError:" + res.error + "\nAt Offset: " + ToString(res.Offset));
 
-		}
+            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XPATH,(ErrorMessage.c_str()));
+        }
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
