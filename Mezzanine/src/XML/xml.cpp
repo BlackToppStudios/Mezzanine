@@ -5119,7 +5119,7 @@ namespace XML
 	}
 
 
-	PUGI__FN void MEZZ_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate)
+    PUGI__FN void MEZZ_LIB SetMemoryManagementFunctions(AllocationFunction allocate, deAllocationFunction deallocate)
 	{
 		internal::Memory::allocate = allocate;
 		internal::Memory::deallocate = deallocate;

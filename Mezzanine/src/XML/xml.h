@@ -80,6 +80,8 @@
 #include "XML/writer.h"
 #include "XML/xmldoc.h"
 #include "XML/xmlenumerations.h"
+#include "XML/xpathparseresult.h"
+
 #include "exception.h"
 
 #ifndef SWIG
@@ -137,26 +139,6 @@ namespace XML
 
 
 
-
-	// XPath parsing Result
-	struct MEZZ_LIB XPathParseResult
-	{
-		// Error message (0 if no error)
-		const char* error;
-
-		// Last parsed Offset (in char_t units from string start)
-		ptrdiff_t Offset;
-
-		/// @brief Default constructor, initializes object to failed state.
-		XPathParseResult();
-
-		/// @brief Cast to bool operator
-		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.
-		operator bool() const;
-
-		// Get error Description
-		const char* Description() const;
-	};
 
 	// A single XPath variable
 	class MEZZ_LIB XPathVariable
@@ -463,7 +445,7 @@ namespace XML
 	typedef void (*deAllocationFunction)(void* ptr);
 
 	// Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.
-	void MEZZ_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate);
+    void MEZZ_LIB SetMemoryManagementFunctions(AllocationFunction allocate, deAllocationFunction deallocate);
 
 	// Get current memory management functions
 	AllocationFunction MEZZ_LIB GetMemoryAllocationFunction();

@@ -56,8 +56,15 @@
 
 #include "datatypes.h"
 
+///////////////////////////////////////////////////////////////////////////////
 /// @file
-/// @brief This file houses all the documentation for the XML system that is not directly related to a specific class or function call.
+/// @brief The Doxygen documentation and minor tools to assist with the XML system
+/// @details The integration process for PugiXML is complicated task to maintain. This file
+/// was originally intended to ease that, now it includes the the XML Manual copied with
+/// permission from the authors website and adjusted for compatibility with
+/// The Mezzanine.
+///////////////////////////////////////
+
 
 #ifndef _xmldoc_h
 #define _xmldoc_h
@@ -1908,13 +1915,7 @@ namespace Mezzanine
 
         class Document;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @file xmldoc.h
-        /// @brief The Doxygen documentation and minor tools to assist with the XML system
-        /// @details The integration process for PugiXML requires that our changes all be stored in shell script.
-        /// This is not condusive to good clean documentation  and is why the doxygen documention for the XML parser exist here
-        /// instead of xml.h.
-        ///////////////////////////////////////
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @file xml.h
@@ -1938,16 +1939,6 @@ namespace Mezzanine
         /// @internal
         /// @brief The internal data storage structure used in an Attribute.
         /// @warning Not part of the API, subject to change without warning.
-
-		///////////////////////////////////////////////////////////////////////////////
-        /// @struct XPathParseResult
-        /// @brief XPath parsing result
-
-        /// @var XPathParseResult::Offset
-        /// @brief Last parsed Offset (in Character units from string start)
-
-        /// @var XPathParseResult::error
-        /// @brief Error message (0 if no error).
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathVariable

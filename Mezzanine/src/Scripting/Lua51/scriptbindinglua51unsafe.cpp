@@ -24388,6 +24388,122 @@ fail:
 }
 
 
+static int _wrap_XPathParseResult_Offset_set(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
+  ptrdiff_t arg2 ;
+  ptrdiff_t *argp2 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Offset",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",1,"Mezzanine::XML::XPathParseResult *");
+  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",2,"ptrdiff_t");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
+    SWIG_fail_ptr("XPathParseResult_Offset_set",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
+  }
+  
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_ptrdiff_t,0))){
+    SWIG_fail_ptr("XPathParseResult_Offset_set",2,SWIGTYPE_p_ptrdiff_t);
+  }
+  arg2 = *argp2;
+  
+  if (arg1) (arg1)->Offset = arg2;
+  
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathParseResult_Offset_get(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
+  ptrdiff_t result;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Offset",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",1,"Mezzanine::XML::XPathParseResult *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
+    SWIG_fail_ptr("XPathParseResult_Offset_get",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
+  }
+  
+  result =  ((arg1)->Offset);
+  {
+    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
+    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
+  }
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_new_XPathParseResult(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::XPathParseResult",0,0)
+  result = (Mezzanine::XML::XPathParseResult *)new Mezzanine::XML::XPathParseResult();
+  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,1); SWIG_arg++; 
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static int _wrap_XPathParseResult_Description(lua_State* L) {
+  int SWIG_arg = 0;
+  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
+  char *result = 0 ;
+  
+  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Description",1,1)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Description",1,"Mezzanine::XML::XPathParseResult const *");
+  
+  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
+    SWIG_fail_ptr("XPathParseResult_Description",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
+  }
+  
+  result = (char *)((Mezzanine::XML::XPathParseResult const *)arg1)->Description();
+  lua_pushstring(L,(const char *)result); SWIG_arg++;
+  return SWIG_arg;
+  
+  if(0) SWIG_fail;
+  
+fail:
+  lua_error(L);
+  return SWIG_arg;
+}
+
+
+static void swig_delete_XPathParseResult(void *obj) {
+Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) obj;
+delete arg1;
+}
+static swig_lua_method swig_Mezzanine_XML_XPathParseResult_methods[] = {
+    {"Description", _wrap_XPathParseResult_Description}, 
+    {0,0}
+};
+static swig_lua_attribute swig_Mezzanine_XML_XPathParseResult_attributes[] = {
+    { "Offset", _wrap_XPathParseResult_Offset_get, _wrap_XPathParseResult_Offset_set},
+    {0,0,0}
+};
+static swig_lua_class *swig_Mezzanine_XML_XPathParseResult_bases[] = {0};
+static const char *swig_Mezzanine_XML_XPathParseResult_base_names[] = {0};
+static swig_lua_class _wrap_class_Mezzanine_XML_XPathParseResult = { "XPathParseResult", &SWIGTYPE_p_Mezzanine__XML__XPathParseResult,_wrap_new_XPathParseResult, swig_delete_XPathParseResult, swig_Mezzanine_XML_XPathParseResult_methods, swig_Mezzanine_XML_XPathParseResult_attributes, swig_Mezzanine_XML_XPathParseResult_bases, swig_Mezzanine_XML_XPathParseResult_base_names };
+
 static int _wrap_Exception_GetExceptionCode(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::Exception *arg1 = (Mezzanine::Exception *) 0 ;
@@ -32317,180 +32433,6 @@ static swig_lua_class *swig_Mezzanine_NotImplementedException_bases[] = {0,0};
 static const char *swig_Mezzanine_NotImplementedException_base_names[] = {"Mezzanine::Exception *",0};
 static swig_lua_class _wrap_class_Mezzanine_NotImplementedException = { "NotImplementedException", &SWIGTYPE_p_Mezzanine__NotImplementedException,_wrap_new_NotImplementedException, swig_delete_NotImplementedException, swig_Mezzanine_NotImplementedException_methods, swig_Mezzanine_NotImplementedException_attributes, swig_Mezzanine_NotImplementedException_bases, swig_Mezzanine_NotImplementedException_base_names };
 
-static int _wrap_XPathParseResult_error_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
-  char *arg2 = (char *) 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::error",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::error",1,"Mezzanine::XML::XPathParseResult *");
-  if(!SWIG_lua_isnilstring(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::error",2,"char const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
-    SWIG_fail_ptr("XPathParseResult_error_set",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
-  }
-  
-  arg2 = (char *)lua_tostring(L, 2);
-  {
-    if (arg2) {
-      arg1->error = (char const *) (new char[strlen((const char *)arg2)+1]);
-      strcpy((char *)arg1->error, (const char *)arg2);
-    } else {
-      arg1->error = 0;
-    }
-  }
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_XPathParseResult_error_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
-  char *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::error",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::error",1,"Mezzanine::XML::XPathParseResult *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
-    SWIG_fail_ptr("XPathParseResult_error_get",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
-  }
-  
-  result = (char *) ((arg1)->error);
-  lua_pushstring(L,(const char *)result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_XPathParseResult_Offset_set(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
-  ptrdiff_t arg2 ;
-  ptrdiff_t *argp2 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Offset",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",1,"Mezzanine::XML::XPathParseResult *");
-  if(!lua_isuserdata(L,2)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",2,"ptrdiff_t");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
-    SWIG_fail_ptr("XPathParseResult_Offset_set",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
-  }
-  
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&argp2,SWIGTYPE_p_ptrdiff_t,0))){
-    SWIG_fail_ptr("XPathParseResult_Offset_set",2,SWIGTYPE_p_ptrdiff_t);
-  }
-  arg2 = *argp2;
-  
-  if (arg1) (arg1)->Offset = arg2;
-  
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_XPathParseResult_Offset_get(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
-  ptrdiff_t result;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Offset",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Offset",1,"Mezzanine::XML::XPathParseResult *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
-    SWIG_fail_ptr("XPathParseResult_Offset_get",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
-  }
-  
-  result =  ((arg1)->Offset);
-  {
-    ptrdiff_t * resultptr = new ptrdiff_t((const ptrdiff_t &) result);
-    SWIG_NewPointerObj(L,(void *) resultptr,SWIGTYPE_p_ptrdiff_t,1); SWIG_arg++;
-  }
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_new_XPathParseResult(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathParseResult *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::XPathParseResult",0,0)
-  result = (Mezzanine::XML::XPathParseResult *)new Mezzanine::XML::XPathParseResult();
-  SWIG_NewPointerObj(L,result,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,1); SWIG_arg++; 
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static int _wrap_XPathParseResult_Description(lua_State* L) {
-  int SWIG_arg = 0;
-  Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) 0 ;
-  char *result = 0 ;
-  
-  SWIG_check_num_args("Mezzanine::XML::XPathParseResult::Description",1,1)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::XPathParseResult::Description",1,"Mezzanine::XML::XPathParseResult const *");
-  
-  if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult,0))){
-    SWIG_fail_ptr("XPathParseResult_Description",1,SWIGTYPE_p_Mezzanine__XML__XPathParseResult);
-  }
-  
-  result = (char *)((Mezzanine::XML::XPathParseResult const *)arg1)->Description();
-  lua_pushstring(L,(const char *)result); SWIG_arg++;
-  return SWIG_arg;
-  
-  if(0) SWIG_fail;
-  
-fail:
-  lua_error(L);
-  return SWIG_arg;
-}
-
-
-static void swig_delete_XPathParseResult(void *obj) {
-Mezzanine::XML::XPathParseResult *arg1 = (Mezzanine::XML::XPathParseResult *) obj;
-delete arg1;
-}
-static swig_lua_method swig_Mezzanine_XML_XPathParseResult_methods[] = {
-    {"Description", _wrap_XPathParseResult_Description}, 
-    {0,0}
-};
-static swig_lua_attribute swig_Mezzanine_XML_XPathParseResult_attributes[] = {
-    { "error", _wrap_XPathParseResult_error_get, _wrap_XPathParseResult_error_set},
-    { "Offset", _wrap_XPathParseResult_Offset_get, _wrap_XPathParseResult_Offset_set},
-    {0,0,0}
-};
-static swig_lua_class *swig_Mezzanine_XML_XPathParseResult_bases[] = {0};
-static const char *swig_Mezzanine_XML_XPathParseResult_base_names[] = {0};
-static swig_lua_class _wrap_class_Mezzanine_XML_XPathParseResult = { "XPathParseResult", &SWIGTYPE_p_Mezzanine__XML__XPathParseResult,_wrap_new_XPathParseResult, swig_delete_XPathParseResult, swig_Mezzanine_XML_XPathParseResult_methods, swig_Mezzanine_XML_XPathParseResult_attributes, swig_Mezzanine_XML_XPathParseResult_bases, swig_Mezzanine_XML_XPathParseResult_base_names };
-
 static int _wrap_XPathVariable_Name(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::XPathVariable *arg1 = (Mezzanine::XML::XPathVariable *) 0 ;
@@ -34587,25 +34529,25 @@ static int _wrap_AsWide(lua_State* L) {
 }
 
 
-static int _wrap_SetMemory_management_functions(lua_State* L) {
+static int _wrap_SetMemoryManagementFunctions(lua_State* L) {
   int SWIG_arg = 0;
   Mezzanine::XML::AllocationFunction arg1 = (Mezzanine::XML::AllocationFunction) 0 ;
   Mezzanine::XML::deAllocationFunction arg2 = (Mezzanine::XML::deAllocationFunction) 0 ;
   
-  SWIG_check_num_args("Mezzanine::XML::SetMemory_management_functions",2,2)
-  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::SetMemory_management_functions",1,"Mezzanine::XML::AllocationFunction");
-  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::SetMemory_management_functions",2,"Mezzanine::XML::deAllocationFunction");
+  SWIG_check_num_args("Mezzanine::XML::SetMemoryManagementFunctions",2,2)
+  if(!SWIG_isptrtype(L,1)) SWIG_fail_arg("Mezzanine::XML::SetMemoryManagementFunctions",1,"Mezzanine::XML::AllocationFunction");
+  if(!SWIG_isptrtype(L,2)) SWIG_fail_arg("Mezzanine::XML::SetMemoryManagementFunctions",2,"Mezzanine::XML::deAllocationFunction");
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,1,(void**)&arg1,SWIGTYPE_p_f_size_t__p_void,0))){
-    SWIG_fail_ptr("SetMemory_management_functions",1,SWIGTYPE_p_f_size_t__p_void);
+    SWIG_fail_ptr("SetMemoryManagementFunctions",1,SWIGTYPE_p_f_size_t__p_void);
   }
   
   
   if (!SWIG_IsOK(SWIG_ConvertPtr(L,2,(void**)&arg2,SWIGTYPE_p_f_p_void__void,0))){
-    SWIG_fail_ptr("SetMemory_management_functions",2,SWIGTYPE_p_f_p_void__void);
+    SWIG_fail_ptr("SetMemoryManagementFunctions",2,SWIGTYPE_p_f_p_void__void);
   }
   
-  Mezzanine::XML::SetMemory_management_functions(arg1,arg2);
+  Mezzanine::XML::SetMemoryManagementFunctions(arg1,arg2);
   
   return SWIG_arg;
   
@@ -37484,7 +37426,7 @@ static const struct luaL_Reg swig_commands[] = {
     { "EscapeXML", _wrap_EscapeXML},
     { "AsUtf8",_wrap_AsUtf8},
     { "AsWide",_wrap_AsWide},
-    { "SetMemory_management_functions", _wrap_SetMemory_management_functions},
+    { "SetMemoryManagementFunctions", _wrap_SetMemoryManagementFunctions},
     { "GetMemoryAllocationFunction", _wrap_GetMemoryAllocationFunction},
     { "GetMemoryDeallocationFunction", _wrap_GetMemoryDeallocationFunction},
     { "PrintHello", _wrap_PrintHello},
