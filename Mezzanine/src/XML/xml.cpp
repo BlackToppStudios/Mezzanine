@@ -7077,7 +7077,7 @@ PUGI__NS_BEGIN
 
 		// tree node structure
 		XPathAstNode* _left;
-		XPathAstNode* _right;
+        XPathAstNode* _right;
 		XPathAstNode* _next;
 
 		union
@@ -9482,7 +9482,7 @@ namespace XML
 
     PUGI__FN const Char8* XPathVariable::Name() const
 	{
-		switch (_type)
+        switch (ValueType)
 		{
 		case XPathTypeNodeSet:
 			return static_cast<const internal::XPathVariableNodeSet*>(this)->Name;
@@ -9504,33 +9504,33 @@ namespace XML
 
 	PUGI__FN XPathValueType XPathVariable::Type() const
 	{
-		return _type;
+        return ValueType;
 	}
 
 	PUGI__FN bool XPathVariable::GetBoolean() const
 	{
-		return (_type == XPathTypeBoolean) ? static_cast<const internal::XPathVariableBoolean*>(this)->Value : false;
+        return (ValueType == XPathTypeBoolean) ? static_cast<const internal::XPathVariableBoolean*>(this)->Value : false;
 	}
 
 	PUGI__FN double XPathVariable::GetNumber() const
 	{
-		return (_type == XPathTypeNumber) ? static_cast<const internal::XPathVariableNumber*>(this)->Value : internal::gen_nan();
+        return (ValueType == XPathTypeNumber) ? static_cast<const internal::XPathVariableNumber*>(this)->Value : internal::gen_nan();
 	}
 
     PUGI__FN const Char8* XPathVariable::GetString() const
 	{
-        const Char8* Value = (_type == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
+        const Char8* Value = (ValueType == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
         return Value ? Value : "";
 	}
 
 	PUGI__FN const XPathNodeSet& XPathVariable::GetNodeSet() const
 	{
-		return (_type == XPathTypeNodeSet) ? static_cast<const internal::XPathVariableNodeSet*>(this)->Value : internal::dummy_NodeSet;
+        return (ValueType == XPathTypeNodeSet) ? static_cast<const internal::XPathVariableNodeSet*>(this)->Value : internal::dummy_NodeSet;
 	}
 
 	PUGI__FN bool XPathVariable::Set(bool Value)
 	{
-		if (_type != XPathTypeBoolean) return false;
+        if (ValueType != XPathTypeBoolean) return false;
 
 		static_cast<internal::XPathVariableBoolean*>(this)->Value = Value;
 		return true;
@@ -9538,7 +9538,7 @@ namespace XML
 
 	PUGI__FN bool XPathVariable::Set(double Value)
 	{
-		if (_type != XPathTypeNumber) return false;
+        if (ValueType != XPathTypeNumber) return false;
 
 		static_cast<internal::XPathVariableNumber*>(this)->Value = Value;
 		return true;
@@ -9546,7 +9546,7 @@ namespace XML
 
     PUGI__FN bool XPathVariable::Set(const Char8* Value)
 	{
-		if (_type != XPathTypeString) return false;
+        if (ValueType != XPathTypeString) return false;
 
 		internal::XPathVariableString* var = static_cast<internal::XPathVariableString*>(this);
 
@@ -9567,7 +9567,7 @@ namespace XML
 
 	PUGI__FN bool XPathVariable::Set(const XPathNodeSet& Value)
 	{
-		if (_type != XPathTypeNodeSet) return false;
+        if (ValueType != XPathTypeNodeSet) return false;
 
 		static_cast<internal::XPathVariableNodeSet*>(this)->Value = Value;
 		return true;
@@ -9586,22 +9586,22 @@ namespace XML
 
 			while (var)
 			{
-				XPathVariable* next = var->_next;
+                XPathVariable* next = var->NextVariable;
 
-				internal::delete_XPathVariable(var->_type, var);
+                internal::delete_XPathVariable(var->ValueType, var);
 
 				var = next;
 			}
 		}
 	}
 
-    PUGI__FN XPathVariable* XPathVariableSet::find(const Char8* Name) const
+    PUGI__FN XPathVariable* XPathVariableSet::Find(const Char8* Name) const
 	{
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]);
 		size_t hash = internal::hash_string(Name) % hash_size;
 
 		// look for existing variable
-		for (XPathVariable* var = _data[hash]; var; var = var->_next)
+        for (XPathVariable* var = _data[hash]; var; var = var->NextVariable)
 			if (internal::strequal(var->Name(), Name))
 				return var;
 
@@ -9614,7 +9614,7 @@ namespace XML
 		size_t hash = internal::hash_string(Name) % hash_size;
 
 		// look for existing variable
-		for (XPathVariable* var = _data[hash]; var; var = var->_next)
+        for (XPathVariable* var = _data[hash]; var; var = var->NextVariable)
 			if (internal::strequal(var->Name(), Name))
 				return var->Type() == Type ? var : 0;
 
@@ -9623,8 +9623,8 @@ namespace XML
 
 		if (Result)
 		{
-			Result->_type = Type;
-			Result->_next = _data[hash];
+            Result->ValueType = Type;
+            Result->NextVariable = _data[hash];
 
 			_data[hash] = Result;
 		}
@@ -9658,12 +9658,12 @@ namespace XML
 
     PUGI__FN XPathVariable* XPathVariableSet::Get(const Char8* Name)
 	{
-		return find(Name);
+        return Find(Name);
 	}
 
     PUGI__FN const XPathVariable* XPathVariableSet::Get(const Char8* Name) const
 	{
-		return find(Name);
+        return Find(Name);
 	}
 
     PUGI__FN XPathQuery::XPathQuery(const Char8* query, XPathVariableSet* variables): _impl(0)

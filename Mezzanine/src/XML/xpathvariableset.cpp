@@ -53,13 +53,13 @@
  * This work is based on the pugxml parser, which is:
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
-#ifndef _xpathvariable_cpp
-#define _xpathvariable_cpp
+#ifndef _xpathvariableset_cpp
+#define _xpathvariableset_cpp
 
 /// @file
 /// @brief Describe file here
 
-#include "XML/xpathvariable.h"
+#include "XML/xpathvariableset.h"
 
 namespace Mezzanine
 {

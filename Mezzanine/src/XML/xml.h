@@ -81,6 +81,8 @@
 #include "XML/xmldoc.h"
 #include "XML/xmlenumerations.h"
 #include "XML/xpathparseresult.h"
+#include "XML/xpathvariable.h"
+#include "XML/xpathvariableset.h"
 
 #include "exception.h"
 
@@ -137,111 +139,6 @@ namespace XML
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
-
-
-
-	// A single XPath variable
-	class MEZZ_LIB XPathVariable
-	{
-		friend class XPathVariableSet;
-
-	protected:
-		XPathValueType _type;
-		XPathVariable* _next;
-
-		XPathVariable();
-
-		// Non-copyable semantics
-		XPathVariable(const XPathVariable&);
-		XPathVariable& operator=(const XPathVariable&);
-
-	public:
-		// Get variable name
-        const Char8* Name() const;
-
-		// Get variable type
-		XPathValueType Type() const;
-
-		// Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-		/// @brief Get this as a bool.
-		/// @details Get variable Value; Minimal Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-		/// @return This as a bool, with any appropriate downcasting.
-		bool GetBoolean() const;
-		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-		/// @return This as a double.
-		/// @brief Get this as a double.
-		double GetNumber() const;
-		/// @brief Get this as a c-string.
-		/// @details Get variable Value; default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
-		/// @return This as a c-string of char_t, without conversion.
-        const Char8* GetString() const;
-		/// @brief Get this as a XPathNodeSet.
-		/// @details Get variable Value; no Type conversion is performed, if type of variable is not a XPathNodeSet then an XPathException is thrown
-		/// @throw XPathException on type mismatch or allocation error
-		/// @return A This as an XPathNodeSet, without conversion.
-		const XPathNodeSet& GetNodeSet() const;
-
-		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error
-		bool Set(bool Value);
-		/// @brief Set variable Value; no Type conversion is performed.
-		/// @param Value The value as a double to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
-		bool Set(double Value);
-		/// @brief Set variable Value; no Type conversion is performed.
-		/// @param Value The value as a char_t array to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
-        bool Set(const Char8* Value);
-		/// @brief Set variable Value; no Type conversion is performed.
-		/// @param Value The value to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
-		bool Set(const XPathNodeSet& Value);
-	};
-
-	// A set of XPath variables
-	class MEZZ_LIB XPathVariableSet
-	{
-	private:
-		XPathVariable* _data[64];
-
-		// Non-copyable semantics
-		XPathVariableSet(const XPathVariableSet&);
-		XPathVariableSet& operator=(const XPathVariableSet&);
-
-        XPathVariable* find(const Char8* Name) const;
-
-	public:
-		// Default constructor/destructor
-		XPathVariableSet();
-		~XPathVariableSet();
-
-		// Add a new variable or get the existing one, if the Types match
-        XPathVariable* Add(const Char8* Name, XPathValueType Type);
-
-		/// @brief Set contained variable Value; no Type conversion is performed.
-		/// @param Name The name of variable to change.
-		/// @param Value The value to attempt to put into the named variable.
-		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-        bool Set(const Char8* Name, bool Value);
-		/// @brief Set contained variable Value; no Type conversion is performed.
-		/// @param Name The name of variable to change.
-		/// @param Value The value to attempt to put into the named variable.
-		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-        bool Set(const Char8* Name, double Value);
-		/// @brief Set contained variable Value; no Type conversion is performed.
-		/// @param Name The name of variable to change.
-		/// @param Value The value to attempt to put into the named variable.
-		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-        bool Set(const Char8* Name, const Char8* Value);
-		/// @brief Set contained variable Value; no Type conversion is performed.
-		/// @param Name The name of variable to change.
-		/// @param Value The value to attempt to put into the named variable.
-		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-        bool Set(const Char8* Name, const XPathNodeSet& Value);
-
-		// Get existing variable by name
-        XPathVariable* Get(const Char8* Name);
-        const XPathVariable* Get(const Char8* Name) const;
-	};
 
 	// A compiled XPath query object
 	class MEZZ_LIB XPathQuery

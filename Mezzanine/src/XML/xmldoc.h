@@ -1941,56 +1941,23 @@ namespace Mezzanine
         /// @warning Not part of the API, subject to change without warning.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathVariable
-        /// @brief A single XPath variable
-        /// @details This is intended to be used as a single member of an XPathVariableSet, and for moving data into and out of XPathQueries.
-
-        /// @fn XPathVariable::XPathVariable();
-        /// @brief Protected Default constructor.
-
-        /// @var XPathVariable::_type
-        /// @brief What kind of data does this variable store
-
-        /// @var XPathVariable::_next
-        /// @brief The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list.
-
-        /// @fn XPathVariable::XPathVariable(const XPathVariable&);
-        /// @brief Protected Copy Constructor, used to force noncopyable semantics
-
-        /// @fn XPathVariable::operator=(const XPathVariable&);
-        /// @brief Protected assignment operator, used to force noncopyable semantics
-        /// @return Shouldn't be used, not implemented.
-
-        /// @fn XPathVariable::Set(bool Value);
-        /// @brief Set variable Value; no Type conversion is performed.
-        /// @return True is returned on Success, false is returned on Type mismatch error.
-        /// @param Value The value to attempt to put into this.
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathVariableSet
-        /// @brief A set of XPath variables.
+
 
         /// @fn XPathVariableSet::XPathVariableSet();
-        /// @brief Default Constructor, Blanks any XPathVariable it contains.
+
 
         /// @fn XPathVariableSet::~XPathVariableSet();
-        /// @brief Default Deconstructor, Deletes any XPathVariable it contains.
+
 
         /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
-        /// @brief Add a new variable or get the existing one, if the Types match
-        /// @return A pointer to the XPathVariable you referenced or just created.
-        /// @param Name The name of variable to add.
-        /// @param Type The Type of the new value to add as an XPathValueType.
+        
 
    		/// @fn XPathVariableSet::Get(const char_t* Name);
-   		/// @brief Get the named XPathVariable.
-        /// @return A pointer to the specified XPathVariable.
-   		/// @param Name The name of the XPathVariable you want.
+   		
 
 		/// @fn XPathVariableSet::Get(const char_t* Name) const;
-		/// @brief Get the named XPathVariable.
-   		/// @param Name The name of the XPathVariable you want.
-        /// @return A pointer to the specified XPathVariable.
+		
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathQuery
