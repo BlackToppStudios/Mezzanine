@@ -85,6 +85,9 @@ message ( STATUS "Putting Ogre Dependancy binaries in: ${OgreDeps_BINARY_DIR}" )
 # 1. lib.h
 # 2. plugin.h
 #
+# In ogresvnsrc/Dependencies/src/FreeImage/CMakeLists.txt
+# Add a line that explicitly tells cmake we need to link against winsock2 if we are on windows.  Add an "if(WIN32)" block with "target_link_libraries(FreeImage ws2_32)" to around line 536.
+#
 # --ogresvnsrc/Dependencies/src/FreeImage/Source/LibMNG/libmng_conf.h
 # --remark out line 80 to disable the definition of MNG_OPTIMIZE_CHUNKREADER to allow compilation
 #

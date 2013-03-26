@@ -21,7 +21,7 @@
 #ifndef CAUDIO_STATIC_LIB
 	#define CAUDIO_API __declspec(dllexport)
 #else
-	#define CAUDIO_API extern "C"
+	#define CAUDIO_API //extern "C"
 #endif // CAUDIO_STATIC_LIB
 
 //!Define for making the entire library Thread Safe, comment out to disable.  Will also disable internal threading by the library.
