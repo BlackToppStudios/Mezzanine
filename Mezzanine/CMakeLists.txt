@@ -287,6 +287,11 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmlenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathnode.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathparseresult.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathvariable.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathvariableset.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathquery.h"
 
 #######################################
 # A complete listing of our source files
@@ -470,6 +475,11 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/parseresult.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathnode.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathparseresult.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathvariable.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathvariableset.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xpathquery.cpp"
 )
 
 ###############################################################################

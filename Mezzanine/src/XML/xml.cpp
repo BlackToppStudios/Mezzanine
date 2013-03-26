@@ -5119,7 +5119,7 @@ namespace XML
 	}
 
 
-	PUGI__FN void MEZZ_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate)
+    PUGI__FN void MEZZ_LIB SetMemoryManagementFunctions(AllocationFunction allocate, deAllocationFunction deallocate)
 	{
 		internal::Memory::allocate = allocate;
 		internal::Memory::deallocate = deallocate;
@@ -7077,7 +7077,7 @@ PUGI__NS_BEGIN
 
 		// tree node structure
 		XPathAstNode* _left;
-		XPathAstNode* _right;
+        XPathAstNode* _right;
 		XPathAstNode* _next;
 
 		union
@@ -9291,36 +9291,21 @@ PUGI__NS_END
 
 namespace XML
 {
-	PUGI__FN XPathException::XPathException(const XPathParseResult& Result_): Exception("","","","",0), _Result(Result_)
-	{
-		assert(_Result.error);
-	}
-
-	PUGI__FN const char* XPathException::what() const throw()
-	{
-		return _Result.error;
-	}
-
-	PUGI__FN const XPathParseResult& XPathException::Result() const
-	{
-		return _Result;
-	}
-
 	PUGI__FN XPathNode::XPathNode()
 	{
 	}
 
-	PUGI__FN XPathNode::XPathNode(const Node& Node): _node(Node)
+    PUGI__FN XPathNode::XPathNode(const Node& Node): TargetNode(Node)
 	{
 	}
 
-	PUGI__FN XPathNode::XPathNode(const Attribute& attribute_, const Node& GetParent_): _node(attribute_ ? GetParent_ : Node()), _attribute(attribute_)
+    PUGI__FN XPathNode::XPathNode(const Attribute& attribute_, const Node& GetParent_): TargetNode(attribute_ ? GetParent_ : Node()), _attribute(attribute_)
 	{
 	}
 
 	PUGI__FN Node XPathNode::GetNode() const
 	{
-		return _attribute ? Node() : _node;
+        return _attribute ? Node() : TargetNode;
 	}
 
 	PUGI__FN Attribute XPathNode::GetAttribute() const
@@ -9330,7 +9315,7 @@ namespace XML
 
 	PUGI__FN Node XPathNode::GetParent() const
 	{
-		return _attribute ? _node : _node.GetParent();
+        return _attribute ? TargetNode : TargetNode.GetParent();
 	}
 
 	PUGI__FN static void unspecified_bool_XPathNode(XPathNode***)
@@ -9339,22 +9324,22 @@ namespace XML
 
 	PUGI__FN XPathNode::operator XPathNode::unspecified_bool_type() const
 	{
-		return (_node || _attribute) ? unspecified_bool_XPathNode : 0;
+        return (TargetNode || _attribute) ? unspecified_bool_XPathNode : 0;
 	}
 
 	PUGI__FN bool XPathNode::operator!() const
 	{
-		return !(_node || _attribute);
+        return !(TargetNode || _attribute);
 	}
 
 	PUGI__FN bool XPathNode::operator==(const XPathNode& n) const
 	{
-		return _node == n._node && _attribute == n._attribute;
+        return TargetNode == n.TargetNode && _attribute == n._attribute;
 	}
 
 	PUGI__FN bool XPathNode::operator!=(const XPathNode& n) const
 	{
-		return _node != n._node || _attribute != n._attribute;
+        return TargetNode != n.TargetNode || _attribute != n._attribute;
 	}
 
 #ifdef __BORLANDC__
@@ -9497,7 +9482,7 @@ namespace XML
 
     PUGI__FN const Char8* XPathVariable::Name() const
 	{
-		switch (_type)
+        switch (ValueType)
 		{
 		case XPathTypeNodeSet:
 			return static_cast<const internal::XPathVariableNodeSet*>(this)->Name;
@@ -9519,33 +9504,33 @@ namespace XML
 
 	PUGI__FN XPathValueType XPathVariable::Type() const
 	{
-		return _type;
+        return ValueType;
 	}
 
 	PUGI__FN bool XPathVariable::GetBoolean() const
 	{
-		return (_type == XPathTypeBoolean) ? static_cast<const internal::XPathVariableBoolean*>(this)->Value : false;
+        return (ValueType == XPathTypeBoolean) ? static_cast<const internal::XPathVariableBoolean*>(this)->Value : false;
 	}
 
 	PUGI__FN double XPathVariable::GetNumber() const
 	{
-		return (_type == XPathTypeNumber) ? static_cast<const internal::XPathVariableNumber*>(this)->Value : internal::gen_nan();
+        return (ValueType == XPathTypeNumber) ? static_cast<const internal::XPathVariableNumber*>(this)->Value : internal::gen_nan();
 	}
 
     PUGI__FN const Char8* XPathVariable::GetString() const
 	{
-        const Char8* Value = (_type == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
+        const Char8* Value = (ValueType == XPathTypeString) ? static_cast<const internal::XPathVariableString*>(this)->Value : 0;
         return Value ? Value : "";
 	}
 
 	PUGI__FN const XPathNodeSet& XPathVariable::GetNodeSet() const
 	{
-		return (_type == XPathTypeNodeSet) ? static_cast<const internal::XPathVariableNodeSet*>(this)->Value : internal::dummy_NodeSet;
+        return (ValueType == XPathTypeNodeSet) ? static_cast<const internal::XPathVariableNodeSet*>(this)->Value : internal::dummy_NodeSet;
 	}
 
 	PUGI__FN bool XPathVariable::Set(bool Value)
 	{
-		if (_type != XPathTypeBoolean) return false;
+        if (ValueType != XPathTypeBoolean) return false;
 
 		static_cast<internal::XPathVariableBoolean*>(this)->Value = Value;
 		return true;
@@ -9553,7 +9538,7 @@ namespace XML
 
 	PUGI__FN bool XPathVariable::Set(double Value)
 	{
-		if (_type != XPathTypeNumber) return false;
+        if (ValueType != XPathTypeNumber) return false;
 
 		static_cast<internal::XPathVariableNumber*>(this)->Value = Value;
 		return true;
@@ -9561,7 +9546,7 @@ namespace XML
 
     PUGI__FN bool XPathVariable::Set(const Char8* Value)
 	{
-		if (_type != XPathTypeString) return false;
+        if (ValueType != XPathTypeString) return false;
 
 		internal::XPathVariableString* var = static_cast<internal::XPathVariableString*>(this);
 
@@ -9582,7 +9567,7 @@ namespace XML
 
 	PUGI__FN bool XPathVariable::Set(const XPathNodeSet& Value)
 	{
-		if (_type != XPathTypeNodeSet) return false;
+        if (ValueType != XPathTypeNodeSet) return false;
 
 		static_cast<internal::XPathVariableNodeSet*>(this)->Value = Value;
 		return true;
@@ -9601,22 +9586,22 @@ namespace XML
 
 			while (var)
 			{
-				XPathVariable* next = var->_next;
+                XPathVariable* next = var->NextVariable;
 
-				internal::delete_XPathVariable(var->_type, var);
+                internal::delete_XPathVariable(var->ValueType, var);
 
 				var = next;
 			}
 		}
 	}
 
-    PUGI__FN XPathVariable* XPathVariableSet::find(const Char8* Name) const
+    PUGI__FN XPathVariable* XPathVariableSet::Find(const Char8* Name) const
 	{
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]);
 		size_t hash = internal::hash_string(Name) % hash_size;
 
 		// look for existing variable
-		for (XPathVariable* var = _data[hash]; var; var = var->_next)
+        for (XPathVariable* var = _data[hash]; var; var = var->NextVariable)
 			if (internal::strequal(var->Name(), Name))
 				return var;
 
@@ -9629,7 +9614,7 @@ namespace XML
 		size_t hash = internal::hash_string(Name) % hash_size;
 
 		// look for existing variable
-		for (XPathVariable* var = _data[hash]; var; var = var->_next)
+        for (XPathVariable* var = _data[hash]; var; var = var->NextVariable)
 			if (internal::strequal(var->Name(), Name))
 				return var->Type() == Type ? var : 0;
 
@@ -9638,8 +9623,8 @@ namespace XML
 
 		if (Result)
 		{
-			Result->_type = Type;
-			Result->_next = _data[hash];
+            Result->ValueType = Type;
+            Result->NextVariable = _data[hash];
 
 			_data[hash] = Result;
 		}
@@ -9673,15 +9658,15 @@ namespace XML
 
     PUGI__FN XPathVariable* XPathVariableSet::Get(const Char8* Name)
 	{
-		return find(Name);
+        return Find(Name);
 	}
 
     PUGI__FN const XPathVariable* XPathVariableSet::Get(const Char8* Name) const
 	{
-		return find(Name);
+        return Find(Name);
 	}
 
-    PUGI__FN XPathQuery::XPathQuery(const Char8* query, XPathVariableSet* variables): _impl(0)
+    PUGI__FN XPathQuery::XPathQuery(const Char8* query, XPathVariableSet* variables): QueryImplementation(0)
 	{
 		internal::XPathQueryImpl* qimpl = internal::XPathQueryImpl::create();
 
@@ -9693,60 +9678,60 @@ namespace XML
 		{
 			internal::buffer_holder impl_holder(qimpl, internal::XPathQueryImpl::destroy);
 
-			qimpl->GetRoot = internal::XPathParser::parse(query, variables, &qimpl->alloc, &_Result);
+            qimpl->GetRoot = internal::XPathParser::parse(query, variables, &qimpl->alloc, &ResultCache);
 
 			if (qimpl->GetRoot)
 			{
-				_impl = static_cast<internal::XPathQueryImpl*>(impl_holder.release());
-				_Result.error = 0;
+				QueryImplementation = static_cast<internal::XPathQueryImpl*>(impl_holder.release());
+                ResultCache.error = 0;
 			}
 		}
 	}
 
 	PUGI__FN XPathQuery::~XPathQuery()
 	{
-		internal::XPathQueryImpl::destroy(_impl);
+		internal::XPathQueryImpl::destroy(QueryImplementation);
 	}
 
 	PUGI__FN XPathValueType XPathQuery::ReturnType() const
 	{
-		if (!_impl) return XPathTypeNone;
+		if (!QueryImplementation) return XPathTypeNone;
 
-		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->retType();
+		return static_cast<internal::XPathQueryImpl*>(QueryImplementation)->GetRoot->retType();
 	}
 
 	PUGI__FN bool XPathQuery::EvaluateBoolean(const XPathNode& n) const
 	{
-		if (!_impl) return false;
+		if (!QueryImplementation) return false;
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_boolean(c, sd.stack);
+		return static_cast<internal::XPathQueryImpl*>(QueryImplementation)->GetRoot->eval_boolean(c, sd.stack);
 	}
 
 	PUGI__FN double XPathQuery::EvaluateNumber(const XPathNode& n) const
 	{
-		if (!_impl) return internal::gen_nan();
+		if (!QueryImplementation) return internal::gen_nan();
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
 
-		return static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot->eval_number(c, sd.stack);
+		return static_cast<internal::XPathQueryImpl*>(QueryImplementation)->GetRoot->eval_number(c, sd.stack);
 	}
 
 	PUGI__FN String XPathQuery::EvaluateString(const XPathNode& n) const
 	{
 		internal::XPathStackData sd;
 
-		return internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(_impl), n, sd).c_str();
+		return internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(QueryImplementation), n, sd).c_str();
 	}
 
     PUGI__FN size_t XPathQuery::EvaluateString(Char8* buffer, size_t capacity, const XPathNode& n) const
 	{
 		internal::XPathStackData sd;
 
-		internal::XPathString r = internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(_impl), n, sd);
+		internal::XPathString r = internal::EvaluateString_impl(static_cast<internal::XPathQueryImpl*>(QueryImplementation), n, sd);
 
 		size_t full_size = r.length() + 1;
 
@@ -9764,18 +9749,19 @@ namespace XML
 
 	PUGI__FN XPathNodeSet XPathQuery::EvaluateNodeSet(const XPathNode& n) const
 	{
-		if (!_impl) return XPathNodeSet();
+		if (!QueryImplementation) return XPathNodeSet();
 
-		internal::XPathAstNode* GetRoot = static_cast<internal::XPathQueryImpl*>(_impl)->GetRoot;
+		internal::XPathAstNode* GetRoot = static_cast<internal::XPathQueryImpl*>(QueryImplementation)->GetRoot;
 
 		if (GetRoot->retType() != XPathTypeNodeSet)
 		{
 			XPathParseResult res;
-			res.error = "Expression does not evaluate to node set";
+            res.error = "Expression does not evaluate to node set";
 
-			//throw XPathException(res);
+            String ErrorMessage(String(res.Description()) + "\nError:" + res.error + "\nAt Offset: " + ToString(res.Offset));
 
-		}
+            MEZZ_EXCEPTION(Exception::SYNTAX_ERROR_EXCEPTION_XPATH,(ErrorMessage.c_str()));
+        }
 
 		internal::XPathContext c(n, 1, 1);
 		internal::XPathStackData sd;
@@ -9788,7 +9774,7 @@ namespace XML
 
 	PUGI__FN const XPathParseResult& XPathQuery::Result() const
 	{
-		return _Result;
+        return ResultCache;
 	}
 
 	PUGI__FN static void unspecified_bool_XPathQuery(XPathQuery***)
@@ -9797,12 +9783,12 @@ namespace XML
 
 	PUGI__FN XPathQuery::operator XPathQuery::unspecified_bool_type() const
 	{
-		return _impl ? unspecified_bool_XPathQuery : 0;
+		return QueryImplementation ? unspecified_bool_XPathQuery : 0;
 	}
 
 	PUGI__FN bool XPathQuery::operator!() const
 	{
-		return !_impl;
+		return !QueryImplementation;
 	}
 
     PUGI__FN XPathNode Node::FindSingleNode(const Char8* query, XPathVariableSet* variables) const

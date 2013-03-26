@@ -83,7 +83,7 @@
     #endif
 
     // Fix for: XML/xml.h:XXXX: Warning 403: Class 'Mezzanine::XML::XPathException' might be abstract, no constructors generated
-    %warnfilter(403) Mezzanine::XML::XPathException;
+    //%warnfilter(403) Mezzanine::XML::XPathException;
 
     #define SWIG_INFO_BEGINCLASS        %warn "990: Begining parsing of class."
     #define SWIG_INFO_ENDCLASS          %warn "991: Completing parsing of class."

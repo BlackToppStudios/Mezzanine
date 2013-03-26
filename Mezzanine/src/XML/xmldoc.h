@@ -56,8 +56,15 @@
 
 #include "datatypes.h"
 
+///////////////////////////////////////////////////////////////////////////////
 /// @file
-/// @brief This file houses all the documentation for the XML system that is not directly related to a specific class or function call.
+/// @brief The Doxygen documentation and minor tools to assist with the XML system
+/// @details The integration process for PugiXML is complicated task to maintain. This file
+/// was originally intended to ease that, now it includes the the XML Manual copied with
+/// permission from the authors website and adjusted for compatibility with
+/// The Mezzanine.
+///////////////////////////////////////
+
 
 #ifndef _xmldoc_h
 #define _xmldoc_h
@@ -346,7 +353,7 @@ namespace Mezzanine
         /// guarantee (functions that operate on streams). Also functions that call user-defined callbacks (i.e. Mezzanine::XML::Node::Traverse or Mezzanine::XML::Node::FindNode) do not
         /// provide any exception guarantees beyond the ones provided by the callback.
         /// \n \n
-        /// If exception handling is not disabled with XML_NO_EXCEPTIONS define, XPath functions may throw Mezzanine::XML::XPathException on parsing errors; also, XPath functions may
+        /// XPath functions may throw Mezzanine::XML::XPathException on parsing errors; also, XPath functions may
         /// throw std::bad_alloc in low memory conditions. Still, XPath functions provide strong exception guarantee.
         /// \n \n
         /// @subsection XMLMemory Memory management
@@ -1591,7 +1598,7 @@ namespace Mezzanine
         /// in document order from the result, and is equivalent to calling FindNodes(query).first(). If the XPath expression does not match anything, or the node handle is null, FindNodes
         /// returns an empty set, and FindSingleNode returns null XPath node.
         /// \n \n
-        /// If exception handling is not disabled, both functions throw Mezzanine::XML::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
+        /// Both functions throw Mezzanine::XML::XPathException if the query can not be compiled or if it returns a value with type other than node set; see
         /// Error handling for details.
         /// \n \n
         /// While compiling expressions is fast, the compilation time can introduce a significant overhead if the same expression is used many times on small subtrees. If you're doing many
@@ -1601,7 +1608,7 @@ namespace Mezzanine
         /// Mezzanine::XML::XPathNode Mezzanine::XML::Node::FindSingleNode(const Mezzanine::XML::XPathQuery& query) const;
         /// Mezzanine::XML::XPathNodeSet Mezzanine::XML::Node::FindNodes(const Mezzanine::XML::XPathQuery& query) const;
         /// @endcode
-        /// If exception handling is not disabled, both functions throw Mezzanine::XML::XPathException if the query returns a value with type other than node set.
+        /// Both functions throw Mezzanine::XML::XPathException if the query returns a value with type other than node set.
         /// \n \n
         /// This is an example of selecting nodes using XPath expressions:
         /// @code
@@ -1908,13 +1915,7 @@ namespace Mezzanine
 
         class Document;
 
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @file xmldoc.h
-        /// @brief The Doxygen documentation and minor tools to assist with the XML system
-        /// @details The integration process for PugiXML requires that our changes all be stored in shell script.
-        /// This is not condusive to good clean documentation  and is why the doxygen documention for the XML parser exist here
-        /// instead of xml.h.
-        ///////////////////////////////////////
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @file xml.h
@@ -1939,156 +1940,24 @@ namespace Mezzanine
         /// @brief The internal data storage structure used in an Attribute.
         /// @warning Not part of the API, subject to change without warning.
 
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @enum XPathValueType
-        /// @brief XPathQuery return type
-
-		/// @var XPathTypeNone
-		/// @brief Unknown Type (query failed to compile)
-
-		/// @var XPathTypeNodeSet
-		/// @brief Node set (XPathNodeSet)
-
-		/// @var XPathTypeNumber
-		/// @brief Number This corresponds to a double or Real.
-
-		/// @var XPathTypeString
-		/// @brief Corresponds to the String type.
-
-		/// @var XPathTypeBoolean
-		/// @brief A Boolean value.
-
-		///////////////////////////////////////////////////////////////////////////////
-        /// @struct XPathParseResult
-        /// @brief XPath parsing result
-
-        /// @var XPathParseResult::Offset
-        /// @brief Last parsed Offset (in Character units from string start)
-
-        /// @var XPathParseResult::error
-        /// @brief Error message (0 if no error).
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathVariable
-        /// @brief A single XPath variable
-        /// @details This is intended to be used as a single member of an XPathVariableSet, and for moving data into and out of XPathQueries.
-
-        /// @fn XPathVariable::XPathVariable();
-        /// @brief Protected Default constructor.
-
-        /// @var XPathVariable::_type
-        /// @brief What kind of data does this variable store
-
-        /// @var XPathVariable::_next
-        /// @brief The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list.
-
-        /// @fn XPathVariable::XPathVariable(const XPathVariable&);
-        /// @brief Protected Copy Constructor, used to force noncopyable semantics
-
-        /// @fn XPathVariable::operator=(const XPathVariable&);
-        /// @brief Protected assignment operator, used to force noncopyable semantics
-        /// @return Shouldn't be used, not implemented.
-
-        /// @fn XPathVariable::Set(bool Value);
-        /// @brief Set variable Value; no Type conversion is performed.
-        /// @return True is returned on Success, false is returned on Type mismatch error.
-        /// @param Value The value to attempt to put into this.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathVariableSet
-        /// @brief A set of XPath variables.
-
-        /// @fn XPathVariableSet::XPathVariableSet();
-        /// @brief Default Constructor, Blanks any XPathVariable it contains.
-
-        /// @fn XPathVariableSet::~XPathVariableSet();
-        /// @brief Default Deconstructor, Deletes any XPathVariable it contains.
-
-        /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
-        /// @brief Add a new variable or get the existing one, if the Types match
-        /// @return A pointer to the XPathVariable you referenced or just created.
-        /// @param Name The name of variable to add.
-        /// @param Type The Type of the new value to add as an XPathValueType.
-
-   		/// @fn XPathVariableSet::Get(const char_t* Name);
-   		/// @brief Get the named XPathVariable.
-        /// @return A pointer to the specified XPathVariable.
-   		/// @param Name The name of the XPathVariable you want.
-
-		/// @fn XPathVariableSet::Get(const char_t* Name) const;
-		/// @brief Get the named XPathVariable.
-   		/// @param Name The name of the XPathVariable you want.
-        /// @return A pointer to the specified XPathVariable.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathQuery
-        /// @brief A compiled XPath query object
-        /// @details When you call select_nodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects can be needed in the following circumstances: \n
-        /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n
-        /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n
-        /// - You can get the type of expression value via query object. \n \n
-        /// Query objects correspond to XML::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to XML::XPathQuery in the container. \n \n
-        /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, XPathQuery::EvaluateBoolean(), XPathQuery::EvaluateNumber() and XPathQuery::EvaluateString() always return a result, but EvaluateNodeSet results in an error if the return type is not node set.
-
-        /// @fn XPathQuery::ReturnType() const;
-        /// @brief Get query expression return Type.
-        /// @return A XPathValueType.
-
-        /// @fn XPathQuery::EvaluateBoolean(const XPathNode& n) const;
-        /// @brief Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.
-        /// @return A bool result of evaluating the expression.
-        /// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
-        /// @param n The XPathNode that will serve as the context for the query.
-
-        /// @fn XPathQuery::Result() const;
-        /// @brief Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled)
-		/// @return A const reference to an XPathParseResult.
-
-        /// @fn XPathQuery::operator!() const;
-        /// @brief Logical not operator, used a workaround for borland compiler.
-        /// @return A bool that is the opposite of evaluatig this as a bool normally.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathException
-        /// @brief Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.
-
-		/// @fn XPathException::what() const throw();
-		/// @brief Get error message.
-		/// @return A description of the error message as a c-style string.
-
-		/// @fn XPathException::Result() const;
-		/// @brief Get parse Result.
-		/// @return The XPathParseResult used to create this exception.
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNode
-        /// @brief An XPath node which can store handles to a XML::Node or an XML::Attribute.
-        /// @details Because an XPath node can be either a XML::Node or an XML::Attribute, there is a special type, XPathNode,
-        /// which is a discriminated union of these types. A value of this type contains two node handles, one of XML::Node type,
-        /// and another one of XML::Attribute type; at most one of them can be non-null. The accessors to get these handles are
-        /// available: XPathNode::GetNode() an XPathNode::GetAttribute() . \n \n
-        /// XPath nodes can be null, in which case both accessors return null handles.
+
 
         /// @fn XPathNode::XPathNode(const Node& node);
-        /// @brief Construct From a XML::Node.
-        /// @param node The XML::Node this handle should reference.
+
 
 		/// @fn XPathNode::GetNode() const;
-		/// @brief Get the XML::Node this is referencing
-		/// @return A valid XML::Node, or a null node if this doesn't reference a an XML::Node.
+
 
 		/// @fn XPathNode::GetAttribute() const;
-		/// @brief Get the XML::Attribute this is referencing
-        /// @return A valid XML::Attribute, or a null node if this doesn't reference a an XML::Attribute.
+
 
 		/// @fn XPathNode::GetParent() const;
-		/// @brief Get the parent of the XML::Node or XML::Attribute this refers to.
-        /// @return A valid XML::Node, or a null node if this doesn't reference a an XML::Node.
+		
 
         /// @fn XPathNode::operator!() const;
-        /// @brief Logical not operator, used a workaround for borland compiler.
-        /// @return A bool that is the opposite of evaluatig this as a bool normally.
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNodeSet

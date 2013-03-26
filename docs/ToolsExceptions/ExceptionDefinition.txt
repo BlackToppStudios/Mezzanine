@@ -30,8 +30,9 @@ MM_OUT_OF_MEMORY_EXCEPTION             0x03F01F00   OutOfMemoryException        
 MM_OUT_OF_BOUNDS_EXCEPTION             0x03F02F00   MemoryOutOfBoundsException                MemoryManagementException          Thrown when attempted to access something that really should note be accessed.
 #
 SYNTAX_ERROR_EXCEPTION                 0x04F00F00   SyntaxErrorException                      Exception                          Thrown when some kind of syntax exception
-SYNTAX_ERROR_EXCEPTION_XML             0x04F01F00   SyntaxErrorXMLException                   SyntaxErrorException               Thrown when xml is being parsed butis invalid
-SYNTAX_ERROR_EXCEPTION_LUA             0x04F02F00   SyntaxErrorLuaException                   SyntaxErrorException               Thrown when lua code in incorrect.
+SYNTAX_ERROR_EXCEPTION_XML             0x04F01F00   SyntaxErrorXMLException                   SyntaxErrorException               Thrown when and XML document is being parsed but is invalid
+SYNTAX_ERROR_EXCEPTION_XPATH           0x04F02F00   SyntaxErrorXPathException                 SyntaxErrorException               Thrown when an XPath query is being parsed but is invalid
+SYNTAX_ERROR_EXCEPTION_LUA             0x04F03F00   SyntaxErrorLuaException                   SyntaxErrorException               Thrown when lua code in incorrect.
 #
 SCRIPT_EXCEPTION                       0x05F00F00   ScriptException                           Exception                          Thrown when an unknown error happens with a script.
 SCRIPT_EXCEPTION_LUA                   0x05F01F00   ScriptLuaException                        ScriptException                    Thrown when an unknown error happens in a Lua script.

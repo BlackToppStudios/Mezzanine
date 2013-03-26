@@ -177,6 +177,16 @@ namespace Mezzanine
             StatusBadEndElement,                ///< Parsing error occurred while parsing end element tag.
             StatusEndElementMismatch            ///< There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
         };
+
+        /// @brief XPathQuery return type
+        enum XPathValueType
+        {
+            XPathTypeNone,          ///< Unknown Type (query failed to compile)
+            XPathTypeNodeSet,       ///< Node set (XPathNodeSet)
+            XPathTypeNumber,        ///< Number This corresponds to a double or Real.
+            XPathTypeString,        ///< Corresponds to the String type.
+            XPathTypeBoolean        ///< Boolean.
+        };
     }
 } // /namespace Mezzanine
 
