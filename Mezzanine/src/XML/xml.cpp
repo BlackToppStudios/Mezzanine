@@ -9295,17 +9295,17 @@ namespace XML
 	{
 	}
 
-	PUGI__FN XPathNode::XPathNode(const Node& Node): _node(Node)
+    PUGI__FN XPathNode::XPathNode(const Node& Node): TargetNode(Node)
 	{
 	}
 
-	PUGI__FN XPathNode::XPathNode(const Attribute& attribute_, const Node& GetParent_): _node(attribute_ ? GetParent_ : Node()), _attribute(attribute_)
+    PUGI__FN XPathNode::XPathNode(const Attribute& attribute_, const Node& GetParent_): TargetNode(attribute_ ? GetParent_ : Node()), _attribute(attribute_)
 	{
 	}
 
 	PUGI__FN Node XPathNode::GetNode() const
 	{
-		return _attribute ? Node() : _node;
+        return _attribute ? Node() : TargetNode;
 	}
 
 	PUGI__FN Attribute XPathNode::GetAttribute() const
@@ -9315,7 +9315,7 @@ namespace XML
 
 	PUGI__FN Node XPathNode::GetParent() const
 	{
-		return _attribute ? _node : _node.GetParent();
+        return _attribute ? TargetNode : TargetNode.GetParent();
 	}
 
 	PUGI__FN static void unspecified_bool_XPathNode(XPathNode***)
@@ -9324,22 +9324,22 @@ namespace XML
 
 	PUGI__FN XPathNode::operator XPathNode::unspecified_bool_type() const
 	{
-		return (_node || _attribute) ? unspecified_bool_XPathNode : 0;
+        return (TargetNode || _attribute) ? unspecified_bool_XPathNode : 0;
 	}
 
 	PUGI__FN bool XPathNode::operator!() const
 	{
-		return !(_node || _attribute);
+        return !(TargetNode || _attribute);
 	}
 
 	PUGI__FN bool XPathNode::operator==(const XPathNode& n) const
 	{
-		return _node == n._node && _attribute == n._attribute;
+        return TargetNode == n.TargetNode && _attribute == n._attribute;
 	}
 
 	PUGI__FN bool XPathNode::operator!=(const XPathNode& n) const
 	{
-		return _node != n._node || _attribute != n._attribute;
+        return TargetNode != n.TargetNode || _attribute != n._attribute;
 	}
 
 #ifdef __BORLANDC__

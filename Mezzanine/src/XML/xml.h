@@ -80,6 +80,7 @@
 #include "XML/writer.h"
 #include "XML/xmldoc.h"
 #include "XML/xmlenumerations.h"
+#include "XML/xpathnode.h"
 #include "XML/xpathparseresult.h"
 #include "XML/xpathvariable.h"
 #include "XML/xpathvariableset.h"
@@ -140,51 +141,7 @@ namespace XML
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////// Here and up is done
 
-	// XPath node class (either Node or Attribute)
-	class MEZZ_LIB XPathNode
-	{
-	private:
-		Node _node;
-		Attribute _attribute;
 
-		typedef void (*unspecified_bool_type)(XPathNode***);
-
-	public:
-		/// @brief Default constructor; constructs empty XPath node
-		XPathNode();
-
-		// Construct XPath node from XML node/attribute
-		XPathNode(const Node& node);
-		/// @brief Construct From a XML::Attribute.
-		/// @param GetAttribute The XML::Attribute this handle should reference.
-		/// @param GetParent The XML::Node the XML::Attribute is on.
-		XPathNode(const Attribute& GetAttribute, const Node& GetParent);
-
-		// Get node/GetAttribute, if any
-		Node GetNode() const;
-		Attribute GetAttribute() const;
-
-		// Get GetParent of contained node/attribute
-		Node GetParent() const;
-
-		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal data is set and false otherwise.
-		operator unspecified_bool_type() const;
-
-		// Borland C++ workaround
-		bool operator!() const;
-
-		// Comparison operators
-		/// @brief Called when comparing two XPathNode instances for equality.
-		/// @param n The other XML::XPathNode to compare this Node against for equality.
-		/// @return True if this and the other XML::XPathNode are referencing the same item, false otherwise;
-		bool operator==(const XPathNode& n) const;
-
-		/// @brief Called when comparing two XPathNode instances for inequality.
-		/// @param n The other XML::XPathNode to compare this Node against for inequality.
-		/// @return True if this and the other XML::XPathNode are referencing the same item, false otherwise;
-		bool operator!=(const XPathNode& n) const;
-	};
 
 	// A fixed-size collection of XPath nodes
 	class MEZZ_LIB XPathNodeSet

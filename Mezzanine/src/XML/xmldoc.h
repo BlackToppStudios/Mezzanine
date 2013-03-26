@@ -1942,32 +1942,22 @@ namespace Mezzanine
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNode
-        /// @brief An XPath node which can store handles to a XML::Node or an XML::Attribute.
-        /// @details Because an XPath node can be either a XML::Node or an XML::Attribute, there is a special type, XPathNode,
-        /// which is a discriminated union of these types. A value of this type contains two node handles, one of XML::Node type,
-        /// and another one of XML::Attribute type; at most one of them can be non-null. The accessors to get these handles are
-        /// available: XPathNode::GetNode() an XPathNode::GetAttribute() . \n \n
-        /// XPath nodes can be null, in which case both accessors return null handles.
+
 
         /// @fn XPathNode::XPathNode(const Node& node);
-        /// @brief Construct From a XML::Node.
-        /// @param node The XML::Node this handle should reference.
+
 
 		/// @fn XPathNode::GetNode() const;
-		/// @brief Get the XML::Node this is referencing
-		/// @return A valid XML::Node, or a null node if this doesn't reference a an XML::Node.
+
 
 		/// @fn XPathNode::GetAttribute() const;
-		/// @brief Get the XML::Attribute this is referencing
-        /// @return A valid XML::Attribute, or a null node if this doesn't reference a an XML::Attribute.
+
 
 		/// @fn XPathNode::GetParent() const;
-		/// @brief Get the parent of the XML::Node or XML::Attribute this refers to.
-        /// @return A valid XML::Node, or a null node if this doesn't reference a an XML::Node.
+		
 
         /// @fn XPathNode::operator!() const;
-        /// @brief Logical not operator, used a workaround for borland compiler.
-        /// @return A bool that is the opposite of evaluatig this as a bool normally.
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNodeSet
