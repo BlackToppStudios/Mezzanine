@@ -1,0 +1,18 @@
+--- CMakeLists.txt	Sat Mar 23 17:48:06 2013
++++ openalsoft/CMakeLists.txt	Mon Mar 25 03:28:53 2013
+@@ -72,9 +72,13 @@
+     #SET(LIBNAME openal)
+ ENDIF()
+ 
+-IF(NOT LIBTYPE)
+-    SET(LIBTYPE SHARED)
++OPTION(ALSOFT_STATIC          "Build OpenAL Soft as a static library"  ON)
++IF(ALSOFT_STATIC)
++    SET(LIBTYPE STATIC)
++ELSE(ALSOFT_STATIC)
++	SET(LIBTYPE SHARED)
+ ENDIF()
++MARK_AS_ADVANCED(ALSOFT_STATIC)
+ 
+ SET(LIB_MAJOR_VERSION "1")
+ SET(LIB_MINOR_VERSION "15")
