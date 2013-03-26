@@ -534,6 +534,10 @@ add_definitions(-DOPJ_STATIC -DLIBRAW_NODLL -DLIBRAW_LIBRARY_BUILD -DFREEIMAGE_L
 add_library(FreeImage STATIC ${FreeImage_SOURCES})
 install_dep(FreeImage include Source/FreeImage.h)
 
+if(WIN32)
+	target_link_libraries(FreeImage ws2_32)
+endif(WIN32)
+
 if (APPLE AND OGRE_BUILD_PLATFORM_APPLE_IOS)
   set_target_properties(FreeImage PROPERTIES XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET "4.0")
   set_target_properties(FreeImage PROPERTIES XCODE_ATTRIBUTE_GCC_THUMB_SUPPORT "NO")
