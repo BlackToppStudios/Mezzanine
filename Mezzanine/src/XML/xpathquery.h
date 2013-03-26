@@ -105,13 +105,13 @@ namespace Mezzanine
                 typedef void (*unspecified_bool_type)(XPathQuery***);
                 #endif
 
-                // Non-copyable semantics
+                /// @brief Private copy constructor to ensure non-copyable semantics.
                 XPathQuery(const XPathQuery&);
+
+                /// @brief Private assignment operator to ensure non-assignable semantics.
                 XPathQuery& operator=(const XPathQuery&);
 
             public:
-                // Construct a compiled object from XPath expression.
-
                 /// @brief Construct a compiled object from XPath expression.
                 /// @param query The query in the form of a c-string style char_t array.
                 /// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
