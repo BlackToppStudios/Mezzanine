@@ -543,6 +543,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
+		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/Headers"
 
         "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
@@ -617,14 +618,17 @@ endif(${Mezz_Lua51})
 # Library Link Dependencies
 add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
 
-target_link_libraries( ${PROJECT_NAME}                                 # Link to all of the Mezzanine Dependencies
-        ${OgreLibraryAllNames}
-        ${LuaLinkName}
-        ${Bullet_LibraryNames}
-        ${SDLLibraryNames}
-        ${NetworkLibrary}
-        ${SoundLibraryNames}
+set(LinkOrder 
+	${NetworkLibrary} 
+	${OgreLibraryAllNames} 
+	${LuaLinkName} 
+	${Bullet_LibraryNames} 
+	${SDLLibraryNames} 
+	${SoundLibraryNames}
 )
+
+# Link to all of the Mezzanine Dependencies
+target_link_libraries( ${PROJECT_NAME} ${LinkOrder} )
 
 ###############################################################################
 # Build Time File copying
