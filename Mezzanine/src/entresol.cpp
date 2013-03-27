@@ -85,15 +85,15 @@ namespace Mezzanine
     }
 
 
-    Entresol::Entresol(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_, const String& InitializerFile)
+    Entresol::Entresol(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
     {
         if(String::npos != InitializerFile.find(".mxi"))
-            { ConstructFromXML(EngineDataPath, ArchiveType_, InitializerFile); }
+            { ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
         else
             { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
 
-    Entresol::Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_, const String& InitializerFile)
+    Entresol::Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
     {
         for(std::vector<ManagerFactory*>::iterator it = CustomFactories.begin(); it != CustomFactories.end(); ++it)
         {
@@ -101,7 +101,7 @@ namespace Mezzanine
         }
 
         if(String::npos != InitializerFile.find(".mxi"))
-            { ConstructFromXML(EngineDataPath, ArchiveType_, InitializerFile); }
+            { ConstructFromXML(EngineDataPath, ArchType, InitializerFile); }
         else
             { MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialze Mezzanine from an unsupported file type."); }
     }
@@ -204,7 +204,7 @@ namespace Mezzanine
         SanityChecks();
     }
 
-    void Entresol::ConstructFromXML(const String& EngineDataPath, Mezzanine::ArchiveType ArchiveType_, const String& InitializerFile)
+    void Entresol::ConstructFromXML(const String& EngineDataPath, const Mezzanine::ArchiveType ArchType, const String& InitializerFile)
     {
         //Add default manager factories
         AddAllEngineDefaultManagerFactories();
@@ -237,7 +237,7 @@ namespace Mezzanine
         if(ResourceManager::SingletonValid())
             { AddManager(ResourceManager::GetSingletonPtr()); }
         else
-            { AddManager(new ResourceManager(EngineDataPath, ArchiveType_)); }
+            { AddManager(new ResourceManager(EngineDataPath, ArchType)); }
 
         // Open and load the initializer doc.
         ResourceManager* ResourceMan = GetResourceManager();

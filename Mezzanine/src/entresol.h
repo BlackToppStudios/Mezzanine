@@ -335,10 +335,10 @@ namespace Mezzanine
             /// @internal
             /// @brief Used to intialize from XML
             /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.
-            /// @param ArchiveType_ Should This be looking for raw or zip or whatever kind of files.
+            /// @param ArchType Should This be looking for raw or zip or whatever kind of files.
             /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.
             void ConstructFromXML(  const String& EngineDataPath,
-                                    ArchiveType ArchiveType_,
+                                    const ArchiveType ArchType,
                                     const String& InitializerFile );
 
             void SanityChecks();
@@ -377,9 +377,9 @@ namespace Mezzanine
             /// If the file provided is not one of this type this function will throw an exception. @n @n
             /// When initializing factories in the XML file this constructor does not initialize any additional manager factories, so if they are called this will throw an exception.
             /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
-            /// @param ArchiveType_ The type of archive at the path provided.
+            /// @param ArchType The type of archive at the path provided.
             /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            Entresol(const String& EngineDataPath, ArchiveType ArchiveType_, const String& InitializerFile = "Mezzanine.mxi");
+            Entresol(const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
 
             /// @brief Factory and initializer file constructor.
             /// @details This function expects an ".mxi" (Mezzanine XML Initializer) file.
@@ -387,9 +387,9 @@ namespace Mezzanine
             /// Also default factories are already added and thus do not need to be included in the Factory vector.
             /// @param CustomFactories A vector containing the additional factories to be registered before initializing the engine.
             /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.
-            /// @param ArchiveType_ The type of archive at the path provided.
+            /// @param ArchType The type of archive at the path provided.
             /// @param InitializerFile The file that describes how to initialize Mezzanine.
-            Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, ArchiveType ArchiveType_, const String& InitializerFile = "Mezzanine.mxi");
+            Entresol(std::vector<ManagerFactory*>& CustomFactories, const String& EngineDataPath, const ArchiveType ArchType, const String& InitializerFile = "Mezzanine.mxi");
 
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.
