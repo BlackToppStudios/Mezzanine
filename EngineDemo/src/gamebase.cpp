@@ -33,7 +33,7 @@ int main(int argc, char **argv)
         Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
         Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
         Info.MaxProxies = 60;
-        TheEntresol = new Entresol( Info, "DefaultSceneManager", "plugins.cfg", "data/common/");
+        TheEntresol = new Entresol( Info, "DefaultSceneManager", "data/common/");
     }catch(...){
         return 1;
         //could not create the perfect worldending program
@@ -245,7 +245,9 @@ bool PostInput()
     InputManager* InputMan = InputManager::GetSingletonPtr();
     Input::Mouse* SysMouse = InputMan->GetSystemMouse();
     Input::Keyboard* SysKeyboard = InputMan->GetSystemKeyboard();
-    Input::Controller* Controller1 = InputMan->GetController(0);
+    Input::Controller* Controller1 = NULL;
+    if( InputMan->GetNumControllers() > 0 )
+        Controller1 = InputMan->GetController(0);
 
     CameraController* DefaultControl = TheEntresol->GetCameraManager()->GetOrCreateCameraController(TheEntresol->GetCameraManager()->GetCamera(0));
     if( SysKeyboard->IsButtonPressed(Input::KEY_LEFT) || (Controller1 ? Controller1->IsHatPushedInDirection(1,Input::CONTROLLERHAT_LEFT) : false) )
