@@ -5,8 +5,12 @@
 extern "C" {
 #endif
 
+#ifndef ALC_API
+#define ALC_API
+#endif
+/*
 #if defined(_WIN32) && !defined(_XBOX)
- /* _OPENAL32LIB is deprecated */
+ // _OPENAL32LIB is deprecated
  #if defined(AL_BUILD_LIBRARY) || defined (_OPENAL32LIB)
   #define ALC_API __declspec(dllexport)
  #else
@@ -19,7 +23,7 @@ extern "C" {
   #define ALC_API extern
  #endif
 #endif
-
+*/
 #if defined(_WIN32)
  #define ALC_APIENTRY __cdecl
 #else
