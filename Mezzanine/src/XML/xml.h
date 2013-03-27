@@ -81,6 +81,7 @@
 #include "XML/xmldoc.h"
 #include "XML/xmlenumerations.h"
 #include "XML/xpathnode.h"
+#include "XML/xpathnodeset.h"
 #include "XML/xpathparseresult.h"
 #include "XML/xpathvariable.h"
 #include "XML/xpathvariableset.h"
@@ -143,68 +144,7 @@ namespace XML
 
 
 
-	// A fixed-size collection of XPath nodes
-	class MEZZ_LIB XPathNodeSet
-	{
-	public:
-		// Collection type
-		enum CollectionType
-		{
-			TypeUnsorted,			// Not ordered
-			TypeSorted,			// Sorted by document order (ascending)
-			TypeSortedReverse		// Sorted by document order (descending)
-		};
 
-		// Constant iterator type
-		typedef const XPathNode* const_iterator;
-
-		// Default constructor. Constructs empty set.
-		XPathNodeSet();
-
-		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided Type, so be careful
-		XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted);
-
-		// Destructor
-		~XPathNodeSet();
-
-		// Copy constructor/assignment operator
-		XPathNodeSet(const XPathNodeSet& ns);
-		XPathNodeSet& operator=(const XPathNodeSet& ns);
-
-		// Get collection type
-		CollectionType Type() const;
-
-		// Get collection size
-		/// @brief Get collection size.
-		/// @return The number of XPathNode instances as a size_t in the set
-		size_t size() const;
-
-		// Indexing operator
-		const XPathNode& operator[](size_t index) const;
-
-		// Collection iterators
-		const_iterator begin() const;
-		const_iterator end() const;
-
-		// Sort the collection in ascending/descending order by document order
-		void sort(bool reverse = false);
-
-		// Get first node in the collection by document order
-		XPathNode first() const;
-
-		// Check if collection is empty
-		bool Empty() const;
-
-	private:
-		CollectionType _type;
-
-		XPathNode _storage;
-
-		XPathNode* _begin;
-		XPathNode* _end;
-
-		void _assign(const_iterator begin, const_iterator end);
-	};
 
 	// Convert wide string to UTF8
 	std::basic_string<char, std::char_traits<char>, std::allocator<char> > MEZZ_LIB AsUtf8(const wchar_t* str);

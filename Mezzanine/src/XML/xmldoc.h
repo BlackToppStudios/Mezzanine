@@ -1941,25 +1941,6 @@ namespace Mezzanine
         /// @warning Not part of the API, subject to change without warning.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathNode
-
-
-        /// @fn XPathNode::XPathNode(const Node& node);
-
-
-		/// @fn XPathNode::GetNode() const;
-
-
-		/// @fn XPathNode::GetAttribute() const;
-
-
-		/// @fn XPathNode::GetParent() const;
-		
-
-        /// @fn XPathNode::operator!() const;
-
-
-        ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathNodeSet
         /// @brief A collection of nodes that an XPathQuery can work on.
 
