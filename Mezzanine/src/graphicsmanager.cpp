@@ -217,14 +217,13 @@ namespace Mezzanine
 
             if(RenderSystems.size()==1)
             {
-                Ogre::RenderSystem* temp= OgreCore->getRenderSystemByName(GetRenderSystemName(RenderSystemTypes[0]));
-                OgreCore->setRenderSystem( OgreCore->getRenderSystemByName(GetRenderSystemName(RenderSystemTypes[0])) );
+                Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( GetRenderSystemName(RenderSystemTypes[0]) );
+                OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( GetRenderSystemName(RenderSystemTypes[0]) ) );
             }
             else
             {
-                //RenderSys
-                // @todo add logic here to load from file
-                MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Attempting to initialize Mezzanine with multiple rendersystems not currently supported.");
+                Ogre::RenderSystem* temp = OgreCore->getRenderSystemByName( GetRenderSystemName(CurrRenderSys) );
+                OgreCore->setRenderSystem( OgreCore->getRenderSystemByName( GetRenderSystemName(CurrRenderSys) ) );
             }
 
             OgreCore->initialise(false,"");
