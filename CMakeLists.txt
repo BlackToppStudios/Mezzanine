@@ -103,12 +103,20 @@ Message(STATUS "Using Source From: ${ProjectRootDir}")
 set(ProjectBinaryDir ${${PROJECT_NAME}_BINARY_DIR}/)
 Message(STATUS "Putting all major output in: ${ProjectBinaryDir}")
 
+#######################################
+# PostFix configuration
+SET(CMAKE_DEBUG_POSTFIX "_Debug" CACHE STRING "Adds a postfix for debug-built libraries.")
+SET(CMAKE_MINSIZEREL_POSTFIX "_MinsizeRel" CACHE STRING "Adds a postfix for MinsizeRelease-built libraries.")
+SET(CMAKE_RELWITHDEBINFO_POSTFIX "_RelWithDebugInfo" CACHE STRING "Adds a postfix for ReleaseWithDebug-built libraries.")
+mark_as_advanced(CMAKE_DEBUG_POSTFIX CMAKE_MINSIZEREL_POSTFIX CMAKE_RELWITHDEBINFO_POSTFIX)
+
 ###############################################################################
 # Set Platform Specific Variables
 set(DynamicLibPrefix "")
 set(DynamicLibSuffix "")
 set(StaticLibPrefix "")
 set(StaticLibSuffix ".a")
+set(LibPostfix "")
 
 if(${WIN32})
     set(BuildPlatform windows)
@@ -128,13 +136,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(DynamicLibSuffix .dylib)
     add_definitions( -DMACOSX )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-
-set(MezzanineLibFileName ${DynamicLibPrefix}Mezzanine${DynamicLibSuffix})
-
-set(MezzanineLinkName "Mezzanine")
-if(${WIN32})
-    set(MezzanineLinkName lib${MezzanineLinkName}.dll.a)
-endif(${WIN32})
 
 if(${WIN32})
     set(FPIC "")
@@ -161,17 +162,41 @@ if (Mezz_Debug)
     message ( STATUS "${PROJECT_NAME} - Enabling Mezz_Debug Messages")
     set(Mezz_Debug_Arguments "${CMAKE_CXX_FLAGS_DEBUG} ${D}MEZZDEBUG")
     set(Mezz_Debug_Defined "MEZZDEBUG = 1")
-    if(${Mezz_ForceBuildType})
-        set(CMAKE_BUILD_TYPE Debug CACHE STRING "Set by MEZZDEBUG, see Mezz_ForceBuildType for details" FORCE)
-    endif(${Mezz_ForceBuildType})
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Set by MEZZDEBUG, see Mezz_ForceBuildType for details" FORCE)
 else (Mezz_Debug)
     message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
     set (Mezz_Debug_Arguments "${D}MEZZDEBUG_undefined")
     set (Mezz_Debug_Defined "MEZZDEBUG_undefined")
-    if(${Mezz_ForceBuildType})
-        set(CMAKE_BUILD_TYPE Release CACHE STRING "Set by MEZZDEBUG, see Mezz_ForceBuildType for details" FORCE)
-    endif(${Mezz_ForceBuildType})
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Set by MEZZDEBUG, see Mezz_ForceBuildType for details" FORCE)
 endif (Mezz_Debug)
+
+###############################################################################
+# Now that we know our build type better, configure our library postfix.
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+	set(LibPostFix ${CMAKE_DEBUG_POSTFIX})
+endif(CMAKE_BUILD_TYPE STREQUAL "Debug")
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+	set(LibPostFix ${CMAKE_RELEASE_POSTFIX})
+endif(CMAKE_BUILD_TYPE STREQUAL "Release")
+if(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+	set(LibPostFix ${CMAKE_RELWITHDEBINFO_POSTFIX})
+endif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+if(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+	set(LibPostFix ${CMAKE_MINSIZEREL_POSTFIX})
+endif(CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+
+###############################################################################
+# Set our other cmake variables that are dependent on the just set information
+
+set(MezzanineLibFileName ${DynamicLibPrefix}Mezzanine${LibPostFix}${DynamicLibSuffix})
+Message(STATUS "Expected name of compiled Mezzanine library: ${MezzanineLibFileName}")
+
+set(MezzanineLinkName "Mezzanine")
+if(${WIN32})
+    #set(MezzanineLinkName lib${MezzanineLinkName}.dll.a)
+	set(MezzanineLinkName ${MezzanineLibFileName})
+endif(${WIN32})
 
 ###############################################################################
 # Check For the Mezz_Profile option and set values accordingly
