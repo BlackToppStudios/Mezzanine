@@ -92,7 +92,7 @@ set(${PROJECT_NAME}_sources
 #set (LIBRARY_OUTPUT_PATH "${Mezzanine_ROOT_DIR}data/${BuildPlatform}/caudio/")
 message ( STATUS "Putting cAudio binaries in: ${LIBRARY_OUTPUT_PATH}")
 
-add_definitions( ${CommonBuildFlags} "${D}CAUDIO_STATIC_LIB" )
+add_definitions( ${CommonBuildFlags} "${D}CAUDIO_STATIC_LIB" "${D}AL_LIBTYPE_STATIC" )
 add_library(cAudio STATIC ${${PROJECT_NAME}_sources})
 
 #We have removed the cAudio depencies because they were built with an assumed compile and OS version
