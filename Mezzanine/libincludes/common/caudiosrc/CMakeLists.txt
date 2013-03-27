@@ -84,13 +84,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/cAudioPlatform.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/cAudioSleep.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/cVector3.h"
-        "${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/AL/alc.h"
-        "${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/AL/al.h"
-        "${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/AL/efx-creative.h"
-        "${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/AL/efx.h"
-        "${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/AL/EFX-Util.h"
-        "${${PROJECT_NAME}_SOURCE_DIR}/cAudio2.1.0/include/AL/xram.h"
-
 )
 
 #Choose the destination directory
