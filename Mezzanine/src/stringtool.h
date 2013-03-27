@@ -184,7 +184,7 @@ namespace Mezzanine
         /// @param ToConvert Stream class instance to be converted.
         /// @return Returns a string containing the lexicagraphically converted data.
         template<typename T>
-        String MEZZ_LIB ConvertToString(const T& ToConvert)
+        String ConvertToString(const T& ToConvert)
         {
             StringStream converter;
             converter << ToConvert;
