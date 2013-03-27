@@ -205,7 +205,7 @@ namespace Mezzanine
         /// @param Code The input code to be converted.
         /// @param ShiftPressed Whether or not the shift modifier key has been pressed.
         /// @return Returns a string(usually with only one character) containing the converted input code.
-        String MEZZ_LIB ConvertToString(const Input::InputCode& Code, bool ShiftPressed);
+        String ConvertToString(const Input::InputCode& Code, bool ShiftPressed);
 
         /// @brief Converts a Input::InputCode into a string, assuming shift was not pressed.
         /// @details this is good for figuring out what key was pressed
