@@ -227,7 +227,8 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
-	CopyFilesFromMezzanineDuringBuild( Mezzanine.dll )
+	CopyFilesFromMezzanineDuringBuild( cg.dll ${GameDir}cg.dll )
+	#CopyFilesFromMezzanineDuringBuild( Mezzanine.dll )
 	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
 endif(${WIN32})
 

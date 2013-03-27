@@ -221,7 +221,7 @@ link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine )
-target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
+target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName} )
 
 
 ##############################################################################
@@ -297,6 +297,7 @@ CopyFilesFromMezzanineDuringBuild( ${MezzanineLibFileName} ${GameDir}${Mezzanine
 # Windows File Copy Specific Items
 if(${WIN32})
     message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+	CopyFilesFromMezzanineDuringBuild( cg.dll ${GameDir}cg.dll )
     message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific File Copy Process")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -mwindows" )
 endif(${WIN32})
