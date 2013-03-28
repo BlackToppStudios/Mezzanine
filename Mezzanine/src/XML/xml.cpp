@@ -9363,13 +9363,13 @@ namespace XML
 		if (size_ <= 1)
 		{
 			// deallocate old buffer
-			if (_begin != &_storage) internal::Memory::deallocate(_begin);
+            if (Begin != &Storage) internal::Memory::deallocate(Begin);
 
 			// use internal buffer
-			if (begin_ != end_) _storage = *begin_;
+            if (begin_ != end_) Storage = *begin_;
 
-			_begin = &_storage;
-			_end = &_storage + size_;
+            Begin = &Storage;
+            End = &Storage + size_;
 		}
 		else
 		{
@@ -9384,82 +9384,82 @@ namespace XML
 			memcpy(storage, begin_, size_ * sizeof(XPathNode));
 
 			// deallocate old buffer
-			if (_begin != &_storage) internal::Memory::deallocate(_begin);
+            if (Begin != &Storage) internal::Memory::deallocate(Begin);
 
 			// finalize
-			_begin = storage;
-			_end = storage + size_;
+            Begin = storage;
+            End = storage + size_;
 		}
 	}
 
-	PUGI__FN XPathNodeSet::XPathNodeSet(): _type(TypeUnsorted), _begin(&_storage), _end(&_storage)
+    PUGI__FN XPathNodeSet::XPathNodeSet(): TypeOrder(TypeUnsorted), Begin(&Storage), End(&Storage)
 	{
 	}
 
-	PUGI__FN XPathNodeSet::XPathNodeSet(const_iterator begin_, const_iterator end_, CollectionType Type_): _type(Type_), _begin(&_storage), _end(&_storage)
+    PUGI__FN XPathNodeSet::XPathNodeSet(const_iterator begin_, const_iterator end_, CollectionType Type_): TypeOrder(Type_), Begin(&Storage), End(&Storage)
 	{
 		_assign(begin_, end_);
 	}
 
 	PUGI__FN XPathNodeSet::~XPathNodeSet()
 	{
-		if (_begin != &_storage) internal::Memory::deallocate(_begin);
+        if (Begin != &Storage) internal::Memory::deallocate(Begin);
 	}
 
-	PUGI__FN XPathNodeSet::XPathNodeSet(const XPathNodeSet& ns): _type(ns._type), _begin(&_storage), _end(&_storage)
+    PUGI__FN XPathNodeSet::XPathNodeSet(const XPathNodeSet& ns): TypeOrder(ns.TypeOrder), Begin(&Storage), End(&Storage)
 	{
-		_assign(ns._begin, ns._end);
+        _assign(ns.Begin, ns.End);
 	}
 
 	PUGI__FN XPathNodeSet& XPathNodeSet::operator=(const XPathNodeSet& ns)
 	{
 		if (this == &ns) return *this;
 
-		_type = ns._type;
-		_assign(ns._begin, ns._end);
+		TypeOrder = ns.TypeOrder;
+        _assign(ns.Begin, ns.End);
 
 		return *this;
 	}
 
 	PUGI__FN XPathNodeSet::CollectionType XPathNodeSet::Type() const
 	{
-		return _type;
+		return TypeOrder;
 	}
 
 	PUGI__FN size_t XPathNodeSet::size() const
 	{
-		return _end - _begin;
+        return End - Begin;
 	}
 
 	PUGI__FN bool XPathNodeSet::Empty() const
 	{
-		return _begin == _end;
+        return Begin == End;
 	}
 
 	PUGI__FN const XPathNode& XPathNodeSet::operator[](size_t index) const
 	{
 		assert(index < size());
-		return _begin[index];
+        return Begin[index];
 	}
 
 	PUGI__FN XPathNodeSet::const_iterator XPathNodeSet::begin() const
 	{
-		return _begin;
+        return Begin;
 	}
 
 	PUGI__FN XPathNodeSet::const_iterator XPathNodeSet::end() const
 	{
-		return _end;
+        return End;
 	}
 
 	PUGI__FN void XPathNodeSet::sort(bool reverse)
 	{
-		_type = internal::XPathSort(_begin, _end, _type, reverse);
+        TypeOrder = internal::XPathSort(Begin, End, TypeOrder, reverse);
 	}
 
 	PUGI__FN XPathNode XPathNodeSet::first() const
 	{
-		return internal::XPathFirst(_begin, _end, _type);
+        return internal::XPathFirst(Begin, End, TypeOrder);
 	}
 
 	PUGI__FN XPathParseResult::XPathParseResult(): error("Internal error"), Offset(0)

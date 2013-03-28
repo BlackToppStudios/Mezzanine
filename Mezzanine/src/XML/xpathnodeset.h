@@ -80,23 +80,33 @@ namespace Mezzanine
                     TypeSortedReverse		///< Sorted by document order (descending)
                 };
 
-                // Constant iterator type
+                /// @brief An iterator trait. Const iterator for XPathNodes.
                 typedef const XPathNode* const_iterator;
 
-                // Default constructor. Constructs empty set.
+                /// @brief Default constructor. Constructs empty set.
                 XPathNodeSet();
 
-                // Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided Type, so be careful
+                /// @param begin A const XPathNode iterator at the beginning of the set of nodes.
+                /// @param end A const XPathNode iterator at the end of the set of nodes.
+                /// @param Type What XPathNodeSet::CollectionType is being used, this defaults to XPathNodeSet::TypeUnsorted
+                /// @brief Constructs a set from iterator range.
+                /// @details Data is not checked for duplicates and is not sorted according to provided Type, so be careful.
                 XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted);
 
-                // Destructor
+                /// @brief Destructor
                 ~XPathNodeSet();
 
-                // Copy constructor/assignment operator
+                /// @brief Copy constructor/assignment operator
+                /// @param ns The Target to copy.
                 XPathNodeSet(const XPathNodeSet& ns);
+
+                /// @brief Assignment Operator.
+                /// @return A reference to the freshly assigned XPathNodeSet.
+                /// @param ns The XPathNodeSet to copy.
                 XPathNodeSet& operator=(const XPathNodeSet& ns);
 
-                // Get collection type
+                /// @brief Get collection Type.
+                /// @return CollectionType
                 CollectionType Type() const;
 
                 // Get collection size
@@ -104,29 +114,47 @@ namespace Mezzanine
                 /// @return The number of XPathNode instances as a size_t in the set
                 size_t size() const;
 
-                // Indexing operator
+                /// @brief Indexing operator.
+                /// @param index A size_t indicating which XPathNode you would like to retrieve
+                /// @return A const reference to the XPathNode you requested.
+                /// @warning Out of bounds errors are checked using assert. Exceptions will not be thrown, during debugging out of bounds access will abort the termination and in production code out of bounds accesses will cause undefined behavior.
                 const XPathNode& operator[](size_t index) const;
 
-                // Collection iterators
+                /// @brief Get Beginning iterator.
+                /// @return A XPathNodeSet::const_iterator to the beginning of the collection.
                 const_iterator begin() const;
+
+                /// @brief Get Ending iterator.
+                /// @return A XPathNodeSet::const_iterator to the end of the collection.
                 const_iterator end() const;
 
-                // Sort the collection in ascending/descending order by document order
+                /// @brief Sort the collection in ascending/descending order by document order.
+                /// @param reverse If true this sorts the collection in the opposite of document order.
                 void sort(bool reverse = false);
 
-                // Get first node in the collection by document order
+                /// @brief Get first node in the collection by document order.
+                /// @return The first node of the, in document order as an XPathNode.
                 XPathNode first() const;
 
-                // Check if collection is empty
+                /// @brief Check if collection is empty.
+                /// @return True if the document is empty, false otherwise.
                 bool Empty() const;
 
             private:
-                CollectionType _type;
+                /// @brief Current ordering of this set
+                CollectionType TypeOrder;
 
-                XPathNode _storage;
+                /// @internal
+                /// @brief Used to initialize the begining of the collections structure.
+                XPathNode Storage;
 
-                XPathNode* _begin;
-                XPathNode* _end;
+                /// @internal
+                /// @brief The beginning of the collection
+                XPathNode* Begin;
+
+                /// @internal
+                /// @brief The End of the collection
+                XPathNode* End;
 
                 void _assign(const_iterator begin, const_iterator end);
         };
