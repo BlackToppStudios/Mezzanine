@@ -155,6 +155,8 @@ namespace Mezzanine
 
     GraphicsManager::~GraphicsManager()
     {
+        SaveAllSettings();
+
         DestroyAllGameWindows(false);
         for (std::vector<Ogre::Plugin*>::iterator Iter = RenderSystems.begin();
              Iter != RenderSystems.end();

@@ -157,6 +157,8 @@ namespace Mezzanine
 
     AudioManager::~AudioManager()
     {
+        SaveAllSettings();
+
         DestroyAllSounds();
         cAudio::destroyAudioManager(cAudioMan);
         delete AMID;
