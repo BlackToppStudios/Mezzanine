@@ -265,7 +265,7 @@ CopyFilesFromMezzanineDuringBuild( data/common/Lua-MIT.txt ${LicenseDir}/Lua-MIT
 CopyFilesFromMezzanineDuringBuild( data/common/Nvidia-CG-License.txt ${LicenseDir}/Nvidia-CG-License.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/Ogre-MITLicense.txt ${LicenseDir}/Ogre-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt ${LicenseDir}/PugiXML-MITLicense.txt )
-CopyFilesFromMezzanineDuringBuild( data/common/RenéNyffenegger-MIT.txt ${LicenseDir}/RenéNyffenegger-MIT.txt )
+CopyFilesFromMezzanineDuringBuild( data/common/ReneNyffenegger-MIT.txt ${LicenseDir}/ReneNyffenegger-MIT.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/SDL-MITLicense.txt ${LicenseDir}/SDL-MITLicense.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/XiphCopyrightNotice.txt ${LicenseDir}/XiphCopyrightNotice.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/zlib-libpngLicense.txt ${LicenseDir}/zlib-libpngLicense.txt )
