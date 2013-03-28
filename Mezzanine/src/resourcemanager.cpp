@@ -156,50 +156,28 @@ namespace Mezzanine
         StringVector FolderNames;
         CountedPtr<StringVector> FolderVec = StringTools::Split(DirectoryPath,"/\\");
         size_t StartIndex = 0;
-        /*#ifdef WINDOWS
-        // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
-        if(FolderVec->at(0).find(':'))
-            StartIndex++;
-        #endif
-        // Now on with creation of folders, from the bottom up, ensuring they are all there.
-        for( size_t CurrIndex = StartIndex ; CurrIndex < FolderVec->size() ; ++CurrIndex )
-        {
-            String PathAttempt;
-            #ifndef WINDOWS
-            PathAttempt.append("/");
-            #endif
-            for( size_t VecIndex = 0 ; VecIndex < CurrIndex ; ++VecIndex )
-            {
-                PathAttempt.append( FolderVec->at(VecIndex) );
-                #ifdef WINDOWS
-                PathAttempt.append("\\");
-                #else
-                PathAttempt.append("/");
-                #endif
-            }
-            Result = CreateDirectory(PathAttempt);
-            PathAttempt.clear();
-        }// */
         String PathAttempt;
         #ifdef WINDOWS
+        char SysSlash = '\\';
+        #else
+        char SysSlash = '/';
+        #endif
+        #ifdef WINDOWS
         // For windows and windows like machines, see if the first entry is a drive, because attempting to make a drive is silly.
-        if(FolderVec->at(0).find(':'))
+        if(FolderVec->at(0).find(':') != String::npos)
         {
-            PathAttempt.append(FolderVec->at(0));
+            PathAttempt.append( FolderVec->at(0) );
+            PathAttempt.append( 1, SysSlash );
             StartIndex++;
         }
         #else
-        PathAttempt.append("/");
+        PathAttempt.append( 1, SysSlash );
         #endif
         for( size_t VecIndex = StartIndex ; VecIndex < FolderVec->size() ; ++VecIndex )
         {
             PathAttempt.append( FolderVec->at(VecIndex) );
-            #ifdef WINDOWS
-            PathAttempt.append("\\");
-            #else
-            PathAttempt.append("/");
-            #endif
-            Result = CreateDirectory(PathAttempt);
+            PathAttempt.append( 1, SysSlash );
+            Result = CreateDirectory( PathAttempt );
         }
         return Result;
     }
