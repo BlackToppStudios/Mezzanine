@@ -323,7 +323,7 @@ namespace Mezzanine
         {
             if( Group == (*SaveIt) )
             {
-                Group->SetOptionalFile(NULL);
+                Group->_SetOptionalFile(NULL);
                 SaveGroups.erase(SaveIt);
                 NeedsSave = true;
                 return;
