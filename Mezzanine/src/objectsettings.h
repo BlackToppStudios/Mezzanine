@@ -198,11 +198,7 @@ namespace Mezzanine
     class MEZZ_LIB ObjectSettingGroup : public ObjectSettingSetContainer
     {
         protected:
-            friend class ObjectSettingFile;
             ObjectSettingFile* OptionalFile;
-            /// @brief Sets the file this group will be saved to.
-            /// @param File The file this group should be saved to when saving the configuration.
-            void SetOptionalFile(ObjectSettingFile* File);
         public:
             /// @brief Class constructor.
             /// @param Name The name to be given to this group.
@@ -223,6 +219,9 @@ namespace Mezzanine
             // Internal Methods
             /// @copydoc ObjectSettingSetContainer::_MarkUpdated()
             void _MarkUpdated();
+            /// @brief Sets the file this group will be saved to.
+            /// @param File The file this group should be saved to when saving the configuration.
+            void _SetOptionalFile(ObjectSettingFile* File);
     };//ObjectSettingGroup
 
     ///////////////////////////////////////////////////////////////////////////////

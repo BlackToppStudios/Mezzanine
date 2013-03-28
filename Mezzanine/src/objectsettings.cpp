@@ -243,23 +243,32 @@ namespace Mezzanine
     {
     }
 
-    void ObjectSettingGroup::SetOptionalFile(ObjectSettingFile* File)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Optional File config
+
+    ObjectSettingFile* ObjectSettingGroup::GetOptionalFile() const
     {
-        OptionalFile = File;
-        _MarkUpdated();
+        return OptionalFile;
     }
-
-
 
     const String& ObjectSettingGroup::GetOptionalFileName() const
     {
         return OptionalFile ? OptionalFile->GetFileName() : StringTools::Blank;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Internal Methods
+
     void ObjectSettingGroup::_MarkUpdated()
     {
         if(OptionalFile)
             OptionalFile->SetNeedsSave(true);
+    }
+
+    void ObjectSettingGroup::_SetOptionalFile(ObjectSettingFile* File)
+    {
+        OptionalFile = File;
+        _MarkUpdated();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -294,7 +303,7 @@ namespace Mezzanine
 
     void ObjectSettingFile::AddGroup(ObjectSettingGroup* Group)
     {
-        Group->SetOptionalFile(this);
+        Group->_SetOptionalFile(this);
         SaveGroups.push_back(Group);
         NeedsSave = true;
     }
