@@ -1941,68 +1941,39 @@ namespace Mezzanine
         /// @warning Not part of the API, subject to change without warning.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathNodeSet
-        /// @brief A collection of nodes that an XPathQuery can work on.
-
-        /// @enum XPathNodeSet::CollectionType
-        /// @brief The different ways a collection may or may not be ordered.
-
-        /// @var XPathNodeSet::TypeUnsorted
-        /// @brief Not Ordered.
-
-        /// @var XPathNodeSet::TypeSorted
-        /// @brief In document Order.
-
-        /// @var XPathNodeSet::TypeSortedReverse
-        /// @brief In reverse document Order.
 
         /// @typedef XPathNodeSet::const_iterator;
-        /// @brief An iterator trait. Const iterator for XPathNodes.
+
 
         /// @fn XPathNodeSet::XPathNodeSet();
-        /// @brief Default constructor. Constructs empty set.
+
 
         /// @fn XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted);
-        /// @param begin A const XPathNode iterator at the beginning of the set of nodes.
-        /// @param end A const XPathNode iterator at the end of the set of nodes.
-        /// @param Type What XPathNodeSet::CollectionType is being used, this defaults to XPathNodeSet::TypeUnsorted
-        /// @brief Constructs a set from iterator range.
-        /// @details Data is not checked for duplicates and is not sorted according to provided Type, so be careful.
+
 
 		/// @fn XPathNodeSet::operator=(const XPathNodeSet& ns);
-		/// @brief Assignment Operator.
-		/// @return A reference to the freshly assigned XPathNodeSet.
-		/// @param ns The XPathNodeSet to copy.
+
 
 		/// @fn XPathNodeSet::Type() const;
-		/// @brief Get collection Type.
-		/// @return CollectionType
+
 
         /// @fn XPathNodeSet::operator[](size_t index) const;
-        /// @brief Indexing operator.
-        /// @param index A size_t indicating which XPathNode you would like to retrieve
-        /// @return A const reference to the XPathNode you requested.
-        /// @warning Out of bounds errors are checked using assert. Exceptions will not be thrown, during debugging out of bounds access will abort the termination and in production code out of bounds accesses will cause undefined behavior.
+
 
 		/// @fn XPathNodeSet::begin() const;
-		/// @brief Get Beginning iterator.
-		/// @return A XPathNodeSet::const_iterator to the beginning of the collection.
+
 
 		/// @fn XPathNodeSet::end() const;
-		/// @brief Get Ending iterator.
-        /// @return A XPathNodeSet::const_iterator to the end of the collection.
+
 
         /// @fn XPathNodeSet::sort(bool reverse = false);
-        /// @brief Sort the collection in ascending/descending order by document order.
-        /// @param reverse If true this sorts the collection in the opposite of document order.
+
 
         /// @fn XPathNodeSet::first() const;
-        /// @brief Get first node in the collection by document order.
-        /// @return The first node of the, in document order as an XPathNode.
+
 
         /// @fn XPathNodeSet::Empty() const;
-        /// @brief Check if collection is empty.
-        /// @return True if the document is empty, false otherwise.
+
 
         ///////////////////////////////////////////////////////////////////////////////
         // floaters
