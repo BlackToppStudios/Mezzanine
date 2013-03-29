@@ -51,6 +51,7 @@
 ///////////////////////////////////////
 #include "eventuserinput.h"
 //#include "eventbase.h"
+#include "exception.h"
 #include "stringtool.h"
 
 #include <memory>

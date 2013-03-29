@@ -46,6 +46,7 @@
 #include "serialization.h"
 #include "vector3.h"
 #include "matrix3x3.h"
+#include "exception.h"
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"

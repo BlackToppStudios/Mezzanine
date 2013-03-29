@@ -45,6 +45,7 @@
 
 #include "datatypes.h"
 #include "eventrendertime.h"
+#include "exception.h"
 #include "stringtool.h"
 
 #include <memory>

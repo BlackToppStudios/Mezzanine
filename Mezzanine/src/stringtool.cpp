@@ -41,6 +41,8 @@
 #define _stringtool_cpp
 
 #include "stringtool.h"
+#include "exception.h"
+
 #include <sstream>
 #include <algorithm>
 #include <cctype>

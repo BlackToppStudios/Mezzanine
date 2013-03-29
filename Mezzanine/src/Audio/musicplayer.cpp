@@ -44,6 +44,8 @@
 #include "Audio/playlist.h"
 #include "Audio/sound.h"
 
+#include "exception.h"
+
 namespace Mezzanine
 {
     namespace Audio

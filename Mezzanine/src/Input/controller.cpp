@@ -44,6 +44,8 @@
 
 #include "Input/controller.h"
 
+#include "exception.h"
+
 #include "SDL.h"
 
 namespace Mezzanine

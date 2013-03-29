@@ -42,6 +42,7 @@
 
 #include "eventgamewindow.h"
 #include "stringtool.h"
+#include "exception.h"
 
 #ifdef MEZZDEBUG
 #include "entresol.h"

@@ -41,6 +41,7 @@
 #define _uiactivatable_cpp
 
 #include "UI/activatable.h"
+#include "exception.h"
 
 namespace Mezzanine
 {

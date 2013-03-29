@@ -43,6 +43,7 @@
 #include "colourvalue.h"
 #include "stringtool.h"
 #include "serialization.h"
+#include "exception.h"
 
 #include <Ogre.h>
 

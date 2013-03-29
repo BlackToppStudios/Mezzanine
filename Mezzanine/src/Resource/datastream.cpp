@@ -42,6 +42,8 @@
 
 #include "Resource/datastream.h"
 #include "stringtool.h"
+#include "exception.h"
+
 
 #include <cstring>
 #include <cstdio>

@@ -41,7 +41,8 @@
 #define EVENTQUIT_CPP
 
 #include "eventquit.h"
-    #include "stringtool.h"
+#include "stringtool.h"
+#include "exception.h"
 
 #include <memory>
 

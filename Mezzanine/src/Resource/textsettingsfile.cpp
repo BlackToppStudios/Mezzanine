@@ -42,6 +42,7 @@
 
 #include "Resource/textsettingsfile.h"
 #include "stringtool.h"
+#include "exception.h"
 
 #include <OgreResourceGroupManager.h>
 

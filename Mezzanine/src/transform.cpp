@@ -43,6 +43,7 @@
 #include "serialization.h"
 #include "stringtool.h"
 #include "transform.h"
+#include "exception.h"
 
 #include <btBulletDynamicsCommon.h>
 

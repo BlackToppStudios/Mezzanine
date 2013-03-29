@@ -44,6 +44,7 @@
 #include "stringtool.h"
 #include "vector2.h"
 #include "mathtool.h"
+#include "exception.h"
 
 //#include <memory>
 

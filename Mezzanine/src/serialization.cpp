@@ -42,6 +42,7 @@
 
 #include "serialization.h"
 #include "stringtool.h"
+#include "exception.h"
 
 namespace Mezzanine
 {

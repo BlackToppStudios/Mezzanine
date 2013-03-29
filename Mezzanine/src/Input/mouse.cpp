@@ -43,6 +43,7 @@
 #include "Input/mouse.h"
 #include "Graphics/viewport.h"
 #include "Graphics/gamewindow.h"
+#include "exception.h"
 
 #include <cstring>
 
