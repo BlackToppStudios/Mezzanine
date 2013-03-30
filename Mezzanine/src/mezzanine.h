@@ -143,7 +143,6 @@
 #include "worldobject.h"
 #include "worldobjectphysicssettings.h"
 #include "worldtrigger.h"
-#include "XML/xmldoc.h"
 #include "XML/xml.h"                        // nothing to do
 
 

@@ -276,7 +276,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"       # Going away soon
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"    # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/attributeiterator.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/document.h"
@@ -286,9 +285,9 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/parseresult.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.h"
-        "${${PROJECT_NAME}_SRC_DIR}XML/utf8conversion.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmlenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlstring.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnode.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnodeset.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathparseresult.h"
@@ -468,7 +467,6 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"     # Going away soon
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.cpp"  # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/attributeiterator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/document.cpp"
@@ -478,8 +476,8 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/parseresult.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.cpp"
-        "${${PROJECT_NAME}_SRC_DIR}XML/utf8conversion.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlstring.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnode.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnodeset.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathparseresult.cpp"

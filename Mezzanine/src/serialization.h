@@ -45,7 +45,6 @@
 
     #include "datatypes.h"
     #include "XML/xml.h"
-    #include "XML/xmldoc.h"
 
     // Standard Headers are not included in SWIG preprocessing
     #ifndef SWIG

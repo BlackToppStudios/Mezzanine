@@ -86,6 +86,37 @@ namespace Mezzanine
         /// @param str The string to convert.
         /// @return A std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > containing the converted data
         std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > MEZZ_LIB AsWide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str);
+
+        /// @brief Gets the first tag out of the Stream and returns it as a String
+        /// @param stream An std::ostream that contains atleast one xml tag
+        /// @return This gets one XML tag, its closing tage, and all subtags.
+        String MEZZ_LIB GetOneTag(std::istream& stream);
+
+
+        class Document;
+        /// @internal
+        /// @brief Perform a basic series of checks for extracting meaning from a single xml tag.
+        /// @param NameSpace Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example "Mezzanine::"
+        /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
+        /// @param OneTag One XML tag/elements worth of text to deserialize.
+        /// @return A pointer to XML::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @throw This can throw a Mezzanine::exception in the event that the xml cannot be parsed.
+        Document* MEZZ_LIB PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag);
+
+        /// @internal
+        /// @brief Calls PreParseClassFromSingleTag passing a "" as the Namespace
+        /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
+        /// @param OneTag One XML tag/elements worth of text to deserialize.
+        /// @return A pointer to XML::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @throw This can throw a Mezzanine::exception in the event that the xml cannot be parsed.
+        Document* MEZZ_LIB PreParseClassFromSingleTag(const String& ClassName, const String& OneTag);
+
+        /// @brief Convert \< \> \& and " in text to \&lt;, \&gt;, \&amp; and \&quote so text can safely be stored in XML
+        /// @details Usually this is not required. Entering text into an XML::Attribute or and XML::Node will correctly escape it.
+        /// Use this when you will be creating raw xml want to safely escape these characters.
+        /// @param XMLText The Text to convert to xml safe text
+        /// @return a String containing the escaped version of XMLText
+        String MEZZ_LIB EscapeXML(const String& XMLText);
     }
 } // /namespace Mezzanine
 

@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+// © Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -37,27 +37,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-/// @cond 0
+/*
+ *
+ * Software, Files, Libraries and all other items referenced in this clause refers only
+ * to the contents of this file and associated documentation.
+ *
+ * Pugixml parser - version 1.0
+ * --------------------------------------------------------
+ * Copyright © 2006-2012, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
+ * Report bugs and download new versions at http://pugixml.org/
+ *
+ * This library is distributed under the MIT License. See notice at the end
+ * of this file.
+ *
+ * This work is based on the pugxml parser, which is:
+ * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
+ */
+#ifndef _xmlutfconversion_cpp
+#define _xmlutfconversion_cpp
 
-#ifndef _xmldoc_cpp
-#define _xmldoc_cpp
+/// @file
+/// @brief Describe file here
 
-#include "XML/xml.h"
-#include "stringtool.h"
+#include "XML/document.h"
+#include "XML/xmlstring.h"
+
 #include "exception.h"
 
 namespace Mezzanine
 {
-
     namespace XML
     {
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @file xmldoc.cpp
-        /// @brief Minor tools and addition to assist with the XML system
-        /// @details The integration process for PugiXML requires that our changes all be stored in shell script.
-        /// This is not condusive to good clean documentation and complicated code chucks and is why the doxygen documention
-        /// for the XML parser exist here instead of xml.h.
-        ///////////////////////////////////////
 
         String GetOneTag(std::istream& stream )     // this function might be optimizes by counting characters, then copying several characters, or something like that.
         {
@@ -85,7 +95,7 @@ namespace Mezzanine
 
                 if ( '>' == ReadOne )                                   // if are we at a > then the amount of nested tags we are in changes
                 {
-                    if (HaveSlash)                                      // if have passed an unescaped slash then we  are ending a tage
+                    if (HaveSlash)                                      // if have passed an unescaped slash then we  are ending a tag
                     {
                         --TagCount;
                         if ( 0>=TagCount )                              // if we are ending the last tag then we are done
@@ -157,9 +167,37 @@ namespace Mezzanine
             return Results;
         }
 
-    } // \xml
-}   // \Mezz
+    }
+} // /namespace Mezzanine
 
-#endif
+#endif // Include guard
 
-/// @endcond
+
+/*
+ *
+ * Software, Files, Libraries and all other items referenced in this clause refers only
+ * to the contents of this file and associated documentation.
+ *
+ * Copyright © 2006-2012 Arseny Kapoulkine
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
