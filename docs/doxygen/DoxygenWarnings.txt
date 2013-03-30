@@ -2313,3 +2313,5 @@
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:127: warning: unable to resolve reference to `actorcontainer1' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:153: warning: unable to resolve reference to `Mezzanine::Character' for \ref command
 /home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h:176: warning: unable to resolve reference to `LuaManual' for \ref command
+error: problems opening rtf file /home/sqeaky/Code/Mezzanine/docs/doxygen/rtf/refman.rtf for reading
+An error occurred during post-processing the RTF files!
