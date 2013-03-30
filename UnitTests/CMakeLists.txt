@@ -73,23 +73,23 @@ set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes/)
 ###############################################################################
 #Sources
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SRC_DIR}/main.h"
-	"${${PROJECT_NAME}_SRC_DIR}/main.cpp"
-	"${${PROJECT_NAME}_SRC_DIR}/actortests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/collisionshapetests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/compilerflagtests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/constrainttests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/eventmanagertests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/lua51tests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/metacodetests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/notatest.h"
-	"${${PROJECT_NAME}_SRC_DIR}/particleeffecttests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/scenemanagertests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/smartptrtests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/transformtests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/vector2tests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/vector3tests.h"
-	"${${PROJECT_NAME}_SRC_DIR}/worldnodetests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/main.h"
+    "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}/actortests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/collisionshapetests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/compilerflagtests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/constrainttests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/eventmanagertests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/lua51tests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/metacodetests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/notatest.h"
+    "${${PROJECT_NAME}_SRC_DIR}/particleeffecttests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/scenemanagertests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/smartptrtests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/transformtests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/vector2tests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/vector3tests.h"
+    "${${PROJECT_NAME}_SRC_DIR}/worldnodetests.h"
 )
 
 ###############################################################################
@@ -98,92 +98,102 @@ set(${PROJECT_NAME}_sources
 #Description: This function copies items from the Data/lib directory into it's expected location in the output directory During build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesDuringBuild SourceFileInDataTree TargetFileInBinaryTree)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_DATA_DIR}${TargetFileInBinaryTree}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_DATA_DIR}${SourceFileInDataTree}" "${${PROJECT_NAME}_BINARY_DIR}${TargetFileInBinaryTree}"
+        VERBATIM
+    )
 endfunction(CopyFilesDuringBuild)
 
 #Description: This function copies items from the Data/lib directory in Mezzanine into it's expected location in the output directory for Unittests during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromMezzanineDuringBuild FileName)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${FileName}"
+        VERBATIM
+    )
 endfunction(CopyFilesFromMezzanineDuringBuild)
 
 #Description: This function copies items from the Data/lib directory in Mezzanine into it's renamed location in the output directory for Unittests during build time. It does not need leading slashes
 #PreCondition: This function can only be called after "add_library(${PROJECT_NAME} ...)" is called, otherwise it will fail silently
 function(CopyFilesFromMezzanineDuringBuildAndRename FileName NewFileName)
-	add_custom_command(
-		TARGET ${PROJECT_NAME}
-		PRE_LINK
-		COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
-		COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${NewFileName}"
-		VERBATIM
-	)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_LINK
+        COMMAND ${CMAKE_COMMAND} -E echo "Preparing File: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${${PROJECT_NAME}_MEZZANINE_BIN_DIR}${FileName}" "${${PROJECT_NAME}_BINARY_DIR}${NewFileName}"
+        VERBATIM
+    )
 endfunction(CopyFilesFromMezzanineDuringBuildAndRename)
 
 ##############################################################################
 # Accessing correct headers
 
 include_directories( ${${PROJECT_NAME}_SRC_DIR}
-        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
-        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
-        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
-        "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
-        "${Mezzanine_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
-        ${OgreConfigHeaderIncludeDir}
-        "${Mezz_SDLBuildDir}/SDL/include/"
-        ${OgreHeaderIncludeDir}
+    "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
+    "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
+    "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+    "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+    "${Mezzanine_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
+    ${OgreConfigHeaderIncludeDir}
+    "${Mezz_SDLBuildDir}/SDL/include/"
+    ${OgreHeaderIncludeDir}
 )
 
 if(${WIN32})
-	message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
-	include_directories(
-	)
-	message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific Build Process")
+    message ( STATUS "${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+    include_directories()
+    message ( STATUS "${PROJECT_NAME} - End Windows32/64 Specific Build Process")
 endif(${WIN32})
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-	message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
-	include_directories(
-		${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
-		${Mezzanine_OgreBuildDir}/ogre/include/
-	)
+    message ( STATUS "${PROJECT_NAME} - Begin Linux Specific Build Process")
+    include_directories(
+        ${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
+        ${Mezzanine_OgreBuildDir}/ogre/include/
+    )
 
-	message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
+    message ( STATUS "${PROJECT_NAME} - End Linux Specific Build Process")
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
-	message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
+    message ( STATUS "${PROJECT_NAME} - Begin Apple Specific Build Process")
 
-	include_directories(
-		${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
-		${Mezzanine_OgreBuildDir}/ogre/include/
-	)
-
+    include_directories(
+        ${Mezzanine_OgreBuildDir}/ogre/OgreMain/include/
+        ${Mezzanine_OgreBuildDir}/ogre/include/
+    )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "APPLE")
+
 ##############################################################################
 #Executable definitions
 include_directories(
-	${${PROJECT_NAME}_SRC_DIR}
-	${${PROJECT_NAME}_MEZZANINE_BIN_SRC}
-	"${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 			#only for windows which doesn't compile OGRE
-	"${Mezz_SDLBuildDir}/SDL/include/"
+    ${${PROJECT_NAME}_SRC_DIR}
+    ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}
+    "${Mezzanine_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 			#only for windows which doesn't compile OGRE
+    "${Mezz_SDLBuildDir}/SDL/include/"
 )
 link_directories( ${${PROJECT_NAME}_MEZZANINE_BIN_DIR} )
 
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources} )
 add_dependencies( ${PROJECT_NAME} Mezzanine OgreMain)
-target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
+
+# Link to all of the Mezzanine Dependencies
+target_link_libraries( ${PROJECT_NAME}
+    ${MezzanineLinkName}
+    ${NetworkLibrary}
+    ${OgreLibraryAllNames}
+    ${LuaLinkName}
+    ${Bullet_LibraryNames}
+    ${SDLLibraryNames}
+    ${SoundLibraryNames}
+)
+#target_link_libraries( ${PROJECT_NAME} ${MezzanineLinkName} ${OgreLinkName})
 
 ##############################################################################
 # File copies during all builds
