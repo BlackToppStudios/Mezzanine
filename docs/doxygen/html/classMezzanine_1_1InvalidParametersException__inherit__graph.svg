@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 152.00 158.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 154)">
 <title>Mezzanine::InvalidParametersException</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-154 149,-154 149,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-33 144,-33 144,-1 0,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
-<polygon fill="white" stroke="black" points="17.5,-71 17.5,-91 126.5,-91 126.5,-71 17.5,-71"/>
+<polygon fill="none" stroke="black" points="17.5,-71 17.5,-91 126.5,-91 126.5,-71 17.5,-71"/>
 <text text-anchor="middle" x="72" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
 </g>
@@ -30,7 +29,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="34.5,-129 34.5,-149 109.5,-149 109.5,-129 34.5,-129"/>
+<polygon fill="none" stroke="#bfbfbf" points="34.5,-129 34.5,-149 109.5,-149 109.5,-129 34.5,-129"/>
 <text text-anchor="middle" x="72" y="-136" font-family="FreeSans" font-size="10.00">std::exception</text>
 </a>
 </g>

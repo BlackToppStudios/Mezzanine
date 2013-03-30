@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 128.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::Resource::FileStreamDataStream</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-108 125,-108 125,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-33 120,-33 120,-1 0,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1DataStream.xhtml" target="_top" xlink:title="This represents a stream to a piece of data, usually a file.">
-<polygon fill="white" stroke="black" points="6.5,-71 6.5,-103 113.5,-103 113.5,-71 6.5,-71"/>
+<polygon fill="none" stroke="black" points="6.5,-71 6.5,-103 113.5,-103 113.5,-71 6.5,-71"/>
 <text text-anchor="start" x="14.5" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="60" y="-78" font-family="FreeSans" font-size="10.00">::DataStream</text>
 </a>

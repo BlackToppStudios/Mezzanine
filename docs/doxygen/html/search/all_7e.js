@@ -210,6 +210,7 @@ var searchData=
   ['_7esyntaxerrorexception',['~SyntaxErrorException',['../classMezzanine_1_1SyntaxErrorException.xhtml#a670ce0fc79a2e60876ad4d28600c0060',1,'Mezzanine::SyntaxErrorException']]],
   ['_7esyntaxerrorluaexception',['~SyntaxErrorLuaException',['../classMezzanine_1_1SyntaxErrorLuaException.xhtml#a57f43d3596ebe55a4793640ffcb99b04',1,'Mezzanine::SyntaxErrorLuaException']]],
   ['_7esyntaxerrorxmlexception',['~SyntaxErrorXMLException',['../classMezzanine_1_1SyntaxErrorXMLException.xhtml#afc11083be7feeda301a38a0eaa6d9698',1,'Mezzanine::SyntaxErrorXMLException']]],
+  ['_7esyntaxerrorxpathexception',['~SyntaxErrorXPathException',['../classMezzanine_1_1SyntaxErrorXPathException.xhtml#a0dd678d92394fbf1166123c57a0cfa7d',1,'Mezzanine::SyntaxErrorXPathException']]],
   ['_7etabset',['~TabSet',['../classMezzanine_1_1UI_1_1TabSet.xhtml#a84ddb9e5a47e97f86b3465b55ff858e7',1,'Mezzanine::UI::TabSet']]],
   ['_7etechnique',['~Technique',['../classMezzanine_1_1Graphics_1_1Technique.xhtml#ae2394b4c7bf5fd678f5e25740ea706e7',1,'Mezzanine::Graphics::Technique']]],
   ['_7eterrainbase',['~TerrainBase',['../classMezzanine_1_1TerrainBase.xhtml#aa0358fa211acd0c1d1d605e19d7488f1',1,'Mezzanine::TerrainBase']]],
@@ -221,7 +222,7 @@ var searchData=
   ['_7etimer',['~Timer',['../classMezzanine_1_1Timer.xhtml#af9f53c261429f22eaf09ae9d86e8b931',1,'Mezzanine::Timer']]],
   ['_7etimercallback',['~TimerCallback',['../classMezzanine_1_1TimerCallback.xhtml#a589a3635b86895c849401b7b3d050e20',1,'Mezzanine::TimerCallback']]],
   ['_7etimermanager',['~TimerManager',['../classMezzanine_1_1TimerManager.xhtml#ac51641144af94b45d309edf7975da6f6',1,'Mezzanine::TimerManager']]],
-  ['_7etreewalker',['~TreeWalker',['../classMezzanine_1_1XML_1_1TreeWalker.xhtml#aa834cd0a5ee1e13625e748e1e185ef9a',1,'Mezzanine::XML::TreeWalker']]],
+  ['_7etreewalker',['~TreeWalker',['../classMezzanine_1_1XML_1_1TreeWalker.xhtml#af0a8e7158a0576ee74c9857c507d80bd',1,'Mezzanine::XML::TreeWalker']]],
   ['_7euimanager',['~UIManager',['../classMezzanine_1_1UIManager.xhtml#ad480071e4f02d2e24903da56425e6b6a',1,'Mezzanine::UIManager']]],
   ['_7euniversalconstraint',['~UniversalConstraint',['../classMezzanine_1_1Physics_1_1UniversalConstraint.xhtml#a4ad0804020278da367df009aec910804',1,'Mezzanine::Physics::UniversalConstraint']]],
   ['_7eviewport',['~Viewport',['../classMezzanine_1_1Graphics_1_1Viewport.xhtml#a46e60569bd07d1f9739fec9149ffcbfe',1,'Mezzanine::Graphics::Viewport']]],
@@ -235,7 +236,9 @@ var searchData=
   ['_7eworldobjectgraphicssettings',['~WorldObjectGraphicsSettings',['../classMezzanine_1_1WorldObjectGraphicsSettings.xhtml#af772f35d33f3694318017d6f66c07a1a',1,'Mezzanine::WorldObjectGraphicsSettings']]],
   ['_7eworldobjectphysicssettings',['~WorldObjectPhysicsSettings',['../classMezzanine_1_1WorldObjectPhysicsSettings.xhtml#acce21551b75d66ea9dbeaebcba750337',1,'Mezzanine::WorldObjectPhysicsSettings']]],
   ['_7eworldtrigger',['~WorldTrigger',['../classMezzanine_1_1WorldTrigger.xhtml#aa77fdf6c0123da7f40e16ccb1a481e7d',1,'Mezzanine::WorldTrigger']]],
+  ['_7ewriter',['~Writer',['../classMezzanine_1_1XML_1_1Writer.xhtml#a5425729f7965544c72c11e42d22bff0b',1,'Mezzanine::XML::Writer']]],
   ['_7exmlstreamwrapper',['~XMLStreamWrapper',['../classMezzanine_1_1XML_1_1XMLStreamWrapper.xhtml#a6e729956f1ca08a1610213ed5e0c658e',1,'Mezzanine::XML::XMLStreamWrapper']]],
+  ['_7expathnodeset',['~XPathNodeSet',['../classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a54229a7b68dbd83d9eb43391b51093d9',1,'Mezzanine::XML::XPathNodeSet']]],
   ['_7expathquery',['~XPathQuery',['../classMezzanine_1_1XML_1_1XPathQuery.xhtml#aeba65550dc7e24372f32781b1809584e',1,'Mezzanine::XML::XPathQuery']]],
   ['_7expathvariableset',['~XPathVariableSet',['../classMezzanine_1_1XML_1_1XPathVariableSet.xhtml#ac68b88cf396cd13ffcef45eca5b5b704',1,'Mezzanine::XML::XPathVariableSet']]]
 ];

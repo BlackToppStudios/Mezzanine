@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 154.00 274.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 270)">
 <title>Mezzanine::DirectoryNotFoundException</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-270 151,-270 151,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 146.5,-33 146.5,-1 -0.5,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1DirectoryException.xhtml" target="_top" xlink:title="Thrown when there is an unknown issue with a file.">
-<polygon fill="white" stroke="black" points="-0.5,-71 -0.5,-91 146.5,-91 146.5,-71 -0.5,-71"/>
+<polygon fill="none" stroke="black" points="-0.5,-71 -0.5,-91 146.5,-91 146.5,-71 -0.5,-71"/>
 <text text-anchor="middle" x="73" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::DirectoryException</text>
 </a>
 </g>
@@ -30,7 +29,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1IOException.xhtml" target="_top" xlink:title="Thrown when there was an issue with IO but very little was known about it.">
-<polygon fill="white" stroke="black" points="13.5,-129 13.5,-149 132.5,-149 132.5,-129 13.5,-129"/>
+<polygon fill="none" stroke="black" points="13.5,-129 13.5,-149 132.5,-149 132.5,-129 13.5,-129"/>
 <text text-anchor="middle" x="73" y="-136" font-family="FreeSans" font-size="10.00">Mezzanine::IOException</text>
 </a>
 </g>
@@ -42,7 +41,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Exception.xhtml" target="_top" xlink:title="This is the exception thrown by most Mezzanine system that can throw exceptions.">
-<polygon fill="white" stroke="black" points="18.5,-187 18.5,-207 127.5,-207 127.5,-187 18.5,-187"/>
+<polygon fill="none" stroke="black" points="18.5,-187 18.5,-207 127.5,-207 127.5,-187 18.5,-187"/>
 <text text-anchor="middle" x="73" y="-194" font-family="FreeSans" font-size="10.00">Mezzanine::Exception</text>
 </a>
 </g>
@@ -54,7 +53,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="35.5,-245 35.5,-265 110.5,-265 110.5,-245 35.5,-245"/>
+<polygon fill="none" stroke="#bfbfbf" points="35.5,-245 35.5,-265 110.5,-265 110.5,-245 35.5,-245"/>
 <text text-anchor="middle" x="73" y="-252" font-family="FreeSans" font-size="10.00">std::exception</text>
 </a>
 </g>

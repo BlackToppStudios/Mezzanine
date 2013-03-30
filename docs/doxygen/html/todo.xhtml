@@ -73,10 +73,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000018"></a>File <a class="el" href="datastream_8h.xhtml">datastream.h</a>  </dt>
+<dt><a class="anchor" id="_todo000019"></a>File <a class="el" href="datastream_8h.xhtml">datastream.h</a>  </dt>
 <dd>Investigate how required these these stream implementations are  </dd>
 <dt><a class="anchor" id="_todo000006"></a>page <a class="el" href="index.xhtml">Mezzanine</a>  </dt>
 <dd>Fill out the Simple Data Types with all the enumerations. </dd>
+<dt><a class="anchor" id="_todo000016"></a>Namespace <a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a>  </dt>
+<dd>This exists because somewhere in our chain of includes we have "winnt.h" (on windows) defining "KEY_EXECUTE", which causes the compile to fail at the line declaring "KEY_EXECUTE". I am reasonably certain this only exists when &lt;Ogre.h&gt; is included above this file in the include chain.  </dd>
 <dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classMezzanine_1_1Any.xhtml#a80e0935053029b964ccc1f057600bc8f">Mezzanine::Any::operator()</a>  () const </dt>
 <dd>These exceptions should get logged, but the Entresol class is too large for it to be worthwhile to include it here.  </dd>
 <dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="namespaceMezzanine_1_1BinaryTools.xhtml#a5d589d15b7cf318b1759487b0d3e6de4">Mezzanine::BinaryTools::Base64Decode</a>  (String const &amp;EncodedString)</dt>
@@ -85,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dd>Fix all the extra occurences of the word Camera in Function names on the camera.  </dd>
 <dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="namespaceMezzanine.xhtml#a36fefd8e3d822274f02c7633b0ef5072">Mezzanine::ConvertTo</a>  (const From &amp;Datum)</dt>
 <dd>Overload ConvertTo for ToString Conversions.  </dd>
-<dt><a class="anchor" id="_todo000016"></a>Class <a class="el" href="classMezzanine_1_1Input_1_1Keyboard.xhtml">Mezzanine::Input::Keyboard</a>  </dt>
+<dt><a class="anchor" id="_todo000017"></a>Class <a class="el" href="classMezzanine_1_1Input_1_1Keyboard.xhtml">Mezzanine::Input::Keyboard</a>  </dt>
 <dd>SDL mentions a ModState for keys. May want to implement that.  </dd>
 <dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classMezzanine_1_1LineGroup.xhtml#acadb6f8ccbe70828b094f07a11f276ac">Mezzanine::LineGroup::drawLine</a>  (const Vector3 &amp;start, const Vector3 &amp;end)</dt>
 <dd>TODO: In the future we will add a break in the line segment chain when this is called.  </dd>
@@ -97,63 +99,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dd>I'm not gonna lie, I have no idea what the hell the Transpose of a 3x3 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review.  </dd>
 <dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="classMezzanine_1_1Matrix4x4.xhtml#a1330573388a3070bc747bad97d93d3e9">Mezzanine::Matrix4x4::Transpose</a>  () const </dt>
 <dd>I'm not gonna lie, I have no idea what the hell the Transpose of a 4x4 Matrix is or what it is used for...this doc could use a touchup. In fact most of the doc's on this class could use a review.  </dd>
-<dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="classMezzanine_1_1Physics_1_1Point2PointConstraint.xhtml#a464972d0867d642f5c605c5209b5f524">Mezzanine::Physics::Point2PointConstraint::SetTAU</a>  (Real TAU)</dt>
+<dt><a class="anchor" id="_todo000018"></a>Member <a class="el" href="classMezzanine_1_1Physics_1_1Point2PointConstraint.xhtml#a464972d0867d642f5c605c5209b5f524">Mezzanine::Physics::Point2PointConstraint::SetTAU</a>  (Real TAU)</dt>
 <dd>Research this more carefully  </dd>
 <dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="classMezzanine_1_1ResourceManager.xhtml#a17b72af560fcf890ee2571dab2109a6d">Mezzanine::ResourceManager::ResolveDataPathFromString</a>  (const String &amp;PathVar)</dt>
 <dd>Create a function to check if directory exists in the resource manager  </dd>
-<dt><a class="anchor" id="_todo000019"></a>Class <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">Mezzanine::Scripting::iScriptCompilable</a>  </dt>
+<dt><a class="anchor" id="_todo000020"></a>Class <a class="el" href="classMezzanine_1_1Scripting_1_1iScriptCompilable.xhtml">Mezzanine::Scripting::iScriptCompilable</a>  </dt>
 <dd>Add sample code of safe cast in ScriptCompilable, becuase that is kinda wierd.  </dd>
 <dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="classMezzanine_1_1WorldNode.xhtml#a417e459d58c4d612bcbbe98a328c7b50">Mezzanine::WorldNode::SetAutoTracking</a>  (AttachableBase *Target, const Vector3 &amp;LocalDirection=Vector3::Neg_Unit_Z(), const Vector3 &amp;Offset=Vector3())</dt>
 <dd>TODO: The WorldNode Does not Correctly Serialize AutoTracking.  </dd>
-<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a98f4fb1148fdb93e32d1c41316978aea">Mezzanine::XML::Attribute::AsDouble</a>  (double def=0) const </dt>
+<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a09bfced7ac57e4c80af524a31561447b">Mezzanine::XML::Attribute::AsDouble</a>  (double def=0) const </dt>
 <dd>Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
-<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a38792091034218b1f9a0e8789b429845">Mezzanine::XML::Attribute::AsFloat</a>  (float def=0) const </dt>
+<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a73ae5a32a8f10d3de238758e13840850">Mezzanine::XML::Attribute::AsFloat</a>  (float def=0) const </dt>
 <dd>Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
-<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a56a7b51ed3dadc64945eb1e574ab1bc5">Mezzanine::XML::Attribute::AsInt</a>  (int def=0) const </dt>
+<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a433fef4f74eaa825755b53b1baea539a">Mezzanine::XML::Attribute::AsInt</a>  (int def=0) const </dt>
 <dd>Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
-<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a3376aa3b8a5a2a233da9074a40e08fe9">Mezzanine::XML::Attribute::AsUint</a>  (unsigned int def=0) const </dt>
+<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#affc4e62ae891b85fea0d34f90c5b18c9">Mezzanine::XML::Attribute::AsUint</a>  (unsigned int def=0) const </dt>
 <dd>Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.  </dd>
-<dt><a class="anchor" id="_todo000032"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a69984ae38bd7e6f7b83b32f5e1309273">Mezzanine::XML::Attribute::SetValue</a>  (double rhs)</dt>
+<dt><a class="anchor" id="_todo000026"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a59221d61ea9d7e45eaab2c6cc1bad519">Mezzanine::XML::Attribute::SetValue</a>  (int rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#afff322c3640040f0054c6d1e346891fc">Mezzanine::XML::Attribute::SetValue</a>  (const Char8 *rhs)</dt>
+<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#afff322c3640040f0054c6d1e346891fc">Mezzanine::XML::Attribute::SetValue</a>  (const Char8 *rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a7deca5348aad40d7ffd40f4a74737332">Mezzanine::XML::Attribute::SetValue</a>  (bool rhs)</dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow.  </p>
-</dd>
-<dt><a class="anchor" id="_todo000031"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a331f9de766259d24a707ec552d7e5726">Mezzanine::XML::Attribute::SetValue</a>  (unsigned int rhs)</dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow.  </p>
-</dd>
-<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a50ea0652d3e71c8d41d573f1cfc3a3bd">Mezzanine::XML::Attribute::SetValue</a>  (T rhs)</dt>
+<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a50ea0652d3e71c8d41d573f1cfc3a3bd">Mezzanine::XML::Attribute::SetValue</a>  (T rhs)</dt>
 <dd>Strip "&gt;" automatically and provide a method to reconsitute it.  </dd>
-<dt><a class="anchor" id="_todo000030"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a59221d61ea9d7e45eaab2c6cc1bad519">Mezzanine::XML::Attribute::SetValue</a>  (int rhs)</dt>
+<dt><a class="anchor" id="_todo000027"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a331f9de766259d24a707ec552d7e5726">Mezzanine::XML::Attribute::SetValue</a>  (unsigned int rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000026"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a488c7619046a34cffc3d8cfd388f83a5">Mezzanine::XML::Node::FirstElementByPath</a>  (const Char8 *Path, Char8 delimiter= '/') const </dt>
+<dt><a class="anchor" id="_todo000029"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a7deca5348aad40d7ffd40f4a74737332">Mezzanine::XML::Attribute::SetValue</a>  (bool rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000028"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a69984ae38bd7e6f7b83b32f5e1309273">Mezzanine::XML::Attribute::SetValue</a>  (double rhs)</dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow.  </p>
+</dd>
+<dt><a class="anchor" id="_todo000031"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Attribute.xhtml#a3df2a4fdea7db7fe57c7f7dd4f27ac8c">Mezzanine::XML::Attribute::SetValue</a>  (const String &amp;rhs)</dt>
+<dd>update this to make the error return code redundant and use an exception instead.  </dd>
+<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a446781c040be454e12282ff91d28cb20">Mezzanine::XML::Node::FirstElementByPath</a>  (const Char8 *Path, Char8 delimiter= '/') const </dt>
 <dd>Investigate this more deeply.  </dd>
-<dt><a class="anchor" id="_todo000025"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a09592f5157a294e00f2f3032cb1f53f6">Mezzanine::XML::Node::InsertChildAfter</a>  (NodeType Type, const Node &amp;node)</dt>
+<dt><a class="anchor" id="_todo000034"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a7963271c2ad283a37cbb750370daf4c9">Mezzanine::XML::Node::InsertChildAfter</a>  (NodeType Type, const Node &amp;node)</dt>
 <dd>Not all nodes can be added to other nodes, we need to figure it out and put it here.  </dd>
-<dt><a class="anchor" id="_todo000036"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a3d880d9761fa75e9582f22355693a1f6">Mezzanine::XML::Node::InsertChildBefore</a>  (NodeType Type, const Node &amp;node)</dt>
+<dt><a class="anchor" id="_todo000035"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a3d880d9761fa75e9582f22355693a1f6">Mezzanine::XML::Node::InsertChildBefore</a>  (NodeType Type, const Node &amp;node)</dt>
 <dd>Not all nodes can be added to other nodes, we need to figure it out and put it here.  </dd>
-<dt><a class="anchor" id="_todo000024"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#af609002f7a507f69a4b74bd237619beb">Mezzanine::XML::Node::PrependChild</a>  (NodeType Type=NodeElement)</dt>
+<dt><a class="anchor" id="_todo000033"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a2c6b463b195439bcf3cbdd80e4f271c0">Mezzanine::XML::Node::PrependChild</a>  (NodeType Type=NodeElement)</dt>
 <dd>Not all nodes can be added to other nodes, we need to figure it out and put it here.  </dd>
-<dt><a class="anchor" id="_todo000035"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#aa8bad1055873931e97cd12b044e838b4">Mezzanine::XML::Node::SetValue</a>  (const Char8 *rhs)</dt>
+<dt><a class="anchor" id="_todo000032"></a>Member <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#aa8bad1055873931e97cd12b044e838b4">Mezzanine::XML::Node::SetValue</a>  (const Char8 *rhs)</dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow.  </p>
 </dd>
-<dt><a class="anchor" id="_todo000028"></a>Class <a class="el" href="classMezzanine_1_1XML_1_1XMLStreamWrapper.xhtml">Mezzanine::XML::XMLStreamWrapper</a>  </dt>
+<dt><a class="anchor" id="_todo000037"></a>Class <a class="el" href="classMezzanine_1_1XML_1_1XMLStreamWrapper.xhtml">Mezzanine::XML::XMLStreamWrapper</a>  </dt>
 <dd>Ideally this class should not exist, and the XML system should be made to use the resource system instead of doing its own IO.  </dd>
 <dt><a class="anchor" id="_todo000004"></a>Namespace <a class="el" href="namespaceOgre.xhtml">Ogre</a>  </dt>
 <dd>Make main page in documentation with wiki link and listing of required steps (build target and OS define), and dependencies required to build this. </dd>
 </dl>
 </div></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:06 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 00:13:19 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

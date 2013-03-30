@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 276.00 348.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 344)">
 <title>Mezzanine::ObjectSettingSetContainer</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-344 273,-344 273,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-153 0,-185 126,-185 126,-153 0,-153"/>
@@ -18,7 +17,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="white" stroke="black" points="91.5,-83 91.5,-103 232.5,-103 232.5,-83 91.5,-83"/>
+<polygon fill="none" stroke="black" points="91.5,-83 91.5,-103 232.5,-103 232.5,-83 91.5,-83"/>
 <text text-anchor="middle" x="162" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
@@ -35,7 +34,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="white" stroke="#bfbfbf" points="9,-1 9,-33 137,-33 137,-1 9,-1"/>
+<polygon fill="none" stroke="#bfbfbf" points="9,-1 9,-33 137,-33 137,-1 9,-1"/>
 <text text-anchor="start" x="17" y="-20" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="73" y="-8" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>
@@ -53,7 +52,7 @@
 </g>
 <!-- Node4 -->
 <g id="node8" class="node"><title>Node4</title>
-<polygon fill="white" stroke="#bfbfbf" points="143.5,-159 143.5,-179 268.5,-179 268.5,-159 143.5,-159"/>
+<polygon fill="none" stroke="#bfbfbf" points="143.5,-159 143.5,-179 268.5,-179 268.5,-159 143.5,-159"/>
 <text text-anchor="middle" x="206" y="-166" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->
@@ -65,7 +64,7 @@
 <!-- Node5 -->
 <g id="node10" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="92.5,-247 92.5,-267 149.5,-267 149.5,-247 92.5,-247"/>
+<polygon fill="none" stroke="#bfbfbf" points="92.5,-247 92.5,-267 149.5,-267 149.5,-247 92.5,-247"/>
 <text text-anchor="middle" x="121" y="-254" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -85,7 +84,7 @@
 <!-- Node6 -->
 <g id="node12" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="75.5,-307 75.5,-339 166.5,-339 166.5,-307 75.5,-307"/>
+<polygon fill="none" stroke="#bfbfbf" points="75.5,-307 75.5,-339 166.5,-339 166.5,-307 75.5,-307"/>
 <text text-anchor="start" x="83.5" y="-326" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="121" y="-314" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

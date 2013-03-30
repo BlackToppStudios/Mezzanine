@@ -29,7 +29,6 @@ var searchData=
   ['checkvaluelimits',['CheckValueLimits',['../classMezzanine_1_1UI_1_1Spinner.xhtml#a884b643f9b585691cf9c98bff4baaa85',1,'Mezzanine::UI::Spinner']]],
   ['checkviewportsize',['CheckViewportSize',['../classMezzanine_1_1UI_1_1Screen.xhtml#afc29a8899648d07daa46833c87092043',1,'Mezzanine::UI::Screen']]],
   ['checkwidgetmouseisover',['CheckWidgetMouseIsOver',['../classMezzanine_1_1UIManager.xhtml#ad1b2ceb906f7a17a53fa9ce9b2f2ac99',1,'Mezzanine::UIManager::CheckWidgetMouseIsOver()'],['../classMezzanine_1_1UI_1_1Screen.xhtml#a8fa9f72be21e61408e8b45597520133b',1,'Mezzanine::UI::Screen::CheckWidgetMouseIsOver()']]],
-  ['childvalue',['ChildValue',['../classMezzanine_1_1XML_1_1Node.xhtml#a545f0dd45039a6d7d64ce2fd584b14bf',1,'Mezzanine::XML::Node']]],
   ['chocolate',['Chocolate',['../classMezzanine_1_1ColourValue.xhtml#abf47d3e878fdf4d37fa5ea449bf1c2e7',1,'Mezzanine::ColourValue']]],
   ['clear',['Clear',['../classMezzanine_1_1Resource_1_1TextSettingsFile.xhtml#aba595a736d3e023b818cbae9ed97aa92',1,'Mezzanine::Resource::TextSettingsFile']]],
   ['cleararguments',['ClearArguments',['../classMezzanine_1_1Scripting_1_1iScript.xhtml#a86bda5ba7c8e01c932bfa2998c21b308',1,'Mezzanine::Scripting::iScript']]],

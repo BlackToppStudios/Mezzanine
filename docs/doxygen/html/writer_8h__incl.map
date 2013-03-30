@@ -1,0 +1,14 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/writer.h">
+<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="1096,254,1181,282"/>
+<area shape="rect" id="node37" href="$resource_8h_source.xhtml" title="resource.h" alt="" coords="761,99,841,127"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="273,331,417,359"/>
+<area shape="rect" id="node35" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1260,331,1316,359"/>
+<area shape="rect" id="node39" href="$resourceenumerations_8h_source.xhtml" title="Resource/resourceenumerations.h" alt="" coords="187,177,403,205"/>
+<area shape="rect" id="node41" href="$archive_8h_source.xhtml" title="Resource/archive.h" alt="" coords="427,177,557,205"/>
+<area shape="rect" id="node43" href="$asset_8h_source.xhtml" title="Resource/asset.h" alt="" coords="581,177,701,205"/>
+<area shape="rect" id="node45" href="$assetgroup_8h_source.xhtml" title="Resource/assetgroup.h" alt="" coords="725,177,877,205"/>
+<area shape="rect" id="node47" href="$assethandler_8h_source.xhtml" title="Resource/assethandler.h" alt="" coords="901,177,1064,205"/>
+<area shape="rect" id="node49" href="$datastream_8h.xhtml" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="1088,177,1243,205"/>
+<area shape="rect" id="node52" href="$inputstream_8h_source.xhtml" title="Resource/inputstream.h" alt="" coords="5,177,163,205"/>
+<area shape="rect" id="node56" href="$textsettingsfile_8h_source.xhtml" title="Resource/textsettingsfile.h" alt="" coords="1267,177,1437,205"/>
+</map>

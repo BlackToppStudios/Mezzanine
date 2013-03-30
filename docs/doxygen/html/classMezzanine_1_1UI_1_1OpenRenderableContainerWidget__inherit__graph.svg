@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 160.00 228.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 224)">
 <title>Mezzanine::UI::OpenRenderableContainerWidget</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-224 157,-224 157,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 152.5,-33 152.5,-1 -0.5,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableContainerWidget.xhtml" target="_top" xlink:title="This is an interface class for the two types of Renderable Container Widgets.">
-<polygon fill="white" stroke="black" points="11,-71 11,-103 141,-103 141,-71 11,-71"/>
+<polygon fill="none" stroke="black" points="11,-71 11,-103 141,-103 141,-71 11,-71"/>
 <text text-anchor="start" x="19" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 <text text-anchor="middle" x="76" y="-78" font-family="FreeSans" font-size="10.00">ContainerWidget</text>
 </a>
@@ -31,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Widget.xhtml" target="_top" xlink:title="This class is the base class for all widgets.">
-<polygon fill="white" stroke="black" points="20.5,-141 20.5,-161 131.5,-161 131.5,-141 20.5,-141"/>
+<polygon fill="none" stroke="black" points="20.5,-141 20.5,-161 131.5,-161 131.5,-141 20.5,-141"/>
 <text text-anchor="middle" x="76" y="-148" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Widget</text>
 </a>
 </g>
@@ -43,7 +42,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
-<polygon fill="white" stroke="black" points="11,-199 11,-219 141,-219 141,-199 11,-199"/>
+<polygon fill="none" stroke="black" points="11,-199 11,-219 141,-219 141,-199 11,-199"/>
 <text text-anchor="middle" x="76" y="-206" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
 </g>

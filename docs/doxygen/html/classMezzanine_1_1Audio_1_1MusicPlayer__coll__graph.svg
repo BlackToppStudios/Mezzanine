@@ -40,7 +40,6 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Audio::MusicPlayer</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-640 2113,-640 2113,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1326.5,-431 1326.5,-451 1475.5,-451 1475.5,-431 1326.5,-431"/>
@@ -49,7 +48,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1AudioManager.xhtml" target="_top" xlink:title="This is simply a place for storing all the Sound utilities and functions.">
-<polygon fill="white" stroke="black" points="1568.5,-205 1568.5,-225 1697.5,-225 1697.5,-205 1568.5,-205"/>
+<polygon fill="none" stroke="black" points="1568.5,-205 1568.5,-225 1697.5,-225 1697.5,-205 1568.5,-205"/>
 <text text-anchor="middle" x="1633" y="-212" font-family="FreeSans" font-size="10.00">Mezzanine::AudioManager</text>
 </a>
 </g>
@@ -62,7 +61,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Sound.xhtml" target="_top" xlink:title="This is an instance of a sound that can be played and manipulated.">
-<polygon fill="white" stroke="black" points="1790,-296 1790,-316 1914,-316 1914,-296 1790,-296"/>
+<polygon fill="none" stroke="black" points="1790,-296 1790,-316 1914,-316 1914,-296 1790,-296"/>
 <text text-anchor="middle" x="1852" y="-303" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Sound</text>
 </a>
 </g>
@@ -74,7 +73,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node32 -->
 <g id="node76" class="node"><title>Node32</title>
-<polygon fill="white" stroke="#bfbfbf" points="2003.5,-88 2003.5,-120 2096.5,-120 2096.5,-88 2003.5,-88"/>
+<polygon fill="none" stroke="#bfbfbf" points="2003.5,-88 2003.5,-120 2096.5,-120 2096.5,-88 2003.5,-88"/>
 <text text-anchor="start" x="2011.5" y="-107" font-family="FreeSans" font-size="10.00">std::vector&lt; Audio</text>
 <text text-anchor="middle" x="2050" y="-95" font-family="FreeSans" font-size="10.00">::Sound * &gt;</text>
 </g>
@@ -86,7 +85,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node33 -->
 <g id="node80" class="node"><title>Node33</title>
-<polygon fill="white" stroke="#bfbfbf" points="1992,-222 1992,-254 2108,-254 2108,-222 1992,-222"/>
+<polygon fill="none" stroke="#bfbfbf" points="1992,-222 1992,-254 2108,-254 2108,-222 1992,-222"/>
 <text text-anchor="start" x="2000" y="-241" font-family="FreeSans" font-size="10.00">std::map&lt; String, Audio</text>
 <text text-anchor="middle" x="2050" y="-229" font-family="FreeSans" font-size="10.00">::Sound * &gt;</text>
 </g>
@@ -99,7 +98,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="412.5,-309 412.5,-329 469.5,-329 469.5,-309 412.5,-309"/>
+<polygon fill="none" stroke="#bfbfbf" points="412.5,-309 412.5,-329 469.5,-329 469.5,-309 412.5,-309"/>
 <text text-anchor="middle" x="441" y="-316" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -112,7 +111,7 @@ var sectionId = 'dynsection-0';
 <!-- Node16 -->
 <g id="node32" class="node"><title>Node16</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="white" stroke="black" points="1335.5,-221 1335.5,-253 1466.5,-253 1466.5,-221 1335.5,-221"/>
+<polygon fill="none" stroke="black" points="1335.5,-221 1335.5,-253 1466.5,-253 1466.5,-221 1335.5,-221"/>
 <text text-anchor="start" x="1343.5" y="-240" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="1401" y="-228" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
@@ -126,7 +125,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node17 -->
 <g id="node34" class="node"><title>Node17</title>
-<polygon fill="white" stroke="#bfbfbf" points="869,-243 869,-275 989,-275 989,-243 869,-243"/>
+<polygon fill="none" stroke="#bfbfbf" points="869,-243 869,-275 989,-275 989,-243 869,-243"/>
 <text text-anchor="start" x="877" y="-262" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="929" y="-250" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
 </g>
@@ -139,7 +138,7 @@ var sectionId = 'dynsection-0';
 <!-- Node18 -->
 <g id="node36" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
-<polygon fill="white" stroke="black" points="596,-309 596,-329 738,-329 738,-309 596,-309"/>
+<polygon fill="none" stroke="black" points="596,-309 596,-329 738,-329 738,-309 596,-309"/>
 <text text-anchor="middle" x="667" y="-316" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
 </g>
@@ -152,7 +151,7 @@ var sectionId = 'dynsection-0';
 <!-- Node21 -->
 <g id="node43" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="white" stroke="black" points="604,-437 604,-469 730,-469 730,-437 604,-437"/>
+<polygon fill="none" stroke="black" points="604,-437 604,-469 730,-469 730,-437 604,-437"/>
 <text text-anchor="start" x="612" y="-456" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="667" y="-444" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
@@ -165,7 +164,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node24 -->
 <g id="node51" class="node"><title>Node24</title>
-<polygon fill="white" stroke="#bfbfbf" points="604.5,-502 604.5,-522 729.5,-522 729.5,-502 604.5,-502"/>
+<polygon fill="none" stroke="#bfbfbf" points="604.5,-502 604.5,-522 729.5,-522 729.5,-502 604.5,-502"/>
 <text text-anchor="middle" x="667" y="-509" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node3&#45;&gt;Node24 -->
@@ -177,7 +176,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node25 -->
 <g id="node58" class="node"><title>Node25</title>
-<polygon fill="white" stroke="#bfbfbf" points="1096,-239 1096,-271 1216,-271 1216,-239 1096,-239"/>
+<polygon fill="none" stroke="#bfbfbf" points="1096,-239 1096,-271 1216,-271 1216,-239 1096,-239"/>
 <text text-anchor="start" x="1104" y="-258" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="1156" y="-246" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
 </g>
@@ -189,7 +188,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node28 -->
 <g id="node67" class="node"><title>Node28</title>
-<polygon fill="white" stroke="#bfbfbf" points="1343,-381 1343,-413 1459,-413 1459,-381 1343,-381"/>
+<polygon fill="none" stroke="#bfbfbf" points="1343,-381 1343,-413 1459,-413 1459,-381 1343,-381"/>
 <text text-anchor="start" x="1351" y="-400" font-family="FreeSans" font-size="10.00">std::map&lt; String, Audio</text>
 <text text-anchor="middle" x="1401" y="-388" font-family="FreeSans" font-size="10.00">::SoundSet * &gt;</text>
 </g>
@@ -208,7 +207,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="260.5,-303 260.5,-335 351.5,-335 351.5,-303 260.5,-303"/>
+<polygon fill="none" stroke="#bfbfbf" points="260.5,-303 260.5,-335 351.5,-335 351.5,-303 260.5,-303"/>
 <text text-anchor="start" x="268.5" y="-322" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="306" y="-310" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -227,7 +226,7 @@ var sectionId = 'dynsection-0';
 <!-- Node26 -->
 <g id="node62" class="node"><title>Node26</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;">
-<polygon fill="white" stroke="black" points="1798.5,-170 1798.5,-202 1905.5,-202 1905.5,-170 1798.5,-170"/>
+<polygon fill="none" stroke="black" points="1798.5,-170 1798.5,-202 1905.5,-202 1905.5,-170 1798.5,-170"/>
 <text text-anchor="start" x="1806.5" y="-189" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1852" y="-177" font-family="FreeSans" font-size="10.00">&lt; AudioManager &gt;</text>
 </a>
@@ -241,7 +240,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
-<polygon fill="white" stroke="black" points="1338,-145 1338,-165 1464,-165 1464,-145 1338,-145"/>
+<polygon fill="none" stroke="black" points="1338,-145 1338,-165 1464,-165 1464,-145 1338,-145"/>
 <text text-anchor="middle" x="1401" y="-152" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -253,7 +252,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="white" stroke="black" points="1105.5,-37 1105.5,-57 1206.5,-57 1206.5,-37 1105.5,-37"/>
+<polygon fill="none" stroke="black" points="1105.5,-37 1105.5,-57 1206.5,-57 1206.5,-37 1105.5,-37"/>
 <text text-anchor="middle" x="1156" y="-44" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -266,7 +265,7 @@ var sectionId = 'dynsection-0';
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="white" stroke="black" points="1347.5,-14 1347.5,-46 1454.5,-46 1454.5,-14 1347.5,-14"/>
+<polygon fill="none" stroke="black" points="1347.5,-14 1347.5,-46 1454.5,-46 1454.5,-14 1347.5,-14"/>
 <text text-anchor="start" x="1355.5" y="-33" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1401" y="-21" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -285,7 +284,7 @@ var sectionId = 'dynsection-0';
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="886,-37 886,-57 972,-57 972,-37 886,-37"/>
+<polygon fill="none" stroke="#bfbfbf" points="886,-37 886,-57 972,-57 972,-37 886,-37"/>
 <text text-anchor="middle" x="929" y="-44" font-family="FreeSans" font-size="10.00">std::stringstream</text>
 </a>
 </g>
@@ -298,7 +297,7 @@ var sectionId = 'dynsection-0';
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="610,-31 610,-63 724,-63 724,-31 610,-31"/>
+<polygon fill="none" stroke="#bfbfbf" points="610,-31 610,-63 724,-63 724,-31 610,-31"/>
 <text text-anchor="start" x="618" y="-50" font-family="FreeSans" font-size="10.00">std::basic_stringstream</text>
 <text text-anchor="middle" x="667" y="-38" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -311,7 +310,7 @@ var sectionId = 'dynsection-0';
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="392,-31 392,-63 490,-63 490,-31 392,-31"/>
+<polygon fill="none" stroke="#bfbfbf" points="392,-31 392,-63 490,-63 490,-31 392,-31"/>
 <text text-anchor="start" x="400" y="-50" font-family="FreeSans" font-size="10.00">std::basic_iostream</text>
 <text text-anchor="middle" x="441" y="-38" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -324,7 +323,7 @@ var sectionId = 'dynsection-0';
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="259.5,-0 259.5,-32 352.5,-32 352.5,-0 259.5,-0"/>
+<polygon fill="none" stroke="#bfbfbf" points="259.5,-0 259.5,-32 352.5,-32 352.5,-0 259.5,-0"/>
 <text text-anchor="start" x="267.5" y="-19" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="306" y="-7" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -337,7 +336,7 @@ var sectionId = 'dynsection-0';
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="110,-33 110,-53 220,-53 220,-33 110,-33"/>
+<polygon fill="none" stroke="#bfbfbf" points="110,-33 110,-53 220,-53 220,-33 110,-33"/>
 <text text-anchor="middle" x="165" y="-40" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
 </g>
@@ -349,7 +348,7 @@ var sectionId = 'dynsection-0';
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="258,-50 258,-82 354,-82 354,-50 258,-50"/>
+<polygon fill="none" stroke="#bfbfbf" points="258,-50 258,-82 354,-82 354,-50 258,-50"/>
 <text text-anchor="start" x="266" y="-69" font-family="FreeSans" font-size="10.00">std::basic_ostream</text>
 <text text-anchor="middle" x="306" y="-57" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -362,7 +361,7 @@ var sectionId = 'dynsection-0';
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="0.5,-33 0.5,-53 71.5,-53 71.5,-33 0.5,-33"/>
+<polygon fill="none" stroke="#bfbfbf" points="0.5,-33 0.5,-53 71.5,-53 71.5,-33 0.5,-33"/>
 <text text-anchor="middle" x="36" y="-40" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
 </g>
@@ -396,7 +395,7 @@ var sectionId = 'dynsection-0';
 <!-- Node20 -->
 <g id="node41" class="node"><title>Node20</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="white" stroke="black" points="866,-341 866,-373 992,-373 992,-341 866,-341"/>
+<polygon fill="none" stroke="black" points="866,-341 866,-373 992,-373 992,-341 866,-341"/>
 <text text-anchor="start" x="874" y="-360" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="929" y="-348" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -409,7 +408,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node19 -->
 <g id="node39" class="node"><title>Node19</title>
-<polygon fill="white" stroke="#bfbfbf" points="1092,-312 1092,-344 1220,-344 1220,-312 1092,-312"/>
+<polygon fill="none" stroke="#bfbfbf" points="1092,-312 1092,-344 1220,-344 1220,-312 1092,-312"/>
 <text text-anchor="start" x="1100" y="-331" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="1156" y="-319" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
 </g>
@@ -439,7 +438,7 @@ var sectionId = 'dynsection-0';
 <!-- Node23 -->
 <g id="node47" class="node"><title>Node23</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="white" stroke="black" points="858.5,-487 858.5,-507 999.5,-507 999.5,-487 858.5,-487"/>
+<polygon fill="none" stroke="black" points="858.5,-487 858.5,-507 999.5,-507 999.5,-487 858.5,-487"/>
 <text text-anchor="middle" x="929" y="-494" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
@@ -456,7 +455,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node22 -->
 <g id="node45" class="node"><title>Node22</title>
-<polygon fill="white" stroke="#bfbfbf" points="1092,-446 1092,-478 1220,-478 1220,-446 1092,-446"/>
+<polygon fill="none" stroke="#bfbfbf" points="1092,-446 1092,-478 1220,-478 1220,-446 1092,-446"/>
 <text text-anchor="start" x="1100" y="-465" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="1156" y="-453" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>
@@ -492,7 +491,7 @@ var sectionId = 'dynsection-0';
 <!-- Node27 -->
 <g id="node65" class="node"><title>Node27</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Listener.xhtml" target="_top" xlink:title="This is the listener class used for 3D sound.">
-<polygon fill="white" stroke="black" points="1336,-183 1336,-203 1466,-203 1466,-183 1336,-183"/>
+<polygon fill="none" stroke="black" points="1336,-183 1336,-203 1466,-203 1466,-183 1336,-183"/>
 <text text-anchor="middle" x="1401" y="-190" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Listener</text>
 </a>
 </g>
@@ -511,7 +510,7 @@ var sectionId = 'dynsection-0';
 <!-- Node29 -->
 <g id="node69" class="node"><title>Node29</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.xhtml" target="_top" xlink:title="This is a vector that stores sounds.">
-<polygon fill="white" stroke="black" points="1086.5,-501 1086.5,-521 1225.5,-521 1225.5,-501 1086.5,-501"/>
+<polygon fill="none" stroke="black" points="1086.5,-501 1086.5,-521 1225.5,-521 1225.5,-501 1086.5,-501"/>
 <text text-anchor="middle" x="1156" y="-508" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>
 </g>
@@ -524,7 +523,7 @@ var sectionId = 'dynsection-0';
 <!-- Node30 -->
 <g id="node71" class="node"><title>Node30</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="874,-529 874,-549 984,-549 984,-529 874,-529"/>
+<polygon fill="none" stroke="#bfbfbf" points="874,-529 874,-549 984,-549 984,-529 874,-529"/>
 <text text-anchor="middle" x="929" y="-536" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
 </a>
 </g>
@@ -535,7 +534,7 @@ var sectionId = 'dynsection-0';
 </g>
 <!-- Node31 -->
 <g id="node73" class="node"><title>Node31</title>
-<polygon fill="white" stroke="#bfbfbf" points="652.5,-566 652.5,-586 681.5,-586 681.5,-566 652.5,-566"/>
+<polygon fill="none" stroke="#bfbfbf" points="652.5,-566 652.5,-586 681.5,-586 681.5,-566 652.5,-566"/>
 <text text-anchor="middle" x="667" y="-573" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node31&#45;&gt;Node30 -->
@@ -547,7 +546,7 @@ var sectionId = 'dynsection-0';
 <!-- Node35 -->
 <g id="node86" class="node"><title>Node35</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="866.5,-573 866.5,-593 991.5,-593 991.5,-573 866.5,-573"/>
+<polygon fill="none" stroke="#bfbfbf" points="866.5,-573 866.5,-593 991.5,-593 991.5,-573 866.5,-573"/>
 <text text-anchor="middle" x="929" y="-580" font-family="FreeSans" font-size="10.00">std::list&lt; Audio::Sound * &gt;</text>
 </a>
 </g>
@@ -575,7 +574,7 @@ var sectionId = 'dynsection-0';
 <!-- Node34 -->
 <g id="node84" class="node"><title>Node34</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Playlist.xhtml" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
-<polygon fill="white" stroke="black" points="1092.5,-558 1092.5,-578 1219.5,-578 1219.5,-558 1092.5,-558"/>
+<polygon fill="none" stroke="black" points="1092.5,-558 1092.5,-578 1219.5,-578 1219.5,-558 1092.5,-558"/>
 <text text-anchor="middle" x="1156" y="-565" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>
 </g>

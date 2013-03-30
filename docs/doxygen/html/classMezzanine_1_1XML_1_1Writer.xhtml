@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><b>XML</b></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Writer</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="namespaceMezzanine_1_1XML.xhtml">XML</a></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Writer</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,29 +91,79 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Interface for node printing (see <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#aef52a586c2e21dce71397f3400c61b72">Node::Print</a>)  
  <a href="classMezzanine_1_1XML_1_1Writer.xhtml#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="writer_8h_source.xhtml">writer.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Mezzanine::XML::Writer:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1XML_1_1Writer__inherit__graph.svg" width="416" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMezzanine_1_1XML_1_1Writer__inherit__graph.svg" width="416" height="155"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a href="graph_legend.xhtml">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af66d88be522819819cf552ff237a905e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af66d88be522819819cf552ff237a905e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Write</b> (const void *data, size_t size)=0</td></tr>
+<tr class="memitem:a5425729f7965544c72c11e42d22bff0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5425729f7965544c72c11e42d22bff0b"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml#a5425729f7965544c72c11e42d22bff0b">~Writer</a> ()</td></tr>
+<tr class="memdesc:a5425729f7965544c72c11e42d22bff0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safe to dervied doconstructor. <br/></td></tr>
+<tr class="memitem:af66d88be522819819cf552ff237a905e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml#af66d88be522819819cf552ff237a905e">Write</a> (const void *data, size_t size)=0</td></tr>
+<tr class="memdesc:af66d88be522819819cf552ff237a905e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write memory chunk into stream/file/whatever.  <a href="#af66d88be522819819cf552ff237a905e"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Interface for node printing (see <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#aef52a586c2e21dce71397f3400c61b72">Node::Print</a>) </p>
 
-<p>Definition at line <a class="el" href="xml_8h_source.xhtml#l00245">245</a> of file <a class="el" href="xml_8h_source.xhtml">xml.h</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xml_8h_source.xhtml">xml.h</a></li>
+<p>Definition at line <a class="el" href="writer_8h_source.xhtml#l00080">80</a> of file <a class="el" href="writer_8h_source.xhtml">writer.h</a>.</p>
+</div><h2>Member Function Documentation</h2>
+<a class="anchor" id="af66d88be522819819cf552ff237a905e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::XML::Writer::Write </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write memory chunk into stream/file/whatever. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A void pointer that could be anything, so that it does not interfere with inheritance </td></tr>
+    <tr><td class="paramname">size</td><td>How much to write in bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classMezzanine_1_1XML_1_1XMLStreamWrapper.xhtml#ad4a0b420ba92f01de6d3ea5a4d70522a">Mezzanine::XML::XMLStreamWrapper</a>, <a class="el" href="classMezzanine_1_1XML_1_1WriterStream.xhtml#aa0cc8f1447a261b1c8778160b00d057b">Mezzanine::XML::WriterStream</a>, and <a class="el" href="classMezzanine_1_1XML_1_1WriterFile.xhtml#a270a9c92cf192cc422b1e25a8381097a">Mezzanine::XML::WriterFile</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/<a class="el" href="writer_8h_source.xhtml">writer.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 00:13:21 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

@@ -28,8 +28,8 @@ var searchData=
   ['transform',['Transform',['../classMezzanine_1_1Transform.xhtml#a0949c0923e41e00af6c9537d5f9094b7',1,'Mezzanine::Transform::Transform(const Vector3 &amp;Vec=Vector3(), const Quaternion &amp;Quat=Quaternion())'],['../classMezzanine_1_1Transform.xhtml#ad4974a80bdb1625119e98b059e4e91e0',1,'Mezzanine::Transform::Transform(const btTransform &amp;Btt)'],['../classMezzanine_1_1Transform.xhtml#ad719d3280b8b94f27b5ba1ce3e8a9a59',1,'Mezzanine::Transform::Transform(const Transform &amp;TheOther)']]],
   ['transparent',['Transparent',['../classMezzanine_1_1ColourValue.xhtml#a43a311eeeb63cf35e986b8ff94650cb7',1,'Mezzanine::ColourValue']]],
   ['transpose',['Transpose',['../classMezzanine_1_1Matrix3x3.xhtml#ac759aa60d4dc6dee040b6741b6d44392',1,'Mezzanine::Matrix3x3::Transpose()'],['../classMezzanine_1_1Matrix4x4.xhtml#a1330573388a3070bc747bad97d93d3e9',1,'Mezzanine::Matrix4x4::Transpose()']]],
-  ['traverse',['Traverse',['../classMezzanine_1_1XML_1_1Node.xhtml#a55c2d29eff312b0f8cc27a1b963d21cb',1,'Mezzanine::XML::Node']]],
+  ['traverse',['Traverse',['../classMezzanine_1_1XML_1_1Node.xhtml#a60c011dca7c524ff915d1aa8a048a577',1,'Mezzanine::XML::Node']]],
   ['treewalker',['TreeWalker',['../classMezzanine_1_1XML_1_1TreeWalker.xhtml#aa8935af372b1e92b50ee2db15d0e2940',1,'Mezzanine::XML::TreeWalker']]],
   ['turquoise',['Turquoise',['../classMezzanine_1_1ColourValue.xhtml#ab0c0552ca2555f023f0c53b09dca8084',1,'Mezzanine::ColourValue']]],
-  ['type',['Type',['../classMezzanine_1_1XML_1_1Node.xhtml#a7133499c84df7f8f0c0aa705f51a6d4e',1,'Mezzanine::XML::Node::Type()'],['../classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a17ddbdee20a3e7c6f72e8e01e3940ae7',1,'Mezzanine::XML::XPathNodeSet::Type()']]]
+  ['type',['Type',['../classMezzanine_1_1XML_1_1Node.xhtml#a0337fae875c80702cc9a1540e84b07a8',1,'Mezzanine::XML::Node::Type()'],['../classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a9632844e3e7a17c29529a0b2c34f52fe',1,'Mezzanine::XML::XPathNodeSet::Type()'],['../classMezzanine_1_1XML_1_1XPathVariable.xhtml#aa3357c23f8441342e10738f47d3dd188',1,'Mezzanine::XML::XPathVariable::Type()']]]
 ];

@@ -57,7 +57,7 @@
 #define _xmlxpathquery_h
 
 /// @file
-/// @brief The definition of the @ref XPathQuery .
+/// @brief The definition of the @ref Mezzanine::XML::XPathQuery .
 
 #include "datatypes.h"
 #include "XML/xmlenumerations.h"

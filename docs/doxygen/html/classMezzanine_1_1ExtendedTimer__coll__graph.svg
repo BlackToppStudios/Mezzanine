@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 225.00 194.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 190)">
 <title>Mezzanine::ExtendedTimer</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-190 222,-190 222,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="79.5,-1 79.5,-21 210.5,-21 210.5,-1 79.5,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Timer.xhtml" target="_top" xlink:title="A base timer class for the different timers.">
-<polygon fill="white" stroke="black" points="18,-95 18,-115 110,-115 110,-95 18,-95"/>
+<polygon fill="none" stroke="black" points="18,-95 18,-115 110,-115 110,-95 18,-95"/>
 <text text-anchor="middle" x="64" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Timer</text>
 </a>
 </g>
@@ -29,7 +28,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1TimerCallback.xhtml" target="_top" xlink:title="A callback class for use automated and timed&#45;event based timers.">
-<polygon fill="white" stroke="black" points="-0.5,-165 -0.5,-185 128.5,-185 128.5,-165 -0.5,-165"/>
+<polygon fill="none" stroke="black" points="-0.5,-165 -0.5,-185 128.5,-185 128.5,-165 -0.5,-165"/>
 <text text-anchor="middle" x="64" y="-172" font-family="FreeSans" font-size="10.00">Mezzanine::TimerCallback</text>
 </a>
 </g>
@@ -42,7 +41,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="structMezzanine_1_1Time.xhtml" target="_top" xlink:title="A container for the metrics of time relevant for the timer class.">
-<polygon fill="white" stroke="black" points="127.5,-95 127.5,-115 216.5,-115 216.5,-95 127.5,-95"/>
+<polygon fill="none" stroke="black" points="127.5,-95 127.5,-115 216.5,-115 216.5,-95 127.5,-95"/>
 <text text-anchor="middle" x="172" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Time</text>
 </a>
 </g>

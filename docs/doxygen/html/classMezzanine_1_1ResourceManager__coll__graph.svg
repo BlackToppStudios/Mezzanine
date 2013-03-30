@@ -40,7 +40,6 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::ResourceManager</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-216 1781,-216 1781,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1426.5,-66 1426.5,-86 1571.5,-86 1571.5,-66 1426.5,-66"/>
@@ -49,7 +48,7 @@ var sectionId = 'dynsection-1';
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ResourceManager \&gt;">
-<polygon fill="white" stroke="black" points="1664.5,-60 1664.5,-92 1775.5,-92 1775.5,-60 1664.5,-60"/>
+<polygon fill="none" stroke="black" points="1664.5,-60 1664.5,-92 1775.5,-92 1775.5,-60 1664.5,-60"/>
 <text text-anchor="start" x="1672.5" y="-79" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1720" y="-67" font-family="FreeSans" font-size="10.00">&lt; ResourceManager &gt;</text>
 </a>
@@ -63,7 +62,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
-<polygon fill="white" stroke="black" points="1190,-179 1190,-199 1316,-199 1316,-179 1190,-179"/>
+<polygon fill="none" stroke="black" points="1190,-179 1190,-199 1316,-199 1316,-179 1190,-179"/>
 <text text-anchor="middle" x="1253" y="-186" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -75,7 +74,7 @@ var sectionId = 'dynsection-1';
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="white" stroke="black" points="996.5,-146 996.5,-166 1097.5,-166 1097.5,-146 996.5,-146"/>
+<polygon fill="none" stroke="black" points="996.5,-146 996.5,-166 1097.5,-166 1097.5,-146 996.5,-146"/>
 <text text-anchor="middle" x="1047" y="-153" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -88,7 +87,7 @@ var sectionId = 'dynsection-1';
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="white" stroke="black" points="1199.5,-127 1199.5,-159 1306.5,-159 1306.5,-127 1199.5,-127"/>
+<polygon fill="none" stroke="black" points="1199.5,-127 1199.5,-159 1306.5,-159 1306.5,-127 1199.5,-127"/>
 <text text-anchor="start" x="1207.5" y="-146" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1253" y="-134" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -107,7 +106,7 @@ var sectionId = 'dynsection-1';
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="739,-146 739,-166 825,-166 825,-146 739,-146"/>
+<polygon fill="none" stroke="#bfbfbf" points="739,-146 739,-166 825,-166 825,-146 739,-146"/>
 <text text-anchor="middle" x="782" y="-153" font-family="FreeSans" font-size="10.00">std::stringstream</text>
 </a>
 </g>
@@ -120,7 +119,7 @@ var sectionId = 'dynsection-1';
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="536,-140 536,-172 650,-172 650,-140 536,-140"/>
+<polygon fill="none" stroke="#bfbfbf" points="536,-140 536,-172 650,-172 650,-140 536,-140"/>
 <text text-anchor="start" x="544" y="-159" font-family="FreeSans" font-size="10.00">std::basic_stringstream</text>
 <text text-anchor="middle" x="593" y="-147" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -133,7 +132,7 @@ var sectionId = 'dynsection-1';
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="392,-140 392,-172 490,-172 490,-140 392,-140"/>
+<polygon fill="none" stroke="#bfbfbf" points="392,-140 392,-172 490,-172 490,-140 392,-140"/>
 <text text-anchor="start" x="400" y="-159" font-family="FreeSans" font-size="10.00">std::basic_iostream</text>
 <text text-anchor="middle" x="441" y="-147" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -146,7 +145,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="259.5,-180 259.5,-212 352.5,-212 352.5,-180 259.5,-180"/>
+<polygon fill="none" stroke="#bfbfbf" points="259.5,-180 259.5,-212 352.5,-212 352.5,-180 259.5,-180"/>
 <text text-anchor="start" x="267.5" y="-199" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="306" y="-187" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -159,7 +158,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="110,-136 110,-156 220,-156 220,-136 110,-136"/>
+<polygon fill="none" stroke="#bfbfbf" points="110,-136 110,-156 220,-156 220,-136 110,-136"/>
 <text text-anchor="middle" x="165" y="-143" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
 </g>
@@ -171,7 +170,7 @@ var sectionId = 'dynsection-1';
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="258,-130 258,-162 354,-162 354,-130 258,-130"/>
+<polygon fill="none" stroke="#bfbfbf" points="258,-130 258,-162 354,-162 354,-130 258,-130"/>
 <text text-anchor="start" x="266" y="-149" font-family="FreeSans" font-size="10.00">std::basic_ostream</text>
 <text text-anchor="middle" x="306" y="-137" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -184,7 +183,7 @@ var sectionId = 'dynsection-1';
 <!-- Node16 -->
 <g id="node33" class="node"><title>Node16</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="259.5,-80 259.5,-112 352.5,-112 352.5,-80 259.5,-80"/>
+<polygon fill="none" stroke="#bfbfbf" points="259.5,-80 259.5,-112 352.5,-112 352.5,-80 259.5,-80"/>
 <text text-anchor="start" x="267.5" y="-99" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="306" y="-87" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -197,7 +196,7 @@ var sectionId = 'dynsection-1';
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="0.5,-136 0.5,-156 71.5,-156 71.5,-136 0.5,-136"/>
+<polygon fill="none" stroke="#bfbfbf" points="0.5,-136 0.5,-156 71.5,-156 71.5,-136 0.5,-136"/>
 <text text-anchor="middle" x="36" y="-143" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
 </g>
@@ -218,7 +217,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
-<polygon fill="white" stroke="#bfbfbf" points="846.5,-80 846.5,-112 977.5,-112 977.5,-80 846.5,-80"/>
+<polygon fill="none" stroke="#bfbfbf" points="846.5,-80 846.5,-112 977.5,-112 977.5,-80 846.5,-80"/>
 <text text-anchor="start" x="854.5" y="-99" font-family="FreeSans" font-size="10.00">std::vector&lt; ResourceInput</text>
 <text text-anchor="middle" x="912" y="-87" font-family="FreeSans" font-size="10.00">Stream * &gt;</text>
 </g>
@@ -231,7 +230,7 @@ var sectionId = 'dynsection-1';
 <!-- Node14 -->
 <g id="node29" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1ResourceInputStream.xhtml" target="_top" xlink:title="A stream from a file, can read from zip files as well.">
-<polygon fill="white" stroke="black" points="528.5,-80 528.5,-112 657.5,-112 657.5,-80 528.5,-80"/>
+<polygon fill="none" stroke="black" points="528.5,-80 528.5,-112 657.5,-112 657.5,-80 528.5,-80"/>
 <text text-anchor="start" x="536.5" y="-99" font-family="FreeSans" font-size="10.00">Mezzanine::ResourceInput</text>
 <text text-anchor="middle" x="593" y="-87" font-family="FreeSans" font-size="10.00">Stream</text>
 </a>
@@ -245,7 +244,7 @@ var sectionId = 'dynsection-1';
 <!-- Node15 -->
 <g id="node31" class="node"><title>Node15</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="408.5,-86 408.5,-106 473.5,-106 473.5,-86 408.5,-86"/>
+<polygon fill="none" stroke="#bfbfbf" points="408.5,-86 408.5,-106 473.5,-106 473.5,-86 408.5,-86"/>
 <text text-anchor="middle" x="441" y="-93" font-family="FreeSans" font-size="10.00">std::istream</text>
 </a>
 </g>
@@ -262,7 +261,7 @@ var sectionId = 'dynsection-1';
 <!-- Node17 -->
 <g id="node36" class="node"><title>Node17</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="1018.5,-31 1018.5,-51 1075.5,-51 1075.5,-31 1018.5,-31"/>
+<polygon fill="none" stroke="#bfbfbf" points="1018.5,-31 1018.5,-51 1075.5,-51 1075.5,-31 1018.5,-31"/>
 <text text-anchor="middle" x="1047" y="-38" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -274,7 +273,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node19 -->
 <g id="node40" class="node"><title>Node19</title>
-<polygon fill="white" stroke="#bfbfbf" points="1202,-0 1202,-20 1304,-20 1304,-0 1202,-0"/>
+<polygon fill="none" stroke="#bfbfbf" points="1202,-0 1202,-20 1304,-20 1304,-0 1202,-0"/>
 <text text-anchor="middle" x="1253" y="-7" font-family="FreeSans" font-size="10.00">std::vector&lt; String &gt;</text>
 </g>
 <!-- Node17&#45;&gt;Node19 -->
@@ -286,7 +285,7 @@ var sectionId = 'dynsection-1';
 <!-- Node18 -->
 <g id="node38" class="node"><title>Node18</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="736.5,-25 736.5,-57 827.5,-57 827.5,-25 736.5,-25"/>
+<polygon fill="none" stroke="#bfbfbf" points="736.5,-25 736.5,-57 827.5,-57 827.5,-25 736.5,-25"/>
 <text text-anchor="start" x="744.5" y="-44" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="782" y="-32" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

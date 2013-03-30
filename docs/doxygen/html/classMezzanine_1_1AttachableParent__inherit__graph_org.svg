@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 800.00 218.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 214)">
 <title>Mezzanine::AttachableParent</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-214 797,-214 797,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="172,-92 172,-112 314,-112 314,-92 172,-92"/>
@@ -17,7 +16,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1NonStaticWorldObject.xhtml" target="_top" xlink:title="This is a small extention of the WorldObject class that adds features common to non&#45;static objects...">
-<polygon fill="white" stroke="black" points="350,-108 350,-140 484,-140 484,-108 350,-108"/>
+<polygon fill="none" stroke="black" points="350,-108 350,-140 484,-140 484,-108 350,-108"/>
 <text text-anchor="start" x="358" y="-127" font-family="FreeSans" font-size="10.00">Mezzanine::NonStaticWorld</text>
 <text text-anchor="middle" x="417" y="-115" font-family="FreeSans" font-size="10.00">Object</text>
 </a>
@@ -30,7 +29,7 @@
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1WorldNode.xhtml" target="_top" xlink:title="This is a helper class which non&#45;physics objects, such as lights, cameras, ribbon trails...">
-<polygon fill="white" stroke="black" points="360,-70 360,-90 474,-90 474,-70 360,-70"/>
+<polygon fill="none" stroke="black" points="360,-70 360,-90 474,-90 474,-70 360,-70"/>
 <text text-anchor="middle" x="417" y="-77" font-family="FreeSans" font-size="10.00">Mezzanine::WorldNode</text>
 </a>
 </g>
@@ -42,7 +41,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1AttachableBase.xhtml" target="_top" xlink:title="This class is the base class for other attachable classes and is responsible for transform updates to...">
-<polygon fill="white" stroke="black" points="0.5,-92 0.5,-112 135.5,-112 135.5,-92 0.5,-92"/>
+<polygon fill="none" stroke="black" points="0.5,-92 0.5,-112 135.5,-112 135.5,-92 0.5,-92"/>
 <text text-anchor="middle" x="68" y="-99" font-family="FreeSans" font-size="10.00">Mezzanine::AttachableBase</text>
 </a>
 </g>
@@ -54,7 +53,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1ActorBase.xhtml" target="_top" xlink:title="This is the base class from which all the actors inherit.">
-<polygon fill="white" stroke="black" points="520,-152 520,-172 632,-172 632,-152 520,-152"/>
+<polygon fill="none" stroke="black" points="520,-152 520,-172 632,-172 632,-152 520,-152"/>
 <text text-anchor="middle" x="576" y="-159" font-family="FreeSans" font-size="10.00">Mezzanine::ActorBase</text>
 </a>
 </g>
@@ -66,7 +65,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1AreaEffect.xhtml" target="_top" xlink:title="This class is used to define area&#39;s in the world that have unique effects.">
-<polygon fill="white" stroke="black" points="520.5,-76 520.5,-96 631.5,-96 631.5,-76 520.5,-76"/>
+<polygon fill="none" stroke="black" points="520.5,-76 520.5,-96 631.5,-96 631.5,-76 520.5,-76"/>
 <text text-anchor="middle" x="576" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::AreaEffect</text>
 </a>
 </g>
@@ -78,7 +77,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1ActorRigid.xhtml" target="_top" xlink:title="This is the actor class for Rigid Objects.">
-<polygon fill="white" stroke="black" points="674,-190 674,-210 786,-210 786,-190 674,-190"/>
+<polygon fill="none" stroke="black" points="674,-190 674,-210 786,-210 786,-190 674,-190"/>
 <text text-anchor="middle" x="730" y="-197" font-family="FreeSans" font-size="10.00">Mezzanine::ActorRigid</text>
 </a>
 </g>
@@ -90,7 +89,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1ActorSoft.xhtml" target="_top" xlink:title="This is the actor class for Soft Objects.">
-<polygon fill="white" stroke="black" points="676,-152 676,-172 784,-172 784,-152 676,-152"/>
+<polygon fill="none" stroke="black" points="676,-152 676,-172 784,-172 784,-152 676,-152"/>
 <text text-anchor="middle" x="730" y="-159" font-family="FreeSans" font-size="10.00">Mezzanine::ActorSoft</text>
 </a>
 </g>
@@ -102,7 +101,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1FieldOfForce.xhtml" target="_top" xlink:title="This is field that applies force in a direction, and doesn&#39;t tamper with gravity.">
-<polygon fill="white" stroke="black" points="668.5,-114 668.5,-134 791.5,-134 791.5,-114 668.5,-114"/>
+<polygon fill="none" stroke="black" points="668.5,-114 668.5,-134 791.5,-134 791.5,-114 668.5,-114"/>
 <text text-anchor="middle" x="730" y="-121" font-family="FreeSans" font-size="10.00">Mezzanine::FieldOfForce</text>
 </a>
 </g>
@@ -114,7 +113,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1GravityField.xhtml" target="_top" xlink:title="This is a gravity field implementation of the AreaEffect class.">
-<polygon fill="white" stroke="black" points="671,-76 671,-96 789,-96 789,-76 671,-76"/>
+<polygon fill="none" stroke="black" points="671,-76 671,-96 789,-96 789,-76 671,-76"/>
 <text text-anchor="middle" x="730" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::GravityField</text>
 </a>
 </g>
@@ -126,7 +125,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1GravityWell.xhtml" target="_top" xlink:title="This is a gravity well implementation of the AreaEffect class.">
-<polygon fill="white" stroke="black" points="672,-38 672,-58 788,-58 788,-38 672,-38"/>
+<polygon fill="none" stroke="black" points="672,-38 672,-58 788,-58 788,-38 672,-38"/>
 <text text-anchor="middle" x="730" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::GravityWell</text>
 </a>
 </g>
@@ -138,7 +137,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1TestAE.xhtml" target="_top" xlink:title="This is a dummy class to test if the AE field works. Details will be output to the log...">
-<polygon fill="white" stroke="black" points="681,-0 681,-20 779,-20 779,-0 681,-0"/>
+<polygon fill="none" stroke="black" points="681,-0 681,-20 779,-20 779,-0 681,-0"/>
 <text text-anchor="middle" x="730" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::TestAE</text>
 </a>
 </g>

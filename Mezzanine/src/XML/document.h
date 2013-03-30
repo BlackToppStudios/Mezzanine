@@ -235,6 +235,7 @@ namespace Mezzanine
                 /// @param stream The output stream of wide characters to send the XML document to.
                 /// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
                 /// @param flags The output format flags, this is a bitfield that defaults to XML::FormatDefault.
+                /// @param DocumentEncoding The Type of encoding to use when saving the document.
                 /// @note Not available in the 'Safe' scripting languages because of the file access it could provide.
                 void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const Char8* indent = "\t", unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
 

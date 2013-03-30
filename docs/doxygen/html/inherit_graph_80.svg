@@ -8,11 +8,10 @@
  viewBox="0.00 0.00 312.00 78.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 74)">
 <title>Graphical Class Hierarchy</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-74 309,-74 309,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="white" stroke="black" points="0,-16 0,-48 126,-48 126,-16 0,-16"/>
+<polygon fill="none" stroke="black" points="0,-16 0,-48 126,-48 126,-16 0,-16"/>
 <text text-anchor="start" x="8" y="-35" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="63" y="-23" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
@@ -20,7 +19,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="white" stroke="black" points="170,-38 170,-70 296,-70 296,-38 170,-38"/>
+<polygon fill="none" stroke="black" points="170,-38 170,-70 296,-70 296,-38 170,-38"/>
 <text text-anchor="start" x="178" y="-57" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="233" y="-45" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -33,7 +32,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="white" stroke="black" points="162.5,-0 162.5,-20 303.5,-20 303.5,-0 162.5,-0"/>
+<polygon fill="none" stroke="black" points="162.5,-0 162.5,-20 303.5,-20 303.5,-0 162.5,-0"/>
 <text text-anchor="middle" x="233" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>

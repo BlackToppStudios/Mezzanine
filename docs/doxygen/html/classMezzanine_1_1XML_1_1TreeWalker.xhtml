@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><b>XML</b></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml">TreeWalker</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="namespaceMezzanine_1_1XML.xhtml">XML</a></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml">TreeWalker</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,30 +90,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>Used to call a function for_each member of the subtree of nodes descended from a specific node.  
+<p>Used to call a function OnEachNode member of the subtree of nodes descended from a specific node.  
  <a href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="treewalker_8h_source.xhtml">treewalker.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa8935af372b1e92b50ee2db15d0e2940"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8935af372b1e92b50ee2db15d0e2940"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#aa8935af372b1e92b50ee2db15d0e2940">TreeWalker</a> ()</td></tr>
 <tr class="memdesc:aa8935af372b1e92b50ee2db15d0e2940"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor, initializes depth, and can do little else without a fully implemented treewalker. <br/></td></tr>
-<tr class="memitem:aa834cd0a5ee1e13625e748e1e185ef9a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa834cd0a5ee1e13625e748e1e185ef9a"></a>
-virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#aa834cd0a5ee1e13625e748e1e185ef9a">~TreeWalker</a> ()</td></tr>
-<tr class="memdesc:aa834cd0a5ee1e13625e748e1e185ef9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual deconstructor. Tears down a <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">TreeWalker</a>. <br/></td></tr>
-<tr class="memitem:ac01e53add65204ef79b63f1d76036992"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ac01e53add65204ef79b63f1d76036992">begin</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;node)</td></tr>
-<tr class="memdesc:ac01e53add65204ef79b63f1d76036992"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal begins.  <a href="#ac01e53add65204ef79b63f1d76036992"></a><br/></td></tr>
-<tr class="memitem:a05ca6d05bf5ca558b8a5d0581353ad01"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a05ca6d05bf5ca558b8a5d0581353ad01">end</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;node)</td></tr>
-<tr class="memdesc:a05ca6d05bf5ca558b8a5d0581353ad01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called on the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal ends.  <a href="#a05ca6d05bf5ca558b8a5d0581353ad01"></a><br/></td></tr>
-<tr class="memitem:a9020b4b11d338f3f2d9e3ec06b6440b2"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a9020b4b11d338f3f2d9e3ec06b6440b2">for_each</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;node)=0</td></tr>
-<tr class="memdesc:a9020b4b11d338f3f2d9e3ec06b6440b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Pure Virtual function that is expected to be implemented to create the desired behavior.  <a href="#a9020b4b11d338f3f2d9e3ec06b6440b2"></a><br/></td></tr>
+<tr class="memitem:af0a8e7158a0576ee74c9857c507d80bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0a8e7158a0576ee74c9857c507d80bd"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#af0a8e7158a0576ee74c9857c507d80bd">~TreeWalker</a> ()</td></tr>
+<tr class="memdesc:af0a8e7158a0576ee74c9857c507d80bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual deconstructor. Tears down a <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml" title="Used to call a function OnEachNode member of the subtree of nodes descended from a specific node...">TreeWalker</a>. <br/></td></tr>
+<tr class="memitem:ae8334894ae603514701d5719fe44edb7"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ae8334894ae603514701d5719fe44edb7">OnEachNode</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;node)=0</td></tr>
+<tr class="memdesc:ae8334894ae603514701d5719fe44edb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Pure Virtual function that is expected to be implemented to create the desired behavior.  <a href="#ae8334894ae603514701d5719fe44edb7"></a><br/></td></tr>
+<tr class="memitem:a889a8358606c610b736e31418fbe085e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a889a8358606c610b736e31418fbe085e">OnTraversalBegin</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;node)</td></tr>
+<tr class="memdesc:a889a8358606c610b736e31418fbe085e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal begins.  <a href="#a889a8358606c610b736e31418fbe085e"></a><br/></td></tr>
+<tr class="memitem:a4d475a6b417f7427c74e0c4614acd1de"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a4d475a6b417f7427c74e0c4614acd1de">OnTraversalEnd</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;node)</td></tr>
+<tr class="memdesc:a4d475a6b417f7427c74e0c4614acd1de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called on the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal ends.  <a href="#a4d475a6b417f7427c74e0c4614acd1de"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a2486cbbad851ac9a9c79adca95b7d9ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a2486cbbad851ac9a9c79adca95b7d9ba">Depth</a> () const </td></tr>
-<tr class="memdesc:a2486cbbad851ac9a9c79adca95b7d9ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many descendants deep are we during traversal.  <a href="#a2486cbbad851ac9a9c79adca95b7d9ba"></a><br/></td></tr>
+<tr class="memitem:a827e7aa4d768158cf615a6bf0586f33f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a827e7aa4d768158cf615a6bf0586f33f">Depth</a> () const </td></tr>
+<tr class="memdesc:a827e7aa4d768158cf615a6bf0586f33f"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many descendants deep are we during traversal.  <a href="#a827e7aa4d768158cf615a6bf0586f33f"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
@@ -121,25 +121,25 @@ Friends</h2></td></tr>
 class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Used to call a function for_each member of the subtree of nodes descended from a specific node. </p>
-<p>If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">TreeWalker</a>. This provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">XML::TreeWalker</a> interface and call <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a55c2d29eff312b0f8cc27a1b963d21cb" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">XML::Node::Traverse()</a> function. <br/>
+<div class="textblock"><p>Used to call a function OnEachNode member of the subtree of nodes descended from a specific node. </p>
+<p>If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml" title="Used to call a function OnEachNode member of the subtree of nodes descended from a specific node...">TreeWalker</a>. This provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml" title="Used to call a function OnEachNode member of the subtree of nodes descended from a specific node...">XML::TreeWalker</a> interface and call <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a60c011dca7c524ff915d1aa8a048a577" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">XML::Node::Traverse()</a> function. <br/>
 <br/>
 </p>
 <ul>
-<li>First, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ac01e53add65204ef79b63f1d76036992" title="Called by the root Node of the xml subtree when traversal begins.">TreeWalker::begin()</a> is called with traversal root as its argument.<br/>
+<li>First, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a889a8358606c610b736e31418fbe085e" title="Called by the root Node of the xml subtree when traversal begins.">TreeWalker::OnTraversalBegin()</a> is called with traversal root as its argument.<br/>
 </li>
-<li>Then, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a9020b4b11d338f3f2d9e3ec06b6440b2" title="A Pure Virtual function that is expected to be implemented to create the desired behavior.">TreeWalker::for_each()</a> function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> is passed as an argument.<br/>
+<li>Then, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ae8334894ae603514701d5719fe44edb7" title="A Pure Virtual function that is expected to be implemented to create the desired behavior.">TreeWalker::OnEachNode()</a> function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> is passed as an argument.<br/>
 </li>
-<li>Finally, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a05ca6d05bf5ca558b8a5d0581353ad01" title="Called on the root Node of the xml subtree when traversal ends.">TreeWalker::end()</a> function is called with traversal root as its argument.<br/>
+<li>Finally, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a4d475a6b417f7427c74e0c4614acd1de" title="Called on the root Node of the xml subtree when traversal ends.">TreeWalker::OnTraversalEnd()</a> function is called with traversal root as its argument.<br/>
 <br/>
- If <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ac01e53add65204ef79b63f1d76036992" title="Called by the root Node of the xml subtree when traversal begins.">TreeWalker::begin()</a>, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a05ca6d05bf5ca558b8a5d0581353ad01" title="Called on the root Node of the xml subtree when traversal ends.">TreeWalker::end()</a> or any of the <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a9020b4b11d338f3f2d9e3ec06b6440b2" title="A Pure Virtual function that is expected to be implemented to create the desired behavior.">TreeWalker::for_each()</a> calls return false, the traversal is terminated and false is returned as the traversal result; otherwise, the traversal results in true. Note that you don't have to override begin or end functions; their default implementations return true.<br/>
+ If <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a889a8358606c610b736e31418fbe085e" title="Called by the root Node of the xml subtree when traversal begins.">TreeWalker::OnTraversalBegin()</a>, <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a4d475a6b417f7427c74e0c4614acd1de" title="Called on the root Node of the xml subtree when traversal ends.">TreeWalker::OnTraversalEnd()</a> or any of the <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ae8334894ae603514701d5719fe44edb7" title="A Pure Virtual function that is expected to be implemented to create the desired behavior.">TreeWalker::OnEachNode()</a> calls return false, the traversal is terminated and false is returned as the traversal result; otherwise, the traversal results in true. Note that you don't have to override begin or end functions; their default implementations return true.<br/>
 <br/>
- You can get the node's depth relative to the traversal root at any point by calling <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a2486cbbad851ac9a9c79adca95b7d9ba" title="How many descendants deep are we during traversal.">TreeWalker::Depth()</a> function. </li>
+ You can get the node's depth relative to the traversal root at any point by calling <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a827e7aa4d768158cf615a6bf0586f33f" title="How many descendants deep are we during traversal.">TreeWalker::Depth()</a> function. </li>
 </ul>
 
-<p>Definition at line <a class="el" href="xml_8h_source.xhtml#l01038">1038</a> of file <a class="el" href="xml_8h_source.xhtml">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="treewalker_8h_source.xhtml#l00083">83</a> of file <a class="el" href="treewalker_8h_source.xhtml">treewalker.h</a>.</p>
 </div><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac01e53add65204ef79b63f1d76036992"></a>
+<a class="anchor" id="a827e7aa4d768158cf615a6bf0586f33f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -147,41 +147,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::TreeWalker::begin </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Called by the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal begins. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>The first node the Tree to traverse</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>By default this simply returns true, but is expected to be overridden with any desired behavior </p>
-<dl class="section return"><dt>Returns</dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a55c2d29eff312b0f8cc27a1b963d21cb" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a2486cbbad851ac9a9c79adca95b7d9ba"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mezzanine::XML::TreeWalker::Depth </td>
+          <td class="memname">int Mezzanine::XML::TreeWalker::Depth </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -195,11 +161,11 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </div><div class="memdoc">
 
 <p>How many descendants deep are we during traversal. </p>
-<dl class="section return"><dt>Returns</dt><dd>This returns -1 if called from <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#ac01e53add65204ef79b63f1d76036992" title="Called by the root Node of the xml subtree when traversal begins.">TreeWalker::begin()</a> or <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a05ca6d05bf5ca558b8a5d0581353ad01" title="Called on the root Node of the xml subtree when traversal ends.">TreeWalker::end()</a>, and returns 0-based depth if called from for_each - depth is 0 for all children of the traversal root, 1 for all grandchildren, 2 for great-grandchildren and so on. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>This returns -1 if called from <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a889a8358606c610b736e31418fbe085e" title="Called by the root Node of the xml subtree when traversal begins.">TreeWalker::OnTraversalBegin()</a> or <a class="el" href="classMezzanine_1_1XML_1_1TreeWalker.xhtml#a4d475a6b417f7427c74e0c4614acd1de" title="Called on the root Node of the xml subtree when traversal ends.">TreeWalker::OnTraversalEnd()</a>, and returns 0-based depth if called from OnEachNode - depth is 0 for all children of the traversal root, 1 for all grandchildren, 2 for great-grandchildren and so on. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a05ca6d05bf5ca558b8a5d0581353ad01"></a>
+<a class="anchor" id="ae8334894ae603514701d5719fe44edb7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -207,41 +173,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::TreeWalker::end </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Called on the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal ends. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>The last node the Tree to traverse</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>By default this simply returns true, but is expected to be overridden with any desired behavior </p>
-<dl class="section return"><dt>Returns</dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a55c2d29eff312b0f8cc27a1b963d21cb" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a9020b4b11d338f3f2d9e3ec06b6440b2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Mezzanine::XML::TreeWalker::for_each </td>
+          <td class="memname">virtual bool Mezzanine::XML::TreeWalker::OnEachNode </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;&#160;</td>
           <td class="paramname"><em>node</em></td><td>)</td>
@@ -263,16 +195,83 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
   </dd>
 </dl>
 <p>This is called on every <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching many nodes. </p>
-<dl class="section return"><dt>Returns</dt><dd>if true Traversal is expected to continue, if false, then traversal ends and the <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a55c2d29eff312b0f8cc27a1b963d21cb" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>if true Traversal is expected to continue, if false, then traversal ends and the <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a60c011dca7c524ff915d1aa8a048a577" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xml_8h_source.xhtml">xml.h</a></li>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a></li>
+<a class="anchor" id="a889a8358606c610b736e31418fbe085e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Mezzanine::XML::TreeWalker::OnTraversalBegin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called by the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal begins. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The first node the Tree to traverse</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>By default this simply returns true, but is expected to be overridden with any desired behavior </p>
+<dl class="section return"><dt>Returns</dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a60c011dca7c524ff915d1aa8a048a577" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4d475a6b417f7427c74e0c4614acd1de"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool Mezzanine::XML::TreeWalker::OnTraversalEnd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">Node</a> &amp;&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called on the root <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal ends. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">node</td><td>The last node the Tree to traverse</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>By default this simply returns true, but is expected to be overridden with any desired behavior </p>
+<dl class="section return"><dt>Returns</dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml#a60c011dca7c524ff915d1aa8a048a577" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/<a class="el" href="treewalker_8h_source.xhtml">treewalker.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 00:13:21 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

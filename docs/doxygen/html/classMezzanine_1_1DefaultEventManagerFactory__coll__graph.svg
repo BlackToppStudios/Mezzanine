@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 166.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 96)">
 <title>Mezzanine::DefaultEventManagerFactory</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-96 163,-96 163,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 158.5,-33 158.5,-1 -0.5,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerFactory.xhtml" target="_top" xlink:title="This is a base class for factories that construct the managers the engine uses.">
-<polygon fill="white" stroke="black" points="10.5,-71 10.5,-91 147.5,-91 147.5,-71 10.5,-71"/>
+<polygon fill="none" stroke="black" points="10.5,-71 10.5,-91 147.5,-91 147.5,-71 10.5,-71"/>
 <text text-anchor="middle" x="79" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerFactory</text>
 </a>
 </g>

@@ -135,11 +135,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9766ecefce7d3e8a8e379c8e19fcf414"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MetaCode.xhtml#a9766ecefce7d3e8a8e379c8e19fcf414">operator==</a> (const <a class="el" href="classMezzanine_1_1MetaCode.xhtml">MetaCode</a> &amp;other) const </td></tr>
 <tr class="memdesc:a9766ecefce7d3e8a8e379c8e19fcf414"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two MetaCodes for equality.  <a href="#a9766ecefce7d3e8a8e379c8e19fcf414"></a><br/></td></tr>
 <tr class="memitem:a3659cd6f2896683e51d84c6e3855bc6d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MetaCode.xhtml#a3659cd6f2896683e51d84c6e3855bc6d">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)</td></tr>
-<tr class="memdesc:a3659cd6f2896683e51d84c6e3855bc6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a3659cd6f2896683e51d84c6e3855bc6d"></a><br/></td></tr>
+<tr class="memdesc:a3659cd6f2896683e51d84c6e3855bc6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#a3659cd6f2896683e51d84c6e3855bc6d"></a><br/></td></tr>
 <tr class="memitem:a6fad335198f788cec225f3873cd8af7a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MetaCode.xhtml#a6fad335198f788cec225f3873cd8af7a">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:a6fad335198f788cec225f3873cd8af7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#a6fad335198f788cec225f3873cd8af7a"></a><br/></td></tr>
 <tr class="memitem:a50215ce2068922095f5608f17a2a3d15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MetaCode.xhtml#a50215ce2068922095f5608f17a2a3d15">SerializableName</a> () const </td></tr>
-<tr class="memdesc:a50215ce2068922095f5608f17a2a3d15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a50215ce2068922095f5608f17a2a3d15"></a><br/></td></tr>
+<tr class="memdesc:a50215ce2068922095f5608f17a2a3d15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized.  <a href="#a50215ce2068922095f5608f17a2a3d15"></a><br/></td></tr>
 <tr class="memitem:a29095a8d4c9495527799900b8e952ab8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MetaCode.xhtml#a29095a8d4c9495527799900b8e952ab8">SetCode</a> (const <a class="el" href="namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721a">Input::InputCode</a> &amp;Code_)</td></tr>
 <tr class="memdesc:a29095a8d4c9495527799900b8e952ab8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This Sets The InputCode.  <a href="#a29095a8d4c9495527799900b8e952ab8"></a><br/></td></tr>
 <tr class="memitem:aeec5b1c0411d1f7851945f4da69c28e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1MetaCode.xhtml#aeec5b1c0411d1f7851945f4da69c28e2">SetCode</a> (int Code_)</td></tr>
@@ -723,7 +723,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data. </td></tr>
@@ -732,7 +732,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">This</td><td>throws an <a class="el" href="classMezzanine_1_1InstanceIdentityInvalidException.xhtml">InstanceIdentityInvalidException</a> if the XML node passed defines another class. This throws <a class="el" href="classMezzanine_1_1InvalidVersionException.xhtml">InvalidVersionException</a> if the xml is of a newer version than 1. </td></tr>
+    <tr><td class="paramname">This</td><td>throws an <a class="el" href="classMezzanine_1_1InstanceIdentityInvalidException.xhtml">InstanceIdentityInvalidException</a> if the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> node passed defines another class. This throws <a class="el" href="classMezzanine_1_1InvalidVersionException.xhtml">InvalidVersionException</a> if the xml is of a newer version than 1. </td></tr>
   </table>
   </dd>
 </dl>
@@ -764,7 +764,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vector3 should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this vector3 should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -784,7 +784,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "Vector3" </dd></dl>
 
 </div>
@@ -889,10 +889,10 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Input/<a class="el" href="metacode_8h_source.xhtml">metacode.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Input/<a class="el" href="metacode_8h_source.xhtml">metacode.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 00:13:20 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

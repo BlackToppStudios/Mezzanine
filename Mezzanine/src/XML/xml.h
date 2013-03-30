@@ -83,7 +83,7 @@
 namespace Mezzanine
 {
     /// @brief All tools for working with XML are located in this namespace
-    /// @detail The contents of this namespace has many details covered  in the @ref XMLManual
+    /// @details The contents of this namespace has many details covered  in the @ref XMLManual
     namespace XML
     {}
 }
@@ -207,7 +207,6 @@ namespace Mezzanine
 /// I/O stream or custom transport).
 ///     - @ref XMLTreeStructure
 ///     - @ref XMLInterface
-///     - @ref XMLUnicode
 ///     - @ref XMLThreadSafety
 ///     - @ref XMLExceptionSafety
 ///     - @ref XMLMemory
@@ -227,7 +226,7 @@ namespace Mezzanine
 ///     - @ref Mezzanine::XML::NodeType "NodeType::NodeElement Element/tag node" - This is the most common type of node, which represents XML elements. Element nodes
 ///     have a name, a collection of attributes and a collection of child nodes (both of which may be empty). The attribute is a simple name/value pair. The example
 ///     XML representation of element nodes is as follows:
-///     @code
+///     @code{.xml}
 ///         <node attr="value"><child/></node>
 ///     @endcode
 ///     There are two element nodes here: one has name "node", single attribute "attr" and the single child "child" which has the name "child" and does not have
@@ -432,7 +431,7 @@ namespace Mezzanine
 /// parsing speed and thus can be disabled. However for vast majority of XML documents there is no performance difference between different parsing options. Parsing options also
 /// control whether certain XML nodes are parsed; see @ref XMLLoadingParsingOptions for more information.
 /// \n \n
-/// XML data is always converted to internal character format ( see @ref XMLUnicode ) before parsing. Mezzanine::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little
+/// XML data is always converted to internal character format before parsing. Mezzanine::xml supports all popular Unicode encodings (UTF-8, UTF-16 (big and little
 /// endian), UTF-32 (big and little endian); UCS-2 is naturally supported since it's a strict subset of UTF-16) and handles all encoding conversions automatically. Unless explicit
 /// encoding is specified, loading functions perform automatic encoding detection based on first few characters of XML data, so in almost all cases you do not have to specify
 /// document encoding. Encoding conversion is described in more detail in @ref XMLLoadingEncodings.

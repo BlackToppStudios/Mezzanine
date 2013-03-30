@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 244.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::UI::TemplateParams</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-108 241,-108 241,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="44.5,-1 44.5,-21 199.5,-21 199.5,-1 44.5,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ColourValue.xhtml" target="_top" xlink:title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">
-<polygon fill="white" stroke="black" points="-0.5,-83 -0.5,-103 118.5,-103 118.5,-83 -0.5,-83"/>
+<polygon fill="none" stroke="black" points="-0.5,-83 -0.5,-103 118.5,-103 118.5,-83 -0.5,-83"/>
 <text text-anchor="middle" x="59" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::ColourValue</text>
 </a>
 </g>
@@ -31,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="white" stroke="black" points="136,-83 136,-103 236,-103 236,-83 136,-83"/>
+<polygon fill="none" stroke="black" points="136,-83 136,-103 236,-103 236,-83 136,-83"/>
 <text text-anchor="middle" x="186" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>

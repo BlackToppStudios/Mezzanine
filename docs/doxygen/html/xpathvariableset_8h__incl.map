@@ -1,0 +1,6 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xpathvariableset.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xpathvariableset.h">
+<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="712,177,797,205"/>
+<area shape="rect" id="node37" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="733,99,893,127"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,254,149,282"/>
+<area shape="rect" id="node35" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1331,254,1387,282"/>
+</map>

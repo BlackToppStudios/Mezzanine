@@ -154,7 +154,7 @@ namespace Mezzanine
             NodeDocType         ///< Document Type declaration, i.e. '\<!DOCTYPE doc\>'
         };
 
-        /// @brief These statuses are used to help determine what issues, if any the parser had. Returned by @ref ParseResult instances.
+        /// @brief These statuses are used to help determine what issues, if any the parser had. Returned by @ref Mezzanine::XML::ParseResult instances.
         enum ParseStatus
         {
             StatusOk = 0,                       ///< This is returned to indicated there where no issues parsing the XML document.

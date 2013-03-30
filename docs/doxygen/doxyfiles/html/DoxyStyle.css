@@ -42,7 +42,7 @@ div {
 }
 
 li {
-	margin-bottom: 0px;
+	margin:3px 00px 12px 0px;
 }
 
 div.center > img {
@@ -383,6 +383,7 @@ a.elRef {
 }
 
 a.code {
+
 	/* color: #4665A2; */
 }
 
@@ -399,6 +400,11 @@ dl.el {
 .fragment {
 	font-family: monospace, fixed;
 	font-size: 90%;
+    border-style:solid;
+    border-color:#666;
+    border-width:1px;
+    background-color:#333;
+    margin:3px 35px 8px 14px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
 	border-bottom-left-radius: 5px;
@@ -934,7 +940,7 @@ address {
 	font-style: normal;
 	color: #CCC;
 }
-
+li.
 table.doxtable {
 	border-collapse:collapse;
 }

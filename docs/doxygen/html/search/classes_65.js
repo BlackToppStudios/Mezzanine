@@ -54,6 +54,7 @@ var searchData=
   ['exceptionfactory_3c_20syntaxerrorexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorException_1_1ExceptionCode_01_4.xhtml',1,'Mezzanine']]],
   ['exceptionfactory_3c_20syntaxerrorluaexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorLuaException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorLuaException_1_1ExceptionCode_01_4.xhtml',1,'Mezzanine']]],
   ['exceptionfactory_3c_20syntaxerrorxmlexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorXMLException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorXMLException_1_1ExceptionCode_01_4.xhtml',1,'Mezzanine']]],
+  ['exceptionfactory_3c_20syntaxerrorxpathexception_3a_3aexceptioncode_20_3e',['ExceptionFactory&lt; SyntaxErrorXPathException::ExceptionCode &gt;',['../structMezzanine_1_1ExceptionFactory_3_01SyntaxErrorXPathException_1_1ExceptionCode_01_4.xhtml',1,'Mezzanine']]],
   ['extendedrenderablefactory',['ExtendedRenderableFactory',['../classMezzanine_1_1UI_1_1ExtendedRenderableFactory.xhtml',1,'Mezzanine::UI']]],
   ['extendedtimer',['ExtendedTimer',['../classMezzanine_1_1ExtendedTimer.xhtml',1,'Mezzanine']]]
 ];
