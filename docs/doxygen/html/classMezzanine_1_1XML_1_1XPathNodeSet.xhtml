@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><b>XML</b></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="namespaceMezzanine_1_1XML.xhtml">XML</a></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -89,54 +89,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>A collection of nodes that an <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.xhtml" title="A compiled XPath query object.">XPathQuery</a> can work on.  
+<p>A fixed sized collection of nodes that an <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.xhtml" title="A compiled XPath query object.">XPathQuery</a> can work on.  
  <a href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="xpathnodeset_8h_source.xhtml">xpathnodeset.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ad184fcc38a7c200dda2b3836d3e0e424"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a> { <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424aa5f7c7818ac7ffddfa0ba6bcad584a03">TypeUnsorted</a>, 
-<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424a0a92881049c15ab9456800dfaa21af78">TypeSorted</a>, 
-<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424a90c217cc575ff3b7be0d55ffef66a4d2">TypeSortedReverse</a>
+<tr class="memitem:ad184fcc38a7c200dda2b3836d3e0e424"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a> { <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424a89755aea3cc23569b8d2803471b52bb7">TypeUnsorted</a>, 
+<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424ad714787a48ae1231e89fd9ee5d5086ec">TypeSorted</a>, 
+<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424ad732bca911dbc5e988554b0cc2294f5d">TypeSortedReverse</a>
  }</td></tr>
 <tr class="memdesc:ad184fcc38a7c200dda2b3836d3e0e424"><td class="mdescLeft">&#160;</td><td class="mdescRight">The different ways a collection may or may not be ordered.  <a href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">More...</a><br/></td></tr>
-<tr class="memitem:adc34a0847553a7e13e9e4ecf36dbef6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc34a0847553a7e13e9e4ecf36dbef6c"></a>
-typedef const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a></td></tr>
-<tr class="memdesc:adc34a0847553a7e13e9e4ecf36dbef6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator trait. Const iterator for XPathNodes. <br/></td></tr>
+<tr class="memitem:a1d1b98b5eeb462da984550b919846cd5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d1b98b5eeb462da984550b919846cd5"></a>
+typedef const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a></td></tr>
+<tr class="memdesc:a1d1b98b5eeb462da984550b919846cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">An iterator trait. Const iterator for XPathNodes. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a33b78eb97c4643f33580d42adb480a63"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33b78eb97c4643f33580d42adb480a63"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a33b78eb97c4643f33580d42adb480a63">XPathNodeSet</a> ()</td></tr>
 <tr class="memdesc:a33b78eb97c4643f33580d42adb480a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. Constructs empty set. <br/></td></tr>
-<tr class="memitem:a8c919ae2f0690ca64c238a14eeaf557a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a8c919ae2f0690ca64c238a14eeaf557a">XPathNodeSet</a> (<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a> <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a0f075935dae29d21f57963d34d33afbb">begin</a>, <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a> <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a8654f2658c19b06c8dde48c64bbf8d0d">end</a>, <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a> <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a17ddbdee20a3e7c6f72e8e01e3940ae7">Type</a>=<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424aa5f7c7818ac7ffddfa0ba6bcad584a03">TypeUnsorted</a>)</td></tr>
+<tr class="memitem:a8c919ae2f0690ca64c238a14eeaf557a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a8c919ae2f0690ca64c238a14eeaf557a">XPathNodeSet</a> (<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a> <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a6803f7eb73183f62b20ad679bf12c97b">begin</a>, <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a> <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a6e85d1d1e087da91b0863705b2d26aaf">end</a>, <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a> <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a9632844e3e7a17c29529a0b2c34f52fe">Type</a>=<a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424a89755aea3cc23569b8d2803471b52bb7">TypeUnsorted</a>)</td></tr>
 <tr class="memdesc:a8c919ae2f0690ca64c238a14eeaf557a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a set from iterator range.  <a href="#a8c919ae2f0690ca64c238a14eeaf557a"></a><br/></td></tr>
-<tr class="memitem:a876a99e75c2fbc43699f825a497ef209"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a876a99e75c2fbc43699f825a497ef209"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>XPathNodeSet</b> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;ns)</td></tr>
-<tr class="memitem:a0f075935dae29d21f57963d34d33afbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a0f075935dae29d21f57963d34d33afbb">begin</a> () const </td></tr>
-<tr class="memdesc:a0f075935dae29d21f57963d34d33afbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Beginning iterator.  <a href="#a0f075935dae29d21f57963d34d33afbb"></a><br/></td></tr>
-<tr class="memitem:ac0c04e658c4b0da9c8246aaf977fa5b8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ac0c04e658c4b0da9c8246aaf977fa5b8">Empty</a> () const </td></tr>
-<tr class="memdesc:ac0c04e658c4b0da9c8246aaf977fa5b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if collection is empty.  <a href="#ac0c04e658c4b0da9c8246aaf977fa5b8"></a><br/></td></tr>
-<tr class="memitem:a8654f2658c19b06c8dde48c64bbf8d0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a8654f2658c19b06c8dde48c64bbf8d0d">end</a> () const </td></tr>
-<tr class="memdesc:a8654f2658c19b06c8dde48c64bbf8d0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Ending iterator.  <a href="#a8654f2658c19b06c8dde48c64bbf8d0d"></a><br/></td></tr>
-<tr class="memitem:a71d4d840435827c842924b7284a14815"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a71d4d840435827c842924b7284a14815">first</a> () const </td></tr>
-<tr class="memdesc:a71d4d840435827c842924b7284a14815"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get first node in the collection by document order.  <a href="#a71d4d840435827c842924b7284a14815"></a><br/></td></tr>
-<tr class="memitem:aed4e32a24b98a4e5ae058a4f7eb1af01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#aed4e32a24b98a4e5ae058a4f7eb1af01">operator=</a> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;ns)</td></tr>
-<tr class="memdesc:aed4e32a24b98a4e5ae058a4f7eb1af01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment Operator.  <a href="#aed4e32a24b98a4e5ae058a4f7eb1af01"></a><br/></td></tr>
-<tr class="memitem:ab2d7461ea89f3e4661af340809f5fefc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ab2d7461ea89f3e4661af340809f5fefc">operator[]</a> (size_t index) const </td></tr>
-<tr class="memdesc:ab2d7461ea89f3e4661af340809f5fefc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indexing operator.  <a href="#ab2d7461ea89f3e4661af340809f5fefc"></a><br/></td></tr>
+<tr class="memitem:a876a99e75c2fbc43699f825a497ef209"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a876a99e75c2fbc43699f825a497ef209">XPathNodeSet</a> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;ns)</td></tr>
+<tr class="memdesc:a876a99e75c2fbc43699f825a497ef209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor/assignment operator.  <a href="#a876a99e75c2fbc43699f825a497ef209"></a><br/></td></tr>
+<tr class="memitem:a54229a7b68dbd83d9eb43391b51093d9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54229a7b68dbd83d9eb43391b51093d9"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a54229a7b68dbd83d9eb43391b51093d9">~XPathNodeSet</a> ()</td></tr>
+<tr class="memdesc:a54229a7b68dbd83d9eb43391b51093d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br/></td></tr>
+<tr class="memitem:a6803f7eb73183f62b20ad679bf12c97b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a6803f7eb73183f62b20ad679bf12c97b">begin</a> () const </td></tr>
+<tr class="memdesc:a6803f7eb73183f62b20ad679bf12c97b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Beginning iterator.  <a href="#a6803f7eb73183f62b20ad679bf12c97b"></a><br/></td></tr>
+<tr class="memitem:af191f45f8529fb4257a48540e5589553"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#af191f45f8529fb4257a48540e5589553">Empty</a> () const </td></tr>
+<tr class="memdesc:af191f45f8529fb4257a48540e5589553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if collection is empty.  <a href="#af191f45f8529fb4257a48540e5589553"></a><br/></td></tr>
+<tr class="memitem:a6e85d1d1e087da91b0863705b2d26aaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a6e85d1d1e087da91b0863705b2d26aaf">end</a> () const </td></tr>
+<tr class="memdesc:a6e85d1d1e087da91b0863705b2d26aaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Ending iterator.  <a href="#a6e85d1d1e087da91b0863705b2d26aaf"></a><br/></td></tr>
+<tr class="memitem:a51ef3a88c1cfd2c76834b84ae5d99b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a51ef3a88c1cfd2c76834b84ae5d99b8f">first</a> () const </td></tr>
+<tr class="memdesc:a51ef3a88c1cfd2c76834b84ae5d99b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get first node in the collection by document order.  <a href="#a51ef3a88c1cfd2c76834b84ae5d99b8f"></a><br/></td></tr>
+<tr class="memitem:afc5fc56316ec9d714904bbd3872ba35d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#afc5fc56316ec9d714904bbd3872ba35d">operator=</a> (const <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;ns)</td></tr>
+<tr class="memdesc:afc5fc56316ec9d714904bbd3872ba35d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment Operator.  <a href="#afc5fc56316ec9d714904bbd3872ba35d"></a><br/></td></tr>
+<tr class="memitem:a70f22b0560acd93fba225e8e8e861abc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a70f22b0560acd93fba225e8e8e861abc">operator[]</a> (size_t index) const </td></tr>
+<tr class="memdesc:a70f22b0560acd93fba225e8e8e861abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indexing operator.  <a href="#a70f22b0560acd93fba225e8e8e861abc"></a><br/></td></tr>
 <tr class="memitem:a97a2e9baa3876ce43d70ffda92e051bc"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a97a2e9baa3876ce43d70ffda92e051bc">size</a> () const </td></tr>
 <tr class="memdesc:a97a2e9baa3876ce43d70ffda92e051bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get collection size.  <a href="#a97a2e9baa3876ce43d70ffda92e051bc"></a><br/></td></tr>
-<tr class="memitem:aa06928c421c1e84b7201e791bf1712b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#aa06928c421c1e84b7201e791bf1712b4">sort</a> (bool reverse=false)</td></tr>
-<tr class="memdesc:aa06928c421c1e84b7201e791bf1712b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort the collection in ascending/descending order by document order.  <a href="#aa06928c421c1e84b7201e791bf1712b4"></a><br/></td></tr>
-<tr class="memitem:a17ddbdee20a3e7c6f72e8e01e3940ae7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a17ddbdee20a3e7c6f72e8e01e3940ae7">Type</a> () const </td></tr>
-<tr class="memdesc:a17ddbdee20a3e7c6f72e8e01e3940ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get collection Type.  <a href="#a17ddbdee20a3e7c6f72e8e01e3940ae7"></a><br/></td></tr>
+<tr class="memitem:ae2549590012152867250f689751f366e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ae2549590012152867250f689751f366e">sort</a> (bool reverse=false)</td></tr>
+<tr class="memdesc:ae2549590012152867250f689751f366e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort the collection in ascending/descending order by document order.  <a href="#ae2549590012152867250f689751f366e"></a><br/></td></tr>
+<tr class="memitem:a9632844e3e7a17c29529a0b2c34f52fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a9632844e3e7a17c29529a0b2c34f52fe">Type</a> () const </td></tr>
+<tr class="memdesc:a9632844e3e7a17c29529a0b2c34f52fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get collection Type.  <a href="#a9632844e3e7a17c29529a0b2c34f52fe"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A collection of nodes that an <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.xhtml" title="A compiled XPath query object.">XPathQuery</a> can work on. </p>
+<div class="textblock"><p>A fixed sized collection of nodes that an <a class="el" href="classMezzanine_1_1XML_1_1XPathQuery.xhtml" title="A compiled XPath query object.">XPathQuery</a> can work on. </p>
 
-<p>Definition at line <a class="el" href="xml_8h_source.xhtml#l01531">1531</a> of file <a class="el" href="xml_8h_source.xhtml">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="xpathnodeset_8h_source.xhtml#l00072">72</a> of file <a class="el" href="xpathnodeset_8h_source.xhtml">xpathnodeset.h</a>.</p>
 </div><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424"></a>
 <div class="memitem">
@@ -150,20 +153,20 @@ Public Member Functions</h2></td></tr>
 
 <p>The different ways a collection may or may not be ordered. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424aa5f7c7818ac7ffddfa0ba6bcad584a03"></a>TypeUnsorted</em>&nbsp;</td><td>
-<p>Not Ordered. </p>
+<tr><td valign="top"><em><a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424a89755aea3cc23569b8d2803471b52bb7"></a>TypeUnsorted</em>&nbsp;</td><td>
+<p>Not ordered. </p>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424a0a92881049c15ab9456800dfaa21af78"></a>TypeSorted</em>&nbsp;</td><td>
-<p>In document Order. </p>
+<tr><td valign="top"><em><a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424ad714787a48ae1231e89fd9ee5d5086ec"></a>TypeSorted</em>&nbsp;</td><td>
+<p>Sorted by document order (ascending) </p>
 </td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424a90c217cc575ff3b7be0d55ffef66a4d2"></a>TypeSortedReverse</em>&nbsp;</td><td>
-<p>In reverse document Order. </p>
+<tr><td valign="top"><em><a class="anchor" id="ad184fcc38a7c200dda2b3836d3e0e424ad732bca911dbc5e988554b0cc2294f5d"></a>TypeSortedReverse</em>&nbsp;</td><td>
+<p>Sorted by document order (descending) </p>
 </td></tr>
 </table>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="xml_8h_source.xhtml#l01535">1535</a> of file <a class="el" href="xml_8h_source.xhtml">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="xpathnodeset_8h_source.xhtml#l00076">76</a> of file <a class="el" href="xpathnodeset_8h_source.xhtml">xpathnodeset.h</a>.</p>
 
 </div>
 </div>
@@ -175,20 +178,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Mezzanine::XML::XPathNodeSet::XPathNodeSet </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a>&#160;</td>
           <td class="paramname"><em>begin</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c">const_iterator</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a>&#160;</td>
           <td class="paramname"><em>end</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a>&#160;</td>
-          <td class="paramname"><em>Type</em> = <code><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424aa5f7c7818ac7ffddfa0ba6bcad584a03">TypeUnsorted</a></code>&#160;</td>
+          <td class="paramname"><em>Type</em> = <code><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424a89755aea3cc23569b8d2803471b52bb7">TypeUnsorted</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -203,7 +206,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">begin</td><td>A const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml" title="An XPath node which can store handles to a XML::Node or an XML::Attribute.">XPathNode</a> iterator at the beginning of the set of nodes. </td></tr>
     <tr><td class="paramname">end</td><td>A const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml" title="An XPath node which can store handles to a XML::Node or an XML::Attribute.">XPathNode</a> iterator at the end of the set of nodes. </td></tr>
-    <tr><td class="paramname">Type</td><td>What <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> is being used, this defaults to <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424aa5f7c7818ac7ffddfa0ba6bcad584a03" title="Not Ordered.">XPathNodeSet::TypeUnsorted</a></td></tr>
+    <tr><td class="paramname">Type</td><td>What <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> is being used, this defaults to <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424a89755aea3cc23569b8d2803471b52bb7" title="Not ordered.">XPathNodeSet::TypeUnsorted</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -211,13 +214,37 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<h2>Member Function Documentation</h2>
-<a class="anchor" id="a0f075935dae29d21f57963d34d33afbb"></a>
+<a class="anchor" id="a876a99e75c2fbc43699f825a497ef209"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::begin </td>
+          <td class="memname">Mezzanine::XML::XPathNodeSet::XPathNodeSet </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;&#160;</td>
+          <td class="paramname"><em>ns</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Copy constructor/assignment operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ns</td><td>The Target to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="a6803f7eb73183f62b20ad679bf12c97b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a> Mezzanine::XML::XPathNodeSet::begin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -226,16 +253,16 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get Beginning iterator. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c" title="An iterator trait. Const iterator for XPathNodes.">XPathNodeSet::const_iterator</a> to the beginning of the collection. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5" title="An iterator trait. Const iterator for XPathNodes.">XPathNodeSet::const_iterator</a> to the beginning of the collection. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ac0c04e658c4b0da9c8246aaf977fa5b8"></a>
+<a class="anchor" id="af191f45f8529fb4257a48540e5589553"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::Empty </td>
+          <td class="memname">bool Mezzanine::XML::XPathNodeSet::Empty </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -248,12 +275,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8654f2658c19b06c8dde48c64bbf8d0d"></a>
+<a class="anchor" id="a6e85d1d1e087da91b0863705b2d26aaf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::end </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5">const_iterator</a> Mezzanine::XML::XPathNodeSet::end </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -262,16 +289,16 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get Ending iterator. </p>
-<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#adc34a0847553a7e13e9e4ecf36dbef6c" title="An iterator trait. Const iterator for XPathNodes.">XPathNodeSet::const_iterator</a> to the end of the collection. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#a1d1b98b5eeb462da984550b919846cd5" title="An iterator trait. Const iterator for XPathNodes.">XPathNodeSet::const_iterator</a> to the end of the collection. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a71d4d840435827c842924b7284a14815"></a>
+<a class="anchor" id="a51ef3a88c1cfd2c76834b84ae5d99b8f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::first </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a> Mezzanine::XML::XPathNodeSet::first </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -284,12 +311,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aed4e32a24b98a4e5ae058a4f7eb1af01"></a>
+<a class="anchor" id="afc5fc56316ec9d714904bbd3872ba35d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::operator= </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a>&amp; Mezzanine::XML::XPathNodeSet::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml">XPathNodeSet</a> &amp;&#160;</td>
           <td class="paramname"><em>ns</em></td><td>)</td>
@@ -299,22 +326,22 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Assignment Operator. </p>
-<dl class="section return"><dt>Returns</dt><dd>A reference to the freshly assigned <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the freshly assigned <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml" title="A fixed sized collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ns</td><td>The <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> to copy. </td></tr>
+    <tr><td class="paramname">ns</td><td>The <a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml" title="A fixed sized collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> to copy. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ab2d7461ea89f3e4661af340809f5fefc"></a>
+<a class="anchor" id="a70f22b0560acd93fba225e8e8e861abc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::operator[] </td>
+          <td class="memname">const <a class="el" href="classMezzanine_1_1XML_1_1XPathNode.xhtml">XPathNode</a>&amp; Mezzanine::XML::XPathNodeSet::operator[] </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -353,12 +380,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa06928c421c1e84b7201e791bf1712b4"></a>
+<a class="anchor" id="ae2549590012152867250f689751f366e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::sort </td>
+          <td class="memname">void Mezzanine::XML::XPathNodeSet::sort </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
           <td class="paramname"><em>reverse</em> = <code>false</code></td><td>)</td>
@@ -377,12 +404,12 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a17ddbdee20a3e7c6f72e8e01e3940ae7"></a>
+<a class="anchor" id="a9632844e3e7a17c29529a0b2c34f52fe"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Mezzanine::XML::XPathNodeSet::Type </td>
+          <td class="memname"><a class="el" href="classMezzanine_1_1XML_1_1XPathNodeSet.xhtml#ad184fcc38a7c200dda2b3836d3e0e424">CollectionType</a> Mezzanine::XML::XPathNodeSet::Type </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -395,12 +422,11 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xml_8h_source.xhtml">xml.h</a></li>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a></li>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/<a class="el" href="xpathnodeset_8h_source.xhtml">xpathnodeset.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

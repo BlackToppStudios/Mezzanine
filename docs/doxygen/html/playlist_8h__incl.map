@@ -1,4 +1,5 @@
-<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Audio/playlist.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Audio/playlist.h">
-<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="555,115,640,143"/>
-<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,193,149,221"/>
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Audio/playlist.h">
+<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="712,99,797,127"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,177,149,205"/>
+<area shape="rect" id="node35" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1331,177,1387,205"/>
 </map>

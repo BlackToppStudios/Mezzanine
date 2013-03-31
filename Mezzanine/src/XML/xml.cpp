@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -57,6 +57,8 @@
 #define SOURCE_XML_CPP
 
 #include "XML/xml.h"
+#include "exception.h"
+
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -175,11 +177,11 @@ PUGI__NS_BEGIN
 	struct MemoryManagement_function_storage
 	{
 		static AllocationFunction allocate;
-		static deAllocationFunction deallocate;
+		static DeAllocationFunction deallocate;
 	};
 
 	template <typename T> AllocationFunction MemoryManagement_function_storage<T>::allocate = default_allocate;
-	template <typename T> deAllocationFunction MemoryManagement_function_storage<T>::deallocate = default_deallocate;
+	template <typename T> DeAllocationFunction MemoryManagement_function_storage<T>::deallocate = default_deallocate;
 
 	typedef MemoryManagement_function_storage<int> Memory;
 PUGI__NS_END
@@ -5119,7 +5121,7 @@ namespace XML
 	}
 
 
-    PUGI__FN void MEZZ_LIB SetMemoryManagementFunctions(AllocationFunction allocate, deAllocationFunction deallocate)
+    PUGI__FN void MEZZ_LIB SetMemoryManagementFunctions(AllocationFunction allocate, DeAllocationFunction deallocate)
 	{
 		internal::Memory::allocate = allocate;
 		internal::Memory::deallocate = deallocate;
@@ -5130,7 +5132,7 @@ namespace XML
 		return internal::Memory::allocate;
 	}
 
-	PUGI__FN deAllocationFunction MEZZ_LIB GetMemoryDeallocationFunction()
+	PUGI__FN DeAllocationFunction MEZZ_LIB GetMemoryDeallocationFunction()
 	{
 		return internal::Memory::deallocate;
 	}

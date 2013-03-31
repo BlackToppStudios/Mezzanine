@@ -1,6 +1,7 @@
 var searchData=
 [
   ['objectpair',['ObjectPair',['../classMezzanine_1_1ObjectPair.xhtml',1,'Mezzanine']]],
+  ['objectrange',['ObjectRange',['../classMezzanine_1_1XML_1_1ObjectRange.xhtml',1,'Mezzanine::XML']]],
   ['objectreference',['ObjectReference',['../classMezzanine_1_1ObjectReference.xhtml',1,'Mezzanine']]],
   ['objectsettingfile',['ObjectSettingFile',['../classMezzanine_1_1ObjectSettingFile.xhtml',1,'Mezzanine']]],
   ['objectsettinggroup',['ObjectSettingGroup',['../classMezzanine_1_1ObjectSettingGroup.xhtml',1,'Mezzanine']]],

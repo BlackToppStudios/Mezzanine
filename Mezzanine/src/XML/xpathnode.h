@@ -57,7 +57,7 @@
 #define _xmlxpathnode_h
 
 /// @file
-/// @brief The definition of the @ref XPathNode
+/// @brief The definition of the @ref Mezzanine::XML::XPathNode
 #include "datatypes.h"
 #include "XML/node.h"
 

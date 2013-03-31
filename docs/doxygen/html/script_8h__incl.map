@@ -1,7 +1,8 @@
-<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Scripting/script.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Scripting/script.h">
-<area shape="rect" id="node3" href="$binarytool_8h_source.xhtml" title="binarytool.h" alt="" coords="473,209,559,237"/>
-<area shape="rect" id="node31" href="$scriptargument_8h.xhtml" title="This file has the interfaces for Script Arguments and the associated dependency chain." alt="" coords="549,131,667,159"/>
-<area shape="rect" id="node34" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="653,209,731,237"/>
-<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="555,286,640,314"/>
-<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,363,149,391"/>
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/script.h">
+<area shape="rect" id="node3" href="$binarytool_8h_source.xhtml" title="binarytool.h" alt="" coords="709,193,795,221"/>
+<area shape="rect" id="node39" href="$scriptargument_8h.xhtml" title="This file has the interfaces for Script Arguments and the associated dependency chain." alt="" coords="785,115,903,143"/>
+<area shape="rect" id="node42" href="$smartptr_8h.xhtml" title="This file describes and implements any pointers or typedefs to pointers that the Mezzanine uses and e..." alt="" coords="891,193,968,221"/>
+<area shape="rect" id="node5" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="749,270,835,298"/>
+<area shape="rect" id="node7" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,347,149,375"/>
+<area shape="rect" id="node37" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1240,347,1296,375"/>
 </map>

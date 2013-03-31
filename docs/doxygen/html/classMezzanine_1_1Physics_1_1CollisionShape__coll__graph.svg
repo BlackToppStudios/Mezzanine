@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 108.00 184.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 180)">
 <title>Mezzanine::Physics::CollisionShape</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-180 105,-180 105,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-33 100,-33 100,-1 0,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="21.5,-83 21.5,-103 78.5,-103 78.5,-83 21.5,-83"/>
+<polygon fill="none" stroke="#bfbfbf" points="21.5,-83 21.5,-103 78.5,-103 78.5,-83 21.5,-83"/>
 <text text-anchor="middle" x="50" y="-90" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -31,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="4.5,-143 4.5,-175 95.5,-175 95.5,-143 4.5,-143"/>
+<polygon fill="none" stroke="#bfbfbf" points="4.5,-143 4.5,-175 95.5,-175 95.5,-143 4.5,-143"/>
 <text text-anchor="start" x="12.5" y="-162" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="50" y="-150" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

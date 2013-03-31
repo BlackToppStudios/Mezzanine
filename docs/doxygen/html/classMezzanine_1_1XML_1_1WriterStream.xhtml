@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><b>XML</b></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1WriterStream.xhtml">WriterStream</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="namespaceMezzanine_1_1XML.xhtml">XML</a></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1WriterStream.xhtml">WriterStream</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>An implementation of <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Writer</a> intended for writing std::ostreams.  
  <a href="classMezzanine_1_1XML_1_1WriterStream.xhtml#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="writer_8h_source.xhtml">writer.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Mezzanine::XML::WriterStream:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -109,18 +109,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae717dd4275d250abaccf81d0f09f4c45"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae717dd4275d250abaccf81d0f09f4c45"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WriterStream</b> (std::basic_ostream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream)</td></tr>
+<tr class="memitem:ae717dd4275d250abaccf81d0f09f4c45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterStream.xhtml#ae717dd4275d250abaccf81d0f09f4c45">WriterStream</a> (std::basic_ostream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream)</td></tr>
+<tr class="memdesc:ae717dd4275d250abaccf81d0f09f4c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor that accepts a stream of characters.  <a href="#ae717dd4275d250abaccf81d0f09f4c45"></a><br/></td></tr>
 <tr class="memitem:ab76e92b128938c5d362c6801f493b81c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterStream.xhtml#ab76e92b128938c5d362c6801f493b81c">WriterStream</a> (std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream)</td></tr>
 <tr class="memdesc:ab76e92b128938c5d362c6801f493b81c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A constructor that accepts a stream of wide characters.  <a href="#ab76e92b128938c5d362c6801f493b81c"></a><br/></td></tr>
-<tr class="memitem:aa0cc8f1447a261b1c8778160b00d057b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa0cc8f1447a261b1c8778160b00d057b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Write</b> (const void *data, size_t size)</td></tr>
+<tr class="memitem:aa0cc8f1447a261b1c8778160b00d057b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterStream.xhtml#aa0cc8f1447a261b1c8778160b00d057b">Write</a> (const void *data, size_t size)</td></tr>
+<tr class="memdesc:aa0cc8f1447a261b1c8778160b00d057b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Actually issues the write commands.  <a href="#aa0cc8f1447a261b1c8778160b00d057b"></a><br/></td></tr>
+<tr class="inherit_header pub_methods_classMezzanine_1_1XML_1_1Writer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1XML_1_1Writer')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Mezzanine::XML::Writer</a></td></tr>
+<tr class="memitem:a5425729f7965544c72c11e42d22bff0b inherit pub_methods_classMezzanine_1_1XML_1_1Writer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5425729f7965544c72c11e42d22bff0b"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml#a5425729f7965544c72c11e42d22bff0b">~Writer</a> ()</td></tr>
+<tr class="memdesc:a5425729f7965544c72c11e42d22bff0b inherit pub_methods_classMezzanine_1_1XML_1_1Writer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safe to dervied doconstructor. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>An implementation of <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Writer</a> intended for writing std::ostreams. </p>
 
-<p>Definition at line <a class="el" href="xml_8h_source.xhtml#l00268">268</a> of file <a class="el" href="xml_8h_source.xhtml">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="writer_8h_source.xhtml#l00117">117</a> of file <a class="el" href="writer_8h_source.xhtml">writer.h</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae717dd4275d250abaccf81d0f09f4c45"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mezzanine::XML::WriterStream::WriterStream </td>
+          <td>(</td>
+          <td class="paramtype">std::basic_ostream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A constructor that accepts a stream of characters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stream</td><td>A stream to send stuff to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ab76e92b128938c5d362c6801f493b81c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -145,12 +173,57 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Write</b> (co
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xml_8h_source.xhtml">xml.h</a></li>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a></li>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="aa0cc8f1447a261b1c8778160b00d057b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::XML::WriterStream::Write </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Actually issues the write commands. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A pointer to the data to write, this will assume the pointer is valid and cast it. </td></tr>
+    <tr><td class="paramname">size</td><td>How much to write from the pointer data, pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml#af66d88be522819819cf552ff237a905e">Mezzanine::XML::Writer</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/<a class="el" href="writer_8h_source.xhtml">writer.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

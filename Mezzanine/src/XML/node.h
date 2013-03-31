@@ -58,7 +58,7 @@
 #define _xmlnode_h
 
 /// @file
-/// @brief This defines the @ref XML::Node one of the cetral XML classes.
+/// @brief This defines the @ref Mezzanine::XML::Node one of the central XML classes.
 
 #include "datatypes.h"
 #include "XML/xmlenumerations.h"
@@ -215,7 +215,7 @@ namespace Mezzanine
                 Node GetRoot() const;
 
                 /// @brief Get text object for the current node
-                /// @return An @ref Text which represents the PCData of this node.
+                /// @return An @ref Mezzanine::XML::NodeText which represents the PCData of this node.
                 NodeText GetText() const;
 
                 #ifndef SWIG
@@ -391,7 +391,7 @@ namespace Mezzanine
 
                 /// @brief Creates an element Node as a child of this Node, with the given name.
                 /// @param Name The name of the Node to be created.
-                /// @details Calls @ref Node::AppendChild(const char_t*)
+                /// @details Calls @ref Node::AppendChild
                 /// @return The desired Node on success, an empty Node on failure.
                 Node AppendChild(const String& Name)
                     { return AppendChild(Name.c_str()); }
@@ -407,7 +407,7 @@ namespace Mezzanine
 
                 /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
                 /// @param Name The name of the Node to be created.
-                /// @details Calls @ref Node::PrependChild(const char_t*);
+                /// @details Calls @ref Node::PrependChild
                 /// @return The desired Node on success, an empty Node on failure.
                 Node PrependChild(const String& Name)
                     { return PrependChild(Name.c_str()); }
@@ -449,7 +449,7 @@ namespace Mezzanine
                 Node InsertCopyBefore(const Node& proto, const Node& node);
 
                 /// @brief Remove specified Attribute.
-                /// @param ptrdiff_ta The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
+                /// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
                 /// @return True if the removal was successful, false otherwise.
                 bool RemoveAttribute(const Attribute& a);
 

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/stringtool.h Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/stringtool.h Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_2cb3f4bbed36e97976e95e8895b6e0de.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_28f80092e9c3ae4676af90cfa1b625bf.xhtml">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.xhtml">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -268,7 +268,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">        /// @param ToConvert Stream class instance to be converted.</span></div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">        /// @return Returns a string containing the lexicagraphically converted data.</span></div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment"></span>        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> ConvertToString(<span class="keyword">const</span> T&amp; ToConvert)</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ConvertToString(<span class="keyword">const</span> T&amp; ToConvert)</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        {</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;            <a class="code" href="namespaceMezzanine.xhtml#ae5375d2a6e7c5ee59a4459fd735042ac" title="A Datatype used for streaming operations with strings.">StringStream</a> converter;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            converter &lt;&lt; ToConvert;</div>
@@ -289,7 +289,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">        /// @param Code The input code to be converted.</span></div>
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">        /// @param ShiftPressed Whether or not the shift modifier key has been pressed.</span></div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">        /// @return Returns a string(usually with only one character) containing the converted input code.</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment"></span>        <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> <a class="code" href="crossplatformexport_8h.xhtml#a455f91aab9e6a1cf4286f5cdfa74c7bc" title="Some platforms require special decorations to denote what is exported/imported in a share library...">MEZZ_LIB</a> ConvertToString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721a" title="The InputCode enum defines all the posible types of inputs.">Input::InputCode</a>&amp; Code, <span class="keywordtype">bool</span> ShiftPressed);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment"></span>        <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a> ConvertToString(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine_1_1Input.xhtml#ab722ac9d149cd84c0db5080b46a3721a" title="The InputCode enum defines all the posible types of inputs.">Input::InputCode</a>&amp; Code, <span class="keywordtype">bool</span> ShiftPressed);</div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">        /// @brief Converts a Input::InputCode into a string, assuming shift was not pressed.</span></div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">        /// @details this is good for figuring out what key was pressed</span></div>
@@ -305,6 +305,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:05 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

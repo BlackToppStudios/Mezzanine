@@ -1,8 +1,0 @@
-<map id="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h" name="/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/xml.h">
-<area shape="rect" id="node3" href="$crossplatform_8h_source.xhtml" title="crossplatform.h" alt="" coords="352,115,461,143"/>
-<area shape="rect" id="node34" href="$xmldoc_8h.xhtml" title="This file houses all the documentation for the XML system that is not directly related to a specific ..." alt="" coords="485,115,589,143"/>
-<area shape="rect" id="node37" href="$exception_8h_source.xhtml" title="exception.h" alt="" coords="613,115,699,143"/>
-<area shape="rect" id="node40" href="$datastream_8h.xhtml" title="Declaration of DataStream, FileStreamDataStream, FileHandleDataStream, MemoryDataStream." alt="" coords="723,115,877,143"/>
-<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,270,149,298"/>
-<area shape="rect" id="node7" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="555,193,640,221"/>
-</map>

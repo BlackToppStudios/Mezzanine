@@ -276,10 +276,10 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/objectrange.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.h"       # Going away soon
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.h"    # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/attributeiterator.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/document.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/memorymanagement.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/node.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodeiterator.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.h"
@@ -287,6 +287,7 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xmlenumerations.h"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlstring.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnode.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnodeset.h"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathparseresult.h"
@@ -466,16 +467,17 @@ set(${PROJECT_NAME}_sources
         "${${PROJECT_NAME}_SRC_DIR}worldobjectphysicssettings.cpp"
         "${${PROJECT_NAME}_SRC_DIR}worldtrigger.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xml.cpp"     # Going away soon
-        "${${PROJECT_NAME}_SRC_DIR}XML/xmldoc.cpp"  # Going away soon
         "${${PROJECT_NAME}_SRC_DIR}XML/attribute.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/attributeiterator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/document.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/memorymanagement.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/node.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodeiterator.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/nodetext.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/parseresult.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/treewalker.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/writer.cpp"
+        "${${PROJECT_NAME}_SRC_DIR}XML/xmlstring.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnode.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathnodeset.cpp"
         "${${PROJECT_NAME}_SRC_DIR}XML/xpathparseresult.cpp"
@@ -555,7 +557,7 @@ include_directories( ${${PROJECT_NAME}_SRC_DIR}
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
 
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/Headers"
+        "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/caudiosrc/cAudio2.1.0/Headers"
 
         "${ProjectBinaryDir}Mezzanine/libincludes/common/sdlsrc/SDL/include"
         "${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/include"
@@ -630,17 +632,15 @@ endif(${Mezz_Lua51})
 # Library Link Dependencies
 add_dependencies( ${PROJECT_NAME} ${OgreDepName} ${Bullet_LibraryNames} ${LuaProject} ${SDLLibraryNames} ${SoundLibraryNames} )
 
-set(LinkOrder 
-	${NetworkLibrary} 
-	${OgreLibraryAllNames} 
-	${LuaLinkName} 
-	${Bullet_LibraryNames} 
-	${SDLLibraryNames} 
-	${SoundLibraryNames}
-)
-
 # Link to all of the Mezzanine Dependencies
-target_link_libraries( ${PROJECT_NAME} ${LinkOrder} )
+target_link_libraries( ${PROJECT_NAME}
+    ${NetworkLibrary}
+    ${OgreLibraryAllNames}
+    ${LuaLinkName}
+    ${Bullet_LibraryNames}
+    ${SDLLibraryNames}
+    ${SoundLibraryNames}
+)
 
 ###############################################################################
 # Build Time File copying

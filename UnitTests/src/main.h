@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@
 #include <mezzanine.h> // For String and all of Mezzanine
 
 
-// Define some Results of tests
+/// @brief
 enum TestResult
 {
     Success         = 0,        // test was ran and appeared to work

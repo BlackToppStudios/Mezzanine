@@ -117,8 +117,8 @@ SWIG_INFO_BEGINCLASS
         class MEZZ_LIB WriterStream: public Writer
         {
         public:
-                /// @brief A constructor that accepts a stream of characters
-                /// @param stream A stream to send stuff to.
+            /// @brief A constructor that accepts a stream of characters
+            /// @param stream A stream to send stuff to.
             WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream);
 
             /// @brief A constructor that accepts a stream of wide characters
@@ -126,7 +126,8 @@ SWIG_INFO_BEGINCLASS
             WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);
 
             /// @brief Actually issues the write commands.
-            /// @param
+            /// @param data A pointer to the data to write, this will assume the pointer is valid and cast it.
+            /// @param size How much to write from the pointer data, pointer.
             virtual void Write(const void* data, size_t size);
 
         private:
@@ -139,7 +140,6 @@ SWIG_INFO_BEGINCLASS
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XMLStreamWrapper
-        /// @headerfile resourcedatastream.h
         /// @brief This represents a simple wrapper that makes data streams compatible with the XML API.
         /// @details
         /// @todo Ideally this class should not exist, and the XML system should be made to use the resource system instead of doing its own IO.
@@ -147,7 +147,7 @@ SWIG_INFO_BEGINCLASS
         class MEZZ_LIB XMLStreamWrapper : public Writer
         {
             protected:
-
+                /// @brief This is the stream that will be used for output.
                 Resource::DataStream* WrappedStream;
             public:
                 /// @brief Class constructor.

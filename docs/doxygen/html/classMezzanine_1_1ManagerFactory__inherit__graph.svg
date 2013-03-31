@@ -40,7 +40,6 @@ var sectionId = 'dynsection-0';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::ManagerFactory</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-686 343,-686 343,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0.5,-331 0.5,-351 137.5,-351 137.5,-331 0.5,-331"/>
@@ -49,7 +48,7 @@ var sectionId = 'dynsection-0';
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1DefaultActorManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default actormanager.">
-<polygon fill="white" stroke="black" points="177,-650 177,-682 335,-682 335,-650 177,-650"/>
+<polygon fill="none" stroke="black" points="177,-650 177,-682 335,-682 335,-650 177,-650"/>
 <text text-anchor="start" x="185" y="-669" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultActorManager</text>
 <text text-anchor="middle" x="256" y="-657" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -62,7 +61,7 @@ var sectionId = 'dynsection-0';
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1DefaultAudioManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default audiomanager.">
-<polygon fill="white" stroke="black" points="176,-600 176,-632 336,-632 336,-600 176,-600"/>
+<polygon fill="none" stroke="black" points="176,-600 176,-632 336,-632 336,-600 176,-600"/>
 <text text-anchor="start" x="184" y="-619" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultAudioManager</text>
 <text text-anchor="middle" x="256" y="-607" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -75,7 +74,7 @@ var sectionId = 'dynsection-0';
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1DefaultCameraManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default cameramanager.">
-<polygon fill="white" stroke="black" points="190.5,-550 190.5,-582 321.5,-582 321.5,-550 190.5,-550"/>
+<polygon fill="none" stroke="black" points="190.5,-550 190.5,-582 321.5,-582 321.5,-550 190.5,-550"/>
 <text text-anchor="start" x="198.5" y="-569" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultCamera</text>
 <text text-anchor="middle" x="256" y="-557" font-family="FreeSans" font-size="10.00">ManagerFactory</text>
 </a>
@@ -88,7 +87,7 @@ var sectionId = 'dynsection-0';
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1DefaultCollisionShapeManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default collisionshapemanager.">
-<polygon fill="white" stroke="black" points="189,-500 189,-532 323,-532 323,-500 189,-500"/>
+<polygon fill="none" stroke="black" points="189,-500 189,-532 323,-532 323,-500 189,-500"/>
 <text text-anchor="start" x="197" y="-519" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultCollision</text>
 <text text-anchor="middle" x="256" y="-507" font-family="FreeSans" font-size="10.00">ShapeManagerFactory</text>
 </a>
@@ -101,7 +100,7 @@ var sectionId = 'dynsection-0';
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1DefaultEventManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default eventmanager.">
-<polygon fill="white" stroke="black" points="176.5,-450 176.5,-482 335.5,-482 335.5,-450 176.5,-450"/>
+<polygon fill="none" stroke="black" points="176.5,-450 176.5,-482 335.5,-482 335.5,-450 176.5,-450"/>
 <text text-anchor="start" x="184.5" y="-469" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultEventManager</text>
 <text text-anchor="middle" x="256" y="-457" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -114,7 +113,7 @@ var sectionId = 'dynsection-0';
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1DefaultGraphicsManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default graphicsmanager.">
-<polygon fill="white" stroke="black" points="188,-400 188,-432 324,-432 324,-400 188,-400"/>
+<polygon fill="none" stroke="black" points="188,-400 188,-432 324,-432 324,-400 188,-400"/>
 <text text-anchor="start" x="196" y="-419" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultGraphics</text>
 <text text-anchor="middle" x="256" y="-407" font-family="FreeSans" font-size="10.00">ManagerFactory</text>
 </a>
@@ -127,7 +126,7 @@ var sectionId = 'dynsection-0';
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:href="classMezzanine_1_1DefaultInputManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default inputmanager.">
-<polygon fill="white" stroke="black" points="177.5,-350 177.5,-382 334.5,-382 334.5,-350 177.5,-350"/>
+<polygon fill="none" stroke="black" points="177.5,-350 177.5,-382 334.5,-382 334.5,-350 177.5,-350"/>
 <text text-anchor="start" x="185.5" y="-369" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultInputManager</text>
 <text text-anchor="middle" x="256" y="-357" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -140,7 +139,7 @@ var sectionId = 'dynsection-0';
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1DefaultMeshManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default meshmanager.">
-<polygon fill="white" stroke="black" points="177,-300 177,-332 335,-332 335,-300 177,-300"/>
+<polygon fill="none" stroke="black" points="177,-300 177,-332 335,-332 335,-300 177,-300"/>
 <text text-anchor="start" x="185" y="-319" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultMeshManager</text>
 <text text-anchor="middle" x="256" y="-307" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -153,7 +152,7 @@ var sectionId = 'dynsection-0';
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:href="classMezzanine_1_1DefaultPhysicsManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default physicsmanager.">
-<polygon fill="white" stroke="black" points="190.5,-250 190.5,-282 321.5,-282 321.5,-250 190.5,-250"/>
+<polygon fill="none" stroke="black" points="190.5,-250 190.5,-282 321.5,-282 321.5,-250 190.5,-250"/>
 <text text-anchor="start" x="198.5" y="-269" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultPhysics</text>
 <text text-anchor="middle" x="256" y="-257" font-family="FreeSans" font-size="10.00">ManagerFactory</text>
 </a>
@@ -166,7 +165,7 @@ var sectionId = 'dynsection-0';
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1DefaultResourceManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default resourcemanager.">
-<polygon fill="white" stroke="black" points="187,-200 187,-232 325,-232 325,-200 187,-200"/>
+<polygon fill="none" stroke="black" points="187,-200 187,-232 325,-232 325,-200 187,-200"/>
 <text text-anchor="start" x="195" y="-219" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultResource</text>
 <text text-anchor="middle" x="256" y="-207" font-family="FreeSans" font-size="10.00">ManagerFactory</text>
 </a>
@@ -179,7 +178,7 @@ var sectionId = 'dynsection-0';
 <!-- Node12 -->
 <g id="node23" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1DefaultSceneManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default scenemanager.">
-<polygon fill="white" stroke="black" points="174.5,-150 174.5,-182 337.5,-182 337.5,-150 174.5,-150"/>
+<polygon fill="none" stroke="black" points="174.5,-150 174.5,-182 337.5,-182 337.5,-150 174.5,-150"/>
 <text text-anchor="start" x="182.5" y="-169" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultSceneManager</text>
 <text text-anchor="middle" x="256" y="-157" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -192,7 +191,7 @@ var sectionId = 'dynsection-0';
 <!-- Node13 -->
 <g id="node25" class="node"><title>Node13</title>
 <a xlink:href="classMezzanine_1_1DefaultTerrainManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default terrainmanager.">
-<polygon fill="white" stroke="black" points="192,-100 192,-132 320,-132 320,-100 192,-100"/>
+<polygon fill="none" stroke="black" points="192,-100 192,-132 320,-132 320,-100 192,-100"/>
 <text text-anchor="start" x="200" y="-119" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultTerrain</text>
 <text text-anchor="middle" x="256" y="-107" font-family="FreeSans" font-size="10.00">ManagerFactory</text>
 </a>
@@ -205,7 +204,7 @@ var sectionId = 'dynsection-0';
 <!-- Node14 -->
 <g id="node27" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1DefaultTimerManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default timermanager.">
-<polygon fill="white" stroke="black" points="176,-50 176,-82 336,-82 336,-50 176,-50"/>
+<polygon fill="none" stroke="black" points="176,-50 176,-82 336,-82 336,-50 176,-50"/>
 <text text-anchor="start" x="184" y="-69" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultTimerManager</text>
 <text text-anchor="middle" x="256" y="-57" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>
@@ -218,7 +217,7 @@ var sectionId = 'dynsection-0';
 <!-- Node15 -->
 <g id="node29" class="node"><title>Node15</title>
 <a xlink:href="classMezzanine_1_1DefaultUIManagerFactory.xhtml" target="_top" xlink:title="A factory responsible for the creation and destruction of the default uimanager.">
-<polygon fill="white" stroke="black" points="183.5,-0 183.5,-32 328.5,-32 328.5,-0 183.5,-0"/>
+<polygon fill="none" stroke="black" points="183.5,-0 183.5,-32 328.5,-32 328.5,-0 183.5,-0"/>
 <text text-anchor="start" x="191.5" y="-19" font-family="FreeSans" font-size="10.00">Mezzanine::DefaultUIManager</text>
 <text text-anchor="middle" x="256" y="-7" font-family="FreeSans" font-size="10.00">Factory</text>
 </a>

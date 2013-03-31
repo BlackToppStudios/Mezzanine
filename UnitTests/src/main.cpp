@@ -132,6 +132,8 @@ class AllUnitTestGroups : public UnitTestGroup
         }
 };
 
+/// @internal
+/// @brief Run the cleanup for any tests that have been added.
 void DeleteTests()
 {
     for(std::map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
@@ -141,6 +143,8 @@ void DeleteTests()
     }
 }
 
+
+/// @brief This
 int main (int argc, char** argv)
 {
     if( !system( NULL ) ) // If this is not being run from a shell somehow, then using system() to run this task in a new process is not really possible.

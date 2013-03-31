@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 258.00 160.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 156)">
 <title>Mezzanine::EventUserInput</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-156 255,-156 255,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="29,-1 29,-21 161,-21 161,-1 29,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1EventBase.xhtml" target="_top" xlink:title="The base class for all events.">
-<polygon fill="white" stroke="black" points="-0.5,-61 -0.5,-81 112.5,-81 112.5,-61 -0.5,-61"/>
+<polygon fill="none" stroke="black" points="-0.5,-61 -0.5,-81 112.5,-81 112.5,-61 -0.5,-61"/>
 <text text-anchor="middle" x="56" y="-68" font-family="FreeSans" font-size="10.00">Mezzanine::EventBase</text>
 </a>
 </g>
@@ -29,7 +28,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="129.5,-61 129.5,-81 250.5,-81 250.5,-61 129.5,-61"/>
+<polygon fill="none" stroke="#bfbfbf" points="129.5,-61 129.5,-81 250.5,-81 250.5,-61 129.5,-61"/>
 <text text-anchor="middle" x="190" y="-68" font-family="FreeSans" font-size="10.00">std::vector&lt; MetaCode &gt;</text>
 </a>
 </g>
@@ -40,7 +39,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="white" stroke="#bfbfbf" points="175.5,-131 175.5,-151 204.5,-151 204.5,-131 175.5,-131"/>
+<polygon fill="none" stroke="#bfbfbf" points="175.5,-131 175.5,-151 204.5,-151 204.5,-131 175.5,-131"/>
 <text text-anchor="middle" x="190" y="-138" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node4&#45;&gt;Node3 -->

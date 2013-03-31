@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 220.00 172.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 168)">
 <title>Mezzanine::Input::Keyboard</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-168 217,-168 217,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="42,-1 42,-21 176,-21 176,-1 42,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Device.xhtml" target="_top" xlink:title="This is a base class for all input devices.">
-<polygon fill="white" stroke="black" points="48,-61 48,-81 170,-81 170,-61 48,-61"/>
+<polygon fill="none" stroke="black" points="48,-61 48,-81 170,-81 170,-61 48,-61"/>
 <text text-anchor="middle" x="109" y="-68" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>
 </g>
@@ -28,7 +27,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<polygon fill="white" stroke="#bfbfbf" points="0,-137 0,-157 104,-157 104,-137 0,-137"/>
+<polygon fill="none" stroke="#bfbfbf" points="0,-137 0,-157 104,-157 104,-137 0,-137"/>
 <text text-anchor="middle" x="52" y="-144" font-family="FreeSans" font-size="10.00">std::vector&lt; Whole &gt;</text>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
@@ -39,7 +38,7 @@
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="white" stroke="#bfbfbf" points="122,-131 122,-163 212,-163 212,-131 122,-131"/>
+<polygon fill="none" stroke="#bfbfbf" points="122,-131 122,-163 212,-163 212,-131 122,-131"/>
 <text text-anchor="start" x="130" y="-150" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="167" y="-138" font-family="FreeSans" font-size="10.00">::ButtonState &gt;</text>
 </g>

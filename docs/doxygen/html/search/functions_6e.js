@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['name',['Name',['../classMezzanine_1_1XML_1_1Attribute.xhtml#adcebdb71cd6e075a838ed94f7bb48069',1,'Mezzanine::XML::Attribute::Name()'],['../classMezzanine_1_1XML_1_1Node.xhtml#add2290b8f407079a69867ce063b49ee4',1,'Mezzanine::XML::Node::Name()']]],
+  ['name',['Name',['../classMezzanine_1_1XML_1_1Attribute.xhtml#a068ada875a553ae409e501901bc05191',1,'Mezzanine::XML::Attribute::Name()'],['../classMezzanine_1_1XML_1_1Node.xhtml#ac1b2f6b9c5b1380c524e6a77011aeda4',1,'Mezzanine::XML::Node::Name()'],['../classMezzanine_1_1XML_1_1XPathVariable.xhtml#ab84ff6e6a66ff18583b134db9b6ab59d',1,'Mezzanine::XML::XPathVariable::Name()']]],
+  ['namednodeiterator',['NamedNodeIterator',['../classMezzanine_1_1XML_1_1NamedNodeIterator.xhtml#a2d8878f149d8244365874fde768193d2',1,'Mezzanine::XML::NamedNodeIterator::NamedNodeIterator()'],['../classMezzanine_1_1XML_1_1NamedNodeIterator.xhtml#a4d1965e0068b43aa0802d74cfa3648b0',1,'Mezzanine::XML::NamedNodeIterator::NamedNodeIterator(const Node &amp;node, const Char8 *Name)']]],
   ['navajowhite',['NavajoWhite',['../classMezzanine_1_1ColourValue.xhtml#a5bd77a8a13a83d379fab166231568980',1,'Mezzanine::ColourValue']]],
   ['navy',['Navy',['../classMezzanine_1_1ColourValue.xhtml#abfe4f227b521b6a613564b95af3cc897',1,'Mezzanine::ColourValue']]],
   ['neg_5funit_5fx',['Neg_Unit_X',['../classMezzanine_1_1Vector3.xhtml#ae251068064796ca33ee85da7da90ec7d',1,'Mezzanine::Vector3']]],
@@ -16,6 +17,7 @@ var searchData=
   ['noborder',['NoBorder',['../classMezzanine_1_1UI_1_1Rectangle.xhtml#aa89e63845174015efa3002f1b4b3d96c',1,'Mezzanine::UI::Rectangle']]],
   ['node',['Node',['../classMezzanine_1_1XML_1_1Node.xhtml#a7e5f944993c8ee46091f6d0bf032af79',1,'Mezzanine::XML::Node::Node()'],['../classMezzanine_1_1XML_1_1Node.xhtml#aa02d36ecbae471a7059e0bc931ad0ebf',1,'Mezzanine::XML::Node::Node(NodeStruct *p)']]],
   ['nodeiterator',['NodeIterator',['../classMezzanine_1_1XML_1_1NodeIterator.xhtml#a883e0d2ec3f3bc47d1fc418a33e7a138',1,'Mezzanine::XML::NodeIterator::NodeIterator()'],['../classMezzanine_1_1XML_1_1NodeIterator.xhtml#a7bf6e267562f0e3584c7765d732ce28b',1,'Mezzanine::XML::NodeIterator::NodeIterator(const Node &amp;node)']]],
+  ['nodetext',['NodeText',['../classMezzanine_1_1XML_1_1NodeText.xhtml#a57710add81b7421f07b7e54d485d8c3a',1,'Mezzanine::XML::NodeText']]],
   ['nonstaticworldobject',['NonStaticWorldObject',['../classMezzanine_1_1NonStaticWorldObject.xhtml#ae68784bd2201013e99c6a957201c5264',1,'Mezzanine::NonStaticWorldObject']]],
   ['nontriggerphysicssettings',['NonTriggerPhysicsSettings',['../classMezzanine_1_1NonTriggerPhysicsSettings.xhtml#aaeda1ca7117e33be5c285e59f4d78cba',1,'Mezzanine::NonTriggerPhysicsSettings']]],
   ['normalize',['Normalize',['../classMezzanine_1_1Quaternion.xhtml#a3c98425c50959d2563907e405516d77f',1,'Mezzanine::Quaternion::Normalize()'],['../classMezzanine_1_1Ray.xhtml#a0f0605e55999112a5f1ae0e3a842593d',1,'Mezzanine::Ray::Normalize()'],['../classMezzanine_1_1Vector2.xhtml#addb0cee429caa53b81b9abfad7cbf9fe',1,'Mezzanine::Vector2::Normalize()'],['../classMezzanine_1_1Vector3.xhtml#a0b2377226043c18f6a3a1f4388a0ae86',1,'Mezzanine::Vector3::Normalize()']]],

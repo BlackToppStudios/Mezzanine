@@ -102,9 +102,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab2765b0fe8f803344c6965df50333073"><td class="memItemLeft" align="right" valign="top">virtual std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.xhtml#ab2765b0fe8f803344c6965df50333073">DeSerializeAll</a> (std::istream &amp;Stream)</td></tr>
 <tr class="memdesc:ab2765b0fe8f803344c6965df50333073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get One node that has several of the appropriate kinds of nodes as children and deserialize all of them.  <a href="#ab2765b0fe8f803344c6965df50333073"></a><br/></td></tr>
 <tr class="memitem:af1a7d10744ae974c985ad762e7dd55bd"><td class="memItemLeft" align="right" valign="top">virtual DeSerializable *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.xhtml#af1a7d10744ae974c985ad762e7dd55bd">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)=0</td></tr>
-<tr class="memdesc:af1a7d10744ae974c985ad762e7dd55bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node into a complete live data structure.  <a href="#af1a7d10744ae974c985ad762e7dd55bd"></a><br/></td></tr>
+<tr class="memdesc:af1a7d10744ae974c985ad762e7dd55bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> Node into a complete live data structure.  <a href="#af1a7d10744ae974c985ad762e7dd55bd"></a><br/></td></tr>
 <tr class="memitem:a59b92952b1465392178d6db736118c26"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1DeSerializer.xhtml#a59b92952b1465392178d6db736118c26">ProtoDeSerializeAll</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)</td></tr>
-<tr class="memdesc:a59b92952b1465392178d6db736118c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An XML Node into a complete series of live class instances.  <a href="#a59b92952b1465392178d6db736118c26"></a><br/></td></tr>
+<tr class="memdesc:a59b92952b1465392178d6db736118c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert An <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> Node into a complete series of live class instances.  <a href="#a59b92952b1465392178d6db736118c26"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class DeSerializable&gt;<br/>
@@ -117,7 +117,7 @@ class Mezzanine::DeSerializer&lt; DeSerializable &gt;</h3>
  <br/>
  This was designed with the idea that a manager could inherit from this or have a separate class that implements this as a member. There should also be no reason why something could not inherit from this and <a class="el" href="classMezzanine_1_1Serializer.xhtml" title="A tool for serializing classes with specific issues serializing.">Mezzanine::Serializer</a>. </p>
 
-<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00355">355</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
+<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00354">354</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
 </div><h2>Member Function Documentation</h2>
 <a class="anchor" id="a99e25b2dab4cde22af1c77fa31665bae"></a>
 <div class="memitem">
@@ -180,12 +180,12 @@ template&lt;class DeSerializable&gt; </div>
   </table>
   </dd>
 </dl>
-<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node*) to accept The complete XML to serialise and assemble it in memory. </p>
+<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node*) to accept The complete <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> to serialise and assemble it in memory. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShapeDeSerializer.xhtml#a7b56632df76baf2f151dbae84fe518b8">Mezzanine::Physics::CollisionShapeDeSerializer</a>.</p>
 
-<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00396">396</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
+<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00395">395</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
 
 </div>
 </div>
@@ -220,10 +220,10 @@ template&lt;class DeSerializable&gt; </div>
   </table>
   </dd>
 </dl>
-<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node&amp;) to accept11 The complete XML to serialise and assemble it in memory. </p>
+<p>The default implementation of this uses ProtoDeSerializeAll(XML::Node&amp;) to accept11 The complete <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> to serialise and assemble it in memory. </p>
 <dl class="section return"><dt>Returns</dt><dd>This returns the input stream after the xml document has been extracted from it. </dd></dl>
 
-<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00378">378</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
+<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00377">377</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
 
 </div>
 </div>
@@ -251,10 +251,10 @@ template&lt;class DeSerializable&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Convert An XML Node into a complete live data structure. </p>
+<p>Convert An <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> Node into a complete live data structure. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into a live class instance.</td></tr>
+    <tr><td class="paramname">OneNode</td><td>A reference to the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> node to reconstitute into a live class instance.</td></tr>
   </table>
   </dd>
 </dl>
@@ -289,10 +289,10 @@ template&lt;class DeSerializable&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Convert An XML Node into a complete series of live class instances. </p>
+<p>Convert An <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> Node into a complete series of live class instances. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">OneNode</td><td>A reference to the XML node to reconstitute into multiple Live classes.</td></tr>
+    <tr><td class="paramname">OneNode</td><td>A reference to the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> node to reconstitute into multiple Live classes.</td></tr>
   </table>
   </dd>
 </dl>
@@ -300,15 +300,15 @@ template&lt;class DeSerializable&gt; </div>
  <br/>
  Not implemented in default <a class="el" href="classMezzanine_1_1DeSerializer.xhtml" title="A tool for deserializing classes with specific issues deserializing them.">DeSerializer</a>. </p>
 
-<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00363">363</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
+<p>Definition at line <a class="el" href="serialization_8h_source.xhtml#l00362">362</a> of file <a class="el" href="serialization_8h_source.xhtml">serialization.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/<a class="el" href="serialization_8h_source.xhtml">serialization.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="serialization_8h_source.xhtml">serialization.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:07 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

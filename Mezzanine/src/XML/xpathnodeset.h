@@ -57,7 +57,7 @@
 #define _xmlxpathnodeset_h
 
 /// @file
-/// @brief This file contains the defintion of the @ref XMLNodeSet
+/// @brief This file contains the defintion of the @ref Mezzanine::XML::XPathNodeSet
 
 #include "datatypes.h"
 #include "XML/xpathnode.h"

@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 310.00 180.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 176)">
 <title>Mezzanine::EventBase</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-176 307,-176 307,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0.5,-76 0.5,-96 113.5,-96 113.5,-76 0.5,-76"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node3" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1EventCollision.xhtml" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
-<polygon fill="white" stroke="black" points="162.5,-152 162.5,-172 289.5,-172 289.5,-152 162.5,-152"/>
+<polygon fill="none" stroke="black" points="162.5,-152 162.5,-172 289.5,-172 289.5,-152 162.5,-152"/>
 <text text-anchor="middle" x="226" y="-159" font-family="FreeSans" font-size="10.00">Mezzanine::EventCollision</text>
 </a>
 </g>
@@ -29,7 +28,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1EventGameWindow.xhtml" target="_top" xlink:title="Convey the message that Something happened to a game window.">
-<polygon fill="white" stroke="black" points="150.5,-114 150.5,-134 301.5,-134 301.5,-114 150.5,-114"/>
+<polygon fill="none" stroke="black" points="150.5,-114 150.5,-134 301.5,-134 301.5,-114 150.5,-114"/>
 <text text-anchor="middle" x="226" y="-121" font-family="FreeSans" font-size="10.00">Mezzanine::EventGameWindow</text>
 </a>
 </g>
@@ -41,7 +40,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1EventQuit.xhtml" target="_top" xlink:title="This is intended to convey the message that quitting needs to happen.">
-<polygon fill="white" stroke="black" points="171.5,-76 171.5,-96 280.5,-96 280.5,-76 171.5,-76"/>
+<polygon fill="none" stroke="black" points="171.5,-76 171.5,-96 280.5,-96 280.5,-76 171.5,-76"/>
 <text text-anchor="middle" x="226" y="-83" font-family="FreeSans" font-size="10.00">Mezzanine::EventQuit</text>
 </a>
 </g>
@@ -53,7 +52,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1EventRenderTime.xhtml" target="_top" xlink:title="This communicates the amount of time since the world was rendered.">
-<polygon fill="white" stroke="black" points="154.5,-38 154.5,-58 297.5,-58 297.5,-38 154.5,-38"/>
+<polygon fill="none" stroke="black" points="154.5,-38 154.5,-58 297.5,-58 297.5,-38 154.5,-38"/>
 <text text-anchor="middle" x="226" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::EventRenderTime</text>
 </a>
 </g>
@@ -65,7 +64,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1EventUserInput.xhtml" target="_top" xlink:title="This is a container for MetaCodes that is used in the EventManager.">
-<polygon fill="white" stroke="black" points="160,-0 160,-20 292,-20 292,-0 160,-0"/>
+<polygon fill="none" stroke="black" points="160,-0 160,-20 292,-20 292,-0 160,-0"/>
 <text text-anchor="middle" x="226" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::EventUserInput</text>
 </a>
 </g>

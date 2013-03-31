@@ -8,11 +8,10 @@
  viewBox="0.00 0.00 158.00 28.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 24)">
 <title>Graphical Class Hierarchy</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-24 155,-24 155,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <a xlink:href="classMezzanine_1_1UI_1_1RenderableRect.xhtml" target="_top" xlink:title="This class contains all the utilities necessary for capturing input.">
-<polygon fill="white" stroke="black" points="0,-0 0,-20 150,-20 150,-0 0,-0"/>
+<polygon fill="none" stroke="black" points="0,-0 0,-20 150,-20 150,-0 0,-0"/>
 <text text-anchor="middle" x="75" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::UI::RenderableRect</text>
 </a>
 </g>

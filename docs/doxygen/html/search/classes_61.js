@@ -28,6 +28,5 @@ var searchData=
   ['attachableparent',['AttachableParent',['../classMezzanine_1_1AttachableParent.xhtml',1,'Mezzanine']]],
   ['attribute',['Attribute',['../classMezzanine_1_1XML_1_1Attribute.xhtml',1,'Mezzanine::XML']]],
   ['attributeiterator',['AttributeIterator',['../classMezzanine_1_1XML_1_1AttributeIterator.xhtml',1,'Mezzanine::XML']]],
-  ['attributestruct',['AttributeStruct',['../classAttributeStruct.xhtml',1,'']]],
   ['audiomanager',['AudioManager',['../classMezzanine_1_1AudioManager.xhtml',1,'Mezzanine']]]
 ];

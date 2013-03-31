@@ -82,9 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="classMezzanine_1_1ObjectSettingGroup-members.xhtml">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Mezzanine::ObjectSettingGroup Class Reference</div>  </div>
@@ -119,6 +117,8 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memdesc:af79291cc8addd49cc9c7db4e897e0c56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr class="memitem:a68d61eb117b8d240c09c03f1b6fc4c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingGroup.xhtml#a68d61eb117b8d240c09c03f1b6fc4c00">_MarkUpdated</a> ()</td></tr>
 <tr class="memdesc:a68d61eb117b8d240c09c03f1b6fc4c00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Marks this container and relevant parent containers as updated.   <a href="#a68d61eb117b8d240c09c03f1b6fc4c00"></a><br/></td></tr>
+<tr class="memitem:a7e003b6965c5eb779b45adb49945c3ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingGroup.xhtml#a7e003b6965c5eb779b45adb49945c3ba">_SetOptionalFile</a> (<a class="el" href="classMezzanine_1_1ObjectSettingFile.xhtml">ObjectSettingFile</a> *File)</td></tr>
+<tr class="memdesc:a7e003b6965c5eb779b45adb49945c3ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file this group will be saved to.  <a href="#a7e003b6965c5eb779b45adb49945c3ba"></a><br/></td></tr>
 <tr class="memitem:a283c977015c4ad0230ded721adfa5132"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMezzanine_1_1ObjectSettingFile.xhtml">ObjectSettingFile</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingGroup.xhtml#a283c977015c4ad0230ded721adfa5132">GetOptionalFile</a> () const </td></tr>
 <tr class="memdesc:a283c977015c4ad0230ded721adfa5132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Setting file instance this group will be saved to.  <a href="#a283c977015c4ad0230ded721adfa5132"></a><br/></td></tr>
 <tr class="memitem:a120820dbae3407a9a7650aa7cad6bf9a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingGroup.xhtml#a120820dbae3407a9a7650aa7cad6bf9a">GetOptionalFileName</a> () const </td></tr>
@@ -161,11 +161,6 @@ SubSetIterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" 
 ConstSubSetIterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingSetContainer.xhtml#aadff0d2bf5277ab4e5401e7440239e4b">SubSetEnd</a> () const </td></tr>
 <tr class="memdesc:aadff0d2bf5277ab4e5401e7440239e4b inherit pub_methods_classMezzanine_1_1ObjectSettingSetContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a const iterator to one passed the last subset of settings in this set. <br/></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a3107aacff59c9ccaa483eaefacd5808d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1ObjectSettingGroup.xhtml#a3107aacff59c9ccaa483eaefacd5808d">SetOptionalFile</a> (<a class="el" href="classMezzanine_1_1ObjectSettingFile.xhtml">ObjectSettingFile</a> *File)</td></tr>
-<tr class="memdesc:a3107aacff59c9ccaa483eaefacd5808d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the file this group will be saved to.  <a href="#a3107aacff59c9ccaa483eaefacd5808d"></a><br/></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a7959f5e8fdbe2a6ea4e0ce6ebf0f19ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7959f5e8fdbe2a6ea4e0ce6ebf0f19ef"></a>
@@ -175,11 +170,6 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ContainerName</b></td></tr>
 <tr class="memitem:a3754ed973464bafd78a43c25361df1ad inherit pro_attribs_classMezzanine_1_1ObjectSettingSetContainer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3754ed973464bafd78a43c25361df1ad"></a>
 SubSetVector&#160;</td><td class="memItemRight" valign="bottom"><b>SubSets</b></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a238edb1337928bf70e98f419cf195dce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a238edb1337928bf70e98f419cf195dce"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectSettingFile</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -250,6 +240,30 @@ typedef std::vector<br class="typebreak"/>
 
 </div>
 </div>
+<a class="anchor" id="a7e003b6965c5eb779b45adb49945c3ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mezzanine::ObjectSettingGroup::_SetOptionalFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMezzanine_1_1ObjectSettingFile.xhtml">ObjectSettingFile</a> *&#160;</td>
+          <td class="paramname"><em>File</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the file this group will be saved to. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">File</td><td>The file this group should be saved to when saving the configuration. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a283c977015c4ad0230ded721adfa5132"></a>
 <div class="memitem">
 <div class="memproto">
@@ -286,43 +300,11 @@ typedef std::vector<br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="a3107aacff59c9ccaa483eaefacd5808d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Mezzanine::ObjectSettingGroup::SetOptionalFile </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classMezzanine_1_1ObjectSettingFile.xhtml">ObjectSettingFile</a> *&#160;</td>
-          <td class="paramname"><em>File</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the file this group will be saved to. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">File</td><td>The file this group should be saved to when saving the configuration. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/<a class="el" href="objectsettings_8h_source.xhtml">objectsettings.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="objectsettings_8h_source.xhtml">objectsettings.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

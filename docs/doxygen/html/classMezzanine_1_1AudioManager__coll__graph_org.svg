@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 2268.00 731.11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 727.109)">
 <title>Mezzanine::AudioManager</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-727.109 2265,-727.109 2265,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="1684.5,-473.109 1684.5,-493.109 1813.5,-493.109 1813.5,-473.109 1684.5,-473.109"/>
@@ -17,7 +16,7 @@
 <!-- Node24 -->
 <g id="node57" class="node"><title>Node24</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; AudioManager \&gt;">
-<polygon fill="white" stroke="black" points="1914.5,-514.109 1914.5,-546.109 2021.5,-546.109 2021.5,-514.109 1914.5,-514.109"/>
+<polygon fill="none" stroke="black" points="1914.5,-514.109 1914.5,-546.109 2021.5,-546.109 2021.5,-514.109 1914.5,-514.109"/>
 <text text-anchor="start" x="1922.5" y="-533.109" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1968" y="-521.109" font-family="FreeSans" font-size="10.00">&lt; AudioManager &gt;</text>
 </a>
@@ -31,7 +30,7 @@
 <!-- Node31 -->
 <g id="node73" class="node"><title>Node31</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Sound.xhtml" target="_top" xlink:title="This is an instance of a sound that can be played and manipulated.">
-<polygon fill="white" stroke="black" points="1906,-476.109 1906,-496.109 2030,-496.109 2030,-476.109 1906,-476.109"/>
+<polygon fill="none" stroke="black" points="1906,-476.109 1906,-496.109 2030,-496.109 2030,-476.109 1906,-476.109"/>
 <text text-anchor="middle" x="1968" y="-483.109" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Sound</text>
 </a>
 </g>
@@ -44,7 +43,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
-<polygon fill="white" stroke="black" points="1469,-521.109 1469,-541.109 1595,-541.109 1595,-521.109 1469,-521.109"/>
+<polygon fill="none" stroke="black" points="1469,-521.109 1469,-541.109 1595,-541.109 1595,-521.109 1469,-521.109"/>
 <text text-anchor="middle" x="1532" y="-528.109" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -56,7 +55,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="white" stroke="black" points="1181.5,-552.109 1181.5,-572.109 1282.5,-572.109 1282.5,-552.109 1181.5,-552.109"/>
+<polygon fill="none" stroke="black" points="1181.5,-552.109 1181.5,-572.109 1282.5,-572.109 1282.5,-552.109 1181.5,-552.109"/>
 <text text-anchor="middle" x="1232" y="-559.109" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -69,7 +68,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="white" stroke="black" points="1478.5,-563.109 1478.5,-595.109 1585.5,-595.109 1585.5,-563.109 1478.5,-563.109"/>
+<polygon fill="none" stroke="black" points="1478.5,-563.109 1478.5,-595.109 1585.5,-595.109 1585.5,-563.109 1478.5,-563.109"/>
 <text text-anchor="start" x="1486.5" y="-582.109" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="1532" y="-570.109" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -88,7 +87,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="886,-574.109 886,-594.109 972,-594.109 972,-574.109 886,-574.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="886,-574.109 886,-594.109 972,-594.109 972,-574.109 886,-574.109"/>
 <text text-anchor="middle" x="929" y="-581.109" font-family="FreeSans" font-size="10.00">std::stringstream</text>
 </a>
 </g>
@@ -101,7 +100,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="610,-654.109 610,-686.109 724,-686.109 724,-654.109 610,-654.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="610,-654.109 610,-686.109 724,-686.109 724,-654.109 610,-654.109"/>
 <text text-anchor="start" x="618" y="-673.109" font-family="FreeSans" font-size="10.00">std::basic_stringstream</text>
 <text text-anchor="middle" x="667" y="-661.109" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -114,7 +113,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="392,-654.109 392,-686.109 490,-686.109 490,-654.109 392,-654.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="392,-654.109 392,-686.109 490,-686.109 490,-654.109 392,-654.109"/>
 <text text-anchor="start" x="400" y="-673.109" font-family="FreeSans" font-size="10.00">std::basic_iostream</text>
 <text text-anchor="middle" x="441" y="-661.109" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -127,7 +126,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="259.5,-641.109 259.5,-673.109 352.5,-673.109 352.5,-641.109 259.5,-641.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="259.5,-641.109 259.5,-673.109 352.5,-673.109 352.5,-641.109 259.5,-641.109"/>
 <text text-anchor="start" x="267.5" y="-660.109" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="306" y="-648.109" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -140,7 +139,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="110,-674.109 110,-694.109 220,-694.109 220,-674.109 110,-674.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="110,-674.109 110,-694.109 220,-694.109 220,-674.109 110,-674.109"/>
 <text text-anchor="middle" x="165" y="-681.109" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
 </g>
@@ -152,7 +151,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="258,-691.109 258,-723.109 354,-723.109 354,-691.109 258,-691.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="258,-691.109 258,-723.109 354,-723.109 354,-691.109 258,-691.109"/>
 <text text-anchor="start" x="266" y="-710.109" font-family="FreeSans" font-size="10.00">std::basic_ostream</text>
 <text text-anchor="middle" x="306" y="-698.109" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -165,7 +164,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="0.5,-674.109 0.5,-694.109 71.5,-694.109 71.5,-674.109 0.5,-674.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="0.5,-674.109 0.5,-694.109 71.5,-694.109 71.5,-674.109 0.5,-674.109"/>
 <text text-anchor="middle" x="36" y="-681.109" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
 </g>
@@ -182,7 +181,7 @@
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingsHandler.xhtml" target="_top" xlink:title="An abstract class for other classes that manage groups of settings.">
-<polygon fill="white" stroke="black" points="1466.5,-256.109 1466.5,-288.109 1597.5,-288.109 1597.5,-256.109 1466.5,-256.109"/>
+<polygon fill="none" stroke="black" points="1466.5,-256.109 1466.5,-288.109 1597.5,-288.109 1597.5,-256.109 1466.5,-256.109"/>
 <text text-anchor="start" x="1474.5" y="-275.109" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettings</text>
 <text text-anchor="middle" x="1532" y="-263.109" font-family="FreeSans" font-size="10.00">Handler</text>
 </a>
@@ -194,7 +193,7 @@
 </g>
 <!-- Node13 -->
 <g id="node26" class="node"><title>Node13</title>
-<polygon fill="white" stroke="#bfbfbf" points="869,-294.109 869,-326.109 989,-326.109 989,-294.109 869,-294.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="869,-294.109 869,-326.109 989,-326.109 989,-294.109 869,-294.109"/>
 <text text-anchor="start" x="877" y="-313.109" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="929" y="-301.109" font-family="FreeSans" font-size="10.00">SettingFile * &gt;</text>
 </g>
@@ -207,7 +206,7 @@
 <!-- Node14 -->
 <g id="node28" class="node"><title>Node14</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingFile.xhtml" target="_top" xlink:title="This class represents a file to be saved containing one or more OhjectSettingGroup&#39;s.">
-<polygon fill="white" stroke="black" points="596,-214.109 596,-234.109 738,-234.109 738,-214.109 596,-214.109"/>
+<polygon fill="none" stroke="black" points="596,-214.109 596,-234.109 738,-234.109 738,-214.109 596,-214.109"/>
 <text text-anchor="middle" x="667" y="-221.109" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingFile</text>
 </a>
 </g>
@@ -220,7 +219,7 @@
 <!-- Node18 -->
 <g id="node36" class="node"><title>Node18</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingGroup.xhtml" target="_top" xlink:title="A class that store&#39;s a collection of SettingSets that can be applied together.">
-<polygon fill="white" stroke="black" points="866,-158.109 866,-190.109 992,-190.109 992,-158.109 866,-158.109"/>
+<polygon fill="none" stroke="black" points="866,-158.109 866,-190.109 992,-190.109 992,-158.109 866,-158.109"/>
 <text text-anchor="start" x="874" y="-177.109" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="929" y="-165.109" font-family="FreeSans" font-size="10.00">Group</text>
 </a>
@@ -234,7 +233,7 @@
 <!-- Node15 -->
 <g id="node30" class="node"><title>Node15</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="412.5,-252.109 412.5,-272.109 469.5,-272.109 469.5,-252.109 412.5,-252.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="412.5,-252.109 412.5,-272.109 469.5,-272.109 469.5,-252.109 412.5,-252.109"/>
 <text text-anchor="middle" x="441" y="-259.109" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -260,7 +259,7 @@
 <!-- Node19 -->
 <g id="node38" class="node"><title>Node19</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSetContainer.xhtml" target="_top" xlink:title="A base class for other classes that store ObjectSettingSet&#39;s.">
-<polygon fill="white" stroke="black" points="604,-70.1088 604,-102.109 730,-102.109 730,-70.1088 604,-70.1088"/>
+<polygon fill="none" stroke="black" points="604,-70.1088 604,-102.109 730,-102.109 730,-70.1088 604,-70.1088"/>
 <text text-anchor="start" x="612" y="-89.1088" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSetting</text>
 <text text-anchor="middle" x="667" y="-77.1088" font-family="FreeSans" font-size="10.00">SetContainer</text>
 </a>
@@ -273,7 +272,7 @@
 </g>
 <!-- Node22 -->
 <g id="node46" class="node"><title>Node22</title>
-<polygon fill="white" stroke="#bfbfbf" points="604.5,-13.1088 604.5,-33.1088 729.5,-33.1088 729.5,-13.1088 604.5,-13.1088"/>
+<polygon fill="none" stroke="#bfbfbf" points="604.5,-13.1088 604.5,-33.1088 729.5,-33.1088 729.5,-13.1088 604.5,-13.1088"/>
 <text text-anchor="middle" x="667" y="-20.1088" font-family="FreeSans" font-size="10.00">std::map&lt; String, String &gt;</text>
 </g>
 <!-- Node15&#45;&gt;Node22 -->
@@ -285,7 +284,7 @@
 </g>
 <!-- Node23 -->
 <g id="node53" class="node"><title>Node23</title>
-<polygon fill="white" stroke="#bfbfbf" points="1172,-242.109 1172,-274.109 1292,-274.109 1292,-242.109 1172,-242.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="1172,-242.109 1172,-274.109 1292,-274.109 1292,-242.109 1172,-242.109"/>
 <text text-anchor="start" x="1180" y="-261.109" font-family="FreeSans" font-size="10.00">std::map&lt; String, Object</text>
 <text text-anchor="middle" x="1232" y="-249.109" font-family="FreeSans" font-size="10.00">SettingGroup * &gt;</text>
 </g>
@@ -297,7 +296,7 @@
 </g>
 <!-- Node26 -->
 <g id="node62" class="node"><title>Node26</title>
-<polygon fill="white" stroke="#bfbfbf" points="1474,-433.109 1474,-465.109 1590,-465.109 1590,-433.109 1474,-433.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="1474,-433.109 1474,-465.109 1590,-465.109 1590,-433.109 1474,-433.109"/>
 <text text-anchor="start" x="1482" y="-452.109" font-family="FreeSans" font-size="10.00">std::map&lt; String, Audio</text>
 <text text-anchor="middle" x="1532" y="-440.109" font-family="FreeSans" font-size="10.00">::SoundSet * &gt;</text>
 </g>
@@ -315,7 +314,7 @@
 </g>
 <!-- Node35 -->
 <g id="node85" class="node"><title>Node35</title>
-<polygon fill="white" stroke="#bfbfbf" points="2127,-566.109 2127,-598.109 2243,-598.109 2243,-566.109 2127,-566.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="2127,-566.109 2127,-598.109 2243,-598.109 2243,-566.109 2127,-566.109"/>
 <text text-anchor="start" x="2135" y="-585.109" font-family="FreeSans" font-size="10.00">std::map&lt; String, Audio</text>
 <text text-anchor="middle" x="2185" y="-573.109" font-family="FreeSans" font-size="10.00">::Sound * &gt;</text>
 </g>
@@ -328,7 +327,7 @@
 <!-- Node16 -->
 <g id="node32" class="node"><title>Node16</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="260.5,-246.109 260.5,-278.109 351.5,-278.109 351.5,-246.109 260.5,-246.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="260.5,-246.109 260.5,-278.109 351.5,-278.109 351.5,-246.109 260.5,-246.109"/>
 <text text-anchor="start" x="268.5" y="-265.109" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="306" y="-253.109" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -340,7 +339,7 @@
 </g>
 <!-- Node17 -->
 <g id="node34" class="node"><title>Node17</title>
-<polygon fill="white" stroke="#bfbfbf" points="1168,-182.109 1168,-214.109 1296,-214.109 1296,-182.109 1168,-182.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="1168,-182.109 1168,-214.109 1296,-214.109 1296,-182.109 1168,-182.109"/>
 <text text-anchor="start" x="1176" y="-201.109" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="1232" y="-189.109" font-family="FreeSans" font-size="10.00">Group * &gt;</text>
 </g>
@@ -370,7 +369,7 @@
 <!-- Node21 -->
 <g id="node42" class="node"><title>Node21</title>
 <a xlink:href="classMezzanine_1_1ObjectSettingSet.xhtml" target="_top" xlink:title="A class that store&#39;s a named set of settings for an object.">
-<polygon fill="white" stroke="black" points="858.5,-31.1088 858.5,-51.1088 999.5,-51.1088 999.5,-31.1088 858.5,-31.1088"/>
+<polygon fill="none" stroke="black" points="858.5,-31.1088 858.5,-51.1088 999.5,-51.1088 999.5,-31.1088 858.5,-31.1088"/>
 <text text-anchor="middle" x="929" y="-38.1088" font-family="FreeSans" font-size="10.00">Mezzanine::ObjectSettingSet</text>
 </a>
 </g>
@@ -387,7 +386,7 @@
 </g>
 <!-- Node20 -->
 <g id="node40" class="node"><title>Node20</title>
-<polygon fill="white" stroke="#bfbfbf" points="1168,-57.1088 1168,-89.1088 1296,-89.1088 1296,-57.1088 1168,-57.1088"/>
+<polygon fill="none" stroke="#bfbfbf" points="1168,-57.1088 1168,-89.1088 1296,-89.1088 1296,-57.1088 1168,-57.1088"/>
 <text text-anchor="start" x="1176" y="-76.1088" font-family="FreeSans" font-size="10.00">std::vector&lt; ObjectSetting</text>
 <text text-anchor="middle" x="1232" y="-64.1088" font-family="FreeSans" font-size="10.00">Set * &gt;</text>
 </g>
@@ -423,7 +422,7 @@
 <!-- Node25 -->
 <g id="node60" class="node"><title>Node25</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Listener.xhtml" target="_top" xlink:title="This is the listener class used for 3D sound.">
-<polygon fill="white" stroke="black" points="1467,-483.109 1467,-503.109 1597,-503.109 1597,-483.109 1467,-483.109"/>
+<polygon fill="none" stroke="black" points="1467,-483.109 1467,-503.109 1597,-503.109 1597,-483.109 1467,-483.109"/>
 <text text-anchor="middle" x="1532" y="-490.109" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Listener</text>
 </a>
 </g>
@@ -442,7 +441,7 @@
 <!-- Node27 -->
 <g id="node64" class="node"><title>Node27</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.xhtml" target="_top" xlink:title="This is a vector that stores sounds.">
-<polygon fill="white" stroke="black" points="1162.5,-439.109 1162.5,-459.109 1301.5,-459.109 1301.5,-439.109 1162.5,-439.109"/>
+<polygon fill="none" stroke="black" points="1162.5,-439.109 1162.5,-459.109 1301.5,-459.109 1301.5,-439.109 1162.5,-439.109"/>
 <text text-anchor="middle" x="1232" y="-446.109" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>
 </g>
@@ -455,7 +454,7 @@
 <!-- Node28 -->
 <g id="node66" class="node"><title>Node28</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="874,-382.109 874,-402.109 984,-402.109 984,-382.109 874,-382.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="874,-382.109 874,-402.109 984,-402.109 984,-382.109 874,-382.109"/>
 <text text-anchor="middle" x="929" y="-389.109" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
 </a>
 </g>
@@ -466,7 +465,7 @@
 </g>
 <!-- Node29 -->
 <g id="node68" class="node"><title>Node29</title>
-<polygon fill="white" stroke="#bfbfbf" points="652.5,-368.109 652.5,-388.109 681.5,-388.109 681.5,-368.109 652.5,-368.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="652.5,-368.109 652.5,-388.109 681.5,-388.109 681.5,-368.109 652.5,-368.109"/>
 <text text-anchor="middle" x="667" y="-375.109" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node29&#45;&gt;Node28 -->
@@ -478,7 +477,7 @@
 <!-- Node34 -->
 <g id="node82" class="node"><title>Node34</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="1018.5,-350.109 1018.5,-370.109 1143.5,-370.109 1143.5,-350.109 1018.5,-350.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="1018.5,-350.109 1018.5,-370.109 1143.5,-370.109 1143.5,-350.109 1018.5,-350.109"/>
 <text text-anchor="middle" x="1081" y="-357.109" font-family="FreeSans" font-size="10.00">std::list&lt; Audio::Sound * &gt;</text>
 </a>
 </g>
@@ -490,7 +489,7 @@
 </g>
 <!-- Node30 -->
 <g id="node71" class="node"><title>Node30</title>
-<polygon fill="white" stroke="#bfbfbf" points="2138.5,-430.109 2138.5,-462.109 2231.5,-462.109 2231.5,-430.109 2138.5,-430.109"/>
+<polygon fill="none" stroke="#bfbfbf" points="2138.5,-430.109 2138.5,-462.109 2231.5,-462.109 2231.5,-430.109 2138.5,-430.109"/>
 <text text-anchor="start" x="2146.5" y="-449.109" font-family="FreeSans" font-size="10.00">std::vector&lt; Audio</text>
 <text text-anchor="middle" x="2185" y="-437.109" font-family="FreeSans" font-size="10.00">::Sound * &gt;</text>
 </g>
@@ -512,7 +511,7 @@
 <!-- Node32 -->
 <g id="node77" class="node"><title>Node32</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1MusicPlayer.xhtml" target="_top" xlink:title="This is a convenience class for the playing of music in a game.">
-<polygon fill="white" stroke="black" points="2110.5,-352.109 2110.5,-372.109 2259.5,-372.109 2259.5,-352.109 2110.5,-352.109"/>
+<polygon fill="none" stroke="black" points="2110.5,-352.109 2110.5,-372.109 2259.5,-372.109 2259.5,-352.109 2110.5,-352.109"/>
 <text text-anchor="middle" x="2185" y="-359.109" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::MusicPlayer</text>
 </a>
 </g>
@@ -537,7 +536,7 @@
 <!-- Node33 -->
 <g id="node80" class="node"><title>Node33</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1Playlist.xhtml" target="_top" xlink:title="This class is a list of sounds with common playlist features.">
-<polygon fill="white" stroke="black" points="1320.5,-395.109 1320.5,-415.109 1447.5,-415.109 1447.5,-395.109 1320.5,-395.109"/>
+<polygon fill="none" stroke="black" points="1320.5,-395.109 1320.5,-415.109 1447.5,-415.109 1447.5,-395.109 1320.5,-395.109"/>
 <text text-anchor="middle" x="1384" y="-402.109" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::Playlist</text>
 </a>
 </g>

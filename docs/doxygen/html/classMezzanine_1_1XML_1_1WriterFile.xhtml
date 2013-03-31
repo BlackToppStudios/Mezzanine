@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><b>XML</b></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1WriterFile.xhtml">WriterFile</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceMezzanine.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="namespaceMezzanine_1_1XML.xhtml">XML</a></li><li class="navelem"><a class="el" href="classMezzanine_1_1XML_1_1WriterFile.xhtml">WriterFile</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>An implementation of <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Writer</a> intended for writing to FILEs as defined in stdio.  
  <a href="classMezzanine_1_1XML_1_1WriterFile.xhtml#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="writer_8h_source.xhtml">writer.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for Mezzanine::XML::WriterFile:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -109,17 +109,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afec2a02521ffd268fa3f7ac6123d107c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterFile.xhtml#afec2a02521ffd268fa3f7ac6123d107c">WriterFile</a> (void *file)</td></tr>
-<tr class="memdesc:afec2a02521ffd268fa3f7ac6123d107c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml" title="Interface for node printing (see Node::Print)">Writer</a> from a FILE* object.  <a href="#afec2a02521ffd268fa3f7ac6123d107c"></a><br/></td></tr>
-<tr class="memitem:a270a9c92cf192cc422b1e25a8381097a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a270a9c92cf192cc422b1e25a8381097a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Write</b> (const void *data, size_t size)</td></tr>
+<tr class="memitem:aca7b227f5778d6a1ee21cb6320283154"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterFile.xhtml#aca7b227f5778d6a1ee21cb6320283154">WriterFile</a> (void *FilePtr)</td></tr>
+<tr class="memdesc:aca7b227f5778d6a1ee21cb6320283154"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct WriterInstance from a FILE* object; void* is used to avoid header dependencies on stdio.  <a href="#aca7b227f5778d6a1ee21cb6320283154"></a><br/></td></tr>
+<tr class="memitem:a270a9c92cf192cc422b1e25a8381097a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1WriterFile.xhtml#a270a9c92cf192cc422b1e25a8381097a">Write</a> (const void *data, size_t size)</td></tr>
+<tr class="memdesc:a270a9c92cf192cc422b1e25a8381097a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml" title="Interface for node printing (see Node::Print)">Writer</a> from a FILE* object.  <a href="#a270a9c92cf192cc422b1e25a8381097a"></a><br/></td></tr>
+<tr class="inherit_header pub_methods_classMezzanine_1_1XML_1_1Writer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMezzanine_1_1XML_1_1Writer')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Mezzanine::XML::Writer</a></td></tr>
+<tr class="memitem:a5425729f7965544c72c11e42d22bff0b inherit pub_methods_classMezzanine_1_1XML_1_1Writer"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5425729f7965544c72c11e42d22bff0b"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml#a5425729f7965544c72c11e42d22bff0b">~Writer</a> ()</td></tr>
+<tr class="memdesc:a5425729f7965544c72c11e42d22bff0b inherit pub_methods_classMezzanine_1_1XML_1_1Writer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Safe to dervied doconstructor. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>An implementation of <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml">Writer</a> intended for writing to FILEs as defined in stdio. </p>
 
-<p>Definition at line <a class="el" href="xml_8h_source.xhtml#l00255">255</a> of file <a class="el" href="xml_8h_source.xhtml">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="writer_8h_source.xhtml#l00095">95</a> of file <a class="el" href="writer_8h_source.xhtml">writer.h</a>.</p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="afec2a02521ffd268fa3f7ac6123d107c"></a>
+<a class="anchor" id="aca7b227f5778d6a1ee21cb6320283154"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -127,28 +131,73 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>Write</b> (co
           <td class="memname">Mezzanine::XML::WriterFile::WriterFile </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>file</em></td><td>)</td>
+          <td class="paramname"><em>FilePtr</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Construct a <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml" title="Interface for node printing (see Node::Print)">Writer</a> from a FILE* object. </p>
+<p>Construct WriterInstance from a FILE* object; void* is used to avoid header dependencies on stdio. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">file</td><td>The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety. </td></tr>
+    <tr><td class="paramname">FilePtr</td><td>the c style FILE* to contruct this from. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xml_8h_source.xhtml">xml.h</a></li>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/XML/<a class="el" href="xmldoc_8h_source.xhtml">xmldoc.h</a></li>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="a270a9c92cf192cc422b1e25a8381097a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void Mezzanine::XML::WriterFile::Write </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml" title="Interface for node printing (see Node::Print)">Writer</a> from a FILE* object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Data To be written to the FILE. </td></tr>
+    <tr><td class="paramname">size</td><td>How much data to write. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classMezzanine_1_1XML_1_1Writer.xhtml#af66d88be522819819cf552ff237a905e">Mezzanine::XML::Writer</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/<a class="el" href="writer_8h_source.xhtml">writer.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:12 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:54 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

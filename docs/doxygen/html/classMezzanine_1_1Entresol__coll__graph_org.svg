@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 214.00 518.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 514)">
 <title>Mezzanine::Entresol</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-514 211,-514 211,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="61.5,-83 61.5,-103 162.5,-103 162.5,-83 61.5,-83"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="white" stroke="black" points="58.5,-1 58.5,-33 165.5,-33 165.5,-1 58.5,-1"/>
+<polygon fill="none" stroke="black" points="58.5,-1 58.5,-33 165.5,-33 165.5,-1 58.5,-1"/>
 <text text-anchor="start" x="66.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="112" y="-8" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -36,7 +35,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="69,-153 69,-173 155,-173 155,-153 69,-153"/>
+<polygon fill="none" stroke="#bfbfbf" points="69,-153 69,-173 155,-173 155,-153 69,-153"/>
 <text text-anchor="middle" x="112" y="-160" font-family="FreeSans" font-size="10.00">std::stringstream</text>
 </a>
 </g>
@@ -49,7 +48,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="55,-213 55,-245 169,-245 169,-213 55,-213"/>
+<polygon fill="none" stroke="#bfbfbf" points="55,-213 55,-245 169,-245 169,-213 55,-213"/>
 <text text-anchor="start" x="63" y="-232" font-family="FreeSans" font-size="10.00">std::basic_stringstream</text>
 <text text-anchor="middle" x="112" y="-220" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -62,7 +61,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="63,-285 63,-317 161,-317 161,-285 63,-285"/>
+<polygon fill="none" stroke="#bfbfbf" points="63,-285 63,-317 161,-317 161,-285 63,-285"/>
 <text text-anchor="start" x="71" y="-304" font-family="FreeSans" font-size="10.00">std::basic_iostream</text>
 <text text-anchor="middle" x="112" y="-292" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -75,7 +74,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="-0.5,-357 -0.5,-389 92.5,-389 92.5,-357 -0.5,-357"/>
+<polygon fill="none" stroke="#bfbfbf" points="-0.5,-357 -0.5,-389 92.5,-389 92.5,-357 -0.5,-357"/>
 <text text-anchor="start" x="7.5" y="-376" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="46" y="-364" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -88,7 +87,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="25,-429 25,-449 135,-449 135,-429 25,-429"/>
+<polygon fill="none" stroke="#bfbfbf" points="25,-429 25,-449 135,-449 135,-429 25,-429"/>
 <text text-anchor="middle" x="80" y="-436" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
 </g>
@@ -100,7 +99,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="110,-357 110,-389 206,-389 206,-357 110,-357"/>
+<polygon fill="none" stroke="#bfbfbf" points="110,-357 110,-389 206,-389 206,-357 110,-357"/>
 <text text-anchor="start" x="118" y="-376" font-family="FreeSans" font-size="10.00">std::basic_ostream</text>
 <text text-anchor="middle" x="158" y="-364" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -113,7 +112,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="44.5,-489 44.5,-509 115.5,-509 115.5,-489 44.5,-489"/>
+<polygon fill="none" stroke="#bfbfbf" points="44.5,-489 44.5,-509 115.5,-509 115.5,-489 44.5,-489"/>
 <text text-anchor="middle" x="80" y="-496" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
 </g>

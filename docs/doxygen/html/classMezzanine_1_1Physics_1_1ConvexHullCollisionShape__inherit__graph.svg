@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 140.00 182.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 178)">
 <title>Mezzanine::Physics::ConvexHullCollisionShape</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-178 137,-178 137,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-33 132.5,-33 132.5,-1 -0.5,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.xhtml" target="_top" xlink:title="This is the base class for all Primitive shapes.">
-<polygon fill="white" stroke="black" points="5,-71 5,-103 127,-103 127,-71 5,-71"/>
+<polygon fill="none" stroke="black" points="5,-71 5,-103 127,-103 127,-71 5,-71"/>
 <text text-anchor="start" x="13" y="-90" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="66" y="-78" font-family="FreeSans" font-size="10.00">::PrimitiveCollisionShape</text>
 </a>
@@ -31,7 +30,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="white" stroke="black" points="16,-141 16,-173 116,-173 116,-141 16,-141"/>
+<polygon fill="none" stroke="black" points="16,-141 16,-173 116,-173 116,-141 16,-141"/>
 <text text-anchor="start" x="24" y="-160" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="66" y="-148" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>

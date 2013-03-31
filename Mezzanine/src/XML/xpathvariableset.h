@@ -57,7 +57,7 @@
 #define _xpathvariableset_h
 
 /// @file
-/// @brief The definition of the @ref XPathVariableSet
+/// @brief The definition of the @ref Mezzanine::XML::XPathVariableSet
 
 #include "datatypes.h"
 

@@ -153,7 +153,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="memitem:a86ea76660e7f96a28c74af150a6a4ee5"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a985a918f81fe43d088cc1e39bbffc8ea">CollisionShape::ShapeType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a86ea76660e7f96a28c74af150a6a4ee5">GetType</a> () const =0</td></tr>
 <tr class="memdesc:a86ea76660e7f96a28c74af150a6a4ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the type of <a class="el" href="classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world.">Collision</a> shape this is.  <a href="#a86ea76660e7f96a28c74af150a6a4ee5"></a><br/></td></tr>
 <tr class="memitem:ac728f5a597d773bf3e5ddedef744be4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#ac728f5a597d773bf3e5ddedef744be4e">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)</td></tr>
-<tr class="memdesc:ac728f5a597d773bf3e5ddedef744be4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#ac728f5a597d773bf3e5ddedef744be4e"></a><br/></td></tr>
+<tr class="memdesc:ac728f5a597d773bf3e5ddedef744be4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#ac728f5a597d773bf3e5ddedef744be4e"></a><br/></td></tr>
 <tr class="memitem:aaae2cbf879efba429db24727d402a38b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#aaae2cbf879efba429db24727d402a38b">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:aaae2cbf879efba429db24727d402a38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#aaae2cbf879efba429db24727d402a38b"></a><br/></td></tr>
 <tr class="memitem:a2977ea4fae19019820d97f356a168438"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a2977ea4fae19019820d97f356a168438">SetMargin</a> (const <a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;Margin)</td></tr>
@@ -164,7 +164,7 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a4297e806c25daeabf7aea75862894776"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml#a4297e806c25daeabf7aea75862894776">SerializableName</a> ()</td></tr>
-<tr class="memdesc:a4297e806c25daeabf7aea75862894776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a4297e806c25daeabf7aea75862894776"></a><br/></td></tr>
+<tr class="memdesc:a4297e806c25daeabf7aea75862894776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized.  <a href="#a4297e806c25daeabf7aea75862894776"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -403,7 +403,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 </table>
 </div><div class="memdoc">
 
-<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data. </td></tr>
@@ -441,7 +441,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this vectorw should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this vectorw should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -471,7 +471,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 </table>
 </div><div class="memdoc">
 
-<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "CollisionShape" </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classMezzanine_1_1Physics_1_1ConeCollisionShape.xhtml#a5ea69a60b06a5c0156b75352a9c9993a">Mezzanine::Physics::ConeCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1CylinderCollisionShape.xhtml#ab3918e7553ce0ceb7bf1fe805baacf20">Mezzanine::Physics::CylinderCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1CapsuleCollisionShape.xhtml#a470385df8e4c647549c2747d2fe42b35">Mezzanine::Physics::CapsuleCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1CompoundCollisionShape.xhtml#ae1dd4d2054718583bbf925fc3dffc793">Mezzanine::Physics::CompoundCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1ConvexHullCollisionShape.xhtml#a7b7d78744d66a8e3e38c28132638840e">Mezzanine::Physics::ConvexHullCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1MultiSphereCollisionShape.xhtml#a5f69d1ae041a7573900ff1f98778ee9c">Mezzanine::Physics::MultiSphereCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1BoxCollisionShape.xhtml#a3f764b5f52c0ff7ac3af6feea5e35a07">Mezzanine::Physics::BoxCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1SphereCollisionShape.xhtml#a5b2dd23e81b8b49041dc85a1c8ceff91">Mezzanine::Physics::SphereCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1FieldCollisionShape.xhtml#a1847a44e33d0a9b434bb3f81251b055a">Mezzanine::Physics::FieldCollisionShape</a>, <a class="el" href="classMezzanine_1_1Physics_1_1MeshCollisionShape.xhtml#a0a00c5e3b4ae0220160e39c41905ce9d">Mezzanine::Physics::MeshCollisionShape</a>, and <a class="el" href="classMezzanine_1_1Physics_1_1PrimitiveCollisionShape.xhtml#aa9264be1a7a95ec01949be6d002f95e4">Mezzanine::Physics::PrimitiveCollisionShape</a>.</p>
@@ -543,10 +543,10 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Mezzanine::Collision
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collisionshape_8h_source.xhtml">collisionshape.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/Physics/<a class="el" href="collisionshape_8h_source.xhtml">collisionshape.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:09 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:53 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

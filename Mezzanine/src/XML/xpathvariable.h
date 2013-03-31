@@ -71,7 +71,7 @@ namespace Mezzanine
         class XPathNodeSet;
 
         /// @brief A single XPath variable
-        /// @details This is intended to be used as a single member of an @ref XPathVariableSet, and for moving data into and out of @ref XPathQueries.
+        /// @details This is intended to be used as a single member of an @ref Mezzanine::XML::XPathVariableSet, and for moving data into and out of @ref Mezzanine::XML::XPathQuery.
         class MEZZ_LIB XPathVariable
         {
                 friend class XPathVariableSet;

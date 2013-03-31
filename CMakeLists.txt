@@ -195,7 +195,7 @@ Message(STATUS "Expected name of compiled Mezzanine library: ${MezzanineLibFileN
 set(MezzanineLinkName "Mezzanine")
 if(${WIN32})
     #set(MezzanineLinkName lib${MezzanineLinkName}.dll.a)
-	set(MezzanineLinkName ${MezzanineLibFileName})
+    set(MezzanineLinkName ${MezzanineLibFileName})
 endif(${WIN32})
 
 ###############################################################################

@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 220.00 112.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 108)">
 <title>Mezzanine::Input::Device</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-108 217,-108 217,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="48,-1 48,-21 170,-21 170,-1 48,-1"/>
@@ -16,7 +15,7 @@
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
-<polygon fill="white" stroke="#bfbfbf" points="0,-77 0,-97 104,-97 104,-77 0,-77"/>
+<polygon fill="none" stroke="#bfbfbf" points="0,-77 0,-97 104,-97 104,-77 0,-77"/>
 <text text-anchor="middle" x="52" y="-84" font-family="FreeSans" font-size="10.00">std::vector&lt; Whole &gt;</text>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
@@ -27,7 +26,7 @@
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<polygon fill="white" stroke="#bfbfbf" points="122,-71 122,-103 212,-103 212,-71 122,-71"/>
+<polygon fill="none" stroke="#bfbfbf" points="122,-71 122,-103 212,-103 212,-71 122,-71"/>
 <text text-anchor="start" x="130" y="-90" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="167" y="-78" font-family="FreeSans" font-size="10.00">::ButtonState &gt;</text>
 </g>

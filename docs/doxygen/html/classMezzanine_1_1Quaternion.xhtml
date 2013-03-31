@@ -186,7 +186,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6f50496d621bbcdc5d57ceedeb458da9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMezzanine.xhtml#a726731b1a7df72bf3583e4a97282c6f6">Real</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a6f50496d621bbcdc5d57ceedeb458da9">operator[]</a> (const <a class="el" href="namespaceMezzanine.xhtml#adcbb6ce6d1eb4379d109e51171e2e493">Whole</a> &amp;Index)</td></tr>
 <tr class="memdesc:a6f50496d621bbcdc5d57ceedeb458da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows Array style access to the members of this class.  <a href="#a6f50496d621bbcdc5d57ceedeb458da9"></a><br/></td></tr>
 <tr class="memitem:a91fb28aaa434448e1df7530d38fff0d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a91fb28aaa434448e1df7530d38fff0d2">ProtoDeSerialize</a> (const <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;OneNode)</td></tr>
-<tr class="memdesc:a91fb28aaa434448e1df7530d38fff0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an XML and overwrite this instance of this object with it.  <a href="#a91fb28aaa434448e1df7530d38fff0d2"></a><br/></td></tr>
+<tr class="memdesc:a91fb28aaa434448e1df7530d38fff0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it.  <a href="#a91fb28aaa434448e1df7530d38fff0d2"></a><br/></td></tr>
 <tr class="memitem:ac1f06f4030c62a1bcf9ef9196510fcbd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#ac1f06f4030c62a1bcf9ef9196510fcbd">ProtoSerialize</a> (<a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml">XML::Node</a> &amp;CurrentRoot) const </td></tr>
 <tr class="memdesc:ac1f06f4030c62a1bcf9ef9196510fcbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization.  <a href="#ac1f06f4030c62a1bcf9ef9196510fcbd"></a><br/></td></tr>
 <tr class="memitem:acb9d5c3d6b8092271a6c97cab0611efd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#acb9d5c3d6b8092271a6c97cab0611efd">SetFromAxes</a> (const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;AxisX, const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;AxisY, const <a class="el" href="classMezzanine_1_1Vector3.xhtml">Vector3</a> &amp;AxisZ)</td></tr>
@@ -205,7 +205,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a45792e167c74112af20209452bb4b449"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86">String</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Quaternion.xhtml#a45792e167c74112af20209452bb4b449">SerializableName</a> ()</td></tr>
-<tr class="memdesc:a45792e167c74112af20209452bb4b449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the XML tag this class will leave behind as its instances are serialized.  <a href="#a45792e167c74112af20209452bb4b449"></a><br/></td></tr>
+<tr class="memdesc:a45792e167c74112af20209452bb4b449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized.  <a href="#a45792e167c74112af20209452bb4b449"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -1377,7 +1377,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Take the data stored in an XML and overwrite this instance of this object with it. </p>
+<p>Take the data stored in an <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> and overwrite this instance of this object with it. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">OneNode</td><td>and <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> containing the data. </td></tr>
@@ -1412,7 +1412,7 @@ Public Attributes</h2></td></tr>
 <p>Convert this class to an <a class="el" href="classMezzanine_1_1XML_1_1Node.xhtml" title="A light-weight handle for manipulating nodes in DOM tree.">XML::Node</a> ready for serialization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">CurrentRoot</td><td>The point in the XML hierarchy that all this quaternion should be appended to. </td></tr>
+    <tr><td class="paramname">CurrentRoot</td><td>The point in the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> hierarchy that all this quaternion should be appended to. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1440,7 +1440,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the name of the the XML tag this class will leave behind as its instances are serialized. </p>
+<p>Get the name of the the <a class="el" href="namespaceMezzanine_1_1XML.xhtml" title="All tools for working with XML are located in this namespace.">XML</a> tag this class will leave behind as its instances are serialized. </p>
 <dl class="section return"><dt>Returns</dt><dd>A string containing "Quaternion" </dd></dl>
 
 </div>
@@ -1547,10 +1547,10 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/<a class="el" href="quaternion_8h_source.xhtml">quaternion.h</a></li>
+<li>/home/sqeaky/Code/Mezzanine/Mezzanine/src/<a class="el" href="quaternion_8h_source.xhtml">quaternion.h</a></li>
 </ul>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:08 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:52 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

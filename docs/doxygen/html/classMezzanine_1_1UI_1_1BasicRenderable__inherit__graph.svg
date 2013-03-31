@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 342.00 262.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 258)">
 <title>Mezzanine::UI::BasicRenderable</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-258 339,-258 339,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="125,-175 125,-195 279,-195 279,-175 125,-175"/>
@@ -17,7 +16,7 @@
 <!-- Node3 -->
 <g id="node5" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1UI_1_1AreaRenderable.xhtml" target="_top" xlink:title="This class defines a renderable that covers an area, such as a rectangle or circle.">
-<polygon fill="white" stroke="black" points="52,-117 52,-137 202,-137 202,-117 52,-117"/>
+<polygon fill="none" stroke="black" points="52,-117 52,-137 202,-137 202,-117 52,-117"/>
 <text text-anchor="middle" x="127" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::UI::AreaRenderable</text>
 </a>
 </g>
@@ -29,7 +28,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1UI_1_1LineList.xhtml" target="_top" xlink:title="This is an object comprised of a series of lines.">
-<polygon fill="white" stroke="black" points="220,-117 220,-137 334,-137 334,-117 220,-117"/>
+<polygon fill="none" stroke="black" points="220,-117 220,-137 334,-137 334,-117 220,-117"/>
 <text text-anchor="middle" x="277" y="-124" font-family="FreeSans" font-size="10.00">Mezzanine::UI::LineList</text>
 </a>
 </g>
@@ -41,7 +40,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Renderable.xhtml" target="_top" xlink:title="Basic class for all structures that get inserted into the rendering hierarchy.">
-<polygon fill="white" stroke="black" points="137,-233 137,-253 267,-253 267,-233 137,-233"/>
+<polygon fill="none" stroke="black" points="137,-233 137,-253 267,-253 267,-233 137,-233"/>
 <text text-anchor="middle" x="202" y="-240" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Renderable</text>
 </a>
 </g>
@@ -53,7 +52,7 @@
 <!-- Node4 -->
 <g id="node7" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Rectangle.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use with background sprites and colours.">
-<polygon fill="white" stroke="black" points="64.5,-59 64.5,-79 189.5,-79 189.5,-59 64.5,-59"/>
+<polygon fill="none" stroke="black" points="64.5,-59 64.5,-79 189.5,-79 189.5,-59 64.5,-59"/>
 <text text-anchor="middle" x="127" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Rectangle</text>
 </a>
 </g>
@@ -65,7 +64,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:href="classMezzanine_1_1UI_1_1Caption.xhtml" target="_top" xlink:title="This class is a helper class, specifically for use with text.">
-<polygon fill="white" stroke="black" points="0,-1 0,-21 114,-21 114,-1 0,-1"/>
+<polygon fill="none" stroke="black" points="0,-1 0,-21 114,-21 114,-1 0,-1"/>
 <text text-anchor="middle" x="57" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::UI::Caption</text>
 </a>
 </g>
@@ -77,7 +76,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:href="classMezzanine_1_1UI_1_1MarkupText.xhtml" target="_top" xlink:title="This is a helper class for use with specialized text display.">
-<polygon fill="white" stroke="black" points="132,-1 132,-21 264,-21 264,-1 132,-1"/>
+<polygon fill="none" stroke="black" points="132,-1 132,-21 264,-21 264,-1 132,-1"/>
 <text text-anchor="middle" x="198" y="-8" font-family="FreeSans" font-size="10.00">Mezzanine::UI::MarkupText</text>
 </a>
 </g>

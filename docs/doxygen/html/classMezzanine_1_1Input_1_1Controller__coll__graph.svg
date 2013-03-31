@@ -40,7 +40,6 @@ var sectionId = 'dynsection-1';
 <svg id="graph" class="graph">
 <g id="viewport">
 <title>Mezzanine::Input::Controller</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-211 587,-211 587,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="448,-76 448,-96 582,-96 582,-76 448,-76"/>
@@ -49,7 +48,7 @@ var sectionId = 'dynsection-1';
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Device.xhtml" target="_top" xlink:title="This is a base class for all input devices.">
-<polygon fill="white" stroke="black" points="232,-164 232,-184 354,-184 354,-164 232,-164"/>
+<polygon fill="none" stroke="black" points="232,-164 232,-184 354,-184 354,-164 232,-164"/>
 <text text-anchor="middle" x="293" y="-171" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>
 </g>
@@ -60,7 +59,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
-<polygon fill="white" stroke="#bfbfbf" points="0,-187 0,-207 104,-207 104,-187 0,-187"/>
+<polygon fill="none" stroke="#bfbfbf" points="0,-187 0,-207 104,-207 104,-187 0,-187"/>
 <text text-anchor="middle" x="52" y="-194" font-family="FreeSans" font-size="10.00">std::vector&lt; Whole &gt;</text>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
@@ -71,7 +70,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
-<polygon fill="white" stroke="#bfbfbf" points="7,-137 7,-169 97,-169 97,-137 7,-137"/>
+<polygon fill="none" stroke="#bfbfbf" points="7,-137 7,-169 97,-169 97,-137 7,-137"/>
 <text text-anchor="start" x="15" y="-156" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="52" y="-144" font-family="FreeSans" font-size="10.00">::ButtonState &gt;</text>
 </g>
@@ -83,7 +82,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<polygon fill="white" stroke="#bfbfbf" points="248,-114 248,-146 338,-146 338,-114 248,-114"/>
+<polygon fill="none" stroke="#bfbfbf" points="248,-114 248,-146 338,-146 338,-114 248,-114"/>
 <text text-anchor="start" x="256" y="-133" font-family="FreeSans" font-size="10.00">std::vector&lt; Input</text>
 <text text-anchor="middle" x="293" y="-121" font-family="FreeSans" font-size="10.00">::HatState &gt;</text>
 </g>
@@ -95,7 +94,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node6 -->
 <g id="node10" class="node"><title>Node6</title>
-<polygon fill="white" stroke="#bfbfbf" points="238,-76 238,-96 348,-96 348,-76 238,-76"/>
+<polygon fill="none" stroke="#bfbfbf" points="238,-76 238,-96 348,-96 348,-76 238,-76"/>
 <text text-anchor="middle" x="293" y="-83" font-family="FreeSans" font-size="10.00">std::vector&lt; Vector2 &gt;</text>
 </g>
 <!-- Node6&#45;&gt;Node1 -->
@@ -107,7 +106,7 @@ var sectionId = 'dynsection-1';
 <!-- Node7 -->
 <g id="node12" class="node"><title>Node7</title>
 <a xlink:href="classMezzanine_1_1Vector2.xhtml" target="_top" xlink:title="This is used to represent a point on a 2 dimentional area, such as a screen.">
-<polygon fill="white" stroke="black" points="2,-79 2,-99 102,-99 102,-79 2,-79"/>
+<polygon fill="none" stroke="black" points="2,-79 2,-99 102,-99 102,-79 2,-79"/>
 <text text-anchor="middle" x="52" y="-86" font-family="FreeSans" font-size="10.00">Mezzanine::Vector2</text>
 </a>
 </g>
@@ -120,7 +119,7 @@ var sectionId = 'dynsection-1';
 <!-- Node8 -->
 <g id="node14" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="264.5,-38 264.5,-58 321.5,-58 321.5,-38 264.5,-38"/>
+<polygon fill="none" stroke="#bfbfbf" points="264.5,-38 264.5,-58 321.5,-58 321.5,-38 264.5,-38"/>
 <text text-anchor="middle" x="293" y="-45" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -133,7 +132,7 @@ var sectionId = 'dynsection-1';
 <!-- Node9 -->
 <g id="node16" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="6.5,-29 6.5,-61 97.5,-61 97.5,-29 6.5,-29"/>
+<polygon fill="none" stroke="#bfbfbf" points="6.5,-29 6.5,-61 97.5,-61 97.5,-29 6.5,-29"/>
 <text text-anchor="start" x="14.5" y="-48" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="52" y="-36" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -145,7 +144,7 @@ var sectionId = 'dynsection-1';
 </g>
 <!-- Node10 -->
 <g id="node18" class="node"><title>Node10</title>
-<polygon fill="white" stroke="#bfbfbf" points="244,-0 244,-20 342,-20 342,-0 244,-0"/>
+<polygon fill="none" stroke="#bfbfbf" points="244,-0 244,-20 342,-20 342,-0 244,-0"/>
 <text text-anchor="middle" x="293" y="-7" font-family="FreeSans" font-size="10.00">std::vector&lt; Int16 &gt;</text>
 </g>
 <!-- Node10&#45;&gt;Node1 -->

@@ -6,7 +6,6 @@ var searchData=
   ['terrainbase',['TerrainBase',['../classMezzanine_1_1TerrainBase.xhtml',1,'Mezzanine']]],
   ['terrainmanager',['TerrainManager',['../classMezzanine_1_1TerrainManager.xhtml',1,'Mezzanine']]],
   ['testae',['TestAE',['../classMezzanine_1_1TestAE.xhtml',1,'Mezzanine']]],
-  ['text',['Text',['../classMezzanine_1_1XML_1_1Text.xhtml',1,'Mezzanine::XML']]],
   ['textsettingsfile',['TextSettingsFile',['../classMezzanine_1_1Resource_1_1TextSettingsFile.xhtml',1,'Mezzanine::Resource']]],
   ['texture',['Texture',['../classMezzanine_1_1Graphics_1_1Texture.xhtml',1,'Mezzanine::Graphics']]],
   ['textureatlas',['TextureAtlas',['../classMezzanine_1_1UI_1_1TextureAtlas.xhtml',1,'Mezzanine::UI']]],

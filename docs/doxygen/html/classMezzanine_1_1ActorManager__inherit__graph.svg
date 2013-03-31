@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 258.00 100.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 96)">
 <title>Mezzanine::ActorManager</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-96 255,-96 255,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="66,-1 66,-21 194,-21 194,-1 66,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
-<polygon fill="white" stroke="black" points="0,-65 0,-85 126,-85 126,-65 0,-65"/>
+<polygon fill="none" stroke="black" points="0,-65 0,-85 126,-85 126,-65 0,-65"/>
 <text text-anchor="middle" x="63" y="-72" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -29,7 +28,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; ActorManager \&gt;">
-<polygon fill="white" stroke="black" points="143.5,-59 143.5,-91 250.5,-91 250.5,-59 143.5,-59"/>
+<polygon fill="none" stroke="black" points="143.5,-59 143.5,-91 250.5,-91 250.5,-59 143.5,-59"/>
 <text text-anchor="start" x="151.5" y="-78" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="197" y="-66" font-family="FreeSans" font-size="10.00">&lt; ActorManager &gt;</text>
 </a>

@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 270.00 660.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 656)">
 <title>Mezzanine::PhysicsManager</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-656 267,-656 267,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-83 -0.5,-103 136.5,-103 136.5,-83 -0.5,-83"/>
@@ -17,7 +16,7 @@
 <!-- Node12 -->
 <g id="node24" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; PhysicsManager \&gt;">
-<polygon fill="white" stroke="black" points="14.5,-1 14.5,-33 121.5,-33 121.5,-1 14.5,-1"/>
+<polygon fill="none" stroke="black" points="14.5,-1 14.5,-33 121.5,-33 121.5,-1 14.5,-1"/>
 <text text-anchor="start" x="22.5" y="-20" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="68" y="-8" font-family="FreeSans" font-size="10.00">&lt; PhysicsManager &gt;</text>
 </a>
@@ -31,7 +30,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1ManagerBase.xhtml" target="_top" xlink:title="This is the base class from which all the World Managers inherit.">
-<polygon fill="white" stroke="black" points="5,-149 5,-169 131,-169 131,-149 5,-149"/>
+<polygon fill="none" stroke="black" points="5,-149 5,-169 131,-169 131,-149 5,-149"/>
 <text text-anchor="middle" x="68" y="-156" font-family="FreeSans" font-size="10.00">Mezzanine::ManagerBase</text>
 </a>
 </g>
@@ -43,7 +42,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Entresol.xhtml" target="_top" xlink:title="This is the main entry point for the entire library.">
-<polygon fill="white" stroke="black" points="94.5,-225 94.5,-245 195.5,-245 195.5,-225 94.5,-225"/>
+<polygon fill="none" stroke="black" points="94.5,-225 94.5,-245 195.5,-245 195.5,-225 94.5,-225"/>
 <text text-anchor="middle" x="145" y="-232" font-family="FreeSans" font-size="10.00">Mezzanine::Entresol</text>
 </a>
 </g>
@@ -56,7 +55,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:href="classMezzanine_1_1Singleton.xhtml" target="_top" xlink:title="Mezzanine::Singleton\l\&lt; Entresol \&gt;">
-<polygon fill="white" stroke="black" points="155.5,-143 155.5,-175 262.5,-175 262.5,-143 155.5,-143"/>
+<polygon fill="none" stroke="black" points="155.5,-143 155.5,-175 262.5,-175 262.5,-143 155.5,-143"/>
 <text text-anchor="start" x="163.5" y="-162" font-family="FreeSans" font-size="10.00">Mezzanine::Singleton</text>
 <text text-anchor="middle" x="209" y="-150" font-family="FreeSans" font-size="10.00">&lt; Entresol &gt;</text>
 </a>
@@ -75,7 +74,7 @@
 <!-- Node5 -->
 <g id="node9" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="102,-295 102,-315 188,-315 188,-295 102,-295"/>
+<polygon fill="none" stroke="#bfbfbf" points="102,-295 102,-315 188,-315 188,-295 102,-295"/>
 <text text-anchor="middle" x="145" y="-302" font-family="FreeSans" font-size="10.00">std::stringstream</text>
 </a>
 </g>
@@ -88,7 +87,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="88,-355 88,-387 202,-387 202,-355 88,-355"/>
+<polygon fill="none" stroke="#bfbfbf" points="88,-355 88,-387 202,-387 202,-355 88,-355"/>
 <text text-anchor="start" x="96" y="-374" font-family="FreeSans" font-size="10.00">std::basic_stringstream</text>
 <text text-anchor="middle" x="145" y="-362" font-family="FreeSans" font-size="10.00">&lt; char &gt;</text>
 </a>
@@ -101,7 +100,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="96,-427 96,-459 194,-459 194,-427 96,-427"/>
+<polygon fill="none" stroke="#bfbfbf" points="96,-427 96,-459 194,-459 194,-427 96,-427"/>
 <text text-anchor="start" x="104" y="-446" font-family="FreeSans" font-size="10.00">std::basic_iostream</text>
 <text text-anchor="middle" x="145" y="-434" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -114,7 +113,7 @@
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="32.5,-499 32.5,-531 125.5,-531 125.5,-499 32.5,-499"/>
+<polygon fill="none" stroke="#bfbfbf" points="32.5,-499 32.5,-531 125.5,-531 125.5,-499 32.5,-499"/>
 <text text-anchor="start" x="40.5" y="-518" font-family="FreeSans" font-size="10.00">std::basic_istream</text>
 <text text-anchor="middle" x="79" y="-506" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -127,7 +126,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="58,-571 58,-591 168,-591 168,-571 58,-571"/>
+<polygon fill="none" stroke="#bfbfbf" points="58,-571 58,-591 168,-591 168,-571 58,-571"/>
 <text text-anchor="middle" x="113" y="-578" font-family="FreeSans" font-size="10.00">std::basic_ios&lt; Char &gt;</text>
 </a>
 </g>
@@ -139,7 +138,7 @@
 <!-- Node11 -->
 <g id="node21" class="node"><title>Node11</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="143,-499 143,-531 239,-531 239,-499 143,-499"/>
+<polygon fill="none" stroke="#bfbfbf" points="143,-499 143,-531 239,-531 239,-499 143,-499"/>
 <text text-anchor="start" x="151" y="-518" font-family="FreeSans" font-size="10.00">std::basic_ostream</text>
 <text text-anchor="middle" x="191" y="-506" font-family="FreeSans" font-size="10.00">&lt; Char &gt;</text>
 </a>
@@ -152,7 +151,7 @@
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="77.5,-631 77.5,-651 148.5,-651 148.5,-631 77.5,-631"/>
+<polygon fill="none" stroke="#bfbfbf" points="77.5,-631 77.5,-651 148.5,-651 148.5,-631 77.5,-631"/>
 <text text-anchor="middle" x="113" y="-638" font-family="FreeSans" font-size="10.00">std::ios_base</text>
 </a>
 </g>

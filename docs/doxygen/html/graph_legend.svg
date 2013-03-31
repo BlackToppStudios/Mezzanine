@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 500.00 164.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 160)">
 <title>Graph Legend</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-160 497,-160 497,5 -4,5"/>
 <!-- Node9 -->
 <g id="node1" class="node"><title>Node9</title>
 <polygon fill="#bfbfbf" stroke="black" points="287,-20 233,-20 233,-1.06581e-14 287,-3.55271e-15 287,-20"/>

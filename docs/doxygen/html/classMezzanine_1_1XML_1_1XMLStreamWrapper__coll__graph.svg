@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 264.00 266.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 262)">
 <title>Mezzanine::XML::XMLStreamWrapper</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-262 261,-262 261,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="26.5,-1 26.5,-33 169.5,-33 169.5,-1 26.5,-1"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1XML_1_1Writer.xhtml" target="_top" xlink:title="Interface for node printing (see Node::Print)">
-<polygon fill="white" stroke="black" points="-0.5,-89 -0.5,-109 116.5,-109 116.5,-89 -0.5,-89"/>
+<polygon fill="none" stroke="black" points="-0.5,-89 -0.5,-109 116.5,-109 116.5,-89 -0.5,-89"/>
 <text text-anchor="middle" x="58" y="-96" font-family="FreeSans" font-size="10.00">Mezzanine::XML::Writer</text>
 </a>
 </g>
@@ -30,7 +29,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Resource_1_1DataStream.xhtml" target="_top" xlink:title="This represents a stream to a piece of data, usually a file.">
-<polygon fill="white" stroke="black" points="133.5,-83 133.5,-115 240.5,-115 240.5,-83 133.5,-83"/>
+<polygon fill="none" stroke="black" points="133.5,-83 133.5,-115 240.5,-115 240.5,-83 133.5,-83"/>
 <text text-anchor="start" x="141.5" y="-102" font-family="FreeSans" font-size="10.00">Mezzanine::Resource</text>
 <text text-anchor="middle" x="187" y="-90" font-family="FreeSans" font-size="10.00">::DataStream</text>
 </a>
@@ -44,7 +43,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="158.5,-165 158.5,-185 215.5,-185 215.5,-165 158.5,-165"/>
+<polygon fill="none" stroke="#bfbfbf" points="158.5,-165 158.5,-185 215.5,-185 215.5,-165 158.5,-165"/>
 <text text-anchor="middle" x="187" y="-172" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -57,7 +56,7 @@
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="141.5,-225 141.5,-257 232.5,-257 232.5,-225 141.5,-225"/>
+<polygon fill="none" stroke="#bfbfbf" points="141.5,-225 141.5,-257 232.5,-257 232.5,-225 141.5,-225"/>
 <text text-anchor="start" x="149.5" y="-244" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="187" y="-232" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>

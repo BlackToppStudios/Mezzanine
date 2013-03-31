@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 146.00 88.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 84)">
 <title>Mezzanine::Audio::SoundSet</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-84 143,-84 143,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="-0.5,-1 -0.5,-21 138.5,-21 138.5,-1 -0.5,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="14,-59 14,-79 124,-79 124,-59 14,-59"/>
+<polygon fill="none" stroke="#bfbfbf" points="14,-59 14,-79 124,-79 124,-59 14,-59"/>
 <text text-anchor="middle" x="69" y="-66" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
 </a>
 </g>

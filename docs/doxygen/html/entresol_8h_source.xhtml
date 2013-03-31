@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>/home/sqeaky/Projects/MezzanineCurrent/Mezzanine/Mezzanine/src/entresol.h Source File</title>
+<title>/home/sqeaky/Code/Mezzanine/Mezzanine/src/entresol.h Source File</title>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/search.js"></script>
 <script type="text/javascript">
@@ -74,7 +74,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_2cb3f4bbed36e97976e95e8895b6e0de.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_28f80092e9c3ae4676af90cfa1b625bf.xhtml">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_282391f6f4177160a7bfc5213c65158e.xhtml">Mezzanine</a></li><li class="navelem"><a class="el" href="dir_b044052e4980a71349e081a68f99b09b.xhtml">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -419,10 +419,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">            /// @internal</span></div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">            /// @brief Used to intialize from XML</span></div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="comment">            /// @param EngineDataPath The directory where engine specific data (as opposed to game/application data) reside, and it include the plugins file and potentially othe low level resources.</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">            /// @param ArchiveType_ Should This be looking for raw or zip or whatever kind of files.</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="comment">            /// @param ArchType Should This be looking for raw or zip or whatever kind of files.</span></div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="comment">            /// @param InitializerFile The Mezzanine MXI file to use to initialize the engine.</span></div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment"></span>            <span class="keywordtype">void</span> ConstructFromXML(  <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; EngineDataPath,</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                                    <a class="code" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b" title="Used to indicate what kind of resources the Entrosol should look for.">ArchiveType</a> ArchiveType_,</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                                    <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b" title="Used to indicate what kind of resources the Entrosol should look for.">ArchiveType</a> ArchType,</div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                                    <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; InitializerFile );</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keywordtype">void</span> SanityChecks();</div>
@@ -461,9 +461,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="comment">            /// If the file provided is not one of this type this function will throw an exception. @n @n</span></div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="comment">            /// When initializing factories in the XML file this constructor does not initialize any additional manager factories, so if they are called this will throw an exception.</span></div>
 <div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="comment">            /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment">            /// @param ArchiveType_ The type of archive at the path provided.</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;<span class="comment">            /// @param ArchType The type of archive at the path provided.</span></div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="comment">            /// @param InitializerFile The file that describes how to initialize Mezzanine.</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library.">Entresol</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; EngineDataPath, <a class="code" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b" title="Used to indicate what kind of resources the Entrosol should look for.">ArchiveType</a> ArchiveType_, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; InitializerFile = <span class="stringliteral">&quot;Mezzanine.mxi&quot;</span>);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library.">Entresol</a>(<span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; EngineDataPath, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b" title="Used to indicate what kind of resources the Entrosol should look for.">ArchiveType</a> ArchType, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; InitializerFile = <span class="stringliteral">&quot;Mezzanine.mxi&quot;</span>);</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;<span class="comment">            /// @brief Factory and initializer file constructor.</span></div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="comment">            /// @details This function expects an &quot;.mxi&quot; (Mezzanine XML Initializer) file.</span></div>
@@ -471,9 +471,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;<span class="comment">            /// Also default factories are already added and thus do not need to be included in the Factory vector.</span></div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="comment">            /// @param CustomFactories A vector containing the additional factories to be registered before initializing the engine.</span></div>
 <div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;<span class="comment">            /// @param EngineDataPath The directory where engine specific data resides. This is where it will search for the specified initializer file.</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">            /// @param ArchiveType_ The type of archive at the path provided.</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;<span class="comment">            /// @param ArchType The type of archive at the path provided.</span></div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;<span class="comment">            /// @param InitializerFile The file that describes how to initialize Mezzanine.</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library.">Entresol</a>(std::vector&lt;ManagerFactory*&gt;&amp; CustomFactories, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; EngineDataPath, <a class="code" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b" title="Used to indicate what kind of resources the Entrosol should look for.">ArchiveType</a> ArchiveType_, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; InitializerFile = <span class="stringliteral">&quot;Mezzanine.mxi&quot;</span>);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="comment"></span>            <a class="code" href="classMezzanine_1_1Entresol.xhtml" title="This is the main entry point for the entire library.">Entresol</a>(std::vector&lt;ManagerFactory*&gt;&amp; CustomFactories, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; EngineDataPath, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#a25d7f893350196fa99e164f78df3538b" title="Used to indicate what kind of resources the Entrosol should look for.">ArchiveType</a> ArchType, <span class="keyword">const</span> <a class="code" href="namespaceMezzanine.xhtml#acf9fcc130e6ebf08e3d8491aebcf1c86" title="A Datatype used to a series of characters.">String</a>&amp; InitializerFile = <span class="stringliteral">&quot;Mezzanine.mxi&quot;</span>);</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="comment"></span></div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="comment">            /// @brief Descriptive constructor With Manager Pointers</span></div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="comment">            /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the world.</span></div>
@@ -798,6 +798,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 10 2013 23:53:04 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Sat Mar 30 2013 10:40:50 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

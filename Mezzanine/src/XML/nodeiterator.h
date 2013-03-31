@@ -57,7 +57,7 @@
 #define _xmlnodeiterator_h
 
 /// @file
-/// @brief Contains the defintion of the @ref XML::NodeIterator and @ref XML::NamedNodeIterator class.
+/// @brief Contains the defintion of the @ref Mezzanine::XML::NodeIterator and @ref Mezzanine::XML::NamedNodeIterator class.
 
 #include "datatypes.h"
 #include "node.h"

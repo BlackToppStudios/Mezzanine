@@ -1,0 +1,10 @@
+<map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xpathnodeset.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/XML/xpathnodeset.h">
+<area shape="rect" id="node3" href="$datatypes_8h.xhtml" title="All the definitions for datatypes as well as some basic conversion functions are defined here..." alt="" coords="712,331,797,359"/>
+<area shape="rect" id="node37" href="$xpathnode_8h.xhtml" title="The definition of the Mezzanine::XML::XPathNode." alt="" coords="632,99,755,127"/>
+<area shape="rect" id="node5" href="$crossplatformexport_8h.xhtml" title="This file is used on some platforms to determine what data should be read and written to and from a s..." alt="" coords="5,409,149,437"/>
+<area shape="rect" id="node35" href="$swig_8h.xhtml" title="Used to give commands specifically to the SWIG preprocessor." alt="" coords="1331,409,1387,437"/>
+<area shape="rect" id="node40" href="$node_8h.xhtml" title="This defines the Mezzanine::XML::Node one of the central XML classes." alt="" coords="768,177,859,205"/>
+<area shape="rect" id="node43" href="$xmlenumerations_8h.xhtml" title="Enumerations and constant values used primarily in the XML system but useful for interacting with it ..." alt="" coords="733,254,893,282"/>
+<area shape="rect" id="node46" href="$attribute_8h.xhtml" title="Contains the definition for the XML::Attribute class." alt="" coords="917,254,1027,282"/>
+<area shape="rect" id="node49" href="$objectrange_8h.xhtml" title="Contains the implementation of the ObjectRange class template." alt="" coords="1051,254,1181,282"/>
+</map>

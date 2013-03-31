@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 130.00 88.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 84)">
 <title>Mezzanine::Input::Mouse</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-84 127,-84 127,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="0,-1 0,-21 122,-21 122,-1 0,-1"/>
@@ -17,7 +16,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1Input_1_1Device.xhtml" target="_top" xlink:title="This is a base class for all input devices.">
-<polygon fill="white" stroke="black" points="0,-59 0,-79 122,-79 122,-59 0,-59"/>
+<polygon fill="none" stroke="black" points="0,-59 0,-79 122,-79 122,-59 0,-59"/>
 <text text-anchor="middle" x="61" y="-66" font-family="FreeSans" font-size="10.00">Mezzanine::Input::Device</text>
 </a>
 </g>

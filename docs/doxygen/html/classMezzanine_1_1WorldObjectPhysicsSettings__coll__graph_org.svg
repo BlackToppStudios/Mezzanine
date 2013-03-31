@@ -8,7 +8,6 @@
  viewBox="0.00 0.00 1322.00 211.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 207)">
 <title>Mezzanine::WorldObjectPhysicsSettings</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-207 1319,-207 1319,5 -4,5"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
 <polygon fill="#bfbfbf" stroke="black" points="496.5,-85 496.5,-117 649.5,-117 649.5,-85 496.5,-85"/>
@@ -18,7 +17,7 @@
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <a xlink:href="classMezzanine_1_1WorldObject.xhtml" target="_top" xlink:title="This is the base class from which classes that are insertable into the physical world.">
-<polygon fill="white" stroke="black" points="758,-90 758,-110 878,-110 878,-90 758,-90"/>
+<polygon fill="none" stroke="black" points="758,-90 758,-110 878,-110 878,-90 758,-90"/>
 <text text-anchor="middle" x="818" y="-97" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObject</text>
 </a>
 </g>
@@ -37,7 +36,7 @@
 <!-- Node9 -->
 <g id="node17" class="node"><title>Node9</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1Collision.xhtml" target="_top" xlink:title="This is an event class used to track collsions in the physics world.">
-<polygon fill="white" stroke="black" points="1037,-16 1037,-48 1137,-48 1137,-16 1037,-16"/>
+<polygon fill="none" stroke="black" points="1037,-16 1037,-48 1137,-48 1137,-16 1037,-16"/>
 <text text-anchor="start" x="1045" y="-35" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="1087" y="-23" font-family="FreeSans" font-size="10.00">::Collision</text>
 </a>
@@ -52,7 +51,7 @@
 <!-- Node11 -->
 <g id="node22" class="node"><title>Node11</title>
 <a xlink:href="classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" target="_top" xlink:title="This is a helper class for configuring graphics settings of a World Object.">
-<polygon fill="white" stroke="black" points="1008,-136 1008,-168 1166,-168 1166,-136 1008,-136"/>
+<polygon fill="none" stroke="black" points="1008,-136 1008,-168 1166,-168 1166,-136 1008,-136"/>
 <text text-anchor="start" x="1016" y="-155" font-family="FreeSans" font-size="10.00">Mezzanine::WorldObjectGraphics</text>
 <text text-anchor="middle" x="1087" y="-143" font-family="FreeSans" font-size="10.00">Settings</text>
 </a>
@@ -66,7 +65,7 @@
 <!-- Node3 -->
 <g id="node4" class="node"><title>Node3</title>
 <a xlink:href="classMezzanine_1_1Audio_1_1SoundSet.xhtml" target="_top" xlink:title="This is a vector that stores sounds.">
-<polygon fill="white" stroke="black" points="503.5,-38 503.5,-58 642.5,-58 642.5,-38 503.5,-38"/>
+<polygon fill="none" stroke="black" points="503.5,-38 503.5,-58 642.5,-58 642.5,-38 503.5,-38"/>
 <text text-anchor="middle" x="573" y="-45" font-family="FreeSans" font-size="10.00">Mezzanine::Audio::SoundSet</text>
 </a>
 </g>
@@ -79,7 +78,7 @@
 <!-- Node4 -->
 <g id="node6" class="node"><title>Node4</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="266,-38 266,-58 376,-58 376,-38 266,-38"/>
+<polygon fill="none" stroke="#bfbfbf" points="266,-38 266,-58 376,-58 376,-38 266,-38"/>
 <text text-anchor="middle" x="321" y="-45" font-family="FreeSans" font-size="10.00">std::vector&lt; Sound * &gt;</text>
 </a>
 </g>
@@ -90,7 +89,7 @@
 </g>
 <!-- Node5 -->
 <g id="node8" class="node"><title>Node5</title>
-<polygon fill="white" stroke="#bfbfbf" points="144.5,-38 144.5,-58 173.5,-58 173.5,-38 144.5,-38"/>
+<polygon fill="none" stroke="#bfbfbf" points="144.5,-38 144.5,-58 173.5,-58 173.5,-38 144.5,-38"/>
 <text text-anchor="middle" x="159" y="-45" font-family="FreeSans" font-size="10.00">T</text>
 </g>
 <!-- Node5&#45;&gt;Node4 -->
@@ -102,7 +101,7 @@
 <!-- Node6 -->
 <g id="node11" class="node"><title>Node6</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="130.5,-121 130.5,-141 187.5,-141 187.5,-121 130.5,-121"/>
+<polygon fill="none" stroke="#bfbfbf" points="130.5,-121 130.5,-141 187.5,-141 187.5,-121 130.5,-121"/>
 <text text-anchor="middle" x="159" y="-128" font-family="FreeSans" font-size="10.00">std::string</text>
 </a>
 </g>
@@ -115,7 +114,7 @@
 <!-- Node13 -->
 <g id="node27" class="node"><title>Node13</title>
 <a xlink:href="classMezzanine_1_1Physics_1_1CollisionShape.xhtml" target="_top" xlink:title="This is the base class for all collision shapes.">
-<polygon fill="white" stroke="black" points="271,-85 271,-117 371,-117 371,-85 271,-85"/>
+<polygon fill="none" stroke="black" points="271,-85 271,-117 371,-117 371,-85 271,-85"/>
 <text text-anchor="start" x="279" y="-104" font-family="FreeSans" font-size="10.00">Mezzanine::Physics</text>
 <text text-anchor="middle" x="321" y="-92" font-family="FreeSans" font-size="10.00">::CollisionShape</text>
 </a>
@@ -129,7 +128,7 @@
 <!-- Node7 -->
 <g id="node13" class="node"><title>Node7</title>
 <a xlink:title="STL class.">
-<polygon fill="white" stroke="#bfbfbf" points="0.5,-115 0.5,-147 91.5,-147 91.5,-115 0.5,-115"/>
+<polygon fill="none" stroke="#bfbfbf" points="0.5,-115 0.5,-147 91.5,-147 91.5,-115 0.5,-115"/>
 <text text-anchor="start" x="8.5" y="-134" font-family="FreeSans" font-size="10.00">std::basic_string&lt;</text>
 <text text-anchor="middle" x="46" y="-122" font-family="FreeSans" font-size="10.00"> char &gt;</text>
 </a>
@@ -141,7 +140,7 @@
 </g>
 <!-- Node8 -->
 <g id="node15" class="node"><title>Node8</title>
-<polygon fill="white" stroke="#bfbfbf" points="1224,-48 1224,-80 1314,-80 1314,-48 1224,-48"/>
+<polygon fill="none" stroke="#bfbfbf" points="1224,-48 1224,-80 1314,-80 1314,-48 1224,-48"/>
 <text text-anchor="start" x="1232" y="-67" font-family="FreeSans" font-size="10.00">std::set&lt; Physics:</text>
 <text text-anchor="middle" x="1269" y="-55" font-family="FreeSans" font-size="10.00">:Collision * &gt;</text>
 </g>
@@ -159,7 +158,7 @@
 </g>
 <!-- Node10 -->
 <g id="node19" class="node"><title>Node10</title>
-<polygon fill="white" stroke="#bfbfbf" points="770,-0 770,-20 866,-20 866,-0 770,-0"/>
+<polygon fill="none" stroke="#bfbfbf" points="770,-0 770,-20 866,-20 866,-0 770,-0"/>
 <text text-anchor="middle" x="818" y="-7" font-family="FreeSans" font-size="10.00">std::vector&lt; Real &gt;</text>
 </g>
 <!-- Node10&#45;&gt;Node9 -->
@@ -177,7 +176,7 @@
 <!-- Node12 -->
 <g id="node25" class="node"><title>Node12</title>
 <a xlink:href="classMezzanine_1_1Graphics_1_1Mesh.xhtml" target="_top" xlink:title="This class is used to check and modify the properties of a graphics mesh.">
-<polygon fill="white" stroke="black" points="765.5,-171 765.5,-203 870.5,-203 870.5,-171 765.5,-171"/>
+<polygon fill="none" stroke="black" points="765.5,-171 765.5,-203 870.5,-203 870.5,-171 765.5,-171"/>
 <text text-anchor="start" x="773.5" y="-190" font-family="FreeSans" font-size="10.00">Mezzanine::Graphics</text>
 <text text-anchor="middle" x="818" y="-178" font-family="FreeSans" font-size="10.00">::Mesh</text>
 </a>
