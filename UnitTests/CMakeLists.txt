@@ -55,6 +55,9 @@ message ( STATUS "Base Directory for data input: ${${PROJECT_NAME}_DATA_DIR}")
 set (${PROJECT_NAME}_SRC_DIR "${${PROJECT_NAME}_SOURCE_DIR}src/")
 message ( STATUS "Looking for source code in: ${${PROJECT_NAME}_SRC_DIR}")
 
+set (${PROJECT_NAME}_TEST_DIR "${${PROJECT_NAME}_SOURCE_DIR}tests/")
+message ( STATUS "Looking for individual tests per files in: ${${PROJECT_NAME}_TEST_DIR}")
+
 set (${PROJECT_NAME}_MEZZANINE_DIR "${ProjectRootDir}Mezzanine/")
 message ( STATUS "Base for Mezzanine Unit Tests: ${${PROJECT_NAME}_MEZZANINE_DIR}")
 
@@ -75,22 +78,47 @@ set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes/)
 set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}/main.h"
     "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
-    "${${PROJECT_NAME}_SRC_DIR}/actortests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/collisionshapetests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/compilerflagtests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/constrainttests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/eventmanagertests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/lua51tests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/metacodetests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/notatest.h"
-    "${${PROJECT_NAME}_SRC_DIR}/particleeffecttests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/scenemanagertests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/smartptrtests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/transformtests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/vector2tests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/vector3tests.h"
-    "${${PROJECT_NAME}_SRC_DIR}/worldnodetests.h"
 )
+
+File(GLOB ${PROJECT_NAME}_test "${${PROJECT_NAME}_TEST_DIR}"  "${${PROJECT_NAME}_TEST_DIR}*.h")
+
+message( STATUS "Looking for Tests")
+foreach(CurrentFileName ${${PROJECT_NAME}_test})
+    String(REGEX MATCH "/([^/]*)\\.h$" DirtyName "${CurrentFileName}")
+    String(LENGTH ${DirtyName} DirtyNameLength)
+    MATH(EXPR TargetLength "${DirtyNameLength} - 3")
+    String(SUBSTRING "${DirtyName}" "1" "${TargetLength}" TargetName)
+    #message (${TargetLength})
+    #message (${DirtyName})
+    message ("${TargetName}")
+    list(APPEND FoundTests ${TargetName})
+endforeach(CurrentFileName ${${PROJECT_NAME}_test})
+
+message(STATUS "Found Tests: ")
+foreach(CurrentTest ${FoundTests})
+    message(STATUS "   ${CurrentTest}")
+endforeach(CurrentTest ${FoundTests})
+
+message(STATUS "Generating Test Instantiation Code: ")
+foreach(CurrentTest ${FoundTests})
+    list(APPEND CppInstantiations "\\ ${TargetName}\\ ${TargetName}Instance|")
+endforeach(CurrentTest ${FoundTests})
+message(STATUS "   ${CppInstantiations}")
+
+message(STATUS "Generating Test Include Code: ")
+foreach(CurrentTest ${FoundTests})
+    list(APPEND CppIncludes "\\n#include \\\"${TargetName}.h\\\"//")
+endforeach(CurrentTest ${FoundTests})
+message(STATUS "   ${CppIncludes}")
+
+#add_definitions( ${D}"${CppIncludes}" "${D}${CppInstantiations}")
+#add_definitions(${D}TEST="${CppInstantiations}")
+#add_definitions(${D}TEST="abc asd")
+message(${D}TEST="${CppInstantiations}")
+
+add_definitions(${D}TEST="abc asd")
+message(${D}TEST="abc asd")
+
 
 ###############################################################################
 # Functions to use to copy files at build time
@@ -134,7 +162,7 @@ endfunction(CopyFilesFromMezzanineDuringBuildAndRename)
 ##############################################################################
 # Accessing correct headers
 
-include_directories( ${${PROJECT_NAME}_SRC_DIR}
+include_directories( ${${PROJECT_NAME}_SRC_DIR} ${${PROJECT_NAME}_TEST_DIR}
     "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
     "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
     "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
