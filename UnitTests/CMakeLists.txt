@@ -97,27 +97,15 @@ endforeach(CurrentFileName ${${PROJECT_NAME}_test})
 message(STATUS "Found Tests: ")
 foreach(CurrentTest ${FoundTests})
     message(STATUS "   ${CurrentTest}")
-endforeach(CurrentTest ${FoundTests})
 
-message(STATUS "Generating Test Instantiation Code: ")
-foreach(CurrentTest ${FoundTests})
-    list(APPEND CppInstantiations "\\ ${TargetName}\\ ${TargetName}Instance|")
+    list(APPEND CppInstantiations " Instantiate(${TargetName})")
+    list(APPEND CppIncludes "Include(${TargetName})")
 endforeach(CurrentTest ${FoundTests})
-message(STATUS "   ${CppInstantiations}")
-
-message(STATUS "Generating Test Include Code: ")
-foreach(CurrentTest ${FoundTests})
-    list(APPEND CppIncludes "\\n#include \\\"${TargetName}.h\\\"//")
-endforeach(CurrentTest ${FoundTests})
-message(STATUS "   ${CppIncludes}")
 
 #add_definitions( ${D}"${CppIncludes}" "${D}${CppInstantiations}")
-#add_definitions(${D}TEST="${CppInstantiations}")
+add_definitions(${D}TESTINT="${CppInstantiations}" ${D}TESTINC="${CppIncludes}")
 #add_definitions(${D}TEST="abc asd")
-message(${D}TEST="${CppInstantiations}")
-
-add_definitions(${D}TEST="abc asd")
-message(${D}TEST="abc asd")
+message(${D}TESTINT="${CppInstantiations}" ${D}TESTINC="${CppIncludes}")
 
 
 ###############################################################################
