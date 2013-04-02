@@ -38,6 +38,7 @@
    John Blackwood - makoenergy02@gmail.com
 */
 
+#include "autodetect.h"
 #include "main.h"
 
 // 4. When adding new tests - Add the new file to the includes in unittests/main.cpp

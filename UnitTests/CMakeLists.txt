@@ -74,12 +74,7 @@ message ( STATUS "Base Directory for Executable Test binaries and test data outp
 set (Mezzanine_LIBINCLUDE_DIR ${ProjectRootDir}/Mezzanine/libincludes/)
 
 ###############################################################################
-#Sources
-set(${PROJECT_NAME}_sources
-    "${${PROJECT_NAME}_SRC_DIR}/main.h"
-    "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
-)
-
+# Sources
 File(GLOB ${PROJECT_NAME}_test "${${PROJECT_NAME}_TEST_DIR}"  "${${PROJECT_NAME}_TEST_DIR}*.h")
 
 message( STATUS "Looking for Tests")
@@ -90,7 +85,7 @@ foreach(CurrentFileName ${${PROJECT_NAME}_test})
     String(SUBSTRING "${DirtyName}" "1" "${TargetLength}" TargetName)
     #message (${TargetLength})
     #message (${DirtyName})
-    message("${TargetName}")
+    #message("${TargetName}")
     list(APPEND FoundTests ${TargetName})
 endforeach(CurrentFileName ${${PROJECT_NAME}_test})
 
@@ -99,14 +94,24 @@ foreach(CurrentTest ${FoundTests})
     message(STATUS "   ${CurrentTest}")
 endforeach(CurrentTest ${FoundTests})
 
-message(STATUS "Generating Test Instantiation Code: ")
+message(STATUS "Generating Test Instantiation and include Code: ")
 foreach(CurrentTest ${FoundTests})
-    list(APPEND CppInstantiations " Instantiate(${TargetName})")
-    list(APPEND CppIncludes "Include(${TargetName})")
+    set(CppInstantiations "${CppInstantiations} Instant(${CurrentTest})")
+    #set(CppIncludes "${CppIncludes} Include(${CurrentTest})")
+    set(CppIncludes "${CppIncludes} \\#include Q${CurrentTest} NL")
 endforeach(CurrentTest ${FoundTests})
-#add_definitions(${D}TESTINT="${CppInstantiations}" ${D}TESTINC="${CppIncludes}")
-#message(${D}TEST="${CppInstantiations}")
 
+message(${D}TESTINT="${CppInstantiations}")
+add_definitions(${D}TESTINT="${CppInstantiations}")
+message(${D}TESTINC="${CppIncludes}")
+add_definitions(${D}TESTINC="${CppIncludes}")
+
+set(${PROJECT_NAME}_sources
+    "${${PROJECT_NAME}_SRC_DIR}/autodetect.h"
+    "${${PROJECT_NAME}_SRC_DIR}/main.h"
+    "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
+    ${${PROJECT_NAME}_test}
+)
 
 
 ###############################################################################
