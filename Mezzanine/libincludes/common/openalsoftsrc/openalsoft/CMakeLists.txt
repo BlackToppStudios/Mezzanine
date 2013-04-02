@@ -21,8 +21,12 @@ INCLUDE(FindPkgConfig)
 
 SET(CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS TRUE)
 
-
-OPTION(ALSOFT_CPUEXT_SSE  "Check for SSE CPU extensions"      ON)
+IF(MINGW)
+	#Currently SSE instructions on MinGW cause crashes due to unknown Alignment issues in debug mode.
+        SET(ALSOFT_CPUEXT_SSE OFF)
+ELSE(MINGW)
+	OPTION(ALSOFT_CPUEXT_SSE  "Check for SSE CPU extensions"      ON)
+ENDIF(MINGW)
 OPTION(ALSOFT_CPUEXT_NEON "Check for ARM Neon CPU extensions" ON)
 
 OPTION(ALSOFT_REQUIRE_SSE  "Require SSE CPU extensions"      OFF)
@@ -142,17 +146,31 @@ IF(MSVC)
         LINK_DIRECTORIES("${DXSDK_DIR}/Lib")
     ENDIF()
 
-    OPTION(FORCE_STATIC_VCRT "Force /MT for static VC runtimes" OFF)
-    IF(FORCE_STATIC_VCRT)
-        FOREACH(flag_var
-                CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
-                CMAKE_C_FLAGS_MINSIZEREL CMAKE_C_FLAGS_RELWITHDEBINFO)
-            IF(${flag_var} MATCHES "/MD")
-                STRING(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
-            ENDIF()
-        ENDFOREACH(flag_var)
-    ENDIF()
+	OPTION(FORCE_STATIC_VCRT "Force /MT for static VC runtimes" OFF)
+	IF(FORCE_STATIC_VCRT)
+		FOREACH(flag_var
+				CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
+				CMAKE_C_FLAGS_MINSIZEREL CMAKE_C_FLAGS_RELWITHDEBINFO)
+			IF(${flag_var} MATCHES "/MD")
+				STRING(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
+			ENDIF()
+		ENDFOREACH(flag_var)
+	ENDIF()
 ELSE()
+	if(MINGW)
+		IF(NOT DXSDK_DIR)
+			STRING(REGEX REPLACE "\\\\" "/" DXSDK_DIR "$ENV{DXSDK_DIR}")
+		ELSE()
+			STRING(REGEX REPLACE "\\\\" "/" DXSDK_DIR "${DXSDK_DIR}")
+		ENDIF()
+		IF(DXSDK_DIR)
+			MESSAGE(STATUS "Using DirectX SDK directory: ${DXSDK_DIR}")
+			SET(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} "${DXSDK_DIR}/Include")
+			INCLUDE_DIRECTORIES("${DXSDK_DIR}/Include")
+			LINK_DIRECTORIES("${DXSDK_DIR}/Lib")
+		ENDIF()
+	ENDIF(MINGW)
+
     ADD_DEFINITIONS(-Winline -Wall)
     CHECK_C_COMPILER_FLAG(-Wextra HAVE_W_EXTRA)
     IF(HAVE_W_EXTRA)

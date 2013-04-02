@@ -58,12 +58,16 @@ namespace Mezzanine
 
     InputManager::InputManager()
     {
-        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
-            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
-            {
-                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
-            }
+            if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+        }
+        if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
+        {
+            if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
 
         SystemMouse = new Input::Mouse();
@@ -74,12 +78,16 @@ namespace Mezzanine
 
     InputManager::InputManager(XML::Node& XMLNode)
     {
-        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
-            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
-            {
-                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
-            }
+            if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+        }
+        if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
+        {
+            if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
 
         SystemMouse = new Input::Mouse();

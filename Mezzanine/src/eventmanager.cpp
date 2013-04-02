@@ -248,12 +248,16 @@ namespace Mezzanine
     {
         this->Priority = 0;
 
-        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
-            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
-            {
-                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
-            }
+            if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+        }
+        if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
+        {
+            if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData;
 
@@ -264,12 +268,16 @@ namespace Mezzanine
     {
         this->Priority = 0;
 
-        if( (SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) != SDL_WasInit(0) )
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( (SDL_INIT_JOYSTICK & InitSDLSystems) == 0 )
         {
-            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) == -1) //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
-            {
-                MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for User input, SDL Error: ")+SDL_GetError());
-            }
+            if( SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Joystick input, SDL Error: ") + SDL_GetError()); }
+        }
+        if( !(SDL_INIT_GAMECONTROLLER | InitSDLSystems) )
+        {
+            if( SDL_Init(SDL_INIT_GAMECONTROLLER | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Game Controller input, SDL Error: ") + SDL_GetError()); }
         }
         this->_Data = new Internal::EventManagerInternalData;
         /// @todo This class currently doesn't initialize anything from XML, if that changes this constructor needs to be expanded.
@@ -285,6 +293,16 @@ namespace Mezzanine
 
         if( InputManager::SingletonValid() )
             InputManager::GetSingletonPtr()->ReleaseAllControllers();
+
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( SDL_INIT_JOYSTICK | InitSDLSystems )
+        {
+            SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
+        }
+        if( SDL_INIT_GAMECONTROLLER | InitSDLSystems )
+        {
+            SDL_QuitSubSystem(SDL_INIT_GAMECONTROLLER);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

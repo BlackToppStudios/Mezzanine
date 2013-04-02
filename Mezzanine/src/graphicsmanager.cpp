@@ -158,6 +158,13 @@ namespace Mezzanine
         SaveAllSettings();
 
         DestroyAllGameWindows(false);
+
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( SDL_INIT_VIDEO | InitSDLSystems )
+        {
+            SDL_QuitSubSystem(SDL_INIT_VIDEO);
+        }
+
         for (std::vector<Ogre::Plugin*>::iterator Iter = RenderSystems.begin();
              Iter != RenderSystems.end();
              Iter++)
@@ -169,6 +176,13 @@ namespace Mezzanine
 
     void GraphicsManager::Construct()
     {
+        UInt32 InitSDLSystems = SDL_WasInit(0);
+        if( (SDL_INIT_VIDEO & InitSDLSystems) == 0 )
+        {
+            if( SDL_Init(SDL_INIT_VIDEO | SDL_INIT_NOPARACHUTE) < 0 )
+                { MEZZ_EXCEPTION(Exception::INTERNAL_EXCEPTION,String("Failed to Initialize SDL for Video/Windowing, SDL Error: ") + SDL_GetError()); }
+        }
+
         SDL_DisplayMode DeskMode;
         SDL_GetDesktopDisplayMode(0,&DeskMode);
         DesktopSettings.RenderWidth = DeskMode.w;
