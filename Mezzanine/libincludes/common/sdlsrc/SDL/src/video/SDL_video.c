@@ -1418,7 +1418,7 @@ SDL_SetWindowData(SDL_Window * window, const char *name, void *userdata)
     /* See if the named data already exists */
     prev = NULL;
     for (data = window->data; data; prev = data, data = data->next) {
-        if (SDL_strcmp(data->name, name) == 0) {
+        if (data->name && SDL_strcmp(data->name, name) == 0) {
             void *last_value = data->data;
 
             if (userdata) {

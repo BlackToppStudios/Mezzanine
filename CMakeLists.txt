@@ -51,12 +51,13 @@
 # build scripts, that can be set as cmake options:
 #
 # That affect/add/remove behavior of the Mezzanine engine
-#        Mezz_Debug                         - True - The Engine will be forced to compile with debug symbols by setting CMAKE_BUILD_TYPE, this will also include more logging messages and libraries will also include debug symbols
+#        Mezz_BuildTypeDebug                - False - The Engine will be compiled with debug symbols by setting CMAKE_BUILD_TYPE. MEZZDEBUG will be passed as a preprocessor macro causing more logging messages to be included. All libraries will also include debug symbols.
+#        Mezz_BuildTypeRelease              - False - The Engine will be compiled with optimizations by setting CMAKE_BUILD_TYPE. MEZZRELEASE will be passed into the source via a preprocessor macro.
+#        Mezz_BuildTypeSmall                - False - The Engine will be optimizing for minimum size by setting CMAKE_BUILD_TYPE, MEZZSMALL is passed into the source when compiling as a preprocessor macro.
 #        Mezz_Lua51                         - True if lua is to be included and link against. False if lua was not selected to be compiled in.
 #        Mezz_Network                       - Enable or disable networking support
 #
 # Advanced Mezzanine build options
-#        Mezz_ForceBuildType                - When True this will force the CMAKE_BUILD_TYPE to correspond with Mezz_Debug, otherwise the user is expcte to manually set CMAKE_BUILD_TYPE.
 #        Mezz_Profile                       - If Set to True, then a number of engine level and compiler tools will be enabled that track performance in the engine. This should be disabled when not debugging and benchmarking. Not supported in visual studio currently
 #        Mezz_ThrowOnSingletonFetch         - When retrieving an invalid Singleton, should an exception be thrown, defaults to false.
 #
@@ -77,7 +78,7 @@
 # Here are some more values that can be used when creating cmake scripts that are indirectly
 # set and should not be directly passed as cmake values
 #        BuildPlatform                      - A string that Contains either "windows", "linux", or "macosx" at the time of this writing. This directly corresponds to the folders names in the Mezzanine engine repository.
-#        CommonBuildFlags                   - A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Mezz_Debug's and Mezz_Profile's settings.
+#        CommonBuildFlags                   - A listing of all the currently set build flags to pass to the compiler at compile time. This is the mechanism that enforces Mezz_BuildTypeDebug's and Mezz_Profile's settings.
 #        DynamicLibPrefix                   - This is a string that is required by a given platform to begin the filename of shared libraries. One windows it is "" on Linux/Unix it is "lib"
 #        DynamicLibSuffix                   - This is a string that is required by a given platform to end the filename of shared libraries. One windows it is ".dll" on Linux/Unix it is ".so"
 #        LuaLinkName                        - This is the name that of the actual compiled lua library, it will be blank if lua is not to be linked
@@ -155,20 +156,69 @@ endif(MSVC)
 
 
 ###############################################################################
-# Check For the Mezz_Debug option and set values accordingly
-option (Mezz_ForceBuildType "If true forces CMAKE_BUILD_TYPE to match Mezz_Debug." ON)
-option (Mezz_Debug "Compile with no optimizations and debug symbols" OFF)
-if (Mezz_Debug)
-    message ( STATUS "${PROJECT_NAME} - Enabling Mezz_Debug Messages")
-    set(Mezz_Debug_Arguments "${CMAKE_CXX_FLAGS_DEBUG} ${D}MEZZDEBUG")
-    set(Mezz_Debug_Defined "MEZZDEBUG = 1")
-    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Set by MEZZDEBUG, see Mezz_ForceBuildType for details" FORCE)
-else (Mezz_Debug)
-    message ("${PROJECT_NAME} - Disabling Mezz_Debug Messages")
-    set (Mezz_Debug_Arguments "${D}MEZZDEBUG_undefined")
-    set (Mezz_Debug_Defined "MEZZDEBUG_undefined")
-    set(CMAKE_BUILD_TYPE Release CACHE STRING "Set by MEZZDEBUG, see Mezz_ForceBuildType for details" FORCE)
-endif (Mezz_Debug)
+# Check For the Mezzanine Build Type options and set values accordingly
+option (Mezz_BuildTypeDebug "Compile with debug symbols, Cannot be used with Mezz_BuildTypeSmall" OFF)
+option (Mezz_BuildTypeRelease "Compile Optimized for PC release, Cannot be used with Mezz_BuildTypeSmall" OFF)
+option (Mezz_BuildTypeSmall "Compile Optimized for Minimal size, Cannot be used with Mezz_BuildTypeDebug or Mezz_BuildTypeRelease" OFF)
+
+if(Mezz_BuildTypeDebug)
+    if(Mezz_BuildTypeSmall)
+        message(FATAL_ERROR "Mezz_BuildTypeDebug and Mezz_BuildTypeSmall cannot be used together")
+    endif(Mezz_BuildTypeSmall)
+    if(Mezz_BuildTypeRelease)
+        message( STATUS "${PROJECT_NAME} - Enabling Mezz_BuildTypeDebug and Mezz_BuildTypeRelease; Disabling Mezz_BuildTypeSmall.")
+        set(Mezz_BuildTypeDebug_Arguments "${D}MEZZDEBUG")
+        set(Mezz_BuildTypeRelease_Arguments "${D}MEZZRELEASE")
+        set(Mezz_BuildTypeSmall_Arguments "${D}MEZZSMALL_undefined")
+        set(Mezz_BuildTypeDebug_Defined "MEZZDEBUG = 1")
+        set(Mezz_BuildTypeRelease_Defined "MEZZRELEASE = 1")
+        set(Mezz_BuildTypeSmall_Defined "MEZZSMALL_undefined")
+        set(CMAKE_BUILD_TYPE RelWithDebInfo CACHE STRING "Set by Mezz_BuildTypeDebug and Mezz_BuildTypeRelease" FORCE)
+    else(Mezz_BuildTypeRelease)
+        message( STATUS "${PROJECT_NAME} - Enabling Mezz_BuildTypeDebug; Disabling Mezz_BuildTypeRelease and Mezz_BuildTypeSmall")
+        set(Mezz_BuildTypeDebug_Arguments "${D}MEZZDEBUG")
+        set(Mezz_BuildTypeRelease_Arguments "${D}MEZZRELEASE_undefined")
+        set(Mezz_BuildTypeSmall_Arguments "${D}MEZZSMALL_undefined")
+        set(Mezz_BuildTypeDebug_Defined "MEZZDEBUG = 1")
+        set(Mezz_BuildTypeRelease_Defined "MEZZRELEASE_undefined")
+        set(Mezz_BuildTypeSmall_Defined "MEZZSMALL_undefined")
+        set(CMAKE_BUILD_TYPE Debug CACHE STRING "Set by Mezz_BuildTypeDebug" FORCE)
+    endif(Mezz_BuildTypeRelease)
+else(Mezz_BuildTypeDebug)
+    if(Mezz_BuildTypeRelease)
+        if(Mezz_BuildTypeSmall)
+            message(FATAL_ERROR "Mezz_BuildTypeRelease and Mezz_BuildTypeSmall cannot be used together")
+        endif(Mezz_BuildTypeSmall)
+        message( STATUS "${PROJECT_NAME} - Enabling Mezz_BuildTypeRelease; Disabling Mezz_BuildTypeDebug and Mezz_BuildTypeSmall.")
+        set(Mezz_BuildTypeDebug_Arguments "${D}MEZZDEBUG_undefined")
+        set(Mezz_BuildTypeRelease_Arguments "${D}MEZZRELEASE")
+        set(Mezz_BuildTypeSmall_Arguments "${D}MEZZSMALL_undefined")
+        set(Mezz_BuildTypeDebug_Defined "MEZZDEBUG_undefined")
+        set(Mezz_BuildTypeRelease_Defined "MEZZRELEASE = 1")
+        set(Mezz_BuildTypeSmall_Defined "MEZZSMALL_undefined")
+        set(CMAKE_BUILD_TYPE Release CACHE STRING "Set by Mezz_BuildTypeRelease" FORCE)
+    else(Mezz_BuildTypeRelease)
+        if(Mezz_BuildTypeSmall)
+            message( STATUS "${PROJECT_NAME} - Enabling Mezz_BuildTypeSmall; Disabling Mezz_BuildTypeDebug and Mezz_BuildTypeRelease.")
+            set(Mezz_BuildTypeDebug_Arguments "${D}MEZZDEBUG_undefined")
+            set(Mezz_BuildTypeRelease_Arguments "${D}MEZZRELEASE_undefined")
+            set(Mezz_BuildTypeSmall_Arguments "${D}MEZZSMALL")
+            set(Mezz_BuildTypeDebug_Defined "MEZZDEBUG_undefined")
+            set(Mezz_BuildTypeRelease_Defined "MEZZRELEASE_undefined")
+            set(Mezz_BuildTypeSmall_Defined "MEZZSMALL = 1")
+            set(CMAKE_BUILD_TYPE MinSizeRel CACHE STRING "Set by Mezz_BuildTypeSmall" FORCE)
+        else(Mezz_BuildTypeSmall)
+            message( STATUS "${PROJECT_NAME} - No Build type selected Disabling Mezz_BuildTypeDebug, Mezz_BuildTypeRelease and Mezz_BuildTypeSmall.")
+            set(Mezz_BuildTypeDebug_Arguments "${D}MEZZDEBUG_undefined")
+            set(Mezz_BuildTypeRelease_Arguments "${D}MEZZRELEASE_undefined")
+            set(Mezz_BuildTypeSmall_Arguments "${D}MEZZSMALL_undefined")
+            set(Mezz_BuildTypeDebug_Defined "MEZZDEBUG_undefined")
+            set(Mezz_BuildTypeRelease_Defined "MEZZRELEASE_undefined")
+            set(Mezz_BuildTypeSmall_Defined "MEZZSMALL_undefined")
+            set(CMAKE_BUILD_TYPE " " CACHE STRING "Set by default" FORCE)
+        endif(Mezz_BuildTypeSmall)
+    endif(Mezz_BuildTypeRelease)
+endif(Mezz_BuildTypeDebug)
 
 ###############################################################################
 # Now that we know our build type better, configure our library postfix.
@@ -327,17 +377,17 @@ else(${OGRE_BUILD_RENDERSYSTEM_GLES2})
     set(Ogre_Arguments ${Ogre_Arguments} "${D}MEZZ_BUILD_OPENGLES2_SUPPORT_undefined")
 endif(${OGRE_BUILD_RENDERSYSTEM_GLES2})
 
-if(${Mezz_Debug})
+if(${Mezz_BuildTypeDebug})
     message ( STATUS "${PROJECT_NAME} - Will we use Ogre Debug libraries")
     #set(OgreLinkName OgreMain_d)
     #set(OgresD _d)
     set(OgreLinkName OgreMain)
     set(OgresD "")
-else(${Mezz_Debug})
+else(${Mezz_BuildTypeDebug})
     message ( STATUS "${PROJECT_NAME} - Will we use Ogre Release libraries")
     set(OgreLinkName OgreMain)
     set(OgresD "")
-endif(${Mezz_Debug})
+endif(${Mezz_BuildTypeDebug})
 
 #This must be set manually each time ogre is upgraded.
 set(Mezz_UseOgreVersion 1.8.1 CACHE STRING "The version of the ogre libraries to link against")
@@ -400,7 +450,7 @@ set(SDLLibraryNames
 
 ###############################################################################
 # Perform Common Tasks for build options and configuration.
-set(CommonBuildFlags "${Mezz_Debug_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
+set(CommonBuildFlags "${Mezz_BuildTypeDebug_Arguments} ${Mezz_BuildTypeRelease_Arguments} ${Mezz_BuildTypeSmall_Arguments} ${Mezz_Profile_Arguments} ${Mezz_Network_Arguments} ${Mezz_Lua51_Arguments} ${Mezz_ThrowOnSingletonFetch_Arguments} ${Ogre_Arguments} ${FPIC}")
 #message(FATAL_ERROR ${CommonBuildFlags})
 
 ###############################################################################
@@ -418,7 +468,7 @@ Message(STATUS "Finishing Subproject Configuration.")
 mark_as_advanced( FORCE
 
     # Mezzanine options
-    Mezz_ForceBuildType Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
+    Mezz_UseOgreVersion Mezz_Profile Mezz_ThrowOnSingletonFetch
 
     # Misc Options
     CMAKE_BACKWARDS_COMPATIBILITY CMAKE_BUILD_TYPE CMAKE_CODEBLOCKS_EXECUTABLE CMAKE_INSTALL_PREFIX CMAKE_DEBUG_POSTFIX CMAKE_GNUtoMS

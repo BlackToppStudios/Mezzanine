@@ -285,8 +285,6 @@ namespace Mezzanine
 
         if( InputManager::SingletonValid() )
             InputManager::GetSingletonPtr()->ReleaseAllControllers();
-
-        SDL_Quit();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

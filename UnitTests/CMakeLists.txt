@@ -101,7 +101,7 @@ endforeach(CurrentTest ${FoundTests})
 
 message(STATUS "Generating Test Instantiation Code: ")
 foreach(CurrentTest ${FoundTests})
-    list(APPEND CppInstantiations "\\ ${TargetName}\\ ${TargetName}Instance|")
+    list(APPEND CppInstantiations " ${TargetName} ${TargetName}Instance|")
 endforeach(CurrentTest ${FoundTests})
 message(STATUS "   ${CppInstantiations}")
 
@@ -114,10 +114,10 @@ message(STATUS "   ${CppIncludes}")
 #add_definitions( ${D}"${CppIncludes}" "${D}${CppInstantiations}")
 #add_definitions(${D}TEST="${CppInstantiations}")
 #add_definitions(${D}TEST="abc asd")
-message(${D}TEST="${CppInstantiations}")
+#message(${D}TEST="${CppInstantiations}")
 
-add_definitions(${D}TEST="abc asd")
-message(${D}TEST="abc asd")
+#add_definitions(${D}TEST="abc asd")
+#message(${D}TEST="abc asd")
 
 
 ###############################################################################
