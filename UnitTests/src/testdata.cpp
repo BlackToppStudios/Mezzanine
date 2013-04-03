@@ -37,30 +37,26 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _consolestringmanipulation_h
-#define _consolestringmanipulation_h
+#ifndef _testdata_cpp
+#define _testdata_cpp
 
 /// @file
-/// @brief Some string manipulation functions geared towards console output for use in the Unit Tests.
+/// @brief The definition of the string manipulation functions the unit tests use
 
 #include "mezzanine.h"
+
+#include "testdata.h"
+
+using namespace Mezzanine;
 
 namespace Mezzanine
 {
     namespace Testing
     {
-        /// @brief Take the whitespace off the end of a String
-        /// @param t The Text to clean up.
-        /// @param If " asdf " is passed " asdf" is returned. Also removes carriage returns, newlines and tabs. Does not use the locale.
-        Mezzanine::String rtrim(const Mezzanine::String &t);
 
-        /// @brief Creates some blank spaces, useful for controlling the vertical location of console text.
-        /// @param Leader The string on the beginning of the line.
-        /// @param Column The desired column that the padding should lead toward
-        /// @return If "asdf" and 6 are passed this will return "  " (Two spaces).
-        Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column);
 
     }// Testing
 }// Mezzanine
 
 #endif
+_testdata_cpp

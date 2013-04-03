@@ -52,29 +52,7 @@
 #include <mezzanine.h> // For String and all of Mezzanine
 
 #include "testenumerations.h"
-
-
-Mezzanine::String rtrim(const Mezzanine::String &t)
-{
-    Mezzanine::String str = t;
-    size_t found;
-    found = str.find_last_not_of(" \n\r\t");
-    if (found != Mezzanine::String::npos)
-        { str.erase(found+1); }
-    else
-        { str.clear(); }            // str is all whitespace
-
-    return str;
-}
-
-// Used for padding spaces, after a piece of leader text, such that it always ends at teh expected colum
-Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column)
-{
-    Mezzanine::String Spaces(" ");
-    for (unsigned int c=Leader.length(); c<Column;++c)
-        { Spaces+=" "; }
-    return Spaces;
-}
+#include "consolestringmanipulation.h"
 
 // the return type of tests
 typedef std::pair<Mezzanine::String,TestResult> TestData;
@@ -288,15 +266,6 @@ TestResult GetTestAnswer(Mezzanine::String Question)
     }
 
 }
-
-///Possible ways to exit the UnitTestGroup Program
-enum ExitCodes
-{
-    ExitSuccess             = 0,
-    ExitInvalidArguments    = 1
-};
-
-
 
 int Usage(Mezzanine::String ThisName)
 {

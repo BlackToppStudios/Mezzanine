@@ -40,6 +40,9 @@
 #ifndef _unittestenumerations_cpp
 #define _unittestenumerations_cpp
 
+/// @file
+/// @brief The implmentation of a few functions used with the enumuration in the unit tests
+
 #include "mezzanine.h"
 
 #include "testenumerations.h"

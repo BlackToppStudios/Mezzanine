@@ -40,15 +40,40 @@
 #ifndef _consolestringmanipulation_cpp
 #define _consolestringmanipulation_cpp
 
+/// @file
+/// @brief The implementation of the string manipulation functions the unit tests use
+
 #include "mezzanine.h"
 
 #include "testenumerations.h"
+
+using namespace Mezzanine;
 
 namespace Mezzanine
 {
     namespace Testing
     {
+        String rtrim(const String &t)
+        {
+            String str = t;
+            size_t found;
+            found = str.find_last_not_of(" \n\r\t");
+            if (found != String::npos)
+                { str.erase(found+1); }
+            else
+                { str.clear(); }            // str is all whitespace
 
+            return str;
+        }
+
+        // Used for padding spaces, after a piece of leader text, such that it always ends at teh expected colum
+        String MakePadding(String Leader, unsigned int Column)
+        {
+            String Spaces(" ");
+            for (unsigned int c=Leader.length(); c<Column;++c)
+                { Spaces+=" "; }
+            return Spaces;
+        }
 
 
     }// Testing

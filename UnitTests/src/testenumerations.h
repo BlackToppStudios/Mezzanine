@@ -40,12 +40,25 @@
 #ifndef _unittestenumerations_h
 #define _unittestenumerations_h
 
+/// @file
+/// @brief Enumerations and constant values associated with the Unit tests
+
 #include "mezzanine.h"
 
 namespace Mezzanine
 {
     namespace Testing
     {
+        /// @brief Possible ways to exit the UnitTestGroup Program
+        enum ExitCodes
+        {
+            ExitSuccess             = 0,    ///< Normal exit all tests skipped or better
+            ExitInvalidArguments    = 1,    ///< At least some invalid args were passed on the command line
+            ExitFailure             = 2     ///< At least one test return worse then skipped
+        };
+
+
+
         /// @brief Return values from tests.
         /// @details These are loosely order from best to worse, in terms of
         /// what we want to see from our tests. This takes the midset that
