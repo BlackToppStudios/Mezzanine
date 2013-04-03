@@ -109,10 +109,10 @@ configure_file( "${${PROJECT_NAME}_ROOT_DIR}/autodetect.h.in"  "${${PROJECT_NAME
 set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_BINARY_DIR}autodetect.h"
     "${${PROJECT_NAME}_SRC_DIR}/main.h"
+    "${${PROJECT_NAME}_SRC_DIR}/testenumerations.h"
     "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
     ${${PROJECT_NAME}_test}
 )
-
 
 ###############################################################################
 # Functions to use to copy files at build time

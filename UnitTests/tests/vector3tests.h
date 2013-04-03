@@ -51,6 +51,9 @@ using namespace Mezzanine;
 class vector3tests : public UnitTestGroup
 {
     public:
+        virtual String Name()
+            { return String("vector"); }
+
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)

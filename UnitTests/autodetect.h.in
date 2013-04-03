@@ -47,11 +47,14 @@
 #include <map>
 #include "main.h"
 
+${CppIncludes}
+
 /// @brief The list of all the testgroups
-std::map<Mezzanine::String, UnitTestGroup*> TestGroups;
+class GlobalCoreTestGroup : public CoreTestGroup
+{
+    public:
+} TestGroups;
 
-//$ {CppIncludes}
-
-//$ {CppInstantiations}
+${CppInstantiations}
 
 #endif

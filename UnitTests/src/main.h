@@ -153,13 +153,12 @@ TestData StringToTestData(Mezzanine::String Line)
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
 
-
 class UnitTestGroup;
 
 typedef std::map<Mezzanine::String, UnitTestGroup*> CoreTestGroup;
 
 // in autodetect.h
-extern CoreTestGroup TestGroups;
+extern GlobalCoreTestGroup TestGroups;
 
 class UnitTestGroup : public TestDataStorage
 {
@@ -290,7 +289,7 @@ class UnitTestGroup : public TestDataStorage
             return Condition;
         }
 
-        //virtual String Name() = 0;
+        virtual Mezzanine::String Name() = 0;
 };
 
 
