@@ -51,35 +51,8 @@
 
 #include <mezzanine.h> // For String and all of Mezzanine
 
+#include "testenumerations.h"
 
-
-
-TestResult StringToTestResult(Mezzanine::String Text)
-{
-    if(Text.size()==0)
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from empty String"); }
-
-    switch(Text.at(0))
-    {
-        case 'S':
-            if ( "Success" == Text )
-                return Success;
-            return Skipped;
-        case 'C':
-            return Cancelled;
-        case 'I':
-            return Inconclusive;
-        case 'U':
-            return Unknown;
-        case 'F':
-            return Failed;
-        case 'N':
-            return NotApplicable;
-        default:
-            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text " + Text); }
-    }
-    return Unknown;
-}
 
 Mezzanine::String rtrim(const Mezzanine::String &t)
 {
