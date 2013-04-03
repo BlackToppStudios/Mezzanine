@@ -52,41 +52,7 @@
 #include <mezzanine.h> // For String and all of Mezzanine
 
 
-/// @brief
-enum TestResult
-{
-    Success         = 0,        // test was ran and appeared to work
-    Skipped         = 1,        // Test was simply not ran
-    Cancelled       = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
-    Inconclusive    = 3,        // if a user answers that they don't know what happened in a test that involved interaction, it likely worked, but we can't be sure
-    Failed          = 4,        // Known failure
-    Unknown         = 5,        // Since we don't know what happened this is the worst kind of failure
-    NotApplicable   = 6         // This is not even a kind of failure, This is used to when referencing a test, so if this winds up coming out of a test, then something has failed
-};
 
-// convert the above enum to a Striong that matchins the in-code name.
-Mezzanine::String TestResultToString(TestResult Convertable)
-{
-    switch(Convertable)
-    {
-        case Success:
-            return "Success";
-        case Skipped:
-            return "Skipped";
-        case Cancelled:
-            return "Cancelled";
-        case Inconclusive:
-            return "Inconclusive";
-        case Failed:
-            return "Failed";
-        case Unknown:
-            return "Unknown";
-        case NotApplicable:
-            return "N/A";
-        default:
-            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)); }
-    }
-}
 
 TestResult StringToTestResult(Mezzanine::String Text)
 {
