@@ -65,7 +65,7 @@ set (${PROJECT_NAME}_MEZZANINE_BIN_DIR "${Mezzanine_BINARY_DIR}/bin/")
 message ( STATUS "Mezzanine Unit Tests Binaries: ${${PROJECT_NAME}_MEZZANINE_BIN_DIR}")
 
 set (${PROJECT_NAME}_MEZZANINE_BIN_SRC "${${PROJECT_NAME}_MEZZANINE_DIR}src/")
-message ( STATUS "Mezzanine Unit Tests source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
+message ( STATUS "Generated Mezzanine Unit Tests source and headers: ${${PROJECT_NAME}_MEZZANINE_BIN_SRC}")
 
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
@@ -96,18 +96,18 @@ endforeach(CurrentTest ${FoundTests})
 
 message(STATUS "Generating Test Instantiation and include Code: ")
 foreach(CurrentTest ${FoundTests})
-    set(CppInstantiations "${CppInstantiations} Instant(${CurrentTest})")
+
     #set(CppIncludes "${CppIncludes} Include(${CurrentTest})")
-    set(CppIncludes "${CppIncludes} \\#include Q${CurrentTest} NL")
+    set(CppIncludes "${CppIncludes}
+#include \"${CurrentTest}.h\" ")
+    set(CppInstantiations "${CppInstantiations}
+${CurrentTest} ${CurrentTest}Implementation(&TestGroups);")
 endforeach(CurrentTest ${FoundTests})
 
-message(${D}TESTINT="${CppInstantiations}")
-add_definitions(${D}TESTINT="${CppInstantiations}")
-message(${D}TESTINC="${CppIncludes}")
-add_definitions(${D}TESTINC="${CppIncludes}")
+configure_file( "${${PROJECT_NAME}_ROOT_DIR}/autodetect.h.in"  "${${PROJECT_NAME}_BINARY_DIR}autodetect.h")
 
 set(${PROJECT_NAME}_sources
-    "${${PROJECT_NAME}_SRC_DIR}/autodetect.h"
+    "${${PROJECT_NAME}_BINARY_DIR}autodetect.h"
     "${${PROJECT_NAME}_SRC_DIR}/main.h"
     "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
     ${${PROJECT_NAME}_test}
@@ -156,7 +156,7 @@ endfunction(CopyFilesFromMezzanineDuringBuildAndRename)
 ##############################################################################
 # Accessing correct headers
 
-include_directories( ${${PROJECT_NAME}_SRC_DIR} ${${PROJECT_NAME}_TEST_DIR}
+include_directories( ${${PROJECT_NAME}_SRC_DIR} ${${PROJECT_NAME}_TEST_DIR} ${${PROJECT_NAME}_BINARY_DIR}
     "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src"
     "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/src/LinearMath"
     "${Mezzanine_LIBINCLUDE_DIR}common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"

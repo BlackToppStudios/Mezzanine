@@ -48,7 +48,7 @@
 
 using namespace Mezzanine;
 
-class Vector3Tests : public UnitTestGroup
+class vector3tests : public UnitTestGroup
 {
     public:
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)

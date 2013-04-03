@@ -153,6 +153,14 @@ TestData StringToTestData(Mezzanine::String Line)
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
 
+
+class UnitTestGroup;
+
+typedef std::map<Mezzanine::String, UnitTestGroup*> CoreTestGroup;
+
+// in autodetect.h
+extern CoreTestGroup TestGroups;
+
 class UnitTestGroup : public TestDataStorage
 {
     protected:
@@ -281,10 +289,11 @@ class UnitTestGroup : public TestDataStorage
             }
             return Condition;
         }
+
+        //virtual String Name() = 0;
 };
 
-// The list of all the testgroups
-std::map<Mezzanine::String, UnitTestGroup*> TestGroups;
+
 
 // Drops a String to all lower case, changes the string passed in
 char* AllLower(char* StringToConvert)
@@ -348,6 +357,8 @@ enum ExitCodes
     ExitSuccess             = 0,
     ExitInvalidArguments    = 1
 };
+
+
 
 int Usage(Mezzanine::String ThisName)
 {

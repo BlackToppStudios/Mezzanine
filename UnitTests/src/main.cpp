@@ -1,4 +1,4 @@
-//© Copyright 2010 - 2012 BlackTopp Studios Inc.
+//© Copyright 2010 - 2013 BlackTopp Studios Inc.
 /* This file is part of The Mezzanine Engine.
 
     The Mezzanine Engine is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@
 #include "main.h"
 
 // 4. When adding new tests - Add the new file to the includes in unittests/main.cpp
-#include "actortests.h"
+/*#include "actortests.h"
 #include "collisionshapetests.h"
 #include "compilerflagtests.h"
 #include "constrainttests.h"
@@ -57,7 +57,7 @@
 #include "vector2tests.h"
 #include "vector3tests.h"
 #include "worldnodetests.h"
-
+*/
 #include <cstdlib> // For system
 
 static const String MemSpaceArg("inthismemoryspacetheworkshallbedone");
@@ -159,7 +159,7 @@ int main (int argc, char** argv)
     // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here too
 
     // 5. When adding new tests - Add the line to create a new UnitTest in the TestGroup Container in the main function
-    TestGroups["actor"] = new ActorTests;
+    /*TestGroups["actor"] = new ActorTests;
     TestGroups["collisionshape"] = new CollisionShapeTests;
     TestGroups["compilerflag"] = new CompilerFlagTests;
     TestGroups["constraint"] = new ConstraintTests;
@@ -174,6 +174,7 @@ int main (int argc, char** argv)
     TestGroups["vector2"] = new Vector2Tests;
     TestGroups["vector3"] = new Vector3Tests;
     TestGroups["worldnode"] = new WorldNodeTests;
+    */
 
     // Display everything, or just a Summary or neither? Should this process do the work, or should we spawn a new process.
     bool FullDisplay = true, SummaryDisplay = true;
