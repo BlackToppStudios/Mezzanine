@@ -73,8 +73,9 @@ namespace Mezzanine
             /// as expected.  If you have only one window, then it just stays pointing to that window.  If you have two then it will stay on the first
             /// window until you mouse over the second, even if there is a space between the windows.  This should be updated somehow so that we can set
             /// "HoveredWindow" to NULL when none of our windows are being hovered.
-            // First do some setup.  Get the window and zero out button presses(Key::Up isn't reported).
+            // First do some setup.  Get the window and save our position.
             SDL_Window* Focus = SDL_GetMouseFocus();
+            Vector2 OldPosition = this->Position;
             // Now do the actual updating.
             for( Whole X = 0 ; X < Codes.size() ; ++X )
             {
@@ -103,14 +104,14 @@ namespace Mezzanine
                     {
                         Position.X = (Real)(CurrCode.GetMetaValue());
                     }
-                    else if( Input::MOUSEVERTICAL == CurrCode.GetCode() )
+                    /*else if( Input::MOUSEVERTICAL == CurrCode.GetCode() )
                     {
                         Delta.Y = (Real)(CurrCode.GetMetaValue());
                     }
                     else if( Input::MOUSEHORIZONTAL == CurrCode.GetCode() )
                     {
                         Delta.X = (Real)(CurrCode.GetMetaValue());
-                    }
+                    }*/
                 }
             }
             if( NULL != Focus )
@@ -130,6 +131,7 @@ namespace Mezzanine
                 Position.SetIdentity();
                 Delta.SetIdentity();
             }
+            this->Delta = this->Position - OldPosition;
         }
 
         ///////////////////////////////////////////////////////////////////////////////
