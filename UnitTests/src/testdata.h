@@ -51,6 +51,18 @@ namespace Mezzanine
 {
     namespace Testing
     {
+        /// @brief The name of a test paired with the Results of a test.
+        typedef std::pair<Mezzanine::String,TestResult> TestData;
+
+        /// @todo grok this so it can be documented.
+        TestData StringToTestData(Mezzanine::String Line)
+        {
+            TestData Results;
+            size_t LastSpace=Line.rfind(' ');
+            Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
+            Results.first=rtrim(Line.substr(0,LastSpace));
+            return Results;
+        }
 
     }// Testing
 }// Mezzanine

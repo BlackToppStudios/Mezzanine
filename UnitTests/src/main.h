@@ -55,16 +55,9 @@
 #include "consolestringmanipulation.h"
 
 // the return type of tests
-typedef std::pair<Mezzanine::String,TestResult> TestData;
 
-TestData StringToTestData(Mezzanine::String Line)
-{
-    TestData Results;
-    size_t LastSpace=Line.rfind(' ');
-    Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
-    Results.first=rtrim(Line.substr(0,LastSpace));
-    return Results;
-}
+
+
 
 // The classes for Tests themselves
 // inherits from std::map to make storage location of of the TestData obvious
