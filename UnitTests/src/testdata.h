@@ -85,109 +85,50 @@ namespace Mezzanine
 
                 /// @brief This is expected to run all the tests that meet the criteria passed in.
                 /// @details All test results should be inserted using AddTestResult to allow the returning of results.
+                /// @param RunAutomaticTests True if the automatic tests should be run false if they should
+                /// @param RunInteractiveTests True if the interactive tests should run false otherwise/.RunInteractiveTests
+                /// @note One of two methods that must be implmented on a UnitTestGroup
                 virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests) = 0;
 
-                // It is expected that tests will be inserted using these, this will automate tracking of the most and least successful tests
-                void AddTestResult(TestData FreshMeat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
-                {
-                    bool Added=false;
+                /// @brief Get Name of this UnitTestGroup
+                /// @return The string that must be type at the command line to run this testgroup, should be all lowercase.
+                /// @note One of two methods that must be implmented on a UnitTestGroup
+                virtual Mezzanine::String Name() = 0;
 
-                    TestDataStorage::iterator PreExisting = this->find(FreshMeat.first);
-                    if(this->end()!=PreExisting)
-                    {
-                        switch(Behavior)
-                        {
-                            case OverWriteIfLessSuccessful:
-                                if (PreExisting->second <= FreshMeat.second)
-                                    { PreExisting->second = FreshMeat.second; Added=true; }
-                                break;
-                            case OverWrite:
-                                PreExisting->second = FreshMeat.second;
-                                Added=true;
-                                break;
-                            case OverWriteIfMoreSuccessful:
-                                if (PreExisting->second >= FreshMeat.second)
-                                    { PreExisting->second = FreshMeat.second; Added=true; }
-                                break;
-                            case DoNotOverWrite:
-                                break;
-                        }
-                    }else{
-                        this->insert(FreshMeat);
-                        Added=true;
-                    }
+                /// @brief Its expected that tests will be inserted using this
+                /// @details This will automate tracking of the most and least successful tests
+                /// @param FreshMeat The New test results and name
+                /// @param Behavior An OverWriteResults that defines the overwirte behavior of this function, defaults to OverWriteIfLessSuccessful
+                void AddTestResult(TestData FreshMeat, OverWriteResults Behavior=OverWriteIfLessSuccessful);
 
-                    if (Added)
-                    {
-                        if(FreshMeat.first.length()>LongestNameLength)
-                            { LongestNameLength=FreshMeat.first.length(); }
-                    }
-                }
+                /// @brief Add a test results without having to to construct a TestData first
+                /// @details It is expected that every member of a class in Mezzanine will be tested and its full name, include scoping operators, namespace,
+                /// class and function name will here (include argnames if required). Functions outside of classes should use their namespace, functionname
+                /// and arguments if required as the testname.
+                /// Example TestNames (The Fresh parameter)
+                ///      "Mezzanine::Vector2::Vector2(Real,Real)"     //Test of the Vector2 Constructor that accepts 2 reals
+                ///      "Mezzanine::Vector2::operator+"              //Test of only operator+ on Vector2
+                ///      "operator<<(ostream,Vector2)"           //Test of streaming operator for vector2 in root namespace
+                /// @param Fresh The name of the Test
+                /// @param Meat The actual TestResult
+                /// @param Behavior An OverWriteResults that defines the overwirte behavior of this function, defaults to OverWriteIfLessSuccessful
+                void AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful);
 
-                // It is expected that every member of a class in Mezzanine will be tested and its full name, include scoping operators, namespace,
-                // class and function name will here (include argnames if required). Functions outside of classes should use their namespace, functionname
-                // and arguments if required as the testname.
-                // Example TestNames (The Fresh parameter)
-                //      "Mezzanine::Vector2::Vector2(Real,Real)"     //Test of the Vector2 Constructor that accepts 2 reals
-                //      "Mezzanine::Vector2::operator+"              //Test of only operator+ on Vector2
-                //      "operator<<(ostream,Vector2)"           //Test of streaming operator for vector2 in root namespace
-                void AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
-                    { AddTestResult(TestData(Fresh,Meat),Behavior); }
+                /// @brief Add all the items in another UnitTestGroup to this one
+                /// @paramm rhs The item on the right hand side.
+                const UnitTestGroup& operator+=(const UnitTestGroup& rhs);
 
-                // make it a little easier to aggregate answers in one place
-                const UnitTestGroup& operator+=(const UnitTestGroup& rhs)
-                {
-                    if(rhs.LongestNameLength>LongestNameLength)
-                        { LongestNameLength=rhs.LongestNameLength; }
+                /// @brief Print the results or save them to a file.
+                /// @param Output the stream to send the results to.
+                /// @param Summary Print Statistics at the end, not needed when sending results between processes. Defaults to true/enabled.
+                /// @param FullOutput Sometimes the user does not want to see each test results and just wants a little blurb. Defaults to true/enabled.
+                /// @param HeaderOutput makes the output a little more understandif it is short or needs to be copied into a spreadsheet. Defaults to true/enabled.
+                virtual void DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true);
 
-                    insert(rhs.begin(),rhs.end());
-                }
-
-                virtual void DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true)
-                {
-                    std::vector<unsigned int> TestCounts; // This will store the counts of the Sucesses, failures, etc...
-                    TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0); //Fill with the exact amount of 0s
-
-                    if(FullOutput && HeaderOutput) // No point in displaying the header without the other content.
-                    {
-                        Mezzanine::String TestName("Test Name");
-                        Output << std::endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << std::endl;
-                    }
-
-                    for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
-                    {
-                        if(FullOutput)
-                        {
-                            Output << Iter->first << MakePadding(Iter->first, LongestNameLength+1) << TestResultToString(Iter->second) << std::endl;
-                        }
-                        TestCounts.at((unsigned int)Iter->second)++; // Count this test result
-                    }
-
-                    if(Summary)
-                    {
-                        Output << std::endl << " Results Summary:" << std::endl;
-                        for(unsigned int c=0; c<TestCounts.size();++c)
-                        {
-                            Mezzanine::String ResultName(TestResultToString((TestResult)c));
-                            Output << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << std::endl;
-                        }
-                        Output << std::endl;
-                    }
-                }
-
-
-                virtual bool AddSuccessFromBool(Mezzanine::String TestName, bool Condition)
-                {
-                    if(Condition)
-                    {
-                        AddTestResult(TestName, Success, UnitTestGroup::OverWrite);
-                    }else{
-                        AddTestResult(TestName, Failed, UnitTestGroup::OverWrite);
-                    }
-                    return Condition;
-                }
-
-
+                /// @brief Convert a Bool to an added test
+                /// @param TestName The name of the Test
+                /// @param Condition if false converted to Failed and if true converted Success
+                virtual bool AddSuccessFromBool(Mezzanine::String TestName, bool Condition);
         };
 
 
