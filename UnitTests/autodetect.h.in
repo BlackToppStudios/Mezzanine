@@ -45,6 +45,7 @@
 /// Modify autodetect.h.in to make changes to this
 
 #include <map>
+
 #include "main.h"
 
 // Automatically generated test inclusion ${CppIncludes}

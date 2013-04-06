@@ -46,6 +46,7 @@
 #include "mezzanine.h"
 
 #include "testdata.h"
+#include "consolestringmanipulation.h"
 
 using namespace Mezzanine;
 
@@ -53,7 +54,7 @@ namespace Mezzanine
 {
     namespace Testing
     {
-        int PrintList(const CoreTestGroup& TestGroups)
+        int PrintList(CoreTestGroup& TestGroups)
         {
             for(CoreTestGroup::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
                 { std::cout << Iter->first << std::endl; }
@@ -109,10 +110,10 @@ namespace Mezzanine
             }
         }
 
-        void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
+        void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior)
             { AddTestResult(TestData(Fresh,Meat),Behavior); }
 
-        const UnitTestGroup::UnitTestGroup& operator+=(const UnitTestGroup& rhs)
+        const UnitTestGroup& UnitTestGroup::operator+=(const UnitTestGroup& rhs)
         {
             if(rhs.LongestNameLength>LongestNameLength)
                 { LongestNameLength=rhs.LongestNameLength; }
@@ -120,7 +121,7 @@ namespace Mezzanine
             insert(rhs.begin(),rhs.end());
         }
 
-        void UnitTestGroup::DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true)
+        void UnitTestGroup::DisplayResults(std::ostream& Output, bool Summary, bool FullOutput, bool HeaderOutput)
         {
             std::vector<unsigned int> TestCounts; // This will store the counts of the Sucesses, failures, etc...
             TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0); //Fill with the exact amount of 0s
@@ -156,9 +157,9 @@ namespace Mezzanine
         {
             if(Condition)
             {
-                AddTestResult(TestName, Success, UnitTestGroup::OverWrite);
+                AddTestResult(TestName, Success, OverWrite);
             }else{
-                AddTestResult(TestName, Failed, UnitTestGroup::OverWrite);
+                AddTestResult(TestName, Failed, OverWrite);
             }
             return Condition;
         }

@@ -51,15 +51,17 @@
 
 #include <mezzanine.h> // For String and all of Mezzanine
 
-#include "testenumerations.h"
+
+#include "consolelogic.h"
 #include "consolestringmanipulation.h"
 #include "testdata.h"
-
+#include "testenumerations.h"
 
 
 /////////////////////////////////////////////////////////////////////////////////////
 //This next block of code creates a minimal engine environment for testing managers and other ngine components
 using namespace Mezzanine;
+using namespace Mezzanine::Testing;
 
 Entresol* TheEntresol;
 Mezzanine::UI::Caption *TheTextW1;

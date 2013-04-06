@@ -66,7 +66,7 @@ namespace Mezzanine
         /// @brief Print all the groups that exist in a given CoreTestGroup
         /// @param TestGroups The group whose constents names with be printed
         /// @return ExitSuccess on success.
-        int PrintList(const CoreTestGroup& TestGroups);
+        int PrintList(CoreTestGroup &TestGroups);
 
         /// @brief Trim the whitespace from a line of text and try to interpret the remains as TestResults and a testname
         /// @param Line A line of Test that starts with whitespace, then a TestResult String, then has a whitesapce delimiter and a ends witht eh name of test.
