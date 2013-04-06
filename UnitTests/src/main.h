@@ -51,115 +51,24 @@
 
 #include <mezzanine.h> // For String and all of Mezzanine
 
-
-/// @brief
-enum TestResult
-{
-    Success         = 0,        // test was ran and appeared to work
-    Skipped         = 1,        // Test was simply not ran
-    Cancelled       = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
-    Inconclusive    = 3,        // if a user answers that they don't know what happened in a test that involved interaction, it likely worked, but we can't be sure
-    Failed          = 4,        // Known failure
-    Unknown         = 5,        // Since we don't know what happened this is the worst kind of failure
-    NotApplicable   = 6         // This is not even a kind of failure, This is used to when referencing a test, so if this winds up coming out of a test, then something has failed
-};
-
-// convert the above enum to a Striong that matchins the in-code name.
-Mezzanine::String TestResultToString(TestResult Convertable)
-{
-    switch(Convertable)
-    {
-        case Success:
-            return "Success";
-        case Skipped:
-            return "Skipped";
-        case Cancelled:
-            return "Cancelled";
-        case Inconclusive:
-            return "Inconclusive";
-        case Failed:
-            return "Failed";
-        case Unknown:
-            return "Unknown";
-        case NotApplicable:
-            return "N/A";
-        default:
-            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to String from TestResult " + Mezzanine::ToString(Convertable)); }
-    }
-}
-
-TestResult StringToTestResult(Mezzanine::String Text)
-{
-    if(Text.size()==0)
-        { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from empty String"); }
-
-    switch(Text.at(0))
-    {
-        case 'S':
-            if ( "Success" == Text )
-                return Success;
-            return Skipped;
-        case 'C':
-            return Cancelled;
-        case 'I':
-            return Inconclusive;
-        case 'U':
-            return Unknown;
-        case 'F':
-            return Failed;
-        case 'N':
-            return NotApplicable;
-        default:
-            { MEZZ_EXCEPTION(Mezzanine::Exception::INVALID_PARAMETERS_EXCEPTION,"Cannot convert to TestResult from text " + Text); }
-    }
-    return Unknown;
-}
-
-Mezzanine::String rtrim(const Mezzanine::String &t)
-{
-    Mezzanine::String str = t;
-    size_t found;
-    found = str.find_last_not_of(" \n\r\t");
-    if (found != Mezzanine::String::npos)
-        { str.erase(found+1); }
-    else
-        { str.clear(); }            // str is all whitespace
-
-    return str;
-}
-
-// Used for padding spaces, after a piece of leader text, such that it always ends at teh expected colum
-Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column)
-{
-    Mezzanine::String Spaces(" ");
-    for (unsigned int c=Leader.length(); c<Column;++c)
-        { Spaces+=" "; }
-    return Spaces;
-}
+#include "testenumerations.h"
+#include "consolestringmanipulation.h"
 
 // the return type of tests
-typedef std::pair<Mezzanine::String,TestResult> TestData;
 
-TestData StringToTestData(Mezzanine::String Line)
-{
-    TestData Results;
-    size_t LastSpace=Line.rfind(' ');
-    Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
-    Results.first=rtrim(Line.substr(0,LastSpace));
-    return Results;
-}
+
+
 
 // The classes for Tests themselves
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
-
 
 class UnitTestGroup;
 
 typedef std::map<Mezzanine::String, UnitTestGroup*> CoreTestGroup;
 
 // in autodetect.h
-extern CoreTestGroup TestGroups;
+extern GlobalCoreTestGroup TestGroups;
 
 class UnitTestGroup : public TestDataStorage
 {
@@ -290,7 +199,7 @@ class UnitTestGroup : public TestDataStorage
             return Condition;
         }
 
-        //virtual String Name() = 0;
+        virtual Mezzanine::String Name() = 0;
 };
 
 
@@ -350,15 +259,6 @@ TestResult GetTestAnswer(Mezzanine::String Question)
     }
 
 }
-
-///Possible ways to exit the UnitTestGroup Program
-enum ExitCodes
-{
-    ExitSuccess             = 0,
-    ExitInvalidArguments    = 1
-};
-
-
 
 int Usage(Mezzanine::String ThisName)
 {

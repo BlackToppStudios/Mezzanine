@@ -96,23 +96,31 @@ endforeach(CurrentTest ${FoundTests})
 
 message(STATUS "Generating Test Instantiation and include Code: ")
 foreach(CurrentTest ${FoundTests})
-
-    #set(CppIncludes "${CppIncludes} Include(${CurrentTest})")
     set(CppIncludes "${CppIncludes}
-#include \"${CurrentTest}.h\" ")
+    #include \"${CurrentTest}.h\" ")
+
     set(CppInstantiations "${CppInstantiations}
-${CurrentTest} ${CurrentTest}Implementation(&TestGroups);")
+    ${CurrentTest} ${CurrentTest}Implementation;")
+
+    set(CppNameRegistration "${CppNameRegistration}
+                this->operator[](${CurrentTest}Implementation.Name()) = &${CurrentTest}Implementation;")
 endforeach(CurrentTest ${FoundTests})
 
 configure_file( "${${PROJECT_NAME}_ROOT_DIR}/autodetect.h.in"  "${${PROJECT_NAME}_BINARY_DIR}autodetect.h")
 
 set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_BINARY_DIR}autodetect.h"
+    "${${PROJECT_NAME}_SRC_DIR}/consolestringmanipulation.h"
+    "${${PROJECT_NAME}_SRC_DIR}/consolestringmanipulation.cpp"
     "${${PROJECT_NAME}_SRC_DIR}/main.h"
     "${${PROJECT_NAME}_SRC_DIR}/main.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}/testdata.h"
+    "${${PROJECT_NAME}_SRC_DIR}/testdata.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}/testenumerations.h"
+    "${${PROJECT_NAME}_SRC_DIR}/testenumerations.cpp"
+
     ${${PROJECT_NAME}_test}
 )
-
 
 ###############################################################################
 # Functions to use to copy files at build time
