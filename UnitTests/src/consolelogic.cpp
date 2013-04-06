@@ -37,15 +37,15 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _testtools_cpp
-#define _testtools_cpp
+#ifndef _consolelogic_cpp
+#define _consolelogic_cpp
 
 /// @file
-/// @brief The implementation of a few function to help implement tests
+/// @brief The implementation of items important a commandline tool to work correctly without need to be available to test developers.
 
 #include "mezzanine.h"
 
-#include "testtools.h"
+#include "consolelogic.h"
 
 using namespace Mezzanine;
 
@@ -53,40 +53,32 @@ namespace Mezzanine
 {
     namespace Testing
     {
-        TestResult GetTestAnswer(Mezzanine::String Question)
+
+        int Usage(Mezzanine::String ThisName)
         {
-            Mezzanine::String Input;
-            char Answer;
-
-            while(true)
+            std::cout   << std::endl << "Usage: " << ThisName << " [help] [summary] [testlist] [interactive|automatic] [all] Test Group Names ..." << std::endl << std::endl
+                        << "All:         All test groups will be run." << std::endl
+                        << "Interactive: Only interactive tests will be performed on specified test groups." << std::endl
+                        << "Automatic:   Only automated tests will be performed on specified test groups." << std::endl
+                        //<< "Interactive and Automatic: All tests will be run on specificied test groups." << std::endl << std::endl
+                        << "Summary:     Only display a count of failures and successes" << std::endl
+                        << "testlist:    Output a list of all tests, one per line" << std::endl
+                        << "Help:        Display this message"<< std::endl << std::endl
+                        << "If only test group names are entered, then all tests in those groups are run." << std::endl
+                        << "This command is not case sensitive." << std::endl << std::endl
+                        << "Current Test Groups: " << std::endl;
+            Mezzanine::Whole c = 0;
+            for(std::map<Mezzanine::String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
             {
-                std::cout << Question;
-                getline(std::cin, Input);
-                std::stringstream InputStream(Input);
-                if (InputStream >> Answer)
-                {
-                    Answer=tolower(Answer);
-                    if (Answer=='t' || Answer=='y' || Answer=='f' || Answer=='n' || Answer=='c' || Answer=='u' || Answer=='i')
-                        { break; }
-                }
-
-                std::cout << std::endl << "Expected (T)rue/(Y)es for Success, (F)alse/(N)o for Failure," << std::endl << " (C)anceled to cancel this test, or (U)nsure/(I)nconclusive if you don't know." << std::endl << std::endl;
+                std::cout << "\t" << Iter->first << (Iter->first.size()<7?"\t":"") << " ";
+                ++c;        //enforce 4 names per line
+                if (4==c)
+                    { std::cout << std::endl; c=0; }
             }
+            std::cout << std::endl;
 
-            switch(Answer)
-            {
-                case 't': case 'y':
-                    return Success;
-                case 'f': case 'n':
-                    return Failed;
-                case 'c':
-                    return Cancelled;
-                case 'u': case 'i':
-                    return Inconclusive;
-                default:
-                    return Unknown;
-            }
-
+            return ExitInvalidArguments;
+        }
 
     }// Testing
 }// Mezzanine

@@ -45,11 +45,22 @@
 
 #include "mezzanine.h"
 
+#include "testenumerations.h"
+
 namespace Mezzanine
 {
     namespace Testing
     {
 
+        /// @brief Asked the user a question on the std output and get a TestResult as an answer
+        /// @param Question The question to ask the user.
+        /// @details The following strings provide the following results.
+        ///     -  "True", "Yes" as Success
+        ///     -  "False", "No" as Failed
+        ///     -  "Cancel" as "Canceled"
+        ///     -  "Unsure", "Inconclusive" as Inconclusive
+        /// @return Depends on users input
+        TestResult GetTestAnswer(Mezzanine::String Question);
 
     }// Testing
 }// Mezzanine
