@@ -37,38 +37,24 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _consolestringmanipulation_h
-#define _consolestringmanipulation_h
+#ifndef _testtools_cpp
+#define _testtools_cpp
 
 /// @file
-/// @brief Some string manipulation functions geared towards console output for use in the Unit Tests.
+/// @brief The implementation of a few function to help implement tests
 
 #include "mezzanine.h"
+
+#include "testtools.h"
+
+using namespace Mezzanine;
 
 namespace Mezzanine
 {
     namespace Testing
     {
-        /// @brief Take the whitespace off the end of a String
-        /// @param t The Text to clean up.
-        /// @param If " asdf " is passed " asdf" is returned. Also removes carriage returns, newlines and tabs. Does not use the locale.
-        Mezzanine::String rtrim(const Mezzanine::String &t);
 
-        /// @brief Creates some blank spaces, useful for controlling the vertical location of console text.
-        /// @param Leader The string on the beginning of the line.
-        /// @param Column The desired column that the padding should lead toward
-        /// @return If "asdf" and 6 are passed this will return "  " (Two spaces).
-        Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column);
 
-        /// @brief Makes a c style stron all lowercase with respect to the current locale
-        /// @param StringToConvert This string is actually changed.
-        /// @return for convience purposes the string is also returned.
-        char* AllLower(char* StringToConvert);
-
-        /// @brief Get a String Corresponding to a passed bool
-        /// @param i A bool
-        /// @return "True" if true is passed, "False" if false is passed.
-        Mezzanine::String BoolToString(bool i);
 
     }// Testing
 }// Mezzanine

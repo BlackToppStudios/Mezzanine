@@ -75,6 +75,19 @@ namespace Mezzanine
             return Spaces;
         }
 
+        char* AllLower(char* StringToConvert)
+        {
+            std::locale loc;
+            for(int c=0; StringToConvert[c]!='\0'; ++c)
+            {
+                StringToConvert[c]=tolower(StringToConvert[c],loc);
+            }
+            return StringToConvert;
+        }
+
+        Mezzanine::String BoolToString(bool i)
+            { return i?"True":"False" ; }
+
 
     }// Testing
 }// Mezzanine

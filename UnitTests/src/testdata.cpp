@@ -53,6 +53,13 @@ namespace Mezzanine
 {
     namespace Testing
     {
+        int PrintList(const CoreTestGroup& TestGroups)
+        {
+            for(CoreTestGroup::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+                { std::cout << Iter->first << std::endl; }
+            return ExitSuccess;
+        }
+
         TestData StringToTestData(Mezzanine::String Line)
         {
             TestData Results;
@@ -113,7 +120,7 @@ namespace Mezzanine
             insert(rhs.begin(),rhs.end());
         }
 
-        void DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true)
+        void UnitTestGroup::DisplayResults(std::ostream& Output=std::cout, bool Summary = true, bool FullOutput = true, bool HeaderOutput = true)
         {
             std::vector<unsigned int> TestCounts; // This will store the counts of the Sucesses, failures, etc...
             TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0); //Fill with the exact amount of 0s
@@ -144,6 +151,18 @@ namespace Mezzanine
                 Output << std::endl;
             }
         }
+
+        bool UnitTestGroup::AddSuccessFromBool(Mezzanine::String TestName, bool Condition)
+        {
+            if(Condition)
+            {
+                AddTestResult(TestName, Success, UnitTestGroup::OverWrite);
+            }else{
+                AddTestResult(TestName, Failed, UnitTestGroup::OverWrite);
+            }
+            return Condition;
+        }
+
 
     }// Testing
 }// Mezzanine
