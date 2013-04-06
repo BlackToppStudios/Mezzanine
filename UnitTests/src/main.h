@@ -63,7 +63,6 @@
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<Mezzanine::String,TestResult> TestDataStorage;
 
-class UnitTestGroup;
 
 typedef std::map<Mezzanine::String, UnitTestGroup*> CoreTestGroup;
 

@@ -53,7 +53,18 @@ namespace Mezzanine
 {
     namespace Testing
     {
+        TestData StringToTestData(Mezzanine::String Line)
+        {
+            TestData Results;
+            size_t LastSpace=Line.rfind(' ');
+            Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
+            Results.first=rtrim(Line.substr(0,LastSpace));
+            return Results;
+        }
 
+        UnitTestGroup::UnitTestGroup() :
+            LongestNameLength(0)
+        {}
 
     }// Testing
 }// Mezzanine

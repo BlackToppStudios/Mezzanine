@@ -57,8 +57,6 @@ namespace Mezzanine
             ExitFailure             = 2     ///< At least one test return worse then skipped
         };
 
-
-
         /// @brief Return values from tests.
         /// @details These are loosely order from best to worse, in terms of
         /// what we want to see from our tests. This takes the midset that
@@ -100,6 +98,15 @@ namespace Mezzanine
         /// @return The @ref TestResult corresponding to the String passed in.
         /// @throw If the string passed in does not match a valid @ref TestResult then this will throw a INVALID_PARAMETERS_EXCEPTION
         TestResult StringToTestResult(Mezzanine::String Text);
+
+        /// @brief This is used to control the behavior of the function @ref UnitTestGroup::AddTestResult
+        /// @details This can optionally be passedto prioritize whether newer vs older or successful vs failing results are more important
+        enum OverWriteResults{
+            OverWriteIfLessSuccessful,  ///< This is the default behavior, because it is presumed failures should be visible so they can be fixed.
+            OverWriteIfMoreSuccessful,  ///< Overwrite only if the result is better than the old result.
+            OverWrite,                  ///< Just Overwrite, useful if the test was defaulted to a low value
+            DoNotOverWrite              ///< This is a supplementary running a test, if a results already exists, skip writing anything.
+        };
 
     }// Testing
 }// Mezzanine
