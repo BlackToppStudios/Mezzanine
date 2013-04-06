@@ -165,13 +165,15 @@ namespace Mezzanine
             SDL_QuitSubSystem(SDL_INIT_VIDEO);
         }
 
-        for (std::vector<Ogre::Plugin*>::iterator Iter = RenderSystems.begin();
+        /// @todo This is commented out due to an issue with the ogre shutdown sequence.
+        /// Ogre will eventually shut these plugins down, but not until after the lifetime of this manager.
+        /*for (std::vector<Ogre::Plugin*>::iterator Iter = RenderSystems.begin();
              Iter != RenderSystems.end();
              Iter++)
         {
             Ogre::Root::getSingletonPtr()->uninstallPlugin(*Iter);
             delete *Iter;
-        }
+        }//*/
     }
 
     void GraphicsManager::Construct()
