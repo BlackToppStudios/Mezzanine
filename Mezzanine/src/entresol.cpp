@@ -500,7 +500,7 @@ namespace Mezzanine
 
         SDL_Quit();
 
-        Ogre::Root::getSingleton().shutdown();
+        //Ogre::Root::getSingleton().shutdown();
         delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
         OgreCore = 0;
         delete SubSystemParticleFXPlugin;
