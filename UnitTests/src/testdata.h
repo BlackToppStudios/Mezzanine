@@ -93,12 +93,14 @@ namespace Mezzanine
                 /// @param RunAutomaticTests True if the automatic tests should be run false if they should
                 /// @param RunInteractiveTests True if the interactive tests should run false otherwise/.RunInteractiveTests
                 /// @note One of two methods that must be implmented on a UnitTestGroup
-                virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests) = 0;
+                virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+                    {}
 
                 /// @brief Get Name of this UnitTestGroup
                 /// @return The string that must be type at the command line to run this testgroup, should be all lowercase.
                 /// @note One of two methods that must be implmented on a UnitTestGroup
-                virtual Mezzanine::String Name() = 0;
+                virtual Mezzanine::String Name()
+                    { return String(); }
 
                 /// @brief Its expected that tests will be inserted using this
                 /// @details This will automate tracking of the most and least successful tests

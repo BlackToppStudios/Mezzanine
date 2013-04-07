@@ -47,6 +47,7 @@
 #include <cAudio.h>
 
 using namespace Mezzanine;
+using namespace Mezzanine::Testing;
 
 class vector3tests : public UnitTestGroup
 {

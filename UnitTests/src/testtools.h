@@ -60,7 +60,16 @@ namespace Mezzanine
         ///     -  "Cancel" as "Canceled"
         ///     -  "Unsure", "Inconclusive" as Inconclusive
         /// @return Depends on users input
-        TestResult GetTestAnswer(Mezzanine::String Question);
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question);
+
+        /// @brief Create and initialize a instance of the Entrosol, the engine
+        /// @return A pointer to intialized entrosol
+        /// @warning Not Implemented
+        Entresol *InitEngine();
+
+        /// @brief Shutdown the engine that is passed in
+        /// @param Engine The Engine to be shutdown.
+        void StopEngine(Entresol* Engine);
 
     }// Testing
 }// Mezzanine

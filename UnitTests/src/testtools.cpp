@@ -53,7 +53,7 @@ namespace Mezzanine
 {
     namespace Testing
     {
-        TestResult GetTestAnswer(Mezzanine::String Question)
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question)
         {
             Mezzanine::String Input;
             char Answer;
@@ -88,6 +88,16 @@ namespace Mezzanine
             }
         }
 
+        Entresol* InitEngine()
+        {
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mezzanine::Testing::InitEngine() is not implemented");
+            return 0;
+        }
+
+        void StopEngine(Entresol* Engine)
+        {
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mezzanine::Testing::StopEngine() is not implemented");
+        }
 
     }// Testing
 }// Mezzanine

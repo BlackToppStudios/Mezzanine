@@ -182,10 +182,10 @@ int main (int argc, char** argv)
     if (argc > 0) //Not really sure how this would happen, but I would rather test for it than have it fail
         { CommandName=argv[0]; }
     else
-        { return Usage("UnitTestGroups"); }
+    { return Usage("UnitTestGroups", TestGroups); }
 
     if (argc == 1)
-        { return Usage(CommandName); }
+        { return Usage(CommandName, TestGroups); }
 
     AllUnitTestGroups Runner;
 
@@ -193,11 +193,11 @@ int main (int argc, char** argv)
     {
         String ThisArg(AllLower(argv[c]));
         if(ThisArg=="help")
-            { return Usage(argv[0]); }
+            { return Usage(CommandName, TestGroups); }
         else if(ThisArg==MemSpaceArg)        // Check to see if we do the work now or later
             { Runner.ExecuteInThisMemorySpace = true; }
         else if(ThisArg=="testlist")
-            { return PrintList(); }
+            { return PrintList(TestGroups); }
         else if(ThisArg=="interactive")
             { Runner.RunInteractiveTests=true; }
         else if(ThisArg=="automatic")
