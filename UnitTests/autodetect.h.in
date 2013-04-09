@@ -63,7 +63,7 @@ class GlobalCoreTestGroup : public CoreTestGroup
             // Automatically generated test registration ${CppNameRegistration}
             // End Automatically generated test registration
         }
-} TestGroups;
+};
 
 
 

@@ -53,7 +53,7 @@ class vector3tests : public UnitTestGroup
 {
     public:
         virtual String Name()
-            { return String("vector"); }
+            { return String("vector3"); }
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {

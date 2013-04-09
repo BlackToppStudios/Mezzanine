@@ -67,15 +67,22 @@ Mezzanine::String CommandName;
 class AllUnitTestGroups : public UnitTestGroup
 {
     public:
+        bool RunAll;
         bool RunAutomaticTests;
         bool RunInteractiveTests;
         bool ExecuteInThisMemorySpace;
+        GlobalCoreTestGroup& TestGroups;
 
-        AllUnitTestGroups():RunAll(false), RunAutomaticTests(false), RunInteractiveTests(false), ExecuteInThisMemorySpace(false)
-        {};
+        AllUnitTestGroups(GlobalCoreTestGroup& GlobalTestGroups) :
+            RunAll(false),
+            RunAutomaticTests(false),
+            RunInteractiveTests(false),
+            ExecuteInThisMemorySpace(false),
+            TestGroups(GlobalTestGroups)
+        {}
 
         std::vector<Mezzanine::String> TestGroupsToRun;           //List of tests to run
-        bool RunAll;
+
 
         virtual void RunTests()
         {
@@ -133,28 +140,16 @@ class AllUnitTestGroups : public UnitTestGroup
         }
 };
 
-/// @internal
-/// @brief Run the cleanup for any tests that have been added.
-void DeleteTests()
-{
-    for(std::map<String,UnitTestGroup*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
-    {
-        //cout << Iter->first << endl;
-        delete Iter->second;
-    }
-}
-
-
 /// @brief This
 int main (int argc, char** argv)
 {
+    GlobalCoreTestGroup TestGroups;
+
     if( !system( NULL ) ) // If this is not being run from a shell somehow, then using system() to run this task in a new process is not really possible.
     {
         std::cerr << "system() call not supported, missing command processor." << std::endl;
         return EXIT_FAILURE;
     }
-
-    atexit(&DeleteTests);
 
     // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here too
 
@@ -187,7 +182,7 @@ int main (int argc, char** argv)
     if (argc == 1)
         { return Usage(CommandName, TestGroups); }
 
-    AllUnitTestGroups Runner;
+    AllUnitTestGroups Runner(TestGroups);
 
     for (int c=1; c<argc; ++c) // Check Command line for keywords and get all the test names
     {
