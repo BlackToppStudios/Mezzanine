@@ -181,7 +181,7 @@ namespace Mezzanine
         static Vector3 Neg_Unit_Z();
 
         /// @brief Get a Unit Vector along the given Axis
-        /// @param Axis The StandardAxis correlating to the Unit Vector you are retrievinf
+        /// @param Axis The StandardAxis correlating to the Unit Vector you are retrieving
         /// @return A vector one unit in length along the Axis specified.
         static Vector3 UnitOnAxis(StandardAxis Axis);
 
