@@ -55,45 +55,45 @@ namespace Mezzanine
         public:
             /// @brief Sets the location of this object in parent space.
             /// @param Location A Vector3 representing the location this object is to be set to.
-            void SetLocation(const Vector3& Location) = 0;
+            virtual void SetLocation(const Vector3& Location) = 0;
             /// @brief Sets the location of this object in parent space via Reals.
             /// @param X The position on the X axis where this object is to be set.
             /// @param Y The position on the Y axis where this object is to be set.
             /// @param Z The position on the Z axis where this object is to be set.
-            void SetLocation(const Real X, const Real Y, const Real Z) = 0;
+            virtual void SetLocation(const Real X, const Real Y, const Real Z) = 0;
             /// @brief Gets this objects current location.
             /// @return Returns Vector3 representing the current rotation of this object in parent space.
-            Vector3 GetLocation() const = 0;
+            virtual Vector3 GetLocation() const = 0;
             /// @brief Sets the orientation of this object in parent space.
             /// @param Orientation A Quaternion representing the rotation this object is to be set to.
-            void SetOrientation(const Quaternion& Orientation) = 0;
+            virtual void SetOrientation(const Quaternion& Orientation) = 0;
             /// @brief Sets the orientation of this object in parent space via Reals.
             /// @param X The X component of the Axis.
             /// @param Y The Y component of the Axis.
             /// @param Z The Z component of the Axis.
             /// @param W Rotation on the Axis X, Y and Z defined.
-            void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) = 0;
+            virtual void SetOrientation(const Real X, const Real Y, const Real Z, const Real W) = 0;
             /// @brief Gets this objects current orientation.
             /// @return Returns a Quaternion representing the current orientation of this object in parent space.
-            Quaternion GetOrientation() const = 0;
+            virtual Quaternion GetOrientation() const = 0;
             /// @brief Sets the scaling to be applied to this object.
             /// @param Scale A Vector3 representing the amount of scaling to apply to this object.
-            void SetScale(const Vector3& Scale) = 0;
+            virtual void SetScale(const Vector3& Scale) = 0;
             /// @brief Sets the scaling to be applied to this object via Reals.
             /// @param X The scaling factor to apply on the X axis.
             /// @param Y The scaling factor to apply on the Y axis.
             /// @param Z The scaling factor to apply on the Z axis.
-            void SetScale(const Real X, const Real Y, const Real Z) = 0;
+            virtual void SetScale(const Real X, const Real Y, const Real Z) = 0;
             /// @brief Gets the scaling currently being applied to this object.
             /// @return Returns a Vector3 representing the amount this object is being scaled.
-            Vector3 GetScale() const = 0;
+            virtual Vector3 GetScale() const = 0;
 
             /// @brief Moves this object from it's current location.
             /// @note This method has an additive effect with the objects current location.  Unlike "SetLocation" this method does not replace
             /// the existing location with what you provide.
             /// @param Trans A Vector3 representing the amount of movement to apply to this object.
             /// @param Space The transform space in which to apply this translation.
-            void Translate(const Vector3& Trans, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Translate(const Vector3& Trans, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Moves this object from it's current location.
             /// @note This method has an additive effect with the objects current location.  Unlike "SetLocation" this method does not replace
             /// the existing location with what you provide.
@@ -101,44 +101,44 @@ namespace Mezzanine
             /// @param Y The amount of movement to apply on the Y axis.
             /// @param Z The amount of movement to apply on the Z axis.
             /// @param Space The transform space in which to apply this translation.
-            void Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Rotate the object around the Y axis.
             /// @param Angle The angle to rotate this object in radians.
             /// @param Space The transform space in which to apply this rotation.
-            void Yaw(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Yaw(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Rotate the object around the X axis.
             /// @param Angle The angle to rotate this object in radians.
             /// @param Space The transform space in which to apply this rotation.
-            void Pitch(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Pitch(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Rotate the object around the Z axis.
             /// @param Angle The angle to rotate this object in radians.
             /// @param Space The transform space in which to apply this rotation.
-            void Roll(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Roll(const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Rotates the object from it's existing rotation.
             /// @note This method has an additive effect with the objects current rotation.  Unlike "SetOrientation" this method does not replace
             /// the existing orientation with what you provide.
             /// @param Axis The axis on which this object will be rotated.
             /// @param Angle The angle to rotate this object in radians.
             /// @param Space The transform space in which to apply this rotation.
-            void Rotate(const Vector3& Axis, const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Rotate(const Vector3& Axis, const Real Angle, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Rotates the object from it's existing rotation.
             /// @note This method has an additive effect with the objects current rotation.  Unlike "SetOrientation" this method does not replace
             /// the existing orientation with what you provide.
             /// @param Rotation The rotation to apply to this object.
             /// @param Space The transform space in which to apply this rotation.
-            void Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
+            virtual void Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace Space = Mezzanine::TS_Parent) = 0;
             /// @brief Scales the object from it's current size.
             /// @note This method has an additive effect with the objects' current scaling.  Unlike "SetScale" this method does not replace
             /// the existing scale with what you provide.
             /// @param Scale A Vector3 representing the scaling to apply to this object.
-            void Scale(const Vector3& Scale) = 0;
+            virtual void Scale(const Vector3& Scale) = 0;
             /// @brief Scales the object from it's current size.
             /// @note This method has an additive effect with the objects' current scaling.  Unlike "SetScale" this method does not replace
             /// the existing scale with what you provide.
             /// @param X The scaling factor to apply on the X axis.
             /// @param Y The scaling factor to apply on the Y axis.
             /// @param Z The scaling factor to apply on the Z axis.
-            void Scale(const Real X, const Real Y, const Real Z) = 0;
+            virtual void Scale(const Real X, const Real Y, const Real Z) = 0;
     };//TransformableObject
 };//Mezzanine
 
