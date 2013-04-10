@@ -40,7 +40,8 @@
 #ifndef _graphicsbone_cpp
 #define _graphicsbone_cpp
 
-#include "transformableobject.h"
+#include "Graphics/skeleton.h"
+#include "Graphics/bone.h"
 
 #include <Ogre.h>
 
@@ -48,6 +49,21 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        namespace
+        {
+            /// @internal
+            /// @brief Converts the transform space used by this class to the internal type.
+            Ogre::Node::TransformSpace ConvertTransformSpace(const Mezzanine::TransformSpace Space)
+            {
+                switch(Space)
+                {
+                    case Mezzanine::TS_Local:  return Ogre::Node::TS_LOCAL;
+                    case Mezzanine::TS_Parent: return Ogre::Node::TS_PARENT;
+                    case Mezzanine::TS_World:  return Ogre::Node::TS_WORLD;
+                }
+            }
+        }
+
         Bone::Bone(Skeleton* HostSkel, Ogre::Bone* InternalBone)
             : Host(HostSkel),
               GraphicsBone(InternalBone)
@@ -81,14 +97,8 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Child Methods
 
-        Bone* Bone::CreateChild(const Vector3& Trans, const Quaternion& Rot)
-            { return this->Host->_CreateBoneWrapper( this->GraphicsBone->createChild( Trans.GetOgreVector3(), Rot.GetOgreQuaternion() ) ); }
-
         Bone* Bone::CreateChild(const UInt16 Handle, const Vector3& Trans, const Quaternion& Rot)
             { return this->Host->_CreateBoneWrapper( this->GraphicsBone->createChild( Handle, Trans.GetOgreVector3(), Rot.GetOgreQuaternion() ) ); }
-
-        Bone* Bone::CreateChild(const String& Name, const Vector3& Trans, const Quaternion& Rot)
-            { return this->Host->_CreateBoneWrapper( this->GraphicsBone->createChild( Name, Trans.GetOgreVector3(), Rot.GetOgreQuaternion() ) ); }
 
         UInt16 Bone::GetNumChildren() const
             { return this->GraphicsBone->numChildren(); }
@@ -100,7 +110,7 @@ namespace Mezzanine
             { return Ogre::any_cast<Bone*>( this->GraphicsBone->getChild(Name)->getUserAny() ); }
 
         void Bone::RemoveChild(Bone* ToBeRemoved)
-            { this->GraphicsBone->removeChild( ToBeRemoved->GetInternalBone() ); }
+            { this->GraphicsBone->removeChild( ToBeRemoved->_GetInternalBone() ); }
 
         void Bone::RemoveChild(const UInt16 Index)
             { this->GraphicsBone->removeChild( Index ); }
@@ -139,25 +149,25 @@ namespace Mezzanine
             { return Vector3( this->GraphicsBone->getScale() ); }
 
         void Bone::Translate(const Vector3& Trans, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->translate( Trans.GetOgreVector3(), Space ); }
+            { this->GraphicsBone->translate( Trans.GetOgreVector3(), ConvertTransformSpace(Space) ); }
 
         void Bone::Translate(const Real X, const Real Y, const Real Z, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->translate( X, Y, Z, Space ); }
+            { this->GraphicsBone->translate( X, Y, Z, ConvertTransformSpace(Space) ); }
 
         void Bone::Yaw(const Real Angle, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->yaw( Ogre::Radian(Angle), Space ); }
+            { this->GraphicsBone->yaw( Ogre::Radian(Angle), ConvertTransformSpace(Space) ); }
 
         void Bone::Pitch(const Real Angle, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->pitch( Ogre::Radian(Angle), Space ); }
+            { this->GraphicsBone->pitch( Ogre::Radian(Angle), ConvertTransformSpace(Space) ); }
 
         void Bone::Roll(const Real Angle, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->roll( Ogre::Radian(Angle), Space ); }
+            { this->GraphicsBone->roll( Ogre::Radian(Angle), ConvertTransformSpace(Space) ); }
 
         void Bone::Rotate(const Vector3& Axis, const Real Angle, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->rotate( Axis.GetOgreVector3(), Ogre::Radian(Angle), Space ); }
+            { this->GraphicsBone->rotate( Axis.GetOgreVector3(), Ogre::Radian(Angle), ConvertTransformSpace(Space) ); }
 
         void Bone::Rotate(const Quaternion& Rotation, const Mezzanine::TransformSpace Space)
-            { this->GraphicsBone->rotate( Rotation.GetOgreQuaternion(), Space ); }
+            { this->GraphicsBone->rotate( Rotation.GetOgreQuaternion(), ConvertTransformSpace(Space) ); }
 
         void Bone::Scale(const Vector3& Scale)
             { this->GraphicsBone->scale( Scale.GetOgreVector3() ); }

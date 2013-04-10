@@ -51,6 +51,7 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        class Skeleton;
         ///////////////////////////////////////////////////////////////////////////////
         /// @brief This class encapsulates the bones contained in a skeleton used for animation.
         /// @details
@@ -97,22 +98,11 @@ namespace Mezzanine
                 // Child Methods
 
                 /// @brief Creates a new bone in the parent skeleton as a child of this bone.
-                /// @param Trans The translation to apply to the created bone.
-                /// @param Rot The rotation to apply to the created bone.
-                /// @return Returns a pointer to the created child bone.
-                Bone* CreateChild(const Vector3& Trans, const Quaternion& Rot);
-                /// @brief Creates a new bone in the parent skeleton as a child of this bone.
                 /// @param Handle The handle to be given to the bone being created.  Must be unique to the parent skeleton.
                 /// @param Trans The translation to apply to the created bone.
                 /// @param Rot The rotation to apply to the created bone.
                 /// @return Returns a pointer to the created child bone.
                 Bone* CreateChild(const UInt16 Handle, const Vector3& Trans, const Quaternion& Rot);
-                /// @brief Creates a new bone in the parent skeleton as a child of this bone.
-                /// @param Name The name to be given to the new bone.
-                /// @param Trans The translation to apply to the created bone.
-                /// @param Rot The rotation to apply to the created bone.
-                /// @return Returns a pointer to the created child bone.
-                Bone* CreateChild(const String& Name, const Vector3& Trans, const Quaternion& Rot);
                 /// @brief Gets the number of child bones contained by this bone.
                 /// @return Returns a UInt16 containing the number of bones that are children of this bone.
                 UInt16 GetNumChildren() const;
