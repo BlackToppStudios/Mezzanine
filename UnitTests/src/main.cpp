@@ -41,23 +41,6 @@
 #include "autodetect.h"
 #include "main.h"
 
-// 4. When adding new tests - Add the new file to the includes in unittests/main.cpp
-/*#include "actortests.h"
-#include "collisionshapetests.h"
-#include "compilerflagtests.h"
-#include "constrainttests.h"
-#include "eventmanagertests.h"
-#include "lua51tests.h"
-#include "notatest.h"
-#include "metacodetests.h"
-#include "particleeffecttests.h"
-#include "scenemanagertests.h"
-#include "smartptrtests.h"
-#include "transformtests.h"
-#include "vector2tests.h"
-#include "vector3tests.h"
-#include "worldnodetests.h"
-*/
 #include <cstdlib> // For system
 
 static const String MemSpaceArg("inthismemoryspacetheworkshallbedone");
@@ -151,26 +134,6 @@ int main (int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here too
-
-    // 5. When adding new tests - Add the line to create a new UnitTest in the TestGroup Container in the main function
-    /*TestGroups["actor"] = new ActorTests;
-    TestGroups["collisionshape"] = new CollisionShapeTests;
-    TestGroups["compilerflag"] = new CompilerFlagTests;
-    TestGroups["constraint"] = new ConstraintTests;
-    TestGroups["eventmanager"] = new EventManagerTests;
-    TestGroups["lua5.1"] = new Lua51Tests;
-    TestGroups["metacode"] = new MetaCodeTests;
-    TestGroups["notatest"] = new notatestTests;
-    TestGroups["particleeffect"] = new ParticleEffectTests;
-    TestGroups["scenemanager"] = new SceneManagerTests;
-    TestGroups["smartptr"] = new SmartPtrTests;
-    TestGroups["transform"] = new TransformTests;
-    TestGroups["vector2"] = new Vector2Tests;
-    TestGroups["vector3"] = new Vector3Tests;
-    TestGroups["worldnode"] = new WorldNodeTests;
-    */
-
     // Display everything, or just a Summary or neither? Should this process do the work, or should we spawn a new process.
     bool FullDisplay = true, SummaryDisplay = true;
 
@@ -208,6 +171,7 @@ int main (int argc, char** argv)
                 Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
             }else{
                 std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
+                Usage(CommandName, TestGroups);
                 return ExitInvalidArguments;
             }
         }
