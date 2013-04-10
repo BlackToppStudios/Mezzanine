@@ -45,6 +45,7 @@
 /// Modify autodetect.h.in to make changes to this
 
 #include <map>
+
 #include "main.h"
 
 // Automatically generated test inclusion ${CppIncludes}
@@ -62,7 +63,7 @@ class GlobalCoreTestGroup : public CoreTestGroup
             // Automatically generated test registration ${CppNameRegistration}
             // End Automatically generated test registration
         }
-} TestGroups;
+};
 
 
 

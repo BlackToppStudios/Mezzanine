@@ -46,6 +46,7 @@
 #include "mezzanine.h"
 
 #include "testdata.h"
+#include "consolestringmanipulation.h"
 
 using namespace Mezzanine;
 
@@ -53,6 +54,115 @@ namespace Mezzanine
 {
     namespace Testing
     {
+        int PrintList(CoreTestGroup& TestGroups)
+        {
+            for(CoreTestGroup::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+                { std::cout << Iter->first << std::endl; }
+            return ExitSuccess;
+        }
+
+        TestData StringToTestData(Mezzanine::String Line)
+        {
+            TestData Results;
+            size_t LastSpace=Line.rfind(' ');
+            Results.second=StringToTestResult(Line.substr(LastSpace+1,100)); // No testdata should be longer than 100
+            Results.first=rtrim(Line.substr(0,LastSpace));
+            return Results;
+        }
+
+        UnitTestGroup::UnitTestGroup() :
+            LongestNameLength(0)
+        {}
+
+        void UnitTestGroup::AddTestResult(TestData FreshMeat, OverWriteResults Behavior)
+        {
+            bool Added=false;
+
+            TestDataStorage::iterator PreExisting = this->find(FreshMeat.first);
+            if(this->end()!=PreExisting)
+            {
+                switch(Behavior)
+                {
+                    case OverWriteIfLessSuccessful:
+                        if (PreExisting->second <= FreshMeat.second)
+                            { PreExisting->second = FreshMeat.second; Added=true; }
+                        break;
+                    case OverWrite:
+                        PreExisting->second = FreshMeat.second;
+                        Added=true;
+                        break;
+                    case OverWriteIfMoreSuccessful:
+                        if (PreExisting->second >= FreshMeat.second)
+                            { PreExisting->second = FreshMeat.second; Added=true; }
+                        break;
+                    case DoNotOverWrite:
+                        break;
+                }
+            }else{
+                this->insert(FreshMeat);
+                Added=true;
+            }
+
+            if (Added)
+            {
+                if(FreshMeat.first.length()>LongestNameLength)
+                    { LongestNameLength=FreshMeat.first.length(); }
+            }
+        }
+
+        void UnitTestGroup::AddTestResult(const Mezzanine::String Fresh, TestResult Meat, OverWriteResults Behavior)
+            { AddTestResult(TestData(Fresh,Meat),Behavior); }
+
+        const UnitTestGroup& UnitTestGroup::operator+=(const UnitTestGroup& rhs)
+        {
+            if(rhs.LongestNameLength>LongestNameLength)
+                { LongestNameLength=rhs.LongestNameLength; }
+
+            insert(rhs.begin(),rhs.end());
+        }
+
+        void UnitTestGroup::DisplayResults(std::ostream& Output, bool Summary, bool FullOutput, bool HeaderOutput)
+        {
+            std::vector<unsigned int> TestCounts; // This will store the counts of the Sucesses, failures, etc...
+            TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0); //Fill with the exact amount of 0s
+
+            if(FullOutput && HeaderOutput) // No point in displaying the header without the other content.
+            {
+                Mezzanine::String TestName("Test Name");
+                Output << std::endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << std::endl;
+            }
+
+            for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
+            {
+                if(FullOutput)
+                {
+                    Output << Iter->first << MakePadding(Iter->first, LongestNameLength+1) << TestResultToString(Iter->second) << std::endl;
+                }
+                TestCounts.at((unsigned int)Iter->second)++; // Count this test result
+            }
+
+            if(Summary)
+            {
+                Output << std::endl << " Results Summary:" << std::endl;
+                for(unsigned int c=0; c<TestCounts.size();++c)
+                {
+                    Mezzanine::String ResultName(TestResultToString((TestResult)c));
+                    Output << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << std::endl;
+                }
+                Output << std::endl;
+            }
+        }
+
+        bool UnitTestGroup::AddSuccessFromBool(Mezzanine::String TestName, bool Condition)
+        {
+            if(Condition)
+            {
+                AddTestResult(TestName, Success, OverWrite);
+            }else{
+                AddTestResult(TestName, Failed, OverWrite);
+            }
+            return Condition;
+        }
 
 
     }// Testing

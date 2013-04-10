@@ -246,7 +246,7 @@ namespace Mezzanine
         void Mouse::GetMouseCursor()
         {
             /// @todo Implement this.
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mouse cursor setting is currently not implemented.");
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mouse cursor getting is currently not implemented.");
         }
 
         ///////////////////////////////////////////////////////////////////////////////

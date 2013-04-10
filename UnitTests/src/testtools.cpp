@@ -37,38 +37,67 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _consolestringmanipulation_h
-#define _consolestringmanipulation_h
+#ifndef _testtools_cpp
+#define _testtools_cpp
 
 /// @file
-/// @brief Some string manipulation functions geared towards console output for use in the Unit Tests.
+/// @brief The implementation of a few function to help implement tests
 
 #include "mezzanine.h"
+
+#include "testtools.h"
+
+using namespace Mezzanine;
 
 namespace Mezzanine
 {
     namespace Testing
     {
-        /// @brief Take the whitespace off the end of a String
-        /// @param t The Text to clean up.
-        /// @param If " asdf " is passed " asdf" is returned. Also removes carriage returns, newlines and tabs. Does not use the locale.
-        Mezzanine::String rtrim(const Mezzanine::String &t);
+        TestResult GetTestAnswerFromStdin(Mezzanine::String Question)
+        {
+            Mezzanine::String Input;
+            char Answer;
 
-        /// @brief Creates some blank spaces, useful for controlling the vertical location of console text.
-        /// @param Leader The string on the beginning of the line.
-        /// @param Column The desired column that the padding should lead toward
-        /// @return If "asdf" and 6 are passed this will return "  " (Two spaces).
-        Mezzanine::String MakePadding(Mezzanine::String Leader, unsigned int Column);
+            while(true)
+            {
+                std::cout << Question;
+                getline(std::cin, Input);
+                std::stringstream InputStream(Input);
+                if (InputStream >> Answer)
+                {
+                    Answer=tolower(Answer);
+                    if (Answer=='t' || Answer=='y' || Answer=='f' || Answer=='n' || Answer=='c' || Answer=='u' || Answer=='i')
+                        { break; }
+                }
 
-        /// @brief Makes a c style stron all lowercase with respect to the current locale
-        /// @param StringToConvert This string is actually changed.
-        /// @return for convience purposes the string is also returned.
-        char* AllLower(char* StringToConvert);
+                std::cout << std::endl << "Expected (T)rue/(Y)es for Success, (F)alse/(N)o for Failure," << std::endl << " (C)anceled to cancel this test, or (U)nsure/(I)nconclusive if you don't know." << std::endl << std::endl;
+            }
 
-        /// @brief Get a String Corresponding to a passed bool
-        /// @param i A bool
-        /// @return "True" if true is passed, "False" if false is passed.
-        Mezzanine::String BoolToString(bool i);
+            switch(Answer)
+            {
+                case 't': case 'y':
+                    return Success;
+                case 'f': case 'n':
+                    return Failed;
+                case 'c':
+                    return Cancelled;
+                case 'u': case 'i':
+                    return Inconclusive;
+                default:
+                    return Unknown;
+            }
+        }
+
+        Entresol* InitEngine()
+        {
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mezzanine::Testing::InitEngine() is not implemented");
+            return 0;
+        }
+
+        void StopEngine(Entresol* Engine)
+        {
+            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mezzanine::Testing::StopEngine() is not implemented");
+        }
 
     }// Testing
 }// Mezzanine

@@ -47,12 +47,13 @@
 #include <cAudio.h>
 
 using namespace Mezzanine;
+using namespace Mezzanine::Testing;
 
 class vector3tests : public UnitTestGroup
 {
     public:
         virtual String Name()
-            { return String("vector"); }
+            { return String("vector3"); }
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
@@ -68,7 +69,8 @@ class vector3tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector3::GetAxisValue(Integer)", temp);
+                AddTestResult("Vector3::GetAxisValue(Whole)", temp);
+                AddTestResult("Vector3::operator[](Whole)", temp);
 
                 Vec=Vector3();
                 Vec[Axis_X]=1.0; //use the non-const
@@ -79,6 +81,7 @@ class vector3tests : public UnitTestGroup
                 else
                     { temp=Failed; }
                 AddTestResult("Vector3::GetAxisValue(StandardAxis)", temp);
+                AddTestResult("Vector3::operator[](StandardAxis)", temp);
                 // we are only calling 2 of these 8 functions
 
                 Vec=Vector3();
@@ -123,7 +126,17 @@ class vector3tests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("Vector3::Vector3(Vector3)", temp);                       //test
 
-                //Vector3(XML::Node OneNode);
+                {
+
+                    XML::Document XMLdoc;
+                    XMLdoc.Load("<Vector3 Version=\"1\" X=\"13\" Y=\"15\" Z=\"17\"/>");
+                    Vector3 VecNode(XMLdoc.GetFirstChild());
+                    if(VecNode.X==13.0 && VecNode.Y==15.0 && VecNode.Z==17.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::Vector3(XML::Node)", temp);                       //test
+                }
 
                 if(Vector3::Unit_X().X==1.0 && Vector3::Unit_X().Y==0.0 && Vector3::Unit_X().Z==0.0)
                     { temp=Success; }
@@ -897,14 +910,17 @@ class vector3tests : public UnitTestGroup
                 }
 
             }else{
-                AddTestResult("Vector3::GetAxisValue(Integer)", Skipped);
+                AddTestResult("Vector3::GetAxisValue(Whole)", Skipped);
+                AddTestResult("Vector3::operator[](Whole)", Skipped);
                 AddTestResult("Vector3::GetAxisValue(StandardAxis)", Skipped);
+                AddTestResult("Vector3::operator[](StandardAxis)", Skipped);
                 AddTestResult("Vector3::Vector3()", Skipped);
                 AddTestResult("Vector3::Vector3(Real,Real,Real)", Skipped);
                 AddTestResult("Vector3::Vector3(Ogre::Vector3)", Skipped);
                 AddTestResult("Vector3::Vector3(btVector3)", Skipped);
                 AddTestResult("Vector3::Vector3(Vector3)", Skipped);
                 AddTestResult("Vector3::Vector3(cAudio::cVector3)", Skipped);
+                AddTestResult("Vector3::Vector3(XML::Node)", Skipped);
                 AddTestResult("Vector3::Unit_X()", Skipped);
                 AddTestResult("Vector3::Unit_Y()", Skipped);
                 AddTestResult("Vector3::Unit_Z()", Skipped);

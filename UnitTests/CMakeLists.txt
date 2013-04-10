@@ -110,6 +110,8 @@ configure_file( "${${PROJECT_NAME}_ROOT_DIR}/autodetect.h.in"  "${${PROJECT_NAME
 
 set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_BINARY_DIR}autodetect.h"
+    "${${PROJECT_NAME}_SRC_DIR}/consolelogic.h"
+    "${${PROJECT_NAME}_SRC_DIR}/consolelogic.cpp"
     "${${PROJECT_NAME}_SRC_DIR}/consolestringmanipulation.h"
     "${${PROJECT_NAME}_SRC_DIR}/consolestringmanipulation.cpp"
     "${${PROJECT_NAME}_SRC_DIR}/main.h"
@@ -118,6 +120,8 @@ set(${PROJECT_NAME}_sources
     "${${PROJECT_NAME}_SRC_DIR}/testdata.cpp"
     "${${PROJECT_NAME}_SRC_DIR}/testenumerations.h"
     "${${PROJECT_NAME}_SRC_DIR}/testenumerations.cpp"
+    "${${PROJECT_NAME}_SRC_DIR}/testtools.h"
+    "${${PROJECT_NAME}_SRC_DIR}/testtools.cpp"
 
     ${${PROJECT_NAME}_test}
 )
