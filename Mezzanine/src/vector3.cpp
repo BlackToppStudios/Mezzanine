@@ -177,10 +177,11 @@ namespace Mezzanine
             {
                 return Axis_Y;
             } else if (0.0==this->Y && 1.0==this->Z) {                                     // Not Unit_Y so hopefully it is Z
-                return Axis_Y;
+                return Axis_Z;
             }
         }
-        MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
+        return Axis_Invalid;
+        //MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION,"Cannot convert Vector3 to StandardAxis, Vector3 may not be Axis Aligned or may not be Unit Length.");
     }
 
 
