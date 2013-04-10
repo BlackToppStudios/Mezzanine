@@ -68,7 +68,7 @@ var searchData=
   ['physicsshape',['PhysicsShape',['../classMezzanine_1_1WorldObject.xhtml#a82cf249f457edb1e3786c1d716961e0e',1,'Mezzanine::WorldObject']]],
   ['physicssoftbody',['PhysicsSoftBody',['../classMezzanine_1_1ActorSoft.xhtml#a4eb4bcfe665df0c4741f5c17ff268c88',1,'Mezzanine::ActorSoft']]],
   ['pink',['Pink',['../classMezzanine_1_1ColourValue.xhtml#a99b1279052777a729f4944eeadddb88b',1,'Mezzanine::ColourValue']]],
-  ['pitch',['Pitch',['../classMezzanine_1_1WorldNode.xhtml#a3498ef1f78331824a36a2287b25a5506',1,'Mezzanine::WorldNode']]],
+  ['pitch',['Pitch',['../classMezzanine_1_1TransformableObject.xhtml#a0e92b68453f24a01dd8c12cd14eaf94d',1,'Mezzanine::TransformableObject::Pitch()'],['../classMezzanine_1_1WorldNode.xhtml#a3498ef1f78331824a36a2287b25a5506',1,'Mezzanine::WorldNode::Pitch()'],['../classMezzanine_1_1Graphics_1_1Bone.xhtml#a24c721bf87d3f5cfaaf636bebac895b2',1,'Mezzanine::Graphics::Bone::Pitch()']]],
   ['plane',['Plane',['../classMezzanine_1_1Plane.xhtml',1,'Mezzanine']]],
   ['plane',['Plane',['../classMezzanine_1_1Plane.xhtml#a5d8a918982fe5424be3e9a11b1a849c2',1,'Mezzanine::Plane::Plane()'],['../classMezzanine_1_1Plane.xhtml#a2d0bf4ad989b90b37cfb2eb386f144d2',1,'Mezzanine::Plane::Plane(Vector3 Normal_, Real Distance_)'],['../classMezzanine_1_1Plane.xhtml#a6f6efb7d12fa74b76945d90d2d7bad0e',1,'Mezzanine::Plane::Plane(Ogre::Plane Plane_)'],['../classMezzanine_1_1Plane.xhtml#aabe30579ed531b3b0b2a7bd9ad412d3f',1,'Mezzanine::Plane::Plane(const Vector3 &amp;rkPoint0, const Vector3 &amp;rkPoint1, const Vector3 &amp;rkPoint2)']]],
   ['planecollisionshape',['PlaneCollisionShape',['../classMezzanine_1_1Physics_1_1PlaneCollisionShape.xhtml',1,'Mezzanine::Physics']]],

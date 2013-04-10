@@ -10,9 +10,9 @@
 <title>Graphical Class Hierarchy</title>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<a xlink:href="classMezzanine_1_1Matrix4x4.xhtml" target="_top" xlink:title="Mezzanine::Matrix4x4">
-<polygon fill="none" stroke="black" points="0,-0 0,-20 108,-20 108,-0 0,-0"/>
-<text text-anchor="middle" x="54" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::Matrix4x4</text>
+<a xlink:href="classMezzanine_1_1MathTool.xhtml" target="_top" xlink:title="This provides a number of generic math related utilities.">
+<polygon fill="none" stroke="black" points="0.5,-0 0.5,-20 107.5,-20 107.5,-0 0.5,-0"/>
+<text text-anchor="middle" x="54" y="-7" font-family="FreeSans" font-size="10.00">Mezzanine::MathTool</text>
 </a>
 </g>
 </g>

@@ -1,12 +1,16 @@
 <map id="Mezzanine::ObjectReference" name="Mezzanine::ObjectReference">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="667,278,827,306"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1004,339,1207,383"/>
-<area shape="rect" id="node22" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1039,59,1172,103"/>
-<area shape="rect" id="node27" href="$classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" title="This is a helper class for configuring graphics settings of a World Object." alt="" coords="1000,153,1211,197"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="348,278,532,306"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="149,278,296,306"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="680,375,813,419"/>
-<area shape="rect" id="node15" title="STL class." alt="" coords="403,354,477,382"/>
-<area shape="rect" id="node17" title="STL class." alt="" coords="163,346,283,390"/>
-<area shape="rect" id="node30" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="677,106,816,150"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="720,246,880,274"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1057,106,1260,150"/>
+<area shape="rect" id="node22" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1092,198,1225,242"/>
+<area shape="rect" id="node27" href="$classMezzanine_1_1WorldObjectGraphicsSettings.xhtml" title="This is a helper class for configuring graphics settings of a World Object." alt="" coords="1053,330,1264,374"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="401,246,585,274"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="149,246,296,274"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="733,5,867,49"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="456,94,531,122"/>
+<area shape="rect" id="node17" title="STL class." alt="" coords="163,86,283,130"/>
+<area shape="rect" id="node30" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="731,435,869,479"/>
+<area shape="rect" id="node32" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="424,511,563,555"/>
+<area shape="rect" id="node36" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="731,581,869,625"/>
+<area shape="rect" id="node38" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="408,591,579,635"/>
+<area shape="rect" id="node43" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="153,421,292,465"/>
 </map>

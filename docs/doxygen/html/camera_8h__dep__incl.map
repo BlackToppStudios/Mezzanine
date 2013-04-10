@@ -1,3 +1,13 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/camera.h">
-<area shape="rect" id="node3" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="5,99,205,143"/>
+<area shape="rect" id="node3" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="368,99,568,143"/>
+<area shape="rect" id="node5" href="$consolelogic_8h.xhtml" title="The defintion of items important a commandline tool to work correctly without need to be available to..." alt="" coords="180,379,380,423"/>
+<area shape="rect" id="node17" href="$testdata_8h.xhtml" title="TestData, TestDataStorage and UnitTestGroup class definitions." alt="" coords="231,286,431,330"/>
+<area shape="rect" id="node21" href="$testenumerations_8h.xhtml" title="Enumerations and constant values associated with the Unit tests." alt="" coords="361,193,575,237"/>
+<area shape="rect" id="node25" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="505,286,705,330"/>
+<area shape="rect" id="node28" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="597,379,859,423"/>
+<area shape="rect" id="node7" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="368,473,568,517"/>
+<area shape="rect" id="node9" href="$boilerplatetests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/boilerplatetests.h" alt="" coords="5,566,216,610"/>
+<area shape="rect" id="node11" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="240,566,461,610"/>
+<area shape="rect" id="node13" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="485,566,685,610"/>
+<area shape="rect" id="node15" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="709,566,909,610"/>
 </map>
