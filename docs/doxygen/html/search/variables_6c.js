@@ -4,5 +4,6 @@ var searchData=
   ['lights',['Lights',['../classMezzanine_1_1SceneManager.xhtml#ad80ecee7efce608a526befc597b3d613',1,'Mezzanine::SceneManager']]],
   ['lineheight',['LineHeight',['../classMezzanine_1_1UI_1_1GlyphData.xhtml#a11ea4040f0a854226a39f7f3a5dacf58',1,'Mezzanine::UI::GlyphData']]],
   ['location',['Location',['../classMezzanine_1_1Transform.xhtml#a93498c9bcba2298f199f9ab04671a944',1,'Mezzanine::Transform']]],
-  ['logstream',['LogStream',['../classMezzanine_1_1Entresol.xhtml#ae11d3d584419c09ce38aa1c4b646cf86',1,'Mezzanine::Entresol']]]
+  ['logstream',['LogStream',['../classMezzanine_1_1Entresol.xhtml#ae11d3d584419c09ce38aa1c4b646cf86',1,'Mezzanine::Entresol']]],
+  ['longestnamelength',['LongestNameLength',['../classMezzanine_1_1Testing_1_1UnitTestGroup.xhtml#a9b9093d229e99eb2c593a882fb20f199',1,'Mezzanine::Testing::UnitTestGroup']]]
 ];

@@ -48,7 +48,6 @@ namespace Mezzanine
     namespace Graphics
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class InternalMeshData
         /// @brief This class is used to store the internal structures needed by the Mesh class.
         /// @details Specifically, this class stores a shared pointer to the Ogre Mesh and only
         /// exists because shared pointers can't be forward declared without compromising how they
@@ -63,16 +62,16 @@ namespace Mezzanine
         ///////////////////////////////////////////////////////////////////////////////
         // Mesh Methods
 
-        Mesh::Mesh()
+        /*Mesh::Mesh()
         {
             this->IMD = new InternalMeshData();
             this->IMD->GraphicsMesh.setNull();
-        }
+        }//*/
 
-        Mesh::Mesh(Ogre::MeshPtr OgreMesh)
+        Mesh::Mesh(Ogre::MeshPtr InternalMesh)
         {
             this->IMD = new InternalMeshData();
-            this->IMD->GraphicsMesh = OgreMesh;
+            this->IMD->GraphicsMesh = InternalMesh;
         }
 
         Mesh::~Mesh()
@@ -80,17 +79,17 @@ namespace Mezzanine
             delete IMD;
         }
 
-        ConstString& Mesh::GetName()
+        ConstString& Mesh::GetName() const
         {
-            return this->IMD->GraphicsMesh->getName();
+            return _GetInternalMesh()->getName();
         }
 
-        ConstString& Mesh::GetGroup()
+        ConstString& Mesh::GetGroup() const
         {
-            return this->IMD->GraphicsMesh->getGroup();
+            return _GetInternalMesh()->getGroup();
         }
 
-        Ogre::MeshPtr Mesh::GetOgreMesh()
+        Ogre::MeshPtr Mesh::_GetInternalMesh() const
         {
             return this->IMD->GraphicsMesh;
         }

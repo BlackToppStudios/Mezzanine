@@ -108,7 +108,7 @@ namespace Mezzanine
 
     btTriangleMesh* CollisionShapeManager::CreateBulletTrimesh(Graphics::Mesh* ObjectMesh, bool UseAllSubmeshes)
     {
-        Ogre::MeshPtr myMesh = ObjectMesh->GetOgreMesh();
+        Ogre::MeshPtr myMesh = ObjectMesh->_GetInternalMesh();
         Ogre::SubMesh* subMesh = NULL;
         Ogre::IndexData*  IndexData = NULL;
         Ogre::VertexData* VertexData = NULL;
@@ -433,7 +433,7 @@ namespace Mezzanine
     Physics::CompoundCollisionShape* CollisionShapeManager::PerformConvexDecomposition(const String& Name, Graphics::Mesh* ObjectMesh, Whole Depth, Real CPercent, Real PPercent, bool UseAllSubmeshes)
     {
         //new submesh friendly code
-        Ogre::MeshPtr myMesh = ObjectMesh->GetOgreMesh();
+        Ogre::MeshPtr myMesh = ObjectMesh->_GetInternalMesh();
         Ogre::SubMesh* subMesh = NULL;
         Ogre::IndexData*  indexData = NULL;
         Ogre::VertexData* vertexData = NULL;

@@ -82,6 +82,7 @@ namespace Mezzanine
     /// @note These are compatible with the linear Axis on many constraints, but not the rotational axis.
     enum StandardAxis
     {
+        Axis_Invalid   = -1,   ///< Not an axis, Don't pass this into functions or operator[] functions, it is intended as a 
         Axis_X         = 0,    ///< X axis
         Axis_Y         = 1,    ///< Y axis
         Axis_Z         = 2     ///< Z axis

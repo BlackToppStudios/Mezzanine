@@ -1,6 +1,16 @@
 <map id="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h" name="/home/sqeaky/Code/Mezzanine/Mezzanine/src/Scripting/scriptargument.h">
-<area shape="rect" id="node3" href="$scripting_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="5,334,205,378"/>
-<area shape="rect" id="node7" href="$script_8h.xhtml" title="This file has the interfaces for Scripts and tag derived classes." alt="" coords="49,115,249,175"/>
-<area shape="rect" id="node10" href="$scriptingmanager_8h.xhtml" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="143,225,343,285"/>
-<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="5,427,205,471"/>
+<area shape="rect" id="node3" href="$scripting_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/Mezzanine/src/scripting.h" alt="" coords="368,334,568,378"/>
+<area shape="rect" id="node34" href="$script_8h.xhtml" title="This file has the interfaces for Scripts and tag derived classes." alt="" coords="412,115,612,175"/>
+<area shape="rect" id="node37" href="$scriptingmanager_8h.xhtml" title="This file has the interfaces for Scripting managers and the associated dependency chain..." alt="" coords="505,225,705,285"/>
+<area shape="rect" id="node5" href="$mezzanine_8h.xhtml" title="A single file that includes all of the Mezzanine engine." alt="" coords="368,427,568,471"/>
+<area shape="rect" id="node7" href="$consolelogic_8h.xhtml" title="The defintion of items important a commandline tool to work correctly without need to be available to..." alt="" coords="180,707,380,751"/>
+<area shape="rect" id="node19" href="$testdata_8h.xhtml" title="TestData, TestDataStorage and UnitTestGroup class definitions." alt="" coords="231,614,431,658"/>
+<area shape="rect" id="node23" href="$testenumerations_8h.xhtml" title="Enumerations and constant values associated with the Unit tests." alt="" coords="361,521,575,565"/>
+<area shape="rect" id="node27" href="$testtools_8h.xhtml" title="Some random function to ease the lives of test developers." alt="" coords="505,614,705,658"/>
+<area shape="rect" id="node30" href="$consolestringmanipulation_8h.xhtml" title="Some string manipulation functions geared towards console output for use in the Unit Tests..." alt="" coords="597,707,859,751"/>
+<area shape="rect" id="node9" href="$main_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/src/main.h" alt="" coords="368,801,568,845"/>
+<area shape="rect" id="node11" href="$boilerplatetests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/boilerplatetests.h" alt="" coords="5,894,216,938"/>
+<area shape="rect" id="node13" href="$compilerflagtests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/compilerflagtests.h" alt="" coords="240,894,461,938"/>
+<area shape="rect" id="node15" href="$lua51tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/lua51tests.h" alt="" coords="485,894,685,938"/>
+<area shape="rect" id="node17" href="$vector3tests_8h_source.xhtml" title="/home/sqeaky/Code/Mezzanine\l/UnitTests/tests/vector3tests.h" alt="" coords="709,894,909,938"/>
 </map>

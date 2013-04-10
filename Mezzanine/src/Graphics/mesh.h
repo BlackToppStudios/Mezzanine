@@ -52,20 +52,26 @@ namespace Mezzanine
 {
     namespace Graphics
     {
+        class SubMesh;
+        class Skeleton;
         class InternalMeshData;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Mesh
-        /// @headerfile mesh.h
         /// @brief This class is used to check and modify the properties of a graphics mesh.
         /// @details
         ///////////////////////////////////////
         class MEZZ_LIB Mesh
         {
+            public:
+                typedef std::vector<SubMesh*>             SubMeshContainer;
+                typedef SubMeshContainer::iterator        SubMeshIterator;
+                typedef SubMeshContainer::const_iterator  ConstSubMeshIterator;
             protected:
                 InternalMeshData* IMD;
+                Skeleton* MeshSkel;
+                SubMeshContainer SubMeshes;
             public:
-                /// @brief Class Constructor.
-                Mesh();
+                /*/// @brief Class Constructor.
+                Mesh();//*/
                 /// @internal
                 /// @brief Internal Constructor.
                 /// @param InternalMesh The internal mesh this mesh class is based on.
@@ -74,15 +80,25 @@ namespace Mezzanine
                 ~Mesh();
 
                 ///////////////////////////////////////////////////////////////////////////////
-                // AssetMethods
+                // Submesh Methods
+
+
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Skeleton Methods
+
+
+
+                ///////////////////////////////////////////////////////////////////////////////
+                // Asset Methods
 
                 /// @brief Gets the Name of this mesh.
                 /// @note If this mesh originated from a file, usually the name of the mesh will be the file name.
                 /// @return Returns a const string reference containing the name of this mesh.
-                ConstString& GetName();
+                ConstString& GetName() const;
                 /// @brief Gets the resource group this mesh belongs to.
                 /// @return Returns a const string reference containing the group this mesh belongs to.
-                ConstString& GetGroup();
+                ConstString& GetGroup() const;
 
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Methods
@@ -90,7 +106,7 @@ namespace Mezzanine
                 /// @internal
                 /// @brief Gets the internal Mesh pointer.
                 /// @return Returns a shared pointer pointing to the internal Mesh.
-                Ogre::MeshPtr GetOgreMesh();
+                Ogre::MeshPtr _GetInternalMesh() const;
         };//Mesh
     }//Graphics
 }//Mezzanine

@@ -174,8 +174,31 @@ class vector3tests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("Vector3::Neg_Unit_Z()", temp);                               //test
 
-		//UnitOnAxis(StandardAxis Axis)
-		//IsStandardUnitAxis() const;
+                if( Vector3(1.0,0.0,0.0) == Vector3::UnitOnAxis(Axis_X) &&
+                    Vector3(0.0,1.0,0.0) == Vector3::UnitOnAxis(Axis_Y) &&
+                    Vector3(0.0,0.0,1.0) == Vector3::UnitOnAxis(Axis_Z)
+                )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("Vector3::UnitOnAxis()", temp);                               //test
+
+                if( Vector3(1.0,0.0,0.0).IsStandardUnitAxis() == Axis_X &&
+                    Vector3(0.0,1.0,0.0).IsStandardUnitAxis() == Axis_Y &&
+                    Vector3(0.0,0.0,1.0).IsStandardUnitAxis() == Axis_Z &&
+                    Vector3(1.5,0.0,0.0).IsStandardUnitAxis() == Axis_Invalid &&
+                    Vector3(0.5,0.0,0.0).IsStandardUnitAxis() == Axis_Invalid &&
+                    Vector3(1.0,1.0,0.0).IsStandardUnitAxis() == Axis_Invalid &&
+                    Vector3(0.0,1.0,1.0).IsStandardUnitAxis() == Axis_Invalid &&
+                    Vector3(1.0,0.0,1.0).IsStandardUnitAxis() == Axis_Invalid &&
+                    Vector3(0.0,0.0,0.0).IsStandardUnitAxis() == Axis_Invalid &&
+                    Vector3(1.0,1.0,1.0).IsStandardUnitAxis() == Axis_Invalid
+                )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("Vector3::IsStandardUnitAxis()", temp);                      //test
+
 
                 {
                     Vector3 Vec2(0.0,0.0,0.0);
@@ -184,7 +207,7 @@ class vector3tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                    AddTestResult("Vector3::operator=(btVector3)", temp);            //test
+                    AddTestResult("Vector3::operator=(btVector3)", temp);                   //test
                 }
 
                 {
@@ -194,7 +217,7 @@ class vector3tests : public UnitTestGroup
                         { temp=Success; }
                     else
                         { temp=Failed; }
-                    AddTestResult("Vector3::operator=(Ogre::Vector3)", temp);            //test
+                    AddTestResult("Vector3::operator=(Ogre::Vector3)", temp);               //test
                 }
 
                 {
@@ -213,7 +236,7 @@ class vector3tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector3::operator-()", temp);                               //test
+                AddTestResult("Vector3::operator-()", temp);                                //test
 
                 Vec=Vector3(2.0,1.0,3.0);
                 Vec=Vec*2;
@@ -221,7 +244,7 @@ class vector3tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector3::operator*(Real)", temp);            //test
+                AddTestResult("Vector3::operator*(Real)", temp);                            //test
 
                 Vec=Vector3(4.0,2.0,6.0);
                 Vec=Vec/2;
@@ -229,7 +252,7 @@ class vector3tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector3::operator/(Real)", temp);            //test
+                AddTestResult("Vector3::operator/(Real)", temp);                            //test
 
                 Vec=Vector3(2.0,1.0,3.0);
                 Vec*=2.0;
@@ -237,7 +260,7 @@ class vector3tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector3::operator*=(Real)", temp);            //test
+                AddTestResult("Vector3::operator*=(Real)", temp);                           //test
 
                 Vec=Vector3(4.0,2.0,6.0);
                 Vec/=2.0;
@@ -245,7 +268,7 @@ class vector3tests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Vector3::operator/=(Real)", temp);            //test
+                AddTestResult("Vector3::operator/=(Real)", temp);                           //test
 
                 {
                     Vector3 Vec3(4.0,5.0,6.0);
@@ -909,6 +932,8 @@ class vector3tests : public UnitTestGroup
                     AddTestResult("Vector3::operator<<(cAudio::cVector3,btVector3)", temp);          //test
                 }
 
+                /// @todo Write Unit tests for Length, SquaredDistance, IsZeroLength, GetRotationToAxis, Zero, SetValues, ProtoDeSerialize, ProtoSerialize, SerializableName
+
             }else{
                 AddTestResult("Vector3::GetAxisValue(Whole)", Skipped);
                 AddTestResult("Vector3::operator[](Whole)", Skipped);
@@ -927,6 +952,8 @@ class vector3tests : public UnitTestGroup
                 AddTestResult("Vector3::Neg_Unit_X()", Skipped);
                 AddTestResult("Vector3::Neg_Unit_Y()", Skipped);
                 AddTestResult("Vector3::Neg_Unit_Z()", Skipped);
+                AddTestResult("Vector3::UnitOnAxis()", Skipped);
+                AddTestResult("Vector3::IsStandardUnitAxis()", Skipped);
                 AddTestResult("Vector3::operator=(cAudio::cVector3)", Skipped);
                 AddTestResult("Vector3::operator=(Ogre::Vector3)", Skipped);
                 AddTestResult("Vector3::operator=(btVector3)", Skipped);

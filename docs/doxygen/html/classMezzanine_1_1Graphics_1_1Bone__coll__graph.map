@@ -1,0 +1,4 @@
+<map id="Mezzanine::Graphics::Bone" name="Mezzanine::Graphics::Bone">
+<area shape="rect" id="node2" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="68,6,239,50"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="79,305,217,349"/>
+</map>

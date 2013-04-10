@@ -49,7 +49,7 @@ var searchData=
   ['menu',['Menu',['../classMezzanine_1_1UI_1_1Menu.xhtml#a3daf87f93e1a17a544aa2dcfefa804a2',1,'Mezzanine::UI::Menu']]],
   ['menuwindow',['MenuWindow',['../classMezzanine_1_1UI_1_1MenuWindow.xhtml',1,'Mezzanine::UI']]],
   ['menuwindow',['MenuWindow',['../classMezzanine_1_1UI_1_1MenuWindow.xhtml#a406d86dc2626b4c3f56b676fd21a34ef',1,'Mezzanine::UI::MenuWindow']]],
-  ['mesh',['Mesh',['../classMezzanine_1_1Graphics_1_1Mesh.xhtml#a58816a24e52a32c92348a102293f2e68',1,'Mezzanine::Graphics::Mesh::Mesh()'],['../classMezzanine_1_1Graphics_1_1Mesh.xhtml#aba00bc982b7dad19c8a3655ea98ab1c8',1,'Mezzanine::Graphics::Mesh::Mesh(Ogre::MeshPtr InternalMesh)']]],
+  ['mesh',['Mesh',['../classMezzanine_1_1Graphics_1_1Mesh.xhtml#aba00bc982b7dad19c8a3655ea98ab1c8',1,'Mezzanine::Graphics::Mesh']]],
   ['mesh',['Mesh',['../classMezzanine_1_1Graphics_1_1Mesh.xhtml',1,'Mezzanine::Graphics']]],
   ['meshcollisionshape',['MeshCollisionShape',['../classMezzanine_1_1Physics_1_1MeshCollisionShape.xhtml#a0d9c106654823014c17eaa3bfdbdccad',1,'Mezzanine::Physics::MeshCollisionShape']]],
   ['meshcollisionshape',['MeshCollisionShape',['../classMezzanine_1_1Physics_1_1MeshCollisionShape.xhtml',1,'Mezzanine::Physics']]],

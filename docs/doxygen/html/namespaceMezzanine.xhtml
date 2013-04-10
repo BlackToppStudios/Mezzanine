@@ -486,6 +486,8 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A manager responsible for the updating of all timers in use by this engine.  <a href="classMezzanine_1_1TimerManager.xhtml#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Transform.xhtml">Transform</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores information about relative location and rotation in 3d space.  <a href="classMezzanine_1_1Transform.xhtml#details">More...</a><br/></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1TransformableObject.xhtml">TransformableObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an interface for all 3D objects that can have their full transforms manipulated.  <a href="classMezzanine_1_1TransformableObject.xhtml#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1UIManager.xhtml">UIManager</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is responsible for any and all user interactions with the User interface/HUD.  <a href="classMezzanine_1_1UIManager.xhtml#details">More...</a><br/></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMezzanine_1_1Vector2.xhtml">Vector2</a></td></tr>
@@ -592,7 +594,8 @@ Enumerations</h2></td></tr>
 <br/>
  }</td></tr>
 <tr class="memdesc:a8892173bd6aaf7d0e34a07b2b30aad33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple enum for communicating the orientation the UI and Camera have relative to the world it is rendering.  <a href="namespaceMezzanine.xhtml#a8892173bd6aaf7d0e34a07b2b30aad33">More...</a><br/></td></tr>
-<tr class="memitem:ab41a00a8c6a47b576dc987ec34e16ba1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1">StandardAxis</a> { <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126">Axis_X</a> =  0, 
+<tr class="memitem:ab41a00a8c6a47b576dc987ec34e16ba1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1">StandardAxis</a> { <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1aa96a3c4582e394fe76d3288fdfee9107">Axis_Invalid</a> =  -1, 
+<a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126">Axis_X</a> =  0, 
 <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1a935c7afe0104697553cf85e9214fb3fb">Axis_Y</a> =  1, 
 <a class="el" href="namespaceMezzanine.xhtml#ab41a00a8c6a47b576dc987ec34e16ba1a6af6621383cc7da1fe11a86ba6de37c0">Axis_Z</a> =  2
  }</td></tr>
@@ -697,7 +700,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The bulk of the engine components go in this namspace. </p>
 <p>This is where imporant classes like <a class="el" href="classMezzanine_1_1World.xhtml">World</a>, <a class="el" href="classMezzanine_1_1GraphicsManager.xhtml" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>, and The eventmanager reside. For more detailed usage information please refer to individual class documentation or the <a class="el" href="index.xhtml">Mezzanine</a> main page.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000016">Todo:</a></b></dt><dd>This exists because somewhere in our chain of includes we have "winnt.h" (on windows) defining "KEY_EXECUTE", which causes the compile to fail at the line declaring "KEY_EXECUTE". I am reasonably certain this only exists when &lt;Ogre.h&gt; is included above this file in the include chain. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.xhtml#_todo000017">Todo:</a></b></dt><dd>This exists because somewhere in our chain of includes we have "winnt.h" (on windows) defining "KEY_EXECUTE", which causes the compile to fail at the line declaring "KEY_EXECUTE". I am reasonably certain this only exists when &lt;Ogre.h&gt; is included above this file in the include chain. </dd></dl>
 </div><h2>Typedef Documentation</h2>
 <a class="anchor" id="ab4f5efed51a1f6fc1799c821c3daf4b7"></a>
 <div class="memitem">
@@ -895,7 +898,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.xhtml#l00177">177</a> of file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.xhtml#l00178">178</a> of file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -959,6 +962,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>Used to identify different Axis in a 3d coordinate system. </p>
 <dl class="section note"><dt>Note</dt><dd>These are compatible with the linear Axis on many constraints, but not the rotational axis. </dd></dl>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="ab41a00a8c6a47b576dc987ec34e16ba1aa96a3c4582e394fe76d3288fdfee9107"></a>Axis_Invalid</em>&nbsp;</td><td>
+<p>Not an axis, Don't pass this into functions or operator[] functions, it is intended as a. </p>
+</td></tr>
 <tr><td valign="top"><em><a class="anchor" id="ab41a00a8c6a47b576dc987ec34e16ba1a823c8f182393aef96f017c7279d49126"></a>Axis_X</em>&nbsp;</td><td>
 <p>X axis. </p>
 </td></tr>
@@ -1001,7 +1007,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.xhtml#l00092">92</a> of file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.xhtml#l00093">93</a> of file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -1018,7 +1024,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PrintHello</b> ()</td
 <p>Used by various classes to help identify what class an object is. </p>
 <p>This enum can be used to express any object which could be considered "insertable" into the game world. </p>
 
-<p>Definition at line <a class="el" href="enumerations_8h_source.xhtml#l00102">102</a> of file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
+<p>Definition at line <a class="el" href="enumerations_8h_source.xhtml#l00103">103</a> of file <a class="el" href="enumerations_8h_source.xhtml">enumerations.h</a>.</p>
 
 </div>
 </div>
@@ -1604,6 +1610,6 @@ template&lt;class T &gt; </div>
 </div>
 </div><!-- contents -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 10:40:51 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
+Generated on Tue Apr 9 2013 23:03:26 for MezzanineEngine by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.1.2</small></address>
 </body>
 </html>

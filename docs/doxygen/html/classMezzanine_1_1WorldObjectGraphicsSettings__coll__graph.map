@@ -1,11 +1,15 @@
 <map id="Mezzanine::WorldObjectGraphicsSettings" name="Mezzanine::WorldObjectGraphicsSettings">
-<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="811,73,971,101"/>
-<area shape="rect" id="node10" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1145,81,1348,125"/>
-<area shape="rect" id="node22" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1180,147,1313,191"/>
-<area shape="rect" id="node4" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="464,7,648,35"/>
-<area shape="rect" id="node6" title="STL class." alt="" coords="149,7,296,35"/>
-<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="824,186,957,230"/>
-<area shape="rect" id="node15" title="STL class." alt="" coords="519,170,593,198"/>
-<area shape="rect" id="node17" title="STL class." alt="" coords="163,162,283,206"/>
-<area shape="rect" id="node28" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="153,75,292,119"/>
+<area shape="rect" id="node2" href="$classMezzanine_1_1WorldObject.xhtml" title="This is the base class from which classes that are insertable into the physical world." alt="" coords="1203,73,1363,101"/>
+<area shape="rect" id="node10" href="$classMezzanine_1_1WorldObjectPhysicsSettings.xhtml" title="This is a base helper class for configuring physics settings of a world object." alt="" coords="1537,81,1740,125"/>
+<area shape="rect" id="node22" href="$classMezzanine_1_1Physics_1_1Collision.xhtml" title="This is an event class used to track collsions in the physics world." alt="" coords="1572,147,1705,191"/>
+<area shape="rect" id="node4" href="$classMezzanine_1_1Audio_1_1SoundSet.xhtml" title="This is a vector that stores sounds." alt="" coords="856,7,1040,35"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="541,7,688,35"/>
+<area shape="rect" id="node13" href="$classMezzanine_1_1Physics_1_1CollisionShape.xhtml" title="This is the base class for all collision shapes." alt="" coords="1216,186,1349,230"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="911,157,985,185"/>
+<area shape="rect" id="node17" title="STL class." alt="" coords="555,149,675,193"/>
+<area shape="rect" id="node28" href="$classMezzanine_1_1Graphics_1_1Mesh.xhtml" title="This class is used to check and modify the properties of a graphics mesh." alt="" coords="545,82,684,126"/>
+<area shape="rect" id="node30" href="$classMezzanine_1_1Graphics_1_1Skeleton.xhtml" title="This class encapsulates the Skeletal animation functionality of a Mesh." alt="" coords="267,215,405,259"/>
+<area shape="rect" id="node34" href="$classMezzanine_1_1Graphics_1_1Bone.xhtml" title="This class encapsulates the bones contained in a skeleton used for animation." alt="" coords="545,215,684,259"/>
+<area shape="rect" id="node36" href="$classMezzanine_1_1TransformableObject.xhtml" title="This is an interface for all 3D objects that can have their full transforms manipulated." alt="" coords="251,310,421,354"/>
+<area shape="rect" id="node41" href="$classMezzanine_1_1Graphics_1_1SubMesh.xhtml" title="This class represents a sub&#45;section of an overall mesh." alt="" coords="7,82,145,126"/>
 </map>
