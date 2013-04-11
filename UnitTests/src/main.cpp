@@ -42,6 +42,7 @@
 #include "main.h"
 
 #include <cstdlib> // For system
+#include <fstream>
 
 static const String MemSpaceArg("inthismemoryspacetheworkshallbedone");
 Mezzanine::String CommandName;
@@ -57,7 +58,7 @@ class AllUnitTestGroups : public UnitTestGroup
         GlobalCoreTestGroup& TestGroups;
 
         AllUnitTestGroups(GlobalCoreTestGroup& GlobalTestGroups) :
-            RunAll(false),
+            RunAll(true),
             RunAutomaticTests(false),
             RunInteractiveTests(false),
             ExecuteInThisMemorySpace(false),
@@ -127,6 +128,7 @@ class AllUnitTestGroups : public UnitTestGroup
 int main (int argc, char** argv)
 {
     GlobalCoreTestGroup TestGroups;
+    bool WriteFile = true;
 
     if( !system( NULL ) ) // If this is not being run from a shell somehow, then using system() to run this task in a new process is not really possible.
     {
@@ -140,10 +142,7 @@ int main (int argc, char** argv)
     if (argc > 0) //Not really sure how this would happen, but I would rather test for it than have it fail
         { CommandName=argv[0]; }
     else
-    { return Usage("UnitTestGroups", TestGroups); }
-
-    if (argc == 1)
-        { return Usage(CommandName, TestGroups); }
+        { return Usage("UnitTestGroups", TestGroups); }
 
     AllUnitTestGroups Runner(TestGroups);
 
@@ -157,19 +156,22 @@ int main (int argc, char** argv)
         else if(ThisArg=="testlist")
             { return PrintList(TestGroups); }
         else if(ThisArg=="interactive")
-            { Runner.RunInteractiveTests=true; }
+            { Runner.RunInteractiveTests=true; Runner.RunAll=false; }
         else if(ThisArg=="automatic")
-            { Runner.RunAutomaticTests=true; }
+            { Runner.RunAutomaticTests=true; Runner.RunAll=false; }
         else if(ThisArg=="all")
             { Runner.RunAll=true; }
         else if(ThisArg=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
+        else if(ThisArg=="skipfile")
+            { WriteFile = false; }
         else  // Wasn't a command so it is either gibberish or a test group
         {
-            if(TestGroups[ThisArg.c_str()]) //pointer returned form the tesgroup will be null if gibberish
+            try
             {
+                TestGroups.at(ThisArg.c_str());
                 Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
-            }else{
+            } catch ( const std::out_of_range& e) {
                 std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
                 Usage(CommandName, TestGroups);
                 return ExitInvalidArguments;
@@ -179,6 +181,11 @@ int main (int argc, char** argv)
 
     Runner.RunTests();
 
+    if(WriteFile)
+    {
+        std::ofstream OutFile("TestResults.txt");
+        Runner.DisplayResults(OutFile,SummaryDisplay,FullDisplay);
+    }
     Runner.DisplayResults(std::cout,SummaryDisplay,FullDisplay);
 
     return ExitSuccess;
