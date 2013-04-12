@@ -65,7 +65,9 @@ namespace Mezzanine
         /// @brief Create and initialize a instance of the Entrosol, the engine
         /// @return A pointer to intialized entrosol
         /// @warning Not Implemented
-        Entresol *InitEngine();
+        CountedPtr<Entresol> InitEngine();
+
+        CountedPtr<Entresol> InitEngine(std::vector<ManagerFactory*>& CustomFactories);
 
         /// @brief Shutdown the engine that is passed in
         /// @param Engine The Engine to be shutdown.

@@ -185,6 +185,7 @@ int main (int argc, char** argv)
     {
         std::ofstream OutFile("TestResults.txt");
         Runner.DisplayResults(OutFile,SummaryDisplay,FullDisplay);
+        OutFile.close();
     }
     Runner.DisplayResults(std::cout,SummaryDisplay,FullDisplay);
 

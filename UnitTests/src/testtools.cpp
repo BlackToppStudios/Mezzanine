@@ -88,10 +88,16 @@ namespace Mezzanine
             }
         }
 
-        Entresol* InitEngine()
+        CountedPtr<Entresol> InitEngine()
         {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mezzanine::Testing::InitEngine() is not implemented");
-            return 0;
+            std::vector<ManagerFactory*> CustomFactories;
+            return InitEngine(CustomFactories);
+        }
+
+        CountedPtr<Entresol> InitEngine(std::vector<ManagerFactory*>& CustomFactories)
+        {
+            CountedPtr<Entresol> Results(new Entresol(CustomFactories, "Data/", FileSystem));
+            return Results;
         }
 
         void StopEngine(Entresol* Engine)
