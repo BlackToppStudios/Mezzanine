@@ -45,6 +45,99 @@
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
+namespace Mezzanine
+{
+    /// @brief A class to point at
+    class FooExternal
+    {
+        public:
+            /// @brief A value to use for testing Purposes
+            Integer Value;
+
+            /// @brief A pointer to the test results to set on destruction
+            TestResult* Results;
+
+            /// @brief A constructor that allows setting the value
+            /// @param TargetResults Where to save destruction results
+            /// @param Val A default value to use for testing.
+            explicit FooExternal(TestResult* TargetResults, Integer Val = 0)
+                : Results(TargetResults), Value(Val)
+                {}
+
+            /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
+            ~FooExternal()
+            {
+                if(NotApplicable==*Results)
+                    { *Results = Success; }
+            }
+    };
+
+    /// @brief A class to point at that uses its ownreferencing counting internal mechanism
+    class FooInternal
+    {
+        private:
+            /// @brief This is the Counter that stores how many references exist
+            Whole RefCount;
+
+        public:
+            /// @brief A value to use for testing Purposes
+            Integer Value;
+
+            /// @brief A pointer to the test results to set on destruction
+            TestResult* Results;
+
+            /// @brief A constructor that allows setting the value
+            /// @param TargetResults Where to save destruction results
+            /// @param Val A default value to use for testing.
+            explicit FooInternal(TestResult* TargetResults, Integer Val = 0)
+                : Results(TargetResults), Value(Val), RefCount(0)
+                {}
+
+            /// @brief A destructor that sets Results to Success if it wasNotApplicable and leaves it untouched otherwise.
+            ~FooInternal()
+            {
+                if(NotApplicable==*Results)
+                    { *Results = Success; }
+            }
+
+            /// @brief Increase the reference count by one and return the updated count.
+            /// @return The updated count;
+            Whole IncrementReferenceCount()
+                { return ++RefCount; }
+
+            /// @brief Decrease the reference count by one and return the updated count.
+            /// @return The updated count;
+            Whole DecrementReferenceCount()
+                { return --RefCount; }
+
+            /// @brief Gets the actual pointer to the target.
+            /// @return A Pointer of the targeted type to the object being managed.
+            FooInternal* GetReferenceCountPointer()
+                { return this; }
+
+            /// @brief Gets a reference to the reference counter, which on this is this
+            /// @return A reference to this.
+            FooInternal& GetReferenceCountReference()
+                { return *this; }
+
+            /// @brief Get the current amount of references.
+            /// @return A Whole with the current reference count
+            Whole GetReferenceCount()
+                { return RefCount; }
+    };
+
+    template <>
+    class ReferenceCountTraits <FooInternal>
+    {
+        public:
+            typedef FooInternal ManagedType;
+            typedef FooInternal* PtrType;
+
+            static PtrType ConstructionPointer(PtrType Target)
+                { return Target; }
+    };
+}
+
 class countedptrtests : public UnitTestGroup
 {
     public:
@@ -53,19 +146,259 @@ class countedptrtests : public UnitTestGroup
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+
             if (RunAutomaticTests)
             {
-                TestResult temp;
+                TestResult ResultE = NotApplicable;
+                TestResult ResultI = NotApplicable;
 
-                if(1)
-                    { temp=Success; }
-                else
-                    { temp=Failed; }
-                AddTestResult("CountedPtr::External::Automatic", temp);
+                {
+                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+                } // When pointers fall out of scope
+
+                AddTestResult("CountedPtr::External::AutomaticDestruction", ResultE);
+                AddTestResult("CountedPtr::Internal::AutomaticDestruction", ResultI);
 
             }else{
-                AddTestResult("CountedPtr::External::Automatic", Skipped);
+                AddTestResult("CountedPtr::External::AutomaticDestruction", Skipped);
+                AddTestResult("CountedPtr::Internal::AutomaticDestruction", Skipped);
             }
+
+            if (RunAutomaticTests)
+            {
+                TestResult ResultE = NotApplicable;
+                TestResult ResultM = NotApplicable;
+
+                {
+                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultM, 3) );
+
+                    CountedPtr<FooExternal>   PtrE2( PtrE );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
+
+                    if( 2!=PtrE.use_count() )
+                        { ResultE = Failed; }
+                    if( 2!=PtrI.use_count() )
+                        { ResultM = Failed; }
+                } // When pointers fall out of scope
+
+                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
+                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultM);
+
+            }else{
+                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
+                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
+            }
+
+
+
+
+            if (RunAutomaticTests)
+            {
+                TestResult ResultE = NotApplicable;
+                TestResult ResultI = NotApplicable;
+
+                {
+                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+
+                    CountedPtr<FooExternal>   PtrE2( PtrE );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
+
+                    if( 1!=(*PtrE2).Value )
+                        { ResultE = Failed; }
+
+                    if( 3!=(*PtrI2).Value )
+                        { ResultI = Failed; }
+                } // When pointers fall out of scope
+
+                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
+                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
+
+
+            }else{
+                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
+                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
+            }
+
+
+
+
+            if (RunAutomaticTests)
+            {
+                TestResult ResultE = NotApplicable;
+                TestResult ResultI = NotApplicable;
+                TestResult ResultEDereference = NotApplicable;
+                TestResult ResultIDereference = NotApplicable;
+                TestResult ResultEDereference2 = NotApplicable;
+                TestResult ResultIDereference2 = NotApplicable;
+
+                {
+                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+
+                    CountedPtr<FooExternal>   PtrE2( PtrE );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
+
+                    if( 1!=(*PtrE2).Value )
+                    {
+                        ResultEDereference = Failed;
+                    }else{
+                        ResultEDereference = Success;
+                    }
+
+                    if( 3!=(*PtrI2).Value )
+                    {
+                        ResultIDereference = Failed;
+                    }else{
+                        ResultIDereference = Success;
+                    }
+
+                    if( 1!=PtrE2->Value )
+                    {
+                        ResultEDereference2 = Failed;
+                    }else{
+                        ResultEDereference2 = Success;
+                    }
+
+                    if( 3!=PtrI2->Value )
+                    {
+                        ResultIDereference2 = Failed;
+                    }else{
+                        ResultIDereference2 = Success;
+                    }
+
+                } // When pointers fall out of scope
+
+                AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
+                AddTestResult("CountedPtr::Internal::NonDestructionRelease", ResultI);
+                AddTestResult("CountedPtr::External::operator*", ResultEDereference);
+                AddTestResult("CountedPtr::Internal::operator*", ResultIDereference);
+                AddTestResult("CountedPtr::External::operator->", ResultEDereference2);
+                AddTestResult("CountedPtr::Internal::operator->", ResultIDereference2);
+
+            }else{
+                AddTestResult("CountedPtr::External::NonDestructionRelease", Skipped);
+                AddTestResult("CountedPtr::Internal::NonDestructionRelease", Skipped);
+                AddTestResult("CountedPtr::External::operator*", Skipped);
+                AddTestResult("CountedPtr::Internal::operator*", Skipped);
+                AddTestResult("CountedPtr::External::operator->", Skipped);
+                AddTestResult("CountedPtr::Internal::operator->", Skipped);
+            }
+
+
+            if (RunAutomaticTests)
+            {
+                TestResult ResultE = NotApplicable; // Not reported
+                TestResult ResultI = NotApplicable; // Not reported
+
+                TestResult ResultEa = Success;
+                TestResult ResultIa = Success;
+                TestResult ResultEr = NotApplicable;
+                TestResult ResultIr = NotApplicable;
+                TestResult ResultEq = Success;
+                TestResult ResultIq = Success;
+                TestResult ResultEq2 = Failed;
+                TestResult ResultIq2 = Failed;
+
+                {
+                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+
+                    CountedPtr<FooExternal>   PtrE2( new FooExternal(&ResultEr, 2) );
+                    CountedPtr<FooInternal>   PtrI2( new FooInternal(&ResultIr, 4) );
+
+                    if(PtrE==PtrE2)
+                        { ResultEq = Failed; }
+                    if(PtrI==PtrI2)
+                        { ResultIq = Failed; }
+                    AddTestResult("CountedPtr::External::operator==inequality", ResultEq);
+                    AddTestResult("CountedPtr::Internal::operator==inequality", ResultIq);
+
+
+                    PtrE2 = PtrE; //Should be released here
+                    PtrI2 = PtrI; //Should be released here
+                    if (NotApplicable == ResultEr)
+                        { ResultEr = Failed; }
+                    if (NotApplicable == ResultIr)
+                        { ResultIr = Failed; }
+                    AddTestResult("CountedPtr::External::operator=release", ResultEr);
+                    AddTestResult("CountedPtr::Internal::operator=release", ResultIr);
+
+                    if(PtrE==PtrE2)
+                        { ResultEq2 = Success; }
+                    if(PtrI==PtrI2)
+                        { ResultIq2 = Success; }
+                    AddTestResult("CountedPtr::External::operator==equality", ResultEq2);
+                    AddTestResult("CountedPtr::Internal::operator==equality", ResultIq2);
+
+                    if( 1!=(*PtrE2).Value )
+                        { ResultEa = Failed; }
+                    if( 3!=(*PtrI2).Value )
+                        { ResultIa = Failed; }
+                } // When pointers fall out of scope
+
+                AddTestResult("CountedPtr::External::operator=acquire", ResultEa);
+                AddTestResult("CountedPtr::Internal::operator=acquire", ResultIa);
+                AddTestResult("CountedPtr::External::operator=release", ResultEr);
+                AddTestResult("CountedPtr::Internal::operator=release", ResultIr);
+            }else{
+                AddTestResult("CountedPtr::External::operator=acquire", Skipped);
+                AddTestResult("CountedPtr::Internal::operator=acquire", Skipped);
+                AddTestResult("CountedPtr::External::operator=release", Skipped);
+                AddTestResult("CountedPtr::Internal::operator=release", Skipped);
+                AddTestResult("CountedPtr::External::operator==inequality", Skipped);
+                AddTestResult("CountedPtr::Internal::operator==inequality", Skipped);
+                AddTestResult("CountedPtr::External::operator==equality", Skipped);
+                AddTestResult("CountedPtr::Internal::operator==equality", Skipped);
+            }
+
+
+
+            if (RunAutomaticTests)
+            {
+                TestResult ResultE = NotApplicable; // unused
+                TestResult ResultI = NotApplicable; // unused
+                TestResult ResultEu = Success;
+                TestResult ResultIu = Success;
+                TestResult ResultEu2 = Success;
+                TestResult ResultIu2 = Success;
+
+                {
+                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
+                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+
+                    if(PtrE.unique()!=true)
+                        { ResultEu = Failed; }
+                    if(PtrI.unique()!=true)
+                        { ResultIu = Failed; }
+
+                    CountedPtr<FooExternal>   PtrE2( PtrE );
+                    CountedPtr<FooInternal>   PtrI2( PtrI );
+
+                    if(PtrE2.unique()==true)
+                        { ResultEu2 = Failed; }
+                    if(PtrI2.unique()==true)
+                        { ResultIu2 = Failed; }
+
+                } // When pointers fall out of scope
+
+                AddTestResult("CountedPtr::External::Unique", ResultEu);
+                AddTestResult("CountedPtr::Internal::Unique", ResultIu);
+                AddTestResult("CountedPtr::External::NotUnique", ResultEu2);
+                AddTestResult("CountedPtr::Internal::NotUnique", ResultIu2);
+
+            }else{
+                AddTestResult("CountedPtr::External::Unique", Skipped);
+                AddTestResult("CountedPtr::Internal::Unique", Skipped);
+                AddTestResult("CountedPtr::External::NotUnique", Skipped);
+                AddTestResult("CountedPtr::Internal::NotUnique", Skipped);
+            }
+
+            /// @todo write a test for use_count() and get()
+
+
 
         }
 };

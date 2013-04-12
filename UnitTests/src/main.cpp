@@ -70,8 +70,8 @@ class AllUnitTestGroups : public UnitTestGroup
 
         virtual void RunTests()
         {
-            if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all tests if no type of test is specified
-                { RunAutomaticTests=true; RunInteractiveTests=true; }
+            if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running automatic tests if no type of test is specified
+                { RunAutomaticTests=true;  }
 
             if (RunAll)
             {
@@ -170,6 +170,7 @@ int main (int argc, char** argv)
             try
             {
                 TestGroups.at(ThisArg.c_str());
+                Runner.RunAll=false;
                 Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
             } catch ( const std::out_of_range& e) {
                 std::cerr << ThisArg << " is not a valid testgroup or parameter." << std::endl;
@@ -183,7 +184,8 @@ int main (int argc, char** argv)
 
     if(WriteFile)
     {
-        std::ofstream OutFile("TestResults.txt");
+        String FileName("TestResults.txt");
+        std::ofstream OutFile(FileName.c_str());
         Runner.DisplayResults(OutFile,SummaryDisplay,FullDisplay);
         OutFile.close();
     }

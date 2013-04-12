@@ -64,16 +64,19 @@ namespace Mezzanine
         enum TestResult
         {
             Success         = 0,        ///< Test was ran and appeared to work
-            Skipped         = 1,        ///< Test was simply not ran at the behest of the user
-            Cancelled       = 2,        ///< Was canceled by user, so success is unknown, but user knows test was canceled.
-            Inconclusive    = 3,        ///< If a user answers that with "don't know" in a test that involved interaction, The user knows there is a potential issue.
-            Failed          = 4,        ///< Known failure
-            Unknown         = 5,        ///< Since we don't know what happened this is the worst kind of failure.
-            NotApplicable   = 6         ///< This is not even a kind of failure, This is used to when referencing a test, so if this winds up coming out of a test, then something has failed.
+            Warning         = 1,        ///< Technically the test passed but there is something that is not quite right.
+            Skipped         = 2,        ///< Test was simply not ran at the behest of the user
+            Cancelled       = 3,        ///< Was canceled by user, so success is unknown, but user knows test was canceled.
+            Inconclusive    = 4,        ///< If a user answers that with "don't know" in a test that involved interaction, The user knows there is a potential issue.
+            Failed          = 5,        ///< Known failure
+            Unknown         = 6,        ///< Since we don't know what happened this is the worst kind of failure.
+            NotApplicable   = 7         ///< This is not even a kind of failure, This is used to when referencing a test, so if this winds up coming out of a test, then something has failed.
         };
 
         /// @brief Corresponds to TestResult::Success
         const Mezzanine::String SuccessString("Success");
+        /// @brief Corresponds to TestResult::Warning
+        const Mezzanine::String WarningString("Warning");
         /// @brief Corresponds to TestResult::Skipped
         const Mezzanine::String SkippedString("Skipped");
         /// @brief Corresponds to TestResult::Cancelled

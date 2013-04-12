@@ -92,6 +92,11 @@ namespace Mezzanine
             TypePointedTo* GetReferenceCountPointer()
                 { return Target; }
 
+            /// @brief Gets a reference to the thing pointed at by the reference counter
+            /// @return A reference to the target.
+            TypePointedTo& GetReferenceCountReference()
+                { return *Target; }
+
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
             Whole GetReferenceCount()
@@ -102,6 +107,7 @@ namespace Mezzanine
     /// @brief This is used to deduce at compile if a specific class has built reference counting or
     /// specialized reference counting.
     /// @details Any class that provides TypePointedTo* GetReferenceCountPointer(), Whole GetReferenceCount(),
+    /// TypePointedTo& GetReferenceCountReference(),
     /// Whole IncrementReferenceCount() and Whole DecrementReferenceCount() can be used as a reference
     /// counter. If it provides these then a specialization of ReferenceCountTraits should be
     /// implemented for a given class and CountedPtr will use the type defined by
@@ -144,6 +150,11 @@ namespace Mezzanine
             /// @return A Pointer of the targeted type to the object being managed.
             IntrusiveRefCount* GetReferenceCountPointer()
                 { return this; }
+
+            /// @brief Gets a reference to the reference counter, which on this is this
+            /// @return A reference to this.
+            IntrusiveRefCount& GetReferenceCountReference()
+                { return *this; }
 
             /// @brief Get the current amount of references.
             /// @return A Whole with the current reference count
@@ -281,7 +292,7 @@ namespace Mezzanine
             /// @return The managed object is returned by reference.
             /// @throw Nothing This member function does not throw exceptions.
             TypePointedTo& operator*() const throw()
-                { return *_ReferenceCounter->GetReferenceCountPointer(); }
+                { return _ReferenceCounter->GetReferenceCountReference(); }
 
             /// @brief The Structure dereference operator.
             /// @return Makes it appear, syntactically, as though you are dereferencing the raw pointer.
