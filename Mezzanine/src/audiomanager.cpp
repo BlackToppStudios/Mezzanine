@@ -157,7 +157,8 @@ namespace Mezzanine
 
     AudioManager::~AudioManager()
     {
-        SaveAllSettings();
+        if(AutoGenFiles)
+            SaveAllSettings();
 
         DestroyAllSounds();
         cAudio::destroyAudioManager(cAudioMan);

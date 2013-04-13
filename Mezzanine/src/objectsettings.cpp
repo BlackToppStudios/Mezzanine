@@ -669,6 +669,26 @@ namespace Mezzanine
 
     ///////////////////////////////////////////////////////////////////////////////
     // Saving Utilities
+    void ObjectSettingsHandler::SetAutoGenPath(bool Enable)
+    {
+        this->AutoGenPath = Enable;
+    }
+
+    bool ObjectSettingsHandler::GetAutoGenPath() const
+    {
+        return this->AutoGenPath;
+    }
+
+    void ObjectSettingsHandler::SetAutoGenFiles(bool Enable)
+    {
+        this->AutoGenFiles = Enable;
+    }
+
+    bool ObjectSettingsHandler::GetAutoGenFiles() const
+    {
+        return this->AutoGenFiles;
+    }
+
     void ObjectSettingsHandler::SaveAllSettings()
     {
         if( SettingsFilePath.empty() )

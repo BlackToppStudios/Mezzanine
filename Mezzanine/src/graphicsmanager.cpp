@@ -155,7 +155,8 @@ namespace Mezzanine
 
     GraphicsManager::~GraphicsManager()
     {
-        SaveAllSettings();
+        if(AutoGenFiles)
+            SaveAllSettings();
 
         DestroyAllGameWindows(false);
 
