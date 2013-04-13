@@ -88,21 +88,47 @@ namespace Mezzanine
             }
         }
 
-        CountedPtr<Entresol> InitEngine()
+        bool QuittingCallback()
         {
-            std::vector<ManagerFactory*> CustomFactories;
-            return InitEngine(CustomFactories);
+            static Whole Answer=0;
+            if( Answer++ == 120 )
+            {
+                return false;
+                Answer=0;
+            }
+            return true;
         }
 
-        CountedPtr<Entresol> InitEngine(std::vector<ManagerFactory*>& CustomFactories)
+        CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers)
         {
-            CountedPtr<Entresol> Results(new Entresol(CustomFactories, "Data/", FileSystem));
+            PhysicsConstructionInfo Info;
+            Info.PhysicsFlags = PhysicsConstructionInfo::PCF_SoftRigidWorld;
+            Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
+            Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
+            Info.MaxProxies = 60;
+
+            CountedPtr<Entresol> Results
+                    (
+                        new Entresol(  Info,
+                                       String("DefaultSceneManager"),
+                                       String("Data/"),
+                                       String("TestLog.txt"),
+                                       CustomManagers
+                                    )
+                    );
+
+            Results->SetTargetFrameRate(60);
+            GraphicsManager* GraphMan = Results->GetGraphicsManager();
+            // Disable Writing to the file here
+            Graphics::GameWindow* FirstWindow = GraphMan->CreateGameWindow("Window1",800,600,0);
+            Camera* FirstCam = CameraManager::GetSingletonPtr()->CreateCamera("Camera1");
+            Graphics::Viewport* FirstViewport = FirstWindow->CreateViewport(FirstCam);
+            FirstCam->SetLocation( Vector3(0,50,900) );
+            FirstCam->LookAt( Vector3(0,0,0) );
+
+            Results->GetEventManager()->SetPostMainLoopItems(&QuittingCallback);
+
             return Results;
-        }
-
-        void StopEngine(Entresol* Engine)
-        {
-            MEZZ_EXCEPTION(Exception::NOT_IMPLEMENTED_EXCEPTION,"Mezzanine::Testing::StopEngine() is not implemented");
         }
 
     }// Testing

@@ -55,6 +55,16 @@ class lua51tests : public UnitTestGroup
         {
             if (RunAutomaticTests)
             {
+                {
+                    CountedPtr<Entresol> World = SimpleEngineStartup();
+
+
+
+                    World->EngineInit(true);
+
+
+                }
+
                 TestResult temp;
 
                 if(1)

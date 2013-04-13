@@ -63,15 +63,12 @@ namespace Mezzanine
         TestResult GetTestAnswerFromStdin(Mezzanine::String Question);
 
         /// @brief Create and initialize a instance of the Entrosol, the engine
+        /// @details This creates and Entresol with one window(named "Window1"),
+        /// one camera (named "Camera1", and a postmainloops event callback that
+        /// ends execution after 120 frames.
+        /// @param CustomManagers
         /// @return A pointer to intialized entrosol
-        /// @warning Not Implemented
-        CountedPtr<Entresol> InitEngine();
-
-        CountedPtr<Entresol> InitEngine(std::vector<ManagerFactory*>& CustomFactories);
-
-        /// @brief Shutdown the engine that is passed in
-        /// @param Engine The Engine to be shutdown.
-        void StopEngine(Entresol* Engine);
+        CountedPtr<Entresol> SimpleEngineStartup(std::vector<ManagerBase*> CustomManagers = std::vector<ManagerBase*>());
 
     }// Testing
 }// Mezzanine
