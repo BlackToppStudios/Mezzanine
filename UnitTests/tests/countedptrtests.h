@@ -364,15 +364,33 @@ class countedptrtests : public UnitTestGroup
                 TestResult ResultIu = Success;
                 TestResult ResultEu2 = Success;
                 TestResult ResultIu2 = Success;
+                TestResult ResultEc = Success;
+                TestResult ResultIc = Success;
+                TestResult ResultEg = Success;
+                TestResult ResultIg = Success;
+
 
                 {
-                    CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 1) );
-                    CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+                    FooExternal* FooE = new FooExternal(&ResultE, 1);
+                    FooInternal* FooI = new FooInternal(&ResultI, 3);
+
+                    CountedPtr<FooExternal>   PtrE( FooE );
+                    CountedPtr<FooInternal>   PtrI( FooI );
+
+                    if(PtrE.get()!=FooE)
+                        { ResultEg = Failed; }
+                    if(PtrI.get()!=FooI)
+                        { ResultIg = Failed; }
 
                     if(PtrE.unique()!=true)
                         { ResultEu = Failed; }
                     if(PtrI.unique()!=true)
                         { ResultIu = Failed; }
+
+                    if(PtrE.use_count()!=1)
+                        { ResultEc = Failed; }
+                    if(PtrI.use_count()!=1)
+                        { ResultIc = Failed; }
 
                     CountedPtr<FooExternal>   PtrE2( PtrE );
                     CountedPtr<FooInternal>   PtrI2( PtrI );
@@ -382,21 +400,43 @@ class countedptrtests : public UnitTestGroup
                     if(PtrI2.unique()==true)
                         { ResultIu2 = Failed; }
 
+                    if(PtrE.use_count()!=2)
+                        { ResultEc = Failed; }
+                    if(PtrI.use_count()!=2)
+                        { ResultIc = Failed; }
+                    if(PtrE2.use_count()!=2)
+                        { ResultEc = Failed; }
+                    if(PtrI2.use_count()!=2)
+                        { ResultIc = Failed; }
+
+                    if(PtrE2.get()!=FooE)
+                        { ResultEg = Failed; }
+                    if(PtrI2.get()!=FooI)
+                        { ResultIg = Failed; }
+
                 } // When pointers fall out of scope
 
                 AddTestResult("CountedPtr::External::Unique", ResultEu);
                 AddTestResult("CountedPtr::Internal::Unique", ResultIu);
                 AddTestResult("CountedPtr::External::NotUnique", ResultEu2);
                 AddTestResult("CountedPtr::Internal::NotUnique", ResultIu2);
+                AddTestResult("CountedPtr::External::use_count", ResultEc);
+                AddTestResult("CountedPtr::Internal::use_count", ResultIc);
+                AddTestResult("CountedPtr::External::get", ResultEg);
+                AddTestResult("CountedPtr::Internal::get", ResultIg);
 
             }else{
                 AddTestResult("CountedPtr::External::Unique", Skipped);
                 AddTestResult("CountedPtr::Internal::Unique", Skipped);
                 AddTestResult("CountedPtr::External::NotUnique", Skipped);
                 AddTestResult("CountedPtr::Internal::NotUnique", Skipped);
+                AddTestResult("CountedPtr::External::use_count", Skipped);
+                AddTestResult("CountedPtr::Internal::use_count", Skipped);
+                AddTestResult("CountedPtr::External::get", Skipped);
+                AddTestResult("CountedPtr::Internal::get", Skipped);
             }
 
-            /// @todo write a test for use_count() and get()
+
 
 
 
