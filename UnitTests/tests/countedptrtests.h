@@ -503,11 +503,22 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 4));
+                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultS, 4));
                         OutputS=PtrS->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     cout << OutputS << " - Creating and Dereferencing a shared_ptr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        shared_ptr<FooExternal> PtrS = make_shared<FooExternal>(&ResultS, 5);
+                        OutputS=PtrS->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputS << " - Creating and Dereferencing a shared_ptr from make_shared" << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
                     #endif
 
                     /////////////////////////////////////
@@ -517,7 +528,7 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        FooExternal*   PtrR = new FooExternal(&ResultE, 5);
+                        FooExternal*   PtrR = new FooExternal(&ResultE, 6);
                         FooExternal*   PtrR2 = PtrR;
                         OutputE=PtrR2->Value;
                         delete PtrR2;
@@ -530,7 +541,7 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 6) );
+                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 7) );
                         CountedPtr<FooInternal>   PtrI2( PtrI );
                         OutputI=PtrI2->Value;
                     }
@@ -542,7 +553,7 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 7) );
+                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 8) );
                         CountedPtr<FooExternal>   PtrE2(PtrE);
                         OutputE=PtrE2->Value;
                     }
@@ -555,12 +566,23 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 8));
+                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 9));
                         shared_ptr<FooExternal> PtrS2(PtrS);
                         OutputS=PtrS2->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
                     cout << OutputS << " - Creating, Dereferencing and Copying a shared_ptr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        shared_ptr<FooExternal> PtrS = make_shared<FooExternal>(&ResultS, 10);
+                        shared_ptr<FooExternal> PtrS2(PtrS);
+                        OutputS=PtrS2->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputS << " - Creating, Dereferencing and Copying a shared_ptr from make_shared " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
                     #endif
 
                 } // When pointers fall out of scope

@@ -82,7 +82,7 @@ namespace Mezzanine
                 TerrainManager,
                 TimerManager,
                 UIManager,
-                UserCreated     = 512,         /// This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
+                UserCreated     = 512         ///< This, and values above it, is what User created managers that do not derive from any other managers are expected to use to prevent confusion with game internals
             };
 
             /// @brief This makes working with Callback function pointer a bit easier.

@@ -336,7 +336,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::ParticleEffect
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::ParticleEffect& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "ParticleEffect", OneTag) );
+    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "ParticleEffect", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 

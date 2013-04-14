@@ -115,7 +115,7 @@ namespace Mezzanine
                 }
             }
 
-            Lua51ScriptingEngine::Lua51ScriptingEngine(int LibrariesToOpen) : State(luaL_newstate())
+            Lua51ScriptingEngine::Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen) : State(luaL_newstate())
                 { OpenLibraries(LibrariesToOpen); }
 
             Lua51ScriptingEngine::~Lua51ScriptingEngine()
@@ -142,6 +142,11 @@ namespace Mezzanine
             CountedPtr<iScriptCompilable> Lua51ScriptingEngine::Compile(String SourceToCompile)
             {
 
+            }
+
+            String Lua51ScriptingEngine::GetImplementationTypeName() const
+            {
+                return String("Lua51ScriptingEngine");
             }
 
             void Lua51ScriptingEngine::OpenLibraries(int LibrariesToOpen)

@@ -341,31 +341,9 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::MetaCode& x)
 }
 
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::MetaCode& x)
-/*{
-    Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "MetaCode", OneTag) );
-
-    Doc->GetFirstChild() >> x;
-
-    return stream;
-}*/
-{ return DeSerialize(stream, x); }
+    { return DeSerialize(stream, x); }
 
 Mezzanine::XML::Node& operator >> (const Mezzanine::XML::Node& OneNode, Mezzanine::MetaCode& x)
-/*{
-    if ( Mezzanine::String(OneNode.Name())==Mezzanine::String("MetaCode") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-            x.SetMetaValue(OneNode.GetAttribute("MetaValue").AsInt());
-            x.SetCode(OneNode.GetAttribute("Code").AsInt());
-        }else{
-            throw( Mezzanine::Exception("Incompatible XML Version for MetaCode: Not Version 1"));
-        }
-    }else{
-        throw( Mezzanine::Exception(Mezzanine::String("Attempting to deserialize a MetaCode, found a ") + OneNode.Name()));
-    }
-}*/
-{x.ProtoDeSerialize(OneNode); }
+    {x.ProtoDeSerialize(OneNode); }
 
 #endif

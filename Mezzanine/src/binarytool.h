@@ -72,7 +72,14 @@ namespace Mezzanine
                     Binary(NULL)
                     {}
 
+                /// @brief Copy constructor
                 BinaryBuffer(const BinaryBuffer& Other);
+
+                /// @brief Assignment Operator
+                /// @details This deletes the buffer if it si
+                /// @param RH The item on the right hand side
+                /// @return A reference to the newly assigned binary buffer.
+                BinaryBuffer& operator= (const BinaryBuffer& RH);
 
                 /// @brief Verbose constructor, set everything custom on creation.
                 /// @param PredeterminedSize The size to set on creation.
@@ -88,7 +95,9 @@ namespace Mezzanine
                 virtual ~BinaryBuffer();
 
                 /// @brief Deletes whatever Binary points at and assigns Size to 0.
-                void DeleteBuffer();
+                /// @param NewSize If you don't want to just clear the buffer, but rather want to set size to a value and set a new size, you can do that with this
+                /// @param NewData If you don't want to just delete the Binary pointer, but want to set a new one, pass the new pointer here.
+                void DeleteBuffer(Whole NewSize=0, UInt8* NewData=0);
 
                 /// @brief Get the binary buffer as a base64 string
                 /// @return a String contain a base6 encoded version of the binary

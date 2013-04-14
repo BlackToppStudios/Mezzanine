@@ -37,47 +37,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _lua51tests_h
-#define _lua51tests_h
+#ifndef _binarytoolstests_h
+#define _binarytoolstests_h
 
 #include "main.h"
+
+/// @file
+/// @brief Test the BinaryBuffer and associate functions
 
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
-class lua51tests : public UnitTestGroup
+class binarytoolstests : public UnitTestGroup
 {
     public:
         virtual String Name()
-            { return String("lua51"); }
+            { return String("binarytools"); }
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
             if (RunAutomaticTests)
             {
-                {
-                    Scripting::Lua::Lua51ScriptingEngine LuaSafe(Scripting::Lua::Lua51ScriptingEngine::MezzSafeLib);
-                    Scripting::Lua::Lua51ScriptingEngine LuaEverything(Scripting::Lua::Lua51ScriptingEngine::AllLibs);
-
-
-
-                    //CountedPtr<Entresol> World = SimpleEngineStartup();
-
-                    //World->EngineInit(true);
-
-
-                }
-
                 TestResult temp;
 
                 if(1)
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("Lua51::Blank", temp);
+                AddTestResult("BinaryTools::Automatic", temp);
 
             }else{
-                AddTestResult("Lua51::Blank", Skipped);
+                AddTestResult("BinaryTools::Automatic", Skipped);
             }
         }
 };

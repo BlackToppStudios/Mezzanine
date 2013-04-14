@@ -100,6 +100,9 @@ namespace Mezzanine
 
                 /// @copydoc ManagerBase::GetInterfaceType()
                 virtual ManagerType GetInterfaceType() const;
+
+                /// @copydoc ManagerBase::GetImplementationTypeName()
+                virtual String GetImplementationTypeName() const = 0;
         }; //ScriptingManager
 
         ///////////////////////////////////////////////////////////////////////////////

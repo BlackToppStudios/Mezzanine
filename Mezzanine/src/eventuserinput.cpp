@@ -256,7 +256,7 @@ std::ostream& operator << (std::ostream& stream, const Mezzanine::EventUserInput
 std::istream& MEZZ_LIB operator >> (std::istream& stream, Mezzanine::EventUserInput& Ev)
 {
     Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(stream) );
-    std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventUserInput", OneTag) );
+    Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", "EventUserInput", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
 

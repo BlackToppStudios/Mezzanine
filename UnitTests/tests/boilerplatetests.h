@@ -42,6 +42,9 @@
 
 #include "main.h"
 
+/// @file
+/// @brief this file should be used as template for building future Unit Tests
+
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 

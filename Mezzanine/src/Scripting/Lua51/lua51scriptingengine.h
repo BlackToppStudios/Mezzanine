@@ -87,7 +87,7 @@ namespace Mezzanine
                     lua_State *State;
 
                 protected:
-                    /// @brief Performs the compilation on a raw pointer, only used internall
+                    /// @brief Performs the compilation on a raw pointer, only used internally
                     /// @param ScriptToCompile A pointer to the Lua51Script to compile.
                     virtual void Compile(Lua51Script* ScriptToCompile);
 
@@ -115,10 +115,10 @@ namespace Mezzanine
                         MezzSafeLib    = 512,    ///< Correlates to @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
 
                         DefaultLibs    = BaseLib | StringLib | TableLib | MathLib | MezzSafeLib, ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenMezzanineSafeLibrary
-                        AllLibs        = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib | MezzSafeLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
+                        AllLibs        = BaseLib | PackageLib | StringLib | TableLib | MathLib | IOLib | OSLib | DebugLib | MezzLib ///< A quick way to refer to all the libraries opened by @ref Lua51ScriptingEngine::OpenDefaultLibraries
                     };
 
-                    explicit Lua51ScriptingEngine(int LibrariesToOpen=DefaultLibs);
+                    explicit Lua51ScriptingEngine(Lua51Libraries LibrariesToOpen=DefaultLibs);
 
                     virtual ~Lua51ScriptingEngine();
 
@@ -129,6 +129,9 @@ namespace Mezzanine
                     virtual void Compile(CountedPtr<iScriptCompilable> ScriptToCompile);
 
                     virtual CountedPtr<iScriptCompilable> Compile(String SourceToCompile);
+
+                    /// @copydoc ManagerBase::GetImplementationTypeName()
+                    virtual String GetImplementationTypeName() const;
 
                     virtual void OpenLibraries(int LibrariesToOpen);
 

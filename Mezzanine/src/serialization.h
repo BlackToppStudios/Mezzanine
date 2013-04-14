@@ -44,6 +44,7 @@
 /// @brief The interface for serialization
 
     #include "datatypes.h"
+    #include "smartptr.h"
     #include "XML/xml.h"
 
     // Standard Headers are not included in SWIG preprocessing
@@ -377,7 +378,7 @@ namespace Mezzanine
         virtual std::istream& DeSerializeAll(std::istream& Stream)
         {
             Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
-            std::auto_ptr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(this->ContainerName(), OneTag) );
+            Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(this->ContainerName(), OneTag) );
             ProtoDeSerializeAll(Doc->GetFirstChild());
             return Stream;
         }
@@ -395,7 +396,7 @@ namespace Mezzanine
         virtual std::istream& DeSerialize(std::istream& Stream)
         {
             Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
-            std::auto_ptr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
+            Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc(Mezzanine::XML::PreParseClassFromSingleTag(DeSerializable::SerializableName(), OneTag) );
             ProtoDeSerialize(Doc->GetFirstChild());
             return Stream;
         }
@@ -431,7 +432,7 @@ namespace Mezzanine
     std::istream& DeSerialize(std::istream& Stream, T& Converted)
     {
         Mezzanine::String OneTag( Mezzanine::XML::GetOneTag(Stream) );
-        std::auto_ptr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", Converted.SerializableName(), OneTag) );
+        Mezzanine::CountedPtr<Mezzanine::XML::Document> Doc( Mezzanine::XML::PreParseClassFromSingleTag("Mezzanine::", Converted.SerializableName(), OneTag) );
 
         Converted.ProtoDeSerialize(Doc->GetFirstChild());
 
