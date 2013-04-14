@@ -9122,7 +9122,8 @@ void CLASS tiff_head (struct tiff_hdr *th, int full)
     tiff_set (&th->ntag, 259, 3, 1, 1);
     tiff_set (&th->ntag, 262, 3, 1, 1 + (colors > 1));
   }
-  tiff_set (&th->ntag, 270, 2, 512, TOFF(th->t_desc));
+  //tiff_set (&th->ntag, 270, , 512, TOFF(th->t_desc));
+  tiff_set (&th->ntag, 270, 0, 512, TOFF(th->t_desc));
   tiff_set (&th->ntag, 271, 2, 64, TOFF(th->t_make));
   tiff_set (&th->ntag, 272, 2, 64, TOFF(th->t_model));
   if (full) {
@@ -9169,7 +9170,8 @@ void CLASS tiff_head (struct tiff_hdr *th, int full)
   strncpy (th->t_desc, desc, 512);
   strncpy (th->t_make, make, 64);
   strncpy (th->t_model, model, 64);
-  strcpy (th->soft, "dcraw v"DCRAW_VERSION);
+  //strcpy (th->soft, "dcraw v"DCRAW_VERSION);
+  strcpy (th->soft, "dcraw v9.12");
   t = localtime (&timestamp);
   sprintf (th->date, "%04d:%02d:%02d %02d:%02d:%02d",
       t->tm_year+1900,t->tm_mon+1,t->tm_mday,t->tm_hour,t->tm_min,t->tm_sec);

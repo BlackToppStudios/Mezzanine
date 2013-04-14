@@ -83,6 +83,14 @@ namespace Mezzanine
     // Datatypes
     ///////////////////////////////////////
 
+    #ifdef _MEZZ_CPP11_PARTIAL_
+    /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
+    typedef std::intptr_t ConvertiblePointer;
+    #else
+    /// @brief A type that any pointer can be converted to and back from, and insures after the conversion back it will be identical.
+    typedef intptr_t ConvertiblePointer;
+    #endif
+
     /// @typedef Int8
     /// @brief An 8-bit integer.
     typedef int8_t Int8;
@@ -153,6 +161,21 @@ namespace Mezzanine
     /// @typedef StringStream
     /// @brief A Datatype used for streaming operations with strings.
     typedef std::stringstream StringStream;
+
+    /// @brief In case we ever replace the stringstream with another class, this will allow us to swap it out.
+    /// @details This will always support <<, str() but may lose support for formatting functions like std::hex.
+    typedef std::stringstream Logger;
+
+    /// @brief A large integer type suitable for compile time math and long term microsecond time keeping.
+    /// @details For reference when this is a 64 bit integer, it can store a number between −9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.
+    /// In seconds that is approximately 292,277,000,000 years and the universe is only 14,600,000,000 years old. So this is good for any time between
+    /// 20x the age of the universe before and after the beginning of any chosen epoch. Even if used to track nanoseconds it should be good for
+    /// 292 years.
+    #ifdef _MEZZ_CPP11_PARTIAL_
+        typedef intmax_t MaxInt;
+    #else
+        typedef long long MaxInt;
+    #endif
 
     ///////////////////////////////////////////////////////////////////////////////
     // Complex Data types

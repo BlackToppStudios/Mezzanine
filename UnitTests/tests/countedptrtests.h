@@ -41,7 +41,9 @@
 #define _countedptrtests_h
 
 #include "main.h"
+#include <memory>
 
+using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 
@@ -269,6 +271,7 @@ class countedptrtests : public UnitTestGroup
                         ResultIDereference2 = Success;
                     }
 
+
                 } // When pointers fall out of scope
 
                 AddTestResult("CountedPtr::External::NonDestructionRelease", ResultE);
@@ -435,8 +438,137 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::External::get", Skipped);
                 AddTestResult("CountedPtr::Internal::get", Skipped);
             }
+// unremark this line to test the CountedPtr vs Shared_Ptr
+//#define SHAREDPTRTEST
+            Integer OutputE = 0;
+            Integer OutputI = 0;
+            Integer OutputS = 0;
+            if (RunAutomaticTests)
+            {
+                TestResult ResultE = NotApplicable;
+                TestResult ResultI = NotApplicable;
+                TestResult ResultS = NotApplicable;
+
+                {
+
+                    cout << "The objects being created all chenage a variable on destruction and have initializing, but otherwise trivial constructors. This is useful only for comparing the speeds of the point constructs on this platform, not for providing objective pointer dereferencing costs." << std::endl;
 
 
+                    MaxInt Begin;
+                    MaxInt End;
+                    const Whole TestCount=1000000;
+
+                    /////////////////////////////////////
+                    // Create tests
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        FooExternal*   PtrR = new FooExternal(&ResultE, 1);
+                        OutputE=PtrR->Value;
+                        delete PtrR;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputE << " - Creating and Dereferencing a raw pointer " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 2) );
+                        OutputE=PtrE->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputE << " - Creating and Dereferencing a CountPtr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
+                        OutputI=PtrI->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputI << " - Creating and Dereferencing a CountPtr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    #ifdef SHAREDPTRTEST
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 4));
+                        OutputE=PtrS->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputE << " - Creating and Dereferencing a shared_ptr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+                    #endif
+
+                    /////////////////////////////////////
+                    // Copy tests
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        FooExternal*   PtrR = new FooExternal(&ResultE, 5);
+                        FooExternal*   PtrR2 = PtrR;
+                        OutputE=PtrR2->Value;
+                        delete PtrR2;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputE << " - Creating, Dereferencing and Copying a raw pointer " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 6) );
+                        CountedPtr<FooExternal>   PtrE2(PtrE);
+                        OutputE=PtrE2->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputE << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 7) );
+                        CountedPtr<FooInternal>   PtrI2( PtrI );
+                        OutputI=PtrI2->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputI << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+
+                    #ifdef SHAREDPTRTEST
+                    Begin = 0;
+                    End = 0;
+                    Begin = Mezzanine::crossplatform::GetTimeStamp();
+                    for (Whole Count = 0; Count<TestCount; Count++)
+                    {
+                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 4));
+                        shared_ptr<FooExternal> PtrS2(PtrS);
+                        OutputE=PtrS2->Value;
+                    }
+                    End = Mezzanine::crossplatform::GetTimeStamp();
+                    cout << OutputI << " - Creating, Dereferencing and Copying a shared_ptr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+                    #endif
+
+                } // When pointers fall out of scope
+
+                //AddTestResult("CountedPtr::External::BenchmarkComplete", ResultE);
+                //AddTestResult("CountedPtr::Internal::BenchmarkComplete", ResultI);
+
+            }else{
+                //AddTestResult("CountedPtr::External::BenchmarkComplete", Skipped);
+                //AddTestResult("CountedPtr::Internal::BenchmarkComplete", Skipped);
+            }
 
 
 
