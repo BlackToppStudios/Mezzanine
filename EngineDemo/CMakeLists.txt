@@ -136,9 +136,9 @@ CopyFilesDuringBuild( common/RobotDecomp3.bullet data/common/RobotDecomp3.bullet
 CopyFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
 CopyFilesDuringBuild( common/test.xml data/common/test.xml )
 CopyFilesDuringBuild( common/test.zip data/common/test.zip )
-CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/cAudioTheme1.ogg )
-CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/cAudioTheme2.ogg )
-CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/welcomefun-1.ogg )
+CopyFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
+CopyFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudioTheme2.ogg )
+CopyFilesDuringBuild( common/sounds/welcomefun-1.ogg data/common/sounds/welcomefun-1.ogg )
 
 #CopyFilesFromMezzanineDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 CopyFilesFromMezzanineDuringBuild( data/common/PugiXML-MITLicense.txt )

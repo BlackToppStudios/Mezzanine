@@ -439,6 +439,7 @@ class countedptrtests : public UnitTestGroup
                 AddTestResult("CountedPtr::Internal::get", Skipped);
             }
 // unremark this line to test the CountedPtr vs Shared_Ptr
+// need to enable c++11 in gcc I added "-std=c++11" to CMAKE_CXX_FLAGS
 //#define SHAREDPTRTEST
             Integer OutputE = 0;
             Integer OutputI = 0;
@@ -456,6 +457,8 @@ class countedptrtests : public UnitTestGroup
 
                     MaxInt Begin;
                     MaxInt End;
+
+
                     const Whole TestCount=1000000;
 
                     /////////////////////////////////////
@@ -466,11 +469,11 @@ class countedptrtests : public UnitTestGroup
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
                         FooExternal*   PtrR = new FooExternal(&ResultE, 1);
-                        OutputE=PtrR->Value;
+                        OutputS=PtrR->Value;
                         delete PtrR;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputE << " - Creating and Dereferencing a raw pointer " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputS << " - Creating and Dereferencing a raw pointer " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
@@ -501,10 +504,10 @@ class countedptrtests : public UnitTestGroup
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
                         shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 4));
-                        OutputE=PtrS->Value;
+                        OutputS=PtrS->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputE << " - Creating and Dereferencing a shared_ptr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputS << " - Creating and Dereferencing a shared_ptr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
                     #endif
 
                     /////////////////////////////////////

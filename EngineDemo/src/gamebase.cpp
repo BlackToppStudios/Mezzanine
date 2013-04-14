@@ -515,9 +515,10 @@ void LoadContent()
     String robotprefix ("Robot");
 
     Real mass=15.0;
+    /// @todo Figure why the EngineDemo fails on Linux when trying to find items in the
     TheEntresol->GetResourceManager()->AddAssetLocation("data/common", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Music", FileSystem, groupname, false);
-    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/Sounds", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/music", FileSystem, groupname, false);
+    TheEntresol->GetResourceManager()->AddAssetLocation("data/common/sounds", FileSystem, groupname, false);
     //TheEntresol->GetResourceManager()->AddAssetLocation(zipname.str(), "Zip", groupname, false);
     TheEntresol->GetResourceManager()->AddAssetLocation("", FileSystem, groupname, false);
     TheEntresol->GetResourceManager()->InitAssetGroup(groupname);
