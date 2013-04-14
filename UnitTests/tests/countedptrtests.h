@@ -480,22 +480,22 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 2) );
-                        OutputE=PtrE->Value;
+                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 2) );
+                        OutputI=PtrI->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputE << " - Creating and Dereferencing a CountPtr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputI << " - Creating and Dereferencing a CountPtr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 3) );
-                        OutputI=PtrI->Value;
+                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 3) );
+                        OutputE=PtrE->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputI << " - Creating and Dereferencing a CountPtr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputE << " - Creating and Dereferencing a CountPtr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
 
                     #ifdef SHAREDPTRTEST
                     Begin = 0;
@@ -530,24 +530,24 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 6) );
-                        CountedPtr<FooExternal>   PtrE2(PtrE);
-                        OutputE=PtrE2->Value;
+                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 6) );
+                        CountedPtr<FooInternal>   PtrI2( PtrI );
+                        OutputI=PtrI2->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputE << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputI << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
 
                     Begin = 0;
                     End = 0;
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        CountedPtr<FooInternal>   PtrI( new FooInternal(&ResultI, 7) );
-                        CountedPtr<FooInternal>   PtrI2( PtrI );
-                        OutputI=PtrI2->Value;
+                        CountedPtr<FooExternal>   PtrE( new FooExternal(&ResultE, 7) );
+                        CountedPtr<FooExternal>   PtrE2(PtrE);
+                        OutputE=PtrE2->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputI << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputE << " - Creating, Dereferencing and Copying a CountPtr " << TestCount << " times with external counting took: " << End-Begin << " Microseconds" << std::endl;
 
                     #ifdef SHAREDPTRTEST
                     Begin = 0;
@@ -555,12 +555,12 @@ class countedptrtests : public UnitTestGroup
                     Begin = Mezzanine::crossplatform::GetTimeStamp();
                     for (Whole Count = 0; Count<TestCount; Count++)
                     {
-                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 4));
+                        shared_ptr<FooExternal> PtrS(new FooExternal(&ResultE, 8));
                         shared_ptr<FooExternal> PtrS2(PtrS);
-                        OutputE=PtrS2->Value;
+                        OutputS=PtrS2->Value;
                     }
                     End = Mezzanine::crossplatform::GetTimeStamp();
-                    cout << OutputI << " - Creating, Dereferencing and Copying a shared_ptr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
+                    cout << OutputS << " - Creating, Dereferencing and Copying a shared_ptr " << TestCount << " times with internal counting took: " << End-Begin << " Microseconds" << std::endl;
                     #endif
 
                 } // When pointers fall out of scope
