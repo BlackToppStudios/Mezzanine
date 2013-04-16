@@ -75,6 +75,10 @@ namespace Mezzanine
                 /// @brief Copy constructor
                 BinaryBuffer(const BinaryBuffer& Other);
 
+                /// @brief Base64 decoding Constructor
+                /// @param Base64String A Base64 string to be decode and used as a binary buffer
+                explicit BinaryBuffer(const String& Base64String);
+
                 /// @brief Assignment Operator
                 /// @details This deletes the buffer if it si
                 /// @param RH The item on the right hand side
@@ -116,13 +120,18 @@ namespace Mezzanine
         /// @brief Convert a binary buffer to a Base64 string.
         /// @param BytesToEncode A pointer to the beginning of the buffer.
         /// @param Length The length of the bufferin bytes.
+        /// @return A String containing the base64 encoded binary
         String Base64Encode(UInt8 const* BytesToEncode, unsigned int Length);
 
         /// @brief Convert Base64 stuff back to binary
         /// @param EncodedString The results of a previous function like @ref Base64Encode to be converted back to binary
-        /// @return A String witht the raw bianry
+        /// @return A String with the raw bianry
         /// @todo Return something not a String and more amenable to use as a binary buffer.
-        String Base64Decode(String const& EncodedString);
+        BinaryBuffer Base64Decode(String const& EncodedString);
+
+        Whole PredictBinarySizeFromBase64String(String const& EncodedString);
+
+        Whole PredictBase64StringSizeFromBinarySize(Whole Length);
 
     } //stringtool
 }//Mezzanine

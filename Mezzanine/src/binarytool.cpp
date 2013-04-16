@@ -44,7 +44,10 @@
 /// @brief The implementation of some tools for making working with binary stuff easier.
 
 #include "binarytool.h"
+#include "exception.h"
+
 #include <string.h>
+#include <algorithm>
 
 namespace Mezzanine
 {
@@ -90,6 +93,11 @@ namespace Mezzanine
             memcpy(this->Binary,Other.Binary,this->Size);
         }
 
+        BinaryBuffer::BinaryBuffer(const String& Base64String)
+        {
+            this->CreateFromBase64(Base64String);
+        }
+
         BinaryBuffer& BinaryBuffer::operator= (const BinaryBuffer& RH)
         {
             DeleteBuffer(RH.Size);
@@ -111,10 +119,10 @@ namespace Mezzanine
 
         void BinaryBuffer::CreateFromBase64(String EncodedBinaryData)
         {
-            DeleteBuffer();
-            String Raw(Base64Decode(EncodedBinaryData));
-            Binary = new UInt8[Raw.size()];
-            memcpy(Binary,Raw.c_str(),Raw.size());
+            DeleteBuffer(); //Set our binary to 0
+            BinaryBuffer Temp(Base64Decode(EncodedBinaryData));
+            std::swap(this->Binary, Temp.Binary); // now the other binary is 0 and the buffer was never copied and won't be deleted on the destruction of other.
+            this->Size=Temp.Size;
         }
 
         // Code change to Match BTS naming conventions and formatting
@@ -175,7 +183,7 @@ namespace Mezzanine
         }
 
         // Code change to Match BTS naming conventions and formatting
-        String Base64Decode(String const& EncodedString)
+        BinaryBuffer Base64Decode(String const& EncodedString)
         {
             int in_len = EncodedString.size();
             int i = 0;
@@ -218,7 +226,21 @@ namespace Mezzanine
                     { ret += char_array_3[j]; }
             }
 
-            return ret;
+            //return ret;
+            return BinaryBuffer();
+        }
+
+        Whole PredictBinarySizeFromBase64String(String const& EncodedString)
+        {
+            if(EncodedString.size()<4)
+                { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "It is not possible to have a base64 string less than 4 bytes in length, but one was received.") }
+
+            return EncodedString.size()/4*3 - ( EncodedString.at(EncodedString.size()-2)=='=' ?1:0) - ( EncodedString.at(EncodedString.size()-1)=='=' ?1:0);
+        }
+
+        Whole PredictBase64StringSizeFromBinarySize(Whole Length)
+        {
+
         }
 
     } // BinaryTools

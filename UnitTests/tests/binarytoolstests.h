@@ -56,6 +56,14 @@ class binarytoolstests : public UnitTestGroup
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+            String TestString("Test");
+            String TestBase64("VGVzdA==");
+
+            //BinaryTools::BinaryBuffer TestBuffer(TestBase64);
+
+            cout << BinaryTools::PredictBinarySizeFromBase64String(TestBase64) << endl;
+
+
             if (RunAutomaticTests)
             {
                 TestResult temp;
@@ -64,10 +72,10 @@ class binarytoolstests : public UnitTestGroup
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("BinaryTools::Automatic", temp);
+                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String", temp);
 
             }else{
-                AddTestResult("BinaryTools::Automatic", Skipped);
+                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String", Skipped);
             }
         }
 };
