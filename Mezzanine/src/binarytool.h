@@ -60,6 +60,9 @@ namespace Mezzanine
         {
             public:
 
+                /// @brief The type of data this buffer can hold
+                typedef UInt8 byte;
+
                 /// @brief How many bytes is @ref Binary in size. This is set to 0 if @ref Binary is invalid and should be a null pointer.
                 Whole Size;
 
@@ -87,10 +90,10 @@ namespace Mezzanine
 
                 /// @brief Verbose constructor, set everything custom on creation.
                 /// @param PredeterminedSize The size to set on creation.
-                /// @param BinaryPointer A pointer to the first byte in memory, to be set on creation.
-                BinaryBuffer(Integer PredeterminedSize, UInt8* BinaryPointer) :
+                /// @param BinaryPointer A pointer to the first byte in memory, if this is null the buffer is created.
+                BinaryBuffer(Integer PredeterminedSize, UInt8* BinaryPointer = 0) :
                     Size(PredeterminedSize),
-                    Binary(BinaryPointer)
+                    Binary(BinaryPointer ? BinaryPointer : new byte[PredeterminedSize])
                     {}
 
                 /// @brief Virtual deconstructor calls @ref DeleteBuffer() to clean up whatever has been inserted here
@@ -127,10 +130,16 @@ namespace Mezzanine
         /// @param EncodedString The results of a previous function like @ref Base64Encode to be converted back to binary
         /// @return A String with the raw bianry
         /// @todo Return something not a String and more amenable to use as a binary buffer.
-        BinaryBuffer Base64Decode(String const& EncodedString);
+        String Base64Decode(String const& EncodedString);
 
+        /// @brief From an encoded string get the exact size of the decode binary in 8bit bytes
+        /// @param EncodedString The base64 encoded string
+        /// @return This returns the exact length of the result once it is decoded. The binary is about 3/4 of the base64 size, but that can be off by just enough to make memory allocation an issue if not calcualated carefully.
         Whole PredictBinarySizeFromBase64String(String const& EncodedString);
 
+        /// @brief From the size of a binary get the exact size in 8bit bytes.
+        /// @param Length The bytelength of the item before Base64 encoding.
+        /// @return This returns the exact length of the result once it is encoded. The Base64 is about 133% of the binary size, but that can be off by just enough to make memory allocation an issue if not calcualated carefully.
         Whole PredictBase64StringSizeFromBinarySize(Whole Length);
 
     } //stringtool

@@ -134,7 +134,7 @@ namespace Mezzanine
         // Code change to Match BTS naming conventions and formatting
         bool IsBase64(unsigned char Character)
         {
-          return (isalnum(Character) || (Character == '+') || (Character == '/'));
+          return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '='));
         }
 
         // Code change to Match BTS naming conventions and formatting
@@ -183,7 +183,7 @@ namespace Mezzanine
         }
 
         // Code change to Match BTS naming conventions and formatting
-        BinaryBuffer Base64Decode(String const& EncodedString)
+        String Base64Decode(String const& EncodedString)
         {
             int in_len = EncodedString.size();
             int i = 0;
@@ -226,8 +226,8 @@ namespace Mezzanine
                     { ret += char_array_3[j]; }
             }
 
-            //return ret;
-            return BinaryBuffer();
+            return ret;
+            //return BinaryBuffer();
         }
 
         Whole PredictBinarySizeFromBase64String(String const& EncodedString)
@@ -240,7 +240,7 @@ namespace Mezzanine
 
         Whole PredictBase64StringSizeFromBinarySize(Whole Length)
         {
-
+            return (Length+2)/3*4;
         }
 
     } // BinaryTools
