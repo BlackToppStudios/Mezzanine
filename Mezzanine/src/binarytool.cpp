@@ -194,6 +194,34 @@ namespace Mezzanine
         // Code change to Match BTS naming conventions and formatting
         BinaryBuffer Base64Decode(String const& EncodedString)
         {
+            Whole Size = EncodedString.size();
+            BinaryBuffer Results(PredictBinarySizeFromBase64String(EncodedString));
+            String::const_iterator Progress = EncodedString.begin();
+            Whole Output = 0;
+
+            while(Progress<EncodedString.end())
+            {
+                if(!IsBase64(*Progress))
+                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
+
+                if('='==*Progress)
+                    { break; }
+
+                *(Results.Binary+Output+0) = (*(Progress+0) << 0) + ((*(Progress+1) & 0x30) >> 4);
+                //*(Results.Binary+Output+1) =
+                //*(Results.Binary+Output+2) =
+
+                Output+=3;
+                Progress+=4;
+
+//#ifdef MEZZ_Debug
+                if(Output>Results.Size)
+                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                if(Progress>EncodedString.end() && Progress!=EncodedString.end()+4)
+                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
+//#endif
+            }
+
             /*
             int in_len = EncodedString.size();
             int i = 0;
@@ -237,7 +265,7 @@ namespace Mezzanine
             }
 
             return ret;*/
-            return BinaryBuffer();
+            return Results;
         }
 
         Whole PredictBinarySizeFromBase64String(String const& EncodedString)
