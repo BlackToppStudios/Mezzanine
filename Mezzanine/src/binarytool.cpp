@@ -117,6 +117,9 @@ namespace Mezzanine
         String BinaryBuffer::AsBase64()
             { return Base64Encode(Binary,Size); }
 
+        String BinaryBuffer::ToString()
+            { return String((char*)this->Binary); }
+
         void BinaryBuffer::CreateFromBase64(String EncodedBinaryData)
         {
             DeleteBuffer(); //Set our binary to 0
@@ -136,6 +139,12 @@ namespace Mezzanine
         {
           return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '='));
         }
+
+        String Base64Encode(String const& Unencoded)
+            { return Base64Encode((UInt8 const*)Unencoded.c_str(), Unencoded.size()); }
+
+        String Base64Encode(const BinaryBuffer &Buffer)
+            { return Base64Encode(Buffer.Binary,Buffer.Size); }
 
         // Code change to Match BTS naming conventions and formatting
         String Base64Encode(UInt8 const* BytesToEncode, unsigned int Length)
@@ -183,8 +192,9 @@ namespace Mezzanine
         }
 
         // Code change to Match BTS naming conventions and formatting
-        String Base64Decode(String const& EncodedString)
+        BinaryBuffer Base64Decode(String const& EncodedString)
         {
+            /*
             int in_len = EncodedString.size();
             int i = 0;
             int j = 0;
@@ -226,8 +236,8 @@ namespace Mezzanine
                     { ret += char_array_3[j]; }
             }
 
-            return ret;
-            //return BinaryBuffer();
+            return ret;*/
+            return BinaryBuffer();
         }
 
         Whole PredictBinarySizeFromBase64String(String const& EncodedString)

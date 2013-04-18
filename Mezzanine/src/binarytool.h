@@ -110,6 +110,10 @@ namespace Mezzanine
                 /// @return a String contain a base6 encoded version of the binary
                 String AsBase64();
 
+                /// @brief Get the contents of this crudely converted to a c style string then stuff it in a string
+                /// @return A String with the value stored in binary copied into it.
+                String ToString();
+
                 /// @brief This calls @ref DeleteBuffer then Decodes that passed and repopulates the Buffer
                 /// @param EncodedBinaryData The Base64 string containing binary data.
                 void CreateFromBase64(String EncodedBinaryData);
@@ -120,6 +124,16 @@ namespace Mezzanine
         /// @return True if the character could be part of a valid block of Base64 text, false otherwise
         bool IsBase64(unsigned char Char8);
 
+        /// @brief Converts the contents of a String into a String containing a base64 encoded String
+        /// @param Unencoded A String/binary to be encoded
+        /// @return A string containing base64.
+        String Base64Encode(String const& Unencoded);
+
+        /// @brief Convert a binary buffer to a base64 String.
+        /// @param Buffer A BinaryBuffer to base64 encode.
+        /// @return A string containing base64.
+        String Base64Encode(BinaryBuffer const& Buffer);
+
         /// @brief Convert a binary buffer to a Base64 string.
         /// @param BytesToEncode A pointer to the beginning of the buffer.
         /// @param Length The length of the bufferin bytes.
@@ -129,8 +143,7 @@ namespace Mezzanine
         /// @brief Convert Base64 stuff back to binary
         /// @param EncodedString The results of a previous function like @ref Base64Encode to be converted back to binary
         /// @return A String with the raw bianry
-        /// @todo Return something not a String and more amenable to use as a binary buffer.
-        String Base64Decode(String const& EncodedString);
+        BinaryBuffer Base64Decode(String const& EncodedString);
 
         /// @brief From an encoded string get the exact size of the decode binary in 8bit bytes
         /// @param EncodedString The base64 encoded string
