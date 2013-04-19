@@ -56,7 +56,7 @@ namespace Mezzanine
         /// @n @n
         /// This is designed to be fairly minimalistic and pointer-like so that it can be passed by value to reduce
         /// double pointer indirection and caching costs.
-        class BinaryBuffer
+        class MEZZ_LIB BinaryBuffer
         {
             public:
 
@@ -122,38 +122,38 @@ namespace Mezzanine
         /// @brief Is a character a valid Base64 character
         /// @param Character a single char to check if it could possibly be valid base64
         /// @return True if the character could be part of a valid block of Base64 text, false otherwise
-        bool IsBase64(unsigned char Char8);
+        bool MEZZ_LIB IsBase64(unsigned char Char8);
 
         /// @brief Converts the contents of a String into a String containing a base64 encoded String
         /// @param Unencoded A String/binary to be encoded
         /// @return A string containing base64.
-        String Base64Encode(String const& Unencoded);
+        String MEZZ_LIB Base64Encode(String const& Unencoded);
 
         /// @brief Convert a binary buffer to a base64 String.
         /// @param Buffer A BinaryBuffer to base64 encode.
         /// @return A string containing base64.
-        String Base64Encode(BinaryBuffer const& Buffer);
+        String MEZZ_LIB Base64Encode(BinaryBuffer const& Buffer);
 
         /// @brief Convert a binary buffer to a Base64 string.
         /// @param BytesToEncode A pointer to the beginning of the buffer.
         /// @param Length The length of the bufferin bytes.
         /// @return A String containing the base64 encoded binary
-        String Base64Encode(UInt8 const* BytesToEncode, unsigned int Length);
+        String MEZZ_LIB Base64Encode(UInt8 const* BytesToEncode, unsigned int Length);
 
         /// @brief Convert Base64 stuff back to binary
         /// @param EncodedString The results of a previous function like @ref Base64Encode to be converted back to binary
         /// @return A String with the raw bianry
-        BinaryBuffer Base64Decode(String const& EncodedString);
+        BinaryBuffer MEZZ_LIB Base64Decode(String const& EncodedString);
 
         /// @brief From an encoded string get the exact size of the decode binary in 8bit bytes
         /// @param EncodedString The base64 encoded string
         /// @return This returns the exact length of the result once it is decoded. The binary is about 3/4 of the base64 size, but that can be off by just enough to make memory allocation an issue if not calcualated carefully.
-        Whole PredictBinarySizeFromBase64String(String const& EncodedString);
+        Whole MEZZ_LIB PredictBinarySizeFromBase64String(String const& EncodedString);
 
         /// @brief From the size of a binary get the exact size in 8bit bytes.
         /// @param Length The bytelength of the item before Base64 encoding.
         /// @return This returns the exact length of the result once it is encoded. The Base64 is about 133% of the binary size, but that can be off by just enough to make memory allocation an issue if not calcualated carefully.
-        Whole PredictBase64StringSizeFromBinarySize(Whole Length);
+        Whole MEZZ_LIB PredictBase64StringSizeFromBinarySize(Whole Length);
 
     } //stringtool
 }//Mezzanine

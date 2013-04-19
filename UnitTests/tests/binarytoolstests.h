@@ -69,58 +69,62 @@ class binarytoolstests : public UnitTestGroup
             String GettysburgAddress("Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal. Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this. But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us—that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion—that we here highly resolve that these dead shall not have died in vain—that this nation, under God, shall have a new birth of freedom—and that government of the people, by the people, for the people, shall not perish from the earth.");
             String GettysburgAddressBase64("Rm91ciBzY29yZSBhbmQgc2V2ZW4geWVhcnMgYWdvIG91ciBmYXRoZXJzIGJyb3VnaHQgZm9ydGggb24gdGhpcyBjb250aW5lbnQgYSBuZXcgbmF0aW9uLCBjb25jZWl2ZWQgaW4gbGliZXJ0eSwgYW5kIGRlZGljYXRlZCB0byB0aGUgcHJvcG9zaXRpb24gdGhhdCBhbGwgbWVuIGFyZSBjcmVhdGVkIGVxdWFsLiBOb3cgd2UgYXJlIGVuZ2FnZWQgaW4gYSBncmVhdCBjaXZpbCB3YXIsIHRlc3Rpbmcgd2hldGhlciB0aGF0IG5hdGlvbiwgb3IgYW55IG5hdGlvbiwgc28gY29uY2VpdmVkIGFuZCBzbyBkZWRpY2F0ZWQsIGNhbiBsb25nIGVuZHVyZS4gV2UgYXJlIG1ldCBvbiBhIGdyZWF0IGJhdHRsZS1maWVsZCBvZiB0aGF0IHdhci4gV2UgaGF2ZSBjb21lIHRvIGRlZGljYXRlIGEgcG9ydGlvbiBvZiB0aGF0IGZpZWxkLCBhcyBhIGZpbmFsIHJlc3RpbmcgcGxhY2UgZm9yIHRob3NlIHdobyBoZXJlIGdhdmUgdGhlaXIgbGl2ZXMgdGhhdCB0aGF0IG5hdGlvbiBtaWdodCBsaXZlLiBJdCBpcyBhbHRvZ2V0aGVyIGZpdHRpbmcgYW5kIHByb3BlciB0aGF0IHdlIHNob3VsZCBkbyB0aGlzLiBCdXQsIGluIGEgbGFyZ2VyIHNlbnNlLCB3ZSBjYW4gbm90IGRlZGljYXRlLCB3ZSBjYW4gbm90IGNvbnNlY3JhdGUsIHdlIGNhbiBub3QgaGFsbG93IHRoaXMgZ3JvdW5kLiBUaGUgYnJhdmUgbWVuLCBsaXZpbmcgYW5kIGRlYWQsIHdobyBzdHJ1Z2dsZWQgaGVyZSwgaGF2ZSBjb25zZWNyYXRlZCBpdCwgZmFyIGFib3ZlIG91ciBwb29yIHBvd2VyIHRvIGFkZCBvciBkZXRyYWN0LiBUaGUgd29ybGQgd2lsbCBsaXR0bGUgbm90ZSwgbm9yIGxvbmcgcmVtZW1iZXIgd2hhdCB3ZSBzYXkgaGVyZSwgYnV0IGl0IGNhbiBuZXZlciBmb3JnZXQgd2hhdCB0aGV5IGRpZCBoZXJlLiBJdCBpcyBmb3IgdXMgdGhlIGxpdmluZywgcmF0aGVyLCB0byBiZSBkZWRpY2F0ZWQgaGVyZSB0byB0aGUgdW5maW5pc2hlZCB3b3JrIHdoaWNoIHRoZXkgd2hvIGZvdWdodCBoZXJlIGhhdmUgdGh1cyBmYXIgc28gbm9ibHkgYWR2YW5jZWQuIEl0IGlzIHJhdGhlciBmb3IgdXMgdG8gYmUgaGVyZSBkZWRpY2F0ZWQgdG8gdGhlIGdyZWF0IHRhc2sgcmVtYWluaW5nIGJlZm9yZSB1c+KAlHRoYXQgZnJvbSB0aGVzZSBob25vcmVkIGRlYWQgd2UgdGFrZSBpbmNyZWFzZWQgZGV2b3Rpb24gdG8gdGhhdCBjYXVzZSBmb3Igd2hpY2ggdGhleSBnYXZlIHRoZSBsYXN0IGZ1bGwgbWVhc3VyZSBvZiBkZXZvdGlvbuKAlHRoYXQgd2UgaGVyZSBoaWdobHkgcmVzb2x2ZSB0aGF0IHRoZXNlIGRlYWQgc2hhbGwgbm90IGhhdmUgZGllZCBpbiB2YWlu4oCUdGhhdCB0aGlzIG5hdGlvbiwgdW5kZXIgR29kLCBzaGFsbCBoYXZlIGEgbmV3IGJpcnRoIG9mIGZyZWVkb23igJRhbmQgdGhhdCBnb3Zlcm5tZW50IG9mIHRoZSBwZW9wbGUsIGJ5IHRoZSBwZW9wbGUsIGZvciB0aGUgcGVvcGxlLCBzaGFsbCBub3QgcGVyaXNoIGZyb20gdGhlIGVhcnRoLg==");
             //BinaryTools::BinaryBuffer TestBuffer(TestBase64);
-/*
-            std::cout << "Predicted Base64 size: " << PredictBase64StringSizeFromBinarySize(GettysburgAddress.length()) << std::endl
-                      << "Base64 size: " << GettysburgAddressBase64.length() << std::endl
-                      << "Predicted String size: " << PredictBinarySizeFromBase64String(GettysburgAddressBase64) << std::endl
-                      << "String size: " << GettysburgAddress.length() << std::endl
-                      << std::endl
-                      << PredictBase64StringSizeFromBinarySize(Test1String.length())
-                      << std::endl
-                      << Base64Encode((UInt8 const*)Test1String.c_str(), Test1String.length())
-                      << std::endl
-                      << Base64Decode(Test1Base64)
-                      << std::endl
-                      << Base64Encode((UInt8 const*)Test2String.c_str(), Test2String.length())
-                      << std::endl
-                      << Base64Decode(Test2Base64)
-                      << std::endl
-                      << Base64Encode((UInt8 const*)Test3String.c_str(), Test3String.length())
-                      << std::endl
-                      << Base64Decode(Test3Base64)
-                      << std::endl
-                      << Base64Encode((UInt8 const*)GettysburgAddress.c_str(), GettysburgAddress.length())
-                      << std::endl
-                      << Base64Decode(GettysburgAddressBase64)
-                      << std::endl;*/
 
+            std::cout //<< "Predicted Base64 size: " << PredictBase64StringSizeFromBinarySize(GettysburgAddress.length()) << std::endl
+                      //<< "Base64 size: " << GettysburgAddressBase64.length() << std::endl
+                      //<< "Predicted String size: " << PredictBinarySizeFromBase64String(GettysburgAddressBase64) << std::endl
+                      //<< "String size: " << GettysburgAddress.length() << std::endl
+                      //<< std::endl
+                      //<< PredictBase64StringSizeFromBinarySize(Test1String.length())
+                      << std::endl
+                      << Test1Base64 << ":" << Base64Encode((UInt8 const*)Test1String.c_str(), Test1String.length())
+                      << std::endl
+                      << Test1String << ":" << Base64Decode(Test1Base64).ToString()
+                      << std::endl << std::endl
+                      << Test2Base64 << ":" << Base64Encode((UInt8 const*)Test2String.c_str(), Test2String.length())
+                      << std::endl
+                      << Test2String << ":" << Base64Decode(Test2Base64).ToString()
+                      << std::endl << std::endl
+                      << Test3Base64 << ":" << Base64Encode((UInt8 const*)Test3String.c_str(), Test3String.length())
+                      << std::endl
+                      << Test3String << ":" << Base64Decode(Test3Base64).ToString()
+                      << std::endl << std::endl
+                      << GettysburgAddressBase64 << ":" << Base64Encode((UInt8 const*)GettysburgAddress.c_str(), GettysburgAddress.length())
+                      << std::endl
+                      << GettysburgAddress << ":" << Base64Decode(GettysburgAddressBase64).ToString()
+                      //<< std::endl
+                      //<< Base64Encode((UInt8 const*)GettysburgAddress.c_str(), GettysburgAddress.length())
+                      //<< std::endl
+                      //<< GettysburgAddressBase64 << ": " <<  Base64Decode(GettysburgAddressBase64).ToString()
+                      << std::endl;
+// */
 
             if (RunAutomaticTests)
             {
                 TestResult temp;
 
-                if( 8 == PredictBase64StringSizeFromBinarySize(Test1String.length())    &&
-                    8 == PredictBase64StringSizeFromBinarySize(Test2String.length())    &&
-                    8 == PredictBase64StringSizeFromBinarySize(Test3String.length())    &&
-                    1952 == PredictBase64StringSizeFromBinarySize(GettysburgAddress.length())
+                if( Test1Base64 == Base64Encode(Test1String)    &&
+                    Test2Base64 == Base64Encode(Test2String)    &&
+                    Test3Base64 == Base64Encode(Test3String)    &&
+                    GettysburgAddressBase64 == Base64Encode(GettysburgAddress)
                   )
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize", temp);
+                AddTestResult("BinaryTools::Base64Encode", temp);
 
-                if( 4 == PredictBinarySizeFromBase64String(Test1Base64)          &&
-                    5 == PredictBinarySizeFromBase64String(Test2Base64)          &&
-                    6 == PredictBinarySizeFromBase64String(Test3Base64)          &&
-                    1462 == PredictBinarySizeFromBase64String(GettysburgAddressBase64)
+                if( Test1String == Base64Decode(Test1Base64).ToString()          &&
+                    Test2String == Base64Decode(Test2Base64).ToString()          &&
+                    Test3String == Base64Decode(Test3Base64).ToString()          &&
+                    GettysburgAddress == Base64Decode(GettysburgAddressBase64).ToString()
                   )
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String", temp);
+                AddTestResult("BinaryTools::Base64Decode", temp);
             }else{
-                AddTestResult("BinaryTools::PredictBinarySizeFromBase64String", Skipped);
-                AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize", Skipped);
+                AddTestResult("BinaryTools::Base64Decode", Skipped);
+                AddTestResult("BinaryTools::Base64Encode", Skipped);
             }
 
             if (RunAutomaticTests)

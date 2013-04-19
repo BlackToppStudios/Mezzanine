@@ -45,6 +45,8 @@
 
 #include "binarytool.h"
 #include "exception.h"
+#include <iostream>
+using namespace std;
 
 #include <string.h>
 #include <algorithm>
@@ -149,7 +151,9 @@ namespace Mezzanine
         // Code change to Match BTS naming conventions and formatting
         String Base64Encode(UInt8 const* BytesToEncode, unsigned int Length)
         {
-            String ret;
+            String Results;
+            Results.reserve(PredictBase64StringSizeFromBinarySize(Length));
+
             int i = 0;
             int j = 0;
             unsigned char char_array_3[3];
@@ -166,7 +170,7 @@ namespace Mezzanine
                     char_array_4[3] = char_array_3[2] & 0x3f;
 
                     for(i = 0; (i <4) ; i++)
-                        { ret += Base64Chars[char_array_4[i]]; }
+                        { Results += Base64Chars[char_array_4[i]]; }
                     i = 0;
                 }
             }
@@ -182,89 +186,53 @@ namespace Mezzanine
                 char_array_4[3] = char_array_3[2] & 0x3f;
 
                 for (j = 0; (j < i + 1); j++)
-                    { ret += Base64Chars[char_array_4[j]]; }
+                    { Results += Base64Chars[char_array_4[j]]; }
 
                 while((i++ < 3))
-                { ret += '='; }
+                { Results += '='; }
             }
 
-            return ret;
+            return Results;
         }
 
-        // Code change to Match BTS naming conventions and formatting
+        // Code change to Match BTS naming conventions and formatting, then eventually refactored algorithm to adjust return type and switch from Olog(n) to O(n).
+        // This one is guaranteed exactly one memory allocation(+= on String likely only doubles allocation repeatidly), less copying, and in general is simpler
         BinaryBuffer Base64Decode(String const& EncodedString)
         {
-            Whole Size = EncodedString.size();
             BinaryBuffer Results(PredictBinarySizeFromBase64String(EncodedString));
             String::const_iterator Progress = EncodedString.begin();
             Whole Output = 0;
+
+            unsigned char First;
+            unsigned char Second;
+            unsigned char Third;
+            unsigned char Fourth;
 
             while(Progress<EncodedString.end())
             {
                 if(!IsBase64(*Progress))
                     { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
 
-                if('='==*Progress)
-                    { break; }
+                First = Base64Chars.find(*(Progress+0));
+                Second = Base64Chars.find(*(Progress+1));
+                Third = *(Progress+2)=='=' ? 0 : Base64Chars.find(*(Progress+2));
+                Fourth = *(Progress+2)=='=' ? 0 : Base64Chars.find(*(Progress+3));
 
-                *(Results.Binary+Output+0) = (*(Progress+0) << 0) + ((*(Progress+1) & 0x30) >> 4);
-                //*(Results.Binary+Output+1) =
-                //*(Results.Binary+Output+2) =
+                *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
+                *(Results.Binary+Output+1) = ((Second & 0xf) << 4) + ((Third & 0x3c) >> 2);
+                *(Results.Binary+Output+2) = ((Third & 0x3) << 6) + Fourth;
+
+                #ifdef MEZZDEBUG
+                if(Output>Results.Size)
+                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                if(Progress>EncodedString.end())
+                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
+                #endif
 
                 Output+=3;
                 Progress+=4;
-
-//#ifdef MEZZ_Debug
-                if(Output>Results.Size)
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
-                if(Progress>EncodedString.end() && Progress!=EncodedString.end()+4)
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
-//#endif
             }
 
-            /*
-            int in_len = EncodedString.size();
-            int i = 0;
-            int j = 0;
-            int in_ = 0;
-            unsigned char char_array_4[4], char_array_3[3];
-            String ret;
-
-            while (in_len-- && ( EncodedString[in_] != '=') && IsBase64(EncodedString[in_]))
-            {
-                char_array_4[i++] = EncodedString[in_]; in_++;
-                if (i ==4)
-                {
-                    for (i = 0; i <4; i++)
-                        { char_array_4[i] = Base64Chars.find(char_array_4[i]); }
-
-                    char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-                    char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-                    char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
-
-                    for (i = 0; (i < 3); i++)
-                        { ret += char_array_3[i]; }
-                    i = 0;
-                }
-            }
-
-            if (i)
-            {
-                for (j = i; j <4; j++)
-                    { char_array_4[j] = 0; }
-
-                for (j = 0; j <4; j++)
-                    { char_array_4[j] = Base64Chars.find(char_array_4[j]); }
-
-                char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
-                char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
-                char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
-
-                for (j = 0; (j < i - 1); j++)
-                    { ret += char_array_3[j]; }
-            }
-
-            return ret;*/
             return Results;
         }
 
