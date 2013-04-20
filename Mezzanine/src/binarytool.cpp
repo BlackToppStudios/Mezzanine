@@ -120,7 +120,7 @@ namespace Mezzanine
             { return Base64Encode(Binary,Size); }
 
         String BinaryBuffer::ToString()
-            { return String((char*)this->Binary); }
+            { return String((char*)this->Binary,this->Size); }
 
         void BinaryBuffer::CreateFromBase64(String EncodedBinaryData)
         {
@@ -216,15 +216,25 @@ namespace Mezzanine
                 First = Base64Chars.find(*(Progress+0));
                 Second = Base64Chars.find(*(Progress+1));
                 Third = *(Progress+2)=='=' ? 0 : Base64Chars.find(*(Progress+2));
-                Fourth = *(Progress+2)=='=' ? 0 : Base64Chars.find(*(Progress+3));
-
-                *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
-                *(Results.Binary+Output+1) = ((Second & 0xf) << 4) + ((Third & 0x3c) >> 2);
-                *(Results.Binary+Output+2) = ((Third & 0x3) << 6) + Fourth;
 
                 #ifdef MEZZDEBUG
-                if(Output>Results.Size)
+                if(Output+1>Results.Size)
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                #endif
+                *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
+                *(Results.Binary+Output+1) = ((Second & 0xf) << 4) + ((Third & 0x3c) >> 2);
+
+                if(*(Progress+3)!='=')
+                {
+                    #ifdef MEZZDEBUG
+                    if(Output+2>Results.Size)
+                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                    #endif
+                    Fourth = Base64Chars.find(*(Progress+3));
+                    *(Results.Binary+Output+2) = ((Third & 0x3) << 6) + Fourth;
+                }
+
+                #ifdef MEZZDEBUG
                 if(Progress>EncodedString.end())
                     { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
                 #endif
