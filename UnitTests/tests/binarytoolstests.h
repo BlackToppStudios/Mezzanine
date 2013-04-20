@@ -49,6 +49,111 @@ using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::BinaryTools;
 
+
+// Code change to Match BTS naming conventions and formatting
+// Copyright information in binarytools.cpp
+static const String Base64Chars =
+             "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+             "abcdefghijklmnopqrstuvwxyz"
+             "0123456789+/";
+
+
+// Code change to Match BTS naming conventions and formatting
+// Copyright information in binarytools.cpp
+String ReneBase64Encode(UInt8 const* BytesToEncode, unsigned int Length)
+{
+    String ret;
+    int i = 0;
+    int j = 0;
+    unsigned char char_array_3[3];
+    unsigned char char_array_4[4];
+
+    while (Length--)
+    {
+        char_array_3[i++] = *(BytesToEncode++);
+        if (i == 3)
+        {
+            char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+            char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+            char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+            char_array_4[3] = char_array_3[2] & 0x3f;
+
+            for(i = 0; (i <4) ; i++)
+                { ret += Base64Chars[char_array_4[i]]; }
+            i = 0;
+        }
+    }
+
+    if (i)
+    {
+        for(j = i; j < 3; j++)
+            { char_array_3[j] = '\0'; }
+
+        char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
+        char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
+        char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
+        char_array_4[3] = char_array_3[2] & 0x3f;
+
+        for (j = 0; (j < i + 1); j++)
+            { ret += Base64Chars[char_array_4[j]]; }
+
+        while((i++ < 3))
+        { ret += '='; }
+    }
+
+    return ret;
+}
+
+// Code change to Match BTS naming conventions and formatting
+// Copyright information in binarytools.cpp
+String ReneBase64Decode(String const& EncodedString)
+{
+    int in_len = EncodedString.size();
+    int i = 0;
+    int j = 0;
+    int in_ = 0;
+    unsigned char char_array_4[4], char_array_3[3];
+    String ret;
+
+    while (in_len-- && ( EncodedString[in_] != '=') && IsBase64(EncodedString[in_]))
+    {
+        char_array_4[i++] = EncodedString[in_]; in_++;
+        if (i ==4)
+        {
+            for (i = 0; i <4; i++)
+                { char_array_4[i] = Base64Chars.find(char_array_4[i]); }
+
+            char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
+            char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
+            char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+
+            for (i = 0; (i < 3); i++)
+                { ret += char_array_3[i]; }
+            i = 0;
+        }
+    }
+
+    if (i)
+    {
+        for (j = i; j <4; j++)
+            { char_array_4[j] = 0; }
+
+        for (j = 0; j <4; j++)
+            { char_array_4[j] = Base64Chars.find(char_array_4[j]); }
+
+        char_array_3[0] = (char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
+        char_array_3[1] = ((char_array_4[1] & 0xf) << 4) + ((char_array_4[2] & 0x3c) >> 2);
+        char_array_3[2] = ((char_array_4[2] & 0x3) << 6) + char_array_4[3];
+
+        for (j = 0; (j < i - 1); j++)
+            { ret += char_array_3[j]; }
+    }
+
+    return ret;
+    //return BinaryBuffer();
+}
+
+
 class binarytoolstests : public UnitTestGroup
 {
     public:
@@ -57,6 +162,33 @@ class binarytoolstests : public UnitTestGroup
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+
+            if (RunAutomaticTests)
+            {
+                TestResult temp;
+
+                if( IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
+                    IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
+                    IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
+                    IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
+                    IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
+                    IsBase64('/') && IsBase64('=') && IsBase64('+') &&
+                    !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
+                    !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
+                    !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
+                    !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34)
+                  )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::IsBase64", temp);
+            }else{
+                AddTestResult("BinaryTools::IsBase64", Skipped);
+            }
+
+
+
+
             String Test1String("Test");
             String Test1Base64("VGVzdA==");
 
@@ -71,37 +203,6 @@ class binarytoolstests : public UnitTestGroup
 
             String UnicodeString("Iｎｔèｒｎáｔìｏｎàｌïｚâｔｉòｎ");
             String UnicedeBase64("Se+9ju+9lMOo772S772Ow6HvvZTDrO+9j++9jsOg772Mw6/vvZrDou+9lO+9icOy772O");
-
-            //BinaryTools::BinaryBuffer TestBuffer(TestBase64);
-
-            std::cout //<< "Predicted Base64 size: " << PredictBase64StringSizeFromBinarySize(GettysburgAddress.length()) << std::endl
-                      //<< "Base64 size: " << GettysburgAddressBase64.length() << std::endl
-                      //<< "Predicted String size: " << PredictBinarySizeFromBase64String(GettysburgAddressBase64) << std::endl
-                      //<< "String size: " << GettysburgAddress.length() << std::endl
-                      //<< std::endl
-                      //<< PredictBase64StringSizeFromBinarySize(Test1String.length())
-                      << std::endl
-                      << Test1Base64 << ":" << Base64Encode((UInt8 const*)Test1String.c_str(), Test1String.length()) << ":"
-                      << std::endl
-                      << Test1String << ":" << Base64Decode(Test1Base64).ToString() << ":"
-                      << std::endl << std::endl
-                      << Test2Base64 << ":" << Base64Encode((UInt8 const*)Test2String.c_str(), Test2String.length()) << ":"
-                      << std::endl
-                      << Test2String << ":" << Base64Decode(Test2Base64).ToString() << ":"
-                      << std::endl << std::endl
-                      << Test3Base64 << ":" << Base64Encode((UInt8 const*)Test3String.c_str(), Test3String.length()) << ":"
-                      << std::endl
-                      << Test3String << ":" << Base64Decode(Test3Base64).ToString() << ":"
-                      << std::endl << std::endl
-                      //<< GettysburgAddressBase64 << ":" << Base64Encode((UInt8 const*)GettysburgAddress.c_str(), GettysburgAddress.length())
-                      //<< std::endl
-                      //<< GettysburgAddress << ":" << Base64Decode(GettysburgAddressBase64).ToString()
-                      //<< std::endl
-                      //<< Base64Encode((UInt8 const*)GettysburgAddress.c_str(), GettysburgAddress.length())
-                      //<< std::endl
-                      //<< GettysburgAddressBase64 << ": " <<  Base64Decode(GettysburgAddressBase64).ToString()
-                      << std::endl;
-// */
 
             if (RunAutomaticTests)
             {
@@ -210,6 +311,76 @@ class binarytoolstests : public UnitTestGroup
                 AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Short", Skipped);
                 AddTestResult("BinaryTools::PredictBase64StringSizeFromBinarySize-Unicode", Skipped);
             }
+
+            if (RunAutomaticTests)
+            {
+                TestResult temp;
+
+                if( IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
+                    IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
+                    IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
+                    IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
+                    IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
+                    IsBase64('/') && IsBase64('=') && IsBase64('+') &&
+                    !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
+                    !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
+                    !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
+                    !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34)
+                  )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::IsBase64", temp);
+            }else{
+                AddTestResult("BinaryTools::IsBase64", Skipped);
+            }
+
+
+            if (RunAutomaticTests)
+            {
+                TestResult temp;
+                Whole TestCount = 10000;
+
+                MaxInt Begin;
+                MaxInt End;
+                MaxInt BTSEncodeTime=0;
+                MaxInt BTSDecodeTime=0;
+                MaxInt ReneEncodeTime=0;
+                MaxInt ReneDecodeTime=0;
+                String OutputS; //To prevent optimizing this whole chunk away.
+                BinaryBuffer OutputB; //To prevent optimizing this whole chunk away.
+
+                cout << "Benchmarking this for the sake of performace is dumb and I know it. This is not performance sensitive code, I just wanted to test my ability to gauge subtle non-optimal performance in code when I saw it." << endl << endl;
+
+                Begin = crossplatform::GetTimeStamp();
+                for(Whole c=0; c<TestCount; c++)
+                {
+                    OutputS = ReneBase64Decode(GettysburgAddressBase64);
+                }
+                End = crossplatform::GetTimeStamp();
+                ReneDecodeTime = End - Begin;
+                cout << "Decoding With Rene's algorithm took " << ReneDecodeTime << " microseconds for " << TestCount << " iteration and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+
+                Begin = crossplatform::GetTimeStamp();
+                for(Whole c=0; c<TestCount; c++)
+                {
+                    OutputB = Base64Decode(GettysburgAddressBase64);
+                }
+                End = crossplatform::GetTimeStamp();
+                BTSDecodeTime = End - Begin;
+                OutputS=OutputB.ToString(); //The conversion to string does not get timed, the reason for this conversion was for use as a binary buffer, not an std::String we need to moved things that allow for direct control of memory.
+                cout << "Decoding With BTS algorithm took " << BTSDecodeTime << " microseconds for " << TestCount << " iteration and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+
+
+                if( BTSDecodeTime < ReneDecodeTime )
+                    { temp=Success; }
+                else
+                    { temp=Warning; }
+                AddTestResult("BinaryTools::DecodeTime", temp);
+            }else{
+                AddTestResult("BinaryTools::DecodeTime", Skipped);
+            }
+
 
         }
 };

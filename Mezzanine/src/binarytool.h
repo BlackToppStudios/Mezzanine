@@ -54,8 +54,7 @@ namespace Mezzanine
         /// @details Originally intended for use with @ref ScriptCompilable as a basic way to store and pass bytecode around.
         /// This deletes the passed binary on destruction. to prevent this behavior set the Binary pointer to null.
         /// @n @n
-        /// This is designed to be fairly minimalistic and pointer-like so that it can be passed by value to reduce
-        /// double pointer indirection and caching costs.
+        /// This is designed to be fairly minimalistic but passing by value causes the buffer to be copied.
         class MEZZ_LIB BinaryBuffer
         {
             public:
@@ -79,8 +78,9 @@ namespace Mezzanine
                 BinaryBuffer(const BinaryBuffer& Other);
 
                 /// @brief Base64 decoding Constructor
-                /// @param Base64String A Base64 string to be decode and used as a binary buffer
-                explicit BinaryBuffer(const String& Base64String);
+                /// @param DataString A Base64 string to be decode and used as a binary buffer, or a string to be used a buffer if IsBase64 is false
+                /// @param IsBase64 Is the String passed Base64 encoded
+                explicit BinaryBuffer(const String& DataString, bool IsBase64 = true);
 
                 /// @brief Assignment Operator
                 /// @details This deletes the buffer if it si
@@ -103,12 +103,14 @@ namespace Mezzanine
 
                 /// @brief Deletes whatever Binary points at and assigns Size to 0.
                 /// @param NewSize If you don't want to just clear the buffer, but rather want to set size to a value and set a new size, you can do that with this
-                /// @param NewData If you don't want to just delete the Binary pointer, but want to set a new one, pass the new pointer here.
-                void DeleteBuffer(Whole NewSize=0, UInt8* NewData=0);
+                void DeleteBuffer(Whole NewSize=0);
+
+                /// @brief This will create a buffer with size matching the this-Size and point this->Binary to that Buffer
+                void CreateBuffer();
 
                 /// @brief Get the binary buffer as a base64 string
                 /// @return a String contain a base6 encoded version of the binary
-                String AsBase64();
+                String ToBase64String();
 
                 /// @brief Get the contents of this crudely converted to a c style string then stuff it in a string
                 /// @return A String with the value stored in binary copied into it.

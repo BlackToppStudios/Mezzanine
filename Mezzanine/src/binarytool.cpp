@@ -95,28 +95,40 @@ namespace Mezzanine
             memcpy(this->Binary,Other.Binary,this->Size);
         }
 
-        BinaryBuffer::BinaryBuffer(const String& Base64String)
+        BinaryBuffer::BinaryBuffer(const String& DataString, bool IsBase64)
         {
-            this->CreateFromBase64(Base64String);
+            if(IsBase64)
+                { this->CreateFromBase64(DataString); }
+            else
+            {
+                this->Size = DataString.size();
+                CreateBuffer();
+                memcpy(this->Binary, DataString.c_str(), this->Size);
+            }
         }
 
         BinaryBuffer& BinaryBuffer::operator= (const BinaryBuffer& RH)
         {
             DeleteBuffer(RH.Size);
+            CreateBuffer();
             memcpy(this->Binary,RH.Binary,this->Size);
         }
 
         BinaryBuffer::~BinaryBuffer()
             { DeleteBuffer(); }
 
-        void BinaryBuffer::DeleteBuffer(Whole NewSize, UInt8* NewData)
+        void BinaryBuffer::DeleteBuffer(Whole NewSize)
         {
             delete[] Binary;
             Size = NewSize;
-            Binary = NewData;
         }
 
-        String BinaryBuffer::AsBase64()
+        void BinaryBuffer::CreateBuffer()
+        {
+            this->Binary = new UInt8[this->Size];
+        }
+
+        String BinaryBuffer::ToBase64String()
             { return Base64Encode(Binary,Size); }
 
         String BinaryBuffer::ToString()
