@@ -56,9 +56,10 @@ namespace Mezzanine
     namespace BinaryTools
     {
         /*
-         * The following 3 functions and 1 variable were taken from http://www.adp-gmbh.ch/cpp/common/base64.html
+         * Some of the following functions and 1 variable were taken from http://www.adp-gmbh.ch/cpp/common/base64.html
          * for the functions IsBase64(unsigned char c),  Base64Encode(UInt8 const* BytesToEncode, unsigned int Length),
-         *     Base64Decode(String const& EncodedString) and Base64Chars
+         *     Base64Decode(String const& EncodedString) and Base64Chars and maybe a few others in this file or the
+         *     tests for this file
          * with written permission as follows.
 
 
@@ -86,6 +87,64 @@ namespace Mezzanine
 
         */
 
+        namespace
+        {
+            // Code change to Match BTS naming conventions and formatting
+            static const String Base64Chars =
+                         "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                         "abcdefghijklmnopqrstuvwxyz"
+                         "0123456789+/";
+
+            /// @brief The actual implementation of the Base64 decoding
+            /// @param EncodedString The String to decode
+            /// @param Results A reference to a @ref BinaryBuffer with the Size set correctly and a Buffer Allocated, this will be the output.
+            void Base64DecodeImpl(const String& EncodedString, BinaryBuffer& Results)
+            {
+                String::const_iterator Progress = EncodedString.begin();
+                Whole Output = 0;
+
+                unsigned char First;
+                unsigned char Second;
+                unsigned char Third;
+                unsigned char Fourth;
+
+                while(Progress<EncodedString.end())
+                {
+                    if(!IsBase64(*Progress))
+                        { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
+
+                    First = Base64Chars.find(*(Progress+0));
+                    Second = Base64Chars.find(*(Progress+1));
+                    Third = *(Progress+2)=='=' ? 0 : Base64Chars.find(*(Progress+2));
+
+                    #ifdef MEZZDEBUG
+                    if(Output+1>Results.Size)
+                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                    #endif
+                    *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
+                    *(Results.Binary+Output+1) = ((Second & 0xf) << 4) + ((Third & 0x3c) >> 2);
+
+                    if(*(Progress+3)!='=')
+                    {
+                        #ifdef MEZZDEBUG
+                        if(Output+2>Results.Size)
+                            { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
+                        #endif
+                        Fourth = Base64Chars.find(*(Progress+3));
+                        *(Results.Binary+Output+2) = ((Third & 0x3) << 6) + Fourth;
+                    }
+
+                    #ifdef MEZZDEBUG
+                    if(Progress>EncodedString.end())
+                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
+                    #endif
+                    Output+=3;
+                    Progress+=4;
+                }
+            }
+
+        }
+
         BinaryBuffer::BinaryBuffer(const BinaryBuffer& Other)
         {
             if (this == &Other)
@@ -98,7 +157,10 @@ namespace Mezzanine
         BinaryBuffer::BinaryBuffer(const String& DataString, bool IsBase64)
         {
             if(IsBase64)
-                { this->CreateFromBase64(DataString); }
+            {
+                Binary=0;
+                this->CreateFromBase64(DataString);
+            }
             else
             {
                 this->Size = DataString.size();
@@ -109,9 +171,12 @@ namespace Mezzanine
 
         BinaryBuffer& BinaryBuffer::operator= (const BinaryBuffer& RH)
         {
+            if (RH.Binary == this->Binary)
+                { MEZZ_EXCEPTION(Exception::INVALID_ASSIGNMENT, "Attempted a self assignment of a BinaryBuffer"); }
             DeleteBuffer(RH.Size);
             CreateBuffer();
             memcpy(this->Binary,RH.Binary,this->Size);
+            return *this;
         }
 
         BinaryBuffer::~BinaryBuffer()
@@ -120,13 +185,12 @@ namespace Mezzanine
         void BinaryBuffer::DeleteBuffer(Whole NewSize)
         {
             delete[] Binary;
+            Binary=0;
             Size = NewSize;
         }
 
         void BinaryBuffer::CreateBuffer()
-        {
-            this->Binary = new UInt8[this->Size];
-        }
+            { this->Binary = new UInt8[this->Size]; }
 
         String BinaryBuffer::ToBase64String()
             { return Base64Encode(Binary,Size); }
@@ -134,25 +198,27 @@ namespace Mezzanine
         String BinaryBuffer::ToString()
             { return String((char*)this->Binary,this->Size); }
 
-        void BinaryBuffer::CreateFromBase64(String EncodedBinaryData)
+        void BinaryBuffer::CreateFromBase64(const String& EncodedBinaryData)
         {
-            DeleteBuffer(); //Set our binary to 0
-            BinaryBuffer Temp(Base64Decode(EncodedBinaryData));
-            std::swap(this->Binary, Temp.Binary); // now the other binary is 0 and the buffer was never copied and won't be deleted on the destruction of other.
-            this->Size=Temp.Size;
+            if(Binary)
+                { delete[] Binary; }
+            Size = PredictBinarySizeFromBase64String(EncodedBinaryData);
+            Binary = new byte[Size];
+            Base64DecodeImpl(EncodedBinaryData,*this);
         }
 
-        // Code change to Match BTS naming conventions and formatting
-        static const String Base64Chars =
-                     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                     "abcdefghijklmnopqrstuvwxyz"
-                     "0123456789+/";
+        UInt8& BinaryBuffer::operator[] (Whole Index)
+        {
+            #ifdef MEZZDEBUG
+            if(Index>=Size)
+                { MEZZ_EXCEPTION(Exception::MM_OUT_OF_BOUNDS_EXCEPTION, "Attempted access beyond range of Binary Buffer"); }
+            #endif
+            return *(Binary+Index);
+        }
 
         // Code change to Match BTS naming conventions and formatting
         bool IsBase64(unsigned char Character)
-        {
-          return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '='));
-        }
+            { return (isalnum(Character) || (Character == '+') || (Character == '/') || (Character == '=')); }
 
         String Base64Encode(String const& Unencoded)
             { return Base64Encode((UInt8 const*)Unencoded.c_str(), Unencoded.size()); }
@@ -212,48 +278,8 @@ namespace Mezzanine
         BinaryBuffer Base64Decode(String const& EncodedString)
         {
             BinaryBuffer Results(PredictBinarySizeFromBase64String(EncodedString));
-            String::const_iterator Progress = EncodedString.begin();
-            Whole Output = 0;
 
-            unsigned char First;
-            unsigned char Second;
-            unsigned char Third;
-            unsigned char Fourth;
-
-            while(Progress<EncodedString.end())
-            {
-                if(!IsBase64(*Progress))
-                    { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
-
-                First = Base64Chars.find(*(Progress+0));
-                Second = Base64Chars.find(*(Progress+1));
-                Third = *(Progress+2)=='=' ? 0 : Base64Chars.find(*(Progress+2));
-
-                #ifdef MEZZDEBUG
-                if(Output+1>Results.Size)
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
-                #endif
-                *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
-                *(Results.Binary+Output+1) = ((Second & 0xf) << 4) + ((Third & 0x3c) >> 2);
-
-                if(*(Progress+3)!='=')
-                {
-                    #ifdef MEZZDEBUG
-                    if(Output+2>Results.Size)
-                        { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
-                    #endif
-                    Fourth = Base64Chars.find(*(Progress+3));
-                    *(Results.Binary+Output+2) = ((Third & 0x3) << 6) + Fourth;
-                }
-
-                #ifdef MEZZDEBUG
-                if(Progress>EncodedString.end())
-                    { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Gone past the end of the input while decoding a base64 string."); }
-                #endif
-
-                Output+=3;
-                Progress+=4;
-            }
+            Base64DecodeImpl(EncodedString, Results);
 
             return Results;
         }

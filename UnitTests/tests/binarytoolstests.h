@@ -162,47 +162,125 @@ class binarytoolstests : public UnitTestGroup
 
         virtual void RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+            const String Test1String("Test");
+            const String Test1Base64("VGVzdA==");
 
             if (RunAutomaticTests)
             {
                 TestResult temp;
 
-                if( IsBase64('a') && IsBase64('b') && IsBase64('c') && IsBase64('d') && IsBase64('e') && IsBase64('f') && IsBase64('g') && IsBase64('h') && IsBase64('i') && IsBase64('j') && IsBase64('k') && IsBase64('l') && IsBase64('m') &&
-                    IsBase64('n') && IsBase64('o') && IsBase64('p') && IsBase64('q') && IsBase64('r') && IsBase64('s') && IsBase64('t') && IsBase64('u') && IsBase64('v') && IsBase64('w') && IsBase64('x') && IsBase64('y') && IsBase64('z') &&
-                    IsBase64('A') && IsBase64('B') && IsBase64('C') && IsBase64('D') && IsBase64('E') && IsBase64('F') && IsBase64('G') && IsBase64('H') && IsBase64('I') && IsBase64('J') && IsBase64('K') && IsBase64('L') && IsBase64('M') &&
-                    IsBase64('N') && IsBase64('O') && IsBase64('P') && IsBase64('Q') && IsBase64('R') && IsBase64('S') && IsBase64('T') && IsBase64('U') && IsBase64('V') && IsBase64('W') && IsBase64('X') && IsBase64('Y') && IsBase64('Z') &&
-                    IsBase64('0') && IsBase64('1') && IsBase64('2') && IsBase64('3') && IsBase64('4') && IsBase64('5') && IsBase64('6') && IsBase64('7') && IsBase64('8') && IsBase64('9') &&
-                    IsBase64('/') && IsBase64('=') && IsBase64('+') &&
-                    !IsBase64('\n') && !IsBase64('.') &&!IsBase64('^') &&!IsBase64(' ') &&!IsBase64(':') &&!IsBase64('@') &&
-                    !IsBase64('\t') && !IsBase64('`') &&!IsBase64('[') &&!IsBase64('<') &&!IsBase64('>') &&!IsBase64(']') &&
-                    !IsBase64(0) && !IsBase64(127) &&!IsBase64(150) &&!IsBase64(255) &&!IsBase64(7) &&!IsBase64(10) &&
-                    !IsBase64(16) && !IsBase64(27) &&!IsBase64(180) &&!IsBase64(128) &&!IsBase64(32) &&!IsBase64(34)
+                BinaryBuffer DefaultTest;
+                if( 0==DefaultTest.Size && 0==DefaultTest.Binary)
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", temp);
+
+                DefaultTest.Size=4;
+                DefaultTest.Binary = new UInt8[4];
+                *(DefaultTest.Binary+0) = 'T';
+                *(DefaultTest.Binary+1) = 'e';
+                *(DefaultTest.Binary+2) = 's';
+                *(DefaultTest.Binary+3) = 't';
+                BinaryBuffer Copied(DefaultTest);
+                *(DefaultTest.Binary+0) = 'O';
+                *(DefaultTest.Binary+1) = 'l';
+                *(DefaultTest.Binary+2) = 'd';
+                *(DefaultTest.Binary+3) = '.';
+                if( 4==Copied.Size &&
+                    (*(Copied.Binary+0) == 'T') &&
+                    (*(Copied.Binary+1) == 'e') &&
+                    (*(Copied.Binary+2) == 's') &&
+                    (*(Copied.Binary+3) == 't')
                   )
                     { temp=Success; }
                 else
                     { temp=Failed; }
-                AddTestResult("BinaryTools::IsBase64", temp);
+                AddTestResult("BinaryTools::BinaryBuffer::CopyConstructor", temp);
+
+                BinaryBuffer StrinTest("Strin",false);
+                if( 5==StrinTest.Size  &&
+                        (*(StrinTest.Binary+0) == 'S') &&
+                        (*(StrinTest.Binary+1) == 't') &&
+                        (*(StrinTest.Binary+2) == 'r') &&
+                        (*(StrinTest.Binary+3) == 'i') &&
+                        (*(StrinTest.Binary+4) == 'n')
+                  )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::StringConstructor", temp);
+
+                if( String("Strin") == StrinTest.ToString())
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::ToString", temp);
+
+                char* CString = new char[4];
+                CString[0] = 'T';
+                CString[1] = 'e';
+                CString[2] = 's';
+                CString[3] = 't';
+                BinaryBuffer BufferConTest((UInt8*)CString,4);
+                if( String("Test") == BufferConTest.ToString())
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::PointerConstructor", temp);
+
+                if( BinaryBuffer(200).Size == 200 )
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::SizeConstructor", temp);
+
+                BinaryBuffer AssignmentTest;
+                AssignmentTest = BufferConTest;
+                BufferConTest[0]='A';
+                BufferConTest[1]='B';
+                BufferConTest[2]='C';
+                BufferConTest[3]='!';
+                if( String("ABC!") == BufferConTest.ToString())
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::operator[]", temp);
+
+                if( String("Test") == AssignmentTest.ToString())
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::operator=", temp);
+
+                if( String("Test") == BinaryBuffer("VGVzdA==").ToString())
+                    { temp=Success; }
+                else
+                    { temp=Failed; }
+                AddTestResult("BinaryTools::BinaryBuffer::Base64Constructor", temp);
             }else{
-                AddTestResult("BinaryTools::IsBase64", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::CopyConstructor", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::StringConstructor", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::ToString", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::PointerConstructor", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::SizeConstructor", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::operator[]", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::operator=", Skipped);
+                AddTestResult("BinaryTools::BinaryBuffer::Base64Constructor", Skipped);
             }
 
+            const String Test2String("Mover");
+            const String Test2Base64("TW92ZXI=");
 
+            const String Test3String("Shaker");
+            const String Test3Base64("U2hha2Vy");
 
+            const String GettysburgAddress("Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal. Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this. But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us-that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion-that we here highly resolve that these dead shall not have died in vain-that this nation, under God, shall have a new birth of freedom-and that government of the people, by the people, for the people, shall not perish from the earth.");
+            const String GettysburgAddressBase64("Rm91ciBzY29yZSBhbmQgc2V2ZW4geWVhcnMgYWdvIG91ciBmYXRoZXJzIGJyb3VnaHQgZm9ydGggb24gdGhpcyBjb250aW5lbnQgYSBuZXcgbmF0aW9uLCBjb25jZWl2ZWQgaW4gbGliZXJ0eSwgYW5kIGRlZGljYXRlZCB0byB0aGUgcHJvcG9zaXRpb24gdGhhdCBhbGwgbWVuIGFyZSBjcmVhdGVkIGVxdWFsLiBOb3cgd2UgYXJlIGVuZ2FnZWQgaW4gYSBncmVhdCBjaXZpbCB3YXIsIHRlc3Rpbmcgd2hldGhlciB0aGF0IG5hdGlvbiwgb3IgYW55IG5hdGlvbiwgc28gY29uY2VpdmVkIGFuZCBzbyBkZWRpY2F0ZWQsIGNhbiBsb25nIGVuZHVyZS4gV2UgYXJlIG1ldCBvbiBhIGdyZWF0IGJhdHRsZS1maWVsZCBvZiB0aGF0IHdhci4gV2UgaGF2ZSBjb21lIHRvIGRlZGljYXRlIGEgcG9ydGlvbiBvZiB0aGF0IGZpZWxkLCBhcyBhIGZpbmFsIHJlc3RpbmcgcGxhY2UgZm9yIHRob3NlIHdobyBoZXJlIGdhdmUgdGhlaXIgbGl2ZXMgdGhhdCB0aGF0IG5hdGlvbiBtaWdodCBsaXZlLiBJdCBpcyBhbHRvZ2V0aGVyIGZpdHRpbmcgYW5kIHByb3BlciB0aGF0IHdlIHNob3VsZCBkbyB0aGlzLiBCdXQsIGluIGEgbGFyZ2VyIHNlbnNlLCB3ZSBjYW4gbm90IGRlZGljYXRlLCB3ZSBjYW4gbm90IGNvbnNlY3JhdGUsIHdlIGNhbiBub3QgaGFsbG93IHRoaXMgZ3JvdW5kLiBUaGUgYnJhdmUgbWVuLCBsaXZpbmcgYW5kIGRlYWQsIHdobyBzdHJ1Z2dsZWQgaGVyZSwgaGF2ZSBjb25zZWNyYXRlZCBpdCwgZmFyIGFib3ZlIG91ciBwb29yIHBvd2VyIHRvIGFkZCBvciBkZXRyYWN0LiBUaGUgd29ybGQgd2lsbCBsaXR0bGUgbm90ZSwgbm9yIGxvbmcgcmVtZW1iZXIgd2hhdCB3ZSBzYXkgaGVyZSwgYnV0IGl0IGNhbiBuZXZlciBmb3JnZXQgd2hhdCB0aGV5IGRpZCBoZXJlLiBJdCBpcyBmb3IgdXMgdGhlIGxpdmluZywgcmF0aGVyLCB0byBiZSBkZWRpY2F0ZWQgaGVyZSB0byB0aGUgdW5maW5pc2hlZCB3b3JrIHdoaWNoIHRoZXkgd2hvIGZvdWdodCBoZXJlIGhhdmUgdGh1cyBmYXIgc28gbm9ibHkgYWR2YW5jZWQuIEl0IGlzIHJhdGhlciBmb3IgdXMgdG8gYmUgaGVyZSBkZWRpY2F0ZWQgdG8gdGhlIGdyZWF0IHRhc2sgcmVtYWluaW5nIGJlZm9yZSB1cy10aGF0IGZyb20gdGhlc2UgaG9ub3JlZCBkZWFkIHdlIHRha2UgaW5jcmVhc2VkIGRldm90aW9uIHRvIHRoYXQgY2F1c2UgZm9yIHdoaWNoIHRoZXkgZ2F2ZSB0aGUgbGFzdCBmdWxsIG1lYXN1cmUgb2YgZGV2b3Rpb24tdGhhdCB3ZSBoZXJlIGhpZ2hseSByZXNvbHZlIHRoYXQgdGhlc2UgZGVhZCBzaGFsbCBub3QgaGF2ZSBkaWVkIGluIHZhaW4tdGhhdCB0aGlzIG5hdGlvbiwgdW5kZXIgR29kLCBzaGFsbCBoYXZlIGEgbmV3IGJpcnRoIG9mIGZyZWVkb20tYW5kIHRoYXQgZ292ZXJubWVudCBvZiB0aGUgcGVvcGxlLCBieSB0aGUgcGVvcGxlLCBmb3IgdGhlIHBlb3BsZSwgc2hhbGwgbm90IHBlcmlzaCBmcm9tIHRoZSBlYXJ0aC4=");
 
-            String Test1String("Test");
-            String Test1Base64("VGVzdA==");
-
-            String Test2String("Mover");
-            String Test2Base64("TW92ZXI=");
-
-            String Test3String("Shaker");
-            String Test3Base64("U2hha2Vy");
-
-            String GettysburgAddress("Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in liberty, and dedicated to the proposition that all men are created equal. Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this. But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us-that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion-that we here highly resolve that these dead shall not have died in vain-that this nation, under God, shall have a new birth of freedom-and that government of the people, by the people, for the people, shall not perish from the earth.");
-            String GettysburgAddressBase64("Rm91ciBzY29yZSBhbmQgc2V2ZW4geWVhcnMgYWdvIG91ciBmYXRoZXJzIGJyb3VnaHQgZm9ydGggb24gdGhpcyBjb250aW5lbnQgYSBuZXcgbmF0aW9uLCBjb25jZWl2ZWQgaW4gbGliZXJ0eSwgYW5kIGRlZGljYXRlZCB0byB0aGUgcHJvcG9zaXRpb24gdGhhdCBhbGwgbWVuIGFyZSBjcmVhdGVkIGVxdWFsLiBOb3cgd2UgYXJlIGVuZ2FnZWQgaW4gYSBncmVhdCBjaXZpbCB3YXIsIHRlc3Rpbmcgd2hldGhlciB0aGF0IG5hdGlvbiwgb3IgYW55IG5hdGlvbiwgc28gY29uY2VpdmVkIGFuZCBzbyBkZWRpY2F0ZWQsIGNhbiBsb25nIGVuZHVyZS4gV2UgYXJlIG1ldCBvbiBhIGdyZWF0IGJhdHRsZS1maWVsZCBvZiB0aGF0IHdhci4gV2UgaGF2ZSBjb21lIHRvIGRlZGljYXRlIGEgcG9ydGlvbiBvZiB0aGF0IGZpZWxkLCBhcyBhIGZpbmFsIHJlc3RpbmcgcGxhY2UgZm9yIHRob3NlIHdobyBoZXJlIGdhdmUgdGhlaXIgbGl2ZXMgdGhhdCB0aGF0IG5hdGlvbiBtaWdodCBsaXZlLiBJdCBpcyBhbHRvZ2V0aGVyIGZpdHRpbmcgYW5kIHByb3BlciB0aGF0IHdlIHNob3VsZCBkbyB0aGlzLiBCdXQsIGluIGEgbGFyZ2VyIHNlbnNlLCB3ZSBjYW4gbm90IGRlZGljYXRlLCB3ZSBjYW4gbm90IGNvbnNlY3JhdGUsIHdlIGNhbiBub3QgaGFsbG93IHRoaXMgZ3JvdW5kLiBUaGUgYnJhdmUgbWVuLCBsaXZpbmcgYW5kIGRlYWQsIHdobyBzdHJ1Z2dsZWQgaGVyZSwgaGF2ZSBjb25zZWNyYXRlZCBpdCwgZmFyIGFib3ZlIG91ciBwb29yIHBvd2VyIHRvIGFkZCBvciBkZXRyYWN0LiBUaGUgd29ybGQgd2lsbCBsaXR0bGUgbm90ZSwgbm9yIGxvbmcgcmVtZW1iZXIgd2hhdCB3ZSBzYXkgaGVyZSwgYnV0IGl0IGNhbiBuZXZlciBmb3JnZXQgd2hhdCB0aGV5IGRpZCBoZXJlLiBJdCBpcyBmb3IgdXMgdGhlIGxpdmluZywgcmF0aGVyLCB0byBiZSBkZWRpY2F0ZWQgaGVyZSB0byB0aGUgdW5maW5pc2hlZCB3b3JrIHdoaWNoIHRoZXkgd2hvIGZvdWdodCBoZXJlIGhhdmUgdGh1cyBmYXIgc28gbm9ibHkgYWR2YW5jZWQuIEl0IGlzIHJhdGhlciBmb3IgdXMgdG8gYmUgaGVyZSBkZWRpY2F0ZWQgdG8gdGhlIGdyZWF0IHRhc2sgcmVtYWluaW5nIGJlZm9yZSB1cy10aGF0IGZyb20gdGhlc2UgaG9ub3JlZCBkZWFkIHdlIHRha2UgaW5jcmVhc2VkIGRldm90aW9uIHRvIHRoYXQgY2F1c2UgZm9yIHdoaWNoIHRoZXkgZ2F2ZSB0aGUgbGFzdCBmdWxsIG1lYXN1cmUgb2YgZGV2b3Rpb24tdGhhdCB3ZSBoZXJlIGhpZ2hseSByZXNvbHZlIHRoYXQgdGhlc2UgZGVhZCBzaGFsbCBub3QgaGF2ZSBkaWVkIGluIHZhaW4tdGhhdCB0aGlzIG5hdGlvbiwgdW5kZXIgR29kLCBzaGFsbCBoYXZlIGEgbmV3IGJpcnRoIG9mIGZyZWVkb20tYW5kIHRoYXQgZ292ZXJubWVudCBvZiB0aGUgcGVvcGxlLCBieSB0aGUgcGVvcGxlLCBmb3IgdGhlIHBlb3BsZSwgc2hhbGwgbm90IHBlcmlzaCBmcm9tIHRoZSBlYXJ0aC4=");
-
-            String UnicodeString("Iｎｔèｒｎáｔìｏｎàｌïｚâｔｉòｎ");
-            String UnicedeBase64("Se+9ju+9lMOo772S772Ow6HvvZTDrO+9j++9jsOg772Mw6/vvZrDou+9lO+9icOy772O");
+            const String UnicodeString("Iｎｔèｒｎáｔìｏｎàｌïｚâｔｉòｎ");
+            const String UnicedeBase64("Se+9ju+9lMOo772S772Ow6HvvZTDrO+9j++9jsOg772Mw6/vvZrDou+9lO+9icOy772O");
 
             if (RunAutomaticTests)
             {
@@ -229,9 +307,9 @@ class binarytoolstests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("BinaryTools::Base64Encode-Unicode", temp);
 
-                if( //Test1String == Base64Decode(Test1Base64).ToString()//          &&
-                    Test2String == Base64Decode(Test2Base64).ToString()//          &&
-                    //Test3String == Base64Decode(Test3Base64).ToString()
+                if( Test1String == Base64Decode(Test1Base64).ToString()          &&
+                    Test2String == Base64Decode(Test2Base64).ToString()          &&
+                    Test3String == Base64Decode(Test3Base64).ToString()
                   )
                     { temp=Success; }
                 else
@@ -359,17 +437,21 @@ class binarytoolstests : public UnitTestGroup
                 }
                 End = crossplatform::GetTimeStamp();
                 ReneDecodeTime = End - Begin;
-                cout << "Decoding With Rene's algorithm took " << ReneDecodeTime << " microseconds for " << TestCount << " iteration and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+                cout << "Decoding With Rene's algorithm took " << ReneDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
 
                 Begin = crossplatform::GetTimeStamp();
                 for(Whole c=0; c<TestCount; c++)
                 {
                     OutputB = Base64Decode(GettysburgAddressBase64);
+                    //OutputS = Base64Decode(GettysburgAddressBase64).ToString(); // If you will really one use this for Strings, then unremark this line, remark the next line up and remark the OutputS= line a few lower. It does not really matter.
                 }
                 End = crossplatform::GetTimeStamp();
                 BTSDecodeTime = End - Begin;
                 OutputS=OutputB.ToString(); //The conversion to string does not get timed, the reason for this conversion was for use as a binary buffer, not an std::String we need to moved things that allow for direct control of memory.
-                cout << "Decoding With BTS algorithm took " << BTSDecodeTime << " microseconds for " << TestCount << " iteration and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+                cout << "Decoding With BTS algorithm took " << BTSDecodeTime << " microseconds for " << TestCount << " iterations and results like: " << OutputS.substr(0,20) << "..." << OutputS.substr(OutputS.size()-20,20) << endl;
+
+
+                cout << "The new decoding algorithm takes about " << double((BTSDecodeTime*1000)/(ReneDecodeTime))/10 << "% as long as the original." << endl;
 
 
                 if( BTSDecodeTime < ReneDecodeTime )

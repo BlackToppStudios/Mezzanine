@@ -89,11 +89,18 @@ namespace Mezzanine
                 BinaryBuffer& operator= (const BinaryBuffer& RH);
 
                 /// @brief Verbose constructor, set everything custom on creation.
+                /// @param BinaryPointer A pointer to the first byte in memory, if this is null the buffer is created. Ownership of this Pointer will be assumed.
                 /// @param PredeterminedSize The size to set on creation.
-                /// @param BinaryPointer A pointer to the first byte in memory, if this is null the buffer is created.
-                BinaryBuffer(Integer PredeterminedSize, UInt8* BinaryPointer = 0) :
+                BinaryBuffer(UInt8* BinaryPointer, Integer PredeterminedSize) :
                     Size(PredeterminedSize),
                     Binary(BinaryPointer ? BinaryPointer : new byte[PredeterminedSize])
+                    {}
+
+                /// @brief Terse constructor, set a custom size and allocate a buffer (potentially filled with gibberish).
+                /// @param PredeterminedSize The size to set on creation.
+                explicit BinaryBuffer(Integer PredeterminedSize) :
+                    Size(PredeterminedSize),
+                    Binary(new byte(PredeterminedSize))
                     {}
 
                 /// @brief Virtual deconstructor calls @ref DeleteBuffer() to clean up whatever has been inserted here
@@ -118,7 +125,13 @@ namespace Mezzanine
 
                 /// @brief This calls @ref DeleteBuffer then Decodes that passed and repopulates the Buffer
                 /// @param EncodedBinaryData The Base64 string containing binary data.
-                void CreateFromBase64(String EncodedBinaryData);
+                void CreateFromBase64(const String &EncodedBinaryData);
+
+                /// @brief Access a part of the buffer
+                /// @param Index How from from the 0 aligned beginning of the buffer would you like to access.
+                /// @return A Reference to the specific UInt8 the Index passed refers to
+                /// @note When compiled as Debug this can throw a @ref MemoryOutOfBoundsException if the index is to high (or cast from a negative
+                UInt8& operator[] (Whole Index);
         };
 
         /// @brief Is a character a valid Base64 character
