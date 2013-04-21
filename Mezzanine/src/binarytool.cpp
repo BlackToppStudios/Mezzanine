@@ -110,7 +110,9 @@ namespace Mezzanine
 
                 while(Progress<EncodedString.end())
                 {
-                    if(!IsBase64(*Progress))
+                    cout << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
+                    cout << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
+                    if(!IsBase64(*Progress) || !IsBase64(*(Progress+1)) || !IsBase64(*(Progress+2)) || !IsBase64(*(Progress+3)))
                         { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
 
                     First = Base64Chars.find(*(Progress+0));
@@ -121,9 +123,9 @@ namespace Mezzanine
                     if(Output+1>Results.Size)
                         { MEZZ_EXCEPTION(Exception::INVALID_STATE_EXCEPTION, "Output of base64 Decoding is larger than it should be."); }
                     #endif
+
                     *(Results.Binary+Output+0) = (First << 2) + ((Second & 0x30) >> 4);
                     *(Results.Binary+Output+1) = ((Second & 0xf) << 4) + ((Third & 0x3c) >> 2);
-
                     if(*(Progress+3)!='=')
                     {
                         #ifdef MEZZDEBUG
@@ -196,7 +198,10 @@ namespace Mezzanine
             { return Base64Encode(Binary,Size); }
 
         String BinaryBuffer::ToString()
-            { return String((char*)this->Binary,this->Size); }
+        {
+            return String((char*)this->Binary,this->Size);
+            /// @todo figure out why it segfaults here.
+        }
 
         void BinaryBuffer::CreateFromBase64(const String& EncodedBinaryData)
         {
