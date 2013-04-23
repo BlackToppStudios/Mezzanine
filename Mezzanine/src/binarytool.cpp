@@ -45,8 +45,6 @@
 
 #include "binarytool.h"
 #include "exception.h"
-#include <iostream>
-using namespace std;
 
 #include <string.h>
 #include <algorithm>
@@ -103,6 +101,9 @@ namespace Mezzanine
                 String::const_iterator Progress = EncodedString.begin();
                 Whole Output = 0;
 
+                for(Whole c=0; c<Results.Size; c++)
+                    { Results[c] = 0; }
+
                 unsigned char First;
                 unsigned char Second;
                 unsigned char Third;
@@ -110,8 +111,8 @@ namespace Mezzanine
 
                 while(Progress<EncodedString.end())
                 {
-                    cout << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
-                    cout << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
+                    //cout << *(Progress+0) << *(Progress+1) << *(Progress+2) << *(Progress+3) << endl;
+                    //cout << !IsBase64(*Progress) << !IsBase64(*(Progress+1)) << !IsBase64(*(Progress+2)) << !IsBase64(*(Progress+3)) <<endl;
                     if(!IsBase64(*Progress) || !IsBase64(*(Progress+1)) || !IsBase64(*(Progress+2)) || !IsBase64(*(Progress+3)))
                         { MEZZ_EXCEPTION(Exception::INVALID_PARAMETERS_EXCEPTION, "Base64 contains an invalid character and cannot be decoded."); }
 
@@ -199,7 +200,7 @@ namespace Mezzanine
 
         String BinaryBuffer::ToString()
         {
-            return String((char*)this->Binary,this->Size);
+            return String((char*)(this->Binary),this->Size);
             /// @todo figure out why it segfaults here.
         }
 
