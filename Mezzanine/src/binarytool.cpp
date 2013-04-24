@@ -150,10 +150,8 @@ namespace Mezzanine
 
         BinaryBuffer::BinaryBuffer(const BinaryBuffer& Other)
         {
-            if (this == &Other)
-                { return; }
             this->Size = Other.Size;
-            this->Binary = new UInt8[this->Size];
+            this->Binary = new Byte[this->Size*sizeof(Byte)];
             memcpy(this->Binary,Other.Binary,this->Size);
         }
 
@@ -187,20 +185,21 @@ namespace Mezzanine
 
         void BinaryBuffer::DeleteBuffer(Whole NewSize)
         {
-            delete[] Binary;
+            if(Binary)
+                { delete[] Binary; }
             Binary=0;
             Size = NewSize;
         }
 
         void BinaryBuffer::CreateBuffer()
-            { this->Binary = new UInt8[this->Size]; }
+        { this->Binary = new Byte[this->Size*sizeof(Byte)]; }
 
         String BinaryBuffer::ToBase64String()
-            { return Base64Encode(Binary,Size); }
+        { return Base64Encode((UInt8*)Binary,Size*sizeof(Byte)); }
 
         String BinaryBuffer::ToString()
         {
-            return String((char*)(this->Binary),this->Size);
+            return String((char*)(this->Binary),this->Size*sizeof(Byte));
             /// @todo figure out why it segfaults here.
         }
 
@@ -209,11 +208,11 @@ namespace Mezzanine
             if(Binary)
                 { delete[] Binary; }
             Size = PredictBinarySizeFromBase64String(EncodedBinaryData);
-            Binary = new byte[Size];
+            Binary = new Byte[Size*sizeof(Byte)];
             Base64DecodeImpl(EncodedBinaryData,*this);
         }
 
-        UInt8& BinaryBuffer::operator[] (Whole Index)
+        BinaryBuffer::Byte& BinaryBuffer::operator[] (Whole Index)
         {
             #ifdef MEZZDEBUG
             if(Index>=Size)
@@ -230,7 +229,7 @@ namespace Mezzanine
             { return Base64Encode((UInt8 const*)Unencoded.c_str(), Unencoded.size()); }
 
         String Base64Encode(const BinaryBuffer &Buffer)
-            { return Base64Encode(Buffer.Binary,Buffer.Size); }
+            { return Base64Encode((const UInt8*) Buffer.Binary,Buffer.Size); }
 
         // Code change to Match BTS naming conventions and formatting
         String Base64Encode(UInt8 const* BytesToEncode, unsigned int Length)

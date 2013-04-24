@@ -59,14 +59,14 @@ namespace Mezzanine
         {
             public:
 
-                /// @brief The type of data this buffer can hold
-                typedef UInt8 byte;
+                /// @brief The type of data this buffer can hold, it is intended to be some type one byte in length, but doesn't have to be
+                typedef Int8 Byte;
 
                 /// @brief How many bytes is @ref Binary in size. This is set to 0 if @ref Binary is invalid and should be a null pointer.
                 Whole Size;
 
                 /// @brief A pointer to the actual binary data.
-                UInt8* Binary;
+                Byte* Binary;
 
                 /// @brief Default constructor, set everything to zero.
                 BinaryBuffer() :
@@ -83,7 +83,7 @@ namespace Mezzanine
                 explicit BinaryBuffer(const String& DataString, bool IsBase64 = true);
 
                 /// @brief Assignment Operator
-                /// @details This deletes the buffer if it si
+                /// @details This deletes the buffer if it is not null
                 /// @param RH The item on the right hand side
                 /// @return A reference to the newly assigned binary buffer.
                 BinaryBuffer& operator= (const BinaryBuffer& RH);
@@ -91,16 +91,16 @@ namespace Mezzanine
                 /// @brief Verbose constructor, set everything custom on creation.
                 /// @param BinaryPointer A pointer to the first byte in memory, if this is null the buffer is created. Ownership of this Pointer will be assumed.
                 /// @param PredeterminedSize The size to set on creation.
-                BinaryBuffer(UInt8* BinaryPointer, Integer PredeterminedSize) :
+                BinaryBuffer(Byte* BinaryPointer, Integer PredeterminedSize) :
                     Size(PredeterminedSize),
-                    Binary(BinaryPointer ? BinaryPointer : new byte[PredeterminedSize])
+                    Binary(BinaryPointer ? BinaryPointer : new Byte[PredeterminedSize])
                     {}
 
                 /// @brief Terse constructor, set a custom size and allocate a buffer (potentially filled with gibberish).
                 /// @param PredeterminedSize The size to set on creation.
                 explicit BinaryBuffer(Integer PredeterminedSize) :
                     Size(PredeterminedSize),
-                    Binary(new byte(PredeterminedSize))
+                    Binary(new Byte(PredeterminedSize))
                     {}
 
                 /// @brief Virtual deconstructor calls @ref DeleteBuffer() to clean up whatever has been inserted here
@@ -129,9 +129,9 @@ namespace Mezzanine
 
                 /// @brief Access a part of the buffer
                 /// @param Index How from from the 0 aligned beginning of the buffer would you like to access.
-                /// @return A Reference to the specific UInt8 the Index passed refers to
+                /// @return A Reference to the specific Byte the Index passed refers to
                 /// @note When compiled as Debug this can throw a @ref MemoryOutOfBoundsException if the index is to high (or cast from a negative
-                UInt8& operator[] (Whole Index);
+                Byte& operator[] (Whole Index);
         };
 
         /// @brief Is a character a valid Base64 character

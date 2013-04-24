@@ -177,7 +177,7 @@ class binarytoolstests : public UnitTestGroup
                 AddTestResult("BinaryTools::BinaryBuffer::DefaultConstructor", temp);
 
                 DefaultTest.Size=4;
-                DefaultTest.Binary = new UInt8[4];
+                DefaultTest.Binary = new BinaryBuffer::Byte[4];
                 *(DefaultTest.Binary+0) = 'T';
                 *(DefaultTest.Binary+1) = 'e';
                 *(DefaultTest.Binary+2) = 's';
@@ -217,12 +217,12 @@ class binarytoolstests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("BinaryTools::BinaryBuffer::ToString", temp);
 
-                char* CString = new char[4];
+                BinaryBuffer::Byte* CString = new BinaryBuffer::Byte[4];
                 CString[0] = 'T';
                 CString[1] = 'e';
                 CString[2] = 's';
                 CString[3] = 't';
-                BinaryBuffer BufferConTest((UInt8*)CString,4);
+                BinaryBuffer BufferConTest(CString,4);
                 if( String("Test") == BufferConTest.ToString())
                     { temp=Success; }
                 else
@@ -316,7 +316,9 @@ class binarytoolstests : public UnitTestGroup
                     { temp=Failed; }
                 AddTestResult("BinaryTools::Base64Decode-Short", temp);
 
-                if(GettysburgAddress == Base64Decode(GettysburgAddressBase64).ToString())
+
+                BinaryBuffer GettyBuffAddress(Base64Decode(GettysburgAddressBase64));
+                if(GettysburgAddress == GettyBuffAddress.ToString())
                     { temp=Success; }
                 else
                     { temp=Failed; }
