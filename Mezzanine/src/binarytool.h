@@ -98,9 +98,9 @@ namespace Mezzanine
 
                 /// @brief Terse constructor, set a custom size and allocate a buffer (potentially filled with gibberish).
                 /// @param PredeterminedSize The size to set on creation.
-                explicit BinaryBuffer(Integer PredeterminedSize) :
+                explicit BinaryBuffer(Whole PredeterminedSize) :
                     Size(PredeterminedSize),
-                    Binary(new Byte(PredeterminedSize))
+                    Binary(new Byte[PredeterminedSize])
                     {}
 
                 /// @brief Virtual deconstructor calls @ref DeleteBuffer() to clean up whatever has been inserted here

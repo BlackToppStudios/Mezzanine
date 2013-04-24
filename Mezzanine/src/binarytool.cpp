@@ -101,8 +101,9 @@ namespace Mezzanine
                 String::const_iterator Progress = EncodedString.begin();
                 Whole Output = 0;
 
-                for(Whole c=0; c<Results.Size; c++)
-                    { Results[c] = 0; }
+                //Initializing this RAM really slows it down like 30% to double onto execution time.
+                //for(Whole c=0; c<Results.Size; c++)
+                    //{ Results[c] = 0; }
 
                 unsigned char First;
                 unsigned char Second;
@@ -192,16 +193,13 @@ namespace Mezzanine
         }
 
         void BinaryBuffer::CreateBuffer()
-        { this->Binary = new Byte[this->Size*sizeof(Byte)]; }
+            { this->Binary = new Byte[this->Size*sizeof(Byte)]; }
 
         String BinaryBuffer::ToBase64String()
-        { return Base64Encode((UInt8*)Binary,Size*sizeof(Byte)); }
+            { return Base64Encode((UInt8*)Binary,Size*sizeof(Byte)); }
 
         String BinaryBuffer::ToString()
-        {
-            return String((char*)(this->Binary),this->Size*sizeof(Byte));
-            /// @todo figure out why it segfaults here.
-        }
+            { return String((char*)(this->Binary),this->Size*sizeof(Byte)); }
 
         void BinaryBuffer::CreateFromBase64(const String& EncodedBinaryData)
         {
