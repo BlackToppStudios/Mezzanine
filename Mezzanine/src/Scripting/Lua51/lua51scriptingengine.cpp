@@ -48,6 +48,7 @@
 #include "lua51scriptingengine.h"
 #include "exception.h"
 
+#include <cstring>
 /// @file
 /// @brief This file has the implemetation for the Lua based Scripting system.
 
@@ -79,16 +80,25 @@ namespace Mezzanine
                 /// @param State The lua state as provide by lua_dump
                 /// @param Buffer A pointer to the compiled Lua chunk.
                 /// @param Size The Size of the Lua chunk in bytes
-                /// @param MezzScript A pointer to a Mezzanine::Scripting::Lua::LuaScript
-                int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* MezzScript)
+                /// @param BinBuff A BinaryTools::BinaryBuffer
+                int LuaScriptWriter(lua_State *State, const void* Buffer, size_t Size, void* BinBuff)
                 {
-                    Lua51Script* CompilingScript = reinterpret_cast<Lua51Script*>(MezzScript);
-
+                    BinaryTools::BinaryBuffer* CompilingScript = reinterpret_cast<BinaryTools::BinaryBuffer*>(BinBuff);
+                    CompilingScript->DeleteBuffer(Size);
+                    CompilingScript->CreateBuffer();
+                    memcpy(CompilingScript->Binary, Buffer, Size);
                 }
             }
 
             void Lua51ScriptingEngine::Compile(Lua51Script* ScriptToCompile)
             {
+                // Need to do something here to initiate compile
+
+                ThrowFromLuaErrorCode(
+                    lua_dump(this->State, LuaScriptWriter, &(ScriptToCompile->CompiledByteCode) )
+                );
+
+
 
             }
 

@@ -44,7 +44,7 @@
 
 /// @file
 /// @brief Test the BinaryBuffer and associate functions
-
+using namespace std;
 using namespace Mezzanine;
 using namespace Mezzanine::Testing;
 using namespace Mezzanine::BinaryTools;
