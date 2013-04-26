@@ -467,12 +467,8 @@ namespace Mezzanine
 
     void GraphicsManager::DestroyAllGameWindows(bool ExcludePrimary)
     {
-        Whole X = 0;
-        while( X < GameWindows.size() )
-        {
-            delete GameWindows[X];
-            X++;
-        }
+        for(GameWindowContainer::reverse_iterator Iter = GameWindows.rbegin(); Iter!=GameWindows.rend(); Iter++)
+            { delete *Iter; }
         GameWindows.clear();
 
         if(ExcludePrimary)
